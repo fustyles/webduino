@@ -7949,361 +7949,369 @@
 			</value>
 			<field name="str"></field>			
 		</block>	
-
-	<block type="fu_oled_drawXBMP_PROGMEM">
-		<value name="width">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="height">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>		
-    </block>	
-	<block type="fu_oled_PROGMEM_array">
-		<value name="PROGMEM">
-          <block type="lists_create_with" inline="false">
-            <mutation items="2"></mutation>
-			<value name="ADD0">
-              <block type="text" disabled="true">
-                <field name="TEXT"></field>
-              </block>
-            </value>
-            <value name="ADD1">
-              <block type="text" disabled="true">
-                <field name="TEXT"></field>
-              </block>
-            </value>		
-          </block>
-		</value>		
-    </block>	
-	<block type="fu_oled_drawXBMP_PROGMEM_array">
-		<value name="index">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>	
-		<value name="width">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="height">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>		
-    </block>
-	<block type="fu_oled_drawPixelMap">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>		
-	</block>	
-	<block type="fu_oled_drawBox">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="width">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="height">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>		  
-    </block>
-	<block type="fu_oled_drawRBox">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="width">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="height">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="radius">
-		  <shadow type="math_number">
-			<field name="NUM">3</field>
-		  </shadow>
-		</value>			
-    </block>	
-	<block type="fu_oled_drawFrame">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="width">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="height">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>		  
-    </block>	
-	<block type="fu_oled_drawRFrame">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="width">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="height">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="radius">
-		  <shadow type="math_number">
-			<field name="NUM">3</field>
-		  </shadow>
-		</value>		
-    </block>	
-	<block type="fu_oled_drawCircle">
-		<value name="x0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="radius">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>		  
-    </block>
-	<block type="fu_oled_drawDisc">
-		<value name="x0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="radius">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>		  
-    </block>
-	<block type="fu_oled_drawEllipse">
-		<value name="x0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="rx">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="ry">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>		  
-    </block>
-	<block type="fu_oled_drawFilledEllipse">
-		<value name="x0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="rx">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="ry">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>		  
-    </block>
-	<block type="fu_oled_drawHLine">
-		<value name="x0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="width">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>	  
-    </block>
-	<block type="fu_oled_drawVLine">
-		<value name="x0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="height">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>	  
-    </block>	
-	<block type="fu_oled_drawLine">
-		<value name="x0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="x1">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="y1">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>		  
-    </block>
-	<block type="fu_oled_drawTriangle">
-		<value name="x0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y0">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="x1">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="y1">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="x2">
-		  <shadow type="math_number">
-			<field name="NUM">0</field>
-		  </shadow>
-		</value>
-		<value name="y2">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>		
-    </block>	
-	<block type="fu_oled_drawPixel">
-		<value name="x">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>
-		<value name="y">
-		  <shadow type="math_number">
-			<field name="NUM">16</field>
-		  </shadow>
-		</value>		  
-    </block>
+		<block type="tft_PROGMEM_icon">
+			<field name="width">40</field>
+			<field name="height">40</field>
+			<value name="PROGMEM">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>			
+		</block>	
+		<block type="fu_oled_drawXBMP_PROGMEM">
+			<value name="width">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="height">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="x">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>		
+		</block>	
+		<block type="fu_oled_PROGMEM_array">
+			<value name="PROGMEM">
+			  <block type="lists_create_with" inline="false">
+				<mutation items="2"></mutation>
+				<value name="ADD0">
+				  <block type="text" disabled="true">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="ADD1">
+				  <block type="text" disabled="true">
+					<field name="TEXT"></field>
+				  </block>
+				</value>		
+			  </block>
+			</value>		
+		</block>	
+		<block type="fu_oled_drawXBMP_PROGMEM_array">
+			<value name="index">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>	
+			<value name="width">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="height">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="x">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>		
+		</block>
+		<block type="fu_oled_drawPixelMap">
+			<value name="x">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>		
+		</block>	
+		<block type="fu_oled_drawBox">
+			<value name="x">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="width">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="height">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>		  
+		</block>
+		<block type="fu_oled_drawRBox">
+			<value name="x">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="width">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="height">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="radius">
+			  <shadow type="math_number">
+				<field name="NUM">3</field>
+			  </shadow>
+			</value>			
+		</block>	
+		<block type="fu_oled_drawFrame">
+			<value name="x">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="width">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="height">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>		  
+		</block>	
+		<block type="fu_oled_drawRFrame">
+			<value name="x">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="width">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="height">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="radius">
+			  <shadow type="math_number">
+				<field name="NUM">3</field>
+			  </shadow>
+			</value>		
+		</block>	
+		<block type="fu_oled_drawCircle">
+			<value name="x0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="radius">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>		  
+		</block>
+		<block type="fu_oled_drawDisc">
+			<value name="x0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="radius">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>		  
+		</block>
+		<block type="fu_oled_drawEllipse">
+			<value name="x0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="rx">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="ry">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>		  
+		</block>
+		<block type="fu_oled_drawFilledEllipse">
+			<value name="x0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="rx">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="ry">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>		  
+		</block>
+		<block type="fu_oled_drawHLine">
+			<value name="x0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="width">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>	  
+		</block>
+		<block type="fu_oled_drawVLine">
+			<value name="x0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="height">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>	  
+		</block>	
+		<block type="fu_oled_drawLine">
+			<value name="x0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="x1">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="y1">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>		  
+		</block>
+		<block type="fu_oled_drawTriangle">
+			<value name="x0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y0">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="x1">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="y1">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="x2">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>
+			<value name="y2">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>		
+		</block>	
+		<block type="fu_oled_drawPixel">
+			<value name="x">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>
+			<value name="y">
+			  <shadow type="math_number">
+				<field name="NUM">16</field>
+			  </shadow>
+			</value>		  
+		</block>
 	</category>	
 	
 	<category id="tft" name="tft">
@@ -8524,13 +8532,22 @@
 			  </block>
 			</value>			
 		</block>
+		<block type="tft_PROGMEM_icon">
+			<field name="width">40</field>
+			<field name="height">40</field>
+			<value name="PROGMEM">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>			
+		</block>		
 		<block type="tft_PROGMEM">
 			<value name="PROGMEM">
 			  <block type="text">
 				<field name="TEXT"></field>
 			  </block>
 			</value>		
-		</block>
+		</block>		
 		<block type="tft_PROGMEM_resize">
 			<field name="width">40</field>
 			<field name="height">40</field>
