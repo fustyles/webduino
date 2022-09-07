@@ -1,7 +1,6 @@
 <!-- 
 Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/7 00:00
 https://www.facebook.com/francefu
-
 Try it!
 https://fustyles.github.io/webduino/demoBlockly.html
 -->
@@ -443,8 +442,122 @@ var demoWorkspace = Blockly.inject(
 	}
 );
 
+//監聽工作區改變輸出程式碼
+function onWorkspaceChanged(event) {
+	var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+	console.clear();
+	console.log(code);
+}
+demoWorkspace.addChangeListener(onWorkspaceChanged);
+
+//執行工作區程式碼
+function runCode() {
+	var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+	try {
+		eval(code);
+	} catch (e) {
+		alert(e);
+	}
+}
+
 //初始積木匯入工作區
 //Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
+
+
+//新增工作區功能選單匯出匯入積木結構XML檔
+Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_MSG"] = "匯出工作區積木至XML檔案";
+
+function registerWorkspaceBlocksExportToFile() {
+  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_export_file')) {
+	return;
+  }
+  const workspaceBlocksExportToFile = {
+	displayText: function(){
+		return Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_MSG"];
+	},
+	preconditionFn: function(a) {
+		return 'enabled';
+	},
+	callback: function(a) {
+		  try {
+			var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
+			xml = Blockly.Xml.domToText(xml);
+			  
+			var link = document.createElement('a');
+			link.download="project.xml";
+			link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
+			document.body.appendChild(link);
+			link.click();
+			link.remove();
+		  } catch (e) {
+			window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
+			alert(e);
+		  }		
+	},
+	scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_export_file',
+	weight: 200,
+  };
+  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksExportToFile);
+}
+  
+registerWorkspaceBlocksExportToFile();
+
+//新增工作區功能選單匯入積木結構XML檔
+Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_MSG"] = "匯入積木XML檔案至工作區";
+
+function registerWorkspaceBlocksImportToFile() {
+  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_import_file')) {
+	return;
+  }
+  const workspaceBlocksImportToFile = {
+	displayText: function(){
+		return Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_MSG"];
+	},
+	preconditionFn: function(a) {
+		return 'enabled';
+	},
+	callback: function(a) {
+		var e = document.getElementById("importBlocks");
+		if (e) {
+			e.click();
+			return;
+		}
+		
+		var input=document.createElement('input');
+		input.type="file";
+		input.id="importBlocks";
+		input.style.display = "none";
+		input.accept=".xml";
+		input.onchange = function(element) {
+			try {	
+				var file = this.files[0];
+				if (file) {
+					var fr = new FileReader();           
+					fr.onload = function (event) {
+						Blockly.getMainWorkspace().clear();
+						var blocks = Blockly.Xml.textToDom(event.target.result);
+						Blockly.Xml.domToWorkspace(blocks, Blockly.mainWorkspace);
+					};
+					fr.readAsText(file);
+				}
+			} catch (e) {
+				alert(e);
+			}	  
+		}
+
+		document.body.appendChild(input);
+		setTimeout(function(){
+			input.click();
+		},500);	
+	},
+	scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_import_file',
+	weight: 201,
+  };
+  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksImportToFile);
+}
+  
+registerWorkspaceBlocksImportToFile();
+
 
 //工作區範圍最大化
 function workspaceResize() {
@@ -469,23 +582,7 @@ window.addEventListener("resize", function(){
 	workspaceResize();
 })
 
-//監聽工作區改變輸出程式碼
-function onWorkspaceChanged(event) {
-	var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-	console.clear();
-	console.log(code);
-}
-demoWorkspace.addChangeListener(onWorkspaceChanged);
 
-//執行工作區程式碼
-function runCode() {
-	var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-	try {
-		eval(code);
-	} catch (e) {
-		alert(e);
-	}
-}
 </script>
 </body>
 </html>
