@@ -1,6 +1,7 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/7 00:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/7 01:00
 https://www.facebook.com/francefu
+
 Try it!
 https://fustyles.github.io/webduino/demoBlockly.html
 -->
@@ -558,6 +559,31 @@ function registerWorkspaceBlocksImportToFile() {
 }
   
 registerWorkspaceBlocksImportToFile();
+
+//新增工作區功能選單執行積木程式碼
+Blockly.Msg["WORKSPACE_RUNCODE"] = "執行積木程式碼";
+
+function registerRunCode() {
+  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_run_code')) {
+	return;
+  }
+  const workspaceRunCode = {
+	displayText: function(){
+		return Blockly.Msg["WORKSPACE_RUNCODE"];
+	},
+	preconditionFn: function(a) {
+		return 'enabled';
+	},
+	callback: function(a) {
+		runCode();
+	},
+	scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_run_code',
+	weight: 202,
+  };
+  Blockly.ContextMenuRegistry.registry.register(workspaceRunCode);
+}
+  
+registerRunCode();
 
 
 //工作區範圍最大化
