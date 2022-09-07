@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/7 02:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/7 00:00
 https://www.facebook.com/francefu
 
 Try it!
@@ -386,7 +386,7 @@ https://fustyles.github.io/webduino/demoBlockly.html
 		this.appendDummyInput()
 		    .appendField(Blockly.Msg["HELLOWORLD_MSG"]);
 		this.appendValueInput("result")
-		    .setCheck(null);
+			.setCheck(null);
 		this.setInputsInline(!0);
 		this.setPreviousStatement(!0);
 		this.setNextStatement(!0);		  
@@ -472,11 +472,65 @@ function runCode() {
 	}
 }
 
+//工作區匯出積木結構XML檔案
+function workspaceExportToFile() {
+	  try {
+		var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
+		xml = Blockly.Xml.domToText(xml);
+		  
+		var link = document.createElement('a');
+		link.download="project.xml";
+		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
+		document.body.appendChild(link);
+		link.click();
+		link.remove();
+	  } catch (e) {
+		window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
+		alert(e);
+	  }		
+}
+
+//工作區匯入積木結構XML檔案
+function fileImportToWorkspace() {
+	var e = document.getElementById("importBlocks");
+	if (e) {
+		e.click();
+		return;
+	}
+	
+	var input=document.createElement('input');
+	input.type="file";
+	input.id="importBlocks";
+	input.style.display = "none";
+	input.accept=".xml";
+	input.onchange = function(element) {
+		try {	
+			var file = this.files[0];
+			if (file) {
+				var fr = new FileReader();           
+				fr.onload = function (event) {
+					Blockly.getMainWorkspace().clear();
+					var blocks = Blockly.Xml.textToDom(event.target.result);
+					Blockly.Xml.domToWorkspace(blocks, Blockly.mainWorkspace);
+				};
+				fr.readAsText(file);
+			}
+		} catch (e) {
+			alert(e);
+		}	  
+	}
+
+	document.body.appendChild(input);
+	setTimeout(function(){
+		input.click();
+	},500);	
+}
+
 //初始積木匯入工作區
 //Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
 
 
-//新增工作區功能選單匯出積木結構XML檔
+//新增工作區功能選單匯出匯入積木結構XML檔
 Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_MSG"] = "工作區匯出積木結構XML檔案";
 
 function registerWorkspaceBlocksExportToFile() {
@@ -491,20 +545,7 @@ function registerWorkspaceBlocksExportToFile() {
 		return 'enabled';
 	},
 	callback: function(a) {
-		  try {
-			var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
-			xml = Blockly.Xml.domToText(xml);
-			  
-			var link = document.createElement('a');
-			link.download="project.xml";
-			link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
-			document.body.appendChild(link);
-			link.click();
-			link.remove();
-		  } catch (e) {
-			window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
-			alert(e);
-		  }		
+		workspaceExportToFile();
 	},
 	scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_export_file',
 	weight: 200,
@@ -529,38 +570,7 @@ function registerWorkspaceBlocksImportToFile() {
 		return 'enabled';
 	},
 	callback: function(a) {
-		var e = document.getElementById("importBlocks");
-		if (e) {
-			e.click();
-			return;
-		}
-		
-		var input=document.createElement('input');
-		input.type="file";
-		input.id="importBlocks";
-		input.style.display = "none";
-		input.accept=".xml";
-		input.onchange = function(element) {
-			try {	
-				var file = this.files[0];
-				if (file) {
-					var fr = new FileReader();           
-					fr.onload = function (event) {
-						Blockly.getMainWorkspace().clear();
-						var blocks = Blockly.Xml.textToDom(event.target.result);
-						Blockly.Xml.domToWorkspace(blocks, Blockly.mainWorkspace);
-					};
-					fr.readAsText(file);
-				}
-			} catch (e) {
-				alert(e);
-			}	  
-		}
-
-		document.body.appendChild(input);
-		setTimeout(function(){
-			input.click();
-		},500);	
+		fileImportToWorkspace();
 	},
 	scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_import_file',
 	weight: 201,
