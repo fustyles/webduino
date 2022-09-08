@@ -62,8 +62,6 @@ https://fustyles.github.io/webduino/demoBlockly.html
 </script>
 	
 <script>
-	//圖示音效媒體資料夾路徑
-	var media = 'https://blockly-demo.appspot.com/static/media/';
 
 	<!-- 工具箱系統目錄語系(zh-hant.js) -->
 
@@ -407,6 +405,7 @@ https://fustyles.github.io/webduino/demoBlockly.html
 	+ '<sep></sep>'
 	+ '<category name="%{BKY_VARIABLES_NAME}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>'
 	+ '<category name="%{BKY_PROCEDURES_NAME}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>';
+	
 </script>
 
 <xml id="toolbox" style="display: none">
@@ -443,6 +442,9 @@ https://fustyles.github.io/webduino/demoBlockly.html
 </xml>
 
 <script>	
+
+//圖示音效媒體資料夾路徑
+var media = 'https://blockly-demo.appspot.com/static/media/';
 
 //工作區初始化
 var demoWorkspace = Blockly.inject(
