@@ -541,7 +541,7 @@ function fileImportToWorkspace() {
 	},500);	
 }
 
-//新增工作區功能選單匯出積木結構XML檔
+//新增工作區功能選單 重設工作區
 Blockly.Msg["WORKSPACE_RESET"] = "重設工作區";
 function registerWorkspaceReset() {
   if (Blockly.ContextMenuRegistry.registry.getItem('workspace_reset')) {
@@ -564,7 +564,7 @@ function registerWorkspaceReset() {
 }
 registerWorkspaceReset();
 
-//新增工作區功能選單匯出積木結構XML檔
+//新增工作區功能選單 匯出積木結構XML檔
 Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_MSG"] = "工作區匯出積木結構XML檔案";
 function registerWorkspaceBlocksExportToFile() {
   if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_export_file')) {
@@ -587,7 +587,7 @@ function registerWorkspaceBlocksExportToFile() {
 }
 registerWorkspaceBlocksExportToFile();
 
-//新增工作區功能選單匯入積木結構XML檔
+//新增工作區功能選單 匯入積木結構XML檔
 Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_MSG"] = "工作區匯入積木結構XML檔案";
 function registerWorkspaceBlocksImportToFile() {
   if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_import_file')) {
@@ -610,7 +610,7 @@ function registerWorkspaceBlocksImportToFile() {
 }
 registerWorkspaceBlocksImportToFile();
 
-//新增工作區功能選單執行積木程式碼
+//新增工作區功能選單 執行積木程式碼
 Blockly.Msg["WORKSPACE_RUNCODE"] = "執行積木程式碼";
 function registerRunCode() {
   if (Blockly.ContextMenuRegistry.registry.getItem('workspace_run_code')) {
