@@ -443,220 +443,220 @@ https://fustyles.github.io/webduino/demoBlockly.html
 
 <script>	
 
-//圖示音效媒體資料夾路徑
-var media = 'https://blockly-demo.appspot.com/static/media/';
+	//圖示音效媒體資料夾路徑
+	var media = 'https://blockly-demo.appspot.com/static/media/';
 
-//工作區初始化
-var demoWorkspace = Blockly.inject(
-	'blocklyDiv'
-	,{
-		media: media, 
-		toolbox: document.getElementById('toolbox'),
-		zoom:{
-			controls: true,
-			wheel: false,
-			startScale: 1.0,
-			maxScale: 3,
-			minScale: 0.3,
-			scaleSpeed: 1.2
-		},
-		trashcan: true
+	//工作區初始化
+	var demoWorkspace = Blockly.inject(
+		'blocklyDiv'
+		,{
+			media: media, 
+			toolbox: document.getElementById('toolbox'),
+			zoom:{
+				controls: true,
+				wheel: false,
+				startScale: 1.0,
+				maxScale: 3,
+				minScale: 0.3,
+				scaleSpeed: 1.2
+			},
+			trashcan: true
+		}
+	);
+
+	//初始積木匯入工作區
+	function startBlocks() {
+		Blockly.getMainWorkspace().clear();
+		Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
 	}
-);
-	
-//初始積木匯入工作區
-function startBlocks() {
-	Blockly.getMainWorkspace().clear();
-	Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
-}
-startBlocks();
+	startBlocks();
 
-//監聽工作區改變輸出程式碼
-function onWorkspaceChanged(event) {
-	var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-	console.clear();
-	console.log(code);
-}
-demoWorkspace.addChangeListener(onWorkspaceChanged);
-
-//執行工作區程式碼
-function runCode() {
-	var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-	try {
-		eval(code);
-	} catch (e) {
-		alert(e);
+	//監聽工作區改變輸出程式碼
+	function onWorkspaceChanged(event) {
+		var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+		console.clear();
+		console.log(code);
 	}
-}
+	demoWorkspace.addChangeListener(onWorkspaceChanged);
 
-//工作區匯出積木結構XML檔案
-function workspaceExportToFile() {
-	  try {
-		var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
-		xml = Blockly.Xml.domToText(xml);
-		  
-		var link = document.createElement('a');
-		link.download="project.xml";
-		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
-		document.body.appendChild(link);
-		link.click();
-		link.remove();
-	  } catch (e) {
-		window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
-		alert(e);
-	  }		
-}
-
-//工作區匯入積木結構XML檔案
-function fileImportToWorkspace() {
-	var e = document.getElementById("importBlocks");
-	if (e) {
-		e.click();
-		return;
-	}
-	
-	var input=document.createElement('input');
-	input.type="file";
-	input.id="importBlocks";
-	input.style.display = "none";
-	input.accept=".xml";
-	input.onchange = function(element) {
-		try {	
-			var file = this.files[0];
-			if (file) {
-				var fr = new FileReader();           
-				fr.onload = function (event) {
-					Blockly.getMainWorkspace().clear();
-					var blocks = Blockly.Xml.textToDom(event.target.result);
-					Blockly.Xml.domToWorkspace(blocks, Blockly.mainWorkspace);
-				};
-				fr.readAsText(file);
-			}
+	//執行工作區程式碼
+	function runCode() {
+		var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+		try {
+			eval(code);
 		} catch (e) {
 			alert(e);
-		}	  
+		}
 	}
 
-	document.body.appendChild(input);
-	setTimeout(function(){
-		input.click();
-	},500);	
-}
+	//工作區匯出積木結構XML檔案
+	function workspaceExportToFile() {
+		  try {
+			var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
+			xml = Blockly.Xml.domToText(xml);
 
-//新增工作區功能選單 重設工作區
-Blockly.Msg["WORKSPACE_RESET"] = "重設工作區";
-function registerWorkspaceReset() {
-  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_reset')) {
-	return;
-  }
-  const workspaceReset = {
-	displayText: function(){
-		return Blockly.Msg["WORKSPACE_RESET"];
-	},
-	preconditionFn: function(a) {
-		return 'enabled';
-	},
-	callback: function(a) {
-		startBlocks();
-	},
-	scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_reset',
-	weight: 200,
-  };
-  Blockly.ContextMenuRegistry.registry.register(workspaceReset);
-}
-registerWorkspaceReset();
+			var link = document.createElement('a');
+			link.download="project.xml";
+			link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
+			document.body.appendChild(link);
+			link.click();
+			link.remove();
+		  } catch (e) {
+			window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
+			alert(e);
+		  }		
+	}
 
-//新增工作區功能選單 匯出積木結構XML檔
-Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_MSG"] = "工作區匯出積木結構XML檔案";
-function registerWorkspaceBlocksExportToFile() {
-  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_export_file')) {
-	return;
-  }
-  const workspaceBlocksExportToFile = {
-	displayText: function(){
-		return Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_MSG"];
-	},
-	preconditionFn: function(a) {
-		return 'enabled';
-	},
-	callback: function(a) {
-		workspaceExportToFile();
-	},
-	scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_export_file',
-	weight: 201,
-  };
-  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksExportToFile);
-}
-registerWorkspaceBlocksExportToFile();
+	//工作區匯入積木結構XML檔案
+	function fileImportToWorkspace() {
+		var e = document.getElementById("importBlocks");
+		if (e) {
+			e.click();
+			return;
+		}
 
-//新增工作區功能選單 匯入積木結構XML檔
-Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_MSG"] = "工作區匯入積木結構XML檔案";
-function registerWorkspaceBlocksImportToFile() {
-  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_import_file')) {
-	return;
-  }
-  const workspaceBlocksImportToFile = {
-	displayText: function(){
-		return Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_MSG"];
-	},
-	preconditionFn: function(a) {
-		return 'enabled';
-	},
-	callback: function(a) {
-		fileImportToWorkspace();
-	},
-	scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_import_file',
-	weight: 202,
-  };
-  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksImportToFile);
-}
-registerWorkspaceBlocksImportToFile();
+		var input=document.createElement('input');
+		input.type="file";
+		input.id="importBlocks";
+		input.style.display = "none";
+		input.accept=".xml";
+		input.onchange = function(element) {
+			try {	
+				var file = this.files[0];
+				if (file) {
+					var fr = new FileReader();           
+					fr.onload = function (event) {
+						Blockly.getMainWorkspace().clear();
+						var blocks = Blockly.Xml.textToDom(event.target.result);
+						Blockly.Xml.domToWorkspace(blocks, Blockly.mainWorkspace);
+					};
+					fr.readAsText(file);
+				}
+			} catch (e) {
+				alert(e);
+			}	  
+		}
 
-//新增工作區功能選單 執行積木程式碼
-Blockly.Msg["WORKSPACE_RUNCODE"] = "執行積木程式碼";
-function registerRunCode() {
-  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_run_code')) {
-	return;
-  }
-  const workspaceRunCode = {
-	displayText: function(){
-		return Blockly.Msg["WORKSPACE_RUNCODE"];
-	},
-	preconditionFn: function(a) {
-		return 'enabled';
-	},
-	callback: function(a) {
-		runCode();
-	},
-	scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_run_code',
-	weight: 203,
-  };
-  Blockly.ContextMenuRegistry.registry.register(workspaceRunCode);
-} 
-registerRunCode();
+		document.body.appendChild(input);
+		setTimeout(function(){
+			input.click();
+		},500);	
+	}
 
-//工作區範圍最大化
-function workspaceResize() {
-	if (document.documentElement.clientWidth)
-		var workspaceWidth = document.documentElement.clientWidth;
-	else
-		var workspaceWidth = document.body.clientWidth;
-	if (document.documentElement.clientHeight)
-		var workspaceHeight = document.documentElement.clientHeight-1;
-	else
-		var workspaceHeight = document.body.clientHeight-1;
-	document.getElementById('blocklyDiv').style.width = workspaceWidth +"px";
-	document.getElementById('blocklyDiv').style.height = workspaceHeight +"px";
-	Blockly.svgResize(demoWorkspace);
-}
-	
-document.addEventListener("DOMContentLoaded", function(event) {
-	workspaceResize();
-})
-	
-window.addEventListener("resize", function(){
-	workspaceResize();
-})
+	//新增工作區功能選單 重設工作區
+	Blockly.Msg["WORKSPACE_RESET"] = "重設工作區";
+	function registerWorkspaceReset() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_reset')) {
+		return;
+	  }
+	  const workspaceReset = {
+		displayText: function(){
+			return Blockly.Msg["WORKSPACE_RESET"];
+		},
+		preconditionFn: function(a) {
+			return 'enabled';
+		},
+		callback: function(a) {
+			startBlocks();
+		},
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_reset',
+		weight: 200,
+	  };
+	  Blockly.ContextMenuRegistry.registry.register(workspaceReset);
+	}
+	registerWorkspaceReset();
+
+	//新增工作區功能選單 匯出積木結構XML檔
+	Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_MSG"] = "工作區匯出積木結構XML檔案";
+	function registerWorkspaceBlocksExportToFile() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_export_file')) {
+		return;
+	  }
+	  const workspaceBlocksExportToFile = {
+		displayText: function(){
+			return Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_MSG"];
+		},
+		preconditionFn: function(a) {
+			return 'enabled';
+		},
+		callback: function(a) {
+			workspaceExportToFile();
+		},
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_export_file',
+		weight: 201,
+	  };
+	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksExportToFile);
+	}
+	registerWorkspaceBlocksExportToFile();
+
+	//新增工作區功能選單 匯入積木結構XML檔
+	Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_MSG"] = "工作區匯入積木結構XML檔案";
+	function registerWorkspaceBlocksImportToFile() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_import_file')) {
+		return;
+	  }
+	  const workspaceBlocksImportToFile = {
+		displayText: function(){
+			return Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_MSG"];
+		},
+		preconditionFn: function(a) {
+			return 'enabled';
+		},
+		callback: function(a) {
+			fileImportToWorkspace();
+		},
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_import_file',
+		weight: 202,
+	  };
+	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksImportToFile);
+	}
+	registerWorkspaceBlocksImportToFile();
+
+	//新增工作區功能選單 執行積木程式碼
+	Blockly.Msg["WORKSPACE_RUNCODE"] = "執行積木程式碼";
+	function registerRunCode() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_run_code')) {
+		return;
+	  }
+	  const workspaceRunCode = {
+		displayText: function(){
+			return Blockly.Msg["WORKSPACE_RUNCODE"];
+		},
+		preconditionFn: function(a) {
+			return 'enabled';
+		},
+		callback: function(a) {
+			runCode();
+		},
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_run_code',
+		weight: 203,
+	  };
+	  Blockly.ContextMenuRegistry.registry.register(workspaceRunCode);
+	} 
+	registerRunCode();
+
+	//工作區範圍最大化
+	function workspaceResize() {
+		if (document.documentElement.clientWidth)
+			var workspaceWidth = document.documentElement.clientWidth;
+		else
+			var workspaceWidth = document.body.clientWidth;
+		if (document.documentElement.clientHeight)
+			var workspaceHeight = document.documentElement.clientHeight-1;
+		else
+			var workspaceHeight = document.body.clientHeight-1;
+		document.getElementById('blocklyDiv').style.width = workspaceWidth +"px";
+		document.getElementById('blocklyDiv').style.height = workspaceHeight +"px";
+		Blockly.svgResize(demoWorkspace);
+	}
+
+	document.addEventListener("DOMContentLoaded", function(event) {
+		workspaceResize();
+	})
+
+	window.addEventListener("resize", function(){
+		workspaceResize();
+	})
 
 </script>
 </body>
