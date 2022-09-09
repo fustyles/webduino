@@ -496,7 +496,7 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 		}
 	}
 	
-	//工作區匯出PY檔案
+	//工作區匯出PYTHON檔案
 	function workspaceExportToPY() {
 		  try {
 			var code = Blockly.Python.workspaceToCode(demoWorkspace);
@@ -637,7 +637,7 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 	registerWorkspaceBlocksImportFromXML();
 	
 	//新增工作區功能選單 匯出PYTHON檔
-	Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_PY_MSG"] = "工作區匯出PY檔";
+	Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_PY_MSG"] = "工作區匯出PYTHON檔";
 	function registerWorkspaceBlocksExportToPY() {
 	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_export_py')) {
 		return;
