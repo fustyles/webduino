@@ -485,16 +485,6 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 		console.log(code);
 	}
 	demoWorkspace.addChangeListener(onWorkspaceChanged);
-
-	//執行工作區程式碼
-	function runCode() {
-		var code = Blockly.Python.workspaceToCode(demoWorkspace);
-		try {
-			eval(code);
-		} catch (e) {
-			alert(e);
-		}
-	}
 	
 	//工作區匯出PYTHON檔案
 	function workspaceExportToPY() {
@@ -658,29 +648,6 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksExportToPY);
 	}
 	registerWorkspaceBlocksExportToPY();
-
-	//新增工作區功能選單 執行積木程式碼
-	Blockly.Msg["WORKSPACE_RUNCODE"] = "執行積木程式碼";
-	function registerRunCode() {
-	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_run_code')) {
-		return;
-	  }
-	  const workspaceRunCode = {
-		displayText: function(){
-			return Blockly.Msg["WORKSPACE_RUNCODE"];
-		},
-		preconditionFn: function(a) {
-			return 'enabled';
-		},
-		callback: function(a) {
-			runCode();
-		},
-		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_run_code',
-		weight: 204,
-	  };
-	  Blockly.ContextMenuRegistry.registry.register(workspaceRunCode);
-	} 
-	registerRunCode();
 
 	//工作區範圍最大化
 	function workspaceResize() {
