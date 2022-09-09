@@ -1,16 +1,24 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/7 23:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/9 12:00
 https://www.facebook.com/francefu
 
-Try it!
+Javascript
 https://fustyles.github.io/webduino/demoBlockly.html
+Python
+https://fustyles.github.io/webduino/demoBlockly_python.html
+
+Blockly Factory
+https://blockly-demo.appspot.com/static/demos/blockfactory/index.html
+
+SpBlockly Tool
+https://fustyles.github.io/webduino/SPduino_tool/index.html
 -->
 
 <!DOCTYPE HTML>
 <html>
 <head>
   <meta charset="utf-8">
-  <title>myBlockly</title>
+  <title>Demo Blockly</title>
 	<script src="https://blockly-demo.appspot.com/static/blockly_compressed.js"></script>
 	<script src="https://blockly-demo.appspot.com/static/blocks_compressed.js"></script>
 	<script src="https://blockly-demo.appspot.com/static/javascript_compressed.js"></script>
@@ -488,15 +496,44 @@ https://fustyles.github.io/webduino/demoBlockly.html
 			alert(e);
 		}
 	}
+	
+	//工作區匯出網頁HTML檔案
+	function workspaceExportToHTML() {
+		  try {
+			var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+			var html ='<!DOCTYPE HTML>\n' +
+					  '<html>\n' +
+					  '<head>\n' +
+					  '  <meta charset="utf-8">\n' +
+					  '  <title>Demo Blockly</title>\n' +
+					  '<\/head>\n' +
+					  '<body>\n' +
+					  '<script>\n';
+			html    +=code;
+			html    +='<\/script>\n' +			
+					  '<\/body>\n' +
+					  '<\/html>';
+					
+			var link = document.createElement('a');
+			link.download="index.html";
+			link.href="data:application/octet-stream;utf-8," + encodeURIComponent(html);
+			document.body.appendChild(link);
+			link.click();
+			link.remove();
+		  } catch (e) {
+			window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
+			alert(e);
+		  }		
+	}	
 
 	//工作區匯出積木結構XML檔案
-	function workspaceExportToFile() {
+	function workspaceExportToXML() {
 		  try {
 			var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
 			xml = Blockly.Xml.domToText(xml);
 
 			var link = document.createElement('a');
-			link.download="project.xml";
+			link.download="test.xml";
 			link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
 			document.body.appendChild(link);
 			link.click();
@@ -508,7 +545,7 @@ https://fustyles.github.io/webduino/demoBlockly.html
 	}
 
 	//工作區匯入積木結構XML檔案
-	function fileImportToWorkspace() {
+	function workspaceImportFromXML() {
 		var e = document.getElementById("importBlocks");
 		if (e) {
 			e.click();
@@ -567,50 +604,73 @@ https://fustyles.github.io/webduino/demoBlockly.html
 	registerWorkspaceReset();
 
 	//新增工作區功能選單 匯出積木結構XML檔
-	Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_MSG"] = "工作區匯出積木結構XML檔案";
-	function registerWorkspaceBlocksExportToFile() {
-	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_export_file')) {
+	Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_XML_MSG"] = "工作區匯出積木結構XML檔案";
+	function registerWorkspaceBlocksExportToXML() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_export_xml')) {
 		return;
 	  }
-	  const workspaceBlocksExportToFile = {
+	  const workspaceBlocksExportToXML = {
 		displayText: function(){
-			return Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_MSG"];
+			return Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_XML_MSG"];
 		},
 		preconditionFn: function(a) {
 			return 'enabled';
 		},
 		callback: function(a) {
-			workspaceExportToFile();
+			workspaceExportToXML();
 		},
-		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_export_file',
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_export_xml',
 		weight: 201,
 	  };
-	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksExportToFile);
+	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksExportToXML);
 	}
-	registerWorkspaceBlocksExportToFile();
+	registerWorkspaceBlocksExportToXML();
 
 	//新增工作區功能選單 匯入積木結構XML檔
-	Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_MSG"] = "工作區匯入積木結構XML檔案";
-	function registerWorkspaceBlocksImportToFile() {
-	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_import_file')) {
+	Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"] = "工作區匯入積木結構XML檔案";
+	function registerWorkspaceBlocksImportFromXML() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_import_xml')) {
 		return;
 	  }
-	  const workspaceBlocksImportToFile = {
+	  const workspaceBlocksImportFromXML = {
 		displayText: function(){
-			return Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_MSG"];
+			return Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"];
 		},
 		preconditionFn: function(a) {
 			return 'enabled';
 		},
 		callback: function(a) {
-			fileImportToWorkspace();
+			workspaceImportFromXML();
 		},
-		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_import_file',
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_import_xml',
 		weight: 202,
 	  };
-	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksImportToFile);
+	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksImportFromXML);
 	}
-	registerWorkspaceBlocksImportToFile();
+	registerWorkspaceBlocksImportFromXML();
+	
+	//新增工作區功能選單 匯出網頁HTML檔
+	Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_HTML_MSG"] = "工作區匯出網頁HTML檔";
+	function registerWorkspaceBlocksExportToHTML() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_export_html')) {
+		return;
+	  }
+	  const workspaceBlocksExportToHTML = {
+		displayText: function(){
+			return Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_HTML_MSG"];
+		},
+		preconditionFn: function(a) {
+			return 'enabled';
+		},
+		callback: function(a) {
+			workspaceExportToHTML();
+		},
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_export_html',
+		weight: 203,
+	  };
+	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksExportToHTML);
+	}
+	registerWorkspaceBlocksExportToHTML();
 
 	//新增工作區功能選單 執行積木程式碼
 	Blockly.Msg["WORKSPACE_RUNCODE"] = "執行積木程式碼";
@@ -629,7 +689,7 @@ https://fustyles.github.io/webduino/demoBlockly.html
 			runCode();
 		},
 		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_run_code',
-		weight: 203,
+		weight: 204,
 	  };
 	  Blockly.ContextMenuRegistry.registry.register(workspaceRunCode);
 	} 
