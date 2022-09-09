@@ -1,0 +1,710 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/9 12:00
+https://www.facebook.com/francefu
+
+Python
+https://fustyles.github.io/webduino/demoBlockly.html
+Python
+https://fustyles.github.io/webduino/demoBlockly_python.html
+
+Blockly Factory
+https://blockly-demo.appspot.com/static/demos/blockfactory/index.html
+SpBlockly Tool
+https://fustyles.github.io/webduino/SPduino_tool/index.html
+-->
+
+<!DOCTYPE PY>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Demo Blockly</title>
+	<script src="https://blockly-demo.appspot.com/static/blockly_compressed.js"></script>
+	<script src="https://blockly-demo.appspot.com/static/blocks_compressed.js"></script>
+	<script src="https://blockly-demo.appspot.com/static/python_compressed.js"></script>
+	<script src="https://blockly-demo.appspot.com/static/msg/js/zh-hant.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>	
+</head>
+<body>
+<div id="blocklyDiv" style="position: absolute; left: 0px; top: 0px; height: 600px; width: 600px;">
+
+<script>
+	
+	<!-- 工具箱自訂積木語系(zh-hant.js) -->
+	
+	Blockly.Msg["HELLOWORLD_NAME"] = "自訂積木";
+	Blockly.Msg["HELLOWORLD_MSG"] = "對話視窗顯示";
+	Blockly.Msg["HELLOWORLD_HUE"] = "100";
+	
+</script>
+
+<script>
+	
+	<!-- 工具箱自訂積木定義內容(block.js) -->
+	
+	Blockly.Blocks['test'] = {
+	  init: function() {
+		this.appendDummyInput()
+		    .appendField(Blockly.Msg["HELLOWORLD_MSG"]);
+		this.appendValueInput("result")
+		    .setCheck(null);
+		this.setInputsInline(!0);
+		this.setPreviousStatement(!0);
+		this.setNextStatement(!0);		  
+		this.setColour(Blockly.Msg["HELLOWORLD_HUE"]);
+	  }
+	};
+	
+</script>
+
+<script>
+	
+	<!-- 工具箱自訂積木產出程式碼內容(Python.js) -->
+
+	Blockly.Python['test'] = function(block) {
+		var result = Blockly.Python.valueToCode(block, 'result', Blockly.Python.ORDER_ATOMIC);
+		var code = 'print(' + result + ');\n';
+		return code;
+	};
+	
+</script>
+	
+<script>
+
+	<!-- 工具箱系統目錄語系(zh-hant.js) -->
+
+	Blockly.Msg["LOGIC_NAME"] = "邏輯";
+	Blockly.Msg["LOGIC_HUE"] = "210";
+	Blockly.Msg["LOOPS_NAME"] = "迴圈";
+	Blockly.Msg["LOOPS_HUE"] = "120";
+	Blockly.Msg["MATH_NAME"] = "數學";
+	Blockly.Msg["MATH_HUE"] = "230";
+	Blockly.Msg["TEXTS_NAME"] = "字串";
+	Blockly.Msg["TEXTS_HUE"] = "160";
+	Blockly.Msg["LISTS_NAME"] = "陣列";
+	Blockly.Msg["LISTS_HUE"] = "260";
+	Blockly.Msg["COLOUR_NAME"] = "顏色";
+	Blockly.Msg["COLOUR_HUE"] = "20";
+	Blockly.Msg["VARIABLES_NAME"] = "變數";
+	Blockly.Msg["VARIABLES_HUE"] = "330";
+	Blockly.Msg["PROCEDURES_NAME"] = "函式";
+	Blockly.Msg["PROCEDURES_HUE"] = "290";
+
+	var toolbox_standard = ''
+	+ '<category name="%{BKY_LOGIC_NAME}" colour="%{BKY_LOGIC_HUE}">'
+	+   '<block type="controls_if"></block>'
+	+   '<block type="logic_compare"></block>'
+	+   '<block type="logic_operation"></block>'
+	+   '<block type="logic_negate"></block>'
+	+   '<block type="logic_boolean"></block>'
+	+   '<block type="logic_null"></block>'
+	+   '<block type="logic_ternary"></block>'
+	+ '</category>'
+	+ '<category name="%{BKY_LOOPS_NAME}" colour="%{BKY_LOOPS_HUE}">'
+	+   '<block type="controls_repeat_ext">'
+	+     '<value name="TIMES">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">10</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="controls_whileUntil"></block>'
+	+   '<block type="controls_for">'
+	+     '<value name="FROM">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">1</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+     '<value name="TO">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">10</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+     '<value name="BY">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">1</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="controls_forEach"></block>'
+	+   '<block type="controls_flow_statements"></block>'
+	+ '</category>'
+	+ '<category name="%{BKY_MATH_NAME}" colour="%{BKY_MATH_HUE}">'
+	+   '<block type="math_number" gap="32">'
+	+     '<field name="NUM">123</field>'
+	+   '</block>'
+	+   '<block type="math_arithmetic">'
+	+     '<value name="A">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">1</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+     '<value name="B">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">1</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="math_single">'
+	+     '<value name="NUM">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">9</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="math_trig">'
+	+     '<value name="NUM">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">45</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="math_constant"></block>'
+	+   '<block type="math_number_property">'
+	+     '<value name="NUMBER_TO_CHECK">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">0</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="math_round">'
+	+     '<value name="NUM">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">3.1</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="math_on_list"></block>'
+	+   '<block type="math_modulo">'
+	+     '<value name="DIVIDEND">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">64</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+     '<value name="DIVISOR">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">10</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="math_constrain">'
+	+     '<value name="VALUE">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">50</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+     '<value name="LOW">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">1</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+     '<value name="HIGH">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">100</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="math_random_int">'
+	+     '<value name="FROM">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">1</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+     '<value name="TO">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">100</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="math_random_float"></block>'
+	+ '</category>'
+	+ '<category name="%{BKY_TEXTS_NAME}" colour="%{BKY_TEXTS_HUE}">'
+	+   '<block type="text"></block>'
+	+   '<block type="text_join"></block>'
+	+   '<block type="text_append">'
+	+     '<value name="TEXT">'
+	+       '<shadow type="text"></shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="text_length">'
+	+     '<value name="VALUE">'
+	+       '<shadow type="text">'
+	+         '<field name="TEXT">abc</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="text_isEmpty">'
+	+     '<value name="VALUE">'
+	+       '<shadow type="text">'
+	+         '<field name="TEXT"></field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="text_indexOf">'
+	+     '<value name="VALUE">'
+	+       '<block type="variables_get">'
+	+         '<field name="VAR">text</field>'
+	+       '</block>'
+	+     '</value>'
+	+     '<value name="FIND">'
+	+       '<shadow type="text">'
+	+         '<field name="TEXT">abc</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="text_charAt">'
+	+     '<value name="VALUE">'
+	+       '<block type="variables_get">'
+	+         '<field name="VAR">text</field>'
+	+       '</block>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="text_getSubstring">'
+	+     '<value name="STRING">'
+	+       '<block type="variables_get">'
+	+         '<field name="VAR">text</field>'
+	+       '</block>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="text_changeCase">'
+	+     '<value name="TEXT">'
+	+       '<shadow type="text">'
+	+         '<field name="TEXT">abc</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="text_trim">'
+	+     '<value name="TEXT">'
+	+       '<shadow type="text">'
+	+         '<field name="TEXT">abc</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="text_count">'
+	+     '<value name="SUB">'
+	+       '<shadow type="text"></shadow>'
+	+     '</value>'
+	+     '<value name="TEXT">'
+	+       '<shadow type="text"></shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="text_replace">'
+	+     '<value name="FROM">'
+	+       '<shadow type="text"></shadow>'
+	+     '</value>'
+	+     '<value name="TO">'
+	+       '<shadow type="text"></shadow>'
+	+     '</value>'
+	+     '<value name="TEXT">'
+	+       '<shadow type="text"></shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="text_reverse">'
+	+     '<value name="TEXT">'
+	+       '<shadow type="text"></shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<label text="Input/Output:" web-class="ioLabel"></label>'
+	+   '<block type="text_print">'
+	+     '<value name="TEXT">'
+	+       '<shadow type="text">'
+	+         '<field name="TEXT">abc</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="text_prompt_ext">'
+	+     '<value name="TEXT">'
+	+       '<shadow type="text">'
+	+         '<field name="TEXT">abc</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+ '</category>'
+	+ '<category name="%{BKY_LISTS_NAME}" colour="%{BKY_LISTS_HUE}">'
+	+   '<block type="lists_create_with">'
+	+     '<mutation items="0"></mutation>'
+	+   '</block>'
+	+   '<block type="lists_create_with"></block>'
+	+   '<block type="lists_repeat">'
+	+     '<value name="NUM">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">5</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="lists_length"></block>'
+	+   '<block type="lists_isEmpty"></block>'
+	+   '<block type="lists_indexOf">'
+	+     '<value name="VALUE">'
+	+       '<block type="variables_get">'
+	+         '<field name="VAR">list</field>'
+	+       '</block>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="lists_getIndex">'
+	+     '<value name="VALUE">'
+	+       '<block type="variables_get">'
+	+         '<field name="VAR">list</field>'
+	+       '</block>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="lists_setIndex">'
+	+     '<value name="LIST">'
+	+       '<block type="variables_get">'
+	+         '<field name="VAR">list</field>'
+	+       '</block>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="lists_getSublist">'
+	+     '<value name="LIST">'
+	+       '<block type="variables_get">'
+	+         '<field name="VAR">list</field>'
+	+       '</block>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="lists_split">'
+	+     '<value name="DELIM">'
+	+       '<shadow type="text">'
+	+         '<field name="TEXT">,</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="lists_sort"></block>'
+	+   '<block type="lists_reverse"></block>'
+	+ '</category>'
+	+ '<category name="%{BKY_COLOUR_NAME}" colour="%{BKY_COLOUR_HUE}">'
+	+   '<block type="colour_picker"></block>'
+	+   '<block type="colour_random"></block>'
+	+   '<block type="colour_rgb">'
+	+     '<value name="RED">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">100</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+     '<value name="GREEN">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">50</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+     '<value name="BLUE">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">0</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+   '<block type="colour_blend">'
+	+     '<value name="COLOUR1">'
+	+       '<shadow type="colour_picker">'
+	+         '<field name="COLOUR">#ff0000</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+     '<value name="COLOUR2">'
+	+       '<shadow type="colour_picker">'
+	+         '<field name="COLOUR">#3333ff</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+     '<value name="RATIO">'
+	+       '<shadow type="math_number">'
+	+         '<field name="NUM">0.5</field>'
+	+       '</shadow>'
+	+     '</value>'
+	+   '</block>'
+	+ '</category>'
+	+ '<sep></sep>'
+	+ '<category name="%{BKY_VARIABLES_NAME}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>'
+	+ '<category name="%{BKY_PROCEDURES_NAME}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>';
+	
+</script>
+
+<xml id="toolbox" style="display: none">
+	<!-- 工具箱系統積木XML結構內容 -->	
+	<script>
+		document.write(toolbox_standard);
+	</script>
+	
+	<sep></sep>
+	
+	<!-- 工具箱自訂積木XML結構內容(toolbox.xml) -->
+	
+	<category name="%{BKY_HELLOWORLD_NAME}" colour="%{BKY_HELLOWORLD_HUE}">
+		<block type="test">
+			<value name="result">
+				<block type="text">
+					<field name="TEXT">Hello World</field>
+				</block>
+			</value> 		
+		</block>
+	</category>
+</xml>
+	
+<xml id="startBlocks" style="display: none">
+	<!-- 工作區初始積木XML結構內容 -->
+
+	<block type="test" x="100" y="100">
+		<value name="result">
+			<block type="text">
+				<field name="TEXT">Hello World</field>
+			</block>
+		</value> 		
+	</block>
+</xml>
+
+<script>	
+
+	//圖示音效媒體資料夾路徑
+	var media = 'https://blockly-demo.appspot.com/static/media/';
+
+	//工作區初始化
+	var demoWorkspace = Blockly.inject(
+		'blocklyDiv'
+		,{
+			media: media, 
+			toolbox: document.getElementById('toolbox'),
+			zoom:{
+				controls: true,
+				wheel: false,
+				startScale: 1.0,
+				maxScale: 3,
+				minScale: 0.3,
+				scaleSpeed: 1.2
+			},
+			trashcan: true
+		}
+	);
+
+	//初始積木匯入工作區
+	function startBlocks() {
+		Blockly.getMainWorkspace().clear();
+		Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
+	}
+	startBlocks();
+
+	//監聽工作區改變輸出程式碼
+	function onWorkspaceChanged(event) {
+		var code = Blockly.Python.workspaceToCode(demoWorkspace);
+		console.clear();
+		console.log(code);
+	}
+	demoWorkspace.addChangeListener(onWorkspaceChanged);
+
+	//執行工作區程式碼
+	function runCode() {
+		var code = Blockly.Python.workspaceToCode(demoWorkspace);
+		try {
+			eval(code);
+		} catch (e) {
+			alert(e);
+		}
+	}
+	
+	//工作區匯出PY檔案
+	function workspaceExportToPY() {
+		  try {
+			var code = Blockly.Python.workspaceToCode(demoWorkspace);
+					
+			var link = document.createElement('a');
+			link.download="test.py";
+			link.href="data:application/octet-stream;utf-8," + encodeURIComponent(code);
+			document.body.appendChild(link);
+			link.click();
+			link.remove();
+		  } catch (e) {
+			window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
+			alert(e);
+		  }		
+	}	
+
+	//工作區匯出積木結構XML檔案
+	function workspaceExportToXML() {
+		  try {
+			var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
+			xml = Blockly.Xml.domToText(xml);
+
+			var link = document.createElement('a');
+			link.download="test.xml";
+			link.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
+			document.body.appendChild(link);
+			link.click();
+			link.remove();
+		  } catch (e) {
+			window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
+			alert(e);
+		  }		
+	}
+
+	//工作區匯入積木結構XML檔案
+	function workspaceImportFromXML() {
+		var e = document.getElementById("importBlocks");
+		if (e) {
+			e.click();
+			return;
+		}
+
+		var input=document.createElement('input');
+		input.type="file";
+		input.id="importBlocks";
+		input.style.display = "none";
+		input.accept=".xml";
+		input.onchange = function(element) {
+			try {	
+				var file = this.files[0];
+				if (file) {
+					var fr = new FileReader();           
+					fr.onload = function (event) {
+						Blockly.getMainWorkspace().clear();
+						var blocks = Blockly.Xml.textToDom(event.target.result);
+						Blockly.Xml.domToWorkspace(blocks, Blockly.mainWorkspace);
+					};
+					fr.readAsText(file);
+				}
+			} catch (e) {
+				alert(e);
+			}	  
+		}
+
+		document.body.appendChild(input);
+		setTimeout(function(){
+			input.click();
+		},500);	
+	}
+
+	//新增工作區功能選單 重設工作區
+	Blockly.Msg["WORKSPACE_RESET"] = "重設工作區";
+	function registerWorkspaceReset() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_reset')) {
+		return;
+	  }
+	  const workspaceReset = {
+		displayText: function(){
+			return Blockly.Msg["WORKSPACE_RESET"];
+		},
+		preconditionFn: function(a) {
+			return 'enabled';
+		},
+		callback: function(a) {
+			startBlocks();
+		},
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_reset',
+		weight: 200,
+	  };
+	  Blockly.ContextMenuRegistry.registry.register(workspaceReset);
+	}
+	registerWorkspaceReset();
+
+	//新增工作區功能選單 匯出積木結構XML檔
+	Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_XML_MSG"] = "工作區匯出積木結構XML檔案";
+	function registerWorkspaceBlocksExportToXML() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_export_xml')) {
+		return;
+	  }
+	  const workspaceBlocksExportToXML = {
+		displayText: function(){
+			return Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_XML_MSG"];
+		},
+		preconditionFn: function(a) {
+			return 'enabled';
+		},
+		callback: function(a) {
+			workspaceExportToXML();
+		},
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_export_xml',
+		weight: 201,
+	  };
+	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksExportToXML);
+	}
+	registerWorkspaceBlocksExportToXML();
+
+	//新增工作區功能選單 匯入積木結構XML檔
+	Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"] = "工作區匯入積木結構XML檔案";
+	function registerWorkspaceBlocksImportFromXML() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_import_xml')) {
+		return;
+	  }
+	  const workspaceBlocksImportFromXML = {
+		displayText: function(){
+			return Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"];
+		},
+		preconditionFn: function(a) {
+			return 'enabled';
+		},
+		callback: function(a) {
+			workspaceImportFromXML();
+		},
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_import_xml',
+		weight: 202,
+	  };
+	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksImportFromXML);
+	}
+	registerWorkspaceBlocksImportFromXML();
+	
+	//新增工作區功能選單 匯出PYTHON檔
+	Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_PY_MSG"] = "工作區匯出PY檔";
+	function registerWorkspaceBlocksExportToPY() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_export_py')) {
+		return;
+	  }
+	  const workspaceBlocksExportToPY = {
+		displayText: function(){
+			return Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_PY_MSG"];
+		},
+		preconditionFn: function(a) {
+			return 'enabled';
+		},
+		callback: function(a) {
+			workspaceExportToPY();
+		},
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_export_py',
+		weight: 203,
+	  };
+	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksExportToPY);
+	}
+	registerWorkspaceBlocksExportToPY();
+
+	//新增工作區功能選單 執行積木程式碼
+	Blockly.Msg["WORKSPACE_RUNCODE"] = "執行積木程式碼";
+	function registerRunCode() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_run_code')) {
+		return;
+	  }
+	  const workspaceRunCode = {
+		displayText: function(){
+			return Blockly.Msg["WORKSPACE_RUNCODE"];
+		},
+		preconditionFn: function(a) {
+			return 'enabled';
+		},
+		callback: function(a) {
+			runCode();
+		},
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_run_code',
+		weight: 204,
+	  };
+	  Blockly.ContextMenuRegistry.registry.register(workspaceRunCode);
+	} 
+	registerRunCode();
+
+	//工作區範圍最大化
+	function workspaceResize() {
+		if (document.documentElement.clientWidth)
+			var workspaceWidth = document.documentElement.clientWidth;
+		else
+			var workspaceWidth = document.body.clientWidth;
+		if (document.documentElement.clientHeight)
+			var workspaceHeight = document.documentElement.clientHeight-1;
+		else
+			var workspaceHeight = document.body.clientHeight-1;
+		document.getElementById('blocklyDiv').style.width = workspaceWidth +"px";
+		document.getElementById('blocklyDiv').style.height = workspaceHeight +"px";
+		Blockly.svgResize(demoWorkspace);
+	}
+
+	document.addEventListener("DOMContentLoaded", function(event) {
+		workspaceResize();
+	})
+
+	window.addEventListener("resize", function(){
+		workspaceResize();
+	})
+
+</script>
+</body>
+</html>
