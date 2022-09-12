@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/12 18:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/13 00:30
 https://www.facebook.com/francefu
 
 Try it!
@@ -16,6 +16,7 @@ https://fustyles.github.io/webduino/TensorFlow/Holistic_video/Holistic_face_feat
 </head>
 <body>
 <button onclick="location.href=location.pathname;">Front Camera</button>&nbsp;&nbsp;<button onclick="location.href='?back';">Rear Camera</button><br>
+
 <video id="video" width="320" height="240" preload autoplay loop muted></video>
 <canvas id="canvasElement"></canvas>
 <canvas id="canvas"></canvas>
@@ -119,9 +120,9 @@ function onResults(results) {
 		var imageData;
 		var data = [];
 		var inStroke;
-		
+		var pixelX, pixelY;
+		var sumX, sumY, count;
 				
-		
 		if (marks) {
 			for (var i=0;i<eye.length;i++) {
 				minX=video.width, minY=video.width, maxX=0, maxY=0;
@@ -146,14 +147,26 @@ function onResults(results) {
 				y = Math.round(minY*video.height);
 				width = Math.round((maxX-minX)*video.width);
 				height = Math.round((maxY-minY)*video.height);
+				
 				imageData = canvasCtx.getImageData(x, y, width, height);
+				sumX = 0;
+				sumY = 0;
+				count =0;
+				
 				for (var n = 0; n < imageData.data.length; n=n+4) {
-					inStroke = ctx.isPointInPath(x+(n%(width*4))/4, y+Math.round(n/(width*4)));
-					if (imageData.data[n]<100&&imageData.data[n+1]<100&&imageData.data[n+2]<100&&inStroke) {
+					pixelX = x+(n%(width*4))/4;
+					pixelY = y+Math.round(n/(width*4));
+					
+					inStroke = ctx.isPointInPath(pixelX, pixelY);
+					if (imageData.data[n]<100&&imageData.data[n+1]<200&&imageData.data[n+2]<100&&inStroke) {
 						imageData.data[n]= 255;
 						imageData.data[n+1]=0;
 						imageData.data[n+2]=0;
 						imageData.data[n+3]=255;
+						
+						sumX += pixelX;
+						sumY += pixelY;
+						count++;
 					} 
 					else if (inStroke) {
 						imageData.data[n]= 0;
@@ -168,6 +181,13 @@ function onResults(results) {
 					}
 				}
 				data.push([imageData, x, y]);
+				
+				/*
+				ctx.beginPath();
+				ctx.arc(sumX/count, sumY/count, height*0.6/2, 0, 2 * Math.PI);
+				ctx.strokeStyle = "#FF0000"
+				ctx.stroke();
+				*/
 			}
 			
 			for (var i=0;i<lips.length;i++) {
