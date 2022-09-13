@@ -1,7 +1,6 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/13 00:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/13 12:30
 https://www.facebook.com/francefu
-
 Try it!
 https://fustyles.github.io/webduino/TensorFlow/Holistic_video/Holistic_face_features_video.html
 -->
@@ -25,6 +24,7 @@ https://fustyles.github.io/webduino/TensorFlow/Holistic_video/Holistic_face_feat
 <input type="checkbox" id="pose" checked>Pose
 <input type="checkbox" id="lefthand" checked>Left Hand
 <input type="checkbox" id="righthand" checked>Right hand
+<br>
 <div id="result" style="color:red">Loading model...</div>
   
 <script>
@@ -71,7 +71,7 @@ https://fustyles.github.io/webduino/TensorFlow/Holistic_video/Holistic_face_feat
 		  .then(stream => {
 			video.srcObject = stream
 			video.onloadedmetadata = () => {       
-			  video.play();
+			  video.play();			  
 			  canvasElement.setAttribute("width", video.width);
 			  canvasElement.setAttribute("height", video.height);	
 			  canvas.setAttribute("width", video.width);
@@ -90,20 +90,17 @@ https://fustyles.github.io/webduino/TensorFlow/Holistic_video/Holistic_face_feat
   }
   
 function onResults(results) {
-	canvasElement.width = canvasElement.width
+	canvasElement.width = canvasElement.width;
+	canvas.width = canvas.width;
 	canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);	
-	canvas.width = canvas.width
-	//ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+	
 	
 	if (pose.checked) {
-		//drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS, {color: '#00CCCC', lineWidth: 2});
-		//drawLandmarks(canvasCtx, results.poseLandmarks, {color: '#FFFF00', lineWidth: 2});
+		drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS, {color: '#00CCCC', lineWidth: 2});
+		drawLandmarks(canvasCtx, results.poseLandmarks, {color: '#FFFF00', lineWidth: 2});
 		//console.log(JSON.stringify(results.poseLandmarks));
 	}
-	if (face.checked) {
-		//drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION, {color: '#C0C0C070', lineWidth: 1});
-		//console.log(JSON.stringify(results.faceLandmarks));
-		
+	if (face.checked) {		
 		var eye = [
 			[134,174,158,159,160,161,162,247,34,8,164,145,146,154,155,156],
 			[363,399,385,386,387,388,389,467,264,250,391,374,375,381,382,383]
@@ -115,6 +112,7 @@ function onResults(results) {
 		];		
 		
 		var marks = results.faceLandmarks;
+		var mask = [60, 150, 60];
 		var minX, minYh, maxX, max;
 		var x, y, width, height;
 		var imageData;
@@ -158,7 +156,7 @@ function onResults(results) {
 					pixelY = y+Math.round(n/(width*4));
 					
 					inStroke = ctx.isPointInPath(pixelX, pixelY);
-					if (imageData.data[n]<60&&imageData.data[n+1]<150&&imageData.data[n+2]<60&&inStroke) {
+					if (imageData.data[n]<mask[0]&&imageData.data[n+1]<mask[1]&&imageData.data[n+2]<mask[2]&&inStroke) {
 						imageData.data[n]= 255;
 						imageData.data[n+1]=0;
 						imageData.data[n+2]=0;
@@ -207,15 +205,18 @@ function onResults(results) {
 			ctx.putImageData(data[0][0], data[0][1], data[0][2]);
 			ctx.putImageData(data[1][0], data[1][1], data[1][2]);			
 		}
+		
+		drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION, {color: '#C0C0C070', lineWidth: 1});
+		//console.log(JSON.stringify(results.faceLandmarks));		
 	}
 	if (lefthand.checked) {
-		//drawConnectors(canvasCtx, results.leftHandLandmarks, HAND_CONNECTIONS, {color: '#CC0000', lineWidth: 2});
-		//drawLandmarks(canvasCtx, results.leftHandLandmarks, {color: '#00FF00', lineWidth: 2});
+		drawConnectors(canvasCtx, results.leftHandLandmarks, HAND_CONNECTIONS, {color: '#CC0000', lineWidth: 2});
+		drawLandmarks(canvasCtx, results.leftHandLandmarks, {color: '#00FF00', lineWidth: 2});
 		//console.log(JSON.stringify(results.leftHandLandmarks));
 	}
 	if (righthand.checked) {
-		//drawConnectors(canvasCtx, results.rightHandLandmarks, HAND_CONNECTIONS, {color: '#00CC00', lineWidth: 2});
-		//drawLandmarks(canvasCtx, results.rightHandLandmarks, {color: '#FF0000', lineWidth: 2});
+		drawConnectors(canvasCtx, results.rightHandLandmarks, HAND_CONNECTIONS, {color: '#00CC00', lineWidth: 2});
+		drawLandmarks(canvasCtx, results.rightHandLandmarks, {color: '#FF0000', lineWidth: 2});
 		//console.log(JSON.stringify(results.rightHandLandmarks));
 	}
 	canvasCtx.restore();	
