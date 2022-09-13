@@ -27,7 +27,7 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>	
 </head>
 <body>
-<div id="blocklyDiv" style="position: absolute; left: 0px; top: 0px; height: 600px; width: 600px;">
+<div id="blocklyDiv" style="position: absolute; left: 0px; top: 10px; height: 600px; width: 600px;">
 
 <script>
 	
@@ -711,9 +711,9 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 		else
 			var workspaceWidth = document.body.clientWidth;
 		if (document.documentElement.clientHeight)
-			var workspaceHeight = document.documentElement.clientHeight-1;
+			var workspaceHeight = document.documentElement.clientHeight-11;
 		else
-			var workspaceHeight = document.body.clientHeight-1;
+			var workspaceHeight = document.body.clientHeight-11;
 		document.getElementById('blocklyDiv').style.width = workspaceWidth +"px";
 		document.getElementById('blocklyDiv').style.height = workspaceHeight +"px";
 		Blockly.svgResize(demoWorkspace);
