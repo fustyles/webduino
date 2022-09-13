@@ -1,8 +1,8 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/13 22:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/13 23:00
 https://www.facebook.com/francefu
 
-JavaScript
+Python
 https://fustyles.github.io/webduino/demoBlockly.html
 Python
 https://fustyles.github.io/webduino/demoBlockly_python.html
@@ -17,7 +17,7 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Demo Blockly</title>
+  <title>Demo Blockly (PYTHON)</title>
 	<script src="https://blockly-demo.appspot.com/static/blockly_compressed.js"></script>
 	<script src="https://blockly-demo.appspot.com/static/blocks_compressed.js"></script>
 	<script src="https://blockly-demo.appspot.com/static/python_compressed.js"></script>
@@ -33,6 +33,7 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 	
 	Blockly.Msg["HELLOWORLD_NAME"] = "自訂積木";
 	Blockly.Msg["HELLOWORLD_MSG"] = "對話視窗顯示";
+	Blockly.Msg["HELLOWORLD_GET"] = "取得資料";
 	Blockly.Msg["HELLOWORLD_HUE"] = "100";
 	
 </script>
@@ -41,11 +42,11 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 	
 	<!-- 工具箱自訂積木定義內容(block.js) -->
 	
-	Blockly.Blocks['test'] = {
+	Blockly.Blocks['test1'] = {
 	  init: function() {
 		this.appendDummyInput()
 		    .appendField(Blockly.Msg["HELLOWORLD_MSG"]);
-		this.appendValueInput("result")
+		this.appendValueInput("message")
 		    .setCheck(null);
 		this.setInputsInline(!0);
 		this.setPreviousStatement(!0);
@@ -54,18 +55,33 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 	  }
 	};
 	
+	Blockly.Blocks['test2'] = {
+	  init: function() {
+		this.appendDummyInput()
+		    .appendField(Blockly.Msg["HELLOWORLD_GET"]);
+		this.setInputsInline(!0);
+		this.setOutput(!0);	  
+		this.setColour(Blockly.Msg["HELLOWORLD_HUE"]);
+	  }
+	};	
+	
 </script>
 
 <script>
 	
 	<!-- 工具箱自訂積木產出程式碼內容(Python.js) -->
 
-	Blockly.Python['test'] = function(block) {
+	Blockly.Python['test1'] = function(block) {
 		Blockly.Python.definitions_['messagebox'] = 'import tkinter as tk\nfrom tkinter import messagebox\nroot = tk.Tk()\nroot.withdraw()\n';
-		var result = Blockly.Python.valueToCode(block, 'result', Blockly.Python.ORDER_ATOMIC);
-		var code = 'messagebox.showwarning("",' + result + ');\n';
+		var message = Blockly.Python.valueToCode(block, 'message', Blockly.Python.ORDER_ATOMIC);
+		var code = "messagebox.showwarning(''," + message + ");\n";
 		return code;
 	};
+	
+	Blockly.Python['test2'] = function(block) {
+		var code = "'World Peace'";
+		return [code, Blockly.Python.ORDER_ATOMIC];
+	};	
 	
 </script>
 	
@@ -427,21 +443,23 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 	<!-- 工具箱自訂積木XML結構內容(toolbox.xml) -->
 	
 	<category name="%{BKY_HELLOWORLD_NAME}" colour="%{BKY_HELLOWORLD_HUE}">
-		<block type="test">
-			<value name="result">
+		<block type="test1">
+			<value name="message">
 				<block type="text">
 					<field name="TEXT">Hello World</field>
 				</block>
 			</value> 		
 		</block>
+		<block type="test2">		
+		</block>		
 	</category>
 </xml>
 	
 <xml id="startBlocks" style="display: none">
 	<!-- 工作區初始積木XML結構內容 -->
 
-	<block type="test" x="100" y="100">
-		<value name="result">
+	<block type="test1" x="100" y="100">
+		<value name="message">
 			<block type="text">
 				<field name="TEXT">Hello World</field>
 			</block>
@@ -526,7 +544,7 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 	Blockly.Msg["WORKSPACE_SORRY"] = "此功能須建置在node.js環境下。";
 	function workspaceExecutePY() {
 		if (typeof require !== "undefined") {
-			var filePath = "package.nw\\temp.py";
+			var filePath = "temp.py";
 			const fs = require('fs'); 
 			var code = Blockly.Python.workspaceToCode(demoWorkspace); 
 			fs.writeFile(filePath, code, (err) => { 
@@ -723,9 +741,9 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 		else
 			var workspaceWidth = document.body.clientWidth;
 		if (document.documentElement.clientHeight)
-			var workspaceHeight = document.documentElement.clientHeight-1;
+			var workspaceHeight = document.documentElement.clientHeight-11;
 		else
-			var workspaceHeight = document.body.clientHeight-1;
+			var workspaceHeight = document.body.clientHeight-11;
 		document.getElementById('blocklyDiv').style.width = workspaceWidth +"px";
 		document.getElementById('blocklyDiv').style.height = workspaceHeight +"px";
 		Blockly.svgResize(demoWorkspace);
