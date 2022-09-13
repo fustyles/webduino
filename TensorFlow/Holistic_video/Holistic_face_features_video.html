@@ -94,12 +94,6 @@ function onResults(results) {
 	canvas.width = canvas.width;
 	canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);	
 	
-	
-	if (pose.checked) {
-		drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS, {color: '#00CCCC', lineWidth: 2});
-		drawLandmarks(canvasCtx, results.poseLandmarks, {color: '#FFFF00', lineWidth: 2});
-		//console.log(JSON.stringify(results.poseLandmarks));
-	}
 	if (face.checked) {		
 		var eye = [
 			[134,174,158,159,160,161,162,247,34,8,164,145,146,154,155,156],
@@ -129,7 +123,7 @@ function onResults(results) {
 				for (var j=0;j<eye[i].length;j++) {		
 					if (j==0) { 
 						ctx.moveTo(marks[eye[i][j]-1]["x"]*video.width, marks[eye[i][j]-1]["y"]*video.height); 
-					}
+					}				
 					else if (j<eye[i].length) {
 						ctx.lineTo(marks[eye[i][j]-1]["x"]*video.width, marks[eye[i][j]-1]["y"]*video.height);
 					}
@@ -138,7 +132,10 @@ function onResults(results) {
 					if (marks[eye[i][j]-1]["y"]>maxY) maxY=marks[eye[i][j]-1]["y"];
 					if (marks[eye[i][j]-1]["y"]<minY) minY=marks[eye[i][j]-1]["y"];
 				}
-				ctx.fillStyle = "#00FF00"
+				ctx.closePath();
+				ctx.strokeStyle = "#00FF00";
+				ctx.fillStyle = "#00FF00";
+				ctx.stroke();
 				ctx.fill();
 				
 				x = Math.round(minX*video.width);
@@ -183,8 +180,11 @@ function onResults(results) {
 				/*
 				ctx.beginPath();
 				ctx.arc(sumX/count, sumY/count, height*0.6/2, 0, 2 * Math.PI);
-				ctx.strokeStyle = "#FF0000"
-				ctx.stroke();
+				ctx.closePath();
+				ctx.strokeStyle = "#FF0000";
+				ctx.fillStyle = "#FF0000";
+				ctx.stroke();				
+				ctx.fill();
 				*/
 			}
 			
@@ -193,12 +193,15 @@ function onResults(results) {
 				for (var j=0;j<lips[i].length;j++) {		
 					if (j==0) { 
 						ctx.moveTo(marks[lips[i][j]-1]["x"]*video.width, marks[lips[i][j]-1]["y"]*video.height); 
-					}
+					}					
 					else if (j<lips[i].length) {
 						ctx.lineTo(marks[lips[i][j]-1]["x"]*video.width, marks[lips[i][j]-1]["y"]*video.height);
 					}
 				}
-				ctx.fillStyle = "#FF00FF"
+				ctx.closePath();
+				ctx.strokeStyle = "#FF00FF";
+				ctx.fillStyle = "#FF00FF";
+				ctx.stroke();				
 				ctx.fill();
 			}
 			
@@ -209,6 +212,11 @@ function onResults(results) {
 		drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION, {color: '#C0C0C070', lineWidth: 1});
 		//console.log(JSON.stringify(results.faceLandmarks));		
 	}
+	if (pose.checked) {
+		drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS, {color: '#00CCCC', lineWidth: 2});
+		drawLandmarks(canvasCtx, results.poseLandmarks, {color: '#FFFF00', lineWidth: 2});
+		//console.log(JSON.stringify(results.poseLandmarks));
+	}	
 	if (lefthand.checked) {
 		drawConnectors(canvasCtx, results.leftHandLandmarks, HAND_CONNECTIONS, {color: '#CC0000', lineWidth: 2});
 		drawLandmarks(canvasCtx, results.leftHandLandmarks, {color: '#00FF00', lineWidth: 2});
