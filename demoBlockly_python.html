@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/9 12:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/13 22:00
 https://www.facebook.com/francefu
 
 JavaScript
@@ -9,7 +9,6 @@ https://fustyles.github.io/webduino/demoBlockly_python.html
 
 Blockly Factory
 https://blockly-demo.appspot.com/static/demos/blockfactory/index.html
-
 SpBlockly Tool
 https://fustyles.github.io/webduino/SPduino_tool/index.html
 -->
@@ -20,14 +19,13 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
   <meta charset="utf-8">
   <title>Demo Blockly</title>
 	<script src="https://blockly-demo.appspot.com/static/blockly_compressed.js"></script>
-	<!-- <script src="https://unpkg.com/blockly/blockly.min.js"></script> -->
 	<script src="https://blockly-demo.appspot.com/static/blocks_compressed.js"></script>
 	<script src="https://blockly-demo.appspot.com/static/python_compressed.js"></script>
 	<script src="https://blockly-demo.appspot.com/static/msg/js/zh-hant.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>	
 </head>
 <body>
-<div id="blocklyDiv" style="position: absolute; left: 0px; top: 0px; height: 600px; width: 600px;">
+<div id="blocklyDiv" style="position: absolute; left: 0px; top: 10px; height: 600px; width: 600px;">
 
 <script>
 	
@@ -63,8 +61,9 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 	<!-- 工具箱自訂積木產出程式碼內容(Python.js) -->
 
 	Blockly.Python['test'] = function(block) {
+		Blockly.Python.definitions_['messagebox'] = 'import tkinter as tk\nfrom tkinter import messagebox\nroot = tk.Tk()\nroot.withdraw()\n';
 		var result = Blockly.Python.valueToCode(block, 'result', Blockly.Python.ORDER_ATOMIC);
-		var code = 'print(' + result + ');\n';
+		var code = 'messagebox.showwarning("",' + result + ');\n';
 		return code;
 	};
 	
@@ -487,8 +486,18 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 		console.log(code);
 	}
 	demoWorkspace.addChangeListener(onWorkspaceChanged);
+
+	//執行工作區程式碼
+	function runCode() {
+		var code = Blockly.Python.workspaceToCode(demoWorkspace);
+		try {
+			eval(code);
+		} catch (e) {
+			alert(e);
+		}
+	}
 	
-	//工作區匯出PYTHON檔案
+	//工作區匯出PY檔案
 	function workspaceExportToPY() {
 		  try {
 			var code = Blockly.Python.workspaceToCode(demoWorkspace);
@@ -503,7 +512,32 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 			window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(xml);
 			alert(e);
 		  }		
-	}	
+	}
+
+	//工作區執行程式碼
+	Blockly.Msg["WORKSPACE_SORRY"] = "此功能須建置在node.js環境下。";
+	function workspaceExecutePY() {
+		if (typeof require !== "undefined") {
+			var filePath = "package.nw\\temp.py";
+			const fs = require('fs'); 
+			var code = Blockly.Python.workspaceToCode(demoWorkspace); 
+			fs.writeFile(filePath, code, (err) => { 
+				if (err) { 
+					console.log(err);
+				} else {
+					
+					var process = require('child_process');
+					process.execFile('python', [filePath], (err, stdout, stderr) => {
+						if (err) throw err;
+
+						console.log(stdout, stderr);
+					});	
+				}
+			}); 			
+		}
+		else
+			alert(Blockly.Msg["WORKSPACE_SORRY"]);
+	}
 
 	//工作區匯出積木結構XML檔案
 	function workspaceExportToXML() {
@@ -629,7 +663,7 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 	registerWorkspaceBlocksImportFromXML();
 	
 	//新增工作區功能選單 匯出PYTHON檔
-	Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_PY_MSG"] = "工作區匯出PYTHON檔";
+	Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_PY_MSG"] = "工作區匯出PY檔";
 	function registerWorkspaceBlocksExportToPY() {
 	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_export_py')) {
 		return;
@@ -650,6 +684,29 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksExportToPY);
 	}
 	registerWorkspaceBlocksExportToPY();
+	
+	//新增工作區功能選單 匯出PYTHON檔並執行
+	Blockly.Msg["WORKSPACE_BLOCKS_EXECUTE_PY_MSG"] = "執行積木程式碼";
+	function registerWorkspaceBlocksExecutePY() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_execute_py')) {
+		return;
+	  }
+	  const workspaceBlocksExecutePY = {
+		displayText: function(){
+			return Blockly.Msg["WORKSPACE_BLOCKS_EXECUTE_PY_MSG"];
+		},
+		preconditionFn: function(a) {
+			return 'enabled';
+		},
+		callback: function(a) {
+			workspaceExecutePY();
+		},
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_execute_py',
+		weight: 204,
+	  };
+	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksExecutePY);
+	}
+	registerWorkspaceBlocksExecutePY();	
 
 	//工作區範圍最大化
 	function workspaceResize() {
