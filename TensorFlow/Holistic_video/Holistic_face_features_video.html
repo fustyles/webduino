@@ -158,7 +158,7 @@ function onResults(results) {
 					pixelY = y+Math.round(n/(width*4));
 					
 					inStroke = ctx.isPointInPath(pixelX, pixelY);
-					if (imageData.data[n]<100&&imageData.data[n+1]<20150&&imageData.data[n+2]<100&&inStroke) {
+					if (imageData.data[n]<60&&imageData.data[n+1]<150&&imageData.data[n+2]<60&&inStroke) {
 						imageData.data[n]= 255;
 						imageData.data[n+1]=0;
 						imageData.data[n+2]=0;
