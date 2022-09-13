@@ -74,7 +74,7 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 	Blockly.Python['test1'] = function(block) {
 		Blockly.Python.definitions_['messagebox'] = 'import tkinter as tk\nfrom tkinter import messagebox\nroot = tk.Tk()\nroot.withdraw()\n';
 		var message = Blockly.Python.valueToCode(block, 'message', Blockly.Python.ORDER_ATOMIC);
-		var code = "messagebox.showwarning(''," + message + ");\n";
+		var code = "messagebox.showwarning(''," + message + ")\n";
 		return code;
 	};
 	
@@ -553,11 +553,19 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 				} else {
 					
 					var process = require('child_process');
-					process.execFile('python', [filePath], (err, stdout, stderr) => {
-						if (err) throw err;
+					var res = process.execFile('python', [filePath]);	
+					
+					res.stdout.on('data', function(data) {
+						console.log(decode(new Buffer(data,'binary'), 'utf-8'));
+					});
 
-						console.log(stdout, stderr);
-					});	
+					res.stderr.on('data', function(data) {
+						console.log(decode(new Buffer(data,'binary'), 'utf-8'));
+					});
+
+					res.on('exit', function(code, signal) {
+						console.log("OK");
+					});						
 				}
 			}); 			
 		}
