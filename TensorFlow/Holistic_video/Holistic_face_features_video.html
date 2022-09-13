@@ -1,6 +1,7 @@
 <!-- 
 Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/13 12:30
 https://www.facebook.com/francefu
+
 Try it!
 https://fustyles.github.io/webduino/TensorFlow/Holistic_video/Holistic_face_features_video.html
 -->
@@ -116,9 +117,10 @@ function onResults(results) {
 		var sumX, sumY, count;
 				
 		if (marks) {
+			
 			for (var i=0;i<eye.length;i++) {
 				minX=video.width, minY=video.width, maxX=0, maxY=0;
-
+				
 				ctx.beginPath;
 				for (var j=0;j<eye[i].length;j++) {		
 					if (j==0) { 
@@ -131,12 +133,8 @@ function onResults(results) {
 					if (marks[eye[i][j]-1]["x"]<minX) minX=marks[eye[i][j]-1]["x"];
 					if (marks[eye[i][j]-1]["y"]>maxY) maxY=marks[eye[i][j]-1]["y"];
 					if (marks[eye[i][j]-1]["y"]<minY) minY=marks[eye[i][j]-1]["y"];
-				}
+				}			
 				ctx.closePath();
-				ctx.strokeStyle = "#00FF00";
-				ctx.fillStyle = "#00FF00";
-				ctx.stroke();
-				ctx.fill();
 				
 				x = Math.round(minX*video.width);
 				y = Math.round(minY*video.height);
@@ -146,7 +144,7 @@ function onResults(results) {
 				imageData = canvasCtx.getImageData(x, y, width, height);
 				sumX = 0;
 				sumY = 0;
-				count =0;
+				count = 0;
 				
 				for (var n = 0; n < imageData.data.length; n=n+4) {
 					pixelX = x+(n%(width*4))/4;
@@ -154,42 +152,32 @@ function onResults(results) {
 					
 					inStroke = ctx.isPointInPath(pixelX, pixelY);
 					if (imageData.data[n]<mask[0]&&imageData.data[n+1]<mask[1]&&imageData.data[n+2]<mask[2]&&inStroke) {
-						imageData.data[n]= 255;
-						imageData.data[n+1]=0;
-						imageData.data[n+2]=0;
-						imageData.data[n+3]=255;
+						imageData.data[n] = 255;
+						imageData.data[n+1] = 0;
+						imageData.data[n+2] = 0;
+						imageData.data[n+3] = 255;
 						
 						sumX += pixelX;
 						sumY += pixelY;
 						count++;
-					} 
-					else if (inStroke) {
-						imageData.data[n]= 0;
-						imageData.data[n+1]=255;
-						imageData.data[n+2]=0;
-						imageData.data[n+3]=255;
+					} else if (inStroke) {
+						imageData.data[n] = 0;
+						imageData.data[n+1] = 255;
+						imageData.data[n+2] = 0;
+						imageData.data[n+3] = 255;
 					} else {
-						imageData.data[n]= 0;
-						imageData.data[n+1]=0;
-						imageData.data[n+2]=0;
-						imageData.data[n+3]=0;
+						imageData.data[n] = 0;
+						imageData.data[n+1] = 0;
+						imageData.data[n+2] = 0;
+						imageData.data[n+3] = 0;
 					}
 				}
-				data.push([imageData, x, y]);
-				
-				/*
-				ctx.beginPath();
-				ctx.arc(sumX/count, sumY/count, height*0.6/2, 0, 2 * Math.PI);
-				ctx.closePath();
-				ctx.strokeStyle = "#FF0000";
-				ctx.fillStyle = "#FF0000";
-				ctx.stroke();				
-				ctx.fill();
-				*/
+				data.push([imageData, x, y, width, height, sumX/count, sumY/count]);
 			}
 			
 			for (var i=0;i<lips.length;i++) {
 				ctx.beginPath;
+				ctx.fillStyle = "#FF00FF";
 				for (var j=0;j<lips[i].length;j++) {		
 					if (j==0) { 
 						ctx.moveTo(marks[lips[i][j]-1]["x"]*video.width, marks[lips[i][j]-1]["y"]*video.height); 
@@ -199,14 +187,21 @@ function onResults(results) {
 					}
 				}
 				ctx.closePath();
-				ctx.strokeStyle = "#FF00FF";
-				ctx.fillStyle = "#FF00FF";
-				ctx.stroke();				
 				ctx.fill();
-			}
+			}			
 			
 			ctx.putImageData(data[0][0], data[0][1], data[0][2]);
-			ctx.putImageData(data[1][0], data[1][1], data[1][2]);			
+			ctx.putImageData(data[1][0], data[1][1], data[1][2]);
+			
+			/*
+			for (var i=0;i<data.length;i++) {
+					ctx.beginPath();
+					ctx.lineWidth = 2;
+					ctx.strokeStyle = "#FF0000";
+					ctx.arc(data[i][5], data[i][6], data[i][4]*0.8/2, 0, 2 * Math.PI);
+					ctx.stroke();
+			}
+			*/			
 		}
 		
 		drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION, {color: '#C0C0C070', lineWidth: 1});
