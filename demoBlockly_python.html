@@ -74,7 +74,7 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 	Blockly.Python['test1'] = function(block) {
 		Blockly.Python.definitions_['messagebox'] = 'import tkinter as tk\nfrom tkinter import messagebox\nroot = tk.Tk()\nroot.withdraw()\n';
 		var message = Blockly.Python.valueToCode(block, 'message', Blockly.Python.ORDER_ATOMIC);
-		var code = "messagebox.showwarning(''," + message + ")\n";
+		var code = "messagebox.showwarning('Message Box'," + message + ")\n";
 		return code;
 	};
 	
