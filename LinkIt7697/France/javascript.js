@@ -3,7 +3,7 @@ Blockly.Arduino['tft_sd_drawjpg'] = function(block) {
 	var x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC)||0;
 	
-	Blockly.Arduino.definitions_['esp32_cam_sd_savejpg'] = '#include "FS.h"\n#include "SD_MMC.h"\n#include <JPEGDecoder.h>';
+	Blockly.Arduino.definitions_['esp32_cam_sd_savejpg'] = '#include "SD_MMC.h"\n#include <JPEGDecoder.h>';
 	Blockly.Arduino.setups_['esp32_cam_sd_savejpg'] = ''+
 										'	if(!SD_MMC.begin()){\n'+
 										'		Serial.println("Card Mount Failed");\n'+
@@ -17,7 +17,7 @@ Blockly.Arduino['tft_sd_drawjpg'] = function(block) {
 										
 	Blockly.Arduino.definitions_['drawSdJpeg'] = ''+
 										'void drawSdJpeg(const char *filename, int xpos, int ypos) {\n'+
-										'  File jpegFile = SD_MMC.open(filename);\n'+
+										'  File jpegFile = SD_MMC.open(filename, FILE_READ);\n'+
 										'  if ( !jpegFile ) {\n'+
 										'    Serial.print("ERROR: File ");\n'+ 
 										'    Serial.print(filename);\n'+
