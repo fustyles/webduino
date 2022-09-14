@@ -600,10 +600,8 @@ Blockly.Arduino['tft_initial'] = function(block) {
 	
 	if (board=="Pixel:Bit")
 		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_PIXELBIT.h>\n';
-	else if (board=="TTGO T-Display")
+	else
 		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_TTGO.h>\n';
-	else 
-		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI.h>\n';
 	
 	Blockly.Arduino.definitions_.tftinitial +=  '#include <U8g2_for_TFT_eSPI.h>\n'+
 												'TFT_eSPI tft = TFT_eSPI();\n'+
