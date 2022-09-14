@@ -1617,6 +1617,8 @@ Blockly.Msg["ESP32_CAM_CAMERA_PROPERTY_VFLIP_SHOW"] = "vflip (0, 1)";
 Blockly.Msg["ESP32_CAM_CAMERA_PROPERTY_BPC_SHOW"] = "bpc (0, 1)";
 Blockly.Msg["ESP32_CAM_CAMERA_PROPERTY_WPC_SHOW"] = "wpc (0, 1)";
 Blockly.Msg["ESP32_CAM_CAMERA_PROPERTY_COLORBAR_SHOW"] = "colorbar (0, 1)";
+Blockly.Msg["ESP32_CAM_CAMERA_SD_SHOW"] = "ESP32-CAM Save still to TF card";
+Blockly.Msg["ESP32_CAM_CAMERA_FILENAME_SHOW"] = "file name";
 
 Blockly.Msg["ESP32_PIXELBIT_INITIAL"] = "TFT Display Initial";
 Blockly.Msg["ESP32_PIXELBIT_TFTSHOWCAMERA"] = "TFT Display show PIXEL:BIT camera";

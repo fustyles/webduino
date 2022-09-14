@@ -1528,6 +1528,15 @@
 				</statement>
 			  </block>
 			  <block type="server_getrequest" id="99">				
+			  </block>
+			  <block type="esp32_pixelbit_tftshowcamera" id="99">				
+			  </block>
+			  <block type="esp32_cam_sd" id="99">
+				<value name="filename">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>				
 			  </block>			  
 				<block type="esp32_cam_camera_property">
 					<value name="value">
@@ -1828,9 +1837,8 @@
 				  </block>
 				</statement>
 			  </block>
-			  <block type="server_getrequest" id="99">
+			  <block type="server_getrequest" id="99"></block>
 			  <block type="esp32_pixelbit_tftshowcamera" id="99">				
-			  </block>				  
 			  </block>
 				<block type="esp32_cam_camera_property">
 					<value name="value">
@@ -8892,7 +8900,9 @@
 						<field name="NUM">0</field>
 					</block>
 			</value>			
-		</block>		
+		</block>
+		  <block type="esp32_pixelbit_tftshowcamera" id="99">				
+		  </block>		
 	</category>
 	
 	<category id="france9" name="buzzer">

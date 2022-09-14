@@ -1,3 +1,12 @@
+Blockly.Arduino['esp32_cam_sd'] = function(block) {
+  var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
+
+  Blockly.Arduino.definitions_['esp32_cam_sd'] = '';
+			  
+  var code = '';
+  return code;
+};
+
 Blockly.Arduino['tft_PROGMEM_icon'] = function(block) {
   var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.VARIABLE_CATEGORY_NAME);
   var value_PROGMEM = Blockly.Arduino.valueToCode(block, 'PROGMEM', Blockly.Arduino.ORDER_ATOMIC);
