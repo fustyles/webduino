@@ -1,9 +1,51 @@
 Blockly.Arduino['esp32_cam_sd'] = function(block) {
-  var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
+	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
 
-  Blockly.Arduino.definitions_['esp32_cam_sd'] = '';
+	Blockly.Arduino.definitions_['esp32_cam_sd'] = '#include "FS.h"\n#include "SD_MMC.h"';
+	Blockly.Arduino.setups_['esp32_cam_sd'] = ''+
+										'	if(!SD_MMC.begin()){\n'+
+										'		Serial.println("Card Mount Failed");\n'+
+										'	} else {\n'+
+										'		uint8_t cardType = SD_MMC.cardType();\n'+
+										'		if(cardType == CARD_NONE){\n'+
+										'			Serial.println("No SD_MMC card attached");\n'+
+										'		}\n'+
+										'		SD_MMC.end();\n'+
+										'	}\n';
+										
+	Blockly.Arduino.definitions_['saveCapturedImage2SD'] = ''+
+										'void saveCapturedImage2SD(String filename) {\n'+
+										'  camera_fb_t * fb = NULL;\n'+
+										'  fb = esp_camera_fb_get();\n'+
+										'  if (!fb) {\n'+
+										'    Serial.println("Camera capture failed");\n'+
+										'    return;\n'+
+										'  }\n'+
+										'  if(!SD_MMC.begin()){\n'+
+										'    Serial.println("Card Mount Failed");\n'+
+										'    return;\n'+
+										'  }\n'+
+										'  filename = "/"+filename;\n'+
+										'  fs::FS &fs = SD_MMC;\n'+
+										'  File file = fs.open(filename.c_str(), FILE_WRITE);\n'+
+										'  if(!file){\n'+
+										'    Serial.println("Failed to open file in writing mode");\n'+
+										'  } else {\n'+
+										'    file.write(fb->buf, fb->len);\n'+
+										'    Serial.printf("Saved file to path: %s", filename.c_str());\n'+
+										'  }\n'+
+										'  file.close();\n'+
+										'  SD_MMC.end();\n'+
+										'  Serial.println("");\n'+
+										'  esp_camera_fb_return(fb);\n';
+	if (Blockly.Arduino.definitions_['flash']) {
+	Blockly.Arduino.definitions_['saveCapturedImage2SD'] += ''+
+										'  pinMode(4, OUTPUT);\n'+
+										'  digitalWrite(4, LOW);\n';
+	}			
+	Blockly.Arduino.definitions_['saveCapturedImage2SD'] += '}\n';								
 			  
-  var code = '';
+  var code = 'saveCapturedImage2SD(String('+filename+')+".jpg");\n';
   return code;
 };
 
@@ -12881,6 +12923,9 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
   var framesize = block.getFieldValue('framesize');
   var flash = block.getFieldValue('flash');
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');	
+  
+  if (flash=="Y")
+	  Blockly.Arduino.definitions_['flash'] = "//Flash mode";
 	
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\nWiFiServer server(80);\n\nString Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'+
 																'#define PWDN_GPIO_NUM     32\n'+
@@ -13087,6 +13132,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'    WiFi.mode(WIFI_AP_STA);\n'+
 			'    \n'+
 			'    for (int i=0;i<2;i++) {\n'+
+			'      if (String(_lwifi_ssid)=="") break;\n'+
 			'      WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
 			'      \n'+
 			'      delay(1000);\n'+
@@ -13281,6 +13327,9 @@ Blockly.Arduino['esp32_cam_stream_myfirmata'] = function(block) {
   var framesize = block.getFieldValue('framesize');
   var flash = block.getFieldValue('flash');  
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');	
+  
+  if (flash=="Y")
+	  Blockly.Arduino.definitions_['flash'] = "//Flash mode";  
 	
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <esp32-hal-ledc.h>\n#include "img_converters.h"\n#include "esp_camera.h"';
   Blockly.Arduino.definitions_.define_esp_http_server_h_include ='#include "esp_http_server.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\nString Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\ntypedef struct {httpd_req_t *req;size_t len;} jpg_chunking_t;\n#define PART_BOUNDARY "123456789000000000000987654321"\nstatic const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;\nstatic const char* _STREAM_BOUNDARY = "\\r\\n--" PART_BOUNDARY "\\r\\n";\nstatic const char* _STREAM_PART = "Content-Type: image/jpeg\\r\\nContent-Length: %u\\r\\n\\r\\n";\nhttpd_handle_t stream_httpd = NULL;\nhttpd_handle_t camera_httpd = NULL;\n';
@@ -13476,6 +13525,7 @@ Blockly.Arduino['esp32_cam_stream_myfirmata'] = function(block) {
 			'  WiFi.mode(WIFI_AP_STA);\n'+
 			'  \n'+
 			'  for (int i=0;i<2;i++) {\n'+
+			'    if (String(_lwifi_ssid)=="") break;\n'+
 			'    WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
 			'    \n'+
 			'    delay(1000);\n'+

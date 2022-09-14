@@ -558,7 +558,7 @@
 		
 		
 		<category id="france20" name="serveresp32"> 
-			  <block type="esp32_myfirmata" id="99">
+			  <block type="esp32_myfirmata">
 				<value name="ssid">
 				  <block type="text" id="100">
 					<field name="TEXT"></field>
@@ -715,13 +715,13 @@
 				  </block>
 				</statement>
 			  </block>
-			  <block type="server_getrequest" id="99">				
+			  <block type="server_getrequest">				
 			  </block>			  
 		</category>  
 
 		
 		<category id="france22" name="serverlinkit7697"> 	  
-			  <block type="linkit7697_myfirmata" id="99">
+			  <block type="linkit7697_myfirmata">
 				<value name="ssid">
 				  <block type="text" id="100">
 					<field name="TEXT"></field>
@@ -868,7 +868,7 @@
 				  </block>
 				</statement>
 			  </block>
-			  <block type="server_getrequest" id="99">				
+			  <block type="server_getrequest">				
 			  </block>			  
 		</category>	
 
@@ -1205,25 +1205,25 @@
 			  </block>
 			</statement>
 		  </block>
-			  <block type="esp32_telegrambot_sendmessage" id="99">
+			  <block type="esp32_telegrambot_sendmessage">
 				<value name="message">
 				  <block type="text" id="100">
 					<field name="TEXT"></field>
 				  </block>
 				</value>				
 			  </block>
-			  <block type="esp32_telegrambot_sendlink" id="99">
+			  <block type="esp32_telegrambot_sendlink">
 				<value name="link">
 				  <block type="text" id="100">
 					<field name="TEXT"></field>
 				  </block>
 				</value>				
 			  </block>				  
-			  <block type="esp32_telegrambot_get_token" id="99">			
+			  <block type="esp32_telegrambot_get_token">			
 			  </block>
-			  <block type="esp32_telegrambot_get_chatid" id="99">			
+			  <block type="esp32_telegrambot_get_chatid">			
 			  </block>				  
-			  <block type="esp32_telegrambot_sendmessage_custom" id="99">
+			  <block type="esp32_telegrambot_sendmessage_custom">
 				<value name="message">
 				  <block type="text" id="100">
 					<field name="TEXT"></field>
@@ -1240,7 +1240,7 @@
 				  </block>
 				</value>				
 			  </block>	
-			  <block type="esp32_telegrambot_sendlink_custom" id="99">			  
+			  <block type="esp32_telegrambot_sendlink_custom">			  
 				<value name="link">
 				  <block type="text" id="100">
 					<field name="TEXT"></field>
@@ -1257,7 +1257,7 @@
 				  </block>
 				</value>				
 			  </block>   			  
-			  <block type="esp32_cam_telegrambot" id="99">
+			  <block type="esp32_cam_telegrambot">
 				<value name="token">
 				  <block type="text">
 					<field name="TEXT"></field>
@@ -1301,7 +1301,7 @@
 				  </block>
 				</value>			
 			</block>
-			  <block type="esp32_telegrambot_getupdates" id="99">
+			  <block type="esp32_telegrambot_getupdates">
 				<value name="token">
 				  <block type="text">
 					<field name="TEXT"></field>
@@ -1314,7 +1314,35 @@
 
 
 		<category id="france21" name="serveresp32cam">
-			  <block type="esp32_cam_stream_myfirmata" id="99">
+			  <block type="esp32_cam_stream_myfirmata">
+				<field name="baudrate">115200</field>
+				<field name="framesize">QVGA</field>
+				<field name="flash">Y</field>
+				<value name="ssid">
+				  <block type="text" id="11^d@{=9P5GHL?WIkZ_}">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="password">
+				  <block type="text" id="wLX68-dxpuQOt{ah)2dh">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="ssid_ap">
+				  <block type="text" id="pi2N4Z5d[`;U!xjC4z#@">
+					<field name="TEXT">esp32-cam</field>
+				  </block>
+				</value>
+				<value name="password_ap">
+				  <block type="text" id="8e{J[y*WiO5LTq_b|cU:">
+					<field name="TEXT">12345678</field>
+				  </block>
+				</value>
+				<value name="mainpage">
+				  <block type="servermodule_javascript" id="|[~^uwYq!!|@9N|ZP4L|"></block>
+				</value>
+			  </block>	
+			  <block type="esp32_cam_stream_myfirmata">
 				<value name="ssid">
 				  <block type="text" id="100">
 					<field name="TEXT">teacher</field>
@@ -1407,7 +1435,35 @@
 					</next>
 				  </block>
 				</statement>
-			  </block>				  
+			  </block>
+			  <block type="esp32_cam_myfirmata">
+				<field name="baudrate">115200</field>
+				<field name="framesize">QVGA</field>
+				<field name="flash">Y</field>
+				<value name="ssid">
+				  <block type="text" id="|Ktzh+UgP@m]8Z9j-WK{">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="password">
+				  <block type="text" id="@t`AW4lSp[hf)S=w,%Uq">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="ssid_ap">
+				  <block type="text" id="By-n?A6w]@B$V/.3m3CL">
+					<field name="TEXT">esp32-cam</field>
+				  </block>
+				</value>
+				<value name="password_ap">
+				  <block type="text" id="+]rp^T/M9K9]ek4-FQ-l">
+					<field name="TEXT">12345678</field>
+				  </block>
+				</value>
+				<value name="mainpage">
+				  <block type="servermodule_javascript" id="(5L9:]zrqlTH5mHQ-vxy"></block>
+				</value>
+			  </block>			  
 			  <block type="esp32_cam_myfirmata" id="A[bp9I0t/P#E/hwmf1g-" x="50" y="50">
 				<field name="baudrate">115200</field>
 				<field name="framesize">QVGA</field>
@@ -1527,17 +1583,8 @@
 				  </block>
 				</statement>
 			  </block>
-			  <block type="server_getrequest" id="99">				
+			  <block type="server_getrequest">				
 			  </block>
-			  <block type="esp32_pixelbit_tftshowcamera" id="99">				
-			  </block>
-			  <block type="esp32_cam_sd" id="99">
-				<value name="filename">
-				  <block type="text">
-					<field name="TEXT"></field>
-				  </block>
-				</value>				
-			  </block>			  
 				<block type="esp32_cam_camera_property">
 					<value name="value">
 					  <block type="math_number">
@@ -1545,7 +1592,16 @@
 					  </block>
 					</value>
 				</block>			  
-			  <block type="esp32_cam_linenotify" id="99">
+			  <block type="esp32_pixelbit_tftshowcamera">				
+			  </block>
+			  <block type="esp32_cam_sd">
+				<value name="filename">
+				  <block type="math_number">
+					<field name="NUM">1</field>
+				  </block>
+				</value>			
+			  </block>
+			  <block type="esp32_cam_linenotify">
 				<value name="linetoken">
 				  <block type="text">
 					<field name="TEXT"></field>
@@ -1557,7 +1613,7 @@
 				  </block>
 				</value>				
 			  </block>
-			  <block type="esp32_cam_telegrambot" id="99">
+			  <block type="esp32_cam_telegrambot">
 				<value name="token">
 				  <block type="text">
 					<field name="TEXT"></field>
@@ -1569,7 +1625,7 @@
 				  </block>
 				</value>				
 			  </block>			  
-			  <block type="esp32_cam_googledrive" id="99">
+			  <block type="esp32_cam_googledrive">
 				<value name="scriptid">
 				  <block type="text">
 					<field name="TEXT"></field>
@@ -1623,7 +1679,7 @@
 		</category>	
 		
 		<category id="france26" name="pixelbit">
-			  <block type="esp32_pixelbit_stream_myfirmata" id="99">
+			  <block type="esp32_pixelbit_stream_myfirmata">
 				<value name="ssid">
 				  <block type="text" id="100">
 					<field name="TEXT"></field>
@@ -1717,7 +1773,7 @@
 				  </block>
 				</statement>
 			  </block>		
-			  <block type="esp32_pixelbit_myfirmata" id="99">
+			  <block type="esp32_pixelbit_myfirmata">
 				<value name="ssid">
 				  <block type="text" id="100">
 					<field name="TEXT"></field>
@@ -1837,17 +1893,24 @@
 				  </block>
 				</statement>
 			  </block>
-			  <block type="server_getrequest" id="99"></block>
-			  <block type="esp32_pixelbit_tftshowcamera" id="99">				
-			  </block>
+			  <block type="server_getrequest"></block>
 				<block type="esp32_cam_camera_property">
 					<value name="value">
 					  <block type="math_number">
 						<field name="NUM">0</field>
 					  </block>
 					</value>
-				</block>			
-			  <block type="esp32_cam_linenotify" id="99">
+				</block>			  
+			  <block type="esp32_pixelbit_tftshowcamera">				
+			  </block>
+			  <block type="esp32_cam_sd">
+				<value name="filename">
+				  <block type="math_number">
+					<field name="NUM">1</field>
+				  </block>
+				</value>			
+			  </block>			  			
+			  <block type="esp32_cam_linenotify">
 				<value name="linetoken">
 				  <block type="text">
 					<field name="TEXT"></field>
@@ -1859,7 +1922,7 @@
 				  </block>
 				</value>				
 			  </block>
-			  <block type="esp32_cam_telegrambot" id="99">
+			  <block type="esp32_cam_telegrambot">
 				<value name="token">
 				  <block type="text">
 					<field name="TEXT"></field>
@@ -1871,7 +1934,7 @@
 				  </block>
 				</value>				
 			  </block>			  
-			  <block type="esp32_cam_googledrive" id="99">
+			  <block type="esp32_cam_googledrive">
 				<value name="scriptid">
 				  <block type="text">
 					<field name="TEXT"></field>
@@ -8901,7 +8964,7 @@
 					</block>
 			</value>			
 		</block>
-		  <block type="esp32_pixelbit_tftshowcamera" id="99">				
+		  <block type="esp32_pixelbit_tftshowcamera">				
 		  </block>		
 	</category>
 	
