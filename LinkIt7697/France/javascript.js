@@ -17,7 +17,7 @@ Blockly.Arduino['tft_sd_drawjpg'] = function(block) {
 										
 	Blockly.Arduino.definitions_['drawSdJpeg'] = ''+
 										'void drawSdJpeg(const char *filename, int xpos, int ypos) {\n'+
-										'  File jpegFile = SD_MMC.open( filename, FILE_READ);\n'+
+										'  File jpegFile = SD_MMC.open(filename);\n'+
 										'  if ( !jpegFile ) {\n'+
 										'    Serial.print("ERROR: File ");\n'+ 
 										'    Serial.print(filename);\n'+
@@ -30,8 +30,13 @@ Blockly.Arduino['tft_sd_drawjpg'] = function(block) {
 										'  }\n'+
 										'  else {\n'+
 										'    Serial.println("Jpeg file format not supported!");\n'+
-										'  }\n'+
-										'}\n'+
+										'  }\n';
+	if (Blockly.Arduino.definitions_['flash']) {
+	Blockly.Arduino.definitions_['drawSdJpeg'] += ''+
+										'  pinMode(4, OUTPUT);\n'+
+										'  digitalWrite(4, LOW);\n';
+	}
+	Blockly.Arduino.definitions_['drawSdJpeg'] += '}\n'+
 										'void jpegRender(int xpos, int ypos) {\n'+
 										'  uint16_t *pImg;\n'+
 										'  uint16_t mcu_w = JpegDec.MCUWidth;\n'+
