@@ -21,8 +21,13 @@ Blockly.Arduino['tft_sd_drawjpg'] = function(block) {
 										'  if ( !jpegFile ) {\n'+
 										'    Serial.print("ERROR: File ");\n'+ 
 										'    Serial.print(filename);\n'+
-										'    Serial.println (" not found!");\n'+
-										'    return;\n'+
+										'    Serial.println (" not found!");\n';
+	if (Blockly.Arduino.definitions_['flash']) {
+	Blockly.Arduino.definitions_['drawSdJpeg'] += ''+
+										'  pinMode(4, OUTPUT);\n'+
+										'  digitalWrite(4, LOW);\n';
+	}
+	Blockly.Arduino.definitions_['drawSdJpeg'] += '    return;\n'+
 										'  }\n'+
 										'  bool decoded = JpegDec.decodeSdFile(jpegFile);\n'+
 										'  if (decoded) {\n'+
