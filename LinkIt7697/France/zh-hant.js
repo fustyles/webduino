@@ -1783,3 +1783,6 @@ Blockly.Msg["TFT_RESIZE"] = "縮放至";
 Blockly.Msg["TFT_BOARD"] = "開發板";
 Blockly.Msg["TFT_ICON"] = "圖示";
 Blockly.Msg["TFT_GENERAL"] = "一般";
+
+Blockly.Msg["TFT_SD_DRAWJPG_SHOW"] = "TFT全彩螢幕  從SD卡讀取JPG圖檔顯示";
+Blockly.Msg["TFT_SD_FILENAME_SHOW"] = "檔名";

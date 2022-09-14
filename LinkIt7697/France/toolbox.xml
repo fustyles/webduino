@@ -1591,16 +1591,33 @@
 						<field name="NUM">0</field>
 					  </block>
 					</value>
-				</block>			  
-			  <block type="esp32_pixelbit_tftshowcamera">				
-			  </block>
-			  <block type="esp32_cam_sd">
+				</block>
+			  <block type="esp32_cam_sd_savejpg">
 				<value name="filename">
 				  <block type="math_number">
 					<field name="NUM">1</field>
 				  </block>
 				</value>			
 			  </block>
+			  <block type="esp32_pixelbit_tftshowcamera">				
+			  </block>			  
+			  <block type="tft_sd_drawjpg">
+				<value name="filename">
+				  <block type="math_number">
+					<field name="NUM">1</field>
+				  </block>
+				</value>
+				<value name="x">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>
+				<value name="y">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>				
+			  </block>			  
 			  <block type="esp32_cam_linenotify">
 				<value name="linetoken">
 				  <block type="text">
@@ -1679,6 +1696,33 @@
 		</category>	
 		
 		<category id="france26" name="pixelbit">
+			  <block type="esp32_pixelbit_stream_myfirmata">
+				<field name="baudrate">57600</field>
+				<field name="framesize">QVGA</field>
+				<value name="ssid">
+				  <block type="text" id="IC]VCx]B?YoHs;0D0kJ9">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="password">
+				  <block type="text" id="TJ{9~M(;drs`H9M4qr8-">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="ssid_ap">
+				  <block type="text" id=":|Ssb%6%VO8yOAvvc99H">
+					<field name="TEXT">esp32-cam</field>
+				  </block>
+				</value>
+				<value name="password_ap">
+				  <block type="text" id="#H`{qo%zjW{SB(d3qnar">
+					<field name="TEXT">12345678</field>
+				  </block>
+				</value>
+				<value name="mainpage">
+				  <block type="servermodule_javascript" id="eh,BY[bg=:*iA}56pHH)"></block>
+				</value>
+			  </block>		
 			  <block type="esp32_pixelbit_stream_myfirmata">
 				<value name="ssid">
 				  <block type="text" id="100">
@@ -1772,7 +1816,35 @@
 					</next>
 				  </block>
 				</statement>
-			  </block>		
+			  </block>
+			  <block type="esp32_pixelbit_myfirmata">
+				<field name="baudrate">57600</field>
+				<field name="framesize">QVGA</field>
+				<field name="request">TRUE</field>
+				<value name="ssid">
+				  <block type="text" id="_U=k=gvpcg/Ugeyr$m.A">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="password">
+				  <block type="text" id="U~RD|iVX7qkbLj5PKU5G">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="ssid_ap">
+				  <block type="text" id="#Y5qf@c}v_`3I`XOc2QS">
+					<field name="TEXT">esp32-cam</field>
+				  </block>
+				</value>
+				<value name="password_ap">
+				  <block type="text" id="~o/^fq,?kyj%.iJ_(v8u">
+					<field name="TEXT">12345678</field>
+				  </block>
+				</value>
+				<value name="mainpage">
+				  <block type="servermodule_javascript" id="jRFPk@R1Zr8zC[#^Lv9D"></block>
+				</value>
+			  </block>				  
 			  <block type="esp32_pixelbit_myfirmata">
 				<value name="ssid">
 				  <block type="text" id="100">
@@ -1900,16 +1972,33 @@
 						<field name="NUM">0</field>
 					  </block>
 					</value>
-				</block>			  
-			  <block type="esp32_pixelbit_tftshowcamera">				
-			  </block>
-			  <block type="esp32_cam_sd">
+				</block>
+			  <block type="esp32_cam_sd_savejpg">
 				<value name="filename">
 				  <block type="math_number">
 					<field name="NUM">1</field>
 				  </block>
 				</value>			
-			  </block>			  			
+			  </block>				
+			  <block type="esp32_pixelbit_tftshowcamera">				
+			  </block>
+			  <block type="tft_sd_drawjpg">
+				<value name="filename">
+				  <block type="math_number">
+					<field name="NUM">1</field>
+				  </block>
+				</value>
+				<value name="x">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>
+				<value name="y">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>				
+			  </block>				  			  			
 			  <block type="esp32_cam_linenotify">
 				<value name="linetoken">
 				  <block type="text">
@@ -8965,7 +9054,24 @@
 			</value>			
 		</block>
 		  <block type="esp32_pixelbit_tftshowcamera">				
-		  </block>		
+		  </block>
+		  <block type="tft_sd_drawjpg">
+			<value name="filename">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>
+			<value name="x">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="y">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>				
+		  </block>			  
 	</category>
 	
 	<category id="france9" name="buzzer">

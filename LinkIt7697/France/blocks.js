@@ -1,4 +1,26 @@
-Blockly.Blocks['esp32_cam_sd'] = {
+Blockly.Blocks['tft_sd_drawjpg'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT_SD_DRAWJPG_SHOW"]);
+    this.appendValueInput("filename")
+		.appendField(Blockly.Msg["TFT_SD_FILENAME_SHOW"])
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(".jpg");
+    this.appendValueInput("x")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setCheck("Number")
+        .appendField("y");		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['esp32_cam_sd_savejpg'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg["ESP32_CAM_CAMERA_SD_SHOW"]);
