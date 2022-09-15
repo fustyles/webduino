@@ -5,18 +5,19 @@ Blockly.Arduino['tft_sd_drawjpg'] = function(block) {
 	
 	Blockly.Arduino.definitions_['esp32_cam_sd_savejpg'] = '#include "SD_MMC.h"\n#include <JPEGDecoder.h>';
 	Blockly.Arduino.setups_['esp32_cam_sd_savejpg'] = ''+
-										'	if(!SD_MMC.begin()){\n'+
-										'		Serial.println("Card Mount Failed");\n'+
-										'	} else {\n'+
-										'		uint8_t cardType = SD_MMC.cardType();\n'+
-										'		if(cardType == CARD_NONE){\n'+
-										'			Serial.println("No SD_MMC card attached");\n'+
-										'		}\n'+
-										'		SD_MMC.end();\n'+
-										'	}\n';
+										'if(!SD_MMC.begin()){\n'+
+										'	Serial.println("Card Mount Failed");\n'+
+										'} else {\n'+
+										'	uint8_t cardType = SD_MMC.cardType();\n'+
+										'	if(cardType == CARD_NONE){\n'+
+										'		Serial.println("No SD_MMC card attached");\n'+
+										'	}\n'+
+										'	SD_MMC.end();\n'+
+										'}\n';
 										
 	Blockly.Arduino.definitions_['drawSdJpeg'] = ''+
 										'void drawSdJpeg(const char *filename, int xpos, int ypos) {\n'+
+										'  SD_MMC.begin();\n'+
 										'  File jpegFile = SD_MMC.open(filename, FILE_READ);\n'+
 										'  if ( !jpegFile ) {\n'+
 										'    Serial.print("ERROR: File ");\n'+ 
@@ -24,8 +25,8 @@ Blockly.Arduino['tft_sd_drawjpg'] = function(block) {
 										'    Serial.println (" not found!");\n';
 	if (Blockly.Arduino.definitions_['flash']) {
 	Blockly.Arduino.definitions_['drawSdJpeg'] += ''+
-										'  pinMode(4, OUTPUT);\n'+
-										'  digitalWrite(4, LOW);\n';
+										'    pinMode(4, OUTPUT);\n'+
+										'    digitalWrite(4, LOW);\n';
 	}
 	Blockly.Arduino.definitions_['drawSdJpeg'] += '    return;\n'+
 										'  }\n'+
@@ -35,7 +36,9 @@ Blockly.Arduino['tft_sd_drawjpg'] = function(block) {
 										'  }\n'+
 										'  else {\n'+
 										'    Serial.println("Jpeg file format not supported!");\n'+
-										'  }\n';
+										'  }\n'+
+										'  jpegFile.close();\n'+
+										'  SD_MMC.end();\n';
 	if (Blockly.Arduino.definitions_['flash']) {
 	Blockly.Arduino.definitions_['drawSdJpeg'] += ''+
 										'  pinMode(4, OUTPUT);\n'+
@@ -48,16 +51,13 @@ Blockly.Arduino['tft_sd_drawjpg'] = function(block) {
 										'  uint16_t mcu_h = JpegDec.MCUHeight;\n'+
 										'  uint32_t max_x = JpegDec.width;\n'+
 										'  uint32_t max_y = JpegDec.height;\n'+
-										'  bool swapBytes = tft.getSwapBytes();\n'+
-										'  tft.setSwapBytes(true);\n'+
 										'  uint32_t min_w = jpg_min(mcu_w, max_x % mcu_w);\n'+
 										'  uint32_t min_h = jpg_min(mcu_h, max_y % mcu_h);\n'+
 										'  uint32_t win_w = mcu_w;\n'+
 										'  uint32_t win_h = mcu_h;\n'+
-										'  uint32_t drawTime = millis();\n'+
 										'  max_x += xpos;\n'+
 										'  max_y += ypos;\n'+
-										'  while (JpegDec.read()) {\n'+
+										'  while (JpegDec.readSwappedBytes()) {\n'+
 										'    pImg = JpegDec.pImage ;\n'+
 										'    int mcu_x = JpegDec.MCUx * mcu_w + xpos;\n'+
 										'    int mcu_y = JpegDec.MCUy * mcu_h + ypos;\n'+
@@ -83,8 +83,7 @@ Blockly.Arduino['tft_sd_drawjpg'] = function(block) {
 										'    else if ( (mcu_y + win_h) >= tft.height())\n'+
 										'      JpegDec.abort();\n'+
 										'  }\n'+
-										'  tft.setSwapBytes(swapBytes);\n'+
-										'}\n';
+										'}\n';							
 			  
   var code = 'drawSdJpeg(("/"+String('+filename+')+".jpg").c_str(), '+x+', '+y+');\n';
   return code;
@@ -95,15 +94,15 @@ Blockly.Arduino['esp32_cam_sd_savejpg'] = function(block) {
 
 	Blockly.Arduino.definitions_['esp32_cam_sd_savejpg'] = '#include "FS.h"\n#include "SD_MMC.h"';
 	Blockly.Arduino.setups_['esp32_cam_sd_savejpg'] = ''+
-										'	if(!SD_MMC.begin()){\n'+
-										'		Serial.println("Card Mount Failed");\n'+
-										'	} else {\n'+
-										'		uint8_t cardType = SD_MMC.cardType();\n'+
-										'		if(cardType == CARD_NONE){\n'+
-										'			Serial.println("No SD_MMC card attached");\n'+
-										'		}\n'+
-										'		SD_MMC.end();\n'+
-										'	}\n';
+										'if(!SD_MMC.begin()){\n'+
+										'	Serial.println("Card Mount Failed");\n'+
+										'} else {\n'+
+										'	uint8_t cardType = SD_MMC.cardType();\n'+
+										'	if(cardType == CARD_NONE){\n'+
+										'		Serial.println("No SD_MMC card attached");\n'+
+										'	}\n'+
+										'	SD_MMC.end();\n'+
+										'}\n';
 										
 	Blockly.Arduino.definitions_['saveCapturedImage2SD'] = ''+
 										'void saveCapturedImage2SD(String filename) {\n'+
@@ -640,7 +639,7 @@ Blockly.Arduino['tft_initial'] = function(block) {
 									  'tft.fillScreen(TFT_BLACK);\n'+
 									  'tft.initDMA();\n'+
 									  'TJpgDec.setJpgScale(1);\n'+
-									  'tft.setSwapBytes(true);\n'+
+									  '//tft.setSwapBytes(true);\n'+
 									  'TJpgDec.setCallback(tft_output);\n';
 	if (board=="Pixel:Bit")
 		Blockly.Arduino.setups_.tftsetup += 'tft.setRotation(3);\n';
@@ -691,7 +690,7 @@ Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
 									  'tft.fillScreen(TFT_BLACK);\n'+
 									  'tft.initDMA();\n'+
 									  'TJpgDec.setJpgScale(1);\n'+
-									  'tft.setSwapBytes(true);\n'+
+									  '//tft.setSwapBytes(true);\n'+
 									  'TJpgDec.setCallback(tft_output);\n'+
 									  'tft.setRotation(3);\n'+
 									  'tft.setTextFont(1);\n'+
@@ -756,7 +755,7 @@ Blockly.Arduino['esp32_pixelbit_initial'] = function(block) {
 									  'tft.fillScreen(TFT_BLACK);\n'+
 									  'tft.initDMA();\n'+
 									  'TJpgDec.setJpgScale(1);\n'+
-									  'tft.setSwapBytes(true);\n'+
+									  '//tft.setSwapBytes(true);\n'+
 									  'TJpgDec.setCallback(tft_output);\n'+
 									  'tft.setRotation(3);\n'+
 									  'tft.setTextFont(1);\n'+
