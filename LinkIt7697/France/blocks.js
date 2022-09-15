@@ -4,6 +4,7 @@ Blockly.Blocks['tft_sd_drawjpg'] = {
         .appendField(Blockly.Msg["TFT_SD_DRAWJPG_SHOW"]);
     this.appendValueInput("filename")
 		.appendField(Blockly.Msg["TFT_SD_FILENAME_SHOW"])
+		.appendField("/")
         .setCheck(null);
     this.appendDummyInput()
         .appendField(".jpg");
@@ -26,6 +27,7 @@ Blockly.Blocks['esp32_cam_sd_savejpg'] = {
         .appendField(Blockly.Msg["ESP32_CAM_CAMERA_SD_SHOW"]);
     this.appendValueInput("filename")
 		.appendField(Blockly.Msg["ESP32_CAM_CAMERA_FILENAME_SHOW"])
+		.appendField("/")
         .setCheck(null);
     this.appendDummyInput()
         .appendField(".jpg");		
