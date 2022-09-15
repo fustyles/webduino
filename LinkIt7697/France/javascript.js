@@ -85,7 +85,7 @@ Blockly.Arduino['tft_sd_drawjpg'] = function(block) {
 										'    else if ( (mcu_y + win_h) >= tft.height())\n'+
 										'      JpegDec.abort();\n'+
 										'  }\n'+
-										'}\n';									
+										'}\n';								
 			  
   var code = 'drawSdJpeg(("/"+String('+filename+')+".jpg").c_str(), '+x+', '+y+');\n';
   return code;
