@@ -639,7 +639,7 @@ Blockly.Arduino['tft_initial'] = function(block) {
 									  'tft.fillScreen(TFT_BLACK);\n'+
 									  'tft.initDMA();\n'+
 									  'TJpgDec.setJpgScale(1);\n'+
-									  '//tft.setSwapBytes(true);\n'+
+									  'tft.setSwapBytes(true);\n'+
 									  'TJpgDec.setCallback(tft_output);\n';
 	if (board=="Pixel:Bit")
 		Blockly.Arduino.setups_.tftsetup += 'tft.setRotation(3);\n';
