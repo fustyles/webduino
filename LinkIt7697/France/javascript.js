@@ -690,7 +690,7 @@ Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
 									  'tft.fillScreen(TFT_BLACK);\n'+
 									  'tft.initDMA();\n'+
 									  'TJpgDec.setJpgScale(1);\n'+
-									  '//tft.setSwapBytes(true);\n'+
+									  'tft.setSwapBytes(true);\n'+
 									  'TJpgDec.setCallback(tft_output);\n'+
 									  'tft.setRotation(3);\n'+
 									  'tft.setTextFont(1);\n'+
