@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						}
 						p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
 					}
-					if ((!blocks[i].getParent()||!blocks[i].getParent().isEnabled())&&blocks[i].outputConnection==null) {
+					if ((!blocks[i].getParent()||!blocks[i].getParent().isEnabled())&&(blocks[i].targetConnection==null||blocks[i].outputConnection==null)) {
 						if (topCheck&&blocks[i].isEnabled()) blocks[i].setEnabled(false);
 					}
 					if (blocks[i].getParent()&&blocks[i].getPreviousBlock()) {
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						}
 					}
 				}
-				Blockly.Events.setGroup(0);
+				Blockly.Events.setGroup(0);	
 			}, 200);
 			myTimer1 = setTimeout(function(){
 				if (showCode) {
