@@ -7,6 +7,18 @@ var catCommand ='<xml>'+
 '  		  </block>'+
 '  		</value>'+
 '  	  </block>'+
+'  	  <block type="command_parameter1">'+
+'  		<value name="cmd">'+
+'  		  <block type="text">'+
+'  			<field name="TEXT"></field>'+
+'  		  </block>'+
+'  		</value>'+
+'  		<value name="p1">'+
+'  		  <block type="text">'+
+'  			<field name="TEXT"></field>'+
+'  		  </block>'+
+'  		</value>'+
+'  	  </block>'+
 '  	  <block type="command_parameter2">'+
 '  		<value name="cmd">'+
 '  		  <block type="text">'+

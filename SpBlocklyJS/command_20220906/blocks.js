@@ -63,7 +63,7 @@ Blockly.Blocks['command_parameter3'] = {
         .appendField("p2")	
         .setCheck(null);
     this.appendValueInput("p3")
-        .appendField("p2")	
+        .appendField("p3")	
         .setCheck(null);		
 	this.setInputsInline(true);
     this.setOutput(true, null);  
