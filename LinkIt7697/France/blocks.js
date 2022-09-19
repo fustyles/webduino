@@ -4339,6 +4339,44 @@ Blockly.Blocks['fu_servo'] = {
   }
 };
 
+Blockly.Blocks['esp32_pixelbit_initial'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["ESP32_PIXELBIT_INITIAL_SHOW"]);	
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			["96X96(96x96)","96X96"],
+			["QQVGA(160x120)","QQVGA"],
+			["QCIF,(176x144)","QCIF"],
+			["HQVGA(240x176)","HQVGA"],
+			["240X240(240x240)","240X240"],
+			["QVGA(320x240)","QVGA"],
+			["CIF(400x296)","CIF"],
+			["HVGA(480x320)","HVGA"],
+			["VGA(640x480)","VGA"],
+			["SVGA(800x600)","SVGA"],
+			["XGA(1024x768)","XGA"],
+			["HD(1280x720)","HD"],
+			["SXGA(1280x1024)","SXGA"],
+			["UXGA(1600x1200)","UXGA"],
+			["FHD(1920x1080)","FHD"],
+			["P_HD( 720x1280)","P_HD"],
+			["P_3MP( 864x1536)","P_3MP"],
+			["QXGA(2048x1536)","QXGA"],
+			["QHD(2560x1440)","QHD"],
+			["WQXGA(2560x1600)","WQXGA"],
+			["P_FHD(1080x1920)","P_FHD"],
+			["QSXGA(2560x1920)","QSXGA"]
+		]), "framesize");
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_3"]);
+  }
+};
+
 Blockly.Blocks['esp32_pixelbit_stream_myfirmata'] = {
   init: function() {
     this.appendDummyInput()
@@ -10767,6 +10805,39 @@ Blockly.Blocks['esp32_myfirmata'] = {
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
     this.setColour(190);
+  }
+};
+
+Blockly.Blocks['esp32_cam_initial'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_CAM_INITIAL_SHOW);
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			["UXGA(1600x1200)","UXGA"],
+			["SXGA(1280x1024)","SXGA"], 
+			["XGA(1024x768)","XGA"],
+			["SVGA(800x600)","SVGA"],
+			["VGA(640x480)","VGA"],
+			["CIF(400x296)","CIF"],
+			["QVGA(320x240)","QVGA"],
+			["HQVGA(240x176)","HQVGA"],
+			["QQVGA(160x120)","QQVGA"],
+			["QXGA(2048x1564)","QXGA"]	
+		]), "framesize");
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.ESP32_SERVERMODULE_FLASH_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			["Y","Y"],
+			["N","N"]	
+		]), "flash");
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
 

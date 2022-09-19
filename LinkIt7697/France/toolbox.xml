@@ -1315,34 +1315,6 @@
 
 		<category id="france21" name="serveresp32cam">
 			  <block type="esp32_cam_stream_myfirmata">
-				<field name="baudrate">115200</field>
-				<field name="framesize">QVGA</field>
-				<field name="flash">Y</field>
-				<value name="ssid">
-				  <block type="text" id="11^d@{=9P5GHL?WIkZ_}">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="password">
-				  <block type="text" id="wLX68-dxpuQOt{ah)2dh">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="ssid_ap">
-				  <block type="text" id="pi2N4Z5d[`;U!xjC4z#@">
-					<field name="TEXT">esp32-cam</field>
-				  </block>
-				</value>
-				<value name="password_ap">
-				  <block type="text" id="8e{J[y*WiO5LTq_b|cU:">
-					<field name="TEXT">12345678</field>
-				  </block>
-				</value>
-				<value name="mainpage">
-				  <block type="servermodule_javascript" id="|[~^uwYq!!|@9N|ZP4L|"></block>
-				</value>
-			  </block>	
-			  <block type="esp32_cam_stream_myfirmata">
 				<value name="ssid">
 				  <block type="text" id="100">
 					<field name="TEXT">teacher</field>
@@ -1437,34 +1409,6 @@
 				</statement>
 			  </block>
 			  <block type="esp32_cam_myfirmata">
-				<field name="baudrate">115200</field>
-				<field name="framesize">QVGA</field>
-				<field name="flash">Y</field>
-				<value name="ssid">
-				  <block type="text" id="|Ktzh+UgP@m]8Z9j-WK{">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="password">
-				  <block type="text" id="@t`AW4lSp[hf)S=w,%Uq">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="ssid_ap">
-				  <block type="text" id="By-n?A6w]@B$V/.3m3CL">
-					<field name="TEXT">esp32-cam</field>
-				  </block>
-				</value>
-				<value name="password_ap">
-				  <block type="text" id="+]rp^T/M9K9]ek4-FQ-l">
-					<field name="TEXT">12345678</field>
-				  </block>
-				</value>
-				<value name="mainpage">
-				  <block type="servermodule_javascript" id="(5L9:]zrqlTH5mHQ-vxy"></block>
-				</value>
-			  </block>			  
-			  <block type="esp32_cam_myfirmata" id="A[bp9I0t/P#E/hwmf1g-" x="50" y="50">
 				<field name="baudrate">115200</field>
 				<field name="framesize">QVGA</field>
 				<field name="flash">Y</field>
@@ -1585,13 +1529,16 @@
 			  </block>
 			  <block type="server_getrequest">				
 			  </block>
-				<block type="esp32_cam_camera_property">
+			  <block type="esp32_cam_initial">
+				<field name="framesize">QVGA</field>
+			  </block>			  
+			  <block type="esp32_cam_camera_property">
 					<value name="value">
 					  <block type="math_number">
 						<field name="NUM">0</field>
 					  </block>
 					</value>
-				</block>
+			  </block>
 			  <block type="esp32_cam_sd_savejpg">
 				<value name="filename">
 				  <block type="math_number">
@@ -1691,38 +1638,11 @@
 				  </block>
 				</value> 
 			</block>
-			  <block type="servermodule_parameter_stream_url">		
-			  </block>			  
+			<block type="servermodule_parameter_stream_url">		
+			</block>			  
 		</category>	
 		
-		<category id="france26" name="pixelbit">
-			  <block type="esp32_pixelbit_stream_myfirmata">
-				<field name="baudrate">57600</field>
-				<field name="framesize">QVGA</field>
-				<value name="ssid">
-				  <block type="text" id="IC]VCx]B?YoHs;0D0kJ9">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="password">
-				  <block type="text" id="TJ{9~M(;drs`H9M4qr8-">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="ssid_ap">
-				  <block type="text" id=":|Ssb%6%VO8yOAvvc99H">
-					<field name="TEXT">esp32-cam</field>
-				  </block>
-				</value>
-				<value name="password_ap">
-				  <block type="text" id="#H`{qo%zjW{SB(d3qnar">
-					<field name="TEXT">12345678</field>
-				  </block>
-				</value>
-				<value name="mainpage">
-				  <block type="servermodule_javascript" id="eh,BY[bg=:*iA}56pHH)"></block>
-				</value>
-			  </block>		
+		<category id="france26" name="pixelbit">		
 			  <block type="esp32_pixelbit_stream_myfirmata">
 				<value name="ssid">
 				  <block type="text" id="100">
@@ -1816,34 +1736,6 @@
 					</next>
 				  </block>
 				</statement>
-			  </block>
-			  <block type="esp32_pixelbit_myfirmata">
-				<field name="baudrate">57600</field>
-				<field name="framesize">QVGA</field>
-				<field name="request">TRUE</field>
-				<value name="ssid">
-				  <block type="text" id="_U=k=gvpcg/Ugeyr$m.A">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="password">
-				  <block type="text" id="U~RD|iVX7qkbLj5PKU5G">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="ssid_ap">
-				  <block type="text" id="#Y5qf@c}v_`3I`XOc2QS">
-					<field name="TEXT">esp32-cam</field>
-				  </block>
-				</value>
-				<value name="password_ap">
-				  <block type="text" id="~o/^fq,?kyj%.iJ_(v8u">
-					<field name="TEXT">12345678</field>
-				  </block>
-				</value>
-				<value name="mainpage">
-				  <block type="servermodule_javascript" id="jRFPk@R1Zr8zC[#^Lv9D"></block>
-				</value>
 			  </block>				  
 			  <block type="esp32_pixelbit_myfirmata">
 				<value name="ssid">
@@ -1966,13 +1858,16 @@
 				</statement>
 			  </block>
 			  <block type="server_getrequest"></block>
-				<block type="esp32_cam_camera_property">
-					<value name="value">
-					  <block type="math_number">
-						<field name="NUM">0</field>
-					  </block>
-					</value>
-				</block>
+			  <block type="esp32_pixelbit_initial">
+				<field name="framesize">QVGA</field>
+			  </block>
+			  <block type="esp32_cam_camera_property">
+				<value name="value">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>
+			  </block>
 			  <block type="esp32_cam_sd_savejpg">
 				<value name="filename">
 				  <block type="math_number">

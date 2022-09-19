@@ -69,6 +69,7 @@ Blockly.Msg.ESP32_SERVERMODULE_SHOW = "ESP32 connect to Wi-Fi AP";
 Blockly.Msg.ESP32_CAM_SERVERMODULE_SHOW = "ESP32-CAM(still) connect to Wi-Fi AP";
 Blockly.Msg.ESP32_CAM_STREAM_SERVERMODULE_SHOW = "ESP32-CAM(Stream) connect to Wi-Fi AP";
 Blockly.Msg.ESP32_SERVERMODULE_FLASH_SHOW = "Flash";
+Blockly.Msg.ESP32_CAM_INITIAL_SHOW = "ESP32-CAM camera initial";
 Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_SHOW = "tfjs coco-ssd Page";
 Blockly.Msg.ESP32_DIGITALWRITE_SHOW = "digitalWrite";
 Blockly.Msg.ESP32_DIGITALWRITE_VALUE_SHOW = "value";
@@ -1362,6 +1363,7 @@ Blockly.Msg["DFPLAYER_COMMAND_OUTPUTSETTING_SHOW"] = "OUTPUT SETTING";
 
 Blockly.Msg["ESP32_PIXELBIT_SERVERMODULE_SHOW"] = "PIXEL:BIT(Tensor) connect to Wi-Fi AP";
 Blockly.Msg["ESP32_PIXELBIT_STREAM_SERVERMODULE_SHOW"] = "PIXEL:BIT(Stream) connect to Wi-Fi AP";
+Blockly.Msg["ESP32_PIXELBIT_INITIAL_SHOW"] = "PIXEL:BIT camera initial";
 
 Blockly.Msg.HANDS_SHOW = "Hands Detect";
 Blockly.Msg.HANDS_PERSON_SHOW = "Hands Detect Index";

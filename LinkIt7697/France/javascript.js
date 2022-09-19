@@ -2442,6 +2442,93 @@ Blockly.Arduino['fu_servo'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['esp32_pixelbit_initial'] = function(block) {
+	
+  var framesize = block.getFieldValue('framesize');
+																
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "esp_camera.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\n'+
+																'#define PWDN_GPIO_NUM     -1\n'+
+																'#define RESET_GPIO_NUM    -1\n'+
+																'#define XCLK_GPIO_NUM      0\n'+
+																'#define SIOD_GPIO_NUM     22\n'+
+																'#define SIOC_GPIO_NUM     19\n'+
+																'#define Y9_GPIO_NUM       25\n'+
+																'#define Y8_GPIO_NUM       33\n'+
+																'#define Y7_GPIO_NUM       32\n'+
+																'#define Y6_GPIO_NUM       34\n'+
+																'#define Y5_GPIO_NUM       38\n'+
+																'#define Y4_GPIO_NUM       36\n'+
+																'#define Y3_GPIO_NUM       37\n'+
+																'#define Y2_GPIO_NUM       39\n'+
+																'#define VSYNC_GPIO_NUM    27\n'+
+																'#define HREF_GPIO_NUM     26\n'+
+																'#define PCLK_GPIO_NUM     35\n';
+
+  
+  if (selectBoardType()=="esp32")
+	Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
+  else
+	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
+	
+	Blockly.Arduino.setups_.write_peri_reg="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+	Blockly.Arduino.setups_.setup_cam_initial=''+
+			'tca5405.init(21);\n'+
+			'  tca5405.set_gpo(PIXELBIT_CAMERA_POWER, 0);\n'+
+			'  tca5405.transmit();\n'+
+			'  delay(100);\n'+
+			'  tca5405.set_gpo(PIXELBIT_CAMERA_POWER, 1);\n'+
+			'  tca5405.transmit();\n'+
+			'  delay(100);\n\n'+
+			'  Serial.setDebugOutput(true);\n'+
+			'  Serial.println();\n'+
+			'  camera_config_t config;\n'+
+			'  config.ledc_channel = LEDC_CHANNEL_0;\n'+
+			'  config.ledc_timer = LEDC_TIMER_0;\n'+
+			'  config.pin_d0 = Y2_GPIO_NUM;\n'+
+			'  config.pin_d1 = Y3_GPIO_NUM;\n'+
+			'  config.pin_d2 = Y4_GPIO_NUM;\n'+
+			'  config.pin_d3 = Y5_GPIO_NUM;\n'+
+			'  config.pin_d4 = Y6_GPIO_NUM;\n'+
+			'  config.pin_d5 = Y7_GPIO_NUM;\n'+
+			'  config.pin_d6 = Y8_GPIO_NUM;\n'+
+			'  config.pin_d7 = Y9_GPIO_NUM;\n'+
+			'  config.pin_xclk = XCLK_GPIO_NUM;\n'+
+			'  config.pin_pclk = PCLK_GPIO_NUM;\n'+
+			'  config.pin_vsync = VSYNC_GPIO_NUM;\n'+
+			'  config.pin_href = HREF_GPIO_NUM;\n'+
+			'  config.pin_sscb_sda = SIOD_GPIO_NUM;\n'+
+			'  config.pin_sscb_scl = SIOC_GPIO_NUM;\n'+
+			'  config.pin_pwdn = PWDN_GPIO_NUM;\n'+
+			'  config.pin_reset = RESET_GPIO_NUM;\n'+
+			'  config.xclk_freq_hz = 20000000;\n'+
+			'  config.pixel_format = PIXFORMAT_JPEG;\n'+
+			'  if(psramFound()){\n'+
+			'    config.frame_size = FRAMESIZE_UXGA;\n'+
+			'    config.jpeg_quality = 10;\n'+
+			'    config.fb_count = 2;\n'+
+			'  } else {\n'+
+			'    config.frame_size = FRAMESIZE_SVGA;\n'+
+			'    config.jpeg_quality = 12;\n'+
+			'    config.fb_count = 1;\n'+
+			'  }\n'+
+			'  pinMode(25,INPUT_PULLUP);\n'+
+			'  pinMode(26,INPUT_PULLUP);\n'+
+			'  pinMode(27,INPUT_PULLUP);\n'+
+			'  pinMode(32,INPUT_PULLUP);\n'+
+			'  pinMode(33,INPUT_PULLUP);\n'+			
+			'  esp_err_t err = esp_camera_init(&config);\n'+
+			'  if (err != ESP_OK) {\n'+
+			'    Serial.printf("Camera init failed with error 0x%x", err);\n'+
+			'    delay(1000);\n'+
+			'    ESP.restart();\n'+
+			'  }\n'+
+			'  sensor_t * s = esp_camera_sensor_get();\n'+
+			'  s->set_framesize(s, FRAMESIZE_'+framesize+');\n'+
+			'  //s->set_hmirror(s, 1);\n\n';	
+	
+    return '';
+};
+
 Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
 	
   var mainpage = Blockly.Arduino.valueToCode(block, 'mainpage', Blockly.Arduino.ORDER_ATOMIC);
@@ -13001,6 +13088,93 @@ Blockly.Arduino['fu_mqtt_sendimage'] = function(block) {
 														
   code = 'mqtt_sendImage('+topic+');\n';
   return code;
+};
+
+Blockly.Arduino['esp32_cam_initial'] = function(block) {
+	
+	var framesize = block.getFieldValue('framesize');
+	var flash = block.getFieldValue('flash');
+
+	if (flash=="Y")
+		Blockly.Arduino.definitions_['flash'] = "//Flash mode";
+
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\n'+
+															'#define PWDN_GPIO_NUM     32\n'+
+															'#define RESET_GPIO_NUM    -1\n'+
+															'#define XCLK_GPIO_NUM      0\n'+
+															'#define SIOD_GPIO_NUM     26\n'+
+															'#define SIOC_GPIO_NUM     27\n'+
+															'#define Y9_GPIO_NUM       35\n'+
+															'#define Y8_GPIO_NUM       34\n'+
+															'#define Y7_GPIO_NUM       39\n'+
+															'#define Y6_GPIO_NUM       36\n'+
+															'#define Y5_GPIO_NUM       21\n'+
+															'#define Y4_GPIO_NUM       19\n'+
+															'#define Y3_GPIO_NUM       18\n'+
+															'#define Y2_GPIO_NUM        5\n'+
+															'#define VSYNC_GPIO_NUM    25\n'+
+															'#define HREF_GPIO_NUM     23\n'+
+															'#define PCLK_GPIO_NUM     22\n';
+
+
+	if (selectBoardType().indexOf("esp")!=-1)
+		Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
+	else
+		Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
+	
+	Blockly.Arduino.setups_.write_peri_reg="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+	Blockly.Arduino.setups_.setup_cam_initial=''+
+			'Serial.setDebugOutput(true);\n'+
+			'  Serial.println();\n'+
+			'  camera_config_t config;\n'+
+			'  config.ledc_channel = LEDC_CHANNEL_0;\n'+
+			'  config.ledc_timer = LEDC_TIMER_0;\n'+
+			'  config.pin_d0 = Y2_GPIO_NUM;\n'+
+			'  config.pin_d1 = Y3_GPIO_NUM;\n'+
+			'  config.pin_d2 = Y4_GPIO_NUM;\n'+
+			'  config.pin_d3 = Y5_GPIO_NUM;\n'+
+			'  config.pin_d4 = Y6_GPIO_NUM;\n'+
+			'  config.pin_d5 = Y7_GPIO_NUM;\n'+
+			'  config.pin_d6 = Y8_GPIO_NUM;\n'+
+			'  config.pin_d7 = Y9_GPIO_NUM;\n'+
+			'  config.pin_xclk = XCLK_GPIO_NUM;\n'+
+			'  config.pin_pclk = PCLK_GPIO_NUM;\n'+
+			'  config.pin_vsync = VSYNC_GPIO_NUM;\n'+
+			'  config.pin_href = HREF_GPIO_NUM;\n'+
+			'  config.pin_sscb_sda = SIOD_GPIO_NUM;\n'+
+			'  config.pin_sscb_scl = SIOC_GPIO_NUM;\n'+
+			'  config.pin_pwdn = PWDN_GPIO_NUM;\n'+
+			'  config.pin_reset = RESET_GPIO_NUM;\n'+
+			'  config.xclk_freq_hz = 20000000;\n'+
+			'  config.pixel_format = PIXFORMAT_JPEG;\n'+
+			'  if(psramFound()){\n'+
+			'    config.frame_size = FRAMESIZE_UXGA;\n'+
+			'    config.jpeg_quality = 10;\n'+
+			'    config.fb_count = 2;\n'+
+			'  } else {\n'+
+			'    config.frame_size = FRAMESIZE_SVGA;\n'+
+			'    config.jpeg_quality = 12;\n'+
+			'    config.fb_count = 1;\n'+
+			'  }\n'+
+			'  esp_err_t err = esp_camera_init(&config);\n'+
+			'  if (err != ESP_OK) {\n'+
+			'    Serial.printf("Camera init failed with error 0x%x", err);\n'+
+			'    delay(1000);\n'+
+			'    ESP.restart();\n'+
+			'  }\n'+
+			'  sensor_t * s = esp_camera_sensor_get();\n'+
+			'  if (s->id.PID == OV3660_PID) {\n'+
+			'    s->set_vflip(s, 1);\n'+
+			'    s->set_brightness(s, 1);\n'+
+			'    s->set_saturation(s, -2);\n'+
+			'  }\n'+
+			'  s->set_framesize(s, FRAMESIZE_'+framesize+');\n';
+			if (flash=="Y") {
+				Blockly.Arduino.setups_.setup_cam_initial += '  pinMode(4, OUTPUT);\n'+
+															'  digitalWrite(4, LOW);\n';	
+			}
+	
+    return '';
 };
 
 Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
