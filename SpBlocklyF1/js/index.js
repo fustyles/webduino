@@ -102,41 +102,41 @@ document.addEventListener('DOMContentLoaded', function() {
 			clearTimeout(myTimer1);
 			
 			myTimer = setTimeout(function(){
-					Blockly.Events.setGroup(!0);
-					var enabledBlockList = ["initializes_loop"];
-					var variableBlockList = ["variables_set","variables_set1","variables_set7"];
-					var variableGlobalBlockList = ["variables_set","variables_set1"];
-					var blocks = Blockly.mainWorkspace.getAllBlocks();
-					var p;
-					for (var i=0;i<blocks.length;i++) {
-						p = blocks[i];
-						if (enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null&&p.outputConnection==null)) {
-							if (topCheck&&!blocks[i].isEnabled()) blocks[i].setEnabled(true);
-							if (variableGlobalBlockList.includes(blocks[i].type)&&blocks[i].getField("POSITION")) {
-								if (blocks[i].getFieldValue("POSITION")=="global")
-									continue;
-							}
-							else
+				Blockly.Events.setGroup(!0);
+				var enabledBlockList = ["initializes_loop"];
+				var variableBlockList = ["variables_set","variables_set1","variables_set7"];
+				var variableGlobalBlockList = ["variables_set","variables_set1"];
+				var blocks = Blockly.mainWorkspace.getAllBlocks();
+				var p;
+				for (var i=0;i<blocks.length;i++) {
+					p = blocks[i];
+					if (enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null&&p.outputConnection==null)) {
+						if (topCheck&&!blocks[i].isEnabled()) blocks[i].setEnabled(true);
+						if (variableGlobalBlockList.includes(blocks[i].type)&&blocks[i].getField("POSITION")) {
+							if (blocks[i].getFieldValue("POSITION")=="global")
 								continue;
 						}
+						else
+							continue;
+					}
+					p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
+					while(p) {
+						if ((enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null&&p.outputConnection==null))&&!p.getParent()) {
+							if (topCheck&&!blocks[i].isEnabled()) blocks[i].setEnabled(true);
+							break;
+						}
 						p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
-						while(p) {
-							if ((enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null&&p.outputConnection==null))&&!p.getParent()) {
-								if (topCheck&&!blocks[i].isEnabled()) blocks[i].setEnabled(true);
-								break;
-							}
-							p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
-						}
-						if ((!blocks[i].getParent()||!blocks[i].getParent().isEnabled())&&blocks[i].outputConnection==null) {
-							if (topCheck&&blocks[i].isEnabled()) blocks[i].setEnabled(false);
-						}
-						if (blocks[i].getParent()&&blocks[i].getPreviousBlock()) {
-							if (variableBlockList.includes(p.type)&&variableBlockList.includes(blocks[i].getParent().type)) {
-								if (topCheck) blocks[i].unplug();
-							}
+					}
+					if ((!blocks[i].getParent()||!blocks[i].getParent().isEnabled())&&(blocks[i].targetConnection==null||blocks[i].outputConnection==null)) {
+						if (topCheck&&blocks[i].isEnabled()) blocks[i].setEnabled(false);
+					}
+					if (blocks[i].getParent()&&blocks[i].getPreviousBlock()) {
+						if (variableBlockList.includes(p.type)&&variableBlockList.includes(blocks[i].getParent().type)) {
+							if (topCheck) blocks[i].unplug();
 						}
 					}
-					Blockly.Events.setGroup(0);	
+				}
+				Blockly.Events.setGroup(0);	
 			}, 200);
 			
 			myTimer1 = setTimeout(function(){
