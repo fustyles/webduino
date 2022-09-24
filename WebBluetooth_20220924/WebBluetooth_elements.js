@@ -40,8 +40,9 @@ Bluetooth_buttonDisconnect.addEventListener('click', async () => {
 
 function handleCharacteristicValueChanged(event) {
 	const value = new TextDecoder().decode(event.target.value);
-	if (!value) return;
 	Bluetooth_data.innerText = value;
+	if (!value) return;
+	
 	if (typeof webbluetooth_getdata === 'function') webbluetooth_getdata();
 }
 
