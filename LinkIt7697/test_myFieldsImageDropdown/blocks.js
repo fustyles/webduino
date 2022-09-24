@@ -32,6 +32,7 @@
 		var divDrpodownHeight = 100;
 		
 		this.field = new fuFieldsImageDropdown.FieldsImageDropdown('ccc', this.options, this.validate, divDrpodownWidth, divDrpodownHeight);
+		//this.field = new fuFieldsImageDropdown.FieldsImageDropdown('ccc', options);
 		
 		this.appendDummyInput()
 			.appendField('Image dropdown')
@@ -79,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	  fuFieldsImageDropdown.FieldsImageDropdown.superClass_.constructor.call(this, text, opt_validate);
 	  this.textSize = 14;
 	  this.imageSize = 24;
-	  this.divRowHeight = 33.5;
+	  this.divRowHeight = 30.8;    //If you change textSize value or imageSize value, you need to get divRowHeight value by testing.
 	  
 	  this.divWidth = opt_width||200;
 	  this.divHeight = opt_height||100;
@@ -175,8 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	  var bBox = this.imageElement_.getBoundingClientRect();
 	  var scrolltop = this.imageElement_.firstChild.scrollTop;
 	  var dy = e.clientY - bBox.top + scrolltop;
-	  var highLight = Array.from(this.showList);
-	  var index = (Math.round((dy-this.divPadding)/this.divRowHeight)<highLight.length)?Math.round((dy-this.divPadding)/this.divRowHeight):-1;
+	  var index = (Math.round((dy-this.divPadding)/this.divRowHeight)<this.showList.length)?Math.round((dy-this.divPadding)/this.divRowHeight):-1;
 	  this.setEditorValue_(index);
 	};
 
