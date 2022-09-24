@@ -17,3 +17,4 @@ Blockly.Msg.WEBSERIAL_GETID_SHOW = "Web Serial get button ID";
 Blockly.Msg.WEBSERIAL_ELEMENT_ONCLICK_SHOW = "Web Serial set";
 Blockly.Msg.WEBSERIAL_ELEMENT_ID_SHOW = "Element ID";
 Blockly.Msg.WEBSERIAL_WAIT_SHOW = "Web Serial wait until connected";
+Blockly.Msg.WEBSERIAL_GETDATA_SHOW = "Web Serial after getting data";

@@ -41,6 +41,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='WebSerial_20220126/WebSerial.js'></script>";
 		}
 		
+		if (xml.indexOf("webbluetooth_")!=-1) {
+			script += "<script src='WebBluetooth_20220924/WebBluetooth_elements.js'></script>";			
+			script += "<script src='WebBluetooth_20220924/WebBluetooth.js'></script>";
+		}		
+		
 		if (xml.indexOf("fu_mqtt_")!=-1) {
 			script += "<script src='MQTT_20220324/mqtt.min.js'></script>";
 		}
@@ -177,6 +182,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebSerial_20220126/WebSerial.js'></script>";
 		}
 		
+		if (xml.indexOf("webbluetooth_")!=-1) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebBluetooth_20220924/WebBluetooth_elements.js'></script>";			
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebBluetooth_20220924/WebBluetooth.js'></script>";
+		}		
+		
 		if (xml.indexOf("fu_mqtt_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/MQTT_20220324/mqtt.min.js'></script>";
 		}
@@ -298,6 +308,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		catMatrixLed,
 		"<sep></sep>",
 		catWebSerial,
+		catWebBluetooth,		
 		catMQTT,
 		catCommand,		
 		"<sep></sep>",		

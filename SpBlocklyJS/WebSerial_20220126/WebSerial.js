@@ -14,8 +14,7 @@
 	let serial_buttonClose = document.getElementById('gamebutton_webserial_close');
 	let serial_sendText = document.getElementById('serial_sendText');
 	let serial_sendUint8 = document.getElementById('serial_sendUint8');
-	let serial_clearText = document.getElementById('serial_clearText');	
-	let serial_end = document.getElementById('serial_end');
+	let serial_clearText = document.getElementById('serial_clearText');
 
 	function webserial_button(input_id, input_show) {
 		document.getElementById(input_id).style.display = input_show;
@@ -42,9 +41,8 @@
 			element.addEventListener('click', async () => {buttonClose();});	
 	}
 	
-	function webserial_sendText(input_cmd, input_end) {
+	function webserial_sendText(input_cmd) {
 		serial_text.value = input_cmd;
-		serial_end.value = input_end;
 		serial_sendText.click();
 	}
 	
@@ -66,9 +64,12 @@
 	}
 
 	function webserial_baudrate(baudrate) {
-		console.log(baudrate);
+		//console.log(baudrate);
 		serial_baud.value = baudrate;
 	}
+	
+	function webserial_getdata() {
+	}		
 
 	window.webserial_button = webserial_button;
 	window.webserial_button_position = webserial_button_position;
@@ -79,5 +80,6 @@
 	window.webserial_getState = webserial_getState;
 	window.webserial_clear = webserial_clear;
 	window.webserial_baudrate = webserial_baudrate;
+	window.webserial_getdata = webserial_getdata;	
 	
 }(window, window.document));

@@ -21,9 +21,8 @@ Blockly.JavaScript['webserial_button_onclick'] = function(block) {
 };
 
 Blockly.JavaScript['webserial_sendtext'] = function(block) {
-  var value_cmd = Blockly.JavaScript.valueToCode(block, 'cmd_', Blockly.JavaScript.ORDER_ATOMIC); 
-  var value_end = block.getFieldValue('end_');
-  var code = 'webserial_sendText('+value_cmd+',"'+value_end+'");\n';
+  var value_cmd = Blockly.JavaScript.valueToCode(block, 'cmd_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'webserial_sendText('+value_cmd+');\n';
   return code;
 };
 
@@ -62,5 +61,11 @@ Blockly.JavaScript['webserial_getid'] = function(block) {
 Blockly.JavaScript['webserial_wait'] = function(block) {
   var value_baudrate = block.getFieldValue('baudrate_');
   var code = 'while (!webserial_getState()) {\n  await delay(0.01);\n}\n';
+  return code;
+};
+
+Blockly.JavaScript['webserial_getdata'] = function(block) { 
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'webserial_getdata = async function() {\n' + statements_do + '\n};\n';
   return code;
 };

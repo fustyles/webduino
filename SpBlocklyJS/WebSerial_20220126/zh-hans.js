@@ -17,3 +17,4 @@ Blockly.Msg.WEBSERIAL_GETID_SHOW = "网页序列埠 取得按钮ID";
 Blockly.Msg.WEBSERIAL_ELEMENT_ONCLICK_SHOW = "网页序列埠 设定";
 Blockly.Msg.WEBSERIAL_ELEMENT_ID_SHOW = "为网页元素代码";
 Blockly.Msg.WEBSERIAL_WAIT_SHOW = "网页序列埠 等待连线后向下执行";
+Blockly.Msg.WEBSERIAL_GETDATA_SHOW = "网页序列埠 取得资料后执行";

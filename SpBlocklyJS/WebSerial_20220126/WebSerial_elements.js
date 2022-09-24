@@ -2,7 +2,6 @@ document.write('<input type="text" id="serial_baud" style="position:absolute;dis
 document.write('<input type="button" id="gamebutton_webserial_open" style="display:none;z-index:999" value="Select Port">');
 document.write('<input type="button" id="gamebutton_webserial_close" style="display:none;z-index:999" value="Close Port">');
 document.write('<input type="text" id="serial_text" style="position:absolute;display:none;z-index:999">');
-document.write('<input type="text" id="serial_end" style="position:absolute;display:none;z-index:999">');
 document.write('<button id="serial_sendText" style="position:absolute;display:none;z-index:999">Send Text</button>');
 document.write('<input type="text" id="serial_uint8" style="position:absolute;display:none;z-index:999">');
 document.write('<button id="serial_sendUint8" style="position:absolute;display:none;z-index:999">Send Uint8Array</button>');
@@ -22,7 +21,6 @@ let serial_buttonClose = document.getElementById('gamebutton_webserial_close');
 let serial_sendText = document.getElementById('serial_sendText');
 let serial_sendUint8 = document.getElementById('serial_sendUint8');
 let serial_clearText = document.getElementById('serial_clearText');
-let serial_end = document.getElementById('serial_end');
 
 let serial_port = null;
 let serial_textEncoder = {};
@@ -59,6 +57,7 @@ async function readUntilClosed() {
 				clearTimeout(serial_timer);
 				//console.log(serial_readSting);
 				serial_data.innerText = serial_readSting;
+				if (typeof webserial_getdata === 'function') webserial_getdata();
 				serial_message(serial_readSting);
 				serial_readSting = "";
 			}
@@ -66,6 +65,7 @@ async function readUntilClosed() {
 				serial_timer = setTimeout(function() {
 					if (serial_readSting != "") { 
 						serial_data.innerText = serial_readSting;
+						if (typeof webserial_getdata === 'function') webserial_getdata();
 						serial_message(serial_readSting);
 					}
 					serial_readSting = "";
@@ -152,7 +152,7 @@ serial_sendText.addEventListener('click', async () => {
 	serial_sendUint8.disabled = true;
 	if (serial_port&&serial_writer) {
 		try {
-			var msg = serial_text.value + serial_end.value;
+			var msg = serial_text.value;
 			//serial_message(msg);
 			serial_text.value = "";
 			
@@ -197,4 +197,5 @@ serial_clearText.addEventListener('click', async () => {
 
 function serial_message(msg) {
 	serial_status.innerText = msg;
+	console.log(msg);
 }

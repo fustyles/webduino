@@ -79,14 +79,6 @@ Blockly.Blocks['webserial_sendtext'] = {
         .appendField(Blockly.Msg.WEBSERIAL_SENDTEXT_SHOW);
 	this.appendValueInput("cmd_")
 		.setCheck("String");
-    this.appendDummyInput("newline")	  
-		.appendField(new Blockly.FieldDropdown([
-			["　",""],
-			["\\r","\\r"],
-			["\\n","\\n"],
-			["\\r\\n","\\r\\n"]
-		]), "end_");
-	this.getInput("newline").setVisible(false);
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -191,4 +183,16 @@ Blockly.Blocks['webserial_wait'] = {
     this.setNextStatement(true);
     this.setColour(180);
   }  
+};
+
+Blockly.Blocks['webserial_getdata'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.WEBSERIAL_GETDATA_SHOW);
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(180);
+  }
 };
