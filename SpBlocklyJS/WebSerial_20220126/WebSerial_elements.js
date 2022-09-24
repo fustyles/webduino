@@ -197,5 +197,4 @@ serial_clearText.addEventListener('click', async () => {
 
 function serial_message(msg) {
 	serial_status.innerText = msg;
-	console.log(msg);
 }
