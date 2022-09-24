@@ -1,0 +1,15 @@
+{
+  "types": ["webbluetooth_uuid","webbluetooth_button","webbluetooth_button_position","webbluetooth_button_onclick","webbluetooth_sendtext","webbluetooth_get","webbluetooth_getstate","webbluetooth_getid","webbluetooth_wait","webbluetooth_getdata"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "WebBluetooth_elements.js",
+    "WebBluetooth.js"    
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
