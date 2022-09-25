@@ -68,6 +68,9 @@
 	function webserial_baudrate(baudrate) {
 		serial_baud.value = baudrate;
 	}
+	
+	function webserial_getdata() {
+	}		
 
 	window.webserial_button = webserial_button;
 	window.webserial_button_position = webserial_button_position;
@@ -78,5 +81,6 @@
 	window.webserial_getState = webserial_getState;
 	window.webserial_clear = webserial_clear;
 	window.webserial_baudrate = webserial_baudrate;
+	window.webserial_getdata = webserial_getdata;	
 	
 }(window, window.document));
