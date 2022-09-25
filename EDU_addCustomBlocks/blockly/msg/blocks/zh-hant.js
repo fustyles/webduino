@@ -31,4 +31,4 @@ Blockly.Msg.ADDCUSTOMBLOCKS_MQTT_SHOW = "[取得連結] MQTT";
 Blockly.Msg.ADDCUSTOMBLOCKS_ROBOTFLY_SHOW = "[取得連結] ROBOT FLY";
 Blockly.Msg.ADDCUSTOMBLOCKS_HANDS_SHOW = "[取得連結] 手勢辨識(Mediapipe Holistic)";
 Blockly.Msg.ADDCUSTOMBLOCKS_CHART_SHOW = "[取得連結] 儀表板";
-Blockly.Msg.ADDCUSTOMBLOCKS_WEBBLUETOOTH_SHOW = "[取得連結] 網頁藍芽";
+Blockly.Msg.ADDCUSTOMBLOCKS_WEBBLUETOOTH_SHOW = "[取得連結] Web Bluetooth";
