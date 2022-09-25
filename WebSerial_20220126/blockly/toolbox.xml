@@ -18,10 +18,12 @@
       </block>
     </value>
   </block>   
-  <block type="webserial_clear">   
-  </block>
+	<block type="webserial_getdata">
+	</block>  
   <block type="webserial_get">  
   </block>
+  <block type="webserial_clear">   
+  </block>  
   <block type="webserial_getstate">  
   </block>   
   <block type="webserial_button">   
