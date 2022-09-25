@@ -61,7 +61,7 @@ Blockly.JavaScript['webserial_getid'] = function(block) {
 
 Blockly.JavaScript['webserial_wait'] = function(block) {
   var value_baudrate = block.getFieldValue('baudrate_');
-  var code = 'while (!webserial_getState()) {\n  await delay(0.01);\n}\n';
+  var code = 'while (!webserial_getState()) {\n  await delay(1);\n}\n';
   return code;
 };
 
