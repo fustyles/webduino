@@ -1,5 +1,5 @@
 {
-  "types": ["webserial_button","webserial_button_position","webserial_button_onclick","webserial_state","webserial_send","webserial_get","webserial_getstate","webserial_clear","webserial_baudrate","webserial_getid","webserial_wait"],
+  "types": ["webserial_button","webserial_button_position","webserial_button_onclick","webserial_state","webserial_send","webserial_get","webserial_getstate","webserial_clear","webserial_baudrate","webserial_getid","webserial_wait","webserial_getdata"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
