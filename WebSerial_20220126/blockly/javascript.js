@@ -64,3 +64,9 @@ Blockly.JavaScript['webserial_wait'] = function(block) {
   var code = 'while (!webserial_getState()) {\n  await delay(0.01);\n}\n';
   return code;
 };
+
+Blockly.JavaScript['webserial_getdata'] = function(block) { 
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'webserial_getdata = async function() {\n' + statements_do + '\n};\n';
+  return code;
+};
