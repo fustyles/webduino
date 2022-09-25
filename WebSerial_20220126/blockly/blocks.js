@@ -191,3 +191,15 @@ Blockly.Blocks['webserial_wait'] = {
     this.setColour(180);
   }  
 };
+
+Blockly.Blocks['webserial_getdata'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.WEBSERIAL_GETDATA_SHOW);
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(180);
+  }
+};
