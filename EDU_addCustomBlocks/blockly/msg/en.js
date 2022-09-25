@@ -1,2 +1,2 @@
-MSG.catCustomBlocks = "Custom Blocks";
-MSG.catPlus = "France Blocks";
+MSG.catCustomBlocks = "Custom Blocks Manager";
+MSG.catPlus = "Custom Blocks";
