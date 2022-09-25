@@ -52,7 +52,7 @@ Blockly.JavaScript['webbluetooth_getid'] = function(block) {
 
 Blockly.JavaScript['webbluetooth_wait'] = function(block) {
   var value_baudrate = block.getFieldValue('baudrate_');
-  var code = 'while (!webbluetooth_getState()) {\n  await delay(0.01);\n}\n';
+  var code = 'while (!webbluetooth_getState()) {\n  await delay(1);\n}\n';
   return code;
 };
 
