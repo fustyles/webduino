@@ -59,6 +59,7 @@ async function readUntilClosed() {
 				clearTimeout(serial_timer);
 				//console.log(serial_readSting);
 				serial_data.innerText = serial_readSting;
+				if (typeof webserial_getdata === 'function') webserial_getdata();
 				serial_message(serial_readSting);
 				serial_readSting = "";
 			}
@@ -66,6 +67,7 @@ async function readUntilClosed() {
 				serial_timer = setTimeout(function() {
 					if (serial_readSting != "") { 
 						serial_data.innerText = serial_readSting;
+						if (typeof webserial_getdata === 'function') webserial_getdata();
 						serial_message(serial_readSting);
 					}
 					serial_readSting = "";
