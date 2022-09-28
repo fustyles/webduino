@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/13 23:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/28 22:00
 https://www.facebook.com/francefu
 
 Python
@@ -554,19 +554,21 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 					console.log(err);
 				} else {
 					
-					var process = require('child_process');
-					var res = process.execFile('python', [filePath]);	
+					var exec = require('child_process').exec;
+					var cmd = '';
+					var res = exec('python '+filePath+' '+cmd);	
+					
 					
 					res.stdout.on('data', function(data) {
-						console.log(decode(new Buffer(data,'binary'), 'utf-8'));
+						console.log(data);
 					});
 
 					res.stderr.on('data', function(data) {
-						console.log(decode(new Buffer(data,'binary'), 'utf-8'));
+						console.log(data);
 					});
 
 					res.on('exit', function(code, signal) {
-						console.log("OK");
+						//console.log("exit");
 					});						
 				}
 			}); 			
