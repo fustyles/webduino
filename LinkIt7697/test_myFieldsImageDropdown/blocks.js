@@ -219,9 +219,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	fuFieldsImageDropdown.FieldsImageDropdown.prototype.getText_ = function() {
 	  if (this.isBeingEdited_) {
-		return fuFieldsImageDropdown.FieldsImageDropdown.superClass_.getText_.call(this);
+		return fuFieldsImageDropdown.eventparam.superClass_.getText_.call(this);
 	  }
-	  return this.valueToIndex(this.getValue()) || null;
+	  var text = this.valueToText(this.getValue()); 
+	  if (text) {
+		if (this.imageField&&this.originList) {			
+			this.imageField.setValue(this.originList[this.getValue()][1]);
+		}
+	  }
+	  return text || null;
 	};
 
 	fuFieldsImageDropdown.FieldsImageDropdown.prototype.getEditorText_ = function(value) {
@@ -246,12 +252,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	fuFieldsImageDropdown.FieldsImageDropdown.prototype.doClassValidation_ = function(opt_newValue) {
 	  if (opt_newValue === null || opt_newValue === undefined || opt_newValue == -1) {
 		return null;
-	  }
-	  var index = this.valueToText(opt_newValue); 
-	  if (index) {
-		if (this.imageField&&this.originList) {
-			this.imageField.setValue(this.originList[opt_newValue][1]);
-		}
+	  }  
+	  var text = this.valueToText(opt_newValue); 
+	  if (text) {
 		return opt_newValue;
 	  }
 	  return 0;
