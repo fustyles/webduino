@@ -14,7 +14,7 @@
 /**
  * @fileoverview Field FieldsImageDropdown.
  * @author https://www.facebook.com/francefu/
- * @Update 9/23/2022 22:00 (Taiwan Standard Time)
+ * @Update 9/28/2022 00:00 (Taiwan Standard Time)
  */
  
  /*
@@ -22,7 +22,10 @@
  
 	Blockly.Blocks["test"] = {
 	  init: function() {
-		  
+	  
+		// Option Type 1:  [value]  -->  ['CLOUDY']
+		// Option Type 2:  [value, imageSrc]  -->  ['CLOUDY', "https://imgur.com/Hi33BEx.png"]
+		// Option Type 3:  [text, imageSrc, value]  -->  ['CLOUDY', "https://imgur.com/Hi33BEx.png", "ccc"]
 		var options = [
 			['CLOUDY', "https://imgur.com/Hi33BEx.png"],
 			['PARTLY CLOUDY', "https://imgur.com/rX0np7I.png"],
@@ -30,12 +33,14 @@
 			['RAIN', "https://imgur.com/wRwu4pZ.png"],
 			['STAR', "https://imgur.com/KMWOcGf.png"]
 		];
-		var divDropdownWidth = 200;
-		var divDropdownHeight = 100;		  
+		
+		var dropdownWidth = 200;
+		var dropdownHeight = 100;		  
 		  
 		var imageField = new Blockly.FieldImage(options[0][1], 18, 18, { alt: "*", flipRtl: "FALSE" });
-		var field = new fuFieldsImageDropdown.FieldsImageDropdown('', options, this.validate, divDropdownWidth, divDropdownHeight, imageField);
-		//var field = new fuFieldsImageDropdown.FieldsImageDropdown('', options);
+		
+		var field = new fuFieldsImageDropdown.eventparam('', options, this.validate, dropdownWidth, dropdownHeight, imageField);
+		//var field = new fuFieldsImageDropdown.eventparam('', options);
 		
 		this.appendDummyInput()
 			.appendField(imageField, "image");
@@ -46,6 +51,7 @@
 		this.setPreviousStatement(true, null);
 		this.setNextStatement(true, null);
 		this.setColour(100);
+		
 	  },
 	  validate: function(newValue) {
 	  }
@@ -84,15 +90,16 @@ document.addEventListener('DOMContentLoaded', function() {
 	  fuFieldsImageDropdown.FieldsImageDropdown.superClass_.constructor.call(this, text, opt_validate);
 	  this.textSize = 14;
 	  this.imageSize = 24;
-	  this.divRowHeight = 30.8;    //If you change textSize value or imageSize value, you need to get divRowHeight value by testing.
+	  //If you change textSize value or imageSize value, you need to get divRowHeight value by testing.
+	  this.divRowHeight = (options[0].length>1)?30.9:24.5;		
 	  
 	  this.divWidth = opt_width||200;
 	  this.divHeight = opt_height||100;
+	  this.imageField = opt_imageField||null;
 	  
 	  this.divPadding = 5;
 	  this.originList = options;
 	  this.showList = [];
-	  this.imageField = opt_imageField||null;
 
 	  this.setSpellcheck(false);
 	  this.clickWrapper_ = null;
@@ -139,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	  this.imageElement_.style = 'padding: '+this.divPadding+'px '+this.divPadding+'px '+this.divPadding+'px '+this.divPadding+'px; height: '+this.divHeight+'px;width: '+this.divWidth+'px;size: '+this.textSize+'px;white-space:nowrap;';
 	  this.showList = [];
 	  for (var j=0;j<this.originList.length;j++) {
-		this.showList.push('<img src="'+this.originList[j][1]+'" style="width:'+this.imageSize+'px;height:'+this.imageSize+'px;">' + '　' + '<span style="width: 100%;display: inline-block;vertical-align: top;line-height: normal;">' + this.originList[j][0] + '</span>');
+		this.showList.push((this.originList[j].length>1?('<img src="'+this.originList[j][1]+'" style="width:'+this.imageSize+'px;height:'+this.imageSize+'px;">' + '　'):'') + '<span style="width: 100%;display: inline-block;vertical-align: top;line-height: normal;">' + this.originList[j][0] + '</span>');
 	  }	  
 	  this.imageElement_.innerHTML = this.showList.join("<br>");
 	  return this.imageElement_;
@@ -187,16 +194,27 @@ document.addEventListener('DOMContentLoaded', function() {
 	};
 
 	fuFieldsImageDropdown.FieldsImageDropdown.prototype.valueToIndex = function(value) {
-	  if (this.showList)
-		  return this.originList[Number(value)][0];
+	  if (this.showList) {
+		  if (this.originList[Number(value)].length>2)
+			return this.originList[Number(value)][2];
+		  else
+			return this.originList[Number(value)][0];
+	  }
 	  else
 		  return "";
 	};
 
 	fuFieldsImageDropdown.FieldsImageDropdown.prototype.indexToValue = function(text) {
 	  var normalizedText = text.trim();
-	  var i = this.showList.indexOf(normalizedText);
-	  return i > -1? 0 : -1;
+	  for (var i=0;i< this.originList.length;i++) {
+		  if (this.originList[i].length>2)
+			var txt = this.originList[i][2];
+		  else
+			var txt = this.originList[i][0];
+		  if (txt.toUpperCase()==text.toUpperCase()) 
+			  return i;
+	  }
+	  return -1;
 	};
 
 	fuFieldsImageDropdown.FieldsImageDropdown.prototype.getText_ = function() {
@@ -229,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	  if (opt_newValue === null || opt_newValue === undefined || opt_newValue == -1) {
 		return null;
 	  }
-	  var index = this.valueToIndex(opt_newValue); 
+	  var index = this.valueToText(opt_newValue); 
 	  if (index) {
 		if (this.imageField&&this.originList) {
 			this.imageField.setValue(this.originList[opt_newValue][1]);
@@ -243,8 +261,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	//************************************************
 
-
-	Blockly.Blocks["test"] = {
+	Blockly.Blocks["test1"] = {
+	  init: function() {
+		  
+		var options = [
+			['CLOUDY'],
+			['PARTLY CLOUDY'],
+			['MOON'],
+			['RAIN'],
+			['STAR']
+		];	  
+		  
+		var field = new fuFieldsImageDropdown.eventparam('', options);
+		
+		this.appendDummyInput()
+			.appendField(field, 'imageDropdown');
+						
+		this.setInputsInline(true);		
+		this.setPreviousStatement(true, null);
+		this.setNextStatement(true, null);
+		this.setColour(100);
+		  
+	  },
+	  validate: function(newValue) {
+	  }
+	};
+	
+	Blockly.Blocks["test2"] = {
 	  init: function() {
 		  
 		var options = [
@@ -254,11 +297,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			['RAIN', "https://imgur.com/wRwu4pZ.png"],
 			['STAR', "https://imgur.com/KMWOcGf.png"]
 		];
-		var divDropdownWidth = 200;
-		var divDropdownHeight = 100;		  
+		var dropdownWidth = 200;
+		var dropdownHeight = 100;		  
 		  
 		var imageField = new Blockly.FieldImage(options[0][1], 18, 18, { alt: "*", flipRtl: "FALSE" });
-		var field = new fuFieldsImageDropdown.FieldsImageDropdown('', options, this.validate, divDropdownWidth, divDropdownHeight, imageField);
+		var field = new fuFieldsImageDropdown.eventparam('', options, this.validate, dropdownWidth, dropdownHeight, imageField);
 		
 		this.appendDummyInput()
 			.appendField(imageField, "image");
@@ -269,12 +312,52 @@ document.addEventListener('DOMContentLoaded', function() {
 		this.setPreviousStatement(true, null);
 		this.setNextStatement(true, null);
 		this.setColour(100);
+		  
 	  },
 	  validate: function(newValue) {
 	  }
 	};
 	
-	Blockly.JavaScript['test'] = function(block) {
+	Blockly.Blocks["test3"] = {
+	  init: function() {
+		  
+		var options = [
+			['CLOUDY', "https://imgur.com/Hi33BEx.png", "ccc"],
+			['PARTLY CLOUDY', "https://imgur.com/rX0np7I.png", "ppp"],
+			['MOON', "https://imgur.com/ulJIWW4.png", "mmm"],
+			['RAIN', "https://imgur.com/wRwu4pZ.png", "rrr"],
+			['STAR', "https://imgur.com/KMWOcGf.png", "sss"]
+		];
+		var dropdownWidth = 200;
+		var dropdownHeight = 100;		  
+		  
+		var imageField = new Blockly.FieldImage(options[0][2], 18, 18, { alt: "*", flipRtl: "FALSE" });
+		var field = new fuFieldsImageDropdown.eventparam('', options, this.validate, dropdownWidth, dropdownHeight, imageField);
+		
+		this.appendDummyInput()
+			.appendField(imageField, "image");
+		this.appendDummyInput()
+			.appendField(field, 'imageDropdown');
+						
+		this.setInputsInline(true);		
+		this.setPreviousStatement(true, null);
+		this.setNextStatement(true, null);
+		this.setColour(100);
+		  
+	  },
+	  validate: function(newValue) {
+	  }
+	};
+	
+	Blockly.JavaScript['test1'] = function(block) {
+	  return '';
+	};	
+	
+	Blockly.JavaScript['test2'] = function(block) {
+	  return '';
+	};
+	
+	Blockly.JavaScript['test3'] = function(block) {
 	  return '';
 	};
 	
