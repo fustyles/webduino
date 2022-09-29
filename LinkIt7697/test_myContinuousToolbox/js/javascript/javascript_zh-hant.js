@@ -11,7 +11,13 @@ Blockly.Msg["CUSTOM_NAME"] = "自訂積木";
 Blockly.Msg["HELLOWORLD_MSG"] = "對話視窗顯示";
 Blockly.Msg["HELLOWORLD_GET"] = "取得資料";
 Blockly.Msg["HELLOWORLD_HUE"] = "100";
-
+Blockly.Msg["WORKSPACE_RESET"] = "重設工作區";
+Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_XML_MSG"] = "工作區匯出積木結構XML檔案";
+Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"] = "工作區匯入積木結構XML檔案";
+Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_HTML_MSG"] = "工作區匯出網頁HTML檔";
+Blockly.Msg["WORKSPACE_TO_CODE_Y_MSG"] = "即時輸出積木程式碼";
+Blockly.Msg["WORKSPACE_TO_CODE_N_MSG"] = "停止輸出積木程式碼";
+Blockly.Msg["WORKSPACE_RUNCODE"] = "執行積木程式碼";
 
 
 //*************** System Message ******************
