@@ -1,0 +1,22 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: #fff;
+  font-family: sans-serif;
+  overflow: hidden;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 140%;
+  margin: 10px;
+}
+
+#blocklyDiv {
+  float: bottom;
+  height: 90%;
+  width: 100%;
+}
