@@ -96,7 +96,6 @@ function start() {
 	}
 
 	//工作區執行程式碼
-	Blockly.Msg["WORKSPACE_SORRY"] = "此功能須建置在node.js環境下與安裝Python環境。";
 	function workspaceExecutePY() {
 		if (typeof require !== "undefined") {
 			var filePath = "temp.py";
@@ -185,7 +184,6 @@ function start() {
 	}
 
 	//新增工作區功能選單 重設工作區
-	Blockly.Msg["WORKSPACE_RESET"] = "重設工作區";
 	function registerWorkspaceReset() {
 	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_reset')) {
 		return;
@@ -208,7 +206,6 @@ function start() {
 	registerWorkspaceReset();
 
 	//新增工作區功能選單 匯出積木結構XML檔
-	Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_XML_MSG"] = "工作區匯出積木結構XML檔案";
 	function registerWorkspaceBlocksExportToXML() {
 	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_export_xml')) {
 		return;
@@ -231,7 +228,6 @@ function start() {
 	registerWorkspaceBlocksExportToXML();
 
 	//新增工作區功能選單 匯入積木結構XML檔
-	Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"] = "工作區匯入積木結構XML檔案";
 	function registerWorkspaceBlocksImportFromXML() {
 	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_import_xml')) {
 		return;
@@ -254,7 +250,6 @@ function start() {
 	registerWorkspaceBlocksImportFromXML();
 	
 	//新增工作區功能選單 匯出PYTHON檔
-	Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_PY_MSG"] = "工作區匯出PY檔";
 	function registerWorkspaceBlocksExportToPY() {
 	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_export_py')) {
 		return;
@@ -277,8 +272,6 @@ function start() {
 	registerWorkspaceBlocksExportToPY();
 	
 	//新增工作區功能選單 即時輸出積木程式碼
-	Blockly.Msg["WORKSPACE_TO_CODE_Y_MSG"] = "即時輸出積木程式碼";
-	Blockly.Msg["WORKSPACE_TO_CODE_N_MSG"] = "停止輸出積木程式碼";
 	var workspaceToCodeState = false;
 	function registerWorkspaceBlocksToCode() {
 	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_to_code')) {
@@ -305,7 +298,6 @@ function start() {
 	registerWorkspaceBlocksToCode();	
 	
 	//新增工作區功能選單 匯出PYTHON檔並執行
-	Blockly.Msg["WORKSPACE_BLOCKS_EXECUTE_PY_MSG"] = "執行積木程式碼";
 	function registerWorkspaceBlocksExecutePY() {
 	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_execute_py')) {
 		return;
