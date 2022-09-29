@@ -20,7 +20,6 @@ Blockly.Msg["WORKSPACE_TO_CODE_N_MSG"] = "停止輸出積木程式碼";
 Blockly.Msg["WORKSPACE_BLOCKS_EXECUTE_PY_MSG"] = "執行積木程式碼";
 
 
-//*************** System Message ******************
 
 Blockly.Msg["TOOLBOX_NAME"] = "工具箱";
 Blockly.Msg["LOGIC_NAME"] = "邏輯";
@@ -31,6 +30,8 @@ Blockly.Msg["LISTS_NAME"] = "陣列";
 Blockly.Msg["COLOUR_NAME"] = "顏色";
 Blockly.Msg["VARIABLES_NAME"] = "變數";
 Blockly.Msg["PROCEDURES_NAME"] = "函式";
+
+//*************** System Message ******************
 
 Blockly.Msg["ADD_COMMENT"] = "加入註解";
 Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "無法刪除變數「%1」，因為這是功能「%2」定義的一部份內容";
