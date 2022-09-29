@@ -65,8 +65,7 @@ function start() {
 	function startBlocks() {
 		Blockly.getMainWorkspace().clear();
 		Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
-	}
-	startBlocks();		
+	}	
 
 	//執行工作區程式碼
 	function runCode() {
