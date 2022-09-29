@@ -8,7 +8,8 @@ function start() {
 	workspace = Blockly.inject('blocklyDiv',
       {
 		media: media,
-        toolbox: document.getElementById('toolbox-categories'),
+		renderer: 'zelos',
+        	toolbox: document.getElementById('toolbox-categories'),
 		zoom:{
 			controls: true,
 			wheel: false,
