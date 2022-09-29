@@ -3,10 +3,10 @@ let workspace = null;
 
 function start() {
 	
-	  // Create main workspace.
-	  var media = 'media/';
-	  workspace = Blockly.inject('blocklyDiv',
-      {
+	// Create main workspace.
+	var media = 'media/';
+	workspace = Blockly.inject('blocklyDiv',
+      	{
 		media: media,
 		renderer: 'zelos',
         	toolbox: document.getElementById('toolbox-categories'),
@@ -32,7 +32,7 @@ function start() {
 		  'toolbox': ContinuousToolbox,	
 		  'metricsManager': ContinuousMetrics,		  
 		}
-      });
+      	});
 	  
 	var continuousFlyout = Blockly.getMainWorkspace().toolbox_.flyout_;
 	continuousFlyout.setVisible(false);
