@@ -34,6 +34,7 @@ function start() {
 		}
       });
 	  
+	var continuousFlyout = Blockly.getMainWorkspace().toolbox_.flyout_;
 	continuousFlyout.setVisible(false);
 	  
 	//Double Click關閉彈出積木選單

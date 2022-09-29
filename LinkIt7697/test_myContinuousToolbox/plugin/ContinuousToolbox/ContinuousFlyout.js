@@ -7,15 +7,12 @@
 /**
  * @fileoverview Flyout that supports always-open continuous scrolling.
  */
-var continuousFlyout;
 
 class ContinuousFlyout extends Blockly.VerticalFlyout {
   /** @override */
   constructor(workspaceOptions) {
 
     super(workspaceOptions);
-	
-	continuousFlyout = this;
 	
     /**
      * List of scroll positions for each category.
