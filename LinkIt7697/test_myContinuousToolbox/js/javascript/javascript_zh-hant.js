@@ -4,7 +4,6 @@
 
 var Blockly = Blockly || { Msg: Object.create(null) };
 
-
 //*************** Custom Message ******************
 
 Blockly.Msg["CUSTOM_NAME"] = "自訂積木";
