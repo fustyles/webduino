@@ -161,6 +161,33 @@ function start() {
 			input.click();
 		},500);	
 	}
+	
+	//工作區範圍最大化
+	function workspaceResize() {
+		var headerHeight = document.getElementById("header").style.height.replace("px","");
+		console.log(headerHeight);
+		if (document.documentElement.clientWidth)
+			var workspaceWidth = document.documentElement.clientWidth;
+		else
+			var workspaceWidth = document.body.clientWidth;
+		if (document.documentElement.clientHeight)
+			var workspaceHeight = document.documentElement.clientHeight-headerHeight;
+		else
+			var workspaceHeight = document.body.clientHeight-headerHeight;
+		document.getElementById('blocklyDiv').style.width = workspaceWidth +"px";
+		document.getElementById('blocklyDiv').style.height = workspaceHeight +"px";
+		Blockly.svgResize(workspace);
+	}
+
+	document.addEventListener("DOMContentLoaded", function(event) {
+		workspaceResize();
+	})
+
+	window.addEventListener("resize", function(){
+		workspaceResize();
+	})	
+	
+	workspaceResize();
 
 	//新增工作區功能選單 重設工作區
 	function registerWorkspaceReset() {
@@ -297,5 +324,6 @@ function start() {
 	  Blockly.ContextMenuRegistry.registry.register(workspaceRunCode);
 	} 
 	registerRunCode(); 
+	
 }
 
