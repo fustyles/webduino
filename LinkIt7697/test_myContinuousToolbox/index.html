@@ -10,19 +10,28 @@
 	<script src="js/toolbox.js"></script>
 	<script>
 		var lang = location.search.toLowerCase();
-		if (lang.indexOf("lang=en")!=-1)
-			lang = "en";
-		else if (lang.indexOf("lang=zh-hans")!=-1)
-			lang = "zh-hans";
-		else if (lang.indexOf("lang=zh-hant")!=-1)
-			lang = "zh-hant";	
+		var core = "";
+		if (lang.indexOf("core=javascript")!=-1)
+			core = "javascript";
+		else if (lang.indexOf("core=python")!=-1)
+			core = "python";
 		else 
-			lang = "en";  //en, zh-hans, zh-hant
-		document.write("\<script src='js/javascript/javascript_"+lang+".js'\>\<\/script>");
+			core = "javascript";
+		document.write("\<script src='js/"+core+"/"+core+"_compressed.js'\>\<\/script>");
+		document.write("\<script src='js/"+core+"/"+core+"_function.js'\>\<\/script>");
+		document.write("\<script src='js/"+core+"/"+core+"_blocks.js'\>\<\/script>");
+
+		var type = "";
+		if (lang.indexOf("lang=en")!=-1)
+			type = "en";
+		else if (lang.indexOf("lang=zh-hans")!=-1)
+			type = "zh-hans";
+		else if (lang.indexOf("lang=zh-hant")!=-1)
+			type = "zh-hant";	
+		else 
+			type = "en";
+		document.write("\<script src='js/"+core+"/"+core+"_"+type+".js'\>\<\/script>");
 	</script>
-	<script src="js/javascript/javascript_compressed.js"></script>
-	<script src="js/javascript/javascript_function.js"></script>
-	<script src="js/javascript/javascript_blocks.js"></script>	
 	<script src="plugin/ContinuousToolbox/ContinuousMetrics.js"></script>  
 	<script src="plugin/ContinuousToolbox/ContinuousFlyout.js"></script>
 	<script src="plugin/ContinuousToolbox/ContinuousToolbox.js"></script>
