@@ -9,11 +9,11 @@
 	<script src="js/toolbox_label_es6.js"></script>
 	<script src="js/toolbox.js"></script>
 	<script>
-		var lang = location.search.toLowerCase();
+		var search = location.search.toLowerCase();
 		var core = "";
-		if (lang.indexOf("core=javascript")!=-1)
+		if (search.indexOf("core=javascript")!=-1)
 			core = "javascript";
-		else if (lang.indexOf("core=python")!=-1)
+		else if (search.indexOf("core=python")!=-1)
 			core = "python";
 		else 
 			core = "javascript";
@@ -21,16 +21,16 @@
 		document.write("\<script src='js/"+core+"/"+core+"_function.js'\>\<\/script>");
 		document.write("\<script src='js/"+core+"/"+core+"_blocks.js'\>\<\/script>");
 
-		var type = "";
-		if (lang.indexOf("lang=en")!=-1)
-			type = "en";
-		else if (lang.indexOf("lang=zh-hans")!=-1)
-			type = "zh-hans";
-		else if (lang.indexOf("lang=zh-hant")!=-1)
-			type = "zh-hant";	
+		var lang = "";
+		if (search.indexOf("lang=en")!=-1)
+			lang = "en";
+		else if (search.indexOf("lang=zh-hans")!=-1)
+			lang = "zh-hans";
+		else if (search.indexOf("lang=zh-hant")!=-1)
+			lang = "zh-hant";	
 		else 
-			type = "en";
-		document.write("\<script src='js/"+core+"/"+core+"_"+type+".js'\>\<\/script>");
+			lang = "en";
+		document.write("\<script src='js/"+core+"/"+core+"_"+lang+".js'\>\<\/script>");
 	</script>
 	<script src="plugin/ContinuousToolbox/ContinuousMetrics.js"></script>  
 	<script src="plugin/ContinuousToolbox/ContinuousFlyout.js"></script>
