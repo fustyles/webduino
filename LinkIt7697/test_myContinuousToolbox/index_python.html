@@ -8,7 +8,18 @@
 	<script src="js/custom_category_es6.js"></script>
 	<script src="js/toolbox_label_es6.js"></script>
 	<script src="js/toolbox.js"></script>
-	<script src="js/python/python_en.js"></script>
+	<script>
+		var lang = location.search.toLowerCase();
+		if (lang.indexOf("lang=en")!=-1)
+			lang = "en";
+		else if (lang.indexOf("lang=zh-hans")!=-1)
+			lang = "zh-hans";
+		else if (lang.indexOf("lang=zh-hant")!=-1)
+			lang = "zh-hant";	
+		else 
+			lang = "en";  //en, zh-hans, zh-hant
+		document.write("\<script src='js/python/python_"+lang+".js'\>\<\/script>");
+	</script>	
 	<script src="js/python/python_compressed.js"></script>
 	<script src="js/python/python_function.js"></script>
 	<script src="js/python/python_blocks.js"></script>	
