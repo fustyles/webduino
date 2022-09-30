@@ -13,11 +13,12 @@ Blockly.Msg["HELLOWORLD_HUE"] = "100";
 Blockly.Msg["WORKSPACE_RESET"] = "Reset workspace";
 Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_XML_MSG"] = "Export blocks to XML file";
 Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"] = "Import blocks from XML file";
-Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_HTML_MSG"] = "Export blocks to HTML file";
+Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_PY_MSG"] = "Export blocks to PYTHON file";
 Blockly.Msg["WORKSPACE_TO_CODE_Y_MSG"] = "Start showing code in the console";
 Blockly.Msg["WORKSPACE_TO_CODE_N_MSG"] = "Stop showing code in the console";
-Blockly.Msg["WORKSPACE_RUNCODE"] = "Run the code";
+Blockly.Msg["WORKSPACE_BLOCKS_EXECUTE_PY_MSG"] = "Run the code";
 Blockly.Msg["WORKSPACE_SORRY"] = "The function must be under node.js and Python environment";
+
 
 
 

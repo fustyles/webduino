@@ -48,7 +48,6 @@ function start() {
 	  
 	//監聽工作區改變輸出程式碼
 	function onWorkspaceChanged(event) {
-		console.log(event);
 		if (workspaceToCodeState) {
 			var code = Blockly.JavaScript.workspaceToCode(workspace);
 			console.clear();
