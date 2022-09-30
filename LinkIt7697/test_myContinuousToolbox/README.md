@@ -1,5 +1,5 @@
 There is a bug and I try to fix it.<br>
-all.js:14 Tried to start the same gesture twice.<br>
+Tried to start the same gesture twice.<br>
 Keep fighting!<br><br>
 
 JavaScript<br>
