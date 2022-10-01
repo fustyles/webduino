@@ -48,7 +48,6 @@ function start() {
 	  
 	//監聽工作區改變輸出程式碼
 	function onWorkspaceChanged(event) {
-		console.log(event.type);
 		if (workspaceToCodeState) {
 			var code = Blockly.JavaScript.workspaceToCode(workspace);
 			console.clear();
@@ -294,6 +293,10 @@ function start() {
 		},
 		callback: function(a) {
 			workspaceToCodeState = !workspaceToCodeState;
+			if (workspaceToCodeState&&(typeof require !== "undefined"))
+				nw.Window.get().showDevTools();
+			else if (!workspaceToCodeState&&(typeof require !== "undefined"))
+				nw.Window.get().closeDevTools();
 		},
 		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_to_code',
 		weight: 204,

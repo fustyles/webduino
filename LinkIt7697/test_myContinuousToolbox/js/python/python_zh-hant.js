@@ -17,7 +17,7 @@ Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_PY_MSG"] = "工作區匯出PY檔";
 Blockly.Msg["WORKSPACE_TO_CODE_Y_MSG"] = "即時輸出積木程式碼";
 Blockly.Msg["WORKSPACE_TO_CODE_N_MSG"] = "停止輸出積木程式碼";
 Blockly.Msg["WORKSPACE_BLOCKS_EXECUTE_PY_MSG"] = "執行積木程式碼";
-Blockly.Msg["WORKSPACE_SORRY"] = "此功能須建置在node.js環境下與安裝Python環境。";
+Blockly.Msg["WORKSPACE_SORRY"] = "此功能須建置在NW.js環境下與安裝Python環境。";
 
 
 
