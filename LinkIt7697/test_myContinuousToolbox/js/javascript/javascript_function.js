@@ -8,8 +8,8 @@ function start() {
 	workspace = Blockly.inject('blocklyDiv',
       	{
 		media: media,
-		renderer: 'zelos',
-        	toolbox: document.getElementById('toolbox-categories'),
+		//renderer: 'zelos',
+        toolbox: document.getElementById('toolbox-categories'),
 		zoom:{
 			controls: true,
 			wheel: false,
@@ -47,11 +47,14 @@ function start() {
 	}
 	  
 	//監聽工作區改變輸出程式碼
+	var myTimer;
 	function onWorkspaceChanged(event) {
+		clearTimeout(myTimer);
 		if (workspaceToCodeState) {
-			var code = Blockly.JavaScript.workspaceToCode(workspace);
-			console.clear();
-			console.log(code);
+			myTimer = setTimeout(function(){
+				var code = Blockly.JavaScript.workspaceToCode(workspace);
+				document.getElementById("code").value = code;		
+			}, 200);			
 		}
 		if ((event.type=="create"||event.type=="click"||event.type=="delete")&&continuousFlyout.isVisible_==true) {
 			continuousFlyout.setVisible(false);
@@ -69,10 +72,27 @@ function start() {
 	}
 
 	//執行工作區程式碼
-	function runCode() {
-		var code = Blockly.JavaScript.workspaceToCode(workspace);
+	function runCode(source) {
+		if (source)
+			var code = document.getElementById("code").value;
+		else
+			var code = Blockly.JavaScript.workspaceToCode(workspace);
 		try {
-			eval(code);
+			var iframe_code = "\<!DOCTYPE html\>\<html\>\<head\>\<meta charset='utf-8'\>\<meta http-equiv='Access-Control-Allow-Origin' content='*'\>\<meta http-equiv='Access-Control-Allow-Credentials' content='true'\>\<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'\>\<\/script\>\<\/head\>\<body\>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"
+			+code
+			+"};main();\<\/script\>\<\/body\>\<\/html\>";
+			try {
+				var stage = document.getElementById("stage");
+				stage.src = "about:blank";
+				setTimeout(function(){
+					stage.contentWindow.document.open();
+					stage.contentWindow.document.write(iframe_code);
+					stage.contentWindow.document.close();
+					document.getElementById("stage").focus();
+				}, 300);
+			} catch (e) {
+				alert(e);
+			}			
 		} catch (e) {
 			alert(e);
 		}
@@ -86,14 +106,18 @@ function start() {
 					  '<html>\n' +
 					  '<head>\n' +
 					  '  <meta charset="utf-8">\n' +
+					  '  <meta charset="utf-8">\n' +					  
 					  '  <title>Demo Blockly</title>\n' +
-					  '<\/head>\n' +
+					  '  <meta http-equiv="Access-Control-Allow-Origin" content="*">\n' +
+					  '  <meta http-equiv="Access-Control-Allow-Credentials" content="true">\n' +
+					  '  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>\n' +
+					  '</head>\n' +
 					  '<body>\n' +
-					  '<script>\n';
-			html    +=code;
-			html    +='<\/script>\n' +			
-					  '<\/body>\n' +
-					  '<\/html>';
+					  '<script>\n' +
+					  'const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{\n' + code + '};main();\n' +
+					  '</script>\n' +
+					  '</body>\n' +
+					  '</html>';
 					
 			var link = document.createElement('a');
 			link.download="index.html";
@@ -161,9 +185,17 @@ function start() {
 		},500);	
 	}
 	
-	//工作區範圍最大化
+	//工作區調整大小
 	function workspaceResize() {
-		var headerHeight = document.getElementById("header").style.height.replace("px","");
+		var header = document.getElementById("header");
+		var stage = document.getElementById("stage");
+		var code = document.getElementById("code");
+		var blocklyDiv = document.getElementById('blocklyDiv');
+		
+		var headerHeight = Number(header.style.height.replace("px",""));		
+		var stageWidth = Number(stage.style.width.replace("px",""));
+		var stageHeight = Number(stage.style.height.replace("px",""));
+		
 		if (document.documentElement.clientWidth)
 			var workspaceWidth = document.documentElement.clientWidth;
 		else
@@ -172,8 +204,15 @@ function start() {
 			var workspaceHeight = document.documentElement.clientHeight-headerHeight;
 		else
 			var workspaceHeight = document.body.clientHeight-headerHeight;
-		document.getElementById('blocklyDiv').style.width = workspaceWidth +"px";
-		document.getElementById('blocklyDiv').style.height = workspaceHeight +"px";
+		blocklyDiv.style.width = (workspaceWidth-stageWidth)+"px";
+		blocklyDiv.style.height = workspaceHeight+"px";
+		
+		stage.style.top = (workspaceHeight-stageHeight+headerHeight)+"px";
+		stage.style.left = (workspaceWidth-stageWidth)+"px";
+		code.style.left = stage.style.left;
+		code.style.height = (workspaceHeight-stageHeight)+"px";
+		code.style.width = (stageWidth-5) + "px";
+		
 		Blockly.svgResize(workspace);
 	}
 
@@ -276,7 +315,7 @@ function start() {
 	registerWorkspaceBlocksExportToHTML();
 	
 	//新增工作區功能選單 即時輸出積木程式碼
-	var workspaceToCodeState = false;
+	var workspaceToCodeState = true;
 	function registerWorkspaceBlocksToCode() {
 	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_to_code')) {
 		return;
@@ -293,10 +332,6 @@ function start() {
 		},
 		callback: function(a) {
 			workspaceToCodeState = !workspaceToCodeState;
-			if (workspaceToCodeState&&(typeof require !== "undefined"))
-				nw.Window.get().showDevTools();
-			else if (!workspaceToCodeState&&(typeof require !== "undefined"))
-				nw.Window.get().closeDevTools();
 		},
 		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_to_code',
 		weight: 204,
@@ -326,6 +361,28 @@ function start() {
 	  Blockly.ContextMenuRegistry.registry.register(workspaceRunCode);
 	} 
 	registerRunCode(); 
+	
+	//新增工作區功能選單 執行文字區塊程式碼
+	function registerTextareaRunCode() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_textarea_run_code')) {
+		return;
+	  }
+	  const workspaceTextareaRunCode = {
+		displayText: function(){
+			return Blockly.Msg["WORKSPACE_TEXTAREA_RUNCODE"];
+		},
+		preconditionFn: function(a) {
+			return 'enabled';
+		},
+		callback: function(a) {
+			runCode(true);
+		},
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_textarea_run_code',
+		weight: 206,
+	  };
+	  Blockly.ContextMenuRegistry.registry.register(workspaceTextareaRunCode);
+	} 
+	registerTextareaRunCode(); 	
 	
 }
 

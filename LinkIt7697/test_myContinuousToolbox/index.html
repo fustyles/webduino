@@ -8,7 +8,7 @@ https://www.facebook.com/francefu
 
 <head>
 	<meta charset="utf-8">
-	<title>Toolbox Customization Codelab</title>	
+	<title>Toolbox Customization</title>	
 	<script src="js/javascript/javascript_blockly.min.js"></script>		
 	<script src="js/custom_category_es6.js"></script>
 	<script src="js/toolbox_label_es6.js"></script>
@@ -35,7 +35,7 @@ https://www.facebook.com/francefu
 			lang = "zh-hant";	
 		else 
 			lang = "en";
-		document.write("\<script src='js/"+core+"/"+core+"_"+lang+".js'\>\<\/script>");
+		document.write("\<script src='js/"+core+"/msg/"+core+"_"+lang+".js'\>\<\/script>");
 	</script>
 	<script src="plugin/ContinuousToolbox/ContinuousMetrics.js"></script>  
 	<script src="plugin/ContinuousToolbox/ContinuousFlyout.js"></script>
@@ -47,8 +47,12 @@ https://www.facebook.com/francefu
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body style="margin:0;padding:0;" onload="start()">
-	<div id="header" style="width:100%;height:50px;font-size: 36px;">SpBlockly</div>
-	<div id="blocklyDiv"></div>
+	<div id="main" style="margin:0;padding:0;">
+		<div id="header" style="width:100%;height:50px;font-size: 36px;">SpBlockly</div>
+		<div id="blocklyDiv" style="position:absolute;"></div>
+		<textarea id="code" style="position: absolute;padding: 0;resize: none;white-space:nowrap; overflow: scroll;border: 1px solid #DCDCDC;scrollbar-color: #DCDCDC #DCDCDC;"></textarea>
+		<iframe id="stage" style="position: absolute;width: 500px;height: 400px;border: 1px solid #DCDCDC;" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-presentation allow-modals" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen; geolocation; microphone; camera"></iframe>
+	</div>
 	<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-categories" style="display: none">
 		<script>document.write(toolbox_sys);</script>
 		

@@ -8,8 +8,8 @@ function start() {
 	workspace = Blockly.inject('blocklyDiv',
       	{
 		media: media,
-		renderer: 'zelos',
-        	toolbox: document.getElementById('toolbox-categories'),
+		//renderer: 'zelos',
+        toolbox: document.getElementById('toolbox-categories'),
 		zoom:{
 			controls: true,
 			wheel: false,
@@ -47,18 +47,21 @@ function start() {
 	}	  
 	  
 	//監聽工作區改變輸出程式碼
+	var myTimer;
 	function onWorkspaceChanged(event) {
+		clearTimeout(myTimer);
 		if (workspaceToCodeState) {
-			var code = Blockly.Python.workspaceToCode(workspace);
-			console.clear();
-			console.log(code);
+			myTimer = setTimeout(function(){
+				var code = Blockly.Python.workspaceToCode(workspace);
+				document.getElementById("code").value = code;		
+			}, 200);			
 		}
 		if ((event.type=="create"||event.type=="click"||event.type=="delete")&&continuousFlyout.isVisible_==true) {
 			continuousFlyout.setVisible(false);
 		}
 		else if (event.type=="toolbox_item_select"&&continuousFlyout.isVisible_==false) {
 			continuousFlyout.setVisible(true);
-		}		
+		}
 	}
 	workspace.addChangeListener(onWorkspaceChanged);
 	
@@ -67,16 +70,6 @@ function start() {
 		Blockly.getMainWorkspace().clear();
 		Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
 	}	
-
-	//執行工作區程式碼
-	function runCode() {
-		var code = Blockly.Python.workspaceToCode(workspace);
-		try {
-			eval(code);
-		} catch (e) {
-			alert(e);
-		}
-	}
 	
 	//工作區匯出PY檔案
 	function workspaceExportToPY() {
@@ -96,31 +89,44 @@ function start() {
 	}
 
 	//工作區執行程式碼
-	function workspaceExecutePY() {
+	function runCode(source) {
 		if (typeof require !== "undefined") {
 			var filePath = "temp.py";
-			const fs = require('fs'); 
-			var code = Blockly.Python.workspaceToCode(workspace); 
+			const fs = require('fs');
+			if (source)
+				var code = document.getElementById("code").value;
+			else
+				var code = Blockly.Python.workspaceToCode(workspace);
 			fs.writeFile(filePath, code, (err) => { 
 				if (err) { 
 					console.log(err);
 				} else {
+					var message = "";
 					
 					var exec = require('child_process').exec;
 					var cmd = '';
-					var res = exec('python '+filePath+' '+cmd);	
-					
+					var res = exec('python '+filePath+' '+cmd, {encoding: 'arraybuffer'});
+					var iconv = require('iconv-lite');					
 					
 					res.stdout.on('data', function(data) {
-						console.log(data);
+						data = iconv.decode(data, 'big5');
+						message += data.replace(/ /g,"&nbsp;").replace(/\n/g,'<br>');
 					});
 
 					res.stderr.on('data', function(data) {
-						console.log(data);
+						data = iconv.decode(data, 'big5');
+						message += data.replace(/ /g,"&nbsp;").replace(/\n/g,'<br>');
 					});
 
 					res.on('exit', function(code, signal) {
-						//console.log("exit");
+						var stage = document.getElementById("stage");
+						stage.src = "about:blank";
+						setTimeout(function(){
+							stage.contentWindow.document.open();
+							stage.contentWindow.document.write(message);
+							stage.contentWindow.document.close();
+							document.getElementById("stage").focus();
+						}, 300);
 					});						
 				}
 			}); 			
@@ -183,9 +189,17 @@ function start() {
 		},500);	
 	}
 	
-	//工作區範圍最大化
+	//工作區調整大小
 	function workspaceResize() {
-		var headerHeight = document.getElementById("header").style.height.replace("px","");
+		var header = document.getElementById("header");
+		var stage = document.getElementById("stage");
+		var code = document.getElementById("code");
+		var blocklyDiv = document.getElementById('blocklyDiv');
+		
+		var headerHeight = Number(header.style.height.replace("px",""));		
+		var stageWidth = Number(stage.style.width.replace("px",""));
+		var stageHeight = Number(stage.style.height.replace("px",""));
+		
 		if (document.documentElement.clientWidth)
 			var workspaceWidth = document.documentElement.clientWidth;
 		else
@@ -194,8 +208,15 @@ function start() {
 			var workspaceHeight = document.documentElement.clientHeight-headerHeight;
 		else
 			var workspaceHeight = document.body.clientHeight-headerHeight;
-		document.getElementById('blocklyDiv').style.width = workspaceWidth +"px";
-		document.getElementById('blocklyDiv').style.height = workspaceHeight +"px";
+		blocklyDiv.style.width = (workspaceWidth-stageWidth)+"px";
+		blocklyDiv.style.height = workspaceHeight+"px";
+		
+		stage.style.top = (workspaceHeight-stageHeight+headerHeight)+"px";
+		stage.style.left = (workspaceWidth-stageWidth)+"px";
+		code.style.left = stage.style.left;
+		code.style.height = (workspaceHeight-stageHeight)+"px";
+		code.style.width = (stageWidth-5) + "px";
+		
 		Blockly.svgResize(workspace);
 	}
 
@@ -298,7 +319,7 @@ function start() {
 	registerWorkspaceBlocksExportToPY();
 	
 	//新增工作區功能選單 即時輸出積木程式碼
-	var workspaceToCodeState = false;
+	var workspaceToCodeState = true;
 	function registerWorkspaceBlocksToCode() {
 	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_to_code')) {
 		return;
@@ -315,10 +336,6 @@ function start() {
 		},
 		callback: function(a) {
 			workspaceToCodeState = !workspaceToCodeState;
-			if (workspaceToCodeState&&(typeof require !== "undefined"))
-				nw.Window.get().showDevTools();
-			else if (!workspaceToCodeState&&(typeof require !== "undefined"))
-				nw.Window.get().closeDevTools();
 		},
 		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_to_code',
 		weight: 204,
@@ -327,27 +344,49 @@ function start() {
 	}
 	registerWorkspaceBlocksToCode();	
 	
-	//新增工作區功能選單 匯出PYTHON檔並執行
-	function registerWorkspaceBlocksExecutePY() {
-	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_blocks_execute_py')) {
+	//新增工作區功能選單 執行積木程式碼
+	function registerRunCode() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_run_code')) {
 		return;
 	  }
-	  const workspaceBlocksExecutePY = {
+	  const workspaceRunCode = {
 		displayText: function(){
-			return Blockly.Msg["WORKSPACE_BLOCKS_EXECUTE_PY_MSG"];
+			return Blockly.Msg["WORKSPACE_RUNCODE"];
 		},
 		preconditionFn: function(a) {
 			return 'enabled';
 		},
 		callback: function(a) {
-			workspaceExecutePY();
+			runCode();
 		},
-		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_execute_py',
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_run_code',
 		weight: 205,
 	  };
-	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksExecutePY);
-	}
-	registerWorkspaceBlocksExecutePY();
+	  Blockly.ContextMenuRegistry.registry.register(workspaceRunCode);
+	} 
+	registerRunCode(); 
+	
+	//新增工作區功能選單 執行文字區塊程式碼
+	function registerTextareaRunCode() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_textarea_run_code')) {
+		return;
+	  }
+	  const workspaceTextareaRunCode = {
+		displayText: function(){
+			return Blockly.Msg["WORKSPACE_TEXTAREA_RUNCODE"];
+		},
+		preconditionFn: function(a) {
+			return 'enabled';
+		},
+		callback: function(a) {
+			runCode(true);
+		},
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_textarea_run_code',
+		weight: 206,
+	  };
+	  Blockly.ContextMenuRegistry.registry.register(workspaceTextareaRunCode);
+	} 
+	registerTextareaRunCode(); 	
 	
 }
 
