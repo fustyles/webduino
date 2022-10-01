@@ -105,16 +105,18 @@ function start() {
 					
 					var exec = require('child_process').exec;
 					var cmd = '';
-					var res = exec('python '+filePath+' '+cmd, {encoding: 'arraybuffer'});
+					var res = exec('py '+filePath+' '+cmd, {encoding: 'arraybuffer'});
 					var iconv = require('iconv-lite');					
 					
 					res.stdout.on('data', function(data) {
 						data = iconv.decode(data, 'big5');
+						data = data.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
 						message += data.replace(/ /g,"&nbsp;").replace(/\n/g,'<br>');
 					});
 
 					res.stderr.on('data', function(data) {
 						data = iconv.decode(data, 'big5');
+						data = data.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
 						message += data.replace(/ /g,"&nbsp;").replace(/\n/g,'<br>');
 					});
 
