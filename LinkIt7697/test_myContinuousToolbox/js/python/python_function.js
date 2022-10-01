@@ -187,7 +187,6 @@ function start() {
 	//工作區範圍最大化
 	function workspaceResize() {
 		var headerHeight = document.getElementById("header").style.height.replace("px","");
-		console.log(headerHeight);
 		if (document.documentElement.clientWidth)
 			var workspaceWidth = document.documentElement.clientWidth;
 		else
