@@ -17,7 +17,7 @@ Blockly.Blocks['test1'] = {
 
 Blockly.JavaScript['test1'] = function(block) {
 	var message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
-	var code = 'alert(' + message + ');\n';
+	var code = 'document.write(' + message + ');\n';
 	return code;
 };
 
