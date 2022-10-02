@@ -245,16 +245,15 @@ function start() {
 	}
 	
 	//工作區調整大小
-	function workspaceResize() {
+	function workspaceResize(h, v) {
 		var header = document.getElementById("header");
 		var stage = document.getElementById("stage");
 		var code = document.getElementById("code");
 		var blocklyDiv = document.getElementById('blocklyDiv');
+		var resize_h = document.getElementById('resize_h');
+		var resize_v = document.getElementById('resize_v');
 		
-		var headerHeight = Number(header.style.height.replace("px",""));		
-		var stageWidth = Number(stage.style.width.replace("px",""));
-		var stageHeight = Number(stage.style.height.replace("px",""));
-		
+		var headerHeight = Number(header.style.height.replace("px",""));
 		if (document.documentElement.clientWidth)
 			var workspaceWidth = document.documentElement.clientWidth;
 		else
@@ -262,9 +261,24 @@ function start() {
 		if (document.documentElement.clientHeight)
 			var workspaceHeight = document.documentElement.clientHeight-headerHeight;
 		else
-			var workspaceHeight = document.body.clientHeight-headerHeight;
+			var workspaceHeight = document.body.clientHeight-headerHeight;		
+
+		if	(v==0)
+			var stageHeight = 400;
+		else if	(v==1)	
+			var stageHeight = 5;
+		stage.style.height = stageHeight+"px";
+		
+		if	(h==0)
+			var stageWidth = 500;
+		else if	(h==1)	
+			var stageWidth = 5;
+		else if	(h==2)
+			var stageWidth = workspaceWidth - 240;
+		stage.style.width = stageWidth + "px";
+
 		blocklyDiv.style.width = (workspaceWidth-stageWidth)+"px";
-		blocklyDiv.style.height = workspaceHeight+"px";
+		blocklyDiv.style.height = workspaceHeight+"px";	
 		
 		stage.style.top = (workspaceHeight-stageHeight+headerHeight)+"px";
 		stage.style.left = (workspaceWidth-stageWidth)+"px";
@@ -272,24 +286,43 @@ function start() {
 		code.style.height = (workspaceHeight-stageHeight)+"px";
 		code.style.width = (stageWidth-5) + "px";
 		
+		resize_h.style.top = ((workspaceHeight/2)+headerHeight-20)+"px";
+		resize_h.style.left = (workspaceWidth-stageWidth-65)+"px";
+		resize_v.style.top = ((workspaceHeight/2)+headerHeight+20)+"px";
+		resize_v.style.left = (workspaceWidth-stageWidth-65)+"px";			
+		
 		Blockly.svgResize(workspace);
 	}
+	
+	var layout_h = 0;
+	var layout_v = 0;
+	document.getElementById('resize_h').addEventListener('click', function(event){
+		layout_h++;
+		layout_h = layout_h%3;
+		workspaceResize(layout_h, layout_v);
+	});	
+
+	document.getElementById('resize_v').addEventListener('click', function(event){
+		layout_v++;
+		layout_v = layout_v%2;
+		workspaceResize(layout_h, layout_v);
+	});		
 	
 	window.addEventListener('keydown', function(event){
 		if (event.ctrlKey&&event.shiftKey&&!event.repeat) {
 			runCode(true);
 		}
-	});		
+	});	
 
 	document.addEventListener("DOMContentLoaded", function(event) {
-		workspaceResize();
+		workspaceResize(0, 0);
 	})
 
 	window.addEventListener("resize", function(){
-		workspaceResize();
-	})
-
-	workspaceResize();	
+		workspaceResize(0, 0);
+	})	
+	
+	workspaceResize(0, 0);
 
 	//新增工作區功能選單 重設工作區
 	function registerWorkspaceReset() {
