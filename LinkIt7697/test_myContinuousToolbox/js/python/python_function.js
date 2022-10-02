@@ -331,7 +331,16 @@ function start() {
 		workspaceResize(layout_h, layout_v);
 	});		
 	
+	//監聽鍵盤控制	
 	window.addEventListener('keydown', function(event){
+		if (event.key == 'Tab'&&event.srcElement.localName=="textarea") {
+			event.preventDefault();
+			var startPos = event.srcElement.selectionStart;
+			var endPos = event.srcElement.selectionEnd;
+			event.srcElement.value =event.srcElement.value.substring(0, startPos)
+				+ "    "
+				+ event.srcElement.value.substring(endPos, event.srcElement.value.length);			
+		}
 		if (event.ctrlKey&&event.shiftKey&&!event.repeat) {
 			runCode(true);
 		}
