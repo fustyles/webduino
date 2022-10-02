@@ -67,8 +67,9 @@ function start() {
 	
 	//初始積木匯入工作區
 	function startBlocks() {
+		var xmlDoc = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml"><block type="test1" x="100" y="100"><value name="message"><block type="text"><field name="TEXT">Hello World</field></block></value></block></xml>');
 		Blockly.getMainWorkspace().clear();
-		Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
+		Blockly.Xml.domToWorkspace(xmlDoc, workspace);
 	}	
 	
 	//工作區匯出PY檔案
@@ -110,14 +111,12 @@ function start() {
 					
 					res.stdout.on('data', function(data) {
 						data = iconv.decode(data, 'big5');
-						data = data.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
-						message += data.replace(/ /g,"&nbsp;").replace(/\n/g,'<br>');
+						message += data.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;").replace(/\n/g,'<br>');
 					});
 
 					res.stderr.on('data', function(data) {
 						data = iconv.decode(data, 'big5');
-						data = data.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
-						message += data.replace(/ /g,"&nbsp;").replace(/\n/g,'<br>');
+						message += data.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;").replace(/\n/g,'<br>');
 					});
 
 					res.on('exit', function(code, signal) {

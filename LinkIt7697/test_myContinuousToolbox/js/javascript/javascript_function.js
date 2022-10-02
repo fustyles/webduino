@@ -67,8 +67,9 @@ function start() {
 	
 	//初始積木匯入工作區
 	function startBlocks() {
+		var xmlDoc = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml"><block type="test1" x="100" y="100"><value name="message"><block type="text"><field name="TEXT">Hello World</field></block></value></block></xml>');
 		Blockly.getMainWorkspace().clear();
-		Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
+		Blockly.Xml.domToWorkspace(xmlDoc, workspace);
 	}
 
 	//執行工作區程式碼

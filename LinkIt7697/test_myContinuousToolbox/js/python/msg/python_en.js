@@ -18,7 +18,7 @@ Blockly.Msg["WORKSPACE_TO_CODE_Y_MSG"] = "Start showing code in the console";
 Blockly.Msg["WORKSPACE_TO_CODE_N_MSG"] = "Stop updating code";
 Blockly.Msg["WORKSPACE_RUNCODE"] = "Run code";
 Blockly.Msg["WORKSPACE_TEXTAREA_RUNCODE"] = "Run textarea code";
-Blockly.Msg["WORKSPACE_SORRY"] = "The function must be under node.js and Python 3.10 environment";
+Blockly.Msg["WORKSPACE_SORRY"] = "The function must be under NW.js and Python environment";
 
 
 

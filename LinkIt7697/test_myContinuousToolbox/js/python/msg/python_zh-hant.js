@@ -18,7 +18,7 @@ Blockly.Msg["WORKSPACE_TO_CODE_Y_MSG"] = "即時輸出積木程式碼";
 Blockly.Msg["WORKSPACE_TO_CODE_N_MSG"] = "停止輸出積木程式碼";
 Blockly.Msg["WORKSPACE_RUNCODE"] = "執行積木程式碼";
 Blockly.Msg["WORKSPACE_TEXTAREA_RUNCODE"] = "執行文字區塊程式碼";
-Blockly.Msg["WORKSPACE_SORRY"] = "此功能須建置在node.js環境下與安裝Python 3.10環境。";
+Blockly.Msg["WORKSPACE_SORRY"] = "此功能須建置在NW.js環境下與安裝Python環境。";
 
 
 
