@@ -16,8 +16,7 @@ Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"] = "Import blocks from XML file";
 Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_HTML_MSG"] = "Export blocks to HTML file";
 Blockly.Msg["WORKSPACE_TO_CODE_Y_MSG"] = "Start showing code in the console";
 Blockly.Msg["WORKSPACE_TO_CODE_N_MSG"] = "Stop updating code";
-Blockly.Msg["WORKSPACE_RUNCODE"] = "Run code";
-Blockly.Msg["WORKSPACE_TEXTAREA_RUNCODE"] = "Run textarea code";
+Blockly.Msg["WORKSPACE_RUNCODE"] = "Run code (Ctrl+Shift)";
 
 
 Blockly.Msg["TOOLBOX_NAME"] = "TOOLBOX";

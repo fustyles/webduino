@@ -16,8 +16,7 @@ Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"] = "工作區匯入積木結構XML
 Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_HTML_MSG"] = "工作區匯出網頁HTML檔";
 Blockly.Msg["WORKSPACE_TO_CODE_Y_MSG"] = "即時輸出積木程式碼";
 Blockly.Msg["WORKSPACE_TO_CODE_N_MSG"] = "停止輸出積木程式碼";
-Blockly.Msg["WORKSPACE_RUNCODE"] = "執行積木程式碼";
-Blockly.Msg["WORKSPACE_TEXTAREA_RUNCODE"] = "執行文字區塊程式碼";
+Blockly.Msg["WORKSPACE_RUNCODE"] = "執行積木程式碼 (Ctrl+Shift)";
 
 
 Blockly.Msg["TOOLBOX_NAME"] = "工具箱";
