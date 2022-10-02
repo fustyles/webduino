@@ -140,6 +140,25 @@ function start() {
 	//工作區執行程式碼
 	function runCode(source) {
 		if (typeof require !== "undefined") {
+			
+			
+			var lines = document.getElementById("code").value.split("\n");
+			var package = [];
+			for (var i=0;i<lines.length;i++) {
+				if (lines[i].indexOf("from")!=-1)
+					lines[i] = lines[i].split("import")[0].replace("from","").trim();
+				else if (lines[i].indexOf("import")!=-1)
+					lines[i] = lines[i].split("as")[0].replace("import","").trim();
+				else
+					lines[i] = "";
+				if (lines[i] != "") {
+					if (!package.includes("pip install "+lines[i]+"\\n"))
+						package.push("pip install "+lines[i]+"\\n");	
+				}
+			}
+			if (package.leng>0)
+				installPackage(package.join(""));
+			
 			var filePath = "temp.py";
 			const fs = require('fs');
 			if (source)
@@ -159,7 +178,7 @@ function start() {
 					
 					res.stdout.on('data', function(data) {
 						data = iconv.decode(data, 'big5');
-						message += data.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
+						message += data.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&ensp;");
 						var stage = document.getElementById("stage");
 						stage.src = "about:blank";
 						setTimeout(function(){
@@ -172,7 +191,7 @@ function start() {
 
 					res.stderr.on('data', function(data) {
 						data = iconv.decode(data, 'big5');
-						message += data.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
+						message += data.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&ensp;");
 					});
 
 					res.on('exit', function(code, signal) {
