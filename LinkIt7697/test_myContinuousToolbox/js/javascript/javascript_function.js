@@ -89,7 +89,7 @@ function start() {
 					stage.contentWindow.document.open();
 					stage.contentWindow.document.write(iframe_code);
 					stage.contentWindow.document.close();
-					document.getElementById("stage").focus();
+					stage.focus();
 				}, 300);
 			} catch (e) {
 				alert(e);

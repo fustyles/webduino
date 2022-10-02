@@ -17,7 +17,9 @@ Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_PY_MSG"] = "Export blocks to PYTHON file";
 Blockly.Msg["WORKSPACE_TO_CODE_Y_MSG"] = "Start showing code in the console";
 Blockly.Msg["WORKSPACE_TO_CODE_N_MSG"] = "Stop updating code";
 Blockly.Msg["WORKSPACE_RUNCODE"] = "Run code (Ctrl+Shift)";
-Blockly.Msg["WORKSPACE_SORRY"] = "The function must be under node.js and Python 3.10.12 environment";
+Blockly.Msg["WORKSPACE_INSTALL_PACKAGE"] = "Install Python package";
+Blockly.Msg["WORKSPACE_INSTALL_PACKAGE_NAME"] = "Python package name";
+Blockly.Msg["WORKSPACE_SORRY"] = "The function must be under node.js and Python 3.9.12 environment";
 
 
 

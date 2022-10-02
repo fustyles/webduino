@@ -88,6 +88,62 @@ function start() {
 			alert(e);
 		  }		
 	}
+	
+	//安裝Python模組
+	function installPackage(package) {
+		if (typeof require !== "undefined") {
+			var filePath = "temp.bat";
+			const fs = require('fs');
+			var code = package;
+			fs.writeFile(filePath, code, (err) => { 
+				if (err) { 
+					console.log(err);
+				} else {
+					var message = "";
+					
+					var exec = require('child_process').exec;
+					var res = exec('%SystemRoot%\\System32\\cmd.exe /c '+filePath, {encoding: 'arraybuffer'});
+					var iconv = require('iconv-lite');					
+					
+					res.stdout.on('data', function(data) {
+						console.log(data);
+						data = iconv.decode(data, 'big5');
+						console.log(data);
+						message += data.replace(/\n/g,'<br>');	
+						var stage = document.getElementById("stage");
+						stage.src = "about:blank";
+						setTimeout(function(){
+							stage.contentWindow.document.open();
+							stage.contentWindow.document.write(message);
+							stage.contentWindow.document.close();
+							stage.focus();
+							stage.scrollTop(stage.style.height.replace("px",""))
+						}, 100);						
+					});
+
+					res.stderr.on('data', function(data) {
+						console.log(data);
+						data = iconv.decode(data, 'big5');
+						console.log(data);
+						message += data.replace(/\n/g,'<br>');
+					});
+
+					res.on('exit', function(code, signal) {
+						var stage = document.getElementById("stage");
+						stage.src = "about:blank";
+						setTimeout(function(){
+							stage.contentWindow.document.open();
+							stage.contentWindow.document.write(message);
+							stage.contentWindow.document.close();
+							stage.focus();
+						}, 100);
+					});						
+				}
+			}); 			
+		}
+		else
+			alert(Blockly.Msg["WORKSPACE_SORRY"]);
+	}	
 
 	//工作區執行程式碼
 	function runCode(source) {
@@ -111,12 +167,20 @@ function start() {
 					
 					res.stdout.on('data', function(data) {
 						data = iconv.decode(data, 'big5');
-						message += data.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;").replace(/\n/g,'<br>');
+						message += data.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
+						var stage = document.getElementById("stage");
+						stage.src = "about:blank";
+						setTimeout(function(){
+							stage.contentWindow.document.open();
+							stage.contentWindow.document.write(message);
+							stage.contentWindow.document.close();
+							stage.focus();
+						}, 100);						
 					});
 
 					res.stderr.on('data', function(data) {
 						data = iconv.decode(data, 'big5');
-						message += data.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;").replace(/\n/g,'<br>');
+						message += data.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
 					});
 
 					res.on('exit', function(code, signal) {
@@ -126,8 +190,8 @@ function start() {
 							stage.contentWindow.document.open();
 							stage.contentWindow.document.write(message);
 							stage.contentWindow.document.close();
-							document.getElementById("stage").focus();
-						}, 300);
+							stage.focus();
+						}, 100);
 					});						
 				}
 			}); 			
@@ -352,6 +416,30 @@ function start() {
 	registerWorkspaceBlocksToCode();	
 	
 	//新增工作區功能選單 執行積木程式碼
+	function registerInstallPackage() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_install_package')) {
+		return;
+	  }
+	  const workspaceInstallPackage = {
+		displayText: function(){
+			return Blockly.Msg["WORKSPACE_INSTALL_PACKAGE"];
+		},
+		preconditionFn: function(a) {
+			return 'enabled';
+		},
+		callback: function(a) {
+			var package = prompt(Blockly.Msg["WORKSPACE_INSTALL_PACKAGE_NAME"], "pip install ");
+			if (package != null)
+				installPackage(package);
+		},
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_install_package',
+		weight: 205,
+	  };
+	  Blockly.ContextMenuRegistry.registry.register(workspaceInstallPackage);
+	} 
+	registerInstallPackage(); 	
+	
+	//新增工作區功能選單 執行積木程式碼
 	function registerRunCode() {
 	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_run_code')) {
 		return;
@@ -367,11 +455,11 @@ function start() {
 			runCode(true);
 		},
 		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_run_code',
-		weight: 205,
+		weight: 206,
 	  };
 	  Blockly.ContextMenuRegistry.registry.register(workspaceRunCode);
 	} 
-	registerRunCode(); 
+	registerRunCode(); 	
 	
 }
 
