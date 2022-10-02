@@ -103,38 +103,30 @@ function start() {
 					
 					var exec = require('child_process').exec;
 					var res = exec('%SystemRoot%\\System32\\cmd.exe /c '+filePath, {encoding: 'arraybuffer'});
-					var iconv = require('iconv-lite');					
+					var iconv = require('iconv-lite');	
+					var stage = document.getElementById("stage");
 					
+					var myTimer;
 					res.stdout.on('data', function(data) {
+						clearTimeout(myTimer);
 						data = iconv.decode(data, 'big5');
 						message += data.replace(/\n/g,'<br>');	
-						var stage = document.getElementById("stage");
+						
 						stage.src = "about:blank";
-						setTimeout(function(){
+						myTimer = setTimeout(function(){
 							stage.contentWindow.document.open();
 							stage.contentWindow.document.write(message);
 							stage.contentWindow.document.close();
-							stage.focus();
-							stage.scrollTop = stage.scrollHeight;
+							stage.contentWindow.scrollTo(0, stage.contentDocument.body.scrollHeight);
 						}, 100);						
 					});
 
 					res.stderr.on('data', function(data) {
-						console.log(data);
 						data = iconv.decode(data, 'big5');
-						console.log(data);
 						message += data.replace(/\n/g,'<br>');
 					});
 
 					res.on('exit', function(code, signal) {
-						var stage = document.getElementById("stage");
-						stage.src = "about:blank";
-						setTimeout(function(){
-							stage.contentWindow.document.open();
-							stage.contentWindow.document.write(message);
-							stage.contentWindow.document.close();
-							stage.focus();
-						}, 100);
 					});						
 				}
 			}); 			
