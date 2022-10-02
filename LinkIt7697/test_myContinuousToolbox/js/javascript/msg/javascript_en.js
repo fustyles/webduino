@@ -7,7 +7,7 @@ var Blockly = Blockly || { Msg: Object.create(null) };
 //*************** Custom Message ******************
 
 Blockly.Msg["CUSTOM_NAME"] = "CUSTOM";
-Blockly.Msg["HELLOWORLD_MSG"] = "Message Box";
+Blockly.Msg["HELLOWORLD_MSG"] = "Print";
 Blockly.Msg["HELLOWORLD_GET"] = "get message";
 Blockly.Msg["HELLOWORLD_HUE"] = "100";
 Blockly.Msg["WORKSPACE_RESET"] = "Reset workspace";
