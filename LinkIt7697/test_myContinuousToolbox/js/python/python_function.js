@@ -140,8 +140,6 @@ function start() {
 	//工作區執行程式碼
 	function runCode(source) {
 		if (typeof require !== "undefined") {
-			
-			
 			var lines = document.getElementById("code").value.split("\n");
 			var package = [];
 			for (var i=0;i<lines.length;i++) {
@@ -174,13 +172,13 @@ function start() {
 					var exec = require('child_process').exec;
 					var cmd = '';
 					var res = exec('py '+filePath+' '+cmd, {encoding: 'arraybuffer'});
-					var iconv = require('iconv-lite');					
+					var iconv = require('iconv-lite');
+					var stage = document.getElementById("stage");
+					stage.src = "about:blank";
 					
 					res.stdout.on('data', function(data) {
 						data = iconv.decode(data, 'big5');
 						message += data.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&ensp;");
-						var stage = document.getElementById("stage");
-						stage.src = "about:blank";
 						setTimeout(function(){
 							stage.contentWindow.document.open();
 							stage.contentWindow.document.write(message);
@@ -195,8 +193,6 @@ function start() {
 					});
 
 					res.on('exit', function(code, signal) {
-						var stage = document.getElementById("stage");
-						stage.src = "about:blank";
 						setTimeout(function(){
 							stage.contentWindow.document.open();
 							stage.contentWindow.document.write(message);
