@@ -106,9 +106,7 @@ function start() {
 					var iconv = require('iconv-lite');					
 					
 					res.stdout.on('data', function(data) {
-						console.log(data);
 						data = iconv.decode(data, 'big5');
-						console.log(data);
 						message += data.replace(/\n/g,'<br>');	
 						var stage = document.getElementById("stage");
 						stage.src = "about:blank";
