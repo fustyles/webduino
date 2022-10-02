@@ -209,14 +209,16 @@ function start() {
 			var stageHeight = 400;
 		else if	(v==1)	
 			var stageHeight = 5;
+		else if	(v==2)	
+			var stageHeight = workspaceHeight;		
 		stage.style.height = stageHeight+"px";
 		
 		if	(h==0)
 			var stageWidth = 500;
 		else if	(h==1)	
-			var stageWidth = 5;
-		else if	(h==2)
 			var stageWidth = workspaceWidth - 240;
+		else if	(h==2)
+			var stageWidth = 5;
 		stage.style.width = stageWidth + "px";
 
 		blocklyDiv.style.width = (workspaceWidth-stageWidth)+"px";
@@ -246,7 +248,7 @@ function start() {
 
 	document.getElementById('resize_v').addEventListener('click', function(event){
 		layout_v++;
-		layout_v = layout_v%2;
+		layout_v = layout_v%3;
 		workspaceResize(layout_h, layout_v);
 	});		
 	
