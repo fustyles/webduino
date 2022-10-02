@@ -117,7 +117,7 @@ function start() {
 							stage.contentWindow.document.write(message);
 							stage.contentWindow.document.close();
 							stage.focus();
-							stage.scrollTop(stage.style.height.replace("px",""))
+							stage.scrollTop(stage.scrollHeight);
 						}, 100);						
 					});
 
