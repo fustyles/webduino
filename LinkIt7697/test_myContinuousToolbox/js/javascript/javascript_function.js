@@ -230,10 +230,10 @@ function start() {
 		code.style.height = (workspaceHeight-stageHeight)+"px";
 		code.style.width = (stageWidth-5) + "px";
 		
-		resize_h.style.top = ((workspaceHeight/2)+headerHeight-20)+"px";
+		resize_h.style.top = (headerHeight+10)+"px";
 		resize_h.style.left = (workspaceWidth-stageWidth-65)+"px";
-		resize_v.style.top = ((workspaceHeight/2)+headerHeight+20)+"px";
-		resize_v.style.left = (workspaceWidth-stageWidth-65)+"px";			
+		resize_v.style.top = (headerHeight+50)+"px";
+		resize_v.style.left = (workspaceWidth-stageWidth-65)+"px";				
 		
 		Blockly.svgResize(workspace);
 	}
