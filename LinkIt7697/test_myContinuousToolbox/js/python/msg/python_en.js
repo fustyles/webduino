@@ -19,7 +19,7 @@ Blockly.Msg["WORKSPACE_TO_CODE_N_MSG"] = "Stop updating code";
 Blockly.Msg["WORKSPACE_RUNCODE"] = "Run code (Ctrl+Shift)";
 Blockly.Msg["WORKSPACE_INSTALL_PACKAGE"] = "PIP install package";
 Blockly.Msg["WORKSPACE_INSTALL_PACKAGE_NAME"] = "pip install Name or custom python command";
-Blockly.Msg["WORKSPACE_SORRY"] = "The function must be under node.js and Python 3.9.12 environment";
+Blockly.Msg["WORKSPACE_SORRY"] = "The function must be under node.js and Python 3 environment";
 
 
 
