@@ -1,5 +1,6 @@
 //*************** toolbox initial ******************	
 let workspace = null;
+var python ="3.10.5";
 
 function start() {
 	
@@ -92,19 +93,34 @@ function start() {
 	}
 	
 	//安裝Python模組
-	function installPackage(package) {
+	function installPackage() {
 		if (typeof require !== "undefined") {
+
 			var filePath = "temp.bat";
 			const fs = require('fs');
-			var code = package;
+			const Path = require('path')
+			if (!fs.existsSync('python-'+python+'\\Console-Launcher.exe')) {
+				var package = prompt(Blockly.Msg["WORKSPACE_INSTALL_PACKAGE_NAME"], "pip install ");
+				if (package== null) 
+					return;
+				var code = package;
+			}
+			else
+				var code = "";
+			
 			fs.writeFile(filePath, code, (err) => { 
 				if (err) { 
 					console.log(err);
 				} else {
 					var message = "";
-					
 					var exec = require('child_process').exec;
-					var res = exec('%SystemRoot%\\System32\\cmd.exe /c '+filePath, {encoding: 'arraybuffer'});
+					
+					if (fs.existsSync('python-'+python+'\\Console-Launcher.exe'))
+						var res = exec('python-'+python+'\\Console-Launcher.exe', {encoding: 'arraybuffer'});
+					else
+						var res = exec('%SystemRoot%\\System32\\cmd.exe /c '+filePath, {encoding: 'arraybuffer'});
+					
+					
 					var iconv = require('iconv-lite');	
 					var stage = document.getElementById("stage");
 					
@@ -171,7 +187,13 @@ function start() {
 					
 					var exec = require('child_process').exec;
 					var cmd = '';
-					var res = exec('py '+filePath+' '+cmd, {encoding: 'arraybuffer'});
+					 
+					const Path = require('path')
+					if (fs.existsSync('python-'+python+'\\PythonW-Launcher64.exe'))
+						var res = exec('python-'+python+'\\PythonW-Launcher64.exe '+filePath+' '+cmd, {encoding: 'arraybuffer'});
+					else
+						var res = exec('py '+filePath+' '+cmd, {encoding: 'arraybuffer'});
+					
 					var iconv = require('iconv-lite');
 					var stage = document.getElementById("stage");
 					stage.src = "about:blank";
@@ -387,9 +409,7 @@ function start() {
 			return 'enabled';
 		},
 		callback: function(a) {
-			var package = prompt(Blockly.Msg["WORKSPACE_INSTALL_PACKAGE_NAME"], "pip install ");
-			if (package != null)
-				installPackage(package);
+				installPackage();
 		},
 		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_install_package',
 		weight: 201,
