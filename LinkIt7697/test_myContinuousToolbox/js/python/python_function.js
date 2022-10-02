@@ -51,10 +51,12 @@ function start() {
 	function onWorkspaceChanged(event) {
 		clearTimeout(myTimer);
 		if (workspaceToCodeState) {
-			myTimer = setTimeout(function(){
-				var code = Blockly.Python.workspaceToCode(workspace);
-				document.getElementById("code").value = code;		
-			}, 200);			
+			if (event.type!="click"&&event.type!="viewport_change") {
+				myTimer = setTimeout(function(){
+					var code = Blockly.Python.workspaceToCode(workspace);
+					document.getElementById("code").value = code;		
+				}, 200);
+			}			
 		}
 		if ((event.type=="create"||event.type=="click"||event.type=="delete")&&continuousFlyout.isVisible_==true) {
 			continuousFlyout.setVisible(false);
@@ -325,6 +327,52 @@ function start() {
 	})	
 	
 	workspaceResize(0, 0);
+	
+	//新增工作區功能選單 執行積木程式碼
+	function registerRunCode() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_run_code')) {
+		return;
+	  }
+	  const workspaceRunCode = {
+		displayText: function(){
+			return Blockly.Msg["WORKSPACE_RUNCODE"];
+		},
+		preconditionFn: function(a) {
+			return 'enabled';
+		},
+		callback: function(a) {
+			runCode(true);
+		},
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_run_code',
+		weight: 200,
+	  };
+	  Blockly.ContextMenuRegistry.registry.register(workspaceRunCode);
+	} 
+	registerRunCode();
+
+	//新增工作區功能選單 安裝Python模組
+	function registerInstallPackage() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_install_package')) {
+		return;
+	  }
+	  const workspaceInstallPackage = {
+		displayText: function(){
+			return Blockly.Msg["WORKSPACE_INSTALL_PACKAGE"];
+		},
+		preconditionFn: function(a) {
+			return 'enabled';
+		},
+		callback: function(a) {
+			var package = prompt(Blockly.Msg["WORKSPACE_INSTALL_PACKAGE_NAME"], "pip install ");
+			if (package != null)
+				installPackage(package);
+		},
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_install_package',
+		weight: 201,
+	  };
+	  Blockly.ContextMenuRegistry.registry.register(workspaceInstallPackage);
+	} 
+	registerInstallPackage(); 		
 
 	//新增工作區功能選單 重設工作區
 	function registerWorkspaceReset() {
@@ -342,7 +390,7 @@ function start() {
 			startBlocks();
 		},
 		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_reset',
-		weight: 200,
+		weight: 202,
 	  };
 	  Blockly.ContextMenuRegistry.registry.register(workspaceReset);
 	}
@@ -364,7 +412,7 @@ function start() {
 			workspaceExportToXML();
 		},
 		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_export_xml',
-		weight: 201,
+		weight: 203,
 	  };
 	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksExportToXML);
 	}
@@ -386,7 +434,7 @@ function start() {
 			workspaceImportFromXML();
 		},
 		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_import_xml',
-		weight: 202,
+		weight: 204,
 	  };
 	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksImportFromXML);
 	}
@@ -408,7 +456,7 @@ function start() {
 			workspaceExportToPY();
 		},
 		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_export_py',
-		weight: 203,
+		weight: 205,
 	  };
 	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksExportToPY);
 	}
@@ -434,57 +482,11 @@ function start() {
 			workspaceToCodeState = !workspaceToCodeState;
 		},
 		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_to_code',
-		weight: 204,
+		weight: 206,
 	  };
 	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksToCode);
 	}
 	registerWorkspaceBlocksToCode();	
-	
-	//新增工作區功能選單 執行積木程式碼
-	function registerInstallPackage() {
-	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_install_package')) {
-		return;
-	  }
-	  const workspaceInstallPackage = {
-		displayText: function(){
-			return Blockly.Msg["WORKSPACE_INSTALL_PACKAGE"];
-		},
-		preconditionFn: function(a) {
-			return 'enabled';
-		},
-		callback: function(a) {
-			var package = prompt(Blockly.Msg["WORKSPACE_INSTALL_PACKAGE_NAME"], "pip install ");
-			if (package != null)
-				installPackage(package);
-		},
-		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_install_package',
-		weight: 205,
-	  };
-	  Blockly.ContextMenuRegistry.registry.register(workspaceInstallPackage);
-	} 
-	registerInstallPackage(); 	
-	
-	//新增工作區功能選單 執行積木程式碼
-	function registerRunCode() {
-	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_run_code')) {
-		return;
-	  }
-	  const workspaceRunCode = {
-		displayText: function(){
-			return Blockly.Msg["WORKSPACE_RUNCODE"];
-		},
-		preconditionFn: function(a) {
-			return 'enabled';
-		},
-		callback: function(a) {
-			runCode(true);
-		},
-		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_run_code',
-		weight: 206,
-	  };
-	  Blockly.ContextMenuRegistry.registry.register(workspaceRunCode);
-	} 
-	registerRunCode(); 	
 	
 }
 

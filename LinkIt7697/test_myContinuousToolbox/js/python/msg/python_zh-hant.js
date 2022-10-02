@@ -17,8 +17,8 @@ Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_PY_MSG"] = "工作區匯出PY檔";
 Blockly.Msg["WORKSPACE_TO_CODE_Y_MSG"] = "即時輸出積木程式碼";
 Blockly.Msg["WORKSPACE_TO_CODE_N_MSG"] = "停止輸出積木程式碼";
 Blockly.Msg["WORKSPACE_RUNCODE"] = "執行積木程式碼 (Ctrl+Shift)";
-Blockly.Msg["WORKSPACE_INSTALL_PACKAGE"] = "安裝Python模組";
-Blockly.Msg["WORKSPACE_INSTALL_PACKAGE_NAME"] = "Python模組名稱";
+Blockly.Msg["WORKSPACE_INSTALL_PACKAGE"] = "PIP安裝Python模組";
+Blockly.Msg["WORKSPACE_INSTALL_PACKAGE_NAME"] = "pip install + 名稱或自訂Python指令";
 Blockly.Msg["WORKSPACE_SORRY"] = "此功能須建置在node.js環境下與安裝Python 3.9.12環境。";
 
 
