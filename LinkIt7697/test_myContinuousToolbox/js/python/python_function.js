@@ -113,17 +113,23 @@ function start() {
 					console.log(err);
 				} else {
 					var message = "";
-					var exec = require('child_process').exec;
-					
-					if (fs.existsSync('python-'+python+'\\Console-Launcher.exe'))
-						var res = exec('python-'+python+'\\Console-Launcher.exe', {encoding: 'arraybuffer'});
-					else
-						var res = exec('%SystemRoot%\\System32\\cmd.exe /c '+filePath, {encoding: 'arraybuffer'});
-					
-					
 					var iconv = require('iconv-lite');	
 					var stage = document.getElementById("stage");
+					var exec = require('child_process').exec;
 					
+					if (fs.existsSync('python-'+python+'\\Console-Launcher.exe')) {
+						stage.src = "about:blank";
+						myTimer = setTimeout(function(){
+							stage.contentWindow.document.open();
+							stage.contentWindow.document.write("python -m pip install [package name]");
+							stage.contentWindow.document.close();
+							stage.contentWindow.scrollTo(0, stage.contentDocument.body.scrollHeight);
+						}, 100);						
+						var res = exec('python-'+python+'\\Console-Launcher.exe', {encoding: 'arraybuffer'});
+					}
+					else
+						var res = exec('%SystemRoot%\\System32\\cmd.exe /c '+filePath, {encoding: 'arraybuffer'});
+
 					var myTimer;
 					res.stdout.on('data', function(data) {
 						clearTimeout(myTimer);
