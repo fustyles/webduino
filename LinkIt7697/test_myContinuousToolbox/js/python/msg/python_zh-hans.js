@@ -17,7 +17,7 @@ Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_PY_MSG"] = "工作区汇出PY档";
 Blockly.Msg["WORKSPACE_TO_CODE_Y_MSG"] = "即时输出积木程式码";
 Blockly.Msg["WORKSPACE_TO_CODE_N_MSG"] = "停止输出积木程式码";
 Blockly.Msg["WORKSPACE_RUNCODE"] = "执行积木程式码 (Ctrl+Shift)";
-Blockly.Msg["WORKSPACE_SORRY"] = "此功能须建置在NW.js环境下与安装Python环境。";
+Blockly.Msg["WORKSPACE_SORRY"] = "此功能须建置在node.js环境下与安装Python 3.9.12环境。";
 
 
 
