@@ -3,4 +3,4 @@
 //Custom blocks definitions
 var path = document.currentScript.src;
 
-addCustomBlocksScript("helloworld.js", path);
+addCustomScript("helloworld.js", path);

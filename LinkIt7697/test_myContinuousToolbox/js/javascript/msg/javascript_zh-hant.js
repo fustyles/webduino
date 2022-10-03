@@ -17,6 +17,19 @@ Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_HTML_MSG"] = "工作區匯出網頁HTML檔"
 Blockly.Msg["WORKSPACE_TO_CODE_Y_MSG"] = "即時輸出積木程式碼";
 Blockly.Msg["WORKSPACE_TO_CODE_N_MSG"] = "停止輸出積木程式碼";
 Blockly.Msg["WORKSPACE_RUNCODE"] = "執行積木程式碼 (Ctrl+Shift)";
+Blockly.Msg["WORKSPACE_IMPORT_JS_URL"] = "匯入JS檔路徑";
+
+
+Blockly.Msg["BUTTON_RUN"] = "執行";
+Blockly.Msg["BUTTON_IMPORT_MODULE"] = "匯入JS函式檔";
+Blockly.Msg["BUTTON_RESET"] = "重設工作區";
+Blockly.Msg["BUTTON_IMPORT_XML"] = "匯入積木XML檔";
+Blockly.Msg["BUTTON_EXPORT_XML"] = "匯出積木XML檔";
+Blockly.Msg["BUTTON_EXPORT_CODE"] = "匯出原始碼";
+Blockly.Msg["LANG-SELECTOR"] = "語系";
+Blockly.Msg["SELECT_EN"] = "英文";
+Blockly.Msg["SELECT_ZH-HANS"] = "簡中";
+Blockly.Msg["SELECT_ZH-HANT"] = "繁中";
 
 
 Blockly.Msg["TOOLBOX_NAME"] = "工具箱";

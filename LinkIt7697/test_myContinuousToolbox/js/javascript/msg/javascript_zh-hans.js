@@ -17,6 +17,19 @@ Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_HTML_MSG"] = "工作区汇出网页HTML档"
 Blockly.Msg["WORKSPACE_TO_CODE_Y_MSG"] = "即时输出积木程式码";
 Blockly.Msg["WORKSPACE_TO_CODE_N_MSG"] = "停止输出积木程式码";
 Blockly.Msg["WORKSPACE_RUNCODE"] = "执行积木程式码 (Ctrl+Shift)";
+Blockly.Msg["WORKSPACE_IMPORT_JS_URL"] = "汇入JS档路径";
+
+
+Blockly.Msg["BUTTON_RUN"] = "执行";
+Blockly.Msg["BUTTON_IMPORT_MODULE"] = "汇入JS函式档";
+Blockly.Msg["BUTTON_RESET"] = "重设工作区";
+Blockly.Msg["BUTTON_IMPORT_XML"] = "汇入积木XML档";
+Blockly.Msg["BUTTON_EXPORT_XML"] = "汇出积木XML档";
+Blockly.Msg["BUTTON_EXPORT_CODE"] = "汇出原始码";
+Blockly.Msg["LANG-SELECTOR"] = "语系";
+Blockly.Msg["SELECT_EN"] = "英文";
+Blockly.Msg["SELECT_ZH-HANS"] = "简中";
+Blockly.Msg["SELECT_ZH-HANT"] = "繁中";
 
 
 Blockly.Msg["TOOLBOX_NAME"] = "工具箱";

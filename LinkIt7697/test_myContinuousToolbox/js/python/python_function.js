@@ -81,7 +81,27 @@ function start() {
 		var xmlDoc = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml"><block type="test1" x="100" y="100"><value name="message"><block type="text"><field name="TEXT">Hello World</field></block></value></block></xml>');
 		Blockly.getMainWorkspace().clear();
 		Blockly.Xml.domToWorkspace(xmlDoc, workspace);
-	}	
+	}
+
+	//更新首頁語系文字
+	function updateMessage() {
+		if (typeof message_sys != "undefined") {
+			var element;
+			for (var i=0;i<message_sys.length;i++) {
+				element = document.getElementById(message_sys[i][0]);
+				if (element) {
+					if (message_sys[i][1]=="innerHTML")
+						element.innerHTML=message_sys[i][3];
+					else if (message_sys[i][1]=="title")
+						element.title=message_sys[i][3];
+					else if (message_sys[i][1]=="select") {
+						element.options[message_sys[i][2]].text=message_sys[i][3];
+					}
+				}				
+			}
+		}
+	}
+	updateMessage();	
 	
 	//工作區匯出PY檔案
 	function workspaceExportToPY() {
@@ -388,6 +408,30 @@ function start() {
 	
 	workspaceResize(0, 0);
 	
+	document.getElementById('button_run').addEventListener("click", function(event) {
+		runCode(true);
+	})
+	document.getElementById('button_import_module').addEventListener("click", function(event) {
+		installPackage();
+	})
+	document.getElementById('button_reset').addEventListener("click", function(event) {
+		startBlocks();
+	})
+	document.getElementById('button_export_xml').addEventListener("click", function(event) {
+		workspaceExportToXML();
+	})	
+	document.getElementById('button_import_xml').addEventListener("click", function(event) {
+		workspaceImportFromXML();
+	})
+	document.getElementById('button_export_code').addEventListener("click", function(event) {
+		workspaceExportToPY();
+	})	
+	//切換語言
+	document.getElementById('lang-selector').onchange = function () {
+		if (this.selectedIndex>0) 
+			location.href = "?lang=" + this.options[this.selectedIndex].value;
+	}
+	
 	//新增工作區功能選單 執行積木程式碼
 	function registerRunCode() {
 	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_run_code')) {
@@ -548,8 +592,12 @@ function start() {
 	
 }
 
-function addCustomBlocksScript(filename, path) {
-	var url = path.substr(0, path.lastIndexOf("/")).replace("file:///","") + "/customBlocks/" + filename;
+//新增JS檔
+function addCustomScript(filename, path) {
+	if (path!="")
+		var url = path.substr(0, path.lastIndexOf("/")).replace("file:///","") + "/customBlocks/" + filename;
+	else
+		var url = filename;
 	var s = document.createElement("script");
 	s.type = "text/javascript";
 	s.src = url;

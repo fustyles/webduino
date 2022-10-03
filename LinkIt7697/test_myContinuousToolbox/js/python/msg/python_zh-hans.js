@@ -23,6 +23,18 @@ Blockly.Msg["WORKSPACE_SORRY"] = "此功能须建置在node.js环境下与安装
 
 
 
+Blockly.Msg["BUTTON_RUN"] = "执行";
+Blockly.Msg["BUTTON_IMPORT_MODULE"] = "汇入模组";
+Blockly.Msg["BUTTON_RESET"] = "重设工作区";
+Blockly.Msg["BUTTON_IMPORT_XML"] = "汇入积木XML档";
+Blockly.Msg["BUTTON_EXPORT_XML"] = "汇出积木XML档";
+Blockly.Msg["BUTTON_EXPORT_CODE"] = "汇出原始码";
+Blockly.Msg["LANG-SELECTOR"] = "语系";
+Blockly.Msg["SELECT_EN"] = "英文";
+Blockly.Msg["SELECT_ZH-HANS"] = "简中";
+Blockly.Msg["SELECT_ZH-HANT"] = "繁中";
+
+
 Blockly.Msg["TOOLBOX_NAME"] = "工具箱";
 Blockly.Msg["LOGIC_NAME"] = "逻辑";
 Blockly.Msg["LOOPS_NAME"] = "回圈";

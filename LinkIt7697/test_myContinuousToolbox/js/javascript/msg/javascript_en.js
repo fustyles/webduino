@@ -17,6 +17,7 @@ Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_HTML_MSG"] = "Export blocks to HTML file";
 Blockly.Msg["WORKSPACE_TO_CODE_Y_MSG"] = "Start showing code in the console";
 Blockly.Msg["WORKSPACE_TO_CODE_N_MSG"] = "Stop updating code";
 Blockly.Msg["WORKSPACE_RUNCODE"] = "Run code (Ctrl+Shift)";
+Blockly.Msg["WORKSPACE_IMPORT_JS_URL"] = "Url of JS file ";
 
 
 Blockly.Msg["TOOLBOX_NAME"] = "TOOLBOX";

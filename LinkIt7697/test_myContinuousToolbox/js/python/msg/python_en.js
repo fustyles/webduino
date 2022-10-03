@@ -23,6 +23,18 @@ Blockly.Msg["WORKSPACE_SORRY"] = "The function must be under node.js and Python 
 
 
 
+Blockly.Msg["BUTTON_RUN"] = "Run";
+Blockly.Msg["BUTTON_IMPORT_MODULE"] = "Import module";
+Blockly.Msg["BUTTON_RESET"] = "Reset workspace";
+Blockly.Msg["BUTTON_IMPORT_XML"] = "Import from XML file";
+Blockly.Msg["BUTTON_EXPORT_XML"] = "Export to XML file";
+Blockly.Msg["BUTTON_EXPORT_CODE"] = "Export to source Code";
+Blockly.Msg["LANG-SELECTOR"] = "Language";
+Blockly.Msg["SELECT_EN"] = "English";
+Blockly.Msg["SELECT_ZH-HANS"] = "Chinese(S)";
+Blockly.Msg["SELECT_ZH-HANT"] = "Chinese(T)";
+
+
 Blockly.Msg["TOOLBOX_NAME"] = "TOOLBOX";
 Blockly.Msg["LOGIC_NAME"] = "LOGIC";
 Blockly.Msg["LOOPS_NAME"] = "LOOPS";
