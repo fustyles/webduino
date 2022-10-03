@@ -15,17 +15,17 @@ https://www.facebook.com/francefu
 	<script src="js/toolbox.js"></script>
 	<script>
 		var search = location.search.toLowerCase();
-		//search = "?lang=en&core=javascript";
+		search = "?lang=en&core=javascript";
 		var core = "";
 		if (search.indexOf("core=javascript")!=-1)
 			core = "javascript";
 		else if (search.indexOf("core=python")!=-1)
-			core = "python";
+			core = "python";		
 		else 
 			core = "javascript";
 		document.write("\<script src='js/"+core+"/"+core+"_compressed.js'\>\<\/script>");
 		document.write("\<script src='js/"+core+"/"+core+"_function.js'\>\<\/script>");
-		document.write("\<script src='js/"+core+"/"+core+"_blocks.js'\>\<\/script>");
+		document.write("\<script src='js/"+core+"/"+core+"_customBlocks.js'\>\<\/script>");
 
 		var lang = "";
 		if (search.indexOf("lang=en")!=-1)
@@ -56,11 +56,5 @@ https://www.facebook.com/francefu
 		<textarea id="code" ondblclick="this.select()"></textarea>
 		<iframe id="stage" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-presentation allow-modals" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen; geolocation; microphone; camera"></iframe>
 	</div>
-	
-	<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-categories" style="display: none">
-		<script>document.write(toolbox_sys);</script>
-		<sep></sep>
-		<script>document.write(toolbox_custom);</script>
-	</xml> 
 </body>
 </html>

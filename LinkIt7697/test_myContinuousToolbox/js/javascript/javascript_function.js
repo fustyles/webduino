@@ -1,15 +1,23 @@
 //*************** toolbox initial ******************	
 let workspace = null;
+var toolboxXmlString = "";
 
 function start() {
 	
 	// Create main workspace.
+	toolboxXmlString='<xml id="toolbox">';
+	if (typeof toolbox_sys != 'undefined')	
+		toolboxXmlString+=toolbox_sys;
+	if (typeof toolbox_custom != 'undefined')	
+		toolboxXmlString+=toolbox_custom.join("\n");
+	toolboxXmlString+='</xml>';
+	
 	var media = 'media/';
 	workspace = Blockly.inject('blocklyDiv',
       	{
 		media: media,
 		//renderer: 'zelos',
-        toolbox: document.getElementById('toolbox-categories'),
+        toolbox: toolboxXmlString,
 		zoom:{
 			controls: true,
 			wheel: false,
@@ -32,7 +40,7 @@ function start() {
 		  'toolbox': ContinuousToolbox,	
 		  'metricsManager': ContinuousMetrics,		  
 		}
-      	});
+    });
 	
 	var continuousFlyout = Blockly.getMainWorkspace().toolbox_.flyout_;
 	continuousFlyout.setVisible(false);
@@ -417,3 +425,10 @@ function start() {
 	
 }
 
+function addCustomBlocksScript(filename, path) {
+	var url = path.substr(0, path.lastIndexOf("/")).replace("file:///","") + "/customBlocks/" + filename;
+	var s = document.createElement("script");
+	s.type = "text/javascript";
+	s.src = url;
+	document.getElementsByTagName('head')[0].append(s);
+}
