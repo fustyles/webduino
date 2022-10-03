@@ -15,7 +15,7 @@ https://www.facebook.com/francefu
 	<script src="js/toolbox.js"></script>
 	<script>
 		var search = location.search.toLowerCase();
-		//search = "?lang=zh-hant&core=javascript";
+		//search = "?lang=en&core=python";
 		var core = "python";
 		if (search.indexOf("core=javascript")!=-1)
 			core = "javascript";
@@ -68,11 +68,9 @@ https://www.facebook.com/francefu
 	<div id="blocklyDiv"></div>
 	<img id="resize_h">
 	<img id="resize_v">
+	<img id="resize_e">
 	<textarea id="code" ondblclick="this.select()"></textarea>
 	<iframe id="stage" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-presentation allow-modals" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen; geolocation; microphone; camera"></iframe>
-	<div id="toolbox_content"></div>
-	<div id="xml_content"></div>
-	<div id="code_content"></div>
 </div>
 </body>
 </html>

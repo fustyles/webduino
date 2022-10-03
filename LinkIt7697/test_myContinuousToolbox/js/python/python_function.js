@@ -347,9 +347,9 @@ function start() {
 		if	(h==0)
 			var stageWidth = 500;
 		else if	(h==1)	
-			var stageWidth = workspaceWidth - 240;
-		else if	(h==2)
 			var stageWidth = 5;
+		else if	(h==2)
+			var stageWidth = workspaceWidth - 240;
 		stage.style.width = stageWidth + "px";
 
 		blocklyDiv.style.width = (workspaceWidth-stageWidth)+"px";
@@ -364,7 +364,9 @@ function start() {
 		resize_h.style.top = (headerHeight+10)+"px";
 		resize_h.style.left = (workspaceWidth-stageWidth-65)+"px";
 		resize_v.style.top = (headerHeight+50)+"px";
-		resize_v.style.left = (workspaceWidth-stageWidth-65)+"px";				
+		resize_v.style.left = (workspaceWidth-stageWidth-65)+"px";
+		resize_e.style.top = (headerHeight+90)+"px";
+		resize_e.style.left = (workspaceWidth-stageWidth-65)+"px";			
 		
 		Blockly.svgResize(workspace);
 	}
@@ -373,15 +375,19 @@ function start() {
 	var layout_v = 0;
 	document.getElementById('resize_h').addEventListener('click', function(event){
 		layout_h++;
-		layout_h = layout_h%3;
+		layout_h = layout_h%2;
 		workspaceResize(layout_h, layout_v);
 	});	
 
 	document.getElementById('resize_v').addEventListener('click', function(event){
 		layout_v++;
-		layout_v = layout_v%3;
+		layout_v = layout_v%2;
 		workspaceResize(layout_h, layout_v);
-	});		
+	});	
+	document.getElementById('resize_e').addEventListener('click', function(event){
+		layout_h = (layout_h==2?0:2);
+		workspaceResize(layout_h, layout_v);
+	});	
 	
 	//監聽鍵盤控制	
 	window.addEventListener('keydown', function(event){
