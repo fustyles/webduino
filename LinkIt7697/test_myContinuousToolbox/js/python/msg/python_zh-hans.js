@@ -20,6 +20,8 @@ Blockly.Msg["WORKSPACE_RUNCODE"] = "执行积木程式码 (Ctrl+Shift)";
 Blockly.Msg["WORKSPACE_INSTALL_PACKAGE"] = "PIP安装Python模组";
 Blockly.Msg["WORKSPACE_INSTALL_PACKAGE_NAME"] = "pip install 模组名称, 或自订Python指令";
 Blockly.Msg["WORKSPACE_SORRY"] = "此功能须建置在node.js环境下与安装Python 3环境。";
+Blockly.Msg["WORKSPACE_ENVIRONMENT_LOCAL"] = "切换改用本机Python环境";
+Blockly.Msg["WORKSPACE_ENVIRONMENT_PORTABLE"] = "切换改用可携Python环境";
 
 
 

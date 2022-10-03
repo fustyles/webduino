@@ -127,7 +127,7 @@ function start() {
 			var filePath = "temp.bat";
 			const fs = require('fs');
 			const Path = require('path')
-			if (!fs.existsSync('python-'+python+'\\Console-Launcher.exe')) {
+			if (pythonEnvironment) {
 				var package = prompt(Blockly.Msg["WORKSPACE_INSTALL_PACKAGE_NAME"], "pip install ");
 				if (package== null) 
 					return;
@@ -145,7 +145,8 @@ function start() {
 					var stage = document.getElementById("stage");
 					var exec = require('child_process').exec;
 					
-					if (fs.existsSync('python-'+python+'\\Console-Launcher.exe')) {
+					if (fs.existsSync('python-'+python+'\\Console-Launcher.exe')&&!pythonEnvironment) {
+						
 						stage.src = "about:blank";
 						myTimer = setTimeout(function(){
 							stage.contentWindow.document.open();
@@ -223,7 +224,7 @@ function start() {
 					var cmd = '';
 					 
 					const Path = require('path')
-					if (fs.existsSync('python-'+python+'\\PythonW-Launcher64.exe'))
+					if (fs.existsSync('python-'+python+'\\PythonW-Launcher64.exe')&&!pythonEnvironment)
 						var res = exec('python-'+python+'\\PythonW-Launcher64.exe '+filePath+' '+cmd, {encoding: 'arraybuffer'});
 					else
 						var res = exec('py '+filePath+' '+cmd, {encoding: 'arraybuffer'});
@@ -480,7 +481,33 @@ function start() {
 	  };
 	  Blockly.ContextMenuRegistry.registry.register(workspaceInstallPackage);
 	} 
-	registerInstallPackage(); 		
+	registerInstallPackage(); 
+
+	//新增工作區功能選單 切換Python環境
+	var pythonEnvironment = true;
+	function registerPythonEnvironment() {
+	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_python_environment')) {
+		return;
+	  }
+	  const workspacePythonEnvironment = {
+		displayText: function(){
+			if (pythonEnvironment)
+				return Blockly.Msg["WORKSPACE_ENVIRONMENT_PORTABLE"];
+			else
+				return Blockly.Msg["WORKSPACE_ENVIRONMENT_LOCAL"];
+		},
+		preconditionFn: function(a) {
+			return 'enabled';
+		},
+		callback: function(a) {
+				pythonEnvironment = !pythonEnvironment;
+		},
+		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_python_environment',
+		weight: 202,
+	  };
+	  Blockly.ContextMenuRegistry.registry.register(workspacePythonEnvironment);
+	} 
+	registerPythonEnvironment(); 	
 
 	//新增工作區功能選單 重設工作區
 	function registerWorkspaceReset() {
@@ -498,7 +525,7 @@ function start() {
 			startBlocks();
 		},
 		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_reset',
-		weight: 202,
+		weight: 203,
 	  };
 	  Blockly.ContextMenuRegistry.registry.register(workspaceReset);
 	}
@@ -520,7 +547,7 @@ function start() {
 			workspaceExportToXML();
 		},
 		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_export_xml',
-		weight: 203,
+		weight: 204,
 	  };
 	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksExportToXML);
 	}
@@ -542,7 +569,7 @@ function start() {
 			workspaceImportFromXML();
 		},
 		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_import_xml',
-		weight: 204,
+		weight: 205,
 	  };
 	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksImportFromXML);
 	}
@@ -564,7 +591,7 @@ function start() {
 			workspaceExportToPY();
 		},
 		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_export_py',
-		weight: 205,
+		weight: 206,
 	  };
 	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksExportToPY);
 	}
@@ -590,7 +617,7 @@ function start() {
 			workspaceToCodeState = !workspaceToCodeState;
 		},
 		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_blocks_to_code',
-		weight: 206,
+		weight: 207,
 	  };
 	  Blockly.ContextMenuRegistry.registry.register(workspaceBlocksToCode);
 	}
