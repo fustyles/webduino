@@ -221,13 +221,12 @@ function start() {
 					var message = "";
 					
 					var exec = require('child_process').exec;
-					var cmd = '';
 					 
 					const Path = require('path')
 					if (fs.existsSync('python-'+python+'\\PythonW-Launcher64.exe')&&!pythonEnvironment)
-						var res = exec('python-'+python+'\\PythonW-Launcher64.exe '+filePath+' '+cmd, {encoding: 'arraybuffer'});
+						var res = exec('python-'+python+'\\PythonW-Launcher64.exe -u '+filePath, {encoding: 'arraybuffer'});
 					else
-						var res = exec('py '+filePath+' '+cmd, {encoding: 'arraybuffer'});
+						var res = exec('py '+filePath, {encoding: 'arraybuffer'});
 					
 					var iconv = require('iconv-lite');
 					var stage = document.getElementById("stage");
