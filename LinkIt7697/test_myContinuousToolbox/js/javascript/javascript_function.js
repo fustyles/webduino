@@ -287,7 +287,7 @@ function start() {
 
 	document.getElementById('resize_v').addEventListener('click', function(event){
 		layout_v++;
-		layout_v = layout_v%2;
+		layout_v = layout_v%3;
 		workspaceResize(layout_h, layout_v);
 	});	
 	document.getElementById('resize_e').addEventListener('click', function(event){
