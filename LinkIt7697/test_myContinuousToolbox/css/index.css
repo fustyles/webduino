@@ -53,6 +53,16 @@ body {
   padding:0;
 }
 
+#title {
+  position: absolute;
+  font-size: 45px;
+  color: #BEBEBE; 
+  left: 5px;
+  top: 5px;
+  margin:0;
+  padding:0;  
+}
+
 h1 {
   font-weight: normal;
   font-size: 140%;
@@ -79,6 +89,12 @@ h1 {
   content: url('../media/sprites_resize_v.png');  
 }
 
+#resize_e {
+  position: absolute;
+  z-index:  999;
+  content: url('../media/sprites_resize_e.png');  
+}
+
 #code {
   position: absolute;
   padding: 0;
@@ -94,15 +110,7 @@ h1 {
   border: 1px solid #DCDCDC;
 }
 
-#toolbox_content { 
-	z-index: 999; 
-	display: none; 
-}
-#code_content { 
-	z-index: 999; 
-	display: none; 
-}
-#xml_content { 
-	z-index:999;
-	display:none;
+#lang-selector { 
+	height: 40px;
+	font-size: 24px
 }

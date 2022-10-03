@@ -14,24 +14,28 @@ https://www.facebook.com/francefu
 	<script src="js/toolbox_label_es6.js"></script>
 	<script src="js/toolbox.js"></script>
 	<script>
+		var corelist = ["python", "javascript"];
+		var langlist = ["en", "zh-hans", "zh-hant"];
 		var search = location.search.toLowerCase();
 		//search = "?lang=en&core=python";
-		var core = "python";
-		if (search.indexOf("core=javascript")!=-1)
-			core = "javascript";
-		else if (search.indexOf("core=python")!=-1)
-			core = "python";
+		var core = corelist[0];
+		for (var i=0;i<corelist.length;i++) {
+			if (search.indexOf("core=" + corelist[i])!=-1) {
+				core = corelist[i];
+				break;
+			}
+		}
 		document.write("\<script src='js/"+core+"/"+core+"_compressed.js'\>\<\/script>");
 		document.write("\<script src='js/"+core+"/"+core+"_function.js'\>\<\/script>");
 		document.write("\<script src='js/"+core+"/"+core+"_customBlocks.js'\>\<\/script>");
 
-		var lang = "en";
-		if (search.indexOf("lang=en")!=-1)
-			lang = "en";
-		else if (search.indexOf("lang=zh-hans")!=-1)
-			lang = "zh-hans";
-		else if (search.indexOf("lang=zh-hant")!=-1)
-			lang = "zh-hant";
+		var lang = langlist[0];;
+		for (var i=0;i<langlist.length;i++) {
+			if (search.indexOf("lang=" + langlist[i])!=-1) {
+				lang = langlist[i];
+				break;
+			}
+		}
 		document.write("\<script src='js/"+core+"/msg/"+core+"_"+lang+".js'\>\<\/script>");
 	</script>
 	<script src="js/message.js"></script>
@@ -47,6 +51,7 @@ https://www.facebook.com/francefu
 <body onload="start()">
 <div id="main">
 	<div id="header" style="width: 100%;height: 70px;margin: 0;padding: 0;text-align: right">
+		<div id="title">SpBlockly</div>
 		<!-- https://fonts.google.com/icons -->
 		<a href="#" id="button_run" title="Import your blocks"><i class="material-icons">play_arrow</i></a>
 		<a href="#" id="button_import_module" title="Import module"><i class="material-icons">control_point</i></a>
@@ -56,7 +61,7 @@ https://www.facebook.com/francefu
 		<a href="#" id="button_export_code" title="Export to source file"><i class="material-icons">upload_file</i></a>
 		<i class="material-icons">language</i>
 		<i style="text-align: center;line-height: 60px;vertical-align: bottom;">
-			<select id="lang-selector" style="height:40px;font-size:24px">
+			<select id="lang-selector">
 				<option value=""></option>
 				<option value="en">EN</option>
 				<option value="zh-hans">ZH-HANS</option>
