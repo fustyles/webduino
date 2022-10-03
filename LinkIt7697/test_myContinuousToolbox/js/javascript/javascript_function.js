@@ -342,7 +342,7 @@ function start() {
 	//切換語言
 	document.getElementById('lang-selector').onchange = function () {
 		if (this.selectedIndex>0) 
-			location.href = "?lang=" + this.options[this.selectedIndex].value;
+			location.href = "?lang=" + this.options[this.selectedIndex].value + "&core=" + core;
 	}
 	
 	//新增工作區功能選單 執行積木程式碼
