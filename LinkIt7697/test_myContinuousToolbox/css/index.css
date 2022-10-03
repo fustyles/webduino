@@ -7,6 +7,8 @@ body {
   background-color: #fff;
   font-family: sans-serif;
   overflow: hidden;
+  margin:0;
+  padding:0;
 }
 
 h1 {
@@ -15,8 +17,48 @@ h1 {
   margin: 10px;
 }
 
+#main {
+	margin:0;
+	padding:0;
+}
+
+#header {
+  width: 100%;
+  height: 50px;
+  font-size: 36px;
+}
+
 #blocklyDiv {
   float: bottom;
   height: 90%;
   width: 100%;
+  position: absolute;
+}
+
+
+#resize_h {
+  position: absolute;
+  z-index:  999;
+  content: url('../media/sprites_resize_h.png');
+}
+
+#resize_v {
+  position: absolute;
+  z-index:  999;
+  content: url('../media/sprites_resize_v.png');  
+}
+
+#code {
+  position: absolute;
+  padding: 0;
+  resize: none;
+  white-space: nowrap; 
+  overflow: scroll;
+  border: 1px solid #DCDCDC;
+  scrollbar-color: #DCDCDC #DCDCDC;
+}
+
+#stage {
+  position: absolute;
+  border: 1px solid #DCDCDC;
 }

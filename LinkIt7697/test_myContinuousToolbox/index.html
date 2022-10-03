@@ -15,7 +15,7 @@ https://www.facebook.com/francefu
 	<script src="js/toolbox.js"></script>
 	<script>
 		var search = location.search.toLowerCase();
-		//search = "?lang=en&core=python";
+		//search = "?lang=en&core=javascript";
 		var core = "";
 		if (search.indexOf("core=javascript")!=-1)
 			core = "javascript";
@@ -47,20 +47,19 @@ https://www.facebook.com/francefu
 	<link rel="stylesheet" href="css/toolbox_style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body style="margin:0;padding:0;" onload="start()">
-	<div id="main" style="margin:0;padding:0;">
-		<div id="header" style="width:100%;height:50px;font-size: 36px;">SpBlockly V2</div>
-		<div id="blocklyDiv" style="position:absolute;"></div>
-		<img id="resize_h" style="position:absolute;z-index: 999" src="media/sprites_resize_h.png">
-		<img id="resize_v" style="position:absolute;z-index: 999" src="media/sprites_resize_v.png">
-		<textarea id="code" (keydown.ctrl+keydown.space)="$event.preventDefault()" style="position: absolute;padding: 0;resize: none;white-space:nowrap; overflow: scroll;border: 1px solid #DCDCDC;scrollbar-color: #DCDCDC #DCDCDC;" ondblclick="this.select()"></textarea>
-		<iframe id="stage" style="position: absolute;border: 1px solid #DCDCDC;" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-presentation allow-modals" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen; geolocation; microphone; camera"></iframe>
+<body onload="start()">
+	<div id="main">
+		<div id="header" style="width: 100%;height: 50px;font-size: 36px;">SpBlockly V2</div>
+		<div id="blocklyDiv"></div>
+		<img id="resize_h">
+		<img id="resize_v">
+		<textarea id="code" ondblclick="this.select()"></textarea>
+		<iframe id="stage" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-presentation allow-modals" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen; geolocation; microphone; camera"></iframe>
 	</div>
+	
 	<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-categories" style="display: none">
 		<script>document.write(toolbox_sys);</script>
-		
 		<sep></sep>
-		
 		<script>document.write(toolbox_custom);</script>
 	</xml> 
 </body>
