@@ -170,9 +170,22 @@ function start() {
 					res.stderr.on('data', function(data) {
 						data = iconv.decode(data, 'big5');
 						message += data.replace(/\n/g,'<br>');
+						setTimeout(function(){
+							stage.contentWindow.document.open();
+							stage.contentWindow.document.write(message);
+							stage.contentWindow.document.close();
+							stage.focus();
+						}, 100);							
 					});
 
 					res.on('exit', function(code, signal) {
+						stage.src = "about:blank";
+						myTimer = setTimeout(function(){
+							stage.contentWindow.document.open();
+							stage.contentWindow.document.write(message);
+							stage.contentWindow.document.close();
+							stage.contentWindow.scrollTo(0, stage.contentDocument.body.scrollHeight);
+						}, 100);						
 					});						
 				}
 			}); 			
@@ -221,7 +234,7 @@ function start() {
 					 
 					const Path = require('path')
 					if (fs.existsSync('python\\python.exe')&&!pythonEnvironment)
-						var res = exec('python\\python.exe '+filePath, {encoding: 'arraybuffer'});
+						var res = exec('python\\python '+filePath, {encoding: 'arraybuffer'});
 					else
 						var res = exec('py '+filePath, {encoding: 'arraybuffer'});
 					
@@ -243,6 +256,12 @@ function start() {
 					res.stderr.on('data', function(data) {
 						data = iconv.decode(data, 'big5');
 						message += data.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&ensp;");
+						setTimeout(function(){
+							stage.contentWindow.document.open();
+							stage.contentWindow.document.write(message);
+							stage.contentWindow.document.close();
+							stage.focus();
+						}, 100);							
 					});
 
 					res.on('exit', function(code, signal) {
