@@ -146,11 +146,8 @@ function start() {
 					var stage = document.getElementById("stage");
 					var exec = require('child_process').exec;
 	
-					if (fs.existsSync('python-'+python+'\\Scripts\\pip.exe')&&!pythonEnvironment) {
-						alert("研究中...");
-						return;	
-						console.log('python-'+python+'\\Scripts\\'+code);
-						var res = exec('python-'+python+'\\Scripts\\'+code, {encoding: 'arraybuffer'});
+					if (fs.existsSync('python\\python.exe')&&!pythonEnvironment) {
+						var res = exec('python\\python -m '+code, {encoding: 'arraybuffer'});
 					}
 					else
 						var res = exec('%SystemRoot%\\System32\\cmd.exe /c '+filePath, {encoding: 'arraybuffer'});
@@ -187,6 +184,8 @@ function start() {
 	//工作區執行程式碼
 	function runCode(source) {
 		if (typeof require !== "undefined") {
+			
+			/*
 			var lines = document.getElementById("code").value.split("\n");
 			var package = [];
 			for (var i=0;i<lines.length;i++) {
@@ -203,9 +202,11 @@ function start() {
 			}
 			if (package.leng>0)
 				installPackage(package.join(""));
+			*/
 			
-			var filePath = "temp.py";
 			const fs = require('fs');
+			var filePath = "temp.py";
+					
 			if (source)
 				var code = document.getElementById("code").value;
 			else
@@ -219,11 +220,8 @@ function start() {
 					var exec = require('child_process').exec;
 					 
 					const Path = require('path')
-					if (fs.existsSync('python-'+python+'\\python.exe')&&!pythonEnvironment) {
-						alert("研究中...");
-						return;						
-						var res = exec('python-'+python+'\\python.exe '+filePath, {encoding: 'arraybuffer'});
-					}
+					if (fs.existsSync('python\\python.exe')&&!pythonEnvironment)
+						var res = exec('python\\python -m '+filePath, {encoding: 'arraybuffer'});
 					else
 						var res = exec('py '+filePath, {encoding: 'arraybuffer'});
 					
