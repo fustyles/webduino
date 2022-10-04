@@ -221,7 +221,7 @@ function start() {
 					 
 					const Path = require('path')
 					if (fs.existsSync('python\\python.exe')&&!pythonEnvironment)
-						var res = exec('python\\python -m '+filePath, {encoding: 'arraybuffer'});
+						var res = exec('python\\python.exe '+filePath, {encoding: 'arraybuffer'});
 					else
 						var res = exec('py '+filePath, {encoding: 'arraybuffer'});
 					
