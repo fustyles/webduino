@@ -1,6 +1,6 @@
 //*************** toolbox initial ******************	
 let workspace = null;
-var python ="3.10.5";
+var python ="3.10.7";
 var toolboxXmlString = "";
 
 function start() {
@@ -121,20 +121,21 @@ function start() {
 	}
 	
 	//安裝Python模組
-	function installPackage() {
+	function installPackage(package) {
 		if (typeof require !== "undefined") {
 
+			var code = "";
 			var filePath = "temp.bat";
 			const fs = require('fs');
 			const Path = require('path')
-			if (pythonEnvironment) {
-				var package = prompt(Blockly.Msg["WORKSPACE_INSTALL_PACKAGE_NAME"], "pip install ");
-				if (package== null) 
+			
+			if(!package) {
+				code = prompt(Blockly.Msg["WORKSPACE_INSTALL_PACKAGE_NAME"], "pip install ");
+				if (code== null) 
 					return;
-				var code = package;
 			}
-			else
-				var code = "";
+			else 
+				code = package;
 			
 			fs.writeFile(filePath, code, (err) => { 
 				if (err) { 
@@ -144,17 +145,12 @@ function start() {
 					var iconv = require('iconv-lite');	
 					var stage = document.getElementById("stage");
 					var exec = require('child_process').exec;
-					
-					if (fs.existsSync('python-'+python+'\\Console-Launcher.exe')&&!pythonEnvironment) {
-						
-						stage.src = "about:blank";
-						myTimer = setTimeout(function(){
-							stage.contentWindow.document.open();
-							stage.contentWindow.document.write("python -m pip install [package name]");
-							stage.contentWindow.document.close();
-							stage.contentWindow.scrollTo(0, stage.contentDocument.body.scrollHeight);
-						}, 100);						
-						var res = exec('python-'+python+'\\Console-Launcher.exe', {encoding: 'arraybuffer'});
+	
+					if (fs.existsSync('python-'+python+'\\Scripts\\pip.exe')&&!pythonEnvironment) {
+						alert("研究中...");
+						return;	
+						console.log('python-'+python+'\\Scripts\\'+code);
+						var res = exec('python-'+python+'\\Scripts\\'+code, {encoding: 'arraybuffer'});
 					}
 					else
 						var res = exec('%SystemRoot%\\System32\\cmd.exe /c '+filePath, {encoding: 'arraybuffer'});
@@ -223,8 +219,11 @@ function start() {
 					var exec = require('child_process').exec;
 					 
 					const Path = require('path')
-					if (fs.existsSync('python-'+python+'\\PythonW-Launcher64.exe')&&!pythonEnvironment)
-						var res = exec('python-'+python+'\\PythonW-Launcher64.exe -u '+filePath, {encoding: 'arraybuffer'});
+					if (fs.existsSync('python-'+python+'\\python.exe')&&!pythonEnvironment) {
+						alert("研究中...");
+						return;						
+						var res = exec('python-'+python+'\\python.exe '+filePath, {encoding: 'arraybuffer'});
+					}
 					else
 						var res = exec('py '+filePath, {encoding: 'arraybuffer'});
 					
