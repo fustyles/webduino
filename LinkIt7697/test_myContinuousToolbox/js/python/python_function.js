@@ -218,8 +218,8 @@ function start() {
 			else
 				var code = Blockly.Python.workspaceToCode(workspace);
 			
-			var showWindow = (code.indexOf("input")!=-1)?"start ":"";
-			var closeWindow = (code.indexOf("input")!=-1)?"\nprint()\nprint()\nprint()\ncloseWindow = input('Press Enter to exit')\nexit(0)":"";
+			var showWindow = (code.indexOf("input(")!=-1)?"start ":"";
+			var closeWindow = (code.indexOf("input(")!=-1)?"\nprint()\nprint()\nprint()\ncloseWindow = input('Press Enter to exit')\nexit(0)":"";
 			code += closeWindow;
 			
 			fs.writeFile(filePath, code, (err) => { 
