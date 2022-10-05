@@ -222,14 +222,15 @@ function start() {
 					console.log(err);
 				} else {
 					var message = "";
+					var showWindowState = (code.indexOf("input")!=-1)?"start ":"";
 					
 					var exec = require('child_process').exec;
 					 
 					const Path = require('path')
 					if (fs.existsSync('python-'+python+'\\App\\Python\\python.exe')&&!pythonEnvironment)
-						var res = exec('python-'+python+'\\App\\Python\\python '+filePath, {encoding: 'arraybuffer'});
+						var res = exec(showWindowState + 'python-'+python+'\\App\\Python\\python '+filePath, {encoding: 'arraybuffer'});
 					else
-						var res = exec('py '+filePath, {encoding: 'arraybuffer'});
+						var res = exec(showWindowState + 'py '+filePath, {encoding: 'arraybuffer'});
 					
 					var iconv = require('iconv-lite');
 					var stage = document.getElementById("stage");
