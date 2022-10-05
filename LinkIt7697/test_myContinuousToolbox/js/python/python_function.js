@@ -1,6 +1,6 @@
 //*************** toolbox initial ******************	
 let workspace = null;
-var python ="3.10.7";
+var python = "3.10.0";
 var toolboxXmlString = "";
 
 function start() {
@@ -146,8 +146,8 @@ function start() {
 					var stage = document.getElementById("stage");
 					var exec = require('child_process').exec;
 	
-					if (fs.existsSync('python\\python.exe')&&!pythonEnvironment) {
-						var res = exec('python\\python -m '+code, {encoding: 'arraybuffer'});
+					if (fs.existsSync('python-'+python+'\\App\\Python\\python.exe')&&!pythonEnvironment) {
+						var res = exec('python-'+python+'\\App\\Python\\python -m '+code, {encoding: 'arraybuffer'});
 					}
 					else
 						var res = exec('%SystemRoot%\\System32\\cmd.exe /c '+filePath, {encoding: 'arraybuffer'});
@@ -178,14 +178,7 @@ function start() {
 						}, 100);							
 					});
 
-					res.on('exit', function(code, signal) {
-						stage.src = "about:blank";
-						myTimer = setTimeout(function(){
-							stage.contentWindow.document.open();
-							stage.contentWindow.document.write(message);
-							stage.contentWindow.document.close();
-							stage.contentWindow.scrollTo(0, stage.contentDocument.body.scrollHeight);
-						}, 100);						
+					res.on('exit', function(code, signal) {					
 					});						
 				}
 			}); 			
@@ -233,8 +226,8 @@ function start() {
 					var exec = require('child_process').exec;
 					 
 					const Path = require('path')
-					if (fs.existsSync('python\\python.exe')&&!pythonEnvironment)
-						var res = exec('python\\python '+filePath, {encoding: 'arraybuffer'});
+					if (fs.existsSync('python-'+python+'\\App\\Python\\python.exe')&&!pythonEnvironment)
+						var res = exec('python-'+python+'\\App\\Python\\python '+filePath, {encoding: 'arraybuffer'});
 					else
 						var res = exec('py '+filePath, {encoding: 'arraybuffer'});
 					
@@ -265,12 +258,6 @@ function start() {
 					});
 
 					res.on('exit', function(code, signal) {
-						setTimeout(function(){
-							stage.contentWindow.document.open();
-							stage.contentWindow.document.write(message);
-							stage.contentWindow.document.close();
-							stage.focus();
-						}, 100);
 					});						
 				}
 			}); 			
