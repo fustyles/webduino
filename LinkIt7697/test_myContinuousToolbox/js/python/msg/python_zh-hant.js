@@ -20,8 +20,10 @@ Blockly.Msg["WORKSPACE_RUNCODE"] = "執行文字區塊程式碼 (Ctrl+Shift)";
 Blockly.Msg["WORKSPACE_INSTALL_PACKAGE"] = "PIP安裝Python模組";
 Blockly.Msg["WORKSPACE_INSTALL_PACKAGE_NAME"] = "pip install 模組名稱, 本機Python環境可自訂Python指令";
 Blockly.Msg["WORKSPACE_SORRY"] = "此功能須建置在node.js環境下與安裝Python 3環境。";
-Blockly.Msg["WORKSPACE_ENVIRONMENT_LOCAL"] = "轉換本機Python環境";
-Blockly.Msg["WORKSPACE_ENVIRONMENT_PORTABLE"] = "轉換可攜Python環境";
+Blockly.Msg["WORKSPACE_ENVIRONMENT_LOCAL"] = "本機Python環境";
+Blockly.Msg["WORKSPACE_ENVIRONMENT_LOCAL_CHANGE"] = "轉換本機Python環境";
+Blockly.Msg["WORKSPACE_ENVIRONMENT_PORTABLE"] = "可攜Python環境";
+Blockly.Msg["WORKSPACE_ENVIRONMENT_PORTABLE_CHANGE"] = "轉換可攜Python環境";
 
 
 

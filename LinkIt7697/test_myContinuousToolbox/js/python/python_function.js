@@ -101,7 +101,17 @@ function start() {
 			}
 		}
 	}
-	updateMessage();	
+	updateMessage();
+
+	//iframe顯示內容
+	function iframeWrite(message, bottom) {
+		var stage = document.getElementById("stage");
+		stage.contentWindow.document.open();
+		stage.contentWindow.document.write(message);
+		stage.contentWindow.document.close();
+		if (bottom)
+			stage.contentWindow.scrollTo(0, stage.contentDocument.body.scrollHeight);
+	}	
 	
 	//工作區匯出PY檔案
 	function workspaceExportToPY() {
@@ -142,8 +152,7 @@ function start() {
 					console.log(err);
 				} else {
 					var message = "";
-					var iconv = require('iconv-lite');	
-					var stage = document.getElementById("stage");
+					var iconv = require('iconv-lite');
 					var exec = require('child_process').exec;
 	
 					if (fs.existsSync('python-'+python+'\\App\\Python\\python.exe')&&!pythonEnvironment) {
@@ -156,14 +165,9 @@ function start() {
 					res.stdout.on('data', function(data) {
 						clearTimeout(myTimer);
 						data = iconv.decode(data, 'big5');
-						message += data.replace(/\n/g,'<br>');	
-						
-						stage.src = "about:blank";
+						message += data.replace(/\n/g,'<br>');
 						myTimer = setTimeout(function(){
-							stage.contentWindow.document.open();
-							stage.contentWindow.document.write(message);
-							stage.contentWindow.document.close();
-							stage.contentWindow.scrollTo(0, stage.contentDocument.body.scrollHeight);
+							iframeWrite(message, true);
 						}, 100);						
 					});
 
@@ -171,10 +175,7 @@ function start() {
 						data = iconv.decode(data, 'big5');
 						message += data.replace(/\n/g,'<br>');
 						setTimeout(function(){
-							stage.contentWindow.document.open();
-							stage.contentWindow.document.write(message);
-							stage.contentWindow.document.close();
-							stage.focus();
+							iframeWrite(message, false);
 						}, 100);							
 					});
 
@@ -185,7 +186,7 @@ function start() {
 		}
 		else
 			alert(Blockly.Msg["WORKSPACE_SORRY"]);
-	}	
+	}
 
 	//工作區執行程式碼
 	function runCode(source) {
@@ -237,17 +238,13 @@ function start() {
 						var res = exec(showWindow + 'py '+filePath, {encoding: 'arraybuffer'});
 					
 					var iconv = require('iconv-lite');
-					var stage = document.getElementById("stage");
 					stage.src = "about:blank";
 					
 					res.stdout.on('data', function(data) {
 						data = iconv.decode(data, 'big5');
 						message += data.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&ensp;");
 						setTimeout(function(){
-							stage.contentWindow.document.open();
-							stage.contentWindow.document.write(message);
-							stage.contentWindow.document.close();
-							stage.focus();
+							iframeWrite(message, false);
 						}, 100);						
 					});
 
@@ -255,10 +252,7 @@ function start() {
 						data = iconv.decode(data, 'big5');
 						message += data.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&ensp;");
 						setTimeout(function(){
-							stage.contentWindow.document.open();
-							stage.contentWindow.document.write(message);
-							stage.contentWindow.document.close();
-							stage.focus();
+							iframeWrite(message, false);
 						}, 100);							
 					});
 
@@ -492,22 +486,25 @@ function start() {
 
 	//新增工作區功能選單 切換Python環境
 	var pythonEnvironment = false;
+	(pythonEnvironment)?iframeWrite(Blockly.Msg["WORKSPACE_ENVIRONMENT_LOCAL"], false):iframeWrite(Blockly.Msg["WORKSPACE_ENVIRONMENT_PORTABLE"], false);
+
 	function registerPythonEnvironment() {
 	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_python_environment')) {
 		return;
 	  }
 	  const workspacePythonEnvironment = {
 		displayText: function(){
-			if (pythonEnvironment)
-				return Blockly.Msg["WORKSPACE_ENVIRONMENT_PORTABLE"];
+			if (pythonEnvironment) 
+				return Blockly.Msg["WORKSPACE_ENVIRONMENT_PORTABLE_CHANGE"];
 			else
-				return Blockly.Msg["WORKSPACE_ENVIRONMENT_LOCAL"];
+				return Blockly.Msg["WORKSPACE_ENVIRONMENT_LOCAL_CHANGE"];
 		},
 		preconditionFn: function(a) {
 			return 'enabled';
 		},
 		callback: function(a) {
-				pythonEnvironment = !pythonEnvironment;
+			pythonEnvironment = !pythonEnvironment;
+			(pythonEnvironment)?iframeWrite(Blockly.Msg["WORKSPACE_ENVIRONMENT_LOCAL"], false):iframeWrite(Blockly.Msg["WORKSPACE_ENVIRONMENT_PORTABLE"], false);	
 		},
 		scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,id: 'workspace_python_environment',
 		weight: 202,

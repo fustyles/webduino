@@ -20,17 +20,19 @@ Blockly.Msg["WORKSPACE_RUNCODE"] = "Run code (Ctrl+Shift)";
 Blockly.Msg["WORKSPACE_INSTALL_PACKAGE"] = "PIP install package";
 Blockly.Msg["WORKSPACE_INSTALL_PACKAGE_NAME"] = "pip install Name or custom python command";
 Blockly.Msg["WORKSPACE_SORRY"] = "The function must be under node.js and Python 3 environment";
-Blockly.Msg["WORKSPACE_ENVIRONMENT_LOCAL"] = "Set local python environment";
-Blockly.Msg["WORKSPACE_ENVIRONMENT_PORTABLE"] = "Set portable python environment";
+Blockly.Msg["WORKSPACE_ENVIRONMENT_LOCAL"] = "Local python environment";
+Blockly.Msg["WORKSPACE_ENVIRONMENT_LOCAL_CHANGE"] = "Set local python environment";
+Blockly.Msg["WORKSPACE_ENVIRONMENT_PORTABLE"] = "Portable python environment";
+Blockly.Msg["WORKSPACE_ENVIRONMENT_PORTABLE_CHANGE"] = "Set portable python environment";
 
 
 
 Blockly.Msg["BUTTON_RUN"] = "Run";
 Blockly.Msg["BUTTON_IMPORT_MODULE"] = "Import module";
 Blockly.Msg["BUTTON_RESET"] = "Reset workspace";
-Blockly.Msg["BUTTON_IMPORT_XML"] = "Import from XML file";
-Blockly.Msg["BUTTON_EXPORT_XML"] = "Export to XML file";
-Blockly.Msg["BUTTON_EXPORT_CODE"] = "Export to source Code";
+Blockly.Msg["BUTTON_IMPORT_XML"] = "Import blocks from XML file";
+Blockly.Msg["BUTTON_EXPORT_XML"] = "Export blocks to XML file";
+Blockly.Msg["BUTTON_EXPORT_CODE"] = "Export blocks to source Code";
 Blockly.Msg["LANG-SELECTOR"] = "Language";
 Blockly.Msg["SELECT_EN"] = "English";
 Blockly.Msg["SELECT_ZH-HANS"] = "Chinese(S)";

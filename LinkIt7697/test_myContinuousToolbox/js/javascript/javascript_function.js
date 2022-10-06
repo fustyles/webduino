@@ -101,6 +101,16 @@ function start() {
 		}
 	}
 	updateMessage();
+	
+	//iframe顯示內容
+	function iframeWrite(message, bottom) {
+		var stage = document.getElementById("stage");
+		stage.contentWindow.document.open();
+		stage.contentWindow.document.write(message);
+		stage.contentWindow.document.close();
+		if (bottom)
+			stage.contentWindow.scrollTo(0, stage.contentDocument.body.scrollHeight);
+	}	
 
 	//執行工作區程式碼
 	function runCode(source) {
@@ -116,11 +126,8 @@ function start() {
 				var stage = document.getElementById("stage");
 				stage.src = "about:blank";
 				setTimeout(function(){
-					stage.contentWindow.document.open();
-					stage.contentWindow.document.write(iframe_code);
-					stage.contentWindow.document.close();
-					stage.focus();
-				}, 300);
+					iframeWrite(iframe_code, false);
+				}, 100);
 			} catch (e) {
 				alert(e);
 			}			
