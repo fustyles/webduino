@@ -4,12 +4,6 @@
 
 var Blockly = Blockly || { Msg: Object.create(null) };
 
-//*************** Custom Message ******************
-
-Blockly.Msg["CUSTOM_NAME"] = "CUSTOM";
-Blockly.Msg["HELLOWORLD_MSG"] = "Print";
-Blockly.Msg["HELLOWORLD_GET"] = "get message";
-Blockly.Msg["HELLOWORLD_HUE"] = "100";
 Blockly.Msg["WORKSPACE_RESET"] = "Reset workspace";
 Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_XML_MSG"] = "Export blocks to XML file";
 Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"] = "Import blocks from XML file";

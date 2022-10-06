@@ -4,12 +4,6 @@
 
 var Blockly = Blockly || { Msg: Object.create(null) };
 
-//*************** Custom Message ******************
-
-Blockly.Msg["CUSTOM_NAME"] = "自订积木";
-Blockly.Msg["HELLOWORLD_MSG"] = "对话视窗显示";
-Blockly.Msg["HELLOWORLD_GET"] = "取得资料";
-Blockly.Msg["HELLOWORLD_HUE"] = "100";
 Blockly.Msg["WORKSPACE_RESET"] = "重设工作区";
 Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_XML_MSG"] = "工作区汇出积木结构XML档案";
 Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"] = "工作区汇入积木结构XML档案";
