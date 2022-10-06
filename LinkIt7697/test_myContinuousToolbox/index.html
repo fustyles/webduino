@@ -14,11 +14,13 @@ https://www.facebook.com/francefu
 	<script src="js/toolbox_label_es6.js"></script>
 	<script src="js/toolbox.js"></script>
 	<script>
-		var version = "2.0.0";
-		var corelist = ["python", "javascript"];
-		var langlist = ["en", "zh-hans", "zh-hant"];
+		var version = "2.1.0";
 		var search = location.search.toLowerCase();
 		//search = "?lang=en&core=python";
+		
+		var corelist = ["python", "javascript"];
+		var langlist = ["en", "zh-hans", "zh-hant"];
+		
 		var core = corelist[0];
 		for (var i=0;i<corelist.length;i++) {
 			if (search.indexOf("core=" + corelist[i])!=-1) {
