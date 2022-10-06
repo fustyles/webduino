@@ -4,7 +4,33 @@ var toolboxXmlString = "";
 
 function start() {
 	
-	// Create main workspace.
+	//NWJS功能選單
+	var menubar = new nw.Menu({ type: 'menubar' });
+	var submenu = new nw.Menu();
+	
+	submenu.append(new nw.MenuItem({ label: Blockly.Msg["WORKSPACE_LANGUAGE_JAVASCRIPT"] }));
+	submenu.items[0].click = function () {
+		location.href = 'index.html?lang=zh-hant&core=javascript';
+	}
+	
+	submenu.append(new nw.MenuItem({ label: Blockly.Msg["WORKSPACE_LANGUAGE_PYTHON"] }));
+	submenu.items[1].click = function () {
+		location.href = 'index.html?lang=zh-hant&core=python';
+	}	
+
+	submenu.append(new nw.MenuItem({ label: Blockly.Msg["WORKSPACE_RELOAD"] }));
+	submenu.items[2].click = function () {
+		location.reload();
+	}
+	
+	menubar.append(new nw.MenuItem({
+	  label: Blockly.Msg["WORKSPACE_LANGUAGE"],
+	  submenu: submenu
+	}));
+
+	nw.Window.get().menu = menubar;
+	
+	//積木工具箱初始化
 	toolboxXmlString='<xml id="toolbox">';
 	if (typeof toolbox_sys != 'undefined')	
 		toolboxXmlString+=toolbox_sys;

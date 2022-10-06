@@ -4,7 +4,12 @@
 
 var Blockly = Blockly || { Msg: Object.create(null) };
 
+Blockly.Msg["WORKSPACE_LANGUAGE"] = "語言環境";
+Blockly.Msg["WORKSPACE_LANGUAGE_JAVASCRIPT"] = "JavaScript";
+Blockly.Msg["WORKSPACE_LANGUAGE_PYTHON"] = "Python";
 Blockly.Msg["WORKSPACE_RESET"] = "重設工作區";
+Blockly.Msg["WORKSPACE_RELOAD"] = "重新整理";
+Blockly.Msg["WORKSPACE_VERSION"] = "版本資訊";
 Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_XML_MSG"] = "工作區匯出積木結構XML檔案";
 Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"] = "工作區匯入積木結構XML檔案";
 Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_PY_MSG"] = "工作區匯出PY檔";

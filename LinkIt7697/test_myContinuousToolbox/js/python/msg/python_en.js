@@ -4,7 +4,12 @@
 
 var Blockly = Blockly || { Msg: Object.create(null) };
 
+Blockly.Msg["WORKSPACE_LANGUAGE"] = "Language Environtment";
+Blockly.Msg["WORKSPACE_LANGUAGE_JAVASCRIPT"] = "JavaScript";
+Blockly.Msg["WORKSPACE_LANGUAGE_PYTHON"] = "Python";
 Blockly.Msg["WORKSPACE_RESET"] = "Reset workspace";
+Blockly.Msg["WORKSPACE_RELOAD"] = "Window reload";
+Blockly.Msg["WORKSPACE_VERSION"] = "Version";
 Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_XML_MSG"] = "Export blocks to XML file";
 Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"] = "Import blocks from XML file";
 Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_PY_MSG"] = "Export blocks to PY file";
