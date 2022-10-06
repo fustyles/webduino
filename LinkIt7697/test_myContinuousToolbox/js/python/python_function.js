@@ -631,7 +631,6 @@ function start() {
 
 //新增自訂積木JS檔
 function addCustomScript(foldname, path) {
-	console.log(path);
 	var file = ["blocks.js", "python.js", "toolbox.js", lang + ".js", "function.js"];
 	for (var i=0;i<file.length;i++) {
 		var url = path.substr(0, path.lastIndexOf("/")).replace("file:///","") + "/customBlocks/" + foldname + "/" + file[i];

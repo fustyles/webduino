@@ -12,3 +12,9 @@ Blockly.JavaScript['test2'] = function(block) {
 	var code = "message";
 	return [code, Blockly.JavaScript.ORDER_NONE];
 };	
+
+Blockly.JavaScript['test3'] = function(block) {
+	var seconds = Blockly.JavaScript.valueToCode(block, 'seconds', Blockly.JavaScript.ORDER_ATOMIC);
+	var code = 'await delay(' + seconds + ');\n';
+	return code;
+};
