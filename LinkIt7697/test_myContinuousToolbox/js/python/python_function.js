@@ -491,7 +491,7 @@ function start() {
 	registerInstallPackage(); 
 
 	//新增工作區功能選單 切換Python環境
-	var pythonEnvironment = true;
+	var pythonEnvironment = false;
 	function registerPythonEnvironment() {
 	  if (Blockly.ContextMenuRegistry.registry.getItem('workspace_python_environment')) {
 		return;
