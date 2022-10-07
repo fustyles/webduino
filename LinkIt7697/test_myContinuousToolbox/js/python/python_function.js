@@ -20,16 +20,20 @@ function start() {
 		}
 		submenu1.append(new nw.MenuItem({ label: Blockly.Msg["WORKSPACE_LANGUAGE_ARDUINO"] }));
 		submenu1.items[2].click = function () {
-			location.href = 'js/arduino/index.html?lang=zh-hant&core=arduino';
+			location.href = 'js/arduino/index.html?lang=zh-hant';
 		}
 		submenu1.append(new nw.MenuItem({ type: 'separator' }));
 		submenu1.append(new nw.MenuItem({ label: Blockly.Msg["WORKSPACE_BLOCKFACTORY"] }));
 		submenu1.items[4].click = function () {
-			location.href = 'js/blockfactory/index.html';
+			location.href = 'js/blockfactory/index.html?lang=zh-hant';
 		}
+		submenu1.append(new nw.MenuItem({ label: Blockly.Msg["WORKSPACE_BLOCKTOOL"] }));
+		submenu1.items[5].click = function () {
+			location.href = 'js/arduino/tool/index.html?lang=zh-hant';
+		}		
 		submenu1.append(new nw.MenuItem({ type: 'separator' }));
 		submenu1.append(new nw.MenuItem({ label: Blockly.Msg["WORKSPACE_RELOAD"] }));
-		submenu1.items[6].click = function () {
+		submenu1.items[7].click = function () {
 			location.reload();
 		}		
 		menubar.append(new nw.MenuItem({
@@ -672,16 +676,4 @@ function start() {
 	}
 	registerWorkspaceBlocksToCode();	
 	
-}
-
-//新增自訂積木JS檔
-function addCustomScript(foldname, path) {
-	var file = ["blocks.js", "javascript.js", "toolbox.js", lang + ".js", "function.js"];
-	for (var i=0;i<file.length;i++) {
-		var url = path.substr(0, path.lastIndexOf("/")).replace("file:///","") + "/customBlocks/" + foldname + "/" + file[i];
-		var s = document.createElement("script");
-		s.type = "text/javascript";
-		s.src = url;
-		document.getElementsByTagName('head')[0].append(s);
-	}
 }
