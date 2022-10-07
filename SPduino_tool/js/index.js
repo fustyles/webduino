@@ -620,7 +620,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		js+= ");";
 		document.getElementById('category_function_js').value = js;
-		console.log(document.getElementById('category_function_js').value);
 	}
 	
 	//語言
