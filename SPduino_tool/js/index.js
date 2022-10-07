@@ -88,41 +88,41 @@ document.addEventListener('DOMContentLoaded', function() {
 			clearTimeout(myTimer);
 			clearTimeout(myTimer1);
 			myTimer = setTimeout(function(){
-				Blockly.Events.setGroup(!0);
-				var enabledBlockList = ["initializes_loop"];
-				var variableBlockList = ["variables_set","variables_set1","variables_set7"];
-				var variableGlobalBlockList = ["variables_set","variables_set1"];
-				var blocks = Blockly.mainWorkspace.getAllBlocks();
-				var p;
-				for (var i=0;i<blocks.length;i++) {
-					p = blocks[i];
-					if (enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null&&p.outputConnection==null)) {
-						if (topCheck&&!blocks[i].isEnabled()) blocks[i].setEnabled(true);
-						if (variableGlobalBlockList.includes(blocks[i].type)&&blocks[i].getField("POSITION")) {
-							if (blocks[i].getFieldValue("POSITION")=="global")
+					Blockly.Events.setGroup(!0);
+					var enabledBlockList = ["initializes_loop"];
+					var variableBlockList = ["variables_set","variables_set1","variables_set7"];
+					var variableGlobalBlockList = ["variables_set","variables_set1"];
+					var blocks = Blockly.mainWorkspace.getAllBlocks();
+					var p;
+					for (var i=0;i<blocks.length;i++) {
+						p = blocks[i];
+						if (enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null&&p.outputConnection==null)) {
+							if (topCheck&&!blocks[i].isEnabled()) blocks[i].setEnabled(true);
+							if (variableGlobalBlockList.includes(blocks[i].type)&&blocks[i].getField("POSITION")) {
+								if (blocks[i].getFieldValue("POSITION")=="global")
+									continue;
+							}
+							else
 								continue;
 						}
-						else
-							continue;
-					}
-					p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
-					while(p) {
-						if ((enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null&&p.outputConnection==null))&&!p.getParent()) {
-							if (topCheck&&!blocks[i].isEnabled()) blocks[i].setEnabled(true);
-							break;
-						}
 						p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
-					}
-					if ((!blocks[i].getParent()||!blocks[i].getParent().isEnabled())&&(blocks[i].targetConnection==null||blocks[i].outputConnection==null)) {
-						if (topCheck&&blocks[i].isEnabled()) blocks[i].setEnabled(false);
-					}
-					if (blocks[i].getParent()&&blocks[i].getPreviousBlock()) {
-						if (variableBlockList.includes(p.type)&&variableBlockList.includes(blocks[i].getParent().type)) {
-							if (topCheck) blocks[i].unplug();
+						while(p) {
+							if ((enabledBlockList.includes(p.type)||variableBlockList.includes(p.type)||(p.previousConnection==null&&p.outputConnection==null))&&!p.getParent()) {
+								if (topCheck&&!blocks[i].isEnabled()) blocks[i].setEnabled(true);
+								break;
+							}
+							p = p.getParent()||p.getPreviousBlock()?p.getParent()||p.getPreviousBlock():"";
+						}
+						if ((!blocks[i].getParent()||!blocks[i].getParent().isEnabled())&&(blocks[i].targetConnection==null||blocks[i].outputConnection==null)) {
+							if (topCheck&&blocks[i].isEnabled()) blocks[i].setEnabled(false);
+						}
+						if (blocks[i].getParent()&&blocks[i].getPreviousBlock()) {
+							if (variableBlockList.includes(p.type)&&variableBlockList.includes(blocks[i].getParent().type)) {
+								if (topCheck) blocks[i].unplug();
+							}
 						}
 					}
-				}
-				Blockly.Events.setGroup(0);	
+					Blockly.Events.setGroup(0);	
 			}, 200);
 			myTimer1 = setTimeout(function(){
 				if (showCode) {
@@ -402,7 +402,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		exportToFile("blocks_function","blocks.js");
 		exportToFile("arduino_function","javascript.js");
 		exportToFile("category_function","toolbox.xml");
+		exportToFile("category_function_js","toolbox.js");
+		exportToFile("function_js","function.js");
 		exportToFile("message_function","en.js");
+		exportToFile("message_function","zh-hans.js");		
 		exportToFile("message_function","zh-hant.js");			
 	}
 	
@@ -605,6 +608,20 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 	//工具箱目錄
 	document.getElementById('category_function').value = code[2];
+	catecoryJS();
+	document.getElementById('category_function').onchange = function () {
+		catecoryJS();
+	}
+	function catecoryJS() {
+		var code = document.getElementById('category_function').value.split('\n');
+		var js = "'use strict';\n\nif (typeof toolbox_custom == 'undefined')\n  var toolbox_custom = [];\n\ntoolbox_custom.push(''";
+		for (var i=0;i<code.length;i++) {
+			js+= "\n+'" + code[i] + "'";
+		}
+		js+= ");";
+		document.getElementById('category_function_js').value = js;
+		console.log(document.getElementById('category_function_js').value);
+	}
 	
 	//語言
 	document.getElementById('message_function').value = code[3];	
