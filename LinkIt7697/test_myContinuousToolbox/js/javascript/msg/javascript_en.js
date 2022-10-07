@@ -7,9 +7,11 @@ var Blockly = Blockly || { Msg: Object.create(null) };
 Blockly.Msg["WORKSPACE_LANGUAGE"] = "Language Environtment";
 Blockly.Msg["WORKSPACE_LANGUAGE_JAVASCRIPT"] = "JavaScript";
 Blockly.Msg["WORKSPACE_LANGUAGE_PYTHON"] = "Python";
+Blockly.Msg["WORKSPACE_LANGUAGE_ARDUINO"] = "Arduino";
 Blockly.Msg["WORKSPACE_RESET"] = "Reset workspace";
 Blockly.Msg["WORKSPACE_RELOAD"] = "Window reload";
 Blockly.Msg["WORKSPACE_VERSION"] = "Version";
+Blockly.Msg["WORKSPACE_BLOCKFACTORY"] = "Block factory";
 Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_XML_MSG"] = "Export blocks to XML file";
 Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"] = "Import blocks from XML file";
 Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_HTML_MSG"] = "Export blocks to HTML file";
@@ -27,8 +29,8 @@ Blockly.Msg["BUTTON_EXPORT_XML"] = "Export blocks to XML file";
 Blockly.Msg["BUTTON_EXPORT_CODE"] = "Export blocks to source Code";
 Blockly.Msg["LANG-SELECTOR"] = "Language";
 Blockly.Msg["SELECT_EN"] = "English";
-Blockly.Msg["SELECT_ZH-HANS"] = "Chinese(S)";
-Blockly.Msg["SELECT_ZH-HANT"] = "Chinese(T)";
+Blockly.Msg["SELECT_ZH-HANS"] = "Chinese(CHS)";
+Blockly.Msg["SELECT_ZH-HANT"] = "Chinese(CHT)";
 
 
 Blockly.Msg["TOOLBOX_NAME"] = "TOOLBOX";
