@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		var dropdownWidth = 200;
 		var dropdownHeight = 100;		  
 		  
-		var imageField = new Blockly.FieldImage(options[0][2], 18, 18, { alt: "*", flipRtl: "FALSE" });
+		var imageField = new Blockly.FieldImage(options[0][1], 18, 18, { alt: "*", flipRtl: "FALSE" });
 		var field = new fuFieldsImageDropdown.eventparam('', options, this.validate, dropdownWidth, dropdownHeight, imageField);
 		
 		this.appendDummyInput()
