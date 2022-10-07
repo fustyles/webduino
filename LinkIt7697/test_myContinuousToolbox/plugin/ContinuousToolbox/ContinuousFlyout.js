@@ -51,7 +51,7 @@ class ContinuousFlyout extends Blockly.VerticalFlyout {
       }
     });
 
-    this.autoClose = true;
+    this.autoClose = false;
   }
 
   /**
