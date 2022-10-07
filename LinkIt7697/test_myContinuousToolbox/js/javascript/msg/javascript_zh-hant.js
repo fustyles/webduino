@@ -20,19 +20,20 @@ Blockly.Msg["WORKSPACE_TO_CODE_Y_MSG"] = "即時輸出積木程式碼";
 Blockly.Msg["WORKSPACE_TO_CODE_N_MSG"] = "停止輸出積木程式碼";
 Blockly.Msg["WORKSPACE_RUNCODE"] = "執行積木程式碼 (Ctrl+Shift)";
 Blockly.Msg["WORKSPACE_IMPORT_JS_URL"] = "匯入JS檔路徑";
-
-
-Blockly.Msg["BUTTON_RUN"] = "執行";
+Blockly.Msg["BUTTON_RUN"] = Blockly.Msg["WORKSPACE_RUNCODE"];
 Blockly.Msg["BUTTON_IMPORT_MODULE"] = "匯入JS函式檔";
-Blockly.Msg["BUTTON_RESET"] = "重設工作區";
-Blockly.Msg["BUTTON_IMPORT_XML"] = "匯入積木XML檔";
-Blockly.Msg["BUTTON_EXPORT_XML"] = "匯出積木XML檔";
-Blockly.Msg["BUTTON_EXPORT_CODE"] = "匯出原始碼";
+Blockly.Msg["BUTTON_RESET"] = Blockly.Msg["WORKSPACE_RESET"];
+Blockly.Msg["BUTTON_IMPORT_XML"] = Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"];
+Blockly.Msg["BUTTON_EXPORT_XML"] = Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_XML_MSG"];
+Blockly.Msg["BUTTON_EXPORT_CODE"] = Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_HTML_MSG"];
 Blockly.Msg["LANG-SELECTOR"] = "語系";
 Blockly.Msg["SELECT_EN"] = "英文";
 Blockly.Msg["SELECT_ZH-HANS"] = "簡中";
 Blockly.Msg["SELECT_ZH-HANT"] = "繁中";
 
+
+
+//*************** System Message ******************
 
 Blockly.Msg["TOOLBOX_NAME"] = "工具箱";
 Blockly.Msg["LOGIC_NAME"] = "邏輯";
@@ -44,9 +45,8 @@ Blockly.Msg["COLOUR_NAME"] = "顏色";
 Blockly.Msg["VARIABLES_NAME"] = "變數";
 Blockly.Msg["PROCEDURES_NAME"] = "函式";
 
-//*************** System Message ******************
-
 Blockly.Msg["ADD_COMMENT"] = "加入註解";
+
 Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "無法刪除變數「%1」，因為這是功能「%2」定義的一部份內容";
 Blockly.Msg["CHANGE_VALUE_TITLE"] = "修改值：";
 Blockly.Msg["CLEAN_UP"] = "整理區塊";

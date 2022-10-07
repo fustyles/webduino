@@ -26,20 +26,20 @@ Blockly.Msg["WORKSPACE_ENVIRONMENT_LOCAL"] = "本机Python环境";
 Blockly.Msg["WORKSPACE_ENVIRONMENT_LOCAL_CHANGE"] = "转换本机Python环境";
 Blockly.Msg["WORKSPACE_ENVIRONMENT_PORTABLE"] = "可携Python环境";
 Blockly.Msg["WORKSPACE_ENVIRONMENT_PORTABLE_CHANGE"] = "转换可携Python环境";
-
-
-
-Blockly.Msg["BUTTON_RUN"] = "执行";
+Blockly.Msg["BUTTON_RUN"] = Blockly.Msg["WORKSPACE_RUNCODE"];
 Blockly.Msg["BUTTON_IMPORT_MODULE"] = "汇入模组";
-Blockly.Msg["BUTTON_RESET"] = "重设工作区";
-Blockly.Msg["BUTTON_IMPORT_XML"] = "汇入积木XML档";
-Blockly.Msg["BUTTON_EXPORT_XML"] = "汇出积木XML档";
-Blockly.Msg["BUTTON_EXPORT_CODE"] = "汇出原始码";
+Blockly.Msg["BUTTON_RESET"] = Blockly.Msg["WORKSPACE_RESET"];
+Blockly.Msg["BUTTON_IMPORT_XML"] = Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"];
+Blockly.Msg["BUTTON_EXPORT_XML"] = Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_XML_MSG"];
+Blockly.Msg["BUTTON_EXPORT_CODE"] = Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_PY_MSG"];
 Blockly.Msg["LANG-SELECTOR"] = "语系";
 Blockly.Msg["SELECT_EN"] = "英文";
 Blockly.Msg["SELECT_ZH-HANS"] = "简中";
 Blockly.Msg["SELECT_ZH-HANT"] = "繁中";
 
+
+
+//*************** System Message ******************
 
 Blockly.Msg["TOOLBOX_NAME"] = "工具箱";
 Blockly.Msg["LOGIC_NAME"] = "逻辑";
@@ -51,9 +51,8 @@ Blockly.Msg["COLOUR_NAME"] = "颜色";
 Blockly.Msg["VARIABLES_NAME"] = "变数";
 Blockly.Msg["PROCEDURES_NAME"] = "函式";
 
-//*************** System Message ******************
-
 Blockly.Msg["ADD_COMMENT"] = "添加注释";
+
 Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "不能删除变量“%1”，因为它是函数“%2”定义的一部分";
 Blockly.Msg["CHANGE_VALUE_TITLE"] = "更改值：";
 Blockly.Msg["CLEAN_UP"] = "整理块";

@@ -26,20 +26,20 @@ Blockly.Msg["WORKSPACE_ENVIRONMENT_LOCAL"] = "Local python environment";
 Blockly.Msg["WORKSPACE_ENVIRONMENT_LOCAL_CHANGE"] = "Set local python environment";
 Blockly.Msg["WORKSPACE_ENVIRONMENT_PORTABLE"] = "Portable python environment";
 Blockly.Msg["WORKSPACE_ENVIRONMENT_PORTABLE_CHANGE"] = "Set portable python environment";
-
-
-
-Blockly.Msg["BUTTON_RUN"] = "Run";
+Blockly.Msg["BUTTON_RUN"] = Blockly.Msg["WORKSPACE_RUNCODE"];
 Blockly.Msg["BUTTON_IMPORT_MODULE"] = "Import module";
-Blockly.Msg["BUTTON_RESET"] = "Reset workspace";
-Blockly.Msg["BUTTON_IMPORT_XML"] = "Import blocks from XML file";
-Blockly.Msg["BUTTON_EXPORT_XML"] = "Export blocks to XML file";
-Blockly.Msg["BUTTON_EXPORT_CODE"] = "Export blocks to source Code";
+Blockly.Msg["BUTTON_RESET"] = Blockly.Msg["WORKSPACE_RESET"];
+Blockly.Msg["BUTTON_IMPORT_XML"] = Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"];
+Blockly.Msg["BUTTON_EXPORT_XML"] = Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_XML_MSG"];
+Blockly.Msg["BUTTON_EXPORT_CODE"] = Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_PY_MSG"];
 Blockly.Msg["LANG-SELECTOR"] = "Language";
 Blockly.Msg["SELECT_EN"] = "English";
 Blockly.Msg["SELECT_ZH-HANS"] = "Chinese(CHS)";
 Blockly.Msg["SELECT_ZH-HANT"] = "Chinese(CHT)";
 
+
+
+//*************** System Message ******************
 
 Blockly.Msg["TOOLBOX_NAME"] = "TOOLBOX";
 Blockly.Msg["LOGIC_NAME"] = "LOGIC";
@@ -51,9 +51,8 @@ Blockly.Msg["COLOUR_NAME"] = "COLOUR";
 Blockly.Msg["VARIABLES_NAME"] = "VARIABLES";
 Blockly.Msg["PROCEDURES_NAME"] = "PROCEDURES";
 
-//*************** System Message ******************
-
 Blockly.Msg["ADD_COMMENT"] = "Add Comment";
+
 Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "Can't delete the variable '%1' because it's part of the definition of the function '%2'";
 Blockly.Msg["CHANGE_VALUE_TITLE"] = "Change value:";
 Blockly.Msg["CLEAN_UP"] = "Clean up Blocks";
