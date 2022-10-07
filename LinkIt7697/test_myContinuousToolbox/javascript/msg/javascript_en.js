@@ -11,6 +11,7 @@ Blockly.Msg["WORKSPACE_LANGUAGE_ARDUINO"] = "Arduino";
 Blockly.Msg["WORKSPACE_RESET"] = "Reset workspace";
 Blockly.Msg["WORKSPACE_RELOAD"] = "Window reload";
 Blockly.Msg["WORKSPACE_VERSION"] = "Version";
+Blockly.Msg["WORKSPACE_BLOCKFACTORY"] = "Block factory";
 Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_XML_MSG"] = "Export blocks to XML file";
 Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"] = "Import blocks from XML file";
 Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_HTML_MSG"] = "Export blocks to HTML file";

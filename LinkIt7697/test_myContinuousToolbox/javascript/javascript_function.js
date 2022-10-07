@@ -19,12 +19,18 @@ function start() {
 		}
 		submenu1.append(new nw.MenuItem({ label: Blockly.Msg["WORKSPACE_LANGUAGE_ARDUINO"] }));
 		submenu1.items[2].click = function () {
-			location.href = 'js/Arduino/index.html?lang=zh-hant&core=arduino';
-		}		
-		submenu1.append(new nw.MenuItem({ label: Blockly.Msg["WORKSPACE_RELOAD"] }));
-		submenu1.items[3].click = function () {
-			location.reload();
+			location.href = 'js/arduino/index.html?lang=zh-hant&core=arduino';
 		}
+		submenu1.append(new nw.MenuItem({ type: 'separator' }));		
+		submenu1.append(new nw.MenuItem({ label: Blockly.Msg["WORKSPACE_BLOCKFACTORY"] }));
+		submenu1.items[4].click = function () {
+			location.href = 'js/blockfactory/index.html';
+		}
+		submenu1.append(new nw.MenuItem({ type: 'separator' }));
+		submenu1.append(new nw.MenuItem({ label: Blockly.Msg["WORKSPACE_RELOAD"] }));
+		submenu1.items[6].click = function () {
+			location.reload();
+		}	
 		menubar.append(new nw.MenuItem({
 		  label: Blockly.Msg["WORKSPACE_LANGUAGE"],
 		  submenu: submenu1
@@ -79,6 +85,7 @@ function start() {
     });
 	
 	var continuousFlyout = Blockly.getMainWorkspace().toolbox_.flyout_;
+	this.autoClose = true;
 	continuousFlyout.setVisible(false);
 	  
 	//Double Click關閉彈出積木選單
@@ -107,6 +114,9 @@ function start() {
 		}
 		else if (event.type=="toolbox_item_select"&&continuousFlyout.isVisible_==false) {
 			continuousFlyout.setVisible(true);
+		}
+		else if (event.type=="toolbox_item_select"&&(!event.newItem)&&continuousFlyout.isVisible_==true) {
+			continuousFlyout.setVisible(false);
 		}
 	}
 	workspace.addChangeListener(onWorkspaceChanged);

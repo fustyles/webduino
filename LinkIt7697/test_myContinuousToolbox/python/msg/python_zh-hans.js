@@ -11,6 +11,7 @@ Blockly.Msg["WORKSPACE_LANGUAGE_ARDUINO"] = "Arduino";
 Blockly.Msg["WORKSPACE_RESET"] = "重设工作区";
 Blockly.Msg["WORKSPACE_RELOAD"] = "重新整理";
 Blockly.Msg["WORKSPACE_VERSION"] = "版本资讯";
+Blockly.Msg["WORKSPACE_BLOCKFACTORY"] = "积木工厂";
 Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_XML_MSG"] = "工作区汇出积木结构XML档案";
 Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"] = "工作区汇入积木结构XML档案";
 Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_PY_MSG"] = "工作区汇出PY档";
