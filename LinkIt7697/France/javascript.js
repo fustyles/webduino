@@ -1,3 +1,186 @@
+Blockly.Arduino['esp32_webbluetooth_uuid'] = function(block) { 
+	var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
+	var service = Blockly.Arduino.valueToCode(block, 'service', Blockly.Arduino.ORDER_ATOMIC);
+	var tx = Blockly.Arduino.valueToCode(block, 'tx', Blockly.Arduino.ORDER_ATOMIC);
+	var rx = Blockly.Arduino.valueToCode(block, 'rx', Blockly.Arduino.ORDER_ATOMIC);
+	var statements_do = Blockly.Arduino.statementToCode(block, 'do_')||"";
+  
+	Blockly.Arduino.definitions_['BLE_initial'] = '#include <BLEDevice.h>\n'
+												 +'#include <BLEServer.h>\n'
+												 +'#include <BLEUtils.h>\n'
+												 +'#include <BLE2902.h>\n'
+												 +'BLECharacteristic *characteristicTX;\n'
+												 +'#define SERVICE_UUID           '+service+'\n'
+												 +'#define CHARACTERISTIC_UUID_RX ' + rx + '\n'
+												 +'#define CHARACTERISTIC_UUID_TX ' + tx + '\n'											 
+												 +'bool deviceConnected = false;\n'
+												 +'String bleData = "";\n'												 
+												 +'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\n'
+												 +'byte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'
+												 +'void ExecuteCommand() {\n'
+												 +'  //Serial.println("");\n'
+												 +'  //Serial.println("Command: "+Command);\n'
+												 +'  //Serial.println("cmd= "+cmd+" ,p1= "+p1+" ,p2= "+p2+" ,p3= "+p3+" ,p4= "+p4+" ,p5= "+p5+" ,p6= "+p6+" ,p7= "+p7+" ,p8= "+p8+" ,p9= "+p9);\n'
+												 +'  //Serial.println("");\n'
+												 +'	 if (Command.indexOf("?")==0) {\n'
+												 +'    if (cmd=="inputpullup") {\n'
+												 +'      pinMode(p1.toInt(), INPUT_PULLUP);\n'
+												 +'    }\n'
+												 +'    else if (cmd=="pinmode") {\n'
+												 +'      if (p2.toInt()==1)\n'
+												 +'        pinMode(p1.toInt(), OUTPUT);\n'
+												 +'      else\n'
+												 +'        pinMode(p1.toInt(), INPUT);\n'
+												 +'    }\n'
+												 +'    else if (cmd=="digitalwrite") {\n'
+												 +'      ledcDetachPin(p1.toInt());\n'
+												 +'      pinMode(p1.toInt(), OUTPUT);\n'
+												 +'      digitalWrite(p1.toInt(), p2.toInt());\n'
+												 +'    }\n'
+												 +'    else if (cmd=="digitalread") {\n'
+												 +'     Feedback=String(digitalRead(p1.toInt()));\n'
+												 +'    }\n'
+										  		 +'    else if (cmd=="analogwrite") {\n'
+										  		 +'      ledcAttachPin(p1.toInt(), 1);\n'
+												 +'      ledcSetup(1, 5000, 8);\n'
+												 +'      ledcWrite(1,p2.toInt());\n'
+												 +'    }\n'
+												 +'    else if (cmd=="analogread") {\n'
+												 +'      Feedback=String(analogRead(p1.toInt()));\n'
+												 +'    }\n'
+												 +'    else if (cmd=="touchread") {\n'
+												 +'      Feedback=String(touchRead(p1.toInt()));\n'
+												 +'    }\n'
+												 +'    else if (cmd=="servo") {\n'
+												 +'      ledcAttachPin(p1.toInt(), p3.toInt());\n'
+												 +'      ledcSetup(p3.toInt(), 50, 16);\n'
+												 +'      int val = 7864-p2.toInt()*34.59;\n'
+												 +'      if (val > 7864)\n'
+												 +'         val = 7864;\n'
+												 +'      else if (val < 1638)\n'
+												 +'        val = 1638;\n'
+												 +'      ledcWrite(p3.toInt(), val);\n'
+												 +'    }\n'
+												 +'    else if (cmd=="relay") {\n'
+												 +'      pinMode(p1.toInt(), OUTPUT);\n'
+												 +'      digitalWrite(p1.toInt(), p2.toInt());\n'
+												 +'    }\n'
+												 +'    else if (cmd=="print") {\n'
+												 +'      Serial.print(p1);\n'
+												 +'    }\n'
+												 +'    else if (cmd=="println") {\n'
+												 +'      Serial.println(p1);\n'
+												 +'    }\n'
+												 +'    else {\n'+ statements_do
+												 +'    }\n'
+												 +'  } else {\n'+ statements_do
+												 +'  }\n'
+												 +'}\n' 
+												 +'void getCommand(char c) {\n'
+												 +'  if (c==\'?\') receiveState=1;\n'
+												 +'  if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) receiveState=0;\n'
+												 +'  if (receiveState==1) {\n'
+												 +'    Command=Command+String(c);\n'
+												 +'    if (c==\'=\') cmdState=0;\n'
+												 +'    if (c==\';\') pState++;\n'
+												 +'    if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==2)&&(c!=\';\')) p2=p2+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==3)&&(c!=\';\')) p3=p3+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==4)&&(c!=\';\')) p4=p4+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==5)&&(c!=\';\')) p5=p5+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==6)&&(c!=\';\')) p6=p6+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==7)&&(c!=\';\')) p7=p7+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==8)&&(c!=\';\')) p8=p8+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) p9=p9+String(c);\n'
+												 +'    if (c==\'?\') questionState=1;\n'
+												 +'    if (c==\'=\') equalState=1;\n'
+												 +'    if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'
+												 +'  }\n'
+												 +'}\n'												 
+												 +'class ServerCallbacks: public BLEServerCallbacks {\n'
+												 +'    void onConnect(BLEServer* pServer) {\n'
+												 +'      deviceConnected = true;\n'
+												 +'    };\n'
+												 +'    void onDisconnect(BLEServer* pServer) {\n'
+												 +'      deviceConnected = false;\n'
+												 +'    }\n'
+												 +'};\n'
+												 +'class CharacteristicCallbacks: public BLECharacteristicCallbacks {\n'
+												 +'    void onWrite(BLECharacteristic *characteristic) {\n'
+												 +'        std::string rxValue = characteristic->getValue();\n'
+												 +'        if (rxValue.length() > 0) {\n'
+												 +'    		   Command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'
+												 +'    		   receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'
+												 +'			   bleData = "";'
+												 +'            for (int i = 0; i < rxValue.length(); i++) {\n'
+												 +'                char c = char(rxValue[i]);\n'
+												 +'                bleData += String(c);'
+												 +'                getCommand(c);\n'
+												 +'            }\n'
+												 +'  		   ExecuteCommand();\n'
+												 +'            if (Feedback!="") {\n'
+												 +'                characteristicTX->setValue(Feedback.c_str());\n'
+												 +'                characteristicTX->notify();\n'
+												 +'		       }\n'	
+												 +'        }\n'
+												 +'    }\n'
+												 +'};\n';
+												 
+												 
+	Blockly.Arduino.setups_['BLE_setups'] = ''										 
+										 +'BLEDevice::init('+blename+');\n'
+										 +'BLEServer *server = BLEDevice::createServer();\n'
+										 +'server->setCallbacks(new ServerCallbacks());\n'
+										 +'BLEService *service = server->createService(SERVICE_UUID);\n'
+										 +'characteristicTX = service->createCharacteristic(\n'
+										 +'                    CHARACTERISTIC_UUID_TX,\n'
+										 +'                    BLECharacteristic::PROPERTY_READ   |\n'
+										 +'                    BLECharacteristic::PROPERTY_WRITE  |\n'
+										 +'                    BLECharacteristic::PROPERTY_NOTIFY |\n'
+										 +'                    BLECharacteristic::PROPERTY_INDICATE |\n'
+										 +'                    BLECharacteristic::PROPERTY_BROADCAST\n'
+										 +'                  );\n'
+										 +'characteristicTX->addDescriptor(new BLE2902());\n'
+										 +'BLECharacteristic *characteristic = service->createCharacteristic(\n'
+										 +'                                      CHARACTERISTIC_UUID_RX,\n'
+										 +'                                      BLECharacteristic::PROPERTY_READ   |\n'
+										 +'                                      BLECharacteristic::PROPERTY_WRITE  |\n'
+										 +'                                      BLECharacteristic::PROPERTY_NOTIFY |\n'
+										 +'                                      BLECharacteristic::PROPERTY_INDICATE |\n'
+										 +'                                      BLECharacteristic::PROPERTY_BROADCAST\n'
+										 +'                                     );\n'
+										 +'characteristic->setCallbacks(new CharacteristicCallbacks());\n'
+										 +'service->start();\n'
+										 +'server->getAdvertising()->start();\n'
+										 +'Serial.println("Waiting a client connection to notify...");\n';
+
+	var code = '';
+	return code;
+};
+
+Blockly.Arduino['esp32_webbluetooth_sendtext'] = function(block) {
+  var value_cmd = Blockly.Arduino.valueToCode(block, 'cmd_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'characteristicTX->setValue(String('+value_cmd+').c_str());\ncharacteristicTX->notify();\n'
+  return code;
+};
+
+Blockly.Arduino['esp32_webbluetooth_getstate'] = function(block) {
+  var code = 'deviceConnected';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['esp32_webbluetooth_wait'] = function(block) {
+  var value_baudrate = block.getFieldValue('baudrate_');
+  var code = 'while (!deviceConnected) {\n  delay(1000);\n}\n';
+  return code;
+};
+
+Blockly.Arduino['esp32_webbluetooth_get'] = function(block) {
+  var code = 'bleData';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['tft_sd_drawjpg'] = function(block) {
 	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
 	var x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC)||0;

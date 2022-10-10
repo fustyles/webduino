@@ -29,6 +29,23 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg.WEBBLUETOOTH_SHOW = "網頁藍芽(ESP32)";
+Blockly.Msg.WEBBLUETOOTH_BLENAME_SHOW = "名稱";
+Blockly.Msg.WEBBLUETOOTH_SHOW_SHOW = "顯示";
+Blockly.Msg.WEBBLUETOOTH_STATE_SHOW = "網頁藍芽(ESP32) 開發板連線狀態";
+Blockly.Msg.WEBBLUETOOTH_GET_SHOW = "網頁藍芽(ESP32) 取得資料";
+Blockly.Msg.WEBBLUETOOTH_GETSTATE_SHOW = "網頁藍芽(ESP32) 取得連線狀態";
+Blockly.Msg.WEBBLUETOOTH_CLEAR_SHOW = "網頁藍芽(ESP32) 清除回傳資料";
+Blockly.Msg.WEBBLUETOOTH_DATA_SHOW = "回傳資料";
+Blockly.Msg.WEBBLUETOOTH_SENDTEXT_SHOW = "網頁藍芽(ESP32) 傳送文字";
+Blockly.Msg.WEBBLUETOOTH_ELEMENT_ONCLICK_SHOW = "網頁藍芽(ESP32) 設定";
+Blockly.Msg.WEBBLUETOOTH_WAIT_SHOW = "網頁藍芽(ESP32) 等待連線後向下執行";
+Blockly.Msg.WEBBLUETOOTH_UUID_SHOW = "網頁藍芽(ESP32) UUID";
+Blockly.Msg.WEBBLUETOOTH_SERVICE_SHOW = "服務";
+Blockly.Msg.WEBBLUETOOTH_TX_SHOW = "TX";
+Blockly.Msg.WEBBLUETOOTH_RX_SHOW = "RX";
+Blockly.Msg.WEBBLUETOOTH_GETDATA_SHOW = "取得資料後執行";
+
 Blockly.Msg.FRANCE1_CUSTOMCODE_SHOW = "程式碼";
 Blockly.Msg.FRANCE1_CODE_SHOW = "程式碼";
 Blockly.Msg.FRANCE1_VARIABLE_SHOW = "變數";

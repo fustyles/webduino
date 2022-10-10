@@ -29,6 +29,23 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg.WEBBLUETOOTH_SHOW = "Web Bluetooth(ESP32)";
+Blockly.Msg.WEBBLUETOOTH_BLENAME_SHOW = "Name";
+Blockly.Msg.WEBBLUETOOTH_SHOW_SHOW = "Show";
+Blockly.Msg.WEBBLUETOOTH_STATE_SHOW = "Web Bluetooth(ESP32) connect state";
+Blockly.Msg.WEBBLUETOOTH_GET_SHOW = "Web Bluetooth(ESP32) get data";
+Blockly.Msg.WEBBLUETOOTH_GETSTATE_SHOW = "Web Bluetooth(ESP32) get connection state";
+Blockly.Msg.WEBBLUETOOTH_CLEAR_SHOW = "Web Bluetooth(ESP32) clear data";
+Blockly.Msg.WEBBLUETOOTH_DATA_SHOW = "Response data";
+Blockly.Msg.WEBBLUETOOTH_SENDTEXT_SHOW = "Web Bluetooth(ESP32) send text";
+Blockly.Msg.WEBBLUETOOTH_ELEMENT_ONCLICK_SHOW = "Web Bluetooth(ESP32) set";
+Blockly.Msg.WEBBLUETOOTH_WAIT_SHOW = "Web Bluetooth(ESP32) wait until connected";
+Blockly.Msg.WEBBLUETOOTH_UUID_SHOW = "Web Bluetooth(ESP32) UUID";
+Blockly.Msg.WEBBLUETOOTH_SERVICE_SHOW = "Service";
+Blockly.Msg.WEBBLUETOOTH_TX_SHOW = "TX";
+Blockly.Msg.WEBBLUETOOTH_RX_SHOW = "RX";
+Blockly.Msg.WEBBLUETOOTH_GETDATA_SHOW = "after getting module command";
+
 Blockly.Msg.FRANCE1_CUSTOMCODE_SHOW = "Custom Code";
 Blockly.Msg.FRANCE1_CODE_SHOW = "Custom Code";
 Blockly.Msg.FRANCE1_VARIABLE_SHOW = "Custom Variable";
