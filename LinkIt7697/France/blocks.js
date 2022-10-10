@@ -2,14 +2,14 @@ Blockly.Blocks['linkit7697_webbluetooth_uuid'] = {
   init: function() {	  
     this.appendDummyInput()
         .appendField(Blockly.Msg.WEBBLUETOOTH_LINKIT7697_SHOW)
-		.appendField(Blockly.Msg.WEBBLUETOOTH_SERVICE_SHOW);
+		.appendField(Blockly.Msg.WEBBLUETOOTH_UUID_SHOW);
 	this.appendValueInput("blename")
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.appendField(Blockly.Msg.WEBBLUETOOTH_BLENAME_SHOW)
 		.setCheck("String");
 	this.appendValueInput("service")
       .setAlign(Blockly.ALIGN_RIGHT)	
-		.appendField(Blockly.Msg.WEBBLUETOOTH_UUID_SHOW)
+		.appendField(Blockly.Msg.WEBBLUETOOTH_SERVICE_SHOW)
 		.setCheck("String");
 	this.appendValueInput("rx")
       .setAlign(Blockly.ALIGN_RIGHT)	
@@ -98,14 +98,14 @@ Blockly.Blocks['esp32_webbluetooth_uuid'] = {
   init: function() {	  
     this.appendDummyInput()
         .appendField(Blockly.Msg.WEBBLUETOOTH_ESP32_SHOW)
-		.appendField(Blockly.Msg.WEBBLUETOOTH_SERVICE_SHOW);
+		.appendField(Blockly.Msg.WEBBLUETOOTH_UUID_SHOW);
 	this.appendValueInput("blename")
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.appendField(Blockly.Msg.WEBBLUETOOTH_BLENAME_SHOW)
 		.setCheck("String");
 	this.appendValueInput("service")
       .setAlign(Blockly.ALIGN_RIGHT)	
-		.appendField(Blockly.Msg.WEBBLUETOOTH_UUID_SHOW)
+		.appendField(Blockly.Msg.WEBBLUETOOTH_SERVICE_SHOW)
 		.setCheck("String");
 	this.appendValueInput("rx")
       .setAlign(Blockly.ALIGN_RIGHT)	
