@@ -15,11 +15,14 @@
  
 Blockly.Blocks["test_fieldFilter"] = {
   init: function() {
-	var options = ['','aaa','abc','add','bbb','bcd','ccc','def','deg'];
-	this.appendDummyInput()
-		.appendField(new CustomFields.FieldFilter('', options), 'FILTER');
-		
-	etc...
+	this.options = ['','aaa','abc','add','bbb','bcd','ccc','def','deg'];
+    this.appendDummyInput()
+        .appendField('Filter')
+        .appendField(new fuFilterFields.eventparam('', this.options), 'FILTER');
+    this.setStyle('loop_blocks');
+    this.setInputsInline(true);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);	
   }
 };
 
@@ -31,16 +34,18 @@ Blockly.Blocks["test_fieldFilter1"] = {
 		['ba','banana'],
 		['ch','cherry']
 	];
-	var options = [];
-	this.options.forEach(
-		element => options.push(element[0])
-	);
 	
-	this.field = new CustomFields.FieldFilter('', options, this.validate);
-	this.appendDummyInput()
+	this.field = new fuFilterFields.eventparam('', this.options, this.validate);
+    this.appendDummyInput()
+        .appendField('Filter')
         .appendField(this.field, 'FILTER');
 		
-    etc...
+    this.appendDummyInput()
+        .appendField('', 'VALUE');
+    this.setStyle('loop_blocks');
+    this.setInputsInline(true);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);	
   },
   validate: function(newValue) {
 	const block = this.sourceBlock_;
@@ -58,7 +63,6 @@ Blockly.Blocks["test_fieldFilter1"] = {
 			block.setFieldValue('', 'VALUE');
 	}
 	else {
-		var value = "";
 		block.options.forEach(function(element) {
 			if (element[0]==block.field.WORDS[Number(newValue)]) {
 				block.setFieldValue(element[1], 'VALUE');
@@ -70,11 +74,17 @@ Blockly.Blocks["test_fieldFilter1"] = {
  */
 
 
-var CustomFields = CustomFields || {};
+var fuFilterFields = fuFilterFields || {};
 
-CustomFields.FieldFilter = function(text, options, opt_validate) {
-  CustomFields.FieldFilter.superClass_.constructor.call(this, text, opt_validate);
-  this.INITWORDS = options;
+fuFilterFields.eventparam = function(text, options, opt_validate) {
+  fuFilterFields.eventparam.superClass_.constructor.call(this, text, opt_validate);
+  if (options[0].length==0)
+	this.INITWORDS = Array.from(options);
+  else if (options[0].length==2) {
+	this.INITWORDS = [];
+	for (var i=0;i<options.length;i++)
+		this.INITWORDS.push(options[i][0]);
+  }
   this.WORDS = this.IINITWORDS;
 
   this.setSpellcheck(false);
@@ -82,14 +92,14 @@ CustomFields.FieldFilter = function(text, options, opt_validate) {
   this.moveWrapper_ = null;
   this.downWrapper_ = null;	
 };
-Blockly.utils.object.inherits(CustomFields.FieldFilter, Blockly.FieldTextInput);
+Blockly.utils.object.inherits(fuFilterFields.eventparam, Blockly.FieldTextInput);
 
-CustomFields.FieldFilter.fromJson = function(options) {
-  return new CustomFields.FieldFilter(options['fieldFilter']);
+fuFilterFields.eventparam.fromJson = function(options) {
+  return new fuFilterFields.eventparam(options['fuFilterFields']);
 };
 
-CustomFields.FieldFilter.prototype.showEditor_ = function() {
-  CustomFields.FieldFilter.superClass_.showEditor_.call(this);
+fuFilterFields.eventparam.prototype.showEditor_ = function() {
+  fuFilterFields.eventparam.superClass_.showEditor_.call(this);
 
   var div = Blockly.WidgetDiv.DIV;
   if (!div.firstChild) {
@@ -116,9 +126,9 @@ CustomFields.FieldFilter.prototype.showEditor_ = function() {
   this.updateGraph_();
 };
 
-CustomFields.FieldFilter.prototype.dropdownCreate_ = function() {
+fuFilterFields.eventparam.prototype.dropdownCreate_ = function() {
   this.imageElement_ = document.createElement('div');
-  this.imageElement_.id = 'fieldFilter';
+  this.imageElement_.id = 'eventparam';
   this.WORDS = this.INITWORDS;
   var optionsLength = this.WORDS.length;
   var height = 24.4 * optionsLength;
@@ -127,7 +137,7 @@ CustomFields.FieldFilter.prototype.dropdownCreate_ = function() {
   return this.imageElement_;
 };
 
-CustomFields.FieldFilter.prototype.dropdownDispose_ = function() {
+fuFilterFields.eventparam.prototype.dropdownDispose_ = function() {
   if (this.clickWrapper_) {
     Blockly.unbindEvent_(this.clickWrapper_);
     this.clickWrapper_ = null;
@@ -143,12 +153,12 @@ CustomFields.FieldFilter.prototype.dropdownDispose_ = function() {
   this.imageElement_ = null;
 };
 
-CustomFields.FieldFilter.prototype.hide_ = function() {
+fuFilterFields.eventparam.prototype.hide_ = function() {
   Blockly.WidgetDiv.hide();
   Blockly.DropDownDiv.hideWithoutAnimation();
 };
 
-CustomFields.FieldFilter.prototype.onMouseMove = function(e) {
+fuFilterFields.eventparam.prototype.onMouseMove = function(e) {
   var bBox = this.imageElement_.getBoundingClientRect();
   var dy = e.clientY - bBox.top;
   
@@ -159,7 +169,7 @@ CustomFields.FieldFilter.prototype.onMouseMove = function(e) {
   this.imageElement_.innerHTML = highLight.join("<br>");
 };
 
-CustomFields.FieldFilter.prototype.onMouseDown = function(e) {
+fuFilterFields.eventparam.prototype.onMouseDown = function(e) {
   var bBox = this.imageElement_.getBoundingClientRect();
   var dy = e.clientY - bBox.top;
   var highLight = Array.from(this.WORDS);
@@ -167,14 +177,14 @@ CustomFields.FieldFilter.prototype.onMouseDown = function(e) {
   this.setEditorValue_(note);
 };
 
-CustomFields.FieldFilter.prototype.valueToNote = function(value) {
+fuFilterFields.eventparam.prototype.valueToNote = function(value) {
   if (this.WORDS)
 	  return this.WORDS[Number(value)];
   else
 	  return "";
 };
 
-CustomFields.FieldFilter.prototype.noteToValue = function(text) {
+fuFilterFields.eventparam.prototype.noteToValue = function(text) {
   var normalizedText = text.trim();
   var i = this.WORDS.indexOf(normalizedText);
   this.WORDS = [];
@@ -193,33 +203,33 @@ CustomFields.FieldFilter.prototype.noteToValue = function(text) {
   return i > -1? 0 : -1;
 };
 
-CustomFields.FieldFilter.prototype.getText_ = function() {
+fuFilterFields.eventparam.prototype.getText_ = function() {
   if (this.isBeingEdited_) {
-    return CustomFields.FieldFilter.superClass_.getText_.call(this);
+    return fuFilterFields.eventparam.superClass_.getText_.call(this);
   }
   return this.valueToNote(this.getValue()) || null;
 };
 
-CustomFields.FieldFilter.prototype.getEditorText_ = function(value) {
+fuFilterFields.eventparam.prototype.getEditorText_ = function(value) {
   return this.valueToNote(value);
 };
 
-CustomFields.FieldFilter.prototype.getValueFromEditorText_ = function(text) {
+fuFilterFields.eventparam.prototype.getValueFromEditorText_ = function(text) {
   return this.noteToValue(text);
 };
 
-CustomFields.FieldFilter.prototype.render_ = function() {
-  CustomFields.FieldFilter.superClass_.render_.call(this);
+fuFilterFields.eventparam.prototype.render_ = function() {
+  fuFilterFields.eventparam.superClass_.render_.call(this);
   this.updateGraph_();
 };
 
-CustomFields.FieldFilter.prototype.updateGraph_ = function() {
+fuFilterFields.eventparam.prototype.updateGraph_ = function() {
   if (!this.imageElement_) {
     return;
   }
 };
 
-CustomFields.FieldFilter.prototype.doClassValidation_ = function(opt_newValue) {
+fuFilterFields.eventparam.prototype.doClassValidation_ = function(opt_newValue) {
   if (opt_newValue === null || opt_newValue === undefined) {
     return null;
   }
