@@ -1,15 +1,111 @@
-Blockly.Blocks['esp32_webbluetooth_uuid'] = {
+Blockly.Blocks['linkit7697_webbluetooth_uuid'] = {
   init: function() {	  
     this.appendDummyInput()
-      .setAlign(Blockly.ALIGN_RIGHT)	
-        .appendField(Blockly.Msg.WEBBLUETOOTH_UUID_SHOW);
+        .appendField(Blockly.Msg.WEBBLUETOOTH_LINKIT7697_SHOW)
+		.appendField(Blockly.Msg.WEBBLUETOOTH_SERVICE_SHOW);
 	this.appendValueInput("blename")
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.appendField(Blockly.Msg.WEBBLUETOOTH_BLENAME_SHOW)
-		.setCheck("String");		
+		.setCheck("String");
 	this.appendValueInput("service")
       .setAlign(Blockly.ALIGN_RIGHT)	
-		.appendField(Blockly.Msg.WEBBLUETOOTH_SERVICE_SHOW)
+		.appendField(Blockly.Msg.WEBBLUETOOTH_UUID_SHOW)
+		.setCheck("String");
+	this.appendValueInput("rx")
+      .setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.WEBBLUETOOTH_RX_SHOW)
+		.setCheck("String");  
+	this.appendValueInput("tx")
+      .setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.WEBBLUETOOTH_TX_SHOW)
+		.setCheck("String");
+	this.setInputsInline(false);	  
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(140);
+	this.setHelpUrl("https://www.uuidgenerator.net/");
+  }
+};
+
+Blockly.Blocks['linkit7697_webbluetooth_listen'] = {
+  init: function() {	  
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_LINKIT7697_SHOW);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_GETDATA_SHOW);
+    this.appendStatementInput("do_");		
+	this.setInputsInline(true);	  
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(140);
+	this.setHelpUrl("https://www.uuidgenerator.net/");
+  }
+};
+
+Blockly.Blocks['linkit7697_webbluetooth_sendtext'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_LINKIT7697_SHOW);	  
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SENDTEXT_SHOW);
+	this.appendValueInput("cmd_")
+		.setCheck("String");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(140);
+  }  
+};
+
+Blockly.Blocks['linkit7697_webbluetooth_getstate'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_LINKIT7697_SHOW);	  
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_GETSTATE_SHOW);
+    this.setInputsInline(true);	 	  
+    this.setOutput(true, null);  
+    this.setColour(140);
+  }  
+};
+
+Blockly.Blocks['linkit7697_webbluetooth_wait'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_LINKIT7697_SHOW);	  
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_WAIT_SHOW);   
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(140);
+  }  
+};
+
+Blockly.Blocks['linkit7697_webbluetooth_get'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_LINKIT7697_SHOW);	  
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_GET_SHOW);
+    this.setInputsInline(true);	 	  
+    this.setOutput(true, null);  
+    this.setColour(140);
+  }  
+};
+
+Blockly.Blocks['esp32_webbluetooth_uuid'] = {
+  init: function() {	  
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_ESP32_SHOW)
+		.appendField(Blockly.Msg.WEBBLUETOOTH_SERVICE_SHOW);
+	this.appendValueInput("blename")
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.WEBBLUETOOTH_BLENAME_SHOW)
+		.setCheck("String");
+	this.appendValueInput("service")
+      .setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.WEBBLUETOOTH_UUID_SHOW)
 		.setCheck("String");
 	this.appendValueInput("rx")
       .setAlign(Blockly.ALIGN_RIGHT)	
@@ -30,30 +126,14 @@ Blockly.Blocks['esp32_webbluetooth_uuid'] = {
   }
 };
 
-Blockly.Blocks['esp32_webbluetooth_state'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.WEBBLUETOOTH_STATE_SHOW);
-    this.setInputsInline(true);	  
-    this.setOutput(true, null);  
-    this.setColour(140);
-  }  
-};
-
 Blockly.Blocks['esp32_webbluetooth_sendtext'] = {
   init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_ESP32_SHOW);	  
     this.appendDummyInput()
         .appendField(Blockly.Msg.WEBBLUETOOTH_SENDTEXT_SHOW);
 	this.appendValueInput("cmd_")
 		.setCheck("String");
-    this.appendDummyInput("newline")	  
-		.appendField(new Blockly.FieldDropdown([
-			["　",""],
-			["\\r","\\r"],
-			["\\n","\\n"],
-			["\\r\\n","\\r\\n"]
-		]), "end_");
-	this.getInput("newline").setVisible(false);
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -64,6 +144,8 @@ Blockly.Blocks['esp32_webbluetooth_sendtext'] = {
 Blockly.Blocks['esp32_webbluetooth_getstate'] = {
   init: function() {
     this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_ESP32_SHOW);	  
+    this.appendDummyInput()
         .appendField(Blockly.Msg.WEBBLUETOOTH_GETSTATE_SHOW);
     this.setInputsInline(true);	 	  
     this.setOutput(true, null);  
@@ -71,23 +153,10 @@ Blockly.Blocks['esp32_webbluetooth_getstate'] = {
   }  
 };
 
-Blockly.Blocks['esp32_webbluetooth_getid'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.WEBBLUETOOTH_GETID_SHOW);	  
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg.WEBBLUETOOTH_CONNECT_SHOW,"webbluetooth_open"],
-		[Blockly.Msg.WEBBLUETOOTH_CLOSE_SHOW,"webbluetooth_close"]
-  	]), "id_"); 	  
-    this.setInputsInline(true);	 	  
-    this.setOutput(true, null);  
-    this.setColour(140);
-  }
-};
-
 Blockly.Blocks['esp32_webbluetooth_wait'] = {
   init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_ESP32_SHOW);	  
     this.appendDummyInput()
         .appendField(Blockly.Msg.WEBBLUETOOTH_WAIT_SHOW);   
     this.setInputsInline(true);
@@ -99,6 +168,8 @@ Blockly.Blocks['esp32_webbluetooth_wait'] = {
 
 Blockly.Blocks['esp32_webbluetooth_get'] = {
   init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_ESP32_SHOW);	  
     this.appendDummyInput()
         .appendField(Blockly.Msg.WEBBLUETOOTH_GET_SHOW);
     this.setInputsInline(true);	 	  

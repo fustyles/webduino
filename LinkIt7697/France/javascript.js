@@ -1,3 +1,152 @@
+Blockly.Arduino['linkit7697_webbluetooth_uuid'] = function(block) { 
+	var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
+	var service = Blockly.Arduino.valueToCode(block, 'service', Blockly.Arduino.ORDER_ATOMIC);
+	var tx = Blockly.Arduino.valueToCode(block, 'tx', Blockly.Arduino.ORDER_ATOMIC);
+	var rx = Blockly.Arduino.valueToCode(block, 'rx', Blockly.Arduino.ORDER_ATOMIC);
+  
+	Blockly.Arduino.definitions_['webbluetooth_initial'] = '#include <LBLE.h>\n'
+														 +'#include <LBLEPeriphral.h>\n'
+														 +'LBLEService SERVICE_UUID('+service+');\n'
+														 +'LBLECharacteristicString CHARACTERISTIC_UUID_RX(' + rx + ', LBLE_READ | LBLE_WRITE);\n'
+														 +'LBLECharacteristicString CHARACTERISTIC_UUID_TX(' + tx + ', LBLE_READ | LBLE_WRITE);\n'
+														 +'String bleData = "";\n';				 
+												 
+	Blockly.Arduino.setups_['webbluetooth_setups'] = ''	
+												 +'LBLE.begin();\n'
+												 +'while (!LBLE.ready()) {\n'
+												 +'  delay(100);\n'
+												 +'}\n'
+												 +'LBLEAdvertisementData advertisement;\n'	
+												 +'advertisement.configAsConnectableDevice('+blename+');\n'
+												 +'LBLEPeripheral.setName('+blename+');\n'										 
+												 +'SERVICE_UUID.addAttribute(CHARACTERISTIC_UUID_RX);\n'
+												 +'SERVICE_UUID.addAttribute(CHARACTERISTIC_UUID_TX);\n'
+												 +'LBLEPeripheral.addService(SERVICE_UUID);\n'
+												 +'LBLEPeripheral.begin();\n'
+												 +'LBLEPeripheral.advertise(advertisement);\n'
+												 +'Serial.println("Waiting a client connection to notify...");\n';
+
+	var code = '';
+	return code;
+};
+
+Blockly.Arduino['linkit7697_webbluetooth_listen'] = function(block) { 
+	var statements_do = Blockly.Arduino.statementToCode(block, 'do_')||"";
+  
+	Blockly.Arduino.definitions_['webbluetooth_comand'] = ''												 
+												 +'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\n'
+												 +'byte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'
+												 +'void ExecuteCommand() {\n'
+												 +'  //Serial.println("");\n'
+												 +'  //Serial.println("Command: "+Command);\n'
+												 +'  //Serial.println("cmd= "+cmd+" ,p1= "+p1+" ,p2= "+p2+" ,p3= "+p3+" ,p4= "+p4+" ,p5= "+p5+" ,p6= "+p6+" ,p7= "+p7+" ,p8= "+p8+" ,p9= "+p9);\n'
+												 +'  //Serial.println("");\n'
+												 +'	 if (Command.indexOf("?")==0) {\n'
+												 +'    if (cmd=="inputpullup") {\n'
+												 +'      pinMode(p1.toInt(), INPUT_PULLUP);\n'
+												 +'    }\n'
+												 +'    else if (cmd=="pinmode") {\n'
+												 +'      if (p2.toInt()==1)\n'
+												 +'        pinMode(p1.toInt(), OUTPUT);\n'
+												 +'      else\n'
+												 +'        pinMode(p1.toInt(), INPUT);\n'
+												 +'    }\n'
+												 +'    else if (cmd=="digitalwrite") {\n'
+												 +'      pinMode(p1.toInt(), OUTPUT);\n'
+												 +'      digitalWrite(p1.toInt(), p2.toInt());\n'
+												 +'    }\n'
+												 +'    else if (cmd=="digitalread") {\n'
+												 +'     Feedback=String(digitalRead(p1.toInt()));\n'
+												 +'    }\n'
+										  		 +'    else if (cmd=="analogwrite") {\n'
+												 +'      pinMode(p1.toInt(), OUTPUT);\n'												 
+										  		 +'      analogWrite(p1.toInt(), p2.toInt());\n'
+												 +'    }\n'
+												 +'    else if (cmd=="analogread") {\n'
+												 +'      Feedback=String(analogRead(p1.toInt()));\n'
+												 +'    }\n'
+												 +'    else if (cmd=="print") {\n'
+												 +'      Serial.print(p1);\n'
+												 +'    }\n'
+												 +'    else if (cmd=="println") {\n'
+												 +'      Serial.println(p1);\n'
+												 +'    }\n'
+												 +'    else {\n'+ statements_do
+												 +'    }\n'
+												 +'  } else {\n'+ statements_do
+												 +'  }\n'
+												 +'}\n' 
+												 +'void getCommand(char c) {\n'
+												 +'  if (c==\'?\') receiveState=1;\n'
+												 +'  if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) receiveState=0;\n'
+												 +'  if (receiveState==1) {\n'
+												 +'    Command=Command+String(c);\n'
+												 +'    if (c==\'=\') cmdState=0;\n'
+												 +'    if (c==\';\') pState++;\n'
+												 +'    if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==2)&&(c!=\';\')) p2=p2+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==3)&&(c!=\';\')) p3=p3+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==4)&&(c!=\';\')) p4=p4+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==5)&&(c!=\';\')) p5=p5+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==6)&&(c!=\';\')) p6=p6+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==7)&&(c!=\';\')) p7=p7+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==8)&&(c!=\';\')) p8=p8+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) p9=p9+String(c);\n'
+												 +'    if (c==\'?\') questionState=1;\n'
+												 +'    if (c==\'=\') equalState=1;\n'
+												 +'    if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'
+												 +'  }\n'
+												 +'}\n';
+
+	Blockly.Arduino.definitions_['webbluetooth_notify'] = ''
+			 +'      void webbluetoothNotify(String message) {\n'
+			 +'          CHARACTERISTIC_UUID_TX.setValue(message);\n'
+			 +'          LBLEPeripheral.notifyAll(CHARACTERISTIC_UUID_TX);\n'
+			 +'          CHARACTERISTIC_UUID_TX.setValue("");\n'
+			 +'		 }\n'	
+			 
+	var code = ''
+			 +'if (LBLEPeripheral.connected()==1) {\n'
+			 +'	 if (CHARACTERISTIC_UUID_RX.isWritten()) {\n'
+			 +'      bleData = CHARACTERISTIC_UUID_RX.getValue();\n'
+			 +'    	 Feedback="",Command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'
+			 +'    	 receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'	  
+			 +'      for (int i=0;i<bleData.length();i++) {\n'
+			 +'      	getCommand(bleData[i]);\n'
+			 +'      }\n'
+			 +'  	 ExecuteCommand();\n'
+			 +'      if (Feedback!="") {\n'
+			 +'          webbluetoothNotify(Feedback);\n'
+			 +'		 }\n'	
+			 +'  }\n'
+			 +'}\n';
+  
+	return code;
+};
+
+Blockly.Arduino['linkit7697_webbluetooth_sendtext'] = function(block) {
+  var value_cmd = Blockly.Arduino.valueToCode(block, 'cmd_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'webbluetoothNotify(String('+value_cmd+').c_str());\n';
+  return code;
+};
+
+Blockly.Arduino['linkit7697_webbluetooth_getstate'] = function(block) {
+  var code = 'LBLEPeripheral.connected()';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['linkit7697_webbluetooth_wait'] = function(block) {
+  var value_baudrate = block.getFieldValue('baudrate_');
+  var code = 'while (!LBLEPeripheral.connected()) {\n  delay(1000);\n}\n';
+  return code;
+};
+
+Blockly.Arduino['linkit7697_webbluetooth_get'] = function(block) {
+  var code = 'bleData';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['esp32_webbluetooth_uuid'] = function(block) { 
 	var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
 	var service = Blockly.Arduino.valueToCode(block, 'service', Blockly.Arduino.ORDER_ATOMIC);
@@ -5,7 +154,7 @@ Blockly.Arduino['esp32_webbluetooth_uuid'] = function(block) {
 	var rx = Blockly.Arduino.valueToCode(block, 'rx', Blockly.Arduino.ORDER_ATOMIC);
 	var statements_do = Blockly.Arduino.statementToCode(block, 'do_')||"";
   
-	Blockly.Arduino.definitions_['BLE_initial'] = '#include <BLEDevice.h>\n'
+	Blockly.Arduino.definitions_['webbluetooth_initial'] = '#include <BLEDevice.h>\n'
 												 +'#include <BLEServer.h>\n'
 												 +'#include <BLEUtils.h>\n'
 												 +'#include <BLE2902.h>\n'
@@ -110,7 +259,7 @@ Blockly.Arduino['esp32_webbluetooth_uuid'] = function(block) {
 												 +'    void onWrite(BLECharacteristic *characteristic) {\n'
 												 +'        std::string rxValue = characteristic->getValue();\n'
 												 +'        if (rxValue.length() > 0) {\n'
-												 +'    		   Command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'
+												 +'    		   Feedback="",Command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'
 												 +'    		   receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'
 												 +'			   bleData = "";'
 												 +'            for (int i = 0; i < rxValue.length(); i++) {\n'
@@ -128,7 +277,7 @@ Blockly.Arduino['esp32_webbluetooth_uuid'] = function(block) {
 												 +'};\n';
 												 
 												 
-	Blockly.Arduino.setups_['BLE_setups'] = ''										 
+	Blockly.Arduino.setups_['webbluetooth_setups'] = ''										 
 										 +'BLEDevice::init('+blename+');\n'
 										 +'BLEServer *server = BLEDevice::createServer();\n'
 										 +'server->setCallbacks(new ServerCallbacks());\n'

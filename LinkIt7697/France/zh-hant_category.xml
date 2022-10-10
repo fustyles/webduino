@@ -88,4 +88,5 @@
 <category><name>serverUart</name><replace>UART模組</replace></category>
 <category><name>tft</name><replace>TFT全彩螢幕</replace></category>
 <category><name>esp32_webbluetooth</name><replace>ESP32網頁藍芽模組</replace></category>
+<category><name>linkit7697_webbluetooth</name><replace>LinkIt7697網頁藍芽模組</replace></category>
 </xml>
