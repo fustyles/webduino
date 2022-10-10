@@ -7,24 +7,20 @@
 /**
  * @fileoverview my Field Filter.
  * @author https://www.facebook.com/francefu/
- * @Update 12/15/2021 21:00 (Taiwan Standard Time)
+ * @Update 10/10/2022 21:00 (Taiwan Standard Time)
  */
 
 Blockly.Blocks["test_fieldFilter"] = {
   init: function() {
-	var options = ['','aaa','abc','add','bbb','bcd','ccc','def','deg'];
+	this.options = ['','aaa','abc','add','bbb','bcd','ccc','def','deg'];
     this.appendDummyInput()
         .appendField('Filter')
-        .appendField(new CustomFields.FieldFilter('', options), 'FILTER');
+        .appendField(new fuFilterFields.eventparam('', this.options), 'FILTER');
     this.setStyle('loop_blocks');
     this.setInputsInline(true);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);	
   }
-};
-
-Blockly.JavaScript['test_fieldFilter'] = function(block) {
-  return '';
 };
 
 Blockly.Blocks["test_fieldFilter1"] = {
@@ -35,12 +31,8 @@ Blockly.Blocks["test_fieldFilter1"] = {
 		['ba','banana'],
 		['ch','cherry']
 	];
-	var options = [];
-	this.options.forEach(
-		element => options.push(element[0])
-	);
 	
-	this.field = new CustomFields.FieldFilter('', options, this.validate);
+	this.field = new fuFilterFields.eventparam('', this.options, this.validate);
     this.appendDummyInput()
         .appendField('Filter')
         .appendField(this.field, 'FILTER');
@@ -75,6 +67,12 @@ Blockly.Blocks["test_fieldFilter1"] = {
 		})
 	}
   }
+};
+
+
+
+Blockly.JavaScript['test_fieldFilter'] = function(block) {
+  return '';
 };
 
 Blockly.JavaScript['test_fieldFilter1'] = function(block) {
