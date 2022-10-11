@@ -47,6 +47,7 @@ Blockly.Msg.WEBBLUETOOTH_TX_SHOW = "TX";
 Blockly.Msg.WEBBLUETOOTH_RX_SHOW = "RX";
 Blockly.Msg.WEBBLUETOOTH_GETDATA_SHOW = "取得資料後執行";
 Blockly.Msg.WEBBLUETOOTH_GETDATA_ONCES_SHOW = "取得一次資料後執行";
+Blockly.Msg.WEBBLUETOOTH_GETMAC_SHOW = "取得BLE裝置位址";
 
 Blockly.Msg.FRANCE1_CUSTOMCODE_SHOW = "程式碼";
 Blockly.Msg.FRANCE1_CODE_SHOW = "程式碼";

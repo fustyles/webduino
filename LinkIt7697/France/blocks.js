@@ -94,6 +94,18 @@ Blockly.Blocks['linkit7697_webbluetooth_get'] = {
   }  
 };
 
+Blockly.Blocks['linkit7697_webbluetooth_getmac'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_LINKIT7697_SHOW);	  
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_GETMAC_SHOW);
+    this.setInputsInline(true);	 	  
+    this.setOutput(true, null);  
+    this.setColour(140);
+  }  
+};
+
 Blockly.Blocks['esp32_webbluetooth_uuid'] = {
   init: function() {	  
     this.appendDummyInput()

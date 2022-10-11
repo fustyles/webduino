@@ -745,6 +745,8 @@
 				</value>
 			</block>
 			<block type="linkit7697_webbluetooth_get"> 
+			</block>
+			<block type="linkit7697_webbluetooth_getmac"> 
 			</block>			
 		</category>			
 

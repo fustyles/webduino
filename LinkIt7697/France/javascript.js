@@ -155,6 +155,11 @@ Blockly.Arduino['linkit7697_webbluetooth_get'] = function(block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['linkit7697_webbluetooth_getmac'] = function(block) {
+  var code = 'LBLE.getDeviceAddress().toString().c_str()';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['esp32_webbluetooth_uuid'] = function(block) { 
 	var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
 	var service = Blockly.Arduino.valueToCode(block, 'service', Blockly.Arduino.ORDER_ATOMIC);
