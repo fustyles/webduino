@@ -41,11 +41,12 @@ Blockly.Msg.WEBBLUETOOTH_DATA_SHOW = "Response data";
 Blockly.Msg.WEBBLUETOOTH_SENDTEXT_SHOW = "send text";
 Blockly.Msg.WEBBLUETOOTH_ELEMENT_ONCLICK_SHOW = "set";
 Blockly.Msg.WEBBLUETOOTH_WAIT_SHOW = "wait until connected";
-Blockly.Msg.WEBBLUETOOTH_UUID_SHOW = "UUID";
+Blockly.Msg.WEBBLUETOOTH_UUID_SHOW = "Initial";
 Blockly.Msg.WEBBLUETOOTH_SERVICE_SHOW = "Service";
 Blockly.Msg.WEBBLUETOOTH_TX_SHOW = "TX";
 Blockly.Msg.WEBBLUETOOTH_RX_SHOW = "RX";
 Blockly.Msg.WEBBLUETOOTH_GETDATA_SHOW = "after getting data";
+Blockly.Msg.WEBBLUETOOTH_GETDATA_ONCES_SHOW = "after getting data onces";
 
 Blockly.Msg.FRANCE1_CUSTOMCODE_SHOW = "Custom Code";
 Blockly.Msg.FRANCE1_CODE_SHOW = "Custom Code";

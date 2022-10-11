@@ -71,9 +71,11 @@ Blockly.Arduino['linkit7697_webbluetooth_listen'] = function(block) {
 												 +'    else if (cmd=="println") {\n'
 												 +'      Serial.println(p1);\n'
 												 +'    }\n'
-												 +'    else {\n'+ statements_do
+												 +'    else {\n'
+												 +'      customCommand();\n'
 												 +'    }\n'
-												 +'  } else {\n'+ statements_do
+												 +'  } else {\n'
+												 +'      customCommand();\n'
 												 +'  }\n'
 												 +'}\n' 
 												 +'void getCommand(char c) {\n'
@@ -98,6 +100,12 @@ Blockly.Arduino['linkit7697_webbluetooth_listen'] = function(block) {
 												 +'    if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'
 												 +'  }\n'
 												 +'}\n';
+												 
+	Blockly.Arduino.definitions_['webbluetooth_comand_custom'] = ''	
+												 +'void customCommand() {\n'
+												 +  statements_do
+												 +'}\n';
+												 
 
 	Blockly.Arduino.definitions_['webbluetooth_notify'] = ''
 			 +'      void webbluetoothNotify(String message) {\n'
@@ -220,11 +228,13 @@ Blockly.Arduino['esp32_webbluetooth_uuid'] = function(block) {
 												 +'    else if (cmd=="println") {\n'
 												 +'      Serial.println(p1);\n'
 												 +'    }\n'
-												 +'    else {\n'+ statements_do
+												 +'    else {\n'
+												 +'      customCommand();\n'
 												 +'    }\n'
-												 +'  } else {\n'+ statements_do
+												 +'  } else {\n'
+												 +'      customCommand();\n'
 												 +'  }\n'
-												 +'}\n' 
+												 +'}\n'
 												 +'void getCommand(char c) {\n'
 												 +'  if (c==\'?\') receiveState=1;\n'
 												 +'  if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) receiveState=0;\n'
@@ -276,6 +286,10 @@ Blockly.Arduino['esp32_webbluetooth_uuid'] = function(block) {
 												 +'    }\n'
 												 +'};\n';
 												 
+	Blockly.Arduino.definitions_['webbluetooth_comand_custom'] = ''	
+												 +'void customCommand() {\n'
+												 +  statements_do
+												 +'}\n';												 
 												 
 	Blockly.Arduino.setups_['webbluetooth_setups'] = ''										 
 										 +'BLEDevice::init('+blename+');\n'

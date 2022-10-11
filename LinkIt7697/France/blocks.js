@@ -32,7 +32,7 @@ Blockly.Blocks['linkit7697_webbluetooth_listen'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.WEBBLUETOOTH_LINKIT7697_SHOW);
     this.appendDummyInput()
-        .appendField(Blockly.Msg.WEBBLUETOOTH_GETDATA_SHOW);
+        .appendField(Blockly.Msg.WEBBLUETOOTH_GETDATA_ONCES_SHOW);
     this.appendStatementInput("do_");		
 	this.setInputsInline(true);	  
 	this.setPreviousStatement(true);
