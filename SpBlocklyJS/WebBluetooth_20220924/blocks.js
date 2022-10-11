@@ -2,6 +2,7 @@ Blockly.Blocks['webbluetooth_uuid'] = {
   init: function() {	  
     this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)	
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW)	
         .appendField(Blockly.Msg.WEBBLUETOOTH_UUID_SHOW); 
 	this.appendValueInput("service")
       .setAlign(Blockly.ALIGN_RIGHT)	
@@ -25,7 +26,8 @@ Blockly.Blocks['webbluetooth_uuid'] = {
 
 Blockly.Blocks['webbluetooth_button'] = {
   init: function() {
-    this.appendDummyInput()
+    this.appendDummyInput()	
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW)
         .appendField(Blockly.Msg.WEBBLUETOOTH_ELEMENT_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
@@ -48,7 +50,8 @@ Blockly.Blocks['webbluetooth_button'] = {
 
 Blockly.Blocks['webbluetooth_button_position'] = {
   init: function() {
-    this.appendDummyInput()
+    this.appendDummyInput()	
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW)
         .appendField(Blockly.Msg.WEBBLUETOOTH_ELEMENT_SHOW);	  
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
@@ -71,7 +74,8 @@ Blockly.Blocks['webbluetooth_button_position'] = {
 
 Blockly.Blocks['webbluetooth_button_onclick'] = {
   init: function() {
-    this.appendDummyInput()
+    this.appendDummyInput()	
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW)
         .appendField(Blockly.Msg.WEBBLUETOOTH_ELEMENT_ONCLICK_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
@@ -90,7 +94,8 @@ Blockly.Blocks['webbluetooth_button_onclick'] = {
 
 Blockly.Blocks['webbluetooth_state'] = {
   init: function() {
-    this.appendDummyInput()
+    this.appendDummyInput()	
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW)
         .appendField(Blockly.Msg.WEBBLUETOOTH_STATE_SHOW);
     this.setInputsInline(true);	  
     this.setOutput(true, null);  
@@ -100,7 +105,8 @@ Blockly.Blocks['webbluetooth_state'] = {
 
 Blockly.Blocks['webbluetooth_sendtext'] = {
   init: function() {
-    this.appendDummyInput()
+    this.appendDummyInput()	
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW)
         .appendField(Blockly.Msg.WEBBLUETOOTH_SENDTEXT_SHOW);
 	this.appendValueInput("cmd_")
 		.setCheck("String");
@@ -121,7 +127,8 @@ Blockly.Blocks['webbluetooth_sendtext'] = {
 
 Blockly.Blocks['webbluetooth_get'] = {
   init: function() {
-    this.appendDummyInput()
+    this.appendDummyInput()	
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW)
         .appendField(Blockly.Msg.WEBBLUETOOTH_GET_SHOW);
     this.setInputsInline(true);	 	  
     this.setOutput(true, null);  
@@ -131,7 +138,8 @@ Blockly.Blocks['webbluetooth_get'] = {
 
 Blockly.Blocks['webbluetooth_getstate'] = {
   init: function() {
-    this.appendDummyInput()
+    this.appendDummyInput()	
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW)
         .appendField(Blockly.Msg.WEBBLUETOOTH_GETSTATE_SHOW);
     this.setInputsInline(true);	 	  
     this.setOutput(true, null);  
@@ -141,7 +149,8 @@ Blockly.Blocks['webbluetooth_getstate'] = {
 
 Blockly.Blocks['webbluetooth_getid'] = {
   init: function() {
-    this.appendDummyInput()
+    this.appendDummyInput()	
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW)
         .appendField(Blockly.Msg.WEBBLUETOOTH_GETID_SHOW);	  
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
@@ -156,7 +165,8 @@ Blockly.Blocks['webbluetooth_getid'] = {
 
 Blockly.Blocks['webbluetooth_wait'] = {
   init: function() {
-    this.appendDummyInput()
+    this.appendDummyInput()	
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW)
         .appendField(Blockly.Msg.WEBBLUETOOTH_WAIT_SHOW);   
     this.setInputsInline(true);
     this.setPreviousStatement(true);
@@ -167,9 +177,22 @@ Blockly.Blocks['webbluetooth_wait'] = {
 
 Blockly.Blocks['webbluetooth_getdata'] = {
   init: function () {
-  this.appendDummyInput()
+  this.appendDummyInput()	
+      .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW)
       .appendField(Blockly.Msg.WEBBLUETOOTH_GETDATA_SHOW);
   this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(140);
+  }
+};
+
+Blockly.Blocks['webbluetooth_stop'] = {
+  init: function () {
+  this.appendDummyInput()	
+      .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW)
+      .appendField(Blockly.Msg.WEBBLUETOOTH_STOP_SHOW);
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);

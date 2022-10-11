@@ -21,3 +21,4 @@ Blockly.Msg.WEBBLUETOOTH_SERVICE_SHOW = "Service";
 Blockly.Msg.WEBBLUETOOTH_TX_SHOW = "TX";
 Blockly.Msg.WEBBLUETOOTH_RX_SHOW = "RX";
 Blockly.Msg.WEBBLUETOOTH_GETDATA_SHOW = "Web Bluetooth after getting data";
+Blockly.Msg.WEBBLUETOOTH_STOP_SHOW = "stop connection";

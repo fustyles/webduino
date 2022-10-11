@@ -53,5 +53,7 @@ var catWebBluetooth ='<xml>'+
 			'</block>'+
 		'</value>'+
 	'</block>'+	
+	'<block type="webbluetooth_stop">'+ 
+	'</block>'+ 	
 '</category>'+
 '</xml>';	

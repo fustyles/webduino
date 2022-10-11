@@ -61,3 +61,8 @@ Blockly.JavaScript['webbluetooth_getdata'] = function(block) {
   var code = 'webbluetooth_getdata = async function() {\n' + statements_do + '\n};\n';
   return code;
 };
+
+Blockly.JavaScript['webbluetooth_stop'] = function(block) {
+  var code = 'buttonDisconnect();\n';
+  return code;
+};
