@@ -51,7 +51,7 @@
   <defs
      id="defs902">
     <style
-       id="style900">.cls-1{fill:#456789;}.cls-2{fill:#c8d1db;}</style>
+       id="style900">.cls-1{fill:#990099;}.cls-2{fill:#c8d1db;}</style>
   </defs>
   <title
      id="title904">logo-only</title>
@@ -63,7 +63,7 @@
     <path
        id="path906"
        d="M 20.140625,32 C 13.433598,31.994468 7.9944684,37.433598 8,44.140625 V 148.85938 C 7.99447,155.56641 13.433598,161.00553 20.140625,161 h 4.726563 c 2.330826,8.74182 10.245751,14.82585 19.292968,14.83008 C 53.201562,175.81878 61.108176,169.73621 63.4375,161 h 4.841797 15.726562 c 4.418278,0 8,-3.58172 8,-8 V 40 l -8,-8 z"
-       style="fill:#456789"
+       style="fill:#990099"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccccssccc" />
     <path
