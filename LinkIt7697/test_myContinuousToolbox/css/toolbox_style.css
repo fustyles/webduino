@@ -19,7 +19,7 @@
 /* Stacks the icon on top of the label. */
 .blocklyTreeRowContentContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 }
 .blocklyTreeRow {
