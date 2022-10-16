@@ -403,7 +403,7 @@ function start() {
 		else if	(h==1)	
 			var stageWidth = 5;
 		else if	(h==2)
-			var stageWidth = workspaceWidth - 240;
+			var stageWidth = workspaceWidth - 300;
 		stage.style.width = stageWidth + "px";
 
 		blocklyDiv.style.width = (workspaceWidth-stageWidth)+"px";
