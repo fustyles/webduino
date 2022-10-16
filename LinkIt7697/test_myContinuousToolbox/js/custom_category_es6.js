@@ -71,8 +71,8 @@ class CustomCategory extends Blockly.ToolboxCategory {
 	else
 		iconImg.src = 'png/logic_category.png';
     iconImg.alt = '';
-    iconImg.width = '25';
-    iconImg.height = '25';
+    iconImg.width = '40';
+    iconImg.height = '40';
     return iconImg;
   }
 }
