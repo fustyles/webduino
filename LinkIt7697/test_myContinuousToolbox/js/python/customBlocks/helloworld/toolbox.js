@@ -15,7 +15,3 @@ toolbox_custom.push(''
 +'	  	<block type="test2"></block>'
 +'    </category>'
 );
-
-
-
-
