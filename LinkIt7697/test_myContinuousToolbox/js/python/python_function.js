@@ -451,7 +451,9 @@ function start() {
 			var endPos = event.srcElement.selectionEnd;
 			event.srcElement.value =event.srcElement.value.substring(0, startPos)
 				+ "    "
-				+ event.srcElement.value.substring(endPos, event.srcElement.value.length);			
+				+ event.srcElement.value.substring(endPos, event.srcElement.value.length);
+			event.srcElement.selectionStart = startPos+4;
+			event.srcElement.selectionEnd = startPos+4;			
 		}
 		if (event.ctrlKey&&event.shiftKey&&!event.repeat) {
 			runCode(true);
