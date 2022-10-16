@@ -7323,9 +7323,9 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
   if (selectBoardType()=="LinkIt")
 	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <LWiFi.h>";
   else if (selectBoardType()=="esp8266")
-	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <ESP8266WiFi.h>";
+	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <ESP8266WiFi.h>\n#include <WiFiClientSecure.h>";
   else 
-	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>";
+	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>\n#include <WiFiClientSecure.h>";
 
   Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = "'+ssid+'";';
   Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = "'+pass+'";';
@@ -13449,7 +13449,7 @@ Blockly.Arduino['esp32_cam_initial'] = function(block) {
 	if (flash=="Y")
 		Blockly.Arduino.definitions_['flash'] = "//Flash mode";
 
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\n'+
+	Blockly.Arduino.definitions_['define_esp_camera'] ='#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\n'+
 															'#define PWDN_GPIO_NUM     32\n'+
 															'#define RESET_GPIO_NUM    -1\n'+
 															'#define XCLK_GPIO_NUM      0\n'+
