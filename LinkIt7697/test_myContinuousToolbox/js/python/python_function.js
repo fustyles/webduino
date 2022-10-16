@@ -123,7 +123,7 @@ function start() {
 			workspace.toolbox_.clearSelection();
 			setTimeout(function(){
 				continuousFlyout.setVisible(false);
-			}, 50);
+			}, 10);
 		}
 	}
 	workspace.addChangeListener(onWorkspaceChanged);
