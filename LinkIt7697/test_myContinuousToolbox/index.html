@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/30 00:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/10/16 13:00
 https://www.facebook.com/francefu
 -->
 
@@ -9,12 +9,8 @@ https://www.facebook.com/francefu
 <head>
 	<meta charset="utf-8">
 	<title>SpBlockly</title>	
-	<script src="js/javascript/javascript_blockly.min.js"></script>		
-	<script src="js/custom_category_es6.js"></script>
-	<script src="js/toolbox_label_es6.js"></script>
-	<script src="js/toolbox.js"></script>
 	<script>
-		var version = "2.1.0";
+		var version = "2.3.0";
 		var search = location.search.toLowerCase();
 		//search = "?lang=en&core=python";
 		
@@ -28,6 +24,10 @@ https://www.facebook.com/francefu
 				break;
 			}
 		}
+		document.write("\<script src='js/"+core+"/"+core+"_blockly.min.js'\>\<\/script>");	
+		document.write("\<script src='js/custom_category_es6.js'\>\<\/script>");
+		document.write("\<script src='js/toolbox_label_es6.js'\>\<\/script>");
+		document.write("\<script src='js/toolbox.js'\>\<\/script>");	
 		document.write("\<script src='js/"+core+"/"+core+"_compressed.js'\>\<\/script>");
 		document.write("\<script src='js/"+core+"/"+core+"_function.js'\>\<\/script>");
 		document.write("\<script src='js/"+core+"/"+core+"_customBlocks.js'\>\<\/script>");
