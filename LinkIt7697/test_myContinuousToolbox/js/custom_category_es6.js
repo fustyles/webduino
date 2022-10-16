@@ -24,7 +24,12 @@ class CustomCategory extends Blockly.ToolboxCategory {
    * @override
    */
   addColourBorder_(colour){
-    this.rowDiv_.style.backgroundColor = colour;
+	if (colour)
+		this.rowDiv_.style.backgroundColor = colour;
+	else {
+		this.rowDiv_.style.backgroundColor = "#5b80a5";
+		this.colour_ = "#5b80a5";
+	}
   }
 
   /**
@@ -62,9 +67,9 @@ class CustomCategory extends Blockly.ToolboxCategory {
   createIconDom_() {
     const iconImg = document.createElement('img');
 	if (this.toolboxItemDef_.categorystyle)
-		iconImg.src = 'svg/'+this.toolboxItemDef_.categorystyle+'.svg';      
+		iconImg.src = 'svg/'+this.toolboxItemDef_.categorystyle+'.svg';
 	else
-		iconImg.src = 'svg/logo_only.svg';
+		iconImg.src = 'svg/logic_category.svg';
     iconImg.alt = '';
     iconImg.width = '25';
     iconImg.height = '25';
