@@ -119,7 +119,10 @@ function start() {
 			continuousFlyout.setVisible(true);
 		}
 		else if (event.type=="toolbox_item_select"&&(!event.newItem)&&continuousFlyout.isVisible_==true) {
-			continuousFlyout.setVisible(false);
+			workspace.toolbox_.clearSelection();
+			setTimeout(function(){
+				continuousFlyout.setVisible(false);
+			}, 10);
 		}
 	}
 	workspace.addChangeListener(onWorkspaceChanged);
