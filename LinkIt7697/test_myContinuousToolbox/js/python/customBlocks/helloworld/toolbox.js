@@ -4,7 +4,7 @@ if (typeof toolbox_custom == 'undefined')
 	var toolbox_custom = [];
 
 toolbox_custom.push(''
-+'    <category name="%{BKY_HELLOWORLD_NAME}" categorystyle="logic_category">'
++'    <category name="%{BKY_HELLOWORLD_NAME}">'
 +'      <block type="test1">'
 +'			<value name="message">'
 +'				<block type="text">'
