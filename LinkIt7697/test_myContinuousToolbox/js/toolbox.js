@@ -1,4 +1,4 @@
-var toolbox_sys = ''
+var toolbox_system = ''
 //+'    <toolboxlabel name="Custom Toolbox" colour="darkslategrey"></toolboxlabel>'
 +'    <category css-icon="customIcon fa fa-cog" name="%{BKY_LOGIC_NAME}" categorystyle="logic_category">'
 +'      <block type="controls_if"></block>'
