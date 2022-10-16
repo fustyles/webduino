@@ -2773,4 +2773,4 @@ return $.Blockly.Python;
 }));
 
 
-//# sourceMappingURL=Python_compressed.js.map
+//# sourceMappingURL=python_compressed.js.map
