@@ -66,10 +66,10 @@ class CustomCategory extends Blockly.ToolboxCategory {
    */
   createIconDom_() {
     const iconImg = document.createElement('img');
-	if (this.toolboxItemDef_.categorystyle)
-		iconImg.src = 'svg/'+this.toolboxItemDef_.categorystyle+'.svg';
-	else
-		iconImg.src = 'svg/logic_category.svg';
+    if (this.toolboxItemDef_.categorystyle)
+	iconImg.src = 'png/'+this.toolboxItemDef_.categorystyle+'.png';
+    else
+	iconImg.src = 'png/logic_category.png';
     iconImg.alt = '';
     iconImg.width = '25';
     iconImg.height = '25';
