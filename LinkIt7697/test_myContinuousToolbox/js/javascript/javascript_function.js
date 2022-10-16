@@ -28,7 +28,7 @@ function start() {
 		}
 		submenu1.append(new nw.MenuItem({ label: Blockly.Msg["WORKSPACE_BLOCKTOOL"] }));
 		submenu1.items[5].click = function () {
-			location.href = 'js/arduino/tool/index.html?lang=zh-hant';
+			location.href = 'js/blocktool/index.html?lang=zh-hant';
 		}		
 		submenu1.append(new nw.MenuItem({ type: 'separator' }));
 		submenu1.append(new nw.MenuItem({ label: Blockly.Msg["WORKSPACE_RELOAD"] }));
@@ -52,8 +52,8 @@ function start() {
 	
 	//積木工具箱初始化
 	toolboxXmlString='<xml id="toolbox">';
-	if (typeof toolbox_sys != 'undefined')	
-		toolboxXmlString+=toolbox_sys;
+	if (typeof toolbox_system != 'undefined')	
+		toolboxXmlString+=toolbox_system;
 	if (typeof toolbox_custom != 'undefined')	
 		toolboxXmlString+=toolbox_custom.join("\n");
 	toolboxXmlString+='</xml>';
@@ -112,7 +112,9 @@ function start() {
 				}, 200);
 			}			
 		}
-		if ((event.type=="create"||event.type=="click"||event.type=="delete")&&continuousFlyout.isVisible_==true) {
+		
+		
+		if ((event.type=="create"||event.type=="click")&&continuousFlyout.isVisible_==true) {
 			continuousFlyout.setVisible(false);
 		}
 		else if (event.type=="toolbox_item_select"&&continuousFlyout.isVisible_==false) {
