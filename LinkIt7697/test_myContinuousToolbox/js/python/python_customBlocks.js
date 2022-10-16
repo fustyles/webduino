@@ -16,4 +16,3 @@ function addCustomScript(foldname, path) {
 var path = document.currentScript.src;
 
 addCustomScript("helloworld", path);
-
