@@ -2200,6 +2200,8 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 			data += '+String('+text+')+"|"';
 	}
 	data = data.substring(0, data.length-4);
+	
+	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
 
 	Blockly.Arduino.definitions_.Spreadsheet_insert = '\n'+
 			'String Spreadsheet_insert(String func, String data, int row, int col, String text, String mySpreadsheeturl, String mySpreadsheetname, String myScript) {\n'+
@@ -4806,6 +4808,8 @@ Blockly.Arduino['esp32_telegrambot_sendmessage_custom'] = function(block) {
 	var value_token = Blockly.Arduino.valueToCode(block, 'token', Blockly.Arduino.ORDER_ATOMIC);
 	var value_chatid = Blockly.Arduino.valueToCode(block, 'chat_id', Blockly.Arduino.ORDER_ATOMIC);
 	
+	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
+	
 	Blockly.Arduino.definitions_.sendMessageToTelegram_custom = ''+
 		'void sendMessageToTelegram_custom(String token, String chatid, String text, String keyboard) {\n'+
 		'  const char* myDomain = "api.telegram.org";\n'+
@@ -4893,6 +4897,8 @@ Blockly.Arduino['esp32_telegrambot_sendlink_custom'] = function(block) {
 	var value_link = Blockly.Arduino.valueToCode(block, 'link', Blockly.Arduino.ORDER_ATOMIC);
 	var value_token = Blockly.Arduino.valueToCode(block, 'token', Blockly.Arduino.ORDER_ATOMIC);
 	var value_chatid = Blockly.Arduino.valueToCode(block, 'chat_id', Blockly.Arduino.ORDER_ATOMIC);
+	
+	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
 	
 	Blockly.Arduino.definitions_.sendLinkToTelegram_custom = ''+
 		'void sendLinkToTelegram_custom(String token, String chatid, String link, String keyboard) {\n'+
@@ -7186,6 +7192,8 @@ Blockly.Arduino['linenotify_image'] = function(block) {
 };
 
 Blockly.Arduino['linenotify_all'] = function(block) {
+  Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
+  
   Blockly.Arduino.definitions_['linenotify_esp32'] ='\n'+
 											'String LineNotify_esp32(String token, String request) {\n'+
 											'  String getAll="", getBody="";\n'+
@@ -7323,9 +7331,9 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
   if (selectBoardType()=="LinkIt")
 	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <LWiFi.h>";
   else if (selectBoardType()=="esp8266")
-	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <ESP8266WiFi.h>\n#include <WiFiClientSecure.h>";
+	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <ESP8266WiFi.h>";
   else 
-	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>\n#include <WiFiClientSecure.h>";
+	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>";
 
   Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = "'+ssid+'";';
   Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = "'+pass+'";';
@@ -14809,12 +14817,13 @@ Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
     var linetoken = Blockly.Arduino.valueToCode(block, 'linetoken', Blockly.Arduino.ORDER_ATOMIC);
     var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC);
     var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
+	
+	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
 
 	if (selectBoardType().indexOf("esp")!=-1)
 	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
 	else
 	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
-
 
 	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive = '\n'+
 			'String SendStillToGoogleDrive(String myScript, String myFoldername, String myFilename, String myImage, String myLineNotifyToken) {\n'+
@@ -14941,13 +14950,14 @@ Blockly.Arduino['esp32_cam_spreadsheet'] = function(block) {
   var value_column = Blockly.Arduino.valueToCode(block, 'column', Blockly.Arduino.ORDER_ATOMIC);
   var value_row = Blockly.Arduino.valueToCode(block, 'row', Blockly.Arduino.ORDER_ATOMIC);
   var value_spreadsheet_script = Blockly.Arduino.valueToCode(block, 'spreadsheet_script', Blockly.Arduino.ORDER_ATOMIC);
-	
+  
+	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';	
+
 	if (selectBoardType().indexOf("esp")!=-1)
 	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
 	else
 	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
-
-
+	
 	Blockly.Arduino.definitions_.SendStillToSpreadsheet = '\n'+
 			'String SendStillToSpreadsheet(String Data, String myScript) {\n'+
 			'  const char* myDomain = "script.google.com";\n'+
@@ -15067,6 +15077,8 @@ Blockly.Arduino['esp32_cam_linenotify'] = function(block) {
     var linetoken = Blockly.Arduino.valueToCode(block, 'linetoken', Blockly.Arduino.ORDER_ATOMIC);
     var linemessage = Blockly.Arduino.valueToCode(block, 'linemessage', Blockly.Arduino.ORDER_ATOMIC);
 	
+	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
+	
 	Blockly.Arduino.definitions_.SendCapturedImageToLineNotify = '\n'+
 			'String SendStillToLineNotify(String token, String message) {\n'+
 			'  camera_fb_t * fb = NULL;\n'+
@@ -15154,6 +15166,8 @@ Blockly.Arduino['esp32_cam_linenotify'] = function(block) {
 Blockly.Arduino['esp32_cam_telegrambot'] = function(block) {
     var token = Blockly.Arduino.valueToCode(block, 'token', Blockly.Arduino.ORDER_ATOMIC);
     var chatid = Blockly.Arduino.valueToCode(block, 'chatid', Blockly.Arduino.ORDER_ATOMIC);
+	
+	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
 	
 	Blockly.Arduino.definitions_.sendCapturedImage2Telegram = '\n'+
 	'String sendCapturedImage2Telegram(String token, String chat_id) {\n'+
