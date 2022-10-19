@@ -71,6 +71,7 @@ Blockly.Msg.FRANCE5_HEAD_LINE_SHOW = "Line Notify (https)";
 Blockly.Msg.FRANCE5_LINE_HTTP_SHOW = "Line Notify (http)";
 Blockly.Msg.FRANCE6_CLOSE_POWERDOG_SHOW = "ESP32 Close Power Dog";
 Blockly.Msg.SET_WIFI_UNTIL_READY_TITLE = "Connect to Wi-Fi AP";
+Blockly.Msg.GET_WIFI_LOCALIP = "Get Wi-Fi local IP";
 Blockly.Msg.FRANCE7_SHOWCODE_SHOW = "Monitor Code(Console)  Continued";
 Blockly.Msg.ESP32_ANALOGWRITE_SHOW = "analogWrite (ESP32)";
 Blockly.Msg.ARDUINO_ANALOGWRITE_SHOW = "analogWrite";

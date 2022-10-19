@@ -244,7 +244,9 @@
 			<field name="TEXT">87654321</field>
 		  </block>
 		</value> 		
-	  </block>	
+	  </block>
+	  <block type="esp32_wifi_localip">	
+	  </block>	  
 	  <block type="tcp_https_esp32">
 		<value name="domain">
 		  <block type="text">
@@ -1384,7 +1386,10 @@
 					<field name="TEXT"></field>
 				  </block>
 				</value>				
-			  </block>			
+			  </block>
+			<block type="text_br">
+				<field name="newline">\n</field>
+			</block>			  
 		</category> 
 		
 		<sep id="category_sep"></sep>

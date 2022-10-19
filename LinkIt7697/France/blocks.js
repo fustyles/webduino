@@ -10684,6 +10684,15 @@ Blockly.Blocks['esp32_wifi_wait_until_ready'] = {
   }
 };
 
+Blockly.Blocks['esp32_wifi_localip'] = {
+  init:function(){
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.GET_WIFI_LOCALIP);
+	this.setOutput(true, null);  
+	this.setColour(20);
+  }
+};
+
 Blockly.Blocks['thingspeak_update_noreturn'] = {
   init: function() {   
   this.appendValueInput("key")

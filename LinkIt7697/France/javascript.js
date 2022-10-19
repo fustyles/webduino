@@ -7369,6 +7369,11 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
   return code; 
 };
 
+Blockly.Arduino['esp32_wifi_localip'] = function(block) { 
+  var code = 'WiFi.localIP().toString()';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['thingspeak_update_noreturn'] = function (block) {
   Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+

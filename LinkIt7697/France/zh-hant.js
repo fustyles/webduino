@@ -71,6 +71,7 @@ Blockly.Msg.FRANCE5_HEAD_LINE_SHOW = "Line 通知 (https)";
 Blockly.Msg.FRANCE5_LINE_HTTP_SHOW = "Line 通知 (http)";
 Blockly.Msg.FRANCE6_CLOSE_POWERDOG_SHOW = "ESP32 關閉電壓不穩重啟";
 Blockly.Msg.SET_WIFI_UNTIL_READY_TITLE = "連線到Wi-Fi熱點";
+Blockly.Msg.GET_WIFI_LOCALIP = "取得 Wi-Fi IP 位址";
 Blockly.Msg.FRANCE7_SHOWCODE_SHOW = "監看程式碼(主控台) 即時";
 Blockly.Msg.ESP32_ANALOGWRITE_SHOW = "類比輸出(ESP32)";
 Blockly.Msg.ARDUINO_ANALOGWRITE_SHOW = "類比輸出";
