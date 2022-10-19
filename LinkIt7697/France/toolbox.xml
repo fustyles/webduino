@@ -2791,10 +2791,7 @@
 		<block type="music_delete"> 
 		</block>
 		<block type="function_return">
-		<value name="value_">
-		  <block type="math_number">
-			<field name="NUM">0</field>
-		  </block>      
+		<value name="value_">     
 		</value>     
 		</block> 		
 		<block type="async_function">
