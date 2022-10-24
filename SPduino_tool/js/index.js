@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
 								workspace.getBlockById(i).setEnabled(blockChange[i]);
 						}
 					}
-				}, 300);	
+				}, 500);	
 		}
 		workspace.addChangeListener(onBlocksChange);	
 		
