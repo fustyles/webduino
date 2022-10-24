@@ -1,3 +1,15 @@
+Blockly.Arduino['javascript_function_math_constant'] = function(block) {
+	var code = block.getFieldValue('function');
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['javascript_function_math_function'] = function(block) {
+	var p1 = Blockly.Arduino.valueToCode(block, 'p1', Blockly.Arduino.ORDER_ATOMIC)||"";
+	var p2 = Blockly.Arduino.valueToCode(block, 'p2', Blockly.Arduino.ORDER_ATOMIC)||"";
+	var code = block.getFieldValue('function').replace("%1", p1).replace("%2", p2);	
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['linkit7697_webbluetooth_uuid'] = function(block) { 
 	var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
 	var service = Blockly.Arduino.valueToCode(block, 'service', Blockly.Arduino.ORDER_ATOMIC);
@@ -962,8 +974,10 @@ Blockly.Arduino['tft_initial'] = function(block) {
 	
 	if (board=="Pixel:Bit")
 		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_PIXELBIT.h>\n';
+	else if (board=="TTGO T1")
+		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_TTGO.h>\n';	
 	else
-		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_TTGO.h>\n';
+		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI.h>\n';
 	
 	Blockly.Arduino.definitions_.tftinitial +=  '#include <U8g2_for_TFT_eSPI.h>\n'+
 												'TFT_eSPI tft = TFT_eSPI();\n'+
@@ -15368,7 +15382,7 @@ Blockly.Arduino['faceapirecognize_canvas_get'] = function(block) {
 function selectBoardType() {
 	var selectBoard = document.getElementById('board-selector');
 	if (selectBoard) {
-		var state = [0,0,0,0,0,0];
+		var state = [0,0,0,0,0,0,0];
 		for (var i=0;i<selectBoard.options.length;i++) {
 			if (selectBoard.options[i].value.indexOf("LinkIt")!=-1)
 				state[0]=1;
@@ -15382,6 +15396,8 @@ function selectBoardType() {
 				state[4]=1;
 			if (selectBoard.options[i].value.indexOf("BPI-BIT V2")!=-1)
 				state[5]=1;
+			if (selectBoard.options[i].value.indexOf("TTGO")!=-1)
+				state[6]=1;			
 		}
 		if (state[0]==0)
 			selectBoard.options.add(new Option("LinkIt 7697","LinkIt:linkit_rtos:linkit_7697"));
@@ -15395,6 +15411,8 @@ function selectBoardType() {
 			selectBoard.options.add(new Option("Arduino Pro or Pro Mini","arduino:avr:pro"));
 		if (state[5]==0) 
 			selectBoard.options.add(new Option("BPI-BIT V2","esp32:esp32:esp32s2"));
+		if (state[6]==0) 
+			selectBoard.options.add(new Option("TTGO T1","esp32:esp32:ttgo-t1"));
 		
 		if (selectBoard.value.split(":")[2]=="bpi-bit")
 			return "BPI-BIT";
