@@ -1847,3 +1847,6 @@ Blockly.Msg["JAVASCRIPT_FUNCTIONS_MATH_SQRT"] = "Math.sqrt";
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_MATH_TAN"] = "Math.tan";
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_MATH_TANH"] = "Math.tanh";
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_MATH_TRUNC"] = "Math.trunc";
+
+Blockly.Msg["JAVASCRIPT_FUNCTIONS_STRING_SPLIT"] = "Split to array";
+Blockly.Msg["JAVASCRIPT_FUNCTIONS_STRING_DELIMITER"] = "delimiter";

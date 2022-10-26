@@ -2549,11 +2549,29 @@
 				<field name="NUM"></field>
 			  </shadow>
 			</value>		
+		</block>
+		<block type="javascript_function_string_split">
+			<value name="text">
+			</value>		
+			<value name="delimiter">
+			  <block type="text">
+				<field name="TEXT">,</field>
+			  </block>
+			</value>		
 		</block>		
     </category>
 	
 	<category id="catGameElements" name="catGameElements"> 
-		<category id="catGameElements_sub1" name="catGameElements_sub1"> 
+		<category id="catGameElements_sub1" name="catGameElements_sub1">
+		<block type="declare_variable">  
+		</block>
+		<block type="declare_variable_set">
+			<value name="value">
+			  <shadow type="math_number">
+				<field name="NUM">0</field>
+			  </shadow>
+			</value>		
+		</block>
 		<block type="servermodule_javascript">
 			<statement name="js">
 			</statement>
@@ -2586,9 +2604,7 @@
 		<value name="value_">
 		  <block type="logic_null"></block>
 		</value>    
-		</block>		
-		<block type="declare_variable">  
-		</block>
+		</block>				
 		<block type="location">  
 		</block>
 		<block type="system_datetime_get">

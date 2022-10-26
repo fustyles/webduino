@@ -1,3 +1,18 @@
+Blockly.Blocks['javascript_function_string_split'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["JAVASCRIPT_FUNCTIONS_STRING_SPLIT"]);
+	this.appendValueInput("text")
+		.setCheck("String");		
+	this.appendValueInput("delimiter")
+		.appendField(Blockly.Msg["JAVASCRIPT_FUNCTIONS_STRING_DELIMITER"])
+		.setCheck("String");		
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
 Blockly.Blocks['javascript_function_math_constant'] = {
   init: function() {
     this.appendDummyInput()
@@ -3345,7 +3360,7 @@ Blockly.Blocks['page_mqtt_getdata_js'] = {
 	this.appendDummyInput()
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["PAGE_MQTT_GETDATA_TEXT_JS"],"text"],
-			[Blockly.Msg["PAGE_MQTT_GETDATA_NUMBER_JS"],"number"]
+			[Blockly.Msg["PAGE_MQTT_GETDATA_NUMBER_JS"],"number"]	
 		]),"format");				
 	this.setInputsInline(true);
     this.setOutput(true, null);
@@ -19831,7 +19846,24 @@ Blockly.Blocks['declare_variable'] = {
 	this.appendDummyInput()
         .appendField(Blockly.Msg.DECLARE_VARIABLE_SHOW);
     this.appendDummyInput()
-        .appendField(new Blockly.FieldVariable("i"), "variable")		
+        .appendField(new Blockly.FieldVariable("i"), "variable");
+    this.setInputsInline(true);    
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(Blockly.Msg["HUE_1"]);
+  }
+};
+
+Blockly.Blocks['declare_variable_set'] = {
+  init: function () {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.DECLARE_VARIABLE_SHOW);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable("i"), "variable");
+	this.appendValueInput("value")
+		.appendField(Blockly.Msg.VALUE)
+		.setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT);		
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);

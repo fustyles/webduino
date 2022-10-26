@@ -1,3 +1,10 @@
+Blockly.Arduino['javascript_function_string_split'] = function(block) {
+	var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC)||" ";	
+	var delimiter = Blockly.Arduino.valueToCode(block, 'delimiter', Blockly.Arduino.ORDER_ATOMIC)||" ";
+	var code = text+'.split('+delimiter+')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['javascript_function_math_constant'] = function(block) {
 	var code = block.getFieldValue('function');
 	return [code, Blockly.Arduino.ORDER_NONE];
@@ -1784,8 +1791,8 @@ Blockly.Arduino['page_mqtt_getdata_js'] = function(block) {
 	var format = block.getFieldValue('format');
 	if (format=="number")
 	  var code = 'Number(payload)';
-	else
-	  var code = 'payload';
+	else if (format=="text")
+	  var code = 'new TextDecoder().decode(payload)';
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -8002,9 +8009,12 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'    }\n'+
 			'  }\n';		
 
-
-  code = '';
-  return code;
+	if (Blockly.Arduino.loops_) {
+		Blockly.Arduino.loops_.server_getrequest = "getRequest();\n";
+	}
+	
+	code = '';
+	return code;
 };
 
 Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
@@ -14620,6 +14630,12 @@ Blockly.Arduino['declare_variable'] = function (block) {
   return code;
 };
 
+Blockly.Arduino['declare_variable_set'] = function (block) {
+  var variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.VARIABLE_CATEGORY_NAME);
+  var value = Blockly.Arduino.valueToCode(block, 'value', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'var ' + variable + ' = '+value+';\n';
+  return code;
+};
 
 Blockly.Arduino['holistic_esp32cam'] = function(block) {
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
