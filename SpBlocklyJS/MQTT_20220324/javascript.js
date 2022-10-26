@@ -54,6 +54,6 @@ Blockly.JavaScript['fu_mqtt_getdata_js'] = function(block) {
 	if (format=="number")
 	  var code = 'Number(payload)';
 	else
-	  var code = 'payload';	
+	  var code = 'new TextDecoder().decode(payload)';	
 	return [code, Blockly.JavaScript.ORDER_NONE];
 };
