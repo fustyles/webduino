@@ -8743,8 +8743,13 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 			'      if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'+
 			'    }\n'+
 			'  }\n';
-  code = '';
-  return code;
+			
+	if (Blockly.Arduino.loops_) {
+		Blockly.Arduino.loops_.server_getrequest = "getRequest();\n";
+	}
+	
+	code = '';
+	return code;
 };
 Blockly.Arduino['table_create'] = function (block) {
   var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);
