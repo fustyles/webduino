@@ -1,3 +1,18 @@
+Blockly.Blocks['javascript_function_string_split'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["JAVASCRIPT_FUNCTIONS_STRING_SPLIT"]);
+	this.appendValueInput("text")
+		.setCheck("String");		
+	this.appendValueInput("delimiter")
+		.appendField(Blockly.Msg["JAVASCRIPT_FUNCTIONS_STRING_DELIMITER"])
+		.setCheck("String");		
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
 Blockly.Blocks['javascript_function_math_constant'] = {
   init: function() {
     this.appendDummyInput()
