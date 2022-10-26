@@ -1,3 +1,10 @@
+Blockly.JavaScript['javascript_function_string_split'] = function(block) {
+	var text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC)||" ";	
+	var delimiter = Blockly.JavaScript.valueToCode(block, 'delimiter', Blockly.JavaScript.ORDER_ATOMIC)||" ";
+	var code = text+'.split('+delimiter+')';
+	return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['javascript_function_math_constant'] = function(block) {
 	var code = block.getFieldValue('function');
 	return [code, Blockly.JavaScript.ORDER_NONE];
