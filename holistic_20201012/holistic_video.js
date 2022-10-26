@@ -64,7 +64,7 @@ window.onload = function () {
 		if (holisticState.innerHTML =="1") {
 			holistic.send({image: canvas}).then(res => {
 				var source = document.getElementById("sourceId_holistic");
-				setTimeout(function(){loadImage(document.getElementById(source.innerHTML)); }, 10)
+				setTimeout(function(){loadImage(document.getElementById(source.innerHTML)); }, 100)
 			});
 		}
 		else {
