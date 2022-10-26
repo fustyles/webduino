@@ -13408,6 +13408,14 @@ Blockly.Arduino['fu_mqtt_setup'] = function(block) {
 										'mqtt_client.setServer(mqtt_server,mqtt_port);\n  '+
 										'mqtt_client.setCallback(callback);\n  '+
 										'//mqtt_client.setBufferSize(1024);\n';
+										
+  Blockly.Arduino.definitions_.define_mqtt_callback = 'void callback(char* topic, byte* payload, unsigned int length) {\n'+
+														'  mqtt_data = "";\n'+
+														'  for (int ci = 0; ci < length; ci++) {\n'+
+														'    char c = payload[ci];\n'+
+														'    mqtt_data+=c;\n'+
+														'  }\n'+
+														'}\n';										
 
   code = '';
   return code;
