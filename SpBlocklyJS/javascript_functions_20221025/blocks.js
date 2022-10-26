@@ -9,7 +9,7 @@ Blockly.Blocks['javascript_function_string_split'] = {
 		.setCheck("String");		
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
-    this.setColour(Blockly.Msg["HUE_15"]);
+    this.setColour(190);
   }
 };
 
