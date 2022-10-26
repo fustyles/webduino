@@ -14,5 +14,14 @@ var catJavaScript ='<xml>'+
 '			  </shadow>'+
 '			</value>'+
 '		</block>'+
+'		<block type="javascript_function_string_split">'+
+'			<value name="text">'+
+'			</value>'+
+'			<value name="delimiter">'+
+'			  <block type="text">'+
+'				<field name="TEXT">,</field>'+
+'			  </block>'+
+'			</value>'+
+'		</block>'+
 '    </category>'+
 '</xml>';	
