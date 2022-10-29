@@ -130,3 +130,5 @@ Blockly.Msg["TEXTTOSPEECH_LANG_yue_Hant_HK"] = "Chinese, Cantonese (Traditional,
 Blockly.Msg["TEXTTOSPEECH_LANG_ja_JP"] = "Japanese (Japan)";
 Blockly.Msg["TEXTTOSPEECH_LANG_cmn_Hans_HK"] = "Chinese, Mandarin (Simplified, Hong Kong)";
 Blockly.Msg["TEXTTOSPEECH_LANG_cmn_Hans_CN"] = "Chinese, Mandarin (Simplified, China)";
+Blockly.Msg["TEXTTOSPEECH_START"] = "Start";
+Blockly.Msg["TEXTTOSPEECH_STOP"] = "Stop";

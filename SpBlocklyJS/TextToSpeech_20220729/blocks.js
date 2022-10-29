@@ -196,6 +196,22 @@ Blockly.Blocks['TextToSpeech_voice'] = {
       .appendField(new Blockly.FieldDropdown(voiceOptions), "voice_");
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
-	this.setColour(230);
+	this.setColour(130);
+  }
+};
+
+Blockly.Blocks['TextToSpeech_switch'] = {
+  init: function () {     
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.TEXTTOSPEECH_SHOW);  
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["TEXTTOSPEECH_START"],"1"],
+		[Blockly.Msg["TEXTTOSPEECH_STOP"],"0"]	  
+  ]), "switch"); 	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(130);
   }
 };

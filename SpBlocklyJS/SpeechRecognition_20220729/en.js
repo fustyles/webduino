@@ -11,3 +11,5 @@ Blockly.Msg["SPEECHRECOGNITION_FONTSIZE"] = "Font size";
 Blockly.Msg["SPEECHRECOGNITION_ZINDEX"] = "z-Index";
 Blockly.Msg["SPEECHRECOGNITION_DISPLAY"] = "Display";
 Blockly.Msg["SPEECHRECOGNITION_STATE"] = "Speech Recognition is starting?";
+Blockly.Msg["SPEECHRECOGNITION_START"] = "Start";
+Blockly.Msg["SPEECHRECOGNITION_STOP"] = "Stop";

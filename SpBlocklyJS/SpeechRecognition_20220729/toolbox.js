@@ -56,6 +56,8 @@ var catSpeechRecognition = '<xml>'+
 '    	</block>'+
 '    </value>'+
 '  </block>'+
+'  <block type="SpeechRecognition_switch">'+
+'  </block>'+
 '  <block type="SpeechRecognition_state">'+
 '  </block>'+
 '</category>'+

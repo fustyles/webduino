@@ -11,3 +11,5 @@ Blockly.Msg["SPEECHRECOGNITION_FONTSIZE"] = "字型大小";
 Blockly.Msg["SPEECHRECOGNITION_ZINDEX"] = "層疊索引";
 Blockly.Msg["SPEECHRECOGNITION_DISPLAY"] = "顯示";
 Blockly.Msg["SPEECHRECOGNITION_STATE"] = "語音辨識啟動狀態";
+Blockly.Msg["SPEECHRECOGNITION_START"] = "啟動";
+Blockly.Msg["SPEECHRECOGNITION_STOP"] = "停止";

@@ -93,6 +93,13 @@ function Recognition_state() {
   return recognizing;
 }
 
+function Recognition_switch(state) {
+    if (state==1)
+		recognition.start();
+	else
+		recognition.stop();
+}
+
 async function span_interim(input_left, input_top, input_fontsize, input_zindex, input_display) {
 	while (!document.getElementById("gamespan_recognition")) {
 		await delay(0.5);

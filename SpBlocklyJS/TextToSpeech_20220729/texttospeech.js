@@ -1,5 +1,6 @@
 var synth = window.speechSynthesis;
 var tts = new SpeechSynthesisUtterance();
+var ttsSpeakState = true;
 
 async function ttsSetVoice(voice) {
     var voices = synth.getVoices();
@@ -23,4 +24,28 @@ function ttsSetProperty(volume, rate, pitch, lang) {
     tts.rate = rate;
     tts.pitch = pitch;
     tts.lang = lang;
+}
+
+function ttsSpeak(voice, text) {
+	if (ttsSpeakState) {
+		ttsSetVoice(voice);
+		tts.text = text;
+		synth.speak(tts);\n
+	}
+}
+
+function ttsSwitch(state) {
+    if (state==1)
+		ttsSpeakState = true;
+	else
+		ttsSpeakState = false;
+}
+
+function ttsState(state) {
+	if (state=="pause")
+		synth.pause();
+	else if (state=="resume")
+		synth.resume();
+	else if (state=="cancel")
+		synth.cancel(); 
 }

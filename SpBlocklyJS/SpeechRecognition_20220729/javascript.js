@@ -36,3 +36,9 @@ Blockly.JavaScript['SpeechRecognition_state'] = function (block) {
   var code = 'Recognition_state()';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['SpeechRecognition_switch'] = function (block) { 
+  var value_switch = block.getFieldValue('switch');
+  var code = 'Recognition_switch('+value_switch+');\n';
+  return code;
+};

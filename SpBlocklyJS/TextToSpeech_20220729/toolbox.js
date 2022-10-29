@@ -28,7 +28,9 @@ var catTextToSpeech = '<xml>'+
 '        <field name="TEXT">Hello World</field>'+
 '      </block>'+    
 '    </value>'+      
-'  </block>'+    
+'  </block>'+  
+'  <block type="TextToSpeech_switch">'+
+'  </block>'+  
 '  <block type="TextToSpeech_control">'+  
 '  </block>'+       
 '</category>'+

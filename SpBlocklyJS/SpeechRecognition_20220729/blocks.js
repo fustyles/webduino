@@ -191,3 +191,19 @@ Blockly.Blocks['SpeechRecognition_state'] = {
   this.setColour(180);
   }
 };
+
+Blockly.Blocks['SpeechRecognition_switch'] = {
+  init: function () {     
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_SHOW);  
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["SPEECHRECOGNITION_START"],"1"],
+		[Blockly.Msg["SPEECHRECOGNITION_STOP"],"0"]	  
+  ]), "switch"); 	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(180);
+  }
+};

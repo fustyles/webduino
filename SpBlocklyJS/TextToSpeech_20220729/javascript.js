@@ -9,20 +9,15 @@ Blockly.JavaScript['TextToSpeech_initial'] = function (block) {
 };
 
 Blockly.JavaScript['TextToSpeech_run'] = function (block) {
-  var value_voice_ = Blockly.JavaScript.valueToCode(block, 'voice_', Blockly.JavaScript.ORDER_ATOMIC);  
-  var value_text_ = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'ttsSetVoice('+value_voice_+');\ntts.text = '+value_text_+';\nsynth.speak(tts);\n';
+  var value_voice = Blockly.JavaScript.valueToCode(block, 'voice_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_text = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'ttsSpeak('+value_voice+', '+value_text+');\n';
   return code;
 };
 
 Blockly.JavaScript['TextToSpeech_control'] = function(block) {
-  var control_ = block.getFieldValue('control_'); 
-  if (control_=="pause")
-    var code = 'synth.pause();\n';
-  else if (control_=="resume")
-    var code = 'synth.resume();\n';
-  else if (control_=="cancel")
-    var code = 'synth.cancel();\n';  
+  var control = block.getFieldValue('control_'); 
+  var code = 'ttsState("'+control+'");\n';  
   return code;
 };
 
@@ -30,4 +25,10 @@ Blockly.JavaScript['TextToSpeech_voice'] = function(block) {
   var voice_ = block.getFieldValue('voice_'); 
   var code = '"'+voice_+'"';
   return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['TextToSpeech_switch'] = function (block) { 
+  var value_switch = block.getFieldValue('switch');
+  var code = 'ttsSwitch('+value_switch+');\n';
+  return code;
 };
