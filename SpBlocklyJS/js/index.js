@@ -532,7 +532,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				
 				iframe_code += getScriptRemote(); 
 				  
-				iframe_code += "\<\/head\>\<body\>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
+				iframe_code += "\<\/head\>\<body\>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{\n"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
 
 				var link = document.createElement('a');
 				link.download="project.html";
