@@ -1,5 +1,5 @@
 Blockly.Msg["CATTEXTTOSPEECH"] = "Speech Synthesis";
-Blockly.Msg["TEXTTOSPEECH_SHOW"] = "Text to Speech set";
+Blockly.Msg["TEXTTOSPEECH_SHOW"] = "Text to Speech";
 Blockly.Msg["TEXTTOSPEECH_RUN_SHOW"] = "Text to Speech say";
 Blockly.Msg["TEXTTOSPEECH_VOLUME_SHOW"] = "Volume(0~1)";  
 Blockly.Msg["TEXTTOSPEECH_RATE_SHOW"] = "Rate(0.1~10)";  
