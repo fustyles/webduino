@@ -1,5 +1,5 @@
 Blockly.Msg["CATTEXTTOSPEECH"] = "語音朗讀";
-Blockly.Msg["TEXTTOSPEECH_SHOW"] = "語音朗讀 設定";
+Blockly.Msg["TEXTTOSPEECH_SHOW"] = "語音朗讀";
 Blockly.Msg["TEXTTOSPEECH_RUN_SHOW"] = "語音朗讀 朗讀";
 Blockly.Msg["TEXTTOSPEECH_VOLUME_SHOW"] = "音量(0~1)";  
 Blockly.Msg["TEXTTOSPEECH_RATE_SHOW"] = "速度(0.1~10)";  
