@@ -95,8 +95,8 @@ function Recognition_state() {
 
 function Recognition_switch(state) {
     if (state==1)
-		recognition.start();
-	else
+		startButton(event);
+	else if (state==0&&recognizing)
 		recognition.stop();
 }
 
