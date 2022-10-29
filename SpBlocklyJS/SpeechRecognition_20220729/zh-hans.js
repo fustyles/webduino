@@ -10,3 +10,4 @@ Blockly.Msg["SPEECHRECOGNITION_TOP"] = "靠上距离";
 Blockly.Msg["SPEECHRECOGNITION_FONTSIZE"] = "字型大小";
 Blockly.Msg["SPEECHRECOGNITION_ZINDEX"] = "层叠索引";
 Blockly.Msg["SPEECHRECOGNITION_DISPLAY"] = "显示";
+Blockly.Msg["SPEECHRECOGNITION_STATE"] = "语音辨识启动状态";

@@ -31,3 +31,8 @@ Blockly.JavaScript['SpeechRecognition_interim'] = function (block) {
   var code = 'span_interim('+ value_left + ',' + value_top + ','+ value_fontsize + ',' + value_zindex + ',' + value_display + ');\n';
   return code;
 };
+
+Blockly.JavaScript['SpeechRecognition_state'] = function (block) {
+  var code = 'Recognition_state()';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};

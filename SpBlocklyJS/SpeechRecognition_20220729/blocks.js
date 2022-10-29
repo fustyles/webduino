@@ -181,3 +181,13 @@ Blockly.Blocks['SpeechRecognition_interim'] = {
   this.setColour(180);
   }
 };
+
+Blockly.Blocks['SpeechRecognition_state'] = {
+  init: function () {     
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_STATE);  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(180);
+  }
+};

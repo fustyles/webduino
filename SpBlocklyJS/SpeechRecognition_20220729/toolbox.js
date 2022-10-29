@@ -24,7 +24,7 @@ var catSpeechRecognition = '<xml>'+
 '  </block>'+
 '  </value>'+
 '  <value name="keyword">'+
-'  <block type="text" id="dg@Un3Xd(9p9E]2]=(/@">'+
+'  <block type="text">'+
 '  <field name="TEXT"></field>'+
 '  </block>'+
 '  </value>'+
@@ -55,6 +55,8 @@ var catSpeechRecognition = '<xml>'+
 '    		<field name="BOOL">TRUE</field>'+
 '    	</block>'+
 '    </value>'+
+'  </block>'+
+'  <block type="SpeechRecognition_state">'+
 '  </block>'+
 '</category>'+
 '</xml>';

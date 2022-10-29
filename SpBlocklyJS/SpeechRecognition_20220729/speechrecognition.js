@@ -89,6 +89,10 @@ function Recognition_final_get() {
   return result;
 }
 
+function Recognition_state() {
+  return recognizing;
+}
+
 async function span_interim(input_left, input_top, input_fontsize, input_zindex, input_display) {
 	while (!document.getElementById("gamespan_recognition")) {
 		await delay(0.5);
