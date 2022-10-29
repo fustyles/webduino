@@ -3,14 +3,14 @@ button_create('',200,30,0,0,1,null,'啟動語音功能',12,999,true);
 async function gamebutton__onclick (event) {
   button_set('',"display",false);
   ttsSetProperty(1, 1, 1, "en-US");
+  span_interim(0,0,20,999,true);
   recognition.lang="cmn-Hant-TW";
   if (!recognizing) startButton(event);
+  setInterval(async function(){
+    ttsSetVoice(("Google 國語（臺灣）"));
+    tts.text = (Recognition_final_get());
+    synth.speak(tts);
+  },10);
 };
 document.getElementById("gamebutton_").addEventListener("click", gamebutton__onclick, true);
-span_interim(0,0,20,999,true);
-setInterval(async function(){
-  ttsSetVoice(("Google 國語（臺灣）"));
-  tts.text = (Recognition_final_get());
-  synth.speak(tts);
-},10);
 };main();</script></body></html>
