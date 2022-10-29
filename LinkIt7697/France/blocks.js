@@ -3438,7 +3438,19 @@ Blockly.Blocks['taskhandle_initial'] = {
   init: function() {
 	this.appendDummyInput()
         .appendField(Blockly.Msg["TASKHANDLE_SHOW"])
-        .appendField(Blockly.Msg["TASKHANDLE_INITIAL_SHOW"]);		
+        .appendField(Blockly.Msg["TASKHANDLE_INITIAL_SHOW"]);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TASKHANDLE_CORE_SHOW"])	
+        .appendField(new Blockly.FieldDropdown([
+		["0","0"],
+		["1","1"],
+		["2","2"],
+		["3","3"],
+		["4","4"],
+		["5","5"],
+		["6","6"],
+		["7","7"]
+		]), "core");		
 	this.appendValueInput("stack")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)	  
@@ -3454,19 +3466,7 @@ Blockly.Blocks['taskhandle_initial'] = {
 		["6","6"],
 		["7","7"],
 		["8","8"]		
-		]), "priority");		
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["TASKHANDLE_CORE_SHOW"])	
-        .appendField(new Blockly.FieldDropdown([
-		["0","0"],
-		["1","1"],
-		["2","2"],
-		["3","3"],
-		["4","4"],
-		["5","5"],
-		["6","6"],
-		["7","7"]
-		]), "core");		
+		]), "priority");
 	this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);

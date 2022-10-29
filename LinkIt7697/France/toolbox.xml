@@ -201,6 +201,15 @@
 				<field name="BOOL">TRUE</field>
 			  </block>
 			</value>
+			<statement name="DO">
+			  <block type="taskhandle_delay">
+				<value name="delay">
+				  <block type="math_number">
+					<field name="NUM">10</field>
+				  </block>
+				</value>
+			  </block>
+			</statement>
 		  </block>
 		</statement>
 	  </block>
