@@ -13,3 +13,5 @@ Blockly.Msg["SPEECHRECOGNITION_DISPLAY"] = "Display";
 Blockly.Msg["SPEECHRECOGNITION_STATE"] = "Speech Recognition is starting?";
 Blockly.Msg["SPEECHRECOGNITION_START"] = "Start";
 Blockly.Msg["SPEECHRECOGNITION_STOP"] = "Stop";
+Blockly.Msg["SPEECHRECOGNITION_CONTINUOUS"] = "continuous";
+Blockly.Msg["SPEECHRECOGNITION_ONCE"] = "once";

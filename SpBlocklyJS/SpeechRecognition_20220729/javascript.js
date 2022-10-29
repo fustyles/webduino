@@ -1,6 +1,6 @@
 Blockly.JavaScript['SpeechRecognition_run'] = function (block) {
   var value_language_ = block.getFieldValue('language_');
-  var code = 'recognition.lang="'+value_language_+'";\nif (!recognizing) startButton(event);\n';
+  var code = 'recognition.lang="'+value_language_+'";\n';
   return code;
 };
 
@@ -40,5 +40,11 @@ Blockly.JavaScript['SpeechRecognition_state'] = function (block) {
 Blockly.JavaScript['SpeechRecognition_switch'] = function (block) { 
   var value_switch = block.getFieldValue('switch');
   var code = 'Recognition_switch('+value_switch+');\n';
+  return code;
+};
+
+Blockly.JavaScript['SpeechRecognition_continuous'] = function (block) { 
+  var value_switch = block.getFieldValue('switch');
+  var code = 'Recognition_continuous('+value_switch+');\n';
   return code;
 };

@@ -13,3 +13,5 @@ Blockly.Msg["SPEECHRECOGNITION_DISPLAY"] = "顯示";
 Blockly.Msg["SPEECHRECOGNITION_STATE"] = "語音辨識啟動狀態";
 Blockly.Msg["SPEECHRECOGNITION_START"] = "啟動";
 Blockly.Msg["SPEECHRECOGNITION_STOP"] = "停止";
+Blockly.Msg["SPEECHRECOGNITION_CONTINUOUS"] = "連續辨識";
+Blockly.Msg["SPEECHRECOGNITION_ONCE"] = "一次辨識";
