@@ -2,11 +2,11 @@
 button_create('',200,30,0,0,1,null,'啟動語音功能',12,999,true);
 async function gamebutton__onclick (event) {
   ttsSetProperty(1, 1, 1, "en-US");
-  recognition.lang="cmn-Hant-TW";
-  if (!recognizing) startButton(event);
   button_set('',"display",false);
 };
 document.getElementById("gamebutton_").addEventListener("click", gamebutton__onclick, true);
+recognition.lang="cmn-Hant-TW";
+if (!recognizing) startButton(event);
 span_interim(0,0,20,999,true);
 setInterval(async function(){
   ttsSetVoice(("Google 國語（臺灣）"));
