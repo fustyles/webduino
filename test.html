@@ -1,16 +1,16 @@
 <!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/TextToSpeech_20220729/texttospeech.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpeechRecognition_20220729/speechrecognition.js'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{
 button_create('',200,30,0,0,1,null,'啟動語音功能',12,999,true);
-span_interim(0,0,20,999,true);
 async function gamebutton__onclick (event) {
-  button_set('',"display",false);
   ttsSetProperty(1, 1, 1, "en-US");
   recognition.lang="cmn-Hant-TW";
   if (!recognizing) startButton(event);
-  setInterval(async function(){
-    ttsSetVoice(("Google 國語（臺灣）"));
-    tts.text = (Recognition_final_get());
-    synth.speak(tts);
-  },10);
+  button_set('',"display",false);
 };
 document.getElementById("gamebutton_").addEventListener("click", gamebutton__onclick, true);
+span_interim(0,0,20,999,true);
+setInterval(async function(){
+  ttsSetVoice(("Google 國語（臺灣）"));
+  tts.text = (Recognition_final_get());
+  synth.speak(tts);
+},10);
 };main();</script></body></html>
