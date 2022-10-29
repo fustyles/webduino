@@ -94,10 +94,12 @@ function Recognition_state() {
 }
 
 function Recognition_switch(state) {
-    if (state==1&&!recognizing)
-		recognition.start();
-	else if (state==1&&recognizing)
+    if (state==1)
+		startButton(event);
+	else if (state==0&&recognizing) {
+		ignore_onend = true;
 		recognition.stop();
+	}
 }
 
 function Recognition_continuous(state) {
