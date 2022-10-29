@@ -1,5 +1,10 @@
 <!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/TextToSpeech_20220729/texttospeech.js'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{ttsSetProperty(1, 1, 1, "en-US");
-ttsSetVoice(("Google US English"));
-tts.text = 'Hello World';
-synth.speak(tts);
+ttsSetProperty(1, 1, 1, "en-US");
+button_create('',60,30,0,100,1,null,'button',12,999,true);
+async function gamebutton__onclick (event) {
+  ttsSetVoice(("Google US English"));
+  tts.text = 'Hello World';
+  synth.speak(tts);
+};
+document.getElementById("gamebutton_").addEventListener("click", gamebutton__onclick, true);
 };main();</script></body></html>
