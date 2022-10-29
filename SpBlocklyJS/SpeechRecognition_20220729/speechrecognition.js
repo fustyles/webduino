@@ -94,9 +94,9 @@ function Recognition_state() {
 }
 
 function Recognition_switch(state) {
-    if (state==1)
+    if (state==1&&!recognizing)
 		recognition.start();
-	else
+	else if (state==1&&recognizing)
 		recognition.stop();
 }
 
