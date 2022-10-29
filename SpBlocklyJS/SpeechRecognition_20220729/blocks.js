@@ -208,15 +208,11 @@ Blockly.Blocks['SpeechRecognition_switch'] = {
   }
 };
 
-Blockly.Blocks['SpeechRecognition_continuous'] = {
+Blockly.Blocks['SpeechRecognition_onend'] = {
   init: function () {     
   this.appendDummyInput()   
-      .appendField(Blockly.Msg.SPEECHRECOGNITION_SHOW);  
-  this.appendDummyInput()
-      .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg["SPEECHRECOGNITION_CONTINUOUS"],"1"],
-		[Blockly.Msg["SPEECHRECOGNITION_ONCE"],"0"]	  
-  ]), "switch"); 	  
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_ONEND);
+  this.appendStatementInput("do_");	  
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);

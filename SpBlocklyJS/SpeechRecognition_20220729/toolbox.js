@@ -3,8 +3,6 @@ var catSpeechRecognition = '<xml>'+
 '  <block type="SpeechRecognition_run">'+ 
 '    <field name="language_">cmn-Hant-TW</field>'+
 '  </block>'+
-'  <block type="SpeechRecognition_continuous">'+
-'  </block>'+
 '  <block type="SpeechRecognition_switch">'+
 '  </block>'+
 '  <variables>'+
@@ -61,6 +59,8 @@ var catSpeechRecognition = '<xml>'+
 '    		<field name="BOOL">TRUE</field>'+
 '    	</block>'+
 '    </value>'+
+'  </block>'+
+'  <block type="SpeechRecognition_onend">'+
 '  </block>'+
 '</category>'+
 '</xml>';

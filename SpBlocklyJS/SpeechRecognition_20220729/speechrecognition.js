@@ -102,13 +102,6 @@ function Recognition_switch(state) {
 	}
 }
 
-function Recognition_continuous(state) {
-    if (state==1)
-		recognition.continuous = true;
-	else
-		recognition.continuous = false;
-}
-
 async function span_interim(input_left, input_top, input_fontsize, input_zindex, input_display) {
 	while (!document.getElementById("gamespan_recognition")) {
 		await delay(0.5);

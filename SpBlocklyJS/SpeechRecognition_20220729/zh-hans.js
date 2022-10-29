@@ -13,5 +13,4 @@ Blockly.Msg["SPEECHRECOGNITION_DISPLAY"] = "显示";
 Blockly.Msg["SPEECHRECOGNITION_STATE"] = "语音辨识启动状态";
 Blockly.Msg["SPEECHRECOGNITION_START"] = "启动";
 Blockly.Msg["SPEECHRECOGNITION_STOP"] = "停止";
-Blockly.Msg["SPEECHRECOGNITION_CONTINUOUS"] = "连续辨识";
-Blockly.Msg["SPEECHRECOGNITION_ONCE"] = "一次辨识";
+Blockly.Msg["SPEECHRECOGNITION_ONEND"] = "当停止辨识时执行";

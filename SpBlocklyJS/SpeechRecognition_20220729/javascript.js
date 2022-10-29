@@ -43,8 +43,8 @@ Blockly.JavaScript['SpeechRecognition_switch'] = function (block) {
   return code;
 };
 
-Blockly.JavaScript['SpeechRecognition_continuous'] = function (block) { 
-  var value_switch = block.getFieldValue('switch');
-  var code = 'Recognition_continuous('+value_switch+');\n';
+Blockly.JavaScript['SpeechRecognition_onend'] = function (block) {
+  var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'setInterval(async function(){\n  if (!recognizing) {\n  ' + statements_do_ + '}\n},500);\n';
   return code;
 };
