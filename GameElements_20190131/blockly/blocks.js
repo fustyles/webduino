@@ -1,3 +1,33 @@
+Blockly.Blocks['window_messagebox'] = {
+  init: function () {
+  this.appendValueInput("message")
+	  .appendField(Blockly.Msg["WINDOW_MESSAGEBOX"])
+      .setCheck(null);
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(250);
+  }
+};
+
+Blockly.Blocks['window_confirm'] = {
+  init: function () {
+  this.appendValueInput("message")
+	  .appendField(Blockly.Msg["WINDOW_CONFIRM"])
+      .setCheck("String");
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg["WINDOW_CONFIRM_YES"]); 
+  this.appendStatementInput("yes");
+  this.appendDummyInput()
+      .appendField(Blockly.Msg["WINDOW_CONFIRM_NO"]);   
+  this.appendStatementInput("no");
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(250);
+  }
+};
+
 Blockly.Blocks['include_file'] = {
   init: function() {
   this.appendDummyInput() 
