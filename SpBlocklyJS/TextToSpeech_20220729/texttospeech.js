@@ -28,9 +28,13 @@ function ttsSetProperty(volume, rate, pitch, lang) {
 
 function ttsSpeak(voice, text) {
 	if (ttsSpeakState&&text!="") {
+		ttsSwitch(0);
 		ttsSetVoice(voice);
 		tts.text = text;
 		synth.speak(tts);
+		setInterval(async function(){
+			ttsSwitch(1);
+		},1000);		
 	}
 }
 
