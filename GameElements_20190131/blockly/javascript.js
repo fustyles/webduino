@@ -1,3 +1,17 @@
+Blockly.JavaScript['window_messagebox'] = function (block) {
+  var message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC); 
+  var code = 'alert('+message+');\n';  
+  return code;
+};
+
+Blockly.JavaScript['window_confirm'] = function (block) {
+  var message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC); 	
+  var statements_yes = Blockly.JavaScript.statementToCode(block, 'yes');
+  var statements_no = Blockly.JavaScript.statementToCode(block, 'no');  
+  var code = 'var windowConfirm = window.confirm('+message+');\nif (windowConfirm==true) {\n  '+statements_yes +'\n}\nelse {\n  '+ statements_no + '\n}\n';  
+  return code;
+};
+
 Blockly.JavaScript['include_file'] = function (block) {
   var type = block.getFieldValue('type');
   var position = block.getFieldValue('position');
