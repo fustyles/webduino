@@ -9,7 +9,7 @@ var Recognition_final = '';
 
 if ('webkitSpeechRecognition' in window) {
   var recognition = new webkitSpeechRecognition();
-  recognition.continuous = true;
+  recognition.continuous = false;
   recognition.interimResults = true;
   
   recognition.onstart = function() {
