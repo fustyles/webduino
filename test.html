@@ -3,19 +3,11 @@ ttsSetProperty(1, 1, 1, "cmn-Hant-TW");
 recognition.lang="cmn-Hant-TW";
 span_interim(0,100,20,999,true);
 Recognition_recognitionFinish = function() {
-  Recognition_switch(0);
-  ttsSpeak(("Microsoft Hanhan - Chinese (Traditional, Taiwan)"), (Recognition_final_get()));
 
 };
 Recognition_switch(1);
 ttsSwitch(1);
-setInterval(async function(){
-  if (!(ttsSpeaking())) {
-    if (!(Recognition_state())) {
-      Recognition_switch(1);
-    }
-  }
-},100);
+
 button_create('',100,30,0,0,1,null,'啟動語音辨識',12,999,true);
 button_create('1',100,30,150,0,1,null,'停止語音辨識',12,999,true);
 button_create('2',100,30,300,0,1,null,'啟動TTS',12,999,true);
