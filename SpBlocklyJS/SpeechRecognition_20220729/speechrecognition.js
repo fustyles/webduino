@@ -12,11 +12,13 @@ if ('webkitSpeechRecognition' in window) {
   try { 
     document.createEvent("TouchEvent"); 
     recognition.continuous = false;
+    recognition.interimResults = false;	  
   }
   catch(e) { 
     recognition.continuous = true;
+    recognition.interimResults = true;
   }   
-  recognition.interimResults = true;
+  
   
   recognition.onstart = function() {
     recognizing = true;
