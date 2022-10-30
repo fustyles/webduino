@@ -32,12 +32,10 @@ async function gamebutton_3_onclick (event) {
 document.getElementById("gamebutton_3").addEventListener("click", gamebutton_3_onclick, true);
 var windowConfirm = window.confirm('請確認啟動語音功能？');
 if (windowConfirm==true) {
-    setTimeout(async function(){
     ttsSpeak(("Microsoft Yating - Chinese (Traditional, Taiwan)"), '語音功能已啟動');
     if (!(Recognition_state())) {
       Recognition_switch(1);
     }
-  },1000);
 
 }
 else {
