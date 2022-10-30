@@ -11,15 +11,11 @@ button_create('1',100,30,150,0,1,null,'停止語音辨識',12,999,true);
 button_create('2',100,30,300,0,1,null,'啟動TTS',12,999,true);
 button_create('3',100,30,450,0,1,null,'停止TTS',12,999,true);
 async function gamebutton__onclick (event) {
-  if (!(Recognition_state())) {
-    Recognition_switch(1);
-  }
+  Recognition_switch(1);
 };
 document.getElementById("gamebutton_").addEventListener("click", gamebutton__onclick, true);
 async function gamebutton_1_onclick (event) {
-  if (Recognition_state()) {
-    Recognition_switch(0);
-  }
+  Recognition_switch(0);
 };
 document.getElementById("gamebutton_1").addEventListener("click", gamebutton_1_onclick, true);
 async function gamebutton_2_onclick (event) {
@@ -32,11 +28,12 @@ async function gamebutton_3_onclick (event) {
 document.getElementById("gamebutton_3").addEventListener("click", gamebutton_3_onclick, true);
 var windowConfirm = window.confirm('請確認啟動語音功能？');
 if (windowConfirm==true) {
-    ttsSwitch(1);
-  ttsSpeak(("Microsoft Yating - Chinese (Traditional, Taiwan)"), '語音功能已啟動');
-  if (!(Recognition_state())) {
-    Recognition_switch(1);
-  }
+    ttsSpeak(("Microsoft Yating - Chinese (Traditional, Taiwan)"), '語音功能已啟動');
+  setTimeout(async function(){
+    if (!(Recognition_state())) {
+      Recognition_switch(1);
+    }
+  },4000);
 
 }
 else {
