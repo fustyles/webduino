@@ -10,8 +10,8 @@ Blockly.JavaScript['SpeechRecognition_get'] = function (block) {
 };
 
 Blockly.JavaScript['SpeechRecognition_listener'] = function (block) {
-  var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'setInterval(async function(){\n' + statements_do_ + '},10);\n';
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'Recognition_recognitionFinish = async function() {\n' + statements_do + '\n};\n';  
   return code;
 };
 

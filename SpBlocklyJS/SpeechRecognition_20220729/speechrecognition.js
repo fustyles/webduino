@@ -43,7 +43,7 @@ if ('webkitSpeechRecognition' in window) {
     Recognition_interim = linebreak(interim_transcript);
     if (Recognition_interim=='') {
       Recognition_final = linebreak(final_transcript);
-      //console.log("final   = " + Recognition_final);
+	  if (typeof Recognition_recognitionFinish === 'function') Recognition_recognitionFinish();
     }
     else {
       Recognition_final = "";
@@ -67,7 +67,7 @@ if ('webkitSpeechRecognition' in window) {
 }
 
 function linebreak(s) {
-  return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+  return s.replace(two_line, '<p></p>').replace(one_line, '<br>').trim();
 }
 
 function capitalize(s) {
@@ -84,9 +84,7 @@ function startButton(event) {
 }
 
 function Recognition_final_get() {
-  var result = Recognition_final;
-  Recognition_final = '';
-  return result;
+  return Recognition_final;
 }
 
 function Recognition_state() {
@@ -116,3 +114,6 @@ async function span_interim(input_left, input_top, input_fontsize, input_zindex,
 	else
 		obj.style.display = "block";
 }
+
+function Recognition_recognitionFinish() {
+}  
