@@ -36,7 +36,7 @@ function ttsSpeak(voice, text) {
 		synth.speak(tts);
 	    setTimeout(async function(){
 			ttsSpeakingState = false;
-	    },1000);
+	    },2000);
 	}
 }
 
