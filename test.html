@@ -1,16 +1,47 @@
 <!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/TextToSpeech_20220729/texttospeech.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpeechRecognition_20220729/speechrecognition.js'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{
-button_create('',200,30,0,0,1,null,'啟動語音功能',12,999,true);
+ttsSetProperty(1, 1, 1, "cmn-Hant-TW");
+recognition.lang="cmn-Hant-TW";
+span_interim(0,100,20,999,true);
+Recognition_recognitionFinish = async function() {
+  ttsSpeak(("Microsoft Hanhan - Chinese (Traditional, Taiwan)"), (Recognition_final_get()));
+
+};
+var windowConfirm = window.confirm('請確認啟動語音功能？');
+if (windowConfirm==true) {
+    ttsSpeak(("Microsoft Yating - Chinese (Traditional, Taiwan)"), '語音功能已啟動');
+  if (!(Recognition_state())) {
+    Recognition_switch(1);
+  }
+
+}
+else {
+    if (Recognition_state()) {
+    Recognition_switch(0);
+  }
+
+}
+button_create('',100,30,0,0,1,null,'啟動語音辨識',12,999,true);
+button_create('1',100,30,150,0,1,null,'停止語音辨識',12,999,true);
+button_create('2',100,30,300,0,1,null,'啟動TTS',12,999,true);
+button_create('3',100,30,450,0,1,null,'停止TTS',12,999,true);
 async function gamebutton__onclick (event) {
-  ttsSetProperty(1, 1, 1, "en-US");
-  button_set('',"display",false);
+  if (!(Recognition_state())) {
+    Recognition_switch(1);
+  }
 };
 document.getElementById("gamebutton_").addEventListener("click", gamebutton__onclick, true);
-recognition.lang="cmn-Hant-TW";
-if (!recognizing) startButton(event);
-span_interim(0,0,20,999,true);
-setInterval(async function(){
-  ttsSetVoice(("Google 國語（臺灣）"));
-  tts.text = (Recognition_final_get());
-  synth.speak(tts);
-},10);
+async function gamebutton_1_onclick (event) {
+  if (Recognition_state()) {
+    Recognition_switch(0);
+  }
+};
+document.getElementById("gamebutton_1").addEventListener("click", gamebutton_1_onclick, true);
+async function gamebutton_2_onclick (event) {
+  ttsSwitch(1);
+};
+document.getElementById("gamebutton_2").addEventListener("click", gamebutton_2_onclick, true);
+async function gamebutton_3_onclick (event) {
+  ttsSwitch(0);
+};
+document.getElementById("gamebutton_3").addEventListener("click", gamebutton_3_onclick, true);
 };main();</script></body></html>
