@@ -6,6 +6,8 @@ Recognition_recognitionFinish = async function() {
   ttsSpeak(("Microsoft Hanhan - Chinese (Traditional, Taiwan)"), (Recognition_final_get()));
 
 };
+Recognition_switch(1);
+ttsSwitch(1);
 button_create('',100,30,0,0,1,null,'啟動語音辨識',12,999,true);
 button_create('1',100,30,150,0,1,null,'停止語音辨識',12,999,true);
 button_create('2',100,30,300,0,1,null,'啟動TTS',12,999,true);
