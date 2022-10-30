@@ -32,3 +32,8 @@ Blockly.JavaScript['TextToSpeech_switch'] = function (block) {
   var code = 'ttsSwitch('+value_switch+');\n';
   return code;
 };
+
+Blockly.JavaScript['TextToSpeech_speaking'] = function(block) {
+  var code = 'ttsSpeaking()';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};

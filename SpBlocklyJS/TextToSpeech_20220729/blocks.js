@@ -147,6 +147,7 @@ Blockly.Blocks['TextToSpeech_initial'] = {
 Blockly.Blocks['TextToSpeech_run'] = {
   init: function () {
   this.appendDummyInput()
+	  .appendField(Blockly.Msg.TEXTTOSPEECH_SHOW)
       .appendField(Blockly.Msg.TEXTTOSPEECH_RUN_SHOW);
   this.appendValueInput("voice_")
       .setCheck("String")
@@ -213,5 +214,16 @@ Blockly.Blocks['TextToSpeech_switch'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(130);
+  }
+};
+
+Blockly.Blocks['TextToSpeech_speaking'] = {
+  init: function () {    
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.TEXTTOSPEECH_SHOW)
+      .appendField(Blockly.Msg.TEXTTOSPEECH_SPEAKING_SHOW);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(130);
   }
 };

@@ -49,3 +49,7 @@ function ttsState(state) {
 	else if (state=="cancel")
 		synth.cancel(); 
 }
+
+function ttsSpeaking() {
+	return synth.speaking;
+}

@@ -32,6 +32,8 @@ var catTextToSpeech = '<xml>'+
 '  <block type="TextToSpeech_switch">'+
 '  </block>'+  
 '  <block type="TextToSpeech_control">'+  
-'  </block>'+       
+'  </block>'+
+'  <block type="TextToSpeech_speaking">'+  
+'  </block>'+          
 '</category>'+
 '</xml>';

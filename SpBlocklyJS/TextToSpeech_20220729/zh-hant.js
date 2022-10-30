@@ -1,6 +1,6 @@
 Blockly.Msg["CATTEXTTOSPEECH"] = "語音朗讀";
 Blockly.Msg["TEXTTOSPEECH_SHOW"] = "語音朗讀";
-Blockly.Msg["TEXTTOSPEECH_RUN_SHOW"] = "語音朗讀 朗讀";
+Blockly.Msg["TEXTTOSPEECH_RUN_SHOW"] = "朗讀";
 Blockly.Msg["TEXTTOSPEECH_VOLUME_SHOW"] = "音量(0~1)";  
 Blockly.Msg["TEXTTOSPEECH_RATE_SHOW"] = "速度(0.1~10)";  
 Blockly.Msg["TEXTTOSPEECH_PITCH_SHOW"] = "語調(0~2)";      
@@ -132,3 +132,4 @@ Blockly.Msg["TEXTTOSPEECH_LANG_cmn_Hans_HK"] = "Chinese, Mandarin (Simplified, H
 Blockly.Msg["TEXTTOSPEECH_LANG_cmn_Hans_CN"] = "Chinese, Mandarin (Simplified, China)";
 Blockly.Msg["TEXTTOSPEECH_START"] = "啟動";
 Blockly.Msg["TEXTTOSPEECH_STOP"] = "停止";
+Blockly.Msg["TEXTTOSPEECH_SPEAKING_SHOW"] = "朗讀狀態";

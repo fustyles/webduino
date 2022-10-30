@@ -1,6 +1,6 @@
 Blockly.Msg["CATTEXTTOSPEECH"] = "Speech Synthesis";
 Blockly.Msg["TEXTTOSPEECH_SHOW"] = "Text to Speech";
-Blockly.Msg["TEXTTOSPEECH_RUN_SHOW"] = "Text to Speech say";
+Blockly.Msg["TEXTTOSPEECH_RUN_SHOW"] = "say";
 Blockly.Msg["TEXTTOSPEECH_VOLUME_SHOW"] = "Volume(0~1)";  
 Blockly.Msg["TEXTTOSPEECH_RATE_SHOW"] = "Rate(0.1~10)";  
 Blockly.Msg["TEXTTOSPEECH_PITCH_SHOW"] = "Pitch(0~2)";      
@@ -132,3 +132,4 @@ Blockly.Msg["TEXTTOSPEECH_LANG_cmn_Hans_HK"] = "Chinese, Mandarin (Simplified, H
 Blockly.Msg["TEXTTOSPEECH_LANG_cmn_Hans_CN"] = "Chinese, Mandarin (Simplified, China)";
 Blockly.Msg["TEXTTOSPEECH_START"] = "Start";
 Blockly.Msg["TEXTTOSPEECH_STOP"] = "Stop";
+Blockly.Msg["TEXTTOSPEECH_SPEAKING_SHOW"] = "is speaking";
