@@ -47,21 +47,7 @@ if ('webkitSpeechRecognition' in window) {
     }
     else {
       Recognition_final = "";
-	  
-      if (!document.getElementById("gamespan_recognition")) {
-        var obj = document.createElement('div');
-        obj.id = "gamespan_recognition";
-		obj.style.display = "none";
-        obj.style.position = "absolute";
-        obj.style.zIndex = "9999";
-        obj.draggable="true";
-        obj.setAttribute("onclick", "javascript:onclickid_set(this);");
-        obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('div/plain',event.target.id);");
-        document.body.appendChild(obj);
-      }
 	  document.getElementById("gamespan_recognition").innerHTML = Recognition_interim;
-	  
-      //console.log("interim = " + Recognition_interim);
     }
   };
 }
@@ -92,19 +78,30 @@ function Recognition_state() {
 }
 
 function Recognition_switch(state) {
-    if (state==1)
+    if (state==1&&!recognizing) {
 		startButton(event);
+	}
 	else if (state==0&&recognizing) {
 		ignore_onend = true;
 		recognition.stop();
 	}
 }
 
-async function span_interim(input_left, input_top, input_fontsize, input_zindex, input_display) {
-	while (!document.getElementById("gamespan_recognition")) {
-		await delay(0.5);
-	}		
-	var obj = document.getElementById("gamespan_recognition");
+function span_interim(input_left, input_top, input_fontsize, input_zindex, input_display) {	
+	if (!document.getElementById("gamespan_recognition")) {
+		var obj = document.createElement('div');
+		obj.id = "gamespan_recognition";
+		obj.style.display = "none";
+		obj.style.position = "absolute";
+		obj.style.zIndex = "9999";
+		obj.draggable="true";
+		obj.setAttribute("onclick", "javascript:onclickid_set(this);");
+		obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('div/plain',event.target.id);");
+		document.body.appendChild(obj);
+	}
+	else 
+		var obj = document.getElementById("gamespan_recognition");
+	  
 	obj.style.left = input_left + 'px';
 	obj.style.top = input_top + 'px';
 	obj.style.fontSize = input_fontsize + "px";
