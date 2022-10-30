@@ -1,6 +1,6 @@
 var synth = window.speechSynthesis;
 var tts = new SpeechSynthesisUtterance();
-var ttsSpeakState = true;
+var ttsSpeakState = false;
 
 async function ttsSetVoice(voice) {
     var voices = synth.getVoices();
