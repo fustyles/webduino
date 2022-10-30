@@ -207,15 +207,3 @@ Blockly.Blocks['SpeechRecognition_switch'] = {
   this.setColour(180);
   }
 };
-
-Blockly.Blocks['SpeechRecognition_onend'] = {
-  init: function () {     
-  this.appendDummyInput()   
-      .appendField(Blockly.Msg.SPEECHRECOGNITION_ONEND);
-  this.appendStatementInput("do_");	  
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(180);
-  }
-};

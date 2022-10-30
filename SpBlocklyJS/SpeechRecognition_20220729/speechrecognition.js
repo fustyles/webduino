@@ -43,6 +43,7 @@ if ('webkitSpeechRecognition' in window) {
     Recognition_interim = linebreak(interim_transcript);
     if (Recognition_interim=='') {
       Recognition_final = linebreak(final_transcript);
+	  if (ttsSpeakingState) return;
 	  if (typeof Recognition_recognitionFinish === 'function') Recognition_recognitionFinish();
     }
     else {

@@ -5,19 +5,21 @@ var catSpeechRecognition = '<xml>'+
 '  </block>'+
 '  <block type="SpeechRecognition_switch">'+
 '  </block>'+
-'  <variables>'+
-'  <variable type="">Result</variable></variables>'+
 '  <block type="SpeechRecognition_listener">'+
 '    <statement name="do_">'+
-'      <block type="variables_set">'+
-'        <field name="VAR" variabletype="">Result</field>'+
-'        <value name="VALUE">'+
+'    </statement>'+
+'  </block>'+
+'  <block type="SpeechRecognition_get">'+
+'  </block>'+ 
+'  <variables>'+
+'  <variable type="">Result</variable></variables>'+
+'  <block type="variables_set">'+
+'      <field name="VAR" variabletype="">Result</field>'+
+'      <value name="VALUE">'+
 '          <block type="SpeechRecognition_get">'+
 '          </block>'+
-'        </value>'+
-'      </block>'+
-'    </statement>'+
-'  </block>'+ 
+'      </value>'+
+'  </block>'+
 '  <variables>'+
 '  <variable type="">Result</variable></variables>'+
 '  <block type="SpeechRecognition_keyword">'+
@@ -59,8 +61,6 @@ var catSpeechRecognition = '<xml>'+
 '    		<field name="BOOL">TRUE</field>'+
 '    	</block>'+
 '    </value>'+
-'  </block>'+
-'  <block type="SpeechRecognition_onend">'+
 '  </block>'+
 '</category>'+
 '</xml>';
