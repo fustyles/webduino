@@ -3,7 +3,7 @@ Blockly.Blocks['window_messagebox'] = {
   this.appendValueInput("message")
 	  .appendField(Blockly.Msg["WINDOW_MESSAGEBOX"])
       .setCheck(null);
-  this.setInputsInline(false);
+  this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(250);
