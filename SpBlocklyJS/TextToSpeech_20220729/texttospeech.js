@@ -28,18 +28,12 @@ function ttsSetProperty(volume, rate, pitch, lang) {
 
 async function ttsSpeak(voice, text) {
 	if (ttsSpeakState&&text!="") {
-		var state = recognizing||"";
-		if (state)
-			if (typeof Recognition_switch === 'function') Recognition_switch(0);;
-		
 		ttsSetVoice(voice);
 		tts.text = text;
 		synth.speak(tts);
 		while (ttsSpeaking()) {
 			await delay(0.01);
-		}
-		if (state)
-			if (typeof Recognition_switch === 'function') Recognition_switch(1);;		
+		}		
 	}
 }
 
