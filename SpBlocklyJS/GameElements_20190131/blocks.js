@@ -6,7 +6,7 @@ Blockly.Blocks['window_messagebox'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(250);
   }
 };
 
@@ -24,7 +24,7 @@ Blockly.Blocks['window_confirm'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(250);
   }
 };
 
