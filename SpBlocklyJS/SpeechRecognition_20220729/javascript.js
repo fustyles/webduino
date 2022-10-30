@@ -11,7 +11,7 @@ Blockly.JavaScript['SpeechRecognition_get'] = function (block) {
 
 Blockly.JavaScript['SpeechRecognition_listener'] = function (block) {
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'Recognition_recognitionFinish = async function() {\n' + statements_do + '\n};\n';  
+  var code = 'Recognition_recognitionFinish = function() {\n' + statements_do + '\n};\n';  
   return code;
 };
 
