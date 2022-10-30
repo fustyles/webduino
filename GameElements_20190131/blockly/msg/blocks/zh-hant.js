@@ -508,3 +508,8 @@ Blockly.Msg.INCLUDE_HERE = "目前位置";
 Blockly.Msg.INCLUDE_URL = "網址";
 
 Blockly.Msg.POINT_IN_ELEMENT = "點位於元素區域範圍";
+
+Blockly.Msg["WINDOW_CONFIRM"] = "確認視窗 訊息";
+Blockly.Msg["WINDOW_CONFIRM_YES"] = "如果選擇[是]執行"; 
+Blockly.Msg["WINDOW_CONFIRM_NO"] = "如果選擇[否]執行";
+Blockly.Msg["WINDOW_MESSAGEBOX"] = "警告視窗 顯示";
