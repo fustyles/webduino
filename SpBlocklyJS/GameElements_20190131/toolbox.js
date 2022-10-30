@@ -74,6 +74,13 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="window_messagebox">'+
+'    <value name="message">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
 '    <block type="window_confirm">'+
 '    <value name="message">'+
 '    <block type="text">'+

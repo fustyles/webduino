@@ -1,3 +1,9 @@
+Blockly.JavaScript['window_messagebox'] = function (block) {
+  var message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC); 
+  var code = 'alert('+message+');\n';  
+  return code;
+};
+
 Blockly.JavaScript['window_confirm'] = function (block) {
   var message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC); 	
   var statements_yes = Blockly.JavaScript.statementToCode(block, 'yes');

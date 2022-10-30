@@ -549,6 +549,7 @@ Blockly.Msg["SYSTEM_DATETIME_SECOND"] = "秒";
 
 Blockly.Msg.POINT_IN_ELEMENT = "点位于元素区域范围";
 
-Blockly.Msg["WINDOW_CONFIRM"] = "确认视窗讯息";
+Blockly.Msg["WINDOW_CONFIRM"] = "确认视窗 讯息";
 Blockly.Msg["WINDOW_CONFIRM_YES"] = "如果选择[是]执行"; 
 Blockly.Msg["WINDOW_CONFIRM_NO"] = "如果选择[否]执行";
+Blockly.Msg["WINDOW_MESSAGEBOX"] = "警告视窗 显示";

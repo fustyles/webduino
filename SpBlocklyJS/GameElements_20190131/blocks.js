@@ -1,3 +1,15 @@
+Blockly.Blocks['window_messagebox'] = {
+  init: function () {
+  this.appendValueInput("message")
+	  .appendField(Blockly.Msg["WINDOW_MESSAGEBOX"])
+      .setCheck(null);
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(200);
+  }
+};
+
 Blockly.Blocks['window_confirm'] = {
   init: function () {
   this.appendValueInput("message")
