@@ -3,7 +3,9 @@ ttsSetProperty(1, 1, 1, "cmn-Hant-TW");
 recognition.lang="cmn-Hant-TW";
 span_interim(0,100,20,999,true);
 Recognition_recognitionFinish = async function() {
+  Recognition_switch(0);
   ttsSpeak(("Microsoft Hanhan - Chinese (Traditional, Taiwan)"), (Recognition_final_get()));
+  Recognition_switch(1);
 
 };
 Recognition_switch(1);
