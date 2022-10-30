@@ -548,3 +548,7 @@ Blockly.Msg["SYSTEM_DATETIME_MINUTE"] = "MINUTE";
 Blockly.Msg["SYSTEM_DATETIME_SECOND"] = "SECOND";
 
 Blockly.Msg.POINT_IN_ELEMENT = "point inside the element";
+
+Blockly.Msg["WINDOW_CONFIRM"] = "Confirm Box message";
+Blockly.Msg["WINDOW_CONFIRM_YES"] = "If choiced [Yes]"; 
+Blockly.Msg["WINDOW_CONFIRM_NO"] = "If choiced [No]";
