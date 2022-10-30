@@ -28,11 +28,9 @@ function ttsSetProperty(volume, rate, pitch, lang) {
 
 function ttsSpeak(voice, text) {
 	if (ttsSpeakState) {
-		if (typeof Recognition_switch === 'function') Recognition_switch(0);
 		ttsSetVoice(voice);
 		tts.text = text;
 		synth.speak(tts);
-		if (typeof Recognition_switch === 'function') Recognition_switch(1);
 	}
 }
 
