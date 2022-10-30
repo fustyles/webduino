@@ -32,11 +32,7 @@ function ttsSpeak(voice, text) {
 	if (ttsSpeakState&&text!="") {
 		ttsSetVoice(voice);
 		tts.text = text;
-		ttsSpeakingState = true;
 		synth.speak(tts);
-	    setTimeout(async function(){
-			ttsSpeakingState = false;
-	    },2000);
 	}
 }
 

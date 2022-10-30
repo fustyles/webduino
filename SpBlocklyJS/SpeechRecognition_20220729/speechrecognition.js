@@ -31,6 +31,10 @@ if ('webkitSpeechRecognition' in window) {
   };
   
   recognition.onresult = function(event) {
+	if (synth) {
+		if (synth.speaking) 
+			return;
+	}
     var interim_transcript = '';
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
@@ -43,7 +47,6 @@ if ('webkitSpeechRecognition' in window) {
     Recognition_interim = linebreak(interim_transcript);
     if (Recognition_interim=='') {
       Recognition_final = linebreak(final_transcript);
-	  if (ttsSpeakingState) return;
 	  if (typeof Recognition_recognitionFinish === 'function') Recognition_recognitionFinish();
     }
     else {
