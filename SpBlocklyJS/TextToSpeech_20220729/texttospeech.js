@@ -26,11 +26,14 @@ function ttsSetProperty(volume, rate, pitch, lang) {
     tts.lang = lang;
 }
 
-function ttsSpeak(voice, text) {
+async function ttsSpeak(voice, text) {
 	if (ttsSpeakState) {
 		ttsSetVoice(voice);
 		tts.text = text;
 		synth.speak(tts);
+		while (ttsSpeaking()) {
+			await delay(0.01);
+		}
 	}
 }
 
