@@ -9,7 +9,13 @@ var Recognition_final = '';
 
 if ('webkitSpeechRecognition' in window) {
   var recognition = new webkitSpeechRecognition();
-  recognition.continuous = false;
+  try { 
+    document.createEvent("TouchEvent"); 
+    recognition.continuous = false;
+  }
+  catch(e) { 
+    recognition.continuous = true;
+  }   
   recognition.interimResults = true;
   
   recognition.onstart = function() {
