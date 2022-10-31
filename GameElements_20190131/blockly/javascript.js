@@ -823,6 +823,8 @@ Blockly.JavaScript['async_function'] = function (block) {
     value_parameter_ = value_parameter_.substring(1,value_parameter_.length-1);
   if ((value_parameter_.indexOf("(")==0)&&(value_parameter_.lastIndexOf(")")==value_parameter_.length-1))
     value_parameter_ = value_parameter_.substring(1,value_parameter_.length-1);
+  if ((value_parameter_.indexOf("[")==0)&&(value_parameter_.lastIndexOf("]")==value_parameter_.length-1))
+    value_parameter_ = value_parameter_.substring(1,value_parameter_.length-1);	
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'async function '+value_name_+'('+value_parameter_+'){\n' + statements_do_ + '};\n';
   return code;
@@ -843,6 +845,8 @@ Blockly.JavaScript['call_async_function'] = function (block) {
     value_parameter_ = value_parameter_.substring(1,value_parameter_.length-1);
   if ((value_parameter_.indexOf("(")==0)&&(value_parameter_.lastIndexOf(")")==value_parameter_.length-1))
     value_parameter_ = value_parameter_.substring(1,value_parameter_.length-1);  
+  if ((value_parameter_.indexOf("[")==0)&&(value_parameter_.lastIndexOf("]")==value_parameter_.length-1))
+    value_parameter_ = value_parameter_.substring(1,value_parameter_.length-1);	
   var code = value_name_ + '('+value_parameter_+');\n';
   return code;
 };
