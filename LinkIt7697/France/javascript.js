@@ -1,3 +1,17 @@
+Blockly.Arduino['window_messagebox'] = function (block) {
+  var message = Blockly.Arduino.valueToCode(block, 'message', Blockly.Arduino.ORDER_ATOMIC); 
+  var code = 'alert('+message+');\n';  
+  return code;
+};
+
+Blockly.Arduino['window_confirm'] = function (block) {
+  var message = Blockly.Arduino.valueToCode(block, 'message', Blockly.Arduino.ORDER_ATOMIC); 	
+  var statements_yes = Blockly.Arduino.statementToCode(block, 'yes');
+  var statements_no = Blockly.Arduino.statementToCode(block, 'no');  
+  var code = 'var windowConfirm = window.confirm('+message+');\nif (windowConfirm==true) {\n  '+statements_yes +'\n}\nelse {\n  '+ statements_no + '\n}\n';  
+  return code;
+};
+
 Blockly.Arduino['javascript_function_string_split'] = function(block) {
 	var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC)||" ";	
 	var delimiter = Blockly.Arduino.valueToCode(block, 'delimiter', Blockly.Arduino.ORDER_ATOMIC)||" ";

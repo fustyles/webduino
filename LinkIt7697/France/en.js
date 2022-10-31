@@ -1850,3 +1850,8 @@ Blockly.Msg["JAVASCRIPT_FUNCTIONS_MATH_TRUNC"] = "Math.trunc";
 
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_STRING_SPLIT"] = "Split to array";
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_STRING_DELIMITER"] = "delimiter";
+
+Blockly.Msg["WINDOW_CONFIRM"] = "Confirm box message";
+Blockly.Msg["WINDOW_CONFIRM_YES"] = "If choiced [Yes]"; 
+Blockly.Msg["WINDOW_CONFIRM_NO"] = "If choiced [No]";
+Blockly.Msg["WINDOW_MESSAGEBOX"] = "Alert box message";

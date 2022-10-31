@@ -1,3 +1,33 @@
+Blockly.Blocks['window_messagebox'] = {
+  init: function () {
+  this.appendValueInput("message")
+	  .appendField(Blockly.Msg["WINDOW_MESSAGEBOX"])
+      .setCheck(null);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
+Blockly.Blocks['window_confirm'] = {
+  init: function () {
+  this.appendValueInput("message")
+	  .appendField(Blockly.Msg["WINDOW_CONFIRM"])
+      .setCheck("String");
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg["WINDOW_CONFIRM_YES"]); 
+  this.appendStatementInput("yes");
+  this.appendDummyInput()
+      .appendField(Blockly.Msg["WINDOW_CONFIRM_NO"]);   
+  this.appendStatementInput("no");
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
 Blockly.Blocks['javascript_function_string_split'] = {
   init: function() {
     this.appendDummyInput()
@@ -17053,7 +17083,7 @@ Blockly.Blocks['console_log'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(Blockly.Msg["HUE_1"]);  
+  this.setColour(Blockly.Msg["HUE_25"]);  
   }
 };
 

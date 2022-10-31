@@ -1858,3 +1858,8 @@ Blockly.Msg["JAVASCRIPT_FUNCTIONS_MATH_TRUNC"] = "TRUNC 刪除任何小數位返
 
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_STRING_SPLIT"] = "字串轉換陣列";
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_STRING_DELIMITER"] = "分隔符號";
+
+Blockly.Msg["WINDOW_CONFIRM"] = "確認視窗 訊息";
+Blockly.Msg["WINDOW_CONFIRM_YES"] = "如果選擇[是]執行"; 
+Blockly.Msg["WINDOW_CONFIRM_NO"] = "如果選擇[否]執行";
+Blockly.Msg["WINDOW_MESSAGEBOX"] = "警告視窗 顯示";
