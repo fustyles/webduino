@@ -79,7 +79,33 @@
     </value>    
   </block>
   <block type="location">  
-  </block>  
+  </block>
+<block type="async_function">
+      <value name="name_">
+	<block type="text">
+	  <field name="TEXT"></field>
+	</block>
+      </value>
+      <value name="parameter_">
+	<block type="lists_create_with">
+	  <mutation items="0"></mutation>
+	</block>
+      </value>
+</block>
+<block type="call_async_function">
+      <value name="name_">
+	<block type="text">
+	  <field name="TEXT"></field>
+	</block>
+      </value>
+      <value name="parameter_">
+	<block type="lists_create_with">
+	  <mutation items="0"></mutation>
+	</block>
+      </value>
+</block>
+  <block type="transform_async_function">      
+  </block> 	
   <block type="video_base64">
     <value name="id_">
       <block type="text">
@@ -87,13 +113,13 @@
       </block>
     </value>   
   </block>
-	<block type="include_file">
-		<value name="value">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-	</block>  
+<block type="include_file">
+	<value name="value">
+	  <block type="text">
+		<field name="TEXT"></field>
+	  </block>
+	</value>
+</block>  
   <block type="video_base64_spreadsheet">
     <value name="id_">
       <block type="text">
@@ -336,26 +362,6 @@
     </block>
   <block type="variable_board">   
   </block>
-  <block type="async_function">
-    <value name="name_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>    
-    </value>   
-    <value name="parameter_">  
-    </value>      
-  </block>    
-  <block type="call_async_function">
-    <value name="name_">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>    
-    </value>
-    <value name="parameter_">  
-    </value>     
-  </block> 
-  <block type="transform_async_function">      
-  </block> 
   <block type="text_to_number">
     <value name="value_text_">
     </value>    
