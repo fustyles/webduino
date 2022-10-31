@@ -2072,7 +2072,7 @@ Blockly.Blocks['async_function'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(230);
+  this.setColour(Blockly.Msg["PROCEDURES_HUE"]);
   }
 };
 
@@ -2090,7 +2090,7 @@ Blockly.Blocks['call_async_function'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(230);
+  this.setColour(Blockly.Msg["PROCEDURES_HUE"]);
   }
 };
 
@@ -2101,7 +2101,7 @@ Blockly.Blocks['transform_async_function'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(230);
+  this.setColour(Blockly.Msg["PROCEDURES_HUE"]);
   }
 };
 
