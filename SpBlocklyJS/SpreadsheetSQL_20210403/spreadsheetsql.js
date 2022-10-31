@@ -50,8 +50,12 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 	  if (res.qb.fg.length>0) {
 		  for (var i=0;i<res.qb.fg.length;i++) {
 			  for (var j=0;j<res.qb.fg[i].c.length;j++) {
-				//console.log(res.qb.fg[i].c[j].v);
-				arr.push(res.qb.fg[i].c[j].v);
+				if (res.qb.fg[i].c[j]) {
+					if (res.qb.fg[i].c[j].v)
+						arr.push(res.qb.fg[i].c[j].v);
+				}
+				else
+					arr.push("");
 			  }
 			  spreadsheetsql_response.push(arr);
 			  arr = [];
