@@ -36,7 +36,8 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 	  //console.log(res);
 	  spreadsheetsql_response = [];
 	  spreadsheetsql_head_response = [];
-	  var arr = [];
+	  var arr = []; 
+	  if (res.aY=="error") return;
 	  if (res.qb.If.length>0) {
 		  for (var i=0;i<res.qb.If.length;i++) {
 			  if (res.qb.If[i].label)
@@ -46,13 +47,13 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 		  }
 		  spreadsheetsql_head_response.push(arr);
 		  arr = [];
-	  }	  
+	  }
 	  if (res.qb.fg.length>0) {
 		  for (var i=0;i<res.qb.fg.length;i++) {
 			  for (var j=0;j<res.qb.fg[i].c.length;j++) {
 				if (res.qb.fg[i].c[j]) {
 					if (res.qb.fg[i].c[j].v)
-						arr.push(res.qb.fg[i].c[j].v);
+						arr.push((res.qb.fg[i].c[j].f)?res.qb.fg[i].c[j].f:res.qb.fg[i].c[j].v);
 				}
 				else
 					arr.push("");
