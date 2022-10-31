@@ -94,33 +94,7 @@ var catPageElements ='<xml>'+
 '    <field name="TEXT"></field>'+
 '    </block>'+
 '    </value>'+
-'    </block>'+
-'    <block type="async_function">'+
-'      <value name="name_">'+
-'        <block type="text">'+
-'          <field name="TEXT"></field>'+
-'        </block>'+
-'      </value>'+
-'      <value name="parameter_">'+
-'        <block type="lists_create_with">'+
-'          <mutation items="0"></mutation>'+
-'        </block>'+
-'      </value>'+
-'    </block>'+
-'    <block type="call_async_function">'+
-'      <value name="name_">'+
-'        <block type="text">'+
-'          <field name="TEXT"></field>'+
-'        </block>'+
-'      </value>'+
-'      <value name="parameter_">'+
-'        <block type="lists_create_with">'+
-'          <mutation items="0"></mutation>'+
-'        </block>'+
-'      </value>'+
-'    </block>'+
-'    <block type="transform_async_function">'+
-'    </block>'+    
+'    </block>'+   
 '    <block type="function_return">'+
 '    <value name="value_">'+
 '    <block type="math_number">'+

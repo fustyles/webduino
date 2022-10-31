@@ -90,9 +90,26 @@ $.Blockly.JavaScript.text_count=function(a){var b=$.Blockly.JavaScript.valueToCo
 ")",$.Blockly.JavaScript.ORDER_FUNCTION_CALL]};
 $.Blockly.JavaScript.text_replace=function(a){var b=$.Blockly.JavaScript.valueToCode(a,"TEXT",$.Blockly.JavaScript.ORDER_NONE)||"''",c=$.Blockly.JavaScript.valueToCode(a,"FROM",$.Blockly.JavaScript.ORDER_NONE)||"''";a=$.Blockly.JavaScript.valueToCode(a,"TO",$.Blockly.JavaScript.ORDER_NONE)||"''";return[$.Blockly.JavaScript.provideFunction_("textReplace","\nfunction "+$.Blockly.JavaScript.FUNCTION_NAME_PLACEHOLDER_+"(haystack, needle, replacement) {\n  needle = needle.replace(/([-()\\[\\]{}+?*.$\\^|,:#<!\\\\])/g, '\\\\$1')\n                 .replace(/\\x08/g, '\\\\x08');\n  return haystack.replace(new RegExp(needle, 'g'), replacement);\n}\n")+"("+
 b+", "+c+", "+a+")",$.Blockly.JavaScript.ORDER_FUNCTION_CALL]};$.Blockly.JavaScript.text_reverse=function(a){return[($.Blockly.JavaScript.valueToCode(a,"TEXT",$.Blockly.JavaScript.ORDER_MEMBER)||"''")+".split('').reverse().join('')",$.Blockly.JavaScript.ORDER_FUNCTION_CALL]};var module$exports$Blockly$JavaScript$procedures={};
-$.Blockly.JavaScript.procedures_defreturn=function(a){var b=$.Blockly.JavaScript.nameDB_.getName(a.getFieldValue("NAME"),$.module$exports$Blockly$Names.NameType.PROCEDURE),c="";$.Blockly.JavaScript.STATEMENT_PREFIX&&(c+=$.Blockly.JavaScript.injectId($.Blockly.JavaScript.STATEMENT_PREFIX,a));$.Blockly.JavaScript.STATEMENT_SUFFIX&&(c+=$.Blockly.JavaScript.injectId($.Blockly.JavaScript.STATEMENT_SUFFIX,a));c&&(c=$.Blockly.JavaScript.prefixLines(c,$.Blockly.JavaScript.INDENT));var d="";$.Blockly.JavaScript.INFINITE_LOOP_TRAP&&
-(d=$.Blockly.JavaScript.prefixLines($.Blockly.JavaScript.injectId($.Blockly.JavaScript.INFINITE_LOOP_TRAP,a),$.Blockly.JavaScript.INDENT));var e=$.Blockly.JavaScript.statementToCode(a,"STACK"),f=$.Blockly.JavaScript.valueToCode(a,"RETURN",$.Blockly.JavaScript.ORDER_NONE)||"",g="";e&&f&&(g=c);f&&(f=$.Blockly.JavaScript.INDENT+"return "+f+";\n");for(var h=[],k=a.getVars(),l=0;l<k.length;l++)h[l]=$.Blockly.JavaScript.nameDB_.getName(k[l],$.module$exports$Blockly$Names.NameType.VARIABLE);c="function "+
-b+"("+h.join(", ")+") {\n"+c+d+e+g+f+"}";c=$.Blockly.JavaScript.scrub_(a,c);$.Blockly.JavaScript.definitions_["%"+b]=c;return null};$.Blockly.JavaScript.procedures_defnoreturn=$.Blockly.JavaScript.procedures_defreturn;
+
+
+$.Blockly.JavaScript.procedures_defreturn=function(a){
+	var b=$.Blockly.JavaScript.nameDB_.getName(a.getFieldValue("NAME"),$.module$exports$Blockly$Names.NameType.PROCEDURE),c="";
+	$.Blockly.JavaScript.STATEMENT_PREFIX&&(c+=$.Blockly.JavaScript.injectId($.Blockly.JavaScript.STATEMENT_PREFIX,a));
+	$.Blockly.JavaScript.STATEMENT_SUFFIX&&(c+=$.Blockly.JavaScript.injectId($.Blockly.JavaScript.STATEMENT_SUFFIX,a));
+	c&&(c=$.Blockly.JavaScript.prefixLines(c,$.Blockly.JavaScript.INDENT));
+	var d="";$.Blockly.JavaScript.INFINITE_LOOP_TRAP&&(d=$.Blockly.JavaScript.prefixLines($.Blockly.JavaScript.injectId($.Blockly.JavaScript.INFINITE_LOOP_TRAP,a),$.Blockly.JavaScript.INDENT));
+	var e=$.Blockly.JavaScript.statementToCode(a,"STACK"),f=$.Blockly.JavaScript.valueToCode(a,"RETURN",$.Blockly.JavaScript.ORDER_NONE)||"",g="";
+	e&&f&&(g=c);
+	f&&(f=$.Blockly.JavaScript.INDENT+"return "+f+";\n");
+	for(var h=[],k=a.getVars(),l=0;l<k.length;l++)h[l]=$.Blockly.JavaScript.nameDB_.getName(k[l],$.module$exports$Blockly$Names.NameType.VARIABLE);
+	m=(a.getFieldValue('async')!="")?a.getFieldValue('async')+" ":"";
+	c=m+"function "+b+"("+h.join(", ")+") {\n"+c+d+e+g+f+"}";
+	c=$.Blockly.JavaScript.scrub_(a,c);$.Blockly.JavaScript.definitions_["%"+b]=c;
+	return null
+};
+
+
+$.Blockly.JavaScript.procedures_defnoreturn=$.Blockly.JavaScript.procedures_defreturn;
 $.Blockly.JavaScript.procedures_callreturn=function(a){for(var b=$.Blockly.JavaScript.nameDB_.getName(a.getFieldValue("NAME"),$.module$exports$Blockly$Names.NameType.PROCEDURE),c=[],d=a.getVars(),e=0;e<d.length;e++)c[e]=$.Blockly.JavaScript.valueToCode(a,"ARG"+e,$.Blockly.JavaScript.ORDER_NONE)||"null";return[b+"("+c.join(", ")+")",$.Blockly.JavaScript.ORDER_FUNCTION_CALL]};$.Blockly.JavaScript.procedures_callnoreturn=function(a){return $.Blockly.JavaScript.procedures_callreturn(a)[0]+";\n"};
 $.Blockly.JavaScript.procedures_ifreturn=function(a){var b="if ("+($.Blockly.JavaScript.valueToCode(a,"CONDITION",$.Blockly.JavaScript.ORDER_NONE)||"false")+") {\n";$.Blockly.JavaScript.STATEMENT_SUFFIX&&(b+=$.Blockly.JavaScript.prefixLines($.Blockly.JavaScript.injectId($.Blockly.JavaScript.STATEMENT_SUFFIX,a),$.Blockly.JavaScript.INDENT));a.hasReturnValue_?(a=$.Blockly.JavaScript.valueToCode(a,"VALUE",$.Blockly.JavaScript.ORDER_NONE)||"null",b+=$.Blockly.JavaScript.INDENT+"return "+a+";\n"):b+=$.Blockly.JavaScript.INDENT+
 "return;\n";return b+"}\n"};var module$exports$Blockly$JavaScript$math={};$.Blockly.JavaScript.math_number=function(a){a=Number(a.getFieldValue("NUM"));return[a,0<=a?$.Blockly.JavaScript.ORDER_ATOMIC:$.Blockly.JavaScript.ORDER_UNARY_NEGATION]};
