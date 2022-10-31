@@ -34,7 +34,10 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 	  //console.log(res.qb.fg);
 	  //console.log(res.qb.fg.length);
 	  var arr = [];  
-	  if (res.aY=="error") return;
+	  if (res.aY=="error") {
+		  if (typeof spreadsheetsql_getDataFinish === 'function') spreadsheetsql_getDataFinish();
+		  return;
+	  }
 	  if (res.qb.If.length>0) {
 		  for (var i=0;i<res.qb.If.length;i++) {
 			  if (res.qb.If[i].label)
