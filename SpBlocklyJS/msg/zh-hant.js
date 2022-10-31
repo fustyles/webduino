@@ -1,5 +1,6 @@
 'use strict';
 
+Blockly.Msg.FUNCTION_ASYNC = "非同步(async)";
 Blockly.Msg.ADD_COMMENT = "加入註解";
 
 Blockly.Msg.ARDUINO = "ARDUINO";

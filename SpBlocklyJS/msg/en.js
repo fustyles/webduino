@@ -1,5 +1,6 @@
 'use strict';
 
+Blockly.Msg.FUNCTION_ASYNC = "async";
 Blockly.Msg.ADD_COMMENT = "Add Comment";
 
 Blockly.Msg.ARRAY_CREATE_WITH_CONTAINER_TITLE_ADD = "array";
