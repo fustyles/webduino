@@ -2065,7 +2065,7 @@ Blockly.Blocks['async_function'] = {
   this.appendDummyInput()  
       .appendField("(");    
   this.appendValueInput("parameter_")
-      .setCheck("String");    
+      .setCheck(null);    
   this.appendDummyInput()  
       .appendField(")");    
   this.appendStatementInput("do_");
@@ -2084,7 +2084,7 @@ Blockly.Blocks['call_async_function'] = {
   this.appendDummyInput()  
       .appendField("(");
   this.appendValueInput("parameter_")
-      .setCheck("String");   
+      .setCheck(null);   
   this.appendDummyInput()  
       .appendField(")");    
   this.setInputsInline(true);
