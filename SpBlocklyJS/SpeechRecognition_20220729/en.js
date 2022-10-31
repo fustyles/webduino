@@ -14,3 +14,4 @@ Blockly.Msg["SPEECHRECOGNITION_STATE"] = "Speech Recognition is starting?";
 Blockly.Msg["SPEECHRECOGNITION_START"] = "Start";
 Blockly.Msg["SPEECHRECOGNITION_STOP"] = "Stop";
 Blockly.Msg["SPEECHRECOGNITION_ONEND"] = "After stopping recongnition";
+Blockly.Msg["SPEECHRECOGNITION_TEXTTONUMBER"] = "number text to number";

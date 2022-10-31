@@ -31,7 +31,7 @@ Blockly.JavaScript['spreadsheetsql_getCellSQL'] = function (block) {
   var col = block.getFieldValue('col'); 
   var row = Blockly.JavaScript.valueToCode(block, 'row', Blockly.JavaScript.ORDER_ATOMIC);
   
-  var code = '"select '+col+' limit 1 offset "+'+(row-1);
+  var code = '"select '+col+' limit 1 offset "+('+row+'-1)';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 

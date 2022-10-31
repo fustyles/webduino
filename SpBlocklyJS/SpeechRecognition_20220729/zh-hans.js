@@ -14,3 +14,4 @@ Blockly.Msg["SPEECHRECOGNITION_STATE"] = "语音辨识启动状态";
 Blockly.Msg["SPEECHRECOGNITION_START"] = "启动";
 Blockly.Msg["SPEECHRECOGNITION_STOP"] = "停止";
 Blockly.Msg["SPEECHRECOGNITION_ONEND"] = "当停止辨识时执行";
+Blockly.Msg["SPEECHRECOGNITION_TEXTTONUMBER"] = "数字大写转阿拉伯数字";

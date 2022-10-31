@@ -42,3 +42,9 @@ Blockly.JavaScript['SpeechRecognition_switch'] = function (block) {
   var code = 'Recognition_switch('+value_switch+');\n';
   return code;
 };
+
+Blockly.JavaScript['SpeechRecognition_texttonumber'] = function (block) {
+  var text = Blockly.JavaScript.valueToCode(block, 'text', Blockly.JavaScript.ORDER_ATOMIC);	
+  var code = 'Recognition_texttonumber('+text+')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};

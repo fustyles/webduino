@@ -207,3 +207,15 @@ Blockly.Blocks['SpeechRecognition_switch'] = {
   this.setColour(180);
   }
 };
+
+Blockly.Blocks['SpeechRecognition_texttonumber'] = {
+  init: function () {     
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_TEXTTONUMBER);
+  this.appendValueInput("text")
+      .setCheck("String"); 	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(180);
+  }
+};
