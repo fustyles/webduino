@@ -118,6 +118,8 @@ var catPageElements ='<xml>'+
 '          <mutation items="0"></mutation>'+
 '        </block>'+
 '      </value>'+
+'    </block>'+
+'    <block type="transform_async_function">'+
 '    </block>'+    
 '    <block type="function_return">'+
 '    <value name="value_">'+
@@ -184,8 +186,6 @@ var catPageElements ='<xml>'+
 '    <block type="mouse_coordinate_get_start">'+
 '    </block>'+
 '    <block type="mouse_coordinate_get">'+
-'    </block>'+
-'    <block type="transform_async_function">'+
 '    </block>'+
 '    <block type="image_boundary">'+
 '    <value name="left_">'+
