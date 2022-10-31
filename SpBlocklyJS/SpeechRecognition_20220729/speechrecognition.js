@@ -51,7 +51,8 @@ if ('webkitSpeechRecognition' in window) {
     Recognition_interim = linebreak(interim_transcript);
 
     if (Recognition_interim=='') {
-      Recognition_final = linebreak(final_transcript);
+	  Recognition_final = linebreak(final_transcript);
+	  document.getElementById("gamespan_recognition").innerHTML = Recognition_final;
 	  if (typeof Recognition_recognitionFinish === 'function') Recognition_recognitionFinish();
     }
     else {
