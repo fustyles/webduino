@@ -405,14 +405,12 @@ document.addEventListener('DOMContentLoaded', function() {
 				if (event.blockId) {
 					var block = Blockly.getMainWorkspace().getBlockById(event.blockId);
 					if (block) {
-						Blockly.Events.setGroup(!0);
-						if ((block.previousConnection==null&&block.outputConnection)&&!block.getParent()) {
-							if (block.isEnabled()) block.setEnabled(false);
+						if ((block.outputConnection)&&!block.getParent()&&block.isEnabled()) {
+							block.setEnabled(false);
 						}
-						else {
-							if (!block.isEnabled()) block.setEnabled(true);
+						else if ((block.outputConnection)&&block.getParent()&&!block.isEnabled()) {
+							block.setEnabled(true);
 						}
-						Blockly.Events.setGroup(0);
 					}
 				}
 			}
