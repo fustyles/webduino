@@ -4003,15 +4003,15 @@ function HextoRgb(color) {
   function getDatetime(type) {
 	  var now = new Date();
 	  if (type=="datetime")
-		  return now.getFullYear()+"/"+now.getMonth()+"/"+now.getDate()+" "+("0" + now.getHours()).slice(-2)+":"+("0" + now.getMinutes()).slice(-2)+":"+("0" + now.getSeconds()).slice(-2);
+		  return now.getFullYear()+"/"+(now.getMonth()+1)+"/"+now.getDate()+" "+("0" + now.getHours()).slice(-2)+":"+("0" + now.getMinutes()).slice(-2)+":"+("0" + now.getSeconds()).slice(-2);
 	  else if (type=="date")
-		  return now.getFullYear()+"/"+now.getMonth()+"/"+now.getDate();
+		  return now.getFullYear()+"/"+(now.getMonth()+1)+"/"+now.getDate();
 	  else if (type=="time")
 		  return ("0" + now.getHours()).slice(-2)+":"+("0" + now.getMinutes()).slice(-2)+":"+("0" + now.getSeconds()).slice(-2);
 	  else if (type=="year")
 		  return now.getFullYear();
 	  else if (type=="month")
-		  return now.getMonth();
+		  return (now.getMonth()+1);
 	  else if (type=="day")
 		  return now.getDate();
 	  else if (type=="week")
