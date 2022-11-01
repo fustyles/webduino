@@ -3280,11 +3280,12 @@ Blockly.Blocks['chart_bar_clear'] = {
   }
 };
 
-
 Blockly.Blocks['system_datetime_get'] = {
   init: function () {
   this.appendDummyInput()
-      .appendField(Blockly.Msg["SYSTEM_DATETIME"]); 
+      .appendField(new Blockly.FieldVariable('newdate'), 'newdate');	  
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.GET);
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg["SYSTEM_DATETIME_DATETIME"],"datetime"],
@@ -3296,11 +3297,51 @@ Blockly.Blocks['system_datetime_get'] = {
 		[Blockly.Msg["SYSTEM_DATETIME_WEEK"],"week"],
 		[Blockly.Msg["SYSTEM_DATETIME_HOUR"],"hour"],
 		[Blockly.Msg["SYSTEM_DATETIME_MINUTE"],"minute"],
-		[Blockly.Msg["SYSTEM_DATETIME_SECOND"],"second"]
-	  ]), "type");
+		[Blockly.Msg["SYSTEM_DATETIME_SECOND"],"second"]		
+	  ]), "type");	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(90);
+  this.setColour(50);
+  }
+};
+
+Blockly.Blocks['system_datetime_set'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldVariable('newdate'), 'newdate')
+      .appendField(Blockly.Msg.SET);	  
+  this.appendDummyInput()
+      .appendField(Blockly.Msg["SYSTEM_DATETIME"]); 
+  this.appendDummyInput()
+      .appendField(Blockly.Msg["SYSTEM_DATETIME_ADD"]);
+  this.appendValueInput("years")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg["SYSTEM_DATETIME_YEARS"]);
+  this.appendValueInput("months")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg["SYSTEM_DATETIME_MONTHS"]); 	  
+  this.appendValueInput("days")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg["SYSTEM_DATETIME_DAYS"]);
+  this.appendValueInput("hours")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg["SYSTEM_DATETIME_HOURS"]);
+  this.appendValueInput("minutes")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg["SYSTEM_DATETIME_MINUTES"]);	 
+  this.appendValueInput("seconds")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg["SYSTEM_DATETIME_SECONDS"]);	  	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(50);
   }
 };
 
