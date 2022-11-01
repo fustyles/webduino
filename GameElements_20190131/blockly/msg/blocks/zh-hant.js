@@ -514,6 +514,17 @@ Blockly.Msg["WINDOW_CONFIRM_YES"] = "如果選擇[是]執行";
 Blockly.Msg["WINDOW_CONFIRM_NO"] = "如果選擇[否]執行";
 Blockly.Msg["WINDOW_MESSAGEBOX"] = "警告視窗 顯示";
 
+Blockly.Msg["SYSTEM_DATETIME"] = "系統時間";
+Blockly.Msg["SYSTEM_DATETIME_DATETIME"] = "完整時間";
+Blockly.Msg["SYSTEM_DATETIME_DATE"] = "日期";
+Blockly.Msg["SYSTEM_DATETIME_TIME"] = "時間";
+Blockly.Msg["SYSTEM_DATETIME_YEAR"] = "年";
+Blockly.Msg["SYSTEM_DATETIME_MONTH"] = "月";
+Blockly.Msg["SYSTEM_DATETIME_DAY"] = "日";
+Blockly.Msg["SYSTEM_DATETIME_WEEK"] = "星期";
+Blockly.Msg["SYSTEM_DATETIME_HOUR"] = "時";
+Blockly.Msg["SYSTEM_DATETIME_MINUTE"] = "分";
+Blockly.Msg["SYSTEM_DATETIME_SECOND"] = "秒";
 Blockly.Msg["SYSTEM_DATETIME_ADD"] = "增量"; 
 Blockly.Msg["SYSTEM_DATETIME_YEARS"] = "年數";
 Blockly.Msg["SYSTEM_DATETIME_MONTHS"] = "月數";	  
