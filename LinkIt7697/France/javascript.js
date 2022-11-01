@@ -1741,22 +1741,21 @@ Blockly.Arduino['chart_bar_clear'] = function(block) {
   return code;
 };
 
-
-Blockly.JavaScript['system_datetime_get'] = function (block) {
-  var newdate = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('newdate'), Blockly.VARIABLE_CATEGORY_NAME);	
+Blockly.Arduino['system_datetime_get'] = function (block) {
+  var newdate = Blockly.Arduino.nameDB_.getName(block.getFieldValue('newdate'), Blockly.VARIABLE_CATEGORY_NAME);	
   var type = block.getFieldValue('type');
   var code = 'getDatetime('+newdate+', "' + type + '")';
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, Blockly.Arduino.ORDER_NONE];
 };
 
-Blockly.JavaScript['system_datetime_set'] = function (block) {
-  var newdate = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('newdate'), Blockly.VARIABLE_CATEGORY_NAME);
-  var years = Blockly.JavaScript.valueToCode(block, 'years', Blockly.JavaScript.ORDER_ATOMIC)||0;
-  var months = Blockly.JavaScript.valueToCode(block, 'months', Blockly.JavaScript.ORDER_ATOMIC)||0;  
-  var days = Blockly.JavaScript.valueToCode(block, 'days', Blockly.JavaScript.ORDER_ATOMIC)||0;
-  var hours = Blockly.JavaScript.valueToCode(block, 'hours', Blockly.JavaScript.ORDER_ATOMIC)||0;
-  var minutes = Blockly.JavaScript.valueToCode(block, 'minutes', Blockly.JavaScript.ORDER_ATOMIC)||0;
-  var seconds = Blockly.JavaScript.valueToCode(block, 'seconds', Blockly.JavaScript.ORDER_ATOMIC)||0; 
+Blockly.Arduino['system_datetime_set'] = function (block) {
+  var newdate = Blockly.Arduino.nameDB_.getName(block.getFieldValue('newdate'), Blockly.VARIABLE_CATEGORY_NAME);
+  var years = Blockly.Arduino.valueToCode(block, 'years', Blockly.Arduino.ORDER_ATOMIC)||0;
+  var months = Blockly.Arduino.valueToCode(block, 'months', Blockly.Arduino.ORDER_ATOMIC)||0;  
+  var days = Blockly.Arduino.valueToCode(block, 'days', Blockly.Arduino.ORDER_ATOMIC)||0;
+  var hours = Blockly.Arduino.valueToCode(block, 'hours', Blockly.Arduino.ORDER_ATOMIC)||0;
+  var minutes = Blockly.Arduino.valueToCode(block, 'minutes', Blockly.Arduino.ORDER_ATOMIC)||0;
+  var seconds = Blockly.Arduino.valueToCode(block, 'seconds', Blockly.Arduino.ORDER_ATOMIC)||0; 
   var code = newdate + ' = setDatetime('+years+', '+months+', '+days+', '+hours+', '+minutes+', '+seconds+');\n';
   return code;
 };
