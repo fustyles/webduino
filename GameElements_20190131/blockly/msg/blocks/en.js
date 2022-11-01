@@ -513,3 +513,11 @@ Blockly.Msg["WINDOW_CONFIRM"] = "Confirm box message";
 Blockly.Msg["WINDOW_CONFIRM_YES"] = "If choiced [Yes]"; 
 Blockly.Msg["WINDOW_CONFIRM_NO"] = "If choiced [No]";
 Blockly.Msg["WINDOW_MESSAGEBOX"] = "Alert box message";
+
+Blockly.Msg["SYSTEM_DATETIME_ADD"] = "add";
+Blockly.Msg["SYSTEM_DATETIME_YEARS"] = "years";
+Blockly.Msg["SYSTEM_DATETIME_MONTHS"] = "months"; 	  
+Blockly.Msg["SYSTEM_DATETIME_DAYS"] = "days";
+Blockly.Msg["SYSTEM_DATETIME_HOURS"] = "hours";
+Blockly.Msg["SYSTEM_DATETIME_MINUTES"] = "minutes";
+Blockly.Msg["SYSTEM_DATETIME_SECONDS"] = "seconds";
