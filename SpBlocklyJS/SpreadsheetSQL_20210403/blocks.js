@@ -208,13 +208,10 @@ Blockly.Blocks['spreadsheetsql_getDataTable'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")  
         .appendField(Blockly.Msg.SPREADSHEETSQL_TOP_SHOW);
-	this.appendDummyInput()  
+    this.appendValueInput("column")
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.SPREADSHEETSQL_COLUMNNAME_SHOW)
-		.appendField(new Blockly.FieldDropdown([
-			["Y","1"],
-			["N","0"]	  
-	]), "column"); 		
+        .setCheck("Boolean")  
+        .appendField(Blockly.Msg.SPREADSHEETSQL_COLUMNNAME_SHOW);	
 	this.setInputsInline(false);	  
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);

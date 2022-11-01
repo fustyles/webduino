@@ -53,7 +53,7 @@ Blockly.JavaScript['spreadsheetsql_getDataTable'] = function (block) {
   var fontsize = Blockly.JavaScript.valueToCode(block, 'fontsize', Blockly.JavaScript.ORDER_ATOMIC);
   var left = Blockly.JavaScript.valueToCode(block, 'left', Blockly.JavaScript.ORDER_ATOMIC);
   var top = Blockly.JavaScript.valueToCode(block, 'top', Blockly.JavaScript.ORDER_ATOMIC);
-  var column = block.getFieldValue('column'); 
+  var column = Blockly.JavaScript.valueToCode(block, 'column', Blockly.JavaScript.ORDER_ATOMIC);
   
   var code = 'spreadsheetsql_getDataTable('+id+','+width+','+fontsize+','+left+','+top+','+column+');\n';
   return code; 

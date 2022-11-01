@@ -93,6 +93,11 @@ var catSpreadsheetsql = '<xml>'+
 '			 <field name="NUM">0</field>'+
 '		   </block>'+
 '		 </value>'+
+'		 <value name="column">'+
+'			<block type="logic_boolean">'+
+'				<field name="BOOL">FALSE</field>'+
+'			</block>'+
+'		 </value>'+
 '      </block>'+
 '      <block type="spreadsheetsql_clearDataTable">'+
 '        <value name="id">'+
