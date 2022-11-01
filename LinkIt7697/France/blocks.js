@@ -19360,6 +19360,21 @@ Blockly.Blocks['fu_mqtt_loop'] = {
   }
 };
 
+Blockly.Blocks['fu_mqtt_server_loop'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("MQTT")
+		.appendField(Blockly.Msg["MQTT_FU_LOOP"]);	  
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["MQTT_FU_SERVER_WHEN_GETDATA"]);
+    this.appendStatementInput("topic_getdata");	
+    this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(190);
+  }
+};
+
 Blockly.Blocks['fu_mqtt_subscribe'] = {
   init: function() {
     this.appendValueInput("topic")

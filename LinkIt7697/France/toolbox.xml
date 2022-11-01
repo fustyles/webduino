@@ -10091,6 +10091,8 @@
 		  </block>
 		</statement>
 	  </block>
+	  <block type="fu_mqtt_server_loop">		
+	  </block>	 	  
 	  <block type="fu_mqtt_getdata">		
 	  </block>	  
 	  <block type="fu_mqtt_senddata">
