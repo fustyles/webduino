@@ -2112,14 +2112,14 @@ Blockly.JavaScript['span_delete'] = function (block) {
 };
 
 Blockly.JavaScript['system_datetime_get'] = function (block) {
-  var newdate = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('newdate'), Blockly.VARIABLE_CATEGORY_NAME);	
+  var newdate = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('newdate'), Blockly.Variables.NAME_TYPE);
   var type = block.getFieldValue('type');
   var code = 'getDatetime('+newdate+', "' + type + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript['system_datetime_set'] = function (block) {
-  var newdate = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('newdate'), Blockly.VARIABLE_CATEGORY_NAME);
+  var newdate = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('newdate'), Blockly.Variables.NAME_TYPE);
   var years = Blockly.JavaScript.valueToCode(block, 'years', Blockly.JavaScript.ORDER_ATOMIC)||0;
   var months = Blockly.JavaScript.valueToCode(block, 'months', Blockly.JavaScript.ORDER_ATOMIC)||0;  
   var days = Blockly.JavaScript.valueToCode(block, 'days', Blockly.JavaScript.ORDER_ATOMIC)||0;
