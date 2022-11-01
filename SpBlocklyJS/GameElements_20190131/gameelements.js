@@ -4001,6 +4001,8 @@ function HextoRgb(color) {
   }
 
   function getDatetime(now, type) {
+	  if (!now)
+	      now = new Date();	  
 	  if (type=="datetime")
 		  return now.getFullYear()+"/"+(now.getMonth()+1)+"/"+now.getDate()+" "+("0" + now.getHours()).slice(-2)+":"+("0" + now.getMinutes()).slice(-2)+":"+("0" + now.getSeconds()).slice(-2);
 	  else if (type=="date")
