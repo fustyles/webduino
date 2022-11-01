@@ -4000,8 +4000,7 @@ function HextoRgb(color) {
 	  }
   }
 
-  function getDatetime(type) {
-	  var now = new Date();
+  function getDatetime(now, type) {
 	  if (type=="datetime")
 		  return now.getFullYear()+"/"+(now.getMonth()+1)+"/"+now.getDate()+" "+("0" + now.getHours()).slice(-2)+":"+("0" + now.getMinutes()).slice(-2)+":"+("0" + now.getSeconds()).slice(-2);
 	  else if (type=="date")
@@ -4023,6 +4022,17 @@ function HextoRgb(color) {
 	  else if (type=="second")
 		  return now.getSeconds();
   }
+  
+  function setDatetime(years, months, days, hours, minutes, seconds) {
+	  var now = new Date();
+	  now.setFullYear(now.getFullYear() + years);
+	  now.setMonth(now.getMonth() + months);	  
+	  now.setDate(now.getDate() + days);
+	  now.setHours(now.getHours() + hours);
+	  now.setMinutes(now.getMinutes() + minutes);
+	  now.setSeconds(now.getSeconds() + seconds);
+	  return now;
+  }  
 	
   window.table_create = table_create;
   window.table_set = table_set;
@@ -4191,5 +4201,6 @@ function HextoRgb(color) {
   window.span_delete = span_delete;  
   window.include_file = include_file; 
   window.getDatetime = getDatetime;  
+  window.setDatetime = setDatetime;  
   
 }(window, window.document));

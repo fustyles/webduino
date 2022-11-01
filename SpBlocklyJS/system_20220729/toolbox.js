@@ -40,10 +40,56 @@ var catWindow ='<xml>'+
 '    </block>'+
 '    <block type="location">'+
 '    </block>'+
+'    <block type="system_datetime_set">'+
+'    <value name="years">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="months">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="days">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="hours">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="minutes">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="seconds">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
 '    <block type="system_datetime_get">'+
 '    </block>'+
 '    <block type="console_log">'+
 '    <value name="text_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
+'    <block type="window_messagebox">'+
+'    <value name="message">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
+'    <block type="window_confirm">'+
+'    <value name="message">'+
 '    <block type="text">'+
 '    <field name="TEXT"></field>'+
 '    </block>'+

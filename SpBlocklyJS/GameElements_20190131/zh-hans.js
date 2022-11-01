@@ -553,3 +553,11 @@ Blockly.Msg["WINDOW_CONFIRM"] = "确认视窗 讯息";
 Blockly.Msg["WINDOW_CONFIRM_YES"] = "如果选择[是]执行"; 
 Blockly.Msg["WINDOW_CONFIRM_NO"] = "如果选择[否]执行";
 Blockly.Msg["WINDOW_MESSAGEBOX"] = "警告视窗 显示";
+
+Blockly.Msg["SYSTEM_DATETIME_ADD"] = "增量";
+Blockly.Msg["SYSTEM_DATETIME_YEARS"] = "年数";
+Blockly.Msg["SYSTEM_DATETIME_MONTHS"] = "月数";	  
+Blockly.Msg["SYSTEM_DATETIME_DAYS"] = "天数";
+Blockly.Msg["SYSTEM_DATETIME_HOURS"] = "时数";
+Blockly.Msg["SYSTEM_DATETIME_MINUTES"] = "分数";
+Blockly.Msg["SYSTEM_DATETIME_SECONDS"] = "秒数";
