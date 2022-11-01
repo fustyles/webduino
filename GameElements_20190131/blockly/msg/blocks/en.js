@@ -514,6 +514,17 @@ Blockly.Msg["WINDOW_CONFIRM_YES"] = "If choiced [Yes]";
 Blockly.Msg["WINDOW_CONFIRM_NO"] = "If choiced [No]";
 Blockly.Msg["WINDOW_MESSAGEBOX"] = "Alert box message";
 
+Blockly.Msg["SYSTEM_DATETIME"] = "System Time";
+Blockly.Msg["SYSTEM_DATETIME_DATETIME"] = "DATETIME";
+Blockly.Msg["SYSTEM_DATETIME_DATE"] = "DATE";
+Blockly.Msg["SYSTEM_DATETIME_TIME"] = "TIME";
+Blockly.Msg["SYSTEM_DATETIME_YEAR"] = "YEAR";
+Blockly.Msg["SYSTEM_DATETIME_MONTH"] = "MONTH";
+Blockly.Msg["SYSTEM_DATETIME_DAY"] = "DAY";
+Blockly.Msg["SYSTEM_DATETIME_WEEK"] = "WEEK";
+Blockly.Msg["SYSTEM_DATETIME_HOUR"] = "HOUR";
+Blockly.Msg["SYSTEM_DATETIME_MINUTE"] = "MINUTE";
+Blockly.Msg["SYSTEM_DATETIME_SECOND"] = "SECOND";
 Blockly.Msg["SYSTEM_DATETIME_ADD"] = "add";
 Blockly.Msg["SYSTEM_DATETIME_YEARS"] = "years";
 Blockly.Msg["SYSTEM_DATETIME_MONTHS"] = "months"; 	  
