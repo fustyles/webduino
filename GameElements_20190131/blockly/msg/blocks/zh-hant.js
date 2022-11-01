@@ -513,3 +513,11 @@ Blockly.Msg["WINDOW_CONFIRM"] = "確認視窗 訊息";
 Blockly.Msg["WINDOW_CONFIRM_YES"] = "如果選擇[是]執行"; 
 Blockly.Msg["WINDOW_CONFIRM_NO"] = "如果選擇[否]執行";
 Blockly.Msg["WINDOW_MESSAGEBOX"] = "警告視窗 顯示";
+
+Blockly.Msg["SYSTEM_DATETIME_ADD"] = "增量"; 
+Blockly.Msg["SYSTEM_DATETIME_YEARS"] = "年數";
+Blockly.Msg["SYSTEM_DATETIME_MONTHS"] = "月數";	  
+Blockly.Msg["SYSTEM_DATETIME_DAYS"] = "天數";
+Blockly.Msg["SYSTEM_DATETIME_HOURS"] = "時數";
+Blockly.Msg["SYSTEM_DATETIME_MINUTES"] = "分數";
+Blockly.Msg["SYSTEM_DATETIME_SECONDS"] = "秒數";
