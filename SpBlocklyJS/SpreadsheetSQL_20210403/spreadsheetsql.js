@@ -55,8 +55,11 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 		  for (var i=0;i<res.qb.fg.length;i++) {
 			  for (var j=0;j<res.qb.fg[i].c.length;j++) {
 				if (res.qb.fg[i].c[j]) {
-					if (res.qb.fg[i].c[j].v)
-						arr.push((res.qb.fg[i].c[j].f)?res.qb.fg[i].c[j].f:res.qb.fg[i].c[j].v);
+					if (res.qb.fg[i].c[j].v!==undefined) {
+						arr.push((res.qb.fg[i].c[j].f!==undefined)?res.qb.fg[i].c[j].f:res.qb.fg[i].c[j].v);
+					}
+					else
+						arr.push("");
 				}
 				else
 					arr.push("");
