@@ -19,7 +19,7 @@ Blockly.Blocks['fu_mqtt_setup_js'] = {
         .appendField(Blockly.Msg["MQTT_FU_SUBSCRIBE_TOPIC_JS"]);		
     this.appendStatementInput("topic_getdata")
         .appendField(Blockly.Msg["MQTT_FU_WHEN_GETDATA_JS"]);			
-    this.setInputsInline(false);
+    this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
     this.setColour(360);
