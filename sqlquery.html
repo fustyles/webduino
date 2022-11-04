@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/spreadsheetsql.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/loader.js'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{
+var _E8_A9_A6_E7_AE_97_E8_A1_A8_E4_BB_A3_E7_A2_BC, a, b, c, d, e, f, _E5_B7_A5_E4_BD_9C_E8_A1_A8_E5_90_8D_E7_A8_B1, _E8_A1_A8_E6_A0_BC_E4_BB_A3_E7_A2_BC, _E8_A1_A8_E6_A0_BC_E9_9D_A0_E5_B7_A6_E8_B7_9D_E9_9B_A2, _E8_A1_A8_E6_A0_BC_E9_9D_A0_E4_B8_8A_E8_B7_9D_E9_9B_A2, _E6_9F_A5_E8_A9_A2_E7_B5_90_E6_9E_9C;
+
+// 描述此函式...
+function SQL_E6_9F_A5_E8_A9_A2(a, b, c, d, e, f) {
+  _E8_A1_A8_E6_A0_BC_E4_BB_A3_E7_A2_BC = a;
+  _E8_A1_A8_E6_A0_BC_E9_9D_A0_E5_B7_A6_E8_B7_9D_E9_9B_A2 = b;
+  _E8_A1_A8_E6_A0_BC_E9_9D_A0_E4_B8_8A_E8_B7_9D_E9_9B_A2 = c;
+  spreadsheetsql_settings(d,e);
+  spreadsheetsql_executeSql(f);
+}
+
+
+_E8_A9_A6_E7_AE_97_E8_A1_A8_E4_BB_A3_E7_A2_BC = '1xeTHqIrT4Buj1XxpXfUlwdmmqGSBgI3x4QXlo5JT4Po';
+_E5_B7_A5_E4_BD_9C_E8_A1_A8_E5_90_8D_E7_A8_B1 = '';
+_E8_A1_A8_E6_A0_BC_E4_BB_A3_E7_A2_BC = '';
+_E8_A1_A8_E6_A0_BC_E9_9D_A0_E5_B7_A6_E8_B7_9D_E9_9B_A2 = 0;
+_E8_A1_A8_E6_A0_BC_E9_9D_A0_E4_B8_8A_E8_B7_9D_E9_9B_A2 = 0;
+spreadsheetsql_getDataFinish = function() {
+  _E6_9F_A5_E8_A9_A2_E7_B5_90_E6_9E_9C = (spreadsheetsql_getData());
+  table_delete(_E8_A1_A8_E6_A0_BC_E4_BB_A3_E7_A2_BC);
+  spreadsheetsql_getDataTable(_E8_A1_A8_E6_A0_BC_E4_BB_A3_E7_A2_BC,600,14,_E8_A1_A8_E6_A0_BC_E9_9D_A0_E5_B7_A6_E8_B7_9D_E9_9B_A2,_E8_A1_A8_E6_A0_BC_E9_9D_A0_E4_B8_8A_E8_B7_9D_E9_9B_A2,true);
+
+};
+SQL_E6_9F_A5_E8_A9_A2('source', 0, 0, _E8_A9_A6_E7_AE_97_E8_A1_A8_E4_BB_A3_E7_A2_BC, 'SQL', 'select *');
+span_create('',0,200,20,'SQL語法：',999);
+text_create('',400,30,80,200,'#ffffff','#000000',12,1,'select *',999,true);
+button_create('',100,40,500,200,1,null,'查詢',20,999,true);
+async function gamebutton__onclick (event) {
+  SQL_E6_9F_A5_E8_A9_A2('output', 0, 250, _E8_A9_A6_E7_AE_97_E8_A1_A8_E4_BB_A3_E7_A2_BC, 'SQL', text_get('',"value"));
+};
+document.getElementById("gamebutton_").addEventListener("click", gamebutton__onclick, true);
+};main();</script></body></html>
