@@ -1,0 +1,358 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/holistic_20201012/holistic_video.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/holistic_20201012/holistic.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/MQTT_20220324/mqtt.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/spreadsheetsql.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/loader.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/TextToSpeech_20220729/texttospeech.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpeechRecognition_20220729/speechrecognition.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/line_20220729/line.js'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{
+var p1, p2, p3, p4, p5, p6, p7, _E8_AA_9E_E9_9F_B3, _E6_96_87_E5_AD_97, _E8_A9_A6_E7_AE_97_E8_A1_A8_E4_BB_A3_E7_A2_BC, _E5_B7_A5_E4_BD_9C_E8_A1_A8_E5_90_8D_E7_A8_B1, _E9_A1_AF_E7_A4_BA_E6_AC_84_E4_BD_8D, SQL, _E5_8A_9F_E8_83_BD_E7_8B_80_E6_85_8B, _E5_AE_9A_E6_99_82_E6_8F_90_E9_86_92_E8_B3_87_E6_96_99, _E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, _E6_99_82_E9_96_93, Line_E7_BE_A4_E7_B5_84_E6_AC_8A_E6_9D_96, _E5_85_AC_E8_BB_8A_E8_BB_8A_E8_99_9F, _E5_AE_9A_E6_99_82_E6_8F_90_E9_86_92_E8_A8_88_E6_99_82_E5_99_A8, _E9_A1_AF_E7_A4_BA_E6_AC_84_E4_BD_8D_E5_90_8D_E7_A8_B1, _E8_A9_A6_E7_AE_97_E8_A1_A8ID, _E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C, _E7_99_BC_E5_B8_83_E4_B8_BB_E9_A1_8C, _E9_96_8B_E9_97_9C_E7_8B_80_E6_85_8B, _E5_82_B3_E9_80_81_E6_96_87_E5_AD_97_E5_B0_8D_E8_B1_A1, i, _E6_9F_A5_E8_A9_A2_E7_B5_90_E6_9E_9C, newdate, _E6_9A_AB_E5_AD_98_E8_B3_87_E6_96_99, _E5_82_B3_E9_80_81_E6_96_87_E5_AD_97, Line_E6_AC_8A_E6_9D_96, Line_E5_AE_B6_E4_BA_BA_E6_AC_8A_E6_9D_96, _E8_A8_82_E9_96_B1_E4_B8_BB_E9_A1_8C;
+
+// 描述此函式...
+function _E4_B8_BB_E9_81_B8_E5_96_AE_E5_8A_9F_E8_83_BD(p1, p2, p3, p4, p5, p6, p7) {
+  _E5_8A_9F_E8_83_BD_E7_8B_80_E6_85_8B = p1;
+  _E8_AA_9E_E9_9F_B3_E6_9C_97_E8_AE_80(p2, p3);
+  if (p7 != '') {
+    SQL_E6_9F_A5_E8_A9_A2(p4, p5, p6, p7);
+  }
+}
+
+// 描述此函式...
+function _E4_B8_BB_E9_81_B8_E5_96_AE() {
+  if ((_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase()).toLowerCase().indexOf('新竹同學'.toLowerCase())!=-1) {
+    _E4_B8_BB_E9_81_B8_E5_96_AE_E5_8A_9F_E8_83_BD('', _E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, '主人您好，請說出功能指令！', _E8_A9_A6_E7_AE_97_E8_A1_A8ID, '主選單', false, 'select A');
+  } else if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C == '時間查詢') {
+    _E6_99_82_E9_96_93 = setDatetime(0, 0, 0, 0, 0, 0);
+    _E8_AA_9E_E9_9F_B3_E6_9C_97_E8_AE_80(_E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, getDatetime(newdate, "datetime"));
+  } else if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C == '行事曆') {
+    _E4_B8_BB_E9_81_B8_E5_96_AE_E5_8A_9F_E8_83_BD('行事曆', _E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, '已進入行事曆功能', _E8_A9_A6_E7_AE_97_E8_A1_A8ID, '行事曆指令列表', false, 'select A');
+  } else if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C == '語音傳訊') {
+    _E4_B8_BB_E9_81_B8_E5_96_AE_E5_8A_9F_E8_83_BD('語音傳訊', _E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, '已進入語音傳訊功能。請說出對象名稱+傳送+要傳的文字。若不想傳送最後+不傳送。', _E8_A9_A6_E7_AE_97_E8_A1_A8ID, '語音傳訊', false, 'select A,B');
+  } else if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C == '智慧控制') {
+    _E4_B8_BB_E9_81_B8_E5_96_AE_E5_8A_9F_E8_83_BD('智慧控制', _E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, '已進入智慧控制功能。', _E8_A9_A6_E7_AE_97_E8_A1_A8ID, '智慧控制', false, 'select A,B,C');
+  } else if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C == '定時提醒') {
+    _E6_99_82_E9_96_93 = setDatetime(0, 0, 0, 0, 0, 0);
+    _E4_B8_BB_E9_81_B8_E5_96_AE_E5_8A_9F_E8_83_BD('定時提醒', _E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, '已進入定時提醒功能。請說出啟動或關閉定時提醒', _E8_A9_A6_E7_AE_97_E8_A1_A8ID, '定時提醒', true, ['select  hour(C),minute(C),second(C),D where date \'',getDatetime(_E6_99_82_E9_96_93, "year"),'-',getDatetime(_E6_99_82_E9_96_93, "month"),'-',getDatetime(_E6_99_82_E9_96_93, "day"),'\'=B or B is null'].join(''));
+  } else if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C == '公車時刻') {
+    _E4_B8_BB_E9_81_B8_E5_96_AE_E5_8A_9F_E8_83_BD('公車時刻', _E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, '已進入公車時刻功能，請說出車號。', _E8_A9_A6_E7_AE_97_E8_A1_A8ID, '公車時刻', false, 'select A,B');
+  } else if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C == '視訊傳送') {
+    _E4_B8_BB_E9_81_B8_E5_96_AE_E5_8A_9F_E8_83_BD('視訊傳送', _E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, '已進入視訊傳送功能，請允許並在視訊啟動後說出對象名稱+傳送。若不想傳送最後+不傳送。', _E8_A9_A6_E7_AE_97_E8_A1_A8ID, '視訊傳送', false, 'select A,B');
+    video_create('',320,240,0,50,true,'',false,false,false,true,true,1,9999,true);
+  } else if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C == '播放音樂') {
+    _E4_B8_BB_E9_81_B8_E5_96_AE_E5_8A_9F_E8_83_BD('播放音樂', _E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, '已進入播放音樂功能，請說出第幾首。', _E8_A9_A6_E7_AE_97_E8_A1_A8ID, '播放音樂', false, 'select A,B');
+  } else if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C == '影像辨識') {
+    _E4_B8_BB_E9_81_B8_E5_96_AE_E5_8A_9F_E8_83_BD('影像辨識', _E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, '已進入影像辨識功能，請允許並等待視訊鏡頭啟動後自動辨識後說開始。', _E8_A9_A6_E7_AE_97_E8_A1_A8ID, '影像辨識', false, 'select A,B');
+    holistic_startvideo_media(320,240,"front",0);
+    holistic_video_position(0,50);
+  } else {
+    _E7_B4_B0_E9_A0_85_E5_8A_9F_E8_83_BD();
+  }
+}
+
+// 描述此函式...
+function _E7_B4_B0_E9_A0_85_E5_8A_9F_E8_83_BD() {
+  if (_E5_8A_9F_E8_83_BD_E7_8B_80_E6_85_8B == '行事曆') {
+    _E8_A1_8C_E4_BA_8B_E6_9B_86_E6_9F_A5_E8_A9_A2();
+  } else if (_E5_8A_9F_E8_83_BD_E7_8B_80_E6_85_8B == '語音傳訊') {
+    _E8_AA_9E_E9_9F_B3_E5_82_B3_E8_A8_8A();
+  } else if (_E5_8A_9F_E8_83_BD_E7_8B_80_E6_85_8B == '智慧控制') {
+    _E6_99_BA_E6_85_A7_E6_8E_A7_E5_88_B6();
+  } else if (_E5_8A_9F_E8_83_BD_E7_8B_80_E6_85_8B == '定時提醒') {
+    if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('啟'.toLowerCase())!=-1) {
+      _E8_AA_9E_E9_9F_B3_E6_9C_97_E8_AE_80(_E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, '已啟動定時提醒');
+      _E5_AE_9A_E6_99_82_E6_8F_90_E9_86_92();
+    } else if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('關'.toLowerCase())!=-1) {
+      clearInterval(_E5_AE_9A_E6_99_82_E6_8F_90_E9_86_92_E8_A8_88_E6_99_82_E5_99_A8);
+      _E8_AA_9E_E9_9F_B3_E6_9C_97_E8_AE_80(_E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, '已關閉定時提醒');
+    }
+  } else if (_E5_8A_9F_E8_83_BD_E7_8B_80_E6_85_8B == '公車時刻') {
+    _E5_85_AC_E8_BB_8A_E6_99_82_E5_88_BB();
+  } else if (_E5_8A_9F_E8_83_BD_E7_8B_80_E6_85_8B == '視訊傳送') {
+    _E8_A6_96_E8_A8_8A_E5_82_B3_E9_80_81();
+  } else if (_E5_8A_9F_E8_83_BD_E7_8B_80_E6_85_8B == '播放音樂') {
+    _E6_92_AD_E6_94_BE_E9_9F_B3_E6_A8_82();
+  } else if (_E5_8A_9F_E8_83_BD_E7_8B_80_E6_85_8B == '影像辨識') {
+    _E5_BD_B1_E5_83_8F_E8_BE_A8_E8_AD_98();
+  }
+}
+
+// 描述此函式...
+function _E5_BD_B1_E5_83_8F_E8_BE_A8_E8_AD_98() {
+  if ((_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('開'.toLowerCase())!=-1) || (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('啟'.toLowerCase())!=-1)) {
+    holistic_recognitionFinish = async function() {
+    holistic_state(0);
+      if ((holistic_pose_position("16","y")) < (holistic_pose_position("8","y")) && (holistic_pose_position("15","y")) < (holistic_pose_position("7","y"))) {
+        if (!(ttsSpeaking())) {
+          linenotify_push_message(Line_E5_AE_B6_E4_BA_BA_E6_AC_8A_E6_9D_96,{'type':'text','text':'我有事請大家幫忙'});
+        }
+        _E8_AA_9E_E9_9F_B3_E6_9C_97_E8_AE_80(_E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, '你舉雙手了，幫您通知大家。');
+        _E7_AD_89_E5_BE_85_E6_9C_97_E8_AE_80_E5_AE_8C_E6_88_90();
+      } else if ((holistic_pose_position("16","y")) < (holistic_pose_position("8","y")) || (holistic_pose_position("15","y")) < (holistic_pose_position("7","y"))) {
+        if (!(ttsSpeaking())) {
+          linenotify_push_message(Line_E6_AC_8A_E6_9D_96,{'type':'text','text':'我有事請你幫忙'});
+        }
+        _E8_AA_9E_E9_9F_B3_E6_9C_97_E8_AE_80(_E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, '你舉手了，幫您通知主人幫忙。');
+        _E7_AD_89_E5_BE_85_E6_9C_97_E8_AE_80_E5_AE_8C_E6_88_90();
+      }
+
+    holistic_state(1);};
+    holistic_state(1);
+    video_set('',"display",true);
+  } else if ((_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('關'.toLowerCase())!=-1) || (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('停'.toLowerCase())!=-1)) {
+    holistic_state(0);
+  }
+}
+
+// 描述此函式...
+function _E6_92_AD_E6_94_BE_E9_9F_B3_E6_A8_82() {
+  if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('下'.toLowerCase())!=-1) {
+    mqtt_client.publish(_E7_99_BC_E5_B8_83_E4_B8_BB_E9_A1_8C, String(('?'+'music'+'='+'4')));
+  } else if ((_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('一'.toLowerCase())!=-1) || (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('1'.toLowerCase())!=-1)) {
+    mqtt_client.publish(_E7_99_BC_E5_B8_83_E4_B8_BB_E9_A1_8C, String(('?'+'music'+'='+'1')));
+  } else if ((_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('二'.toLowerCase())!=-1) || (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('2'.toLowerCase())!=-1)) {
+    mqtt_client.publish(_E7_99_BC_E5_B8_83_E4_B8_BB_E9_A1_8C, String(('?'+'music'+'='+'2')));
+  } else if ((_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('三'.toLowerCase())!=-1) || (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('3'.toLowerCase())!=-1)) {
+    mqtt_client.publish(_E7_99_BC_E5_B8_83_E4_B8_BB_E9_A1_8C, String(('?'+'music'+'='+'3')));
+  } else if ((_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('停'.toLowerCase())!=-1) || (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('關'.toLowerCase())!=-1)) {
+    mqtt_client.publish(_E7_99_BC_E5_B8_83_E4_B8_BB_E9_A1_8C, String(('?'+'music'+'='+'5')));
+  } else if ((_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('繼'.toLowerCase())!=-1) || (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('開'.toLowerCase())!=-1)) {
+    mqtt_client.publish(_E7_99_BC_E5_B8_83_E4_B8_BB_E9_A1_8C, String(('?'+'music'+'='+'6')));
+  }
+}
+
+// 描述此函式...
+function _E6_99_BA_E6_85_A7_E6_8E_A7_E5_88_B6() {
+  if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C == '外出模式') {
+    mqtt_client.publish(_E7_99_BC_E5_B8_83_E4_B8_BB_E9_A1_8C, String(('?'+'mode'+'='+'1')));
+  } else if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C == '休閒模式') {
+    mqtt_client.publish(_E7_99_BC_E5_B8_83_E4_B8_BB_E9_A1_8C, String(('?'+'mode'+'='+'2')));
+  } else if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C == '睡覺模式') {
+    mqtt_client.publish(_E7_99_BC_E5_B8_83_E4_B8_BB_E9_A1_8C, String(('?'+'mode'+'='+'3')));
+  } else {
+    if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('開'.toLowerCase())!=-1) {
+      var _E9_96_8B_E9_97_9C_E7_8B_80_E6_85_8B = 1;
+    } else if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('關'.toLowerCase())!=-1) {
+      var _E9_96_8B_E9_97_9C_E7_8B_80_E6_85_8B = 0;
+    }
+    if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('客廳'.toLowerCase())!=-1) {
+      mqtt_client.publish(_E7_99_BC_E5_B8_83_E4_B8_BB_E9_A1_8C, String(('?'+'led'+'='+'1'+';'+_E9_96_8B_E9_97_9C_E7_8B_80_E6_85_8B)));
+    } else if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('浴室'.toLowerCase())!=-1) {
+      mqtt_client.publish(_E7_99_BC_E5_B8_83_E4_B8_BB_E9_A1_8C, String(('?'+'led'+'='+'2'+';'+_E9_96_8B_E9_97_9C_E7_8B_80_E6_85_8B)));
+    } else if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('房間'.toLowerCase())!=-1) {
+      mqtt_client.publish(_E7_99_BC_E5_B8_83_E4_B8_BB_E9_A1_8C, String(('?'+'led'+'='+'3'+';'+_E9_96_8B_E9_97_9C_E7_8B_80_E6_85_8B)));
+    } else if ((_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('全'.toLowerCase())!=-1) || (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('所'.toLowerCase())!=-1)) {
+      mqtt_client.publish(_E7_99_BC_E5_B8_83_E4_B8_BB_E9_A1_8C, String(('?'+'led'+'='+'4'+';'+_E9_96_8B_E9_97_9C_E7_8B_80_E6_85_8B)));
+    } else if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('門'.toLowerCase())!=-1) {
+      mqtt_client.publish(_E7_99_BC_E5_B8_83_E4_B8_BB_E9_A1_8C, String(('?'+'lock'+'='+_E9_96_8B_E9_97_9C_E7_8B_80_E6_85_8B)));
+    } else if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('冷氣'.toLowerCase())!=-1) {
+      mqtt_client.publish(_E7_99_BC_E5_B8_83_E4_B8_BB_E9_A1_8C, String(('?'+'ac'+'='+_E9_96_8B_E9_97_9C_E7_8B_80_E6_85_8B)));
+    }
+  }
+}
+
+// 描述此函式...
+function _E8_A6_96_E8_A8_8A_E5_82_B3_E9_80_81() {
+  if ((_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('傳送'.toLowerCase())!=-1) && !(_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('不傳送'.toLowerCase())!=-1)) {
+    var Line_E7_BE_A4_E7_B5_84_E6_AC_8A_E6_9D_96 = (spreadsheetsql_getData());
+    var _E5_82_B3_E9_80_81_E6_96_87_E5_AD_97_E5_B0_8D_E8_B1_A1 = _E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.slice(0, (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.indexOf('傳送') + 1) - 1);
+    var i_end = Line_E7_BE_A4_E7_B5_84_E6_AC_8A_E6_9D_96.length;
+    var i_inc = 1;
+    if (1 > i_end) {
+      i_inc = -i_inc;
+    }
+    for (i = 1; i_inc >= 0 ? i <= i_end : i >= i_end; i += i_inc) {
+      var _E6_9A_AB_E5_AD_98_E8_B3_87_E6_96_99 = Line_E7_BE_A4_E7_B5_84_E6_AC_8A_E6_9D_96[(i - 1)];
+      if (_E6_9A_AB_E5_AD_98_E8_B3_87_E6_96_99[0] == _E5_82_B3_E9_80_81_E6_96_87_E5_AD_97_E5_B0_8D_E8_B1_A1) {
+        linenotify_push_image((_E6_9A_AB_E5_AD_98_E8_B3_87_E6_96_99[1]),"gamevideo_",'語音助理');
+        _E8_AA_9E_E9_9F_B3_E6_9C_97_E8_AE_80(_E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, 'Line影像已傳送');
+      }
+    }
+  }
+}
+
+// 描述此函式...
+function _E5_85_AC_E8_BB_8A_E6_99_82_E5_88_BB() {
+  if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('近'.toLowerCase())!=-1) {
+    _E6_99_82_E9_96_93 = setDatetime(0, 0, 0, 0, 0, 0);
+    SQL_E6_9F_A5_E8_A9_A2(_E8_A9_A6_E7_AE_97_E8_A1_A8ID, '公車時刻', false, ['select  A,B where timeofday \'',getDatetime(_E6_99_82_E9_96_93, "hour"),':',getDatetime(_E6_99_82_E9_96_93, "minute"),':',getDatetime(_E6_99_82_E9_96_93, "second"),'\'<B and A=\'',_E5_85_AC_E8_BB_8A_E8_BB_8A_E8_99_9F,'\' order by B limit 1'].join(''));
+  } else {
+    _E5_85_AC_E8_BB_8A_E8_BB_8A_E8_99_9F = _E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C;
+    SQL_E6_9F_A5_E8_A9_A2(_E8_A9_A6_E7_AE_97_E8_A1_A8ID, '公車時刻', false, ['select  A,B where A=\'',_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C,'\' order by B'].join(''));
+  }
+}
+
+// 描述此函式...
+function _E8_A1_8C_E4_BA_8B_E6_9B_86_E6_9F_A5_E8_A9_A2() {
+  if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('今'.toLowerCase())!=-1) {
+    _E6_99_82_E9_96_93 = setDatetime(0, 0, 0, 0, 0, 0);
+    SQL_E6_9F_A5_E8_A9_A2(_E8_A9_A6_E7_AE_97_E8_A1_A8ID, '行事曆', true, ['select  A,D where date \'',getDatetime(_E6_99_82_E9_96_93, "year"),'-',getDatetime(_E6_99_82_E9_96_93, "month"),'-',getDatetime(_E6_99_82_E9_96_93, "day"),'\'=B or B is null'].join(''));
+  } else if ((Recognition_final_get()).toLowerCase().indexOf('明'.toLowerCase())!=-1) {
+    _E6_99_82_E9_96_93 = setDatetime(0, 0, 1, 0, 0, 0);
+    SQL_E6_9F_A5_E8_A9_A2(_E8_A9_A6_E7_AE_97_E8_A1_A8ID, '行事曆', true, ['select  A,D where date \'',getDatetime(_E6_99_82_E9_96_93, "year"),'-',getDatetime(_E6_99_82_E9_96_93, "month"),'-',getDatetime(_E6_99_82_E9_96_93, "day"),'\'=B or B is null'].join(''));
+  } else if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('近'.toLowerCase())!=-1) {
+    _E6_99_82_E9_96_93 = setDatetime(0, 0, 0, 0, 0, 0);
+    SQL_E6_9F_A5_E8_A9_A2(_E8_A9_A6_E7_AE_97_E8_A1_A8ID, '行事曆', true, ['select  A,D where timeofday \'',getDatetime(_E6_99_82_E9_96_93, "hour"),':',getDatetime(_E6_99_82_E9_96_93, "minute"),':',getDatetime(_E6_99_82_E9_96_93, "second"),'\'<C or B is null order by C limit 1'].join(''));
+  }
+}
+
+// 描述此函式...
+function _E5_AE_9A_E6_99_82_E6_8F_90_E9_86_92() {
+  _E5_AE_9A_E6_99_82_E6_8F_90_E9_86_92_E8_B3_87_E6_96_99 = (spreadsheetsql_getData());
+  _E5_AE_9A_E6_99_82_E6_8F_90_E9_86_92_E8_A8_88_E6_99_82_E5_99_A8 = setInterval(async function(){
+    var i_end2 = _E5_AE_9A_E6_99_82_E6_8F_90_E9_86_92_E8_B3_87_E6_96_99.length;
+    var i_inc2 = 1;
+    if (1 > i_end2) {
+      i_inc2 = -i_inc2;
+    }
+    for (i = 1; i_inc2 >= 0 ? i <= i_end2 : i >= i_end2; i += i_inc2) {
+      var _E6_9A_AB_E5_AD_98_E8_B3_87_E6_96_99 = _E5_AE_9A_E6_99_82_E6_8F_90_E9_86_92_E8_B3_87_E6_96_99[(i - 1)];
+      _E6_99_82_E9_96_93 = setDatetime(0, 0, 0, 0, 0, 0);
+      if (_E6_9A_AB_E5_AD_98_E8_B3_87_E6_96_99[0] == (getDatetime(_E6_99_82_E9_96_93, "hour")) && _E6_9A_AB_E5_AD_98_E8_B3_87_E6_96_99[1] == (getDatetime(_E6_99_82_E9_96_93, "minute")) && _E6_9A_AB_E5_AD_98_E8_B3_87_E6_96_99[2] == (getDatetime(_E6_99_82_E9_96_93, "second"))) {
+        _E8_AA_9E_E9_9F_B3_E6_9C_97_E8_AE_80(_E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, _E6_9A_AB_E5_AD_98_E8_B3_87_E6_96_99[3]);
+      }
+    }
+  },1000);
+}
+
+// 描述此函式...
+async function _E8_AA_9E_E9_9F_B3_E6_9C_97_E8_AE_80(_E8_AA_9E_E9_9F_B3, _E6_96_87_E5_AD_97) {
+  Recognition_switch(0);
+  ttsSpeak(_E8_AA_9E_E9_9F_B3, _E6_96_87_E5_AD_97);
+}
+
+// 描述此函式...
+function SQL_E6_9F_A5_E8_A9_A2(_E8_A9_A6_E7_AE_97_E8_A1_A8_E4_BB_A3_E7_A2_BC, _E5_B7_A5_E4_BD_9C_E8_A1_A8_E5_90_8D_E7_A8_B1, _E9_A1_AF_E7_A4_BA_E6_AC_84_E4_BD_8D, SQL) {
+  spreadsheetsql_clearDataTable('');
+  _E9_A1_AF_E7_A4_BA_E6_AC_84_E4_BD_8D_E5_90_8D_E7_A8_B1 = _E9_A1_AF_E7_A4_BA_E6_AC_84_E4_BD_8D;
+  spreadsheetsql_settings(_E8_A9_A6_E7_AE_97_E8_A1_A8_E4_BB_A3_E7_A2_BC,_E5_B7_A5_E4_BD_9C_E8_A1_A8_E5_90_8D_E7_A8_B1);
+  spreadsheetsql_executeSql(SQL);
+}
+
+// 描述此函式...
+function _E8_AA_9E_E9_9F_B3_E5_82_B3_E8_A8_8A() {
+  if ((_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('傳送'.toLowerCase())!=-1) && !(_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('不傳送'.toLowerCase())!=-1)) {
+    var Line_E7_BE_A4_E7_B5_84_E6_AC_8A_E6_9D_96 = (spreadsheetsql_getData());
+    var _E5_82_B3_E9_80_81_E6_96_87_E5_AD_97_E5_B0_8D_E8_B1_A1 = _E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.slice(0, (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.indexOf('傳送') + 1) - 1);
+    var _E5_82_B3_E9_80_81_E6_96_87_E5_AD_97 = _E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.slice(((_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.indexOf('傳送') + 1 + '傳送'.length) - 1), _E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.length);
+    var i_end3 = Line_E7_BE_A4_E7_B5_84_E6_AC_8A_E6_9D_96.length;
+    var i_inc3 = 1;
+    if (1 > i_end3) {
+      i_inc3 = -i_inc3;
+    }
+    for (i = 1; i_inc3 >= 0 ? i <= i_end3 : i >= i_end3; i += i_inc3) {
+      var _E6_9A_AB_E5_AD_98_E8_B3_87_E6_96_99 = Line_E7_BE_A4_E7_B5_84_E6_AC_8A_E6_9D_96[(i - 1)];
+      if (_E6_9A_AB_E5_AD_98_E8_B3_87_E6_96_99[0] == _E5_82_B3_E9_80_81_E6_96_87_E5_AD_97_E5_B0_8D_E8_B1_A1) {
+        linenotify_push_message((_E6_9A_AB_E5_AD_98_E8_B3_87_E6_96_99[1]),{'type':'text','text':_E5_82_B3_E9_80_81_E6_96_87_E5_AD_97});
+        _E8_AA_9E_E9_9F_B3_E6_9C_97_E8_AE_80(_E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, 'Line訊息已傳送');
+      }
+    }
+  }
+}
+
+// 描述此函式...
+async function _E6_9C_97_E8_AE_80_E6_9F_A5_E8_A9_A2_E8_B3_87_E6_96_99() {
+  _E8_AA_9E_E9_9F_B3_E6_9C_97_E8_AE_80(_E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, ['查到',spreadsheetsql_getDataCount("ROWS"),'筆資料'].join(''));
+  while (ttsSpeaking()) {
+    _E7_AD_89_E5_BE_85_E6_9C_97_E8_AE_80_E5_AE_8C_E6_88_90();
+
+    await delay(0.01);
+  }
+  if (_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C.toLowerCase().indexOf('近'.toLowerCase())!=-1) {
+    _E8_AA_9E_E9_9F_B3_E6_9C_97_E8_AE_80(_E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, String(spreadsheetsql_getCell(1, 1)) + String(spreadsheetsql_getCell(2, 1)));
+    while (ttsSpeaking()) {
+      _E7_AD_89_E5_BE_85_E6_9C_97_E8_AE_80_E5_AE_8C_E6_88_90();
+
+      await delay(0.01);
+    }
+  }
+}
+
+// 描述此函式...
+function _E7_AD_89_E5_BE_85_E6_9C_97_E8_AE_80_E5_AE_8C_E6_88_90() {
+  if (Recognition_state()) {
+    Recognition_switch(0);
+  }
+}
+
+
+head_add_viewport(0.8,1,2,"yes");
+holistic_video("block","1","1","1","1","1","1");
+_E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3 = ("Microsoft Hanhan - Chinese (Traditional, Taiwan)");
+_E8_A9_A6_E7_AE_97_E8_A1_A8ID = '1xeTHqIrT4Buj1XxpXfUlwdmmqGSBgI3x4QXlo5JT4Po';
+_E6_9F_A5_E8_A9_A2_E7_B5_90_E6_9E_9C = '';
+Line_E6_AC_8A_E6_9D_96 = '3ivmUoHVtX3vXCxMnNW8i4izTcdPAUlpxzfamzaiXb8';
+Line_E5_AE_B6_E4_BA_BA_E6_AC_8A_E6_9D_96 = 'WJndBF9TB6YQ1juRx8Xip0V8Z8gXqh32yjArTFkw6MR';
+_E8_A8_82_E9_96_B1_E4_B8_BB_E9_A1_8C = 'fsm/response';
+_E7_99_BC_E5_B8_83_E4_B8_BB_E9_A1_8C = 'fsm/speechcontrol';
+_E5_AE_9A_E6_99_82_E6_8F_90_E9_86_92_E8_B3_87_E6_96_99 = '';
+_E5_8A_9F_E8_83_BD_E7_8B_80_E6_85_8B = '';
+_E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C = '';
+_E9_A1_AF_E7_A4_BA_E6_AC_84_E4_BD_8D_E5_90_8D_E7_A8_B1 = false;
+_E5_85_AC_E8_BB_8A_E8_BB_8A_E8_99_9F = false;
+const clientId = "mqtt_" + Math.random().toString(16).substr(2, 8);
+const options = {
+	username: '',
+	password: '',
+	keepalive: 60,
+	clientId: clientId,
+	protocolId: "MQTT",
+	protocolVersion: 4,
+	clean: true,
+	reconnectPeriod: 1000,
+	connectTimeout: 30 * 1000
+}
+
+var mqtt_client = mqtt.connect('wss://broker.emqx.io:8084/mqtt',options);
+mqtt_client.on("connect", ()=>{
+	console.log("connected");
+  mqtt_client.subscribe(_E8_A8_82_E9_96_B1_E4_B8_BB_E9_A1_8C);
+	mqtt_client.on("message", async function (topic, payload) {
+  if (topic==_E8_A8_82_E9_96_B1_E4_B8_BB_E9_A1_8C) {
+    _E5_82_B3_E9_80_81_E6_96_87_E5_AD_97 = (new TextDecoder().decode(payload));
+    if ((new TextDecoder().decode(payload)) == 'red') {
+      _E5_82_B3_E9_80_81_E6_96_87_E5_AD_97 = '我很不舒服';
+      linenotify_push_message(Line_E6_AC_8A_E6_9D_96,{'type':'text','text':_E5_82_B3_E9_80_81_E6_96_87_E5_AD_97});
+    } else if ((new TextDecoder().decode(payload)) == 'blue') {
+      _E5_82_B3_E9_80_81_E6_96_87_E5_AD_97 = '我想上廁所';
+      linenotify_push_message(Line_E6_AC_8A_E6_9D_96,{'type':'text','text':_E5_82_B3_E9_80_81_E6_96_87_E5_AD_97});
+    } else if ((new TextDecoder().decode(payload)) == 'green') {
+      _E5_82_B3_E9_80_81_E6_96_87_E5_AD_97 = '我需要幫忙';
+      linenotify_push_message(Line_E6_AC_8A_E6_9D_96,{'type':'text','text':_E5_82_B3_E9_80_81_E6_96_87_E5_AD_97});
+    } else if ((new TextDecoder().decode(payload)) == 'mic') {
+      _E5_82_B3_E9_80_81_E6_96_87_E5_AD_97 = '異常聲響';
+      linenotify_push_message(Line_E6_AC_8A_E6_9D_96,{'type':'text','text':_E5_82_B3_E9_80_81_E6_96_87_E5_AD_97});
+    }
+    _E8_AA_9E_E9_9F_B3_E6_9C_97_E8_AE_80(_E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, _E5_82_B3_E9_80_81_E6_96_87_E5_AD_97);
+  }
+   })
+  }
+)
+
+ttsSetProperty(1, 1, 1, "cmn-Hant-TW");
+recognition.lang="cmn-Hant-TW";
+span_interim(120,0,40,999,true);
+Recognition_recognitionFinish = async function() {
+  _E8_BE_A8_E8_AD_98_E7_B5_90_E6_9E_9C = (Recognition_final_get());
+  _E4_B8_BB_E9_81_B8_E5_96_AE();
+  if (_E5_8A_9F_E8_83_BD_E7_8B_80_E6_85_8B != '視訊傳送') {
+    video_delete('');
+  }
+
+};
+button_create('',100,40,0,0,1,null,'語音功能啟用',12,999,true);
+async function gamebutton__onclick (event) {
+  Recognition_switch(1);
+  ttsSwitch(1);
+  _E8_AA_9E_E9_9F_B3_E6_9C_97_E8_AE_80(_E6_9C_97_E8_AE_80_E8_AA_9E_E9_9F_B3, '語音功能已啟動');
+};
+document.getElementById("gamebutton_").addEventListener("click", gamebutton__onclick, true);
+spreadsheetsql_getDataFinish = function() {
+  _E6_9F_A5_E8_A9_A2_E7_B5_90_E6_9E_9C = (spreadsheetsql_getData());
+  spreadsheetsql_getDataTable('',600,20,0,50,_E9_A1_AF_E7_A4_BA_E6_AC_84_E4_BD_8D_E5_90_8D_E7_A8_B1);
+  if (_E5_8A_9F_E8_83_BD_E7_8B_80_E6_85_8B == '視訊傳送' || _E5_8A_9F_E8_83_BD_E7_8B_80_E6_85_8B == '影像辨識') {
+    table_set('',"left",320);
+  }
+  _E6_9C_97_E8_AE_80_E6_9F_A5_E8_A9_A2_E8_B3_87_E6_96_99();
+
+};
+while (true) {
+  if (!(ttsSpeaking()) && !(Recognition_state())) {
+    Recognition_switch(1);
+  }
+
+  await delay(0.01);
+}
+};main();</script></body></html>
