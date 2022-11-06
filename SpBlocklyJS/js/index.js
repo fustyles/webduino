@@ -705,8 +705,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('button_open_xml').onclick = function () {
 		var e = document.getElementById("importBlocks");
 		if (e) {
-			e.click();
-			return;
+			e.parentElement.removeChild(e);
 		}
 		
 		var input=document.createElement('input');
