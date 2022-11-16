@@ -2067,10 +2067,13 @@ Blockly.Arduino['esp32_telegrambot_getupdates'] = function(block) {
 			'  const char* myDomain = "api.telegram.org";\n'+
 			'  String getAll="", getBody = "";\n'+
 			'  JsonObject obj;\n';
+			
 	if (selectBoardType()=="esp32")
-Blockly.Arduino.definitions_.telegrambot_getUpdates +='  DynamicJsonDocument doc(1024);\n';
+		Blockly.Arduino.definitions_.telegrambot_getUpdates +='  DynamicJsonDocument doc(1024);\n';
 	else if (selectBoardType()=="LinkIt")
-Blockly.Arduino.definitions_.telegrambot_getUpdates +='  DynamicJsonDocument doc(256);\n';
+		Blockly.Arduino.definitions_.telegrambot_getUpdates +='  DynamicJsonDocument doc(352);\n';
+	else
+		Blockly.Arduino.definitions_.telegrambot_getUpdates +='  DynamicJsonDocument doc(128);\n';
 
 Blockly.Arduino.definitions_.telegrambot_getUpdates +='  String result;\n'+
 			'  long update_id;\n'+
@@ -2569,10 +2572,13 @@ Blockly.Arduino['controls_spreadsheet_getcell'] = function(block){
 			'String Spreadsheet_getcell(int row, int col) {\n'+
 			'    if (spreadsheetData!="") {\n'+
 			'    	JsonObject obj;\n';
-	if (selectBoardType()=="LinkIt") {
-		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(256);\n';
+			
+	if (selectBoardType()=="esp32") {
+		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(1024);\n';
+	} else if (selectBoardType()=="LinkIt") {
+		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(352);\n';										
 	} else {
-		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(1024);\n';										
+		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(128);\n';										
 	}
 	
 	Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	deserializeJson(doc, spreadsheetData);\n'+
@@ -2595,9 +2601,16 @@ Blockly.Arduino['controls_spreadsheet_getcell_number'] = function(block){
 	Blockly.Arduino.definitions_.Spreadsheet_getcell_number = '\n'+
 			'int Spreadsheet_getcell_number(String option) {\n'+
 			'    if (spreadsheetData!="") {\n'+
-			'    	JsonObject obj;\n'+
-			'    	DynamicJsonDocument doc(1024);\n'+
-			'    	deserializeJson(doc, spreadsheetData);\n'+
+			'    	JsonObject obj;\n';
+			
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.definitions_.Spreadsheet_getcell_number +='  DynamicJsonDocument doc(1024);\n';
+	else if (selectBoardType()=="LinkIt")
+		Blockly.Arduino.definitions_.Spreadsheet_getcell_number +='  DynamicJsonDocument doc(352);\n';
+	else
+		Blockly.Arduino.definitions_.Spreadsheet_getcell_number +='  DynamicJsonDocument doc(128);\n';
+					
+	Blockly.Arduino.definitions_.Spreadsheet_getcell_number +='    	deserializeJson(doc, spreadsheetData);\n'+
 			'    	obj = doc.as<JsonObject>();\n'+
 			'		if (option=="row")\n'+
 			'			return obj["values"].size();\n'+
@@ -2756,7 +2769,9 @@ Blockly.Arduino['controls_spreadsheet_getcell_query'] = function(block){
 	if (selectBoardType()=="esp32")
 		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(1024);\n';
 	else if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(256);\n';
+		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(352);\n';
+	else
+		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(128);\n';
 	
 	Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	deserializeJson(doc, spreadsheetQueryData);\n'+
 			'    	obj = doc.as<JsonObject>();\n'+
@@ -2778,9 +2793,16 @@ Blockly.Arduino['controls_spreadsheet_getcell_query_number'] = function(block){
 	Blockly.Arduino.definitions_.Spreadsheet_getcell_query_number = '\n'+
 			'int Spreadsheet_getcell_query_number(String option) {\n'+
 			'    if (spreadsheetQueryData!="") {\n'+
-			'    	JsonObject obj;\n'+
-			'    	DynamicJsonDocument doc(1024);\n'+
-			'    	deserializeJson(doc, spreadsheetQueryData);\n'+
+			'    	JsonObject obj;\n';
+			
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.definitions_.Spreadsheet_getcell_query_number +='  DynamicJsonDocument doc(1024);\n';
+	else if (selectBoardType()=="LinkIt")
+		Blockly.Arduino.definitions_.Spreadsheet_getcell_query_number +='  DynamicJsonDocument doc(256);\n';
+	else
+		Blockly.Arduino.definitions_.Spreadsheet_getcell_query_number +='  DynamicJsonDocument doc(128);\n';
+			
+Blockly.Arduino.definitions_.Spreadsheet_getcell_query_number +='    	deserializeJson(doc, spreadsheetQueryData);\n'+
 			'    	obj = doc.as<JsonObject>();\n'+
 			'		if (option=="row")\n'+
 			'			return obj["values"].size();\n'+
@@ -4528,9 +4550,16 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 			'void getTelegramMessage() {\n'+
 			'  const char* myDomain = "api.telegram.org";\n'+
 			'  String getAll="", getBody = "";\n'+
-			'  JsonObject obj;\n'+
-			'  DynamicJsonDocument doc(1024);\n'+
-			'  String result;\n'+
+			'  JsonObject obj;\n';
+			
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(1024);\n';
+	else if (selectBoardType()=="LinkIt")
+		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(352);\n';
+	else
+		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(128);\n';
+			
+	Blockly.Arduino.definitions_.getTelegramMessage +='  String result;\n'+
 			'  long update_id;\n'+
 			'  String message;\n'+
 			'  long message_id;\n'+
@@ -4779,9 +4808,16 @@ Blockly.Arduino['esp32cam_telegrambot'] = function(block) {
 			'void getTelegramMessage() {\n'+
 			'  const char* myDomain = "api.telegram.org";\n'+
 			'  String getAll="", getBody = "";\n'+
-			'  JsonObject obj;\n'+
-			'  DynamicJsonDocument doc(1024);\n'+
-			'  String result;\n'+
+			'  JsonObject obj;\n';
+			
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(1024);\n';
+	else if (selectBoardType()=="LinkIt")
+		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(352);\n';
+	else
+		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(128);\n';
+			
+	Blockly.Arduino.definitions_.getTelegramMessage +='  String result;\n'+
 			'  long update_id;\n'+
 			'  String message;\n'+
 			'  long message_id;\n'+
@@ -5088,7 +5124,6 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 	var dropdown_sitename = block.getFieldValue('sitename');
 	var value_Authorization = Blockly.Arduino.valueToCode(block, 'Authorization', Blockly.Arduino.ORDER_ATOMIC);
 	
-	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';	
 	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
 	Blockly.Arduino.definitions_['airSite'] = 'String airSite = "";';	
 	Blockly.Arduino.definitions_['airAQI'] = 'String airAQI = "";';	
@@ -5097,10 +5132,17 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 	Blockly.Arduino.definitions_['airTime'] = 'String airTime = "";';	
 	Blockly.Arduino.definitions_['opendataAirQuality'] = '\n' +
 			'void opendataAirQuality(String Site, String Authorization) {\n'+
-			'  WiFiClientSecure client_tcp;\n'+
 			'  String request = "/api/v2/aqx_p_432?format=json&limit=5&api_key="+Authorization+"&filters=SiteName,EQ,"+urlencode(Site);\n';
-	if (arduinoCore_ESP32)
-		Blockly.Arduino.definitions_['opendataAirQuality'] += '  client_tcp.setInsecure();\n';
+			
+	if (selectBoardType()=="LinkIt") {
+		Blockly.Arduino.definitions_['opendataAirQuality'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+	} else {
+		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
+		Blockly.Arduino.definitions_['opendataAirQuality'] += '  WiFiClientSecure client_tcp;\n';
+		if (arduinoCore_ESP32)
+			Blockly.Arduino.definitions_['opendataAirQuality'] += '  client_tcp.setInsecure();\n';	
+	}
+	
 	Blockly.Arduino.definitions_['opendataAirQuality'] +='  if (client_tcp.connect("data.epa.gov.tw", 443)) {\n'+
 			'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
 			'    client_tcp.println("Host: data.epa.gov.tw");\n'+
@@ -5136,9 +5178,16 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'      if (Feedback.length()!= 0) break;\n'+
 			'    }\n'+
 			'    client_tcp.stop();\n'+
-			'    JsonObject obj;\n'+
-			'    DynamicJsonDocument doc(1024);\n'+
-			'    deserializeJson(doc, Feedback);\n'+
+			'    JsonObject obj;\n';
+			
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.definitions_['opendataAirQuality'] +='  DynamicJsonDocument doc(1024);\n';
+	else if (selectBoardType()=="LinkIt")
+		Blockly.Arduino.definitions_['opendataAirQuality'] +='  DynamicJsonDocument doc(352);\n';
+	else
+		Blockly.Arduino.definitions_['opendataAirQuality'] +='  DynamicJsonDocument doc(128);\n';
+			
+Blockly.Arduino.definitions_['opendataAirQuality'] +='    deserializeJson(doc, Feedback);\n'+
 			'    obj = doc.as<JsonObject>();\n'+
 			'    airSite = Site;\n'+
 			'    airAQI = obj["aqi"].as<String>().toInt();\n'+
@@ -5208,7 +5257,6 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 	var dropdown_locationname = block.getFieldValue('locationname');
 	var value_Authorization = Blockly.Arduino.valueToCode(block, 'Authorization', Blockly.Arduino.ORDER_ATOMIC);
 	
-	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';	
 	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
 
 	Blockly.Arduino.definitions_['Weather0012'] = 'String Weather0012[8] = {"","","","","","","",""};';
@@ -5216,11 +5264,17 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 	Blockly.Arduino.definitions_['Weather2436'] = 'String Weather2436[8] = {"","","","","","","",""};';
 	
 	Blockly.Arduino.definitions_['opendataWeather'] = '\n' +
-			'void opendataWeather(String location, String Authorization) {\n'+
-			'  WiFiClientSecure client_tcp;\n'+
-			'  String request = "/api/v1/rest/datastore/F-C0032-001?Authorization="+Authorization+"&locationName="+urlencode(location);\n';
-	if (arduinoCore_ESP32)
-		Blockly.Arduino.definitions_['opendataWeather'] += '  client_tcp.setInsecure();\n';
+			'void opendataWeather(String location, String Authorization) {\n';
+			
+	if (selectBoardType()=="LinkIt") {
+		Blockly.Arduino.definitions_['opendataWeather'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+	} else {
+		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
+		Blockly.Arduino.definitions_['opendataWeather'] += '  WiFiClientSecure client_tcp;\n';
+		if (arduinoCore_ESP32)
+			Blockly.Arduino.definitions_['opendataWeather'] += '  client_tcp.setInsecure();\n';	
+	}
+	
 	Blockly.Arduino.definitions_['opendataWeather'] +='  if (client_tcp.connect("opendata.cwb.gov.tw", 443)) {\n'+
 			'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
 			'    client_tcp.println("Host: opendata.cwb.gov.tw");\n'+
@@ -5265,9 +5319,16 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 			'    Weather0012[0] = location;\n'+
 			'    Weather1224[0] = location;\n'+
 			'    Weather2436[0] = location;\n'+
-			'    JsonObject obj;\n'+
-			'    DynamicJsonDocument doc(1024);\n'+
-			'    Feedback = Feedback.substring(Feedback.indexOf("\\"weatherElement\\":[")+18,Feedback.length()-5);\n'+
+			'    JsonObject obj;\n';
+			
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.definitions_['opendataWeather'] +='  DynamicJsonDocument doc(1024);\n';
+	else if (selectBoardType()=="LinkIt")
+		Blockly.Arduino.definitions_['opendataWeather'] +='  DynamicJsonDocument doc(352);\n';
+	else
+		Blockly.Arduino.definitions_['opendataWeather'] +='  DynamicJsonDocument doc(128);\n';
+			
+	Blockly.Arduino.definitions_['opendataWeather'] +='    Feedback = Feedback.substring(Feedback.indexOf("\\"weatherElement\\":[")+18,Feedback.length()-5);\n'+
 			'    temp = Feedback.substring(Feedback.indexOf("\\"Wx\\",")+5,Feedback.indexOf("}}]}")+3);\n'+
 			'    deserializeJson(doc, "{"+temp+"}");\n'+
 			'    obj = doc.as<JsonObject>();\n'+
@@ -7855,10 +7916,14 @@ Blockly.Arduino['thingspeak_field'] = function(block) {
  											'    else\n'+
  											'      fr = e+1;\n'+
  											'  }\n';
+											
 	if (selectBoardType()=="esp32")
 		Blockly.Arduino.definitions_['ThingspeakJson_field'] +='  DynamicJsonDocument doc(1024);\n';
 	else if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['ThingspeakJson_field'] +='  DynamicJsonDocument doc(256);\n';											
+		Blockly.Arduino.definitions_['ThingspeakJson_field'] +='  DynamicJsonDocument doc(352);\n';
+	else
+		Blockly.Arduino.definitions_['ThingspeakJson_field'] +='  DynamicJsonDocument doc(128);\n';
+	
 	Blockly.Arduino.definitions_['ThingspeakJson_field'] +='  deserializeJson(doc, json);\n'+
 											'  JsonObject obj = doc.as<JsonObject>();\n'+
 											'  String res = obj[fieldName];\n'+
