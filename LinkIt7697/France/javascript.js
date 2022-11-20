@@ -2068,7 +2068,7 @@ Blockly.Arduino['esp32_telegrambot_getupdates'] = function(block) {
 			'  String getAll="", getBody = "";\n'+
 			'  JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040")
 		Blockly.Arduino.definitions_.telegrambot_getUpdates +='  DynamicJsonDocument doc(1024);\n';
 	else if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_.telegrambot_getUpdates +='  DynamicJsonDocument doc(352);\n';
@@ -2573,7 +2573,7 @@ Blockly.Arduino['controls_spreadsheet_getcell'] = function(block){
 			'    if (spreadsheetData!="") {\n'+
 			'    	JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32") {
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040") {
 		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(1024);\n';
 	} else if (selectBoardType()=="LinkIt") {
 		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(352);\n';										
@@ -2603,7 +2603,7 @@ Blockly.Arduino['controls_spreadsheet_getcell_number'] = function(block){
 			'    if (spreadsheetData!="") {\n'+
 			'    	JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040")
 		Blockly.Arduino.definitions_.Spreadsheet_getcell_number +='  DynamicJsonDocument doc(1024);\n';
 	else if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_.Spreadsheet_getcell_number +='  DynamicJsonDocument doc(352);\n';
@@ -2766,7 +2766,7 @@ Blockly.Arduino['controls_spreadsheet_getcell_query'] = function(block){
 			'    if (spreadsheetQueryData!="") {\n'+
 			'    	JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040")
 		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(1024);\n';
 	else if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(352);\n';
@@ -2795,7 +2795,7 @@ Blockly.Arduino['controls_spreadsheet_getcell_query_number'] = function(block){
 			'    if (spreadsheetQueryData!="") {\n'+
 			'    	JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040")
 		Blockly.Arduino.definitions_.Spreadsheet_getcell_query_number +='  DynamicJsonDocument doc(1024);\n';
 	else if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_.Spreadsheet_getcell_query_number +='  DynamicJsonDocument doc(256);\n';
@@ -4552,7 +4552,7 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 			'  String getAll="", getBody = "";\n'+
 			'  JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040")
 		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(1024);\n';
 	else if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(352);\n';
@@ -4810,7 +4810,7 @@ Blockly.Arduino['esp32cam_telegrambot'] = function(block) {
 			'  String getAll="", getBody = "";\n'+
 			'  JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040")
 		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(1024);\n';
 	else if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(352);\n';
@@ -5180,7 +5180,7 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'    client_tcp.stop();\n'+
 			'    JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040")
 		Blockly.Arduino.definitions_['opendataAirQuality'] +='  DynamicJsonDocument doc(1024);\n';
 	else if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['opendataAirQuality'] +='  DynamicJsonDocument doc(352);\n';
@@ -5321,7 +5321,7 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 			'    Weather2436[0] = location;\n'+
 			'    JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040")
 		Blockly.Arduino.definitions_['opendataWeather'] +='  DynamicJsonDocument doc(1024);\n';
 	else if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['opendataWeather'] +='  DynamicJsonDocument doc(352);\n';
@@ -7917,7 +7917,7 @@ Blockly.Arduino['thingspeak_field'] = function(block) {
  											'      fr = e+1;\n'+
  											'  }\n';
 											
-	if (selectBoardType()=="esp32")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040")
 		Blockly.Arduino.definitions_['ThingspeakJson_field'] +='  DynamicJsonDocument doc(1024);\n';
 	else if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['ThingspeakJson_field'] +='  DynamicJsonDocument doc(352);\n';
@@ -15712,7 +15712,7 @@ Blockly.Arduino['faceapirecognize_canvas_get'] = function(block) {
 function selectBoardType() {
 	var selectBoard = document.getElementById('board-selector');
 	if (selectBoard) {
-		var state = [0,0,0,0,0,0,0];
+		var state = [0,0,0,0,0,0,0,0];
 		for (var i=0;i<selectBoard.options.length;i++) {
 			if (selectBoard.options[i].value.indexOf("LinkIt")!=-1)
 				state[0]=1;
@@ -15727,7 +15727,9 @@ function selectBoardType() {
 			if (selectBoard.options[i].value.indexOf("BPI-BIT V2")!=-1)
 				state[5]=1;
 			if (selectBoard.options[i].value.indexOf("TTGO")!=-1)
-				state[6]=1;			
+				state[6]=1;	
+			if (selectBoard.options[i].value.indexOf("Pi Pico W")!=-1)
+				state[7]=1;			
 		}
 		if (state[0]==0)
 			selectBoard.options.add(new Option("LinkIt 7697","LinkIt:linkit_rtos:linkit_7697"));
@@ -15743,6 +15745,8 @@ function selectBoardType() {
 			selectBoard.options.add(new Option("BPI-BIT V2","esp32:esp32:esp32s2"));
 		if (state[6]==0) 
 			selectBoard.options.add(new Option("TTGO T1","esp32:esp32:ttgo-t1"));
+		if (state[7]==0) 
+			selectBoard.options.add(new Option("Raspberry Pi Pico W (Picoprobe)","rp2040:rp2040:rpipicowpicoprobe"));		
 		
 		if (selectBoard.value.split(":")[2]=="bpi-bit")
 			return "BPI-BIT";
