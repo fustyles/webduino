@@ -15746,7 +15746,7 @@ function selectBoardType() {
 		if (state[6]==0) 
 			selectBoard.options.add(new Option("TTGO T1","esp32:esp32:ttgo-t1"));
 		if (state[7]==0) 
-			selectBoard.options.add(new Option("Raspberry Pi Pico W (Picoprobe)","rp2040:rp2040:rpipicowpicoprobe"));		
+			selectBoard.options.add(new Option("Raspberry Pi Pico W","rp2040:rp2040:rpipicow"));		
 		
 		if (selectBoard.value.split(":")[2]=="bpi-bit")
 			return "BPI-BIT";
