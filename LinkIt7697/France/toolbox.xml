@@ -238,8 +238,59 @@
 	  </block>	
 	  <block type="taskhandle_disabledog">	
 	  </block>		  
-	</category> 	
-		
+	</category>
+	
+	<category id="france21" name="preferences">
+	  <block type="preferences_write">
+		<value name="namespace">
+		  <block type="text">
+			<field name="TEXT">name</field>
+		  </block>
+		</value>
+		<value name="key">
+		  <block type="text">
+			<field name="TEXT">key</field>
+		  </block>
+		</value> 
+		<value name="value">
+		  <block type="text">
+			<field name="TEXT">value</field>
+		  </block>
+		</value> 		
+	  </block>	
+	  <block type="preferences_read">
+		<value name="namespace">
+		  <block type="text">
+			<field name="TEXT">name</field>
+		  </block>
+		</value>
+		<value name="key">
+		  <block type="text">
+			<field name="TEXT">key</field>
+		  </block>
+		</value> 	  
+	  </block>
+	  <block type="preferences_clear_namespace">
+		<value name="namespace">
+		  <block type="text">
+			<field name="TEXT">name</field>
+		  </block>
+		</value>	  
+	  </block>
+	  <block type="preferences_remove_key">
+		<value name="namespace">
+		  <block type="text">
+			<field name="TEXT">name</field>
+		  </block>
+		</value>
+		<value name="key">
+		  <block type="text">
+			<field name="TEXT">key</field>
+		  </block>
+		</value> 	  
+	  </block>	  
+	</category>
+	
 	<sep id="category_sep"></sep>	
 	<category id="france6" name="client">
 	  <block type="esp32_wifi_wait_until_ready">

@@ -1,3 +1,74 @@
+Blockly.Blocks['preferences_write'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg["PREFERENCES"]) 
+	  .appendField(Blockly.Msg["PREFERENCES_WRITE"]); 
+  this.appendValueInput("namespace")
+	  .appendField(Blockly.Msg["PREFERENCES_NAMESPACE"])
+      .setCheck("String");
+  this.appendValueInput("key")
+	  .appendField(Blockly.Msg["PREFERENCES_KEY"])
+      .setCheck("String");
+  this.appendValueInput("value")
+	  .appendField(Blockly.Msg["PREFERENCES_VALUE"])
+      .setCheck("String");	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(Blockly.Msg["HUE_13"]);
+  }
+};
+
+Blockly.Blocks['preferences_read'] = {
+  init: function () {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PREFERENCES"]) 
+		.appendField(Blockly.Msg["PREFERENCES_READ"]); 
+	this.appendValueInput("namespace")
+		.appendField(Blockly.Msg["PREFERENCES_NAMESPACE"])
+		.setCheck("String");
+	this.appendValueInput("key")
+		.appendField(Blockly.Msg["PREFERENCES_KEY"])
+		.setCheck("String"); 
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(Blockly.Msg["HUE_13"]);
+  }
+};
+
+Blockly.Blocks['preferences_clear_namespace'] = {
+  init: function () {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PREFERENCES"]) 
+		.appendField(Blockly.Msg["PREFERENCES_CLEAR_NAMESPACE"]); 
+	this.appendValueInput("namespace")
+		.appendField(Blockly.Msg["PREFERENCES_NAMESPACE"])
+		.setCheck("String");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(Blockly.Msg["HUE_13"]);
+  }
+};
+
+Blockly.Blocks['preferences_remove_key'] = {
+  init: function () {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PREFERENCES"]) 
+		.appendField(Blockly.Msg["PREFERENCES_REMOVE_KEY"]); 
+	this.appendValueInput("namespace")
+		.appendField(Blockly.Msg["PREFERENCES_NAMESPACE"])
+		.setCheck("String");
+	this.appendValueInput("key")
+		.appendField(Blockly.Msg["PREFERENCES_KEY"])
+		.setCheck("String"); 
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(Blockly.Msg["HUE_13"]);
+  }
+};
+
 Blockly.Blocks['window_messagebox'] = {
   init: function () {
   this.appendValueInput("message")
@@ -18529,26 +18600,45 @@ Blockly.Blocks.webbit_mooncar_tracker={init:function(){
 };
 Blockly.Blocks.webbit_mooncar_sonar_pin={init:function(){
   this.appendDummyInput()
-      .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_PIN);
+      .appendField(Blockly.Msg.FRANCEFU_SONAR);
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_INDEX)
+      .appendField(new Blockly.FieldDropdown([
+		  ["0","0"],
+		  ["1","1"],
+		  ["2","2"],
+		  ["3","3"]
+	  ]),"index");	
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_PIN);	  
   this.appendValueInput("TRIG")
       .setCheck("Number")
 	  .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_PIN_TRIG);
   this.appendValueInput("ECHO")
       .setCheck("Number")
-	  .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_PIN_ECHO);
+	  .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_PIN_ECHO);  
   this.setInputsInline(!0);
   this.setPreviousStatement(!0,null);
   this.setNextStatement(!0,null);
   this.setColour(240);  
 }
 };
-Blockly.Blocks.webbit_mooncar_sonar={init:function(){
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.FRANCEFU_SONAR);
-  this.setInputsInline(!0);
-  this.setOutput(!0,null);
-  this.setColour(240);  
-}
+Blockly.Blocks.webbit_mooncar_sonar={
+	init:function(){
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg.FRANCEFU_SONAR);
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_INDEX)
+		  .appendField(new Blockly.FieldDropdown([
+			  ["0","0"],
+			  ["1","1"],
+			  ["2","2"],
+			  ["3","3"]
+		  ]),"index");	  
+	  this.setInputsInline(!0);
+	  this.setOutput(!0,null);
+	  this.setColour(240);  
+	}
 };
 Blockly.Blocks.webbit_mooncar_tcs_init={init:function(){
   this.appendDummyInput()

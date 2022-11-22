@@ -1,3 +1,74 @@
+Blockly.Arduino['preferences_write'] = function(block) {	
+	var namespace = Blockly.Arduino.valueToCode(block, 'namespace', Blockly.Arduino.ORDER_ATOMIC);
+	var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
+	var value = Blockly.Arduino.valueToCode(block, 'value', Blockly.Arduino.ORDER_ATOMIC);
+	
+	Blockly.Arduino.definitions_['preferences_initial'] = '#include <Preferences.h>\nPreferences preferences;\n';
+
+	Blockly.Arduino.definitions_['preferences_write'] = ''
+	+'void Preferences_write(const char * name, const char* key, const char* value) {\n'
+	+'  preferences.clear();\n'
+	+'  preferences.begin(name, false);\n'
+	+'  //Serial.printf("Put %s = %s\\n", key, value);\n'
+	+'  preferences.putString(key, value);\n'
+	+'  preferences.end();\n'
+	+'}\n';
+
+    var code = 'Preferences_write(String('+namespace+').c_str(), String('+key+').c_str(), String('+value+').c_str());\n' ;
+    return code;
+};
+
+Blockly.Arduino['preferences_read'] = function(block) {	
+	var namespace = Blockly.Arduino.valueToCode(block, 'namespace', Blockly.Arduino.ORDER_ATOMIC);
+	var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
+	
+	Blockly.Arduino.definitions_['preferences_initial'] = '#include <Preferences.h>\nPreferences preferences;\n';
+
+	Blockly.Arduino.definitions_['preferences_read'] = ''
+	+'String Preferences_read(const char * name, const char* key) {\n'
+	+'  preferences.begin(name, false);\n'
+	+'  String pdata = preferences.getString(key, "");\n'
+	+'  //Serial.printf("Get %s = %s\\n", key, pdata);\n'
+	+'  preferences.end();\n'
+	+'  return pdata;\n'
+	+'}\n';
+
+    var code = 'Preferences_read(String('+namespace+').c_str(), String('+key+').c_str())' ;
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['preferences_clear_namespace'] = function(block) {	
+	var namespace = Blockly.Arduino.valueToCode(block, 'namespace', Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_['preferences_initial'] = '#include <Preferences.h>\nPreferences preferences;\n';
+
+	Blockly.Arduino.definitions_['preferences_clear_namespace'] = ''
+	+'void Preferences_clear_namespace(const char * name) {\n'
+	+'  preferences.begin(name, false);\n'
+	+'  preferences.clear();\n'
+	+'  preferences.end();\n'
+	+'}\n';
+
+    var code = 'Preferences_clear_namespace(String('+namespace+').c_str());\n' ;
+    return code;
+};
+
+Blockly.Arduino['preferences_remove_key'] = function(block) {	
+	var namespace = Blockly.Arduino.valueToCode(block, 'namespace', Blockly.Arduino.ORDER_ATOMIC);
+	var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
+	
+	Blockly.Arduino.definitions_['preferences_initial'] = '#include <Preferences.h>\nPreferences preferences;\n';
+
+	Blockly.Arduino.definitions_['preferences_remove_key'] = ''
+	+'void Preferences_remove_key(const char * name, const char* key) {\n'
+	+'  preferences.begin(name, false);\n'
+	+'  preferences.remove(key);\n'
+	+'  preferences.end();\n'
+	+'}\n';
+
+    var code = 'Preferences_remove_key(String('+namespace+').c_str(), String('+key+').c_str());\n' ;
+    return code;
+};
+
 Blockly.Arduino['window_messagebox'] = function (block) {
   var message = Blockly.Arduino.valueToCode(block, 'message', Blockly.Arduino.ORDER_ATOMIC); 
   var code = 'alert('+message+');\n';  
@@ -13167,14 +13238,16 @@ Blockly.Arduino.webbit_mooncar_tracker=function(){
 };
 Blockly.Arduino.webbit_mooncar_sonar_pin=function(){
   var trig=Blockly.Arduino.valueToCode(this,"TRIG",Blockly.Arduino.ORDER_ATOMIC);
-  var echo=Blockly.Arduino.valueToCode(this,"ECHO",Blockly.Arduino.ORDER_ATOMIC);	
+  var echo=Blockly.Arduino.valueToCode(this,"ECHO",Blockly.Arduino.ORDER_ATOMIC);
+  var index=this.getFieldValue("index");  
   Blockly.Arduino.definitions_['define_sonar_']="#include <Ultrasonic.h>\n";
-  Blockly.Arduino.definitions_['define_sonar_set']="Ultrasonic ultrasonic_("+trig+", "+echo+");"
+  Blockly.Arduino.definitions_['define_sonar_set'+index]="Ultrasonic ultrasonic_"+index+"("+trig+", "+echo+");"
   var code = '';
   return code;
 };
 Blockly.Arduino.webbit_mooncar_sonar=function(){
-  return ["ultrasonic_.convert(ultrasonic_.timing(), Ultrasonic::CM)", Blockly.Arduino.ORDER_ATOMIC];
+  var index=this.getFieldValue("index"); 	
+  return ["ultrasonic_"+index+".convert(ultrasonic_"+index+".timing(), Ultrasonic::CM)", Blockly.Arduino.ORDER_ATOMIC];
 };
 Blockly.Arduino.webbit_mooncar_tcs_init=function(){
   Blockly.Arduino.definitions_['define_wire']='#include <Wire.h>';
