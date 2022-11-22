@@ -1,7 +1,6 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/8/18 06:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/11/22 18:00
 https://www.facebook.com/francefu
-
 Try it!
 https://fustyles.github.io/webduino/TensorFlow/PoseDetection_video/PoseDetection_video_multi.html
 -->
@@ -42,6 +41,7 @@ ScoreLimit
 <option value="0.8" selected>0.8</option>
 <option value="0.9">0.9</option>
 </select>
+<input type="checkbox" id="detect" checked>detect
 <div id="result" style="color:red"></div>
   
 <script>
@@ -49,6 +49,7 @@ ScoreLimit
   var canvas = document.getElementById('canvas'); 
   var context = canvas.getContext('2d');
   var result = document.getElementById('result');
+  var detect = document.getElementById('detect');
   var Model; 
   
   window.onload = function() {LoadModel();}
@@ -108,7 +109,12 @@ async function DetectVideo() {
   context.translate((canvas.width + video.width) / 2, 0);
   context.scale(-1, 1);
   context.drawImage(video, 0, 0, video.width, video.height);
-  context.setTransform(1, 0, 0, 1, 0, 0);  
+  context.setTransform(1, 0, 0, 1, 0, 0);
+  if (!detect.checked) {
+    setTimeout(function(){DetectVideo(); }, 10);
+	return;
+  }
+	
   await Model.estimatePoses(canvas, {flipHorizontal: false, decodingMethod: 'multi-person', maxPoseDetections: 5, scoreThreshold: 0.5, nmsRadius: 20}).then(pose => {
     //console.log(pose.score);
     //console.log(pose.keypoints);
