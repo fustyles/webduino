@@ -6,7 +6,7 @@
 <category><name>thingspeak</name><replace>Thingspeak</replace></category>
 <category><name>others</name><replace>其他</replace></category>
 <category><name>servermodule</name><replace>Server模組</replace></category>
-<category><name>serveresp32</name><replace>ESP32網頁模組</replace></category>
+<category><name>serveresp32</name><replace>網頁模組</replace></category>
 <category><name>serveresp32cam</name><replace>ESP32-CAM網頁模組</replace></category>
 <category><name>serverlinkit7697</name><replace>LinkIt7697網頁模組</replace></category>
 <category><name>servercommand</name><replace>模組指令參數</replace></category>

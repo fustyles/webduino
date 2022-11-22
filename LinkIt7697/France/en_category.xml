@@ -6,7 +6,7 @@
 <category><name>thingspeak</name><replace>Thingspeak</replace></category>
 <category><name>others</name><replace>Others</replace></category>
 <category><name>servermodule</name><replace>Server Module</replace></category>
-<category><name>serveresp32</name><replace>ESP32 Server</replace></category>
+<category><name>serveresp32</name><replace>AP Server</replace></category>
 <category><name>serveresp32cam</name><replace>ESP32-CAM Server</replace></category>
 <category><name>serverlinkit7697</name><replace>LinkIt7697 Server</replace></category>
 <category><name>servercommand</name><replace>Command Parameter</replace></category>

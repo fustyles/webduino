@@ -1,3 +1,19 @@
+Blockly.Blocks['taskhandle_statement_pico'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["TASKHANDLE_PICO_SHOW"])
+		.appendField(Blockly.Msg["TASKHANDLE_SETUP1_SHOW"]);
+    this.appendStatementInput("setup1")
+        .setCheck(null);
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["TASKHANDLE_LOOP1_SHOW"]);
+    this.appendStatementInput("loop1")
+        .setCheck(null);		
+	this.setInputsInline(false);
+    this.setColour(Blockly.Msg["HUE_1"]);
+  }
+};
+
 Blockly.Blocks['preferences_write'] = {
   init: function () {
   this.appendDummyInput()
@@ -11,7 +27,7 @@ Blockly.Blocks['preferences_write'] = {
       .setCheck("String");
   this.appendValueInput("value")
 	  .appendField(Blockly.Msg["PREFERENCES_VALUE"])
-      .setCheck("String");	  
+      .setCheck(null);	  
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);

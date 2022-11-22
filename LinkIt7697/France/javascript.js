@@ -1,3 +1,12 @@
+Blockly.Arduino['taskhandle_statement_pico'] = function(block){	
+	var setup1 = Blockly.Arduino.statementToCode(block, 'setup1');
+	var loop1 = Blockly.Arduino.statementToCode(block, 'loop1');
+	
+	Blockly.Arduino.definitions_['taskhandle_statement_pico'] = 'void setup1()\n{\n'+setup1+'\n}\n\nvoid loop1()\n{\n'+loop1+'\n}\n'; 
+	var code = '';
+	return code;
+};
+
 Blockly.Arduino['preferences_write'] = function(block) {	
 	var namespace = Blockly.Arduino.valueToCode(block, 'namespace', Blockly.Arduino.ORDER_ATOMIC);
 	var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
@@ -8041,10 +8050,18 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
   var baudrate = block.getFieldValue('baudrate');  
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
   
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>';
+  if (selectBoardType()=="esp8266")
+	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <ESP8266WiFi.h>";
+  else if (selectBoardType()=="esp32") {
+	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>";
+	Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
+	Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';
+  }
+  else 
+	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>";
+
   Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';	
-  Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
-  Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';
+
   
   Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = '+ssid+';';
   Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = '+pass+';';
@@ -8159,7 +8176,9 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'}\n'+ 
 			'}\n';
 
-	Blockly.Arduino.setups_.write_peri_reg="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.setups_.write_peri_reg="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+	
 	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
 	Blockly.Arduino.setups_.setup_wifi=''+
 			'//WiFi.config(IPAddress(192, 168, 201, 100), IPAddress(192, 168, 201, 2), IPAddress(255, 255, 255, 0));\n'+ 
