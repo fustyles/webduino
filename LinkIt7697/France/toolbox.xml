@@ -635,7 +635,7 @@
 				</value>
 				<value name="ssid_ap">
 				  <block type="text" id="100">
-					<field name="TEXT">esp32_myfirmata</field>
+					<field name="TEXT">myfirmata</field>
 				  </block>
 				</value>
 				<value name="password_ap">
