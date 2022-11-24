@@ -9728,6 +9728,23 @@
 	  </block>   
 	</category>
 	
+	<category id="france12" name="PN532">
+	  <block type="PN532_initial">
+		<value name="sda">
+		  <block type="math_number">
+			<field name="NUM">21</field>
+		  </block>
+		</value>
+		<value name="scl">
+		  <block type="math_number">
+			<field name="NUM">22</field>
+		  </block>
+		</value>			
+	  </block> 
+	  <block type="PN532_read">			
+	  </block>  	  
+	</category>	
+	
 	 <sep id="category_sep"></sep>	
 	 
     <category id="france3" name="spreadsheet">

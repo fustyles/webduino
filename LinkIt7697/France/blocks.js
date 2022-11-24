@@ -1,3 +1,46 @@
+Blockly.Blocks['PN532_initial'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_INITIAL_SHOW"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["PN52_PIN_DEFAULT"],"0"],		
+			[Blockly.Msg["PN52_PIN_CUSTOM"],"1"]			
+		], this.validate), "mode");
+	this.appendValueInput("sda","sda")
+		.appendField("SDA")
+		.setCheck("Number");
+	this.appendValueInput("scl","scl")
+		.appendField("SCL")
+		.setCheck("Number");			
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(Blockly.Msg["HUE_25"]);
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (newValue==0) {
+			block.getInput("sda").setVisible(false);
+			block.getInput("scl").setVisible(false);	
+		} else {
+			block.getInput("sda").setVisible(true);
+			block.getInput("scl").setVisible(true);	
+		}
+  }
+};
+
+Blockly.Blocks['PN532_read'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_READ_SHOW"]);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
 Blockly.Blocks['taskhandle_statement_pico'] = {
   init: function() {
 	this.appendDummyInput()

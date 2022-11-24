@@ -1,3 +1,55 @@
+Blockly.Arduino['PN532_initial'] = function(block) {
+	var mode = block.getFieldValue('mode');
+	var sda = Blockly.Arduino.valueToCode(block, 'sda', Blockly.Arduino.ORDER_ATOMIC)||21;
+	var scl = Blockly.Arduino.valueToCode(block, 'scl', Blockly.Arduino.ORDER_ATOMIC)||22;
+	
+	Blockly.Arduino.definitions_['PN532_initial'] = '#include <Wire.h>\n';
+	if (mode==1)
+		Blockly.Arduino.definitions_['PN532_initial'] += '#define I2C_SDA '+sda+'\n#define I2C_SCL '+scl+'\n';
+	
+	Blockly.Arduino.definitions_['PN532_initial'] += '#include <PN532_I2C.h>\n'
+													+'#include <PN532.h>\n'
+													+'#include <NfcAdapter.h>\n'
+													+'PN532_I2C pn532i2c(Wire);\n'
+													+'PN532 nfc(pn532i2c);	\n';
+	
+	if (mode==1)
+		Blockly.Arduino.setups_['PN532_wire'] = 'Wire.begin(I2C_SDA, I2C_SCL);\n';
+
+    var code = '' ;
+    return code;
+};
+
+Blockly.Arduino['PN532_read'] = function(block) {
+	Blockly.Arduino.definitions_['PN532_readUidString'] = ''
+														+'String PN532_readUidString() {\n'
+														+'  boolean success;\n'
+														+'  uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 };\n'
+														+'  uint8_t uidLength;\n'
+														+'  nfc.begin();\n'
+														+'  uint32_t versiondata = nfc.getFirmwareVersion();\n'
+														+'  if (! versiondata) {\n'
+														+'    //Serial.println("PN53x card not found!");\n'
+														+'    return "";\n'
+														+'  }\n'
+														+'  nfc.setPassiveActivationRetries(0xFF);\n'
+														+'  nfc.SAMConfig();\n'
+														+'  success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, &uid[0], &uidLength);\n'
+														+'  if (success) {\n'
+														+'    String uidString = "";\n'
+														+'    for (uint8_t i = 0; i < uidLength; i++) {\n'
+														+'      uidString += String(uid[i], HEX);\n'
+														+'    }\n'
+														+'    return uidString;\n'
+														+'  }\n'
+														+'  else\n'
+														+'    return "";\n'
+														+'}';
+														
+    var code = 'PN532_readUidString()' ;
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['taskhandle_statement_pico'] = function(block){	
 	var setup1 = Blockly.Arduino.statementToCode(block, 'setup1');
 	var loop1 = Blockly.Arduino.statementToCode(block, 'loop1');

@@ -1886,3 +1886,8 @@ Blockly.Msg["PREFERENCES_REMOVE_KEY"] = "移除";
 Blockly.Msg["TASKHANDLE_PICO_SHOW"] = "PICO 雙核心";
 Blockly.Msg["TASKHANDLE_SETUP1_SHOW"] = "初始化1";
 Blockly.Msg["TASKHANDLE_LOOP1_SHOW"] = "重複執行1";
+
+Blockly.Msg["PN532_INITIAL_SHOW"] = "PN532 (NFC) 初始化";
+Blockly.Msg["PN532_READ_SHOW"] = "PN532 (NFC) 讀取UID字串";
+Blockly.Msg["PN52_PIN_DEFAULT"] = "使用預設腳位";		
+Blockly.Msg["PN52_PIN_CUSTOM"] = "使用自訂腳位";
