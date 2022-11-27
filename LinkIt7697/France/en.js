@@ -1875,11 +1875,11 @@ Blockly.Msg["PREFERENCES_READ"] = "read string";
 Blockly.Msg["PREFERENCES_CLEAR_NAMESPACE"] = "clear";
 Blockly.Msg["PREFERENCES_REMOVE_KEY"] = "remove";
 
-Blockly.Msg["TASKHANDLE_PICO_SHOW"] = "PICO dual-core";
+Blockly.Msg["TASKHANDLE_PICO_SHOW"] = "Pico W dual-core";
 Blockly.Msg["TASKHANDLE_SETUP1_SHOW"] = "setup1";
 Blockly.Msg["TASKHANDLE_LOOP1_SHOW"] = "loop1";
 
-Blockly.Msg["PN532_INITIAL_SHOW"] = "PN532 (NFC) Initial";
-Blockly.Msg["PN532_READ_SHOW"] = "PN532 (NFC) Read UID string";
+Blockly.Msg["PN532_INITIAL_SHOW"] = "PN532 (RFID) I2C Initial";
+Blockly.Msg["PN532_READ_SHOW"] = "PN532 (RFID) Read UID string";
 Blockly.Msg["PN52_PIN_DEFAULT"] = "default pins";		
 Blockly.Msg["PN52_PIN_CUSTOM"] = "custom pins";
