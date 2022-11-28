@@ -7287,7 +7287,7 @@ Blockly.Arduino['tcp_http_esp32'] = function(block) {
   var type = block.getFieldValue('type');
   Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
-											'String tcp_http_esp32(String domain,String request,int port,int waittime) {\n'+
+											'String tcp_http_esp32(String type,String domain,String request,int port,int waittime) {\n'+
 											'  String getAll="", getBody="";\n'+
 											'  WiFiClient client_tcp;\n'+
 											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
