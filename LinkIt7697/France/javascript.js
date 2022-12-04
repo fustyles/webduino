@@ -1,3 +1,45 @@
+Blockly.Arduino['fu_servo_initial'] = function(block) {	
+	var value_pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
+	var value_index = Number(block.getFieldValue('index'));
+	var value_custom = block.getFieldValue('custom');
+	var value_min = Blockly.Arduino.valueToCode(block, 'min', Blockly.Arduino.ORDER_ATOMIC)||400;
+	var value_max = Blockly.Arduino.valueToCode(block, 'max', Blockly.Arduino.ORDER_ATOMIC)||2600;	
+
+	if (selectBoardType()=="esp32"||selectBoardType()=="esp8266") {
+		Blockly.Arduino.setups_['ledc_'+ value_pin] = 'ledcSetup('+value_index+', 50, 16);\n'+							  '  ledcAttachPin('+value_pin+', '+value_index+');'; 
+	} else {
+		Blockly.Arduino.definitions_['define_servo'] = 'include <Servo.h>\n';
+		Blockly.Arduino.definitions_['define_servo_'+value_pin] = 'Servo myServo'+value_index+';';
+		if (value_custom=="")
+			Blockly.Arduino.setups_['setup_servo_'+ value_pin] = 'myServo'+value_index+'.attach('+value_pin+');';
+		else
+			Blockly.Arduino.setups_['setup_servo_'+ value_pin] = 'myServo'+value_index+'.attach('+value_pin+', '+value_min+', '+value_max+');';
+	}
+
+	return '';
+};
+
+Blockly.Arduino['fu_servo_angle'] = function(block) {
+	var value_index = Number(block.getFieldValue('index'));	
+	var value_angle = Blockly.Arduino.valueToCode(block, 'angle', Blockly.Arduino.ORDER_ATOMIC);
+
+	if (selectBoardType()=="esp32"||selectBoardType()=="esp8266") {
+		Blockly.Arduino.definitions_['servo_rotate_esp'] = ''+
+				'void servo_rotate_esp(int channel, int angle) {\n'+
+				'  int val = 7864-angle*34.59;\n'+ 
+				'  if (val > 7864)\n'+
+				'    val = 7864;\n'+
+				'  else if (val < 1638)\n'+
+				'    val = 1638;\n'+
+				'  ledcWrite(channel, val);\n'+
+				'}\n';
+		var code = 'servo_rotate_esp('+ value_index +','+ value_angle +');\n' ;
+	} else {
+		var code = 'myServo'+value_index+'.write('+ value_angle +');\n' ;
+	}
+	return code;
+};
+
 Blockly.Arduino['PN532_initial'] = function(block) {
 	var mode = block.getFieldValue('mode');
 	var sda = Blockly.Arduino.valueToCode(block, 'sda', Blockly.Arduino.ORDER_ATOMIC)||21;

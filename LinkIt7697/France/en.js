@@ -1883,3 +1883,9 @@ Blockly.Msg["PN532_INITIAL_SHOW"] = "PN532 (RFID) I2C Initial";
 Blockly.Msg["PN532_READ_SHOW"] = "PN532 (RFID) Read UID string";
 Blockly.Msg["PN52_PIN_DEFAULT"] = "default pins";		
 Blockly.Msg["PN52_PIN_CUSTOM"] = "custom pins";
+
+Blockly.Msg["FU_SERVO_INDEX"] = "index";
+Blockly.Msg["FU_SERVO_DEFAULT"] = "default";
+Blockly.Msg["FU_SERVO_CUSTOM"] = "custom";
+Blockly.Msg["FU_SERVO_MIN_PULSEWIDTH"] = "min pulse width";
+Blockly.Msg["FU_SERVO_MAX_PULSEWIDTH"] = "max pulse width";

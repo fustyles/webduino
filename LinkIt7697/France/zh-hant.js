@@ -1891,3 +1891,10 @@ Blockly.Msg["PN532_INITIAL_SHOW"] = "PN532 (RFID) I2C初始化";
 Blockly.Msg["PN532_READ_SHOW"] = "PN532 (RFID) 讀取UID字串";
 Blockly.Msg["PN52_PIN_DEFAULT"] = "使用預設腳位";		
 Blockly.Msg["PN52_PIN_CUSTOM"] = "使用自訂腳位";
+
+Blockly.Msg["FU_SERVO_INDEX"] = "編號";
+Blockly.Msg["FU_SERVO_PULSEWIDTH"] = "脈衝寬度";
+Blockly.Msg["FU_SERVO_DEFAULT"] = "預設";
+Blockly.Msg["FU_SERVO_CUSTOM"] = "自訂";
+Blockly.Msg["FU_SERVO_MIN_PULSEWIDTH"] = "最小脈衝寬度";
+Blockly.Msg["FU_SERVO_MAX_PULSEWIDTH"] = "最大脈衝寬度";

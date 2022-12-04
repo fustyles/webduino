@@ -1,3 +1,100 @@
+Blockly.Blocks['fu_servo_initial'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["FU_SERVO"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+		.appendField(Blockly.Msg["FU_SERVO_INDEX"])
+        .appendField(new Blockly.FieldDropdown([
+			["0","0"],		
+			["1","1"],
+			["2","2"],		
+			["3","3"],
+			["4","4"],		
+			["5","5"],
+			["6","6"],		
+			["7","7"],
+			["8","8"],		
+			["9","9"],
+			["10","10"],		
+			["11","11"],
+			["12","12"],
+			["13","13"],		
+			["14","14"],
+			["15","15"]				
+		]), "index");		
+    this.appendValueInput("pin")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["FU_SERVO_PIN"]);		
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+		.appendField(Blockly.Msg["FU_SERVO_PULSEWIDTH"])
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["FU_SERVO_DEFAULT"],""],		
+			[Blockly.Msg["FU_SERVO_CUSTOM"],"custom"]		
+		], this.validate), "custom");
+	this.appendValueInput("min","min")
+		.appendField(Blockly.Msg["FU_SERVO_MIN_PULSEWIDTH"])
+		.setCheck("Number");
+	this.appendValueInput("max","max")
+		.appendField(Blockly.Msg["FU_SERVO_MAX_PULSEWIDTH"])
+		.setCheck("Number");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(255);
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (newValue=="") {
+			block.getInput("min").setVisible(false);
+			block.getInput("max").setVisible(false);	
+		} else {
+			block.getInput("min").setVisible(true);
+			block.getInput("max").setVisible(true);	
+		}
+  }
+};
+
+Blockly.Blocks['fu_servo_angle'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["FU_SERVO"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+		.appendField(Blockly.Msg["FU_SERVO_INDEX"])
+        .appendField(new Blockly.FieldDropdown([
+			["0","0"],		
+			["1","1"],
+			["2","2"],		
+			["3","3"],
+			["4","4"],		
+			["5","5"],
+			["6","6"],		
+			["7","7"],
+			["8","8"],		
+			["9","9"],
+			["10","10"],		
+			["11","11"],
+			["12","12"],
+			["13","13"],		
+			["14","14"],
+			["15","15"]		
+		]), "index");		
+    this.appendValueInput("angle")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["FU_SERVO_ANGLE"]);		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(255);
+  }
+};
+
 Blockly.Blocks['PN532_initial'] = {
   init: function() {
 	this.appendDummyInput()
@@ -5644,7 +5741,7 @@ Blockly.Blocks['fu_servo_esp'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(155);
+    this.setColour(190);
     
     
   }
