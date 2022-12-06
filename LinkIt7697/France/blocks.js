@@ -1,3 +1,34 @@
+Blockly.Blocks['adxl345_getdata'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["ADXL345"]);
+	this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+		.appendField(Blockly.Msg["ADXL345_GETDATA"])
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_12"]);
+  }
+};
+
+Blockly.Blocks['adxl345_get'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([
+			["x","x"],		
+			["y","y"],
+			["z","z"]		
+		]), "acceleration");
+	this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+		.appendField(Blockly.Msg["ADXL345_GET"])
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(Blockly.Msg["HUE_12"]);
+  }
+};
+
 Blockly.Blocks['fu_servo_initial'] = {
   init: function() {
     this.appendDummyInput()

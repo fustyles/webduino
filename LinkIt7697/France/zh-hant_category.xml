@@ -92,4 +92,5 @@
 <category><name>javascript_function</name><replace>網頁函式</replace></category>
 <category><name>preferences</name><replace>Preferences</replace></category>
 <category><name>PN532</name><replace>PN532(NFC)</replace></category>
+<category><name>adxl345</name><replace>ADXL345加速度計</replace></category>
 </xml>

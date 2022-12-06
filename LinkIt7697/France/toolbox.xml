@@ -9737,8 +9737,15 @@
 		</value>			
 	  </block> 
 	  <block type="PN532_read">			
-	  </block>  	  
+	  </block> 	  
 	</category>	
+	
+	<category id="france12" name="adxl345">
+	  <block type="adxl345_getdata">			
+	  </block> 	
+	  <block type="adxl345_get">			
+	  </block>   	  
+	</category>		
 	
 	 <sep id="category_sep"></sep>	
 	 

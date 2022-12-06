@@ -770,7 +770,7 @@ Blockly.Msg.FRANCEFU_SONAR = "超音波距離感測器";
 Blockly.Msg.FRANCEFU_MOONCAR_SONAR_PIN = "腳位";
 Blockly.Msg.FRANCEFU_MOONCAR_SONAR_PIN_TRIG = "TRIG";
 Blockly.Msg.FRANCEFU_MOONCAR_SONAR_PIN_ECHO = "ECHO";
-Blockly.Msg.FRANCEFU_MOONCAR_SONAR_INDEX = "索引";
+Blockly.Msg.FRANCEFU_MOONCAR_SONAR_INDEX = "編號";
 Blockly.Msg.FRANCEFU_TCS_INIT = "顏色感測器 初始化";
 Blockly.Msg.FRANCEFU_TCS_READ = "顏色感測器 讀取";
 Blockly.Msg.FRANCEFU_TCS_SET = "顏色感測器 設定判別基準值";
@@ -1898,3 +1898,7 @@ Blockly.Msg["FU_SERVO_DEFAULT"] = "預設";
 Blockly.Msg["FU_SERVO_CUSTOM"] = "自訂";
 Blockly.Msg["FU_SERVO_MIN_PULSEWIDTH"] = "最小脈衝寬度";
 Blockly.Msg["FU_SERVO_MAX_PULSEWIDTH"] = "最大脈衝寬度";
+
+Blockly.Msg["ADXL345"] = "ADXL345三軸加速度計 (I2C)";
+Blockly.Msg["ADXL345_GETDATA"] = "取得加速度值";
+Blockly.Msg["ADXL345_GET"] = "軸 加速度值 (m/s^2)";

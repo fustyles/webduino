@@ -1,3 +1,31 @@
+Blockly.Arduino['adxl345_getdata'] = function(block) {
+	var acceleration = block.getFieldValue('acceleration');
+  
+	Blockly.Arduino.definitions_.ADXL345_define = ''
+								+'#include <Wire.h>\n'
+								+'#include <Adafruit_Sensor.h>\n'
+								+'#include <Adafruit_ADXL345_U.h>\n'
+								+'Adafruit_ADXL345_Unified accel = Adafruit_ADXL345_Unified('+Math.floor(Math.random()*100000)+');\n'
+								+'sensors_event_t event;';						
+
+	Blockly.Arduino.setups_.ADXL345_setup = ''
+								+'if(!accel.begin()) {\n'
+								+'    Serial.println("Ooops, no ADXL345 detected ... Check your wiring!");\n'
+								+'  }\n'
+								+'  accel.setRange(ADXL345_RANGE_16_G);';
+		
+	code = 'accel.getEvent(&event);\n';
+	
+	return code;
+};
+
+Blockly.Arduino['adxl345_get'] = function(block) {
+	var acceleration = block.getFieldValue('acceleration');
+	code = 'event.acceleration.'+acceleration;
+	
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['fu_servo_initial'] = function(block) {	
 	var value_pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
 	var value_index = Number(block.getFieldValue('index'));
