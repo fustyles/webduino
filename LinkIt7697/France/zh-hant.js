@@ -1900,5 +1900,5 @@ Blockly.Msg["FU_SERVO_MIN_PULSEWIDTH"] = "最小脈衝寬度";
 Blockly.Msg["FU_SERVO_MAX_PULSEWIDTH"] = "最大脈衝寬度";
 
 Blockly.Msg["ADXL345"] = "ADXL345三軸加速度計 (I2C)";
-Blockly.Msg["ADXL345_GETDATA"] = "取得加速度值";
-Blockly.Msg["ADXL345_GET"] = "軸 加速度值 (m/s^2)";
+Blockly.Msg["ADXL345_GETDATA"] = "取得加速度值 (m/s^2)";
+Blockly.Msg["ADXL345_GET"] = "軸 加速度值";

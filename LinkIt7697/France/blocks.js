@@ -15,6 +15,8 @@ Blockly.Blocks['adxl345_getdata'] = {
 Blockly.Blocks['adxl345_get'] = {
   init: function() {
     this.appendDummyInput()
+        .appendField(Blockly.Msg["ADXL345"]);	  
+    this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
 			["x","x"],		
 			["y","y"],

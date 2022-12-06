@@ -1891,5 +1891,5 @@ Blockly.Msg["FU_SERVO_MIN_PULSEWIDTH"] = "min pulse width";
 Blockly.Msg["FU_SERVO_MAX_PULSEWIDTH"] = "max pulse width";
 
 Blockly.Msg["ADXL345"] = "ADXL345 3-axis accelerometer (I2C)";
-Blockly.Msg["ADXL345_GETDATA"] = "get acceleration";
-Blockly.Msg["ADXL345_GET"] = "axis acceleration (m/s^2)";
+Blockly.Msg["ADXL345_GETDATA"] = "get acceleration (m/s^2)";
+Blockly.Msg["ADXL345_GET"] = "axis acceleration";
