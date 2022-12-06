@@ -56,13 +56,7 @@ window.onload = function () {
 
 		if (cocossdState.innerHTML=="0") {
 			result.innerHTML = "";
-			try { 
-			  document.createEvent("TouchEvent");
-			  setTimeout(function(){start();},250);
-			}
-			catch(e) { 
-			  setTimeout(function(){start();},150);
-			} 
+			setTimeout(function(){start();},150);
 			return;
 		}
 		
@@ -94,7 +88,13 @@ window.onload = function () {
            	   recognitionFinish();		   
 		}	
 		
-		setTimeout(function(){start();},100);
+		try { 
+		  document.createEvent("TouchEvent");
+		  setTimeout(function(){start();},250);
+		}
+		catch(e) { 
+		  setTimeout(function(){start();},150);
+		} 
 	  });
 	}  
 }
