@@ -83,7 +83,13 @@ window.onload = function () {
 			else
 				result.innerHTML = "";
 			
-			setTimeout(function(){DetectVideo(obj);}, 100);
+			try { 
+			  document.createEvent("TouchEvent");
+			  setTimeout(function(){DetectVideo(obj);},250);
+			}
+			catch(e) { 
+			  setTimeout(function(){DetectVideo(obj);},150);
+			} 			
 		});
 	}
 }
