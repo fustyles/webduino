@@ -149,6 +149,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		if (xml.indexOf("matrix_")!=-1) {
 			script += "<script src='MatrixLed_20180810/matrixled.js'></script>";			
+		}
+
+		if (xml.indexOf("openai_")!=-1) {
+			script += "<script src='openAI_20221212/openAI.js'></script>";			
 		}			
 				
 		return script;
@@ -292,6 +296,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/MatrixLed_20180810/matrixled.js'></script>";			
 		}
 		
+		if (xml.indexOf("openai_")!=-1) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/openAI_20221212/openAI.js'></script>";			
+		}		
+		
 		return script;
 	}		
 	
@@ -330,7 +338,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		catFaceRecognize,
 		catTrackingColor,
 		catTesseract,
-		catInstascan		
+		catInstascan,
+		catOpenAI
 	];
 	
 	
