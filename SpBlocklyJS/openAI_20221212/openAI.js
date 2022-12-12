@@ -27,7 +27,7 @@ function openai_text_request(input_text) {
 		//console.log(xhr.status);
 		//console.log(xhr.responseText);
 		let json = eval("(" + xhr.responseText + ")");
-		open_ai_response = json["choices"][0]["text"].replace("？\n\n","").replace(/？\n/g,"").replace(/\n/g,"&nbsp;");
+		open_ai_response = json["choices"][0]["text"].replace("？\n\n","").replace(/？\n/g,"").replace(/\n/g,"");
 		if (typeof openai_text_response === 'function') openai_text_response();
 	 }};
 
