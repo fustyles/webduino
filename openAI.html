@@ -40,10 +40,10 @@ async function openai_test() {
      if (xhr.readyState === 4) {
         //console.log(xhr.status);
         //console.log(xhr.responseText);
-		let json = eval("(" + xhr.responseText + ")");
-		open_ai_response = json["choices"][0]["text"];
-		console.log(open_ai_response);
-		result.innerHTML = open_ai_response.replace("？\n\n","").replace(/？\n/g,"").replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");
+	let json = eval("(" + xhr.responseText + ")");
+	open_ai_response = json["choices"][0]["text"];
+	//console.log(open_ai_response);
+	result.innerHTML = open_ai_response.replace("？\n\n","").replace(/？\n/g,"").replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");
      }};
 
   var data = {
@@ -53,7 +53,7 @@ async function openai_test() {
     "max_tokens": max_tokens,
     "frequency_penalty": 0,
     "presence_penalty": 0.6,
-	"top_p": 1,
+    "top_p": 1.0,
   };
 
   xhr.send(JSON.stringify(data));
