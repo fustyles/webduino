@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<meta http-equiv='Access-Control-Allow-Origin' content='*'>
+<meta http-equiv='Access-Control-Allow-Credentials' content='true'>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script>
+</head>
+<body>
+權杖：<input type="text" id="token" size="60" value="">
+<br>
+對話：<input type="text" id="question" size="60" value="">
+<br>
+<button onclick="openai_test();">送出</button>
+<br>
+<div id="result"></div>
+<script>
+//https://towardsdatascience.com/gpt-3-parameters-and-prompt-design-1a595dc5b405
+//sk-ZsViUvSmNPTl295rTJ5bT3BlbkFJ6ZtucktwyjqEr56JXsG6123
+
+let open_ai_response;
+let token = document.getElementById('token');
+let question = document.getElementById('question');
+let result = document.getElementById('result');
+let max_tokens = 1024;
+
+async function openai_test() {
+  result.innerHTML = "";
+  
+  var url = "https://api.openai.com/v1/completions";
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", url);
+
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.setRequestHeader("Authorization", "Bearer "+token.value);
+
+  xhr.onreadystatechange = function () {
+     if (xhr.readyState === 4) {
+        //console.log(xhr.status);
+        //console.log(xhr.responseText);
+		let json = eval("(" + xhr.responseText + ")");
+		open_ai_response = json["choices"][0]["text"];
+		console.log(open_ai_response);
+		result.innerHTML = open_ai_response.replace("？\n\n","").replace(/？\n/g,"").replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");
+     }};
+
+  var data = {
+    "model": "text-davinci-003",
+    "prompt": question.value,
+    "temperature": 0.9,
+    "max_tokens": max_tokens,
+    "frequency_penalty": 0,
+    "presence_penalty": 0.6,
+	"top_p": 1,
+  };
+
+  xhr.send(JSON.stringify(data));
+}
+
+</script>
+
+</body>
+</html>
