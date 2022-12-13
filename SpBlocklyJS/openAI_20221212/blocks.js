@@ -21,12 +21,11 @@ Blockly.Blocks['openai_text_initial'] = {
 Blockly.Blocks['openai_text_request'] = {
   init: function() {
   this.appendDummyInput()
-	  .appendField(Blockly.Msg.OPENAI_TEXT_SHOW)  
-	  .appendField(Blockly.Msg.OPENAI_TEXT_REQUEST_SHOW);
+	  .appendField(Blockly.Msg.OPENAI_TEXT_SHOW);
   this.appendValueInput("words")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.OPENAI_TEXT_WORDS_SHOW);
+      .appendField(Blockly.Msg.OPENAI_TEXT_REQUEST_SHOW);
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
