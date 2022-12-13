@@ -1,0 +1,1 @@
+MSG.openaichat = "openAI chat";

@@ -1,0 +1,14 @@
+{
+  "types": ["openai_text_initial","openai_text_request","openai_text_response","openai_text_response_get","openai_text_response_clear"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "openAI.js"    
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
