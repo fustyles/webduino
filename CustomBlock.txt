@@ -18,6 +18,10 @@ Chrome瀏覽器console指令：移除自訂積木
 Code.customTab.$__remove__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
 
 
+openAI 聊天
+https://fustyles.github.io/webduino/openAI_20221212/blockly.json
+
+
 Web Bluetooth
 https://fustyles.github.io/webduino/WebBluetooth_20220924/blockly.json
 
