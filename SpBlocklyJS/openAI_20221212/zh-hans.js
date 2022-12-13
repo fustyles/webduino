@@ -7,4 +7,5 @@ Blockly.Msg.OPENAI_TEXT_REQUEST_SHOW = "对话";
 Blockly.Msg.OPENAI_TEXT_WORDS_SHOW = "内容";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_SHOW = "取得回应后执行";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_SHOW = "回应内容";
+Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_BR_SHOW = "自动换行";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_CLEAR_SHOW = "清除回应内容";

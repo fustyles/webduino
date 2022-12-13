@@ -20,7 +20,8 @@ Blockly.JavaScript['openai_text_response'] = function (block) {
 };
 
 Blockly.JavaScript['openai_text_response_get'] = function (block) {
-  var code = 'openai_text_response_get()';
+  var br = block.getFieldValue('br');
+  var code = 'openai_text_response_get('+br+')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 

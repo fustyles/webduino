@@ -52,6 +52,12 @@ Blockly.Blocks['openai_text_response_get'] = {
   this.appendDummyInput()
 	  .appendField(Blockly.Msg.OPENAI_TEXT_SHOW)   
 	  .appendField(Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_BR_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+			["N","0"],
+			["Y","1"]	  
+	  ]), "br");  
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(250);

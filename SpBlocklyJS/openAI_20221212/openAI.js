@@ -7,6 +7,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 let open_ai_token = "";
 let max_tokens = 1000;
 let open_ai_response = "";	
+let open_ai_response_br = "";
 
 function openai_text_initial(input_token, input_max_tokens) {
 	open_ai_token = input_token;
@@ -27,7 +28,8 @@ function openai_text_request(input_text) {
 		//console.log(xhr.status);
 		//console.log(xhr.responseText);
 		let json = eval("(" + xhr.responseText + ")");
-		open_ai_response = json["choices"][0]["text"].replace("？\n\n","").replace(/？\n/g,"").replace(/\n/g,"");
+		open_ai_response = json["choices"][0]["text"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/\n/g,"");
+		open_ai_response_br = json["choices"][0]["text"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");		
 		if (typeof openai_text_response === 'function') openai_text_response();
 	 }};
 
@@ -51,10 +53,14 @@ function openai_text_request(input_text) {
 function openai_text_response() {
 } 
 
-function openai_text_response_get() {
-	return open_ai_response;
+function openai_text_response_get(br) {
+	if (br)
+		return open_ai_response_br;
+	else
+		return open_ai_response;	
 }
 
 function openai_text_response_clear() {
 	open_ai_response = "";
+	open_ai_response_br = "";	
 }   
