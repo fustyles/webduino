@@ -5,7 +5,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 'use strict';
 
 let open_ai_token = "";
-let max_tokens = 1000;
+let max_tokens = 256;
 let open_ai_response = "";	
 let open_ai_response_br = "";
 
@@ -36,12 +36,12 @@ function openai_text_request(input_text) {
   var data = {
 	"model": "text-davinci-003",
 	"prompt": input_text,
-	"temperature": 0.9,
+	"temperature": 0,
 	"max_tokens": max_tokens,
 	"frequency_penalty": 0,
 	"presence_penalty": 0.6,
 	"top_p": 1.0,
-	//"n": 1,
+	"n": 1,
 	//"stream": false,
 	//"logprobs": null,
 	//"stop": "\n"	  
