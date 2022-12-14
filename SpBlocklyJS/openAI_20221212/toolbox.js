@@ -8,7 +8,7 @@ var catOpenAI = '<xml>'+
 '    </value>'+
 '    <value name="tokens">'+
 '      <block type="math_number">'+
-'        <field name="NUM">1000</field>'+
+'        <field name="NUM">256</field>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
