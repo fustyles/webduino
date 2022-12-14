@@ -6,7 +6,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
   'use strict';
 
 	let open_ai_token = "";
-	let max_tokens = 1000;
+	let max_tokens = 256;
 	let open_ai_response = "";	
 	let open_ai_response_br = "";
 
