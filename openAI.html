@@ -1,7 +1,9 @@
 <!--
 @license
 Copyright 2022 Taiwan (ChungYi Fu)
- 
+
+https://beta.openai.com/docs/api-reference/completions/create
+
 Try it
 https://fustyles.github.io/webduino/openAI.html
 -->
@@ -24,14 +26,14 @@ https://fustyles.github.io/webduino/openAI.html
 <br>
 <div id="result"></div>
 <script>
-//https://towardsdatascience.com/gpt-3-parameters-and-prompt-design-1a595dc5b405
+//https://beta.openai.com/docs/api-reference/completions/create
 //sk-ZsViUvSmNPTl295rTJ5bT3BlbkFJ6ZtucktwyjqEr56JXsG6123
 
 let open_ai_response;
 let token = document.getElementById('token');
 let question = document.getElementById('question');
 let result = document.getElementById('result');
-let max_tokens = 1024;
+let max_tokens = 256;
 
 async function openai_test() {
   result.innerHTML = "";
@@ -57,12 +59,12 @@ async function openai_test() {
   var data = {
     "model": "text-davinci-003",
     "prompt": question.value,
-    "temperature": 0.9,
+    "temperature": 0,
     "max_tokens": max_tokens,
     "frequency_penalty": 0,
     "presence_penalty": 0.6,
     "top_p": 1.0,
-    //"n": 1,
+    "n": 1,
     //"stream": false,
     //"logprobs": null,
     //"stop": "\n"	  
