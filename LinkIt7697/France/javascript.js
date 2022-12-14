@@ -15,7 +15,7 @@ Blockly.Arduino['openai_text_request'] = function (block) {
 			Blockly.Arduino.definitions_['openai_text_request'] += '  client_tcp.setInsecure();\n';	
 	}	
 	
-  Blockly.Arduino.definitions_['openai_text_request'] += '  words = "{\\"model\\":\\"text-davinci-003\\",\\"prompt\\":\\"" + words + "\\",\\"temperature\\":0.9,\\"max_tokens\\":" + String(max_tokens) + ",\\"frequency_penalty\\":0,\\"presence_penalty\\":0.6,\\"top_p\\":1.0}";\n'
+  Blockly.Arduino.definitions_['openai_text_request'] += '  words = "{\\"model\\":\\"text-davinci-003\\",\\"prompt\\":\\"" + words + "\\",\\"temperature\\":0.9,\\"max_tokens\\":" + String(max_tokens) + ",\\"frequency_penalty\\":0,\\"presence_penalty\\":0.6,\\"top_p\\":1.0,\\"n\\":1}";\n'
 														+'  if (client_tcp.connect("api.openai.com", 443)) {\n'
 														+'    client_tcp.println("POST /v1/completions HTTP/1.1");\n'
 														+'    client_tcp.println("Connection: close");\n'
