@@ -1902,3 +1902,13 @@ Blockly.Msg["FU_SERVO_MAX_PULSEWIDTH"] = "最大脈衝寬度";
 Blockly.Msg["ADXL345"] = "ADXL345三軸加速度計 (I2C)";
 Blockly.Msg["ADXL345_GETDATA"] = "取得加速度值 (m/s^2)";
 Blockly.Msg["ADXL345_GET"] = "軸 加速度值";
+
+Blockly.Msg.OPENAI_TEXT_SHOW = "openAI 聊天";
+Blockly.Msg.OPENAI_TEXT_INITIAL_SHOW = "初始化";
+Blockly.Msg.OPENAI_TEXT_TOKEN_SHOW = "權杖";
+Blockly.Msg.OPENAI_TEXT_TOKENS_SHOW = "最大字數";
+Blockly.Msg.OPENAI_TEXT_REQUEST_SHOW = "對話內容";
+Blockly.Msg.OPENAI_TEXT_RESPONSE_SHOW = "取得回應內容後執行";
+Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_SHOW = "回應內容";
+Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_BR_SHOW = "自動換行";
+Blockly.Msg.OPENAI_TEXT_RESPONSE_CLEAR_SHOW = "清除回應內容";

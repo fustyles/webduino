@@ -93,4 +93,5 @@
 <category><name>preferences</name><replace>Preferences</replace></category>
 <category><name>PN532</name><replace>PN532(NFC)</replace></category>
 <category><name>adxl345</name><replace>ADXL345加速度計</replace></category>
+<category><name>openai_text</name><replace>openAI 聊天</replace></category>
 </xml>

@@ -91,4 +91,5 @@
 <category><name>preferences</name><replace>Preferences</replace></category>
 <category><name>PN532</name><replace>PN532(NFC)</replace></category>
 <category><name>adxl345</name><replace>ADXL345 3-axis accelerometer</replace></category>
+<category><name>openai_text</name><replace>openAI chat</replace></category>
 </xml>

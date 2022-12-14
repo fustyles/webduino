@@ -1,3 +1,70 @@
+Blockly.Arduino['openai_text_request'] = function (block) {
+  var token = Blockly.Arduino.valueToCode(block, 'token', Blockly.Arduino.ORDER_ATOMIC);	
+  var tokens = Blockly.Arduino.valueToCode(block, 'tokens', Blockly.Arduino.ORDER_ATOMIC)||1024;
+  var words = Blockly.Arduino.valueToCode(block, 'words', Blockly.Arduino.ORDER_ATOMIC)||"";
+
+  Blockly.Arduino.definitions_['openai_text_request'] = ''
+														+'String openAI_text(String token, int max_tokens, String words) {\n';
+														
+	if (selectBoardType()=="LinkIt") {
+		Blockly.Arduino.definitions_['openai_text_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+	} else {
+		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
+		Blockly.Arduino.definitions_['openai_text_request'] += '  WiFiClientSecure client_tcp;\n';
+		if (arduinoCore_ESP32)
+			Blockly.Arduino.definitions_['openai_text_request'] += '  client_tcp.setInsecure();\n';	
+	}	
+	
+  Blockly.Arduino.definitions_['openai_text_request'] += '  words = "{\\"model\\":\\"text-davinci-003\\",\\"prompt\\":\\"" + words + "\\",\\"temperature\\":0.9,\\"max_tokens\\":" + String(max_tokens) + ",\\"frequency_penalty\\":0,\\"presence_penalty\\":0.6,\\"top_p\\":1.0}";\n'
+														+'  if (client_tcp.connect("api.openai.com", 443)) {\n'
+														+'    client_tcp.println("POST /v1/completions HTTP/1.1");\n'
+														+'    client_tcp.println("Connection: close");\n'
+														+'    client_tcp.println("Host: api.openai.com");\n'
+														+'    client_tcp.println("Authorization: Bearer " + token);\n'
+														+'    client_tcp.println("Content-Type: application/json; charset=utf-8");\n'
+														+'    client_tcp.println("Content-Length: " + String(words.length()));\n'
+														+'    client_tcp.println();\n'
+														+'    client_tcp.println(words);\n'
+														+'    String getResponse="",Feedback="";\n'
+														+'    boolean state = false;\n'
+														+'    int waitTime = 60000;\n'
+														+'    long startTime = millis();\n'
+														+'    while ((startTime + waitTime) > millis()) {\n'
+														+'      Serial.print(".");\n'
+														+'      delay(100);\n'
+														+'      while (client_tcp.available()) {\n'
+														+'          char c = client_tcp.read();\n'
+														+'          if (state==true) {\n'
+														+'            Feedback += String(c);\n'
+														+'            if (Feedback.indexOf("\\"text\\":\\"\\\\n\\\\n\")!=-1)\n'
+														+'               Feedback = "";\n'
+														+'            if (Feedback.indexOf("\\",\\"index\\"")!=-1) {\n'
+														+'              client_tcp.stop();\n'
+														+'              Serial.println();\n'
+														+'              return Feedback.substring(0,Feedback.length()-9);\n'        
+														+'            }\n'
+														+'          }\n'
+														+'          if (c == \'\\n\') {\n'
+														+'            if (getResponse.length()==0) state=true;\n'
+														+'            getResponse = "";\n'
+														+'          }\n'
+														+'          else if (c != \'\\r\')\n'
+														+'            getResponse += String(c);\n'
+														+'          startTime = millis();\n'
+														+'       }\n'
+														+'       if (getResponse.length()>0) break;\n'
+														+'    }\n'
+														+'    client_tcp.stop();\n'
+														+'    return Feedback;\n'
+														+'  }\n'
+														+'  else\n'
+														+'    return "Connection failed";\n'
+														+'}\n';
+
+  var code = 'openAI_text('+token+', '+tokens+', '+words+')';
+  return [code, Blockly.Arduino.ORDER_NONE]; 
+};
+
 Blockly.Arduino['adxl345_getdata'] = function(block) {
 	var acceleration = block.getFieldValue('acceleration');
   

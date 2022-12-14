@@ -1,3 +1,25 @@
+Blockly.Blocks['openai_text_request'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.OPENAI_TEXT_SHOW);
+  this.appendValueInput("token")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPENAI_TEXT_TOKEN_SHOW); 	  
+  this.appendValueInput("tokens")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPENAI_TEXT_TOKENS_SHOW);
+  this.appendValueInput("words")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPENAI_TEXT_REQUEST_SHOW);	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(250);
+  }
+};
+
 Blockly.Blocks['adxl345_getdata'] = {
   init: function() {
     this.appendDummyInput()

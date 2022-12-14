@@ -10220,10 +10220,27 @@
 			<field name="TEXT">rdec-key-123-45678-011121314</field>
 		  </block>
 		</value>
-	  </block>
-	  <block type="fu_taiwan_weather_get">
-	  </block>	  
-    </category>		
+	  </block>  
+    </category>
+	<category id="france24" name="openai_text">
+	  <block type="openai_text_request">
+		<value name="token">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="tokens">
+		  <block type="math_number">
+			<field name="NUM">1000</field>
+		  </block>
+		</value>
+		<value name="words">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block> 	  
+    </category>	
 	<sep id="category_sep"></sep>
 	<category id="france7" name="others">
 	  <block type="loop_asynchronous">
