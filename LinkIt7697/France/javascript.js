@@ -8983,11 +8983,11 @@ Blockly.Arduino['esp32_bluetooth_initial'] = function(block) {
 																	'#endif\n'+
 																	'BluetoothSerial SerialBT;\n';
 
-    code = 'Serial.begin('+baudrate+');\n'+ 
-		   'SerialBT.begin('+blename+');\n'+ 
-		   'delay(10);\n'+ statements_setup +
-		   '\n';
-  return code;
+    Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
+    Blockly.Arduino.setups_.bt_serial='SerialBT.begin('+blename+');\n  delay(10);\n';																		
+
+    var code = statements_setup +'\n';
+    return code;
 };
 
 Blockly.Arduino['esp32_bluetooth_readdata'] = function(block) {
