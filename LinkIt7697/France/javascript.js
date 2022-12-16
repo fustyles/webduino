@@ -4311,7 +4311,8 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 			'   	            client.println("Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS");\n'+
 			'   	            client.println("Content-Type: image/jpeg");\n'+
 			'   	            client.println("Content-Disposition: \\\"inline; filename=capture.jpg\\\"");\n'+ 
-			'   	            client.println("Content-Length: " + String(fb->len));\n'+             
+			'   	            client.println("Content-Length: " + String(fb->len));\n'+
+ 			'   	            client.println("Cache-Control: no-cache");\n'+			
 			'   	            client.println("Connection: close");\n'+
 			'   	            client.println();\n'+
 			'   	            uint8_t *fbBuf = fb->buf;\n'+
@@ -14466,8 +14467,9 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'   	            client.println("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");\n'+
 			'   	            client.println("Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS");\n'+
 			'   	            client.println("Content-Type: image/jpeg");\n'+
-			'   	            client.println("Content-Disposition: form-data; name=\\\"imageFile\\\"; filename=\\\"picture.jpg\\\"");\n'+ 
-			'   	            client.println("Content-Length: " + String(fb->len));\n'+             
+			'   	            client.println("Content-Disposition: inline; name=\\\"imageFile\\\"; filename=\\\"picture.jpg\\\"");\n'+ 
+			'   	            client.println("Content-Length: " + String(fb->len));\n'+
+ 			'   	            client.println("Cache-Control: no-cache");\n'+	
 			'   	            client.println("Connection: close");\n'+
 			'   	            client.println();\n'+
 			'   	            uint8_t *fbBuf = fb->buf;\n'+
