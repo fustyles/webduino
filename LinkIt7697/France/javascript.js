@@ -334,10 +334,10 @@ Blockly.Arduino['linkit7697_webbluetooth_uuid'] = function(block) {
 
 Blockly.Arduino['linkit7697_webbluetooth_listen'] = function(block) { 
 	var statements_do = Blockly.Arduino.statementToCode(block, 'do_')||"";
-  
+
+	Blockly.Arduino.definitions_.define_linkit_wifi_command = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
+	
 	Blockly.Arduino.definitions_['webbluetooth_comand'] = ''												 
-												 +'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\n'
-												 +'byte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'
 												 +'void ExecuteCommand() {\n'
 												 +'  //Serial.println("");\n'
 												 +'  //Serial.println("Command: "+Command);\n'
@@ -468,7 +468,9 @@ Blockly.Arduino['esp32_webbluetooth_uuid'] = function(block) {
 	var tx = Blockly.Arduino.valueToCode(block, 'tx', Blockly.Arduino.ORDER_ATOMIC);
 	var rx = Blockly.Arduino.valueToCode(block, 'rx', Blockly.Arduino.ORDER_ATOMIC);
 	var statements_do = Blockly.Arduino.statementToCode(block, 'do_')||"";
-  
+
+	Blockly.Arduino.definitions_.define_linkit_wifi_command = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
+	
 	Blockly.Arduino.definitions_['webbluetooth_initial'] = '#include <BLEDevice.h>\n'
 												 +'#include <BLEServer.h>\n'
 												 +'#include <BLEUtils.h>\n'
@@ -478,9 +480,7 @@ Blockly.Arduino['esp32_webbluetooth_uuid'] = function(block) {
 												 +'#define CHARACTERISTIC_UUID_RX ' + rx + '\n'
 												 +'#define CHARACTERISTIC_UUID_TX ' + tx + '\n'											 
 												 +'bool deviceConnected = false;\n'
-												 +'String bleData = "";\n'												 
-												 +'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\n'
-												 +'byte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'
+												 +'String bleData = "";\n'
 												 +'void ExecuteCommand() {\n'
 												 +'  //Serial.println("");\n'
 												 +'  //Serial.println("Command: "+Command);\n'
@@ -3286,9 +3286,11 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
   var baudrate = block.getFieldValue('baudrate');  
   var framesize = block.getFieldValue('framesize');
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
+
+  Blockly.Arduino.definitions_.define_linkit_wifi_command = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
 	
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n';
-  Blockly.Arduino.definitions_.define_esp_http_server_h_include ='#include "esp_camera.h"\n#include "esp_http_server.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\nString Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\ntypedef struct {httpd_req_t *req;size_t len;} jpg_chunking_t;\n#define PART_BOUNDARY "123456789000000000000987654321"\nstatic const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;\nstatic const char* _STREAM_BOUNDARY = "\\r\\n--" PART_BOUNDARY "\\r\\n";\nstatic const char* _STREAM_PART = "Content-Type: image/jpeg\\r\\nContent-Length: %u\\r\\n\\r\\n";\nhttpd_handle_t stream_httpd = NULL;\nhttpd_handle_t camera_httpd = NULL;\n';
+  Blockly.Arduino.definitions_.define_esp_http_server_h_include ='#include "esp_camera.h"\n#include "esp_http_server.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\ntypedef struct {httpd_req_t *req;size_t len;} jpg_chunking_t;\n#define PART_BOUNDARY "123456789000000000000987654321"\nstatic const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;\nstatic const char* _STREAM_BOUNDARY = "\\r\\n--" PART_BOUNDARY "\\r\\n";\nstatic const char* _STREAM_PART = "Content-Type: image/jpeg\\r\\nContent-Length: %u\\r\\n\\r\\n";\nhttpd_handle_t stream_httpd = NULL;\nhttpd_handle_t camera_httpd = NULL;\n';
   
   if (selectBoardType()=="esp32")
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
@@ -4055,8 +4057,10 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
   var framesize = block.getFieldValue('framesize');
   var request = block.getFieldValue('request') === 'TRUE';  
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');	
-																
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\n#include "esp_camera.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\nWiFiServer server(80);\n\nString Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'+
+
+  Blockly.Arduino.definitions_.define_linkit_wifi_command = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
+	
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\n#include "esp_camera.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\nWiFiServer server(80);\n\n'+
 																'#define PWDN_GPIO_NUM     -1\n'+
 																'#define RESET_GPIO_NUM    -1\n'+
 																'#define XCLK_GPIO_NUM      0\n'+
@@ -8257,7 +8261,7 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
   Blockly.Arduino.definitions_.define_linkit_wifi_apssid='const char* apssid = '+ssid_ap+';';
   Blockly.Arduino.definitions_.define_linkit_wifi_appass='const char* appassword = '+pass_ap+';';   
   Blockly.Arduino.definitions_.define_linkit_wifi_server= 'WiFiServer server(80);\n';
-  Blockly.Arduino.definitions_.define_linkit_wifi_command= 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;';
+  Blockly.Arduino.definitions_.define_linkit_wifi_command = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
   
   Blockly.Arduino.definitions_.define_linkit_ExecuteCommand = '\n'+
 			'void ExecuteCommand() {\n'+
@@ -9040,7 +9044,7 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
   Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = '+ssid+';';
   Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = '+pass+';';
   Blockly.Arduino.definitions_.define_linkit_wifi_server= 'WiFiServer server(80);';
-  Blockly.Arduino.definitions_.define_linkit_wifi_command= 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;';
+  Blockly.Arduino.definitions_.define_linkit_wifi_command = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
 
   Blockly.Arduino.definitions_.define_linkit_ExecuteCommand = '\n'+
 			'void ExecuteCommand() {\n'+
@@ -14170,12 +14174,14 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
   var baudrate = block.getFieldValue('baudrate');  
   var framesize = block.getFieldValue('framesize');
   var flash = block.getFieldValue('flash');
-  var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');	
+  var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
+
+  Blockly.Arduino.definitions_.define_linkit_wifi_command = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';  
   
   if (flash=="Y")
 	  Blockly.Arduino.definitions_['flash'] = "//Flash mode";
 	
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\nWiFiServer server(80);\n\nString Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'+
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\nWiFiServer server(80);\n\n'+
 																'#define PWDN_GPIO_NUM     32\n'+
 																'#define RESET_GPIO_NUM    -1\n'+
 																'#define XCLK_GPIO_NUM      0\n'+
@@ -14574,13 +14580,15 @@ Blockly.Arduino['esp32_cam_stream_myfirmata'] = function(block) {
   var baudrate = block.getFieldValue('baudrate');  
   var framesize = block.getFieldValue('framesize');
   var flash = block.getFieldValue('flash');  
-  var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');	
+  var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
+
+  Blockly.Arduino.definitions_.define_linkit_wifi_command = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';  
   
   if (flash=="Y")
 	  Blockly.Arduino.definitions_['flash'] = "//Flash mode";  
 	
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <esp32-hal-ledc.h>\n#include "img_converters.h"\n#include "esp_camera.h"';
-  Blockly.Arduino.definitions_.define_esp_http_server_h_include ='#include "esp_http_server.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\nString Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\ntypedef struct {httpd_req_t *req;size_t len;} jpg_chunking_t;\n#define PART_BOUNDARY "123456789000000000000987654321"\nstatic const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;\nstatic const char* _STREAM_BOUNDARY = "\\r\\n--" PART_BOUNDARY "\\r\\n";\nstatic const char* _STREAM_PART = "Content-Type: image/jpeg\\r\\nContent-Length: %u\\r\\n\\r\\n";\nhttpd_handle_t stream_httpd = NULL;\nhttpd_handle_t camera_httpd = NULL;\n';
+  Blockly.Arduino.definitions_.define_esp_http_server_h_include ='#include "esp_http_server.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\ntypedef struct {httpd_req_t *req;size_t len;} jpg_chunking_t;\n#define PART_BOUNDARY "123456789000000000000987654321"\nstatic const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;\nstatic const char* _STREAM_BOUNDARY = "\\r\\n--" PART_BOUNDARY "\\r\\n";\nstatic const char* _STREAM_PART = "Content-Type: image/jpeg\\r\\nContent-Length: %u\\r\\n\\r\\n";\nhttpd_handle_t stream_httpd = NULL;\nhttpd_handle_t camera_httpd = NULL;\n';
   
   if (selectBoardType().indexOf("esp")!=-1)
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
