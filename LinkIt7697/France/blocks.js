@@ -57,7 +57,24 @@ Blockly.Blocks['fu_servo_initial'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg["FU_SERVO"]);
+        .appendField(Blockly.Msg["FU_SERVO"]);	
+    this.appendValueInput("pin")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["FU_SERVO_PIN"]);		
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+		.appendField(Blockly.Msg["FU_SERVO_PULSEWIDTH"])
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["FU_SERVO_DEFAULT"],""],		
+			[Blockly.Msg["FU_SERVO_CUSTOM"],"custom"]		
+		], this.validate), "custom");
+	this.appendValueInput("min","min")
+		.appendField(Blockly.Msg["FU_SERVO_MIN_PULSEWIDTH"])
+		.setCheck("Number");
+	this.appendValueInput("max","max")
+		.appendField(Blockly.Msg["FU_SERVO_MAX_PULSEWIDTH"])
+		.setCheck("Number");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT) 
 		.appendField(Blockly.Msg["FU_SERVO_INDEX"])
@@ -78,24 +95,7 @@ Blockly.Blocks['fu_servo_initial'] = {
 			["13","13"],		
 			["14","14"],
 			["15","15"]				
-		]), "index");		
-    this.appendValueInput("pin")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg["FU_SERVO_PIN"]);		
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT) 
-		.appendField(Blockly.Msg["FU_SERVO_PULSEWIDTH"])
-        .appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["FU_SERVO_DEFAULT"],""],		
-			[Blockly.Msg["FU_SERVO_CUSTOM"],"custom"]		
-		], this.validate), "custom");
-	this.appendValueInput("min","min")
-		.appendField(Blockly.Msg["FU_SERVO_MIN_PULSEWIDTH"])
-		.setCheck("Number");
-	this.appendValueInput("max","max")
-		.appendField(Blockly.Msg["FU_SERVO_MAX_PULSEWIDTH"])
-		.setCheck("Number");		
+		]), "index");			
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -117,7 +117,11 @@ Blockly.Blocks['fu_servo_angle'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg["FU_SERVO"]);
+        .appendField(Blockly.Msg["FU_SERVO"]);		
+    this.appendValueInput("angle")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["FU_SERVO_ANGLE"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT) 
 		.appendField(Blockly.Msg["FU_SERVO_INDEX"])
@@ -139,10 +143,6 @@ Blockly.Blocks['fu_servo_angle'] = {
 			["14","14"],
 			["15","15"]		
 		]), "index");		
-    this.appendValueInput("angle")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg["FU_SERVO_ANGLE"]);		
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -17575,11 +17575,79 @@ Blockly.Blocks.esp32_buzzer={
 				["G# 4 [415]","415"],
 				["A 4 [440]","440"],
 				["A# 4 [466]","466"],
-				["B 4 [494]","494"]
+				["B 4 [494]","494"],
+				["C 5 [523]","523"],
+				["C# 5 [554]","554"],
+				["D 5 [587]","587"],
+				["D# 5 [622]","622"],
+				["E 5 [659]","659"],
+				["F 5 [698]","698"],
+				["F# 5 [740]","740"],
+				["G 5 [784]","784"],
+				["G# 5 [831]","831"],
+				["A 5 [880]","880"],
+				["A# 5 [932]","932"],
+				["B 5 [988]","988"],			
+				["C 6 [1047]","1047"],
+				["C# 6 [1109]","1109"],
+				["D 6 [1175]","1175"],
+				["D# 6 [1245]","1245"],
+				["E 6 [1319]","1319"],
+				["F 6 [1397]","1397"],
+				["F# 6 [1480]","1480"],
+				["G 6 [1568]","1568"],
+				["G# 6 [1661]","1661"],
+				["A 6 [1760]","1760"],
+				["A# 6 [1864]","1864"],
+				["B 6 [1975]","1975"],
+				["C 7 [2093]","2093"],
+				["C# 7 [2218]","2218"],
+				["D 7 [2349]","2349"],
+				["D# 7 [2489]","2489"],
+				["E 7 [2637]","2637"],
+				["F 7 [2794]","2794"],
+				["F# 7 [2960]","2960"],
+				["G 7 [3136]","3136"],
+				["G# 7 [3322]","3322"],
+				["A 7 [3520]","3520"],
+				["A# 7 [3729]","3729"],
+				["B 7 [3951]","3951"],
+				["C 8 [4186]","4186"],
+				["C# 8 [4435]","4435"],
+				["D 8 [4699]","4699"],
+				["D# 8 [4978]","4978"],
+				["E 8 [5274]","5274"],
+				["F 8 [5588]","5588"],
+				["F# 8 [5920]","5920"],
+				["G 8 [6272]","6272"],
+				["G# 8 [6645]","6645"],
+				["A 8 [7040]","7040"],
+				["A# 8 [7459]","7459"],
+				["B 8 [7902]","7902"]				
 			]),"frequency");
 		this.appendValueInput("delaytime")
 			.setCheck(null)
-			.appendField(Blockly.Msg.ESP32_BUZZER_DELAYTIME);			
+			.appendField(Blockly.Msg.ESP32_BUZZER_DELAYTIME);
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_INDEX)
+		  .appendField(new Blockly.FieldDropdown([
+				["0","0"],		
+				["1","1"],
+				["2","2"],		
+				["3","3"],
+				["4","4"],		
+				["5","5"],
+				["6","6"],		
+				["7","7"],
+				["8","8"],		
+				["9","9"],
+				["10","10"],		
+				["11","11"],
+				["12","12"],
+				["13","13"],		
+				["14","14"],
+				["15","15"]
+		  ]),"index");				
 		this.setInputsInline(true);
 		this.setPreviousStatement(true,null);
 		this.setNextStatement(true,null);
@@ -17623,7 +17691,27 @@ Blockly.Blocks.esp32_buzzer2={
 			]),"frequency");
 		this.appendValueInput("delaytime")
 			.setCheck(null)
-			.appendField(Blockly.Msg.ESP32_BUZZER_DELAYTIME);			
+			.appendField(Blockly.Msg.ESP32_BUZZER_DELAYTIME);
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_INDEX)
+		  .appendField(new Blockly.FieldDropdown([
+				["0","0"],		
+				["1","1"],
+				["2","2"],		
+				["3","3"],
+				["4","4"],		
+				["5","5"],
+				["6","6"],		
+				["7","7"],
+				["8","8"],		
+				["9","9"],
+				["10","10"],		
+				["11","11"],
+				["12","12"],
+				["13","13"],		
+				["14","14"],
+				["15","15"]
+		  ]),"index");				
 		this.setInputsInline(true);
 		this.setPreviousStatement(true,null);
 		this.setNextStatement(true,null);
@@ -17667,7 +17755,27 @@ Blockly.Blocks.esp32_buzzer3={
 			]),"frequency");
 		this.appendValueInput("delaytime")
 			.setCheck(null)
-			.appendField(Blockly.Msg.ESP32_BUZZER_DELAYTIME);			
+			.appendField(Blockly.Msg.ESP32_BUZZER_DELAYTIME);
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_INDEX)
+		  .appendField(new Blockly.FieldDropdown([
+				["0","0"],		
+				["1","1"],
+				["2","2"],		
+				["3","3"],
+				["4","4"],		
+				["5","5"],
+				["6","6"],		
+				["7","7"],
+				["8","8"],		
+				["9","9"],
+				["10","10"],		
+				["11","11"],
+				["12","12"],
+				["13","13"],		
+				["14","14"],
+				["15","15"]
+		  ]),"index");				
 		this.setInputsInline(true);
 		this.setPreviousStatement(true,null);
 		this.setNextStatement(true,null);
@@ -17686,7 +17794,27 @@ Blockly.Blocks.esp32_buzzer1={
 			.appendField(Blockly.Msg.ESP32_BUZZER_FREQUENCY);
 		this.appendValueInput("delaytime")
 			.setCheck(null)
-			.appendField(Blockly.Msg.ESP32_BUZZER_DELAYTIME);			
+			.appendField(Blockly.Msg.ESP32_BUZZER_DELAYTIME);
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_INDEX)
+		  .appendField(new Blockly.FieldDropdown([
+				["0","0"],		
+				["1","1"],
+				["2","2"],		
+				["3","3"],
+				["4","4"],		
+				["5","5"],
+				["6","6"],		
+				["7","7"],
+				["8","8"],		
+				["9","9"],
+				["10","10"],		
+				["11","11"],
+				["12","12"],
+				["13","13"],		
+				["14","14"],
+				["15","15"]
+		  ]),"index");				
 		this.setInputsInline(true);
 		this.setPreviousStatement(true,null);
 		this.setNextStatement(true,null);
@@ -17723,7 +17851,55 @@ Blockly.Blocks.esp32_buzzer_tone1={
 				["G# 4 [415]","415"],
 				["A 4 [440]","440"],
 				["A# 4 [466]","466"],
-				["B 4 [494]","494"]
+				["B 4 [494]","494"],
+				["C 5 [523]","523"],
+				["C# 5 [554]","554"],
+				["D 5 [587]","587"],
+				["D# 5 [622]","622"],
+				["E 5 [659]","659"],
+				["F 5 [698]","698"],
+				["F# 5 [740]","740"],
+				["G 5 [784]","784"],
+				["G# 5 [831]","831"],
+				["A 5 [880]","880"],
+				["A# 5 [932]","932"],
+				["B 5 [988]","988"],			
+				["C 6 [1047]","1047"],
+				["C# 6 [1109]","1109"],
+				["D 6 [1175]","1175"],
+				["D# 6 [1245]","1245"],
+				["E 6 [1319]","1319"],
+				["F 6 [1397]","1397"],
+				["F# 6 [1480]","1480"],
+				["G 6 [1568]","1568"],
+				["G# 6 [1661]","1661"],
+				["A 6 [1760]","1760"],
+				["A# 6 [1864]","1864"],
+				["B 6 [1975]","1975"],
+				["C 7 [2093]","2093"],
+				["C# 7 [2218]","2218"],
+				["D 7 [2349]","2349"],
+				["D# 7 [2489]","2489"],
+				["E 7 [2637]","2637"],
+				["F 7 [2794]","2794"],
+				["F# 7 [2960]","2960"],
+				["G 7 [3136]","3136"],
+				["G# 7 [3322]","3322"],
+				["A 7 [3520]","3520"],
+				["A# 7 [3729]","3729"],
+				["B 7 [3951]","3951"],
+				["C 8 [4186]","4186"],
+				["C# 8 [4435]","4435"],
+				["D 8 [4699]","4699"],
+				["D# 8 [4978]","4978"],
+				["E 8 [5274]","5274"],
+				["F 8 [5588]","5588"],
+				["F# 8 [5920]","5920"],
+				["G 8 [6272]","6272"],
+				["G# 8 [6645]","6645"],
+				["A 8 [7040]","7040"],
+				["A# 8 [7459]","7459"],
+				["B 8 [7902]","7902"]				
 			]),"frequency");
 		this.setInputsInline(true);
 		this.setOutput(true);
@@ -18813,21 +18989,33 @@ Blockly.Blocks.webbit_mooncar_sonar_pin={init:function(){
   this.appendDummyInput()
       .appendField(Blockly.Msg.FRANCEFU_SONAR);
   this.appendDummyInput()
-      .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_INDEX)
-      .appendField(new Blockly.FieldDropdown([
-		  ["0","0"],
-		  ["1","1"],
-		  ["2","2"],
-		  ["3","3"]
-	  ]),"index");	
-  this.appendDummyInput()
       .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_PIN);	  
   this.appendValueInput("TRIG")
       .setCheck("Number")
 	  .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_PIN_TRIG);
   this.appendValueInput("ECHO")
       .setCheck("Number")
-	  .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_PIN_ECHO);  
+	  .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_PIN_ECHO); 
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_INDEX)
+      .appendField(new Blockly.FieldDropdown([
+			["0","0"],		
+			["1","1"],
+			["2","2"],		
+			["3","3"],
+			["4","4"],		
+			["5","5"],
+			["6","6"],		
+			["7","7"],
+			["8","8"],		
+			["9","9"],
+			["10","10"],		
+			["11","11"],
+			["12","12"],
+			["13","13"],		
+			["14","14"],
+			["15","15"]
+	  ]),"index");		  
   this.setInputsInline(!0);
   this.setPreviousStatement(!0,null);
   this.setNextStatement(!0,null);
@@ -18841,10 +19029,22 @@ Blockly.Blocks.webbit_mooncar_sonar={
 	  this.appendDummyInput()
 		  .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_INDEX)
 		  .appendField(new Blockly.FieldDropdown([
-			  ["0","0"],
-			  ["1","1"],
-			  ["2","2"],
-			  ["3","3"]
+			["0","0"],		
+			["1","1"],
+			["2","2"],		
+			["3","3"],
+			["4","4"],		
+			["5","5"],
+			["6","6"],		
+			["7","7"],
+			["8","8"],		
+			["9","9"],
+			["10","10"],		
+			["11","11"],
+			["12","12"],
+			["13","13"],		
+			["14","14"],
+			["15","15"]
 		  ]),"index");	  
 	  this.setInputsInline(!0);
 	  this.setOutput(!0,null);

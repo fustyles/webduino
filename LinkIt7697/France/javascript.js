@@ -11547,12 +11547,12 @@ Blockly.Arduino.esp32_buzzer = function(){
 	var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);											
 	var frequency=this.getFieldValue("frequency");
 	var delaytime=Blockly.Arduino.valueToCode(this,"delaytime",Blockly.Arduino.ORDER_ATOMIC);
+	var index=this.getFieldValue("index");
 	
 	if (selectBoardType().indexOf("esp")!=-1) {
 		Blockly.Arduino.definitions_['define_webbit_buzzer_func']='\n'+
-											'void playBuzzer(int pin, String frequency, String delaytime) {\n'+
+											'void playBuzzer(int pin, String frequency, String delaytime, int channel) {\n'+
 											'  int freq = 2000;\n'+
-											'  int channel = 10;\n'+
 											'  int resolution = 8;\n'+
 											'  ledcSetup(channel, freq, resolution);\n'+
 											'  ledcAttachPin(pin, channel);\n'+
@@ -11577,6 +11577,8 @@ Blockly.Arduino.esp32_buzzer = function(){
 											'  }\n'+
 											'  ledcWriteTone(channel, 0); \n'+
 											'}\n';
+											
+		var code = 'playBuzzer('+pin+', "'+frequency+'", String('+delaytime+'), '+index+');\n';											
 	}
 	else {
 		Blockly.Arduino.definitions_['define_webbit_buzzer_func']='\n'+
@@ -11601,9 +11603,10 @@ Blockly.Arduino.esp32_buzzer = function(){
 											'    }\n'+
 											'  }\n'+
 											'}\n'; 
+											
+		var code = 'playBuzzer('+pin+', "'+frequency+'", String('+delaytime+'));\n';											
 	}
 	
-	var code = 'playBuzzer('+pin+', "'+frequency+'", String('+delaytime+'));\n';
 	return code;
 };
 
@@ -11611,12 +11614,12 @@ Blockly.Arduino.esp32_buzzer2 = function(){
 	var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);											
 	var frequency=this.getFieldValue("frequency");
 	var delaytime=Blockly.Arduino.valueToCode(this,"delaytime",Blockly.Arduino.ORDER_ATOMIC);
+	var index=this.getFieldValue("index");
 	
 	if (selectBoardType().indexOf("esp")!=-1) {
 		Blockly.Arduino.definitions_['define_webbit_buzzer_func']='\n'+
-											'void playBuzzer(int pin, String frequency, String delaytime) {\n'+
+											'void playBuzzer(int pin, String frequency, String delaytime, int channel) {\n'+
 											'  int freq = 2000;\n'+
-											'  int channel = 10;\n'+
 											'  int resolution = 8;\n'+
 											'  ledcSetup(channel, freq, resolution);\n'+
 											'  ledcAttachPin(pin, channel);\n'+
@@ -11641,6 +11644,8 @@ Blockly.Arduino.esp32_buzzer2 = function(){
 											'  }\n'+
 											'  ledcWriteTone(channel, 0); \n'+
 											'}\n';
+											
+		var code = 'playBuzzer('+pin+', "'+frequency+'", String('+delaytime+'), '+index+');\n';											
 	}
 	else {
 		Blockly.Arduino.definitions_['define_webbit_buzzer_func']='\n'+
@@ -11665,9 +11670,10 @@ Blockly.Arduino.esp32_buzzer2 = function(){
 											'    }\n'+
 											'  }\n'+
 											'}\n'; 
+											
+		var code = 'playBuzzer('+pin+', "'+frequency+'", String('+delaytime+'));\n';											
 	}
 	
-	var code = 'playBuzzer('+pin+', "'+frequency+'", String('+delaytime+'));\n';
 	return code;
 };
 
@@ -11675,12 +11681,12 @@ Blockly.Arduino.esp32_buzzer3 = function(){
 	var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);											
 	var frequency=this.getFieldValue("frequency");
 	var delaytime=Blockly.Arduino.valueToCode(this,"delaytime",Blockly.Arduino.ORDER_ATOMIC);
+	var index=this.getFieldValue("index");
 	
 	if (selectBoardType().indexOf("esp")!=-1) {
 		Blockly.Arduino.definitions_['define_webbit_buzzer_func']='\n'+
-											'void playBuzzer(int pin, String frequency, String delaytime) {\n'+
+											'void playBuzzer(int pin, String frequency, String delaytime, int channel) {\n'+
 											'  int freq = 2000;\n'+
-											'  int channel = 10;\n'+
 											'  int resolution = 8;\n'+
 											'  ledcSetup(channel, freq, resolution);\n'+
 											'  ledcAttachPin(pin, channel);\n'+
@@ -11705,6 +11711,8 @@ Blockly.Arduino.esp32_buzzer3 = function(){
 											'  }\n'+
 											'  ledcWriteTone(channel, 0); \n'+
 											'}\n';
+											
+		var code = 'playBuzzer('+pin+', "'+frequency+'", String('+delaytime+'), '+index+');\n';											
 	}
 	else {
 		Blockly.Arduino.definitions_['define_webbit_buzzer_func']='\n'+
@@ -11729,9 +11737,10 @@ Blockly.Arduino.esp32_buzzer3 = function(){
 											'    }\n'+
 											'  }\n'+
 											'}\n'; 
+											
+		var code = 'playBuzzer('+pin+', "'+frequency+'", String('+delaytime+'));\n';											
 	}
 	
-	var code = 'playBuzzer('+pin+', "'+frequency+'", String('+delaytime+'));\n';
 	return code;
 };
 
@@ -11743,12 +11752,14 @@ Blockly.Arduino.esp32_buzzer1 = function(){
 	var delaytime=Blockly.Arduino.valueToCode(this,"delaytime",Blockly.Arduino.ORDER_ATOMIC).replace(/{/g,"").replace(/}/g,"").replace(/", "/g,",").replace(/ /g,"");
 	if (delaytime.indexOf('"')==-1)
 		delaytime = '"'+delaytime+'"';
-
+	var index=this.getFieldValue("index");
+	if (index.indexOf('"')==-1)
+		index = '"'+index+'"';	
+	
 	if (selectBoardType().indexOf("esp")!=-1) {
 		Blockly.Arduino.definitions_['define_webbit_buzzer_func']='\n'+
-											'void playBuzzer(int pin, String frequency, String delaytime) {\n'+
+											'void playBuzzer(int pin, String frequency, String delaytime, int channel) {\n'+
 											'  int freq = 2000;\n'+
-											'  int channel = 10;\n'+
 											'  int resolution = 8;\n'+
 											'  ledcSetup(channel, freq, resolution);\n'+
 											'  ledcAttachPin(pin, channel);\n'+
@@ -11773,6 +11784,8 @@ Blockly.Arduino.esp32_buzzer1 = function(){
 											'  }\n'+
 											'  ledcWriteTone(channel, 0); \n'+
 											'}\n';
+											
+		var code = 'playBuzzer('+pin+', "'+frequency+'", String('+delaytime+'), '+index+');\n';											
 	}
 	else {
 		Blockly.Arduino.definitions_['define_webbit_buzzer_func']='\n'+
@@ -11797,9 +11810,10 @@ Blockly.Arduino.esp32_buzzer1 = function(){
 											'    }\n'+
 											'  }\n'+
 											'}\n'; 
+											
+		var code = 'playBuzzer('+pin+', "'+frequency+'", String('+delaytime+'));\n';											
 	}
 	
-	var code = 'playBuzzer('+pin+', '+frequency+', '+delaytime+');\n';
 	return code;
 };
 
