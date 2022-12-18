@@ -9763,8 +9763,13 @@
 	  </block> 	
 	  <block type="adxl345_get">			
 	  </block>   	  
-	</category>		
+	</category>	
 	
+	<category id="france12" name="gy30">
+	  <block type="gy30_getdata">			
+	  </block> 	  
+	</category>	
+
 	 <sep id="category_sep"></sep>	
 	 
     <category id="france3" name="spreadsheet">

@@ -1912,3 +1912,5 @@ Blockly.Msg.OPENAI_TEXT_RESPONSE_SHOW = "取得回應內容後執行";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_SHOW = "回應內容";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_BR_SHOW = "自動換行";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_CLEAR_SHOW = "清除回應內容";
+
+Blockly.Msg["GY30_GETDATA_SHOW"] = "GY-30光照度 讀取感測器值(lx)";

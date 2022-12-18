@@ -1903,3 +1903,5 @@ Blockly.Msg.OPENAI_TEXT_RESPONSE_SHOW = "After getting response";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_SHOW = "Response";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_BR_SHOW = "new line";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_CLEAR_SHOW = "Clear response";
+
+Blockly.Msg["GY30_GETDATA_SHOW"] = "GY-30 Light intensity sensor read data(lx)";

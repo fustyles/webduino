@@ -1,3 +1,13 @@
+Blockly.Blocks['gy30_getdata'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["GY30_GETDATA_SHOW"]);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(Blockly.Msg["HUE_22"]);
+  }
+};
+
 Blockly.Blocks['openai_text_request'] = {
   init: function() {
   this.appendDummyInput()

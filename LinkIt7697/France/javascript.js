@@ -1,3 +1,11 @@
+Blockly.Arduino['gy30_getdata'] = function(block) {	
+	Blockly.Arduino.definitions_['BH1750_initial'] = '#include <Wire.h>\n#include <BH1750.h>\nBH1750 lightMeter;';
+	Blockly.Arduino.setups_['BH1750_initial'] = 'Wire.begin();\nlightMeter.begin();';
+  
+    var code = 'lightMeter.readLightLevel()' ;
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['openai_text_request'] = function (block) {
   var token = Blockly.Arduino.valueToCode(block, 'token', Blockly.Arduino.ORDER_ATOMIC);	
   var tokens = Blockly.Arduino.valueToCode(block, 'tokens', Blockly.Arduino.ORDER_ATOMIC)||1024;
