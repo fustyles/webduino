@@ -8000,6 +8000,7 @@ Blockly.Blocks['fu_oled_drawFont'] = {
 	
 	this.setHelpUrl("https://docs.microsoft.com/en-us/typography/font-list/");
   },onchange: function(event) {
+	  if (this.getInputTargetBlock("str")) {
 		var str = Blockly.Arduino.blockToCode(this.getInputTargetBlock("str"))[0];
 		if ((str.indexOf('"')==0)&&(str.lastIndexOf('"')==str.length-1))
 		str = str.substring(1,str.length-1);
@@ -8009,6 +8010,7 @@ Blockly.Blocks['fu_oled_drawFont'] = {
 				this.getInputTargetBlock("str").getField("TEXT").setValue("");			
 			this.getField("str").isDirty_=true;
 		}
+	  }
 	} 
 };
 
@@ -8057,6 +8059,7 @@ Blockly.Blocks['fu_oled_drawCustomFont'] = {
     this.setColour(220);
 	this.setHelpUrl("https://docs.microsoft.com/en-us/typography/font-list/");
   },onchange: function(event) {
+	  if (this.getInputTargetBlock("str")) {
 		var str = Blockly.Arduino.blockToCode(this.getInputTargetBlock("str"))[0];
 		if ((str.indexOf('"')==0)&&(str.lastIndexOf('"')==str.length-1))
 		str = str.substring(1,str.length-1);
@@ -8066,6 +8069,7 @@ Blockly.Blocks['fu_oled_drawCustomFont'] = {
 				this.getInputTargetBlock("str").getField("TEXT").setValue("");
 			this.getField("str").isDirty_=true;
 		}
+	  }
 	}  
 };
 
@@ -21832,3 +21836,5 @@ Blockly.Blocks['faceapirecognize_canvas_get'] = {
   this.setColour(Blockly.Msg["HUE_18"]);
   }
 };
+
+if (typeof topCheck !== "undefined") topCheck = false;
