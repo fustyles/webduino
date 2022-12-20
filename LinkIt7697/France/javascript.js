@@ -477,7 +477,7 @@ Blockly.Arduino['esp32_webbluetooth_uuid'] = function(block) {
 	var rx = Blockly.Arduino.valueToCode(block, 'rx', Blockly.Arduino.ORDER_ATOMIC);
 	var statements_do = Blockly.Arduino.statementToCode(block, 'do_')||"";
 
-	Blockly.Arduino.definitions_.define_linkit_wifi_command = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
+	Blockly.Arduino.definitions_.define_linkit_wifi_command = '';
 	
 	Blockly.Arduino.definitions_['webbluetooth_initial'] = '#include <BLEDevice.h>\n'
 												 +'#include <BLEServer.h>\n'
@@ -486,9 +486,10 @@ Blockly.Arduino['esp32_webbluetooth_uuid'] = function(block) {
 												 +'BLECharacteristic *characteristicTX;\n'
 												 +'#define SERVICE_UUID           '+service+'\n'
 												 +'#define CHARACTERISTIC_UUID_RX ' + rx + '\n'
-												 +'#define CHARACTERISTIC_UUID_TX ' + tx + '\n'											 
+												 +'#define CHARACTERISTIC_UUID_TX ' + tx + '\n'
 												 +'bool deviceConnected = false;\n'
 												 +'String bleData = "";\n'
+												 +'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'
 												 +'void ExecuteCommand() {\n'
 												 +'  //Serial.println("");\n'
 												 +'  //Serial.println("Command: "+Command);\n'
