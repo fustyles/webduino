@@ -111,7 +111,7 @@
 		  <block type="math_number">
 			<field name="NUM">17</field>
 		  </block>
-		</value> 		  
+		</value>		
 	  </block>		
 		<block type="fu_serial_ready"></block>
 		<block type="fu_serial_end"></block>
@@ -162,6 +162,11 @@
 		  </block>
 		</value> 		  
 		<field name="baudrate">9600</field>
+		<value name="custom">
+			<shadow type="text">
+				<field name="TEXT">\r</field>
+			</shadow>
+		</value>		
 		<statement name="statement"></statement>
 	  </block>
 	  <block type="uart_getdata"></block>

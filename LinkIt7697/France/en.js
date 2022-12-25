@@ -1344,6 +1344,7 @@ Blockly.Msg["UART_READ_ALL_SHOW"] = "Read complete string";
 Blockly.Msg["UART_READ_STRING_SHOW"] = "Read a part of string";
 Blockly.Msg["UART_READ_ROW_SHOW"] = "Read string until newline";
 Blockly.Msg["UART_READ_CHAR_SHOW"] = "Read a Character";
+Blockly.Msg["UART_READ_CUSTOM_SHOW"] = "Read a custom character";
 
 Blockly.Msg["DFPLAYER_INITIAL_SHOW"] = "DFPlayer Mini set";
 Blockly.Msg["DFPLAYER_COMMAND_SHOW"] = "DFPlayer command";
