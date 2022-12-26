@@ -1157,7 +1157,7 @@
 		  <block type="esp32_blekeyboard_print">
 			<value name="characters">
 			  <block type="text">
-				<field name="TEXT">Taiwan</field>
+				<field name="TEXT">Hello World</field>
 			  </block>
 			</value>			
 		  </block>

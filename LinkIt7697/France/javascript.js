@@ -22,7 +22,6 @@ Blockly.Arduino['esp32_blekeyboard'] = function(block) {
 			'  }\n'+
 			'}\n';
 
-	Blockly.Arduino.setups_.setup_serial="Serial.begin(9600);\n  delay(10);";
 	Blockly.Arduino.setups_.bt_serial='bleKeyboard.setName('+blename+');\n  bleKeyboard.begin();\n  delay(10);\n';	
 			
   code = '';
