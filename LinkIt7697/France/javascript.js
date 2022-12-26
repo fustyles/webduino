@@ -1,3 +1,119 @@
+Blockly.Arduino['esp32_myfirmata_blekeyboard'] = function(block) {
+    var baudrate = block.getFieldValue('baudrate');
+    var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
+	var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
+	
+	Blockly.Arduino.definitions_.define_esp32_blekeyboard_include = '#include <BleKeyboard.h>\nBleKeyboard bleKeyboard;\n';
+	if (Blockly.Arduino.definitions_.define_custom_command!='')
+		Blockly.Arduino.definitions_.define_custom_command = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
+	
+	Blockly.Arduino.definitions_.ExecuteCommand = '\n'+
+			'void executeCommand() {\n'+
+			'  Serial.println("");\n'+
+			'  Serial.println("cmd= "+cmd+" ,p1= "+p1+" ,p2= "+p2+" ,p3= "+p3+" ,p4= "+p4+" ,p5= "+p5+" ,p6= "+p6+" ,p7= "+p7+" ,p8= "+p8+" ,p9= "+p9);\n'+
+			'  Serial.println("");\n'+
+			'  if (cmd=="restart") {\n'+
+			'    ESP.restart();\n'+
+			'  }\n'+
+			'  else if (cmd=="inputpullup") {\n'+
+			'    pinMode(p1.toInt(), INPUT_PULLUP);\n'+
+			'  }\n'+
+			'  else if (cmd=="pinmode") {\n'+
+			'    if (p2.toInt()==1)\n'+
+			'      pinMode(p1.toInt(), OUTPUT);\n'+
+			'    else\n'+
+			'      pinMode(p1.toInt(), INPUT);\n'+
+			'  }\n'+
+			'  else if (cmd=="digitalwrite") {\n'+
+			'    ledcDetachPin(p1.toInt());\n'+
+			'    pinMode(p1.toInt(), OUTPUT);\n'+
+			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
+			'  }\n'+
+			'  else if (cmd=="digitalread") {\n'+
+			'    feedback=String(digitalRead(p1.toInt()));\n'+
+			'  }\n'+
+			'  else if (cmd=="analogwrite") {\n'+
+			'    ledcAttachPin(p1.toInt(), 1);\n'+
+			'    ledcSetup(1, 5000, 8);\n'+
+			'    ledcWrite(1,p2.toInt());\n'+
+			'  }\n'+
+			'  else if (cmd=="analogread") {\n'+
+			'    feedback=String(analogRead(p1.toInt()));\n'+
+			'  }\n'+
+			'  else if (cmd=="touchread") {\n'+
+			'    feedback=String(touchRead(p1.toInt()));\n'+
+			'  }\n'+
+			'  else if (cmd=="keyboardpress") {\n'+
+			'    if(bleKeyboard.isConnected()) {\n'+
+			'      if (p1!="") bleKeyboard.press(char(p1.toInt()));\n'+
+			'      if (p2!="") bleKeyboard.press(char(p2.toInt()));\n'+
+			'      if (p3!="") bleKeyboard.press(char(p3.toInt()));\n'+
+			'      delay(p4.toInt());\n'+
+			'      bleKeyboard.releaseAll();\n'+
+			'    }\n'+
+			'    else\n'+
+			'      feedback="error";\n'+
+			'  }\n'+
+			'  else if (cmd=="keyboardprint") {\n'+
+			'    if(bleKeyboard.isConnected())\n'+
+			'      bleKeyboard.print(p1);\n'+
+			'    else\n'+
+			'      feedback="Please connect to ESp32 keyboard";\n'+
+			'  }\n'+
+			'  else if (cmd=="keyboardwrite") {\n'+
+			'    if(bleKeyboard.isConnected())\n'+
+			'      bleKeyboard.write(char(p1.toInt()));\n'+
+			'    else\n'+
+			'      feedback="error";\n'+
+			'  }\n'+
+			'  else {\n  '+statements_executecommand.replace(/\n/g,"\n  ")+
+			'}\n'+ 
+			'}\n';
+
+	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
+	Blockly.Arduino.setups_.bt_serial='bleKeyboard.setName('+blename+');\nbleKeyboard.begin();\n  delay(10);\n';	
+
+    Blockly.Arduino.definitions_.define_blekeyboard_getCommand = '\n'+
+			'void getCommand(char c) {\n'+
+			'  if (c==\'?\') receiveState=1;\n'+
+			'  if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) receiveState=0;\n'+
+			'  \n'+
+			'  if (receiveState==1) {\n'+
+			'    Command=Command+String(c);\n'+
+			'    \n'+
+			'    if (c==\'=\') cmdState=0;\n'+
+			'    if (c==\';\') pState++;\n'+
+			'    \n'+
+			'    if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==2)&&(c!=\';\')) p2=p2+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==3)&&(c!=\';\')) p3=p3+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==4)&&(c!=\';\')) p4=p4+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==5)&&(c!=\';\')) p5=p5+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==6)&&(c!=\';\')) p6=p6+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==7)&&(c!=\';\')) p7=p7+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==8)&&(c!=\';\')) p8=p8+String(c);\n'+
+			'    if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) p9=p9+String(c);\n'+
+			'    \n'+
+			'    if (c==\'?\') questionState=1;\n'+
+			'    if (c==\'=\') equalState=1;\n'+
+			'    if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'+
+			'  }\n'+
+			'}\n';
+			
+  code = '\n  '+ 
+			'  if (Serial.available()) {\n'+
+			'    command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'+
+			'    receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'+
+			'    while (Serial.available()) {\n'+
+			'      getCommand(Serial.read());\n'+
+			'      delay(1);\n'+
+			'    }\n'+
+			'    executeCommand();\n'+
+			'  }\n';
+  return code;
+};
+
 Blockly.Arduino['gy30_getdata'] = function(block) {	
 	Blockly.Arduino.definitions_['BH1750_initial'] = '#include <Wire.h>\n#include <BH1750.h>\nBH1750 lightMeter;';
 	Blockly.Arduino.setups_['BH1750_initial'] = 'Wire.begin();\nlightMeter.begin();';

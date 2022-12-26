@@ -1906,3 +1906,6 @@ Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_BR_SHOW = "new line";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_CLEAR_SHOW = "Clear response";
 
 Blockly.Msg["GY30_GETDATA_SHOW"] = "GY-30 Light intensity sensor read data(lx)";
+
+Blockly.Msg["ESP32_BLEKEYBOARD_SHOW"] = "ESP32 BLE Keyboard get data once";
+Blockly.Msg["ESP32_BLEKEYBOARD_AFTER_READ_SHOW"] = "after reading data once";

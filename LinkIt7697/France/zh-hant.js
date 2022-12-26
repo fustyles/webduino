@@ -155,11 +155,11 @@ Blockly.Msg.ESP32_LINE_NOTIFY_SHOW = "訊息字串";
 Blockly.Msg.ESP32_BLUETOOTH_SHOW = "藍芽(ESP32)模組";
 Blockly.Msg.ESP32_BLUETOOTH_BAUDRATE_SHOW = "鮑率";
 Blockly.Msg.ESP32_BLUETOOTH_NAME_SHOW = "裝置名稱";
-Blockly.Msg.ESP32_BLUETOOTH_FEEDBACK_SHOW = "藍芽回傳字串";
+Blockly.Msg.ESP32_BLUETOOTH_FEEDBACK_SHOW = "藍芽(ESP32)回傳字串";
 Blockly.Msg.ESP32_BLUETOOTH_FEEDBACK_NEWLINE_SHOW = "藍芽回傳字串(換行)";
-Blockly.Msg.ESP32_BLUETOOTH_GETDATA_SHOW = "藍芽取得字串";
+Blockly.Msg.ESP32_BLUETOOTH_GETDATA_SHOW = "藍芽(ESP32)取得字串";
 Blockly.Msg.ESP32_BLUETOOTH_INITIAL_SHOW = "藍芽(ESP32)初始設定";
-Blockly.Msg.ESP32_BLUETOOTH_READDATA_SHOW = "藍芽監聽讀取資料";
+Blockly.Msg.ESP32_BLUETOOTH_READDATA_SHOW = "藍芽(ESP32)讀取一次資料後執行";
 Blockly.Msg.LINKIT7697_SERVERMODULE_SHOW = "LinkIt7697連線到Wi-Fi熱點";
 Blockly.Msg.SERVERMODULE_TOINT_SHOW = "轉換為整數(int)";
 Blockly.Msg.SERVERMODULE_TODOUBLE_SHOW = "轉換為倍精度浮點數(double)";
@@ -1915,3 +1915,6 @@ Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_BR_SHOW = "自動換行";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_CLEAR_SHOW = "清除回應內容";
 
 Blockly.Msg["GY30_GETDATA_SHOW"] = "GY-30光照度 讀取感測器值(lx)";
+
+Blockly.Msg["ESP32_BLEKEYBOARD_SHOW"] = "ESP32藍芽鍵盤模組";
+Blockly.Msg["ESP32_BLEKEYBOARD_AFTER_READ_SHOW"] = "讀取一次資料後執行";
