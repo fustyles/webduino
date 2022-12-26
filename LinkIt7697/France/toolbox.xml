@@ -1131,101 +1131,51 @@
 		</category>
 
 		<category id="france7" name="blekeyboardmodule">
-		  <block type="esp32_myfirmata_blekeyboard" id="232">
-			<field name="baudrate">9600</field>
+		  <block type="esp32_blekeyboard">
 			<value name="blename">
-			  <block type="text" id="234">
-				<field name="TEXT">ESP32 BLE</field>
+			  <block type="text">
+				<field name="TEXT">ESP32 BLE Keyboard</field>
 			  </block>
 			</value>
-			<statement name="ExecuteCommand">
-			  <block type="customcode_comment" id="235" inline="true">
-				<value name="text">
-				  <block type="text" id="236">
-					<field name="TEXT">?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
-				  </block>
-				</value>
-				<next>
-				  <block type="controls_if" id="237">
-					<mutation else="1"></mutation>
-					<value name="IF0">
-					  <block type="servermodule_cmd" id="238" inline="true">
-						<value name="text">
-						  <block type="text" id="239">
-							<field name="TEXT">led</field>
-						  </block>
-						</value>
-					  </block>
-					</value>
-					<statement name="DO0">
-					  <block type="servermodule_pinwrite" id="242" inline="true">
-						<value name="pin">
-						  <block type="servermodule_parameter_variable" id="243">
-							<field name="parameter">p1</field>
-							<field name="type">toInt()</field>
-						  </block>
-						</value>
-						<value name="val">
-						  <block type="servermodule_parameter_variable" id="244">
-							<field name="parameter">p2</field>
-							<field name="type">toInt()</field>
-						  </block>
-						</value>
-						<next>
-						  <block type="controls_if" id="245">
-							<mutation else="1"></mutation>
-							<value name="IF0">
-							  <block type="logic_compare" id="246" inline="true">
-								<field name="OP">EQ</field>
-								<value name="A">
-								  <block type="servermodule_parameter_variable" id="247">
-									<field name="parameter">p2</field>
-									<field name="type">toInt()</field>
-								  </block>
-								</value>
-								<value name="B">
-								  <block type="math_number" id="248">
-									<field name="NUM">1</field>
-								  </block>
-								</value>
-							  </block>
-							</value>
-							<statement name="DO0">
-							  <block type="servermodule_bluetooth_feedback_newline" id="249" inline="true">
-								<value name="text">
-								  <block type="text" id="250">
-									<field name="TEXT">on</field>
-								  </block>
-								</value>
-							  </block>
-							</statement>
-							<statement name="ELSE">
-							  <block type="servermodule_bluetooth_feedback_newline" id="251" inline="true">
-								<value name="text">
-								  <block type="text" id="252">
-									<field name="TEXT">off</field>
-								  </block>
-								</value>
-							  </block>
-							</statement>
-						  </block>
-						</next>
-					  </block>
-					</statement>
-					<statement name="ELSE">
-					  <block type="servermodule_bluetooth_feedback_newline" id="253" inline="true">
-						<value name="text">
-						  <block type="text" id="254">
-							<field name="TEXT">undefined</field>
-						  </block>
-						</value>
-					  </block>
-					</statement>
-				  </block>
-				</next>
-			  </block>
-			</statement>
 		  </block>
+		  <block type="esp32_blekeyboard_press">
+			<value name="keycode1">
+			  <block type="esp32_blekeyboard_keycode">
+				<field name="keycode">0</field>
+			  </block>
+			</value>
+			<value name="keycode2">
+			  <block type="math_number">
+				<field name="NUM"></field>
+			  </block>
+			</value>
+			<value name="keycode3">
+			  <block type="math_number">
+				<field name="NUM"></field>
+			  </block>
+			</value>
+			<value name="presstime">
+			  <block type="math_number">
+				<field name="NUM">10</field>
+			  </block>
+			</value>			
+		  </block>
+		  <block type="esp32_blekeyboard_print">
+			<value name="characters">
+			  <block type="text">
+				<field name="TEXT">Taiwan</field>
+			  </block>
+			</value>			
+		  </block>
+		  <block type="esp32_blekeyboard_write">
+			<value name="keycode">
+			  <block type="esp32_blekeyboard_keycode">
+				<field name="keycode">0</field>
+			  </block>
+			</value>			
+		  </block>
+		  <block type="esp32_blekeyboard_keycode">			
+		  </block>		  
 		</category>
 		
 		<category id="france20" name="telegrambot"> 

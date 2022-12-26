@@ -1,41 +1,227 @@
-Blockly.Blocks['esp32_myfirmata_blekeyboard'] = {
+Blockly.Blocks['esp32_blekeyboard'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_SHOW"]);
-    this.appendDummyInput()	 
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg.ESP32_BLUETOOTH_BAUDRATE_SHOW)	
-		.appendField(new Blockly.FieldDropdown([
-			["300","300"],
-			["1200","1200"],
-			["2400","2400"],
-			["4800","4800"],
-			["9600","9600"],	    
-			["19200","19200"],
-			["38400","38400"],
-			["57600","57600"],
-			["74880","74880"],
-			["115200","115200"],	
-			["230400","230400"],
-			["250000","250000"],
-			["500000","500000"],
-			["1000000","1000000"],	
-			["2000000","2000000"]
-		]), "baudrate");
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_SHOW"])	
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_INITIAL_SHOW"]);
     this.appendValueInput("blename")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg.ESP32_BLUETOOTH_NAME_SHOW);		
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_AFTER_READ_SHOW"]);
-    this.appendStatementInput("ExecuteCommand")
-        .setCheck(null);
+		.appendField(Blockly.Msg.ESP32_BLUETOOTH_NAME_SHOW);
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(190);
+    this.setColour(110);
   }
 };
+
+Blockly.Blocks['esp32_blekeyboard_press'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_SHOW"])	
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_PRESS_SHOW"]);		
+    this.appendValueInput("keycode1")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"]+"1");
+    this.appendValueInput("keycode2")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"]+"2");	
+    this.appendValueInput("keycode3")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"]+"3");	
+    this.appendValueInput("presstime")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_PRESSTIME_SHOW"]);			
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(110);
+  }
+};
+
+Blockly.Blocks['esp32_blekeyboard_print'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_SHOW"])	
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_PRINT_SHOW"]);		
+    this.appendValueInput("characters")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_CHARACTERS_SHOW"]);			
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(110);
+  }
+};
+
+Blockly.Blocks['esp32_blekeyboard_write'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_SHOW"])	
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_WRITE_SHOW"]);		
+    this.appendValueInput("keycode")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"]);	
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(110);
+  }
+};
+
+Blockly.Blocks['esp32_blekeyboard_keycode'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField("ASCII");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([
+			["space","32"],
+			["!","33"],
+			["\"","34"],
+			["#","35"],
+			["$","36"],
+			["%","37"],
+			["&","38"],
+			["'","39"],
+			["(","40"],
+			[")","41"],
+			["*","42"],
+			["+","43"],
+			[",","44"],
+			["-","45"],
+			[".","46"],
+			["/","47"],
+			["0","48"],
+			["1","49"],
+			["2","50"],
+			["3","51"],
+			["4","52"],
+			["5","53"],
+			["6","54"],
+			["7","55"],
+			["8","56"],
+			["9","57"],
+			[":","58"],
+			[";","59"],
+			["<","60"],
+			["=","61"],
+			[">","62"],
+			["?","63"],
+			["@","64"],
+			["A","65"],
+			["B","66"],
+			["C","67"],
+			["D","68"],
+			["E","69"],
+			["F","70"],
+			["G","71"],
+			["H","72"],
+			["I","73"],
+			["J","74"],
+			["K","75"],
+			["L","76"],
+			["M","77"],
+			["N","78"],
+			["O","79"],
+			["P","80"],
+			["Q","81"],
+			["R","82"],
+			["S","83"],
+			["T","84"],
+			["U","85"],
+			["V","86"],
+			["W","87"],
+			["X","88"],
+			["Y","89"],
+			["Z","90"],
+			["[","91"],
+			["\\","92"],
+			["]","93"],
+			["^","94"],
+			["_","95"],
+			["`","96"],
+			["a","97"],
+			["b","98"],
+			["c","99"],
+			["d","100"],
+			["e","101"],
+			["f","102"],
+			["g","103"],
+			["h","104"],
+			["i","105"],
+			["j","106"],
+			["k","107"],
+			["l","108"],
+			["m","109"],
+			["n","110"],
+			["o","111"],
+			["p","112"],
+			["q","113"],
+			["r","114"],
+			["s","115"],
+			["t","116"],
+			["u","117"],
+			["v","118"],
+			["w","119"],
+			["x","120"],
+			["y","121"],
+			["z","122"],
+			["{","123"],
+			["|","124"],
+			["}","125"],
+			["~","126"],
+			["KEY_LEFT_CTRL","128"],
+			["KEY_LEFT_SHIFT","129"],
+			["KEY_LEFT_ALT","130"],
+			["KEY_LEFT_GUI","131"],
+			["KEY_RIGHT_CTRL","132"],
+			["KEY_RIGHT_SHIFT","133"],
+			["KEY_RIGHT_ALT","134"],
+			["KEY_RIGHT_GUI","135"],
+			["KEY_UP_ARROW","218"],
+			["KEY_DOWN_ARROW","217"],
+			["KEY_LEFT_ARROW","216"],
+			["KEY_RIGHT_ARROW","215"],
+			["KEY_BACKSPACE","178"],
+			["KEY_TAB","179"],
+			["KEY_RETURN","176"],
+			["KEY_ESC","177"],
+			["KEY_INSERT","209"],
+			["KEY_DELETE","212"],
+			["KEY_PAGE_UP","211"],
+			["KEY_PAGE_DOWN","214"],
+			["KEY_HOME","210"],
+			["KEY_END","213"],
+			["KEY_CAPS_LOCK","193"],
+			["KEY_F1","194"],
+			["KEY_F2","195"],
+			["KEY_F3","196"],
+			["KEY_F4","197"],
+			["KEY_F5","198"],
+			["KEY_F6","199"],
+			["KEY_F7","200"],
+			["KEY_F8","201"],
+			["KEY_F9","202"],
+			["KEY_F10","203"],
+			["KEY_F11","204"],
+			["KEY_F12","205"]			
+		]), "keycode");		
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(110);
+  }
+};
+
+
+
+
+
+
 
 Blockly.Blocks['gy30_getdata'] = {
   init: function() {
