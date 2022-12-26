@@ -1145,14 +1145,8 @@
 			  </block>
 			</value>
 			<value name="keycode2">
-			  <block type="math_number">
-				<field name="NUM"></field>
-			  </block>
 			</value>
 			<value name="keycode3">
-			  <block type="math_number">
-				<field name="NUM"></field>
-			  </block>
 			</value>
 			<value name="presstime">
 			  <block type="math_number">
