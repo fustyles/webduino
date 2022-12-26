@@ -56,7 +56,7 @@ window.onload = function () {
 		}
 		else
 			context.drawImage(obj, 0, 0, obj.width, obj.height);
-		
+console.log(holisticState.innerHTML);	
 		if (holisticState.innerHTML =="1") {
 			holistic.send({image: canvas}).then(res => {
 				var source = document.getElementById("sourceId_holistic");
