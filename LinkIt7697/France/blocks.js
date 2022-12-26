@@ -5435,14 +5435,13 @@ Blockly.Blocks['uart_initial'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["UART_READ_ALL_SHOW"],"all"],
-			[Blockly.Msg["UART_READ_STRING_SHOW"],"string"],			
+			[Blockly.Msg["UART_READ_STRING_SHOW"],"string"],
+			[Blockly.Msg["UART_READ_CHAR_SHOW"],"char"],			
 			[Blockly.Msg["UART_READ_ROW_SHOW"],"row"],
-			[Blockly.Msg["UART_READ_CHAR_SHOW"],"char"],
 			[Blockly.Msg["UART_READ_CUSTOM_SHOW"],"custom"]			
 		], this.validate1), "read");
     this.appendValueInput("custom","custom")
-        .setCheck("String")
-		.appendField("custom");		
+        .setCheck("String");		
 	this.appendDummyInput()
         .appendField(Blockly.Msg.UART_AFTER_READ_SHOW);			
     this.appendStatementInput("statement")

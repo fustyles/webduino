@@ -1351,9 +1351,9 @@ Blockly.Msg["UART_BAUDRATE_SHOW"] = "通訊鮑率";
 Blockly.Msg["UART_GETDATA_SHOW"] = "取得字串";
 Blockly.Msg["UART_READ_ALL_SHOW"] = "讀取完整字串";
 Blockly.Msg["UART_READ_STRING_SHOW"] = "讀取片段字串";
-Blockly.Msg["UART_READ_ROW_SHOW"] = "讀取字串直到換行";
-Blockly.Msg["UART_READ_CHAR_SHOW"] = "讀取一個字元";
-Blockly.Msg["UART_READ_CUSTOM_SHOW"] = "讀取特定字元";
+Blockly.Msg["UART_READ_CHAR_SHOW"] = "讀取一個字元轉成字串";
+Blockly.Msg["UART_READ_ROW_SHOW"] = "讀取字串直到換行字元";
+Blockly.Msg["UART_READ_CUSTOM_SHOW"] = "讀取字串直到特定字元";
 
 Blockly.Msg["DFPLAYER_INITIAL_SHOW"] = "DFPlayer Mini 初始化序列埠通訊";
 Blockly.Msg["DFPLAYER_COMMAND_SHOW"] = "DFPlayer Mini 指令";
