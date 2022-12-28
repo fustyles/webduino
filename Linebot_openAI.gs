@@ -4,7 +4,7 @@ https://www.facebook.com/francefu
 */
 
 let channel_access_TOKEN = "";    //Line Bot Token
-let openAI_TOKEN = "";    //openAI API Key
+let openAI_KEY = "";    //openAI API Key
 let maxTokens = 256;
 
 let userMessage = "";
@@ -38,7 +38,7 @@ function doPost(e) {
       //"stop": "\n"	  
     };    
 
-    const authHeader = "Bearer "+openAI_TOKEN;
+    const authHeader = "Bearer "+openAI_KEY;
     const options = {
       headers: {Authorization: authHeader},
       method: 'POST',
