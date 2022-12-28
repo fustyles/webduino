@@ -5676,7 +5676,8 @@ Blockly.Blocks['uart_initial'] = {
 			[Blockly.Msg["UART_READ_ALL_SHOW"],"all"],
 			[Blockly.Msg["UART_READ_STRING_SHOW"],"string"],
 			[Blockly.Msg["UART_READ_CHAR_SHOW"],"char"],			
-			[Blockly.Msg["UART_READ_ROW_SHOW"],"row"],
+			[Blockly.Msg["UART_READ_NEWLINE_SHOW"],"newline"],
+			[Blockly.Msg["UART_READ_RETURN_SHOW"],"return"],			
 			[Blockly.Msg["UART_READ_CUSTOM_SHOW"],"custom"]			
 		], this.validate1), "read");
     this.appendValueInput("custom","custom")
