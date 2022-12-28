@@ -119,6 +119,7 @@
 	}
 	
 	window.faceapidetect_face = faceapidetect_face;
+	window.faceapidetect_number = faceapidetect_number;
 	window.faceapidetect_video = faceapidetect_video;
 	window.faceapidetect_video_position = faceapidetect_video_position;
 	window.faceapidetect_state = faceapidetect_state;
