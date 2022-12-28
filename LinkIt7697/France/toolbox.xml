@@ -1169,6 +1169,13 @@
 			</value>			
 		  </block>
 		  <block type="esp32_blekeyboard_keycode">			
+		  </block>
+		  <block type="esp32_blekeyboard_chartoascii">
+			<value name="character">
+			  <block type="text_quotationmark">
+				<field name="TEXT">A</field>
+			  </block>
+			</value>		  
 		  </block>		  
 		</category>
 		

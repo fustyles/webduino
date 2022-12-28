@@ -55,6 +55,15 @@ Blockly.Arduino['esp32_blekeyboard_keycode'] = function(block) {
 	return [keycode, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['esp32_blekeyboard_chartoascii'] = function(block) {	
+	var character = Blockly.Arduino.valueToCode(block, 'character', Blockly.Arduino.ORDER_ATOMIC)||"";
+	console.log(character);
+	if (character.indexOf('"')!=-1)
+		character = "'"+character.replace(/"/g,"")+"'";
+	character = "(int)"+character;
+	return [character, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['gy30_getdata'] = function(block) {	
 	Blockly.Arduino.definitions_['BH1750_initial'] = '#include <Wire.h>\n#include <BH1750.h>\nBH1750 lightMeter;';
 	Blockly.Arduino.setups_['BH1750_initial'] = 'Wire.begin();\nlightMeter.begin();';

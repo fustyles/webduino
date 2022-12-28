@@ -76,8 +76,6 @@ Blockly.Blocks['esp32_blekeyboard_write'] = {
 
 Blockly.Blocks['esp32_blekeyboard_keycode'] = {
   init: function() {
-	this.appendDummyInput()
-        .appendField("ASCII");
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
 			["space","32"],
@@ -210,18 +208,29 @@ Blockly.Blocks['esp32_blekeyboard_keycode'] = {
 			["KEY_F10","203"],
 			["KEY_F11","204"],
 			["KEY_F12","205"]			
-		]), "keycode");		
+		]), "keycode");
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_ASCII_SHOW"]);		
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
     this.setColour(110);
   }
 };
 
-
-
-
-
-
+Blockly.Blocks['esp32_blekeyboard_chartoascii'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_CHARACTER_SHOW"]);
+	this.appendValueInput("character")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT);
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_TRANSFER_ASCII_SHOW"]);		
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(110);
+  }
+};
 
 Blockly.Blocks['gy30_getdata'] = {
   init: function() {
