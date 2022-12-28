@@ -3,8 +3,9 @@ Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/12/29 01:55
 https://www.facebook.com/francefu
 */
 
-let BOT_ACCESS_TOKEN = "";
-let openaiToken = "";
+let channel_access_TOKEN = "";
+let openAI_TOKEN = "";
+
 let maxTokens = 256;
 let userMessage = "";
 let userId = "";
@@ -37,7 +38,7 @@ function doPost(e) {
       //"stop": "\n"	  
     };    
 
-    const authHeader = "Bearer "+openaiToken;
+    const authHeader = "Bearer "+openAI_TOKEN;
     const options = {
       headers: {Authorization: authHeader},
       method: 'POST',
@@ -52,7 +53,7 @@ function doPost(e) {
       "type":"text",
       "text": openAI_response
     }]
-    sendMessageToLineBot(BOT_ACCESS_TOKEN, replyToken, replyMessage);
+    sendMessageToLineBot(channel_access_TOKEN, replyToken, replyMessage);
   }
 
   return  ContentService.createTextOutput("Return = Finish");  
