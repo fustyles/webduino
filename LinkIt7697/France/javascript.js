@@ -57,10 +57,14 @@ Blockly.Arduino['esp32_blekeyboard_keycode'] = function(block) {
 
 Blockly.Arduino['esp32_blekeyboard_chartoascii'] = function(block) {	
 	var character = Blockly.Arduino.valueToCode(block, 'character', Blockly.Arduino.ORDER_ATOMIC)||"";
-	console.log(character);
+	var type = block.getFieldValue('type');
+
 	if (character.indexOf('"')!=-1)
 		character = "'"+character.replace(/"/g,"")+"'";
-	character = "(int)"+character;
+	if (type=="integer")
+		character = "(int)"+character;
+	else
+		character = "String((int)"+character+")";
 	return [character, Blockly.Arduino.ORDER_NONE];
 };
 

@@ -225,7 +225,12 @@ Blockly.Blocks['esp32_blekeyboard_chartoascii'] = {
 		.setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT);
 	this.appendDummyInput()
-        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_TRANSFER_ASCII_SHOW"]);		
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_TRANSFER_ASCII_SHOW"]);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["ESP32_BLEKEYBOARD_INTEGER_SHOW"],"integer"],		
+			[Blockly.Msg["ESP32_BLEKEYBOARD_STRING_SHOW"],"string"]		
+		]), "type");		
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
     this.setColour(110);

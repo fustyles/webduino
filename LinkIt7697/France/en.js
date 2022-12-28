@@ -1918,4 +1918,6 @@ Blockly.Msg["ESP32_BLEKEYBOARD_CHARACTERS_SHOW"] = "String";
 Blockly.Msg["ESP32_BLEKEYBOARD_WRITE_SHOW"] = "ESP32 BLE Keyboard write";
 Blockly.Msg["ESP32_BLEKEYBOARD_ASCII_SHOW"] = "ASCII code";
 Blockly.Msg["ESP32_BLEKEYBOARD_CHARACTER_SHOW"] = "Character";
-Blockly.Msg["ESP32_BLEKEYBOARD_TRANSFER_ASCII_SHOW"] = "transfer into ASCII integer code";
+Blockly.Msg["ESP32_BLEKEYBOARD_TRANSFER_ASCII_SHOW"] = "transfer ASCII code to";
+Blockly.Msg["ESP32_BLEKEYBOARD_INTEGER_SHOW"] = "integer";		
+Blockly.Msg["ESP32_BLEKEYBOARD_STRING_SHOW"] = "string";
