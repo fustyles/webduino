@@ -173,3 +173,23 @@ Blockly.Blocks['faceapidetect_recognitied'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['faceapidetect_number'] = {
+  init: function() {
+  this.appendDummyInput() 
+      .appendField(Blockly.Msg.FACEAPIDETECT_NUMBER_SHOW); 	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['faceapidetect_canvas_get'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIDETECT_CANVAS_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(60);
+  }
+};

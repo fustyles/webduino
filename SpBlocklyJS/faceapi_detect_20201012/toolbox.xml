@@ -33,7 +33,9 @@
         <field name="NUM">0</field>
       </block>
     </value> 
-  </block>  
+  </block>
+  <block type="faceapidetect_number">
+  </block>
   <block type="faceapidetect_state">
   </block>
   <block type="faceapidetect_clear">
@@ -56,5 +58,7 @@
         <field name="NUM">1000</field>
       </block>
     </value> 			  
-  </block>   
+  </block>  
+  <block type="faceapidetect_canvas_get">		  
+  </block>
 </category>

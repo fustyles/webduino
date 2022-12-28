@@ -33,3 +33,5 @@ Blockly.Msg.FACEAPIDETECT_BOXHEIGHT_SHOW = "boxHeight";
 Blockly.Msg.FACEAPIDETECT_CLEAR_SHOW = "Face Detection clear result";
 Blockly.Msg.FACEAPIDETECT_PAUSE_SHOW = "Face Detection Pause";
 Blockly.Msg.FACEAPIDETECT_RECOGNITIED_SHOW = "Face Detection recognitied";
+Blockly.Msg.FACEAPIDETECT_NUMBER_SHOW = "Face Detection (faceapi.js) get faces number";
+Blockly.Msg.FACEAPIDETECT_CANVAS_GET_SHOW = "Face Detection (faceapi.js) Get Video ID";

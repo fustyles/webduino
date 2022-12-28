@@ -35,6 +35,8 @@ var catFaceDetect ='<xml>'+
 '          </block>'+
 '        </value>'+
 '      </block>'+
+'      <block type="faceapidetect_number">'+
+'      </block>'+
 '      <block type="faceapidetect_state">'+
 '      </block>'+
 '      <block type="faceapidetect_clear">'+
@@ -57,6 +59,8 @@ var catFaceDetect ='<xml>'+
 '            <field name="NUM">1000</field>'+
 '          </block>'+
 '        </value>'+
+'      </block>'+
+'      <block type="faceapidetect_canvas_get">'+			  
 '      </block>'+
 '    </category>'+
 '</xml>';
