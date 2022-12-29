@@ -16,15 +16,15 @@ function doPost(e) {
 
   if (e.postData) {
 
-    var msg = JSON.parse(e.postData.contents);
+    let msg = JSON.parse(e.postData.contents);
     userMessage = msg.events[0].message.text.trim();
     userId = msg.events[0].source.userId;
     eventType = msg.events[0].source.type;
     replyToken = msg.events[0].replyToken;  
 
-    var url = "https://api.openai.com/v1/completions";
+    let url = "https://api.openai.com/v1/completions";
 
-    var data = {
+    let data = {
       "model": "text-davinci-003",
       "prompt": userMessage,
       "temperature": 0,
