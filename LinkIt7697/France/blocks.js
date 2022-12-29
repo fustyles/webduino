@@ -22095,4 +22095,6 @@ Blockly.Blocks['faceapirecognize_canvas_get'] = {
   }
 };
 
+/*
 if (typeof topCheck !== "undefined") topCheck = false;
+*/
