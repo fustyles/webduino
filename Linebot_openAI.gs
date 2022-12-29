@@ -61,7 +61,7 @@ function doPost(e) {
 
 function sendMessageToLineBot(accessToken, replyToken, reply_message) {
 
-  var url = 'https://api.line.me/v2/bot/message/reply';
+  let url = 'https://api.line.me/v2/bot/message/reply';
   UrlFetchApp.fetch(url, {
     'headers': {
       'Content-Type': 'application/json; charset=UTF-8',
