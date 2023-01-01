@@ -87,8 +87,11 @@ function openai_image_request(input_text, input_size) {
 		let json = eval("(" + xhr.responseText + ")");
 		if (json["data"])
 			open_ai_response_url = json["data"][0]["url"];
+		else if (json["error"])
+			open_ai_response_url = "error";		
 		else
 			open_ai_response_url = "";
+		//console.log(open_ai_response_url);
 		//console.log(open_ai_response_url);
 		
 		if (typeof openai_image_response === 'function') openai_image_response();
