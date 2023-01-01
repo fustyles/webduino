@@ -1013,7 +1013,7 @@ Blockly.Msg["MQTT_FU_SERVER_WHEN_GETDATA"] = "After getting module string";
 Blockly.Msg["MQTT_FU_GETDATA_TOPIC"] = "when getting text and the topic is";
 Blockly.Msg["MQTT_FU_TO_TOPIC"] = "to topic";
 Blockly.Msg["MQTT_FU_PUBLISH_TEXT"] = "publish text";
-Blockly.Msg["MQTT_FU_GETDATA"] = "get data";
+Blockly.Msg["MQTT_FU_GETDATA"] = "get text";
 Blockly.Msg["MQTT_FU_PUBLISH_IMAGE"] = "publish image (ESP32-CAM)";
 Blockly.Msg["MQTT_FU_LOOP"] = "monitor connection";
 

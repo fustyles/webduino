@@ -1022,7 +1022,7 @@ Blockly.Msg["MQTT_FU_SERVER_WHEN_GETDATA"] = "當收到訊息取得模組指令�
 Blockly.Msg["MQTT_FU_GETDATA_TOPIC"] = "當取得訊息的主題為";
 Blockly.Msg["MQTT_FU_TO_TOPIC"] = "向主題";
 Blockly.Msg["MQTT_FU_PUBLISH_TEXT"] = "發布訊息字串";
-Blockly.Msg["MQTT_FU_GETDATA"] = "取得資料";
+Blockly.Msg["MQTT_FU_GETDATA"] = "取得訊息字串";
 Blockly.Msg["MQTT_FU_PUBLISH_IMAGE"] = "發布影像 (ESP32-CAM)";
 Blockly.Msg["MQTT_FU_LOOP"] = "監聽一次連線";
 
