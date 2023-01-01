@@ -15,3 +15,4 @@ Blockly.Msg.OPENAI_IMAGE_REQUEST_SHOW = "Send request content of image";
 Blockly.Msg.OPENAI_IMAGE_RESPONSE_SHOW = "After getting the url of image";
 Blockly.Msg.OPENAI_IMAGE_RESPONSE_GET_SHOW = "image url";
 Blockly.Msg.OPENAI_IMAGE_RESPONSE_CLEAR_SHOW = "Clear image url";
+Blockly.Msg.OPENAI_IMAGE_SIZE_SHOW = "Size";

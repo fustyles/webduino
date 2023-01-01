@@ -100,7 +100,7 @@ Blockly.Blocks['openai_image_request'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.OPENAI_IMAGE_REQUEST_SHOW);
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_BR_SHOW)
+      .appendField(Blockly.Msg.OPENAI_IMAGE_SIZE_SHOW)
       .appendField(new Blockly.FieldDropdown([
 			["256x256","256x256"],
 			["512x512","512x512"],			

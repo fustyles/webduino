@@ -15,3 +15,4 @@ Blockly.Msg.OPENAI_IMAGE_REQUEST_SHOW = "發送圖片內容";
 Blockly.Msg.OPENAI_IMAGE_RESPONSE_SHOW = "取得回應網址後執行";
 Blockly.Msg.OPENAI_IMAGE_RESPONSE_GET_SHOW = "回應網址";
 Blockly.Msg.OPENAI_IMAGE_RESPONSE_CLEAR_SHOW = "清除回應網址";
+Blockly.Msg.OPENAI_IMAGE_SIZE_SHOW = "尺寸";

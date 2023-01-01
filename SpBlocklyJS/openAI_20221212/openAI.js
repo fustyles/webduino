@@ -92,7 +92,6 @@ function openai_image_request(input_text, input_size) {
 		else
 			open_ai_response_url = "";
 		//console.log(open_ai_response_url);
-		//console.log(open_ai_response_url);
 		
 		if (typeof openai_image_response === 'function') openai_image_response();
 	 }};
