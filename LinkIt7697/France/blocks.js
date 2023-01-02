@@ -213,7 +213,7 @@ Blockly.Blocks['esp32_blekeyboard_keycode'] = {
         .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_ASCII_SHOW"]);		
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
-    this.setColour(110);
+    this.setColour(150);
   }
 };
 
