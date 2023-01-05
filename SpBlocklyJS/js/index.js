@@ -159,7 +159,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='WebUSB_20210813/WebUSB_elements.js'></script>";
 			script += "<script src='WebUSB_20210813/demos/serial.js'></script>";
 			script += "<script src='WebUSB_20210813/demos/arduino/arduino.js'></script>";
-		}			
+		}
+		if (xml.indexOf("robotfly_")!=-1) {
+			script += "<script src='RobotFly_20220127/RobotFly.js'></script>";
+		}		
 				
 		return script;
 	}	
@@ -310,7 +313,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebUSB_20210813/WebUSB_elements.js'></script>";
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebUSB_20210813/demos/serial.js'></script>";
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebUSB_20210813/demos/arduino/arduino.js'></script>";
-		}		
+		}
+		if (xml.indexOf("robotfly_")!=-1) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/RobotFly_20220127/RobotFly.js'></script>";
+		}			
 		
 		return script;
 	}		
@@ -352,7 +358,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		catTrackingColor,
 		catTesseract,
 		catInstascan,
-		catOpenAI
+		catOpenAI,
+		"<sep></sep>",
+		catRobotFly
 	];
 	
 	
