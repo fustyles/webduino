@@ -1,4 +1,4 @@
-Blockly.Msg["CATSERIAL"] = "Web Serial";
+Blockly.Msg["CATWEBSERIAL"] = "Web Serial";
 Blockly.Msg.WEBSERIAL_ELEMENT_SHOW = "Web Serial connect button";
 Blockly.Msg.WEBSERIAL_SHOW_SHOW = "Show";
 Blockly.Msg.WEBSERIAL_STATE_SHOW = "Web Serial connect state";

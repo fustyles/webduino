@@ -1,5 +1,5 @@
 var catWebSerial ='<xml>'+
-'<category name="%{BKY_CATSERIAL}" id="catwebserial" colour="250">'+
+'<category name="%{BKY_CATWEBSERIAL}" id="catwebserial" colour="250">'+
 	'<block type="webserial_button">'+ 
 	'</block>'+	
 	'<block type="webserial_button_position">'+

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Origin Trial Token, feature = WebUSB (For Chrome M57+), origin = https://webusb.github.io, expires = 2017-06-19 -->
+    <meta http-equiv="origin-trial" data-feature="WebUSB (For Chrome M57+)" data-expires="2017-06-19" content="Ag83MurQOa5N4SKRCqqtSlbycfe08s5LgUiqEI7J3jTk2NEIpRp7SLPz2i+EBDuXyf+AeRMdD6BI++kTSJmGzQEAAABReyJvcmlnaW4iOiJodHRwczovL3dlYnVzYi5naXRodWIuaW86NDQzIiwiZmVhdHVyZSI6IldlYlVTQjIiLCJleHBpcnkiOjE0OTc4OTM2OTV9">
+    <title>WebUSB for Arduino Leonardo</title>
+    <script src="../serial.js"></script>
+    <script src="arduino.js"></script>
+  </head>
+ 
+<body>
+<button id="connect">Connect to Arduino Leonardo</button><br><span id="status" style="color:red"></span>
+<table>
+ <tr>
+  <td valign="top">
+   <form>
+     <table >
+      <tr><td>WebUSB for Arduino Leonardo</td></tr>
+      <tr>
+      <td>
+      <input type="radio" name="choice" id="choice1" checked>
+      <select name="cmd" id="cmd">
+      <option value="inputpullup">inputpullup</option>
+      <option value="pinmode">pinmode</option>
+      <option value="digitalwrite">digitalwrite(pin,value)</option>
+      <option value="analogwrite">analogwrite</option>
+      <option value="digitalread">digitalread(pin)</option>
+      <option value="analogread">analogread(pin)</option>
+      <option value="i2cLcd">i2cLcd(address,2,3,text1,text2)</option>
+      </select>
+      <br>
+      <input type="radio" name="choice" id="choice2">
+      <input type="text" name="cmdcustom" id="cmdcustom" size="24"><input type="reset" value="Clear" height="50">
+      </td>
+      </tr>
+      <tr>
+      <td>P1：<input type="text" name="P1" id="P1" size="30" onclick="this.select()"></td>
+      </tr>
+      <tr>
+      <td>P2：<input type="text" name="P2" id="P2" size="30" onclick="this.select()"></td>
+      </tr>
+      <tr>
+      <td>P3：<input type="text" name="P3" id="P3" size="30" onclick="this.select()"></td>
+      </tr>
+      <tr>
+      <td>P4：<input type="text" name="P4" id="P4" size="30" onclick="this.select()"></td>
+      </tr>
+      <tr>
+      <td>P5：<input type="text" name="P5" id="P5" size="30" onclick="this.select()"></td>
+      </tr>
+      <tr>
+      <td>P6：<input type="text" name="P6" id="P6" size="30" onclick="this.select()"></td>
+      </tr>
+      <tr>
+      <td>P7：<input type="text" name="P7" id="P7" size="30" onclick="this.select()"></td>
+      </tr>
+      <tr>
+      <td>P8：<input type="text" name="P8" id="P8" size="30" onclick="this.select()"></td>
+      </tr>
+      <tr>
+      <td>P9：<input type="text" name="P9" id="P9" size="30" onclick="this.select()"></td>
+      </tr>
+      <tr>
+      <td align="center"><span id="response" style="color:red"></span></td>
+      </tr>
+     </table>
+     </form>
+  </td>
+ </tr>
+ <tr style="display:none"><td>Command：<input type="text" name="command" id="command" size="22" value="?digitalwrite=13;1"></td></tr>
+ <tr><td align="right"><button id="getcommand" onclick="getCommand();">Send Command</button><button id="send" style="display:none">Send Command</button></td></tr>
+</table>
+
+</body>
+</html>
+
+<script>
+  function getCommand() {
+    if (document.getElementById("choice1").checked)
+        var cmd=document.getElementById("cmd").value;
+    else
+        var cmd=document.getElementById("cmdcustom").value;
+    
+    var P1=document.getElementById("P1").value;
+    var P2=document.getElementById("P2").value;
+    var P3=document.getElementById("P3").value;
+    var P4=document.getElementById("P4").value;
+    var P5=document.getElementById("P5").value;
+    var P6=document.getElementById("P6").value;
+    var P7=document.getElementById("P7").value;
+    var P8=document.getElementById("P8").value;
+    var P9=document.getElementById("P9").value;
+    var link="?"+cmd+"="+P1+";"+P2+";"+P3+";"+P4+";"+P5+";"+P6+";"+P7+";"+P8+";"+P9;
+    document.getElementById("command").value=link;
+    return false;
+  }
+  
+  /*
+  function autoRun() {
+    var strUrl=location.search;
+    if (strUrl.indexOf("?")!=-1&&strUrl.indexOf("&cmd")!=-1) {
+      document.getElementById("command").value = strUrl.split("?")[1].split("&")[0];
+    }
+  }
+  */
+</script>

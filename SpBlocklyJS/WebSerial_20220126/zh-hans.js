@@ -1,4 +1,4 @@
-Blockly.Msg["CATSERIAL"] = "网页序列埠";
+Blockly.Msg["CATWEBSERIAL"] = "网页序列埠";
 Blockly.Msg.WEBSERIAL_ELEMENT_SHOW = "网页序列埠 元素";
 Blockly.Msg.WEBSERIAL_SHOW_SHOW = "显示";
 Blockly.Msg.WEBSERIAL_STATE_SHOW = "网页序列埠 开发板连线状态";
