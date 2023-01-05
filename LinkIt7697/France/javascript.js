@@ -1,3 +1,60 @@
+Blockly.Arduino['webusb_server_initial'] = function(block) {	
+    var baudrate = block.getFieldValue('baudrate');
+	var read = block.getFieldValue('read');
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+	
+	Blockly.Arduino.definitions_.define_webusb = ''
+	+'#include "WebUSB.h"\n'
+	+'WebUSB WebUSBSerial(1, "");\n'
+	+'#define Serial WebUSBSerial\n';
+	
+	if (Blockly.Arduino.definitions_.define_custom_command!='')
+		Blockly.Arduino.definitions_.define_custom_command = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
+	
+	Blockly.Arduino.setups_.setup_serial = 'while (!Serial) {}\nSerial.begin('+baudrate+');\n  delay(10);\n';
+	
+	Blockly.Arduino.definitions_.getCommand = ''+
+			'void getCommand(char c) {\n'+
+			'  if (c==\'?\') receiveState=1;\n'+
+			'  if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) receiveState=0;\n'+
+			'  \n'+
+			'  if (receiveState==1) {\n'+
+			'    Command=Command+String(c);\n'+
+			'    \n'+
+			'    if (c==\'=\') cmdState=0;\n'+
+			'    if (c==\';\') pState++;\n'+
+			'    \n'+
+			'    if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==2)&&(c!=\';\')) p2=p2+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==3)&&(c!=\';\')) p3=p3+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==4)&&(c!=\';\')) p4=p4+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==5)&&(c!=\';\')) p5=p5+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==6)&&(c!=\';\')) p6=p6+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==7)&&(c!=\';\')) p7=p7+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==8)&&(c!=\';\')) p8=p8+String(c);\n'+
+			'    if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) p9=p9+String(c);\n'+
+			'    \n'+
+			'    if (c==\'?\') questionState=1;\n'+
+			'    if (c==\'=\') equalState=1;\n'+
+			'    if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'+
+			'  }\n'+
+			'}\n';
+	
+	
+	var code =	'if (WebUSBSerial.available()) {\n'+
+				'  Command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'+
+				'  receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'+
+				'  while (WebUSBSerial.available()) {\n'+
+				'    getCommand(WebUSBSerial.read());\n'+
+				'    delay(1);\n'+
+				'  }\n'+statement+
+				'  WebUSBSerial.flush();\n'+				
+				'}\n';
+	
+	return code;
+};
+
 Blockly.Arduino['esp32_blekeyboard'] = function(block) {
     var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
 	Blockly.Arduino.definitions_.define_esp32_blekeyboard_include = '#include <BleKeyboard.h>\nBleKeyboard bleKeyboard;\n';

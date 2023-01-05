@@ -1347,6 +1347,8 @@ Blockly.Msg["UART_READ_NEWLINE_SHOW"] = "Read string until newline character";
 Blockly.Msg["UART_READ_RETURN_SHOW"] = "Read string until return character";
 Blockly.Msg["UART_READ_CUSTOM_SHOW"] = "Read string until a custom character";
 
+Blockly.Msg["WEBUSB_SHOW"] = "Web USB";
+
 Blockly.Msg["DFPLAYER_INITIAL_SHOW"] = "DFPlayer Mini set";
 Blockly.Msg["DFPLAYER_COMMAND_SHOW"] = "DFPlayer command";
 Blockly.Msg["DFPLAYER_COMMAND_SLEEP_SHOW"] = "SLEEP";

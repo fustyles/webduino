@@ -1,3 +1,38 @@
+Blockly.Blocks['webusb_server_initial'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["WEBUSB_SHOW"]);	
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.UART_BAUDRATE_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			["300","300"],
+			["1200","1200"],
+			["2400","2400"],
+			["4800","4800"],
+			["9600","9600"],	    
+			["19200","19200"],
+			["38400","38400"],
+			["57600","57600"],
+			["74880","74880"],
+			["115200","115200"],	
+			["230400","230400"],
+			["250000","250000"],
+			["500000","500000"],
+			["1000000","1000000"],	
+			["2000000","2000000"]
+		]), "baudrate");
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["UART_SERVER_AFTER_READ_SHOW"]);			
+    this.appendStatementInput("statement")
+        .setCheck(null);
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(190);
+  }
+};
+
 Blockly.Blocks['esp32_blekeyboard'] = {
   init: function() {
     this.appendDummyInput()

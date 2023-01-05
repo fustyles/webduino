@@ -1356,6 +1356,8 @@ Blockly.Msg["UART_READ_NEWLINE_SHOW"] = "讀取字串直到換行字元\\n";
 Blockly.Msg["UART_READ_RETURN_SHOW"] = "讀取字串直到歸位字元\\r";
 Blockly.Msg["UART_READ_CUSTOM_SHOW"] = "讀取字串直到特定字元";
 
+Blockly.Msg["WEBUSB_SHOW"] = "網頁USB";
+
 Blockly.Msg["DFPLAYER_INITIAL_SHOW"] = "DFPlayer Mini 初始化序列埠通訊";
 Blockly.Msg["DFPLAYER_COMMAND_SHOW"] = "DFPlayer Mini 指令";
 Blockly.Msg["DFPLAYER_COMMAND_SLEEP_SHOW"] = "睡眠";
