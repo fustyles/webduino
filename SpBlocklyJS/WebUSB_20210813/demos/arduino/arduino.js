@@ -2,35 +2,32 @@
   'use strict';
 
   document.addEventListener('DOMContentLoaded', event => {
-    let connectButton = document.querySelector("#connect");
-    let statusDisplay = document.querySelector('#statusDisplay');
-    let response = document.querySelector('#response');
+    let webusb_open = document.querySelector("#gamebutton_webusb_open");
+	let webusb_close = document.querySelector("#gamebutton_webusb_close");
+    let gamespan_status = document.querySelector('#gamespan_status');
+    let gamespan_response = document.querySelector('#gamespan_response');
     let command = document.querySelector('#command');
-    let send = document.querySelector('#send');
+    let gamebutton_send = document.querySelector('#gamebutton_send');
     let port;
 
-    function connect() {
+    function webusb_connect() {
       port.connect().then(() => {
-        //statusDisplay.textContent = port.device_.productName+" is connected.";
-        statusDisplay.innerHTML = port.device_.productName+" is connected.";
-        //connectButton.textContent = 'Disconnect to Arduino(USB)';
-        connectButton.value = 'Disconnect to Arduino(USB)';
+        //gamespan_status.textContent = port.device_.productName+" is connected.";
+        gamespan_status.innerHTML = port.device_.productName+" is connected.";
         
         port.onReceive = data => {       
           let textDecoder = new TextDecoder();
-          //response.textContent = textDecoder.decode(data);
-          response.innerHTML = textDecoder.decode(data);
+          //gamespan_response.textContent = textDecoder.decode(data);
+          gamespan_response.innerHTML = textDecoder.decode(data);
 		  if (typeof webusb_getdata === 'function') webusb_getdata();
         }
         port.onReceiveError = error => {
-          //connectButton.textContent = 'Connect to Arduino(USB)';
-          connectButton.value = 'Connect to Arduino(USB)';
-          //statusDisplay.textContent = error;
-          statusDisplay.innerHTML = error;
+          //gamespan_status.textContent = error;
+          gamespan_status.innerHTML = error;
         };
       }, error => {
         connectButton.textContent = 'Connect to Arduino(USB)';
-        statusDisplay.textContent = error;
+        gamespan_status.textContent = error;
       });
     }
 
@@ -48,32 +45,35 @@
 
     setInterval(function(){if (command.value!="") onUpdate();}, 10);
     
-    send.addEventListener('click', onUpdate);
+    gamebutton_send.addEventListener('click', onUpdate);
 
-    connectButton.addEventListener('click', function() {
-      if (port) {
-        port.disconnect();
-        connectButton.textContent = 'Connect to Arduino(USB)';
-        statusDisplay.textContent = '';
-        port = null;
-      } else {
+    webusb_open.addEventListener('click', function() {
+      if (!port) {
         serial.requestPort().then(selectedPort => {
           port = selectedPort;
-          connect();
+          webusb_connect();
         }).catch(error => {
-          statusDisplay.textContent = error;
+          gamespan_status.textContent = error;
         });
       }
     });
+	
+    webusb_close.addEventListener('click', function() {
+      if (port) {
+        port.disconnect();
+        gamespan_status.textContent = '';
+        port = null;
+      }
+    });	
 
     serial.getPorts().then(ports => {
       if (ports.length == 0) {
-        statusDisplay.textContent = 'No device found.';
+        gamespan_status.textContent = 'No device found.';
       } else {
-        statusDisplay.textContent = 'Select your device.';
-        //statusDisplay.textContent = 'Connect to '+ports[0].productName;
+        gamespan_status.textContent = 'Select your device.';
+        //gamespan_status.textContent = 'Connect to '+ports[0].productName;
         //port = ports[0];
-        //connect();
+        //webusb_connect();
       }
     });
   });

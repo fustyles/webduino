@@ -4,9 +4,10 @@ Blockly.Blocks['webusb_button'] = {
         .appendField(Blockly.Msg.WEBUSB_ELEMENT_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg.WEBUSB_CONNECT_SHOW,"connect"],
-		[Blockly.Msg.WEBUSB_STATUS_SHOW,"status"]
-  	]), "id_");	  
+		[Blockly.Msg.WEBUSB_CONNECT_SHOW,"gamebutton_webusb_open"],
+		[Blockly.Msg.WEBUSB_CLOSE_SHOW,"gamebutton_webusb_close"],
+		[Blockly.Msg.WEBUSB_STATUS_SHOW,"gamespan_response"]
+  	]), "id_"); 
     this.appendDummyInput()  
 	.appendField(Blockly.Msg.WEBUSB_SHOW_SHOW)	  
         .appendField(new Blockly.FieldDropdown([
@@ -26,9 +27,10 @@ Blockly.Blocks['webusb_button_position'] = {
         .appendField(Blockly.Msg.WEBUSB_ELEMENT_SHOW);	  
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg.WEBUSB_CONNECT_SHOW,"connect"],
-		[Blockly.Msg.WEBUSB_STATUS_SHOW,"status"]
-  	]), "id_");	  
+		[Blockly.Msg.WEBUSB_CONNECT_SHOW,"gamebutton_webusb_open"],
+		[Blockly.Msg.WEBUSB_CLOSE_SHOW,"gamebutton_webusb_close"],
+		[Blockly.Msg.WEBUSB_STATUS_SHOW,"gamespan_response"]
+  	]), "id_");  
   this.appendValueInput("left_")
       .setCheck("Number")
       .appendField(Blockly.Msg.WEBUSB_BUTTON_LEFT_SHOW);  
