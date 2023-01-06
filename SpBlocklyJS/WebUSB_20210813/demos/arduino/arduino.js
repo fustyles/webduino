@@ -26,7 +26,6 @@
           gamespan_status.innerHTML = error;
         };
       }, error => {
-        connectButton.textContent = 'Connect to Arduino(USB)';
         gamespan_status.textContent = error;
       });
     }
