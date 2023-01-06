@@ -625,7 +625,35 @@
 			</block>			  
 		</category>
 
-
+		<category id="france20" name="webusb"> 
+			<block type="webusb_server_initial">
+				<field name="baudrate">9600</field>
+				<statement name="statement">
+				  <block type="customcode_comment">
+					<value name="text">
+					  <block type="text">
+						<field name="TEXT">?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
+					  </block>
+					</value>
+				  </block>
+				</statement>
+			  </block>
+			<block type="fu_serial_print">
+				<value name="data">
+					<shadow type="text">
+						<field name="TEXT"></field>
+					</shadow>
+				</value>
+			</block>
+			<block type="fu_serial_println">
+				<value name="data">
+					<shadow type="text">
+						<field name="TEXT"></field>
+					</shadow>
+				</value>
+			</block>			  
+		</category> 	
+		
 		<category id="france20" name="serveresp32"> 
 			  <block type="esp32_myfirmata">
 				<value name="ssid">
@@ -788,36 +816,6 @@
 			  </block>			  
 		</category> 
 
-		<category id="france20" name="webusb"> 
-			<block type="webusb_server_initial">
-				<field name="baudrate">9600</field>
-				<statement name="statement">
-				  <block type="customcode_comment">
-					<value name="text">
-					  <block type="text">
-						<field name="TEXT">?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
-					  </block>
-					</value>
-				  </block>
-				</statement>
-			  </block>
-			<block type="fu_serial_print">
-				<value name="data">
-					<shadow type="text">
-						<field name="TEXT"></field>
-					</shadow>
-				</value>
-			</block>
-			<block type="fu_serial_println">
-				<value name="data">
-					<shadow type="text">
-						<field name="TEXT"></field>
-					</shadow>
-				</value>
-			</block>			  
-		</category> 		
-				
-		
 		<category id="france22" name="serverlinkit7697"> 	  
 			  <block type="linkit7697_myfirmata">
 				<value name="ssid">
