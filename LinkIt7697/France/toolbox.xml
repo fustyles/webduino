@@ -9848,19 +9848,9 @@
 	  </block> 
 	  <block type="PN532_read">			
 	  </block>
-	  <block type="PN532_clear_data">
-		<value name="block_">
-		  <block type="math_number">
-			<field name="NUM">8</field>
-		  </block>		
-		</value>	  
+	  <block type="PN532_clear_data">  
 	  </block>
 	  <block type="PN532_write_data">
-		<value name="block_">
-		  <block type="math_number">
-			<field name="NUM">8</field>
-		  </block>		
-		</value>
 		<value name="data">
 		  <block type="text">
 			<field name="TEXT"></field>
@@ -9868,23 +9858,13 @@
 		</value>		
 	  </block>
 	  <block type="PN532_write_data_NDEF">
-		<value name="block_">
-		  <block type="math_number">
-			<field name="NUM">4</field>
-		  </block>		
-		</value>
 		<value name="data">
 		  <block type="text">
 			<field name="TEXT">fustyles.com</field>
 		  </block>		
 		</value>		
 	  </block>  	  
-	  <block type="PN532_read_data">
-		<value name="block_">
-		  <block type="math_number">
-			<field name="NUM">8</field>
-		  </block>		
-		</value>	  
+	  <block type="PN532_read_data">	  
 	  </block>
 	</category>	
 	

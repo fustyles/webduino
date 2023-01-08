@@ -389,33 +389,35 @@ Blockly.Arduino['PN532_read'] = function(block) {
 };
 
 Blockly.Arduino['PN532_write_data'] = function(block) {
-	var block_ = Blockly.Arduino.valueToCode(block, 'block_', Blockly.Arduino.ORDER_ATOMIC)||4;
+	var sector_ = Number(block.getFieldValue('sector_'))||2;
+	var block_ = Number(block.getFieldValue('block_'))||0;
 	var data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC)||"";
 														
-    var code = 'PN532_writeData('+block_+', '+data+', false, 0);\n' ;
+    var code = 'PN532_writeData('+(sector_*4+block_)+', '+data+', false, 0);\n' ;
 	return code;
 };
 
 Blockly.Arduino['PN532_write_data_NDEF'] = function(block) {
-	var block_ = Blockly.Arduino.valueToCode(block, 'block_', Blockly.Arduino.ORDER_ATOMIC)||4;
 	var ndefprefix = block.getFieldValue('ndefprefix');
 	var data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC)||"";
 														
-    var code = 'PN532_writeData('+block_+', '+data+', true, '+ndefprefix+');\n' ;
+    var code = 'PN532_writeData(4, '+data+', true, '+ndefprefix+');\n' ;
 	return code;
 };
 
 Blockly.Arduino['PN532_read_data'] = function(block) {
-	var block_ = Blockly.Arduino.valueToCode(block, 'block_', Blockly.Arduino.ORDER_ATOMIC)||4;
+	var sector_ = Number(block.getFieldValue('sector_'))||2;
+	var block_ = Number(block.getFieldValue('block_'))||0;
 								
-    var code = 'PN532_readData('+block_+')' ;
+    var code = 'PN532_readData('+(sector_*4+block_)+')' ;
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['PN532_clear_data'] = function(block) {
-	var block_ = Blockly.Arduino.valueToCode(block, 'block_', Blockly.Arduino.ORDER_ATOMIC)||4;
+	var sector_ = Number(block.getFieldValue('sector_'))||2;
+	var block_ = Number(block.getFieldValue('block_'))||0;
 
-    var code = 'PN532_writeData('+block_+', "", false, 0);\n';
+    var code = 'PN532_writeData('+(sector_*4+block_)+', "", false, 0);\n';
 	return code;
 };
 

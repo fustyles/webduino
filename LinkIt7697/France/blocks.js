@@ -483,9 +483,31 @@ Blockly.Blocks['PN532_write_data'] = {
   init: function() {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["PN532_SHOW"]);
-	this.appendValueInput("block_")
-		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"]+"[8-11]")
-		.setCheck("Number");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SECTOR_SHOW"])
+		.appendField(new Blockly.FieldDropdown([
+			["2","2"],	
+			["3","3"],
+			["4","4"],
+			["5","5"],	
+			["6","6"],
+			["7","7"],
+			["8","8"],	
+			["9","9"],
+			["10","10"],
+			["11","11"],	
+			["12","12"],
+			["13","13"],
+			["14","14"],
+			["15","15"]
+		]), "sector_");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"])
+		.appendField(new Blockly.FieldDropdown([
+			["0","0"],	
+			["1","1"],
+			["2","2"]		
+		]), "block_");		
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["PN532_WRITE_DATA_SHOW"]);		
 	this.appendValueInput("data")
@@ -501,10 +523,7 @@ Blockly.Blocks['PN532_write_data'] = {
 Blockly.Blocks['PN532_write_data_NDEF'] = {
   init: function() {
 	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_SHOW"]);
-	this.appendValueInput("block_")
-		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"]+"[4-7]")
-		.setCheck("Number");		
+		.appendField(Blockly.Msg["PN532_SHOW"]);	
 	this.appendDummyInput()
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["PN532_HTTP_WWWDOT"],"NDEF_URIPREFIX_HTTP_WWWDOT"],	
@@ -527,9 +546,31 @@ Blockly.Blocks['PN532_read_data'] = {
   init: function() {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["PN532_SHOW"]);
-	this.appendValueInput("block_")
-		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"]+"[8-11]")
-		.setCheck("Number");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SECTOR_SHOW"])
+		.appendField(new Blockly.FieldDropdown([
+			["2","2"],	
+			["3","3"],
+			["4","4"],
+			["5","5"],	
+			["6","6"],
+			["7","7"],
+			["8","8"],	
+			["9","9"],
+			["10","10"],
+			["11","11"],	
+			["12","12"],
+			["13","13"],
+			["14","14"],
+			["15","15"]
+		]), "sector_");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"])
+		.appendField(new Blockly.FieldDropdown([
+			["0","0"],	
+			["1","1"],
+			["2","2"]		
+		]), "block_");
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["PN532_READ_DATA_SHOW"]);		
 	this.setInputsInline(true);	
@@ -542,9 +583,31 @@ Blockly.Blocks['PN532_clear_data'] = {
   init: function() {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["PN532_SHOW"]);
-	this.appendValueInput("block_")
-		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"]+"[8-11]")
-		.setCheck("Number");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SECTOR_SHOW"])
+		.appendField(new Blockly.FieldDropdown([
+			["2","2"],	
+			["3","3"],
+			["4","4"],
+			["5","5"],	
+			["6","6"],
+			["7","7"],
+			["8","8"],	
+			["9","9"],
+			["10","10"],
+			["11","11"],	
+			["12","12"],
+			["13","13"],
+			["14","14"],
+			["15","15"]
+		]), "sector_");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"])
+		.appendField(new Blockly.FieldDropdown([
+			["0","0"],	
+			["1","1"],
+			["2","2"]		
+		]), "block_");
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["PN532_CLEAR_DATA_SHOW"]);
 	this.setInputsInline(true);
