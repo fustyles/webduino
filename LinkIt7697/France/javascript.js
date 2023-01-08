@@ -136,14 +136,15 @@ Blockly.Arduino['PN532_NDEF_format'] = function(block) {
 														+'    boolean success;\n'
 														+'    success = nfc.mifareclassic_AuthenticateBlock (uid, uidLength, 0, 0, keya);\n'
 														+'    if (!success) {\n'
-														+'      Serial.println("Unable to authenticate block 0 to enable card formatting!");\n'
+														+'      //Serial.println("Unable to authenticate block 0 to enable card formatting!");\n'
 														+'      return;\n'
 														+'    }\n'
 														+'    success = nfc.mifareclassic_FormatNDEF();\n'
 														+'    if (!success) {\n'
-														+'      Serial.println("Unable to format the card for NDEF");\n'
+														+'      //Serial.println("Unable to format the card for NDEF");\n'
 														+'      return;\n'
 														+'    }\n'
+														+'    Serial.println("Format OK");\n'
 														+'  }\n'	
 														+'}';											
 												
