@@ -295,7 +295,7 @@ Blockly.Arduino['PN532_initial'] = function(block) {
 													+'uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 };\n'
 													+'uint8_t uidLength;\n'
 													+'uint8_t keya[6] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };\n'
-													+'uint8_t keyb[6] = { 0xD3, 0xF7, 0xD3, 0xF7, 0xD3, 0xF7 };\n';
+													+'uint8_t keyb[6] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };\n';
 	
 	if (mode==1)
 		Blockly.Arduino.setups_['PN532_wire'] = 'Wire.begin(I2C_SDA, I2C_SCL);\n';
