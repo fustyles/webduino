@@ -1891,7 +1891,7 @@ Blockly.Msg["TASKHANDLE_PICO_SHOW"] = "Pico W 雙核心";
 Blockly.Msg["TASKHANDLE_SETUP1_SHOW"] = "初始化1";
 Blockly.Msg["TASKHANDLE_LOOP1_SHOW"] = "重複執行1";
 
-Blockly.Msg["PN532_SHOW"] = "RFID (PN532)";
+Blockly.Msg["PN532_SHOW"] = "PN532 NFC";
 Blockly.Msg["PN532_INITIAL_SHOW"] = "I2C初始化";
 Blockly.Msg["PN532_READ_UID_SHOW"] = "讀取UID字串";
 Blockly.Msg["PN52_PIN_DEFAULT"] = "使用預設腳位";		
