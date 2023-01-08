@@ -3,8 +3,17 @@ Blockly.Blocks['PN532_initial'] = {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["PN532_SHOW"])
 		.appendField(Blockly.Msg["PN532_INITIAL_SHOW"]);
+	this.appendValueInput("keya")
+        .setAlign(Blockly.ALIGN_RIGHT) 	
+		.appendField(Blockly.Msg["PN532_KEYA"])
+		.setCheck("String");
+	this.appendValueInput("keyb")
+        .setAlign(Blockly.ALIGN_RIGHT) 	
+		.appendField(Blockly.Msg["PN532_KEYB"])
+		.setCheck("String");		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT) 
+		.appendField("I2C")
         .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["PN52_PIN_DEFAULT"],"0"],		
 			[Blockly.Msg["PN52_PIN_CUSTOM"],"1"]			
@@ -15,10 +24,11 @@ Blockly.Blocks['PN532_initial'] = {
 	this.appendValueInput("scl","scl")
 		.appendField("SCL")
 		.setCheck("Number");			
-	this.setInputsInline(true);
+	this.setInputsInline(false);
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
 	this.setColour(Blockly.Msg["HUE_25"]);
+	this.setHelpUrl("https://github.com/adafruit/Adafruit_NFCShield_I2C");	
   },
 	validate: function(newValue) {
 		const block = this.sourceBlock_;

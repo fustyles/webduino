@@ -1,8 +1,19 @@
 
 Blockly.Arduino['PN532_initial'] = function(block) {
 	var mode = block.getFieldValue('mode');
+	var keya = Blockly.Arduino.valueToCode(block, 'keya', Blockly.Arduino.ORDER_ATOMIC)||"0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF";
+	var keyb = Blockly.Arduino.valueToCode(block, 'keyb', Blockly.Arduino.ORDER_ATOMIC)||"0xD3, 0xF7, 0xD3, 0xF7, 0xD3, 0xF7";
 	var sda = Blockly.Arduino.valueToCode(block, 'sda', Blockly.Arduino.ORDER_ATOMIC)||21;
 	var scl = Blockly.Arduino.valueToCode(block, 'scl', Blockly.Arduino.ORDER_ATOMIC)||22;
+	
+	if ((keya.indexOf("'")==0)&&(keya.lastIndexOf("'")==keya.length-1))
+		keya = keya.substring(1,keya.length-1);
+	if ((keya.indexOf('"')==0)&&(keya.lastIndexOf('"')==keya.length-1))
+		keya = keya.substring(1,keya.length-1);
+	if ((keyb.indexOf("'")==0)&&(keyb.lastIndexOf("'")==keyb.length-1))
+		keyb = keyb.substring(1,keyb.length-1);
+	if ((keyb.indexOf('"')==0)&&(keyb.lastIndexOf('"')==keyb.length-1))
+		keyb = keyb.substring(1,keyb.length-1);	
 	
 	Blockly.Arduino.definitions_['PN532_initial'] = '#include <Wire.h>\n';
 	if (mode==1)
@@ -15,8 +26,8 @@ Blockly.Arduino['PN532_initial'] = function(block) {
 													+'PN532 nfc(pn532i2c);\n'
 													+'uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 };\n'
 													+'uint8_t uidLength;\n'
-													+'uint8_t keya[6] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };\n'
-													+'uint8_t keyb[6] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };\n'
+													+'uint8_t keya[6] = { '+keya+' };\n'
+													+'uint8_t keyb[6] = { '+keyb+' };\n'
 													+'String readerChip = "";\n'
 													+'String readerVersion = "";\n';
 	if (mode==1)

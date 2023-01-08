@@ -1902,6 +1902,8 @@ Blockly.Msg["PN532_UIDLENGTH"] = "Card UID length";
 Blockly.Msg["PN532_CHIP"] = "Reader chip";
 Blockly.Msg["PN532_VERSION"] = "Reader version";
 Blockly.Msg["PN532_NDEF_FORMAT_SHOW"] = "NDEF format";
+Blockly.Msg["PN532_KEYA"] = "Read/Write KEY";
+Blockly.Msg["PN532_KEYB"] = "NDEF KEY";
 
 Blockly.Msg["FU_SERVO_INDEX"] = "index";
 Blockly.Msg["FU_SERVO_DEFAULT"] = "default";

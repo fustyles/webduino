@@ -1910,6 +1910,8 @@ Blockly.Msg["PN532_UIDLENGTH"] = "磁卡(扣)識別碼長度";
 Blockly.Msg["PN532_CHIP"] = "讀寫器晶片";
 Blockly.Msg["PN532_VERSION"] = "讀寫器版本";
 Blockly.Msg["PN532_NDEF_FORMAT_SHOW"] = "NDEF格式化";
+Blockly.Msg["PN532_KEYA"] = "讀寫 KEY";
+Blockly.Msg["PN532_KEYB"] = "NDEF KEY";
 		
 Blockly.Msg["FU_SERVO_INDEX"] = "編號";
 Blockly.Msg["FU_SERVO_PULSEWIDTH"] = "脈衝寬度";
