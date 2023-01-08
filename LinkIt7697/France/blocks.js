@@ -19,9 +19,11 @@ Blockly.Blocks['PN532_initial'] = {
 			[Blockly.Msg["PN52_PIN_CUSTOM"],"1"]			
 		], this.validate), "mode");
 	this.appendValueInput("sda","sda")
+        .setAlign(Blockly.ALIGN_RIGHT) 		
 		.appendField("SDA")
 		.setCheck("Number");
 	this.appendValueInput("scl","scl")
+        .setAlign(Blockly.ALIGN_RIGHT) 		
 		.appendField("SCL")
 		.setCheck("Number");			
 	this.setInputsInline(false);

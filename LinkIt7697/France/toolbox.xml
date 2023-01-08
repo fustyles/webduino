@@ -9842,7 +9842,7 @@
 		</value>
 		<value name="keyb">
 		  <block type="text">
-			<field name="TEXT">0xD3, 0xF7, 0xD3, 0xF7, 0xD3, 0xF7</field>
+			<field name="TEXT">0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF</field>
 		  </block>		
 		</value>		
 		<value name="sda">
