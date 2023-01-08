@@ -2,7 +2,7 @@
 Blockly.Arduino['PN532_initial'] = function(block) {
 	var mode = block.getFieldValue('mode');
 	var keya = Blockly.Arduino.valueToCode(block, 'keya', Blockly.Arduino.ORDER_ATOMIC)||"0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF";
-	var keyb = Blockly.Arduino.valueToCode(block, 'keyb', Blockly.Arduino.ORDER_ATOMIC)||"0xD3, 0xF7, 0xD3, 0xF7, 0xD3, 0xF7";
+	var keyb = Blockly.Arduino.valueToCode(block, 'keyb', Blockly.Arduino.ORDER_ATOMIC)||"0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF";
 	var sda = Blockly.Arduino.valueToCode(block, 'sda', Blockly.Arduino.ORDER_ATOMIC)||21;
 	var scl = Blockly.Arduino.valueToCode(block, 'scl', Blockly.Arduino.ORDER_ATOMIC)||22;
 	
@@ -27,7 +27,7 @@ Blockly.Arduino['PN532_initial'] = function(block) {
 													+'uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 };\n'
 													+'uint8_t uidLength;\n'
 													+'uint8_t keya[6] = { '+keya+' };\n'
-													+'uint8_t keyb[6] = { '+keyb+' };\n'
+													+'uint8_t keyb[6] = { '+keyb+' };  // 0xD3, 0xF7, 0xD3, 0xF7, 0xD3, 0xF7\n'
 													+'String readerChip = "";\n'
 													+'String readerVersion = "";\n';
 	if (mode==1)
