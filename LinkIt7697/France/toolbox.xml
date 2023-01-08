@@ -9875,7 +9875,7 @@
 		</value>
 		<value name="data">
 		  <block type="text">
-			<field name="TEXT"></field>
+			<field name="TEXT">fustyles.com</field>
 		  </block>		
 		</value>		
 	  </block>  	  
@@ -9885,7 +9885,7 @@
 			<field name="NUM">8</field>
 		  </block>		
 		</value>	  
-	  </block> 		 	  
+	  </block>
 	</category>	
 	
 	<category id="france12" name="adxl345">

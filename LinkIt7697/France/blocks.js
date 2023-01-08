@@ -484,7 +484,7 @@ Blockly.Blocks['PN532_write_data'] = {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["PN532_SHOW"]);
 	this.appendValueInput("block_")
-		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"]+"[8-63]")
+		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"]+"[8-11]")
 		.setCheck("Number");
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["PN532_WRITE_DATA_SHOW"]);		
@@ -528,7 +528,7 @@ Blockly.Blocks['PN532_read_data'] = {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["PN532_SHOW"]);
 	this.appendValueInput("block_")
-		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"]+"[8-63]")
+		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"]+"[8-11]")
 		.setCheck("Number");
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["PN532_READ_DATA_SHOW"]);		
@@ -543,7 +543,7 @@ Blockly.Blocks['PN532_clear_data'] = {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["PN532_SHOW"]);
 	this.appendValueInput("block_")
-		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"]+"[8-63]")
+		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"]+"[8-11]")
 		.setCheck("Number");
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["PN532_CLEAR_DATA_SHOW"]);
