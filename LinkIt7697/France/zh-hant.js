@@ -1898,7 +1898,8 @@ Blockly.Msg["PN52_PIN_DEFAULT"] = "使用預設腳位";
 Blockly.Msg["PN52_PIN_CUSTOM"] = "使用自訂腳位";
 Blockly.Msg["PN532_WRITE_DATA_SHOW"] = "寫入字串";
 Blockly.Msg["PN532_READ_DATA_SHOW"] = "讀取字串";
-Blockly.Msg["PN532_BLOCK_SHOW"] = "區塊[4-7]";
+Blockly.Msg["PN532_CLEAR_DATA_SHOW"] = "清除資料";
+Blockly.Msg["PN532_BLOCK_SHOW"] = "區塊";
 		
 Blockly.Msg["FU_SERVO_INDEX"] = "編號";
 Blockly.Msg["FU_SERVO_PULSEWIDTH"] = "脈衝寬度";

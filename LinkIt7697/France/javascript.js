@@ -390,6 +390,33 @@ Blockly.Arduino['PN532_read_data'] = function(block) {
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['PN532_clear_data'] = function(block) {
+	var block_ = Blockly.Arduino.valueToCode(block, 'block_', Blockly.Arduino.ORDER_ATOMIC)||4;
+	Blockly.Arduino.definitions_['PN532_writedata'] = ''
+													+'void PN532_writeData(int block, String text) {\n'
+													+'  if (PN532_readUidString() != "") {\n'
+													+'  	boolean success;\n'
+													+'  	uint8_t keya[6] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };\n'
+													+'  	nfc.mifareclassic_AuthenticateBlock(uid, uidLength, block, 0, keya);\n'
+													+'  	//Serial.println("Sector 1 (Blocks 4..7) has been authenticated");\n'
+													+'  	int i = 16;\n'
+													+'  	if (uidLength == 4)\n'
+													+'      i = 16;\n'
+													+'  	else if (uidLength == 7)\n'
+													+'  	  i = 32;\n'
+													+'  	char *data = new char[text.length() + 1];\n'
+													+'  	strcpy(data, text.c_str());\n'
+													+'  	//Serial.println("write: "+String(data));\n'
+													+'    success = nfc.mifareclassic_WriteDataBlock (block, (uint8_t *)data);\n'
+													+'    if (!success)\n'
+													+'      Serial.println("Write data failed!");\n'
+													+'  }\n'
+													+'}';
+														
+    var code = 'PN532_writeData('+block_+', "");\n';
+	return code;
+};
+
 Blockly.Arduino['taskhandle_statement_pico'] = function(block){	
 	var setup1 = Blockly.Arduino.statementToCode(block, 'setup1');
 	var loop1 = Blockly.Arduino.statementToCode(block, 'loop1');

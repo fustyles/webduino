@@ -9848,13 +9848,13 @@
 	  </block> 
 	  <block type="PN532_read">			
 	  </block>
-	  <block type="PN532_read_data">
+	  <block type="PN532_clear_data">
 		<value name="block_">
 		  <block type="math_number">
 			<field name="NUM">4</field>
 		  </block>		
 		</value>	  
-	  </block> 	
+	  </block>
 	  <block type="PN532_write_data">
 		<value name="block_">
 		  <block type="math_number">
@@ -9866,7 +9866,14 @@
 			<field name="TEXT"></field>
 		  </block>		
 		</value>		
-	  </block> 	 	  
+	  </block> 	  
+	  <block type="PN532_read_data">
+		<value name="block_">
+		  <block type="math_number">
+			<field name="NUM">4</field>
+		  </block>		
+		</value>	  
+	  </block> 		 	  
 	</category>	
 	
 	<category id="france12" name="adxl345">

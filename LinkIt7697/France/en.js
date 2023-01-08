@@ -1890,7 +1890,8 @@ Blockly.Msg["PN52_PIN_DEFAULT"] = "default pins";
 Blockly.Msg["PN52_PIN_CUSTOM"] = "custom pins";
 Blockly.Msg["PN532_WRITE_DATA_SHOW"] = "write data";
 Blockly.Msg["PN532_READ_DATA_SHOW"] = "read data";
-Blockly.Msg["PN532_BLOCK_SHOW"] = "block[4-7]";
+Blockly.Msg["PN532_CLEAR_DATA_SHOW"] = "clear data";
+Blockly.Msg["PN532_BLOCK_SHOW"] = "block";
 
 Blockly.Msg["FU_SERVO_INDEX"] = "index";
 Blockly.Msg["FU_SERVO_DEFAULT"] = "default";
