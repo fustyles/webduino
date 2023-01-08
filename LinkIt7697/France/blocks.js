@@ -549,7 +549,6 @@ Blockly.Blocks['PN532_read_data'] = {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["PN532_SECTOR_SHOW"])
 		.appendField(new Blockly.FieldDropdown([
-			["1","1"],		
 			["2","2"],	
 			["3","3"],
 			["4","4"],
