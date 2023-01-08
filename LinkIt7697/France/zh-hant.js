@@ -1900,6 +1900,10 @@ Blockly.Msg["PN532_WRITE_DATA_SHOW"] = "寫入字串";
 Blockly.Msg["PN532_READ_DATA_SHOW"] = "讀取字串";
 Blockly.Msg["PN532_CLEAR_DATA_SHOW"] = "清除資料";
 Blockly.Msg["PN532_BLOCK_SHOW"] = "區塊";
+Blockly.Msg["PN532_WRITE_DATA_NDEF_SHOW"] = "寫入NDEF字串";
+Blockly.Msg["PN532_HTTP_WWWDOT"] = "網址";
+Blockly.Msg["PN532_MAILTO"] = "電子信箱";
+Blockly.Msg["PN532_TEL"] = "電話";
 		
 Blockly.Msg["FU_SERVO_INDEX"] = "編號";
 Blockly.Msg["FU_SERVO_PULSEWIDTH"] = "脈衝寬度";

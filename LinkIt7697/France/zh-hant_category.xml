@@ -96,5 +96,5 @@
 <category><name>openai_text</name><replace>openAI 聊天</replace></category>
 <category><name>gy30</name><replace>GY-30光照度</replace></category>
 <category><name>blekeyboardmodule</name><replace>ESP32藍芽鍵盤模組</replace></category>
-<category><name>webusb</name><replace>網頁USB</replace></category>
+<category><name>webusb</name><replace>WebUSB模組</replace></category>
 </xml>

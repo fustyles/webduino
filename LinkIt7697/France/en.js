@@ -1892,6 +1892,10 @@ Blockly.Msg["PN532_WRITE_DATA_SHOW"] = "write data";
 Blockly.Msg["PN532_READ_DATA_SHOW"] = "read data";
 Blockly.Msg["PN532_CLEAR_DATA_SHOW"] = "clear data";
 Blockly.Msg["PN532_BLOCK_SHOW"] = "block";
+Blockly.Msg["PN532_WRITE_DATA_NDEF_SHOW"] = "write NDEF data";
+Blockly.Msg["PN532_HTTP_WWWDOT"] = "HTTP_WWWDOT";
+Blockly.Msg["PN532_MAILTO"] = "MAILTO";
+Blockly.Msg["PN532_TEL"] = "TEL";
 
 Blockly.Msg["FU_SERVO_INDEX"] = "index";
 Blockly.Msg["FU_SERVO_DEFAULT"] = "default";
