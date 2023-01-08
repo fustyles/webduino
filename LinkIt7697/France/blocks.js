@@ -103,21 +103,12 @@ Blockly.Blocks['PN532_write_data'] = {
   }
 };
 
-Blockly.Blocks['PN532_write_data_NDEF'] = {
+
+Blockly.Blocks['PN532_NDEF_format'] = {
   init: function() {
 	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_SHOW"]);	
-	this.appendDummyInput()
-		.appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["PN532_HTTP_WWWDOT"],"NDEF_URIPREFIX_HTTP_WWWDOT"],	
-			[Blockly.Msg["PN532_MAILTO"],"NDEF_URIPREFIX_MAILTO"],
-			[Blockly.Msg["PN532_TEL"],"NDEF_URIPREFIX_TEL"]
-		]), "ndefprefix");
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_WRITE_DATA_NDEF_SHOW"]);		
-	this.appendValueInput("data")
-		.appendField(Blockly.Msg["PN532_DATA"])
-		.setCheck("String");		
+		.appendField(Blockly.Msg["PN532_SHOW"])
+		.appendField(Blockly.Msg["PN532_NDEF_FORMAT_SHOW"]);		
 	this.setInputsInline(true);
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
@@ -125,11 +116,21 @@ Blockly.Blocks['PN532_write_data_NDEF'] = {
   }
 };
 
-Blockly.Blocks['PN532_NDEF_format'] = {
+Blockly.Blocks['PN532_write_data_NDEF'] = {
   init: function() {
 	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_SHOW"])
-		.appendField(Blockly.Msg["PN532_NDEF_FORMAT_SHOW"]);		
+		.appendField(Blockly.Msg["PN532_SHOW"]);	
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_WRITE_DATA_NDEF_SHOW"]);		
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["PN532_HTTP_WWWDOT"],"NDEF_URIPREFIX_HTTP_WWWDOT"],	
+			[Blockly.Msg["PN532_MAILTO"],"NDEF_URIPREFIX_MAILTO"],
+			[Blockly.Msg["PN532_TEL"],"NDEF_URIPREFIX_TEL"]
+		]), "ndefprefix");		
+	this.appendValueInput("data")
+		.appendField(Blockly.Msg["PN532_DATA"])
+		.setCheck("String");		
 	this.setInputsInline(true);
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
