@@ -1,3 +1,205 @@
+Blockly.Blocks['PN532_initial'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SHOW"])
+		.appendField(Blockly.Msg["PN532_INITIAL_SHOW"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["PN52_PIN_DEFAULT"],"0"],		
+			[Blockly.Msg["PN52_PIN_CUSTOM"],"1"]			
+		], this.validate), "mode");
+	this.appendValueInput("sda","sda")
+		.appendField("SDA")
+		.setCheck("Number");
+	this.appendValueInput("scl","scl")
+		.appendField("SCL")
+		.setCheck("Number");			
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(Blockly.Msg["HUE_25"]);
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (newValue==0) {
+			block.getInput("sda").setVisible(false);
+			block.getInput("scl").setVisible(false);	
+		} else {
+			block.getInput("sda").setVisible(true);
+			block.getInput("scl").setVisible(true);	
+		}
+  }
+};
+
+Blockly.Blocks['PN532_read'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SHOW"])
+		.appendField(Blockly.Msg["PN532_READ_SHOW"]);
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["PN532_UID"],"uid"],
+			[Blockly.Msg["PN532_UIDLENGTH"],"uidlength"],
+			[Blockly.Msg["PN532_CHIP"],"chip"],	
+			[Blockly.Msg["PN532_VERSION"],"version"]			
+		]), "type");			
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
+Blockly.Blocks['PN532_write_data'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SHOW"]);
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SECTOR_SHOW"])
+		.appendField(new Blockly.FieldDropdown([
+			["2","2"],	
+			["3","3"],
+			["4","4"],
+			["5","5"],	
+			["6","6"],
+			["7","7"],
+			["8","8"],	
+			["9","9"],
+			["10","10"],
+			["11","11"],	
+			["12","12"],
+			["13","13"],
+			["14","14"],
+			["15","15"]
+		]), "sector_");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"])
+		.appendField(new Blockly.FieldDropdown([
+			["0","0"],	
+			["1","1"],
+			["2","2"]		
+		]), "block_");		
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_WRITE_DATA_SHOW"]);		
+	this.appendValueInput("data")
+		.appendField(Blockly.Msg["PN532_DATA"])
+		.setCheck("String");		
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+    this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
+Blockly.Blocks['PN532_write_data_NDEF'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SHOW"]);	
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["PN532_HTTP_WWWDOT"],"NDEF_URIPREFIX_HTTP_WWWDOT"],	
+			[Blockly.Msg["PN532_MAILTO"],"NDEF_URIPREFIX_MAILTO"],
+			[Blockly.Msg["PN532_TEL"],"NDEF_URIPREFIX_TEL"]
+		]), "ndefprefix");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_WRITE_DATA_NDEF_SHOW"]);		
+	this.appendValueInput("data")
+		.appendField(Blockly.Msg["PN532_DATA"])
+		.setCheck("String");		
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+    this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
+Blockly.Blocks['PN532_NDEF_format'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SHOW"])
+		.appendField(Blockly.Msg["PN532_NDEF_FORMAT_SHOW"]);		
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+    this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
+Blockly.Blocks['PN532_read_data'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SHOW"]);
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SECTOR_SHOW"])
+		.appendField(new Blockly.FieldDropdown([
+			["2","2"],	
+			["3","3"],
+			["4","4"],
+			["5","5"],	
+			["6","6"],
+			["7","7"],
+			["8","8"],	
+			["9","9"],
+			["10","10"],
+			["11","11"],	
+			["12","12"],
+			["13","13"],
+			["14","14"],
+			["15","15"]
+		]), "sector_");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"])
+		.appendField(new Blockly.FieldDropdown([
+			["0","0"],	
+			["1","1"],
+			["2","2"]		
+		]), "block_");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_READ_DATA_SHOW"]);		
+	this.setInputsInline(true);	
+	this.setOutput(true, null); 
+    this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
+Blockly.Blocks['PN532_clear_data'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SHOW"]);
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SECTOR_SHOW"])
+		.appendField(new Blockly.FieldDropdown([
+			["2","2"],	
+			["3","3"],
+			["4","4"],
+			["5","5"],	
+			["6","6"],
+			["7","7"],
+			["8","8"],	
+			["9","9"],
+			["10","10"],
+			["11","11"],	
+			["12","12"],
+			["13","13"],
+			["14","14"],
+			["15","15"]
+		]), "sector_");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"])
+		.appendField(new Blockly.FieldDropdown([
+			["0","0"],	
+			["1","1"],
+			["2","2"]		
+		]), "block_");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_CLEAR_DATA_SHOW"]);
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+    this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
 Blockly.Blocks['webusb_server_initial'] = {
   init: function() {
 	this.appendDummyInput()
@@ -431,189 +633,6 @@ Blockly.Blocks['fu_servo_angle'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(255);
-  }
-};
-
-Blockly.Blocks['PN532_initial'] = {
-  init: function() {
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_SHOW"])
-		.appendField(Blockly.Msg["PN532_INITIAL_SHOW"]);
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT) 
-        .appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["PN52_PIN_DEFAULT"],"0"],		
-			[Blockly.Msg["PN52_PIN_CUSTOM"],"1"]			
-		], this.validate), "mode");
-	this.appendValueInput("sda","sda")
-		.appendField("SDA")
-		.setCheck("Number");
-	this.appendValueInput("scl","scl")
-		.appendField("SCL")
-		.setCheck("Number");			
-	this.setInputsInline(true);
-	this.setPreviousStatement(true);
-	this.setNextStatement(true);
-	this.setColour(Blockly.Msg["HUE_25"]);
-  },
-	validate: function(newValue) {
-		const block = this.sourceBlock_;
-		if (newValue==0) {
-			block.getInput("sda").setVisible(false);
-			block.getInput("scl").setVisible(false);	
-		} else {
-			block.getInput("sda").setVisible(true);
-			block.getInput("scl").setVisible(true);	
-		}
-  }
-};
-
-Blockly.Blocks['PN532_read'] = {
-  init: function() {
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_SHOW"])
-		.appendField(Blockly.Msg["PN532_READ_UID_SHOW"]);
-	this.setInputsInline(true);
-	this.setOutput(true, null); 
-    this.setColour(Blockly.Msg["HUE_25"]);
-  }
-};
-
-Blockly.Blocks['PN532_write_data'] = {
-  init: function() {
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_SHOW"]);
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_SECTOR_SHOW"])
-		.appendField(new Blockly.FieldDropdown([
-			["2","2"],	
-			["3","3"],
-			["4","4"],
-			["5","5"],	
-			["6","6"],
-			["7","7"],
-			["8","8"],	
-			["9","9"],
-			["10","10"],
-			["11","11"],	
-			["12","12"],
-			["13","13"],
-			["14","14"],
-			["15","15"]
-		]), "sector_");
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"])
-		.appendField(new Blockly.FieldDropdown([
-			["0","0"],	
-			["1","1"],
-			["2","2"]		
-		]), "block_");		
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_WRITE_DATA_SHOW"]);		
-	this.appendValueInput("data")
-		.appendField(Blockly.Msg["PN532_DATA"])
-		.setCheck("String");		
-	this.setInputsInline(true);
-	this.setPreviousStatement(true);
-	this.setNextStatement(true);
-    this.setColour(Blockly.Msg["HUE_25"]);
-  }
-};
-
-Blockly.Blocks['PN532_write_data_NDEF'] = {
-  init: function() {
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_SHOW"]);	
-	this.appendDummyInput()
-		.appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["PN532_HTTP_WWWDOT"],"NDEF_URIPREFIX_HTTP_WWWDOT"],	
-			[Blockly.Msg["PN532_MAILTO"],"NDEF_URIPREFIX_MAILTO"],
-			[Blockly.Msg["PN532_TEL"],"NDEF_URIPREFIX_TEL"]
-		]), "ndefprefix");
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_WRITE_DATA_NDEF_SHOW"]);		
-	this.appendValueInput("data")
-		.appendField(Blockly.Msg["PN532_DATA"])
-		.setCheck("String");		
-	this.setInputsInline(true);
-	this.setPreviousStatement(true);
-	this.setNextStatement(true);
-    this.setColour(Blockly.Msg["HUE_25"]);
-  }
-};
-
-Blockly.Blocks['PN532_read_data'] = {
-  init: function() {
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_SHOW"]);
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_SECTOR_SHOW"])
-		.appendField(new Blockly.FieldDropdown([
-			["2","2"],	
-			["3","3"],
-			["4","4"],
-			["5","5"],	
-			["6","6"],
-			["7","7"],
-			["8","8"],	
-			["9","9"],
-			["10","10"],
-			["11","11"],	
-			["12","12"],
-			["13","13"],
-			["14","14"],
-			["15","15"]
-		]), "sector_");
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"])
-		.appendField(new Blockly.FieldDropdown([
-			["0","0"],	
-			["1","1"],
-			["2","2"]		
-		]), "block_");
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_READ_DATA_SHOW"]);		
-	this.setInputsInline(true);	
-	this.setOutput(true, null); 
-    this.setColour(Blockly.Msg["HUE_25"]);
-  }
-};
-
-Blockly.Blocks['PN532_clear_data'] = {
-  init: function() {
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_SHOW"]);
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_SECTOR_SHOW"])
-		.appendField(new Blockly.FieldDropdown([
-			["2","2"],	
-			["3","3"],
-			["4","4"],
-			["5","5"],	
-			["6","6"],
-			["7","7"],
-			["8","8"],	
-			["9","9"],
-			["10","10"],
-			["11","11"],	
-			["12","12"],
-			["13","13"],
-			["14","14"],
-			["15","15"]
-		]), "sector_");
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"])
-		.appendField(new Blockly.FieldDropdown([
-			["0","0"],	
-			["1","1"],
-			["2","2"]		
-		]), "block_");
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_CLEAR_DATA_SHOW"]);
-	this.setInputsInline(true);
-	this.setPreviousStatement(true);
-	this.setNextStatement(true);
-    this.setColour(Blockly.Msg["HUE_25"]);
   }
 };
 

@@ -9856,15 +9856,17 @@
 			<field name="TEXT"></field>
 		  </block>		
 		</value>		
+	  </block>	  
+	  <block type="PN532_read_data">	  
 	  </block>
+	  <block type="PN532_NDEF_format">	  
+	  </block>  	  
 	  <block type="PN532_write_data_NDEF">
 		<value name="data">
 		  <block type="text">
 			<field name="TEXT">fustyles.com</field>
 		  </block>		
 		</value>		
-	  </block>  	  
-	  <block type="PN532_read_data">	  
 	  </block>
 	</category>	
 	

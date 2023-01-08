@@ -1893,7 +1893,7 @@ Blockly.Msg["TASKHANDLE_LOOP1_SHOW"] = "重複執行1";
 
 Blockly.Msg["PN532_SHOW"] = "PN532 NFC";
 Blockly.Msg["PN532_INITIAL_SHOW"] = "I2C初始化";
-Blockly.Msg["PN532_READ_UID_SHOW"] = "讀取UID字串";
+Blockly.Msg["PN532_READ_SHOW"] = "讀取字串";
 Blockly.Msg["PN52_PIN_DEFAULT"] = "使用預設腳位";		
 Blockly.Msg["PN52_PIN_CUSTOM"] = "使用自訂腳位";
 Blockly.Msg["PN532_WRITE_DATA_SHOW"] = "寫入字串";
@@ -1905,6 +1905,11 @@ Blockly.Msg["PN532_WRITE_DATA_NDEF_SHOW"] = "寫入NDEF字串";
 Blockly.Msg["PN532_HTTP_WWWDOT"] = "網址";
 Blockly.Msg["PN532_MAILTO"] = "電子信箱";
 Blockly.Msg["PN532_TEL"] = "電話";
+Blockly.Msg["PN532_UID"] = "磁卡(扣)識別碼";
+Blockly.Msg["PN532_UIDLENGTH"] = "磁卡(扣)識別碼長度";
+Blockly.Msg["PN532_CHIP"] = "讀寫器晶片";
+Blockly.Msg["PN532_VERSION"] = "讀寫器版本";
+Blockly.Msg["PN532_NDEF_FORMAT_SHOW"] = "NDEF格式化";
 		
 Blockly.Msg["FU_SERVO_INDEX"] = "編號";
 Blockly.Msg["FU_SERVO_PULSEWIDTH"] = "脈衝寬度";

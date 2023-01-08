@@ -1885,7 +1885,7 @@ Blockly.Msg["TASKHANDLE_LOOP1_SHOW"] = "loop1";
 
 Blockly.Msg["PN532_SHOW"] = "PN532 NFC";
 Blockly.Msg["PN532_INITIAL_SHOW"] = "I2C Initial";
-Blockly.Msg["PN532_READ_UID_SHOW"] = "Read UID string";
+Blockly.Msg["PN532_READ_SHOW"] = "Read string";
 Blockly.Msg["PN52_PIN_DEFAULT"] = "default pins";		
 Blockly.Msg["PN52_PIN_CUSTOM"] = "custom pins";
 Blockly.Msg["PN532_WRITE_DATA_SHOW"] = "write data";
@@ -1897,6 +1897,11 @@ Blockly.Msg["PN532_WRITE_DATA_NDEF_SHOW"] = "write NDEF data";
 Blockly.Msg["PN532_HTTP_WWWDOT"] = "HTTP_WWWDOT";
 Blockly.Msg["PN532_MAILTO"] = "MAILTO";
 Blockly.Msg["PN532_TEL"] = "TEL";
+Blockly.Msg["PN532_UID"] = "Card UID";
+Blockly.Msg["PN532_UIDLENGTH"] = "Card UID length";
+Blockly.Msg["PN532_CHIP"] = "Reader chip";
+Blockly.Msg["PN532_VERSION"] = "Reader version";
+Blockly.Msg["PN532_NDEF_FORMAT_SHOW"] = "NDEF format";
 
 Blockly.Msg["FU_SERVO_INDEX"] = "index";
 Blockly.Msg["FU_SERVO_DEFAULT"] = "default";
