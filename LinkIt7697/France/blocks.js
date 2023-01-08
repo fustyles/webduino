@@ -437,6 +437,7 @@ Blockly.Blocks['fu_servo_angle'] = {
 Blockly.Blocks['PN532_initial'] = {
   init: function() {
 	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SHOW"])
 		.appendField(Blockly.Msg["PN532_INITIAL_SHOW"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT) 
@@ -470,7 +471,40 @@ Blockly.Blocks['PN532_initial'] = {
 Blockly.Blocks['PN532_read'] = {
   init: function() {
 	this.appendDummyInput()
-		.appendField(Blockly.Msg["PN532_READ_SHOW"]);
+		.appendField(Blockly.Msg["PN532_SHOW"])
+		.appendField(Blockly.Msg["PN532_READ_UID_SHOW"]);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
+Blockly.Blocks['PN532_write_data'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SHOW"])
+		.appendField(Blockly.Msg["PN532_WRITE_DATA_SHOW"]);
+	this.appendValueInput("block_")
+		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"])
+		.setCheck("Number");
+	this.appendValueInput("data")
+		.appendField(Blockly.Msg["PN532_DATA"])
+		.setCheck("String");		
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+    this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
+Blockly.Blocks['PN532_read_data'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SHOW"])
+		.appendField(Blockly.Msg["PN532_READ_DATA_SHOW"]);
+	this.appendValueInput("block_")
+		.appendField(Blockly.Msg["PN532_BLOCK_SHOW"])
+		.setCheck("Number");			
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
     this.setColour(Blockly.Msg["HUE_25"]);

@@ -1883,10 +1883,13 @@ Blockly.Msg["TASKHANDLE_PICO_SHOW"] = "Pico W dual-core";
 Blockly.Msg["TASKHANDLE_SETUP1_SHOW"] = "setup1";
 Blockly.Msg["TASKHANDLE_LOOP1_SHOW"] = "loop1";
 
-Blockly.Msg["PN532_INITIAL_SHOW"] = "PN532 (RFID) I2C Initial";
-Blockly.Msg["PN532_READ_SHOW"] = "PN532 (RFID) Read UID string";
+Blockly.Msg["PN532_INITIAL_SHOW"] = "RFID(PN532) I2C Initial";
+Blockly.Msg["PN532_READ_UID_SHOW"] = "RFID(PN532) Read UID string";
 Blockly.Msg["PN52_PIN_DEFAULT"] = "default pins";		
 Blockly.Msg["PN52_PIN_CUSTOM"] = "custom pins";
+Blockly.Msg["PN532_WRITE_DATA_SHOW"] = "write data";
+Blockly.Msg["PN532_READ_DATA_SHOW"] = "read data";
+Blockly.Msg["PN532_BLOCK_SHOW"] = "block[4-7]";
 
 Blockly.Msg["FU_SERVO_INDEX"] = "index";
 Blockly.Msg["FU_SERVO_DEFAULT"] = "default";

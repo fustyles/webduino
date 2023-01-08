@@ -1891,11 +1891,15 @@ Blockly.Msg["TASKHANDLE_PICO_SHOW"] = "Pico W 雙核心";
 Blockly.Msg["TASKHANDLE_SETUP1_SHOW"] = "初始化1";
 Blockly.Msg["TASKHANDLE_LOOP1_SHOW"] = "重複執行1";
 
-Blockly.Msg["PN532_INITIAL_SHOW"] = "PN532 (RFID) I2C初始化";
-Blockly.Msg["PN532_READ_SHOW"] = "PN532 (RFID) 讀取UID字串";
+Blockly.Msg["PN532_SHOW"] = "RFID (PN532)";
+Blockly.Msg["PN532_INITIAL_SHOW"] = "I2C初始化";
+Blockly.Msg["PN532_READ_UID_SHOW"] = "讀取UID字串";
 Blockly.Msg["PN52_PIN_DEFAULT"] = "使用預設腳位";		
 Blockly.Msg["PN52_PIN_CUSTOM"] = "使用自訂腳位";
-
+Blockly.Msg["PN532_WRITE_DATA_SHOW"] = "寫入字串";
+Blockly.Msg["PN532_READ_DATA_SHOW"] = "讀取字串";
+Blockly.Msg["PN532_BLOCK_SHOW"] = "區塊[4-7]";
+		
 Blockly.Msg["FU_SERVO_INDEX"] = "編號";
 Blockly.Msg["FU_SERVO_PULSEWIDTH"] = "脈衝寬度";
 Blockly.Msg["FU_SERVO_DEFAULT"] = "預設";

@@ -11,7 +11,7 @@ Blockly.Arduino['webusb_server_initial'] = function(block) {
 	if (Blockly.Arduino.definitions_.define_custom_command!='')
 		Blockly.Arduino.definitions_.define_custom_command = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
 	
-	Blockly.Arduino.setups_.setup_serial = 'while (!Serial) {}\n  Serial.begin('+baudrate+');\n  delay(10);\n';
+	Blockly.Arduino.setups_.setup_serial = 'while (!Serial) {}\nSerial.begin('+baudrate+');\n  delay(10);\n';
 	
 	Blockly.Arduino.definitions_.getCommand = ''+
 			'void getCommand(char c) {\n'+
@@ -291,11 +291,22 @@ Blockly.Arduino['PN532_initial'] = function(block) {
 													+'#include <PN532.h>\n'
 													+'#include <NfcAdapter.h>\n'
 													+'PN532_I2C pn532i2c(Wire);\n'
-													+'PN532 nfc(pn532i2c);	\n';
+													+'PN532 nfc(pn532i2c);\n'
+													+'uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 };\n'
+													+'uint8_t uidLength;\n';											
 	
 	if (mode==1)
 		Blockly.Arduino.setups_['PN532_wire'] = 'Wire.begin(I2C_SDA, I2C_SCL);\n';
 
+	Blockly.Arduino.setups_['PN532_setup'] = ''
+												+ 'nfc.begin();\n'
+												+ '  uint32_t versiondata = nfc.getFirmwareVersion();\n'
+												+ '  if (! versiondata) {\n'
+												+ '    Serial.println("PN53x card not found!");\n'
+												+ '  }\n'
+												+ '  nfc.setPassiveActivationRetries(0xFF);\n'
+												+ '  nfc.SAMConfig();\n';
+												
     var code = '' ;
     return code;
 };
@@ -304,16 +315,6 @@ Blockly.Arduino['PN532_read'] = function(block) {
 	Blockly.Arduino.definitions_['PN532_readUidString'] = ''
 														+'String PN532_readUidString() {\n'
 														+'  boolean success;\n'
-														+'  uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 };\n'
-														+'  uint8_t uidLength;\n'
-														+'  nfc.begin();\n'
-														+'  uint32_t versiondata = nfc.getFirmwareVersion();\n'
-														+'  if (! versiondata) {\n'
-														+'    //Serial.println("PN53x card not found!");\n'
-														+'    return "";\n'
-														+'  }\n'
-														+'  nfc.setPassiveActivationRetries(0xFF);\n'
-														+'  nfc.SAMConfig();\n'
 														+'  success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, &uid[0], &uidLength);\n'
 														+'  if (success) {\n'
 														+'    String uidString = "";\n'
@@ -327,6 +328,65 @@ Blockly.Arduino['PN532_read'] = function(block) {
 														+'}';
 														
     var code = 'PN532_readUidString()' ;
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['PN532_write_data'] = function(block) {
+	var block_ = Blockly.Arduino.valueToCode(block, 'block_', Blockly.Arduino.ORDER_ATOMIC)||4;
+	var data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC)||"";
+	Blockly.Arduino.definitions_['PN532_writedata'] = ''
+													+'void PN532_writeData(int block, String text) {\n'
+													+'  if (PN532_readUidString() != "") {\n'
+													+'  	boolean success;\n'
+													+'  	uint8_t keya[6] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };\n'
+													+'  	nfc.mifareclassic_AuthenticateBlock(uid, uidLength, block, 0, keya);\n'
+													+'  	//Serial.println("Sector 1 (Blocks 4..7) has been authenticated");\n'
+													+'  	int i = 16;\n'
+													+'  	if (uidLength == 4)\n'
+													+'      i = 16;\n'
+													+'  	else if (uidLength == 7)\n'
+													+'  	  i = 32;\n'
+													+'  	char *data = new char[text.length() + 1];\n'
+													+'  	strcpy(data, text.c_str());\n'
+													+'  	//Serial.println("write: "+String(data));\n'
+													+'    success = nfc.mifareclassic_WriteDataBlock (block, (uint8_t *)data);\n'
+													+'    if (!success)\n'
+													+'      Serial.println("Write data failed!");\n'
+													+'  }\n'
+													+'}';
+														
+    var code = 'PN532_writeData('+block_+', '+data+');\n' ;
+	return code;
+};
+
+Blockly.Arduino['PN532_read_data'] = function(block) {
+	var block_ = Blockly.Arduino.valueToCode(block, 'block_', Blockly.Arduino.ORDER_ATOMIC)||4;
+	Blockly.Arduino.definitions_['PN532_readdata'] = ''
+													+'String PN532_readData(int block) {\n'
+													+'  if (PN532_readUidString() != "") {\n'
+													+'    boolean success;\n'
+													+'	  uint8_t keya[6] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };\n'
+													+'  	nfc.mifareclassic_AuthenticateBlock(uid, uidLength, 4, 0, keya);\n'
+													+'  	//Serial.println("Sector 1 (Blocks 4..7) has been authenticated");\n'
+													+'	  int i = 16;\n'
+													+'	  if (uidLength == 4)\n'
+													+'	    i = 16;\n'
+													+'    else if (uidLength == 7)\n'
+													+' 	    i = 32;\n'
+													+'	  uint8_t data[i];\n'
+													+'	  if (uidLength == 4)\n'
+													+'	    success = nfc.mifareclassic_ReadDataBlock(block, data);\n'
+													+'	  else if (uidLength == 7)\n'
+													+'	    success = nfc.mifareultralight_ReadPage (block, data);\n'
+													+'	  //Serial.println("read: "+String((char *)data));\n'
+													+'	  if (success)\n'
+													+'	    return String((char *)data);\n'
+													+'	  else\n'
+													+'	    return "";\n'
+													+'    }\n'
+													+'}';
+								
+    var code = 'PN532_readData('+block_+')' ;
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
