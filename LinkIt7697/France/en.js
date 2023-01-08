@@ -1917,7 +1917,7 @@ Blockly.Msg["ADXL345_GET"] = "axis acceleration";
 
 Blockly.Msg.OPENAI_TEXT_SHOW = "openAI Chat";
 Blockly.Msg.OPENAI_TEXT_INITIAL_SHOW = "Initial";
-Blockly.Msg.OPENAI_TEXT_TOKEN_SHOW = "API Token";
+Blockly.Msg.OPENAI_TEXT_TOKEN_SHOW = "API Key";
 Blockly.Msg.OPENAI_TEXT_TOKENS_SHOW = "Max tokens";
 Blockly.Msg.OPENAI_TEXT_REQUEST_SHOW = "Request content";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_SHOW = "After getting response";
