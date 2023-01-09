@@ -143,7 +143,7 @@ function uBitConnectDevice(callback) {
 //stackoverflow.com/questions/5892845/how-to-load-one-javascript-file-from-another
 var newScript = document.createElement('script');
 newScript.type = 'text/javascript';
-newScript.src = 'dap.umd.js';
+newScript.src = 'WebUSB_20210813/dap.umd.js';
 document.getElementsByTagName('head')[0].appendChild(newScript);
 
 navigator.usb.addEventListener('disconnect', (event) => {
