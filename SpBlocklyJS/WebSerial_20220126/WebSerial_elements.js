@@ -69,7 +69,7 @@ async function readUntilClosed() {
 						serial_message(serial_readSting);
 					}
 					serial_readSting = "";
-				}, 100);
+				}, 10);
 			}
 		}
 	  }
