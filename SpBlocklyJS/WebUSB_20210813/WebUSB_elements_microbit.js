@@ -51,4 +51,7 @@ function uBitEventHandler(reason, device, data) {
 // Make the "go" button open the request devices box
 document.getElementById("gamebutton_webusb_open").addEventListener("click", () => uBitConnectDevice(uBitEventHandler))
 document.getElementById("gamebutton_webusb_close").addEventListener("click", () =>  { connectedDevices.forEach(d=>uBitDisconnect(d)); connectedDevices = [];})
-document.getElementById("gamebutton_send").addEventListener("click", () => { connectedDevices.forEach( d=>uBitSend(d, document.getElementById('command').value)) })
+let command = document.getElementById('command');
+document.getElementById("gamebutton_send").addEventListener("click", () => { connectedDevices.forEach( d=>uBitSend(d, command.value)) })
+
+setInterval(function(){ if (command.value!="")  document.getElementById("gamebutton_send").click();} , 100);

@@ -101,6 +101,7 @@ function uBitSend(device, data) {
     if(!device.opened)
         return
     let fullLine = data+'\n'
+	document.getElementById('command').value = "";
     device.target.serialWrite(fullLine)
 }
 

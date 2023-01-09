@@ -47,6 +47,4 @@
 	function webusb_getState() {
 		return (document.getElementById('gamespan_status').innerHTML.indexOf("connected")!=-1)?true:false;
 	}	
-	
-	function webusb_getdata() {
-	}		
+		
