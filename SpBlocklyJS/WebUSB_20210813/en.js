@@ -16,3 +16,6 @@ Blockly.Msg.WEBUSB_ELEMENT_ONCLICK_SHOW = "Web USB set";
 Blockly.Msg.WEBUSB_ELEMENT_ID_SHOW = "Element ID";
 Blockly.Msg.WEBUSB_WAIT_SHOW = "Web USB wait until connected";
 Blockly.Msg.WEBUSB_GETDATA_SHOW = "Web USB after getting data";
+Blockly.Msg.WEBUSB_NORMAL_SHOW = "normal";
+Blockly.Msg.WEBUSB_MICROBIT_SHOW = "microbit";
+Blockly.Msg.WEBUSB_INITIAL_SHOW = "board initial";

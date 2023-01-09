@@ -1,3 +1,7 @@
+Blockly.JavaScript['webusb_initial'] = function(block) {
+  return '';
+};
+
 Blockly.JavaScript['webusb_button'] = function(block) {
   var value_id = block.getFieldValue('id_');  
   var value_show = block.getFieldValue('show_');

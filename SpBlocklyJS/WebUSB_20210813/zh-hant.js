@@ -16,3 +16,6 @@ Blockly.Msg.WEBUSB_ELEMENT_ONCLICK_SHOW = "網頁USB 設定";
 Blockly.Msg.WEBUSB_ELEMENT_ID_SHOW = "為網頁元素代碼";
 Blockly.Msg.WEBUSB_WAIT_SHOW = "網頁USB 等待連線後向下執行";
 Blockly.Msg.WEBUSB_GETDATA_SHOW = "網頁USB 取得資料後執行";
+Blockly.Msg.WEBUSB_NORMAL_SHOW = "一般";
+Blockly.Msg.WEBUSB_MICROBIT_SHOW = "microbit";
+Blockly.Msg.WEBUSB_INITIAL_SHOW = "開發板設定";

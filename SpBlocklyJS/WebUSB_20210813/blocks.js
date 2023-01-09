@@ -1,3 +1,20 @@
+Blockly.Blocks['webusb_initial'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBUSB_ELEMENT_SHOW)
+		.appendField(Blockly.Msg.WEBUSB_INITIAL_SHOW);
+    this.appendDummyInput()	  
+        .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.WEBUSB_NORMAL_SHOW,"arduino"],
+		[Blockly.Msg.WEBUSB_MICROBIT_SHOW,"microbit"]
+  	]), "board"); 	    
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(320);
+  }  
+};
+
 Blockly.Blocks['webusb_button'] = {
   init: function() {
     this.appendDummyInput()

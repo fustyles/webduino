@@ -1,5 +1,7 @@
 var catWebUSB ='<xml>'+
 '<category name="%{BKY_CATWEBUSB}" id="catwebusb" colour="160">'+
+	'<block type="webusb_initial">'+ 
+	'</block>'+	
 	'<block type="webusb_button">'+ 
 	'</block>'+	
 	'<block type="webusb_button_position">'+
