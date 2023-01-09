@@ -54,4 +54,4 @@ document.getElementById("gamebutton_webusb_close").addEventListener("click", () 
 let command = document.getElementById('command');
 document.getElementById("gamebutton_send").addEventListener("click", () => { connectedDevices.forEach( d=>uBitSend(d, command.value)) })
 
-setInterval(function(){ if (command.value!="")  document.getElementById("gamebutton_send").click();} , 100);
+setInterval(function(){ if (command.value!="")  document.getElementById("gamebutton_send").click();} , 10);
