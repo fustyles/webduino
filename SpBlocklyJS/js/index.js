@@ -156,8 +156,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		if (xml.indexOf("webusb_")!=-1&&xml.indexOf("microbit")!=-1) {
 			script += "<script src='WebUSB_20210813/WebUSB.js'></script>";
-			script += "<script src='WebUSB_20210813/WebUSB_microbit.js'></script>";			
 			script += "<script src='WebUSB_20210813/WebUSB_elements_microbit.js'></script>";
+			script += "<script src='WebUSB_20210813/dap.umd.js'></script>";			
+			script += "<script src='WebUSB_20210813/WebUSB_microbit.js'></script>";					
 		}
 		else if (xml.indexOf("webusb_")!=-1) {
 			script += "<script src='WebUSB_20210813/WebUSB.js'></script>";			
@@ -314,9 +315,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/openAI_20221212/openAI.js'></script>";			
 		}
 		if (xml.indexOf("webusb_")!=-1&&xml.indexOf("microbit")!=-1) {
-			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebUSB_20210813/WebUSB.js'></script>";	
-			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebUSB_20210813/WebUSB_microbit.js'></script>";			
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebUSB_20210813/WebUSB.js'></script>";
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebUSB_20210813/WebUSB_elements_microbit.js'></script>";
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebUSB_20210813/WebUSB_microbit.js'></script>";				
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebUSB_20210813/dap.umd.js'></script>";
 		}
 		else if (xml.indexOf("webusb_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebUSB_20210813/WebUSB.js'></script>";			
