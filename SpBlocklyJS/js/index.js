@@ -163,8 +163,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		else if (xml.indexOf("webusb_")!=-1) {
 			script += "<script src='WebUSB_20210813/WebUSB.js'></script>";			
 			script += "<script src='WebUSB_20210813/WebUSB_elements.js'></script>";
-			script += "<script src='WebUSB_20210813/demos/serial.js'></script>";
-			script += "<script src='WebUSB_20210813/demos/arduino/arduino.js'></script>";
+			script += "<script src='WebUSB_20210813/serial.js'></script>";
+			script += "<script src='WebUSB_20210813/arduino.js'></script>";
 		}
 		if (xml.indexOf("robotfly_")!=-1) {
 			script += "<script src='RobotFly_20220127/RobotFly.js'></script>";
@@ -323,8 +323,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		else if (xml.indexOf("webusb_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebUSB_20210813/WebUSB.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebUSB_20210813/WebUSB_elements.js'></script>";
-			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebUSB_20210813/demos/serial.js'></script>";
-			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebUSB_20210813/demos/arduino/arduino.js'></script>";
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebUSB_20210813/serial.js'></script>";
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebUSB_20210813/arduino.js'></script>";
 		}
 		if (xml.indexOf("robotfly_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/RobotFly_20220127/RobotFly.js'></script>";
