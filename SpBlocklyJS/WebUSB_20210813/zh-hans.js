@@ -16,6 +16,6 @@ Blockly.Msg.WEBUSB_ELEMENT_ONCLICK_SHOW = "网页USB 设定";
 Blockly.Msg.WEBUSB_ELEMENT_ID_SHOW = "为网页元素代码";
 Blockly.Msg.WEBUSB_WAIT_SHOW = "网页USB 等待连线后向下执行";
 Blockly.Msg.WEBUSB_GETDATA_SHOW = "网页USB 取得资料后执行";
-Blockly.Msg.WEBUSB_NORMAL_SHOW = "一般";
+Blockly.Msg.WEBUSB_NORMAL_SHOW = "arduino";
 Blockly.Msg.WEBUSB_MICROBIT_SHOW = "microbit";
 Blockly.Msg.WEBUSB_INITIAL_SHOW = "开发板设定";
