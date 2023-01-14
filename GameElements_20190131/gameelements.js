@@ -2206,7 +2206,7 @@ function HextoRgb(color) {
     obj.style.height = input_height + 'px';
     obj.frameBorder = input_frameborder;
     obj.scrolling = input_scrolling;
-    obj.src = "";
+    obj.src = " ";
     obj.srcdoc = "";
     if (input_src!="")
       obj.src = input_src;
