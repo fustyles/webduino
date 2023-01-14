@@ -1244,6 +1244,6 @@ Blockly.Msg["COLLABORATION_USERID_TITLE"] = "使用者帐号";
 Blockly.Msg["COLLABORATION_PASSWORD_TITLE"] = "密码";
 Blockly.Msg.BUTTON_LINK = "连线";
 Blockly.Msg["MSG_COLLABORATION"] = "MQTT协同编辑";
-Blockly.Msg["COLLABORATION_TIP_TITLE"] = "Chrome浏览器须设定允许不安全内容执行WS通讯协定";
+Blockly.Msg["COLLABORATION_TIP_TITLE"] = "MQTT.js须使用WSS通讯协定";
 
 Blockly.Msg["BUTTON_WEBMQTT"] = "网页MQTT";
