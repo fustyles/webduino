@@ -141,6 +141,7 @@ var catSystem = '<xml>'+
 '    <category name="%{BKY_CATTEXT}" colour="%{BKY_TEXTS_HUE}">'+
 '    <block type="text"></block>'+
 '    <block type="text_join"></block>'+
+'    <block type="text_to_number"></block>'+
 '    <block type="text_br"></block>'+
 '    <block type="text_append">'+
 '    <value name="TEXT">'+
