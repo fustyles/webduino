@@ -2210,8 +2210,10 @@ function HextoRgb(color) {
     obj.srcdoc = "";
     if (input_src!="")
       obj.src = input_src;
-    else
+    else {
+      obj.src = "";
       obj.srcdoc = input_srcdoc;
+    }
     obj.style.opacity = input_opacity;
     obj.style.zIndex = input_zindex;
     if (input_display==0)
