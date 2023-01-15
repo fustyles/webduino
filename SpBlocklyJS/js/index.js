@@ -168,6 +168,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		if (xml.indexOf("robotfly_")!=-1) {
 			script += "<script src='RobotFly_20220127/RobotFly.js'></script>";
+		}
+		if (xml.indexOf("posenet_")!=-1) {
+			script += "<script src='posenet_20201012/posenet_video.js'></script>";			
+			script += "<script src='posenet_20201012/posenet.js'></script>";
 		}		
 				
 		return script;
@@ -328,7 +332,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		if (xml.indexOf("robotfly_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/RobotFly_20220127/RobotFly.js'></script>";
-		}			
+		}
+		if (xml.indexOf("posenet_")!=-1) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/posenet_20201012/posenet_video.js'></script>";			
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/posenet_20201012/posenet.js'></script>";
+		}		
 		
 		return script;
 	}		
@@ -364,6 +372,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		catCocossd,			
 		catHolistic,
 		catHands,
+		catPosenet,
 		catTeachablemachine,
 		catFaceDetect,
 		catFaceRecognize,
