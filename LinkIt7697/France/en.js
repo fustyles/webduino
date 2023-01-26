@@ -1915,7 +1915,7 @@ Blockly.Msg["ADXL345"] = "ADXL345 3-axis accelerometer (I2C)";
 Blockly.Msg["ADXL345_GETDATA"] = "get acceleration (m/s^2)";
 Blockly.Msg["ADXL345_GET"] = "axis acceleration";
 
-Blockly.Msg.OPENAI_TEXT_SHOW = "openAI Chat";
+Blockly.Msg.OPENAI_TEXT_SHOW = "openAI";
 Blockly.Msg.OPENAI_TEXT_INITIAL_SHOW = "Initial";
 Blockly.Msg.OPENAI_TEXT_TOKEN_SHOW = "API Key";
 Blockly.Msg.OPENAI_TEXT_TOKENS_SHOW = "Max tokens";
