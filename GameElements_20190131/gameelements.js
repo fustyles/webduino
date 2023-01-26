@@ -977,9 +977,9 @@
       if (input_property=='url')
         return obj.src;
       else if (input_property=='width')
-        return Number(obj.style.width.replace(/px/ig,""))||Number(obj.width.replace(/px/ig,""))||Number(obj.clientWidth.replace(/px/ig,""));
+        return Number(obj.style.width.replace(/px/ig,""));
       else if (input_property=='height')
-        return Number(obj.style.height.replace(/px/ig,""))||Number(obj.height.replace(/px/ig,""))||Number(obj.clientHeight.replace(/px/ig,""));
+        return Number(obj.style.height.replace(/px/ig,""));
       else if (input_property=='naturalwidth'){
         var naturl = image_Natural_get(obj);
         return Number(naturl.width);
