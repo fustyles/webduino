@@ -1,6 +1,6 @@
 Blockly.Msg.OPENAI_TEXT_SHOW = "openAI";
 Blockly.Msg.OPENAI_TEXT_INITIAL_SHOW = "初始化";
-Blockly.Msg.OPENAI_TEXT_TOKEN_SHOW = "API權杖";
+Blockly.Msg.OPENAI_TEXT_TOKEN_SHOW = "API Key";
 Blockly.Msg.OPENAI_TEXT_TOKENS_SHOW = "最大字數";
 Blockly.Msg.OPENAI_TEXT_REQUEST_SHOW = "對話內容";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_SHOW = "取得回應內容後執行";
