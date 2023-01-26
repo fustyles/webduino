@@ -1,4 +1,4 @@
-Blockly.Msg.OPENAI_TEXT_SHOW = "openAI 聊天";
+Blockly.Msg.OPENAI_TEXT_SHOW = "openAI";
 Blockly.Msg.OPENAI_TEXT_INITIAL_SHOW = "初始化";
 Blockly.Msg.OPENAI_TEXT_TOKEN_SHOW = "API權杖";
 Blockly.Msg.OPENAI_TEXT_TOKENS_SHOW = "最大字數";
