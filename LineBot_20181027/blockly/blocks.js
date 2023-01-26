@@ -271,7 +271,6 @@ Blockly.Blocks['linenotify_image'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.LINENOTIFY_SCRIPTURL);
-  this.getInput('notify_script').setVisible(false);
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
