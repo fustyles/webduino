@@ -1,5 +1,5 @@
-Blockly.Msg["CATOPENAI"] = "openAI Chat";
-Blockly.Msg.OPENAI_TEXT_SHOW = "openAI Chat";
+Blockly.Msg["CATOPENAI"] = "openAI";
+Blockly.Msg.OPENAI_TEXT_SHOW = "openAI";
 Blockly.Msg.OPENAI_TEXT_INITIAL_SHOW = "Initial";
 Blockly.Msg.OPENAI_TEXT_KEY_SHOW = "API Key";
 Blockly.Msg.OPENAI_TEXT_KEYS_SHOW = "Max tokens";
