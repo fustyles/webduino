@@ -1,4 +1,4 @@
-Blockly.Msg.OPENAI_TEXT_SHOW = "openAI Chat";
+Blockly.Msg.OPENAI_TEXT_SHOW = "openAI";
 Blockly.Msg.OPENAI_TEXT_INITIAL_SHOW = "Initial";
 Blockly.Msg.OPENAI_TEXT_TOKEN_SHOW = "API Token";
 Blockly.Msg.OPENAI_TEXT_TOKENS_SHOW = "Max tokens";
