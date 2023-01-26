@@ -1,1 +1,1 @@
-MSG.openaichat = "openAI chat";
+MSG.openaichat = "openAI";
