@@ -1924,7 +1924,7 @@ Blockly.Msg["ADXL345"] = "ADXL345三軸加速度計 (I2C)";
 Blockly.Msg["ADXL345_GETDATA"] = "取得加速度值 (m/s^2)";
 Blockly.Msg["ADXL345_GET"] = "軸 加速度值";
 
-Blockly.Msg.OPENAI_TEXT_SHOW = "openAI 聊天";
+Blockly.Msg.OPENAI_TEXT_SHOW = "openAI";
 Blockly.Msg.OPENAI_TEXT_INITIAL_SHOW = "初始化";
 Blockly.Msg.OPENAI_TEXT_TOKEN_SHOW = "API Key";
 Blockly.Msg.OPENAI_TEXT_TOKENS_SHOW = "最大字數";
