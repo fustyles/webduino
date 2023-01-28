@@ -10365,7 +10365,9 @@
 			<field name="TEXT">rdec-key-123-45678-011121314</field>
 		  </block>
 		</value>
-	  </block>  
+	  </block>
+	  <block type="fu_taiwan_weather_get">
+	  </block>  	  
     </category>
 	<category id="france24" name="openai_text">
 	  <block type="openai_text_request">
