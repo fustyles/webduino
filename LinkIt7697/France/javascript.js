@@ -5855,6 +5855,7 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 	}
 	
 	Blockly.Arduino.definitions_['opendataWeather'] +='  if (client_tcp.connect("opendata.cwb.gov.tw", 443)) {\n'+
+			'    String request = "/api/v1/rest/datastore/F-C0032-001?Authorization="+Authorization+"&locationName="+urlencode(location);\n'+	
 			'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
 			'    client_tcp.println("Host: opendata.cwb.gov.tw");\n'+
 			'    client_tcp.println("Connection: close");\n'+
