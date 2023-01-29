@@ -547,16 +547,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			document.getElementById('javascript_content').attributeStyleMap.clear();	
 		}
 	}
-	
-	function exportToFile(id, filename) {
-		var content = document.getElementById(id).value.replace(/JavaScript/g,"JavaScript");
-		var link = document.createElement('a');
-		link.download = filename;
-		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(content);
-		document.body.appendChild(link);
-		link.click();
-		link.remove();	
-	}
 
 	//匯出工作區積木與原始檔
 	document.getElementById('button_save_xml').onclick = function () {
@@ -720,30 +710,6 @@ document.addEventListener('DOMContentLoaded', function() {
 				}					
 			}
 		}
-	}
-		
-	
-	function flashToolbox() {
-		var category = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
-		Blockly.getMainWorkspace().updateToolbox(category);
-		
-		var category = JSON.parse(JSON.stringify(customCategory));
-		for (var i=0;i<category.length;i++) {
-			if (category[i][2]) addCustomRemoteBlocks(category[i][2]);
-		}
-	}	
-	
-	function updateCategory() {
-		var category = new DOMParser().parseFromString(xmlValue,"text/xml").firstChild;
-		if (category.childNodes.length>0) {
-			for (var j=0;j<customCategory.length;j++) {
-				for (var i=0;i<category.childNodes.length;i++){
-					if (category.childNodes[i].id==customCategory[j][1])
-						category.insertBefore(new DOMParser().parseFromString(customCategory[j][0],"text/xml").firstChild,category.childNodes[i].nextSibling);
-				}								
-			}
-		}
-		Blockly.getMainWorkspace().updateToolbox(category);
 	}		
 	
 	//複製程式碼到剪貼簿
