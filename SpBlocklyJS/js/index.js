@@ -605,7 +605,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	  
 	  iframe_code += getScript();
 		
-	  iframe_code += "\<\/head\>\<body\>\<div onclick='parent.document.exitFullscreen();' style='z-index:99999 !important;position:absolute;opacity:0.1;left:calc(100vw - 20px);'\>X\</div>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
+	  iframe_code += "\<\/head\>\<body\>\<div onclick='parent.document.exitFullscreen();' style='z-index:99999 !important;cursor: nw-resize;position:absolute;opacity:0.1;left:calc(100vw - 20px);'\>X\</div>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
 	  
 	  //console.log(iframe_code);
 	  try {
