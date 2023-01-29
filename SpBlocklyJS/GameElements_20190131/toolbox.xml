@@ -20,7 +20,9 @@
 					<field name="TEXT"></field>
 				</block>
 			</value>
-		  </block>	
+		  </block>
+		  <block type="document_exitFullscreen">
+		  </block>
 		  <block type="custom_comment">
 			<value name="text">
 			  <block type="text">

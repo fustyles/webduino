@@ -561,3 +561,5 @@ Blockly.Msg["SYSTEM_DATETIME_DAYS"] = "天数";
 Blockly.Msg["SYSTEM_DATETIME_HOURS"] = "时数";
 Blockly.Msg["SYSTEM_DATETIME_MINUTES"] = "分数";
 Blockly.Msg["SYSTEM_DATETIME_SECONDS"] = "秒数";
+
+Blockly.Msg["DOCUMENT_EXITFULLSCREEN"] = "程式执行视窗离开全萤幕模式";

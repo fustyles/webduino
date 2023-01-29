@@ -1,3 +1,8 @@
+Blockly.JavaScript['document_exitFullscreen'] = function (block) {
+  var code = 'parent.document.exitFullscreen();\n';  
+  return code;
+};
+
 Blockly.JavaScript['window_messagebox'] = function (block) {
   var message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC); 
   var code = 'alert('+message+');\n';  

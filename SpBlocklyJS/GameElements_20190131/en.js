@@ -561,3 +561,5 @@ Blockly.Msg["SYSTEM_DATETIME_DAYS"] = "days";
 Blockly.Msg["SYSTEM_DATETIME_HOURS"] = "hours";
 Blockly.Msg["SYSTEM_DATETIME_MINUTES"] = "minutes";
 Blockly.Msg["SYSTEM_DATETIME_SECONDS"] = "seconds";
+
+Blockly.Msg["DOCUMENT_EXITFULLSCREEN"] = "Display screen exits fullscreen";

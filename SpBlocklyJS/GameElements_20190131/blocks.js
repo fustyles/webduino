@@ -1,3 +1,14 @@
+Blockly.Blocks['document_exitFullscreen'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg["DOCUMENT_EXITFULLSCREEN"]);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(180);
+  }
+};
+
 Blockly.Blocks['window_messagebox'] = {
   init: function () {
   this.appendValueInput("message")

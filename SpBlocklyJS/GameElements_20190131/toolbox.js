@@ -120,6 +120,8 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="document_exitFullscreen">'+
+'    </block>'+ 
 '    <block type="custom_comment">'+
 '    <value name="text">'+
 '    <block type="text">'+
