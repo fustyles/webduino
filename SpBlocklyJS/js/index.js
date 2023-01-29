@@ -493,6 +493,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	}, 1000);	
 
+	//新增自訂積木js檔
 	function addScript(url) {
 		var s = document.createElement("script");
 		s.type = "text/javascript";
@@ -500,6 +501,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		$("body").append(s);
 	}
 
+	//檢查目錄是否已存在工具箱
 	function checkCategoryExist(child) {
 		for (var i=1;i<customCategory.length;i++) {
 			if (child==customCategory[i][2])
@@ -573,6 +575,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 	
+	//匯出HTML檔
 	document.getElementById('button_save_html').onclick = function () {
 		try {
 			try {
@@ -598,7 +601,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 	
-	//執行程式碼
+	//執行程式
 	function runCode() {
 	  var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());
 	  var iframe_code="\<!DOCTYPE html\>\<html\>\<head\>\<meta charset='utf-8'\>\<meta http-equiv='Access-Control-Allow-Origin' content='*'\>\<meta http-equiv='Access-Control-Allow-Credentials' content='true'\>\<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'\>\<\/script\>";
@@ -618,7 +621,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		alert(e);
 	  }
 	}
-		
+	
+	//停止程式
 	function stopCode() {
 	  document.getElementById("iframe_run").src = "about:blank";
 	}		
@@ -677,7 +681,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		event.preventDefault();
 		
 		$('.ui-dialog').animate({
-			top: 100
+			top: 60
 		}, 200); 
 
 		if ($('.ui-dialog-titlebar-close'))	
@@ -686,7 +690,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (document.getElementById("ui-id-1")) {
 			document.getElementById("ui-id-1").ondblclick = function () {
 				$(this).parents('.ui-dialog').animate({
-					top: 100			
+					top: 60			
 				}, 200);
 			}	
 		}		
