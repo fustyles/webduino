@@ -74,3 +74,77 @@ Blockly.Blocks['openai_text_response_clear'] = {
   this.setColour(250);
   }
 };
+
+Blockly.Blocks['openai_image_initial'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.OPENAI_IMAGE_SHOW)  
+	  .appendField(Blockly.Msg.OPENAI_IMAGE_INITIAL_SHOW);
+  this.appendValueInput("key")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPENAI_IMAGE_KEY_SHOW);
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['openai_image_request'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.OPENAI_IMAGE_SHOW);
+  this.appendValueInput("words")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPENAI_IMAGE_REQUEST_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.OPENAI_IMAGE_SIZE_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+			["256x256","256x256"],
+			["512x512","512x512"],			
+			["1024x1024","1024x1024"]	  
+	  ]), "size"); 	  
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['openai_image_response'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.OPENAI_IMAGE_SHOW)   
+	  .appendField(Blockly.Msg.OPENAI_IMAGE_RESPONSE_SHOW);
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['openai_image_response_get'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.OPENAI_IMAGE_SHOW)   
+	  .appendField(Blockly.Msg.OPENAI_IMAGE_RESPONSE_GET_SHOW);
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
+
+Blockly.Blocks['openai_image_response_clear'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.OPENAI_IMAGE_SHOW)   
+	  .appendField(Blockly.Msg.OPENAI_IMAGE_RESPONSE_CLEAR_SHOW);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true); 
+  this.setColour(200);
+  }
+};
