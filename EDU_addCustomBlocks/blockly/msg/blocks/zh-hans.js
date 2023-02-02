@@ -32,4 +32,4 @@ Blockly.Msg.ADDCUSTOMBLOCKS_ROBOTFLY_SHOW = "[取得连结] ROBOT FLY";
 Blockly.Msg.ADDCUSTOMBLOCKS_HANDS_SHOW = "[取得连结] 手势辨识(Mediapipe Holistic)";
 Blockly.Msg.ADDCUSTOMBLOCKS_CHART_SHOW = "[取得连结] 仪表板";
 Blockly.Msg.ADDCUSTOMBLOCKS_WEBBLUETOOTH_SHOW = "[取得连结] Web Bluetooth";
-Blockly.Msg.ADDCUSTOMBLOCKS_OPENAI_TEXT_SHOW = "[取得连结] openAI 聊天";
+Blockly.Msg.ADDCUSTOMBLOCKS_OPENAI_TEXT_SHOW = "[取得连结] openAI";
