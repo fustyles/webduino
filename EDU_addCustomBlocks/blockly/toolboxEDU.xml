@@ -1,4 +1,4 @@
-    <category id="catCustomBlocks">
+    <category id="catP">
         <block type="addMyBlocks">
           <value name="url">
             <block type="text">
