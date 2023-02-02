@@ -1,4 +1,4 @@
-<category id="catFrance">
+
     <category id="catCustomBlocks">
         <block type="addMyBlocks">
           <value name="url">
@@ -8,6 +8,3 @@
           </value>
         </block> 
     </category>
-    <category id="catPlus">
-    </category>     
-</category>
