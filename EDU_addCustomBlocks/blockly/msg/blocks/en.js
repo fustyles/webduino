@@ -32,4 +32,4 @@ Blockly.Msg.ADDCUSTOMBLOCKS_ROBOTFLY_SHOW = "[link] ROBOT FLY";
 Blockly.Msg.ADDCUSTOMBLOCKS_HANDS_SHOW = "[link] hands (Mediapipe Holistic)";
 Blockly.Msg.ADDCUSTOMBLOCKS_CHART_SHOW = "[link] Dashboard";
 Blockly.Msg.ADDCUSTOMBLOCKS_WEBBLUETOOTH_SHOW = "[link] Web Bluetooth";
-Blockly.Msg.ADDCUSTOMBLOCKS_OPENAI_TEXT_SHOW = "[link] openAI chat";
+Blockly.Msg.ADDCUSTOMBLOCKS_OPENAI_TEXT_SHOW = "[link] openAI";
