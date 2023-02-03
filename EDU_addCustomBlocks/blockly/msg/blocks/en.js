@@ -1,4 +1,4 @@
-Blockly.Msg.ADDCUSTOMBLOCKS_SHOW = "Custom Blocks URL";
+Blockly.Msg.ADDCUSTOMBLOCKS_SHOW = "Custom Block JSON URL";
 Blockly.Msg.ADDCUSTOMBLOCKS_ADD_SHOW = "add one custom block";
 Blockly.Msg.ADDCUSTOMBLOCKS_REMOVE_SHOW = "remove one custom block";
 Blockly.Msg.ADDCUSTOMBLOCKS_ADDALL_SHOW = "add old custom blocks";
