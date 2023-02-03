@@ -12,19 +12,14 @@ Blockly.Blocks['addMyBlocks'] = {
         [Blockly.Msg.ADDCUSTOMBLOCKS_ADDAINEW_SHOW,"addAllNewAI"], 
         [Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEAINEW_SHOW,"removeAllNewAI"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_ADDALL_SHOW,"addOldAll"], 
-        [Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEALL_SHOW,"removeAll"],	  
-        [Blockly.Msg.ADDCUSTOMBLOCKS_GAMEELEMENTS_SHOW,"GameElements_20190131"],
-        [Blockly.Msg.ADDCUSTOMBLOCKS_MQTT_SHOW,"MQTT_20220324"],
-        [Blockly.Msg.ADDCUSTOMBLOCKS_CHART_SHOW,"chart_20220723"],
-	[Blockly.Msg.ADDCUSTOMBLOCKS_SPREADSHEETSQL_SHOW,"SpreadsheetSQL_20210403"],	  
+        [Blockly.Msg.ADDCUSTOMBLOCKS_REMOVEALL_SHOW,"removeAll"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_WEBSERIAL_SHOW,"WebSerial_20220126"],	  
         [Blockly.Msg.ADDCUSTOMBLOCKS_WEBBLUETOOTH_SHOW,"WebBluetooth_20220924"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_WEBUSB_SHOW,"WebUSB_20210813"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_MYBACKPACK_SHOW,"myBackPack_20210914"],	  
-        [Blockly.Msg.ADDCUSTOMBLOCKS_TELEGRAM_SHOW,"Telegram_20200809"],	
-        [Blockly.Msg.ADDCUSTOMBLOCKS_LINEBOT_SHOW,"LineBot_20181027"],	
-        [Blockly.Msg.ADDCUSTOMBLOCKS_TELLO_SHOW,"Tello_20210103"],
-        [Blockly.Msg.ADDCUSTOMBLOCKS_ROBOTFLY_SHOW,"RobotFly_20220127"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_MQTT_SHOW,"MQTT_20220324"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_GAMEELEMENTS_SHOW,"GameElements_20190131"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_OPENAI_TEXT_SHOW,"openAI_20221212"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_HOLISTIC_SHOW,"holistic_20201012"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_HANDS_SHOW,"hands_20220614"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_COCO_SSD_SHOW,"coco_ssd_20201012"],
@@ -40,7 +35,12 @@ Blockly.Blocks['addMyBlocks'] = {
         [Blockly.Msg.ADDCUSTOMBLOCKS_BLAZEFACE_SHOW,"Blazeface_20201012"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_MOBILENET_SHOW,"mobilenet_20201012"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_BARCODE_SHOW,"barcode_20210216"],
-        [Blockly.Msg.ADDCUSTOMBLOCKS_OPENAI_TEXT_SHOW,"openAI_20221212"]	  
+        [Blockly.Msg.ADDCUSTOMBLOCKS_CHART_SHOW,"chart_20220723"],
+	[Blockly.Msg.ADDCUSTOMBLOCKS_SPREADSHEETSQL_SHOW,"SpreadsheetSQL_20210403"],	  
+        [Blockly.Msg.ADDCUSTOMBLOCKS_TELEGRAM_SHOW,"Telegram_20200809"],	
+        [Blockly.Msg.ADDCUSTOMBLOCKS_LINEBOT_SHOW,"LineBot_20181027"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_TELLO_SHOW,"Tello_20210103"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_ROBOTFLY_SHOW,"RobotFly_20220127"]
       ]), "func");
   this.setTooltip('');
   this.setColour(20);
