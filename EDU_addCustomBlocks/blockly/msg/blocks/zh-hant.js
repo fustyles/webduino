@@ -1,4 +1,4 @@
-﻿Blockly.Msg.ADDCUSTOMBLOCKS_SHOW = "自訂積木 網址";
+﻿Blockly.Msg.ADDCUSTOMBLOCKS_SHOW = "自訂積木 JSON網址";
 Blockly.Msg.ADDCUSTOMBLOCKS_ADD_SHOW = "新增 一個自訂積木";
 Blockly.Msg.ADDCUSTOMBLOCKS_REMOVE_SHOW = "移除 一個自訂積木";
 Blockly.Msg.ADDCUSTOMBLOCKS_ADDALL_SHOW = "新增 所有舊版自訂積木";
