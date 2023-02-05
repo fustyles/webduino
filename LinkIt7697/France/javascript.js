@@ -862,7 +862,7 @@ Blockly.Arduino['esp32_webbluetooth_uuid'] = function(block) {
 												 +'        if (rxValue.length() > 0) {\n'
 												 +'    		   Feedback="",Command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'
 												 +'    		   receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'
-												 +'			   bleData = "";'
+												 +'			   bleData = "";\n'
 												 +'            for (int i = 0; i < rxValue.length(); i++) {\n'
 												 +'                char c = char(rxValue[i]);\n'
 												 +'                bleData += String(c);'
