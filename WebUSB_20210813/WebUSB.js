@@ -20,10 +20,10 @@
 	}
 	
 	function webusb_state() {
-		if (connect.value.indexOf('Disconnect')!=-1)
-			return false;
-		else
+		if (connect.value.indexOf(' connected')!=-1)
 			return true;
+		else
+			return false;
 	}
 	
 	function webusb_send(input_cmd) {
