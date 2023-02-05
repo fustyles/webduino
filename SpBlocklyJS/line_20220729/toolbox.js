@@ -43,11 +43,6 @@ var catLineNotify ='<xml>'+
 '	        <field name="TEXT"></field>'+
 '	      </block>'+
 '	    </value>'+
-'		<value name="notify_message">'+
-'		  <block type="text">'+
-'			<field name="TEXT">Hello</field>'+
-'		  </block>'+
-'		</value>'+
 '	  </block>'+
 '    </category>'+
 '</xml>';
