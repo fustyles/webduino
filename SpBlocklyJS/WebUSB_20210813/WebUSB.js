@@ -26,10 +26,19 @@
 	}	
 	
 	function webusb_state() {
-		if (document.getElementById('gamespan_status').innerHTML.indexOf('disconnected')!=-1||document.getElementById('gamespan_status').innerHTML.indexOf('connected')==-1)
-			return false;
-		else
-			return true;
+		if (typeof MICROBIT_VENDOR_ID !== 'undefined') {
+			console.log("ok");
+			if (document.getElementById('gamespan_status').innerHTML.indexOf('disconnected')!=-1)
+				return false;
+			else
+				return true;
+		}
+		else {
+			if (document.getElementById('gamespan_status').innerHTML.indexOf('connected')!=-1)
+				return true;
+			else
+				return false;	
+		}
 	}
 	
 	function webusb_send(input_cmd) {
