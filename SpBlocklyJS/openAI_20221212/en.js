@@ -1,9 +1,9 @@
 Blockly.Msg["CATOPENAI"] = "openAI";
-Blockly.Msg.OPENAI_TEXT_SHOW = "openAI";
+Blockly.Msg.OPENAI_TEXT_SHOW = "openAI request";
 Blockly.Msg.OPENAI_TEXT_INITIAL_SHOW = "Initial";
 Blockly.Msg.OPENAI_TEXT_KEY_SHOW = "API Key";
 Blockly.Msg.OPENAI_TEXT_KEYS_SHOW = "Max tokens";
-Blockly.Msg.OPENAI_TEXT_REQUEST_SHOW = "Send request content";
+Blockly.Msg.OPENAI_TEXT_REQUEST_SHOW = "Send content";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_SHOW = "After getting response";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_SHOW = "Response";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_BR_SHOW = "new line";
