@@ -26,7 +26,7 @@
 	}	
 	
 	function webusb_state() {
-		if (document.getElementById('gamespan_status').innerHTML.indexOf('disconnected')!=-1||document.getElementById('gamespan_status').innerHTML.indexOf(' connected')==-1)
+		if (document.getElementById('gamespan_status').innerHTML.indexOf('disconnected')!=-1||document.getElementById('gamespan_status').innerHTML.indexOf('connected')==-1)
 			return false;
 		else
 			return true;
