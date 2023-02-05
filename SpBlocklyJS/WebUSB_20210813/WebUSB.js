@@ -27,7 +27,7 @@
 	
 	function webusb_state() {
 		if (typeof MICROBIT_VENDOR_ID !== 'undefined') {
-			console.log("ok");
+			console.log(document.getElementById('gamespan_status').innerHTML);
 			if (document.getElementById('gamespan_status').innerHTML.indexOf('disconnected')!=-1)
 				return false;
 			else
