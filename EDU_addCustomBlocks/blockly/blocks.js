@@ -101,7 +101,7 @@ Blockly.Blocks['addMyBlocks'] = {
                   //Code.customTab.$__add__('https://fustyles.github.io/webduino/mobilenet_20190821/blockly.json');
                   //Code.customTab.$__add__('https://fustyles.github.io/webduino/coco-ssd_20190821/blockly.json');
                   //Code.customTab.$__add__('https://fustyles.github.io/webduino/knn-classifier_20190608/blockly.json');
-                  Code.customTab.$__add__('https://fustyles.github.io/webduino/GameElements_20190131/blockly.json');
+                  //Code.customTab.$__add__('https://fustyles.github.io/webduino/GameElements_20190131/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/iframe_20180802/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/teachable_machine_boilerplate_20180818/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/Instruction_20181213/blockly.json');
