@@ -49,6 +49,6 @@ Blockly.JavaScript['linenotify_image'] = function (block) {
 	source_id = 'gamecanvas_'+notify_id;
   else if (notify_source=="image")
 	source_id = 'gameimage_'+notify_id;
-  var code = 'linenotify_push_image('+notify_token+',"'+source_id+'",'');\n';
+  var code = 'linenotify_push_image('+notify_token+',"'+source_id+'","");\n';
   return code; 
 };
