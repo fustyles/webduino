@@ -3,7 +3,7 @@ var catMQTT = '<xml>'+
 	  '<block type="fu_mqtt_setup_js">'+
 		'<value name="server">'+
 		  '<block type="text">'+
-			'<field name="TEXT">wss:\/\/broker.emqx.io:8084\/mqtt</field>'+
+			'<field name="TEXT">wss:\/\/broker.mqttgo.io:8084\/mqtt</field>'+
 		  '</block>'+
 		'</value>'+
 		'<value name="user">'+
