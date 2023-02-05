@@ -21,9 +21,9 @@
 	
 	function webusb_state() {
 		if (connect.value.indexOf('Disconnect')!=-1)
-			return true;
+			return false;
 		else
-			return false
+			return true;
 	}
 	
 	function webusb_send(input_cmd) {
