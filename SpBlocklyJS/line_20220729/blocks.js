@@ -104,11 +104,7 @@ Blockly.Blocks['linenotify_image'] = {
   this.appendValueInput("notify_id")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.LINENOTIFY_ID_SHOW);
-  this.appendValueInput("notify_message")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.LINENOTIFY_MESSAGE_SHOW);	  
+      .appendField(Blockly.Msg.LINENOTIFY_ID_SHOW);	  
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
