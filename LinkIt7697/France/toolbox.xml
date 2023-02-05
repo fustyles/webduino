@@ -6405,7 +6405,7 @@
 		  <block type="page_mqtt_setup_js">
 			<value name="server">
 			  <block type="text">
-				<field name="TEXT">ws://broker.emqx.io:8083/mqtt</field>
+				<field name="TEXT">ws://mqttgo.io:8000/mqtt</field>
 			  </block>
 			</value>
 			<value name="user">
