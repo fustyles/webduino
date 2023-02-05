@@ -43,8 +43,3 @@
 	function webusb_clear() {
 		document.getElementById('gamespan_response').innerHTML = "";
 	}
-
-	function webusb_getState() {
-		return (document.getElementById('gamespan_status').innerHTML.indexOf(" connected")!=-1)?true:false;
-	}	
-		
