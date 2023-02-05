@@ -45,6 +45,6 @@
 	}
 
 	function webusb_getState() {
-		return (document.getElementById('gamespan_status').innerHTML.indexOf("connected")!=-1)?true:false;
+		return (document.getElementById('gamespan_status').innerHTML.indexOf(" connected")!=-1)?true:false;
 	}	
 		
