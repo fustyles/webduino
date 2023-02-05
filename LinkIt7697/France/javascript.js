@@ -763,7 +763,7 @@ Blockly.Arduino['esp32_webbluetooth_uuid'] = function(block) {
 												 +'String bleData = "";\n';
 	
 	Blockly.Arduino.definitions_.define_custom_command = '';
-	Blockly.Arduino.definitions_['ExecuteCommand'] = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
+	Blockly.Arduino.definitions_['ExecuteCommand'] += 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
 												 
 	Blockly.Arduino.definitions_['ExecuteCommand'] +='void ExecuteCommand() {\n'
 												 +'  //Serial.println("");\n'
