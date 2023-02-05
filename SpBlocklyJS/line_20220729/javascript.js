@@ -32,7 +32,6 @@ Blockly.JavaScript['linenotify_image'] = function (block) {
   var notify_token = Blockly.JavaScript.valueToCode(block, 'notify_token', Blockly.JavaScript.ORDER_ATOMIC);  
   var notify_source = block.getFieldValue('notify_source');
   var notify_id = Blockly.JavaScript.valueToCode(block, 'notify_id', Blockly.JavaScript.ORDER_ATOMIC);
-  var notify_message = Blockly.JavaScript.valueToCode(block, 'notify_message', Blockly.JavaScript.ORDER_ATOMIC);
   
   if (!notify_token) notify_token='""';
 
@@ -50,6 +49,6 @@ Blockly.JavaScript['linenotify_image'] = function (block) {
 	source_id = 'gamecanvas_'+notify_id;
   else if (notify_source=="image")
 	source_id = 'gameimage_'+notify_id;
-  var code = 'linenotify_push_image('+notify_token+',"'+source_id+'",'+notify_message+');\n';
+  var code = 'linenotify_push_image('+notify_token+',"'+source_id+'",'');\n';
   return code; 
 };
