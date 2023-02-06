@@ -5,14 +5,14 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
   'use strict';
 
-	let open_ai_token = "";
+	let open_ai_key = "";
 	let max_tokens = 256;
 	let open_ai_response = "";	
 	let open_ai_response_br = "";
 	let open_ai_response_url = "";	
 
-	function openai_text_initial(input_token, input_max_tokens) {
-		open_ai_token = input_token;
+	function openai_text_initial(input_key, input_max_tokens) {
+		open_ai_key = input_key;
 		max_tokens = input_max_tokens;
 	}  
 
@@ -23,7 +23,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 	  xhr.open("POST", url);
 
 	  xhr.setRequestHeader("Content-Type", "application/json");
-	  xhr.setRequestHeader("Authorization", "Bearer "+open_ai_token);
+	  xhr.setRequestHeader("Authorization", "Bearer "+open_ai_key);
 
 	  xhr.onreadystatechange = function () {
 		 if (xhr.readyState === 4) {
@@ -70,8 +70,8 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 		open_ai_response_br = "";	
 	}   
 
-	function openai_image_initial(input_token) {
-		open_ai_key = input_token;
+	function openai_image_initial(input_key) {
+		open_ai_key = input_key;
 	}    
 
 	function openai_image_request(input_text, input_size) {
