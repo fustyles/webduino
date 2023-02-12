@@ -166,7 +166,7 @@
 			</value>  	  
 			<value name="email_script_">
 			  <block type="text">
-				<field name="TEXT">https://script.google.com/macros/s/AKfycbw7skDzXZhAoMNWU22FvmoS5TewKmB7xMmoftq9PVqeum95yeo123/exec</field>
+				<field name="TEXT">https://script.google.com/macros/s/AKfycbw7skDzXZhAoMNWU22FvmoS5TewKmB7xMmoftq9PVqeum95yeo/exec</field>
 			  </block>
 			</value> 
 		  </block>   
