@@ -6,7 +6,6 @@ Code completion (openAI)
 
 let channel_access_TOKEN = "";
 let openAI_api_KEY = "";
-
 let maxTokens = 1024;
 
 let userMessage = "";
