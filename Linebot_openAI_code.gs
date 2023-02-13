@@ -28,7 +28,7 @@ function doPost(e) {
 
     let data = {
       "model": "code-davinci-002",
-      "prompt": "\"\"\"" + userMessage + "\"\"\"",
+      "prompt": "\"\"\" " + userMessage + " \"\"\"",
       "temperature": 0,
       "max_tokens": maxTokens,
       "top_p": 1.0,
