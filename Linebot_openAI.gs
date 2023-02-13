@@ -1,6 +1,7 @@
 /*
 Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/12/29 01:55
 https://www.facebook.com/francefu
+Text completion (openAI)
 */
 
 let channel_access_TOKEN = "";    //Line Bot Token
