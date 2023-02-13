@@ -6,6 +6,7 @@ Image generation (openAI)
 
 let channel_access_TOKEN = "";
 let openAI_api_KEY = "";
+let imageSize = "256x256";  // 256x256, 512x512, 1024x1024
 
 let userMessage = "";
 let userId = "";
@@ -27,7 +28,7 @@ function doPost(e) {
     let data = {
       "prompt": userMessage,
       "n": 1,      
-      "size": "256x256"  // 256x256, 512x512, 1024x1024
+      "size": imageSize
     };    
 
     const authHeader = "Bearer "+openAI_api_KEY;
