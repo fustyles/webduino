@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2023/2/12 01:55
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2023/2/13 18:00
 https://www.facebook.com/francefu
 Code completion (openAI)
 */
@@ -9,7 +9,7 @@ let openAI_api_KEY = "";
 
 let maxTokens = 1024;
 
-let userMessage = "";   //  """   codex   """
+let userMessage = "";
 let userId = "";
 let eventType = "";
 let replyToken = "";
@@ -20,6 +20,8 @@ function doPost(e) {
 
     let msg = JSON.parse(e.postData.contents);
     userMessage = msg.events[0].message.text.trim();
+    if (userMessage.split("\"\"\"").length<3)
+      userMessage = "\"\"\"\n" + userMessage + "\n\"\"\"";
     userId = msg.events[0].source.userId;
     eventType = msg.events[0].source.type;
     replyToken = msg.events[0].replyToken;  
@@ -28,7 +30,7 @@ function doPost(e) {
 
     let data = {
       "model": "code-davinci-002",
-      "prompt": "\"\"\" " + userMessage + " \"\"\"",
+      "prompt": userMessage,
       "temperature": 0,
       "max_tokens": maxTokens,
       "top_p": 1.0,
@@ -74,5 +76,3 @@ function sendMessageToLineBot(accessToken, replyToken, reply_message) {
   });
   
 } 
-
-
