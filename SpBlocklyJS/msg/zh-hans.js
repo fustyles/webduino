@@ -1197,7 +1197,6 @@ Blockly.Msg["VARIABLES_GET_HELPURL"] = "https://github.com/google/blockly/wiki/V
 Blockly.Msg["VARIABLES_GET_TOOLTIP"] = "返回此变数的值。";
 Blockly.Msg["VARIABLES_SET_LOCAL"] = "设定 %1 成 %2";
 Blockly.Msg["VARIABLES_SET_CREATE_GET"] = "建立「取得 %1」";
-Blockly.Msg["VARIABLES_SET_CREATE_GET"] = "建立「取得 %1」";
 Blockly.Msg["VARIABLES_SET_HELPURL"] = "https://github.com/google/blockly/wiki/Variables#set";  // untranslated
 Blockly.Msg["VARIABLES_SET_TOOLTIP"] = "设定此变量，好和输入结果相等。";
 Blockly.Msg["VARIABLE_ALREADY_EXISTS"] = "已存在变量「%1」。";
