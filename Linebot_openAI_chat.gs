@@ -25,7 +25,7 @@ function doPost(e) {
     let url = "https://api.openai.com/v1/chat/completions";
 
     let data = {
-      "model": "gpt-3.5-turbo",
+      "model": "gpt-3.5-turbo-0301",
       "messages": [{"role": "user", "content": userMessage}]
     };    
 
