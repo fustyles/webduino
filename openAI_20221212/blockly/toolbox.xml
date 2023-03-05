@@ -5,6 +5,11 @@
         <field name="TEXT"></field>
       </block>
     </value>
+    <value name="role">
+      <block type="text">
+        <field name="TEXT">You are a helpful assistant.</field>
+      </block>
+    </value>' 
   </block>
   <block type="openai_chat_request">
     <value name="words">
