@@ -158,19 +158,23 @@ function openai_chat_request(input_text) {
   xhr.onreadystatechange = function () {
 	 if (xhr.readyState === 4) {
 		//console.log(xhr.status);
-		console.log(xhr.responseText);
+		//console.log(xhr.responseText);
 		let json = eval("(" + xhr.responseText + ")");
 		if (json["error"]) {
 			openai_response_chat = json["error"]["message"];
 			openai_response_chat_br = json["error"]["message"];
 			if (typeof openai_chat_response === 'function') openai_chat_response();
 		}	
-		else {
+		else if (json["choices"][0]["message"]["content"]) {
 			openai_response_chat = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/\n/g,"");
 			openai_response_chat_br = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");		
 			if (openai_response_chat_br.indexOf("<br><br>")==0)
 				openai_response_chat_br = openai_response_chat_br.replace("<br><br>","");
 			if (typeof openai_chat_response === 'function') openai_chat_response();
+		}
+		else {
+			openai_response_chat = "";
+			openai_response_chat_br = "";	
 		}
 	 }};
 
