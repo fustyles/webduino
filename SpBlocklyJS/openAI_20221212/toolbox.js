@@ -1,5 +1,25 @@
 var catOpenAI = '<xml>'+
 '<category name="%{BKY_CATOPENAI}" id="CATOPENAI" colour="150">'+
+'  <block type="openai_chat_initial">'+
+'    <value name="token">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+
+'  <block type="openai_chat_request">'+
+'    <value name="words">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+  
+'  <block type="openai_chat_response">'+
+'  </block>'+
+'  <block type="openai_chat_response_get">'+
+'  </block>'+
+'  <block type="openai_chat_response_clear">'+
+'  </block>'+
 '  <block type="openai_text_initial">'+
 '    <value name="token">'+
 '      <block type="text">'+

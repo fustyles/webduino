@@ -60,3 +60,34 @@ Blockly.JavaScript['openai_image_response_clear'] = function (block) {
   var code = 'openai_image_response_clear();\n';
   return code;
 };
+
+Blockly.JavaScript['openai_chat_initial'] = function (block) {
+  var token = Blockly.JavaScript.valueToCode(block, 'token', Blockly.JavaScript.ORDER_ATOMIC); 
+
+  var code = 'openai_chat_initial('+token+');\n';
+  return code; 
+};
+
+Blockly.JavaScript['openai_chat_request'] = function (block) {
+  var words = Blockly.JavaScript.valueToCode(block, 'words', Blockly.JavaScript.ORDER_ATOMIC)||"";	
+	
+  var code = 'openai_chat_request('+words+');\n';
+  return code; 
+};
+
+Blockly.JavaScript['openai_chat_response'] = function (block) {
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'openai_chat_response = async function() {\n' + statements_do + '\n};\n';
+  return code;
+};
+
+Blockly.JavaScript['openai_chat_response_get'] = function (block) {
+  var br = block.getFieldValue('br');
+  var code = 'openai_chat_response_get('+br+')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['openai_chat_response_clear'] = function (block) {
+  var code = 'openai_chat_response_clear();\n';
+  return code;
+};

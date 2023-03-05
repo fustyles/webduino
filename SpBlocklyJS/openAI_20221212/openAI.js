@@ -4,15 +4,24 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
 'use strict';
 
-let open_ai_key = "";
-let max_tokens = 256;
-let open_ai_response = "";	
-let open_ai_response_br = "";
-let open_ai_response_url = "";	
+let openai_response_text_key = "";
+let openai_response_text_tokens = 256;
+let openai_response_text = "";	
+let openai_response_text_br = "";
+let openai_response_text_url = "";
+let openai_response_image_key = "";
+let openai_response_image_tokens = 256;	
+let openai_response_image = "";	
+let openai_response_image_br = "";
+let openai_response_image_url = "";
+let openai_response_chat_key = "";
+let openai_response_chat = "";	
+let openai_response_chat_br = "";
+let openai_response_chat_url = "";	
 
 function openai_text_initial(input_token, input_max_tokens) {
-	open_ai_key = input_token;
-	max_tokens = input_max_tokens;
+	openai_response_text_key = input_token;
+	openai_response_text_tokens = input_max_tokens;
 }  
 
 function openai_text_request(input_text) {
@@ -22,25 +31,38 @@ function openai_text_request(input_text) {
   xhr.open("POST", url);
 
   xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.setRequestHeader("Authorization", "Bearer "+open_ai_key);
+  xhr.setRequestHeader("Authorization", "Bearer " + openai_response_text_key);
 
   xhr.onreadystatechange = function () {
 	 if (xhr.readyState === 4) {
 		//console.log(xhr.status);
 		//console.log(xhr.responseText);
+		
 		let json = eval("(" + xhr.responseText + ")");
-		open_ai_response = json["choices"][0]["text"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/\n/g,"");
-		open_ai_response_br = json["choices"][0]["text"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");		
-		if (open_ai_response_br.indexOf("<br><br>")==0)
-			open_ai_response_br = open_ai_response_br.replace("<br><br>","");
-		if (typeof openai_text_response === 'function') openai_text_response();
+		if (json["error"]) {
+			openai_response_text = json["error"]["message"];
+			openai_response_text_br = json["error"]["message"];
+			if (typeof openai_text_response === 'function') openai_text_response();
+		}			
+		else if (json["choices"][0]["text"]) {
+			openai_response_text = json["choices"][0]["text"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/\n/g,"");
+			openai_response_text_br = json["choices"][0]["text"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");		
+			if (openai_response_text_br.indexOf("<br><br>")==0)
+				openai_response_text_br = openai_response_text_br.replace("<br><br>","");
+			if (typeof openai_text_response === 'function') openai_text_response();
+		}
+		else {
+			openai_response_text = "";
+			openai_response_text_br = "";
+		}
+			
 	 }};
 
   var data = {
 	"model": "text-davinci-003",
 	"prompt": input_text,
 	"temperature": 0,
-	"max_tokens": max_tokens,
+	"max_tokens": openai_response_text_tokens,
 	"frequency_penalty": 0,
 	"presence_penalty": 0.6,
 	"top_p": 1.0,
@@ -58,19 +80,19 @@ function openai_text_response() {
 
 function openai_text_response_get(br) {
 	if (br)
-		return open_ai_response_br;
+		return openai_response_text_br;
 	else
-		return open_ai_response;	
+		return openai_response_text;	
 }
 
 function openai_text_response_clear() {
-	open_ai_response = "";
-	open_ai_response_br = "";	
+	openai_response_text = "";
+	openai_response_text_br = "";	
 }
 
 
 function openai_image_initial(input_token) {
-	open_ai_key = input_token;
+	openai_response_image_key = input_token;
 }    
 
 function openai_image_request(input_text, input_size) {
@@ -80,20 +102,20 @@ function openai_image_request(input_text, input_size) {
   xhr.open("POST", url);
 
   xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.setRequestHeader("Authorization", "Bearer "+open_ai_key);
+  xhr.setRequestHeader("Authorization", "Bearer " + openai_response_image_key);
 
   xhr.onreadystatechange = function () {
 	 if (xhr.readyState === 4) {
         //console.log(xhr.status);
         //console.log(xhr.responseText);
 		let json = eval("(" + xhr.responseText + ")");
-		if (json["data"])
-			open_ai_response_url = json["data"][0]["url"];
-		else if (json["error"])
-			open_ai_response_url = "error";		
+		if (json["error"])
+			openai_response_image_url = "error";		
+		else if (json["data"])
+			openai_response_image_url = json["data"][0]["url"];
 		else
-			open_ai_response_url = "";
-		//console.log(open_ai_response_url);
+			openai_response_image_url = "";
+		//console.log(openai_response_image_url);
 		
 		if (typeof openai_image_response === 'function') openai_image_response();
 	 }};
@@ -111,9 +133,64 @@ function openai_image_response() {
 } 
 
 function openai_image_response_get() {
-	return open_ai_response_url;	
+	return openai_response_image_url;	
 }
 
 function openai_image_response_clear() {
-	open_ai_response_url = "";	
+	openai_response_image_url = "";	
 } 
+
+function openai_chat_initial(input_token) {
+	openai_response_chat_key = input_token;
+}  
+
+function openai_chat_request(input_text) {
+  var url = "https://api.openai.com/v1/chat/completions";
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", url);
+
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.setRequestHeader("Authorization", "Bearer " + openai_response_chat_key);
+
+  xhr.onreadystatechange = function () {
+	 if (xhr.readyState === 4) {
+		//console.log(xhr.status);
+		console.log(xhr.responseText);
+		let json = eval("(" + xhr.responseText + ")");
+		if (json["error"]) {
+			openai_response_chat = json["error"]["message"];
+			openai_response_chat_br = json["error"]["message"];
+			if (typeof openai_chat_response === 'function') openai_chat_response();
+		}	
+		else {
+			openai_response_chat = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/\n/g,"");
+			openai_response_chat_br = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");		
+			if (openai_response_chat_br.indexOf("<br><br>")==0)
+				openai_response_chat_br = openai_response_chat_br.replace("<br><br>","");
+			if (typeof openai_chat_response === 'function') openai_chat_response();
+		}
+	 }};
+
+  var data = {
+      "model": "gpt-3.5-turbo",   //或 gpt-3.5-turbo-0301
+      "messages": [{"role": "user", "content": input_text}]	  
+  };
+
+  xhr.send(JSON.stringify(data));
+}
+
+function openai_chat_response() {
+} 
+
+function openai_chat_response_get(br) {
+	if (br)
+		return openai_response_chat_br;
+	else
+		return openai_response_chat;	
+}
+
+function openai_chat_response_clear() {
+	openai_response_chat = "";
+	openai_response_chat_br = "";	
+}
