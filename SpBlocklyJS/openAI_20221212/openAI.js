@@ -16,9 +16,10 @@ let openai_response_image_br = "";
 let openai_response_image_url = "";
 let openai_response_chat_key = "";
 let openai_response_chat_model = "gpt-3.5-turbo";
+let openai_response_content = "";
 let openai_response_chat = "";	
-let openai_response_chat_br = "";
-let openai_response_chat_url = "";	
+let openai_response_chat_br = "";	
+let openai_response_chat_message = [{"role": "system", "content": "You are a helpful assistant."}];	
 
 function openai_text_initial(input_token, input_max_tokens) {
 	openai_response_text_key = input_token;
@@ -170,6 +171,12 @@ function openai_chat_request(input_text) {
 			openai_response_chat_br = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");		
 			if (openai_response_chat_br.indexOf("<br><br>")==0)
 				openai_response_chat_br = openai_response_chat_br.replace("<br><br>","");
+			
+			var char_message = {};
+			char_message.role = "assistant";
+			char_message.content = openai_response_chat;
+			openai_response_chat_message.push(char_message);
+			
 			if (typeof openai_chat_response === 'function') openai_chat_response();
 		}
 		else {
@@ -178,12 +185,29 @@ function openai_chat_request(input_text) {
 		}
 	 }};
 
-  var data = {
-      "model": openai_response_chat_model,
-      "messages": [{"role": "user", "content": input_text}]	  
-  };
 
-  xhr.send(JSON.stringify(data));
+	/*
+	  messages=[
+			{"role": "system", "content": "You are a helpful assistant."},
+			{"role": "user", "content": "Who won the world series in 2020?"},
+			{"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
+			{"role": "user", "content": "Where was it played?"}
+		]
+	*/			
+
+	var char_message = {};
+	char_message.role = "user";
+	char_message.content = input_text;
+	openai_response_chat_message.push(char_message);
+	console.log(openai_response_chat_message);
+  
+	var data;
+	data = {
+	  "model": openai_response_chat_model,
+	  "messages": openai_response_chat_message	  
+	};
+
+	xhr.send(JSON.stringify(data));
 }
 
 function openai_chat_response() {
@@ -199,4 +223,8 @@ function openai_chat_response_get(br) {
 function openai_chat_response_clear() {
 	openai_response_chat = "";
 	openai_response_chat_br = "";	
+}
+
+function openai_chat_message_clear() {
+	openai_response_chat_message = [{"role": "system", "content": "You are a helpful assistant."}];	
 }
