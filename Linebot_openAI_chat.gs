@@ -5,7 +5,7 @@ https://www.facebook.com/francefu
 
 let channel_access_TOKEN = "";
 let openAI_api_KEY = "";
-let maxTokens = 1024;
+let maxTokens = 1024;  //4096
 
 let userMessage = "";
 let userId = "";
