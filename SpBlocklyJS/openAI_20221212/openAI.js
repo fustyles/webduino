@@ -202,7 +202,6 @@ function openai_chat_request(input_text) {
 	char_message.role = "user";
 	char_message.content = input_text;
 	openai_response_chat_message.push(char_message);
-	//console.log(openai_response_chat_message);
   
 	var data;
 	data = {
