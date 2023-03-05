@@ -177,7 +177,7 @@ function openai_chat_request(input_text) {
 			
 			var char_message = {};
 			char_message.role = "assistant";
-			char_message.content = openai_response_chat;
+			char_message.content = json["choices"][0]["message"]["content"];
 			openai_response_chat_message.push(char_message);
 			
 			if (typeof openai_chat_response === 'function') openai_chat_response();
