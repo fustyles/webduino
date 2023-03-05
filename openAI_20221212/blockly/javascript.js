@@ -63,9 +63,10 @@ Blockly.JavaScript['openai_image_response_clear'] = function (block) {
 
 Blockly.JavaScript['openai_chat_initial'] = function (block) {
   var token = Blockly.JavaScript.valueToCode(block, 'token', Blockly.JavaScript.ORDER_ATOMIC); 
+  var role = Blockly.JavaScript.valueToCode(block, 'role', Blockly.JavaScript.ORDER_ATOMIC);   
   var model = block.getFieldValue('model');
 
-  var code = 'openai_chat_initial('+token+', "'+model+'");\n';
+  var code = 'openai_chat_initial('+token+', '+role+', "'+model+'");\n';
   return code; 
 };
 
@@ -90,5 +91,10 @@ Blockly.JavaScript['openai_chat_response_get'] = function (block) {
 
 Blockly.JavaScript['openai_chat_response_clear'] = function (block) {
   var code = 'openai_chat_response_clear();\n';
+  return code;
+};
+
+Blockly.JavaScript['openai_chat_content_clear'] = function (block) {
+  var code = 'openai_chat_content_clear();\n';
   return code;
 };
