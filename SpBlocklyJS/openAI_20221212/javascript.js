@@ -63,8 +63,9 @@ Blockly.JavaScript['openai_image_response_clear'] = function (block) {
 
 Blockly.JavaScript['openai_chat_initial'] = function (block) {
   var token = Blockly.JavaScript.valueToCode(block, 'token', Blockly.JavaScript.ORDER_ATOMIC); 
+  var model = block.getFieldValue('model');
 
-  var code = 'openai_chat_initial('+token+');\n';
+  var code = 'openai_chat_initial('+token+', "'+model+'");\n';
   return code; 
 };
 

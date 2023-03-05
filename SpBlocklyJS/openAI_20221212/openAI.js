@@ -15,6 +15,7 @@ let openai_response_image = "";
 let openai_response_image_br = "";
 let openai_response_image_url = "";
 let openai_response_chat_key = "";
+let openai_response_chat_model = "gpt-3.5-turbo";
 let openai_response_chat = "";	
 let openai_response_chat_br = "";
 let openai_response_chat_url = "";	
@@ -140,8 +141,9 @@ function openai_image_response_clear() {
 	openai_response_image_url = "";	
 } 
 
-function openai_chat_initial(input_token) {
+function openai_chat_initial(input_token, input_model) {
 	openai_response_chat_key = input_token;
+	openai_response_chat_model = input_model;
 }  
 
 function openai_chat_request(input_text) {
@@ -173,7 +175,7 @@ function openai_chat_request(input_text) {
 	 }};
 
   var data = {
-      "model": "gpt-3.5-turbo",   //或 gpt-3.5-turbo-0301
+      "model": openai_response_chat_model,
       "messages": [{"role": "user", "content": input_text}]	  
   };
 

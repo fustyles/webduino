@@ -157,7 +157,13 @@ Blockly.Blocks['openai_chat_initial'] = {
   this.appendValueInput("token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.OPENAI_TEXT_KEY_SHOW);  
+      .appendField(Blockly.Msg.OPENAI_TEXT_KEY_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_BR_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+			["gpt-3.5-turbo","gpt-3.5-turbo"],
+			["gpt-3.5-turbo-0301","gpt-3.5-turbo-0301"]	  
+	  ]), "model"); 	  
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
