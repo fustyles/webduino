@@ -158,8 +158,12 @@ Blockly.Blocks['openai_chat_initial'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.OPENAI_TEXT_KEY_SHOW);
+  this.appendValueInput("role")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPENAI_ROLE_SHOW);	  
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_BR_SHOW)
+      .appendField(Blockly.Msg.OPENAI_MODEL_SHOW)
       .appendField(new Blockly.FieldDropdown([
 			["gpt-3.5-turbo","gpt-3.5-turbo"],
 			["gpt-3.5-turbo-0301","gpt-3.5-turbo-0301"]	  
@@ -221,6 +225,18 @@ Blockly.Blocks['openai_chat_response_clear'] = {
   this.appendDummyInput()
 	  .appendField(Blockly.Msg.OPENAI_CHAT_SHOW)   
 	  .appendField(Blockly.Msg.OPENAI_TEXT_RESPONSE_CLEAR_SHOW);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true); 
+  this.setColour(150);
+  }
+};
+
+Blockly.Blocks['openai_chat_content_clear'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.OPENAI_CHAT_SHOW)   
+	  .appendField(Blockly.Msg.OPENAI_CHAT_CONTENT_CLEAR_SHOW);
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true); 
