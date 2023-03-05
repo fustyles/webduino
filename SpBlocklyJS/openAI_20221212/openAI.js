@@ -16,10 +16,11 @@ let openai_response_image_br = "";
 let openai_response_image_url = "";
 let openai_response_chat_key = "";
 let openai_response_chat_model = "gpt-3.5-turbo";
+let openai_response_role = "You are a helpful assistant.";
 let openai_response_content = "";
 let openai_response_chat = "";	
 let openai_response_chat_br = "";	
-let openai_response_chat_message = [{"role": "system", "content": "You are a helpful assistant."}];	
+let openai_response_chat_message = [{"role": "system", "content": openai_response_role}];	
 
 function openai_text_initial(input_token, input_max_tokens) {
 	openai_response_text_key = input_token;
@@ -142,9 +143,11 @@ function openai_image_response_clear() {
 	openai_response_image_url = "";	
 } 
 
-function openai_chat_initial(input_token, input_model) {
+function openai_chat_initial(input_token, input_role, input_model) {
 	openai_response_chat_key = input_token;
 	openai_response_chat_model = input_model;
+	openai_response_role = input_role;
+	openai_response_chat_message = [{"role": "system", "content": input_role}];
 }  
 
 function openai_chat_request(input_text) {
@@ -225,6 +228,6 @@ function openai_chat_response_clear() {
 	openai_response_chat_br = "";	
 }
 
-function openai_chat_message_clear() {
-	openai_response_chat_message = [{"role": "system", "content": "You are a helpful assistant."}];	
+function openai_chat_content_clear() {
+	openai_response_chat_message = [{"role": "system", "content": openai_response_role}];
 }

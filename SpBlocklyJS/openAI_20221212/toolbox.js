@@ -6,6 +6,11 @@ var catOpenAI = '<xml>'+
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+
+'    <value name="role">'+
+'      <block type="text">'+
+'        <field name="TEXT">You are a helpful assistant.</field>'+
+'      </block>'+
+'    </value>'+
 '  </block>'+
 '  <block type="openai_chat_request">'+
 '    <value name="words">'+
@@ -19,6 +24,8 @@ var catOpenAI = '<xml>'+
 '  <block type="openai_chat_response_get">'+
 '  </block>'+
 '  <block type="openai_chat_response_clear">'+
+'  </block>'+
+'  <block type="openai_chat_content_clear">'+
 '  </block>'+
 '  <block type="openai_text_initial">'+
 '    <value name="token">'+

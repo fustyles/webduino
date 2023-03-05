@@ -18,3 +18,4 @@ Blockly.Msg.OPENAI_IMAGE_RESPONSE_CLEAR_SHOW = "清除回应网址";
 Blockly.Msg.OPENAI_IMAGE_SIZE_SHOW = "尺寸";
 Blockly.Msg.OPENAI_CHAT_SHOW = "openAI 聊天";
 Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW = "發送聊天內容";
+Blockly.Msg.OPENAI_CHAT_CONTENT_CLEAR_SHOW = "清除对话历史纪录";
