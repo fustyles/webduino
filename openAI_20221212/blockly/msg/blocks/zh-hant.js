@@ -17,6 +17,6 @@ Blockly.Msg.OPENAI_IMAGE_RESPONSE_CLEAR_SHOW = "清除回應網址";
 Blockly.Msg.OPENAI_IMAGE_SIZE_SHOW = "尺寸";
 Blockly.Msg.OPENAI_CHAT_SHOW = "openAI 聊天";
 Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW = "發送聊天內容";
-Blockly.Msg.OPENAI_CHAT_CONTENT_CLEAR_SHOW = "清除對話歷史紀錄";
+Blockly.Msg.OPENAI_CHAT_CONTENT_CLEAR_SHOW = "清除聊天歷史紀錄";
 Blockly.Msg.OPENAI_CHAT_ROLE_SHOW = "助手行為";
 Blockly.Msg.OPENAI_CHAT_MODEL_SHOW = "模型";
