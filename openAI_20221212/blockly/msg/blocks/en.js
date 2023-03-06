@@ -17,6 +17,6 @@ Blockly.Msg.OPENAI_IMAGE_RESPONSE_CLEAR_SHOW = "Clear image url";
 Blockly.Msg.OPENAI_IMAGE_SIZE_SHOW = "Size";
 Blockly.Msg.OPENAI_CHAT_SHOW = "openAI chatGPT";
 Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW = "Send chat content";
-Blockly.Msg.OPENAI_CHAT_CONTENT_CLEAR_SHOW = "Clear content history";
+Blockly.Msg.OPENAI_CHAT_CONTENT_CLEAR_SHOW = "Clear historical content";
 Blockly.Msg.OPENAI_CHAT_ROLE_SHOW = "assistant behavior";
 Blockly.Msg.OPENAI_CHAT_MODEL_SHOW = "model";
