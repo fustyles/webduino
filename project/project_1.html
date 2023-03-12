@@ -118,7 +118,7 @@ async function gamebutton_7_onclick (event) {
 };
 document.getElementById("gamebutton_7").addEventListener("click", gamebutton_7_onclick, true);
 setInterval(async function(){
-  mqtt_client.publish('smartfan/ir', String(('?'+'TH')));
+  mqtt_client.publish('smartfan/ir', String(('?'+(select_get('',"selectedValue"))+'='+'TH')));
 },60000);
-mqtt_client.publish('smartfan/ir', String(('?'+'TH')));
+mqtt_client.publish('smartfan/ir', String(('?'+(select_get('',"selectedValue"))+'='+'TH')));
 };main();</script></body></html>
