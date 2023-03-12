@@ -92,8 +92,8 @@ doughnutWidget.createChart('濕度');
 span_create('1',40,40,30,'風扇位置',999);
 select_create('',80,30,170,45,'#ffffff','#000000',24,1,[['RF', '右前'], ['RB', '右後'], ['LF', '左前'], ['LB', '左後'], ['ALL', '全部']],'RF',999,true);
 span_create('2',40,100,30,'開關',999);
-time_create('',110,110,'00:00:00',1,999,true);
-checkbox_create('',220,107,24,'',false,1,999,true);
+time_create('',140,110,'00:00:00',1,999,true);
+checkbox_create('',110,107,24,'',false,1,999,true);
 setInterval(async function(){
   mqtt_client.publish('smartfan/ir', String(('?'+(select_get('',"selectedValue"))+'='+'TH')));
 },60000);
