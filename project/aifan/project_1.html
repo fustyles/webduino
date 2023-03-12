@@ -1,0 +1,124 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/MQTT_20220324/mqtt.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/pretty-doughtnut.js'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{
+var newdate;
+
+
+head_add_viewport(1.2,1,2,"yes");
+const clientId = "mqtt_" + Math.random().toString(16).substr(2, 8);
+const options = {
+	username: '',
+	password: '',
+	keepalive: 60,
+	clientId: clientId,
+	protocolId: "MQTT",
+	protocolVersion: 4,
+	clean: true,
+	reconnectPeriod: 1000,
+	connectTimeout: 30 * 1000
+}
+
+var mqtt_client = mqtt.connect('wss://broker.emqx.io:8084/mqtt',options);
+mqtt_client.on("connect", ()=>{
+	console.log("connected");
+  mqtt_client.subscribe('smartfan/temperature');
+  mqtt_client.subscribe('smartfan/humidity');
+	mqtt_client.on("message", async function (topic, payload) {
+  span_set('TIME',"innerHTML",(getDatetime(newdate, "datetime")));
+  if (topic=='smartfan/temperature') {
+    doughnutWidget.updateData('溫度', (Number(payload)));
+  }
+  if (topic=='smartfan/humidity') {
+    doughnutWidget.updateData('濕度', (Number(payload)));
+  }
+   })
+  }
+)
+
+doughnutWidget.chartname['溫度'] = {
+	container: "chart_UyhMEFVlS",
+	width: 110,
+	height: 110,
+	left: 100,
+	top: 320,
+	cutout: 50,
+	data: {
+		val: 0,
+		min: 0,
+		max: 50,
+		color: '#ff0000',
+		unit: " "+'°C',
+		decimal: 0,
+		labelsize: 14,
+		valuesize: 10,
+		//link: "http://www.google.com",
+		//click: function(e) {
+		//	console.log("hi");
+		//}
+	}
+};
+doughnutWidget.createChart('溫度');
+doughnutWidget.chartname['濕度'] = {
+	container: "chart_FTVJvyOvOHvtxLXMvq",
+	width: 110,
+	height: 110,
+	left: 210,
+	top: 320,
+	cutout: 50,
+	data: {
+		val: 0,
+		min: 0,
+		max: 100,
+		color: '#3333ff',
+		unit: " "+'%',
+		decimal: 0,
+		labelsize: 14,
+		valuesize: 10,
+		//link: "http://www.google.com",
+		//click: function(e) {
+		//	console.log("hi");
+		//}
+	}
+};
+doughnutWidget.createChart('濕度');
+span_create('',100,40,30,'風扇位置',999);
+span_create('TIME',100,450,30,'',999);
+select_create('',80,30,230,45,'#ffffff','#000000',24,1,[['RF', '右前'], ['RB', '右後'], ['LF', '左前'], ['LB', '左後'], ['ALL', '全部']],'ALL',999,true);
+button_create('1',100,40,100,100,1,null,'開關',24,999,true);
+button_create('2',100,40,100,150,1,null,'模式',24,999,true);
+button_create('3',100,40,155,250,1,null,'擺頭',24,999,true);
+button_create('4',100,40,210,100,1,null,'燈光',24,999,true);
+button_create('5',100,40,100,200,1,null,'風量+',24,999,true);
+button_create('6',100,40,210,200,1,null,'風量-',24,999,true);
+button_create('7',100,40,210,150,1,null,'定時',24,999,true);
+async function gamebutton_1_onclick (event) {
+  mqtt_client.publish('smartfan/ir', String(('?'+(select_get('',"selectedValue"))+'='+'1')));
+};
+document.getElementById("gamebutton_1").addEventListener("click", gamebutton_1_onclick, true);
+async function gamebutton_2_onclick (event) {
+  mqtt_client.publish('smartfan/ir', String(('?'+(select_get('',"selectedValue"))+'='+'2')));
+};
+document.getElementById("gamebutton_2").addEventListener("click", gamebutton_2_onclick, true);
+async function gamebutton_3_onclick (event) {
+  mqtt_client.publish('smartfan/ir', String(('?'+(select_get('',"selectedValue"))+'='+'3')));
+};
+document.getElementById("gamebutton_3").addEventListener("click", gamebutton_3_onclick, true);
+async function gamebutton_4_onclick (event) {
+  mqtt_client.publish('smartfan/ir', String(('?'+(select_get('',"selectedValue"))+'='+'4')));
+};
+document.getElementById("gamebutton_4").addEventListener("click", gamebutton_4_onclick, true);
+async function gamebutton_5_onclick (event) {
+  mqtt_client.publish('smartfan/ir', String(('?'+(select_get('',"selectedValue"))+'='+'6')));
+};
+document.getElementById("gamebutton_5").addEventListener("click", gamebutton_5_onclick, true);
+async function gamebutton_6_onclick (event) {
+  mqtt_client.publish('smartfan/ir', String(('?'+(select_get('',"selectedValue"))+'='+'7')));
+};
+document.getElementById("gamebutton_6").addEventListener("click", gamebutton_6_onclick, true);
+async function gamebutton_7_onclick (event) {
+  mqtt_client.publish('smartfan/ir', String(('?'+(select_get('',"selectedValue"))+'='+'5')));
+};
+document.getElementById("gamebutton_7").addEventListener("click", gamebutton_7_onclick, true);
+setInterval(async function(){
+  mqtt_client.publish('smartfan/ir', String(('?'+'TH')));
+},60000);
+mqtt_client.publish('smartfan/ir', String(('?'+'TH')));
+};main();</script></body></html>
