@@ -3463,7 +3463,7 @@ Blockly.Arduino['fu_servo'] = function(block) {
   var value_pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
   var value_angle = Blockly.Arduino.valueToCode(block, 'angle', Blockly.Arduino.ORDER_ATOMIC);
 
-  Blockly.Arduino.definitions_['define_servo'] = 'include <Servo.h>\nServo myServo;';
+  Blockly.Arduino.definitions_['define_servo'] = '#include <Servo.h>\nServo myServo;';
   Blockly.Arduino.setups_['setup_servo_'+ value_pin] = 'myServo.attach('+value_pin+');'; 
 
   var code = 'myServo.write('+ value_angle +');\n' ;
