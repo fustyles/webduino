@@ -487,8 +487,8 @@ Blockly.Msg.BUTTON_OUTPUT_FILE_TEXT = "輸出文字至檔案";
 Blockly.Msg.WINDOW_OPEN = "開啟連結網址";
 Blockly.Msg.WINDOW_NAME = "於";
 Blockly.Msg.WINDOW_NAME_NEW = "新視窗";
-Blockly.Msg.WINDOW_NAME_PARENT = "原本視窗";
-Blockly.Msg.WINDOW_NAME_SELF = "前一開起視窗";
+Blockly.Msg.WINDOW_NAME_PARENT = "目前視窗";
+Blockly.Msg.WINDOW_NAME_SELF = "前一開啟視窗";
 Blockly.Msg.WINDOW_NAME_TOP = "任何可被開啟視窗";
 
 Blockly.Msg["CATPAGEELEMENTS"] = "網頁元素";
