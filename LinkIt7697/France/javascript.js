@@ -435,7 +435,7 @@ Blockly.Arduino['fu_servo_initial'] = function(block) {
 	if (selectBoardType()=="esp32"||selectBoardType()=="esp8266") {
 		Blockly.Arduino.setups_['ledc_'+ value_pin] = 'ledcSetup('+value_index+', 50, 16);\n'+							  '  ledcAttachPin('+value_pin+', '+value_index+');'; 
 	} else {
-		Blockly.Arduino.definitions_['define_servo'] = 'include <Servo.h>\n';
+		Blockly.Arduino.definitions_['define_servo'] = '#include <Servo.h>\n';
 		Blockly.Arduino.definitions_['define_servo_'+value_pin] = 'Servo myServo'+value_index+';';
 		if (value_custom=="")
 			Blockly.Arduino.setups_['setup_servo_'+ value_pin] = 'myServo'+value_index+'.attach('+value_pin+');';
