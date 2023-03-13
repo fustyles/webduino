@@ -14085,7 +14085,7 @@ Blockly.Arduino['fu_mqtt_setup'] = function(block) {
 										'mqtt_client.setCallback(callback);\n  '+
 										'//mqtt_client.setBufferSize(1024);\n';
 										
-  Blockly.Arduino.definitions_.define_mqtt_callback = 'void callback(char* topic, byte* payload, unsigned int length) {\n'+
+  Blockly.Arduino.functions_.define_mqtt_callback = 'void callback(char* topic, byte* payload, unsigned int length) {\n'+
 														'  mqtt_data = "";\n'+
 														'  for (int ci = 0; ci < length; ci++) {\n'+
 														'    char c = payload[ci];\n'+
@@ -14100,7 +14100,7 @@ Blockly.Arduino['fu_mqtt_setup'] = function(block) {
 Blockly.Arduino['fu_mqtt_loop'] = function(block) {
   var topic_getdata = Blockly.Arduino.statementToCode(block, 'topic_getdata');
 				
-  Blockly.Arduino.definitions_.define_mqtt_callback = 'void callback(char* topic, byte* payload, unsigned int length) {\n'+
+  Blockly.Arduino.functions_.define_mqtt_callback = 'void callback(char* topic, byte* payload, unsigned int length) {\n'+
 														'  mqtt_data = "";\n'+
 														'  for (int ci = 0; ci < length; ci++) {\n'+
 														'    char c = payload[ci];\n'+
@@ -14146,7 +14146,7 @@ Blockly.Arduino['fu_mqtt_server_loop'] = function(block) {
 	
 	var topic_getdata = Blockly.Arduino.statementToCode(block, 'topic_getdata');
 				
-	Blockly.Arduino.definitions_.define_mqtt_callback = 'void callback(char* topic, byte* payload, unsigned int length) {\n'+
+	Blockly.Arduino.functions_.define_mqtt_callback = 'void callback(char* topic, byte* payload, unsigned int length) {\n'+
 														'  mqtt_data = "";\n'+
 														'  Command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'+
 														'  receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'+
