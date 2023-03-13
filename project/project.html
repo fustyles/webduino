@@ -1,0 +1,117 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/MQTT_20220324/mqtt.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simpleswitch.js'></script><link href='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/simpleswitch.css' type='text/css' rel='stylesheet'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{
+var deviceID;
+
+
+const clientId = "mqtt_" + Math.random().toString(16).substr(2, 8);
+const options = {
+	username: '',
+	password: '',
+	keepalive: 60,
+	clientId: clientId,
+	protocolId: "MQTT",
+	protocolVersion: 4,
+	clean: true,
+	reconnectPeriod: 1000,
+	connectTimeout: 30 * 1000
+}
+
+var mqtt_client = mqtt.connect('wss://broker.emqx.io:8084/mqtt',options);
+mqtt_client.on("connect", ()=>{
+	console.log("connected");
+  mqtt_client.subscribe('smartfan/temperature');
+  mqtt_client.subscribe('smartfan/humidity');
+	mqtt_client.on("message", async function (topic, payload) {
+  console.log((new TextDecoder().decode(payload)));
+  var deviceID = (new TextDecoder().decode(payload)).split(',')[0];
+  console.log(deviceID);
+  simpleSwitch({id: deviceID,val: 1});
+   })
+  }
+)
+
+head_add_viewport(1,1,2,"yes");
+span_create('',40,320,20,'教室的第三隻眼-AI辨識智慧電扇',999);
+simpleSwitch({
+	id: 'RF',
+	width: 80,
+	height: 40,
+	left: 100,
+	top: 60,
+	text: '右前(RF)',
+	size: 14,
+	color: '#33cc00',
+	val: 0,
+	func: switch_XTgasjDNVNy
+});
+simpleSwitch({
+	id: 'LF',
+	width: 80,
+	height: 40,
+	left: 40,
+	top: 60,
+	text: '左前(LF)',
+	size: 14,
+	color: '#33cc00',
+	val: 0,
+	func: switch_cTJJEOfripDikacVR
+});
+simpleSwitch({
+	id: 'RB',
+	width: 80,
+	height: 40,
+	left: 100,
+	top: 100,
+	text: '右後(RB)',
+	size: 14,
+	color: '#33cc00',
+	val: 0,
+	func: switch_xzXVUHVL
+});
+simpleSwitch({
+	id: 'LB',
+	width: 80,
+	height: 40,
+	left: 40,
+	top: 100,
+	text: '左後(LB)',
+	size: 14,
+	color: '#33cc00',
+	val: 0,
+	func: switch_TWlWRmVXNwEDG
+});
+button_create('1',90,30,40,40,1,null,'遙控器控制',12,999,true);
+button_create('2',90,30,140,40,1,null,'定時開關控制',12,999,true);
+button_create('3',90,30,240,40,1,null,'物件辨識控制',12,999,true);
+async function gamebutton_1_onclick (event) {
+  window.open('https://fustyles.github.io/webduino/project/project_1.html',"_parent");
+};
+document.getElementById("gamebutton_1").addEventListener("click", gamebutton_1_onclick, true);
+async function gamebutton_2_onclick (event) {
+  window.open('https://fustyles.github.io/webduino/project/project_2.html',"_parent");
+};
+document.getElementById("gamebutton_2").addEventListener("click", gamebutton_2_onclick, true);
+async function gamebutton_3_onclick (event) {
+  window.open('https://fustyles.github.io/webduino/project/project_3.html',"_parent");
+};
+document.getElementById("gamebutton_3").addEventListener("click", gamebutton_3_onclick, true);
+await delay(3);
+mqtt_client.publish('smartfan/ir', String(('?'+'RF'+'='+'TH')));
+mqtt_client.publish('smartfan/ir', String(('?'+'LF'+'='+'TH')));
+mqtt_client.publish('smartfan/ir', String(('?'+'RB'+'='+'TH')));
+mqtt_client.publish('smartfan/ir', String(('?'+'LB'+'='+'TH')));
+
+function switch_XTgasjDNVNy() {
+
+}
+
+function switch_cTJJEOfripDikacVR() {
+
+}
+
+function switch_xzXVUHVL() {
+
+}
+
+function switch_TWlWRmVXNwEDG() {
+
+}};main();</script></body></html>

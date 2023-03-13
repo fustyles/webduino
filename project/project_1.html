@@ -1,8 +1,8 @@
 <!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/MQTT_20220324/mqtt.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/pretty-doughtnut.js'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{
-var newdate;
+var dataArray, newdate;
 
 
-head_add_viewport(1.2,1,2,"yes");
+head_add_viewport(1,1,2,"yes");
 const clientId = "mqtt_" + Math.random().toString(16).substr(2, 8);
 const options = {
 	username: '',
@@ -22,13 +22,18 @@ mqtt_client.on("connect", ()=>{
   mqtt_client.subscribe('smartfan/temperature');
   mqtt_client.subscribe('smartfan/humidity');
 	mqtt_client.on("message", async function (topic, payload) {
-  span_set('TIME',"innerHTML",(getDatetime(newdate, "datetime")));
+  dataArray = (new TextDecoder().decode(payload)).split(',');
   if (topic=='smartfan/temperature') {
-    doughnutWidget.updateData('溫度', (Number(payload)));
+    if ((select_get('',"selectedValue")) == dataArray[0]) {
+      doughnutWidget.updateData('溫度', (text_to_number((dataArray[1]))));
+    }
   }
   if (topic=='smartfan/humidity') {
-    doughnutWidget.updateData('濕度', (Number(payload)));
+    if ((select_get('',"selectedValue")) == dataArray[0]) {
+      doughnutWidget.updateData('濕度', (text_to_number((dataArray[1]))));
+    }
   }
+  span_set('TIME',"innerHTML",(getDatetime(newdate, "datetime")));
    })
   }
 )
@@ -38,7 +43,7 @@ doughnutWidget.chartname['溫度'] = {
 	width: 110,
 	height: 110,
 	left: 40,
-	top: 320,
+	top: 300,
 	cutout: 50,
 	data: {
 		val: 0,
@@ -61,7 +66,7 @@ doughnutWidget.chartname['濕度'] = {
 	width: 110,
 	height: 110,
 	left: 150,
-	top: 320,
+	top: 300,
 	cutout: 50,
 	data: {
 		val: 0,
@@ -79,16 +84,20 @@ doughnutWidget.chartname['濕度'] = {
 	}
 };
 doughnutWidget.createChart('濕度');
-span_create('',40,40,30,'風扇位置',999);
-span_create('TIME',40,450,24,'',999);
-select_create('',80,30,170,45,'#ffffff','#000000',24,1,[['RF', '右前'], ['RB', '右後'], ['LF', '左前'], ['LB', '左後'], ['ALL', '全部']],'RF',999,true);
+span_create('0',40,32,40,'風扇',999);
+select_create('',100,40,150,40,'#ffffff','#000000',30,1,[['RF', 'RF'], ['RB', 'RB'], ['LF', 'LF'], ['LB', 'LB'], ['ALL', 'ALL']],'RF',999,true);
+async function gameselect__onchange (event) {
+  doughnutWidget.updateData('溫度', 0);
+  doughnutWidget.updateData('濕度', 0);
+};
+document.getElementById("gameselect_").addEventListener("change", gameselect__onchange, true);
 button_create('1',100,40,40,100,1,null,'開關',24,999,true);
 button_create('2',100,40,40,150,1,null,'模式',24,999,true);
-button_create('3',100,40,95,250,1,null,'擺頭',24,999,true);
-button_create('4',100,40,150,100,1,null,'燈光',24,999,true);
+button_create('3',100,40,115,250,1,null,'擺頭',24,999,true);
+button_create('4',100,40,170,100,1,null,'燈光',24,999,true);
 button_create('5',100,40,40,200,1,null,'風量+',24,999,true);
-button_create('6',100,40,150,200,1,null,'風量-',24,999,true);
-button_create('7',100,40,150,150,1,null,'定時',24,999,true);
+button_create('6',100,40,170,200,1,null,'風量-',24,999,true);
+button_create('7',100,40,170,150,1,null,'定時',24,999,true);
 async function gamebutton_1_onclick (event) {
   mqtt_client.publish('smartfan/ir', String(('?'+(select_get('',"selectedValue"))+'='+'1')));
 };
@@ -117,8 +126,9 @@ async function gamebutton_7_onclick (event) {
   mqtt_client.publish('smartfan/ir', String(('?'+(select_get('',"selectedValue"))+'='+'5')));
 };
 document.getElementById("gamebutton_7").addEventListener("click", gamebutton_7_onclick, true);
+span_create('TIME',40,420,28,'',999);
+mqtt_client.publish('smartfan/ir', String(('?'+(select_get('',"selectedValue"))+'='+'TH')));
 setInterval(async function(){
   mqtt_client.publish('smartfan/ir', String(('?'+(select_get('',"selectedValue"))+'='+'TH')));
 },60000);
-mqtt_client.publish('smartfan/ir', String(('?'+(select_get('',"selectedValue"))+'='+'TH')));
 };main();</script></body></html>

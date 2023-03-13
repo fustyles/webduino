@@ -1,9 +1,14 @@
 <!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/MQTT_20220324/mqtt.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/pretty-doughtnut.js'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{
-var newdate;
+var dataArray, newdate;
 
 // 描述此函式...
 function _E6_AF_94_E5_B0_8D_E6_99_82_E9_96_93() {
-  mqtt_client.publish('smartfan/ir', String(('?'+(select_get('',"selectedValue"))+'='+'1')));
+  console.log((getDatetime(newdate, "time")));
+  console.log((String(time_get('',"value")) + ':00'));
+  if ((getDatetime(newdate, "time")) == String(time_get('',"value")) + ':00') {
+    checkbox_set('',"checked",false);
+    mqtt_client.publish('smartfan/ir', String(('?'+(select_get('',"selectedValue"))+'='+'1')));
+  }
 }
 
 
@@ -27,13 +32,18 @@ mqtt_client.on("connect", ()=>{
   mqtt_client.subscribe('smartfan/temperature');
   mqtt_client.subscribe('smartfan/humidity');
 	mqtt_client.on("message", async function (topic, payload) {
-  span_set('TIME',"innerHTML",(getDatetime(newdate, "datetime")));
+  dataArray = (new TextDecoder().decode(payload)).split(',');
   if (topic=='smartfan/temperature') {
-    doughnutWidget.updateData('溫度', (Number(payload)));
+    if ((select_get('',"selectedValue")) == dataArray[0]) {
+      doughnutWidget.updateData('溫度', (text_to_number((dataArray[1]))));
+    }
   }
   if (topic=='smartfan/humidity') {
-    doughnutWidget.updateData('濕度', (Number(payload)));
+    if ((select_get('',"selectedValue")) == dataArray[0]) {
+      doughnutWidget.updateData('濕度', (text_to_number((dataArray[1]))));
+    }
   }
+  span_set('TIME',"innerHTML",(getDatetime(newdate, "datetime")));
    })
   }
 )
@@ -84,13 +94,28 @@ doughnutWidget.chartname['濕度'] = {
 	}
 };
 doughnutWidget.createChart('濕度');
-span_create('1',40,40,30,'風扇位置',999);
-select_create('',80,30,170,45,'#ffffff','#000000',24,1,[['RF', '右前'], ['RB', '右後'], ['LF', '左前'], ['LB', '左後'], ['ALL', '全部']],'RF',999,true);
-span_create('2',40,100,24,'關閉時間',999);
-time_create('',170,100,'00:00:00',1,999,true);
+span_create('1',40,40,30,'風扇代碼',999);
+select_create('',80,30,170,45,'#ffffff','#000000',24,1,[['RF', 'RF'], ['RB', 'RB'], ['LF', 'LF'], ['LB', 'LB'], ['ALL', 'ALL']],'RF',999,true);
+async function gameselect__onchange (event) {
+  doughnutWidget.updateData('溫度', 0);
+  doughnutWidget.updateData('濕度', 0);
+};
+document.getElementById("gameselect_").addEventListener("change", gameselect__onchange, true);
+span_create('2',40,100,30,'關閉',999);
+checkbox_create('',100,105,24,'',false,1,999,true);
+time_create('',130,110,'00:00:00',1,999,true);
 setInterval(async function(){
   mqtt_client.publish('smartfan/ir', String(('?'+(select_get('',"selectedValue"))+'='+'TH')));
 },60000);
 mqtt_client.publish('smartfan/ir', String(('?'+(select_get('',"selectedValue"))+'='+'TH')));
 span_create('TIME',40,280,24,'',999);
+async function gametime__onchange (event) {
+  checkbox_set('',"checked",true);
+};
+document.getElementById("gametime_").addEventListener("change", gametime__onchange, true);
+setInterval(async function(){
+  if ((checkbox_get('',"checked")) == true) {
+    _E6_AF_94_E5_B0_8D_E6_99_82_E9_96_93();
+  }
+},1000);
 };main();</script></body></html>
