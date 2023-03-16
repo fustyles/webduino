@@ -9268,9 +9268,12 @@ Blockly.Arduino['lcd1602_initial'] = function(block) {
   var address = block.getFieldValue('address');
   var sda = Blockly.Arduino.valueToCode(block, 'sda', Blockly.Arduino.ORDER_ATOMIC);
   var scl = Blockly.Arduino.valueToCode(block, 'scl', Blockly.Arduino.ORDER_ATOMIC);
+  var value_custom = block.getFieldValue('custom');
+  
   Blockly.Arduino.definitions_['lcd1602_initial'] = "#include \<Wire.h\>\n#include \<LiquidCrystal_I2C.h\>\nLiquidCrystal_I2C lcd("+address+");";
   var statements_setup = Blockly.Arduino.statementToCode(block, 'setup');
-  Blockly.Arduino.setups_.lcd1602 = '\n  Wire.begin('+sda+', '+scl+');\n  lcd.begin(16,2);'+statements_setup;
+  
+  Blockly.Arduino.setups_.lcd1602 = ((value_custom!="")?'\n  Wire.begin('+sda+', '+scl+');':'')+'\n  lcd.begin(16,2);'+statements_setup;
   var code = '';
   return code;
 };
