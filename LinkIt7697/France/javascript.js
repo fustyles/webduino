@@ -6920,13 +6920,12 @@ Blockly.Arduino['fu_oled_initial'] = function(block) {
   var dropdown_format = block.getFieldValue('format');
   var dropdown_display = block.getFieldValue('display');
   var dropdown_utf8 = (block.getFieldValue('utf8')==1)?"  u8g2.enableUTF8Print();":"  u8g2.disableUTF8Print();";
-  var text_font = block.getFieldValue('font');
   
   Blockly.Arduino.definitions_['u8g2_definition'] = '#include <U8g2lib.h>\n'+
 												  '#include <Wire.h>\n'+
 												  dropdown_format.replace('U8G2_R0',dropdown_display);												  
   Blockly.Arduino.setups_['u8g2_setup'] = 'u8g2.begin();\n  '+
-										  'u8g2.setFont('+text_font+');\n'+
+										  'u8g2.setFont(u8g2_font_ncenB08_tr);\n'+
 										  dropdown_utf8;
   
   var code = '';

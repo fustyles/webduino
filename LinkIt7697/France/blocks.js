@@ -7602,10 +7602,6 @@ Blockly.Blocks['fu_oled_initial'] = {
 		[Blockly.Msg["OLED_DISABLE"],"0"], 
 		[Blockly.Msg["OLED_ENABLE"],"1"]			
 	]), "utf8");
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)	
-        .appendField(Blockly.Msg["OLED_FONT_DEFAULT"])
-        .appendField(new Blockly.FieldDropdown(opt_font), "font");
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
