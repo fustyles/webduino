@@ -9632,17 +9632,17 @@
 		  </block>
 		</value>		
 	  </block>
-	  <block type="lcd1602_backlight">
-	  </block>	
-	  <block type="lcd1602_clear">
-	  </block>		  
 	  <block type="lcd1602_print">
 		<value name="str">
 		  <block type="text">
 			<field name="TEXT">Hello World</field>
 		  </block>
 		</value> 	  
-	  </block>	 
+	  </block>	  
+	  <block type="lcd1602_backlight">
+	  </block>	
+	  <block type="lcd1602_clear">
+	  </block>		  	 
     </category>
 	<category id="france12" name="motordriveric">
 		<block type="webbit_mooncar_pin">
