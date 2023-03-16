@@ -9273,7 +9273,10 @@ Blockly.Arduino['lcd1602_initial'] = function(block) {
   Blockly.Arduino.definitions_['lcd1602_initial'] = "#include \<Wire.h\>\n#include \<LiquidCrystal_I2C.h\>\nLiquidCrystal_I2C lcd("+address+");";
   var statements_setup = Blockly.Arduino.statementToCode(block, 'setup');
   
-  Blockly.Arduino.setups_.lcd1602 = ((value_custom!="")?'\n  Wire.begin('+sda+', '+scl+');':'')+'\n  lcd.begin(16,2);'+statements_setup;
+  	if (selectBoardType()=="rp2040")
+	  Blockly.Arduino.setups_.lcd1602 = ((value_custom!="")?'\n  Wire.setSDA('+sda+');\n  Wire.setSCL('+scl+');\n  Wire.begin();':'')+'\n  lcd.begin(16,2);'+statements_setup;
+	else
+	  Blockly.Arduino.setups_.lcd1602 = ((value_custom!="")?'\n  Wire.begin('+sda+', '+scl+');':'')+'\n  lcd.begin(16,2);'+statements_setup;
   var code = '';
   return code;
 };
