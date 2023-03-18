@@ -6,6 +6,11 @@ https://www.facebook.com/francefu
 let channel_access_TOKEN = "";
 let openAI_api_KEY = "";
 
+let userMessage = "";
+let userId = "";
+let eventType = "";
+let replyToken = "";
+
 let openai_response;
 let openai_response_chat_message;
 let openai_assistant_behavior = "你使用的語言是繁體中文的專業助理";
