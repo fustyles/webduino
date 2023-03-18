@@ -15,7 +15,7 @@ let eventType = "";
 let replyToken = "";
 
 let openAI_response;
-let openAI_historical_message;
+let openAI_historical_messages;
   
 function doPost(e) {
 
@@ -30,20 +30,20 @@ function doPost(e) {
     replyToken = msg.events[0].replyToken;  
 
     if (userMessage != reset_command) {
-      openAI_historical_message = [{"role": "system", "content": openAI_assistant_behavior}];
+      openAI_historical_messages = [{"role": "system", "content": openAI_assistant_behavior}];
       if (scriptProperties.getProperty('openAI_chat')!="")
-        openAI_historical_message = JSON.parse(scriptProperties.getProperty('openAI_chat')); 
+        openAI_historical_messages = JSON.parse(scriptProperties.getProperty('openAI_chat')); 
 
       var char_message = {};
       char_message.role = "user";
       char_message.content = userMessage;
-      openAI_historical_message.push(char_message);
+      openAI_historical_messages.push(char_message);
 
       let url = "https://api.openAI.com/v1/chat/completions";
 
       let data = {
         "model": "gpt-3.5-turbo",   // gpt-3.5-turbo-0301
-        "messages": openAI_historical_message
+        "messages": openAI_historical_messages
       };    
 
       const authHeader = "Bearer "+openAI_api_KEY;
@@ -53,6 +53,7 @@ function doPost(e) {
         contentType: 'application/json',
         payload: JSON.stringify(data)
       }
+	  
       let response = UrlFetchApp.fetch(url, options);
       let json = JSON.parse(response.getContentText());
       openAI_response = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/\n/g,"");  
@@ -60,10 +61,9 @@ function doPost(e) {
       char_message = {};
       char_message.role = "assistant";
       char_message.content = json["choices"][0]["message"]["content"];
-      openAI_historical_message.push(char_message);
-      scriptProperties.setProperty('openAI_chat', JSON.stringify(openAI_historical_message));
-    }
-    else {
+      openAI_historical_messages.push(char_message);
+      scriptProperties.setProperty('openAI_chat', JSON.stringify(openAI_historical_messages));
+    } else {
       scriptProperties.setProperty('openAI_chat', '');
       openAI_response = reset_response;
     }
@@ -99,6 +99,7 @@ function sendMessageToLineBot(accessToken, replyToken, reply_message) {
 
 /*
 //Old code
+
 let channel_access_TOKEN = "";
 let openAI_api_KEY = "";
 let userMessage = "";
@@ -136,6 +137,7 @@ function doPost(e) {
   }
   return  ContentService.createTextOutput("Return = Finish");  
 }
+
 function sendMessageToLineBot(accessToken, replyToken, reply_message) {
   let url = 'https://api.line.me/v2/bot/message/reply';
   UrlFetchApp.fetch(url, {
