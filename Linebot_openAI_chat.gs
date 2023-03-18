@@ -14,7 +14,7 @@ let replyToken = "";
 let openai_response;
 let openai_response_chat_message;
 let openai_assistant_behavior = "你使用的語言是繁體中文的專業助理";
-let reset_command = "清除對話";
+let reset_command = "重設對話";
   
 function doPost(e) {
 
