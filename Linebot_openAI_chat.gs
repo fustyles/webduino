@@ -14,7 +14,7 @@ let replyToken = "";
 let openAI_response;
 let openai_response_chat_message;
 let openai_assistant_behavior = "你使用的語言是繁體中文的專業助理";
-let clear_chat_message_command = "清除對話";
+let reset_command = "清除對話";
   
 function doPost(e) {
 
@@ -28,7 +28,7 @@ function doPost(e) {
     eventType = msg.events[0].source.type;
     replyToken = msg.events[0].replyToken;  
 
-    if (userMessage != clear_chat_message_command) {
+    if (userMessage != reset_command) {
       openai_response_chat_message = [{"role": "system", "content": openai_assistant_behavior}];
       if (scriptProperties.getProperty('openAI_chat')!="")
         openai_response_chat_message = JSON.parse(scriptProperties.getProperty('openAI_chat')); 
