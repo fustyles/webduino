@@ -100,7 +100,7 @@ function sendMessageToLineBot(accessToken, replyToken, reply_message) {
 
 
 /*
-//Old code
+//Old code (No memory)
 
 let channel_access_TOKEN = "";
 let openAI_api_KEY = "";
