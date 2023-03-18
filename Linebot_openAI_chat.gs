@@ -5,6 +5,9 @@ https://www.facebook.com/francefu
 
 let channel_access_TOKEN = "";
 let openAI_api_KEY = "";
+let openAI_assistant_behavior = "你使用的語言是繁體中文的專業助理";
+let reset_command = "重設對話";
+let reset_response = "您好，已為您清除歷史對話紀錄，讓我們重新聊天吧！";
 
 let userMessage = "";
 let userId = "";
@@ -13,9 +16,6 @@ let replyToken = "";
 
 let openAI_response;
 let openAI_response_chat_message;
-let openAI_assistant_behavior = "你使用的語言是繁體中文的專業助理";
-let reset_command = "重設對話";
-let reset_response = "您好，已為您清除歷史對話紀錄，讓我們重新聊天吧！";
   
 function doPost(e) {
 
