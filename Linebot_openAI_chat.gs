@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2023/3/18 20:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2023/3/18 21:30
 https://www.facebook.com/francefu
 */
 
@@ -15,7 +15,7 @@ let eventType = "";
 let replyToken = "";
 
 let openAI_response;
-let openAI_response_chat_message;
+let openAI_historical_message;
   
 function doPost(e) {
 
@@ -30,20 +30,20 @@ function doPost(e) {
     replyToken = msg.events[0].replyToken;  
 
     if (userMessage != reset_command) {
-      openAI_response_chat_message = [{"role": "system", "content": openAI_assistant_behavior}];
+      openAI_historical_message = [{"role": "system", "content": openAI_assistant_behavior}];
       if (scriptProperties.getProperty('openAI_chat')!="")
-        openAI_response_chat_message = JSON.parse(scriptProperties.getProperty('openAI_chat')); 
+        openAI_historical_message = JSON.parse(scriptProperties.getProperty('openAI_chat')); 
 
       var char_message = {};
       char_message.role = "user";
       char_message.content = userMessage;
-      openAI_response_chat_message.push(char_message);
+      openAI_historical_message.push(char_message);
 
       let url = "https://api.openAI.com/v1/chat/completions";
 
       let data = {
         "model": "gpt-3.5-turbo",   // gpt-3.5-turbo-0301
-        "messages": openAI_response_chat_message
+        "messages": openAI_historical_message
       };    
 
       const authHeader = "Bearer "+openAI_api_KEY;
@@ -60,8 +60,8 @@ function doPost(e) {
       char_message = {};
       char_message.role = "assistant";
       char_message.content = json["choices"][0]["message"]["content"];
-      openAI_response_chat_message.push(char_message);
-      scriptProperties.setProperty('openAI_chat', JSON.stringify(openAI_response_chat_message));
+      openAI_historical_message.push(char_message);
+      scriptProperties.setProperty('openAI_chat', JSON.stringify(openAI_historical_message));
     }
     else {
       scriptProperties.setProperty('openAI_chat', '');
@@ -98,33 +98,26 @@ function sendMessageToLineBot(accessToken, replyToken, reply_message) {
 
 
 /*
-
 //Old code
 let channel_access_TOKEN = "";
 let openAI_api_KEY = "";
-
 let userMessage = "";
 let userId = "";
 let eventType = "";
 let replyToken = "";
   
 function doPost(e) {
-
   if (e.postData) {
-
     let msg = JSON.parse(e.postData.contents);
     userMessage = msg.events[0].message.text.trim();
     userId = msg.events[0].source.userId;
     eventType = msg.events[0].source.type;
     replyToken = msg.events[0].replyToken;  
-
     let url = "https://api.openai.com/v1/chat/completions";
-
     let data = {
       "model": "gpt-3.5-turbo-0301",   //或 gpt-3.5-turbo
       "messages": [{"role": "user", "content": userMessage}]
     };    
-
     const authHeader = "Bearer "+openAI_api_KEY;
     const options = {
       headers: {Authorization: authHeader},
@@ -135,19 +128,15 @@ function doPost(e) {
     let response = UrlFetchApp.fetch(url, options);
     let json = JSON.parse(response.getContentText());
     let openAI_response = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/\n/g,"");    
-
     let replyMessage = [{
       "type":"text",
       "text": openAI_response
     }]
     sendMessageToLineBot(channel_access_TOKEN, replyToken, replyMessage);
   }
-
   return  ContentService.createTextOutput("Return = Finish");  
 }
-
 function sendMessageToLineBot(accessToken, replyToken, reply_message) {
-
   let url = 'https://api.line.me/v2/bot/message/reply';
   UrlFetchApp.fetch(url, {
     'headers': {
@@ -162,5 +151,4 @@ function sendMessageToLineBot(accessToken, replyToken, reply_message) {
   });
   
 } 
-
 */
