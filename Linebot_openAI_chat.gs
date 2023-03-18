@@ -11,9 +11,9 @@ let userId = "";
 let eventType = "";
 let replyToken = "";
 
-let openai_response;
-let openai_response_chat_message;
-let openai_assistant_behavior = "你使用的語言是繁體中文的專業助理";
+let openAI_response;
+let openAI_response_chat_message;
+let openAI_assistant_behavior = "你使用的語言是繁體中文的專業助理";
 let reset_command = "重設對話";
 let reset_response = "您好，已為您清除歷史對話紀錄，讓我們重新聊天吧！";
   
@@ -30,20 +30,20 @@ function doPost(e) {
     replyToken = msg.events[0].replyToken;  
 
     if (userMessage != reset_command) {
-      openai_response_chat_message = [{"role": "system", "content": openai_assistant_behavior}];
+      openAI_response_chat_message = [{"role": "system", "content": openAI_assistant_behavior}];
       if (scriptProperties.getProperty('openAI_chat')!="")
-        openai_response_chat_message = JSON.parse(scriptProperties.getProperty('openAI_chat')); 
+        openAI_response_chat_message = JSON.parse(scriptProperties.getProperty('openAI_chat')); 
 
       var char_message = {};
       char_message.role = "user";
       char_message.content = userMessage;
-      openai_response_chat_message.push(char_message);
+      openAI_response_chat_message.push(char_message);
 
-      let url = "https://api.openai.com/v1/chat/completions";
+      let url = "https://api.openAI.com/v1/chat/completions";
 
       let data = {
         "model": "gpt-3.5-turbo",
-        "messages": openai_response_chat_message
+        "messages": openAI_response_chat_message
       };    
 
       const authHeader = "Bearer "+openAI_api_KEY;
@@ -55,22 +55,22 @@ function doPost(e) {
       }
       let response = UrlFetchApp.fetch(url, options);
       let json = JSON.parse(response.getContentText());
-      openai_response = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/\n/g,"");  
+      openAI_response = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/\n/g,"");  
     
       char_message = {};
       char_message.role = "assistant";
       char_message.content = json["choices"][0]["message"]["content"];
-      openai_response_chat_message.push(char_message);
-      scriptProperties.setProperty('openAI_chat', JSON.stringify(openai_response_chat_message));
+      openAI_response_chat_message.push(char_message);
+      scriptProperties.setProperty('openAI_chat', JSON.stringify(openAI_response_chat_message));
     }
     else {
       scriptProperties.setProperty('openAI_chat', '');
-      openai_response = reset_response;
+      openAI_response = reset_response;
     }
 
     let replyMessage = [{
       "type":"text",
-      "text": openai_response
+      "text": openAI_response
     }]
     sendMessageToLineBot(channel_access_TOKEN, replyToken, replyMessage);
   }
