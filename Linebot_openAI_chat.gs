@@ -11,7 +11,7 @@ let userId = "";
 let eventType = "";
 let replyToken = "";
 
-let openAI_response;
+let openai_response;
 let openai_response_chat_message;
 let openai_assistant_behavior = "你使用的語言是繁體中文的專業助理";
 let reset_command = "清除對話";
@@ -54,7 +54,7 @@ function doPost(e) {
       }
       let response = UrlFetchApp.fetch(url, options);
       let json = JSON.parse(response.getContentText());
-      openAI_response = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/\n/g,"");  
+      openai_response = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/\n/g,"");  
     
       char_message = {};
       char_message.role = "assistant";
@@ -64,12 +64,12 @@ function doPost(e) {
     }
     else {
       scriptProperties.setProperty('openAI_chat', '');
-      openAI_response = "您好，已為您清除歷史對話紀錄，讓我們重新聊天吧！";
+      openai_response = "您好，已為您清除歷史對話紀錄，讓我們重新聊天吧！";
     }
 
     let replyMessage = [{
       "type":"text",
-      "text": openAI_response
+      "text": openai_response
     }]
     sendMessageToLineBot(channel_access_TOKEN, replyToken, replyMessage);
   }
