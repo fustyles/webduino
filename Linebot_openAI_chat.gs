@@ -42,7 +42,7 @@ function doPost(e) {
       let url = "https://api.openAI.com/v1/chat/completions";
 
       let data = {
-        "model": "gpt-3.5-turbo",
+        "model": "gpt-3.5-turbo",   // gpt-3.5-turbo-0301
         "messages": openAI_response_chat_message
       };    
 
