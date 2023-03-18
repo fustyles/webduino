@@ -20,7 +20,7 @@ let openAI_historical_messages;
   
 function doPost(e) {
 
-  var scriptProperties = PropertiesService.getScriptProperties();
+  let scriptProperties = PropertiesService.getScriptProperties();
 
   if (e.postData) {
 
@@ -35,7 +35,7 @@ function doPost(e) {
       if (scriptProperties.getProperty('openAI_chat')!="")
         openAI_historical_messages = JSON.parse(scriptProperties.getProperty('openAI_chat')); 
 
-      var char_message = {};
+      let char_message = {};
       char_message.role = "user";
       char_message.content = userMessage;
       openAI_historical_messages.push(char_message);
