@@ -3,8 +3,8 @@ Author : ChungYi Fu (Kaohsiung, Taiwan)   2023/3/19 09:30
 https://www.facebook.com/francefu
 */
 
-let channel_access_TOKEN = "";
-let openAI_api_KEY = "";
+let channel_access_TOKEN = "";  // Line bot
+let openAI_api_KEY = "";  // openAI
 
 let openAI_model = "gpt-3.5-turbo";   // gpt-3.5-turbo-0301
 let openAI_assistant_behavior = "你是使用繁體中文語言的專業助理";
