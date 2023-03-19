@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2023/3/18 21:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2023/3/19 09:30
 https://www.facebook.com/francefu
 */
 
@@ -8,7 +8,7 @@ let openAI_api_KEY = "";
 
 let openAI_model = "gpt-3.5-turbo";   // gpt-3.5-turbo-0301
 let openAI_assistant_behavior = "你是使用繁體中文語言的專業助理";
-let reset_command = "重設對話";
+let reset_command = "清除對話";
 let reset_response = "您好，已為您清除歷史對話紀錄，讓我們重新聊天吧！";
 
 let userMessage = "";
@@ -32,14 +32,15 @@ function doPost(e) {
     replyToken = msg.events[0].replyToken;  
 
     if (userMessage != reset_command) {
-      openAI_historical_messages = [{"role": "system", "content": openAI_assistant_behavior}];
       if (scriptProperties.getProperty('openAI_chat')!="")
         openAI_historical_messages = JSON.parse(scriptProperties.getProperty('openAI_chat')); 
+      else
+        openAI_historical_messages = [{"role": "system", "content": openAI_assistant_behavior}];
 
-      let char_message = {};
-      char_message.role = "user";
-      char_message.content = userMessage;
-      openAI_historical_messages.push(char_message);
+      let chat_message = {};
+      chat_message.role = "user";
+      chat_message.content = userMessage;
+      openAI_historical_messages.push(chat_message);
 
       let url = "https://api.openAI.com/v1/chat/completions";
 
@@ -60,10 +61,10 @@ function doPost(e) {
       let json = JSON.parse(response.getContentText());
       openAI_response = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/\n/g,"");  
     
-      char_message = {};
-      char_message.role = "assistant";
-      char_message.content = json["choices"][0]["message"]["content"];
-      openAI_historical_messages.push(char_message);
+      chat_message = {};
+      chat_message.role = "assistant";
+      chat_message.content = json["choices"][0]["message"]["content"];
+      openAI_historical_messages.push(chat_message);
       scriptProperties.setProperty('openAI_chat', JSON.stringify(openAI_historical_messages));
     } else {
       scriptProperties.setProperty('openAI_chat', '');
