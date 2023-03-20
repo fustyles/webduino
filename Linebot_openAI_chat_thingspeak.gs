@@ -40,14 +40,14 @@ function doPost(e) {
       if (thingspeak_response!=0)
         openAI_response = "已為您開燈！";
       else
-        openAI_response = "請間隔30秒後再下指令！";        
+        openAI_response = "請間隔15秒後再下指令！";        
     }
     else if (userMessage.toUpperCase()=="OFF") {
       let thingspeak_response = sendCommandToThingSpeak(thingspeak_key, 0, 0, 0, 0, 0, 0, 0, 0);      
       if (thingspeak_response!=0)
         openAI_response = "已為您關燈！";
       else
-        openAI_response = "請間隔30秒後再下指令！";
+        openAI_response = "請間隔15秒後再下指令！";
     }    
     else if (userMessage != reset_command) {
       if (scriptProperties.getProperty('openAI_chat')!="")
