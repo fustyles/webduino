@@ -12383,7 +12383,7 @@ function rgb2number(rgb) {
 }
 
 Blockly.Arduino['BitMatrixLed_matrix_color_one_2'] = function() {
-	Blockly.Arduino.definitions_['define_webbit_matrix_leds_one']='\n'+
+	Blockly.Arduino.definitions_['define_webbit_matrix_List']='\n'+
 											'void MatrixLedList(String color) {\n'+
 											'  	uint32_t R,G,B;\n'+											
 											'	for(int i=0;i<(color.length()/6);i++) {\n'+
@@ -12410,7 +12410,7 @@ Blockly.Arduino['BitMatrixLed_matrix_color_one_2'] = function() {
 };
 
 Blockly.Arduino['BitMatrixLed_matrix_color_one_3'] = function() {
-	Blockly.Arduino.definitions_['define_webbit_matrix_leds_one']='\n'+
+	Blockly.Arduino.definitions_['define_webbit_matrix_List']='\n'+
 											'void MatrixLedList(String color) {\n'+
 											'  	uint32_t R,G,B;\n'+											
 											'	for(int i=0;i<(color.length()/6);i++) {\n'+
@@ -12439,7 +12439,7 @@ Blockly.Arduino['BitMatrixLed_matrix_color_one_3'] = function() {
 };
 
 Blockly.Arduino['BitMatrixLed_matrix_color_one_8'] = function() {
-	Blockly.Arduino.definitions_['define_webbit_matrix_leds_one']='\n'+
+	Blockly.Arduino.definitions_['define_webbit_matrix_List']='\n'+
 											'void MatrixLedList(String color) {\n'+
 											'  	uint32_t R,G,B;\n'+											
 											'	for(int i=0;i<(color.length()/6);i++) {\n'+
@@ -12478,7 +12478,7 @@ Blockly.Arduino['BitMatrixLed_matrix_color_one_8'] = function() {
 };
 
 Blockly.Arduino['BitMatrixLed_matrix_color_one_12'] = function() {
-	Blockly.Arduino.definitions_['define_webbit_matrix_leds_one']='\n'+
+	Blockly.Arduino.definitions_['define_webbit_matrix_List']='\n'+
 											'void MatrixLedList(String color) {\n'+
 											'  	uint32_t R,G,B;\n'+											
 											'	for(int i=0;i<(color.length()/6);i++) {\n'+
