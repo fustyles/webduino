@@ -1943,3 +1943,12 @@ Blockly.Msg["ESP32_BLEKEYBOARD_CHARACTER_SHOW"] = "Character";
 Blockly.Msg["ESP32_BLEKEYBOARD_TRANSFER_ASCII_SHOW"] = "transfer ASCII code to";
 Blockly.Msg["ESP32_BLEKEYBOARD_INTEGER_SHOW"] = "integer";		
 Blockly.Msg["ESP32_BLEKEYBOARD_STRING_SHOW"] = "string";
+
+Blockly.Msg["THINGSPEAK_SHOW"] = "ThingSpeak";
+Blockly.Msg["THINGSPEAK_WRITE_SHOW"] = "Write";
+Blockly.Msg["THINGSPEAK_JSON_FORMAT_SHOW"] = "Data to JSON format";
+Blockly.Msg["THINGSPEAK_GET_DATA_SHOW"] = "Get a channel feed";
+Blockly.Msg["THINGSPEAK_GET_STATUS_SHOW"] = "Get channel status Upates";
+Blockly.Msg["THINGSPEAK_JSON_DATA_SHOW"] = "JSON Data";
+Blockly.Msg["THINGSPEAK_RECORD_NUMBER_SHOW"] = "Record number";
+Blockly.Msg["THINGSPEAK_RECORD_FIELD_SHOW"] = "field name";

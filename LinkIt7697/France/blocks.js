@@ -11637,12 +11637,14 @@ Blockly.Blocks['esp32_wifi_localip'] = {
 };
 
 Blockly.Blocks['thingspeak_update_noreturn'] = {
-  init: function() {   
+  init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg["THINGSPEAK_SHOW"])
+	  .appendField(Blockly.Msg["THINGSPEAK_WRITE_SHOW"]);	  
   this.appendValueInput("key")
       .setCheck("String")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("ThingSpeak ")
-      .appendField("Write API Key");
+	  .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField("API Key");
   this.appendValueInput("field1")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -11683,11 +11685,13 @@ Blockly.Blocks['thingspeak_update_noreturn'] = {
 
 Blockly.Blocks['thingspeak_update'] = {
   init: function() {   
+  this.appendDummyInput()
+      .appendField(Blockly.Msg["THINGSPEAK_SHOW"])
+	  .appendField(Blockly.Msg["THINGSPEAK_WRITE_SHOW"]);	  
   this.appendValueInput("key")
       .setCheck("String")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("ThingSpeak ")
-      .appendField("Write API Key");
+	  .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField("API Key");
   this.appendValueInput("field1")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -11726,9 +11730,10 @@ Blockly.Blocks['thingspeak_update'] = {
 };
 
 Blockly.Blocks['thingspeak_read1'] = {
-  init: function() {  
+  init: function() { 
 	this.appendDummyInput()
-	  .appendField("ThingSpeak Get a Channel Feed");
+      .appendField(Blockly.Msg["THINGSPEAK_SHOW"])  
+	  .appendField(Blockly.Msg["THINGSPEAK_GET_DATA_SHOW"]);
 	this.appendValueInput("key")
 	  .setCheck(null)
 	  .setAlign(Blockly.ALIGN_RIGHT)
@@ -11750,7 +11755,8 @@ Blockly.Blocks['thingspeak_read1'] = {
 Blockly.Blocks['thingspeak_read2'] = {
   init: function() {  
 	this.appendDummyInput()
-	  .appendField("ThingSpeak Get a Channel Feed");
+      .appendField(Blockly.Msg["THINGSPEAK_SHOW"])  
+	  .appendField(Blockly.Msg["THINGSPEAK_GET_DATA_SHOW"]);
 	this.appendValueInput("key")
 	  .setCheck(null)
 	  .setAlign(Blockly.ALIGN_RIGHT)
@@ -11776,7 +11782,8 @@ Blockly.Blocks['thingspeak_read2'] = {
 Blockly.Blocks['thingspeak_read3'] = {
   init: function() {  
 	this.appendDummyInput()
-	  .appendField("ThingSpeak Get Channel Status Updates");
+      .appendField(Blockly.Msg["THINGSPEAK_SHOW"])  
+	  .appendField(Blockly.Msg["THINGSPEAK_GET_STATUS_SHOW"]);
 	this.appendValueInput("key")
 	  .setCheck(null)
 	  .setAlign(Blockly.ALIGN_RIGHT)
@@ -11796,7 +11803,8 @@ Blockly.Blocks['thingspeak_read3'] = {
 Blockly.Blocks['thingspeak_format'] = {
   init: function() {  
 	this.appendDummyInput()
-	  .appendField("ThingSpeak Data to Json");
+      .appendField(Blockly.Msg["THINGSPEAK_SHOW"])  
+	  .appendField(Blockly.Msg["THINGSPEAK_JSON_FORMAT_SHOW"]);
 	this.appendValueInput("text")
 	  .setCheck(null);
 	this.setInputsInline(true);
@@ -11808,16 +11816,15 @@ Blockly.Blocks['thingspeak_format'] = {
 Blockly.Blocks['thingspeak_field'] = {
   init: function() {  
 	this.appendDummyInput()
-	  .appendField("Get ThingSpeak Json Data");
+      .appendField(Blockly.Msg["THINGSPEAK_SHOW"])  
+	  .appendField(Blockly.Msg["THINGSPEAK_JSON_DATA_SHOW"]);
 	this.appendValueInput("text")
 	  .setCheck(null);
-	this.appendDummyInput()
-	  .appendField("RecordNumber");
 	this.appendValueInput("recordnumber")
+	  .appendField(Blockly.Msg["THINGSPEAK_RECORD_NUMBER_SHOW"])
 	  .setCheck("Number"); 
-	this.appendDummyInput()
-	  .appendField("FieldName");
-	this.appendDummyInput()    
+	this.appendDummyInput()   
+	  .appendField(Blockly.Msg["THINGSPEAK_RECORD_FIELD_SHOW"])
 	  .appendField(new Blockly.FieldDropdown([
 		["created_at","created_at"],
 		["entry_id","entry_id"], 

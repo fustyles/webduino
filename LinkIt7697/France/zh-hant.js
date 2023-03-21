@@ -1951,3 +1951,12 @@ Blockly.Msg["ESP32_BLEKEYBOARD_CHARACTER_SHOW"] = "字元";
 Blockly.Msg["ESP32_BLEKEYBOARD_TRANSFER_ASCII_SHOW"] = "轉換ASCII碼為";
 Blockly.Msg["ESP32_BLEKEYBOARD_INTEGER_SHOW"] = "整數";		
 Blockly.Msg["ESP32_BLEKEYBOARD_STRING_SHOW"] = "字串";
+
+Blockly.Msg["THINGSPEAK_SHOW"] = "ThingSpeak";
+Blockly.Msg["THINGSPEAK_WRITE_SHOW"] = "新增數據";
+Blockly.Msg["THINGSPEAK_JSON_FORMAT_SHOW"] = "數據轉換JSON格式";
+Blockly.Msg["THINGSPEAK_GET_DATA_SHOW"] = "取得頻道數據";
+Blockly.Msg["THINGSPEAK_GET_STATUS_SHOW"] = "取得頻道狀態";
+Blockly.Msg["THINGSPEAK_JSON_DATA_SHOW"] = "JSON格式數據";
+Blockly.Msg["THINGSPEAK_RECORD_NUMBER_SHOW"] = "數據序號";
+Blockly.Msg["THINGSPEAK_RECORD_FIELD_SHOW"] = "欄位";
