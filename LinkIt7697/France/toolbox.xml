@@ -9477,12 +9477,35 @@
 				</block>
 			</value>		
 		</block>
+		<block type="BitMatrixLed_matrix_color_all">
+			<value name="RGB">
+				<block type="BitMatrixLed_color">
+				</block>
+			</value>		
+		</block>					
 		<block type="BitMatrixLed_matrix_rgb_one_n">
 			<value name="N">
 				<block type="math_number">
 					<field name="NUM">1</field>
 				</block>
 			</value>
+			<value name="R">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="G">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+			<value name="B">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>		
+		</block>
+		<block type="BitMatrixLed_matrix_rgb_all">
 			<value name="R">
 				<block type="math_number">
 					<field name="NUM">0</field>

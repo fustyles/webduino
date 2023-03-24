@@ -707,6 +707,7 @@ Blockly.Msg.ESP32_SAMPLE = "WS2812 Leds Show Sample";
 Blockly.Msg.ESP32_MATRIX_PIN = "WS2812 Leds Set Pins ";
 Blockly.Msg.ESP32_MATRIX_LEDS = "Leds";
 Blockly.Msg.ESP32_MATRIX_LEDS_N = "Number";
+Blockly.Msg.ESP32_MATRIX_LEDS_ALL = "All leds";
 Blockly.Msg.ESP32_MATRIX_BRIGHTNESS = "WS2812 Leds Set Brightness (0-255)";
 Blockly.Msg.ESP32_MATRIX_CLEAR = "WS2812 Leds Clear Leds";
 Blockly.Msg.ESP32_MATRIX_REVERE = "WS2812 Leds Reverse";

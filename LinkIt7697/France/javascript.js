@@ -12043,11 +12043,16 @@ Blockly.Arduino.esp32_mpu9250 = function(){
 Blockly.Arduino.BitMatrixLed_matrix_pin = function(){
 	var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
 	var leds=Blockly.Arduino.valueToCode(this,"leds",Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_['define_webbit_matrix_variable']='String matrixString = "';
-	Blockly.Arduino.definitions_['define_webbit_matrix_variable'] += '000000'.repeat(Number(leds));
-	Blockly.Arduino.definitions_['define_webbit_matrix_variable'] += '";\n';
-    Blockly.Arduino.definitions_['define_webbit_matrix_marquee_time']='int MatrixLed_marquee_time = 500;\n';
- 	Blockly.Arduino.definitions_['define_webbit_matrix_marquee_direction']='int MatrixLed_marquee_rotate = 0;\n';
+	
+	if (selectBoardType()!="digistump") {
+		Blockly.Arduino.definitions_['define_webbit_matrix_variable']='String matrixString = "';
+		Blockly.Arduino.definitions_['define_webbit_matrix_variable'] += '000000'.repeat(Number(leds));
+		Blockly.Arduino.definitions_['define_webbit_matrix_variable'] += '";\n';
+		Blockly.Arduino.definitions_['define_webbit_matrix_marquee_time']='int MatrixLed_marquee_time = 500;\n';
+		Blockly.Arduino.definitions_['define_webbit_matrix_marquee_direction']='int MatrixLed_marquee_rotate = 0;\n';
+	}
+	Blockly.Arduino.definitions_['define_webbit_matrix_leds_number'] = 'int MatrixLed_leds_number = '+ leds + ';\n';
+	
 	Blockly.Arduino.definitions_['define_webbit_matrix_NeoPixelBus']='\n'+
 											'#include <Adafruit_NeoPixel.h>\n';
 	if (!Blockly.Arduino.definitions_['define_webbit_matrix']) {											
@@ -12077,22 +12082,50 @@ Blockly.Arduino.BitMatrixLed_matrix_brightness = function(){
 };
 
 Blockly.Arduino.BitMatrixLed_matrix_clear = function(){
-	Blockly.Arduino.definitions_['define_webbit_matrix_leds']='\n'+
-											'void MatrixLedClear() {\n'+
-											'  int range;\n'+	
-											'  range = matrixString.length()/6;\n'+							
-											'  for (int i=0;i<range;i++) {\n'+
-											'  	matrixString[i*6+0] = \'0\';\n'+
-											'  	matrixString[i*6+1] = \'0\';\n'+
-											'  	matrixString[i*6+2] = \'0\';\n'+
-											'  	matrixString[i*6+3] = \'0\';\n'+
-											'  	matrixString[i*6+4] = \'0\';\n'+
-											'  	matrixString[i*6+5] = \'0\';\n'+											
-    										'    pixels.setPixelColor(i, pixels.Color(0, 0, 0));\n'+
-    										'  }\n'+
+	if (selectBoardType()!="digistump") {
+		Blockly.Arduino.definitions_['define_webbit_matrix_leds_all']='\n'+
+											'void MatrixLedAll(String color) {\n'+
+											'  color.replace("#","");\n'+
+											'  for(int i=0;i<(matrixString.length()/6);i++) {\n'+											
+											'    matrixString[i*6+0] = color[0];\n'+
+											'    matrixString[i*6+1] = color[1];\n'+
+											'    matrixString[i*6+2] = color[2];\n'+
+											'    matrixString[i*6+3] = color[3];\n'+
+											'    matrixString[i*6+4] = color[4];\n'+
+											'    matrixString[i*6+5] = color[5];\n'+							
+											'    uint32_t R,G,B;\n'+
+    										'    R = (HextoRGB(color[0])*16+HextoRGB(color[1]));\n'+
+    										'    G = (HextoRGB(color[2])*16+HextoRGB(color[3]));\n'+
+    										'    B = (HextoRGB(color[4])*16+HextoRGB(color[5]));\n'+
+    										'    pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
+											'  }\n'+
     										'  pixels.show();\n'+
-											'}\n';	
-	var code = 'MatrixLedClear();\n';
+											'}\n';
+	} else {
+		Blockly.Arduino.definitions_['define_webbit_matrix_leds_all']='\n'+
+											'void MatrixLedAll(String color) {\n'+
+											'  color.replace("#","");\n'+
+											'  for(int i=0;i<MatrixLed_leds_number;i++) {\n'+							
+											'    uint32_t R,G,B;\n'+
+    										'    R = (HextoRGB(color[0])*16+HextoRGB(color[1]));\n'+
+    										'    G = (HextoRGB(color[2])*16+HextoRGB(color[3]));\n'+
+    										'    B = (HextoRGB(color[4])*16+HextoRGB(color[5]));\n'+
+    										'    pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
+											'  }\n'+
+    										'  pixels.show();\n'+
+											'}\n';
+	}
+	var N=Blockly.Arduino.valueToCode(this,"N",Blockly.Arduino.ORDER_ATOMIC);
+	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC);
+
+	if ((rgb.indexOf("'")==0)&&(rgb.lastIndexOf("'")==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);
+	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);	
+	if (rgb.indexOf("#")==0)
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';
+	
+	var code = 'MatrixLedAll("000000");\n';
 	return code;
 };
 
@@ -12306,7 +12339,8 @@ Blockly.Arduino['BitMatrixLed_matrix_color_one'] = function(block) {
 };
 
 Blockly.Arduino['BitMatrixLed_matrix_color_one_n'] = function(block) {
-	Blockly.Arduino.definitions_['define_webbit_matrix_leds_one']='\n'+
+	if (selectBoardType()!="digistump") {
+		Blockly.Arduino.definitions_['define_webbit_matrix_leds_one']='\n'+
 											'void MatrixLedOne(int i, String color) {\n'+
 											'  color.replace("#","");\n'+
 											'  matrixString[i*6+0] = color[0];\n'+
@@ -12322,6 +12356,18 @@ Blockly.Arduino['BitMatrixLed_matrix_color_one_n'] = function(block) {
     										'  pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
     										'  pixels.show();\n'+
 											'}\n';
+	} else {
+		Blockly.Arduino.definitions_['define_webbit_matrix_leds_one']='\n'+
+											'void MatrixLedOne(int i, String color) {\n'+
+											'  color.replace("#","");\n'+						
+											'  uint32_t R,G,B;\n'+
+    										'  R = (HextoRGB(color[0])*16+HextoRGB(color[1]));\n'+
+    										'  G = (HextoRGB(color[2])*16+HextoRGB(color[3]));\n'+
+    										'  B = (HextoRGB(color[4])*16+HextoRGB(color[5]));\n'+
+    										'  pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
+    										'  pixels.show();\n'+
+											'}\n';
+	}
 	var N=Blockly.Arduino.valueToCode(this,"N",Blockly.Arduino.ORDER_ATOMIC);
 	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC);
 
@@ -12336,8 +12382,56 @@ Blockly.Arduino['BitMatrixLed_matrix_color_one_n'] = function(block) {
 	return code;
 };
 
+Blockly.Arduino['BitMatrixLed_matrix_color_all'] = function(block) {
+	if (selectBoardType()!="digistump") {
+		Blockly.Arduino.definitions_['define_webbit_matrix_leds_all']='\n'+
+											'void MatrixLedAll(String color) {\n'+
+											'  color.replace("#","");\n'+
+											'  for(int i=0;i<(matrixString.length()/6);i++) {\n'+											
+											'    matrixString[i*6+0] = color[0];\n'+
+											'    matrixString[i*6+1] = color[1];\n'+
+											'    matrixString[i*6+2] = color[2];\n'+
+											'    matrixString[i*6+3] = color[3];\n'+
+											'    matrixString[i*6+4] = color[4];\n'+
+											'    matrixString[i*6+5] = color[5];\n'+							
+											'    uint32_t R,G,B;\n'+
+    										'    R = (HextoRGB(color[0])*16+HextoRGB(color[1]));\n'+
+    										'    G = (HextoRGB(color[2])*16+HextoRGB(color[3]));\n'+
+    										'    B = (HextoRGB(color[4])*16+HextoRGB(color[5]));\n'+
+    										'    pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
+											'  }\n'+
+    										'  pixels.show();\n'+
+											'}\n';
+	} else {
+		Blockly.Arduino.definitions_['define_webbit_matrix_leds_all']='\n'+
+											'void MatrixLedAll(String color) {\n'+
+											'  color.replace("#","");\n'+
+											'  for(int i=0;i<MatrixLed_leds_number;i++) {\n'+							
+											'    uint32_t R,G,B;\n'+
+    										'    R = (HextoRGB(color[0])*16+HextoRGB(color[1]));\n'+
+    										'    G = (HextoRGB(color[2])*16+HextoRGB(color[3]));\n'+
+    										'    B = (HextoRGB(color[4])*16+HextoRGB(color[5]));\n'+
+    										'    pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
+											'  }\n'+
+    										'  pixels.show();\n'+
+											'}\n';
+	}
+	var rgb = Blockly.Arduino.valueToCode(this,"RGB",Blockly.Arduino.ORDER_ATOMIC);
+
+	if ((rgb.indexOf("'")==0)&&(rgb.lastIndexOf("'")==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);
+	if ((rgb.indexOf('"')==0)&&(rgb.lastIndexOf('"')==rgb.length-1))
+		rgb = rgb.substring(1,rgb.length-1);	
+	if (rgb.indexOf("#")==0)
+		rgb = '"'+rgb.toLowerCase().replace(/#/g,"")+'"';
+	
+	var code = 'MatrixLedAll('+rgb+');\n';
+	return code;
+};
+
 Blockly.Arduino['BitMatrixLed_matrix_rgb_one_n'] = function(block) {
-	Blockly.Arduino.definitions_['define_webbit_matrix_leds_one']='\n'+
+	if (selectBoardType()!="digistump") {
+		Blockly.Arduino.definitions_['define_webbit_matrix_leds_one']='\n'+
 											'void MatrixLedOne(int i, String color) {\n'+
 											'  color.replace("#","");\n'+
 											'  matrixString[i*6+0] = color[0];\n'+
@@ -12353,6 +12447,20 @@ Blockly.Arduino['BitMatrixLed_matrix_rgb_one_n'] = function(block) {
     										'  pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
     										'  pixels.show();\n'+
 											'}\n';	
+											
+	} else {
+		Blockly.Arduino.definitions_['define_webbit_matrix_leds_one']='\n'+
+											'void MatrixLedOne(int i, String color) {\n'+
+											'  color.replace("#","");\n'+						
+											'  uint32_t R,G,B;\n'+
+    										'  R = (HextoRGB(color[0])*16+HextoRGB(color[1]));\n'+
+    										'  G = (HextoRGB(color[2])*16+HextoRGB(color[3]));\n'+
+    										'  B = (HextoRGB(color[4])*16+HextoRGB(color[5]));\n'+
+    										'  pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
+    										'  pixels.show();\n'+
+											'}\n';	
+	}
+	
 	Blockly.Arduino.definitions_['define_webbit_matrix_hexReverse_s']='\n'+	
 											'String HexReverse_s(int val, int pos) {\n'+
 											'  int i = 0;\n'+
@@ -12372,6 +12480,59 @@ Blockly.Arduino['BitMatrixLed_matrix_rgb_one_n'] = function(block) {
 	return code;
 };
 
+Blockly.Arduino['BitMatrixLed_matrix_rgb_all'] = function(block) {
+	if (selectBoardType()!="digistump") {
+		Blockly.Arduino.definitions_['define_webbit_matrix_leds_all']='\n'+
+											'void MatrixLedAll(String color) {\n'+
+											'  color.replace("#","");\n'+
+											'  for(int i=0;i<(matrixString.length()/6);i++) {\n'+											
+											'    matrixString[i*6+0] = color[0];\n'+
+											'    matrixString[i*6+1] = color[1];\n'+
+											'    matrixString[i*6+2] = color[2];\n'+
+											'    matrixString[i*6+3] = color[3];\n'+
+											'    matrixString[i*6+4] = color[4];\n'+
+											'    matrixString[i*6+5] = color[5];\n'+							
+											'    uint32_t R,G,B;\n'+
+    										'    R = (HextoRGB(color[0])*16+HextoRGB(color[1]));\n'+
+    										'    G = (HextoRGB(color[2])*16+HextoRGB(color[3]));\n'+
+    										'    B = (HextoRGB(color[4])*16+HextoRGB(color[5]));\n'+
+    										'    pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
+											'  }\n'+
+    										'  pixels.show();\n'+
+											'}\n';
+	} else {
+		Blockly.Arduino.definitions_['define_webbit_matrix_leds_all']='\n'+
+											'void MatrixLedAll(String color) {\n'+
+											'  color.replace("#","");\n'+
+											'  for(int i=0;i<MatrixLed_leds_number;i++) {\n'+							
+											'    uint32_t R,G,B;\n'+
+    										'    R = (HextoRGB(color[0])*16+HextoRGB(color[1]));\n'+
+    										'    G = (HextoRGB(color[2])*16+HextoRGB(color[3]));\n'+
+    										'    B = (HextoRGB(color[4])*16+HextoRGB(color[5]));\n'+
+    										'    pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
+											'  }\n'+
+    										'  pixels.show();\n'+
+											'}\n';
+	}
+	
+	Blockly.Arduino.definitions_['define_webbit_matrix_hexReverse_s']='\n'+	
+											'String HexReverse_s(int val, int pos) {\n'+
+											'  int i = 0;\n'+
+											'  String s = "0123456789abcdef";\n'+											
+											'  if (pos==1)\n'+
+											'    i = (val-val%16)/16;\n'+
+											'  else if (pos==2)\n'+
+											'    i = val%16;\n'+
+											'  return String(s[i]);\n'+
+											'}\n'; 	
+	var R = Blockly.Arduino.valueToCode(this,"R",Blockly.Arduino.ORDER_ATOMIC);
+	var G = Blockly.Arduino.valueToCode(this,"G",Blockly.Arduino.ORDER_ATOMIC);
+	var B = Blockly.Arduino.valueToCode(this,"B",Blockly.Arduino.ORDER_ATOMIC);
+
+	var code = 'strTemp_ = HexReverse_s('+R+', 1)+HexReverse_s('+R+', 2)+HexReverse_s('+G+', 1)+HexReverse_s('+G+', 2)+HexReverse_s('+B+', 1)+HexReverse_s('+B+', 2);\nMatrixLedAll(strTemp_);\n';
+	return code;
+};
+
 function rgb2number(rgb) {
 	if ((rgb.indexOf("'")==0)&&(rgb.lastIndexOf("'")==rgb.length-1))
 		rgb = rgb.substring(1,rgb.length-1);
@@ -12383,7 +12544,8 @@ function rgb2number(rgb) {
 }
 
 Blockly.Arduino['BitMatrixLed_matrix_color_one_2'] = function() {
-	Blockly.Arduino.definitions_['define_webbit_matrix_List']='\n'+
+	if (selectBoardType()!="digistump") {
+		Blockly.Arduino.definitions_['define_webbit_matrix_List']='\n'+
 											'void MatrixLedList(String color) {\n'+
 											'  	uint32_t R,G,B;\n'+											
 											'	for(int i=0;i<(color.length()/6);i++) {\n'+
@@ -12399,7 +12561,20 @@ Blockly.Arduino['BitMatrixLed_matrix_color_one_2'] = function() {
     										'  		pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
 											'	}\n'+
     										'  pixels.show();\n'+
-											'}\n';	
+											'}\n';
+	} else {
+		Blockly.Arduino.definitions_['define_webbit_matrix_List']='\n'+
+											'void MatrixLedList(String color) {\n'+
+											'  	uint32_t R,G,B;\n'+											
+											'	for(int i=0;i<(color.length()/6);i++) {\n'+
+    										'  		R = (HextoRGB(color[i*6+0])*16+HextoRGB(color[i*6+1]));\n'+
+    										'  		G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]));\n'+
+    										'  		B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]));\n'+
+    										'  		pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
+											'	}\n'+
+    										'  pixels.show();\n'+
+											'}\n';
+	}											
 
 	var L21 = Blockly.Arduino.valueToCode(this,"L21",Blockly.Arduino.ORDER_ATOMIC);
 	L21 = rgb2number(L21).replace(/""/g,'"');
@@ -12410,7 +12585,8 @@ Blockly.Arduino['BitMatrixLed_matrix_color_one_2'] = function() {
 };
 
 Blockly.Arduino['BitMatrixLed_matrix_color_one_3'] = function() {
-	Blockly.Arduino.definitions_['define_webbit_matrix_List']='\n'+
+	if (selectBoardType()!="digistump") {
+		Blockly.Arduino.definitions_['define_webbit_matrix_List']='\n'+
 											'void MatrixLedList(String color) {\n'+
 											'  	uint32_t R,G,B;\n'+											
 											'	for(int i=0;i<(color.length()/6);i++) {\n'+
@@ -12426,7 +12602,20 @@ Blockly.Arduino['BitMatrixLed_matrix_color_one_3'] = function() {
     										'  		pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
 											'	}\n'+
     										'  pixels.show();\n'+
-											'}\n';		
+											'}\n';
+	} else {
+		Blockly.Arduino.definitions_['define_webbit_matrix_List']='\n'+
+											'void MatrixLedList(String color) {\n'+
+											'  	uint32_t R,G,B;\n'+											
+											'	for(int i=0;i<(color.length()/6);i++) {\n'+
+    										'  		R = (HextoRGB(color[i*6+0])*16+HextoRGB(color[i*6+1]));\n'+
+    										'  		G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]));\n'+
+    										'  		B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]));\n'+
+    										'  		pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
+											'	}\n'+
+    										'  pixels.show();\n'+
+											'}\n';
+	}			
 
 	var L21 = Blockly.Arduino.valueToCode(this,"L21",Blockly.Arduino.ORDER_ATOMIC);
 	L21 = rgb2number(L21).replace(/""/g,'"');
@@ -12439,7 +12628,8 @@ Blockly.Arduino['BitMatrixLed_matrix_color_one_3'] = function() {
 };
 
 Blockly.Arduino['BitMatrixLed_matrix_color_one_8'] = function() {
-	Blockly.Arduino.definitions_['define_webbit_matrix_List']='\n'+
+	if (selectBoardType()!="digistump") {
+		Blockly.Arduino.definitions_['define_webbit_matrix_List']='\n'+
 											'void MatrixLedList(String color) {\n'+
 											'  	uint32_t R,G,B;\n'+											
 											'	for(int i=0;i<(color.length()/6);i++) {\n'+
@@ -12455,7 +12645,20 @@ Blockly.Arduino['BitMatrixLed_matrix_color_one_8'] = function() {
     										'  		pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
 											'	}\n'+
     										'  pixels.show();\n'+
-											'}\n';	
+											'}\n';
+	} else {
+		Blockly.Arduino.definitions_['define_webbit_matrix_List']='\n'+
+											'void MatrixLedList(String color) {\n'+
+											'  	uint32_t R,G,B;\n'+											
+											'	for(int i=0;i<(color.length()/6);i++) {\n'+
+    										'  		R = (HextoRGB(color[i*6+0])*16+HextoRGB(color[i*6+1]));\n'+
+    										'  		G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]));\n'+
+    										'  		B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]));\n'+
+    										'  		pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
+											'	}\n'+
+    										'  pixels.show();\n'+
+											'}\n';
+	}		
 
 	var L16 = Blockly.Arduino.valueToCode(this,"L16",Blockly.Arduino.ORDER_ATOMIC);
 	L16 = rgb2number(L16).replace(/""/g,'"');
@@ -12478,7 +12681,8 @@ Blockly.Arduino['BitMatrixLed_matrix_color_one_8'] = function() {
 };
 
 Blockly.Arduino['BitMatrixLed_matrix_color_one_12'] = function() {
-	Blockly.Arduino.definitions_['define_webbit_matrix_List']='\n'+
+	if (selectBoardType()!="digistump") {
+		Blockly.Arduino.definitions_['define_webbit_matrix_List']='\n'+
 											'void MatrixLedList(String color) {\n'+
 											'  	uint32_t R,G,B;\n'+											
 											'	for(int i=0;i<(color.length()/6);i++) {\n'+
@@ -12494,7 +12698,20 @@ Blockly.Arduino['BitMatrixLed_matrix_color_one_12'] = function() {
     										'  		pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
 											'	}\n'+
     										'  pixels.show();\n'+
-											'}\n';	
+											'}\n';
+	} else {
+		Blockly.Arduino.definitions_['define_webbit_matrix_List']='\n'+
+											'void MatrixLedList(String color) {\n'+
+											'  	uint32_t R,G,B;\n'+											
+											'	for(int i=0;i<(color.length()/6);i++) {\n'+
+    										'  		R = (HextoRGB(color[i*6+0])*16+HextoRGB(color[i*6+1]));\n'+
+    										'  		G = (HextoRGB(color[i*6+2])*16+HextoRGB(color[i*6+3]));\n'+
+    										'  		B = (HextoRGB(color[i*6+4])*16+HextoRGB(color[i*6+5]));\n'+
+    										'  		pixels.setPixelColor(i, pixels.Color(R, G, B));\n'+
+											'	}\n'+
+    										'  pixels.show();\n'+
+											'}\n';
+	}	
 
 	var L11 = Blockly.Arduino.valueToCode(this,"L11",Blockly.Arduino.ORDER_ATOMIC);
 	L11 = rgb2number(L11).replace(/""/g,'"');
@@ -12667,14 +12884,18 @@ Blockly.Arduino['BitMatrixLed_matrix_getcolor'] = function(block) {
 };
 
 Blockly.Arduino['BitMatrixLed_matrix_one_getcolor'] = function(block) {
-	Blockly.Arduino.definitions_['define_webbit_matrix_getcolor']='\n'+
-											'String MatrixLedGetColor(int i) {\n'+
-											'  return matrixString.substring(i*6,i*6+6);\n'+
-											'}\n'; 
-											
+	
 	var N=Blockly.Arduino.valueToCode(this,"N",Blockly.Arduino.ORDER_ATOMIC);
-
-	var code = '"#"+MatrixLedGetColor('+N+'-1)';
+	if (selectBoardType()!="digistump") {
+		Blockly.Arduino.definitions_['define_webbit_matrix_getcolor']='\n'+
+												'String MatrixLedGetColor(int i) {\n'+
+												'  return matrixString.substring(i*6,i*6+6);\n'+
+												'}\n'; 
+												
+		var code = '"#"+MatrixLedGetColor('+N+'-1)';
+	} else {
+		var code = '"#000000"';
+	}
 	return[code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
@@ -16160,7 +16381,7 @@ Blockly.Arduino['faceapirecognize_canvas_get'] = function(block) {
 function selectBoardType() {
 	var selectBoard = document.getElementById('board-selector');
 	if (selectBoard) {
-		var state = [0,0,0,0,0,0,0,0];
+		var state = [0,0,0,0,0,0,0,0,0];
 		for (var i=0;i<selectBoard.options.length;i++) {
 			if (selectBoard.options[i].value.indexOf("LinkIt")!=-1)
 				state[0]=1;
@@ -16177,7 +16398,9 @@ function selectBoardType() {
 			if (selectBoard.options[i].value.indexOf("TTGO")!=-1)
 				state[6]=1;	
 			if (selectBoard.options[i].value.indexOf("Pi Pico W")!=-1)
-				state[7]=1;			
+				state[7]=1;	
+			if (selectBoard.options[i].value.indexOf("Digispark")!=-1)
+				state[8]=1;			
 		}
 		if (state[0]==0)
 			selectBoard.options.add(new Option("LinkIt 7697","LinkIt:linkit_rtos:linkit_7697"));
@@ -16194,7 +16417,9 @@ function selectBoardType() {
 		if (state[6]==0) 
 			selectBoard.options.add(new Option("TTGO T1","esp32:esp32:ttgo-t1"));
 		if (state[7]==0) 
-			selectBoard.options.add(new Option("Raspberry Pi Pico W","rp2040:rp2040:rpipicow"));		
+			selectBoard.options.add(new Option("Raspberry Pi Pico W","rp2040:rp2040:rpipicow"));	
+		if (state[8]==0) 
+			selectBoard.options.add(new Option("Digispark (Default - 16.5mhz)","digistump:avr:digispark-tiny"));		
 		
 		if (selectBoard.value.split(":")[2]=="bpi-bit")
 			return "BPI-BIT";

@@ -709,6 +709,7 @@ Blockly.Msg.ESP32_SAMPLE = "WS2812 顯示圖案";
 Blockly.Msg.ESP32_MATRIX_PIN = "WS2812 腳位";
 Blockly.Msg.ESP32_MATRIX_LEDS = "燈數";
 Blockly.Msg.ESP32_MATRIX_LEDS_N = "燈號";
+Blockly.Msg.ESP32_MATRIX_LEDS_ALL = "所有燈";
 Blockly.Msg.ESP32_MATRIX_BRIGHTNESS = "WS2812 亮度[0-255]";
 Blockly.Msg.ESP32_MATRIX_CLEAR = "WS2812 清除亮燈";
 Blockly.Msg.ESP32_MATRIX_REVERE = "WS2812 圖案反轉";
