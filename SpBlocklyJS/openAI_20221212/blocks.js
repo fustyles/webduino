@@ -190,6 +190,21 @@ Blockly.Blocks['openai_chat_request'] = {
   }
 };
 
+Blockly.Blocks['openai_chat_insert'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.OPENAI_CHAT_SHOW);
+  this.appendValueInput("words")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPENAI_CHAT_INSERT_SHOW);
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(150);
+  }
+};
+
 Blockly.Blocks['openai_chat_response'] = {
   init: function () {
   this.appendDummyInput()
