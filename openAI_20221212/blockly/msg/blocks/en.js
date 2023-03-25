@@ -20,3 +20,4 @@ Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW = "Send chat content";
 Blockly.Msg.OPENAI_CHAT_CONTENT_CLEAR_SHOW = "Clear historical content";
 Blockly.Msg.OPENAI_CHAT_ROLE_SHOW = "assistant behavior";
 Blockly.Msg.OPENAI_CHAT_MODEL_SHOW = "model";
+Blockly.Msg.OPENAI_CHAT_INSERT_SHOW = "Insert chat content";
