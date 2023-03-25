@@ -212,6 +212,13 @@ function openai_chat_request(input_text) {
 	xhr.send(JSON.stringify(data));
 }
 
+function openai_chat_insert(input_text) {
+	var char_message = {};
+	char_message.role = "user";
+	char_message.content = input_text;
+	openai_response_chat_message.push(char_message);
+}
+
 function openai_chat_response() {
 } 
 
