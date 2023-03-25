@@ -77,6 +77,13 @@ Blockly.JavaScript['openai_chat_request'] = function (block) {
   return code; 
 };
 
+Blockly.JavaScript['openai_chat_insert'] = function (block) {
+  var words = Blockly.JavaScript.valueToCode(block, 'words', Blockly.JavaScript.ORDER_ATOMIC)||"";	
+	
+  var code = 'openai_chat_insert('+words+');\n';
+  return code; 
+};
+
 Blockly.JavaScript['openai_chat_response'] = function (block) {
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
   var code = 'openai_chat_response = async function() {\n' + statements_do + '\n};\n';
