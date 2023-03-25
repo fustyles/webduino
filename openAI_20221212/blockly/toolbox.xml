@@ -17,7 +17,14 @@
         <field name="TEXT"></field>
       </block>
     </value>
-  </block>  
+  </block>
+  <block type="openai_text_request">
+    <value name="words">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+  </block>
   <block type="openai_chat_response">
   </block>
   <block type="openai_chat_response_get">
