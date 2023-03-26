@@ -532,3 +532,12 @@ Blockly.Msg["SYSTEM_DATETIME_DAYS"] = "days";
 Blockly.Msg["SYSTEM_DATETIME_HOURS"] = "hours";
 Blockly.Msg["SYSTEM_DATETIME_MINUTES"] = "minutes";
 Blockly.Msg["SYSTEM_DATETIME_SECONDS"] = "seconds";
+
+Blockly.Msg.INCLUDE = "Import remote file";
+Blockly.Msg.INCLUDE_TYPE = "Type";
+Blockly.Msg.INCLUDE_JS = ".js";
+Blockly.Msg.INCLUDE_CSS = ".css";
+Blockly.Msg.INCLUDE_POSITION = "position";
+Blockly.Msg.INCLUDE_HEADER = "header";
+Blockly.Msg.INCLUDE_HERE = "here";
+Blockly.Msg.INCLUDE_URL = "url";
