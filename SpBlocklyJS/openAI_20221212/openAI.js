@@ -277,7 +277,11 @@ function openai_chat_content_file(func) {
 		link.download="chatgpt.chat";
 		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(JSON.stringify(openai_response_chat_message));	  
 		document.body.appendChild(link);
-		link.click();
-		link.remove();
+		setTimeout(function(){
+			link.click();
+		},500);			
+		setTimeout(function(){
+			link.remove();
+		},1000);	
 	}
 }
