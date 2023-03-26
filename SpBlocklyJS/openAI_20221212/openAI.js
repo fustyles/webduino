@@ -283,9 +283,11 @@ function openai_chat_content_file(func) {
 		link.target="_blank";
 		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(JSON.stringify(openai_response_chat_message));	  
 		document.body.appendChild(link);
-		console.log(link);
+		
 		setTimeout(function(){
+			console.log(link);
 			link.click();
+			console.log("ok");
 		},500);	
 	}
 }
