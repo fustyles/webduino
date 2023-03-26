@@ -249,7 +249,7 @@ function openai_chat_content_file(func) {
 		input.type="file";
 		input.id="importFile";
 		input.style.display = "none";
-		input.accept=".chat";
+		input.accept="*";
 		input.onchange = function(element) {
 			try {	
 				var file = this.files[0];
@@ -271,6 +271,7 @@ function openai_chat_content_file(func) {
 		},500);
 	}
 	else if (func=="save") {
+		/*
 		var e = document.getElementById("outputFile");
 		if (e) {
 			e.parentElement.removeChild(e);
@@ -286,6 +287,8 @@ function openai_chat_content_file(func) {
 		setTimeout(function(){
 			link.click();
 		},500);	
+		*/
+		window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(JSON.stringify(openai_response_chat_message));
 	}
 }
 
