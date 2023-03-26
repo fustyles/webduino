@@ -249,7 +249,7 @@ function openai_chat_content_file(func) {
 		input.type="file";
 		input.id="importFile";
 		input.style.display = "none";
-		input.accept="*";
+		input.accept=".chat";
 		input.onchange = function(element) {
 			try {	
 				var file = this.files[0];
