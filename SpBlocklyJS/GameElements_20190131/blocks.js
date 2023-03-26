@@ -67,12 +67,15 @@ Blockly.Blocks['system_datetime_get'] = {
 Blockly.Blocks['system_datetime_set'] = {
   init: function () {
   this.appendDummyInput()
-      .appendField(new Blockly.FieldVariable('newdate'), 'newdate')
       .appendField(Blockly.Msg.SET);	  
   this.appendDummyInput()
+	  .appendField(new Blockly.FieldVariable('newdate'), 'newdate')
       .appendField(Blockly.Msg["SYSTEM_DATETIME"]); 
   this.appendDummyInput()
-      .appendField(Blockly.Msg["SYSTEM_DATETIME_ADD"]);
+      .appendField(new Blockly.FieldDropdown([
+		["　",""],
+		[Blockly.Msg["SYSTEM_DATETIME_ADD"],"add"]	
+	  ],this.validate), "type");	  
   this.appendValueInput("years")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -101,6 +104,25 @@ Blockly.Blocks['system_datetime_set'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(50);
+  },
+  validate: function(newValue) {
+	const block = this.sourceBlock_;
+	if (newValue=="add") {
+		block.getInput("years").setVisible(true);
+		block.getInput("months").setVisible(true);
+		block.getInput("days").setVisible(true);
+		block.getInput("hours").setVisible(true);
+		block.getInput("minutes").setVisible(true);
+		block.getInput("seconds").setVisible(true);		
+	}
+	else if (newValue=="") {
+		block.getInput("years").setVisible(false);
+		block.getInput("months").setVisible(false);
+		block.getInput("days").setVisible(false);
+		block.getInput("hours").setVisible(false);
+		block.getInput("minutes").setVisible(false);
+		block.getInput("seconds").setVisible(false);	
+	}
   }
 };
 
