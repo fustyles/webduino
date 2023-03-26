@@ -22,3 +22,6 @@ Blockly.Msg.OPENAI_CHAT_CONTENT_CLEAR_SHOW = "清除聊天历史纪录";
 Blockly.Msg.OPENAI_ROLE_SHOW = "助手行为";
 Blockly.Msg.OPENAI_MODEL_SHOW = "模型";
 Blockly.Msg.OPENAI_CHAT_INSERT_SHOW = "插入聊天内容";
+Blockly.Msg.OPENAI_CHAT_CONTENT_FILE_SHOW = "聊天历史纪录";
+Blockly.Msg.OPENAI_CHAT_CONTENT_FILE_OPEN_SHOW = "档案汇入";
+Blockly.Msg.OPENAI_CHAT_CONTENT_FILE_SAVE_SHOW = "汇出档案";
