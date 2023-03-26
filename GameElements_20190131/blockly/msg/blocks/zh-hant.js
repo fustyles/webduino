@@ -532,3 +532,12 @@ Blockly.Msg["SYSTEM_DATETIME_DAYS"] = "天數";
 Blockly.Msg["SYSTEM_DATETIME_HOURS"] = "時數";
 Blockly.Msg["SYSTEM_DATETIME_MINUTES"] = "分數";
 Blockly.Msg["SYSTEM_DATETIME_SECONDS"] = "秒數";
+
+Blockly.Msg.INCLUDE = "匯入遠端檔案";
+Blockly.Msg.INCLUDE_TYPE = "類型";
+Blockly.Msg.INCLUDE_JS = ".js";
+Blockly.Msg.INCLUDE_CSS = ".css";
+Blockly.Msg.INCLUDE_POSITION = "位置";
+Blockly.Msg.INCLUDE_HEADER = "標題區塊";
+Blockly.Msg.INCLUDE_HERE = "目前位置";
+Blockly.Msg.INCLUDE_URL = "網址";
