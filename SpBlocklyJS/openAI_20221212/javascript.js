@@ -114,9 +114,6 @@ Blockly.JavaScript['openai_chat_content_file'] = function (block) {
 
 Blockly.JavaScript['openai_chat_content_file_remote'] = function (block) {
   var url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  if (url.indexOf(".chat")!=-1)
-	var code = 'openai_chat_content_file_remote('+url+');\n';
-  else
-	var code = '';
+  var code = 'openai_chat_content_file_remote('+url+');\n';
   return code;
 };
