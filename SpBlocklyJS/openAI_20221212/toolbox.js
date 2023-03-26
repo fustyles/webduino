@@ -37,7 +37,7 @@ var catOpenAI = '<xml>'+
 '  <block type="openai_chat_content_file_remote">'+
 '    <value name="url">'+
 '      <block type="text">'+
-'        <field name="TEXT">https:\/\/***\/***.chat</field>'+
+'        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
