@@ -271,7 +271,7 @@ function openai_chat_content_file(func) {
 		},500);
 	}
 	else if (func=="save") {
-		/*
+		
 		var e = document.getElementById("outputFile");
 		if (e) {
 			e.parentElement.removeChild(e);
@@ -287,8 +287,8 @@ function openai_chat_content_file(func) {
 		setTimeout(function(){
 			link.click();
 		},500);	
-		*/
-		window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(JSON.stringify(openai_response_chat_message));
+		
+		//window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(JSON.stringify(openai_response_chat_message));
 	}
 }
 
