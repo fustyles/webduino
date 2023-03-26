@@ -111,3 +111,12 @@ Blockly.JavaScript['openai_chat_content_file'] = function (block) {
   var code = 'openai_chat_content_file("'+func+'");\n';
   return code;
 };
+
+Blockly.JavaScript['openai_chat_content_file_remote'] = function (block) {
+  var url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  if (url.indexOf(".chat")!=-1)
+	var code = 'openai_chat_content_file_remote('+url+');\n';
+  else
+	var code = '';
+  return code;
+};

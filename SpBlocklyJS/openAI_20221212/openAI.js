@@ -271,8 +271,6 @@ function openai_chat_content_file(func) {
 		},500);
 	}
 	else if (func=="save") {
-		console.log(openai_response_chat_message);
-		console.log(JSON.stringify(openai_response_chat_message));
 		var link = document.createElement('a');
 		link.download="chatgpt.chat";
 		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(JSON.stringify(openai_response_chat_message));	  
@@ -284,4 +282,17 @@ function openai_chat_content_file(func) {
 			link.remove();
 		},1000);	
 	}
+}
+
+function openai_chat_content_file_remote(url) {
+	$.ajax({
+		url: url,
+		async: false,
+		success: function (data){
+			if (data!="")
+				openai_response_chat_message = JSON.parse(data);
+			else
+				openai_chat_content_clear();
+		}
+	});
 }

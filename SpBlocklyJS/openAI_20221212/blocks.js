@@ -275,3 +275,19 @@ Blockly.Blocks['openai_chat_content_file'] = {
   this.setColour(150);
   }
 };
+
+Blockly.Blocks['openai_chat_content_file_remote'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.OPENAI_CHAT_SHOW)   
+	  .appendField(Blockly.Msg.OPENAI_CHAT_CONTENT_FILE_REMOTE_SHOW);
+  this.appendValueInput("url")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPENAI_CHAT_CONTENT_FILE_REMOTE_URL_SHOW);	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true); 
+  this.setColour(150);
+  }
+};
