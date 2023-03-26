@@ -238,8 +238,8 @@ function openai_chat_content_clear() {
 	openai_response_chat_message = [{"role": "system", "content": openai_response_role}];
 }
 
-function openai_chat_content_file(type) {
-	if (type=="open") {
+function openai_chat_content_file(func) {
+	if (func=="open") {
 		var e = document.getElementById("importFile");
 		if (e) {
 			e.parentElement.removeChild(e);
@@ -270,7 +270,7 @@ function openai_chat_content_file(type) {
 			input.click();
 		},500);
 	}
-	else if (type=="save") {
+	else if (func=="save") {
 		var link = document.createElement('a');
 		link.download="chatgpt.chat";
 		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(JSON.stringify(openai_response_chat_message));	  
