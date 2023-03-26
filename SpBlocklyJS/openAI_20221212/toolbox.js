@@ -23,8 +23,6 @@ var catOpenAI = '<xml>'+
 '  </block>'+
 '  <block type="openai_chat_response_get">'+
 '  </block>'+
-'  <block type="openai_chat_response_clear">'+
-'  </block>'+
 '  <block type="openai_chat_content_clear">'+
 '  </block>'+
 '  <block type="openai_chat_insert">'+
