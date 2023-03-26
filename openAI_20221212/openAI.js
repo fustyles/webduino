@@ -237,3 +237,67 @@ function openai_chat_response_clear() {
 function openai_chat_content_clear() {
 	openai_response_chat_message = [{"role": "system", "content": openai_response_role}];
 }
+
+function openai_chat_content_file(func) {
+	if (func=="open") {
+		var e = document.getElementById("importFile");
+		if (e) {
+			e.parentElement.removeChild(e);
+		}
+		
+		var input=document.createElement('input');
+		input.type="file";
+		input.id="importFile";
+		input.style.display = "none";
+		input.accept=".chat";
+		input.onchange = function(element) {
+			try {	
+				var file = this.files[0];
+				if (file) {
+					var fr = new FileReader();           
+					fr.onload = function (event) {
+						openai_response_chat_message = JSON.parse(event.target.result);
+					};
+					fr.readAsText(file);
+				}
+			} catch (e) {
+				alert(e);
+			}	  
+		}
+
+		document.body.appendChild(input);
+		setTimeout(function(){
+			input.click();
+		},500);
+	}
+	else if (func=="save") {
+		var e = document.getElementById("outputFile");
+		if (e) {
+			e.parentElement.removeChild(e);
+		}
+		
+		var link = document.createElement('a');
+		link.id="outputFile";
+		link.style.display = "none";
+		link.download="chatgpt.chat";
+		link.target="_blank";
+		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(JSON.stringify(openai_response_chat_message));	  
+		document.body.appendChild(link);
+		setTimeout(function(){
+			link.click();
+		},500);	
+	}
+}
+
+function openai_chat_content_file_remote(url) {
+	$.ajax({
+		url: url,
+		async: false,
+		success: function (data){
+			if (data!="")
+				openai_response_chat_message = JSON.parse(data);
+			else
+				openai_chat_content_clear();
+		}
+	});
+}
