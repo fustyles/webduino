@@ -4153,6 +4153,30 @@ function HextoRgb(color) {
 	  now.setMinutes(now.getMinutes() + minutes);
 	  now.setSeconds(now.getSeconds() + seconds);
 	  return now;
+  }
+	
+  function include_file(type, position, url) {
+	  if (type=="js") {
+		  if (position=="here") {
+			var s = document.createElement("script");
+			s.type = "text/javascript";
+			s.src = url;
+			document.body.append(s);
+		  } if (position=="header") {
+			var s = document.createElement("script");
+			s.type = "text/javascript";
+			s.src = url;
+			document.getElementsByTagName('head')[0].append(s);
+		  }
+	  }
+	  else if (type=="css") {
+		var link  = document.createElement('link');
+		link.rel  = 'stylesheet';
+		link.type = 'text/css';
+		link.href = url;
+		link.media = 'all';
+		document.getElementsByTagName('head')[0].appendChild(link); 
+	  }
   }	
   
   window.table_create = table_create;
@@ -4325,5 +4349,6 @@ function HextoRgb(color) {
   window.include_file = include_file;
   window.getDatetime = getDatetime;  
   window.setDatetime = setDatetime; 	
-  
+  window.include_file = include_file;
+	
 }(window, window.document));
