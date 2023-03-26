@@ -2,7 +2,7 @@
 Author : ChungYi Fu (Kaohsiung, Taiwan)   2023/3/19 09:30
 https://www.facebook.com/francefu
 
-Line Bot + Google Apps script + ChatGTP API
+Line Bot & Google Apps script & ChatGTP API
 */
 
 let channel_access_TOKEN = "";  // Line bot
