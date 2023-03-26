@@ -18,14 +18,7 @@ var catOpenAI = '<xml>'+
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+
-'  </block>'+  
-'  <block type="openai_chat_insert">'+
-'    <value name="words">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+
-'    </value>'+
-'  </block>'+  
+'  </block>'+    
 '  <block type="openai_chat_response">'+
 '  </block>'+
 '  <block type="openai_chat_response_get">'+
@@ -34,6 +27,13 @@ var catOpenAI = '<xml>'+
 '  </block>'+
 '  <block type="openai_chat_content_clear">'+
 '  </block>'+
+'  <block type="openai_chat_insert">'+
+'    <value name="words">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+    
 '  <block type="openai_chat_content_file">'+
 '  </block>'+
 '  <block type="openai_chat_content_file_remote">'+
