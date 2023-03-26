@@ -271,16 +271,21 @@ function openai_chat_content_file(func) {
 		},500);
 	}
 	else if (func=="save") {
+		var e = document.getElementById("outputFile");
+		if (e) {
+			e.parentElement.removeChild(e);
+		}
+		
 		var link = document.createElement('a');
+		link.id="outputFile";
+		link.style.display = "none";
 		link.download="chatgpt.chat";
 		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(JSON.stringify(openai_response_chat_message));	  
 		document.body.appendChild(link);
+		console.log(link);
 		setTimeout(function(){
 			link.click();
-		},500);			
-		setTimeout(function(){
-			link.remove();
-		},1000);	
+		},500);	
 	}
 }
 
