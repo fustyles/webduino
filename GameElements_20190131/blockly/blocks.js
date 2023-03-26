@@ -5096,3 +5096,35 @@ Blockly.Blocks['system_datetime_set'] = {
 	}
   }
 };
+
+Blockly.Blocks['include_file'] = {
+  init: function() {
+  this.appendDummyInput() 
+      .appendField(Blockly.Msg.INCLUDE);      
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.INCLUDE_TYPE) 
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.INCLUDE_JS,"js"], [Blockly.Msg.INCLUDE_CSS,"css"]],this.validate), "type");
+  this.appendDummyInput("pos")  
+      .appendField(Blockly.Msg.INCLUDE_POSITION)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.INCLUDE_HEADER,"header"], [Blockly.Msg.INCLUDE_HERE,"here"]]), "position");	  
+  this.appendValueInput("value")
+      .appendField(Blockly.Msg.INCLUDE_URL)   
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null);    
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(50);
+  },
+  validate: function(newValue) {
+	const block = this.sourceBlock_;
+	if (newValue=="js") {
+		block.getInput("pos").setVisible(true);
+	}
+	else if (newValue=="css") {
+		block.getInput("pos").setVisible(false);
+	}
+  }
+};
