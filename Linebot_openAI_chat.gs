@@ -2,7 +2,7 @@
 Author : ChungYi Fu (Kaohsiung, Taiwan)   2023/3/19 09:30
 https://www.facebook.com/francefu
 
-Google Apps script (ChatGTP API) for Line Bot Webhook
+Line Bot + Google Apps script + ChatGTP API
 */
 
 let channel_access_TOKEN = "";  // Line bot
