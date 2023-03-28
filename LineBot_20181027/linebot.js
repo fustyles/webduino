@@ -38,8 +38,8 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
   }
   
   function linenotify_push_message(notify_token,notify_msg) {
-	  console.log(notify_msg..replace(/(\r\n|\r|\n)/g, '<br>'));
-    notify_msg = JSON.parse(notify_msg..replace(/(\r\n|\r|\n)/g, '<br>'));
+	  console.log(notify_msg.replace(/(\r\n|\r|\n)/g, '<br>'));
+    notify_msg = JSON.parse(notify_msg.replace(/(\r\n|\r|\n)/g, '<br>'));
     notify_msg["token"]=notify_token;
     
     notify_msg["start"]="1325437200";
