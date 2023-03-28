@@ -8,18 +8,21 @@ let openai_response_text_key = "";
 let openai_response_text_tokens = 256;
 let openai_response_text = "";	
 let openai_response_text_br = "";
+let openai_response_text_n = "";
 let openai_response_text_url = "";
 let openai_response_image_key = "";
 let openai_response_image_tokens = 256;	
 let openai_response_image = "";	
 let openai_response_image_br = "";
+let openai_response_image_n = "";
 let openai_response_image_url = "";
 let openai_response_chat_key = "";
 let openai_response_chat_model = "gpt-3.5-turbo";
 let openai_response_role = "You are a helpful assistant.";
 let openai_response_content = "";
 let openai_response_chat = "";	
-let openai_response_chat_br = "";	
+let openai_response_chat_br = "";
+let openai_response_chat_n = "";
 let openai_response_chat_message = [{"role": "system", "content": openai_response_role}];	
 
 function openai_text_initial(input_token, input_max_tokens) {
@@ -45,18 +48,23 @@ function openai_text_request(input_text) {
 		if (json["error"]) {
 			openai_response_text = json["error"]["message"];
 			openai_response_text_br = json["error"]["message"];
+			openai_response_text_n = json["error"]["message"];
 			if (typeof openai_text_response === 'function') openai_text_response();
 		}			
 		else if (json["choices"][0]["text"]) {
 			openai_response_text = json["choices"][0]["text"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/\n/g,"");
-			openai_response_text_br = json["choices"][0]["text"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");		
+			openai_response_text_br = json["choices"][0]["text"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");
+			openai_response_text_n = json["choices"][0]["text"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"");
 			if (openai_response_text_br.indexOf("<br><br>")==0)
 				openai_response_text_br = openai_response_text_br.replace("<br><br>","");
+			if (openai_response_text_n.indexOf("\n\n")==0)
+				openai_response_text_n = openai_response_text_n.replace("\n\n","");
 			if (typeof openai_text_response === 'function') openai_text_response();
 		}
 		else {
 			openai_response_text = "";
 			openai_response_text_br = "";
+			openai_response_text_n = "";
 		}
 			
 	 }};
@@ -81,16 +89,19 @@ function openai_text_request(input_text) {
 function openai_text_response() {
 } 
 
-function openai_text_response_get(br) {
-	if (br)
+function openai_text_response_get(newline) {
+	if (newline=="br")
 		return openai_response_text_br;
+	else if (newline=="n")
+		return openai_response_text_n;	
 	else
 		return openai_response_text;	
 }
 
 function openai_text_response_clear() {
 	openai_response_text = "";
-	openai_response_text_br = "";	
+	openai_response_text_br = "";
+	openai_response_text_n = "";
 }
 
 
@@ -167,13 +178,17 @@ function openai_chat_request(input_text) {
 		if (json["error"]) {
 			openai_response_chat = json["error"]["message"];
 			openai_response_chat_br = json["error"]["message"];
+			openai_response_chat_n = json["error"]["message"];
 			if (typeof openai_chat_response === 'function') openai_chat_response();
 		}	
 		else if (json["choices"][0]["message"]["content"]) {
 			openai_response_chat = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/\n/g,"");
-			openai_response_chat_br = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");		
+			openai_response_chat_br = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");
+			openai_response_chat_n = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"");
 			if (openai_response_chat_br.indexOf("<br><br>")==0)
 				openai_response_chat_br = openai_response_chat_br.replace("<br><br>","");
+			if (openai_response_chat_n.indexOf("\n\n")==0)
+				openai_response_chat_n = openai_response_chat_br.replace("\n\n","");
 			
 			var char_message = {};
 			char_message.role = "assistant";
@@ -184,7 +199,8 @@ function openai_chat_request(input_text) {
 		}
 		else {
 			openai_response_chat = "";
-			openai_response_chat_br = "";	
+			openai_response_chat_br = "";
+			openai_response_chat_n = "";
 		}
 	 }};
 
@@ -222,16 +238,19 @@ function openai_chat_insert(input_text) {
 function openai_chat_response() {
 } 
 
-function openai_chat_response_get(br) {
-	if (br)
+function openai_chat_response_get(newline) {
+	if (newline=="br")
 		return openai_response_chat_br;
+	else if (newline=="n")
+		return openai_response_chat_n;	
 	else
 		return openai_response_chat;	
 }
 
 function openai_chat_response_clear() {
 	openai_response_chat = "";
-	openai_response_chat_br = "";	
+	openai_response_chat_br = "";
+	openai_response_chat_n = "";
 }
 
 function openai_chat_content_clear() {
