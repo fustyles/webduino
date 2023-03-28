@@ -12,7 +12,7 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
 
   function linebot_push_message(bot_token,bot_userid,bot_msg) {
 
-    bot_msg = JSON.parse(bot_msg);
+    bot_msg = JSON.parse(bot_msg.replace(/(\r\n|\r|\n)/g, '<br>'));
     bot_msg["token"]=bot_token;
     bot_msg["userid"]=bot_userid;
     
@@ -38,7 +38,6 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
   }
   
   function linenotify_push_message(notify_token,notify_msg) {
-	  console.log(notify_msg.replace(/(\r\n|\r|\n)/g, '<br>'));
     notify_msg = JSON.parse(notify_msg.replace(/(\r\n|\r|\n)/g, '<br>'));
     notify_msg["token"]=notify_token;
     
@@ -89,7 +88,7 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
 
 	var myContext = myCanvas.getContext('2d');
 	myCanvas.setAttribute("width", myVideo.width);
-    myCanvas.setAttribute("height", myVideo.height);
+    	myCanvas.setAttribute("height", myVideo.height);
 	myContext.drawImage(myVideo, 0, 0, myVideo.width, myVideo.height);
 
 	if (!document.getElementById("myForm")) {
