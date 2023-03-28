@@ -48,7 +48,7 @@ function doPost(e) {
     }
     let response = UrlFetchApp.fetch(url, options);
     let json = JSON.parse(response.getContentText());
-    let openAI_response = json["choices"][0]["text"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/\n/g,"");    
+    let openAI_response = json["choices"][0]["text"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"");    
 
     let replyMessage = [{
       "type":"text",
