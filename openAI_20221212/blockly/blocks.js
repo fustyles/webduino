@@ -54,8 +54,9 @@ Blockly.Blocks['openai_text_response_get'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_BR_SHOW)
       .appendField(new Blockly.FieldDropdown([
-			["N","0"],
-			["Y","1"]	  
+			["N",""],
+			["Y \<br\>","br"],
+			["Y \\n","n"]		  
 	  ]), "br");  
   this.setInputsInline(true);
   this.setOutput(true, null); 
@@ -226,8 +227,9 @@ Blockly.Blocks['openai_chat_response_get'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_BR_SHOW)
       .appendField(new Blockly.FieldDropdown([
-			["N","0"],
-			["Y","1"]	  
+			["N",""],
+			["Y \<br\>","br"],
+			["Y \\n","n"]		  
 	  ]), "br");  
   this.setInputsInline(true);
   this.setOutput(true, null); 
