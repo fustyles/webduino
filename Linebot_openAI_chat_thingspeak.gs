@@ -77,7 +77,7 @@ function doPost(e) {
 	  
       let response = UrlFetchApp.fetch(url, options);
       let json = JSON.parse(response.getContentText());
-      openAI_response = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/\n/g,"");  
+      openAI_response = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"");  
     
       chat_message = {};
       chat_message.role = "assistant";
