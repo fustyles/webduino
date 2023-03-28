@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2023/3/20 09:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2023/3/28 09:00
 https://www.facebook.com/francefu
 */
 
@@ -50,8 +50,8 @@ function doPost(e) {
         openAI_response = "請間隔15秒後再下指令！";
     }    
     else if (userMessage != reset_command) {
-      if (scriptProperties.getProperty('openAI_chat')!="")
-        openAI_historical_messages = JSON.parse(scriptProperties.getProperty('openAI_chat')); 
+      if (scriptProperties.getProperty(userId)!="")
+        openAI_historical_messages = JSON.parse(scriptProperties.getProperty(userId)); 
       else
         openAI_historical_messages = [{"role": "system", "content": openAI_assistant_behavior}];
 
@@ -83,9 +83,9 @@ function doPost(e) {
       chat_message.role = "assistant";
       chat_message.content = json["choices"][0]["message"]["content"];
       openAI_historical_messages.push(chat_message);
-      scriptProperties.setProperty('openAI_chat', JSON.stringify(openAI_historical_messages));
+      scriptProperties.setProperty(userId, JSON.stringify(openAI_historical_messages));
     } else {
-      scriptProperties.setProperty('openAI_chat', '');
+      scriptProperties.setProperty(userId, '');
       openAI_response = reset_response;
     }
 
