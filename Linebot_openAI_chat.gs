@@ -34,10 +34,10 @@ function doPost(e) {
     replyToken = msg.events[0].replyToken;  
 
     if (userMessage != reset_command) {
-      if (scriptProperties.getProperty(userId)!="")
-        openAI_historical_messages = JSON.parse(scriptProperties.getProperty(userId)); 
-      else
+      if (scriptProperties.getProperty(userId)==""||scriptProperties.getProperty(userId)==null)
         openAI_historical_messages = [{"role": "system", "content": openAI_assistant_behavior}];
+      else
+        openAI_historical_messages = JSON.parse(scriptProperties.getProperty(userId)); 
 
       let chat_message = {};
       chat_message.role = "user";
