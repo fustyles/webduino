@@ -8174,8 +8174,7 @@
     </block>		
   </category>
 	<category id="oled" name="oled">
-    <block type="fu_oled_initial">
-		<field name="font">u8g2_font_ncenB08_tr</field>		  
+    <block type="fu_oled_initial">	  
     </block>
     <block type="fu_oled_nextPage"></block>		
     <block type="fu_oled_sendBuffer"></block>
@@ -8191,7 +8190,7 @@
 	<block type="fu_oled_setFont">
 		<value name="font">		
           <block type="text">
-            <field name="TEXT">u8g2_font_ncenB08_tr</field>
+            <field name="TEXT">u8g2_font_10x20_me</field>
           </block>
 		</value>		  
     </block>
