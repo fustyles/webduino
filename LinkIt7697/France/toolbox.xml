@@ -8828,7 +8828,7 @@
 		<block type="fu_oled_setFont">
 			<value name="font">		
 			  <block type="text">
-				<field name="TEXT">u8g2_font_ncenB08_tr</field>
+				<field name="TEXT">u8g2_font_10x20_me</field>
 			  </block>
 			</value>		  
 		</block>
