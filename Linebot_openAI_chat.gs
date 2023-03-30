@@ -67,6 +67,7 @@ function doPost(e) {
       chat_message.role = "assistant";
       chat_message.content = json["choices"][0]["message"]["content"];
       openAI_historical_messages.push(chat_message);
+	    
       scriptProperties.setProperty(userId, JSON.stringify(openAI_historical_messages));
     } else {
       scriptProperties.setProperty(userId, '');
