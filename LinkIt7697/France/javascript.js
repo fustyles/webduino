@@ -6925,7 +6925,7 @@ Blockly.Arduino['fu_oled_initial'] = function(block) {
 												  '#include <Wire.h>\n'+
 												  dropdown_format.replace('U8G2_R0',dropdown_display);												  
   Blockly.Arduino.setups_['u8g2_setup'] = 'u8g2.begin();\n  '+
-										  'u8g2.setFont(u8g2_font_ncenB08_tr);\n'+
+										  'u8g2.setFont(u8g2_font_10x20_me);\n'+
 										  dropdown_utf8;
   
   var code = '';
