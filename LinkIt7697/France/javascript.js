@@ -16511,8 +16511,6 @@ function selectBoardType() {
 			selectBoard.options.add(new Option("Raspberry Pi Pico W","rp2040:rp2040:rpipicow"));	
 		if (state[8]==0) 
 			selectBoard.options.add(new Option("Digispark (Default - 16.5mhz)","digistump:avr:digispark-tiny"));
-
-		arduinoCore_ESP32 = (selectBoard.value.split(":")[0]=="esp32"||selectBoard.value.split(":")[0]=="esp8266"||selectBoard.value.split(":")[0]=="rp2040")?1:null;
 		
 		if (selectBoard.value.split(":")[2]=="bpi-bit")
 			return "BPI-BIT";
