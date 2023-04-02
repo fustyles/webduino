@@ -1928,6 +1928,12 @@ Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_SHOW = "Response";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_BR_SHOW = "new line";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_CLEAR_SHOW = "Clear response";
 
+Blockly.Msg.OPENAI_CHAT_INITIAL_SHOW = "openAI Initial";
+Blockly.Msg.OPENAI_CHAT_KEY_SHOW = "Key"; 	  
+Blockly.Msg.OPENAI_CHAT_ROLE_SHOW = "Assistant behavior";  
+Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW = "openAI Send content";
+Blockly.Msg.OPENAI_CHAT_RESET_SHOW = "openAI Reset messages";
+
 Blockly.Msg["GY30_GETDATA_SHOW"] = "GY-30 Light intensity sensor read data(lx)";
 
 Blockly.Msg["ESP32_BLEKEYBOARD_SHOW"] = "ESP32 BLE Keyboard get data once from serial";

@@ -497,6 +497,49 @@ Blockly.Blocks['gy30_getdata'] = {
   }
 };
 
+Blockly.Blocks['openai_chat_initial'] = {
+  init: function() {
+	this.appendDummyInput()
+	  .appendField(Blockly.Msg.OPENAI_CHAT_INITIAL_SHOW);
+	this.appendValueInput("apikey")
+	  .setCheck("String")
+	  .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField(Blockly.Msg.OPENAI_CHAT_KEY_SHOW); 	  
+	this.appendValueInput("role")
+	  .setCheck("String")
+	  .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField(Blockly.Msg.OPENAI_CHAT_ROLE_SHOW);  
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(310);
+  }
+};
+
+Blockly.Blocks['openai_chat_request'] = {
+  init: function() {
+	this.appendDummyInput()
+	  .appendField(Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW);
+	this.appendValueInput("content")
+	  .setCheck("String")
+	  .setAlign(Blockly.ALIGN_RIGHT);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(310);
+  }
+};
+
+Blockly.Blocks['openai_chat_reset'] = {
+  init: function() {
+	this.appendDummyInput()
+	  .appendField(Blockly.Msg.OPENAI_CHAT_RESET_SHOW); 
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(310);
+  }
+};
+
 Blockly.Blocks['openai_text_request'] = {
   init: function() {
   this.appendDummyInput()

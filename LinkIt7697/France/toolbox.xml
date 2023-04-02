@@ -10391,24 +10391,28 @@
 	  <block type="fu_taiwan_weather_get">
 	  </block>  	  
     </category>
-	<category id="france24" name="openai_text">
-	  <block type="openai_text_request">
-		<value name="token">
+	<category id="france24" name="openai_chat">
+	  <block type="openai_chat_initial">
+		<value name="apikey">
 		  <block type="text">
 			<field name="TEXT"></field>
 		  </block>
 		</value>
-		<value name="tokens">
-		  <block type="math_number">
-			<field name="NUM">256</field>
+		<value name="role">
+		  <block type="text">
+			<field name="TEXT">You are a useful assistant.</field>
 		  </block>
-		</value>
-		<value name="words">
+		</value>		
+	  </block>
+	  <block type="openai_chat_request">
+		<value name="content">
 		  <block type="text">
 			<field name="TEXT"></field>
 		  </block>
 		</value>
-	  </block> 	  
+	  </block> 
+	  <block type="openai_chat_reset">
+	  </block>  	  
     </category>	
 	<sep id="category_sep"></sep>
 	<category id="france7" name="others">

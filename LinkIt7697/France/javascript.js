@@ -322,6 +322,97 @@ Blockly.Arduino['gy30_getdata'] = function(block) {
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['openai_chat_initial'] = function (block) {
+  var apikey = Blockly.Arduino.valueToCode(block, 'apikey', Blockly.Arduino.ORDER_ATOMIC)||"";	
+  var role = Blockly.Arduino.valueToCode(block, 'role', Blockly.Arduino.ORDER_ATOMIC)||"";
+  role = role.replace(/"/g,"\\\"");
+
+  Blockly.Arduino.definitions_['openai_chat_initial'] = 'String openaiKey = '+apikey+';\nString model = "gpt-3.5-turbo";\nString system_content = "{\\"role\\": \\"system\\", \\"content\\":'+ role +'}";\nString historical_messages = system_content;\n';  
+	
+  Blockly.Arduino.definitions_['openai_chat_request'] = 'String openAI_chat_request(String message) {\n';
+  
+	if (selectBoardType()=="LinkIt") {
+		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+	} else {
+		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
+		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiClientSecure client_tcp;\n';
+		if (arduinoCore_ESP32)
+			Blockly.Arduino.definitions_['openai_chat_request'] += '  client_tcp.setInsecure();\n';	
+	}	
+
+  Blockly.Arduino.definitions_['openai_chat_request'] += ''
+		+'  String user_content = "{\\"role\\": \\"user\\", \\"content\\":\\""+ message+"\\"}";\n'
+		+'  historical_messages += ", "+user_content;\n'
+		+'  String request = "{\\"model\\":\\""+model+"\\",\\"messages\\":[" + historical_messages + "]}";\n'
+		+'  if (client_tcp.connect("api.openai.com", 443)) {\n'
+		+'    client_tcp.println("POST /v1/chat/completions HTTP/1.1");\n'
+		+'    client_tcp.println("Connection: close");\n'
+		+'    client_tcp.println("Host: api.openai.com");\n'
+		+'    client_tcp.println("Authorization: Bearer " + openaiKey);\n'
+		+'    client_tcp.println("Content-Type: application/json; charset=utf-8");\n'
+		+'    client_tcp.println("Content-Length: " + String(request.length()));\n'
+		+'    client_tcp.println();\n'
+		+'    for (int i = 0; i < request.length(); i += 1024) {\n'
+		+'      client_tcp.print(request.substring(i, i+1024));\n'
+		+'    }\n'
+		+'    String getResponse="",Feedback="";\n'
+		+'    boolean state = false;\n'
+		+'    int waitTime = 20000;\n'
+		+'    long startTime = millis();\n'
+		+'    while ((startTime + waitTime) > millis()) {\n'
+		+'      //Serial.print(".");\n'
+		+'      delay(100);\n'
+		+'      while (client_tcp.available()) {\n'
+		+'          char c = client_tcp.read();\n'
+		+'          if (state==true)\n'
+		+'            getResponse += String(c);\n'
+		+'          if (c == \'\\n\')\n'
+		+'            Feedback = "";\n'
+		+'          else if (c != \'\\r\')\n'
+		+'            Feedback += String(c);\n'
+		+'          if (Feedback.indexOf("\\",\\"content\\":\\"")!=-1)\n'
+		+'            state=true;\n'
+		+'          if (Feedback.indexOf("\\"},")!=-1)\n'
+		+'            state=false;\n'
+		+'          startTime = millis();\n'
+		+'       }\n'
+		+'       if (getResponse.length()>0) {\n'
+		+'          client_tcp.stop();\n'
+		+'          getResponse = getResponse.substring(0,getResponse.length()-3);\n'
+		+'          String assistant_content = "{\\"role\\": \\"assistant\\", \\"content\\":\\""+ getResponse+"\\"}";\n'
+		+'          historical_messages += ", "+assistant_content;\n'
+		+'          Serial.println("");\n'
+		+'          return getResponse;\n'
+		+'       }\n'
+		+'    }\n'
+		+'    client_tcp.stop();\n'
+		+'    //Serial.println(Feedback);\n'
+		+'    return "error";\n'
+		+'  }\n'
+		+'  else\n'
+		+'    return "Connection failed";\n'
+		+'  }\n';																						
+
+  var code = '';
+  return code; 
+};
+
+Blockly.Arduino['openai_chat_request'] = function (block) {
+  var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||"Hi";
+  
+  var code = 'openAI_chat_request('+content+')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['openai_chat_reset'] = function (block) {
+  Blockly.Arduino.definitions_['openai_chat_reset'] = 'void openAI_chat_reset() {\n'
+													+'	historical_messages = system_content;\n'
+													+'}';	
+													
+  var code = 'openAI_chat_reset();\n';
+  return code; 
+};
+
 Blockly.Arduino['openai_text_request'] = function (block) {
   var token = Blockly.Arduino.valueToCode(block, 'token', Blockly.Arduino.ORDER_ATOMIC);	
   var tokens = Blockly.Arduino.valueToCode(block, 'tokens', Blockly.Arduino.ORDER_ATOMIC)||1024;
