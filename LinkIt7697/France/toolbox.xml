@@ -9912,7 +9912,33 @@
 	<category id="france12" name="gy30">
 	  <block type="gy30_getdata">			
 	  </block> 	  
-	</category>	
+	</category>
+
+	<category id="france12" name="joystick">
+		<block type="fu_joystick_initial">
+			<value name="digitalread">
+			  <block type="math_number">
+				<field name="NUM">3</field>
+			  </block>
+			</value> 
+			<value name="analogreadX">
+			  <block type="math_number">
+				<field name="NUM">4</field>
+			  </block>
+			</value> 
+			<value name="analogreadY">
+			  <block type="math_number">
+				<field name="NUM">5</field>
+			  </block>
+			</value> 			
+		</block>
+		<block type="fu_joystick_stick_direction">			
+		</block>
+		<block type="fu_joystick_button">			
+		</block>
+		<block type="fu_joystick_get">			
+		</block>		
+	</category>		
 
 	 <sep id="category_sep"></sep>	
 	 

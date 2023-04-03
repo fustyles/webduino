@@ -1,3 +1,169 @@
+Blockly.Blocks['fu_joystick_initial'] = {
+  init: function() {
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["FU_JOYSTICK_INITIAL"]);
+    this.appendValueInput("digitalread")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["FU_JOYSTICK_DIGITALREAD"]);
+    this.appendValueInput("analogreadX")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["FU_JOYSTICK_ANALOGREAD_X"]);
+    this.appendValueInput("analogreadY")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["FU_JOYSTICK_ANALOGREAD_Y"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+		.appendField(Blockly.Msg["FU_JOYSTICK_INDEX"])
+        .appendField(new Blockly.FieldDropdown([
+			["0","0"],		
+			["1","1"],
+			["2","2"],		
+			["3","3"],
+			["4","4"],		
+			["5","5"],
+			["6","6"],		
+			["7","7"],
+			["8","8"],		
+			["9","9"],
+			["10","10"],		
+			["11","11"],
+			["12","12"],
+			["13","13"],		
+			["14","14"],
+			["15","15"]				
+		]), "index");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
+Blockly.Blocks['fu_joystick_stick_direction'] = {
+  init: function() {
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["FU_JOYSTICK_STICK_DIRECTION"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["FU_JOYSTICK_STICK_DIRECTION_UP"],"u"],		
+			[Blockly.Msg["FU_JOYSTICK_STICK_DIRECTION_UPRIGHT"],"ur"],
+			[Blockly.Msg["FU_JOYSTICK_STICK_DIRECTION_RIGHT"],"r"],		
+			[Blockly.Msg["FU_JOYSTICK_STICK_DIRECTION_DOWNRIGHT"],"dr"],
+			[Blockly.Msg["FU_JOYSTICK_STICK_DIRECTION_DOWN"],"d"],		
+			[Blockly.Msg["FU_JOYSTICK_STICK_DIRECTION_DOWNLEFT"],"dl"],
+			[Blockly.Msg["FU_JOYSTICK_STICK_DIRECTION_LEFT"],"l"],		
+			[Blockly.Msg["FU_JOYSTICK_STICK_DIRECTION_LEFTUP"],"ul"],
+			[Blockly.Msg["FU_JOYSTICK_STICK_DIRECTION_CENTER"],"x"],
+		]), "direction");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+		.appendField(Blockly.Msg["FU_JOYSTICK_INDEX"])
+        .appendField(new Blockly.FieldDropdown([
+			["0","0"],		
+			["1","1"],
+			["2","2"],		
+			["3","3"],
+			["4","4"],		
+			["5","5"],
+			["6","6"],		
+			["7","7"],
+			["8","8"],		
+			["9","9"],
+			["10","10"],		
+			["11","11"],
+			["12","12"],
+			["13","13"],		
+			["14","14"],
+			["15","15"]				
+		]), "index");
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
+Blockly.Blocks['fu_joystick_button'] = {
+  init: function() {
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["FU_JOYSTICK_button"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["FU_JOYSTICK_BUTTON_UP"],"1"],		
+			[Blockly.Msg["FU_JOYSTICK_BUTTON_DOWN"],"0"]			
+		]), "state");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+		.appendField(Blockly.Msg["FU_JOYSTICK_INDEX"])
+        .appendField(new Blockly.FieldDropdown([
+			["0","0"],		
+			["1","1"],
+			["2","2"],		
+			["3","3"],
+			["4","4"],		
+			["5","5"],
+			["6","6"],		
+			["7","7"],
+			["8","8"],		
+			["9","9"],
+			["10","10"],		
+			["11","11"],
+			["12","12"],
+			["13","13"],		
+			["14","14"],
+			["15","15"]				
+		]), "index");		
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
+Blockly.Blocks['fu_joystick_get'] = {
+  init: function() {
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["FU_JOYSTICK_GET"]);	  
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["FU_JOYSTICK_DIGITALREAD"],"B"],
+			[Blockly.Msg["FU_JOYSTICK_ANALOGREAD_X"],"X"],		
+			[Blockly.Msg["FU_JOYSTICK_ANALOGREAD_Y"],"Y"]
+		]), "type");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+		.appendField(Blockly.Msg["FU_JOYSTICK_INDEX"])
+        .appendField(new Blockly.FieldDropdown([
+			["0","0"],		
+			["1","1"],
+			["2","2"],		
+			["3","3"],
+			["4","4"],		
+			["5","5"],
+			["6","6"],		
+			["7","7"],
+			["8","8"],		
+			["9","9"],
+			["10","10"],		
+			["11","11"],
+			["12","12"],
+			["13","13"],		
+			["14","14"],
+			["15","15"]				
+		]), "index");		
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
+
+
+
 Blockly.Blocks['PN532_initial'] = {
   init: function() {
 	this.appendDummyInput()
@@ -12697,7 +12863,7 @@ Blockly.Blocks['esp32_pinread'] = {
 	this.appendDummyInput()
         .appendField(Blockly.Msg.SERVERMODULE_PIN_SHOW);
     this.appendValueInput("pin")
-        .setCheck("Number");   
+        .setCheck(null);   
 	this.setInputsInline(true);
     this.setOutput(true, null);  
     this.setColour(20);
