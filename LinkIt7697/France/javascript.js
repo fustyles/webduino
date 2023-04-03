@@ -10,7 +10,11 @@ Blockly.Arduino['fu_joystick_initial'] = function(block) {
 	
 	Blockly.Arduino.setups_['joystick_initial_'+index] = 'pinMode(joystick_pinD_'+index+', INPUT_PULLUP);\n  pinMode(joystick_pinX_'+index+', INPUT_PULLUP);\n  pinMode(joystick_pinY_'+index+', INPUT_PULLUP);\n';
 	
-	Blockly.Arduino.definitions_['joystick_initial_analogMax'] = 'int analogMax = 1023;\n';
+	if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040") {
+		Blockly.Arduino.definitions_['joystick_initial_analogMax'] = 'int analogMax = 4095;\n';
+	} else {
+		Blockly.Arduino.definitions_['joystick_initial_analogMax'] = 'int analogMax = 1023;\n';
+	}
 	
 	var code = ';\n' ;
 	return code;
@@ -24,14 +28,14 @@ Blockly.Arduino['fu_joystick_stick_direction'] = function(block) {
 	+'String joystick_stick_direction_state(int pinX, int pinY) {\n'
 	+'  float X = analogRead(pinX);\n'
 	+'  float Y = analogRead(pinY);\n'
-	+'  if (X<(analogMax/4)&&Y<(analogMax/4)) return "ul";\n'
-	+'  if (X>=(analogMax/4)&&X<(analogMax*3/4)&&Y<(analogMax/4)) return "u";\n'
-	+'  if (X>=(analogMax*3/4)&&Y<(analogMax/4)) return "ur";\n'
-	+'  if (X>=(analogMax*3/4)&&Y>=(analogMax/4)&&Y<(analogMax*3/4)) return "r";\n'	
-	+'  if (X>=(analogMax*3/4)&&Y>=(analogMax*3/4)) return "dr";\n'
-	+'  if (X>=(analogMax/4)&&X<(analogMax*3/4)&&Y>(analogMax*3/4)) return "d";\n'
-	+'  if (X<(analogMax/4)&&Y>(analogMax*3/4)) return "dl";\n'
-	+'  if (X<(analogMax/4)&&Y>=(analogMax/4)&&Y<(analogMax*3/4)) return "l";\n'
+	+'  if (X<(analogMax/4)&&Y<(analogMax/4)) return "dr";\n'
+	+'  if (X>=(analogMax/4)&&X<(analogMax*3/4)&&Y<(analogMax/4)) return "d";\n'
+	+'  if (X>=(analogMax*3/4)&&Y<(analogMax/4)) return "dl";\n'
+	+'  if (X>=(analogMax*3/4)&&Y>=(analogMax/4)&&Y<(analogMax*3/4)) return "l";\n'	
+	+'  if (X>=(analogMax*3/4)&&Y>=(analogMax*3/4)) return "ul";\n'
+	+'  if (X>=(analogMax/4)&&X<(analogMax*3/4)&&Y>(analogMax*3/4)) return "u";\n'
+	+'  if (X<(analogMax/4)&&Y>(analogMax*3/4)) return "ur";\n'
+	+'  if (X<(analogMax/4)&&Y>=(analogMax/4)&&Y<(analogMax*3/4)) return "r";\n'
 	+'  return "x";\n'	
 	+'}\n';
 		
@@ -61,12 +65,6 @@ Blockly.Arduino['fu_joystick_get'] = function(block) {
 		var code = '';
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
-
-
-
-
-
-
 
 Blockly.Arduino['PN532_initial'] = function(block) {
 	var mode = block.getFieldValue('mode');
