@@ -34,24 +34,35 @@ Blockly.Blocks.esp32_mpu6050_pin={
 	  }
 };
 
+Blockly.Blocks.esp32_mpu6050_read={
+	init:function(){
+		this.appendDummyInput()
+			.appendField(Blockly.Msg.ESP32_MPU6050_READ);
+		this.setInputsInline(true);
+		this.setPreviousStatement(true);
+		this.setNextStatement(true);
+		this.setColour(Blockly.Msg["HUE_15"]);	
+	}
+};
+
 Blockly.Blocks.esp32_mpu6050_get={
 	init:function(){
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.ESP32_MPU6050_GET);
 		this.appendDummyInput()
 			.appendField(new Blockly.FieldDropdown([
-				[Blockly.Msg.ESP32_MPU6050_TEMPERATURE,"temperature"],			
-				[Blockly.Msg.ESP32_MPU6050_ACCX,"accX"],
-				[Blockly.Msg.ESP32_MPU6050_ACCY,"accY"],
-				[Blockly.Msg.ESP32_MPU6050_ACCZ,"accZ"],
-				[Blockly.Msg.ESP32_MPU6050_GYROX,"gyroX"],
-				[Blockly.Msg.ESP32_MPU6050_GYROY,"gyroY"],
-				[Blockly.Msg.ESP32_MPU6050_GYROZ,"gyroZ"],
-				[Blockly.Msg.ESP32_MPU6050_ACCANGLEX,"accAngleX"],
-				[Blockly.Msg.ESP32_MPU6050_ACCANGLEY,"accAngleY"],				
-				[Blockly.Msg.ESP32_MPU6050_ANGLEX,"angleX"],
-				[Blockly.Msg.ESP32_MPU6050_ANGLEY,"angleY"],	
-				[Blockly.Msg.ESP32_MPU6050_ANGLEZ,"angleZ"]
+				[Blockly.Msg.ESP32_MPU6050_ACCX,"0"],
+				[Blockly.Msg.ESP32_MPU6050_ACCY,"1"],
+				[Blockly.Msg.ESP32_MPU6050_ACCZ,"2"],
+				[Blockly.Msg.ESP32_MPU6050_GYROX,"3"],
+				[Blockly.Msg.ESP32_MPU6050_GYROY,"4"],
+				[Blockly.Msg.ESP32_MPU6050_GYROZ,"5"],
+				[Blockly.Msg.ESP32_MPU6050_ACCANGLEX,"6"],
+				[Blockly.Msg.ESP32_MPU6050_ACCANGLEY,"7"],				
+				[Blockly.Msg.ESP32_MPU6050_ANGLEX,"8"],
+				[Blockly.Msg.ESP32_MPU6050_ANGLEY,"9"],	
+				[Blockly.Msg.ESP32_MPU6050_ANGLEZ,"10"],
+				[Blockly.Msg.ESP32_MPU6050_TEMPERATURE,"11"]
 			]),"mpu");		
 		this.setInputsInline(true);
 		this.setOutput(true);

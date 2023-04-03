@@ -5,36 +5,24 @@ Blockly.Arduino.esp32_mpu6050_pin = function(){
 	Blockly.Arduino.definitions_['define_mpu6050']='\n'+
 											'#include \<MPU6050_light.h>\n'+
 											'#include \<Wire.h\>\n'+
-											'MPU6050 mpu(Wire);\n'; 
+											'MPU6050 mpu(Wire);\n'+
+											'float MPU_data[12] = {0,0,0,0,0,0,0,0,0,0,0,0};\n';
 											
 	Blockly.Arduino.definitions_['define_mpu6050_func']='\n'+
-														'float getMPU6050(String val) {\n'+									
+														'void MPU6050_read() {\n'+									
 														'  	mpu.update();\n'+
-														'  	if (val=="temperature")\n'+
-														'  		return mpu.getTemp();\n'+
-														'  	else if (val=="accX")\n'+
-														'  		return mpu.getAccX();\n'+
-														'  	else if (val=="accY")\n'+	
-														'  		return mpu.getAccY();\n'+
-														'  	else if (val=="accZ")\n'+
-														'  		return mpu.getAccZ();\n'+
-														'  	else if (val=="gyroX")\n'+
-														'  		return mpu.getGyroX();\n'+
-														'  	else if (val=="gyroY")\n'+
-														'  		return mpu.getGyroY();\n'+
-														'  	else if (val=="gyroZ")\n'+
-														'  		return mpu.getGyroZ();\n'+
-														'  	if (val=="accAngleX")\n'+
-														'  		return mpu.getAccAngleX();\n'+
-														'  	else if (val=="accAngleY")\n'+	
-														'  		return mpu.getAccAngleY();\n'+
-														'  	else if (val=="angleX")\n'+
-														'  		return mpu.getAngleX();\n'+
-														'  	else if (val=="angleY")\n'+
-														'  		return mpu.getAngleY();\n'+
-														'  	else if (val=="angleZ")\n'+
-														'  		return mpu.getAngleZ();\n'+
-														'   return 0;\n'+											
+														'  	MPU_data[0] = mpu.getAccX();\n'+
+														'  	MPU_data[1] = mpu.getAccY();\n'+
+														'  	MPU_data[2] = mpu.getAccZ();\n'+
+														'  	MPU_data[3] = mpu.getGyroX();\n'+
+														'  	MPU_data[4] = mpu.getGyroY();\n'+
+														'  	MPU_data[5] = mpu.getGyroZ();\n'+
+														'  	MPU_data[6] = mpu.getAccAngleX();\n'+
+														'  	MPU_data[7] = mpu.getAccAngleY();\n'+
+														'  	MPU_data[8] = mpu.getAngleX();\n'+
+														'  	MPU_data[9] = mpu.getAngleY();\n'+
+														'  	MPU_data[10] = mpu.getAngleZ();\n'+
+														'  	MPU_data[11] = mpu.getTemp();\n'+											
 														'}\n';
 
 
@@ -57,9 +45,15 @@ Blockly.Arduino.esp32_mpu6050_pin = function(){
 	return code;
 };
 
+Blockly.Arduino.esp32_mpu6050_read = function(){				
+	var code = 'MPU6050_read();\n';
+	return code;
+};
+
 Blockly.Arduino.esp32_mpu6050_get = function(){
 	var mpu = this.getFieldValue('mpu');
-	var code = 'getMPU6050("'+mpu+'")';
+														
+	var code = 'MPU_data['+mpu+']';
 	return[code, Blockly.Arduino.ORDER_ATOMIC];
 };
 

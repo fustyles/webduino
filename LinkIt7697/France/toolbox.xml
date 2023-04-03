@@ -9795,7 +9795,8 @@
 						<field name="NUM">22</field>
 					</block>			
 				</value>	
-			</block>	
+			</block>
+			<block type="esp32_mpu6050_read"></block>			
 			<block type="esp32_mpu6050_get"></block>
 	</category>
 	<category id="france12" name="colorsensor">

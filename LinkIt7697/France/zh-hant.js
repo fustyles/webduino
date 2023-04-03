@@ -1994,6 +1994,7 @@ Blockly.Msg["FU_JOYSTICK_EXECUTE"] = "後執行";
 Blockly.Msg["ESP32_MPU6050_PIN"] = "MPU6050六軸傳感器 初始化";
 Blockly.Msg["ESP32_MPU6050_PIN_CUSTOM"] = "自訂腳位";
 Blockly.Msg["ESP32_MPU6050_PIN_DEFAULT"] = "預設腳位";
+Blockly.Msg["ESP32_MPU6050_READ"] = "MPU6050六軸傳感器 讀取一次資料";
 Blockly.Msg["ESP32_MPU6050_GET"] = "MPU6050六軸傳感器 取得";
 Blockly.Msg["ESP32_MPU6050_TEMPERATURE"] = "溫度";
 Blockly.Msg["ESP32_MPU6050_ACCX"] = "加速度計X";

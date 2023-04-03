@@ -1986,6 +1986,7 @@ Blockly.Msg["FU_JOYSTICK_EXECUTE"] = "Execute";
 Blockly.Msg["ESP32_MPU6050_PIN"] = "MPU6050 sensor Initial";
 Blockly.Msg["ESP32_MPU6050_PIN_CUSTOM"] = "Custom pins";
 Blockly.Msg["ESP32_MPU6050_PIN_DEFAULT"] = "Default pins";
+Blockly.Msg["ESP32_MPU6050_READ"] = "MPU6050 sensor Read data";
 Blockly.Msg["ESP32_MPU6050_GET"] = "MPU6050 sensor Get";
 Blockly.Msg["ESP32_MPU6050_TEMPERATURE"] = "Temperature";
 Blockly.Msg["ESP32_MPU6050_ACCX"] = "accelX";
