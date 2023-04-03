@@ -98,4 +98,5 @@
 <category><name>blekeyboardmodule</name><replace>ESP32藍芽鍵盤模組</replace></category>
 <category><name>webusb</name><replace>WebUSB模組</replace></category>
 <category><name>joystick</name><replace>Joystick搖桿</replace></category>
+<category><name>mpu6050</name><replace>mpu6050六軸傳感器</replace></category>
 </xml>

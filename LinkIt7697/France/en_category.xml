@@ -96,4 +96,5 @@
 <category><name>blekeyboardmodule</name><replace>ESP32 Keyboard Module</replace></category>
 <category><name>webusb</name><replace>WebUSB Module</replace></category>
 <category><name>joystick</name><replace>Joystick</replace></category>
+<category><name>mpu6050</name><replace>mpu6050</replace></category>
 </xml>

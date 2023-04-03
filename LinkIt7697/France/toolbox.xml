@@ -7740,7 +7740,7 @@
 					</block>			
 				</value>	
 			</block>	
-			<block type="esp32_mpu9250"></block>	
+			<block type="esp32_mpu9250"></block>			
 		</category>
 		<category id="catWebbitMoonCar" name="catWebbitMoonCar">
 			<block type="webbit_mooncar_pin">
@@ -9783,6 +9783,21 @@
 		</block>	
 		<block type="esp32_mpu9250"></block>
 	</category>	
+	<category id="france9" name="mpu6050">
+				<block type="esp32_mpu6050_pin">
+				<value name="sda">
+					<block type="math_number">
+						<field name="NUM">21</field>
+					</block>		
+				</value>
+				<value name="scl">
+					<block type="math_number">
+						<field name="NUM">22</field>
+					</block>			
+				</value>	
+			</block>	
+			<block type="esp32_mpu6050_get"></block>
+	</category>
 	<category id="france12" name="colorsensor">
 		<block type="webbit_mooncar_tcs_init"></block>
 		<block type="webbit_mooncar_tcs_read"></block>

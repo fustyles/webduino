@@ -1,3 +1,64 @@
+Blockly.Blocks.esp32_mpu6050_pin={
+	init:function(){
+		this.appendDummyInput()
+			.appendField(Blockly.Msg.ESP32_MPU6050_PIN);
+		this.appendDummyInput()
+			.setAlign(Blockly.ALIGN_RIGHT) 
+			.appendField("I2C")
+			.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["ESP32_MPU6050_PIN_CUSTOM"],"1"],
+				[Blockly.Msg["ESP32_MPU6050_PIN_DEFAULT"],"0"]
+			], this.validate), "mode");
+		this.appendValueInput("sda","sda")
+			.setAlign(Blockly.ALIGN_RIGHT) 		
+			.appendField("SDA")
+			.setCheck("Number");
+		this.appendValueInput("scl","scl")
+			.setAlign(Blockly.ALIGN_RIGHT) 		
+			.appendField("SCL")
+			.setCheck("Number");			
+		this.setInputsInline(true);
+		this.setPreviousStatement(true);
+		this.setNextStatement(true);
+		this.setColour(Blockly.Msg["HUE_15"]);
+	  },
+		validate: function(newValue) {
+			const block = this.sourceBlock_;
+			if (newValue==0) {
+				block.getInput("sda").setVisible(false);
+				block.getInput("scl").setVisible(false);	
+			} else {
+				block.getInput("sda").setVisible(true);
+				block.getInput("scl").setVisible(true);	
+			}
+	  }
+};
+
+Blockly.Blocks.esp32_mpu6050_get={
+	init:function(){
+		this.appendDummyInput()
+			.appendField(Blockly.Msg.ESP32_MPU6050_GET);
+		this.appendDummyInput()
+			.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg.ESP32_MPU6050_TEMPERATURE,"temperature"],			
+				[Blockly.Msg.ESP32_MPU6050_ACCX,"accX"],
+				[Blockly.Msg.ESP32_MPU6050_ACCY,"accY"],
+				[Blockly.Msg.ESP32_MPU6050_ACCZ,"accZ"],
+				[Blockly.Msg.ESP32_MPU6050_GYROX,"gyroX"],
+				[Blockly.Msg.ESP32_MPU6050_GYROY,"gyroY"],
+				[Blockly.Msg.ESP32_MPU6050_GYROZ,"gyroZ"],
+				[Blockly.Msg.ESP32_MPU6050_ACCANGLEX,"accAngleX"],
+				[Blockly.Msg.ESP32_MPU6050_ACCANGLEY,"accAngleY"],				
+				[Blockly.Msg.ESP32_MPU6050_ANGLEX,"angleX"],
+				[Blockly.Msg.ESP32_MPU6050_ANGLEY,"angleY"],	
+				[Blockly.Msg.ESP32_MPU6050_ANGLEZ,"angleZ"]
+			]),"mpu");		
+		this.setInputsInline(true);
+		this.setOutput(true);
+		this.setColour(Blockly.Msg["HUE_15"]);		
+	}
+};
+
 Blockly.Blocks['fu_joystick_initial'] = {
   init: function() {
     this.appendDummyInput()
@@ -18700,7 +18761,7 @@ Blockly.Blocks.esp32_mpu9250_pin={
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.ESP32_MPU9250_ADDRESS)		
 		  	.appendField(new Blockly.FieldDropdown([
-			["　",""],
+			[Blockly.Msg.ESP32_MPU9250_DEFAULT,""],
 			["0x68","0x68"],
 			["0x69","0x69"]			
 			]), "address");		

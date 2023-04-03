@@ -1,3 +1,76 @@
+Blockly.Arduino.esp32_mpu6050_pin = function(){
+	var mode = this.getFieldValue('mode');
+	var sda=Blockly.Arduino.valueToCode(this,"sda",Blockly.Arduino.ORDER_ATOMIC);
+	var scl=Blockly.Arduino.valueToCode(this,"scl",Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_['define_mpu6050']='\n'+
+											'#include \<MPU6050_light.h>\n'+
+											'#include \<Wire.h\>\n'+
+											'MPU6050 mpu(Wire);\n'; 
+											
+	Blockly.Arduino.definitions_['define_mpu6050_func']='\n'+
+														'float getMPU6050(String val) {\n'+									
+														'  	mpu.update();\n'+
+														'  	if (val=="temperature")\n'+
+														'  		return mpu.getTemp();\n'+
+														'  	else if (val=="accX")\n'+
+														'  		return mpu.getAccX();\n'+
+														'  	else if (val=="accY")\n'+	
+														'  		return mpu.getAccY();\n'+
+														'  	else if (val=="accZ")\n'+
+														'  		return mpu.getAccZ();\n'+
+														'  	else if (val=="gyroX")\n'+
+														'  		return mpu.getGyroX();\n'+
+														'  	else if (val=="gyroY")\n'+
+														'  		return mpu.getGyroY();\n'+
+														'  	else if (val=="gyroZ")\n'+
+														'  		return mpu.getGyroZ();\n'+
+														'  	if (val=="accAngleX")\n'+
+														'  		return mpu.getAccAngleX();\n'+
+														'  	else if (val=="accAngleY")\n'+	
+														'  		return mpu.getAccAngleY();\n'+
+														'  	else if (val=="angleX")\n'+
+														'  		return mpu.getAngleX();\n'+
+														'  	else if (val=="angleY")\n'+
+														'  		return mpu.getAngleY();\n'+
+														'  	else if (val=="angleZ")\n'+
+														'  		return mpu.getAngleZ();\n'+
+														'   return 0;\n'+											
+														'}\n';
+
+
+	if (selectBoardType()=="rp2040") {
+		if (mode=="1")
+			Blockly.Arduino.setups_["esp32_mpu6050"]='Wire.setSDA('+sda+');\n  Wire.setSCL('+scl+');\n  Wire.begin();\n';
+		else
+			Blockly.Arduino.setups_["esp32_mpu6050"]='Wire.begin();\n';
+	} else {
+		if (mode=="1")
+			Blockly.Arduino.setups_["esp32_mpu6050"]='Wire.begin('+sda+', '+scl+');\n';
+		else
+			Blockly.Arduino.setups_["esp32_mpu6050"]='Wire.begin();\n';
+	}
+	
+	Blockly.Arduino.setups_["esp32_mpu6050"]+='  mpu.begin();\n  mpu.calcOffsets(true,true);\n';
+  
+  
+	var code = '';
+	return code;
+};
+
+Blockly.Arduino.esp32_mpu6050_get = function(){
+	var mpu = this.getFieldValue('mpu');
+	var code = 'getMPU6050("'+mpu+'")';
+	return[code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+
+
+
+
+
+
+
+
 Blockly.Arduino['fu_joystick_initial'] = function(block) {	
 	var digitalread = Blockly.Arduino.valueToCode(block, 'digitalread', Blockly.Arduino.ORDER_ATOMIC)||"";
 	var analogreadX = Blockly.Arduino.valueToCode(block, 'analogreadX', Blockly.Arduino.ORDER_ATOMIC)||"";
