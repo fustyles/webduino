@@ -9854,14 +9854,14 @@
 	<category id="france12" name="HX710B">
 		<block type="HX710B_initial">
 			<value name="dout">
-			  <block type="text">
-				<field name="TEXT">A1</field>
-			  </block>
+				<block type="math_number">
+					<field name="NUM">17</field>
+				</block>
 			</value>
 			<value name="sclk">
-			  <block type="text">
-				<field name="TEXT">A0</field>
-			  </block>
+				<block type="math_number">
+					<field name="NUM">18</field>
+				</block>
 			</value>				
 		</block>
 		<block type="HX710B_get"></block>
