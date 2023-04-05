@@ -2017,3 +2017,12 @@ Blockly.Msg["HX710B_PIN_SCLK"] = "SCLK";
 Blockly.Msg["HX710B_INDEX"] = "編號";
 Blockly.Msg["HX710B_GET"] = "HX710B壓力感測器 取得壓力值";
 Blockly.Msg["HX710B_UNIT"] = "單位";
+
+Blockly.Msg["MAX6675_INITIAL"] = "MAX6675溫度感測器 初始化";
+Blockly.Msg["MAX6675_PIN"] = "腳位";
+Blockly.Msg["MAX6675_PIN_DO"] = "DO";
+Blockly.Msg["MAX6675_PIN_CS"] = "CS";
+Blockly.Msg["MAX6675_PIN_CLK"] = "CLK";
+Blockly.Msg["MAX6675_INDEX"] = "編號";
+Blockly.Msg["MAX6675_GET"] = "MAX6675溫度感測器 取得溫度值";
+Blockly.Msg["MAX6675_UNIT"] = "單位";

@@ -1,3 +1,34 @@
+Blockly.Arduino.MAX6675_initial=function(){
+  var dout=Blockly.Arduino.valueToCode(this,"dout",Blockly.Arduino.ORDER_ATOMIC);
+  var cs=Blockly.Arduino.valueToCode(this,"cs",Blockly.Arduino.ORDER_ATOMIC);
+  var clk=Blockly.Arduino.valueToCode(this,"clk",Blockly.Arduino.ORDER_ATOMIC);
+  dout = dout.replace(/"/g,'');
+  cs = cs.replace(/"/g,'');
+  clk = clk.replace(/"/g,'');
+  var index=this.getFieldValue("index");
+  
+  Blockly.Arduino.definitions_['MAX6675_initial']='#include "max6675.h"\n';
+  Blockly.Arduino.definitions_['MAX6675_pin_'+index]='MAX6675 thermocouple_'+index+'('+clk+', '+cs+', '+dout+');\n';
+  var code = '';
+  return code;
+};
+
+Blockly.Arduino.MAX6675_get=function(){
+  var unit=this.getFieldValue("unit"); 
+  var index=this.getFieldValue("index");
+  
+  if (unit=="C")
+    var code = 'thermocouple_'+index+'.readCelsius()';
+  else
+    var code = 'thermocouple_'+index+'.readFahrenheit()';
+											
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+
+
+
+
 Blockly.Arduino.HX710B_initial=function(){
   var dout=Blockly.Arduino.valueToCode(this,"dout",Blockly.Arduino.ORDER_ATOMIC);
   var sclk=Blockly.Arduino.valueToCode(this,"sclk",Blockly.Arduino.ORDER_ATOMIC);
@@ -28,11 +59,6 @@ Blockly.Arduino.HX710B_get=function(){
 											
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
-
-
-
-
-
 
 Blockly.Arduino.esp32_mpu6050_pin = function(){
 	var mode = this.getFieldValue('mode');

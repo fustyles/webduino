@@ -100,4 +100,5 @@
 <category><name>joystick</name><replace>Joystick搖桿</replace></category>
 <category><name>mpu6050</name><replace>MPU6050六軸傳感器</replace></category>
 <category><name>HX710B</name><replace>HX710B壓力感測器</replace></category>
+<category><name>MAX6675</name><replace>MAX6675溫度感測器</replace></category>
 </xml>

@@ -9865,7 +9865,27 @@
 			</value>				
 		</block>
 		<block type="HX710B_get"></block>
-	</category>	
+	</category>
+	<category id="france12" name="MAX6675">
+		<block type="MAX6675_initial">
+			<value name="dout">
+				<block type="math_number">
+					<field name="NUM">4</field>
+				</block>
+			</value>
+			<value name="cs">
+				<block type="math_number">
+					<field name="NUM">5</field>
+				</block>
+			</value>
+			<value name="clk">
+				<block type="math_number">
+					<field name="NUM">6</field>
+				</block>
+			</value>				
+		</block>
+		<block type="MAX6675_get"></block>
+	</category>		
 	<category id="france12" name="MLX90614">
 	  <block type="MLX90614">
 		<value name="sda">

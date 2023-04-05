@@ -1,3 +1,84 @@
+Blockly.Blocks.MAX6675_initial={
+	init:function(){
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["MAX6675_INITIAL"]);
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["MAX6675_PIN"]);	  
+	  this.appendValueInput("dout")
+		  .setCheck(null)
+		  .appendField(Blockly.Msg["MAX6675_PIN_DO"]);
+	  this.appendValueInput("cs")
+		  .setCheck(null)
+		  .appendField(Blockly.Msg["MAX6675_PIN_CS"]);		  
+	  this.appendValueInput("clk")
+		  .setCheck(null)
+		  .appendField(Blockly.Msg["MAX6675_PIN_CLK"]); 
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["MAX6675_INDEX"])
+		  .appendField(new Blockly.FieldDropdown([
+				["0","0"],		
+				["1","1"],
+				["2","2"],		
+				["3","3"],
+				["4","4"],		
+				["5","5"],
+				["6","6"],		
+				["7","7"],
+				["8","8"],		
+				["9","9"],
+				["10","10"],		
+				["11","11"],
+				["12","12"],
+				["13","13"],		
+				["14","14"],
+				["15","15"]
+		  ]),"index");		  
+	  this.setInputsInline(!0);
+	  this.setPreviousStatement(!0,null);
+	  this.setNextStatement(!0,null);
+	  this.setColour(Blockly.Msg["HUE_20"]);  
+	}
+};
+Blockly.Blocks.MAX6675_get={
+	init:function(){
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["MAX6675_GET"]);
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["MAX6675_UNIT"])
+		  .appendField(new Blockly.FieldDropdown([
+				["°C","C"],		
+				["°F","F"]
+		  ]),"unit");		  
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["MAX6675_INDEX"])
+		  .appendField(new Blockly.FieldDropdown([
+			["0","0"],		
+			["1","1"],
+			["2","2"],		
+			["3","3"],
+			["4","4"],		
+			["5","5"],
+			["6","6"],		
+			["7","7"],
+			["8","8"],		
+			["9","9"],
+			["10","10"],		
+			["11","11"],
+			["12","12"],
+			["13","13"],		
+			["14","14"],
+			["15","15"]
+		  ]),"index");	  
+	  this.setInputsInline(!0);
+	  this.setOutput(!0,null);
+	  this.setColour(Blockly.Msg["HUE_20"]);  
+	}
+};
+
+
+
+
+
 Blockly.Blocks.HX710B_initial={
 	init:function(){
 	  this.appendDummyInput()
@@ -73,12 +154,6 @@ Blockly.Blocks.HX710B_get={
 	  this.setColour(Blockly.Msg["HUE_18"]);  
 	}
 };
-
-
-
-
-
-
 
 Blockly.Blocks.esp32_mpu6050_pin={
 	init:function(){

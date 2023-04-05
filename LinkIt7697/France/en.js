@@ -2009,3 +2009,12 @@ Blockly.Msg["HX710B_PIN_SCLK"] = "SCLK";
 Blockly.Msg["HX710B_INDEX"] = "index";
 Blockly.Msg["HX710B_GET"] = "HX710B pressure sensor Get value";
 Blockly.Msg["HX710B_UNIT"] = "unit";
+
+Blockly.Msg["MAX6675_INITIAL"] = "MAX6675 temperature sensor Initial";
+Blockly.Msg["MAX6675_PIN"] = "pin";
+Blockly.Msg["MAX6675_PIN_DO"] = "DO";
+Blockly.Msg["MAX6675_PIN_CS"] = "CS";
+Blockly.Msg["MAX6675_PIN_CLK"] = "CLK";
+Blockly.Msg["MAX6675_INDEX"] = "index";
+Blockly.Msg["MAX6675_GET"] = "MAX6675 temperature sensor Get value";
+Blockly.Msg["MAX6675_UNIT"] = "unit";
