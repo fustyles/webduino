@@ -2009,3 +2009,11 @@ Blockly.Msg["ESP32_MPU6050_ACCANGLEY"] = "加速度計角度Y";
 Blockly.Msg["ESP32_MPU6050_ANGLEX"] = "角度X";
 Blockly.Msg["ESP32_MPU6050_ANGLEY"] = "角度Y";
 Blockly.Msg["ESP32_MPU6050_ANGLEZ"] = "角度Z";
+
+Blockly.Msg["HX710B_INITIAL"] = "HX710B壓力感測器 初始化";
+Blockly.Msg["HX710B_PIN"] = "腳位";
+Blockly.Msg["HX710B_PIN_DOUT"] = "DOUT";
+Blockly.Msg["HX710B_PIN_SCLK"] = "SCLK";
+Blockly.Msg["HX710B_INDEX"] = "編號";
+Blockly.Msg["HX710B_GET"] = "HX710B壓力感測器 取得壓力值";
+Blockly.Msg["HX710B_UNIT"] = "單位";

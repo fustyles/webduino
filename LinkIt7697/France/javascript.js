@@ -1,3 +1,39 @@
+Blockly.Arduino.HX710B_initial=function(){
+  var dout=Blockly.Arduino.valueToCode(this,"dout",Blockly.Arduino.ORDER_ATOMIC);
+  var sclk=Blockly.Arduino.valueToCode(this,"sclk",Blockly.Arduino.ORDER_ATOMIC);
+  dout = dout.replace(/"/g,'');
+  sclk = sclk.replace(/"/g,'');
+  var index=this.getFieldValue("index");
+  
+  Blockly.Arduino.definitions_['HX710B_initial']='#include "HX710B.h"\n';
+  Blockly.Arduino.definitions_['HX710B_pin_'+index]='const int HX710B_DOUT_pin_'+index+'[2] = {'+dout+', '+sclk+'};\nHX710B pressure_sensor_'+index+';\n';
+											
+  Blockly.Arduino.setups_['HX710B_begin_'+index] = 'pressure_sensor_'+index+'.begin(HX710B_DOUT_pin_'+index+'[0], HX710B_DOUT_pin_'+index+'[1]);\n';
+  var code = '';
+  return code;
+};
+
+Blockly.Arduino.HX710B_get=function(){
+  var unit=this.getFieldValue("unit"); 
+  var index=this.getFieldValue("index");
+  
+  if (unit=="pascal")
+    var code = 'pressure_sensor_'+index+'.pascal()';
+  else if (unit=="atm")
+    var code = 'pressure_sensor_'+index+'.atm()';
+  else if (unit=="mmHg")
+    var code = 'pressure_sensor_'+index+'.mmHg()';											
+  else
+    var code = 'pressure_sensor_'+index+'.psi()';
+											
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+
+
+
+
+
 Blockly.Arduino.esp32_mpu6050_pin = function(){
 	var mode = this.getFieldValue('mode');
 	var sda=Blockly.Arduino.valueToCode(this,"sda",Blockly.Arduino.ORDER_ATOMIC);

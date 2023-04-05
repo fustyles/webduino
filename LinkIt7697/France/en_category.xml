@@ -97,4 +97,5 @@
 <category><name>webusb</name><replace>WebUSB Module</replace></category>
 <category><name>joystick</name><replace>Joystick</replace></category>
 <category><name>mpu6050</name><replace>mpu6050</replace></category>
+<category><name>HX710B</name><replace>HX710B pressure sensor</replace></category>
 </xml>

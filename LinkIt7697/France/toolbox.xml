@@ -9851,6 +9851,21 @@
 			</value> 
 		</block>
 	</category>
+	<category id="france12" name="HX710B">
+		<block type="HX710B_initial">
+			<value name="dout">
+			  <block type="text">
+				<field name="TEXT">A1</field>
+			  </block>
+			</value>
+			<value name="sclk">
+			  <block type="text">
+				<field name="TEXT">A0</field>
+			  </block>
+			</value>				
+		</block>
+		<block type="HX710B_get"></block>
+	</category>	
 	<category id="france12" name="MLX90614">
 	  <block type="MLX90614">
 		<value name="sda">

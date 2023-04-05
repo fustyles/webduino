@@ -2001,3 +2001,11 @@ Blockly.Msg["ESP32_MPU6050_ACCANGLEY"] = "Accel angle Y";
 Blockly.Msg["ESP32_MPU6050_ANGLEX"] = "Angle X";
 Blockly.Msg["ESP32_MPU6050_ANGLEY"] = "Angle Y";
 Blockly.Msg["ESP32_MPU6050_ANGLEZ"] = "Angle Z";
+
+Blockly.Msg["HX710B_INITIAL"] = "HX710B pressure sensor Initial";
+Blockly.Msg["HX710B_PIN"] = "pin";
+Blockly.Msg["HX710B_PIN_DOUT"] = "DOUT";
+Blockly.Msg["HX710B_PIN_SCLK"] = "SCLK";
+Blockly.Msg["HX710B_INDEX"] = "index";
+Blockly.Msg["HX710B_GET"] = "HX710B pressure sensor Get value";
+Blockly.Msg["HX710B_UNIT"] = "unit";

@@ -1,3 +1,85 @@
+Blockly.Blocks.HX710B_initial={
+	init:function(){
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["HX710B_INITIAL"]);
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["HX710B_PIN"]);	  
+	  this.appendValueInput("dout")
+		  .setCheck(null)
+		  .appendField(Blockly.Msg["HX710B_PIN_DOUT"]);
+	  this.appendValueInput("sclk")
+		  .setCheck(null)
+		  .appendField(Blockly.Msg["HX710B_PIN_SCLK"]); 
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["HX710B_INDEX"])
+		  .appendField(new Blockly.FieldDropdown([
+				["0","0"],		
+				["1","1"],
+				["2","2"],		
+				["3","3"],
+				["4","4"],		
+				["5","5"],
+				["6","6"],		
+				["7","7"],
+				["8","8"],		
+				["9","9"],
+				["10","10"],		
+				["11","11"],
+				["12","12"],
+				["13","13"],		
+				["14","14"],
+				["15","15"]
+		  ]),"index");		  
+	  this.setInputsInline(!0);
+	  this.setPreviousStatement(!0,null);
+	  this.setNextStatement(!0,null);
+	  this.setColour(Blockly.Msg["HUE_18"]);  
+	}
+};
+Blockly.Blocks.HX710B_get={
+	init:function(){
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["HX710B_GET"]);
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["HX710B_UNIT"])
+		  .appendField(new Blockly.FieldDropdown([
+				["pascal","pascal"],		
+				["atm","atm"],
+				["mmHg","mmHg"],		
+				["psi","psi"]
+		  ]),"unit");		  
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["HX710B_INDEX"])
+		  .appendField(new Blockly.FieldDropdown([
+			["0","0"],		
+			["1","1"],
+			["2","2"],		
+			["3","3"],
+			["4","4"],		
+			["5","5"],
+			["6","6"],		
+			["7","7"],
+			["8","8"],		
+			["9","9"],
+			["10","10"],		
+			["11","11"],
+			["12","12"],
+			["13","13"],		
+			["14","14"],
+			["15","15"]
+		  ]),"index");	  
+	  this.setInputsInline(!0);
+	  this.setOutput(!0,null);
+	  this.setColour(Blockly.Msg["HUE_18"]);  
+	}
+};
+
+
+
+
+
+
+
 Blockly.Blocks.esp32_mpu6050_pin={
 	init:function(){
 		this.appendDummyInput()
