@@ -1,3 +1,52 @@
+Blockly.Blocks.DS18B20_initial={
+	init:function(){
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["DS18B20_INITIAL"]); 
+	  this.appendValueInput("pin")
+		  .setCheck(null)
+		  .appendField(Blockly.Msg["DS18B20_PIN"]);		  
+	  this.setInputsInline(!0);
+	  this.setPreviousStatement(!0,null);
+	  this.setNextStatement(!0,null);
+	  this.setColour(Blockly.Msg["HUE_22"]);  
+	}
+};
+Blockly.Blocks.DS18B20_get={
+	init:function(){
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["DS18B20_GET"]);
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["DS18B20_UNIT"])
+		  .appendField(new Blockly.FieldDropdown([
+				["°C","C"],		
+				["°F","F"]
+		  ]),"unit");		  
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["DS18B20_INDEX"])
+		  .appendField(new Blockly.FieldDropdown([
+			["0","0"],		
+			["1","1"],
+			["2","2"],		
+			["3","3"],
+			["4","4"],		
+			["5","5"],
+			["6","6"],		
+			["7","7"],
+			["8","8"],		
+			["9","9"],
+			["10","10"],		
+			["11","11"],
+			["12","12"],
+			["13","13"],		
+			["14","14"],
+			["15","15"]
+		  ]),"index");	  
+	  this.setInputsInline(!0);
+	  this.setOutput(!0,null);
+	  this.setColour(Blockly.Msg["HUE_22"]);  
+	}
+};
+
 Blockly.Blocks.MAX6675_initial={
 	init:function(){
 	  this.appendDummyInput()
@@ -74,10 +123,6 @@ Blockly.Blocks.MAX6675_get={
 	  this.setColour(Blockly.Msg["HUE_20"]);  
 	}
 };
-
-
-
-
 
 Blockly.Blocks.HX710B_initial={
 	init:function(){

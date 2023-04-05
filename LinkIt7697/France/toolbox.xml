@@ -9903,9 +9903,18 @@
 			<field name="NUM">0</field>
 		  </block>
 		</value>			
-	  </block>   
+	  </block>	  
 	</category>
-	
+	<category id="france12" name="DS18B20">
+		<block type="DS18B20_initial">
+			<value name="pin">
+				<block type="math_number">
+					<field name="NUM">17</field>
+				</block>
+			</value>				
+		</block>
+		<block type="DS18B20_get"></block>
+	</category>	
 	<category id="france12" name="PN532">
 	  <block type="PN532_initial">
 		<value name="keya">

@@ -1,3 +1,27 @@
+Blockly.Arduino.DS18B20_initial=function(){
+  var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
+  pin = pin.replace(/"/g,'');
+  
+  Blockly.Arduino.definitions_['DS18B20_initial']='#include <OneWire.h>\n#include <DallasTemperature.h>\n';
+  Blockly.Arduino.definitions_['DS18B20_pin']='OneWire oneWire('+pin+');\nDallasTemperature DS18B20(&oneWire);\n';
+  Blockly.Arduino.setups_['DS18B20_pin']='DS18B20.begin();\n';
+  
+  var code = '';
+  return code;
+};
+
+Blockly.Arduino.DS18B20_get=function(){
+  var unit=this.getFieldValue("unit"); 
+  var index=this.getFieldValue("index");
+  
+  if (unit=="C")
+    var code = 'DS18B20.getTempCByIndex('+index+')';
+  else
+    var code = '(DS18B20.getTempCByIndex('+index+')*9/5+32)';
+											
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
 Blockly.Arduino.MAX6675_initial=function(){
   var dout=Blockly.Arduino.valueToCode(this,"dout",Blockly.Arduino.ORDER_ATOMIC);
   var cs=Blockly.Arduino.valueToCode(this,"cs",Blockly.Arduino.ORDER_ATOMIC);
@@ -24,10 +48,6 @@ Blockly.Arduino.MAX6675_get=function(){
 											
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
-
-
-
-
 
 Blockly.Arduino.HX710B_initial=function(){
   var dout=Blockly.Arduino.valueToCode(this,"dout",Blockly.Arduino.ORDER_ATOMIC);

@@ -12,7 +12,7 @@
 <category><name>servercommand</name><replace>模組指令參數</replace></category>
 <category><name>bluetoothmodule</name><replace>ESP32藍芽模組</replace></category>
 <category><name>bluetooth</name><replace>藍芽模組指令</replace></category>
-<category><name>mlx90614</name><replace>MLX9061X</replace></category>
+<category><name>mlx90614</name><replace>MLX9061X溫度感測器</replace></category>
 <category><name>DHT11</name><replace>溫溼度感測器</replace></category>
 <category><name>buzzer</name><replace>蜂鳴器</replace></category>
 <category><name>mpu9250</name><replace>MPU9250九軸傳感器</replace></category>
@@ -101,4 +101,5 @@
 <category><name>mpu6050</name><replace>MPU6050六軸傳感器</replace></category>
 <category><name>HX710B</name><replace>HX710B壓力感測器</replace></category>
 <category><name>MAX6675</name><replace>MAX6675溫度感測器</replace></category>
+<category><name>DS18B20</name><replace>DS18B20水溫感測器</replace></category>
 </xml>

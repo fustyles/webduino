@@ -2018,3 +2018,9 @@ Blockly.Msg["MAX6675_PIN_CLK"] = "CLK";
 Blockly.Msg["MAX6675_INDEX"] = "index";
 Blockly.Msg["MAX6675_GET"] = "MAX6675 temperature sensor Get value";
 Blockly.Msg["MAX6675_UNIT"] = "unit";
+
+Blockly.Msg["DS18B20_INITIAL"] = "DS18B20 water temperature sensor Initial";
+Blockly.Msg["DS18B20_PIN"] = "pin";
+Blockly.Msg["DS18B20_INDEX"] = "index";
+Blockly.Msg["DS18B20_GET"] = "DS18B20DS18B20 water temperature sensor Get value";
+Blockly.Msg["DS18B20_UNIT"] = "unit";
