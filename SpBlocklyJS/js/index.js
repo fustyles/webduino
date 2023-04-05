@@ -390,6 +390,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		var xmlNewValue='<xml id="toolbox">';
 		try {
 			for (var i=0;i<category.length;i++){
+				category[i] = category[i].replace(/\<category /g, "<category expanded=\"false\" ");
+				//console.log(category[i]);
 				var xml = new DOMParser().parseFromString(category[i],"text/xml");
 				xmlNewValue+=new XMLSerializer().serializeToString(xml.firstChild).replace("<xml>","").replace("</xml>","");
 			}
