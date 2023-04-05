@@ -86,6 +86,14 @@ Blockly.Blocks['fu_joystick_initial'] = {
         .setCheck(null)
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg["FU_JOYSTICK_ANALOGREAD_Y"]);
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["FU_JOYSTICK_ROTATE"])
+		.appendField(new Blockly.FieldDropdown([
+			["0","0"],
+			["90","90"],
+			["180","180"],
+			["270","270"]
+		]),"rotate");		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT) 
 		.appendField(Blockly.Msg["FU_JOYSTICK_INDEX"])

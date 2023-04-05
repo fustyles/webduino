@@ -57,15 +57,8 @@ Blockly.Arduino.esp32_mpu6050_get = function(){
 	return[code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
-
-
-
-
-
-
-
-
-Blockly.Arduino['fu_joystick_initial'] = function(block) {	
+Blockly.Arduino['fu_joystick_initial'] = function(block) {
+	var rotate = block.getFieldValue('rotate');	
 	var digitalread = Blockly.Arduino.valueToCode(block, 'digitalread', Blockly.Arduino.ORDER_ATOMIC)||"";
 	var analogreadX = Blockly.Arduino.valueToCode(block, 'analogreadX', Blockly.Arduino.ORDER_ATOMIC)||"";
 	var analogreadY = Blockly.Arduino.valueToCode(block, 'analogreadY', Blockly.Arduino.ORDER_ATOMIC)||"";
@@ -73,9 +66,18 @@ Blockly.Arduino['fu_joystick_initial'] = function(block) {
 	analogreadX = analogreadX.replace(/"/g,'');
 	analogreadY = analogreadY.replace(/"/g,'');
 	
-	Blockly.Arduino.definitions_['joystick_initial_'+index] = 'int joystick_pinD_'+index+' = '+digitalread+';\nint joystick_pinX_'+index+' = '+analogreadX+';\nint joystick_pinY_'+index+' = '+analogreadY+';\n';
+	Blockly.Arduino.definitions_['joystick_initial_'+index] = 'int joystick_pin_'+index+'[3] = {'+digitalread+", "+analogreadX+", "+analogreadY+'};\n';
 	
-	Blockly.Arduino.setups_['joystick_initial_'+index] = 'pinMode(joystick_pinD_'+index+', INPUT_PULLUP);\n  pinMode(joystick_pinX_'+index+', INPUT_PULLUP);\n  pinMode(joystick_pinY_'+index+', INPUT_PULLUP);\n';
+	if (rotate=="0")
+		Blockly.Arduino.definitions_['joystick_initial_'+index] += 'String joystick_rotate_'+index+'[8] = {"dr","d","dl","l","ul","u","ur","r"};\n';
+	else if (rotate=="90")
+		Blockly.Arduino.definitions_['joystick_initial_'+index] += 'String joystick_rotate_'+index+'[8] = {"ur","r","dr","d","dl","l","ul","u"};\n';
+	else if (rotate=="180")
+		Blockly.Arduino.definitions_['joystick_initial_'+index] += 'String joystick_rotate_'+index+'[8] = {"ul","u","ur","r","dr","d","dl","l"};\n';
+	else if (rotate=="270")
+		Blockly.Arduino.definitions_['joystick_initial_'+index] += 'String joystick_rotate_'+index+'[8] = {"dl","l","ul","u","ur","r","dr","d"};\n';
+	
+	Blockly.Arduino.setups_['joystick_initial_'+index] = 'pinMode(joystick_pin_'+index+'[0], INPUT_PULLUP);\n  pinMode(joystick_pin_'+index+'[1], INPUT_PULLUP);\n  pinMode(joystick_pin_'+index+'[2], INPUT_PULLUP);\n';
 	
 	if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040") {
 		Blockly.Arduino.definitions_['joystick_initial_analogMax'] = 'int analogMax = 4095;\n';
@@ -95,18 +97,18 @@ Blockly.Arduino['fu_joystick_stick_direction'] = function(block) {
 	+'String joystick_stick_direction_state(int pinX, int pinY) {\n'
 	+'  float X = analogRead(pinX);\n'
 	+'  float Y = analogRead(pinY);\n'
-	+'  if (X<(analogMax/4)&&Y<(analogMax/4)) return "dr";\n'
-	+'  if (X>=(analogMax/4)&&X<(analogMax*3/4)&&Y<(analogMax/4)) return "d";\n'
-	+'  if (X>=(analogMax*3/4)&&Y<(analogMax/4)) return "dl";\n'
-	+'  if (X>=(analogMax*3/4)&&Y>=(analogMax/4)&&Y<(analogMax*3/4)) return "l";\n'	
-	+'  if (X>=(analogMax*3/4)&&Y>=(analogMax*3/4)) return "ul";\n'
-	+'  if (X>=(analogMax/4)&&X<(analogMax*3/4)&&Y>(analogMax*3/4)) return "u";\n'
-	+'  if (X<(analogMax/4)&&Y>(analogMax*3/4)) return "ur";\n'
-	+'  if (X<(analogMax/4)&&Y>=(analogMax/4)&&Y<(analogMax*3/4)) return "r";\n'
+	+'  if (X<(analogMax/4)&&Y<(analogMax/4)) return joystick_rotate_'+index+'[0];\n'
+	+'  if (X>=(analogMax/4)&&X<(analogMax*3/4)&&Y<(analogMax/4)) return joystick_rotate_'+index+'[1];\n'
+	+'  if (X>=(analogMax*3/4)&&Y<(analogMax/4)) return joystick_rotate_'+index+'[2];\n'
+	+'  if (X>=(analogMax*3/4)&&Y>=(analogMax/4)&&Y<(analogMax*3/4)) return joystick_rotate_'+index+'[3];\n'	
+	+'  if (X>=(analogMax*3/4)&&Y>=(analogMax*3/4)) return joystick_rotate_'+index+'[4];\n'
+	+'  if (X>=(analogMax/4)&&X<(analogMax*3/4)&&Y>(analogMax*3/4)) return joystick_rotate_'+index+'[5];\n'
+	+'  if (X<(analogMax/4)&&Y>(analogMax*3/4)) return joystick_rotate_'+index+'[6];\n'
+	+'  if (X<(analogMax/4)&&Y>=(analogMax/4)&&Y<(analogMax*3/4)) return joystick_rotate_'+index+'[7];\n'
 	+'  return "x";\n'	
 	+'}\n';
 		
-	var code = '(joystick_stick_direction_state(joystick_pinX_'+index+', joystick_pinY_'+index+')=="'+direction+'")' ;
+	var code = '(joystick_stick_direction_state(joystick_pin_'+index+'[1], joystick_pin_'+index+'[2])=="'+direction+'")' ;
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -114,7 +116,7 @@ Blockly.Arduino['fu_joystick_button'] = function(block) {
 	var state = block.getFieldValue('state');
 	var index = block.getFieldValue('index');
 	
-	var code = '(digitalRead(joystick_pinD_'+index+')=='+state+')';
+	var code = '(digitalRead(joystick_pin_'+index+'[0])=='+state+')';
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -123,11 +125,11 @@ Blockly.Arduino['fu_joystick_get'] = function(block) {
 	var index = block.getFieldValue('index');
 	
 	if (type=="B")
-		var code = 'digitalRead(joystick_pinD_'+index+')';
+		var code = 'digitalRead(joystick_pin_'+index+'[0])';
 	else if (type=="X")
-		var code = 'analogRead(joystick_pinX_'+index+')';
+		var code = 'analogRead(joystick_pin_'+index+'[1])';
 	else if (type=="Y")
-		var code = 'analogRead(joystick_pinY_'+index+')';	
+		var code = 'analogRead(joystick_pin_'+index+'[2])';	
 	else
 		var code = '';
 	return [code, Blockly.Arduino.ORDER_NONE];
