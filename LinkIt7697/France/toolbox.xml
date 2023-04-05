@@ -9886,7 +9886,7 @@
 		</block>
 		<block type="MAX6675_get"></block>
 	</category>		
-	<category id="france12" name="MLX90614">
+	<category id="france12" name="mlx90614">
 	  <block type="MLX90614">
 		<value name="sda">
 		  <block type="math_number">

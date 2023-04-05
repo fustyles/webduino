@@ -2029,6 +2029,6 @@ Blockly.Msg["MAX6675_UNIT"] = "單位";
 
 Blockly.Msg["DS18B20_INITIAL"] = "DS18B20水溫感測器 初始化";
 Blockly.Msg["DS18B20_PIN"] = "腳位";
-Blockly.Msg["DS18B20_INDEX"] = "索引";
+Blockly.Msg["DS18B20_INDEX"] = "編號";
 Blockly.Msg["DS18B20_GET"] = "DS18B20水溫感測器 取得溫度值";
 Blockly.Msg["DS18B20_UNIT"] = "單位";
