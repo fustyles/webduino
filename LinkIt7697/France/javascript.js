@@ -8843,18 +8843,20 @@ Blockly.Arduino['thingspeak_field'] = function(block) {
 };
 
 Blockly.Arduino['esp32_analogwrite'] = function(block) {
-  var value_pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
-  var value_val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
-  var value_channel = Blockly.Arduino.valueToCode(block, 'channel', Blockly.Arduino.ORDER_ATOMIC);	
-  Blockly.Arduino.setups_['ledc_'+ value_pin] = 'ledcSetup('+value_channel+', 5000, 8);\n'+
-										  '  ledcAttachPin('+value_pin+', '+value_channel+');'; 
+  var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
+  pin = pin.replace(/"/g,'');
+  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+  var channel = Blockly.Arduino.valueToCode(block, 'channel', Blockly.Arduino.ORDER_ATOMIC);	
+  Blockly.Arduino.setups_['ledc_'+ pin] = 'ledcSetup('+channel+', 5000, 8);\n'+
+										  '  ledcAttachPin('+pin+', '+channel+');'; 
 
-  var code = 'ledcWrite('+value_channel+', '+value_val+');\n';
+  var code = 'ledcWrite('+channel+', '+val+');\n';
   return code;
 };
 
 Blockly.Arduino['arduino_analogwrite'] = function(block) { 
   var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
+  pin = pin.replace(/"/g,'');
   var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
   var code = 'analogWrite('+pin+','+val+');\n';
   return code;
@@ -8862,6 +8864,7 @@ Blockly.Arduino['arduino_analogwrite'] = function(block) {
 
 Blockly.Arduino['esp32_digitalwrite'] = function(block) { 
   var pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);
+  pin = pin.replace(/"/g,'');
   var val = block.getFieldValue('val');
   var code = 'pinMode('+pin+', OUTPUT);\ndigitalWrite('+pin+', '+val+');\n';
   return code;
@@ -14139,6 +14142,8 @@ Blockly.Arduino.webbit_mooncar_tracker=function(){
 Blockly.Arduino.webbit_mooncar_sonar_pin=function(){
   var trig=Blockly.Arduino.valueToCode(this,"TRIG",Blockly.Arduino.ORDER_ATOMIC);
   var echo=Blockly.Arduino.valueToCode(this,"ECHO",Blockly.Arduino.ORDER_ATOMIC);
+  trig = trig.replace(/"/g,'');
+  echo = echo.replace(/"/g,'');
   var index=this.getFieldValue("index");  
   Blockly.Arduino.definitions_['define_sonar_']="#include <Ultrasonic.h>\n";
   Blockly.Arduino.definitions_['define_sonar_set'+index]="Ultrasonic ultrasonic_"+index+"("+trig+", "+echo+");"

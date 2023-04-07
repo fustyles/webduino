@@ -12339,7 +12339,7 @@ Blockly.Blocks['esp32_analogwrite'] = {
 	this.appendDummyInput()
 	  .appendField(Blockly.Msg.ESP32_ANALOGWRITE_SHOW);
 	this.appendValueInput("pin")
-	  .setCheck("Number")
+	  .setCheck(null)
       .appendField(Blockly.Msg.SERVERMODULE_PIN_SHOW);	  
 	this.appendDummyInput()
 	  .appendField(Blockly.Msg.ESP32_ANALOGWRITE_VALUE_SHOW);
@@ -12361,7 +12361,7 @@ Blockly.Blocks['arduino_analogwrite'] = {
 	this.appendDummyInput()
 	  .appendField(Blockly.Msg.ARDUINO_ANALOGWRITE_SHOW);
 	this.appendValueInput("pin")
-	  .setCheck("Number")
+	  .setCheck(null)
       .appendField(Blockly.Msg.SERVERMODULE_PIN_SHOW);	  
 	this.appendDummyInput()
 	  .appendField(Blockly.Msg.ESP32_ANALOGWRITE_VALUE_SHOW);
@@ -12379,7 +12379,7 @@ Blockly.Blocks['esp32_digitalwrite'] = {
 	this.appendDummyInput()
 	  .appendField(Blockly.Msg.ESP32_DIGITALWRITE_SHOW);
 	this.appendValueInput("pin")
-	  .setCheck("Number")
+	  .setCheck(null)
 	  .appendField(Blockly.Msg.SERVERMODULE_PIN_SHOW);
 	this.appendDummyInput()
 	  .appendField(Blockly.Msg.ESP32_DIGITALWRITE_VALUE_SHOW);
@@ -20019,10 +20019,10 @@ Blockly.Blocks.webbit_mooncar_sonar_pin={init:function(){
   this.appendDummyInput()
       .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_PIN);	  
   this.appendValueInput("TRIG")
-      .setCheck("Number")
+      .setCheck(null)
 	  .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_PIN_TRIG);
   this.appendValueInput("ECHO")
-      .setCheck("Number")
+      .setCheck(null)
 	  .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_PIN_ECHO); 
   this.appendDummyInput()
       .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_INDEX)
