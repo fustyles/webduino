@@ -15,7 +15,6 @@
 //main.html
 <script src="myMutator.js"></script>
 
-// Initialize plugin.
 module$exports$Blockly$libraryBlocks$procedures.blocks.procedures_callnoreturn=Object.assign({},module$contents$Blockly$libraryBlocks$procedures_PROCEDURE_CALL_COMMON,{
 	init:function(){
 		this.appendDummyInput("TOPROW").appendField("","NAME");
