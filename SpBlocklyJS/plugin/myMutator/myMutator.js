@@ -1,34 +1,27 @@
 /**
  * @license
- * Copyright 2021 Taiwan
+ * Copyright 2023 Taiwan
  * SPDX-License-Identifier: Apache-2.0
  */
 
 /**
- * @fileoverview My Backpack.
+ * @fileoverview My Mutator.
  * @author https://www.facebook.com/francefu/ (ChungYi Fu)
- * @Update 9/14/2021 09:30 (Taiwan Standard Time)
+ * @Update 4/8/2023 13:00 (Taiwan Standard Time)
  */
  
  /*
  
 //main.html
-<script src="mybackpack.js"></script>
-
-// Inject Blockly.
-const workspace = Blockly.inject('blocklyDiv', {
-	toolbox: toolboxCategories,
-});
-
+<script src="myMutator.js"></script>
 
 // Initialize plugin.
-const myBackpack = new MyBackpack(workspace);
-
-const myBackpack = new MyBackpack(workspace, "category_logic" , true);
-//Parameter 1 --> Blockly Workspace
-//Parameter 2 --> Category ID that exists in the toolbox.
-//Parameter 3 --> true: insertAfter, false :insertBefore
-
+Blockly.Blocks['ifttt'] = {
+  init: function() {
+	//etc
+	this.setMutator(new myMutator([], this));	
+  } 
+};
  */
 
 'use strict';
