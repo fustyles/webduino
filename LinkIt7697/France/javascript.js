@@ -37,7 +37,7 @@ Blockly.Arduino['webbit_mooncar_ws2812_leds'] = function(block) {
 
 	var colorList = "";
 	for (var i=1;i<=leds;i++) {
-		colorList += (i>1?"+":"")+rgb2number(this.getFieldValue("color"+i)).replace(/""/g,'"');
+		colorList += (i>1?"+":"")+rgb2number(Blockly.Arduino.valueToCode(this,"input"+i,Blockly.Arduino.ORDER_ATOMIC)).replace(/""/g,'"');
 	}
 	
 	var code = 'MatrixLedList('+colorList+');\n';

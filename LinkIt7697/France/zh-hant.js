@@ -809,6 +809,7 @@ Blockly.Msg.FRANCEFU_WS2812_LEDS = "燈數";
 Blockly.Msg.FRANCEFU_WS2812_LEDS_N = "燈號[1-8]";
 Blockly.Msg.FRANCEFU_WS2812_BRIGHTNESS = "WS2812 亮度[0-255]";
 Blockly.Msg.FRANCEFU_WS2812_CLEAR = "WS2812 清除亮燈";
+Blockly.Msg.FRANCEFU_WS2812_LEDS_AUTO = "填入顏色";
 
 //coco-ssd
 Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_OBJECT_SHOW = "物件";

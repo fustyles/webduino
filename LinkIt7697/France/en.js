@@ -807,6 +807,7 @@ Blockly.Msg.FRANCEFU_WS2812_LEDS = "Leds";
 Blockly.Msg.FRANCEFU_WS2812_LEDS_N = "Number[1~8]";
 Blockly.Msg.FRANCEFU_WS2812_BRIGHTNESS = "WS2812 Set Brightness (0~255)";
 Blockly.Msg.FRANCEFU_WS2812_CLEAR = "WS2812 Clear Leds";
+Blockly.Msg.FRANCEFU_WS2812_LEDS_AUTO = "add color block";
 
 //coco-ssd
 Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_OBJECT_SHOW = "Object";

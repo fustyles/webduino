@@ -7,24 +7,50 @@ Blockly.Blocks['webbit_mooncar_ws2812_leds'] = {
 		var input;
 		var field;
 		for (var i=1;i<=100;i++) {
-			if (block.getField("color"+i)) {
-				block.getField("color"+i).dispose();
-			}
 			if (block.getField("number"+i)) {
 				block.getField("number"+i).dispose();
 			}			
 			if (block.getInput("input"+i)) {
+				if (block.getInputTargetBlock("input"+i))
+					block.getInputTargetBlock("input"+i).dispose();
 				block.removeInput("input"+i);
 			}			
 		}
 		for (var j=1;j<=n;j++) {
-			input = block.appendDummyInput("input"+j);
+			input = block.appendValueInput("input"+j);
 			input.setAlign(Blockly.ALIGN_RIGHT);
 			input.appendField(String(j), "number"+j);
-			field = new Blockly.FieldColour("#000000");
-			input.appendField(field, "color"+j);
-		}
+		}		
     };
+	
+    var validator_add = function(newValue) {
+		if (newValue=="TRUE") {
+			var input;
+			var field;
+			for (var i=1;i<=100;i++) {
+				if (block.getField("number"+i)) {
+					block.getField("number"+i).dispose();
+				}			
+				if (block.getInput("input"+i)) {
+					if (block.getInputTargetBlock("input"+i))
+						block.getInputTargetBlock("input"+i).dispose();
+					block.removeInput("input"+i);
+				}			
+			}
+		
+			for (var j=1;j<=Number(block.getFieldValue("leds"));j++) {
+				input = block.appendValueInput("input"+j);
+				input.setAlign(Blockly.ALIGN_RIGHT);
+				input.appendField(String(j), "number"+j);
+			
+				var xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml"><block type="BitMatrixLed_color"><field name="RGB">#000000</field></block></xml>');
+				var child = Blockly.Xml.domToWorkspace(xml, block.workspace);
+				child = block.workspace.getBlockById(child);
+				input.connection.connect(child.outputConnection);
+			}
+			return false;
+		}
+    };	
 	
 	var opt = [];
 	for (var k=1;k<=100;k++) {
@@ -37,6 +63,10 @@ Blockly.Blocks['webbit_mooncar_ws2812_leds'] = {
         .setAlign(Blockly.ALIGN_RIGHT)	
         .appendField(Blockly.Msg.FRANCEFU_WS2812_LEDS)
         .appendField(new Blockly.FieldDropdown(opt, validator_leds), "leds");
+    this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.FRANCEFU_WS2812_LEDS_AUTO)	
+        .appendField(new Blockly.FieldCheckbox("FALSE", validator_add), "auto");			
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
