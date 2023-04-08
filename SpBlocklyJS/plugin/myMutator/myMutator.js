@@ -16,12 +16,41 @@
 <script src="myMutator.js"></script>
 
 // Initialize plugin.
-Blockly.Blocks['ifttt'] = {
-  init: function() {
-	//etc
-	this.setMutator(new myMutator([], this));	
-  } 
-};
+module$exports$Blockly$libraryBlocks$procedures.blocks.procedures_callnoreturn=Object.assign({},module$contents$Blockly$libraryBlocks$procedures_PROCEDURE_CALL_COMMON,{
+	init:function(){
+		this.appendDummyInput("TOPROW").appendField("","NAME");
+		this.setInputsInline(true);
+		this.setPreviousStatement(!0);
+		this.setNextStatement(!0);
+		this.setStyle("procedure_blocks");
+		this.setHelpUrl(module$contents$Blockly$libraryBlocks$procedures_Msg.PROCEDURES_CALLNORETURN_HELPURL);
+		this.arguments_=[];
+		this.argumentVarModels_=[];
+		this.quarkConnections_={};
+		this.quarkIds_=null;
+		this.setMutator(new myMutator([], this));
+		this.previousEnabledState_=!0
+	},defType_:"procedures_defnoreturn"
+	,myWorkspaceInitial: function(myWorkspace) {
+		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
+		xml = new XMLSerializer().serializeToString(xml);
+		xml = new DOMParser().parseFromString(xml,"text/xml").firstChild.childNodes;
+		for (var i=0;i<xml.length;i++) {
+			if (xml[i].getAttribute("type")=="procedures_defnoreturn") {	
+				for (var j=0;j<xml[i].childNodes.length;j++) {			
+					if (xml[i].childNodes[j].textContent==this.getFieldValue("NAME")) {
+						xml = Blockly.Xml.domToPrettyText(xml[i]);
+						xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml.replace("x=","xx=").replace("y=","yy=")+'</xml>');
+						myWorkspace.clear();
+						Blockly.Xml.domToWorkspace(xml, myWorkspace);							
+						break;
+					}
+				}
+			}
+		}
+	},myWorkspaceChanged: function(myWorkspace) {
+	}
+});
  */
 
 'use strict';
