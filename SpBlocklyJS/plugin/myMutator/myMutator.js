@@ -64,6 +64,7 @@ class myMutator extends Blockly.Mutator {
 		this.workspaceWidth_=0;
 		this.workspaceHeight_=0;
 		this.block_= block;
+		this.setBlock=function(a){this.block_=a};
 		this.getWorkspace=function(){return this.workspace_};
 		this.quarkNames_=quarkNames;
 		
