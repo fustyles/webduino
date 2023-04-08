@@ -16,7 +16,7 @@
 <script src="myMutator.js"></script>
 
 // Initialize plugin.
-Blockly.Blocks['xxxx'] = {
+Blockly.Blocks['ifttt'] = {
   init: function() {
 	//etc
 	this.setMutator(new myMutator([], this));	
@@ -34,7 +34,7 @@ class myMutator extends Blockly.Mutator {
 		this.workspace_=null;
 		this.workspaceWidth_=0;
 		this.workspaceHeight_=0;
-		this.setBlock=function(a){this.block_=a};
+		this.block_= block;
 		this.getWorkspace=function(){return this.workspace_};
 		this.quarkNames_=quarkNames;
 		
