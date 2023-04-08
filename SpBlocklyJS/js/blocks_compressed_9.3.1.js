@@ -202,7 +202,7 @@ module$exports$Blockly$libraryBlocks$procedures.blocks.procedures_callnoreturn=O
 		this.argumentVarModels_=[];
 		this.quarkConnections_={};
 		this.quarkIds_=null;
-		this.setMutator(new myMutator([]));
+		this.setMutator(new myMutator([], this));
 		this.previousEnabledState_=!0
 	},defType_:"procedures_defnoreturn"
 	,myWorkspaceInitial: function(myWorkspace) {
@@ -235,7 +235,7 @@ module$exports$Blockly$libraryBlocks$procedures.blocks.procedures_callreturn=Obj
 		this.arguments_=[];
 		this.argumentVarModels_=[];
 		this.quarkConnections_={};
-		this.setMutator(new myMutator([]));
+		this.setMutator(new myMutator([], this));
 		this.quarkIds_=null;this.previousEnabledState_=!0
 	},defType_:"procedures_defreturn"
 	,myWorkspaceInitial: function(myWorkspace) {
