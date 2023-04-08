@@ -16,7 +16,7 @@
 <script src="myMutator.js"></script>
 
 // Initialize plugin.
-Blockly.Blocks['ifttt'] = {
+Blockly.Blocks['xxxx'] = {
   init: function() {
 	//etc
 	this.setMutator(new myMutator([], this));	
