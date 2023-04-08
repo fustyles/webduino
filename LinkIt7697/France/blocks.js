@@ -1,3 +1,49 @@
+Blockly.Blocks['webbit_mooncar_ws2812_leds'] = {
+  init: function() {
+
+	var block = this;
+    var validator_leds = function(newValue) {
+		var n = Number(newValue);
+		var input;
+		var field;
+		for (var i=1;i<=100;i++) {
+			if (block.getField("color"+i)) {
+				block.getField("color"+i).dispose();
+			}
+			if (block.getField("number"+i)) {
+				block.getField("number"+i).dispose();
+			}			
+			if (block.getInput("input"+i)) {
+				block.removeInput("input"+i);
+			}			
+		}
+		for (var j=1;j<=n;j++) {
+			input = block.appendDummyInput("input"+j);
+			input.setAlign(Blockly.ALIGN_RIGHT);
+			input.appendField(String(j), "number"+j);
+			field = new Blockly.FieldColour("#000000");
+			input.appendField(field, "color"+j);
+		}
+    };
+	
+	var opt = [];
+	for (var k=1;k<=100;k++) {
+		opt.push([k.toString(),k.toString()]);
+	}
+	
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.ESP32_MATRIX_COLOR);	
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)	
+        .appendField(Blockly.Msg.FRANCEFU_WS2812_LEDS)
+        .appendField(new Blockly.FieldDropdown(opt, validator_leds), "leds");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(300);
+  }
+};
+
 Blockly.Blocks.DS18B20_initial={
 	init:function(){
 	  this.appendDummyInput()

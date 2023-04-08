@@ -8152,14 +8152,17 @@
 	<block type="fu_ez_pixel_color">
 		<value name="L1">
 			<block type="fu_color">
+				<field name="RGB">#000000</field>
 			</block>
 		</value>	
 		<value name="L2">
 			<block type="fu_color">
+				<field name="RGB">#000000</field>
 			</block>
 		</value>
 		<value name="L3">
 			<block type="fu_color">
+				<field name="RGB">#000000</field>
 			</block>
 		</value>			
 	</block>	
@@ -9520,112 +9523,139 @@
 					<field name="NUM">0</field>
 				</block>
 			</value>		
+		</block>
+		<block type="webbit_mooncar_ws2812_leds">
 		</block>		
 		<block type="BitMatrixLed_matrix_color_one_2">
 			<value name="L21">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>	
 			<value name="L22">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>			
 		</block>		
 		<block type="BitMatrixLed_matrix_color_one_3">
 			<value name="L21">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>	
 			<value name="L22">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>
 			<value name="L23">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>			
 		</block>
 		<block type="BitMatrixLed_matrix_color_one_8">
 			<value name="L21">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>	
 			<value name="L22">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>
 			<value name="L23">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>
 			<value name="L24">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>	
 			<value name="L25">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>
 			<value name="L16">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>
 			<value name="L17">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>	
 			<value name="L18">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>			
 		</block>
 		<block type="BitMatrixLed_matrix_color_one_12">
 			<value name="L21">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>	
 			<value name="L22">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>
 			<value name="L23">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>
 			<value name="L24">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>	
 			<value name="L25">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>
 			<value name="L16">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>
 			<value name="L17">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>	
 			<value name="L18">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>	
 			<value name="L19">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>
 			<value name="L20">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>
 			<value name="L11">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>	
 			<value name="L12">
 				<block type="BitMatrixLed_color">
+					<field name="RGB">#000000</field>
 				</block>
 			</value>				
 		</block>
