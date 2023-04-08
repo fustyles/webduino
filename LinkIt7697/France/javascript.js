@@ -6496,9 +6496,9 @@ Blockly.Arduino['fu_ez_digitalread'] = function(block) {
   else if (selectBoardType()=="BPI-BIT")
 	pin = pinButton[3][dropdown_button];
   else if (selectBoardType()=="Arduino Pro or Pro Mini")
-	pin = pinButton[4][dropdown_led];
+	pin = pinButton[4][dropdown_button];
   else if (selectBoardType()=="esp32s2")
-	pin = pinButton[5][dropdown_led];
+	pin = pinButton[5][dropdown_button];
 
   Blockly.Arduino.setups_['pinmode_'+ pin] = 'pinMode('+ pin +', INPUT_PULLUP);';
   
