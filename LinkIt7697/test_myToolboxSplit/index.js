@@ -93,7 +93,8 @@ function init() {
   }	 
   
   function secondaryWorkspaceEvent(event) {
-	if (event.type=="var_create"||event.type=="VarDelete") {
+	  console.log(event.type);
+	if (event.type=="var_create"||event.type=="var_delete") {
 		variableFlyoutCategory();
 	}
 	else if (primaryWorkspace.toolbox_.selectedItem_) {
@@ -114,12 +115,9 @@ function init() {
   }	
 
 	function variableFlyoutCategory(){
-		let b=[];
 		const c=document.createElement("button");
 		c.setAttribute("text","%{BKY_NEW_VARIABLE}");
 		c.setAttribute("callbackKey","CREATE_VARIABLE");
-		//a.registerButtonCallback("CREATE_VARIABLE",function(d){Blockly.Variables.createVariableButtonHandler(d.getTargetWorkspace())});
-		//b.push(c);
 
 		let e = Blockly.Xml.domToText(c);
 		let a=Blockly.Variables.flyoutCategoryBlocks(secondaryWorkspace);
