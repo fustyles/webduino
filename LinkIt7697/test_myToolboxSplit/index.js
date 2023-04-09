@@ -52,13 +52,13 @@ function init() {
 
   function primaryWorkspaceToolboxClick(event) {
     if (event.type==="toolbox_item_select"&&event.workspaceId===primaryWorkspace.id) {
-		if (!event.newItem) {
-			toolbox2 = {
-			  "kind": "flyoutToolbox",
-			  "contents": []
-			};
+		toolbox2 = {
+		  "kind": "flyoutToolbox",
+		  "contents": []
+		};
+		if (!event.newItem)
 			secondaryWorkspace.updateToolbox(toolbox2);
-		} else {
+		else {
 			if (primaryWorkspace.toolbox_.selectedItem_) {
 				var xml = document.getElementById('toolbox');
 				
@@ -67,10 +67,7 @@ function init() {
 						if (xml.childNodes[i].getAttribute('name')==primaryWorkspace.toolbox_.selectedItem_.toolboxItemDef_.name) {
 							var blocks = xml.childNodes[i].childNodes;
 							
-							toolbox2 = {
-							  "kind": "flyoutToolbox",
-							  "contents": []
-							};
+							
 							for (var j=0;j<blocks.length;j++) {
 								if (blocks[j].nodeName.toLowerCase()=="block") {
 									toolbox2.contents.push({"kind": "block", "type": blocks[j].getAttribute('type')});
