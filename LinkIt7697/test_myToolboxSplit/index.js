@@ -62,8 +62,14 @@ function init() {
 			if (primaryWorkspace.toolbox_.selectedItem_) {
 				var xml = document.getElementById('toolbox');
 				var itemName = primaryWorkspace.toolbox_.selectedItem_.toolboxItemDef_.name;
-				if (itemName=="Variables"||itemName=="Functions")
+				if (itemName=="Variables") {
+					variableFlyoutCategory();
 					return;
+				}
+				else if (itemName=="Functions") {
+					proceduresFlyoutCategory();
+					return;
+				}
 				for (var i=0;i<xml.childNodes.length;i++) {
 					if (xml.childNodes[i].nodeName.toLowerCase()=="category") {
 						if (xml.childNodes[i].getAttribute('name')==itemName) {
@@ -88,31 +94,26 @@ function init() {
   
   function secondaryWorkspaceEvent(event) {
 	if (event.type=="var_create"||event.type=="VarDelete") {
-		Blockly.MYVARIABLE.flyoutCategory();
+		variableFlyoutCategory();
 	}
 	else if (primaryWorkspace.toolbox_.selectedItem_) {
 		if (primaryWorkspace.toolbox_.selectedItem_.toolboxItemDef_.name=="Functions") {
 			if (event.type==="create"&&event.workspaceId===secondaryWorkspace.id) {
 				var blockType = secondaryWorkspace.getBlockById(event.blockId).type;
 				if (blockType=="procedures_defnoreturn"||blockType=="procedures_defreturn") {
-					Blockly.MYPROCEDURE.flyoutCategory();
+					proceduresFlyoutCategory();
 				}
 			}
 			if (event.type==="delete"&&event.workspaceId===secondaryWorkspace.id) {
 				if (event.oldXml.outerHTML.indexOf("procedures_defnoreturn")!=-1||event.oldXml.outerHTML.indexOf("procedures_defreturn")!=-1) {
-					Blockly.MYPROCEDURE.flyoutCategory();
+					proceduresFlyoutCategory();
 				}
 			}	
 		}
 	}
   }	
 
-	Blockly.MYVARIABLE={};
-	Blockly.MYVARIABLE_CATEGORY_NAME="MYVARIABLE";
-	Blockly.MYVARIABLE.NAME_TYPE=Blockly.MYVARIABLE_CATEGORY_NAME;
-	Blockly.MYVARIABLE.Blocks=[];
-
-	Blockly.MYVARIABLE.flyoutCategory=function(a){
+	function variableFlyoutCategory(){
 		let b=[];
 		const c=document.createElement("button");
 		c.setAttribute("text","%{BKY_NEW_VARIABLE}");
@@ -121,7 +122,7 @@ function init() {
 		//b.push(c);
 
 		let e = Blockly.Xml.domToText(c);
-		a=Blockly.Variables.flyoutCategoryBlocks(secondaryWorkspace);
+		let a=Blockly.Variables.flyoutCategoryBlocks(secondaryWorkspace);
 		
 		for (var i=0;i<a.length;i++) {
 			e +=Blockly.Xml.domToText(a[i]);
@@ -129,20 +130,9 @@ function init() {
 		
 		secondaryWorkspace.updateToolbox('<xml id="toolbox">'+e+'</xml>');
 		secondaryWorkspace.registerButtonCallback("CREATE_VARIABLE",function(d){Blockly.Variables.createVariableButtonHandler(d.getTargetWorkspace())});
-		
-		return null
 	};  
-	
-	Blockly.MYVARIABLE&&Blockly.MYVARIABLE.flyoutCategory&&(primaryWorkspace.registerToolboxCategoryCallback(Blockly.MYVARIABLE_CATEGORY_NAME,Blockly.MYVARIABLE.flyoutCategory));
-	
-	
-	
-	Blockly.MYPROCEDURE={};
-	Blockly.MYPROCEDURE_CATEGORY_NAME="MYPROCEDURE";
-	Blockly.MYPROCEDURE.NAME_TYPE=Blockly.MYPROCEDURE_CATEGORY_NAME;
-	Blockly.MYPROCEDURE.Blocks=[];
 
-	Blockly.MYPROCEDURE.flyoutCategory=function(a){
+	function proceduresFlyoutCategory(){
 		function b(f,g){
 			for(let k=0;k<f.length;k++){
 				var h=f[k][0];
@@ -187,7 +177,7 @@ function init() {
 		c.length&&c[c.length-1].setAttribute("gap","24");
 		
 		
-		a=Blockly.Procedures.allProcedures(secondaryWorkspace);
+		let a=Blockly.Procedures.allProcedures(secondaryWorkspace);
 		
 		b(a[0],"procedures_callnoreturn");
 		b(a[1],"procedures_callreturn");
@@ -198,9 +188,5 @@ function init() {
 		}
 		
 		secondaryWorkspace.updateToolbox('<xml id="toolbox">'+f+'</xml>');
-		
-		return null
-	};  
-	
-	Blockly.MYPROCEDURE&&Blockly.MYPROCEDURE.flyoutCategory&&(primaryWorkspace.registerToolboxCategoryCallback(Blockly.MYPROCEDURE_CATEGORY_NAME,Blockly.MYPROCEDURE.flyoutCategory));	
+	};
 }
