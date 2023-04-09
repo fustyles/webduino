@@ -14,7 +14,7 @@
 /**
  * @fileoverview Blocks Flydown.
  * @author https://www.facebook.com/francefu/
- * @Update 4/19/2023 22:00 (Taiwan Standard Time)
+ * @Update 4/19/2023 15:00 (Taiwan Standard Time)
  */
 
 function init() {
@@ -24,7 +24,7 @@ function init() {
         media: 'media/',
         toolbox: document.getElementById('toolbox1'),
         trashcan: false,
-	scrollbars: false,
+		scrollbars: false,
       });
 	  
   // Inject secondary workspace.
@@ -33,29 +33,34 @@ function init() {
         media: 'media/',
         toolbox: toolbox2,
         trashcan: true,
-	grid:{spacing: 20,length: 3,colour: '#eee',snap: true},
-	zoom:{controls: true, wheel: false, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2},
-	horizontalLayout: true,
-	move:{
-		scrollbars: {
-			horizontal: true,
-			vertical: true
+		grid:{spacing: 20,length: 3,colour: '#eee',snap: true},
+		zoom:{controls: true, wheel: false, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2},
+		trashcan: true,
+		horizontalLayout: true,
+		move:{
+			scrollbars: {
+			  horizontal: true,
+			  vertical: true
+			},
+			drag: true,
+			wheel: true
 		},
-		drag: true,
-		wheel: true
-	},
       });
 	  
   primaryWorkspace.addChangeListener(primaryWorkspaceToolboxClick);
   secondaryWorkspace.addChangeListener(secondaryWorkspaceEvent);
-	
+  
   var blocklyFlyout = document.getElementsByClassName("blocklyFlyout");
   for (var f=0;f<blocklyFlyout.length;f++) {
 	  blocklyFlyout[f].addEventListener('dblclick', function(){
 		  primaryWorkspace.toolbox_.clearSelection();
-		  //this.style.display = "none";
+		  setTimeout(function () {
+			  for (var f=0;f<blocklyFlyout.length;f++) {
+					blocklyFlyout[f].style.display = "none";
+			  }
+		  }, 10);
 	  });
-  }	
+  }
 
   function primaryWorkspaceToolboxClick(event) {
     if (event.type==="toolbox_item_select"&&event.workspaceId===primaryWorkspace.id) {
