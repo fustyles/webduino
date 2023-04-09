@@ -67,7 +67,6 @@ function init() {
 						if (xml.childNodes[i].getAttribute('name')==primaryWorkspace.toolbox_.selectedItem_.toolboxItemDef_.name) {
 							var blocks = xml.childNodes[i].childNodes;
 							
-							
 							for (var j=0;j<blocks.length;j++) {
 								if (blocks[j].nodeName.toLowerCase()=="block") {
 									toolbox2.contents.push({"kind": "block", "type": blocks[j].getAttribute('type')});
@@ -79,6 +78,7 @@ function init() {
 						}						
 					}
 				}
+				secondaryWorkspace.updateToolbox(toolbox2);
 			}
 		}
     }
