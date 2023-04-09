@@ -48,11 +48,13 @@ function init() {
       });
 	  
   primaryWorkspace.addChangeListener(primaryWorkspaceToolboxClick);
+  secondaryWorkspace.addChangeListener(secondaryWorkspaceToolboxClick);
 
   function primaryWorkspaceToolboxClick(event) {
     if (event.type==="toolbox_item_select"&&event.workspaceId===primaryWorkspace.id) {
 		if (primaryWorkspace.toolbox_.selectedItem_) {
 			var xml = document.getElementById('toolbox');
+			
 			for (var i=0;i<xml.childNodes.length;i++) {
 				if (xml.childNodes[i].nodeName.toLowerCase()=="category") {
 					if (xml.childNodes[i].getAttribute('name')==primaryWorkspace.toolbox_.selectedItem_.toolboxItemDef_.name) {
@@ -70,12 +72,21 @@ function init() {
 						secondaryWorkspace.updateToolbox(toolbox2);
 						
 						return;
-					}
+					}						
 				}
 			}
 		}
     }
   }	 
+  
+  function secondaryWorkspaceToolboxClick(event) {
+    if (event.type==="create"&&event.workspaceId===secondaryWorkspace.id) {
+		var blockType = secondaryWorkspace.getBlockById(event.blockId).type;
+		if (blockType=="procedures_defnoreturn"||blockType=="procedures_defreturn") {
+			Blockly.MYPROCEDURE.flyoutCategory();
+		}
+	}
+  }	
 
 	Blockly.MYVARIABLE={};
 	Blockly.MYVARIABLE_CATEGORY_NAME="MYVARIABLE";
