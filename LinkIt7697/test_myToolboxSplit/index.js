@@ -52,27 +52,35 @@ function init() {
 
   function primaryWorkspaceToolboxClick(event) {
     if (event.type==="toolbox_item_select"&&event.workspaceId===primaryWorkspace.id) {
-		if (primaryWorkspace.toolbox_.selectedItem_) {
-			var xml = document.getElementById('toolbox');
-			
-			for (var i=0;i<xml.childNodes.length;i++) {
-				if (xml.childNodes[i].nodeName.toLowerCase()=="category") {
-					if (xml.childNodes[i].getAttribute('name')==primaryWorkspace.toolbox_.selectedItem_.toolboxItemDef_.name) {
-						var blocks = xml.childNodes[i].childNodes;
-						
-						toolbox2 = {
-						  "kind": "flyoutToolbox",
-						  "contents": []
-						};
-						for (var j=0;j<blocks.length;j++) {
-							if (blocks[j].nodeName.toLowerCase()=="block") {
-								toolbox2.contents.push({"kind": "block", "type": blocks[j].getAttribute('type')});
+		if (!event.newItem) {
+			toolbox2 = {
+			  "kind": "flyoutToolbox",
+			  "contents": []
+			};
+			secondaryWorkspace.updateToolbox(toolbox2);
+		} else {
+			if (primaryWorkspace.toolbox_.selectedItem_) {
+				var xml = document.getElementById('toolbox');
+				
+				for (var i=0;i<xml.childNodes.length;i++) {
+					if (xml.childNodes[i].nodeName.toLowerCase()=="category") {
+						if (xml.childNodes[i].getAttribute('name')==primaryWorkspace.toolbox_.selectedItem_.toolboxItemDef_.name) {
+							var blocks = xml.childNodes[i].childNodes;
+							
+							toolbox2 = {
+							  "kind": "flyoutToolbox",
+							  "contents": []
+							};
+							for (var j=0;j<blocks.length;j++) {
+								if (blocks[j].nodeName.toLowerCase()=="block") {
+									toolbox2.contents.push({"kind": "block", "type": blocks[j].getAttribute('type')});
+								}
 							}
-						}
-						secondaryWorkspace.updateToolbox(toolbox2);
-						
-						return;
-					}						
+							secondaryWorkspace.updateToolbox(toolbox2);
+							
+							return;
+						}						
+					}
 				}
 			}
 		}
