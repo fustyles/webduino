@@ -61,10 +61,12 @@ function init() {
 		else {
 			if (primaryWorkspace.toolbox_.selectedItem_) {
 				var xml = document.getElementById('toolbox');
-				
+				var itemName = primaryWorkspace.toolbox_.selectedItem_.toolboxItemDef_.name;
+				if (itemName=="Variables"||itemName=="Functions")
+					return;
 				for (var i=0;i<xml.childNodes.length;i++) {
 					if (xml.childNodes[i].nodeName.toLowerCase()=="category") {
-						if (xml.childNodes[i].getAttribute('name')==primaryWorkspace.toolbox_.selectedItem_.toolboxItemDef_.name) {
+						if (xml.childNodes[i].getAttribute('name')==itemName) {
 							var blocks = xml.childNodes[i].childNodes;
 							
 							for (var j=0;j<blocks.length;j++) {
@@ -78,7 +80,7 @@ function init() {
 						}						
 					}
 				}
-				//secondaryWorkspace.updateToolbox(toolbox2);
+				secondaryWorkspace.updateToolbox(toolbox2);
 			}
 		}
     }
