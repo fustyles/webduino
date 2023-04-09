@@ -24,7 +24,7 @@ function init() {
         media: 'media/',
         toolbox: document.getElementById('toolbox1'),
         trashcan: false,
-		scrollbars: false,
+	scrollbars: false,
       });
 	  
   // Inject secondary workspace.
