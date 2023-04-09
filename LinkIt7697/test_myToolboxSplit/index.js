@@ -14,7 +14,7 @@
 /**
  * @fileoverview Blocks Flydown.
  * @author https://www.facebook.com/francefu/
- * @Update 4/19/2023 15:00 (Taiwan Standard Time)
+ * @Update 4/19/2023 22:00 (Taiwan Standard Time)
  */
 
 function init() {
@@ -33,18 +33,17 @@ function init() {
         media: 'media/',
         toolbox: toolbox2,
         trashcan: true,
-		grid:{spacing: 20,length: 3,colour: '#eee',snap: true},
-		zoom:{controls: true, wheel: false, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2},
-		trashcan: true,
-		horizontalLayout: true,
-		move:{
-			scrollbars: {
-			  horizontal: true,
-			  vertical: true
-			},
-			drag: true,
-			wheel: true
+	grid:{spacing: 20,length: 3,colour: '#eee',snap: true},
+	zoom:{controls: true, wheel: false, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2},
+	horizontalLayout: true,
+	move:{
+		scrollbars: {
+			horizontal: true,
+			vertical: true
 		},
+		drag: true,
+		wheel: true
+	},
       });
 	  
   primaryWorkspace.addChangeListener(primaryWorkspaceToolboxClick);
