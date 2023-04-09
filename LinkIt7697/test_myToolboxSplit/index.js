@@ -52,14 +52,17 @@ function init() {
   
   var blocklyFlyout = document.getElementsByClassName("blocklyFlyout");
   for (var f=0;f<blocklyFlyout.length;f++) {
+	  blocklyFlyout[f].style.display = "none";
 	  blocklyFlyout[f].addEventListener('dblclick', function(){
-		  primaryWorkspace.toolbox_.clearSelection();
-		  setTimeout(function () {
-			  for (var f=0;f<blocklyFlyout.length;f++) {
-					blocklyFlyout[f].style.display = "none";
-			  }
-		  }, 10);
+		  resetFlyout();
 	  });
+  }
+  
+  function resetFlyout() {
+	  primaryWorkspace.toolbox_.clearSelection();
+	  var blocklyFlyout = document.getElementsByClassName("blocklyFlyout");
+	  for (var f=0;f<blocklyFlyout.length;f++)
+		  blocklyFlyout[f].style.display = "none";
   }
 
   function primaryWorkspaceToolboxClick(event) {
@@ -68,8 +71,10 @@ function init() {
 		  "kind": "flyoutToolbox",
 		  "contents": []
 		};
-		if (!event.newItem)
+		if (!event.newItem) {
 			secondaryWorkspace.updateToolbox(toolbox2);
+			resetFlyout();
+		}
 		else {
 			if (primaryWorkspace.toolbox_.selectedItem_) {
 				var xml = document.getElementById('toolbox');
