@@ -48,6 +48,14 @@ function init() {
 	  
   primaryWorkspace.addChangeListener(primaryWorkspaceToolboxClick);
   secondaryWorkspace.addChangeListener(secondaryWorkspaceEvent);
+	
+  var blocklyFlyout = document.getElementsByClassName("blocklyFlyout");
+  for (var f=0;f<blocklyFlyout.length;f++) {
+	  blocklyFlyout[f].addEventListener('dblclick', function(){
+		  primaryWorkspace.toolbox_.clearSelection();
+		  //this.style.display = "none";
+	  });
+  }	
 
   function primaryWorkspaceToolboxClick(event) {
     if (event.type==="toolbox_item_select"&&event.workspaceId===primaryWorkspace.id) {
