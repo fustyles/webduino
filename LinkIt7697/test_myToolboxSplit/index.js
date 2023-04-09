@@ -93,7 +93,6 @@ function init() {
   }	 
   
   function secondaryWorkspaceEvent(event) {
-	  console.log(event.type);
 	if (event.type=="var_create"||event.type=="var_delete") {
 		variableFlyoutCategory();
 	}
