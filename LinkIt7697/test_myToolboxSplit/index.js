@@ -7,14 +7,14 @@
 
 /**
  * @license
- * Copyright 2021 Taiwan (ChungYi Fu)
+ * Copyright 2023 Taiwan (ChungYi Fu)
  * SPDX-License-Identifier: Apache-2.0
  */
 
 /**
  * @fileoverview Blocks Flydown.
  * @author https://www.facebook.com/francefu/
- * @Update 8/30/2022 00:00 (Taiwan Standard Time)
+ * @Update 4/19/2023 15:00 (Taiwan Standard Time)
  */
 
 function init() {
@@ -80,10 +80,19 @@ function init() {
   }	 
   
   function secondaryWorkspaceToolboxClick(event) {
-    if (event.type==="create"&&event.workspaceId===secondaryWorkspace.id) {
-		var blockType = secondaryWorkspace.getBlockById(event.blockId).type;
-		if (blockType=="procedures_defnoreturn"||blockType=="procedures_defreturn") {
-			Blockly.MYPROCEDURE.flyoutCategory();
+	if (primaryWorkspace.toolbox_.selectedItem_) {
+		if (primaryWorkspace.toolbox_.selectedItem_.toolboxItemDef_.name=="Functions") {
+			if (event.type==="create"&&event.workspaceId===secondaryWorkspace.id) {
+				var blockType = secondaryWorkspace.getBlockById(event.blockId).type;
+				if (blockType=="procedures_defnoreturn"||blockType=="procedures_defreturn") {
+					Blockly.MYPROCEDURE.flyoutCategory();
+				}
+			}
+			if (event.type==="delete"&&event.workspaceId===secondaryWorkspace.id) {
+				if (event.oldXml.outerHTML.indexOf("procedures_defnoreturn")!=-1||event.oldXml.outerHTML.indexOf("procedures_defreturn")!=-1) {
+					Blockly.MYPROCEDURE.flyoutCategory();
+				}
+			}	
 		}
 	}
   }	
