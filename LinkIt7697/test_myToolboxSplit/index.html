@@ -20,15 +20,15 @@
 </head>
 <body onload="init()">
 
-  <table width="100%">
-    <tr>
+  <table style="height: 100%; width: 100%;">
+    <tr style="height: 80px; width: 100%;">
       <td>
-        <div id="primaryDiv" style="height: 80px; width: 800px;"></div>
+        <div id="primaryDiv" style="height: 80px; width: 100%;"></div>
       </td>
     </tr>
-	<tr>
+	<tr style="height: calc(100vh-80px); width: 100%;">
       <td>
-        <div id="secondaryDiv" style="height: 500px; width: 800px;"></div>
+        <div id="secondaryDiv" style="height: calc(100vh - 100px); width: 100%;"></div>
       </td>
     </tr>
   </table>
