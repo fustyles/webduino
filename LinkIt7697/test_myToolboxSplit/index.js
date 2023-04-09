@@ -78,7 +78,7 @@ function init() {
 						}						
 					}
 				}
-				secondaryWorkspace.updateToolbox(toolbox2);
+				//secondaryWorkspace.updateToolbox(toolbox2);
 			}
 		}
     }
