@@ -80,7 +80,10 @@ function init() {
   }	 
   
   function secondaryWorkspaceEvent(event) {
-	if (primaryWorkspace.toolbox_.selectedItem_) {
+	if (event.type=="var_create"||event.type=="VarDelete") {
+		Blockly.MYVARIABLE.flyoutCategory();
+	}
+	else if (primaryWorkspace.toolbox_.selectedItem_) {
 		if (primaryWorkspace.toolbox_.selectedItem_.toolboxItemDef_.name=="Functions") {
 			if (event.type==="create"&&event.workspaceId===secondaryWorkspace.id) {
 				var blockType = secondaryWorkspace.getBlockById(event.blockId).type;
@@ -107,19 +110,20 @@ function init() {
 		const c=document.createElement("button");
 		c.setAttribute("text","%{BKY_NEW_VARIABLE}");
 		c.setAttribute("callbackKey","CREATE_VARIABLE");
-		a.registerButtonCallback("CREATE_VARIABLE",function(d){Blockly.Variables.createVariableButtonHandler(d.getTargetWorkspace())});
-		b.push(c);
-		
-		let e = "";
-		a=Blockly.Variables.flyoutCategoryBlocks(a);
+		//a.registerButtonCallback("CREATE_VARIABLE",function(d){Blockly.Variables.createVariableButtonHandler(d.getTargetWorkspace())});
+		//b.push(c);
+
+		let e = Blockly.Xml.domToText(c);
+		a=Blockly.Variables.flyoutCategoryBlocks(secondaryWorkspace);
 		
 		for (var i=0;i<a.length;i++) {
 			e +=Blockly.Xml.domToText(a[i]);
 		}
 		
 		secondaryWorkspace.updateToolbox('<xml id="toolbox">'+e+'</xml>');
+		secondaryWorkspace.registerButtonCallback("CREATE_VARIABLE",function(d){Blockly.Variables.createVariableButtonHandler(d.getTargetWorkspace())});
 		
-		return b
+		return null
 	};  
 	
 	Blockly.MYVARIABLE&&Blockly.MYVARIABLE.flyoutCategory&&(primaryWorkspace.registerToolboxCategoryCallback(Blockly.MYVARIABLE_CATEGORY_NAME,Blockly.MYVARIABLE.flyoutCategory));
