@@ -93,11 +93,13 @@ function init() {
   }	 
   
   function secondaryWorkspaceEvent(event) {
-	if (event.type=="var_create"||event.type=="var_delete") {
-		variableFlyoutCategory();
-	}
-	else if (primaryWorkspace.toolbox_.selectedItem_) {
-		if (primaryWorkspace.toolbox_.selectedItem_.toolboxItemDef_.name=="Functions") {
+	if (primaryWorkspace.toolbox_.selectedItem_) {
+		if (primaryWorkspace.toolbox_.selectedItem_.toolboxItemDef_.name=="Variables") {
+			if (event.type=="var_create"||event.type=="var_delete") {
+				variableFlyoutCategory();
+			}	
+		}
+		else if (primaryWorkspace.toolbox_.selectedItem_.toolboxItemDef_.name=="Functions") {
 			if (event.type==="create"&&event.workspaceId===secondaryWorkspace.id) {
 				var blockType = secondaryWorkspace.getBlockById(event.blockId).type;
 				if (blockType=="procedures_defnoreturn"||blockType=="procedures_defreturn") {
