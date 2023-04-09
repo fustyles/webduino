@@ -48,7 +48,7 @@ function init() {
       });
 	  
   primaryWorkspace.addChangeListener(primaryWorkspaceToolboxClick);
-  secondaryWorkspace.addChangeListener(secondaryWorkspaceToolboxClick);
+  secondaryWorkspace.addChangeListener(secondaryWorkspaceEvent);
 
   function primaryWorkspaceToolboxClick(event) {
     if (event.type==="toolbox_item_select"&&event.workspaceId===primaryWorkspace.id) {
@@ -79,7 +79,7 @@ function init() {
     }
   }	 
   
-  function secondaryWorkspaceToolboxClick(event) {
+  function secondaryWorkspaceEvent(event) {
 	if (primaryWorkspace.toolbox_.selectedItem_) {
 		if (primaryWorkspace.toolbox_.selectedItem_.toolboxItemDef_.name=="Functions") {
 			if (event.type==="create"&&event.workspaceId===secondaryWorkspace.id) {
