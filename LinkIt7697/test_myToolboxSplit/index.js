@@ -24,7 +24,6 @@ function init() {
         media: 'media/',
         toolbox: document.getElementById('toolbox1'),
         trashcan: false,
-		horizontalLayout: true,
 		scrollbars: false,
       });
 	  
@@ -37,6 +36,7 @@ function init() {
 		grid:{spacing: 20,length: 3,colour: '#eee',snap: true},
 		zoom:{controls: true, wheel: false, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2},
 		trashcan: true,
+		horizontalLayout: true,
 		move:{
 			scrollbars: {
 			  horizontal: true,
