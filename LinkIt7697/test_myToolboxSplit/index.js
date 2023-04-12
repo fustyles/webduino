@@ -14,7 +14,7 @@
 /**
  * @fileoverview Blocks Flydown.
  * @author https://www.facebook.com/francefu/
- * @Update 4/19/2023 15:00 (Taiwan Standard Time)
+ * @Update 4/12/2023 22:00 (Taiwan Standard Time)
  */
 
 function init() {
@@ -98,12 +98,12 @@ function init() {
 					if (xml.childNodes[i].nodeName.toLowerCase()=="category") {
 						if (xml.childNodes[i].getAttribute('name')==itemName) {
 							var blocks = xml.childNodes[i].childNodes;
-							var blockList = "";
+							toolbox2 = "";
 							for (var j=0;j<blocks.length;j++) {
 								if (blocks[j].nodeName.toLowerCase()=="block")
-									blockList+=Blockly.Xml.domToText(blocks[j]);
+									toolbox2+=Blockly.Xml.domToText(blocks[j]);
 							}
-							secondaryWorkspace.updateToolbox('<xml id="toolbox">'+blockList+'</xml>');
+							secondaryWorkspace.updateToolbox('<xml id="toolbox">'+toolbox2+'</xml>');
 							return;
 						}						
 					}
