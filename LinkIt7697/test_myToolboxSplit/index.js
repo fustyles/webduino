@@ -91,14 +91,12 @@ function init() {
 					if (xml.childNodes[i].nodeName.toLowerCase()=="category") {
 						if (xml.childNodes[i].getAttribute('name')==itemName) {
 							var blocks = xml.childNodes[i].childNodes;
-							
+							var blockList = "";
 							for (var j=0;j<blocks.length;j++) {
-								if (blocks[j].nodeName.toLowerCase()=="block") {
-									toolbox2.contents.push({"kind": "block", "type": blocks[j].getAttribute('type')});
-								}
+								if (blocks[j].nodeName.toLowerCase()=="block")
+									blockList+=Blockly.Xml.domToText(blocks[j]);
 							}
-							secondaryWorkspace.updateToolbox(toolbox2);
-							
+							secondaryWorkspace.updateToolbox('<xml id="toolbox">'+blockList+'</xml>');
 							return;
 						}						
 					}
