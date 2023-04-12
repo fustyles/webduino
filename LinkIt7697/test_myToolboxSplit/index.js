@@ -67,10 +67,17 @@ function init() {
 
   function primaryWorkspaceToolboxClick(event) {
     if (event.type==="toolbox_item_select"&&event.workspaceId===primaryWorkspace.id) {
-		toolbox2 = {
-		  "kind": "flyoutToolbox",
-		  "contents": []
-		};
+
+		var ToolboxDiv = document.getElementsByClassName("blocklyToolboxDiv blocklyNonSelectable");
+		var primaryDiv = document.getElementById("primaryDiv");
+		var secondaryDiv = document.getElementById("secondaryDiv");
+		if (ToolboxDiv) {
+			primaryDiv.style.width = ToolboxDiv[0].clientWidth + "px";
+			secondaryDiv.style.width = "calc(100vw - " + (ToolboxDiv[0].clientWidth+22) + "px)";
+		}
+		
+		toolbox2 = '<xml id="toolbox"></xml>';
+		
 		if (!event.newItem) {
 			secondaryWorkspace.updateToolbox(toolbox2);
 			resetFlyout();
