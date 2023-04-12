@@ -110,14 +110,15 @@ function init() {
   }	 
   
   function secondaryWorkspaceEvent(event) {
+	  console.log(event.type);
 	if (primaryWorkspace.toolbox_.selectedItem_) {
 		if (primaryWorkspace.toolbox_.selectedItem_.toolboxItemDef_.name=="Variables") {
-			if (event.type=="var_create"||event.type=="var_delete") {
+			if (event.type=="var_create"||event.type=="var_rename"||event.type=="var_delete") {
 				variableFlyoutCategory();
 			}	
 		}
 		else if (primaryWorkspace.toolbox_.selectedItem_.toolboxItemDef_.name=="Functions") {
-			if (event.type==="create"&&event.workspaceId===secondaryWorkspace.id) {
+			if ((event.type==="create"||event.type==="change")&&event.workspaceId===secondaryWorkspace.id) {
 				var blockType = secondaryWorkspace.getBlockById(event.blockId).type;
 				if (blockType=="procedures_defnoreturn"||blockType=="procedures_defreturn") {
 					proceduresFlyoutCategory();
