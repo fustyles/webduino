@@ -110,7 +110,6 @@ function init() {
   }	 
   
   function secondaryWorkspaceEvent(event) {
-	  console.log(event.type);
 	if (primaryWorkspace.toolbox_.selectedItem_) {
 		if (primaryWorkspace.toolbox_.selectedItem_.toolboxItemDef_.name=="Variables") {
 			if (event.type=="var_create"||event.type=="var_rename"||event.type=="var_delete") {
