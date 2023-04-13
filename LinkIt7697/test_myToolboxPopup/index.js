@@ -75,16 +75,16 @@ function init() {
 	document.getElementById('logic').onclick = function () {
 		var xmlDoc = '<xml id="toolbox"><block type="controls_if"></block><block type="logic_compare"></block><block type="logic_operation"></block><block type="logic_negate"></block><block type="logic_boolean"></block></xml>';
 		
-		showFlyout('logic', xmlDoc);
+		showToolbox('logic', xmlDoc);
 	} 
 	
 	document.getElementById('loop').onclick = function () {
 		var xmlDoc = '<xml id="toolbox"><block type="controls_repeat_ext"><value name="TIMES"><shadow type="math_number"><field name="NUM">10</field></shadow></value></block><block type="controls_flow_statements"></block></xml>';
 		
-		showFlyout('loop', xmlDoc);
+		showToolbox('loop', xmlDoc);
 	}	
 	
-	function showFlyout(item, xmlDoc) {
+	function showToolbox(item, xmlDoc) {
 		primaryWorkspace.clear();
 		primaryWorkspace.updateToolbox(xmlDoc);
 		
