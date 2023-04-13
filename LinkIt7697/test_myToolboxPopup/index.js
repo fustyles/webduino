@@ -87,7 +87,6 @@ function init() {
 	function showFlyout(item, xmlDoc) {
 		primaryWorkspace.clear();
 		primaryWorkspace.updateToolbox(xmlDoc);
-		console.log(primaryWorkspace);
 		primaryWorkspace.render();
 		
 		var primaryDiv = document.getElementById("primaryDiv");
@@ -101,6 +100,7 @@ function init() {
 		if (ToolboxDiv) {
 			primaryDiv.style.height = ToolboxDiv[2].clientHeight + "px";
 		}
+		primaryWorkspace.render();
 	}
 	
 	function hideFlyout() {
