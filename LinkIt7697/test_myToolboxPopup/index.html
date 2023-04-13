@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Blockly Demo: myToolboxSplit</title>
+  <script src="blockly_compressed.js"></script>
+  <script src="blocks_compressed.js"></script>
+  <script src="en.js"></script>
+  <script src="index.js"></script>
+  <style>
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+  </style>
+</head>
+<body onload="init()">
+
+  <table style="width: 100%;">
+    <tr>
+      <td style="height: 50px; width: 100%;">
+		<button id="logic">LOGIC</button>
+		<button id="loop">LOOP</button>
+      </td>
+	 </tr>
+	 <tr>
+      <td>
+        <div id="secondaryDiv" style="height: calc(100vh - 80px); width: 100%;"></div>
+      </td>
+    </tr>
+  </table>
+  
+ <div id="primaryDiv" style="height: 300px; width: 400px; position:absolute; z-index:99999"></div>
+ 
+  <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox1" style="display: none">
+  </xml>
+  <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox2" style="display: none">
+  </xml>   
+</body>
+</html>
