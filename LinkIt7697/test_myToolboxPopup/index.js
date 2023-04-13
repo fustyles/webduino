@@ -87,7 +87,6 @@ function init() {
 	function showFlyout(item, xmlDoc) {
 		primaryWorkspace.clear();
 		primaryWorkspace.updateToolbox(xmlDoc);
-		primaryWorkspace.render();
 		
 		var primaryDiv = document.getElementById("primaryDiv");
 		var btn = document.getElementById(item);
