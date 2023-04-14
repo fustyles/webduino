@@ -60,12 +60,9 @@ function init() {
 				
 				var newBlock = secondaryWorkspace.getBlockById(id[0]);
 				if (newBlock) {
-					
 					var position = Blockly.utils.svgMath.getRelativeXY(newBlock.getSvgRoot());
 					var x = position.x;
 					var y = position.y;
-					console.log(secondaryWorkspace.getParentSvg());
-					console.log(newBlock);
 					
 					var wsWidth = secondaryWorkspace.getParentSvg().width.baseVal.value;
 					var wsHeight = secondaryWorkspace.getParentSvg().height.baseVal.value;
