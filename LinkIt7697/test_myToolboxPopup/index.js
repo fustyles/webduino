@@ -56,8 +56,16 @@ function init() {
 				block = Blockly.Xml.blockToDom(block, true);
 				block = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">' + Blockly.Xml.domToText(block) + '</xml>');
 				var id = Blockly.Xml.appendDomToWorkspace(block, secondaryWorkspace);
+				
+				
 				var newBlock = secondaryWorkspace.getBlockById(id[0]);
 				if (newBlock) {
+					
+					var position = Blockly.utils.getRelativeXY(newBlock.getSvgRoot());
+					var x = position.x;
+					var y = position.y;
+					newBlock.moveBy(300-x, 300-y-secondaryWorkspace.scrollY);
+					
 					newBlock.select();
 					newBlock.bringToFront();
 					primaryWorkspace.getAudioManager().play("click");
