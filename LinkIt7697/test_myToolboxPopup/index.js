@@ -100,13 +100,13 @@ function init() {
 	}	
 	
 	function showFlyout(item, xmlDoc) {
-		primaryWorkspace.clear();
-		primaryWorkspace.updateToolbox(xmlDoc);
-		primaryWorkspace.render();
-		
 		var primaryDiv = document.getElementById("primaryDiv");
 		var btn = document.getElementById(item);
 		primaryDiv.style.display = "block";
+		
+		primaryWorkspace.clear();
+		primaryWorkspace.updateToolbox(xmlDoc);
+		
 		primaryDiv.style.position = "absolute";
 		primaryDiv.style.left = (window.scrollX + btn.getBoundingClientRect().left) + "px";
 		primaryDiv.style.top = (window.scrollY + btn.getBoundingClientRect().top + btn.clientHeight + 2) + "px";
