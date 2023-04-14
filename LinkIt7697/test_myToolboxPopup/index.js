@@ -14,7 +14,7 @@
 /**
  * @fileoverview Toolbox Popup
  * @author https://www.facebook.com/francefu/
- * @Update 4/13/2023 22:00 (Taiwan Standard Time)
+ * @Update 4/14/2023 08:00 (Taiwan Standard Time)
  */
 
 function init() {
@@ -56,7 +56,13 @@ function init() {
 				block = Blockly.Xml.blockToDom(block, true);
 				block = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">' + Blockly.Xml.domToText(block) + '</xml>');
 				var id = Blockly.Xml.appendDomToWorkspace(block, secondaryWorkspace);
-				block = secondaryWorkspace.getBlockById(id);
+				console.log(id);
+				var newBlock = secondaryWorkspace.getBlockById(id[0]);
+				if (newBlock) {
+					newBlock.select();
+					newBlock.bringToFront();
+					primaryWorkspace.getAudioManager().play("click");
+				}
 
 				setTimeout(function () {
 					hideFlyout();
@@ -75,18 +81,19 @@ function init() {
 	document.getElementById('logic').onclick = function () {
 		var xmlDoc = '<xml id="toolbox"><block type="controls_if"></block><block type="logic_compare"></block><block type="logic_operation"></block><block type="logic_negate"></block><block type="logic_boolean"></block></xml>';
 		
-		showToolbox('logic', xmlDoc);
+		showFlyout('logic', xmlDoc);
 	} 
 	
 	document.getElementById('loop').onclick = function () {
 		var xmlDoc = '<xml id="toolbox"><block type="controls_repeat_ext"><value name="TIMES"><shadow type="math_number"><field name="NUM">10</field></shadow></value></block><block type="controls_flow_statements"></block></xml>';
 		
-		showToolbox('loop', xmlDoc);
+		showFlyout('loop', xmlDoc);
 	}	
 	
-	function showToolbox(item, xmlDoc) {
+	function showFlyout(item, xmlDoc) {
 		primaryWorkspace.clear();
 		primaryWorkspace.updateToolbox(xmlDoc);
+		primaryWorkspace.render();
 		
 		var primaryDiv = document.getElementById("primaryDiv");
 		var btn = document.getElementById(item);
@@ -99,7 +106,6 @@ function init() {
 		if (ToolboxDiv) {
 			primaryDiv.style.height = ToolboxDiv[2].clientHeight + "px";
 		}
-		primaryWorkspace.render();
 	}
 	
 	function hideFlyout() {
