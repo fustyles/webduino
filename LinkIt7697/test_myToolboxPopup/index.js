@@ -56,7 +56,6 @@ function init() {
 				block = Blockly.Xml.blockToDom(block, true);
 				block = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">' + Blockly.Xml.domToText(block) + '</xml>');
 				var id = Blockly.Xml.appendDomToWorkspace(block, secondaryWorkspace);
-				console.log(id);
 				var newBlock = secondaryWorkspace.getBlockById(id[0]);
 				if (newBlock) {
 					newBlock.select();
@@ -66,7 +65,7 @@ function init() {
 
 				setTimeout(function () {
 					hideFlyout();
-				}, 500);
+				}, 300);
 			}
 		}
 	}
