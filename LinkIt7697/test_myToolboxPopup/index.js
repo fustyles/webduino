@@ -61,10 +61,15 @@ function init() {
 				var newBlock = secondaryWorkspace.getBlockById(id[0]);
 				if (newBlock) {
 					
-					var position = Blockly.utils.getRelativeXY(newBlock.getSvgRoot());
+					var position = Blockly.utils.svgMath.getRelativeXY(newBlock.getSvgRoot());
 					var x = position.x;
 					var y = position.y;
-					newBlock.moveBy(300-x, 300-y-secondaryWorkspace.scrollY);
+					console.log(secondaryWorkspace.getParentSvg());
+					console.log(newBlock);
+					
+					var wsWidth = secondaryWorkspace.getParentSvg().width.baseVal.value;
+					var wsHeight = secondaryWorkspace.getParentSvg().height.baseVal.value;
+					newBlock.moveBy(wsWidth/2-newBlock.width/2-x, wsHeight/2-newBlock.height/2-secondaryWorkspace.scrollY-y);
 					
 					newBlock.select();
 					newBlock.bringToFront();
