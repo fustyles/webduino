@@ -100,7 +100,7 @@ function init() {
 		primaryDiv.style.display = "block";
 		primaryDiv.style.position = "absolute";
 		primaryDiv.style.left = (window.scrollX + btn.getBoundingClientRect().left) + "px";
-		primaryDiv.style.top = (window.scrollY + btn.getBoundingClientRect().top + btn.clientHeight + 10) + "px";
+		primaryDiv.style.top = (window.scrollY + btn.getBoundingClientRect().top + btn.clientHeight) + "px";
 		
 		var ToolboxDiv = document.getElementsByClassName("blocklyFlyout");
 		if (ToolboxDiv) {
