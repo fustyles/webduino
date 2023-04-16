@@ -14,7 +14,7 @@
 /**
  * @fileoverview Toolbox Popup
  * @author https://www.facebook.com/francefu/
- * @Update 4/16/2023 16:00 (Taiwan Standard Time)
+ * @Update 4/16/2023 17:00 (Taiwan Standard Time)
  */
 
 function init() {
@@ -45,8 +45,6 @@ function init() {
 			wheel: true
 		},
       });
-	  
-	hideFlyout();
 	
 	var mouse_cursor = {};
 	document.body.addEventListener('mousemove', getMousePosition, false); 
@@ -63,7 +61,10 @@ function init() {
     }
 	
 	var newBlock = null;
+	var timerDelete;
+	var timerDeleteGroup = "";
 	function primaryWorkspaceListener(event) {
+		console.log(event);
 		if (event.type=="create") {
 			var block = primaryWorkspace.getBlockById(event.blockId);
 			if (block) {
@@ -95,11 +96,6 @@ function init() {
 			variableFlyoutCategory();
 		}
 		else if (event.type=="var_delete") {
-			var secondaryVariableList = secondaryWorkspace.getAllVariables();
-			for (var i=0;i<secondaryVariableList.length;i++) {
-				if (secondaryVariableList[i].name==event.oldName)
-					secondaryWorkspace.renameVariableById(secondaryVariableList[i].id_, event.newName);
-			}
 			variableFlyoutCategory();
 		}		
 	}
@@ -139,24 +135,29 @@ function init() {
 		}		
 
 		if (event.type=="click") {
-				hideFlyout();
+			hideFlyout();
 		}
 	}	
 	secondaryWorkspace.addChangeListener(secondaryWorkspaceListener);	
   
+	var btnClickState = false;
 	document.getElementById('logic').onclick = function () {
 		var xmlDoc = '<xml id="toolbox"><block type="controls_if"></block><block type="logic_compare"></block><block type="logic_operation"></block><block type="logic_negate"></block><block type="logic_boolean"></block></xml>';
 		
+		btnClickState = true;
 		showFlyout(this.id, xmlDoc);
 	} 
 	
 	document.getElementById('loop').onclick = function () {
 		var xmlDoc = '<xml id="toolbox"><block type="controls_repeat_ext"><value name="TIMES"><shadow type="math_number"><field name="NUM">10</field></shadow></value></block><block type="controls_flow_statements"></block></xml>';
 		
+		btnClickState = true;
 		showFlyout(this.id, xmlDoc);
 	}
 
+	
 	document.getElementById('vari').onclick = function () {
+		btnClickState = true;
 		variableFlyoutCategory();
 	}
 	
@@ -177,22 +178,21 @@ function init() {
 	}
 	
 	function showFlyout(el, xmlDoc) {
-		if (xmlDoc) {
-			var primaryDiv = document.getElementById("primaryDiv");
-			var el = document.getElementById(el);
-			if (primaryDiv&&el) {
-				primaryDiv.style.display = "block";
-				primaryWorkspace.updateToolbox(xmlDoc);
-					
-				primaryDiv.style.position = "absolute";
-				primaryDiv.style.left = (window.scrollX + el.getBoundingClientRect().left) + "px";
-				primaryDiv.style.top = (window.scrollY + el.getBoundingClientRect().top + el.clientHeight + 2) + "px";
-				
-				var ToolboxDiv = document.getElementsByClassName("blocklyFlyout");
-				if (ToolboxDiv) {
-					primaryDiv.style.height = ToolboxDiv[2].clientHeight + "px";
-				}
-			}
+		var primaryDiv = document.getElementById("primaryDiv");
+		if (btnClickState == true) {
+			btnClickState = false;
+			primaryDiv.style.display = "block";
+		}
+		primaryWorkspace.updateToolbox(xmlDoc);
+		
+		var el = document.getElementById(el);
+		primaryDiv.style.position = "absolute";
+		primaryDiv.style.left = (window.scrollX + el.getBoundingClientRect().left) + "px";
+		primaryDiv.style.top = (window.scrollY + el.getBoundingClientRect().top + el.clientHeight + 2) + "px";
+		
+		var ToolboxDiv = document.getElementsByClassName("blocklyFlyout");
+		if (ToolboxDiv) {
+			primaryDiv.style.height = ToolboxDiv[2].clientHeight + "px";
 		}
 	}
 	
@@ -206,5 +206,3 @@ function init() {
 	  } 
 	}
 }
-
-
