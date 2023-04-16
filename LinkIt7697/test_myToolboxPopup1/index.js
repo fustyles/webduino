@@ -46,6 +46,8 @@ function init() {
 		},
       });
 	
+	hideFlyout();
+	
 	var mouse_cursor = {};
 	document.body.addEventListener('mousemove', getMousePosition, false); 
     function getMousePosition(e){  
