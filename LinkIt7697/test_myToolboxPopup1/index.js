@@ -14,7 +14,7 @@
 /**
  * @fileoverview Toolbox Popup
  * @author https://www.facebook.com/francefu/
- * @Update 4/14/2023 08:00 (Taiwan Standard Time)
+ * @Update 4/16/2023 16:00 (Taiwan Standard Time)
  */
 
 function init() {
@@ -82,6 +82,26 @@ function init() {
 				}, 300);
 			}
 		}
+		else if (event.type=="var_create") {
+			secondaryWorkspace.createVariable(event.varName);
+			variableFlyoutCategory();
+		}
+		else if (event.type=="var_rename") {
+			var secondaryVariableList = secondaryWorkspace.getAllVariables();
+			for (var i=0;i<secondaryVariableList.length;i++) {
+				if (secondaryVariableList[i].name==event.oldName)
+					secondaryWorkspace.renameVariableById(secondaryVariableList[i].id_, event.newName);
+			}
+			variableFlyoutCategory();
+		}
+		else if (event.type=="var_delete") {
+			var secondaryVariableList = secondaryWorkspace.getAllVariables();
+			for (var i=0;i<secondaryVariableList.length;i++) {
+				if (secondaryVariableList[i].name==event.oldName)
+					secondaryWorkspace.renameVariableById(secondaryVariableList[i].id_, event.newName);
+			}
+			variableFlyoutCategory();
+		}		
 	}
 	primaryWorkspace.addChangeListener(primaryWorkspaceListener);
 	
@@ -107,7 +127,17 @@ function init() {
 			newBlock.moveBy(mousePos.x-blockPos.x, mousePos.y-blockPos.y+50);
 			newBlock = null;
 		}
-		
+		else if (event.type=="var_create"||event.type=="var_rename"||event.type=="var_delete") {
+			var primaryVariableList = primaryWorkspace.getAllVariables();
+			for (var i=0;i<primaryVariableList.length;i++) {
+				primaryWorkspace.deleteVariableById(primaryVariableList[i].id_)
+			}
+			secondaryVariableList = secondaryWorkspace.getAllVariables();
+			for (var j=0;j<secondaryVariableList.length;j++) {
+				primaryWorkspace.createVariable(secondaryVariableList[j].name);
+			}
+		}		
+
 		if (event.type=="click") {
 				hideFlyout();
 		}
@@ -124,23 +154,45 @@ function init() {
 		var xmlDoc = '<xml id="toolbox"><block type="controls_repeat_ext"><value name="TIMES"><shadow type="math_number"><field name="NUM">10</field></shadow></value></block><block type="controls_flow_statements"></block></xml>';
 		
 		showFlyout(this.id, xmlDoc);
-	}	
+	}
+
+	document.getElementById('vari').onclick = function () {
+		variableFlyoutCategory();
+	}
 	
-	function showFlyout(item, xmlDoc) {
-		var primaryDiv = document.getElementById("primaryDiv");
-		var el = document.getElementById(item);
-		primaryDiv.style.display = "block";
+	function variableFlyoutCategory(){		
+		const c=document.createElement("button");
+		c.setAttribute("text","%{BKY_NEW_VARIABLE}");
+		c.setAttribute("callbackKey","CREATE_VARIABLE");
+
+		let xmlDoc = Blockly.Xml.domToText(c);
+		let a=Blockly.Variables.flyoutCategoryBlocks(primaryWorkspace);
+		for (var i=0;i<a.length;i++) {
+			xmlDoc +=Blockly.Xml.domToText(a[i]);
+		}		
+		xmlDoc = '<xml id="toolbox">'+xmlDoc+'</xml>';
+		showFlyout('vari', xmlDoc);
 		
-		primaryWorkspace.clear();
-		primaryWorkspace.updateToolbox(xmlDoc);
-		
-		primaryDiv.style.position = "absolute";
-		primaryDiv.style.left = (window.scrollX + el.getBoundingClientRect().left) + "px";
-		primaryDiv.style.top = (window.scrollY + el.getBoundingClientRect().top + el.clientHeight + 2) + "px";
-		
-		var ToolboxDiv = document.getElementsByClassName("blocklyFlyout");
-		if (ToolboxDiv) {
-			primaryDiv.style.height = ToolboxDiv[2].clientHeight + "px";
+		primaryWorkspace.registerButtonCallback("CREATE_VARIABLE",function(d){Blockly.Variables.createVariableButtonHandler(d.getTargetWorkspace())});
+	}
+	
+	function showFlyout(el, xmlDoc) {
+		if (xmlDoc) {
+			var primaryDiv = document.getElementById("primaryDiv");
+			var el = document.getElementById(el);
+			if (primaryDiv&&el) {
+				primaryDiv.style.display = "block";
+				primaryWorkspace.updateToolbox(xmlDoc);
+					
+				primaryDiv.style.position = "absolute";
+				primaryDiv.style.left = (window.scrollX + el.getBoundingClientRect().left) + "px";
+				primaryDiv.style.top = (window.scrollY + el.getBoundingClientRect().top + el.clientHeight + 2) + "px";
+				
+				var ToolboxDiv = document.getElementsByClassName("blocklyFlyout");
+				if (ToolboxDiv) {
+					primaryDiv.style.height = ToolboxDiv[2].clientHeight + "px";
+				}
+			}
 		}
 	}
 	
@@ -153,8 +205,6 @@ function init() {
 		  blocklyFlyout[f].style.display = "none";
 	  } 
 	}
-
-	 
 }
 
 
