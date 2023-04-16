@@ -46,8 +46,6 @@ function init() {
 		},
       });
 	
-	hideFlyout();
-	
 	var mouse_cursor = {};
 	document.body.addEventListener('mousemove', getMousePosition, false); 
     function getMousePosition(e){  
@@ -61,6 +59,8 @@ function init() {
         mouse_cursor.screenX = e.screenX;
         mouse_cursor.screenY = e.screenY;  		
     }
+	
+	hideFlyout();
 	
 	var newBlock = null;
 	var timerDelete;
