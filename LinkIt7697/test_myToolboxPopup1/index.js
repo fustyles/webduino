@@ -98,7 +98,7 @@ function init() {
 			variableFlyoutCategory();
 		}
 		else if (event.type=="var_delete") {
-			alert("Not allowed to delete.");
+			alert("Not allowed to delete in the toolbox.");
 			primaryWorkspace.createVariable(event.varName);
 			variableFlyoutCategory();
 		}		
@@ -106,24 +106,12 @@ function init() {
 	primaryWorkspace.addChangeListener(primaryWorkspaceListener);
 	
 	function secondaryWorkspaceListener(event) {
-		
 		if (event.type=="finished_loading"&&newBlock) {
-			//console.log(mouse_cursor.pageX);
-			//console.log(mouse_cursor.pageY);				
-			//console.log(window.scrollX);
-			//console.log(window.scrollY);
 			var mouseClient = new Blockly.utils.Coordinate(mouse_cursor.pageX-window.scrollX, mouse_cursor.pageY-window.scrollY); 
 			var mousePos = Blockly.utils.svgMath.screenToWsCoordinates(secondaryWorkspace, mouseClient);
-			
 			var blockPos = Blockly.utils.svgMath.getRelativeXY(newBlock.getSvgRoot());
 			var scrollX = secondaryWorkspace.scrollX;
 			var scrollY = secondaryWorkspace.scrollY;
-			//console.log(mousePos.x);
-			//console.log(scrollX);
-			//console.log(blockPos.x);
-			//console.log(mousePos.y);
-			//console.log(scrollY);
-			//console.log(blockPos.y);
 			
 			newBlock.moveBy(mousePos.x-blockPos.x, mousePos.y-blockPos.y+50);
 			newBlock = null;
@@ -180,7 +168,6 @@ function init() {
 		showFlyout(this.id, xmlDoc);
 	}
 
-	
 	document.getElementById('variable').onclick = function () {
 		btnClickState = true;
 		variableFlyoutCategory();
