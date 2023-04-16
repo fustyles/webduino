@@ -153,7 +153,6 @@ function init() {
 	
 	var newBlock = null;
 	function primaryWorkspaceListener(event) {
-		console.log(event.type);
 		if (event.type=="create") {
 			var block = primaryWorkspace.getBlockById(event.blockId);
 			if (block) {
