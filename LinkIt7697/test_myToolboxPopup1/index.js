@@ -48,18 +48,18 @@ function init() {
 	  
 	hideFlyout();
 	
-	var mouse_pageX,mouse_pageY,mouse_offsetX,mouse_offsetY,mouse_clientX,mouse_clientY,mouse_screenX,mouse_screenY;
+	var mouse_cursor = {};
 	document.body.addEventListener('mousemove', getMousePosition, false); 
     function getMousePosition(e){  
         e=e||window.event;
-        mouse_pageX = e.pageX;
-        mouse_pageY = e.pageY;
-        mouse_offsetX = e.offsetX;
-        mouse_offsetY = e.offsetY;   
-        mouse_clientX = e.clientX;
-        mouse_clientY = e.clientY;
-        mouse_screenX = e.screenX;
-        mouse_screenY = e.screenY;  		
+        mouse_cursor.pageX = e.pageX;
+        mouse_cursor.pageY = e.pageY;
+        mouse_cursor.offsetX = e.offsetX;
+        mouse_cursor.offsetY = e.offsetY;   
+        mouse_cursor.clientX = e.clientX;
+        mouse_cursor.clientY = e.clientY;
+        mouse_cursor.screenX = e.screenX;
+        mouse_cursor.screenY = e.screenY;  		
     }
 	
 	var newBlock = null;
@@ -87,11 +87,11 @@ function init() {
 	
 	function secondaryWorkspaceListener(event) {
 		if (event.type=="finished_loading"&&newBlock) {
-			//console.log(mouse_pageX);
-			//console.log(mouse_pageY);				
+			//console.log(mouse_cursor.pageX);
+			//console.log(mouse_cursor.pageY);				
 			//console.log(window.scrollX);
 			//console.log(window.scrollY);
-			var mouseClient = new Blockly.utils.Coordinate(mouse_pageX-window.scrollX, mouse_pageY-window.scrollY); 
+			var mouseClient = new Blockly.utils.Coordinate(mouse_cursor.pageX-window.scrollX, mouse_cursor.pageY-window.scrollY); 
 			var mousePos = Blockly.utils.svgMath.screenToWsCoordinates(secondaryWorkspace, mouseClient);
 			
 			var blockPos = Blockly.utils.svgMath.getRelativeXY(newBlock.getSvgRoot());
