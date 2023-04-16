@@ -95,6 +95,8 @@ function init() {
 			variableFlyoutCategory();
 		}
 		else if (event.type=="var_delete") {
+			console.log(event.varName);
+			primaryWorkspace.createVariable(event.varName);
 			variableFlyoutCategory();
 		}		
 	}
