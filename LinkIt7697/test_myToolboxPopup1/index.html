@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Blockly Demo: myToolboxSplit</title>
+  <script src="blockly_compressed.js"></script>
+  <script src="blocks_compressed.js"></script>
+  <script src="en.js"></script>
+  <script src="index.js"></script>
+  <style>
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+	.primaryClass {
+	  width: 400px;
+	  height: 300px;
+	  position: absolute;
+	  zIndex: 99999;
+	  margin: 20px auto;
+	  border: 4px solid #cccccc;
+	  border-radius: 5px;
+	}
+	.primaryClass:before {
+		content: '';
+		width: 0;
+		height: 0;
+		border: 14px solid transparent;
+		border-bottom-color: #ccc;
+		position: absolute;
+		top: 0;
+		right: 91%;
+		margin-top: -30px;
+	}
+	.primaryClass:after {
+		content: "";
+		width: 0;
+		height: 0;
+		border: 14px solid transparent;
+		border-bottom-color: #fff;
+		position: absolute;
+		top: 6px;
+		right: 91%;
+		margin-top: -30px;
+	}
+
+  </style>
+</head>
+<body onload="init()">
+<div>123</div> <div>123</div> <div>123</div> <div>123</div> <div>123</div> <div>123</div> <div>123</div> <div>123</div> <div>123</div> <div>123</div> <div>123</div> <div>123</div> <div>123</div> <div>123</div> <div>123</div> <div>123</div> <div>123</div> <div>123</div> <div>123</div> <div>123</div> <div>123</div> 
+  <table style="width: 100%;">
+    <tr>
+      <td style="height: 50px; width: 100%;">
+		<button id="logic">LOGIC</button>
+		<button id="loop">LOOP</button>
+      </td>
+	 </tr>
+	 <tr>
+      <td>
+        <div id="secondaryDiv" style="height: calc(100vh - 80px); width: 100%;"></div>
+      </td>
+    </tr>
+  </table>
+  
+ <div id="primaryDiv" class="primaryClass"></div>
+ 
+  <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox1" style="display: none">
+  </xml>
+  <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox2" style="display: none">
+  </xml> 
+ 
+</body>
