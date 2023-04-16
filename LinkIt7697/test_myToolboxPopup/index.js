@@ -132,3 +132,76 @@ function init() {
 }
 
 
+
+
+/*
+//create block near the cursor
+
+    var mouse_pageX,mouse_pageY,mouse_offsetX,mouse_offsetY,mouse_clientX,mouse_clientY,mouse_screenX,mouse_screenY;
+    document.body.addEventListener('mousemove', getMousePosition, false); 
+    function getMousePosition(e){  
+        e=e||window.event;
+        mouse_pageX = e.pageX;
+        mouse_pageY = e.pageY;
+        mouse_offsetX = e.offsetX;
+        mouse_offsetY = e.offsetY;   
+        mouse_clientX = e.clientX;
+        mouse_clientY = e.clientY;
+        mouse_screenX = e.screenX;
+        mouse_screenY = e.screenY;  		
+    }
+	
+	var newBlock = null;
+	function primaryWorkspaceListener(event) {
+		console.log(event.type);
+		if (event.type=="create") {
+			var block = primaryWorkspace.getBlockById(event.blockId);
+			if (block) {
+				block = Blockly.Xml.blockToDom(block, true);
+				block = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">' + Blockly.Xml.domToText(block) + '</xml>');
+				var id = Blockly.Xml.appendDomToWorkspace(block, secondaryWorkspace);
+				newBlock = secondaryWorkspace.getBlockById(id[0]);
+				if (newBlock) {
+					newBlock.select();
+					newBlock.bringToFront();
+					primaryWorkspace.getAudioManager().play("click");
+				}
+
+				setTimeout(function () {
+					hideFlyout();
+				}, 300);
+			}
+		}
+	}
+	primaryWorkspace.addChangeListener(primaryWorkspaceListener);
+	
+	function secondaryWorkspaceListener(event) {
+		if (event.type=="finished_loading"&&newBlock) {
+			//console.log(mouse_pageX);
+			//console.log(mouse_pageY);				
+			//console.log(window.scrollX);
+			//console.log(window.scrollY);
+			var mouseClient = new Blockly.utils.Coordinate(mouse_pageX-window.scrollX, mouse_pageY-window.scrollY); 
+			var mousePos = Blockly.utils.svgMath.screenToWsCoordinates(secondaryWorkspace, mouseClient);
+			
+			var blockPos = Blockly.utils.svgMath.getRelativeXY(newBlock.getSvgRoot());
+			var scrollX = secondaryWorkspace.scrollX;
+			var scrollY = secondaryWorkspace.scrollY;
+			//console.log(mousePos.x);
+			//console.log(scrollX);
+			//console.log(blockPos.x);
+			//console.log(mousePos.y);
+			//console.log(scrollY);
+			//console.log(blockPos.y);
+			
+			newBlock.moveBy(mousePos.x-blockPos.x, mousePos.y-blockPos.y+50);
+			newBlock = null;
+		}
+		
+		if (event.type=="click") {
+				hideFlyout();
+		}
+	}	
+	secondaryWorkspace.addChangeListener(secondaryWorkspaceListener);	
+	
+*/
