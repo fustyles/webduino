@@ -95,7 +95,7 @@ function init() {
 			variableFlyoutCategory();
 		}
 		else if (event.type=="var_delete") {
-			console.log(event.varName);
+			alert("Not allowed to delete.");
 			primaryWorkspace.createVariable(event.varName);
 			variableFlyoutCategory();
 		}		
