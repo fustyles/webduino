@@ -106,7 +106,7 @@ function init() {
 	primaryWorkspace.addChangeListener(primaryWorkspaceListener);
 	
 	function secondaryWorkspaceListener(event) {
-		console.log(event.type);
+		
 		if (event.type=="finished_loading"&&newBlock) {
 			//console.log(mouse_cursor.pageX);
 			//console.log(mouse_cursor.pageY);				
@@ -137,6 +137,25 @@ function init() {
 			secondaryVariableList = secondaryWorkspace.getAllVariables();
 			for (var j=0;j<secondaryVariableList.length;j++) {
 				primaryWorkspace.createVariable(secondaryVariableList[j].name);
+			}
+		}
+		else if (event.type=="create") {
+			if (event.json) {
+				if (event.json.type.indexOf("procedures")!=-1)
+					proceduresFlyoutCategory();
+			}
+		}
+		else if (event.type=="change") {
+			var block = secondaryWorkspace.getBlockById(event.blockId);
+			if (block) {
+				if (block.type.indexOf("procedures")!=-1)
+					proceduresFlyoutCategory();
+			}
+		}
+		else if (event.type=="delete") {
+			if (event.oldJson) {
+				if (event.oldJson.type.indexOf("procedures")!=-1)
+					proceduresFlyoutCategory();
 			}
 		}		
 
