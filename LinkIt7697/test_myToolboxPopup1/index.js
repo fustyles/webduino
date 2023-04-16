@@ -82,6 +82,9 @@ function init() {
 				}, 200);
 			}
 		}
+		else if (event.type=="finished_loading"||event.type=="delete") {
+			proceduresFlyoutCategory();
+		}
 		else if (event.type=="var_create") {
 			secondaryWorkspace.createVariable(event.varName);
 			variableFlyoutCategory();
@@ -95,7 +98,7 @@ function init() {
 			variableFlyoutCategory();
 		}
 		else if (event.type=="var_delete") {
-			alert("Not allowed to delete in the toolbox.");
+			alert("Not allowed to delete.");
 			primaryWorkspace.createVariable(event.varName);
 			variableFlyoutCategory();
 		}		
@@ -103,6 +106,7 @@ function init() {
 	primaryWorkspace.addChangeListener(primaryWorkspaceListener);
 	
 	function secondaryWorkspaceListener(event) {
+		console.log(event.type);
 		if (event.type=="finished_loading"&&newBlock) {
 			//console.log(mouse_cursor.pageX);
 			//console.log(mouse_cursor.pageY);				
@@ -158,10 +162,15 @@ function init() {
 	}
 
 	
-	document.getElementById('vari').onclick = function () {
+	document.getElementById('variable').onclick = function () {
 		btnClickState = true;
 		variableFlyoutCategory();
 	}
+	
+	document.getElementById('procedures').onclick = function () {
+		btnClickState = true;
+		proceduresFlyoutCategory();
+	}	
 	
 	function variableFlyoutCategory(){		
 		const c=document.createElement("button");
@@ -174,10 +183,68 @@ function init() {
 			xmlDoc +=Blockly.Xml.domToText(a[i]);
 		}		
 		xmlDoc = '<xml id="toolbox">'+xmlDoc+'</xml>';
-		showFlyout('vari', xmlDoc);
+		showFlyout('variable', xmlDoc);
 		
 		primaryWorkspace.registerButtonCallback("CREATE_VARIABLE",function(d){Blockly.Variables.createVariableButtonHandler(d.getTargetWorkspace())});
 	}
+	
+	function proceduresFlyoutCategory(){
+		function b(f,g){
+			for(let k=0;k<f.length;k++){
+				var h=f[k][0];
+				const l=f[k][1]
+				,m=document.createElement("block");
+				m.setAttribute("type",g);
+				m.setAttribute("gap","16");
+				const n=document.createElement("mutation");
+				n.setAttribute("name",h);
+				m.appendChild(n);
+				for(h=0;h<l.length;h++){
+					const p=document.createElement("arg");
+					p.setAttribute("name",l[h]);
+					n.appendChild(p)
+				}
+				c.push(m)
+			}
+		}
+		const c=[];
+		if(Blockly.Blocks.procedures_defnoreturn){
+			var d=document.createElement("block");
+			d.setAttribute("type","procedures_defnoreturn");
+			d.setAttribute("gap","16");
+			var e=document.createElement("field");
+			e.setAttribute("name","NAME");
+			e.appendChild(Blockly.utils.xml.createTextNode(Blockly.Msg.PROCEDURES_DEFNORETURN_PROCEDURE));
+			d.appendChild(e);
+			c.push(d)
+		}
+		Blockly.Blocks.procedures_defreturn&&(d=document.createElement("block")
+			,d.setAttribute("type","procedures_defreturn")
+			,d.setAttribute("gap","16")
+			,e=document.createElement("field")
+			,e.setAttribute("name","NAME")
+			,e.appendChild(Blockly.utils.xml.createTextNode(Blockly.Msg.PROCEDURES_DEFRETURN_PROCEDURE))
+			,d.appendChild(e)
+			,c.push(d));
+		Blockly.Blocks.procedures_ifreturn&&(d=document.createElement("block")
+			,d.setAttribute("type","procedures_ifreturn")
+			,d.setAttribute("gap","16")
+			,c.push(d));
+		c.length&&c[c.length-1].setAttribute("gap","24");
+		
+		
+		let a=Blockly.Procedures.allProcedures(secondaryWorkspace);
+		
+		b(a[0],"procedures_callnoreturn");
+		b(a[1],"procedures_callreturn");
+		
+		let xmlDoc = "";
+		for (var i=0;i<c.length;i++) {
+			xmlDoc +=Blockly.Xml.domToText(c[i]);
+		}
+		xmlDoc = '<xml id="toolbox">'+xmlDoc+'</xml>';
+		showFlyout('procedures', xmlDoc);
+	};	
 	
 	function showFlyout(el, xmlDoc) {
 		var primaryDiv = document.getElementById("primaryDiv");
@@ -209,3 +276,5 @@ function init() {
 	  } 
 	}
 }
+
+
