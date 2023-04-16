@@ -14,7 +14,7 @@
 /**
  * @fileoverview Toolbox Popup
  * @author https://www.facebook.com/francefu/
- * @Update 4/16/2023 17:00 (Taiwan Standard Time)
+ * @Update 4/16/2023 21:30 (Taiwan Standard Time)
  */
 
 function init() {
@@ -64,7 +64,6 @@ function init() {
 	var timerDelete;
 	var timerDeleteGroup = "";
 	function primaryWorkspaceListener(event) {
-		console.log(event);
 		if (event.type=="create") {
 			var block = primaryWorkspace.getBlockById(event.blockId);
 			if (block) {
@@ -80,7 +79,7 @@ function init() {
 
 				setTimeout(function () {
 					hideFlyout();
-				}, 300);
+				}, 200);
 			}
 		}
 		else if (event.type=="var_create") {
@@ -124,6 +123,7 @@ function init() {
 			newBlock = null;
 		}
 		else if (event.type=="var_create"||event.type=="var_rename"||event.type=="var_delete") {
+			primaryWorkspace.clear();
 			var primaryVariableList = primaryWorkspace.getAllVariables();
 			for (var i=0;i<primaryVariableList.length;i++) {
 				primaryWorkspace.deleteVariableById(primaryVariableList[i].id_)
@@ -183,6 +183,7 @@ function init() {
 			btnClickState = false;
 			primaryDiv.style.display = "block";
 		}
+
 		primaryWorkspace.updateToolbox(xmlDoc);
 		
 		var el = document.getElementById(el);
