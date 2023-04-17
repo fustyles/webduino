@@ -116,10 +116,7 @@ function init() {
 			newBlock = null;
 		}
 		else if (event.type=="var_create"||event.type=="var_rename"||event.type=="var_delete") {
-			var primaryVariableList = primaryWorkspace.getAllVariables();
-			for (var i=0;i<primaryVariableList.length;i++) {
-				primaryWorkspace.deleteVariableById(primaryVariableList[i].id_)
-			}
+			primaryWorkspace.clear();
 			secondaryVariableList = secondaryWorkspace.getAllVariables();
 			for (var j=0;j<secondaryVariableList.length;j++) {
 				primaryWorkspace.createVariable(secondaryVariableList[j].name);
