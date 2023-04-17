@@ -14,7 +14,7 @@
 /**
  * @fileoverview Toolbox Popup
  * @author https://www.facebook.com/francefu/
- * @Update 4/16/2023 21:30 (Taiwan Standard Time)
+ * @Update 4/17/2023 11:30 (Taiwan Standard Time)
  */
 
 function init() {
@@ -96,9 +96,6 @@ function init() {
 				}, 300);
 			}
 		}
-		else if (event.type=="finished_loading"||event.type=="delete") {
-			proceduresFlyoutCategory();
-		}
 		else if (event.type=="var_create") {
 			secondaryWorkspace.createVariable(event.varName);
 			variableFlyoutCategory();
@@ -112,7 +109,7 @@ function init() {
 			variableFlyoutCategory();
 		}
 		else if (event.type=="var_delete") {
-			alert("Not allowed to delete in the toolbox.");
+			//alert("Not allowed to delete in the toolbox.");
 			primaryWorkspace.createVariable(event.varName);
 			variableFlyoutCategory();
 		}		
@@ -131,7 +128,6 @@ function init() {
 			newBlock = null;
 		}
 		else if (event.type=="var_create"||event.type=="var_rename"||event.type=="var_delete") {
-			primaryWorkspace.clear();
 			var primaryVariableList = primaryWorkspace.getAllVariables();
 			for (var i=0;i<primaryVariableList.length;i++) {
 				primaryWorkspace.deleteVariableById(primaryVariableList[i].id_)
@@ -271,11 +267,12 @@ function init() {
 		if (btnClickState == true) {
 			btnClickState = false;
 			primaryDiv.style.display = "block";
+			primaryWorkspace.clear();
 		}
 
 		primaryWorkspace.updateToolbox(xmlDoc);
 		
-		var el = document.getElementById(el);
+		el = document.getElementById(el);
 		primaryDiv.style.position = "absolute";
 		primaryDiv.style.left = (window.scrollX + el.getBoundingClientRect().left) + "px";
 		primaryDiv.style.top = (window.scrollY + el.getBoundingClientRect().top + el.clientHeight + 2) + "px";
