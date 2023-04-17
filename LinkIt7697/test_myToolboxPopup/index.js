@@ -73,7 +73,7 @@ function init() {
 				block = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">' + Blockly.Xml.domToText(block) + '</xml>');
 				var id = Blockly.Xml.appendDomToWorkspace(block, secondaryWorkspace);
 				
-				
+				console.log(id);
 				var newBlock = secondaryWorkspace.getBlockById(id[0]);
 				if (newBlock) {
 					var position = Blockly.utils.svgMath.getRelativeXY(newBlock.getSvgRoot());
@@ -110,7 +110,7 @@ function init() {
 		}
 		else if (event.type=="var_delete") {
 			//alert("Not allowed to delete in the toolbox.");
-			primaryWorkspace.createVariable(event.varName);
+			//primaryWorkspace.createVariable(event.varName);
 			variableFlyoutCategory();
 		}		
 	}
@@ -136,6 +136,8 @@ function init() {
 			for (var j=0;j<secondaryVariableList.length;j++) {
 				primaryWorkspace.createVariable(secondaryVariableList[j].name);
 			}
+			
+			variableFlyoutCategory();
 		}
 		else if (event.type=="create") {
 			if (event.json) {
@@ -194,7 +196,7 @@ function init() {
 		c.setAttribute("callbackKey","CREATE_VARIABLE");
 
 		let xmlDoc = Blockly.Xml.domToText(c);
-		let a=Blockly.Variables.flyoutCategoryBlocks(primaryWorkspace);
+		let a=Blockly.Variables.flyoutCategoryBlocks(secondaryWorkspace);
 		for (var i=0;i<a.length;i++) {
 			xmlDoc +=Blockly.Xml.domToText(a[i]);
 		}		
@@ -266,8 +268,8 @@ function init() {
 		var primaryDiv = document.getElementById("primaryDiv");
 		if (btnClickState == true) {
 			btnClickState = false;
-			primaryDiv.style.display = "block";
 			primaryWorkspace.clear();
+			primaryDiv.style.display = "block";
 		}
 
 		primaryWorkspace.updateToolbox(xmlDoc);
