@@ -98,7 +98,7 @@ function init() {
 		}
 		else if (event.type=="var_delete") {
 			//alert("Not allowed to delete in the toolbox.");
-			primaryWorkspace.createVariable(event.varName);
+			//primaryWorkspace.createVariable(event.varName);
 			variableFlyoutCategory();
 		}		
 	}
@@ -124,6 +124,8 @@ function init() {
 			for (var j=0;j<secondaryVariableList.length;j++) {
 				primaryWorkspace.createVariable(secondaryVariableList[j].name);
 			}
+			
+			variableFlyoutCategory();
 		}
 		else if (event.type=="create") {
 			if (event.json) {
@@ -182,7 +184,7 @@ function init() {
 		c.setAttribute("callbackKey","CREATE_VARIABLE");
 
 		let xmlDoc = Blockly.Xml.domToText(c);
-		let a=Blockly.Variables.flyoutCategoryBlocks(primaryWorkspace);
+		let a=Blockly.Variables.flyoutCategoryBlocks(secondaryWorkspace);
 		for (var i=0;i<a.length;i++) {
 			xmlDoc +=Blockly.Xml.domToText(a[i]);
 		}		
