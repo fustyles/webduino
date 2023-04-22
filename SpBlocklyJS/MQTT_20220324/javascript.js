@@ -57,7 +57,9 @@ Blockly.JavaScript['fu_mqtt_getdata_js'] = function(block) {
 	+'  }\n';
   
 	var format = block.getFieldValue('format');
-	if (format=="number")
+	if (format=="")
+	  var code = 'payload';	
+	else if (format=="number")
 	  var code = 'Number(payload)';
 	else if (format=="base64")  
 	  var code = 'mqttBinarytobase64(payload)';
