@@ -81,7 +81,8 @@ Blockly.Blocks['fu_mqtt_getdata_js'] = {
     this.appendDummyInput()
 	.appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg["MQTT_FU_GETDATA_TEXT_JS"],"text"],
-		[Blockly.Msg["MQTT_FU_GETDATA_NUMBER_JS"],"number"]
+		[Blockly.Msg["MQTT_FU_GETDATA_NUMBER_JS"],"number"],
+		[Blockly.Msg["MQTT_FU_GETDATA_BASE64_JS"],"base64"]	
 	]),"format");		  
    this.setInputsInline(true);
     this.setOutput(true, null);
