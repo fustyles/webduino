@@ -9,6 +9,7 @@ Blockly.Msg["MQTT_FU_GETDATA_TOPIC_JS"] = "当收得讯息的主题为";
 Blockly.Msg["MQTT_FU_TO_TOPIC_JS"] = "向主题";
 Blockly.Msg["MQTT_FU_PUBLISH_TEXT_JS"] = "发布讯息文字";
 Blockly.Msg["MQTT_FU_GETDATA_JS"] = "取得资料格式";
+Blockly.Msg["MQTT_FU_GETDATA_ORGIN_JS"] = "原始资料";
 Blockly.Msg["MQTT_FU_GETDATA_TEXT_JS"] = "字串";
 Blockly.Msg["MQTT_FU_GETDATA_NUMBER_JS"] = "字串转换数值";
 Blockly.Msg["MQTT_FU_GETDATA_BASE64_JS"] = "Uint8Array转换Base64字串";
