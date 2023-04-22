@@ -9,6 +9,7 @@ Blockly.Msg["MQTT_FU_GETDATA_TOPIC_JS"] = "when getting text and the topic is";
 Blockly.Msg["MQTT_FU_TO_TOPIC_JS"] = "to topic";
 Blockly.Msg["MQTT_FU_PUBLISH_TEXT_JS"] = "publish text";
 Blockly.Msg["MQTT_FU_GETDATA_JS"] = "get data format";
+Blockly.Msg["MQTT_FU_GETDATA_ORGIN_JS"] = "Original data";
 Blockly.Msg["MQTT_FU_GETDATA_TEXT_JS"] = "String";
 Blockly.Msg["MQTT_FU_GETDATA_NUMBER_JS"] = "String to Number";
 Blockly.Msg["MQTT_FU_GETDATA_BASE64_JS"] = "Uint8Array to Base64";
