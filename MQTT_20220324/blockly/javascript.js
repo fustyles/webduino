@@ -51,10 +51,18 @@ Blockly.JavaScript['fu_mqtt_senddata_js'] = function(block) {
 };
 
 Blockly.JavaScript['fu_mqtt_getdata_js'] = function(block) {
+	Blockly.JavaScript.definitions_['define_mqttBinarytobase64']=''
+	+'  function mqttBinarytobase64(input_array) {\n'
+	+'    const content = new Uint8Array(input_array);\n'
+	+'	    return btoa(String.fromCharCode.apply(null, content));\n'
+	+'  }\n';
+  
 	var format = block.getFieldValue('format');
 	if (format=="number")
 	  var code = 'Number(payload)';
+	else if (format=="number")  
+	  var code = 'mqttBinarytobase64(payload)';
 	else
-	  var code = 'new TextDecoder().decode(payload)';
-  	return [code, Blockly.JavaScript.ORDER_NONE];
+	  var code = 'new TextDecoder().decode(payload)';	
+	return [code, Blockly.JavaScript.ORDER_NONE];
 };
