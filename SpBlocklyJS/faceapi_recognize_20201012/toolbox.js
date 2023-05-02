@@ -3,7 +3,7 @@ var catFaceRecognize = '<xml>'+
 '  <block type="faceapirecognize_video">'+
 '    <value name="facelabel">'+
 '      <block type="text">'+
-'        <field name="TEXT">France;Evonne</field>'+
+'        <field name="TEXT">France;Chiling</field>'+
 '      </block>'+
 '    </value>'+
 '    <value name="faceimagepath">'+
@@ -30,7 +30,7 @@ var catFaceRecognize = '<xml>'+
 '  <block type="faceapirecognize_video">'+
 '    <value name="facelabel">'+
 '      <block type="text">'+
-'        <field name="TEXT">France;Evonne</field>'+
+'        <field name="TEXT">France;Chiling</field>'+
 '      </block>'+
 '    </value>'+
 '    <value name="faceimagepath">'+
