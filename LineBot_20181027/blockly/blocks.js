@@ -27,7 +27,7 @@ Blockly.Blocks['linebot_type'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LINENOTIFY_TEXT_SHOW,"text"], [Blockly.Msg.LINENOTIFY_STICKER_SHOW,"sticker"], [Blockly.Msg.LINENOTIFY_IMAGE,"image"], [Blockly.Msg.LINENOTIFY_VIDEO_SHOW,"video"], [Blockly.Msg.LINENOTIFY_AUDIO_SHOW,"audio"], [Blockly.Msg.LINENOTIFY_LOCATION_SHOW,"location"]]), "value_type");
+        .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LINENOTIFY_TEXT_SHOW,"text"], [Blockly.Msg.LINENOTIFY_STICKER_SHOW,"sticker"], [Blockly.Msg.LINENOTIFY_IMAGE_SHOW,"image"], [Blockly.Msg.LINENOTIFY_VIDEO_SHOW,"video"], [Blockly.Msg.LINENOTIFY_AUDIO_SHOW,"audio"], [Blockly.Msg.LINENOTIFY_LOCATION_SHOW,"location"]]), "value_type");
     this.appendValueInput("value_parameter1")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
