@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='SpeechRecognition_20220729/speechrecognition.js'></script>";
 		}	
 
-		if (xml.indexOf("linenotify")!=-1) {
+		if (xml.indexOf("linenotify")!=-1||xml.indexOf("linebot")!=-1) {
 			script += "<script src='line_20220729/line.js'></script>";
 		}	
 
@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpeechRecognition_20220729/speechrecognition.js'></script>";
 		}	
 
-		if (xml.indexOf("linenotify")!=-1) {
+		if (xml.indexOf("linenotify")!=-1||xml.indexOf("linebot")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/line_20220729/line.js'></script>";
 		}	
 
