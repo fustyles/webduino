@@ -185,7 +185,7 @@ Blockly.Blocks['linenotify_type'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LINENOTIFY_TEXT_SHOW,"text"], [Blockly.Msg.LINENOTIFY_STICKER_SHOW,"sticker"], [Blockly.Msg.LINENOTIFY_IMAGE,"image"]]), "value_type");
+        .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LINENOTIFY_TEXT_SHOW,"text"], [Blockly.Msg.LINENOTIFY_STICKER_SHOW,"sticker"], [Blockly.Msg.LINENOTIFY_IMAGE_SHOW,"image"]]), "value_type");
     this.appendValueInput("value_parameter1")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -262,7 +262,7 @@ Blockly.Blocks['linenotify_image'] = {
       .appendField(Blockly.Msg.LINENOTIFY_TOKEN_SHOW);  
   this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LINENOTIFY_VIDEO,"video"], [Blockly.Msg.LINENOTIFY_CANVAS,"canvas"], [Blockly.Msg.LINENOTIFY_IMAGE,"image"]]), "notify_source");
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LINENOTIFY_VIDEO,"video"], [Blockly.Msg.LINENOTIFY_CANVAS,"canvas"], [Blockly.Msg.LINENOTIFY_IMAGE_SHOW,"image"]]), "notify_source");
   this.appendValueInput("notify_videoid")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
