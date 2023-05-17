@@ -112,3 +112,130 @@ Blockly.Blocks['linenotify_image'] = {
   this.setColour(250);
   }
 };
+
+Blockly.Blocks['linebot_notify'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField("Line")
+		.appendField(Blockly.Msg.LINEBOT_SHOW);
+	this.appendValueInput("bot_token")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.LINENOTIFY_TOKEN_SHOW);    
+	this.appendValueInput("bot_userid")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.LINENOTIFY_USERID_SHOW);
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([[Blockly.Msg.LINENOTIFY_TEXT_SHOW,"text"], [Blockly.Msg.LINENOTIFY_STICKER_SHOW,"sticker"], [Blockly.Msg.LINENOTIFY_IMAGE_SHOW,"image"], [Blockly.Msg.LINENOTIFY_VIDEO_SHOW,"video"], [Blockly.Msg.LINENOTIFY_AUDIO_SHOW,"audio"], [Blockly.Msg.LINENOTIFY_LOCATION_SHOW,"location"]], this.validate), "value_type");
+	this.appendValueInput("value_parameter1")
+		.setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField("Parameter1","p1");
+	this.appendValueInput("value_parameter2")
+		.setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField("Parameter2","p2");
+	this.appendValueInput("value_parameter3")
+		.setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField("Parameter3","p3");
+	this.appendValueInput("value_parameter4")
+		.setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField("Parameter4","p4"); 
+	this.setInputsInline(true);	  
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setTooltip('');
+	this.setColour(250);
+  },
+  validate: function(newValue) {
+	 const block = this.sourceBlock_;
+	  if (newValue == 'text') {
+		block.getField('p1').setValue(Blockly.Msg.LINENOTIFY_TEXT_SHOW);  
+		block.getField('p2').setValue("");
+		block.getField('p3').setValue("");
+		block.getField('p4').setValue("");
+		block.getField('p1').setVisible(true);
+		block.getField('p2').setVisible(false);
+		block.getField('p3').setVisible(false);
+		block.getField('p4').setVisible(false);
+		block.getInput('value_parameter1').setVisible(true);
+		block.getInput('value_parameter2').setVisible(false);
+		block.getInput('value_parameter3').setVisible(false);
+		block.getInput('value_parameter4').setVisible(false);
+	  } 
+	  else if (newValue == "sticker") {
+		block.getField('p1').setValue(Blockly.Msg.LINENOTIFY_PACKAGEID_SHOW);
+		block.getField('p2').setValue(Blockly.Msg.LINENOTIFY_STICKERID_SHOW);  
+		block.getField('p3').setValue("");
+		block.getField('p4').setValue(""); 
+		block.getField('p1').setVisible(true);
+		block.getField('p2').setVisible(true);
+		block.getField('p3').setVisible(false);
+		block.getField('p4').setVisible(false);
+		block.getInput('value_parameter1').setVisible(true);
+		block.getInput('value_parameter2').setVisible(true);
+		block.getInput('value_parameter3').setVisible(false);
+		block.getInput('value_parameter4').setVisible(false);
+	  } 
+	  else if (newValue == "image") {
+		block.getField('p1').setValue(Blockly.Msg.LINENOTIFY_ORIGINALCONTENTURL_SHOW);
+		block.getField('p2').setValue(Blockly.Msg.LINENOTIFY_PREVIEWIMAGEURL_SHOW); 
+		block.getField('p3').setValue("");
+		block.getField('p4').setValue(""); 
+		block.getField('p1').setVisible(true);
+		block.getField('p2').setVisible(true);
+		block.getField('p3').setVisible(false);
+		block.getField('p4').setVisible(false);
+		block.getInput('value_parameter1').setVisible(true);
+		block.getInput('value_parameter2').setVisible(true);
+		block.getInput('value_parameter3').setVisible(false);
+		block.getInput('value_parameter4').setVisible(false);
+	  } 
+	  else if (newValue == "video") {
+		block.getField('p1').setValue(Blockly.Msg.LINENOTIFY_ORIGINALCONTENTURL_VIDEO_SHOW);
+		block.getField('p2').setValue(Blockly.Msg.LINENOTIFY_PREVIEWIMAGEURL_VIDEO_SHOW);  
+		block.getField('p3').setValue("");
+		block.getField('p4').setValue(""); 
+		block.getField('p1').setVisible(true);
+		block.getField('p2').setVisible(true);
+		block.getField('p3').setVisible(false);
+		block.getField('p4').setVisible(false);
+		block.getInput('value_parameter1').setVisible(true);
+		block.getInput('value_parameter2').setVisible(true);
+		block.getInput('value_parameter3').setVisible(false);
+		block.getInput('value_parameter4').setVisible(false);
+	  } 
+	  else if (newValue == "audio") {
+		block.getField('p1').setValue(Blockly.Msg.LINENOTIFY_ORIGINALCONTENTURL_AUDIO_SHOW);
+		block.getField('p2').setValue(Blockly.Msg.LINENOTIFY_DURATION_SHOW);    
+		block.getField('p3').setValue("");
+		block.getField('p4').setValue(""); 
+		block.getField('p1').setVisible(true);
+		block.getField('p2').setVisible(true);
+		block.getField('p3').setVisible(false);
+		block.getField('p4').setVisible(false);
+		block.getInput('value_parameter1').setVisible(true);
+		block.getInput('value_parameter2').setVisible(true);
+		block.getInput('value_parameter3').setVisible(false);
+		block.getInput('value_parameter4').setVisible(false);
+	  } 
+	  else if (newValue == "location") {
+		block.getField('p1').setValue(Blockly.Msg.LINENOTIFY_TITLE_SHOW);
+		block.getField('p2').setValue(Blockly.Msg.LINENOTIFY_ADDRESS_SHOW);        
+		block.getField('p3').setValue(Blockly.Msg.LINENOTIFY_LATITUDE_SHOW);  
+		block.getField('p4').setValue(Blockly.Msg.LINENOTIFY_LONGITUDE_SHOW);  
+		block.getField('p1').setVisible(true);
+		block.getField('p2').setVisible(true);
+		block.getField('p3').setVisible(true);
+		block.getField('p4').setVisible(true);
+		block.getInput('value_parameter1').setVisible(true);
+		block.getInput('value_parameter2').setVisible(true);
+		block.getInput('value_parameter3').setVisible(true);
+		block.getInput('value_parameter4').setVisible(true);
+	  }
+  }
+};
