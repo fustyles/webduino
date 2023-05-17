@@ -145,7 +145,7 @@ Blockly.Blocks['linebot_notify'] = {
 		.setCheck(null)
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField("Parameter4","p4"); 
-	this.setInputsInline(true);	  
+	this.setInputsInline(false);	  
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
 	this.setTooltip('');
