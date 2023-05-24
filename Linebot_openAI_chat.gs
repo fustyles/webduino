@@ -16,11 +16,11 @@ let reset_response = "您好，已為您清除歷史對話紀錄，讓我們重�
 let spreadsheet_ID = "";  // 試算表ID
 let sheet_Name = "";  // 工作表名稱
 
+// 系統變數
 let userMessage = "";
 let userId = "";
 let eventType = "";
 let replyToken = "";
-
 let openAI_response;
 let openAI_historical_messages;
   
