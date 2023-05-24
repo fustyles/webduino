@@ -1,7 +1,12 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2023/5/24 18:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2023/5/24 23:30
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API
+
+若傳訊無回應：
+1. openAI api額度已用盡。
+2. 指令碼屬性值暫存歷史紀錄長度已達上限，請輸入"清除對話"清除歷史紀錄。
+3. 不明原因，重新佈署或重建Apps script專案。
 */
 
 let channel_access_TOKEN = "";  // Line bot
@@ -39,8 +44,9 @@ function doPost(e) {
     if (userMessage != reset_command) {
       if (scriptProperties.getProperty(userId)==""||scriptProperties.getProperty(userId)==null) {
         openAI_historical_messages = [{"role": "system", "content": openAI_assistant_behavior}];
+
         if (spreadsheet_ID&&sheet_Name)
-          addDataToSpreadsheet(spreadsheet_ID, sheet_Name, "system", openAI_assistant_behavior);
+          addDataToSpreadsheet(spreadsheet_ID, sheet_Name, userId, "system", openAI_assistant_behavior);
       }
       else
         openAI_historical_messages = JSON.parse(scriptProperties.getProperty(userId)); 
@@ -49,8 +55,9 @@ function doPost(e) {
       chat_message.role = "user";
       chat_message.content = userMessage;
       openAI_historical_messages.push(chat_message);
+
       if (spreadsheet_ID&&sheet_Name)
-        addDataToSpreadsheet(spreadsheet_ID, sheet_Name, "user", userMessage); 
+        addDataToSpreadsheet(spreadsheet_ID, sheet_Name, userId, "user", userMessage); 
 
       let url = "https://api.openAI.com/v1/chat/completions";
 
@@ -79,12 +86,13 @@ function doPost(e) {
       scriptProperties.setProperty(userId, JSON.stringify(openAI_historical_messages));
 
       if (spreadsheet_ID&&sheet_Name)
-        addDataToSpreadsheet(spreadsheet_ID, sheet_Name, "assistant", openAI_response);      
+        addDataToSpreadsheet(spreadsheet_ID, sheet_Name, userId, "assistant", openAI_response);      
     } else {
       scriptProperties.setProperty(userId, '');
       openAI_response = reset_response;
+
       if (spreadsheet_ID&&sheet_Name)
-        addDataToSpreadsheet(spreadsheet_ID, sheet_Name, "user", reset_command);      
+        addDataToSpreadsheet(spreadsheet_ID, sheet_Name, userId, "user", reset_command);      
     }
 
     let replyMessage = [{
@@ -114,10 +122,10 @@ function sendMessageToLineBot(accessToken, replyToken, reply_message) {
   
 } 
 
-function addDataToSpreadsheet(spreadsheetId, sheetName, chatType, chatContent) {
+function addDataToSpreadsheet(spreadsheetId, sheetName, chatId, chatType, chatContent) {
   var dataDate = Utilities.formatDate(new Date(), "GMT+8", "yyyy-MM-dd");
   var dataTime = Utilities.formatDate(new Date(), "GMT+8", "HH:mm:ss");
-  var data = [dataDate, dataTime, chatType, chatContent]; // 要新增的資料
+  var data = [dataDate, dataTime, chatId, chatType, chatContent]; // 要新增的資料
   
   var spreadsheet = SpreadsheetApp.openById(spreadsheetId);
   var sheet = spreadsheet.getSheetByName(sheetName);
