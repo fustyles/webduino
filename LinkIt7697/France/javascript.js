@@ -590,8 +590,9 @@ Blockly.Arduino['openai_chat_initial'] = function (block) {
   var apikey = Blockly.Arduino.valueToCode(block, 'apikey', Blockly.Arduino.ORDER_ATOMIC)||"";	
   var role = Blockly.Arduino.valueToCode(block, 'role', Blockly.Arduino.ORDER_ATOMIC)||"";
   role = role.replace(/"/g,"\\\"");
+  var model = block.getFieldValue('model');
 
-  Blockly.Arduino.definitions_['openai_chat_initial'] = 'String openaiKey = '+apikey+';\nString model = "gpt-3.5-turbo";\nString system_content = "{\\"role\\": \\"system\\", \\"content\\":'+ role +'}";\nString historical_messages = system_content;\n';  
+  Blockly.Arduino.definitions_['openai_chat_initial'] = 'String openaiKey = '+apikey+';\nString model = "'+model+'";\nString system_content = "{\\"role\\": \\"system\\", \\"content\\":'+ role +'}";\nString historical_messages = system_content;\n';  
 	
   Blockly.Arduino.definitions_['openai_chat_request'] = 'String openAI_chat_request(String message) {\n';
   

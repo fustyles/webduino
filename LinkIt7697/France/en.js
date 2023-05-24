@@ -1935,6 +1935,7 @@ Blockly.Msg.OPENAI_CHAT_KEY_SHOW = "Key";
 Blockly.Msg.OPENAI_CHAT_ROLE_SHOW = "Assistant behavior";  
 Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW = "openAI Send content";
 Blockly.Msg.OPENAI_CHAT_RESET_SHOW = "openAI Reset messages";
+Blockly.Msg.OPENAI_CHAT_MODEL_SHOW = "Model";
 
 Blockly.Msg["GY30_GETDATA_SHOW"] = "GY-30 Light intensity sensor read data(lx)";
 

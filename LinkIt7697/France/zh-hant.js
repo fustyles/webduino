@@ -1944,6 +1944,7 @@ Blockly.Msg.OPENAI_CHAT_KEY_SHOW = "Key";
 Blockly.Msg.OPENAI_CHAT_ROLE_SHOW = "助手行為";  
 Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW = "openAI 發送對話";
 Blockly.Msg.OPENAI_CHAT_RESET_SHOW = "openAI 重設對話";
+Blockly.Msg.OPENAI_CHAT_MODEL_SHOW = "模型";
 
 Blockly.Msg["GY30_GETDATA_SHOW"] = "GY-30光照度 讀取感測器值(lx)";
 
