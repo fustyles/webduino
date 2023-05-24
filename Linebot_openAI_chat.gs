@@ -1,12 +1,15 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2023/3/29 10:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2023/5/24 18:30
 https://www.facebook.com/francefu
-
 Line Bot Webhook & Google Apps script & ChatGTP API
 */
 
 let channel_access_TOKEN = "";  // Line bot
 let openAI_api_KEY = "";  // openAI
+
+// 可記錄對話內容於試算表，若無需紀錄可空白不填
+let spreadsheet_ID = "";  
+let sheet_Name = "";  // 工作表名稱
 
 let openAI_model = "gpt-3.5-turbo";   // gpt-3.5-turbo, gpt-3.5-turbo-0301, gpt-4 (gpt-4限plus帳號或已有試用資格帳號)
 let openAI_assistant_behavior = "你是使用繁體中文語言的專業助理";
@@ -34,8 +37,11 @@ function doPost(e) {
     replyToken = msg.events[0].replyToken;  
 
     if (userMessage != reset_command) {
-      if (scriptProperties.getProperty(userId)==""||scriptProperties.getProperty(userId)==null)
+      if (scriptProperties.getProperty(userId)==""||scriptProperties.getProperty(userId)==null) {
         openAI_historical_messages = [{"role": "system", "content": openAI_assistant_behavior}];
+        if (spreadsheet_ID&&sheet_Name)
+          addDataToSpreadsheet(spreadsheet_ID, sheet_Name, "system", openAI_assistant_behavior);
+      }
       else
         openAI_historical_messages = JSON.parse(scriptProperties.getProperty(userId)); 
 
@@ -43,6 +49,8 @@ function doPost(e) {
       chat_message.role = "user";
       chat_message.content = userMessage;
       openAI_historical_messages.push(chat_message);
+      if (spreadsheet_ID&&sheet_Name)
+        addDataToSpreadsheet(spreadsheet_ID, sheet_Name, "user", userMessage); 
 
       let url = "https://api.openAI.com/v1/chat/completions";
 
@@ -69,9 +77,14 @@ function doPost(e) {
       openAI_historical_messages.push(chat_message);
 	    
       scriptProperties.setProperty(userId, JSON.stringify(openAI_historical_messages));
+
+      if (spreadsheet_ID&&sheet_Name)
+        addDataToSpreadsheet(spreadsheet_ID, sheet_Name, "assistant", openAI_response);      
     } else {
       scriptProperties.setProperty(userId, '');
       openAI_response = reset_response;
+      if (spreadsheet_ID&&sheet_Name)
+        addDataToSpreadsheet(spreadsheet_ID, sheet_Name, "user", reset_command);      
     }
 
     let replyMessage = [{
@@ -100,3 +113,27 @@ function sendMessageToLineBot(accessToken, replyToken, reply_message) {
   });
   
 } 
+
+function addDataToSpreadsheet(spreadsheetId, sheetName) {
+  var spreadsheetId = "Your Spreadsheet ID"; // 試算表的 ID
+  var sheetName = "Sheet1"; // 試算表中的工作表名稱
+  
+  var data = ["John", "Doe", "john.doe@example.com"]; // 要新增的資料
+  
+  var spreadsheet = SpreadsheetApp.openById(spreadsheetId);
+  var sheet = spreadsheet.getSheetByName(sheetName);
+  
+  sheet.appendRow(data);
+}
+
+function addDataToSpreadsheet(spreadsheetId, sheetName, chatType, chatContent) {
+  var dataDate = Utilities.formatDate(new Date(), "GMT+8", "yyyy-MM-dd");
+  var dataTime = Utilities.formatDate(new Date(), "GMT+8", "HH:mm:ss");
+  var data = [dataDate, dataTime, chatType, chatContent]; // 要新增的資料
+  
+  var spreadsheet = SpreadsheetApp.openById(spreadsheetId);
+  var sheet = spreadsheet.getSheetByName(sheetName);
+  
+  sheet.insertRowBefore(1); // 在第一列前插入一列
+  sheet.getRange(1, 1, 1, data.length).setValues([data]); // 將資料寫入第一列
+}
