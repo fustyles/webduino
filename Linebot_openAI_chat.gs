@@ -126,11 +126,11 @@ function sendMessageToLineBot(accessToken, replyToken, reply_message) {
 function addDataToSpreadsheet(spreadsheetId, sheetName, chatId, chatType, chatContent) {
   var dataDate = Utilities.formatDate(new Date(), "GMT+8", "yyyy-MM-dd");
   var dataTime = Utilities.formatDate(new Date(), "GMT+8", "HH:mm:ss");
-  var data = [dataDate, dataTime, chatId, chatType, chatContent]; // 要新增的資料
+  var data = [dataDate, dataTime, chatId, chatType, chatContent];
   
   var spreadsheet = SpreadsheetApp.openById(spreadsheetId);
   var sheet = spreadsheet.getSheetByName(sheetName);
   
-  sheet.insertRowBefore(1); // 在第一列前插入一列
-  sheet.getRange(1, 1, 1, data.length).setValues([data]); // 將資料寫入第一列
+  sheet.insertRowBefore(1);
+  sheet.getRange(1, 1, 1, data.length).setValues([data]);
 }
