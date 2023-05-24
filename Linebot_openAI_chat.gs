@@ -114,18 +114,6 @@ function sendMessageToLineBot(accessToken, replyToken, reply_message) {
   
 } 
 
-function addDataToSpreadsheet(spreadsheetId, sheetName) {
-  var spreadsheetId = "Your Spreadsheet ID"; // 試算表的 ID
-  var sheetName = "Sheet1"; // 試算表中的工作表名稱
-  
-  var data = ["John", "Doe", "john.doe@example.com"]; // 要新增的資料
-  
-  var spreadsheet = SpreadsheetApp.openById(spreadsheetId);
-  var sheet = spreadsheet.getSheetByName(sheetName);
-  
-  sheet.appendRow(data);
-}
-
 function addDataToSpreadsheet(spreadsheetId, sheetName, chatType, chatContent) {
   var dataDate = Utilities.formatDate(new Date(), "GMT+8", "yyyy-MM-dd");
   var dataTime = Utilities.formatDate(new Date(), "GMT+8", "HH:mm:ss");
