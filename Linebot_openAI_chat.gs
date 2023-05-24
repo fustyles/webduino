@@ -6,15 +6,14 @@ Line Bot Webhook & Google Apps script & ChatGTP API
 
 let channel_access_TOKEN = "";  // Line bot
 let openAI_api_KEY = "";  // openAI
-
-// 可記錄對話內容於試算表，若無需紀錄可空白不填
-let spreadsheet_ID = "";  // 試算表ID
-let sheet_Name = "";  // 工作表名稱
-
 let openAI_model = "gpt-3.5-turbo";   // gpt-3.5-turbo, gpt-3.5-turbo-0301, gpt-4 (gpt-4限plus帳號或已有試用資格帳號)
 let openAI_assistant_behavior = "你是使用繁體中文語言的專業助理";
 let reset_command = "清除對話";
 let reset_response = "您好，已為您清除歷史對話紀錄，讓我們重新聊天吧！";
+
+// 可記錄對話內容於試算表，若無需紀錄可空白不填
+let spreadsheet_ID = "";  // 試算表ID
+let sheet_Name = "";  // 工作表名稱
 
 let userMessage = "";
 let userId = "";
