@@ -6,7 +6,8 @@ Line Bot Webhook & Google Apps script & ChatGTP API
 若傳訊無回應：
 1. openAI api額度已用盡或key值已失效。
 2. 指令碼屬性值暫存歷史紀錄長度已達上限，請輸入"清除對話"清除歷史紀錄。
-3. 不明原因，重新佈署或重建Apps script專案。
+3. 指令碼屬性數已達上限，無法再新增Line bot使用者。
+4. 不明原因，重新佈署或重建Apps script專案。
 */
 
 let channel_access_TOKEN = "";  // Line bot
