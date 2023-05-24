@@ -8,7 +8,7 @@ let channel_access_TOKEN = "";  // Line bot
 let openAI_api_KEY = "";  // openAI
 
 // 可記錄對話內容於試算表，若無需紀錄可空白不填
-let spreadsheet_ID = "";  
+let spreadsheet_ID = "";  // 試算表ID
 let sheet_Name = "";  // 工作表名稱
 
 let openAI_model = "gpt-3.5-turbo";   // gpt-3.5-turbo, gpt-3.5-turbo-0301, gpt-4 (gpt-4限plus帳號或已有試用資格帳號)
