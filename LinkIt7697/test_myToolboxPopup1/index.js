@@ -14,7 +14,7 @@
 /**
  * @fileoverview Toolbox Popup
  * @author https://www.facebook.com/francefu/
- * @Update 4/17/2023 11:30 (Taiwan Standard Time)
+ * @Update 5/25/2023 20:00 (Taiwan Standard Time)
  */
 
 function init() {
@@ -63,6 +63,7 @@ function init() {
 	hideFlyout();
 	
 	var newBlock = null;
+	var newBlockTimer;
 	var timerDelete;
 	var timerDeleteGroup = "";
 	function primaryWorkspaceListener(event) {
@@ -106,15 +107,20 @@ function init() {
 	
 	function secondaryWorkspaceListener(event) {
 		if (event.type=="finished_loading"&&newBlock) {
-			var mouseClient = new Blockly.utils.Coordinate(mouse_cursor.pageX-window.scrollX, mouse_cursor.pageY-window.scrollY); 
-			var mousePos = Blockly.utils.svgMath.screenToWsCoordinates(secondaryWorkspace, mouseClient);
-			var blockPos = Blockly.utils.svgMath.getRelativeXY(newBlock.getSvgRoot());
-			var scrollX = secondaryWorkspace.scrollX;
-			var scrollY = secondaryWorkspace.scrollY;
-			
-			newBlock.moveBy(mousePos.x-blockPos.x, mousePos.y-blockPos.y+50);
-			newBlock = null;
+			newBlockTimer = window.setInterval(function(){
+				var mouseClient = new Blockly.utils.Coordinate((mouse_cursor.pageX-window.scrollX)/secondaryWorkspace.scale, (mouse_cursor.pageY-window.scrollY)/secondaryWorkspace.scale); 
+				var mousePos = Blockly.utils.svgMath.screenToWsCoordinates(secondaryWorkspace, mouseClient);
+				var blockPos = Blockly.utils.svgMath.getRelativeXY(newBlock.getSvgRoot());
+				var scrollX = secondaryWorkspace.scrollX;
+				var scrollY = secondaryWorkspace.scrollY;
+				
+				newBlock.moveBy(mousePos.x-blockPos.x, mousePos.y-blockPos.y);
+			}, 100);
 		}
+		else if (event.type=="click"&&newBlock) {
+			clearInterval(newBlockTimer);
+			newBlock = null;
+		}		
 		else if (event.type=="var_create"||event.type=="var_rename"||event.type=="var_delete") {
 			primaryWorkspace.clear();
 			secondaryVariableList = secondaryWorkspace.getAllVariables();
@@ -280,5 +286,3 @@ function init() {
 	  } 
 	}
 }
-
-
