@@ -55,7 +55,9 @@ function doPost(e) {
     replyToken = msg.events[0].replyToken;  
       
     if (userMessage != reset_command) {
+      
       if (userMessage.indexOf("image:")!=-1) {
+        
         if (spreadsheet_ID&&sheet_Name)
           addDataToSpreadsheet(spreadsheet_ID, sheet_Name, userId, "user", userMessage);
 
@@ -102,13 +104,13 @@ function doPost(e) {
 
           if (spreadsheet_ID&&sheet_Name)
             addDataToSpreadsheet(spreadsheet_ID, sheet_Name, userId, "assistant", imageUrl);
-        }
-        else {
+        } else {
           if (spreadsheet_ID&&sheet_Name)
             addDataToSpreadsheet(spreadsheet_ID, sheet_Name, userId, "assistant", openAI_response);
         }        
 
       } else {
+        
         if (scriptProperties.getProperty(userId)==""||scriptProperties.getProperty(userId)==null) {
           openAI_historical_messages = [{"role": "system", "content": openAI_assistant_behavior}];
 
@@ -155,7 +157,9 @@ function doPost(e) {
         if (spreadsheet_ID&&sheet_Name)
           addDataToSpreadsheet(spreadsheet_ID, sheet_Name, userId, "assistant", openAI_response);  
       }    
+      
     } else {
+      
       scriptProperties.setProperty(userId, '');
       openAI_response = reset_response;
 
@@ -193,11 +197,11 @@ function sendMessageToLineBot(accessToken, replyToken, reply_message) {
 function addDataToSpreadsheet(spreadsheetId, sheetName, chatId, chatType, chatContent) {
   var dataDate = Utilities.formatDate(new Date(), "GMT+8", "yyyy-MM-dd");
   var dataTime = Utilities.formatDate(new Date(), "GMT+8", "HH:mm:ss");
-  var data = [dataDate, dataTime, chatId, chatType, chatContent]; // 要新增的資料
+  var data = [dataDate, dataTime, chatId, chatType, chatContent];
   
   var spreadsheet = SpreadsheetApp.openById(spreadsheetId);
   var sheet = spreadsheet.getSheetByName(sheetName);
   
-  sheet.insertRowBefore(1); // 在第一列前插入一列
-  sheet.getRange(1, 1, 1, data.length).setValues([data]); // 將資料寫入第一列
+  sheet.insertRowBefore(1);
+  sheet.getRange(1, 1, 1, data.length).setValues([data]);
 }
