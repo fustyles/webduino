@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2023/5/25 00:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2023/5/25 09:30
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API
 
@@ -84,21 +84,29 @@ function doPost(e) {
         }]
         sendMessageToLineBot(channel_access_TOKEN, replyToken, replyMessage);       
 
-        var imageFilename = "openAI"+'_'+Utilities.formatDate(new Date(), "GMT", "yyyyMMddHHmmss");
-        var imageBlob = UrlFetchApp.fetch(openAI_response).getBlob();
-        var folder, folders = DriveApp.getFoldersByName(driveFolderName);
-        if (folders.hasNext()) {
-          folder = folders.next();
-        } else {
-          folder = DriveApp.createFolder(driveFolderName);
-        }
-        var file = folder.createFile(imageBlob).setName(imageFilename);
-        file.setDescription("Uploaded by line Bot");
-        var imageID = file.getUrl().substring(file.getUrl().indexOf("/d/")+3,file.getUrl().indexOf("view")-1);
-        var imageUrl = "https://drive.google.com/uc?authuser=0&id="+imageID;
+        if (driveFolderName) {
+          var imageFilename = "openAI"+'_'+Utilities.formatDate(new Date(), "GMT", "yyyyMMddHHmmss");
+          var imageBlob = UrlFetchApp.fetch(openAI_response).getBlob();  
+          
+          var folder, folders = DriveApp.getFoldersByName(driveFolderName);
+          if (folders.hasNext()) {
+            folder = folders.next();
+          } else {
+            folder = DriveApp.createFolder(driveFolderName);
+          }
+          var file = folder.createFile(imageBlob).setName(imageFilename);
+          file.setDescription("Uploaded by line Bot");
+          
+          var imageID = file.getUrl().substring(file.getUrl().indexOf("/d/")+3,file.getUrl().indexOf("view")-1);
+          var imageUrl = "https://drive.google.com/uc?authuser=0&id="+imageID;
 
-        if (spreadsheet_ID&&sheet_Name)
-          addDataToSpreadsheet(spreadsheet_ID, sheet_Name, userId, "assistant", imageUrl);          
+          if (spreadsheet_ID&&sheet_Name)
+            addDataToSpreadsheet(spreadsheet_ID, sheet_Name, userId, "assistant", imageUrl);
+        }
+        else {
+          if (spreadsheet_ID&&sheet_Name)
+            addDataToSpreadsheet(spreadsheet_ID, sheet_Name, userId, "assistant", openAI_response);
+        }        
 
       } else {
         if (scriptProperties.getProperty(userId)==""||scriptProperties.getProperty(userId)==null) {
