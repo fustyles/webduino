@@ -7,7 +7,7 @@ Line Bot Webhook & Google Apps script & ChatGTP API
 1. openAI api額度已用盡或Key已失效。
 2. 指令碼屬性值暫存歷史對話紀錄字串長度已達上限，請輸入"清除對話"清除歷史紀錄重新對話。
 3. 指令碼屬性數超過上限，新增的Line bot使用者將無法記錄歷史對話，可付費升級為Google付費會員。
-4. 不明原因，重新佈署或重建Apps script專案。
+4. 不明原因，重新佈署或重建Apps script專案並開放存取權限。
 
 圖片生成並存入Google雲端硬碟：
 格式： 
