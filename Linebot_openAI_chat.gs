@@ -53,7 +53,6 @@ function doPost(e) {
     userId = msg.events[0].source.userId;
     eventType = msg.events[0].source.type;
     replyToken = msg.events[0].replyToken;  
-
       
     if (userMessage != reset_command) {
       if (userMessage.indexOf("image:")!=-1) {
@@ -61,7 +60,6 @@ function doPost(e) {
           addDataToSpreadsheet(spreadsheet_ID, sheet_Name, userId, "user", userMessage);
 
         let url = "https://api.openai.com/v1/images/generations";
-
         let data = {
           "prompt": userMessage.substring(6),
           "n": 1,      
@@ -87,8 +85,7 @@ function doPost(e) {
         sendMessageToLineBot(channel_access_TOKEN, replyToken, replyMessage);       
 
         var imageFilename = "openAI"+'_'+Utilities.formatDate(new Date(), "GMT", "yyyyMMddHHmmss");
-        var imageBlob = UrlFetchApp.fetch(openAI_response).getBlob();  
-        
+        var imageBlob = UrlFetchApp.fetch(openAI_response).getBlob();
         var folder, folders = DriveApp.getFoldersByName(driveFolderName);
         if (folders.hasNext()) {
           folder = folders.next();
@@ -97,7 +94,6 @@ function doPost(e) {
         }
         var file = folder.createFile(imageBlob).setName(imageFilename);
         file.setDescription("Uploaded by line Bot");
-        
         var imageID = file.getUrl().substring(file.getUrl().indexOf("/d/")+3,file.getUrl().indexOf("view")-1);
         var imageUrl = "https://drive.google.com/uc?authuser=0&id="+imageID;
 
