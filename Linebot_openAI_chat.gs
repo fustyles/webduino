@@ -10,7 +10,7 @@ Line Bot Webhook & Google Apps script & ChatGTP API
 
 圖片生成並存入Google雲端硬碟：
 格式： 
-image:你的prompt
+image:你的prompts
 例如： 
 image:美麗的台灣
 */
