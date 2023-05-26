@@ -70,7 +70,7 @@ function init() {
 
         if (newBlock) {
             var blockToMouseXY = getBlockToMouseXY(newBlock);
-            newBlock.moveBy(blockToMouseXY.x-10, blockToMouseXY.y-30);
+            newBlock.moveBy(blockToMouseXY.x-10, blockToMouseXY.y-10);
             newBlock = null;
         }
     }
