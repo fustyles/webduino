@@ -111,8 +111,8 @@ function init() {
 				var mouseClient = new Blockly.utils.Coordinate((mouse_cursor.pageX-window.scrollX)/secondaryWorkspace.scale, (mouse_cursor.pageY-window.scrollY)/secondaryWorkspace.scale); 
 				var mousePos = Blockly.utils.svgMath.screenToWsCoordinates(secondaryWorkspace, mouseClient);
 				var blockPos = Blockly.utils.svgMath.getRelativeXY(newBlock.getSvgRoot());
-				var scrollX = secondaryWorkspace.scrollX;
-				var scrollY = secondaryWorkspace.scrollY;
+				//var scrollX = secondaryWorkspace.scrollX;
+				//var scrollY = secondaryWorkspace.scrollY;
 				
 				newBlock.moveBy(mousePos.x-blockPos.x, mousePos.y-blockPos.y);
 			}, 100);
