@@ -79,9 +79,7 @@ function init() {
     hidePrimaryFlyout();
 
     var newBlock = null;
-    var newBlockTimer;
     var newBlockProcedures = false;
-    var timerDelete;
 
     function primaryWorkspaceListener(event) {
         if (event.type == "create") {
