@@ -14,7 +14,7 @@
 /**
  * @fileoverview Toolbox Popup
  * @author https://www.facebook.com/francefu/
- * @Update 5/26/2023 16:00 (Taiwan Standard Time)
+ * @Update 5/26/2023 18:30 (Taiwan Standard Time)
  */
 
 function init() {
@@ -64,13 +64,21 @@ function init() {
 	
 	var newBlock = null;
 	var newBlockTimer;
+	var newBlockProcedures = false;
 	var timerDelete;
-	var timerDeleteGroup = "";
 	
 	function primaryWorkspaceListener(event) {
 		if (event.type=="create") {
 			var block = primaryWorkspace.getBlockById(event.blockId);
 			if (block) {
+				if((event.json.type=="procedures_defnoreturn"||event.json.type=="procedures_defreturn")&&newBlockProcedures == true)
+					return;
+				if(event.json.type=="procedures_callnoreturn"||event.json.type=="procedures_callreturn") {
+					newBlockProcedures = true;
+					setTimeout(function(){
+						newBlockProcedures = false;
+					}, 1000);
+				}
 				block = Blockly.Xml.blockToDom(block, true);
 				block = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">' + Blockly.Xml.domToText(block) + '</xml>');
 				var id = Blockly.Xml.appendDomToWorkspace(block, secondaryWorkspace);
