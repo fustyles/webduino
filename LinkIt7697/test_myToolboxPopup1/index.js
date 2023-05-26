@@ -14,7 +14,7 @@
 /**
  * @fileoverview Toolbox Popup
  * @author https://www.facebook.com/francefu/
- * @Update 5/25/2023 20:00 (Taiwan Standard Time)
+ * @Update 5/26/2023 16:00 (Taiwan Standard Time)
  */
 
 function init() {
@@ -60,12 +60,13 @@ function init() {
         mouse_cursor.screenY = e.screenY;  		
     }
 	
-	hideFlyout();
+	hidePrimaryFlyout();
 	
 	var newBlock = null;
 	var newBlockTimer;
 	var timerDelete;
 	var timerDeleteGroup = "";
+	
 	function primaryWorkspaceListener(event) {
 		if (event.type=="create") {
 			var block = primaryWorkspace.getBlockById(event.blockId);
@@ -75,13 +76,16 @@ function init() {
 				var id = Blockly.Xml.appendDomToWorkspace(block, secondaryWorkspace);
 				newBlock = secondaryWorkspace.getBlockById(id[0]);
 				if (newBlock) {
+					var mousePos = getBlockToMouseXY(newBlock);
+					newBlock.moveBy(mousePos.x, mousePos.y);
+					
 					newBlock.select();
 					newBlock.bringToFront();
 					primaryWorkspace.getAudioManager().play("click");
 				}
 
 				setTimeout(function () {
-					hideFlyout();
+					hidePrimaryFlyout();
 				}, 200);
 			}
 		}
@@ -108,13 +112,12 @@ function init() {
 	function secondaryWorkspaceListener(event) {
 		if (event.type=="finished_loading"&&newBlock) {
 			newBlockTimer = window.setInterval(function(){
-				var mouseClient = new Blockly.utils.Coordinate((mouse_cursor.pageX-window.scrollX)/secondaryWorkspace.scale, (mouse_cursor.pageY-window.scrollY)/secondaryWorkspace.scale); 
-				var mousePos = Blockly.utils.svgMath.screenToWsCoordinates(secondaryWorkspace, mouseClient);
-				var blockPos = Blockly.utils.svgMath.getRelativeXY(newBlock.getSvgRoot());
-				//var scrollX = secondaryWorkspace.scrollX;
-				//var scrollY = secondaryWorkspace.scrollY;
-				
-				newBlock.moveBy(mousePos.x-blockPos.x, mousePos.y-blockPos.y);
+				if (newBlock) {
+					var mousePos = getBlockToMouseXY(newBlock);
+					newBlock.moveBy(mousePos.x, mousePos.y);
+				}
+				else
+					clearInterval(newBlockTimer);
 			}, 100);
 		}
 		else if (event.type=="click"&&newBlock) {
@@ -151,7 +154,7 @@ function init() {
 		}		
 
 		if (event.type=="click") {
-			hideFlyout();
+			hidePrimaryFlyout();
 		}
 	}	
 	secondaryWorkspace.addChangeListener(secondaryWorkspaceListener);	
@@ -161,14 +164,14 @@ function init() {
 		var xmlDoc = '<xml id="toolbox"><block type="controls_if"></block><block type="logic_compare"></block><block type="logic_operation"></block><block type="logic_negate"></block><block type="logic_boolean"></block></xml>';
 		
 		btnClickState = true;
-		showFlyout(this.id, xmlDoc);
+		showPrimaryFlyout(this.id, xmlDoc);
 	} 
 	
 	document.getElementById('loop').onclick = function () {
 		var xmlDoc = '<xml id="toolbox"><block type="controls_repeat_ext"><value name="TIMES"><shadow type="math_number"><field name="NUM">10</field></shadow></value></block><block type="controls_flow_statements"></block></xml>';
 		
 		btnClickState = true;
-		showFlyout(this.id, xmlDoc);
+		showPrimaryFlyout(this.id, xmlDoc);
 	}
 
 	document.getElementById('variable').onclick = function () {
@@ -192,7 +195,7 @@ function init() {
 			xmlDoc +=Blockly.Xml.domToText(a[i]);
 		}		
 		xmlDoc = '<xml id="toolbox">'+xmlDoc+'</xml>';
-		showFlyout('variable', xmlDoc);
+		showPrimaryFlyout('variable', xmlDoc);
 		
 		primaryWorkspace.registerButtonCallback("CREATE_VARIABLE",function(d){Blockly.Variables.createVariableButtonHandler(d.getTargetWorkspace())});
 	}
@@ -252,10 +255,10 @@ function init() {
 			xmlDoc +=Blockly.Xml.domToText(c[i]);
 		}
 		xmlDoc = '<xml id="toolbox">'+xmlDoc+'</xml>';
-		showFlyout('procedures', xmlDoc);
+		showPrimaryFlyout('procedures', xmlDoc);
 	};	
 	
-	function showFlyout(el, xmlDoc) {
+	function showPrimaryFlyout(el, xmlDoc) {
 		var primaryDiv = document.getElementById("primaryDiv");
 		if (btnClickState == true) {
 			btnClickState = false;
@@ -276,7 +279,7 @@ function init() {
 		}
 	}
 	
-	function hideFlyout() {
+	function hidePrimaryFlyout() {
 	  var primaryDiv = document.getElementById("primaryDiv");
 	  primaryDiv.style.display = "none";
 	  
@@ -285,4 +288,14 @@ function init() {
 		  blocklyFlyout[f].style.display = "none";
 	  } 
 	}
+	
+	function getBlockToMouseXY(block) {
+	  var mouseClient = new Blockly.utils.Coordinate((mouse_cursor.pageX-window.scrollX)/secondaryWorkspace.scale, (mouse_cursor.pageY-window.scrollY)/secondaryWorkspace.scale); 
+	  var mousePos = Blockly.utils.svgMath.screenToWsCoordinates(secondaryWorkspace, mouseClient);
+	  var blockPos = Blockly.utils.svgMath.getRelativeXY(block.getSvgRoot());
+	  var pos = {};
+	  pos.x = mousePos.x-blockPos.x
+	  pos.y = mousePos.y-blockPos.y
+	  return pos;
+	}	
 }
