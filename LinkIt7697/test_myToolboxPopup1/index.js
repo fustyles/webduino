@@ -259,8 +259,8 @@ function init() {
         }
 
         primaryWorkspace.updateToolbox(xmlDoc);
-        if (primaryWorkspace.flyout);
-        primaryWorkspace.flyout.scrollToStart();
+        if (primaryWorkspace.flyout)
+            primaryWorkspace.flyout.scrollToStart();
 
         el = document.getElementById(el);
         primaryDiv.style.position = "absolute";
