@@ -71,7 +71,7 @@ function init() {
         if (newBlock) {
             var blockToMouseXY = getBlockToMouseXY(newBlock);
             newBlock.moveBy(blockToMouseXY.x-10, blockToMouseXY.y-30);
-			newBlock = null;
+            newBlock = null;
         }
     }
     document.body.addEventListener('mousemove', getMousePosition, false);
