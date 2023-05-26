@@ -14,7 +14,7 @@
 /**
  * @fileoverview Toolbox Popup
  * @author https://www.facebook.com/francefu/
- * @Update 5/26/2023 20:00 (Taiwan Standard Time)
+ * @Update 5/26/2023 20:30 (Taiwan Standard Time)
  */
 function init() {
     // Inject primary workspace.
@@ -70,7 +70,8 @@ function init() {
 
         if (newBlock) {
             var blockToMouseXY = getBlockToMouseXY(newBlock);
-            newBlock.moveBy(blockToMouseXY.x, blockToMouseXY.y);
+            newBlock.moveBy(blockToMouseXY.x-10, blockToMouseXY.y-30);
+			newBlock = null;
         }
     }
     document.body.addEventListener('mousemove', getMousePosition, false);
@@ -100,7 +101,6 @@ function init() {
                 var id = Blockly.Xml.appendDomToWorkspace(block, secondaryWorkspace);
                 newBlock = secondaryWorkspace.getBlockById(id[0]);
                 if (newBlock) {
-                    newBlock.select();
                     newBlock.bringToFront();
                     primaryWorkspace.getAudioManager().play("click");
                 }
@@ -128,9 +128,7 @@ function init() {
     primaryWorkspace.addChangeListener(primaryWorkspaceListener);
 
     function secondaryWorkspaceListener(event) {
-        if (event.type == "click" && newBlock) {
-            newBlock = null;
-        } else if (event.type == "var_create" || event.type == "var_rename" || event.type == "var_delete") {
+        if (event.type == "var_create" || event.type == "var_rename" || event.type == "var_delete") {
             primaryWorkspace.clear();
             secondaryVariableList = secondaryWorkspace.getAllVariables();
             for (var j = 0; j < secondaryVariableList.length; j++)
