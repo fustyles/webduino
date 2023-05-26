@@ -14,7 +14,7 @@
 /**
  * @fileoverview Toolbox Popup
  * @author https://www.facebook.com/francefu/
- * @Update 5/26/2023 18:30 (Taiwan Standard Time)
+ * @Update 5/26/2023 20:00 (Taiwan Standard Time)
  */
 function init() {
     // Inject primary workspace.
@@ -56,7 +56,6 @@ function init() {
     });
 
     var mouse_cursor = {};
-    document.body.addEventListener('mousemove', getMousePosition, false);
 
     function getMousePosition(e) {
         e = e || window.event;
@@ -68,7 +67,13 @@ function init() {
         mouse_cursor.clientY = e.clientY;
         mouse_cursor.screenX = e.screenX;
         mouse_cursor.screenY = e.screenY;
+
+        if (newBlock) {
+            var blockToMouseXY = getBlockToMouseXY(newBlock);
+            newBlock.moveBy(blockToMouseXY.x, blockToMouseXY.y);
+        }
     }
+    document.body.addEventListener('mousemove', getMousePosition, false);
 
     hidePrimaryFlyout();
 
@@ -91,12 +96,10 @@ function init() {
                 }
                 block = Blockly.Xml.blockToDom(block, true);
                 block = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">' + Blockly.Xml.domToText(block) + '</xml>');
+
                 var id = Blockly.Xml.appendDomToWorkspace(block, secondaryWorkspace);
                 newBlock = secondaryWorkspace.getBlockById(id[0]);
                 if (newBlock) {
-                    var mousePos = getBlockToMouseXY(newBlock);
-                    newBlock.moveBy(mousePos.x, mousePos.y);
-
                     newBlock.select();
                     newBlock.bringToFront();
                     primaryWorkspace.getAudioManager().play("click");
@@ -125,24 +128,13 @@ function init() {
     primaryWorkspace.addChangeListener(primaryWorkspaceListener);
 
     function secondaryWorkspaceListener(event) {
-        if (event.type == "finished_loading" && newBlock) {
-            newBlockTimer = window.setInterval(function() {
-                if (newBlock) {
-                    var mousePos = getBlockToMouseXY(newBlock);
-                    newBlock.moveBy(mousePos.x, mousePos.y);
-                } else
-                    clearInterval(newBlockTimer);
-            }, 100);
-        } else if (event.type == "click" && newBlock) {
-            clearInterval(newBlockTimer);
+        if (event.type == "click" && newBlock) {
             newBlock = null;
         } else if (event.type == "var_create" || event.type == "var_rename" || event.type == "var_delete") {
             primaryWorkspace.clear();
             secondaryVariableList = secondaryWorkspace.getAllVariables();
-            for (var j = 0; j < secondaryVariableList.length; j++) {
+            for (var j = 0; j < secondaryVariableList.length; j++)
                 primaryWorkspace.createVariable(secondaryVariableList[j].name);
-            }
-
             variableFlyoutCategory();
         } else if (event.type == "create") {
             if (event.json) {
@@ -245,7 +237,6 @@ function init() {
         Blockly.Blocks.procedures_ifreturn && (d = document.createElement("block"), d.setAttribute("type", "procedures_ifreturn"), d.setAttribute("gap", "16"), c.push(d));
         c.length && c[c.length - 1].setAttribute("gap", "24");
 
-
         let a = Blockly.Procedures.allProcedures(secondaryWorkspace);
 
         b(a[0], "procedures_callnoreturn");
@@ -268,6 +259,8 @@ function init() {
         }
 
         primaryWorkspace.updateToolbox(xmlDoc);
+        if (primaryWorkspace.flyout);
+        primaryWorkspace.flyout.scrollToStart();
 
         el = document.getElementById(el);
         primaryDiv.style.position = "absolute";
@@ -294,9 +287,24 @@ function init() {
         var mouseClient = new Blockly.utils.Coordinate((mouse_cursor.pageX - window.scrollX) / secondaryWorkspace.scale, (mouse_cursor.pageY - window.scrollY) / secondaryWorkspace.scale);
         var mousePos = Blockly.utils.svgMath.screenToWsCoordinates(secondaryWorkspace, mouseClient);
         var blockPos = Blockly.utils.svgMath.getRelativeXY(block.getSvgRoot());
-        var pos = {};
-        pos.x = mousePos.x - blockPos.x
-        pos.y = mousePos.y - blockPos.y
-        return pos;
+        var BlockToMouseXY = {};
+        BlockToMouseXY.x = mousePos.x - blockPos.x;
+        BlockToMouseXY.y = mousePos.y - blockPos.y;
+        return BlockToMouseXY;
     }
+
+    function getBlockToCenterXY(block) {
+        var position = Blockly.utils.svgMath.getRelativeXY(newBlock.getSvgRoot());
+        var x = position.x;
+        var y = position.y;
+        var scrollX = secondaryWorkspace.scrollX;
+        var scrollY = secondaryWorkspace.scrollY;
+        var wsWidth = secondaryWorkspace.getParentSvg().width.baseVal.value;
+        var wsHeight = secondaryWorkspace.getParentSvg().height.baseVal.value;
+        var BlockToCenterXY = {};
+        BlockToCenterXY.x = wsWidth / 2 - newBlock.width / 2 - scrollX - x;
+        BlockToCenterXY.y = wsHeight / 2 - newBlock.height / 2 - scrollY - y;
+        return BlockToCenterXY;
+    }
+
 }
