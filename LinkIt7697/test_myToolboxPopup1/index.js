@@ -72,9 +72,9 @@ function init() {
             try { 
                 document.createEvent("TouchEvent");
 				
-				var blockToCenterXY = getBlockToCenterXY(newBlock);
+                var blockToCenterXY = getBlockToCenterXY(newBlock);
                 newBlock.moveBy(blockToCenterXY.x-10, blockToCenterXY.y-10);
-				newBlock.select();
+                newBlock.select();
             } catch(e) { 
                 var blockToMouseXY = getBlockToMouseXY(newBlock);
                 newBlock.moveBy(blockToMouseXY.x-10, blockToMouseXY.y-10);
