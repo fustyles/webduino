@@ -291,10 +291,10 @@ function init() {
         var mouseClient = new Blockly.utils.Coordinate((mouse_cursor.pageX - window.scrollX) / secondaryWorkspace.scale, (mouse_cursor.pageY - window.scrollY) / secondaryWorkspace.scale);
         var mousePos = Blockly.utils.svgMath.screenToWsCoordinates(secondaryWorkspace, mouseClient);
         var blockPos = Blockly.utils.svgMath.getRelativeXY(block.getSvgRoot());
-        var BlockToMouseXY = {};
-        BlockToMouseXY.x = mousePos.x - blockPos.x;
-        BlockToMouseXY.y = mousePos.y - blockPos.y;
-        return BlockToMouseXY;
+        var blockToMouseXY = {};
+        blockToMouseXY.x = mousePos.x - blockPos.x;
+        blockToMouseXY.y = mousePos.y - blockPos.y;
+        return blockToMouseXY;
     }
 
     function getBlockToCenterXY(block) {
@@ -305,10 +305,10 @@ function init() {
         var scrollY = secondaryWorkspace.scrollY;
         var wsWidth = secondaryWorkspace.getParentSvg().width.baseVal.value;
         var wsHeight = secondaryWorkspace.getParentSvg().height.baseVal.value;
-        var BlockToCenterXY = {};
-        BlockToCenterXY.x = wsWidth / 2 - newBlock.width / 2 - scrollX - x;
-        BlockToCenterXY.y = wsHeight / 2 - newBlock.height / 2 - scrollY - y;
-        return BlockToCenterXY;
+        var blockToCenterXY = {};
+        blockToCenterXY.x = wsWidth / 2 - newBlock.width / 2 - scrollX - x;
+        blockToCenterXY.y = wsHeight / 2 - newBlock.height / 2 - scrollY - y;
+        return blockToCenterXY;
     }
 
 }
