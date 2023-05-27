@@ -1,0 +1,56 @@
+html,
+body {
+  background-color: #fff;
+  font-family: sans-serif;
+  overflow: hidden;
+  margin:0;
+  padding:0;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../font/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2") format('woff2');
+}
+
+#main {
+  margin:0;
+  padding:0;
+}
+
+#header {
+  width: 100%; 
+  height: 70px;
+  margin:0;
+  padding:0;	
+}
+
+#header ul li {
+　display:inline;
+  margin:0;
+  padding:0;
+}
+
+#title {
+  position: absolute;
+  font-size: 45px;
+  color: #BEBEBE; 
+  left: 5px;
+  top: 5px;
+  margin:0;
+  padding:0;  
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 140%;
+  margin: 10px;
+}
+
+#blocklyDiv {
+  float: bottom;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
