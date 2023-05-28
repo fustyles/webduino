@@ -1,3 +1,16 @@
+/* eslint-disable */
+;(function(root, factory) {
+  if (typeof define === 'function' && define.amd) { // AMD
+    define([], factory);
+  } else if (typeof exports === 'object') { // Node.js
+    module.exports = factory();
+  } else { // Browser
+    var messages = factory();
+    for (var key in messages) {
+      root.Blockly.Msg[key] = messages[key];
+    }
+  }
+}(this, function() {
 // This file was automatically generated.  Do not modify.
 
 'use strict';
@@ -46,7 +59,6 @@ Blockly.Msg["VARIABLES_NAME"] = "变数";
 Blockly.Msg["PROCEDURES_NAME"] = "函式";
 
 Blockly.Msg["ADD_COMMENT"] = "添加注释";
-
 Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "不能删除变量“%1”，因为它是函数“%2”定义的一部分";
 Blockly.Msg["CHANGE_VALUE_TITLE"] = "更改值：";
 Blockly.Msg["CLEAN_UP"] = "整理块";
@@ -118,12 +130,12 @@ Blockly.Msg["EXPAND_BLOCK"] = "展开块";
 Blockly.Msg["EXTERNAL_INPUTS"] = "外部输入";
 Blockly.Msg["HELP"] = "帮助";
 Blockly.Msg["INLINE_INPUTS"] = "单行输入";
-Blockly.Msg["LISTS_CREATE_EMPTY_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#create-empty-list";
+Blockly.Msg["LISTS_CREATE_EMPTY_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#create-empty-list";  // untranslated
 Blockly.Msg["LISTS_CREATE_EMPTY_TITLE"] = "创建空列表";
 Blockly.Msg["LISTS_CREATE_EMPTY_TOOLTIP"] = "返回一个列表，长度为 0，不包含任何数据记录";
 Blockly.Msg["LISTS_CREATE_WITH_CONTAINER_TITLE_ADD"] = "列表";
 Blockly.Msg["LISTS_CREATE_WITH_CONTAINER_TOOLTIP"] = "增加、删除或重新排列各部分以此重新配置这个列表块。";
-Blockly.Msg["LISTS_CREATE_WITH_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#create-list-with";
+Blockly.Msg["LISTS_CREATE_WITH_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#create-list-with";  // untranslated
 Blockly.Msg["LISTS_CREATE_WITH_INPUT_WITH"] = "创建列表，内容：";
 Blockly.Msg["LISTS_CREATE_WITH_ITEM_TOOLTIP"] = "将一个项添加到列表中。";
 Blockly.Msg["LISTS_CREATE_WITH_TOOLTIP"] = "建立一个具有任意数量项目的列表。";
@@ -135,7 +147,7 @@ Blockly.Msg["LISTS_GET_INDEX_GET_REMOVE"] = "取得并移除";
 Blockly.Msg["LISTS_GET_INDEX_LAST"] = "最后一项";
 Blockly.Msg["LISTS_GET_INDEX_RANDOM"] = "随机的一项";
 Blockly.Msg["LISTS_GET_INDEX_REMOVE"] = "移除";
-Blockly.Msg["LISTS_GET_INDEX_TAIL"] = "-";
+Blockly.Msg["LISTS_GET_INDEX_TAIL"] = "";  // untranslated
 Blockly.Msg["LISTS_GET_INDEX_TOOLTIP_GET_FIRST"] = "返回列表中的第一项。";
 Blockly.Msg["LISTS_GET_INDEX_TOOLTIP_GET_FROM"] = "返回在列表中的指定位置的项。";
 Blockly.Msg["LISTS_GET_INDEX_TOOLTIP_GET_LAST"] = "返回列表中的最后一项。";
@@ -155,7 +167,7 @@ Blockly.Msg["LISTS_GET_SUBLIST_HELPURL"] = "https://github.com/google/blockly/wi
 Blockly.Msg["LISTS_GET_SUBLIST_START_FIRST"] = "获取子列表，从第一项";
 Blockly.Msg["LISTS_GET_SUBLIST_START_FROM_END"] = "获取子列表，从倒数第#项";
 Blockly.Msg["LISTS_GET_SUBLIST_START_FROM_START"] = "获取子列表，从第#项";
-Blockly.Msg["LISTS_GET_SUBLIST_TAIL"] = "-";
+Blockly.Msg["LISTS_GET_SUBLIST_TAIL"] = "";  // untranslated
 Blockly.Msg["LISTS_GET_SUBLIST_TOOLTIP"] = "复制列表中指定的部分。";
 Blockly.Msg["LISTS_INDEX_FROM_END_TOOLTIP"] = "%1是最后一项。";
 Blockly.Msg["LISTS_INDEX_FROM_START_TOOLTIP"] = "%1是第一项。";
@@ -173,7 +185,7 @@ Blockly.Msg["LISTS_LENGTH_TOOLTIP"] = "返回列表的长度。";
 Blockly.Msg["LISTS_REPEAT_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#create-list-with";  // untranslated
 Blockly.Msg["LISTS_REPEAT_TITLE"] = "建立列表使用项 %1 重复 %2 次";
 Blockly.Msg["LISTS_REPEAT_TOOLTIP"] = "建立包含指定重复次数的值的列表。";
-Blockly.Msg["LISTS_REVERSE_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#reversing-a-list";
+Blockly.Msg["LISTS_REVERSE_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#reversing-a-list";  // untranslated
 Blockly.Msg["LISTS_REVERSE_MESSAGE0"] = "倒转%1";
 Blockly.Msg["LISTS_REVERSE_TOOLTIP"] = "倒转一个列表，返回副本。";
 Blockly.Msg["LISTS_SET_INDEX_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#in-list--set";  // untranslated
@@ -188,7 +200,7 @@ Blockly.Msg["LISTS_SET_INDEX_TOOLTIP_SET_FIRST"] = "设置列表中的第一项�
 Blockly.Msg["LISTS_SET_INDEX_TOOLTIP_SET_FROM"] = "设置在列表中指定位置的项。";
 Blockly.Msg["LISTS_SET_INDEX_TOOLTIP_SET_LAST"] = "设置列表中的最后一项。";
 Blockly.Msg["LISTS_SET_INDEX_TOOLTIP_SET_RANDOM"] = "设置列表中的随机一项。";
-Blockly.Msg["LISTS_SORT_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#sorting-a-list";
+Blockly.Msg["LISTS_SORT_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#sorting-a-list";  // untranslated
 Blockly.Msg["LISTS_SORT_ORDER_ASCENDING"] = "升序";
 Blockly.Msg["LISTS_SORT_ORDER_DESCENDING"] = "降序";
 Blockly.Msg["LISTS_SORT_TITLE"] = "排序%1 %2 %3";
@@ -196,7 +208,7 @@ Blockly.Msg["LISTS_SORT_TOOLTIP"] = "排序一个列表，返回副本。";
 Blockly.Msg["LISTS_SORT_TYPE_IGNORECASE"] = "按字母（忽略大小写）";
 Blockly.Msg["LISTS_SORT_TYPE_NUMERIC"] = "按数字";
 Blockly.Msg["LISTS_SORT_TYPE_TEXT"] = "按字母";
-Blockly.Msg["LISTS_SPLIT_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#splitting-strings-and-joining-lists";
+Blockly.Msg["LISTS_SPLIT_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#splitting-strings-and-joining-lists";  // untranslated
 Blockly.Msg["LISTS_SPLIT_LIST_FROM_TEXT"] = "从文本制作列表";
 Blockly.Msg["LISTS_SPLIT_TEXT_FROM_LIST"] = "将列表合并为文本";
 Blockly.Msg["LISTS_SPLIT_TOOLTIP_JOIN"] = "加入文本列表至一个文本，由分隔符分隔。";
@@ -213,7 +225,7 @@ Blockly.Msg["LOGIC_COMPARE_TOOLTIP_GTE"] = "如果第一个输入结果大于或
 Blockly.Msg["LOGIC_COMPARE_TOOLTIP_LT"] = "如果第一个输入结果比第二个小，则返回真。";
 Blockly.Msg["LOGIC_COMPARE_TOOLTIP_LTE"] = "如果第一个输入结果小于或等于第二个输入结果，则返回真。";
 Blockly.Msg["LOGIC_COMPARE_TOOLTIP_NEQ"] = "如果两个输入结果不相等，则返回真。";
-Blockly.Msg["LOGIC_NEGATE_HELPURL"] = "https://github.com/google/blockly/wiki/Logic#not";
+Blockly.Msg["LOGIC_NEGATE_HELPURL"] = "https://github.com/google/blockly/wiki/Logic#not";  // untranslated
 Blockly.Msg["LOGIC_NEGATE_TITLE"] = "非%1";
 Blockly.Msg["LOGIC_NEGATE_TOOLTIP"] = "如果输入结果为假，则返回真；如果输入结果为真，则返回假。";
 Blockly.Msg["LOGIC_NULL"] = "空";
@@ -302,13 +314,13 @@ Blockly.Msg["MATH_SINGLE_TOOLTIP_NEG"] = "返回一个数值的相反数。";
 Blockly.Msg["MATH_SINGLE_TOOLTIP_POW10"] = "返回10的n次幂。";
 Blockly.Msg["MATH_SINGLE_TOOLTIP_ROOT"] = "返回一个数的平方根。";
 Blockly.Msg["MATH_SUBTRACTION_SYMBOL"] = "-";  // untranslated
-Blockly.Msg["MATH_TRIG_ACOS"] = "acos";  // untranslated
-Blockly.Msg["MATH_TRIG_ASIN"] = "asin";  // untranslated
-Blockly.Msg["MATH_TRIG_ATAN"] = "atan";  // untranslated
-Blockly.Msg["MATH_TRIG_COS"] = "cos";  // untranslated
+Blockly.Msg["MATH_TRIG_ACOS"] = "反余玄";
+Blockly.Msg["MATH_TRIG_ASIN"] = "反正弦";
+Blockly.Msg["MATH_TRIG_ATAN"] = "反正切";
+Blockly.Msg["MATH_TRIG_COS"] = "余弦";
 Blockly.Msg["MATH_TRIG_HELPURL"] = "https://zh.wikipedia.org/wiki/三角函数";
-Blockly.Msg["MATH_TRIG_SIN"] = "sin";  // untranslated
-Blockly.Msg["MATH_TRIG_TAN"] = "tan";  // untranslated
+Blockly.Msg["MATH_TRIG_SIN"] = "正弦";
+Blockly.Msg["MATH_TRIG_TAN"] = "正切";
 Blockly.Msg["MATH_TRIG_TOOLTIP_ACOS"] = "返回一个数值的反余弦值。";
 Blockly.Msg["MATH_TRIG_TOOLTIP_ASIN"] = "返回一个数值的反正弦值。";
 Blockly.Msg["MATH_TRIG_TOOLTIP_ATAN"] = "返回一个数值的反正切值。";
@@ -321,7 +333,7 @@ Blockly.Msg["NEW_STRING_VARIABLE"] = "创建字符串变量...";
 Blockly.Msg["NEW_VARIABLE"] = "创建变量...";
 Blockly.Msg["NEW_VARIABLE_TITLE"] = "新变量的名称：";
 Blockly.Msg["NEW_VARIABLE_TYPE_TITLE"] = "新变量的类型：";
-Blockly.Msg["ORDINAL_NUMBER_SUFFIX"] = "-";
+Blockly.Msg["ORDINAL_NUMBER_SUFFIX"] = "";  // untranslated
 Blockly.Msg["PROCEDURES_ALLOW_STATEMENTS"] = "允许声明";
 Blockly.Msg["PROCEDURES_BEFORE_PARAMS"] = "与：";
 Blockly.Msg["PROCEDURES_CALLNORETURN_HELPURL"] = "https://zh.wikipedia.org/wiki/子程序";
@@ -331,7 +343,7 @@ Blockly.Msg["PROCEDURES_CALLRETURN_TOOLTIP"] = "运行用户定义的函数“%1
 Blockly.Msg["PROCEDURES_CALL_BEFORE_PARAMS"] = "与：";
 Blockly.Msg["PROCEDURES_CREATE_DO"] = "创建“%1”";
 Blockly.Msg["PROCEDURES_DEFNORETURN_COMMENT"] = "描述该功能...";
-Blockly.Msg["PROCEDURES_DEFNORETURN_DO"] = "-";
+Blockly.Msg["PROCEDURES_DEFNORETURN_DO"] = "";  // untranslated
 Blockly.Msg["PROCEDURES_DEFNORETURN_HELPURL"] = "https://zh.wikipedia.org/wiki/子程序";
 Blockly.Msg["PROCEDURES_DEFNORETURN_PROCEDURE"] = "做点什么";
 Blockly.Msg["PROCEDURES_DEFNORETURN_TITLE"] = "至";
@@ -341,7 +353,7 @@ Blockly.Msg["PROCEDURES_DEFRETURN_RETURN"] = "返回";
 Blockly.Msg["PROCEDURES_DEFRETURN_TOOLTIP"] = "创建一个有输出值的函数。";
 Blockly.Msg["PROCEDURES_DEF_DUPLICATE_WARNING"] = "警告：此函数具有重复参数。";
 Blockly.Msg["PROCEDURES_HIGHLIGHT_DEF"] = "突出显示函数定义";
-Blockly.Msg["PROCEDURES_IFRETURN_HELPURL"] = "http://c2.com/cgi/wiki?GuardClause";
+Blockly.Msg["PROCEDURES_IFRETURN_HELPURL"] = "http://c2.com/cgi/wiki?GuardClause";  // untranslated
 Blockly.Msg["PROCEDURES_IFRETURN_TOOLTIP"] = "如果值为真，则返回第二个值。";
 Blockly.Msg["PROCEDURES_IFRETURN_WARNING"] = "警告：这个块只能在函数内部使用。";
 Blockly.Msg["PROCEDURES_MUTATORARG_TITLE"] = "输入名称：";
@@ -366,10 +378,10 @@ Blockly.Msg["TEXT_CHARAT_FROM_START"] = "获取第#个字符";
 Blockly.Msg["TEXT_CHARAT_HELPURL"] = "https://github.com/google/blockly/wiki/Text#extracting-text";  // untranslated
 Blockly.Msg["TEXT_CHARAT_LAST"] = "获取最后一个字符";
 Blockly.Msg["TEXT_CHARAT_RANDOM"] = "获取随机一个字符";
-Blockly.Msg["TEXT_CHARAT_TAIL"] = "-";
+Blockly.Msg["TEXT_CHARAT_TAIL"] = "";  // untranslated
 Blockly.Msg["TEXT_CHARAT_TITLE"] = "在文本%1 里 %2";
 Blockly.Msg["TEXT_CHARAT_TOOLTIP"] = "返回位于指定位置的字符。";
-Blockly.Msg["TEXT_COUNT_HELPURL"] = "https://github.com/google/blockly/wiki/Text#counting-substrings";
+Blockly.Msg["TEXT_COUNT_HELPURL"] = "https://github.com/google/blockly/wiki/Text#counting-substrings";  // untranslated
 Blockly.Msg["TEXT_COUNT_MESSAGE0"] = "计算%1在%2里出现的次数";
 Blockly.Msg["TEXT_COUNT_TOOLTIP"] = "计算在一段文本中，某个部分文本重复出现了多少次。";
 Blockly.Msg["TEXT_CREATE_JOIN_ITEM_TOOLTIP"] = "将一个项添加到文本中。";
@@ -383,7 +395,7 @@ Blockly.Msg["TEXT_GET_SUBSTRING_INPUT_IN_TEXT"] = "从文本";
 Blockly.Msg["TEXT_GET_SUBSTRING_START_FIRST"] = "获取子串，从第一个字符";
 Blockly.Msg["TEXT_GET_SUBSTRING_START_FROM_END"] = "获取子串，从倒数第#个字符";
 Blockly.Msg["TEXT_GET_SUBSTRING_START_FROM_START"] = "获取子串，从第#个字符";
-Blockly.Msg["TEXT_GET_SUBSTRING_TAIL"] = "-";
+Blockly.Msg["TEXT_GET_SUBSTRING_TAIL"] = "";  // untranslated
 Blockly.Msg["TEXT_GET_SUBSTRING_TOOLTIP"] = "返回文本中指定的一部分。";
 Blockly.Msg["TEXT_INDEXOF_HELPURL"] = "https://github.com/google/blockly/wiki/Text#finding-text";  // untranslated
 Blockly.Msg["TEXT_INDEXOF_OPERATOR_FIRST"] = "寻找第一次出现的文本";
@@ -407,10 +419,10 @@ Blockly.Msg["TEXT_PROMPT_TOOLTIP_NUMBER"] = "要求用户输入数字。";
 Blockly.Msg["TEXT_PROMPT_TOOLTIP_TEXT"] = "要求用户输入一些文本。";
 Blockly.Msg["TEXT_PROMPT_TYPE_NUMBER"] = "要求输入数字，并显示提示消息";
 Blockly.Msg["TEXT_PROMPT_TYPE_TEXT"] = "要求输入文本，并显示提示消息";
-Blockly.Msg["TEXT_REPLACE_HELPURL"] = "https://github.com/google/blockly/wiki/Text#replacing-substrings";
+Blockly.Msg["TEXT_REPLACE_HELPURL"] = "https://github.com/google/blockly/wiki/Text#replacing-substrings";  // untranslated
 Blockly.Msg["TEXT_REPLACE_MESSAGE0"] = "把%3中的%1替换为%2";
 Blockly.Msg["TEXT_REPLACE_TOOLTIP"] = "在一段文本中，将出现过的某部分文本都替换掉。";
-Blockly.Msg["TEXT_REVERSE_HELPURL"] = "https://github.com/google/blockly/wiki/Text#reversing-text";
+Blockly.Msg["TEXT_REVERSE_HELPURL"] = "https://github.com/google/blockly/wiki/Text#reversing-text";  // untranslated
 Blockly.Msg["TEXT_REVERSE_MESSAGE0"] = "倒转文本%1";
 Blockly.Msg["TEXT_REVERSE_TOOLTIP"] = "将文本中各个字符的顺序倒转。";
 Blockly.Msg["TEXT_TEXT_HELPURL"] = "https://zh.wikipedia.org/wiki/字符串";
@@ -465,3 +477,5 @@ Blockly.Msg["TEXTS_HUE"] = "160";
 Blockly.Msg["PROCEDURES_HUE"] = "290";
 Blockly.Msg["COLOUR_HUE"] = "20";
 Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
+return Blockly.Msg;
+}));
