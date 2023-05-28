@@ -14,7 +14,7 @@
 /**
  * @fileoverview Toolbox Split
  * @author https://www.facebook.com/francefu/
- * @Update 4/12/2023 22:00 (Taiwan Standard Time)
+ * @Update 5/38/2023 21:00 (Taiwan Standard Time)
  */
 
 function init() {
@@ -115,7 +115,10 @@ function init() {
   }	 
   
   function secondaryWorkspaceEvent(event) {
-	if (primaryWorkspace.toolbox_.selectedItem_) {
+	if (event.type==="click"&&!event.blockId) {
+		resetFlyout();
+	}
+	else if (primaryWorkspace.toolbox_.selectedItem_) {
 		if (primaryWorkspace.toolbox_.selectedItem_.toolboxItemDef_.name=="Variables") {
 			if (event.type=="var_create"||event.type=="var_rename"||event.type=="var_delete") {
 				variableFlyoutCategory();
