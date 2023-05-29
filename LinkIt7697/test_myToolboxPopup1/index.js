@@ -78,6 +78,7 @@ function init() {
                 newBlock.moveBy(blockToMouseXY.x - 10, blockToMouseXY.y - 10);
             }
             newBlock.setEnabled(true);
+            newBlock.bringToFront();
             newBlock = null;
             primaryWorkspace.getAudioManager().play("click");
         }
@@ -110,7 +111,6 @@ function init() {
                     newBlock.setEnabled(false);
                     var blockToCenterXY = getBlockToCenterXY(newBlock);
                     newBlock.moveBy(blockToCenterXY.x, blockToCenterXY.y);
-                    newBlock.bringToFront();
                 }
 
                 setTimeout(function() {
