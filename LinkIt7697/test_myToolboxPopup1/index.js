@@ -72,8 +72,6 @@ function init() {
             try { 
                 document.createEvent("TouchEvent");
 				
-                var blockToCenterXY = getBlockToCenterXY(newBlock);
-                newBlock.moveBy(blockToCenterXY.x-10, blockToCenterXY.y-10);
                 newBlock.select();
             } catch(e) { 
                 var blockToMouseXY = getBlockToMouseXY(newBlock);
@@ -107,6 +105,8 @@ function init() {
                 var id = Blockly.Xml.appendDomToWorkspace(block, secondaryWorkspace);
                 newBlock = secondaryWorkspace.getBlockById(id[0]);
                 if (newBlock) {
+                    var blockToCenterXY = getBlockToCenterXY(newBlock);
+                    newBlock.moveBy(blockToCenterXY.x, blockToCenterXY.y);			
                     newBlock.bringToFront();
                     primaryWorkspace.getAudioManager().play("click");
                 }
