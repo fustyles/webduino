@@ -77,7 +77,8 @@ function init() {
                 var blockToMouseXY = getBlockToMouseXY(newBlock);
                 newBlock.moveBy(blockToMouseXY.x-10, blockToMouseXY.y-10);
             } 
-            newBlock = null;		  
+            newBlock = null;
+            primaryWorkspace.getAudioManager().play("click");		
         }
     }
     document.body.addEventListener('mousemove', getMousePosition, false);
@@ -108,7 +109,6 @@ function init() {
                     var blockToCenterXY = getBlockToCenterXY(newBlock);
                     newBlock.moveBy(blockToCenterXY.x, blockToCenterXY.y);			
                     newBlock.bringToFront();
-                    primaryWorkspace.getAudioManager().play("click");
                 }
 
                 setTimeout(function() {
