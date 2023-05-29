@@ -125,7 +125,7 @@ function start() {
 			setTimeout(function(){
 				if (continuousFlyout.isVisible_ == true)
 					continuousFlyout.setVisible(false);
-			}, 10);
+			}, 20);
 		}
 	}
 	workspace.addChangeListener(onWorkspaceChanged);
