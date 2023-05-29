@@ -48,7 +48,8 @@ function start() {
         } else if (event.type == "toolbox_item_select" && (!event.newItem) && continuousFlyout.isVisible_ == true) {
             workspace.toolbox_.clearSelection();
             setTimeout(function() {
-                continuousFlyout.setVisible(false);
+				if (continuousFlyout.isVisible_ == true)
+					continuousFlyout.setVisible(false);
             }, 10);
         }
     }
