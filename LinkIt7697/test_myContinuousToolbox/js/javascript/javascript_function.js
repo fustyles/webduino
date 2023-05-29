@@ -63,7 +63,7 @@ function start() {
       	{
 		media: media,
 		//renderer: 'zelos',
-        toolbox: toolboxXmlString,
+		toolbox: toolboxXmlString,
 		zoom:{
 			controls: true,
 			wheel: false,
