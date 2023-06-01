@@ -80,6 +80,8 @@ window.onload = function () {
 	}
 
 	function onResults(results) {
+		console.log(results);
+		
 		//canvasCtx.save();
 		//canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
 		//canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
