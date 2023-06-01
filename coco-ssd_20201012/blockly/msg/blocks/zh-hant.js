@@ -29,3 +29,4 @@ Blockly.Msg.COCOSSD_DATA_BOTTOMY_SHOW = "下方Y";
 Blockly.Msg.COCOSSD_CLEAR_SHOW = "物件偵測(coco-ssd) 清除結果";
 Blockly.Msg.COCOSSD_PAUSE_SHOW = "物件偵測(coco-ssd) 暫停偵測";
 Blockly.Msg.COCOSSD_RECOGNITIED_SHOW = "物件偵測(coco-ssd) 偵測完成後執行";
+Blockly.Msg.COCOSSD_UNRECOGNITIED_SHOW = "否則執行";
