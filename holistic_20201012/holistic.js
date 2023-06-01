@@ -388,6 +388,9 @@
 	function holistic_recognitionFinish() {
 	}
 	
+	function holistic_unrecognitionFinish() {
+	}	
+	
 	window.holistic_video = holistic_video;
 	window.holistic_face_position = holistic_face_position;
 	window.holistic_pose_position = holistic_pose_position;
@@ -403,5 +406,6 @@
 	window.holistic_startvideo_stream = holistic_startvideo_stream;
 	window.holistic_clear = holistic_clear;
 	window.holistic_recognitionFinish = holistic_recognitionFinish;	
+	window.holistic_unrecognitionFinish = holistic_unrecognitionFinish;		
 	
 }(window, window.document));
