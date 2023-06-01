@@ -92,3 +92,4 @@ Blockly.Msg.HOLISTIC_ADJUST_SHOW  = "校正角度";
 Blockly.Msg.HOLISTIC_PAUSE_SHOW = "全身偵測 暫停偵測";
 Blockly.Msg.HOLISTIC_CLEAR_SHOW = "全身偵測 清除結果";
 Blockly.Msg.HOLISTIC_RECOGNITIED_SHOW = "全身偵測 辨識完成後執行";
+Blockly.Msg.HOLISTIC_UNRECOGNITIED_SHOW = "全身偵測 辨識不到人後執行";
