@@ -166,6 +166,9 @@
 	function cocossd_recognitionFinish() {
 	}
 	
+	function cocossd_unrecognitionFinish() {
+	}	
+	
 	window.cocossd_list = cocossd_list;
 	window.cocossd_object = cocossd_object;
 	window.cocossd_object_number = cocossd_object_number;
@@ -176,5 +179,6 @@
 	window.cocossd_startvideo_stream = cocossd_startvideo_stream;
 	window.cocossd_clear = cocossd_clear;
 	window.cocossd_recognitionFinish = cocossd_recognitionFinish;
+	window.cocossd_unrecognitionFinish = cocossd_unrecognitionFinish;
 
 }(window, window.document));

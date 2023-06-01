@@ -28,6 +28,8 @@ var catCocossd ='<xml>'+
 '      </block>'+
 '      <block type="cocossd_recognitied">'+
 '      </block>'+
+'      <block type="cocossd_unrecognitied">'+
+'      </block>'+
 '      <block type="cocossd_list">'+
 '      </block>'+
 '      <block type="cocossd_object">'+

@@ -30,4 +30,4 @@ Blockly.Msg.COCOSSD_DATA_BOTTOMY_SHOW = "下方Y";
 Blockly.Msg.COCOSSD_CLEAR_SHOW = "物件偵測 清除結果";
 Blockly.Msg.COCOSSD_PAUSE_SHOW = "物件偵測 暫停偵測";
 Blockly.Msg.COCOSSD_RECOGNITIED_SHOW = "物件偵測 偵測到物件後執行";
-Blockly.Msg.COCOSSD_UNRECOGNITIED_SHOW = "否則執行";
+Blockly.Msg.COCOSSD_UNRECOGNITIED_SHOW = "物件偵測 偵測不到物件後執行";
