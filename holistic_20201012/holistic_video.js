@@ -80,12 +80,6 @@ window.onload = function () {
 	}
 
 	function onResults(results) {
-		console.log(results["rightHandLandmarks"]);
-		console.log(results["leftHandLandmarks"]);
-		console.log(results["faceLandmarks"]);
-		console.log(results["poseLandmarks"]);
-		console.log(results["ea"]);
-		
 		//canvasCtx.save();
 		//canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
 		//canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
@@ -118,7 +112,11 @@ window.onload = function () {
 		
 		//canvasCtx.restore();
 		
-		if (typeof holistic_recognitionFinish === 'function') holistic_recognitionFinish();
+		if (results["rightHandLandmarks"]||results["leftHandLandmarks"]||results["faceLandmarks"]||results["poseLandmarks"]||results["ea"]) {
+			if (typeof holistic_recognitionFinish === 'function') holistic_recognitionFinish();
+		} else {
+			if (typeof holistic_unrecognitionFinish === 'function') holistic_unrecognitionFinish();
+		}
 	}
 	
 	const holistic = new Holistic({locateFile: (file) => {
