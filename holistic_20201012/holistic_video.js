@@ -80,11 +80,11 @@ window.onload = function () {
 	}
 
 	function onResults(results) {
-		console.log(results.rightHandLandmarks);
-		console.log(results.leftHandLandmarks);
-		console.log(results.faceLandmarks);
-		console.log(results.poseLandmarks);
-		console.log(results.ea);
+		console.log(results["rightHandLandmarks"]);
+		console.log(results["leftHandLandmarks"]);
+		console.log(results["faceLandmarks"]);
+		console.log(results["poseLandmarks"]);
+		console.log(results["ea"]);
 		
 		//canvasCtx.save();
 		//canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
