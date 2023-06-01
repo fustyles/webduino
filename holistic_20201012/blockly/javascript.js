@@ -175,3 +175,9 @@ Blockly.JavaScript['holistic_recognitied'] = function(block) {
   var code = 'holistic_recognitionFinish = async function() {\nholistic_state(0);\n' + statements_do + '\nholistic_state(1);};\n';
   return code;
 };
+
+Blockly.JavaScript['holistic_unrecognitied'] = function(block) { 
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
+  var code = 'holistic_unrecognitionFinish = async function() {\nholistic_state(0);\n' + statements_do + '\nholistic_state(1);};\n';
+  return code;
+};
