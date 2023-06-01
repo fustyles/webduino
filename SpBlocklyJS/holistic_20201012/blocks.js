@@ -815,3 +815,15 @@ Blockly.Blocks['holistic_recognitied'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['holistic_unrecognitied'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.HOLISTIC_UNRECOGNITIED_SHOW);
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};

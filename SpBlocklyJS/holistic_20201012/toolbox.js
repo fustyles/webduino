@@ -27,8 +27,10 @@ var catHolistic = '<xml>'+
     '</value>'+ 
   '</block>'+    
   '<block type="holistic_state">'+
-  '</block>'+ 
+  '</block>'+
   '<block type="holistic_recognitied">'+
+  '</block>'+
+  '<block type="holistic_unrecognitied">'+
   '</block>'+
   '<block type="holistic_video_position">'+
     '<value name="left_">'+

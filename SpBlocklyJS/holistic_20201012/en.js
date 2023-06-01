@@ -91,3 +91,4 @@ Blockly.Msg.HOLISTIC_RIGHTHAND_ANGLE_SHOW = "Holistic Detect Right hand Turn Ang
 Blockly.Msg.HOLISTIC_AXIS_SHOW = "Axis"; 
 Blockly.Msg.HOLISTIC_ADJUST_SHOW = "Adjust Angle";
 Blockly.Msg.HOLISTIC_RECOGNITIED_SHOW = "Holistic Detect recognitied";
+Blockly.Msg.HOLISTIC_UNRECOGNITIED_SHOW = "Holistic Detect unrecognitied";

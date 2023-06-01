@@ -111,7 +111,11 @@ window.onload = function () {
 		
 		canvasCtx.restore();
 
-		if (typeof holistic_recognitionFinish === 'function') holistic_recognitionFinish();		
+		if (results["rightHandLandmarks"]||results["leftHandLandmarks"]||results["faceLandmarks"]||results["poseLandmarks"]||results["ea"]) {
+			if (typeof holistic_recognitionFinish === 'function') holistic_recognitionFinish();
+		} else {
+			if (typeof holistic_unrecognitionFinish === 'function') holistic_unrecognitionFinish();
+		}	
 	}
 	
 	const holistic = new Holistic({locateFile: (file) => {
