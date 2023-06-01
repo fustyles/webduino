@@ -26,7 +26,9 @@
     </value> 
   </block> 
   <block type="holistic_recognitied">
-  </block>    
+  </block>   
+  <block type="holistic_unrecognitied">
+  </block> 	
   <block type="holistic_state">
   </block>
   <block type="holistic_clear">
