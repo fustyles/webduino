@@ -80,8 +80,10 @@ window.onload = function () {
 					if (typeof cocossd_recognitionFinish === 'function') cocossd_recognitionFinish();
 				}
 			}
-			else
+			else {
 				result.innerHTML = "";
+				if (typeof cocossd_unrecognitionFinish === 'function') cocossd_unrecognitionFinish();
+			}
 			
 			try { 
 			  document.createEvent("TouchEvent");
