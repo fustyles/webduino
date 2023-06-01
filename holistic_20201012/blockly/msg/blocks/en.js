@@ -92,3 +92,4 @@ Blockly.Msg.HOLISTIC_ADJUST_SHOW  = "Adjust Angle";
 Blockly.Msg.HOLISTIC_PAUSE_SHOW = "Holistic Detect Pause";
 Blockly.Msg.HOLISTIC_CLEAR_SHOW = "Holistic Detect clear result";
 Blockly.Msg.HOLISTIC_RECOGNITIED_SHOW = "Holistic Detect recognitied";
+Blockly.Msg.HOLISTIC_UNRECOGNITIED_SHOW = "Holistic Detect unrecognitied";
