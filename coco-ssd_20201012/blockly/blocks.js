@@ -452,9 +452,18 @@ Blockly.Blocks['cocossd_recognitied'] = {
   this.appendDummyInput()
       .appendField(Blockly.Msg.COCOSSD_RECOGNITIED_SHOW);
   this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['cocossd_unrecognitied'] = {
+  init: function () {
   this.appendDummyInput()
       .appendField(Blockly.Msg.COCOSSD_UNRECOGNITIED_SHOW);	  
-  this.appendStatementInput("do1_");	  
+  this.appendStatementInput("do_");
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
