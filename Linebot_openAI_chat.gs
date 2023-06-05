@@ -24,7 +24,7 @@ let openAI_api_KEY = "";  // openAI
 
 let openAI_model = "gpt-3.5-turbo";   // gpt-3.5-turbo, gpt-3.5-turbo-0301, gpt-4 (gpt-4限已升級plus帳號或已有試用資格帳號)
 let openAI_assistant_behavior = "你是使用繁體中文語言的專業助理";
-let reset_command = "清除對話";
+let reset_command = "清除對話";   //因對話紀錄會累計送出查詢，造成額度消費倍數增長，因此Line bot要定時執行輸入"清除對話"。
 let reset_response = "您好，已為您清除歷史對話紀錄，讓我們重新聊天吧！";
 
 // Image generator
