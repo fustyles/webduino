@@ -14,6 +14,9 @@ Line Bot Webhook & Google Apps script & ChatGTP API
 image:你的prompts
 例如： 
 image:美麗的台灣
+
+教學影片清單
+https://www.youtube.com/watch?v=79HhcJfHajE&list=PLxVtiYga8ehuaXM1UnvKsLKrq3eOgQ4qo
 */
 
 // Line bot
