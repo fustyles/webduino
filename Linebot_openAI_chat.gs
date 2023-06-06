@@ -35,7 +35,7 @@ let driveFolderName = "openAI_image";  //建立Google雲端硬碟資料夾名稱
 let spreadsheet_ID = "";  // 試算表ID (非網址)
 let sheet_Name = "";  // 工作表名稱
 
-// 系統變數
+// 系統變數(無須填寫資料)
 let userMessage = "";
 let userId = "";
 let eventType = "";
