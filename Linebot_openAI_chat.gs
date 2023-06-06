@@ -31,7 +31,7 @@ let reset_response = "您好，已為您清除歷史對話紀錄，讓我們重�
 let imageSize = "256x256";  // 256x256, 512x512, 1024x1024
 let driveFolderName = "openAI_image";  //建立Google雲端硬碟資料夾名稱，若無需存入可空白不填
 
-// 可記錄對話內容於試算表，若無需紀錄可空白不填
+// 可記錄對話內容於Google試算表，若無需紀錄可空白不填
 let spreadsheet_ID = "";  // 試算表ID (非網址)
 let sheet_Name = "";  // 工作表名稱
 
