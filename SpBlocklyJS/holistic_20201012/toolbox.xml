@@ -193,7 +193,7 @@
       </block>
     </value>   
   </block>
-    <block type="holistic_clip_element"> 
+  <block type="holistic_clip_element"> 
     <value name="canvasid">
 		<block type="text">
 	  		<field name="TEXT"></field>
@@ -252,4 +252,6 @@
       </block>
     </value>    
   </block> 
+  <block type="holistic_points">  
+  </block>   
 </category>

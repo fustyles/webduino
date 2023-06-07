@@ -174,7 +174,8 @@ Blockly.JavaScript['holistic_unrecognitied'] = function(block) {
 Blockly.JavaScript['holistic_clip_element'] = function(block) { 
   var canvasid = Blockly.JavaScript.valueToCode(block, 'canvasid', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var drawpath = Blockly.JavaScript.valueToCode(block, 'drawpath', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  drawpath = "["+drawpath.replace("['","[").replace("']","]").replace(/','/g,"], [").replace(/', '/g,"], [")+"]";
+  drawpath = drawpath.replace("['","[").replace("']","]").replace(/','/g,"], [").replace(/', '/g,"], [");
+  drawpath = "["+drawpath.replace('["',"[").replace('"]',"]").replace(/","/g,"], [").replace(/", "/g,"], [")+"]";
   
   var code = 'holistic_clip("gamecanvas_"+'+canvasid+', "gamecanvas_canvasElement", "", '+drawpath+');\n';
   return code;
@@ -184,8 +185,15 @@ Blockly.JavaScript['holistic_clip_color'] = function(block) {
   var canvasid = Blockly.JavaScript.valueToCode(block, 'canvasid', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var drawcolor = Blockly.JavaScript.valueToCode(block, 'drawcolor', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var drawpath = Blockly.JavaScript.valueToCode(block, 'drawpath', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  drawpath = "["+drawpath.replace("['","[").replace("']","]").replace(/','/g,"], [").replace(/', '/g,"], [")+"]";
+  drawpath = drawpath.replace("['","[").replace("']","]").replace(/','/g,"], [").replace(/', '/g,"], [");
+  drawpath = "["+drawpath.replace('["',"[").replace('"]',"]").replace(/","/g,"], [").replace(/", "/g,"], [")+"]";
   
   var code = 'holistic_clip("gamecanvas_"+'+canvasid+', "gamecanvas_canvasElement", '+drawcolor+', '+drawpath+');\n';
   return code;
+};
+
+Blockly.JavaScript['holistic_points'] = function (block) {
+  var points = block.getFieldValue('points');
+  var code = '"'+points+'"';
+  return [code, Blockly.JavaScript.ORDER_NONE];  
 };

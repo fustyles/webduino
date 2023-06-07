@@ -253,5 +253,7 @@ var catHolistic = '<xml>'+
 '      </block>'+
     '</value>'+    
   '</block>'+   
+  '<block type="holistic_points">'+   
+  '</block>'+    
 '</category>'+
 '</xml>';
