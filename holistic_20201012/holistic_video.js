@@ -6,6 +6,7 @@ document.write('<div id="gamediv_face_holistic" style="position:absolute;display
 document.write('<div id="gamediv_pose_holistic" style="position:absolute;display:none;"></div>');
 document.write('<div id="gamediv_lefthand_holistic" style="position:absolute;display:none;"></div>');
 document.write('<div id="gamediv_righthand_holistic" style="position:absolute;display:none;"></div>');
+document.write('<div id="gamediv_resultsFaceLandmarks" style="position:absolute;display:none;"></div>');
 
 window.onload = function () {
 	var canvas = document.getElementById('gamecanvas_holistic'); 
@@ -25,6 +26,7 @@ window.onload = function () {
 	var result_pose = document.getElementById("gamediv_pose_holistic");
 	var result_lefthand = document.getElementById("gamediv_lefthand_holistic");
 	var result_righthand = document.getElementById("gamediv_righthand_holistic");
+	var resultsFaceLandmarks = document.getElementById("gamediv_resultsFaceLandmarks");
 	
 	sourceTimer = setInterval(
 		function(){
@@ -80,6 +82,7 @@ window.onload = function () {
 	}
 
 	function onResults(results) {
+		resultsFaceLandmarks.innerHTML = JSON.stringify(results.faceLandmarks);
 		//canvasCtx.save();
 		//canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
 		//canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
