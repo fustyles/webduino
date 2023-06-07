@@ -124,17 +124,7 @@ function onResults(results) {
 			}	
 			
 			ctx.clip();
-			ctx.drawImage(video, 0, 0);
-			
-			/*
-			for (var i=0;i<data.length;i++) {
-				ctx.beginPath();
-				ctx.lineWidth = 2;
-				ctx.strokeStyle = "#FF0000";
-				ctx.arc(data[i][5], data[i][6], data[i][4]*0.8/2, 0, 2 * Math.PI);
-				ctx.stroke();
-			}
-			*/			
+			ctx.drawImage(video, 0, 0);			
 		}
 		
 		drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION, {color: '#C0C0C070', lineWidth: 1});
