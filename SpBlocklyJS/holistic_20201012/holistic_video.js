@@ -6,6 +6,7 @@ document.write('<div id="gamediv_face_holistic" style="position:absolute;display
 document.write('<div id="gamediv_pose_holistic" style="position:absolute;display:none;"></div>');
 document.write('<div id="gamediv_lefthand_holistic" style="position:absolute;display:none;"></div>');
 document.write('<div id="gamediv_righthand_holistic" style="position:absolute;display:none;"></div>');
+document.write('<div id="gamediv_resultsFaceLandmarks" style="position:absolute;display:none;"></div>');
 
 window.onload = function () {
 	var canvas = document.getElementById('gamecanvas_holistic'); 
@@ -25,6 +26,7 @@ window.onload = function () {
 	var result_pose = document.getElementById("gamediv_pose_holistic");
 	var result_lefthand = document.getElementById("gamediv_lefthand_holistic");
 	var result_righthand = document.getElementById("gamediv_righthand_holistic");
+	var resultsFaceLandmarks = document.getElementById("gamediv_resultsFaceLandmarks");
 	
 	sourceTimer = setInterval(
 		function(){
@@ -79,6 +81,8 @@ window.onload = function () {
 	}
 
 	function onResults(results) {
+		resultsFaceLandmarks.innerHTML = JSON.stringify(results.faceLandmarks);
+		
 		canvasCtx.save();
 		canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
 		canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
@@ -129,6 +133,8 @@ window.onload = function () {
 	  minTrackingConfidence: 0.5
 	});
 	holistic.onResults(onResults);
+	
+
 		
 	function h(a){var c=0;return function(){return c<a.length?{done:!1,value:a[c++]}:{done:!0}}}var l="function"==typeof Object.defineProperties?Object.defineProperty:function(a,c,b){if(a==Array.prototype||a==Object.prototype)return a;a[c]=b.value;return a};
 	function m(a){a=["object"==typeof globalThis&&globalThis,a,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var c=0;c<a.length;++c){var b=a[c];if(b&&b.Math==Math)return b}throw Error("Cannot find global object");}var n=m(this);function p(a,c){if(c)a:{var b=n;a=a.split(".");for(var d=0;d<a.length-1;d++){var e=a[d];if(!(e in b))break a;b=b[e]}a=a[a.length-1];d=b[a];c=c(d);c!=d&&null!=c&&l(b,a,{configurable:!0,writable:!0,value:c})}}

@@ -827,3 +827,47 @@ Blockly.Blocks['holistic_unrecognitied'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['holistic_clip_element'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.HOLISTIC_CLIP_SHOW);
+  this.appendValueInput("canvasid")
+      .setCheck(null)
+      .appendField(Blockly.Msg.HOLISTIC_CANVAS_ID); 	  
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.HOLISTIC_CLIP_SOURCE_SHOW)
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.HOLISTIC_VIDEO,"video"], [Blockly.Msg.HOLISTIC_CANVAS,"canvas"], [Blockly.Msg.HOLISTIC_IMAGE,"image"]]), "drawsource");	  
+  this.appendValueInput("drawsourceid")
+      .setCheck(null)
+      .appendField(Blockly.Msg.HOLISTIC_ID); 
+  this.appendValueInput("drawpath")
+      .setCheck(null)
+      .appendField(Blockly.Msg.HOLISTIC_CLIP_PATH_SHOW); 	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['holistic_clip_color'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.HOLISTIC_CLIP_SHOW);
+  this.appendValueInput("canvasid")
+      .setCheck(null)
+      .appendField(Blockly.Msg.HOLISTIC_CANVAS_ID); 	  
+  this.appendValueInput("drawcolor")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.HOLISTIC_COLOR);
+  this.appendValueInput("drawpath")
+      .setCheck(null)
+      .appendField(Blockly.Msg.HOLISTIC_CLIP_PATH_SHOW); 	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};

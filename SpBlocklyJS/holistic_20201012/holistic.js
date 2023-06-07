@@ -382,6 +382,61 @@
 	}  
 	
 	function holistic_unrecognitionFinish() {
+	}  	
+	
+	function holistic_clip(canvasid, sourceid, drawcolor, points) {
+		var canvasClip = document.getElementById(canvasid); 
+		var ctxClip = canvasClip.getContext('2d');
+		var resultsFaceLandmarks = document.getElementById("gamediv_resultsFaceLandmarks");
+		var marks = JSON.parse(resultsFaceLandmarks.innerHTML);
+
+		if (sourceid) {
+			var elementClip = document.getElementById(sourceid);
+			canvasClip.setAttribute("width", elementClip.width);
+			canvasClip.setAttribute("height", elementClip.height);
+
+			if (marks) {
+				for (var i=0;i<points.length;i++) {
+					ctxClip.beginPath;
+					for (var j=0;j<points[i].length;j++) {		
+						if (j==0) { 
+							ctxClip.moveTo(marks[points[i][j]-1]["x"]*elementClip.width, marks[points[i][j]-1]["y"]*elementClip.height); 
+						}				
+						else if (j<points[i].length) {
+							ctxClip.lineTo(marks[points[i][j]-1]["x"]*elementClip.width, marks[points[i][j]-1]["y"]*elementClip.height);
+						}
+					}
+				}	
+				
+				ctxClip.clip();
+				ctxClip.drawImage(elementClip, 0, 0);
+				ctxClip.closePath();
+				ctxClip.restore();
+			}
+		} else {
+			
+			if (marks) {
+				canvasClip.setAttribute("width", canvasClip.style.width.replace("px",""));
+				canvasClip.setAttribute("height", canvasClip.style.height.replace("px",""));				
+				for (var i=0;i<points.length;i++) {
+					ctxClip.beginPath;
+					for (var j=0;j<points[i].length;j++) {		
+						if (j==0) { 
+							ctxClip.moveTo(marks[points[i][j]-1]["x"]*canvasClip.width, marks[points[i][j]-1]["y"]*canvasClip.height); 
+						}				
+						else if (j<points[i].length) {
+							ctxClip.lineTo(marks[points[i][j]-1]["x"]*canvasClip.width, marks[points[i][j]-1]["y"]*canvasClip.height);
+						}
+					}
+				}	
+				
+				ctxClip.clip();
+				ctxClip.fillStyle = drawcolor;
+				ctxClip.fill();
+				ctxClip.closePath();
+				ctxClip.restore();				
+			}
+		}
 	} 	
 
 	window.holistic_video = holistic_video;
@@ -398,6 +453,7 @@
 	window.holistic_startvideo_media = holistic_startvideo_media;
 	window.holistic_startvideo_stream = holistic_startvideo_stream;
 	window.holistic_recognitionFinish = holistic_recognitionFinish;	
-	window.holistic_unrecognitionFinish = holistic_unrecognitionFinish;	
+	window.holistic_unrecognitionFinish = holistic_unrecognitionFinish;
+	window.holistic_clip = holistic_clip;
 	
 }(window, window.document));

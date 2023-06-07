@@ -92,3 +92,16 @@ Blockly.Msg.HOLISTIC_AXIS_SHOW = "Axis";
 Blockly.Msg.HOLISTIC_ADJUST_SHOW = "Adjust Angle";
 Blockly.Msg.HOLISTIC_RECOGNITIED_SHOW = "Holistic Detect recognitied";
 Blockly.Msg.HOLISTIC_UNRECOGNITIED_SHOW = "Holistic Detect unrecognitied";
+Blockly.Msg.HOLISTIC_CLIP_SHOW = "Holistic Detect Clip";
+Blockly.Msg.HOLISTIC_CLIP_SOURCE_SHOW = "Element";
+Blockly.Msg.HOLISTIC_CLIP_PATH_SHOW = "Path";
+
+Blockly.Msg.HOLISTIC_CLIP_SHOW = "Holistic Detect Clip";
+Blockly.Msg.HOLISTIC_CANVAS_ID = "Canvas ID";
+Blockly.Msg.HOLISTIC_CLIP_SOURCE_SHOW = "Draw element";
+Blockly.Msg.HOLISTIC_VIDEO = "Video";
+Blockly.Msg.HOLISTIC_CANVAS = "Canvas";
+Blockly.Msg.HOLISTIC_IMAGE = "Image";
+Blockly.Msg.HOLISTIC_ID = "ID";
+Blockly.Msg.HOLISTIC_CLIP_PATH_SHOW = "Path";
+Blockly.Msg.HOLISTIC_COLOR = "Draw color";
