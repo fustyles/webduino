@@ -890,3 +890,28 @@ Blockly.Blocks['holistic_clip_color'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['holistic_points'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.HOLISTIC_CLIP_POINTS_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_PART_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.HOLISTIC_REYE_I_SHOW,"134,174,158,159,160,161,162,247,34,8,164,145,146,154,155,156"],	  
+		[Blockly.Msg.HOLISTIC_LEYE_I_SHOW,"363,399,385,386,387,388,389,467,264,250,391,374,375,381,382,383"],
+		[Blockly.Msg.HOLISTIC_REYE_O_SHOW,"244,191,57,29,28,30,31,248,131,26,111,25,24,23,27,113"],
+		[Blockly.Msg.HOLISTIC_LEYE_O_SHOW,"464,415,287,259,258,260,261,468,360,256,340,255,254,253,257,342"],
+		[Blockly.Msg.HOLISTIC_REYEBROW_SHOW,"108,67,106,64,71,47,54,53,66,56"],
+		[Blockly.Msg.HOLISTIC_LEYEBROW_SHOW,"337,297,335,294,284,283,296,286"],		
+		[Blockly.Msg.HOLISTIC_NOSE_SHOW,"197,237,199,210,50,103,65,236,60,76,61,21,243,142,95,371,463,251,291,306,290,456,295,332,280,430,421,457,420"],
+		[Blockly.Msg.HOLISTIC_MOUTH_SHOW,"292,410,271,270,268,1,38,40,41,186,62,147,92,182,85,18,315,406,322,376"],
+		[Blockly.Msg.HOLISTIC_UMOUTH_SHOW,"292,410,271,270,268,1,38,40,41,186,62,79,192,81,82,83,14,313,312,311,416,309"],
+		[Blockly.Msg.HOLISTIC_DMOUTH_SHOW,"292,376,322,406,315,18,85,182,92,147,62,79,96,89,179,88,15,318,403,319,325,309"],
+		[Blockly.Msg.HOLISTIC_FACE_SHOW,"200,209,33,212,211,215,188,112,144,157,71,64,106,67,108,10,337,297,335,294,301,384,266,341,412,435,431,432,263,429"]		
+  ]), "points"); 	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
