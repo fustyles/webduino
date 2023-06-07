@@ -19,6 +19,7 @@ function doPost(e) {
 
     let msg = JSON.parse(e.postData.contents);
     userMessage = msg.events[0].message.text.trim();
+    //userMessage = "請使用繁體中文回覆以下對話：\n\n" + userMessage;
     userId = msg.events[0].source.userId;
     eventType = msg.events[0].source.type;
     replyToken = msg.events[0].replyToken;  
