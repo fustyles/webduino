@@ -185,7 +185,7 @@ Blockly.JavaScript['holistic_unrecognitied'] = function(block) {
 Blockly.JavaScript['holistic_clip_element'] = function(block) { 
   var canvasid = Blockly.JavaScript.valueToCode(block, 'canvasid', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var drawpath = Blockly.JavaScript.valueToCode(block, 'drawpath', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  drawpath = drawpath.replace(/(/g,"").replace(/)/g,"");
+  drawpath = drawpath.replace(/\(/g,"").replace(/\)/g,"");
   drawpath = drawpath.replace("['","[").replace("']","]").replace(/','/g,"], [").replace(/', '/g,"], [");
   drawpath = "["+drawpath.replace('["',"[").replace('"]',"]").replace(/","/g,"], [").replace(/", "/g,"], [")+"]";
   
@@ -197,7 +197,7 @@ Blockly.JavaScript['holistic_clip_color'] = function(block) {
   var canvasid = Blockly.JavaScript.valueToCode(block, 'canvasid', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var drawcolor = Blockly.JavaScript.valueToCode(block, 'drawcolor', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var drawpath = Blockly.JavaScript.valueToCode(block, 'drawpath', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  drawpath = drawpath.replace(/(/g,"").replace(/)/g,"");
+  drawpath = drawpath.replace(/\(/g,"").replace(/\)/g,"");
   drawpath = drawpath.replace("['","[").replace("']","]").replace(/','/g,"], [").replace(/', '/g,"], [");
   drawpath = "["+drawpath.replace('["',"[").replace('"]',"]").replace(/","/g,"], [").replace(/", "/g,"], [")+"]";
   
