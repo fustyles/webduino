@@ -405,7 +405,7 @@
 		if (!drawcolor) {
 			for (var i=0;i<points.length;i++) {
 				ctxClip.beginPath;
-				for (var j=0;j<points[i].length;j++) {		
+				for (var j=0;j<points[i].length;j++) {					
 					if (j==0) { 
 						ctxClip.moveTo(marks[points[i][j]-1]["x"]*elementClip.width, marks[points[i][j]-1]["y"]*elementClip.height); 
 					}				
@@ -422,7 +422,7 @@
 		} else {			
 			for (var i=0;i<points.length;i++) {
 				ctxClip.beginPath;
-				for (var j=0;j<points[i].length;j++) {		
+				for (var j=0;j<points[i].length;j++) {				
 					if (j==0) { 
 						ctxClip.moveTo(marks[points[i][j]-1]["x"]*elementClip.width, marks[points[i][j]-1]["y"]*elementClip.height); 
 					}				
@@ -438,7 +438,7 @@
 			ctxClip.closePath();
 			ctxClip.restore();
 		}
-	} 	 	
+	} 
 	
 	window.holistic_video = holistic_video;
 	window.holistic_face_position = holistic_face_position;
