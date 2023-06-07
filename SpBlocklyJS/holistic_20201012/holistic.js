@@ -398,8 +398,7 @@
 		if (!drawcolor) {
 			for (var i=0;i<points.length;i++) {
 				ctxClip.beginPath;
-				for (var j=0;j<points[i].length;j++) {
-console.log(points[i][j]);						
+				for (var j=0;j<points[i].length;j++) {					
 					if (j==0) { 
 						ctxClip.moveTo(marks[points[i][j]-1]["x"]*elementClip.width, marks[points[i][j]-1]["y"]*elementClip.height); 
 					}				
@@ -416,8 +415,7 @@ console.log(points[i][j]);
 		} else {			
 			for (var i=0;i<points.length;i++) {
 				ctxClip.beginPath;
-				for (var j=0;j<points[i].length;j++) {	
-console.log(points[i][j]);				
+				for (var j=0;j<points[i].length;j++) {				
 					if (j==0) { 
 						ctxClip.moveTo(marks[points[i][j]-1]["x"]*elementClip.width, marks[points[i][j]-1]["y"]*elementClip.height); 
 					}				
