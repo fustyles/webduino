@@ -193,8 +193,8 @@ Blockly.JavaScript['holistic_clip_element'] = function(block) {
 	drawsourceid = '"gamecanvas_"+'+drawsourceid;
   else if (drawsource=="image")
 	drawsourceid = '"gameimage_"+'+drawsourceid;
-
   drawpath = "["+drawpath.replace("['","[").replace("']","]").replace(/','/g,"], [").replace(/', '/g,"], [")+"]";
+	
   var code = 'holistic_clip("gamecanvas_"+'+canvasid+', '+drawsourceid+', "", '+drawpath+');\n';
   return code;
 };
