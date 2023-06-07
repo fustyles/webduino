@@ -178,8 +178,8 @@
     </value>   
   </block>
   <block type="holistic_lefthand_angle">
-	<field name="part1_">4</field>                 
-	<field name="part2_">20</field>  
+    <field name="part1_">4</field>                 
+    <field name="part2_">20</field>  
     <value name="adjust_">
       <block type="math_number">
         <field name="NUM">0</field>
@@ -202,17 +202,12 @@
       </block>
     </value> 			  
   </block>
-    <block type="holistic_clip_element"> 
+  <block type="holistic_clip_element"> 
     <value name="canvasid">
       <block type="text">
-      	<field name="TEXT"></field>
+        <field name="TEXT"></field>
       </block>
     </value>
-    <value name="drawsourceid">
-      <block type="text">
-      	<field name="TEXT"></field>
-      </block>
-    </value>  
     <value name="drawpath">
       <block type="lists_create_with">
         <mutation items="3"></mutation>
@@ -237,12 +232,12 @@
   <block type="holistic_clip_color">
     <value name="canvasid">
       <block type="text">
-      	<field name="TEXT"></field>
+        <field name="TEXT"></field>
       </block>
     </value>
     <value name="drawcolor">
       <block type="colour_picker">
-      	<field name="COLOUR">#ff0000</field>
+        <field name="COLOUR">#ff0000</field>
       </block>
     </value>	
     <value name="drawpath">
