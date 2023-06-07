@@ -395,6 +395,8 @@
 		var canvasClip = document.getElementById(canvasid); 
 		var ctxClip = canvasClip.getContext('2d');
 		var resultsFaceLandmarks = document.getElementById("gamediv_resultsFaceLandmarks");
+		if (resultsFaceLandmarks.innerHTML=="undefined") return;
+		
 		var marks = JSON.parse(resultsFaceLandmarks.innerHTML);
 
 		if (sourceid) {
