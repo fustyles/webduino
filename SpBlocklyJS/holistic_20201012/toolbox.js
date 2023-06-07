@@ -194,18 +194,12 @@ var catHolistic = '<xml>'+
       '</block>'+
     '</value>'+   
   '</block>'+  
-  
   '<block type="holistic_clip_element">'+ 
     '<value name="canvasid">'+
 	'	<block type="text">'+
 	'  		<field name="TEXT"></field>'+
 	'	</block>'+
     '</value>'+
-    '<value name="drawsourceid">'+
-	'	<block type="text">'+
-	'  		<field name="TEXT"></field>'+
-	'	</block>'+
-    '</value>'+  
     '<value name="drawpath">'+
 '      <block type="lists_create_with">'+
 '        <mutation items="3"></mutation>'+

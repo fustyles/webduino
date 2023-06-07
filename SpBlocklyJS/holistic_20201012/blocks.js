@@ -831,16 +831,10 @@ Blockly.Blocks['holistic_unrecognitied'] = {
 Blockly.Blocks['holistic_clip_element'] = {
   init: function () {
   this.appendDummyInput()
-      .appendField(Blockly.Msg.HOLISTIC_CLIP_SHOW);
+      .appendField(Blockly.Msg.HOLISTIC_CLIP_ELEMENT_SHOW);
   this.appendValueInput("canvasid")
       .setCheck(null)
       .appendField(Blockly.Msg.HOLISTIC_CANVAS_ID); 	  
-  this.appendDummyInput()
-	  .appendField(Blockly.Msg.HOLISTIC_CLIP_SOURCE_SHOW)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.HOLISTIC_VIDEO,"video"], [Blockly.Msg.HOLISTIC_CANVAS,"canvas"], [Blockly.Msg.HOLISTIC_IMAGE,"image"]]), "drawsource");	  
-  this.appendValueInput("drawsourceid")
-      .setCheck(null)
-      .appendField(Blockly.Msg.HOLISTIC_ID); 
   this.appendValueInput("drawpath")
       .setCheck(null)
       .appendField(Blockly.Msg.HOLISTIC_CLIP_PATH_SHOW); 	  
@@ -854,7 +848,7 @@ Blockly.Blocks['holistic_clip_element'] = {
 Blockly.Blocks['holistic_clip_color'] = {
   init: function () {
   this.appendDummyInput()
-      .appendField(Blockly.Msg.HOLISTIC_CLIP_SHOW);
+      .appendField(Blockly.Msg.HOLISTIC_CLIP_COLOR_SHOW);
   this.appendValueInput("canvasid")
       .setCheck(null)
       .appendField(Blockly.Msg.HOLISTIC_CANVAS_ID); 	  
