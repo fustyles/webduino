@@ -303,10 +303,10 @@ function init() {
         var position = Blockly.utils.svgMath.getRelativeXY(block.getSvgRoot());
         var x = position.x;
         var y = position.y;
-        var scrollX = secondaryWorkspace.scrollX;
-        var scrollY = secondaryWorkspace.scrollY;
-        var wsWidth = secondaryWorkspace.getParentSvg().width.baseVal.value;
-        var wsHeight = secondaryWorkspace.getParentSvg().height.baseVal.value;
+        var scrollX = secondaryWorkspace.scrollX / secondaryWorkspace.scale;
+        var scrollY = secondaryWorkspace.scrollY / secondaryWorkspace.scale;
+        var wsWidth = secondaryWorkspace.getParentSvg().width.baseVal.value / secondaryWorkspace.scale;
+        var wsHeight = secondaryWorkspace.getParentSvg().height.baseVal.value / secondaryWorkspace.scale;
         var blockToCenterXY = {};
         blockToCenterXY.x = wsWidth / 2 - block.width / 2 - scrollX - x;
         blockToCenterXY.y = wsHeight / 2 - block.height / 2 - scrollY - y;
