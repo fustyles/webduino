@@ -290,7 +290,7 @@ function init() {
     }
 
     function getBlockToMouseXY(block) {
-        var mouseClient = new Blockly.utils.Coordinate((mouse_cursor.pageX - window.scrollX) / secondaryWorkspace.scale, (mouse_cursor.pageY - window.scrollY) / secondaryWorkspace.scale);
+        var mouseClient = new Blockly.utils.Coordinate(mouse_cursor.pageX - window.scrollX, mouse_cursor.pageY - window.scrollY);
         var mousePos = Blockly.utils.svgMath.screenToWsCoordinates(secondaryWorkspace, mouseClient);
         var blockPos = Blockly.utils.svgMath.getRelativeXY(block.getSvgRoot());
         var blockToMouseXY = {};
