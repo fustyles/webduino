@@ -14,7 +14,7 @@
 /**
  * @fileoverview Toolbox Popup
  * @author https://www.facebook.com/francefu/
- * @Update 5/29/2023 21:30 (Taiwan Standard Time)
+ * @Update 6/11/2023 21:30 (Taiwan Standard Time)
  */
 function init() {
     // Inject primary workspace.
@@ -75,7 +75,7 @@ function init() {
                 newBlock.select();
             } catch (e) {
                 var blockToMouseXY = getBlockToMouseXY(newBlock);
-                newBlock.moveBy(blockToMouseXY.x - 10, blockToMouseXY.y - 10);
+                newBlock.moveBy(blockToMouseXY.x - 5 / secondaryWorkspace.scale, blockToMouseXY.y - 10 / secondaryWorkspace.scale);
             }
             newBlock.setEnabled(true);
             newBlock.bringToFront();
