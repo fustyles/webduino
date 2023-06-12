@@ -199,6 +199,11 @@
 	  		<field name="TEXT"></field>
 		</block>
     </value>
+    <value name="alpha">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>		
     <value name="drawpath">
       <block type="lists_create_with">
         <mutation items="3"></mutation>
@@ -251,7 +256,44 @@
         </value>
       </block>
     </value>    
-  </block> 
-  <block type="holistic_points">  
   </block>   
+  <block type="holistic_clip_image">
+    <value name="canvasid">
+		<block type="text">
+	  		<field name="TEXT"></field>
+		</block>
+    </value>
+    <value name="imageid">
+		<block type="text">
+		  <field name="TEXT"></field>
+		</block>
+    </value>	
+    <value name="alpha">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>		
+    <value name="drawpath">
+      <block type="lists_create_with">
+        <mutation items="3"></mutation>
+        <value name="ADD0">
+          <block type="text">
+            <field name="TEXT">134,174,158,159,160,161,162,247,34,8,164,145,146,154,155,156</field>
+          </block>
+        </value>
+        <value name="ADD1">
+          <block type="text">
+            <field name="TEXT">363,399,385,386,387,388,389,467,264,250,391,374,375,381,382,383</field>
+          </block>
+        </value>
+        <value name="ADD2">
+          <block type="text">
+            <field name="TEXT">292,410,271,270,268,1,38,40,41,186,147,92,182,85,18,315,406,322,376</field>
+          </block>
+        </value>
+      </block>
+    </value>    
+  </block>    
+  <block type="holistic_points">   
+  </block>    
 </category>
