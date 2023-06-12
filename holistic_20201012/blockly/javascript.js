@@ -184,12 +184,13 @@ Blockly.JavaScript['holistic_unrecognitied'] = function(block) {
 
 Blockly.JavaScript['holistic_clip_element'] = function(block) { 
   var canvasid = Blockly.JavaScript.valueToCode(block, 'canvasid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var alpha = Blockly.JavaScript.valueToCode(block, 'alpha', Blockly.JavaScript.ORDER_ATOMIC)||1;
   var drawpath = Blockly.JavaScript.valueToCode(block, 'drawpath', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  drawpath = drawpath.replace(/\(/g,"").replace(/\)/g,"");
+  drawpath = drawpath.replace(/\(/g,"").replace(/\)/g,"");  
   drawpath = drawpath.replace("['","[").replace("']","]").replace(/','/g,"], [").replace(/', '/g,"], [");
   drawpath = "["+drawpath.replace('["',"[").replace('"]',"]").replace(/","/g,"], [").replace(/", "/g,"], [")+"]";
   
-  var code = 'holistic_clip("gamecanvas_"+'+canvasid+', "gamecanvas_canvasElement", "", '+drawpath+');\n';
+  var code = 'holistic_clip_video("gamecanvas_"+'+canvasid+', "gamecanvas_canvasElement", '+alpha+', '+drawpath+');\n';
   return code;
 };
 
@@ -197,39 +198,29 @@ Blockly.JavaScript['holistic_clip_color'] = function(block) {
   var canvasid = Blockly.JavaScript.valueToCode(block, 'canvasid', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var drawcolor = Blockly.JavaScript.valueToCode(block, 'drawcolor', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var drawpath = Blockly.JavaScript.valueToCode(block, 'drawpath', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  drawpath = drawpath.replace(/\(/g,"").replace(/\)/g,"");
+  drawpath = drawpath.replace(/\(/g,"").replace(/\)/g,"");  
   drawpath = drawpath.replace("['","[").replace("']","]").replace(/','/g,"], [").replace(/', '/g,"], [");
   drawpath = "["+drawpath.replace('["',"[").replace('"]',"]").replace(/","/g,"], [").replace(/", "/g,"], [")+"]";
   
-  var code = 'holistic_clip("gamecanvas_"+'+canvasid+', "gamecanvas_canvasElement", '+drawcolor+', '+drawpath+');\n';
+  var code = 'holistic_clip_color("gamecanvas_"+'+canvasid+', "gamecanvas_canvasElement", '+drawcolor+', '+drawpath+');\n';
+  return code;
+};
+
+Blockly.JavaScript['holistic_clip_image'] = function(block) { 
+  var canvasid = Blockly.JavaScript.valueToCode(block, 'canvasid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var imageid = Blockly.JavaScript.valueToCode(block, 'imageid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var drawpath = Blockly.JavaScript.valueToCode(block, 'drawpath', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var alpha = Blockly.JavaScript.valueToCode(block, 'alpha', Blockly.JavaScript.ORDER_ATOMIC)||1;
+  drawpath = drawpath.replace(/\(/g,"").replace(/\)/g,"");  
+  drawpath = drawpath.replace("['","[").replace("']","]").replace(/','/g,"], [").replace(/', '/g,"], [");
+  drawpath = "["+drawpath.replace('["',"[").replace('"]',"]").replace(/","/g,"], [").replace(/", "/g,"], [")+"]";
+  
+  var code = 'holistic_clip_image("gamecanvas_"+'+canvasid+', "gameimage_"+'+imageid+', '+alpha+', '+drawpath+');\n';
   return code;
 };
 
 Blockly.JavaScript['holistic_points'] = function (block) {
   var points = block.getFieldValue('points');
-  if (points=="0")
-	  points = "'134,174,158,159,160,161,162,247,34,8,164,145,146,154,155,156'";
-  else if (points=="1")
-	  points = "'363,399,385,386,387,388,389,467,264,250,391,374,375,381,382,383'";
-  else if (points=="2")
-	  points = "'244,191,57,29,28,30,31,248,131,26,111,25,24,23,27,113'";
-  else if (points=="3")
-	  points = "'464,415,287,259,258,260,261,468,360,256,340,255,254,253,257,342'";
-  else if (points=="4")
-	  points = "'108,67,106,64,71,47,54,53,66,56'";
-  else if (points=="5")
-	  points = "'337,297,335,294,284,283,296,286'";
-  else if (points=="6")
-	  points = "'197,237,199,210,50,103,65,236,60,76,61,21,243,142,95,371,463,251,291,306,290,456,295,332,280,430,421,457,420'";
-  else if (points=="7")
-	  points = "'292,410,271,270,268,1,38,40,41,186,62,147,92,182,85,18,315,406,322,376'";
-  else if (points=="8")
-	  points = "'292,410,271,270,268,1,38,40,41,186,62,79,192,81,82,83,14,313,312,311,416,309'";
-  else if (points=="9")
-	  points = "'292,376,322,406,315,18,85,182,92,147,62,79,96,89,179,88,15,318,403,319,325,309'";
-  else if (points=="10")
-	  points = "'200,209,33,212,211,215,188,112,144,157,71,64,106,67,108,10,337,297,335,294,301,384,266,341,412,435,431,432,263,429'";
-  
-  var code = points;
+  var code = '"'+points+'"';
   return [code, Blockly.JavaScript.ORDER_NONE];  
 };
