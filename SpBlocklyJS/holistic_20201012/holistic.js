@@ -384,7 +384,7 @@
 	function holistic_unrecognitionFinish() {
 	}  	
 	
-	function holistic_clip(canvasid, sourceid, drawcolor, points) {
+	function holistic_clip_video(canvasid, sourceid, alpha, points) {
 		var canvasClip = document.getElementById(canvasid); 
 		var ctxClip = canvasClip.getContext('2d');
 		var resultsFaceLandmarks = document.getElementById("gamediv_resultsFaceLandmarks");
@@ -395,43 +395,84 @@
 		canvasClip.setAttribute("width", elementClip.width);
 		canvasClip.setAttribute("height", elementClip.height);
 			
-		if (!drawcolor) {
-			for (var i=0;i<points.length;i++) {
-				ctxClip.beginPath;
-				for (var j=0;j<points[i].length;j++) {					
-					if (j==0) { 
-						ctxClip.moveTo(marks[points[i][j]-1]["x"]*elementClip.width, marks[points[i][j]-1]["y"]*elementClip.height); 
-					}				
-					else if (j<points[i].length) {
-						ctxClip.lineTo(marks[points[i][j]-1]["x"]*elementClip.width, marks[points[i][j]-1]["y"]*elementClip.height);
-					}
+		ctxClip.globalAlpha = (alpha?alpha:1);
+		for (var i=0;i<points.length;i++) {
+			ctxClip.beginPath;
+			for (var j=0;j<points[i].length;j++) {					
+				if (j==0) { 
+					ctxClip.moveTo(marks[points[i][j]-1]["x"]*elementClip.width, marks[points[i][j]-1]["y"]*elementClip.height); 
+				}				
+				else if (j<points[i].length) {
+					ctxClip.lineTo(marks[points[i][j]-1]["x"]*elementClip.width, marks[points[i][j]-1]["y"]*elementClip.height);
 				}
-			}	
-			
-			ctxClip.clip();
-			ctxClip.drawImage(elementClip, 0, 0);
-			ctxClip.closePath();
-			ctxClip.restore();
-		} else {			
-			for (var i=0;i<points.length;i++) {
-				ctxClip.beginPath;
-				for (var j=0;j<points[i].length;j++) {				
-					if (j==0) { 
-						ctxClip.moveTo(marks[points[i][j]-1]["x"]*elementClip.width, marks[points[i][j]-1]["y"]*elementClip.height); 
-					}				
-					else if (j<points[i].length) {
-						ctxClip.lineTo(marks[points[i][j]-1]["x"]*elementClip.width, marks[points[i][j]-1]["y"]*elementClip.height);
-					}
-				}
-			}	
-			
-			ctxClip.clip();
-			ctxClip.fillStyle = drawcolor;
-			ctxClip.fill();
-			ctxClip.closePath();
-			ctxClip.restore();
-		}
+			}
+		}	
+		
+		ctxClip.clip();
+		ctxClip.drawImage(elementClip, 0, 0);
+		ctxClip.closePath();
+		ctxClip.restore();
 	} 	
+	
+	function holistic_clip_image(canvasid, sourceid, alpha, points) {
+		var canvasClip = document.getElementById(canvasid); 
+		var ctxClip = canvasClip.getContext('2d');
+		var resultsFaceLandmarks = document.getElementById("gamediv_resultsFaceLandmarks");
+		if (resultsFaceLandmarks.innerHTML=="undefined") return;
+		
+		var marks = JSON.parse(resultsFaceLandmarks.innerHTML);
+		var elementClip = document.getElementById(sourceid);
+		canvasClip.setAttribute("width", elementClip.width);
+		canvasClip.setAttribute("height", elementClip.height);
+			
+		ctxClip.globalAlpha = (alpha?alpha:1);
+		for (var i=0;i<points.length;i++) {
+			ctxClip.beginPath;
+			for (var j=0;j<points[i].length;j++) {					
+				if (j==0) { 
+					ctxClip.moveTo(marks[points[i][j]-1]["x"]*elementClip.width, marks[points[i][j]-1]["y"]*elementClip.height); 
+				}				
+				else if (j<points[i].length) {
+					ctxClip.lineTo(marks[points[i][j]-1]["x"]*elementClip.width, marks[points[i][j]-1]["y"]*elementClip.height);
+				}
+			}
+		}	
+		
+		ctxClip.clip();
+		ctxClip.drawImage(elementClip, 0, 0);
+		ctxClip.closePath();
+		ctxClip.restore();
+	} 
+
+	function holistic_clip_color(canvasid, sourceid, drawcolor, points) {
+		var canvasClip = document.getElementById(canvasid); 
+		var ctxClip = canvasClip.getContext('2d');
+		var resultsFaceLandmarks = document.getElementById("gamediv_resultsFaceLandmarks");
+		if (resultsFaceLandmarks.innerHTML=="undefined") return;
+		
+		var marks = JSON.parse(resultsFaceLandmarks.innerHTML);
+		var elementClip = document.getElementById(sourceid);
+		canvasClip.setAttribute("width", elementClip.width);
+		canvasClip.setAttribute("height", elementClip.height);
+					
+		for (var i=0;i<points.length;i++) {
+			ctxClip.beginPath;
+			for (var j=0;j<points[i].length;j++) {				
+				if (j==0) { 
+					ctxClip.moveTo(marks[points[i][j]-1]["x"]*elementClip.width, marks[points[i][j]-1]["y"]*elementClip.height); 
+				}				
+				else if (j<points[i].length) {
+					ctxClip.lineTo(marks[points[i][j]-1]["x"]*elementClip.width, marks[points[i][j]-1]["y"]*elementClip.height);
+				}
+			}
+		}	
+		
+		ctxClip.clip();
+		ctxClip.fillStyle = drawcolor;
+		ctxClip.fill();
+		ctxClip.closePath();
+		ctxClip.restore();
+	} 
 
 	window.holistic_video = holistic_video;
 	window.holistic_face_position = holistic_face_position;
@@ -448,6 +489,8 @@
 	window.holistic_startvideo_stream = holistic_startvideo_stream;
 	window.holistic_recognitionFinish = holistic_recognitionFinish;	
 	window.holistic_unrecognitionFinish = holistic_unrecognitionFinish;
-	window.holistic_clip = holistic_clip;
+	window.holistic_clip_video = holistic_clip_video;
+	window.holistic_clip_image = holistic_clip_image;
+	window.holistic_clip_color = holistic_clip_color;
 	
 }(window, window.document));

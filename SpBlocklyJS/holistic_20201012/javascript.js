@@ -173,12 +173,13 @@ Blockly.JavaScript['holistic_unrecognitied'] = function(block) {
 
 Blockly.JavaScript['holistic_clip_element'] = function(block) { 
   var canvasid = Blockly.JavaScript.valueToCode(block, 'canvasid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var alpha = Blockly.JavaScript.valueToCode(block, 'alpha', Blockly.JavaScript.ORDER_ATOMIC)||1;
   var drawpath = Blockly.JavaScript.valueToCode(block, 'drawpath', Blockly.JavaScript.ORDER_ATOMIC)||"";
   drawpath = drawpath.replace(/\(/g,"").replace(/\)/g,"");  
   drawpath = drawpath.replace("['","[").replace("']","]").replace(/','/g,"], [").replace(/', '/g,"], [");
   drawpath = "["+drawpath.replace('["',"[").replace('"]',"]").replace(/","/g,"], [").replace(/", "/g,"], [")+"]";
   
-  var code = 'holistic_clip("gamecanvas_"+'+canvasid+', "gamecanvas_canvasElement", "", '+drawpath+');\n';
+  var code = 'holistic_clip_video("gamecanvas_"+'+canvasid+', "gamecanvas_canvasElement", '+alpha+', '+drawpath+');\n';
   return code;
 };
 
@@ -190,7 +191,20 @@ Blockly.JavaScript['holistic_clip_color'] = function(block) {
   drawpath = drawpath.replace("['","[").replace("']","]").replace(/','/g,"], [").replace(/', '/g,"], [");
   drawpath = "["+drawpath.replace('["',"[").replace('"]',"]").replace(/","/g,"], [").replace(/", "/g,"], [")+"]";
   
-  var code = 'holistic_clip("gamecanvas_"+'+canvasid+', "gamecanvas_canvasElement", '+drawcolor+', '+drawpath+');\n';
+  var code = 'holistic_clip_color("gamecanvas_"+'+canvasid+', "gamecanvas_canvasElement", '+drawcolor+', '+drawpath+');\n';
+  return code;
+};
+
+Blockly.JavaScript['holistic_clip_image'] = function(block) { 
+  var canvasid = Blockly.JavaScript.valueToCode(block, 'canvasid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var imageid = Blockly.JavaScript.valueToCode(block, 'imageid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var drawpath = Blockly.JavaScript.valueToCode(block, 'drawpath', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var alpha = Blockly.JavaScript.valueToCode(block, 'alpha', Blockly.JavaScript.ORDER_ATOMIC)||1;
+  drawpath = drawpath.replace(/\(/g,"").replace(/\)/g,"");  
+  drawpath = drawpath.replace("['","[").replace("']","]").replace(/','/g,"], [").replace(/', '/g,"], [");
+  drawpath = "["+drawpath.replace('["',"[").replace('"]',"]").replace(/","/g,"], [").replace(/", "/g,"], [")+"]";
+  
+  var code = 'holistic_clip_image("gamecanvas_"+'+canvasid+', "gameimage_"+'+imageid+', '+alpha+', '+drawpath+');\n';
   return code;
 };
 
