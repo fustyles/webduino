@@ -204,9 +204,9 @@
   </block>
   <block type="holistic_clip_element"> 
     <value name="canvasid">
-		<block type="text">
-	  		<field name="TEXT"></field>
-		</block>
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
     </value>
     <value name="alpha">
       <block type="math_number">
@@ -236,14 +236,14 @@
   </block> 
   <block type="holistic_clip_color">
     <value name="canvasid">
-		<block type="text">
-	  		<field name="TEXT"></field>
-		</block>
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
     </value>
     <value name="drawcolor">
-		<block type="colour_picker">
-			<field name="COLOUR">#ff0000</field>
-		</block>
+      <block type="colour_picker">
+        <field name="COLOUR">#ff0000</field>
+      </block>
     </value>	
     <value name="drawpath">
       <block type="lists_create_with">
@@ -268,14 +268,14 @@
   </block>   
   <block type="holistic_clip_image">
     <value name="canvasid">
-		<block type="text">
-	  		<field name="TEXT"></field>
-		</block>
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
     </value>
     <value name="imageid">
-		<block type="text">
-		  <field name="TEXT"></field>
-		</block>
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
     </value>	
     <value name="alpha">
       <block type="math_number">
