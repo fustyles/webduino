@@ -75,7 +75,7 @@ function init() {
                 newBlock.select();
             } catch (e) {
                 var blockToMouseXY = getBlockToMouseXY(newBlock);
-                newBlock.moveBy(blockToMouseXY.x - 20 / secondaryWorkspace.scale, blockToMouseXY.y - 15 / secondaryWorkspace.scale);
+                newBlock.moveBy(blockToMouseXY.x - 30 / secondaryWorkspace.scale, blockToMouseXY.y - 10 / secondaryWorkspace.scale);
             }
             newBlock.setEnabled(true);
             newBlock.bringToFront();
