@@ -2087,7 +2087,13 @@ function elements_collision_color(element1,input_id1,input_id2,input_color) {
       else if (input_property=="scrollLeft")
         obj.scrollLeft = input_value;	
       else if (input_property=="scrollTop")
-        obj.scrollTop = input_value;		
+        obj.scrollTop = input_value;
+      else if (input_property=="wrap") {
+        if (input_value)
+          obj.style.wordWrap = "break-word";
+        else
+          obj.style.wordWrap = "normal";
+      }	    
       else if (input_property=="style")
         obj.style = input_value;	    
     }
