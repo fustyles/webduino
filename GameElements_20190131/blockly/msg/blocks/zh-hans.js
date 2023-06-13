@@ -344,6 +344,7 @@ Blockly.Msg.PROPERTY_SCROLLLEFT = "卷轴X轴位置";
 Blockly.Msg.PROPERTY_SCROLLTOP = "卷轴Y轴位置";
 Blockly.Msg.PROPERTY_SCROLLWIDTH = "卷轴X轴宽度";
 Blockly.Msg.PROPERTY_SCROLLHEIGHT = "卷轴Y轴高度";
+Blockly.Msg.PROPERTY_WRAP = "溢位换行";
 Blockly.Msg.RADIO_ONCLICK = "被点选后执行";
 Blockly.Msg.RADIO_NAME_GET = "选项按钮 同名称群组取得值";
 Blockly.Msg.CHECKBOX_ID = "核取方块 代码";
