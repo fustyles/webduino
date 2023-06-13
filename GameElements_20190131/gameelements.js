@@ -2022,6 +2022,7 @@ function elements_collision_color(element1,input_id1,input_id2,input_color) {
     obj.innerHTML = input_innerHTML;
     obj.style.zIndex = input_zindex;
     obj.style.wordWrap = "break-word";
+	obj.style.overflow = "auto";	
     if (input_display==0)
       obj.style.display = "none";
     else
@@ -2079,6 +2080,14 @@ function elements_collision_color(element1,input_id1,input_id2,input_color) {
         obj.disabled = input_value;
       else if (input_property=="draggable")
         obj.draggable = input_value;
+      else if (input_property=="scrollX")
+        obj.style.overflowX = input_value;
+      else if (input_property=="scrollY")
+        obj.style.overflowY = input_value;	
+      else if (input_property=="scrollLeft")
+        obj.scrollLeft = input_value;	
+      else if (input_property=="scrollTop")
+        obj.scrollTop = input_value;		
       else if (input_property=="style")
         obj.style = input_value;	    
     }
@@ -2121,6 +2130,18 @@ function elements_collision_color(element1,input_id1,input_id2,input_color) {
         return obj.disabled;
       else if (input_property=="draggable")
         return obj.draggable;
+      else if (input_property=="scrollX")
+        return obj.style.overflowX;
+      else if (input_property=="scrollY")
+        return obj.style.overflowY;	
+      else if (input_property=="scrollLeft")
+        return obj.scrollLeft;
+      else if (input_property=="scrollTop")
+        return obj.scrollTop;
+      else if (input_property=="scrollWidth")
+        return obj.scrollWidth;
+      else if (input_property=="scrollHeight")
+        return obj.scrollHeight;	
       else if (input_property=='id')
         return obj.id;
       else if (input_property=='name')
@@ -2229,41 +2250,45 @@ function HextoRgb(color) {
     if (document.getElementById("gameiframe_"+input_id)) {
         var obj = document.getElementById("gameiframe_"+input_id);
     if (input_property=="left")
-	obj.style.left = input_value + "px";
+		obj.style.left = input_value + "px";
     else if (input_property=="top")
-	obj.style.top = input_value + "px";
+		obj.style.top = input_value + "px";
     else if (input_property=="width")
-	obj.style.width = input_value + "px";
+		obj.style.width = input_value + "px";
     else if (input_property=="height")
-	obj.style.height = input_value + "px";
+		obj.style.height = input_value + "px";
     else if (input_property=="frameborder")
-	obj.frameBorder = input_value;
+		obj.frameBorder = input_value;
     else if (input_property=="scrolling")
-	obj.scrolling = input_value;
+		obj.scrolling = input_value;
     else if (input_property=="src")
-	obj.src = input_value; 
+		obj.src = input_value; 
     else if (input_property=="srcdoc")
-	obj.srcdoc = input_value;    
+		obj.srcdoc = input_value;    
     else if (input_property=="sandbox")
-	obj.sandbox = input_value;  
+		obj.sandbox = input_value;  
     else if (input_property=="allow")
-	obj.allow = input_value;  	    
+		obj.allow = input_value;  	    
     else if (input_property=="opacity")
-	obj.style.opacity = input_value;    
+		obj.style.opacity = input_value;    
     else if (input_property=="zindex")
-	obj.style.zIndex = input_value;
+		obj.style.zIndex = input_value;
     else if (input_property=="display"){ 
-    if (input_value==1)
-	  obj.style.display = "block";    
-    else if (input_value==0)
-	  obj.style.display = "none";
-    }
+		if (input_value==1)
+			obj.style.display = "block";    
+		else if (input_value==0)
+			obj.style.display = "none";
+	}
     else if (input_property=="position")
-	obj.style.position = input_value;		    
+		obj.style.position = input_value;		    
     else if (input_property=="disabled")
-	obj.disabled = input_value;
+		obj.disabled = input_value;
     else if (input_property=="draggable")
-	obj.draggable = input_value;
+		obj.draggable = input_value;
+    else if (input_property=="scrollLeft")
+      obj.contentWindow.scrollTo(input_value, obj.contentDocument.body.scrollTop);
+    else if (input_property=="scrollTop")
+      obj.contentWindow.scrollTo(obj.contentDocument.body.scrollLeft, input_value);
     else if (input_property=="style")
 	obj.style = input_value;	    
     }
@@ -2304,6 +2329,14 @@ function HextoRgb(color) {
         return obj.disabled;
       else if (input_property=="draggable")
         return obj.draggable;
+      else if (input_property=="scrollLeft")
+        return obj.contentDocument.body.scrollLeft;
+      else if (input_property=="scrollTop")
+        return obj.contentDocument.body.scrollTop;
+      else if (input_property=="scrollWidth")
+        return obj.contentDocument.body.scrollWidth;
+      else if (input_property=="scrollHeight")
+        return obj.contentDocument.body.scrollHeight;	
       else if (input_property=='id')
         return obj.id;
       else if (input_property=='name')
@@ -2317,7 +2350,6 @@ function HextoRgb(color) {
     if (document.getElementById("gameiframe_"+input_id))
       document.getElementById("gameiframe_"+input_id).parentNode.removeChild(document.getElementById("gameiframe_"+input_id));
   }
-
 	
   function a_create(input_id,input_width,input_height,input_left,input_top,input_borderstyle,input_borderwidth,input_bordercolor,input_background,input_color,input_fontSize,input_opacity,input_innerHTML,input_href,input_target,input_zindex,input_display) {
     if (document.getElementById("gamea_"+input_id)) 
