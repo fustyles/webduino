@@ -344,6 +344,7 @@ Blockly.Msg.PROPERTY_SCROLLLEFT = "捲軸X軸位置";
 Blockly.Msg.PROPERTY_SCROLLTOP = "捲軸Y軸位置";
 Blockly.Msg.PROPERTY_SCROLLWIDTH = "捲軸X軸寬度";
 Blockly.Msg.PROPERTY_SCROLLHEIGHT = "捲軸Y軸高度";
+Blockly.Msg.PROPERTY_WRAP = "溢位換行";
 Blockly.Msg.RADIO_ONCLICK = "被點選後執行";
 Blockly.Msg.RADIO_NAME_GET = "選項按鈕 同名稱群組取得值";
 Blockly.Msg.CHECKBOX_ID = "核取方塊 代碼";
