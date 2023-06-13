@@ -344,6 +344,7 @@ Blockly.Msg.PROPERTY_SCROLLLEFT = "Scroll bar X position";
 Blockly.Msg.PROPERTY_SCROLLTOP = "Scroll bar Y position";
 Blockly.Msg.PROPERTY_SCROLLWIDTH = "Scroll bar X width";
 Blockly.Msg.PROPERTY_SCROLLHEIGHT = "Scroll bar Y height";
+Blockly.Msg.PROPERTY_WRAP = "Wrap";
 Blockly.Msg.RADIO_ONCLICK = "is clicked";
 Blockly.Msg.RADIO_NAME_GET = "Radio get value in the group";
 Blockly.Msg.CHECKBOX_ID = "Checkbox ID";
