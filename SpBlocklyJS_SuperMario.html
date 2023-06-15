@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/holistic_20201012/holistic_video.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/holistic_20201012/holistic.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebSerial_20220126/WebSerial_elements.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/WebSerial_20220126/WebSerial.js'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{
+var _E5_82_BE_E6_96_9C_E8_A7_92_E5_BA_A6, _E8_B7_B3_E8_BA_8D;
+
+
+webserial_baudrate(115200);
+webserial_button("gamebutton_webserial_open","block");
+webserial_button_position("gamebutton_webserial_open",0,410);
+holistic_video("block","1","1","1","1","1","1");
+holistic_startvideo_media(400,400,"front",0);
+holistic_recognitionFinish = async function() {
+  holistic_state(0);
+  if ((holistic_pose_position("15","x")) && (holistic_pose_position("16","x")) && (holistic_pose_position("24","x")) && (holistic_pose_position("12","x")) && (holistic_pose_position("7","x")) && (holistic_pose_position("8","x"))) {
+    var _E5_82_BE_E6_96_9C_E8_A7_92_E5_BA_A6 = (holistic_angle((holistic_pose_position("15","x")),(holistic_pose_position("15","y")),(holistic_pose_position("16","x")),(holistic_pose_position("16","y"))));
+    if ((holistic_pose_position("16","y")) < ((holistic_pose_position("24","y")) + (holistic_pose_position("12","y"))) / 2) {
+      var _E8_B7_B3_E8_BA_8D = (holistic_pose_position("15","y")) < (holistic_pose_position("7","y")) && (holistic_pose_position("16","y")) < (holistic_pose_position("8","y"));
+      if (_E8_B7_B3_E8_BA_8D && _E5_82_BE_E6_96_9C_E8_A7_92_E5_BA_A6 >= 270 && _E5_82_BE_E6_96_9C_E8_A7_92_E5_BA_A6 < 350) {
+        webserial_sendText('KA');
+      } else if (_E8_B7_B3_E8_BA_8D && _E5_82_BE_E6_96_9C_E8_A7_92_E5_BA_A6 >= 10 && _E5_82_BE_E6_96_9C_E8_A7_92_E5_BA_A6 < 90) {
+        webserial_sendText('KD');
+      } else if (_E5_82_BE_E6_96_9C_E8_A7_92_E5_BA_A6 >= 270 && _E5_82_BE_E6_96_9C_E8_A7_92_E5_BA_A6 < 310 || _E5_82_BE_E6_96_9C_E8_A7_92_E5_BA_A6 >= 50 && _E5_82_BE_E6_96_9C_E8_A7_92_E5_BA_A6 < 90) {
+        webserial_sendText('S');
+      } else if (_E5_82_BE_E6_96_9C_E8_A7_92_E5_BA_A6 >= 310 && _E5_82_BE_E6_96_9C_E8_A7_92_E5_BA_A6 < 350) {
+        webserial_sendText('A');
+      } else if (_E5_82_BE_E6_96_9C_E8_A7_92_E5_BA_A6 >= 10 && _E5_82_BE_E6_96_9C_E8_A7_92_E5_BA_A6 < 50) {
+        webserial_sendText('D');
+      } else if (_E8_B7_B3_E8_BA_8D) {
+        webserial_sendText('K');
+      }
+    }
+  }
+
+  holistic_state(1);
+};
+};main();</script></body></html>
