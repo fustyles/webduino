@@ -430,7 +430,8 @@
   </block>  
   <block type="music_delete"> 
   </block>    
-
+  <block type="code_text"> 
+  </block> 
   </category>
   <category id="catGameElements_sub26" colour="120"> 
 
