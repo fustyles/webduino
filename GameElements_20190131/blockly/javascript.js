@@ -1,6 +1,6 @@
 Blockly.JavaScript['code_text'] = function (block) {
   var code = Blockly.JavaScript.valueToCode(block, 'code', Blockly.JavaScript.ORDER_ATOMIC)||""; 
-  return code;
+  return code.replace(/'/g,"").replace(/"/g,"");
 };
 
 Blockly.JavaScript['window_messagebox'] = function (block) {
