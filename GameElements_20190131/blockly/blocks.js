@@ -1,3 +1,14 @@
+
+Blockly.Blocks['code_text'] = {
+  init: function () {
+  this.appendValueInput("code");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(250);
+  }
+};
+
 Blockly.Blocks['window_messagebox'] = {
   init: function () {
   this.appendValueInput("message")
