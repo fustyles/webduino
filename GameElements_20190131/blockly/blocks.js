@@ -5,7 +5,6 @@ Blockly.Blocks['code_text'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(250);
   }
 };
 
