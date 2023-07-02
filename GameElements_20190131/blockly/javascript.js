@@ -1,3 +1,8 @@
+Blockly.JavaScript['code_text'] = function (block) {
+  var code = Blockly.JavaScript.valueToCode(block, 'code', Blockly.JavaScript.ORDER_ATOMIC)||""; 
+  return code;
+};
+
 Blockly.JavaScript['window_messagebox'] = function (block) {
   var message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC); 
   var code = 'alert('+message+');\n';  
