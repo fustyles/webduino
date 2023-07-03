@@ -1,3 +1,14 @@
+Blockly.Blocks['code_text'] = {
+  init: function () {
+  this.appendValueInput("code")
+      .appendField(Blockly.Msg["CODE_TEXT"])
+      .setCheck(null);	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  }
+};
+
 Blockly.Blocks['document_exitFullscreen'] = {
   init: function () {
   this.appendDummyInput()
