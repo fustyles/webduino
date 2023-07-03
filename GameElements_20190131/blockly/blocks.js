@@ -1,4 +1,3 @@
-
 Blockly.Blocks['code_text'] = {
   init: function () {
   this.appendValueInput("code")
