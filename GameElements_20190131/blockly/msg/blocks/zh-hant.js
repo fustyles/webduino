@@ -549,3 +549,5 @@ Blockly.Msg.INCLUDE_POSITION = "位置";
 Blockly.Msg.INCLUDE_HEADER = "標題區塊";
 Blockly.Msg.INCLUDE_HERE = "目前位置";
 Blockly.Msg.INCLUDE_URL = "網址";
+
+Blockly.Msg["CODE_TEXT"] = "插入程式碼";
