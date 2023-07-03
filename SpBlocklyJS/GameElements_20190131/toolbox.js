@@ -319,9 +319,11 @@ var catPageElements ='<xml>'+
 '    <block type="music_delete">'+
 '    </block>'+
 '    <block type="code_text">'+
+'    <value name="code">'+
 '    <block type="text">'+
-' 		  <field name="TEXT"></field>'+
+'    <field name="TEXT"></field>'+
 '    </block>'+
+'    </value>'+
 '    </block>'+
 '    <block type="video_base64_spreadsheet">'+
 '    <value name="id_">'+
