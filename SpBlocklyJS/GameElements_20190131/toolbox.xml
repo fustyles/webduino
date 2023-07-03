@@ -369,7 +369,7 @@
 		  <block type="music_delete"> 
 		  </block>    
 		  <block type="code_text">
-			<block type="text">
+			<block type="code">
 			  <field name="TEXT"></field>
 			</block>	  
 		  </block> 
