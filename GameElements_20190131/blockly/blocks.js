@@ -1,7 +1,9 @@
 
 Blockly.Blocks['code_text'] = {
   init: function () {
-  this.appendValueInput("code");
+  this.appendValueInput("code")
+      .appendField(Blockly.Msg["CODE_TEXT"])
+      .setCheck(null);	  
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -11,7 +13,7 @@ Blockly.Blocks['code_text'] = {
 Blockly.Blocks['window_messagebox'] = {
   init: function () {
   this.appendValueInput("message")
-	  .appendField(Blockly.Msg["WINDOW_MESSAGEBOX"])
+      .appendField(Blockly.Msg["WINDOW_MESSAGEBOX"])
       .setCheck(null);
   this.setInputsInline(true);
   this.setPreviousStatement(true);
