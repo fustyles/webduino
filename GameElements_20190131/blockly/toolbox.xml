@@ -431,9 +431,11 @@
   <block type="music_delete"> 
   </block>    
   <block type="code_text">
-        <block type="text">
-          <field name="TEXT"></field>
-        </block>	  
+    <value name="code">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+    </value> 
   </block> 
   </category>
   <category id="catGameElements_sub26" colour="120"> 
