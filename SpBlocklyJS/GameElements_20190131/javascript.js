@@ -1,3 +1,12 @@
+Blockly.JavaScript['code_text'] = function (block) {
+  var code = Blockly.JavaScript.valueToCode(block, 'code', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  if ((code.indexOf("'")==0)&&(code.lastIndexOf("'")==code.length-1))
+    code = code.substring(1,code.length-1);
+  if ((code.indexOf('"')==0)&&(code.lastIndexOf('"')==code.length-1))
+    code = code.substring(1,code.length-1);	
+  return code;
+};
+
 Blockly.JavaScript['document_exitFullscreen'] = function (block) {
   var code = 'parent.document.exitFullscreen();\n';  
   return code;
