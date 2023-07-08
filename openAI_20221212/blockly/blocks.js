@@ -167,7 +167,7 @@ Blockly.Blocks['openai_chat_initial'] = {
       .appendField(Blockly.Msg.OPENAI_CHAT_MODEL_SHOW)
       .appendField(new Blockly.FieldDropdown([
 			["gpt-3.5-turbo","gpt-3.5-turbo"],
-			["gpt-3.5-turbo-0301","gpt-3.5-turbo-0301"],
+			["gpt-3.5-turbo-0613","gpt-3.5-turbo-0613"],
 			["gpt-4-0613","gpt-4-0613"]	  
 	  ]), "model"); 	  
   this.setInputsInline(true);	  
