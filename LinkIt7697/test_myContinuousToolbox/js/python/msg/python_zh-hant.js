@@ -64,6 +64,43 @@ Blockly.Msg["COLOUR_NAME"] = "顏色";
 Blockly.Msg["VARIABLES_NAME"] = "變數";
 Blockly.Msg["PROCEDURES_NAME"] = "函式";
 
+Blockly.Msg["WORKSPACE_LANGUAGE"] = "語言環境";
+Blockly.Msg["WORKSPACE_LANGUAGE_JAVASCRIPT"] = "JavaScript";
+Blockly.Msg["WORKSPACE_LANGUAGE_PYTHON"] = "Python";
+Blockly.Msg["WORKSPACE_LANGUAGE_ARDUINO"] = "Arduino";
+Blockly.Msg["WORKSPACE_RESET"] = "重設工作區";
+Blockly.Msg["WORKSPACE_RELOAD"] = "重新整理";
+Blockly.Msg["WORKSPACE_VERSION"] = "版本資訊";
+Blockly.Msg["WORKSPACE_BLOCKFACTORY"] = "積木工廠";
+Blockly.Msg["WORKSPACE_BLOCKTOOL"] = "積木工具";
+Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_XML_MSG"] = "工作區匯出積木結構XML檔案";
+Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"] = "工作區匯入積木結構XML檔案";
+Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_PY_MSG"] = "工作區匯出PY檔";
+Blockly.Msg["WORKSPACE_TO_CODE_Y_MSG"] = "即時輸出積木程式碼";
+Blockly.Msg["WORKSPACE_TO_CODE_N_MSG"] = "停止輸出積木程式碼";
+Blockly.Msg["WORKSPACE_RUNCODE"] = "執行文字區塊程式碼 (Ctrl+Shift)";
+Blockly.Msg["WORKSPACE_INSTALL_PACKAGE"] = "PIP安裝Python模組";
+Blockly.Msg["WORKSPACE_INSTALL_PACKAGE_NAME"] = "pip install 模組名稱, 本機Python環境可自訂Python指令";
+Blockly.Msg["WORKSPACE_SORRY"] = "此功能須建置在node.js環境下與安裝Python 3環境。";
+Blockly.Msg["WORKSPACE_ENVIRONMENT_LOCAL"] = "本機Python環境";
+Blockly.Msg["WORKSPACE_ENVIRONMENT_LOCAL_CHANGE"] = "轉換本機Python環境";
+Blockly.Msg["WORKSPACE_ENVIRONMENT_PORTABLE"] = "可攜Python環境";
+Blockly.Msg["WORKSPACE_ENVIRONMENT_PORTABLE_CHANGE"] = "轉換可攜Python環境";
+Blockly.Msg["BUTTON_RUN"] = Blockly.Msg["WORKSPACE_RUNCODE"];
+Blockly.Msg["BUTTON_IMPORT_MODULE"] = "匯入模組";
+Blockly.Msg["BUTTON_RESET"] = Blockly.Msg["WORKSPACE_RESET"];
+Blockly.Msg["BUTTON_IMPORT_XML"] = Blockly.Msg["WORKSPACE_BLOCKS_IMPORT_XML_MSG"];
+Blockly.Msg["BUTTON_EXPORT_XML"] = Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_XML_MSG"];
+Blockly.Msg["BUTTON_EXPORT_CODE"] = Blockly.Msg["WORKSPACE_BLOCKS_EXPORT_PY_MSG"];
+Blockly.Msg["LANG-SELECTOR"] = "語系";
+Blockly.Msg["SELECT_EN"] = "英文";
+Blockly.Msg["SELECT_ZH-HANS"] = "簡中";
+Blockly.Msg["SELECT_ZH-HANT"] = "繁中";
+
+
+
+//*************** System Message ******************
+
 Blockly.Msg["ADD_COMMENT"] = "加入註解";
 Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "無法刪除變數「%1」，因為這是功能「%2」定義的一部份內容";
 Blockly.Msg["CHANGE_VALUE_TITLE"] = "修改值：";
@@ -451,6 +488,7 @@ Blockly.Msg["VARIABLES_SET_HELPURL"] = "https://github.com/google/blockly/wiki/V
 Blockly.Msg["VARIABLES_SET_TOOLTIP"] = "設定此變數，好和輸入結果相等。";
 Blockly.Msg["VARIABLE_ALREADY_EXISTS"] = "已存在變數「%1」。";
 Blockly.Msg["VARIABLE_ALREADY_EXISTS_FOR_ANOTHER_TYPE"] = "已存在名為「%1」，且用於其它類型「%2」的變數。";
+Blockly.Msg["VARIABLE_ALREADY_EXISTS_FOR_A_PARAMETER"] = "A variable named '%1' already exists as a parameter in the procedure '%2'.";  // untranslated
 Blockly.Msg["WORKSPACE_ARIA_LABEL"] = "Blockly工作區";
 Blockly.Msg["WORKSPACE_COMMENT_DEFAULT_TEXT"] = "來說些事情...";
 Blockly.Msg["CONTROLS_FOREACH_INPUT_DO"] = Blockly.Msg["CONTROLS_REPEAT_INPUT_DO"];
@@ -474,14 +512,14 @@ Blockly.Msg["PROCEDURES_DEFRETURN_TITLE"] = Blockly.Msg["PROCEDURES_DEFNORETURN_
 Blockly.Msg["TEXT_APPEND_VARIABLE"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
 Blockly.Msg["TEXT_CREATE_JOIN_ITEM_TITLE_ITEM"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
 
-Blockly.Msg["MATH_HUE"] = "230";
-Blockly.Msg["LOOPS_HUE"] = "120";
-Blockly.Msg["LISTS_HUE"] = "260";
 Blockly.Msg["LOGIC_HUE"] = "210";
-Blockly.Msg["VARIABLES_HUE"] = "330";
+Blockly.Msg["LOOPS_HUE"] = "120";
+Blockly.Msg["MATH_HUE"] = "230";
 Blockly.Msg["TEXTS_HUE"] = "160";
-Blockly.Msg["PROCEDURES_HUE"] = "290";
+Blockly.Msg["LISTS_HUE"] = "260";
 Blockly.Msg["COLOUR_HUE"] = "20";
+Blockly.Msg["VARIABLES_HUE"] = "330";
 Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
+Blockly.Msg["PROCEDURES_HUE"] = "290";
 return Blockly.Msg;
 }));

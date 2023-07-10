@@ -44,8 +44,6 @@ Blockly.Msg["SELECT_EN"] = "英文";
 Blockly.Msg["SELECT_ZH-HANS"] = "簡中";
 Blockly.Msg["SELECT_ZH-HANT"] = "繁中";
 
-
-
 //*************** System Message ******************
 
 Blockly.Msg["TOOLBOX_NAME"] = "工具箱";
@@ -445,6 +443,7 @@ Blockly.Msg["VARIABLES_SET_HELPURL"] = "https://github.com/google/blockly/wiki/V
 Blockly.Msg["VARIABLES_SET_TOOLTIP"] = "設定此變數，好和輸入結果相等。";
 Blockly.Msg["VARIABLE_ALREADY_EXISTS"] = "已存在變數「%1」。";
 Blockly.Msg["VARIABLE_ALREADY_EXISTS_FOR_ANOTHER_TYPE"] = "已存在名為「%1」，且用於其它類型「%2」的變數。";
+Blockly.Msg["VARIABLE_ALREADY_EXISTS_FOR_A_PARAMETER"] = "A variable named '%1' already exists as a parameter in the procedure '%2'.";  // untranslated
 Blockly.Msg["WORKSPACE_ARIA_LABEL"] = "Blockly工作區";
 Blockly.Msg["WORKSPACE_COMMENT_DEFAULT_TEXT"] = "來說些事情...";
 Blockly.Msg["CONTROLS_FOREACH_INPUT_DO"] = Blockly.Msg["CONTROLS_REPEAT_INPUT_DO"];
@@ -468,14 +467,14 @@ Blockly.Msg["PROCEDURES_DEFRETURN_TITLE"] = Blockly.Msg["PROCEDURES_DEFNORETURN_
 Blockly.Msg["TEXT_APPEND_VARIABLE"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
 Blockly.Msg["TEXT_CREATE_JOIN_ITEM_TITLE_ITEM"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
 
-Blockly.Msg["MATH_HUE"] = "230";
-Blockly.Msg["LOOPS_HUE"] = "120";
-Blockly.Msg["LISTS_HUE"] = "260";
 Blockly.Msg["LOGIC_HUE"] = "210";
-Blockly.Msg["VARIABLES_HUE"] = "330";
+Blockly.Msg["LOOPS_HUE"] = "120";
+Blockly.Msg["MATH_HUE"] = "230";
 Blockly.Msg["TEXTS_HUE"] = "160";
-Blockly.Msg["PROCEDURES_HUE"] = "290";
+Blockly.Msg["LISTS_HUE"] = "260";
 Blockly.Msg["COLOUR_HUE"] = "20";
+Blockly.Msg["VARIABLES_HUE"] = "330";
 Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
+Blockly.Msg["PROCEDURES_HUE"] = "290";
 return Blockly.Msg;
 }));
