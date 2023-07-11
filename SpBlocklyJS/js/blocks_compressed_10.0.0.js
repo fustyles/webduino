@@ -210,7 +210,7 @@ blocks$$module$build$src$blocks$procedures.procedures_callnoreturn=Object.assign
 				for (var j=0;j<xml[i].childNodes.length;j++) {			
 					if (xml[i].childNodes[j].textContent==this.getFieldValue("NAME")) {
 						xml = Blockly.Xml.domToPrettyText(xml[i]);
-						xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml.replace("x=","xx=").replace("y=","yy=")+'</xml>');
+						xml = Blockly.utils.xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml.replace("x=","xx=").replace("y=","yy=")+'</xml>');
 						myWorkspace.clear();
 						Blockly.Xml.domToWorkspace(xml, myWorkspace);							
 						break;
@@ -245,7 +245,7 @@ blocks$$module$build$src$blocks$procedures.procedures_callreturn=Object.assign({
 				for (var j=0;j<xml[i].childNodes.length;j++) {
 					if (xml[i].childNodes[j].textContent==this.getFieldValue("NAME")) {
 						xml = Blockly.Xml.domToPrettyText(xml[i]);
-						xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml.replace("x=","xx=").replace("y=","yy=")+'</xml>');
+						xml = Blockly.utils.xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml.replace("x=","xx=").replace("y=","yy=")+'</xml>');
 						myWorkspace.clear();
 						Blockly.Xml.domToWorkspace(xml, myWorkspace);							
 						break;
