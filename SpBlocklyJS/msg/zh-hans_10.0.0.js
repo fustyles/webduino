@@ -1237,8 +1237,7 @@ Blockly.Msg["VARIABLES_DEFAULT_NAME"] = "项目";
 Blockly.Msg["VARIABLES_GET_CREATE_SET"] = "创建“设定%1”";
 Blockly.Msg["VARIABLES_GET_HELPURL"] = "https://github.com/google/blockly/wiki/Variables#get";  // untranslated
 Blockly.Msg["VARIABLES_GET_TOOLTIP"] = "返回此变量的值。";
-Blockly.Msg["VARIABLES_SET"] = "宣告 %1 %2 成 %3";
-Blockly.Msg["VARIABLES_SET_LOCAL"] = "设定 %1 成 %2";
+Blockly.Msg["VARIABLES_SET"] = "赋值 %1 为 %2";
 Blockly.Msg["VARIABLES_SET_CREATE_GET"] = "创建“获得%1”";
 Blockly.Msg["VARIABLES_SET_HELPURL"] = "https://github.com/google/blockly/wiki/Variables#set";  // untranslated
 Blockly.Msg["VARIABLES_SET_TOOLTIP"] = "设置此变量，以使它和输入值相等。";
@@ -1277,5 +1276,12 @@ Blockly.Msg["COLOUR_HUE"] = "20";
 Blockly.Msg["VARIABLES_HUE"] = "330";
 Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
 Blockly.Msg["PROCEDURES_HUE"] = "290";
+
+
+
+// Custom
+Blockly.Msg["VARIABLES_SET"] = "宣告 %1 %2 成 %3";
+Blockly.Msg["VARIABLES_SET_LOCAL"] = "设定 %1 成 %2";
+
 return Blockly.Msg;
 }));

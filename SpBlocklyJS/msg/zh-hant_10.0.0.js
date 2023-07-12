@@ -854,7 +854,7 @@ Blockly.Msg["BUTTON_WEBMQTT"] = "網頁MQTT";
 
 
 
-
+// V10.0.0
 
 Blockly.Msg["ADD_COMMENT"] = "加入註解";
 Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "無法刪除變數「%1」，因為這是功能「%2」定義的一部份內容";
@@ -1237,8 +1237,7 @@ Blockly.Msg["VARIABLES_DEFAULT_NAME"] = "項目";
 Blockly.Msg["VARIABLES_GET_CREATE_SET"] = "建立「賦值 %1」";
 Blockly.Msg["VARIABLES_GET_HELPURL"] = "https://github.com/google/blockly/wiki/Variables#get";  // untranslated
 Blockly.Msg["VARIABLES_GET_TOOLTIP"] = "返回此變數的值。";
-Blockly.Msg["VARIABLES_SET"] = "宣告 %1 %2 成 %3";
-Blockly.Msg["VARIABLES_SET_LOCAL"] = "設定 %1 成 %2";
+Blockly.Msg["VARIABLES_SET"] = "賦值 %1 成 %2";
 Blockly.Msg["VARIABLES_SET_CREATE_GET"] = "建立「取得 %1」";
 Blockly.Msg["VARIABLES_SET_HELPURL"] = "https://github.com/google/blockly/wiki/Variables#set";  // untranslated
 Blockly.Msg["VARIABLES_SET_TOOLTIP"] = "設定此變數，好和輸入結果相等。";
@@ -1277,5 +1276,12 @@ Blockly.Msg["COLOUR_HUE"] = "20";
 Blockly.Msg["VARIABLES_HUE"] = "330";
 Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
 Blockly.Msg["PROCEDURES_HUE"] = "290";
+
+
+
+// Custom
+Blockly.Msg["VARIABLES_SET"] = "宣告 %1 %2 成 %3";
+Blockly.Msg["VARIABLES_SET_LOCAL"] = "設定 %1 成 %2";
+
 return Blockly.Msg;
 }));
