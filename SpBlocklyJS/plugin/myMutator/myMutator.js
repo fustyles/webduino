@@ -184,8 +184,8 @@ class myMutator extends Blockly.icons.MutatorIcon {
         };
         this.dispose = function() {
             this.block_.mutator = null;
-            Blockly.Icon.prototype.dispose.call(this)
-        };
+            Blockly.icons.MutatorIcon.prototype.dispose.call(this)
+        };	
         this.updateBlockStyle = function() {
             var a = this.workspace_;
             if (a && a.getAllBlocks(!1)) {
