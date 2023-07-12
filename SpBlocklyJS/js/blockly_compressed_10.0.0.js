@@ -295,7 +295,20 @@ b))throw Error('Error when applying extension "'+a+'": mutation properties chang
 checkXmlHooks$$module$build$src$core$extensions=function(a,b){return checkHasFunctionPair$$module$build$src$core$extensions(a.mutationToDom,a.domToMutation,b+" mutationToDom/domToMutation")};checkJsonHooks$$module$build$src$core$extensions=function(a,b){return checkHasFunctionPair$$module$build$src$core$extensions(a.saveExtraState,a.loadExtraState,b+" saveExtraState/loadExtraState")};
 checkMutatorDialog$$module$build$src$core$extensions=function(a,b){return checkHasFunctionPair$$module$build$src$core$extensions(a.compose,a.decompose,b+" compose/decompose")};checkHasFunctionPair$$module$build$src$core$extensions=function(a,b,c){if(a&&b){if("function"!==typeof a||"function"!==typeof b)throw Error(c+" must be a function");return!0}if(!a&&!b)return!1;throw Error(c+"Must have both or neither functions");};
 checkHasMutatorProperties$$module$build$src$core$extensions=function(a,b){const c=checkXmlHooks$$module$build$src$core$extensions(b,a),d=checkJsonHooks$$module$build$src$core$extensions(b,a);if(!c&&!d)throw Error(a+"Mutations must contain either XML hooks, or JSON hooks, or both");checkMutatorDialog$$module$build$src$core$extensions(b,a)};
-getMutatorProperties$$module$build$src$core$extensions=function(a){const b=[];void 0!==a.domToMutation&&b.push(a.domToMutation);void 0!==a.mutationToDom&&b.push(a.mutationToDom);void 0!==a.saveExtraState&&b.push(a.saveExtraState);void 0!==a.loadExtraState&&b.push(a.loadExtraState);void 0!==a.compose&&b.push(a.compose);void 0!==a.decompose&&b.push(a.decompose);return b};
+
+
+getMutatorProperties$$module$build$src$core$extensions=function(a){
+	const b=[];
+	void 0!==a.domToMutation&&b.push(a.domToMutation);
+	void 0!==a.mutationToDom&&b.push(a.mutationToDom);
+	void 0!==a.saveExtraState&&b.push(a.saveExtraState);
+	void 0!==a.loadExtraState&&b.push(a.loadExtraState);
+	void 0!==a.compose&&b.push(a.compose);
+	void 0!==a.decompose&&b.push(a.decompose);
+	return b
+};
+
+
 mutatorPropertiesMatch$$module$build$src$core$extensions=function(a,b){b=getMutatorProperties$$module$build$src$core$extensions(b);if(b.length!==a.length)return!1;for(let c=0;c<b.length;c++)if(a[c]!==b[c])return!1;return!0};
 runAfterPageLoad$$module$build$src$core$extensions=function(a){if("object"!==typeof document)throw Error("runAfterPageLoad() requires browser document.");if("complete"===document.readyState)a();else{const b=setInterval(function(){"complete"===document.readyState&&(clearInterval(b),a())},10)}};
 $.buildTooltipForDropdown$$module$build$src$core$extensions=function(a,b){const c=[];"object"===typeof document&&runAfterPageLoad$$module$build$src$core$extensions(function(){for(const d in b)checkMessageReferences$$module$build$src$core$utils$parsing(b[d])});return function(){this.type&&-1===c.indexOf(this.type)&&(checkDropdownOptionsInTable$$module$build$src$core$extensions(this,a,b),c.push(this.type));this.setTooltip(function(){var d=String(this.getFieldValue(a));let e=b[d];null===e?-1===c.indexOf(this.type)&&
@@ -970,17 +983,25 @@ this.svgRoot),createSvgElement$$module$build$src$core$utils$dom(Svg$$module$buil
 let a;null==(a=this.miniWorkspaceBubble)||a.setColour(this.sourceBlock.style.colourPrimary);let b;null==(b=this.miniWorkspaceBubble)||b.updateBlockStyles()}updateCollapsed(){super.updateCollapsed();this.sourceBlock.isCollapsed()&&this.setBubbleVisible(!1)}onLocationChange(a){super.onLocationChange(a);let b;null==(b=this.miniWorkspaceBubble)||b.setAnchorLocation(this.getAnchorLocation())}onClick(){super.onClick();this.setBubbleVisible(!this.bubbleIsVisible())}bubbleIsVisible(){return!!this.miniWorkspaceBubble}setBubbleVisible(a){if(this.bubbleIsVisible()!==
 a){if(a){this.miniWorkspaceBubble=new MiniWorkspaceBubble$$module$build$src$core$bubbles$mini_workspace_bubble(this.getMiniWorkspaceConfig(),this.sourceBlock.workspace,this.getAnchorLocation(),this.getBubbleOwnerRect());this.applyColour();this.createRootBlock();this.addSaveConnectionsListener();let b;null==(b=this.miniWorkspaceBubble)||b.addWorkspaceChangeListener(this.createMiniWorkspaceChangeListener())}else{let b;null==(b=this.miniWorkspaceBubble)||b.dispose();this.miniWorkspaceBubble=null}fire$$module$build$src$core$events$utils(new (get$$module$build$src$core$events$utils(BUBBLE_OPEN$$module$build$src$core$events$utils))(this.sourceBlock,
 a,"mutator"))}}getMiniWorkspaceConfig(){let a;const b={disable:!1,media:this.sourceBlock.workspace.options.pathToMedia,rtl:this.sourceBlock.RTL,renderer:this.sourceBlock.workspace.options.renderer,rendererOverrides:null!=(a=this.sourceBlock.workspace.options.rendererOverrides)?a:void 0};this.flyoutBlockTypes.length&&(b.toolbox={kind:"flyoutToolbox",contents:this.flyoutBlockTypes.map(c=>({kind:"block",type:c}))});return b}getAnchorLocation(){const a=SIZE$$module$build$src$core$icons$mutator_icon/2;
-return Coordinate$$module$build$src$core$utils$coordinate.sum(this.workspaceLocation,new Coordinate$$module$build$src$core$utils$coordinate(a,a))}getBubbleOwnerRect(){const a=this.sourceBlock.getSvgRoot().getBBox();return new Rect$$module$build$src$core$utils$rect(a.y,a.y+a.height,a.x,a.x+a.width)}createRootBlock(){
+return Coordinate$$module$build$src$core$utils$coordinate.sum(this.workspaceLocation,new Coordinate$$module$build$src$core$utils$coordinate(a,a))}getBubbleOwnerRect(){const a=this.sourceBlock.getSvgRoot().getBBox();return new Rect$$module$build$src$core$utils$rect(a.y,a.y+a.height,a.x,a.x+a.width)}
+createRootBlock(){
 	this.rootBlock=this.sourceBlock.decompose(this.miniWorkspaceBubble.getWorkspace());
 	for(var a of this.rootBlock.getDescendants(!1))
-		a.queueRender();this.rootBlock.setMovable(!1);
+		a.queueRender();
+	this.rootBlock.setMovable(!1);
 	this.rootBlock.setDeletable(!1);
 	let b,c,d,e;
 	a=null!=(e=null==(b=this.miniWorkspaceBubble)?void 0:null==(c=b.getWorkspace())?void 0:null==(d=c.getFlyout())?void 0:d.getWidth())?e:0;
 	this.rootBlock.moveBy(this.rootBlock.RTL?-(a+WORKSPACE_MARGIN$$module$build$src$core$icons$mutator_icon):WORKSPACE_MARGIN$$module$build$src$core$icons$mutator_icon,WORKSPACE_MARGIN$$module$build$src$core$icons$mutator_icon)
 }
-addSaveConnectionsListener(){if(this.sourceBlock.saveConnections&&this.rootBlock){var a=()=>{this.sourceBlock.saveConnections&&this.rootBlock&&
-this.sourceBlock.saveConnections(this.rootBlock)};a();this.sourceBlock.workspace.addChangeListener(a)}}createMiniWorkspaceChangeListener(){return a=>{$.MutatorIcon$$module$build$src$core$icons$mutator_icon.isIgnorableMutatorEvent(a)||this.updateWorkspacePid||(this.updateWorkspacePid=setTimeout(()=>{this.updateWorkspacePid=null;this.recomposeSourceBlock()},0))}}static isIgnorableMutatorEvent(a){return a.isUiEvent||a.type===$.CREATE$$module$build$src$core$events$utils||a.type===$.CHANGE$$module$build$src$core$events$utils&&
+addSaveConnectionsListener(){
+	if(this.sourceBlock.saveConnections&&this.rootBlock){
+		var a=()=>{this.sourceBlock.saveConnections&&this.rootBlock&&this.sourceBlock.saveConnections(this.rootBlock)};
+		a();
+		this.sourceBlock.workspace.addChangeListener(a)
+	}
+}
+createMiniWorkspaceChangeListener(){return a=>{$.MutatorIcon$$module$build$src$core$icons$mutator_icon.isIgnorableMutatorEvent(a)||this.updateWorkspacePid||(this.updateWorkspacePid=setTimeout(()=>{this.updateWorkspacePid=null;this.recomposeSourceBlock()},0))}}static isIgnorableMutatorEvent(a){return a.isUiEvent||a.type===$.CREATE$$module$build$src$core$events$utils||a.type===$.CHANGE$$module$build$src$core$events$utils&&
 "disabled"===a.element}recomposeSourceBlock(){if(this.rootBlock){var a=$.getGroup$$module$build$src$core$events$utils();a||$.setGroup$$module$build$src$core$events$utils(!0);var b=BlockChange$$module$build$src$core$events$events_block_change.getExtraBlockState_(this.sourceBlock);this.sourceBlock.compose(this.rootBlock);var c=BlockChange$$module$build$src$core$events$events_block_change.getExtraBlockState_(this.sourceBlock);b!==c&&fire$$module$build$src$core$events$utils(new (get$$module$build$src$core$events$utils($.CHANGE$$module$build$src$core$events$utils))(this.sourceBlock,
 "mutation",null,b,c));$.setGroup$$module$build$src$core$events$utils(a)}}getWorkspace(){let a;return null==(a=this.miniWorkspaceBubble)?void 0:a.getWorkspace()}static reconnect(a,b,c){warn$$module$build$src$core$utils$deprecation("MutatorIcon.reconnect","v10","v11","connection.reconnect");return a?a.reconnect(b,c):!1}static findParentWs(a){warn$$module$build$src$core$utils$deprecation("MutatorIcon.findParentWs","v10","v11","workspace.getRootWorkspace");return a.getRootWorkspace()}};
 $.MutatorIcon$$module$build$src$core$icons$mutator_icon.TYPE=IconType$$module$build$src$core$icons$icon_types.MUTATOR;$.MutatorIcon$$module$build$src$core$icons$mutator_icon.WEIGHT=1;var module$build$src$core$icons$mutator_icon={};module$build$src$core$icons$mutator_icon.MutatorIcon=$.MutatorIcon$$module$build$src$core$icons$mutator_icon;var allExtensions$$module$build$src$core$extensions=Object.create(null),TEST_ONLY$$module$build$src$core$extensions={allExtensions:allExtensions$$module$build$src$core$extensions};$.register$$module$build$src$core$extensions("parent_tooltip_when_inline",extensionParentTooltip$$module$build$src$core$extensions);var module$build$src$core$extensions={};module$build$src$core$extensions.TEST_ONLY=TEST_ONLY$$module$build$src$core$extensions;module$build$src$core$extensions.apply=apply$$module$build$src$core$extensions;

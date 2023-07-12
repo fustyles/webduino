@@ -197,30 +197,36 @@ blocks$$module$build$src$blocks$procedures.procedures_callnoreturn=Object.assign
 		this.argumentVarModels_=[];
 		this.quarkConnections_={};
 		this.quarkIds_=null;
-		this.setMutator(new myMutator([], this));
+		this.setMutator(new $.MutatorIcon$$module$build$src$core$icons$mutator_icon([],this));
 		this.previousEnabledState_=!0
 	}
 	,defType_:"procedures_defnoreturn"
-	,myWorkspaceInitial: function(myWorkspace) {
+	,decompose: function(a) {
+		const b=a.newBlock("procedures_defnoreturn");
+		b.initSvg();
+		return b
+	}
+	,compose: function(a) {
+	}
+	,saveConnections:function(a){
 		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
 		xml = new XMLSerializer().serializeToString(xml);
 		xml = new DOMParser().parseFromString(xml,"text/xml").firstChild.childNodes;
+		
 		for (var i=0;i<xml.length;i++) {
 			if (xml[i].getAttribute("type")=="procedures_defnoreturn") {	
 				for (var j=0;j<xml[i].childNodes.length;j++) {			
 					if (xml[i].childNodes[j].textContent==this.getFieldValue("NAME")) {
 						xml = Blockly.Xml.domToPrettyText(xml[i]);
 						xml = Blockly.utils.xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml.replace("x=","xx=").replace("y=","yy=")+'</xml>');
-						myWorkspace.clear();
-						Blockly.Xml.domToWorkspace(xml, myWorkspace);							
+						a.workspace.clear();
+						Blockly.Xml.domToWorkspace(xml, a.workspace);							
 						break;
 					}
 				}
 			}
-		}
-	}
-	,myWorkspaceChanged: function(myWorkspace) {
-	}
+		}		
+	}	
 });
 blocks$$module$build$src$blocks$procedures.procedures_callreturn=Object.assign({},PROCEDURE_CALL_COMMON$$module$build$src$blocks$procedures,
 {
@@ -233,11 +239,18 @@ blocks$$module$build$src$blocks$procedures.procedures_callreturn=Object.assign({
 		this.argumentVarModels_=[];
 		this.quarkConnections_={};
 		this.quarkIds_=null;
-		this.setMutator(new myMutator([], this));
+		this.setMutator(new $.MutatorIcon$$module$build$src$core$icons$mutator_icon([],this));
 		this.previousEnabledState_=!0
 	}
 	,defType_:"procedures_defreturn"
-	,myWorkspaceInitial: function(myWorkspace) {
+	,decompose: function(a) {
+		const b=a.newBlock("procedures_defreturn");
+		b.initSvg();
+		return b
+	}
+	,compose: function(a) {
+	}
+	,saveConnections:function(a){	
 		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
 		xml = new XMLSerializer().serializeToString(xml);
 		xml = new DOMParser().parseFromString(xml,"text/xml").firstChild.childNodes;
@@ -247,16 +260,14 @@ blocks$$module$build$src$blocks$procedures.procedures_callreturn=Object.assign({
 					if (xml[i].childNodes[j].textContent==this.getFieldValue("NAME")) {
 						xml = Blockly.Xml.domToPrettyText(xml[i]);
 						xml = Blockly.utils.xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml.replace("x=","xx=").replace("y=","yy=")+'</xml>');
-						myWorkspace.clear();
-						Blockly.Xml.domToWorkspace(xml, myWorkspace);							
+						a.workspace.clear();
+						Blockly.Xml.domToWorkspace(xml, a.workspace);							
 						break;
 					}
 				}
 			}
-		}
-	}
-	,myWorkspaceChanged: function(myWorkspace) {
-	}
+		}	
+	}	
 });
 var PROCEDURES_IFRETURN$$module$build$src$blocks$procedures={init:function(){this.appendValueInput("CONDITION").setCheck("Boolean").appendField($.Msg$$module$build$src$core$msg.CONTROLS_IF_MSG_IF);this.appendValueInput("VALUE").appendField($.Msg$$module$build$src$core$msg.PROCEDURES_DEFRETURN_RETURN);this.setInputsInline(!0);this.setPreviousStatement(!0);this.setNextStatement(!0);this.setStyle("procedure_blocks");this.setTooltip($.Msg$$module$build$src$core$msg.PROCEDURES_IFRETURN_TOOLTIP);this.setHelpUrl($.Msg$$module$build$src$core$msg.PROCEDURES_IFRETURN_HELPURL);
 this.hasReturnValue_=!0},mutationToDom:function(){const a=$.createElement$$module$build$src$core$utils$xml("mutation");a.setAttribute("value",String(Number(this.hasReturnValue_)));return a},domToMutation:function(a){this.hasReturnValue_="1"===a.getAttribute("value");this.hasReturnValue_||(this.removeInput("VALUE"),this.appendDummyInput("VALUE").appendField($.Msg$$module$build$src$core$msg.PROCEDURES_DEFRETURN_RETURN))},onchange:function(a){if(!(this.workspace.isDragging&&this.workspace.isDragging()||
@@ -286,15 +297,57 @@ blocks$$module$build$src$blocks$text.text_prompt=TEXT_PROMPT_BLOCK$$module$build
 blocks$$module$build$src$blocks$text.text_replace={init:function(){this.jsonInit({message0:$.Msg$$module$build$src$core$msg.TEXT_REPLACE_MESSAGE0,args0:[{type:"input_value",name:"FROM",check:"String"},{type:"input_value",name:"TO",check:"String"},{type:"input_value",name:"TEXT",check:"String"}],output:"String",inputsInline:!0,style:"text_blocks",tooltip:$.Msg$$module$build$src$core$msg.TEXT_REPLACE_TOOLTIP,helpUrl:$.Msg$$module$build$src$core$msg.TEXT_REPLACE_HELPURL})}};
 blocks$$module$build$src$blocks$text.text_reverse={init:function(){this.jsonInit({message0:$.Msg$$module$build$src$core$msg.TEXT_REVERSE_MESSAGE0,args0:[{type:"input_value",name:"TEXT",check:"String"}],output:"String",inputsInline:!0,style:"text_blocks",tooltip:$.Msg$$module$build$src$core$msg.TEXT_REVERSE_TOOLTIP,helpUrl:$.Msg$$module$build$src$core$msg.TEXT_REVERSE_HELPURL})}};
 var QUOTE_IMAGE_MIXIN$$module$build$src$blocks$text={QUOTE_IMAGE_LEFT_DATAURI:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAn0lEQVQI1z3OMa5BURSF4f/cQhAKjUQhuQmFNwGJEUi0RKN5rU7FHKhpjEH3TEMtkdBSCY1EIv8r7nFX9e29V7EBAOvu7RPjwmWGH/VuF8CyN9/OAdvqIXYLvtRaNjx9mMTDyo+NjAN1HNcl9ZQ5oQMM3dgDUqDo1l8DzvwmtZN7mnD+PkmLa+4mhrxVA9fRowBWmVBhFy5gYEjKMfz9AylsaRRgGzvZAAAAAElFTkSuQmCC",QUOTE_IMAGE_RIGHT_DATAURI:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAQAAAAqJXdxAAAAqUlEQVQI1z3KvUpCcRiA8ef9E4JNHhI0aFEacm1o0BsI0Slx8wa8gLauoDnoBhq7DcfWhggONDmJJgqCPA7neJ7p934EOOKOnM8Q7PDElo/4x4lFb2DmuUjcUzS3URnGib9qaPNbuXvBO3sGPHJDRG6fGVdMSeWDP2q99FQdFrz26Gu5Tq7dFMzUvbXy8KXeAj57cOklgA+u1B5AoslLtGIHQMaCVnwDnADZIFIrXsoXrgAAAABJRU5ErkJggg==",
-QUOTE_IMAGE_WIDTH:12,QUOTE_IMAGE_HEIGHT:12,quoteField_:function(a){for(let b=0,c;c=this.inputList[b];b++)for(let d=0,e;e=c.fieldRow[d];d++)if(a===e.name){c.insertFieldAt(d,this.newQuote_(!0));c.insertFieldAt(d+2,this.newQuote_(!1));return}console.warn('field named "'+a+'" not found in '+this.toDevString())},newQuote_:function(a){a=this.RTL?!a:a;return $.fromJson$$module$build$src$core$field_registry({type:"field_image",src:a?this.QUOTE_IMAGE_LEFT_DATAURI:this.QUOTE_IMAGE_RIGHT_DATAURI,width:this.QUOTE_IMAGE_WIDTH,
-height:this.QUOTE_IMAGE_HEIGHT,alt:a?"\u201c":"\u201d"})}},QUOTES_EXTENSION$$module$build$src$blocks$text=function(){this.mixin(QUOTE_IMAGE_MIXIN$$module$build$src$blocks$text);this.quoteField_("TEXT")},JOIN_MUTATOR_MIXIN$$module$build$src$blocks$text={itemCount_:0,mutationToDom:function(){const a=$.createElement$$module$build$src$core$utils$xml("mutation");a.setAttribute("items",`${this.itemCount_}`);return a},domToMutation:function(a){this.itemCount_=parseInt(a.getAttribute("items"),10);this.updateShape_()},
-saveExtraState:function(){return{itemCount:this.itemCount_}},loadExtraState:function(a){this.itemCount_=a.itemCount;this.updateShape_()},decompose:function(a){const b=a.newBlock("text_create_join_container");b.initSvg();let c=b.getInput("STACK").connection;for(let d=0;d<this.itemCount_;d++){const e=a.newBlock("text_create_join_item");e.initSvg();c.connect(e.previousConnection);c=e.nextConnection}return b},compose:function(a){var b=a.getInputTargetBlock("STACK");for(a=[];b;)b.isInsertionMarker()||
-a.push(b.valueConnection_),b=b.getNextBlock();for(b=0;b<this.itemCount_;b++){const c=this.getInput("ADD"+b).connection.targetConnection;c&&-1===a.indexOf(c)&&c.disconnect()}this.itemCount_=a.length;this.updateShape_();for(b=0;b<this.itemCount_;b++){let c;null==(c=a[b])||c.reconnect(this,"ADD"+b)}},saveConnections:function(a){a=a.getInputTargetBlock("STACK");let b=0;for(;a;){if(a.isInsertionMarker()){a=a.getNextBlock();continue}const c=this.getInput("ADD"+b);a.valueConnection_=c&&c.connection.targetConnection;
-a=a.getNextBlock();b++}},updateShape_:function(){this.itemCount_&&this.getInput("EMPTY")?this.removeInput("EMPTY"):this.itemCount_||this.getInput("EMPTY")||this.appendDummyInput("EMPTY").appendField(this.newQuote_(!0)).appendField(this.newQuote_(!1));for(var a=0;a<this.itemCount_;a++)if(!this.getInput("ADD"+a)){const b=this.appendValueInput("ADD"+a).setAlign($.Align$$module$build$src$core$inputs$align.RIGHT);0===a&&b.appendField($.Msg$$module$build$src$core$msg.TEXT_JOIN_TITLE_CREATEWITH)}for(a=this.itemCount_;this.getInput("ADD"+
-a);a++)this.removeInput("ADD"+a)}},JOIN_EXTENSION$$module$build$src$blocks$text=function(){this.mixin(QUOTE_IMAGE_MIXIN$$module$build$src$blocks$text);this.itemCount_=2;this.updateShape_();this.setMutator(new $.MutatorIcon$$module$build$src$core$icons$mutator_icon(["text_create_join_item"],this))};$.register$$module$build$src$core$extensions("text_append_tooltip",$.buildTooltipWithFieldText$$module$build$src$core$extensions("%{BKY_TEXT_APPEND_TOOLTIP}","VAR"));
-var INDEXOF_TOOLTIP_EXTENSION$$module$build$src$blocks$text=function(){this.setTooltip(()=>$.Msg$$module$build$src$core$msg.TEXT_INDEXOF_TOOLTIP.replace("%1",this.workspace.options.oneBasedIndex?"0":"-1"))},CHARAT_MUTATOR_MIXIN$$module$build$src$blocks$text={isAt_:!1,mutationToDom:function(){const a=$.createElement$$module$build$src$core$utils$xml("mutation");a.setAttribute("at",`${this.isAt_}`);return a},domToMutation:function(a){a="false"!==a.getAttribute("at");this.updateAt_(a)},updateAt_:function(a){this.removeInput("AT",
-!0);this.removeInput("ORDINAL",!0);a&&(this.appendValueInput("AT").setCheck("Number"),$.Msg$$module$build$src$core$msg.ORDINAL_NUMBER_SUFFIX&&this.appendDummyInput("ORDINAL").appendField($.Msg$$module$build$src$core$msg.ORDINAL_NUMBER_SUFFIX));$.Msg$$module$build$src$core$msg.TEXT_CHARAT_TAIL&&(this.removeInput("TAIL",!0),this.appendDummyInput("TAIL").appendField($.Msg$$module$build$src$core$msg.TEXT_CHARAT_TAIL));this.isAt_=a}},CHARAT_EXTENSION$$module$build$src$blocks$text=function(){this.getField("WHERE").setValidator(function(a){a=
+QUOTE_IMAGE_WIDTH:12,QUOTE_IMAGE_HEIGHT:12,quoteField_:function(a){for(let b=0,c;c=this.inputList[b];b++)for(let d=0,e;e=c.fieldRow[d];d++)if(a===e.name){c.insertFieldAt(d,this.newQuote_(!0));c.insertFieldAt(d+2,this.newQuote_(!1));return}console.warn('field named "'+a+'" not found in '+this.toDevString())},newQuote_:function(a){a=this.RTL?!a:a;return $.fromJson$$module$build$src$core$field_registry({type:"field_image",src:a?this.QUOTE_IMAGE_LEFT_DATAURI:this.QUOTE_IMAGE_RIGHT_DATAURI,width:this.QUOTE_IMAGE_WIDTH,height:this.QUOTE_IMAGE_HEIGHT,alt:a?"\u201c":"\u201d"})}},QUOTES_EXTENSION$$module$build$src$blocks$text=function(){this.mixin(QUOTE_IMAGE_MIXIN$$module$build$src$blocks$text);this.quoteField_("TEXT")}
+
+
+
+
+,JOIN_MUTATOR_MIXIN$$module$build$src$blocks$text={
+	itemCount_:0
+	,mutationToDom:function(){const a=$.createElement$$module$build$src$core$utils$xml("mutation");a.setAttribute("items",`${this.itemCount_}`);return a}
+	,domToMutation:function(a){this.itemCount_=parseInt(a.getAttribute("items"),10);this.updateShape_()}
+	,saveExtraState:function(){return{itemCount:this.itemCount_}}
+	,loadExtraState:function(a){this.itemCount_=a.itemCount;this.updateShape_()}
+	,decompose:function(a){
+		const b=a.newBlock("text_create_join_container");
+		b.initSvg();
+		let c=b.getInput("STACK").connection;
+		for(let d=0;d<this.itemCount_;d++){
+			const e=a.newBlock("text_create_join_item");
+			e.initSvg();
+			c.connect(e.previousConnection);
+			c=e.nextConnection
+		}
+		return b
+	},
+	compose:function(a){
+		var b=a.getInputTargetBlock("STACK");
+		for(a=[];b;)b.isInsertionMarker()||a.push(b.valueConnection_),b=b.getNextBlock();
+		for(b=0;b<this.itemCount_;b++){
+			const c=this.getInput("ADD"+b).connection.targetConnection;
+			c&&-1===a.indexOf(c)&&c.disconnect()
+		}
+		this.itemCount_=a.length;this.updateShape_();
+		for(b=0;b<this.itemCount_;b++){
+			let c;null==(c=a[b])||c.reconnect(this,"ADD"+b)
+		}
+	}
+	,saveConnections:function(a){a=a.getInputTargetBlock("STACK");let b=0;for(;a;){if(a.isInsertionMarker()){a=a.getNextBlock();continue}const c=this.getInput("ADD"+b);a.valueConnection_=c&&c.connection.targetConnection;
+	a=a.getNextBlock();b++}}
+	,updateShape_:function(){this.itemCount_&&this.getInput("EMPTY")?this.removeInput("EMPTY"):this.itemCount_||this.getInput("EMPTY")||this.appendDummyInput("EMPTY").appendField(this.newQuote_(!0)).appendField(this.newQuote_(!1));for(var a=0;a<this.itemCount_;a++)if(!this.getInput("ADD"+a)){const b=this.appendValueInput("ADD"+a).setAlign($.Align$$module$build$src$core$inputs$align.RIGHT);0===a&&b.appendField($.Msg$$module$build$src$core$msg.TEXT_JOIN_TITLE_CREATEWITH)}for(a=this.itemCount_;this.getInput("ADD"+
+	a);a++)this.removeInput("ADD"+a)}
+}
+
+
+
+,JOIN_EXTENSION$$module$build$src$blocks$text=function(){this.mixin(QUOTE_IMAGE_MIXIN$$module$build$src$blocks$text);this.itemCount_=2;this.updateShape_();this.setMutator(new $.MutatorIcon$$module$build$src$core$icons$mutator_icon(["text_create_join_item"],this))};
+$.register$$module$build$src$core$extensions("text_append_tooltip",$.buildTooltipWithFieldText$$module$build$src$core$extensions("%{BKY_TEXT_APPEND_TOOLTIP}","VAR"));
+var INDEXOF_TOOLTIP_EXTENSION$$module$build$src$blocks$text=function(){this.setTooltip(()=>$.Msg$$module$build$src$core$msg.TEXT_INDEXOF_TOOLTIP.replace("%1",this.workspace.options.oneBasedIndex?"0":"-1"))}
+,CHARAT_MUTATOR_MIXIN$$module$build$src$blocks$text={isAt_:!1,mutationToDom:function(){const a=$.createElement$$module$build$src$core$utils$xml("mutation");a.setAttribute("at",`${this.isAt_}`);return a},domToMutation:function(a){a="false"!==a.getAttribute("at");this.updateAt_(a)},updateAt_:function(a){this.removeInput("AT",
+!0);this.removeInput("ORDINAL",!0);a&&(this.appendValueInput("AT").setCheck("Number"),$.Msg$$module$build$src$core$msg.ORDINAL_NUMBER_SUFFIX&&this.appendDummyInput("ORDINAL").appendField($.Msg$$module$build$src$core$msg.ORDINAL_NUMBER_SUFFIX));$.Msg$$module$build$src$core$msg.TEXT_CHARAT_TAIL&&(this.removeInput("TAIL",!0),this.appendDummyInput("TAIL").appendField($.Msg$$module$build$src$core$msg.TEXT_CHARAT_TAIL));this.isAt_=a}}
+,CHARAT_EXTENSION$$module$build$src$blocks$text=function(){this.getField("WHERE").setValidator(function(a){a=
 "FROM_START"===a||"FROM_END"===a;const b=this.getSourceBlock();a!==b.isAt_&&b.updateAt_(a)});this.updateAt_(!0);this.setTooltip(()=>{var a=this.getFieldValue("WHERE");let b=$.Msg$$module$build$src$core$msg.TEXT_CHARAT_TOOLTIP;("FROM_START"===a||"FROM_END"===a)&&(a="FROM_START"===a?$.Msg$$module$build$src$core$msg.LISTS_INDEX_FROM_START_TOOLTIP:$.Msg$$module$build$src$core$msg.LISTS_INDEX_FROM_END_TOOLTIP)&&(b+="  "+a.replace("%1",this.workspace.options.oneBasedIndex?"#1":"#0"));return b})};
+
 $.register$$module$build$src$core$extensions("text_indexOf_tooltip",INDEXOF_TOOLTIP_EXTENSION$$module$build$src$blocks$text);$.register$$module$build$src$core$extensions("text_quotes",QUOTES_EXTENSION$$module$build$src$blocks$text);$.registerMutator$$module$build$src$core$extensions("text_join_mutator",JOIN_MUTATOR_MIXIN$$module$build$src$blocks$text,JOIN_EXTENSION$$module$build$src$blocks$text);
 $.registerMutator$$module$build$src$core$extensions("text_charAt_mutator",CHARAT_MUTATOR_MIXIN$$module$build$src$blocks$text,CHARAT_EXTENSION$$module$build$src$blocks$text);$.defineBlocks$$module$build$src$core$common(blocks$$module$build$src$blocks$text);var module$build$src$blocks$text={};module$build$src$blocks$text.blocks=blocks$$module$build$src$blocks$text;var blocks$$module$build$src$blocks$variables=$.createBlockDefinitionsFromJsonArray$$module$build$src$core$common([{type:"variables_get",message0:"%1",args0:[{type:"field_variable",name:"VAR",variable:"%{BKY_VARIABLES_DEFAULT_NAME}"}],output:null,style:"variable_blocks",helpUrl:"%{BKY_VARIABLES_GET_HELPURL}",tooltip:"%{BKY_VARIABLES_GET_TOOLTIP}",extensions:["contextMenu_variableSetterGetter"]},
 {
