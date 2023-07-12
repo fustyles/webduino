@@ -218,8 +218,9 @@ blocks$$module$build$src$blocks$procedures.procedures_callnoreturn=Object.assign
 				}
 			}
 		}
-	},myWorkspaceChanged: function(myWorkspace) {
-	}	
+	}
+	,myWorkspaceChanged: function(myWorkspace) {
+	}
 });
 blocks$$module$build$src$blocks$procedures.procedures_callreturn=Object.assign({},PROCEDURE_CALL_COMMON$$module$build$src$blocks$procedures,
 {
@@ -253,8 +254,9 @@ blocks$$module$build$src$blocks$procedures.procedures_callreturn=Object.assign({
 				}
 			}
 		}
-	},myWorkspaceChanged: function(myWorkspace) {
-	}	
+	}
+	,myWorkspaceChanged: function(myWorkspace) {
+	}
 });
 var PROCEDURES_IFRETURN$$module$build$src$blocks$procedures={init:function(){this.appendValueInput("CONDITION").setCheck("Boolean").appendField($.Msg$$module$build$src$core$msg.CONTROLS_IF_MSG_IF);this.appendValueInput("VALUE").appendField($.Msg$$module$build$src$core$msg.PROCEDURES_DEFRETURN_RETURN);this.setInputsInline(!0);this.setPreviousStatement(!0);this.setNextStatement(!0);this.setStyle("procedure_blocks");this.setTooltip($.Msg$$module$build$src$core$msg.PROCEDURES_IFRETURN_TOOLTIP);this.setHelpUrl($.Msg$$module$build$src$core$msg.PROCEDURES_IFRETURN_HELPURL);
 this.hasReturnValue_=!0},mutationToDom:function(){const a=$.createElement$$module$build$src$core$utils$xml("mutation");a.setAttribute("value",String(Number(this.hasReturnValue_)));return a},domToMutation:function(a){this.hasReturnValue_="1"===a.getAttribute("value");this.hasReturnValue_||(this.removeInput("VALUE"),this.appendDummyInput("VALUE").appendField($.Msg$$module$build$src$core$msg.PROCEDURES_DEFRETURN_RETURN))},onchange:function(a){if(!(this.workspace.isDragging&&this.workspace.isDragging()||
