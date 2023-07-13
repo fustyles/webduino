@@ -55,7 +55,7 @@ module$exports$Blockly$libraryBlocks$procedures.blocks.procedures_callnoreturn=O
 
 'use strict';
 
-class myMutator extends Blockly.icons.MutatorIcon {
+class myMutator extends Blockly.Mutator {
 
     constructor(quarkNames, block) {
         super(quarkNames, block);
