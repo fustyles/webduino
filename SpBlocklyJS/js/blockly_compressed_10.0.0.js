@@ -103,12 +103,16 @@ isVariableBackedParameterModel$$module$build$src$core$interfaces$i_variable_back
 $.allUsedVarModels$$module$build$src$core$variables=function(a){a=a.getAllBlocks(!1);const b=new Set;for(let c=0;c<a.length;c++){const d=a[c].getVarModels();if(d)for(let e=0;e<d.length;e++){const f=d[e];f.getId()&&b.add(f)}}return Array.from(b.values())};$.allDeveloperVariables$$module$build$src$core$variables=function(a){a=a.getAllBlocks(!1);const b=new Set;for(let d=0,e;e=a[d];d++){var c=e.getDeveloperVariables;if(c){c=c();for(let f=0;f<c.length;f++)b.add(c[f])}}return Array.from(b.values())};
 flyoutCategory$$module$build$src$core$variables=function(a){let b=[];const c=document.createElement("button");c.setAttribute("text","%{BKY_NEW_VARIABLE}");c.setAttribute("callbackKey","CREATE_VARIABLE");a.registerButtonCallback("CREATE_VARIABLE",function(d){createVariableButtonHandler$$module$build$src$core$variables(d.getTargetWorkspace())});b.push(c);a=flyoutCategoryBlocks$$module$build$src$core$variables(a);return b=b.concat(a)};
 flyoutCategoryBlocks$$module$build$src$core$variables=function(a){a=a.getVariablesOfType("");const b=[];if(0<a.length){var c=a[a.length-1];
+
+
 if(Blocks$$module$build$src$core$blocks.variables_set){
 	var d=$.createElement$$module$build$src$core$utils$xml("block");d.setAttribute("type","variables_set");d.setAttribute("gap",Blocks$$module$build$src$core$blocks.math_change?"8":"24");d.appendChild($.generateVariableFieldDom$$module$build$src$core$variables(c));b.push(d)
 }
 if(Blocks$$module$build$src$core$blocks.variables_set_local){
 	var d=$.createElement$$module$build$src$core$utils$xml("block");d.setAttribute("type","variables_set_local");d.setAttribute("gap",Blocks$$module$build$src$core$blocks.math_change?"8":"24");d.appendChild($.generateVariableFieldDom$$module$build$src$core$variables(c));b.push(d)
 }
+
+
 Blocks$$module$build$src$core$blocks.math_change&&
 (d=$.createElement$$module$build$src$core$utils$xml("block"),d.setAttribute("type","math_change"),d.setAttribute("gap",Blocks$$module$build$src$core$blocks.variables_get?"20":"8"),d.appendChild($.generateVariableFieldDom$$module$build$src$core$variables(c)),c=$.textToDom$$module$build$src$core$utils$xml('<value name="DELTA"><shadow type="math_number"><field name="NUM">1</field></shadow></value>'),d.appendChild(c),b.push(d));if(Blocks$$module$build$src$core$blocks.variables_get){a.sort(VariableModel$$module$build$src$core$variable_model.compareByName);
 for(let e=0,f;f=a[e];e++)c=$.createElement$$module$build$src$core$utils$xml("block"),c.setAttribute("type","variables_get"),c.setAttribute("gap","8"),c.appendChild($.generateVariableFieldDom$$module$build$src$core$variables(f)),b.push(c)}}return b};generateUniqueName$$module$build$src$core$variables=function(a){return TEST_ONLY$$module$build$src$core$variables.generateUniqueNameInternal(a)};

@@ -197,35 +197,42 @@ blocks$$module$build$src$blocks$procedures.procedures_callnoreturn=Object.assign
 		this.argumentVarModels_=[];
 		this.quarkConnections_={};
 		this.quarkIds_=null;
-		this.setMutator(new $.MutatorIcon$$module$build$src$core$icons$mutator_icon([],this));
-		this.previousEnabledState_=!0
+		this.setMutator(new Blockly.icons.MutatorIcon([],this));
+		this.previousEnabledState_=!0;
+		this.arguments_=[];
+		this.argumentVarModels_=[];
 	}
 	,defType_:"procedures_defnoreturn"
 	,decompose: function(a) {
-		const b=a.newBlock("procedures_defnoreturn");
+		const b=a.newBlock("");
 		b.initSvg();
 		return b
 	}
 	,compose: function(a) {
 	}
 	,saveConnections:function(a){
-		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
+		var xml = Blockly.Xml.workspaceToDom(a.workspace);
 		xml = new XMLSerializer().serializeToString(xml);
-		xml = new DOMParser().parseFromString(xml,"text/xml").firstChild.childNodes;
 		
-		for (var i=0;i<xml.length;i++) {
-			if (xml[i].getAttribute("type")=="procedures_defnoreturn") {	
-				for (var j=0;j<xml[i].childNodes.length;j++) {			
-					if (xml[i].childNodes[j].textContent==this.getFieldValue("NAME")) {
-						xml = Blockly.Xml.domToPrettyText(xml[i]);
-						xml = Blockly.utils.xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml.replace("x=","xx=").replace("y=","yy=")+'</xml>');
-						a.workspace.clear();
-						Blockly.Xml.domToWorkspace(xml, a.workspace);							
-						break;
+		if (xml.indexOf('type="undefined"')!=-1) {
+			xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
+			xml = new XMLSerializer().serializeToString(xml);
+			xml = new DOMParser().parseFromString(xml,"text/xml").firstChild.childNodes;
+			
+			for (var i=0;i<xml.length;i++) {
+				if (xml[i].getAttribute("type")=="procedures_defnoreturn") {	
+					for (var j=0;j<xml[i].childNodes.length;j++) {			
+						if (xml[i].childNodes[j].textContent==this.getFieldValue("NAME")) {
+							xml = Blockly.Xml.domToPrettyText(xml[i]);
+							xml = Blockly.utils.xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml.replace("x=","xx=").replace("y=","yy=")+'</xml>');
+							a.workspace.clear();
+							Blockly.Xml.domToWorkspace(xml, a.workspace);							
+							break;
+						}
 					}
 				}
-			}
-		}		
+			}		
+		}
 	}	
 });
 blocks$$module$build$src$blocks$procedures.procedures_callreturn=Object.assign({},PROCEDURE_CALL_COMMON$$module$build$src$blocks$procedures,
@@ -239,34 +246,41 @@ blocks$$module$build$src$blocks$procedures.procedures_callreturn=Object.assign({
 		this.argumentVarModels_=[];
 		this.quarkConnections_={};
 		this.quarkIds_=null;
-		this.setMutator(new $.MutatorIcon$$module$build$src$core$icons$mutator_icon([],this));
-		this.previousEnabledState_=!0
+		this.setMutator(new Blockly.icons.MutatorIcon([],this));
+		this.previousEnabledState_=!0;
+		this.arguments_=[];
+		this.argumentVarModels_=[];		
 	}
 	,defType_:"procedures_defreturn"
 	,decompose: function(a) {
-		const b=a.newBlock("procedures_defreturn");
+		const b=a.newBlock("");
 		b.initSvg();
 		return b
 	}
 	,compose: function(a) {
 	}
-	,saveConnections:function(a){	
-		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
+	,saveConnections:function(a){
+		var xml = Blockly.Xml.workspaceToDom(a.workspace);
 		xml = new XMLSerializer().serializeToString(xml);
-		xml = new DOMParser().parseFromString(xml,"text/xml").firstChild.childNodes;
-		for (var i=0;i<xml.length;i++) {
-			if (xml[i].getAttribute("type")=="procedures_defreturn") {	
-				for (var j=0;j<xml[i].childNodes.length;j++) {
-					if (xml[i].childNodes[j].textContent==this.getFieldValue("NAME")) {
-						xml = Blockly.Xml.domToPrettyText(xml[i]);
-						xml = Blockly.utils.xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml.replace("x=","xx=").replace("y=","yy=")+'</xml>');
-						a.workspace.clear();
-						Blockly.Xml.domToWorkspace(xml, a.workspace);							
-						break;
+		
+		if (xml.indexOf('type="undefined"')!=-1) {
+			var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
+			xml = new XMLSerializer().serializeToString(xml);
+			xml = new DOMParser().parseFromString(xml,"text/xml").firstChild.childNodes;
+			for (var i=0;i<xml.length;i++) {
+				if (xml[i].getAttribute("type")=="procedures_defreturn") {	
+					for (var j=0;j<xml[i].childNodes.length;j++) {
+						if (xml[i].childNodes[j].textContent==this.getFieldValue("NAME")) {
+							xml = Blockly.Xml.domToPrettyText(xml[i]);
+							xml = Blockly.utils.xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml.replace("x=","xx=").replace("y=","yy=")+'</xml>');
+							a.workspace.clear();
+							Blockly.Xml.domToWorkspace(xml, a.workspace);							
+							break;
+						}
 					}
 				}
 			}
-		}	
+		}		
 	}	
 });
 var PROCEDURES_IFRETURN$$module$build$src$blocks$procedures={init:function(){this.appendValueInput("CONDITION").setCheck("Boolean").appendField($.Msg$$module$build$src$core$msg.CONTROLS_IF_MSG_IF);this.appendValueInput("VALUE").appendField($.Msg$$module$build$src$core$msg.PROCEDURES_DEFRETURN_RETURN);this.setInputsInline(!0);this.setPreviousStatement(!0);this.setNextStatement(!0);this.setStyle("procedure_blocks");this.setTooltip($.Msg$$module$build$src$core$msg.PROCEDURES_IFRETURN_TOOLTIP);this.setHelpUrl($.Msg$$module$build$src$core$msg.PROCEDURES_IFRETURN_HELPURL);
