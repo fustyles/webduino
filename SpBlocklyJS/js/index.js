@@ -342,7 +342,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	//載入積木目錄
 	var category = [
 		catSystem,
-		catMyBackPack,		
+		catMyBackPack,
+		catMySearch,		
 		"<sep></sep>",
 		catWindow,
 		catKeyboard,
