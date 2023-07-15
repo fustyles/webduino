@@ -69,8 +69,6 @@ function registerMySearch() {
 				}				
 			}
 		}
-		console.log(Blockly.getMainWorkspace());
-
 		if (Blockly.mySearch.Blocks.length>0) {
 			for (n=0;n<Blockly.getMainWorkspace().toolbox_.contents_.length;n++) {
 				if (Blockly.getMainWorkspace().toolbox_.contents_[n].name_==Blockly.Msg["MYSEARCH"]) {
