@@ -14,10 +14,9 @@ var myTimer1;
 document.addEventListener('DOMContentLoaded', function() {
 	
 	function getScript() {
-		var workspace = Blockly.getMainWorkspace();
 		var script = "<script src='GameElements_20190131/gameelements.js'></script>";
 		
-		var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace, true);
+		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace(), true);
 		xml = Blockly.Xml.domToPrettyText(xml);
 		
 		if (xml.indexOf("holistic_")!=-1) {
@@ -178,10 +177,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	}	
 	
 	function getScriptRemote() {
-		var workspace = Blockly.getMainWorkspace();
 		var script = "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script>";
 		
-		var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace, true);
+		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace(), true);
 		xml = Blockly.Xml.domToPrettyText(xml);
 		
 		if (xml.indexOf("holistic_")!=-1) {
@@ -416,8 +414,8 @@ document.addEventListener('DOMContentLoaded', function() {
 					wheel: true
 				}
 				,plugins: {
-					'blockDragger': ScrollBlockDragger,
-					'metricsManager': ScrollMetricsManager,
+				  'blockDragger': ScrollBlockDragger,
+				  'metricsManager': ScrollMetricsManager,
 				}			
 			}
 		);	
@@ -426,7 +424,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		//const AutoScrollOptionsPlugin = new AutoScroll(workspace);
 		const scrollOptionsPlugin = new ScrollOptions(workspace);
 		scrollOptionsPlugin.init({enableWheelScroll: true, enableEdgeScroll: true});
-		ScrollBlockDragger.edgeScrollEnabled = false;	
+		ScrollBlockDragger.edgeScrollEnabled = false;		
 		
 		updateMsg();
 		newFile();
@@ -521,7 +519,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//新增初始化積木
 	function newFile() {
-		var xmlDoc = Blockly.Xml.textToDom('<xml></xml>');
+		var xmlDoc = Blockly.utils.xml.textToDom('<xml></xml>');
 		Blockly.getMainWorkspace().clear();
 		Blockly.Xml.domToWorkspace(xmlDoc, Blockly.getMainWorkspace());
 	}
@@ -743,8 +741,8 @@ document.addEventListener('DOMContentLoaded', function() {
 					var fr = new FileReader();           
 					fr.onload = function (event) {
 						Blockly.getMainWorkspace().clear();
-						var blocks = Blockly.Xml.textToDom(event.target.result);
-						Blockly.Xml.domToWorkspace(blocks, Blockly.mainWorkspace);
+						var blocks = Blockly.utils.xml.textToDom(event.target.result);
+						Blockly.Xml.domToWorkspace(blocks, Blockly.getMainWorkspace());
 					};
 					fr.readAsText(file);
 				}
@@ -1254,7 +1252,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				//console.log(payload);
 				  if (topic==mqttTopic&&payload[0]!=collaborationID) {
 					mqttLock = true;
-					var xmlDoc = Blockly.Xml.textToDom(payload[1]);
+					var xmlDoc = Blockly.utils.xml.textToDom(payload[1]);
 					Blockly.getMainWorkspace().clear();
 					Blockly.Xml.domToWorkspace(xmlDoc, Blockly.getMainWorkspace());
 				  }
@@ -1285,7 +1283,7 @@ function javascriptCode() {
 
 //XML原始碼顯示
 function xmlCode() {
-	var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace, true);
+	var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace(), true);
 	var code = Blockly.Xml.domToPrettyText(xml);
 	document.getElementById('xml_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
 }

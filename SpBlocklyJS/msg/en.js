@@ -1,4 +1,21 @@
+/* eslint-disable */
+;(function(root, factory) {
+  if (typeof define === 'function' && define.amd) { // AMD
+    define([], factory);
+  } else if (typeof exports === 'object') { // Node.js
+    module.exports = factory();
+  } else { // Browser
+    var messages = factory();
+    for (var key in messages) {
+      root.Blockly.Msg[key] = messages[key];
+    }
+  }
+}(this, function() {
+// This file was automatically generated.  Do not modify.
+
 'use strict';
+
+var Blockly = Blockly || { Msg: Object.create(null) };
 
 Blockly.Msg.FUNCTION_ASYNC = "async";
 Blockly.Msg.ADD_COMMENT = "Add Comment";
@@ -774,15 +791,50 @@ Blockly.Msg["PROCEDURES_HUE"] = "290";
 Blockly.Msg["COLOUR_HUE"] = "20";
 Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
 
+Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"] = "Export selected blocks to a local file";
+Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "Import blocks to workspacee from a local file";
+
+Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "Enabled Pick/Place blocks";
+Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_DISABLED"] = "Disabled Pick/Place blocks";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"] = "Pick blocks";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"] = "Place blocks (bottom)";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_PREVIOUS"] = "Place blocks (above)";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "Place blocks [input: #]";
+
+Blockly.Msg["VARIABLES_GLOBAL"] = "Global";
+Blockly.Msg["VARIABLES_LOCAL"] = "Local";
+
+Blockly.Msg["BUTTON_COLLABORATION"] = "MQTT Collaboration";
+Blockly.Msg["COLLABORATION_BROKER_TITLE"] = "BROKER";
+Blockly.Msg["COLLABORATION_TOPIC_TITLE"] = "TOPIC";
+Blockly.Msg["COLLABORATION_USERID_TITLE"] = "USER ID";
+Blockly.Msg["COLLABORATION_PASSWORD_TITLE"] = "PASSWORD";
+Blockly.Msg.BUTTON_LINK = "LINK";
+Blockly.Msg["MSG_COLLABORATION"] = "MQTT COLLABORATION";
+Blockly.Msg["COLLABORATION_TIP_TITLE"] = "You need to use wss protocol.";
+
+Blockly.Msg["BUTTON_WEBMQTT"] = "Web MQTT";
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Msg["ADD_COMMENT"] = "Add Comment";
 Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "Can't delete the variable '%1' because it's part of the definition of the function '%2'";
 Blockly.Msg["CHANGE_VALUE_TITLE"] = "Change value:";
 Blockly.Msg["CLEAN_UP"] = "Clean up Blocks";
+Blockly.Msg["COLLAPSED_WARNINGS_WARNING"] = "Collapsed blocks contain warnings.";
 Blockly.Msg["COLLAPSE_ALL"] = "Collapse Blocks";
 Blockly.Msg["COLLAPSE_BLOCK"] = "Collapse Block";
 Blockly.Msg["COLOUR_BLEND_COLOUR1"] = "colour 1";
 Blockly.Msg["COLOUR_BLEND_COLOUR2"] = "colour 2";
-Blockly.Msg["COLOUR_BLEND_HELPURL"] = "http://meyerweb.com/eric/tools/color-blend/";
+Blockly.Msg["COLOUR_BLEND_HELPURL"] = "https://meyerweb.com/eric/tools/color-blend/#:::rgbp";
 Blockly.Msg["COLOUR_BLEND_RATIO"] = "ratio";
 Blockly.Msg["COLOUR_BLEND_TITLE"] = "blend";
 Blockly.Msg["COLOUR_BLEND_TOOLTIP"] = "Blends two colours together with a given ratio (0.0 - 1.0).";
@@ -793,7 +845,7 @@ Blockly.Msg["COLOUR_RANDOM_TITLE"] = "random colour";
 Blockly.Msg["COLOUR_RANDOM_TOOLTIP"] = "Choose a colour at random.";
 Blockly.Msg["COLOUR_RGB_BLUE"] = "blue";
 Blockly.Msg["COLOUR_RGB_GREEN"] = "green";
-Blockly.Msg["COLOUR_RGB_HELPURL"] = "http://www.december.com/html/spec/colorper.html";
+Blockly.Msg["COLOUR_RGB_HELPURL"] = "https://www.december.com/html/spec/colorpercompact.html";
 Blockly.Msg["COLOUR_RGB_RED"] = "red";
 Blockly.Msg["COLOUR_RGB_TITLE"] = "colour with";
 Blockly.Msg["COLOUR_RGB_TOOLTIP"] = "Create a colour with the specified amount of red, green, and blue. All values must be between 0 and 100.";
@@ -834,6 +886,8 @@ Blockly.Msg["DELETE_BLOCK"] = "Delete Block";
 Blockly.Msg["DELETE_VARIABLE"] = "Delete the '%1' variable";
 Blockly.Msg["DELETE_VARIABLE_CONFIRMATION"] = "Delete %1 uses of the '%2' variable?";
 Blockly.Msg["DELETE_X_BLOCKS"] = "Delete %1 Blocks";
+Blockly.Msg["DIALOG_CANCEL"] = "Cancel";
+Blockly.Msg["DIALOG_OK"] = "OK";
 Blockly.Msg["DISABLE_BLOCK"] = "Disable Block";
 Blockly.Msg["DUPLICATE_BLOCK"] = "Duplicate";
 Blockly.Msg["DUPLICATE_COMMENT"] = "Duplicate Comment";
@@ -843,19 +897,6 @@ Blockly.Msg["EXPAND_BLOCK"] = "Expand Block";
 Blockly.Msg["EXTERNAL_INPUTS"] = "External Inputs";
 Blockly.Msg["HELP"] = "Help";
 Blockly.Msg["INLINE_INPUTS"] = "Inline Inputs";
-Blockly.Msg["IOS_CANCEL"] = "Cancel";
-Blockly.Msg["IOS_ERROR"] = "Error";
-Blockly.Msg["IOS_OK"] = "OK";
-Blockly.Msg["IOS_PROCEDURES_ADD_INPUT"] = "+ Add Input";
-Blockly.Msg["IOS_PROCEDURES_ALLOW_STATEMENTS"] = "Allow statements";
-Blockly.Msg["IOS_PROCEDURES_DUPLICATE_INPUTS_ERROR"] = "This function has duplicate inputs.";
-Blockly.Msg["IOS_PROCEDURES_INPUTS"] = "INPUTS";
-Blockly.Msg["IOS_VARIABLES_ADD_BUTTON"] = "Add";
-Blockly.Msg["IOS_VARIABLES_ADD_VARIABLE"] = "+ Add Variable";
-Blockly.Msg["IOS_VARIABLES_DELETE_BUTTON"] = "Delete";
-Blockly.Msg["IOS_VARIABLES_EMPTY_NAME_ERROR"] = "You can't use an empty variable name.";
-Blockly.Msg["IOS_VARIABLES_RENAME_BUTTON"] = "Rename";
-Blockly.Msg["IOS_VARIABLES_VARIABLE_NAME"] = "Variable name";
 Blockly.Msg["LISTS_CREATE_EMPTY_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#create-empty-list";
 Blockly.Msg["LISTS_CREATE_EMPTY_TITLE"] = "create empty list";
 Blockly.Msg["LISTS_CREATE_EMPTY_TOOLTIP"] = "Returns a list, of length 0, containing no data records";
@@ -1160,18 +1201,19 @@ Blockly.Msg["TEXT_TRIM_OPERATOR_RIGHT"] = "trim spaces from right side of";
 Blockly.Msg["TEXT_TRIM_TOOLTIP"] = "Return a copy of the text with spaces removed from one or both ends.";
 Blockly.Msg["TODAY"] = "Today";
 Blockly.Msg["UNDO"] = "Undo";
+Blockly.Msg["UNNAMED_KEY"] = "unnamed";
 Blockly.Msg["VARIABLES_DEFAULT_NAME"] = "item";
 Blockly.Msg["VARIABLES_GET_CREATE_SET"] = "Create 'set %1'";
 Blockly.Msg["VARIABLES_GET_HELPURL"] = "https://github.com/google/blockly/wiki/Variables#get";
 Blockly.Msg["VARIABLES_GET_TOOLTIP"] = "Returns the value of this variable.";
-Blockly.Msg["VARIABLES_SET"] = "Declare %1 %2 to %3";
-Blockly.Msg["VARIABLES_SET_LOCAL"] = "Set %1 to %2";
-Blockly.Msg["VARIABLES_SET_CREATE_GET"] = "建立「取得 %1」";
+Blockly.Msg["VARIABLES_SET"] = "set %1 to %2";
 Blockly.Msg["VARIABLES_SET_CREATE_GET"] = "Create 'get %1'";
 Blockly.Msg["VARIABLES_SET_HELPURL"] = "https://github.com/google/blockly/wiki/Variables#set";
 Blockly.Msg["VARIABLES_SET_TOOLTIP"] = "Sets this variable to be equal to the input.";
 Blockly.Msg["VARIABLE_ALREADY_EXISTS"] = "A variable named '%1' already exists.";
 Blockly.Msg["VARIABLE_ALREADY_EXISTS_FOR_ANOTHER_TYPE"] = "A variable named '%1' already exists for another type: '%2'.";
+Blockly.Msg["VARIABLE_ALREADY_EXISTS_FOR_A_PARAMETER"] = "A variable named '%1' already exists as a parameter in the procedure '%2'.";
+Blockly.Msg["WORKSPACE_ARIA_LABEL"] = "Blockly Workspace";
 Blockly.Msg["WORKSPACE_COMMENT_DEFAULT_TEXT"] = "Say something...";
 Blockly.Msg["CONTROLS_FOREACH_INPUT_DO"] = Blockly.Msg["CONTROLS_REPEAT_INPUT_DO"];
 Blockly.Msg["CONTROLS_FOR_INPUT_DO"] = Blockly.Msg["CONTROLS_REPEAT_INPUT_DO"];
@@ -1194,26 +1236,21 @@ Blockly.Msg["PROCEDURES_DEFRETURN_TITLE"] = Blockly.Msg["PROCEDURES_DEFNORETURN_
 Blockly.Msg["TEXT_APPEND_VARIABLE"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
 Blockly.Msg["TEXT_CREATE_JOIN_ITEM_TITLE_ITEM"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
 
-Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"] = "Export selected blocks to a local file";
-Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "Import blocks to workspacee from a local file";
+Blockly.Msg["LOGIC_HUE"] = "210";
+Blockly.Msg["LOOPS_HUE"] = "120";
+Blockly.Msg["MATH_HUE"] = "230";
+Blockly.Msg["TEXTS_HUE"] = "160";
+Blockly.Msg["LISTS_HUE"] = "260";
+Blockly.Msg["COLOUR_HUE"] = "20";
+Blockly.Msg["VARIABLES_HUE"] = "330";
+Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
+Blockly.Msg["PROCEDURES_HUE"] = "290";
 
-Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "Enabled Pick/Place blocks";
-Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_DISABLED"] = "Disabled Pick/Place blocks";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"] = "Pick blocks";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"] = "Place blocks (bottom)";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_PREVIOUS"] = "Place blocks (above)";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "Place blocks [input: #]";
 
-Blockly.Msg["VARIABLES_GLOBAL"] = "Global";
-Blockly.Msg["VARIABLES_LOCAL"] = "Local";
 
-Blockly.Msg["BUTTON_COLLABORATION"] = "MQTT Collaboration";
-Blockly.Msg["COLLABORATION_BROKER_TITLE"] = "BROKER";
-Blockly.Msg["COLLABORATION_TOPIC_TITLE"] = "TOPIC";
-Blockly.Msg["COLLABORATION_USERID_TITLE"] = "USER ID";
-Blockly.Msg["COLLABORATION_PASSWORD_TITLE"] = "PASSWORD";
-Blockly.Msg.BUTTON_LINK = "LINK";
-Blockly.Msg["MSG_COLLABORATION"] = "MQTT COLLABORATION";
-Blockly.Msg["COLLABORATION_TIP_TITLE"] = "You need to use wss protocol.";
+// Custom
+Blockly.Msg["VARIABLES_SET_LOCAL"] = "Set %1 to %2";
+Blockly.Msg["VARIABLES_SET_CREATE_GET"] = "Create 'get %1'";
 
-Blockly.Msg["BUTTON_WEBMQTT"] = "Web MQTT";
+return Blockly.Msg;
+}));

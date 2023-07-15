@@ -73,9 +73,9 @@ function registerWorkspaceInsertBlockFromFile() {
 				if (file) {
 					var fr = new FileReader();           
 					fr.onload = function (event) {
-						var dom = Blockly.Xml.textToDom(event.target.result);
+						var dom = Blockly.utils.xml.textToDom(event.target.result);
 						//console.log(dom);
-						block = Blockly.Xml.textToDom('<xml>' + Blockly.Xml.domToText(dom).replace(/(?:\r\n|\r|\n|\t)/g, "") + '</xml>');
+						block = Blockly.utils.xml.textToDom('<xml>' + Blockly.Xml.domToText(dom).replace(/(?:\r\n|\r|\n|\t)/g, "") + '</xml>');
 						var id = Blockly.Xml.appendDomToWorkspace(block, Blockly.getMainWorkspace());
 						block = Blockly.getMainWorkspace().getBlockById(id);
 						block.initSvg();

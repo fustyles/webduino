@@ -1,4 +1,21 @@
+/* eslint-disable */
+;(function(root, factory) {
+  if (typeof define === 'function' && define.amd) { // AMD
+    define([], factory);
+  } else if (typeof exports === 'object') { // Node.js
+    module.exports = factory();
+  } else { // Browser
+    var messages = factory();
+    for (var key in messages) {
+      root.Blockly.Msg[key] = messages[key];
+    }
+  }
+}(this, function() {
+// This file was automatically generated.  Do not modify.
+
 'use strict';
+
+var Blockly = Blockly || { Msg: Object.create(null) };
 
 Blockly.Msg.FUNCTION_ASYNC = "非同步(async)";
 Blockly.Msg.ADD_COMMENT = "加入註解";
@@ -804,15 +821,51 @@ Blockly.Msg["PROCEDURES_HUE"] = "290";
 Blockly.Msg["COLOUR_HUE"] = "20";
 Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
 
+
+Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"] = "匯出選擇的積木儲存本機檔案";
+Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "從本機檔案插入積木至工作區";
+
+Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "啟用 挑選/置放 積木";
+Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_DISABLED"] = "停用 挑選/置放 積木";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"] = "挑選積木";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"] = "置放積木 (下方)";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_PREVIOUS"] = "置放積木 (上方)";
+Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "置放積木 [輸入: #]";
+
+Blockly.Msg["VARIABLES_GLOBAL"] = "全域";
+Blockly.Msg["VARIABLES_LOCAL"] = "區域";
+
+Blockly.Msg["BUTTON_COLLABORATION"] = "MQTT協同編輯";
+Blockly.Msg["COLLABORATION_BROKER_TITLE"] = "代理伺服器";
+Blockly.Msg["COLLABORATION_TOPIC_TITLE"] = "主題";
+Blockly.Msg["COLLABORATION_USERID_TITLE"] = "使用者帳號";
+Blockly.Msg["COLLABORATION_PASSWORD_TITLE"] = "密碼";
+Blockly.Msg.BUTTON_LINK = "連線";
+Blockly.Msg["MSG_COLLABORATION"] = "MQTT協同編輯";
+Blockly.Msg["COLLABORATION_TIP_TITLE"] = "MQTT.js須使用WSS通訊協定";
+
+Blockly.Msg["BUTTON_WEBMQTT"] = "網頁MQTT";
+
+
+
+
+
+
+
+
+
+// V10.0.0
+
 Blockly.Msg["ADD_COMMENT"] = "加入註解";
 Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "無法刪除變數「%1」，因為這是功能「%2」定義的一部份內容";
 Blockly.Msg["CHANGE_VALUE_TITLE"] = "修改值：";
-Blockly.Msg["CLEAN_UP"] = "整理積木";
-Blockly.Msg["COLLAPSE_ALL"] = "收合積木";
+Blockly.Msg["CLEAN_UP"] = "整理區塊";
+Blockly.Msg["COLLAPSED_WARNINGS_WARNING"] = "收合含有警告的區塊。";
+Blockly.Msg["COLLAPSE_ALL"] = "收合區塊";
 Blockly.Msg["COLLAPSE_BLOCK"] = "收合區塊";
 Blockly.Msg["COLOUR_BLEND_COLOUR1"] = "顏色 1";
 Blockly.Msg["COLOUR_BLEND_COLOUR2"] = "顏色 2";
-Blockly.Msg["COLOUR_BLEND_HELPURL"] = "http://meyerweb.com/eric/tools/color-blend/";  // untranslated
+Blockly.Msg["COLOUR_BLEND_HELPURL"] = "https://meyerweb.com/eric/tools/color-blend/#:::rgbp";  // untranslated
 Blockly.Msg["COLOUR_BLEND_RATIO"] = "比例";
 Blockly.Msg["COLOUR_BLEND_TITLE"] = "混合";
 Blockly.Msg["COLOUR_BLEND_TOOLTIP"] = "用一個給定的比率（0.0-1.0）混合兩種顏色。";
@@ -823,7 +876,7 @@ Blockly.Msg["COLOUR_RANDOM_TITLE"] = "隨機顏色";
 Blockly.Msg["COLOUR_RANDOM_TOOLTIP"] = "隨機選擇一種顏色。";
 Blockly.Msg["COLOUR_RGB_BLUE"] = "藍";
 Blockly.Msg["COLOUR_RGB_GREEN"] = "綠";
-Blockly.Msg["COLOUR_RGB_HELPURL"] = "http://www.december.com/html/spec/colorper.html";  // untranslated
+Blockly.Msg["COLOUR_RGB_HELPURL"] = "https://www.december.com/html/spec/colorpercompact.html";  // untranslated
 Blockly.Msg["COLOUR_RGB_RED"] = "紅";
 Blockly.Msg["COLOUR_RGB_TITLE"] = "顏色";
 Blockly.Msg["COLOUR_RGB_TOOLTIP"] = "透過指定紅、綠、 藍色的值來建立一種顏色。所有的值必須介於 0 和 100 之間。";
@@ -832,22 +885,22 @@ Blockly.Msg["CONTROLS_FLOW_STATEMENTS_OPERATOR_BREAK"] = "中斷循環";
 Blockly.Msg["CONTROLS_FLOW_STATEMENTS_OPERATOR_CONTINUE"] = "繼續下一個循環";
 Blockly.Msg["CONTROLS_FLOW_STATEMENTS_TOOLTIP_BREAK"] = "中斷當前的循環。";
 Blockly.Msg["CONTROLS_FLOW_STATEMENTS_TOOLTIP_CONTINUE"] = "跳過這個循環的其餘步驟，並繼續下一次的循環。";
-Blockly.Msg["CONTROLS_FLOW_STATEMENTS_WARNING"] = "警告：此區塊僅可用於迴圈內。";
+Blockly.Msg["CONTROLS_FLOW_STATEMENTS_WARNING"] = "警告：此區塊僅可用於循環內。";
 Blockly.Msg["CONTROLS_FOREACH_HELPURL"] = "https://github.com/google/blockly/wiki/Loops#for-each";  // untranslated
-Blockly.Msg["CONTROLS_FOREACH_TITLE"] = "取出每個 %1 自清單 %2";
+Blockly.Msg["CONTROLS_FOREACH_TITLE"] = "為列表 %2 裡的每一項 %1";
 Blockly.Msg["CONTROLS_FOREACH_TOOLTIP"] = "遍歷每個清單中的項目，將變數「%1」設定到該項目中，然後執行某些陳述式。";
 Blockly.Msg["CONTROLS_FOR_HELPURL"] = "https://github.com/google/blockly/wiki/Loops#count-with";  // untranslated
-Blockly.Msg["CONTROLS_FOR_TITLE"] = "循環計數 %1 從 %2 到 %3 間隔數 %4";
+Blockly.Msg["CONTROLS_FOR_TITLE"] = "循環計數 %1 從 %2 到 %3 每次增加 %4";
 Blockly.Msg["CONTROLS_FOR_TOOLTIP"] = "從起始數到結尾數中取出變數「%1」的值，按指定的時間間隔，執行指定的區塊。";
 Blockly.Msg["CONTROLS_IF_ELSEIF_TOOLTIP"] = "添加條件到「如果」積木。";
 Blockly.Msg["CONTROLS_IF_ELSE_TOOLTIP"] = "加入一個最終、所有條件都執行的部份到「如果」區塊中。";
 Blockly.Msg["CONTROLS_IF_HELPURL"] = "https://github.com/google/blockly/wiki/IfElse";  // untranslated
 Blockly.Msg["CONTROLS_IF_IF_TOOLTIP"] = "添加、刪除或重新排列各部份以重新配置這個「如果」區塊。";
 Blockly.Msg["CONTROLS_IF_MSG_ELSE"] = "否則";
-Blockly.Msg["CONTROLS_IF_MSG_ELSEIF"] = "否則如果";
+Blockly.Msg["CONTROLS_IF_MSG_ELSEIF"] = "否則，如果";
 Blockly.Msg["CONTROLS_IF_MSG_IF"] = "如果";
 Blockly.Msg["CONTROLS_IF_TOOLTIP_1"] = "當值為 true 時，執行一些陳述式。";
-Blockly.Msg["CONTROLS_IF_TOOLTIP_2"] = "當值為 true 時，執行第一個陳述式。否則，執行第二個陳述式。";
+Blockly.Msg["CONTROLS_IF_TOOLTIP_2"] = "值為是（true）就執行第一塊陳述式，否則執行第二塊。";
 Blockly.Msg["CONTROLS_IF_TOOLTIP_3"] = "如果第一個值為 true，則執行第一個陳述式。否則，當第二個值為 true 時，則執行第二個陳述式。";
 Blockly.Msg["CONTROLS_IF_TOOLTIP_4"] = "如果第一個值為 true，則執行第一個陳述式。否則當第二個值為 true 時，則執行第二個陳述式。如果前幾個敘述都不為 ture，則執行最後一個陳述式。";
 Blockly.Msg["CONTROLS_REPEAT_HELPURL"] = "https://zh.wikipedia.org/wiki/For迴圈";
@@ -856,36 +909,25 @@ Blockly.Msg["CONTROLS_REPEAT_TITLE"] = "重複%1次";
 Blockly.Msg["CONTROLS_REPEAT_TOOLTIP"] = "重複執行指定的陳述式多次。";
 Blockly.Msg["CONTROLS_WHILEUNTIL_HELPURL"] = "https://github.com/google/blockly/wiki/Loops#repeat";  // untranslated
 Blockly.Msg["CONTROLS_WHILEUNTIL_OPERATOR_UNTIL"] = "重複直到";
-Blockly.Msg["CONTROLS_WHILEUNTIL_OPERATOR_WHILE"] = "重複 當";
+Blockly.Msg["CONTROLS_WHILEUNTIL_OPERATOR_WHILE"] = "重複，當";
 Blockly.Msg["CONTROLS_WHILEUNTIL_TOOLTIP_UNTIL"] = "當值為 false 時，執行一些陳述式。";
 Blockly.Msg["CONTROLS_WHILEUNTIL_TOOLTIP_WHILE"] = "當值為 true 時，執行一些陳述式。";
 Blockly.Msg["DELETE_ALL_BLOCKS"] = "刪除全部 %1 個區塊？";
 Blockly.Msg["DELETE_BLOCK"] = "刪除區塊";
 Blockly.Msg["DELETE_VARIABLE"] = "刪除變數「%1」";
-Blockly.Msg["DELETE_VARIABLE_CONFIRMATION"] = "刪除%1使用的「%2」變數？";
+Blockly.Msg["DELETE_VARIABLE_CONFIRMATION"] = "刪除使用%1次的「%2」變數？";
 Blockly.Msg["DELETE_X_BLOCKS"] = "刪除%1個積木";
+Blockly.Msg["DIALOG_CANCEL"] = "取消";
+Blockly.Msg["DIALOG_OK"] = "確定";
 Blockly.Msg["DISABLE_BLOCK"] = "停用區塊";
-Blockly.Msg["DUPLICATE_BLOCK"] = "複製";
-Blockly.Msg["DUPLICATE_COMMENT"] = "重複註解";
+Blockly.Msg["DUPLICATE_BLOCK"] = "重複";
+Blockly.Msg["DUPLICATE_COMMENT"] = "複製註解";
 Blockly.Msg["ENABLE_BLOCK"] = "啟用積木";
 Blockly.Msg["EXPAND_ALL"] = "展開積木";
 Blockly.Msg["EXPAND_BLOCK"] = "展開區塊";
 Blockly.Msg["EXTERNAL_INPUTS"] = "外部輸入";
 Blockly.Msg["HELP"] = "說明";
 Blockly.Msg["INLINE_INPUTS"] = "單行輸入";
-Blockly.Msg["IOS_CANCEL"] = "取消";
-Blockly.Msg["IOS_ERROR"] = "錯誤";
-Blockly.Msg["IOS_OK"] = "確定";
-Blockly.Msg["IOS_PROCEDURES_ADD_INPUT"] = "+ 添加輸入";
-Blockly.Msg["IOS_PROCEDURES_ALLOW_STATEMENTS"] = "允許聲明";
-Blockly.Msg["IOS_PROCEDURES_DUPLICATE_INPUTS_ERROR"] = "此功能有重複輸入內容。";
-Blockly.Msg["IOS_PROCEDURES_INPUTS"] = "輸入";
-Blockly.Msg["IOS_VARIABLES_ADD_BUTTON"] = "添加";
-Blockly.Msg["IOS_VARIABLES_ADD_VARIABLE"] = "+ 添加變數";
-Blockly.Msg["IOS_VARIABLES_DELETE_BUTTON"] = "刪除";
-Blockly.Msg["IOS_VARIABLES_EMPTY_NAME_ERROR"] = "您不能使用不帶名的變數名稱。";
-Blockly.Msg["IOS_VARIABLES_RENAME_BUTTON"] = "重新命名";
-Blockly.Msg["IOS_VARIABLES_VARIABLE_NAME"] = "變數名稱";
 Blockly.Msg["LISTS_CREATE_EMPTY_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#create-empty-list";  // untranslated
 Blockly.Msg["LISTS_CREATE_EMPTY_TITLE"] = "建立空的清單";
 Blockly.Msg["LISTS_CREATE_EMPTY_TOOLTIP"] = "返回一個長度（項目數量）為 0 的清單，不包含任何資料記錄";
@@ -897,7 +939,7 @@ Blockly.Msg["LISTS_CREATE_WITH_ITEM_TOOLTIP"] = "添加一個項目到清單裡�
 Blockly.Msg["LISTS_CREATE_WITH_TOOLTIP"] = "建立一個具備任意數量項目的清單。";
 Blockly.Msg["LISTS_GET_INDEX_FIRST"] = "第一筆";
 Blockly.Msg["LISTS_GET_INDEX_FROM_END"] = "倒數第 # 筆";
-Blockly.Msg["LISTS_GET_INDEX_FROM_START"] = "#";  // untranslated
+Blockly.Msg["LISTS_GET_INDEX_FROM_START"] = "#";
 Blockly.Msg["LISTS_GET_INDEX_GET"] = "取得";
 Blockly.Msg["LISTS_GET_INDEX_GET_REMOVE"] = "取得並移除";
 Blockly.Msg["LISTS_GET_INDEX_LAST"] = "最後一筆";
@@ -941,7 +983,7 @@ Blockly.Msg["LISTS_LENGTH_TOOLTIP"] = "返回清單的長度（項目數）。";
 Blockly.Msg["LISTS_REPEAT_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#create-list-with";  // untranslated
 Blockly.Msg["LISTS_REPEAT_TITLE"] = "建立清單使用項目 %1 重複 %2 次";
 Blockly.Msg["LISTS_REPEAT_TOOLTIP"] = "建立一個清單，項目中包含指定重複次數的值。";
-Blockly.Msg["LISTS_REVERSE_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#reversing-a-list";
+Blockly.Msg["LISTS_REVERSE_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#reversing-a-list";  // untranslated
 Blockly.Msg["LISTS_REVERSE_MESSAGE0"] = "反轉%1";
 Blockly.Msg["LISTS_REVERSE_TOOLTIP"] = "反轉清單的複製內容。";
 Blockly.Msg["LISTS_SET_INDEX_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#in-list--set";  // untranslated
@@ -956,7 +998,7 @@ Blockly.Msg["LISTS_SET_INDEX_TOOLTIP_SET_FIRST"] = "設定清單中的第一個�
 Blockly.Msg["LISTS_SET_INDEX_TOOLTIP_SET_FROM"] = "設定清單中指定位置的項目。";
 Blockly.Msg["LISTS_SET_INDEX_TOOLTIP_SET_LAST"] = "設定清單中的最後一個項目。";
 Blockly.Msg["LISTS_SET_INDEX_TOOLTIP_SET_RANDOM"] = "設定清單中隨機一個項目。";
-Blockly.Msg["LISTS_SORT_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#sorting-a-list";
+Blockly.Msg["LISTS_SORT_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#sorting-a-list";  // untranslated
 Blockly.Msg["LISTS_SORT_ORDER_ASCENDING"] = "升序";
 Blockly.Msg["LISTS_SORT_ORDER_DESCENDING"] = "降序";
 Blockly.Msg["LISTS_SORT_TITLE"] = "排列 %1 %2 %3";
@@ -987,21 +1029,21 @@ Blockly.Msg["LOGIC_NEGATE_TOOLTIP"] = "如果輸入結果是 false，則返回 t
 Blockly.Msg["LOGIC_NULL"] = "空";
 Blockly.Msg["LOGIC_NULL_HELPURL"] = "https://en.wikipedia.org/wiki/Nullable_type";  // untranslated
 Blockly.Msg["LOGIC_NULL_TOOLTIP"] = "返回空值。";
-Blockly.Msg["LOGIC_OPERATION_AND"] = "且";
+Blockly.Msg["LOGIC_OPERATION_AND"] = "和";
 Blockly.Msg["LOGIC_OPERATION_HELPURL"] = "https://github.com/google/blockly/wiki/Logic#logical-operations";  // untranslated
 Blockly.Msg["LOGIC_OPERATION_OR"] = "或";
 Blockly.Msg["LOGIC_OPERATION_TOOLTIP_AND"] = "如果兩個輸入結果都為 true，則返回 true。";
 Blockly.Msg["LOGIC_OPERATION_TOOLTIP_OR"] = "如果至少一個輸入結果為 true，返回 true。";
 Blockly.Msg["LOGIC_TERNARY_CONDITION"] = "測試";
-Blockly.Msg["LOGIC_TERNARY_HELPURL"] = "https://zh.wikipedia.org/wiki/條件運算符";
+Blockly.Msg["LOGIC_TERNARY_HELPURL"] = "https://en.wikipedia.org/wiki/%3F:";
 Blockly.Msg["LOGIC_TERNARY_IF_FALSE"] = "如果為假";
 Blockly.Msg["LOGIC_TERNARY_IF_TRUE"] = "如果為真";
 Blockly.Msg["LOGIC_TERNARY_TOOLTIP"] = "檢查「測試」中的條件。如果條件為真，將返回「如果為真」的值；否則，返回「如果為假」的值。";
 Blockly.Msg["MATH_ADDITION_SYMBOL"] = "+";  // untranslated
 Blockly.Msg["MATH_ARITHMETIC_HELPURL"] = "https://zh.wikipedia.org/wiki/算術";
 Blockly.Msg["MATH_ARITHMETIC_TOOLTIP_ADD"] = "返回兩個數字的總和。";
-Blockly.Msg["MATH_ARITHMETIC_TOOLTIP_DIVIDE"] = "返回兩個數字的商。";
-Blockly.Msg["MATH_ARITHMETIC_TOOLTIP_MINUS"] = "返回兩個數字的差。";
+Blockly.Msg["MATH_ARITHMETIC_TOOLTIP_DIVIDE"] = "傳回兩數之商。";
+Blockly.Msg["MATH_ARITHMETIC_TOOLTIP_MINUS"] = "傳回兩數之差。";
 Blockly.Msg["MATH_ARITHMETIC_TOOLTIP_MULTIPLY"] = "返回兩個數字的乘積。";
 Blockly.Msg["MATH_ARITHMETIC_TOOLTIP_POWER"] = "返回第二個數字的指數的第一個數字。";
 Blockly.Msg["MATH_ATAN2_HELPURL"] = "https://zh.wikipedia.org/wiki/Atan2";
@@ -1018,18 +1060,18 @@ Blockly.Msg["MATH_CONSTRAIN_TOOLTIP"] = "限制數字介於兩個指定的數字
 Blockly.Msg["MATH_DIVISION_SYMBOL"] = "÷";  // untranslated
 Blockly.Msg["MATH_IS_DIVISIBLE_BY"] = "可被整除";
 Blockly.Msg["MATH_IS_EVEN"] = "是偶數";
-Blockly.Msg["MATH_IS_NEGATIVE"] = "是負值";
+Blockly.Msg["MATH_IS_NEGATIVE"] = "是負數";
 Blockly.Msg["MATH_IS_ODD"] = "是奇數";
 Blockly.Msg["MATH_IS_POSITIVE"] = "是正值";
 Blockly.Msg["MATH_IS_PRIME"] = "是質數";
 Blockly.Msg["MATH_IS_TOOLTIP"] = "如果數字是偶數，奇數，非負整數，正數、 負數，或如果它是可被某數字整除，則返回 true 或 false。";
-Blockly.Msg["MATH_IS_WHOLE"] = "是非負整數";
+Blockly.Msg["MATH_IS_WHOLE"] = "是整數";
 Blockly.Msg["MATH_MODULO_HELPURL"] = "https://zh.wikipedia.org/wiki/模除";
 Blockly.Msg["MATH_MODULO_TITLE"] = "%1 除以 %2 的餘數";
 Blockly.Msg["MATH_MODULO_TOOLTIP"] = "回傳兩個數字相除的餘數。";
 Blockly.Msg["MATH_MULTIPLICATION_SYMBOL"] = "×";  // untranslated
 Blockly.Msg["MATH_NUMBER_HELPURL"] = "https://zh.wikipedia.org/wiki/數";
-Blockly.Msg["MATH_NUMBER_TOOLTIP"] = "一個數字。";
+Blockly.Msg["MATH_NUMBER_TOOLTIP"] = "數字";
 Blockly.Msg["MATH_ONLIST_HELPURL"] = "";  // untranslated
 Blockly.Msg["MATH_ONLIST_OPERATOR_AVERAGE"] = "平均數 自清單";
 Blockly.Msg["MATH_ONLIST_OPERATOR_MAX"] = "最大值 自清單";
@@ -1058,34 +1100,34 @@ Blockly.Msg["MATH_ROUND_HELPURL"] = "https://zh.wikipedia.org/wiki/數值簡化"
 Blockly.Msg["MATH_ROUND_OPERATOR_ROUND"] = "四捨五入";
 Blockly.Msg["MATH_ROUND_OPERATOR_ROUNDDOWN"] = "無條件捨去";
 Blockly.Msg["MATH_ROUND_OPERATOR_ROUNDUP"] = "無條件進位";
-Blockly.Msg["MATH_ROUND_TOOLTIP"] = "將數字無條件進位或無條件捨去。";
+Blockly.Msg["MATH_ROUND_TOOLTIP"] = "上捨入或下捨入數字";
 Blockly.Msg["MATH_SINGLE_HELPURL"] = "https://zh.wikipedia.org/wiki/平方根";
 Blockly.Msg["MATH_SINGLE_OP_ABSOLUTE"] = "絕對值";
 Blockly.Msg["MATH_SINGLE_OP_ROOT"] = "開根號";
 Blockly.Msg["MATH_SINGLE_TOOLTIP_ABS"] = "返回指定數字的絕對值。";
-Blockly.Msg["MATH_SINGLE_TOOLTIP_EXP"] = "返回指定數字指數的 e";
+Blockly.Msg["MATH_SINGLE_TOOLTIP_EXP"] = "返回指定數字指數的e的冪次。";
 Blockly.Msg["MATH_SINGLE_TOOLTIP_LN"] = "返回指定數字的自然對數。";
 Blockly.Msg["MATH_SINGLE_TOOLTIP_LOG10"] = "返回指定數字的對數。";
-Blockly.Msg["MATH_SINGLE_TOOLTIP_NEG"] = "返回指定數字的 negation。";
+Blockly.Msg["MATH_SINGLE_TOOLTIP_NEG"] = "返回指定數字的相反數。";
 Blockly.Msg["MATH_SINGLE_TOOLTIP_POW10"] = "返回指定數字指數的10的冪次。";
 Blockly.Msg["MATH_SINGLE_TOOLTIP_ROOT"] = "返回指定數字的平方根。";
 Blockly.Msg["MATH_SUBTRACTION_SYMBOL"] = "-";  // untranslated
-Blockly.Msg["MATH_TRIG_ACOS"] = "acos";  // untranslated
-Blockly.Msg["MATH_TRIG_ASIN"] = "asin";  // untranslated
-Blockly.Msg["MATH_TRIG_ATAN"] = "atan";  // untranslated
-Blockly.Msg["MATH_TRIG_COS"] = "cos";  // untranslated
+Blockly.Msg["MATH_TRIG_ACOS"] = "反餘弦";
+Blockly.Msg["MATH_TRIG_ASIN"] = "反正弦";
+Blockly.Msg["MATH_TRIG_ATAN"] = "反正切";
+Blockly.Msg["MATH_TRIG_COS"] = "餘弦";
 Blockly.Msg["MATH_TRIG_HELPURL"] = "https://zh.wikipedia.org/wiki/三角函數";
-Blockly.Msg["MATH_TRIG_SIN"] = "sin";  // untranslated
-Blockly.Msg["MATH_TRIG_TAN"] = "tan";  // untranslated
+Blockly.Msg["MATH_TRIG_SIN"] = "正弦";
+Blockly.Msg["MATH_TRIG_TAN"] = "正切";
 Blockly.Msg["MATH_TRIG_TOOLTIP_ACOS"] = "返回指定角度的反餘弦值(非弧度）。";
 Blockly.Msg["MATH_TRIG_TOOLTIP_ASIN"] = "返回指定角度的反正弦值(非弧度）。";
 Blockly.Msg["MATH_TRIG_TOOLTIP_ATAN"] = "返回指定角度的反正切值。";
 Blockly.Msg["MATH_TRIG_TOOLTIP_COS"] = "返回指定角度的餘弦值(非弧度）。";
 Blockly.Msg["MATH_TRIG_TOOLTIP_SIN"] = "返回指定角度的正弦值(非弧度）。";
 Blockly.Msg["MATH_TRIG_TOOLTIP_TAN"] = "返回指定角度的正切值(非弧度）。";
-Blockly.Msg["NEW_COLOUR_VARIABLE"] = "建立顏色變數...";
-Blockly.Msg["NEW_NUMBER_VARIABLE"] = "建立數字變數...";
-Blockly.Msg["NEW_STRING_VARIABLE"] = "建立字串變數...";
+Blockly.Msg["NEW_COLOUR_VARIABLE"] = "建立顏色變數…";
+Blockly.Msg["NEW_NUMBER_VARIABLE"] = "建立數值變數……";
+Blockly.Msg["NEW_STRING_VARIABLE"] = "建立字串變數……";
 Blockly.Msg["NEW_VARIABLE"] = "建立變數…";
 Blockly.Msg["NEW_VARIABLE_TITLE"] = "新變數名稱：";
 Blockly.Msg["NEW_VARIABLE_TYPE_TITLE"] = "新變數類型：";
@@ -1124,12 +1166,12 @@ Blockly.Msg["TEXT_APPEND_HELPURL"] = "https://github.com/google/blockly/wiki/Tex
 Blockly.Msg["TEXT_APPEND_TITLE"] = "至 %1 套用文字 %2";
 Blockly.Msg["TEXT_APPEND_TOOLTIP"] = "添加一些文字到變數「%1」之後。";
 Blockly.Msg["TEXT_CHANGECASE_HELPURL"] = "https://github.com/google/blockly/wiki/Text#adjusting-text-case";  // untranslated
-Blockly.Msg["TEXT_CHANGECASE_OPERATOR_LOWERCASE"] = "轉成 英文小寫";
-Blockly.Msg["TEXT_CHANGECASE_OPERATOR_TITLECASE"] = "轉成 英文首字大寫";
-Blockly.Msg["TEXT_CHANGECASE_OPERATOR_UPPERCASE"] = "轉成 英文大寫";
+Blockly.Msg["TEXT_CHANGECASE_OPERATOR_LOWERCASE"] = "轉成英文小寫";
+Blockly.Msg["TEXT_CHANGECASE_OPERATOR_TITLECASE"] = "轉成英文首字大寫";
+Blockly.Msg["TEXT_CHANGECASE_OPERATOR_UPPERCASE"] = "轉成英文大寫";
 Blockly.Msg["TEXT_CHANGECASE_TOOLTIP"] = "使用不同的大小寫複製這段文字。";
-Blockly.Msg["TEXT_CHARAT_FIRST"] = "取得 第一個字元";
-Blockly.Msg["TEXT_CHARAT_FROM_END"] = "取得 倒數第 # 個字元";
+Blockly.Msg["TEXT_CHARAT_FIRST"] = "擷取首字元";
+Blockly.Msg["TEXT_CHARAT_FROM_END"] = "取得倒數第#字元";
 Blockly.Msg["TEXT_CHARAT_FROM_START"] = "取得 字元 #";
 Blockly.Msg["TEXT_CHARAT_HELPURL"] = "https://github.com/google/blockly/wiki/Text#extracting-text";  // untranslated
 Blockly.Msg["TEXT_CHARAT_LAST"] = "取得 最後一個字元";
@@ -1137,18 +1179,18 @@ Blockly.Msg["TEXT_CHARAT_RANDOM"] = "取得 任意字元";
 Blockly.Msg["TEXT_CHARAT_TAIL"] = "";  // untranslated
 Blockly.Msg["TEXT_CHARAT_TITLE"] = "在文字 %1 %2";
 Blockly.Msg["TEXT_CHARAT_TOOLTIP"] = "返回位於指定位置的字元。";
-Blockly.Msg["TEXT_COUNT_HELPURL"] = "https://github.com/google/blockly/wiki/Text#counting-substrings";
+Blockly.Msg["TEXT_COUNT_HELPURL"] = "https://github.com/google/blockly/wiki/Text#counting-substrings";  // untranslated
 Blockly.Msg["TEXT_COUNT_MESSAGE0"] = "在%2計算%1";
 Blockly.Msg["TEXT_COUNT_TOOLTIP"] = "計算某些文字在內容裡的出現次數。";
 Blockly.Msg["TEXT_CREATE_JOIN_ITEM_TOOLTIP"] = "添加一個項目到字串中。";
 Blockly.Msg["TEXT_CREATE_JOIN_TITLE_JOIN"] = "加入";
 Blockly.Msg["TEXT_CREATE_JOIN_TOOLTIP"] = "添加、刪除或重新排列各部份以重新配置這個文字區塊。";
-Blockly.Msg["TEXT_GET_SUBSTRING_END_FROM_END"] = "到 倒數第 # 個字元";
+Blockly.Msg["TEXT_GET_SUBSTRING_END_FROM_END"] = "到倒數第#字元";
 Blockly.Msg["TEXT_GET_SUBSTRING_END_FROM_START"] = "到 字元 #";
-Blockly.Msg["TEXT_GET_SUBSTRING_END_LAST"] = "到 最後一個字元";
+Blockly.Msg["TEXT_GET_SUBSTRING_END_LAST"] = "到尾個字元";
 Blockly.Msg["TEXT_GET_SUBSTRING_HELPURL"] = "https://github.com/google/blockly/wiki/Text#extracting-a-region-of-text";  // untranslated
 Blockly.Msg["TEXT_GET_SUBSTRING_INPUT_IN_TEXT"] = "在字串";
-Blockly.Msg["TEXT_GET_SUBSTRING_START_FIRST"] = "取得 第一個字元";
+Blockly.Msg["TEXT_GET_SUBSTRING_START_FIRST"] = "取得首字元";
 Blockly.Msg["TEXT_GET_SUBSTRING_START_FROM_END"] = "取得 倒數第 # 個字元";
 Blockly.Msg["TEXT_GET_SUBSTRING_START_FROM_START"] = "取得 字元 #";
 Blockly.Msg["TEXT_GET_SUBSTRING_TAIL"] = "";  // untranslated
@@ -1175,14 +1217,14 @@ Blockly.Msg["TEXT_PROMPT_TOOLTIP_NUMBER"] = "輸入數字";
 Blockly.Msg["TEXT_PROMPT_TOOLTIP_TEXT"] = "輸入文字";
 Blockly.Msg["TEXT_PROMPT_TYPE_NUMBER"] = "輸入 數字 並顯示提示訊息";
 Blockly.Msg["TEXT_PROMPT_TYPE_TEXT"] = "輸入 文字 並顯示提示訊息";
-Blockly.Msg["TEXT_REPLACE_HELPURL"] = "https://github.com/google/blockly/wiki/Text#replacing-substrings";
+Blockly.Msg["TEXT_REPLACE_HELPURL"] = "https://github.com/google/blockly/wiki/Text#replacing-substrings";  // untranslated
 Blockly.Msg["TEXT_REPLACE_MESSAGE0"] = "在%3以%2取代%1";
 Blockly.Msg["TEXT_REPLACE_TOOLTIP"] = "取代在內容裡的全部某些文字。";
-Blockly.Msg["TEXT_REVERSE_HELPURL"] = "https://github.com/google/blockly/wiki/Text#reversing-text";
+Blockly.Msg["TEXT_REVERSE_HELPURL"] = "https://github.com/google/blockly/wiki/Text#reversing-text";  // untranslated
 Blockly.Msg["TEXT_REVERSE_MESSAGE0"] = "反轉%1";
 Blockly.Msg["TEXT_REVERSE_TOOLTIP"] = "反轉排序在文字裡的字元。";
 Blockly.Msg["TEXT_TEXT_HELPURL"] = "https://zh.wikipedia.org/wiki/字串";
-Blockly.Msg["TEXT_TEXT_TOOLTIP"] = "一個字元、一個單詞，或一串文字。";
+Blockly.Msg["TEXT_TEXT_TOOLTIP"] = "一粒字元、一個字詞或一行字";
 Blockly.Msg["TEXT_TRIM_HELPURL"] = "https://github.com/google/blockly/wiki/Text#trimming-removing-spaces";  // untranslated
 Blockly.Msg["TEXT_TRIM_OPERATOR_BOTH"] = "消除兩側空格";
 Blockly.Msg["TEXT_TRIM_OPERATOR_LEFT"] = "消除左側空格";
@@ -1190,17 +1232,19 @@ Blockly.Msg["TEXT_TRIM_OPERATOR_RIGHT"] = "消除右側空格";
 Blockly.Msg["TEXT_TRIM_TOOLTIP"] = "複製這段文字，同時刪除兩端多餘的空格。";
 Blockly.Msg["TODAY"] = "今天";
 Blockly.Msg["UNDO"] = "還原";
+Blockly.Msg["UNNAMED_KEY"] = "未命名";
 Blockly.Msg["VARIABLES_DEFAULT_NAME"] = "項目";
 Blockly.Msg["VARIABLES_GET_CREATE_SET"] = "建立「賦值 %1」";
 Blockly.Msg["VARIABLES_GET_HELPURL"] = "https://github.com/google/blockly/wiki/Variables#get";  // untranslated
 Blockly.Msg["VARIABLES_GET_TOOLTIP"] = "返回此變數的值。";
-Blockly.Msg["VARIABLES_SET"] = "宣告 %1 %2 成 %3";
-Blockly.Msg["VARIABLES_SET_LOCAL"] = "設定 %1 成 %2";
+Blockly.Msg["VARIABLES_SET"] = "賦值 %1 成 %2";
 Blockly.Msg["VARIABLES_SET_CREATE_GET"] = "建立「取得 %1」";
 Blockly.Msg["VARIABLES_SET_HELPURL"] = "https://github.com/google/blockly/wiki/Variables#set";  // untranslated
 Blockly.Msg["VARIABLES_SET_TOOLTIP"] = "設定此變數，好和輸入結果相等。";
 Blockly.Msg["VARIABLE_ALREADY_EXISTS"] = "已存在變數「%1」。";
-Blockly.Msg["VARIABLE_ALREADY_EXISTS_FOR_ANOTHER_TYPE"] = "已存在名為「%1」且用於其它類型「%2」的變數。";
+Blockly.Msg["VARIABLE_ALREADY_EXISTS_FOR_ANOTHER_TYPE"] = "已存在名為「%1」，且用於其它類型「%2」的變數。";
+Blockly.Msg["VARIABLE_ALREADY_EXISTS_FOR_A_PARAMETER"] = "A variable named '%1' already exists as a parameter in the procedure '%2'.";  // untranslated
+Blockly.Msg["WORKSPACE_ARIA_LABEL"] = "Blockly工作區";
 Blockly.Msg["WORKSPACE_COMMENT_DEFAULT_TEXT"] = "來說些事情...";
 Blockly.Msg["CONTROLS_FOREACH_INPUT_DO"] = Blockly.Msg["CONTROLS_REPEAT_INPUT_DO"];
 Blockly.Msg["CONTROLS_FOR_INPUT_DO"] = Blockly.Msg["CONTROLS_REPEAT_INPUT_DO"];
@@ -1223,26 +1267,21 @@ Blockly.Msg["PROCEDURES_DEFRETURN_TITLE"] = Blockly.Msg["PROCEDURES_DEFNORETURN_
 Blockly.Msg["TEXT_APPEND_VARIABLE"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
 Blockly.Msg["TEXT_CREATE_JOIN_ITEM_TITLE_ITEM"] = Blockly.Msg["VARIABLES_DEFAULT_NAME"];
 
-Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"] = "匯出選擇的積木儲存本機檔案";
-Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "從本機檔案插入積木至工作區";
+Blockly.Msg["LOGIC_HUE"] = "210";
+Blockly.Msg["LOOPS_HUE"] = "120";
+Blockly.Msg["MATH_HUE"] = "230";
+Blockly.Msg["TEXTS_HUE"] = "160";
+Blockly.Msg["LISTS_HUE"] = "260";
+Blockly.Msg["COLOUR_HUE"] = "20";
+Blockly.Msg["VARIABLES_HUE"] = "330";
+Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
+Blockly.Msg["PROCEDURES_HUE"] = "290";
 
-Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "啟用 挑選/置放 積木";
-Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_DISABLED"] = "停用 挑選/置放 積木";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PICK"] = "挑選積木";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_NEXT"] = "置放積木 (下方)";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_PREVIOUS"] = "置放積木 (上方)";
-Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "置放積木 [輸入: #]";
 
-Blockly.Msg["VARIABLES_GLOBAL"] = "全域";
-Blockly.Msg["VARIABLES_LOCAL"] = "區域";
 
-Blockly.Msg["BUTTON_COLLABORATION"] = "MQTT協同編輯";
-Blockly.Msg["COLLABORATION_BROKER_TITLE"] = "代理伺服器";
-Blockly.Msg["COLLABORATION_TOPIC_TITLE"] = "主題";
-Blockly.Msg["COLLABORATION_USERID_TITLE"] = "使用者帳號";
-Blockly.Msg["COLLABORATION_PASSWORD_TITLE"] = "密碼";
-Blockly.Msg.BUTTON_LINK = "連線";
-Blockly.Msg["MSG_COLLABORATION"] = "MQTT協同編輯";
-Blockly.Msg["COLLABORATION_TIP_TITLE"] = "MQTT.js須使用WSS通訊協定";
+// Custom
+Blockly.Msg["VARIABLES_SET"] = "宣告 %1 %2 成 %3";
+Blockly.Msg["VARIABLES_SET_LOCAL"] = "設定 %1 成 %2";
 
-Blockly.Msg["BUTTON_WEBMQTT"] = "網頁MQTT";
+return Blockly.Msg;
+}));

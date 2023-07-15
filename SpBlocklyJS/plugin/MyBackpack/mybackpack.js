@@ -49,7 +49,8 @@ Blockly.Msg["MYBACKPACK_TITLE"] = "BACKPACK";
 class MyBackpack {
 
   constructor(workspace, insertCategoryId, position) {
-	  
+		super();
+		
 		this.workspace_ = workspace;
 		this.insertCategoryId_ = insertCategoryId;
 		this.position_ = position;
@@ -63,7 +64,7 @@ class MyBackpack {
 			var c=[];
 			var b = Blockly.myBackpack.Blocks;
 			for (var i=0;i<b.length;i++) {
-				c.push(Blockly.Xml.textToDom(b[i]));
+				c.push(Blockly.utils.xml.textToDom(b[i]));
 			}
 			return c
 		};
@@ -261,7 +262,7 @@ class MyBackpack {
 							var fr = new FileReader();           
 							fr.onload = function (event) {
 								Blockly.myBackpack.Blocks = [];
-								var blocks = Blockly.Xml.textToDom(event.target.result);
+								var blocks = Blockly.utils.xml.textToDom(event.target.result);
 								var child = blocks.childNodes;
 								for (var i=0;i<child.length;i++){
 									if (child[i].nodeName!="#text") {

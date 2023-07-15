@@ -37,15 +37,28 @@ SPDX-License-Identifier: Apache-2.0
 	<script src="js/index.js"></script>
 	<script src="js/message.js"></script>	
 	<script src="plugin/ScreenShot/screenshot.js"></script>
-	<script src="plugin/Scroll/AutoScroll.js"></script>
-	<script src="plugin/Scroll/Scroll.js"></script>
-	<script src="plugin/Scroll/ScrollBlockDragger.js"></script>
-	<script src="plugin/Scroll/ScrollMetricsManager.js"></script>
+	<script src="plugin/scroll-options/AutoScroll.js"></script>
+	<script src="plugin/scroll-options/Scroll.js"></script>
+	<script src="plugin/scroll-options/ScrollBlockDragger.js"></script>
+	<script src="plugin/scroll-options/ScrollMetricsManager.js"></script>
+	<script src="plugin/scroll-options/utils.js"></script>
 	<script src="plugin/ContentHighLight/ContentHighLight.js"></script>	
-	<script src="plugin/WorkspaceBackpack/backpack.js"></script>	
-	<script src="plugin/WorkspaceBackpack/backpack_helpers.js"></script>
-	<script src="plugin/WorkspaceBackpack/options.js"></script>	
-	<script src="plugin/WorkspaceBackpack/ui_events.js"></script>
+	<script>
+		var lang = location.search.toLowerCase();
+		if (lang.indexOf("lang=en")!=-1)
+			lang = "en";
+		else if (lang.indexOf("lang=zh-hans")!=-1)
+			lang = "zh-hans";
+		else if (lang.indexOf("lang=zh-hant")!=-1)
+			lang = "zh-hant";	
+		else 
+			lang = "zh-hant";  //en, zh-hans, zh-hant
+		document.write("\<script src='plugin/workspace-backpack/"+lang+".js'\>\<\/script>");
+	</script>
+	<script src="plugin/workspace-backpack/backpack.js"></script>	
+	<script src="plugin/workspace-backpack/backpack_helpers.js"></script>
+	<script src="plugin/workspace-backpack/options.js"></script>	
+	<script src="plugin/workspace-backpack/ui_events.js"></script>	
 	<script src="plugin/myPickPlaceBlock/myPickPlaceBlock.js"></script>
 	<script src="plugin/myInsertBlock/myInsertBlock.js"></script>
 	<script src="js/jquery.min.js"></script>

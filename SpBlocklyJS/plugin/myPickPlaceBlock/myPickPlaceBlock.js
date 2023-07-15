@@ -326,7 +326,7 @@ function getSourceBlock() {
 	
 	if (Blockly.myPickPlaceBlock.isFlyout) {
 		block = Blockly.Xml.blockToDom(block, true);
-		block = Blockly.Xml.textToDom('<xml>' + Blockly.Xml.domToText(block).replace(/(?:\r\n|\r|\n|\t)/g, "") + '</xml>');
+		block = Blockly.utils.xml.textToDom('<xml>' + Blockly.Xml.domToText(block).replace(/(?:\r\n|\r|\n|\t)/g, "") + '</xml>');
 		var id = Blockly.Xml.appendDomToWorkspace(block, Blockly.getMainWorkspace());
 		block = Blockly.getMainWorkspace().getBlockById(id);
 		return block;

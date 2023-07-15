@@ -242,7 +242,7 @@ class Backpack extends Blockly.DragTarget {
   createDom_() {
     this.svgGroup_ = Blockly.utils.dom.createSvgElement(
         Blockly.utils.Svg.G, {}, null);
-    const rnd = Blockly.utils.genUid();
+    const rnd = Blockly.utils.idGenerator.genUid();
     const clip = Blockly.utils.dom.createSvgElement(
         Blockly.utils.Svg.CLIPPATH,
         {'id': 'blocklyBackpackClipPath' + rnd},
@@ -588,7 +588,7 @@ class Backpack extends Blockly.DragTarget {
     if (!this.isOpenable_()) {
       return;
     }
-    const xml = this.contents_.map((text) => Blockly.Xml.textToDom(text));
+    const xml = this.contents_.map((text) => Blockly.utils.xml.textToDom(text));
     this.flyout_.show(xml);
     Blockly.Events.fire(new BackpackOpen(true, this.workspace_.id));
   }
@@ -601,7 +601,7 @@ class Backpack extends Blockly.DragTarget {
     if (!this.isOpen()) {
       return;
     }
-    const xml = this.contents_.map((text) => Blockly.Xml.textToDom(text));
+    const xml = this.contents_.map((text) => Blockly.utils.xml.textToDom(text));
     this.flyout_.show(xml);
   }
 
@@ -635,7 +635,7 @@ class Backpack extends Blockly.DragTarget {
    * @protected
    */
   onClick_(e) {
-    if (Blockly.utils.isRightButton(e)) {
+    if (Blockly.browserEvents.isRightButton(e)) {
       return;
     }
     this.open();
@@ -717,7 +717,7 @@ class Backpack extends Blockly.DragTarget {
    * @protected
    */
   blockMouseDownWhenOpenable_(e) {
-    if (!Blockly.utils.isRightButton(e) && this.isOpenable_()) {
+    if (!Blockly.browserEvents.isRightButton(e) && this.isOpenable_()) {
       e.stopPropagation(); // Don't start a workspace scroll.
     }
   }

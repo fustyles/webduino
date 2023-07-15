@@ -9,8 +9,8 @@
  * @author https://www.facebook.com/francefu/ (ChungYi Fu)
  * @Update 4/8/2023 13:00 (Taiwan Standard Time)
  */
- 
- /*
+
+/*
  
 //main.html
 <script src="myMutator.js"></script>
@@ -40,7 +40,7 @@ module$exports$Blockly$libraryBlocks$procedures.blocks.procedures_callnoreturn=O
 				for (var j=0;j<xml[i].childNodes.length;j++) {			
 					if (xml[i].childNodes[j].textContent==this.getFieldValue("NAME")) {
 						xml = Blockly.Xml.domToPrettyText(xml[i]);
-						xml = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml.replace("x=","xx=").replace("y=","yy=")+'</xml>');
+						xml = Blockly.utils.xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">'+xml.replace("x=","xx=").replace("y=","yy=")+'</xml>');
 						myWorkspace.clear();
 						Blockly.Xml.domToWorkspace(xml, myWorkspace);							
 						break;
@@ -52,7 +52,6 @@ module$exports$Blockly$libraryBlocks$procedures.blocks.procedures_callnoreturn=O
 	}
 });
  */
-
 'use strict';
 
 class myMutator extends Blockly.Mutator {
@@ -77,7 +76,7 @@ class myMutator extends Blockly.Mutator {
         };
 
         this.iconClick_ = function(a) {
-            this.block_.isEditable() && Blockly.Icon.prototype.iconClick_.call(this, a)
+            this.block_.isEditable() && Blockly.icons.MutatorIcon.prototype.iconClick_.call(this, a)
         };
         this.createEditor_ = function() {
             this.svgDialog_ = Blockly.utils.dom.createSvgElement(Blockly.utils.Svg.SVG, {
@@ -128,23 +127,23 @@ class myMutator extends Blockly.Mutator {
             }
             this.block_.RTL && (c = -b.x);
             c += 3 * a;
-            if (Math.abs(this.workspaceWidth_ - c) > a || Math.abs(this.workspaceHeight_ - d) > a) this.workspaceWidth_ = c, this.workspaceHeight_ = d, this.bubble_.setBubbleSize(c + a, d + a), this.svgDialog_.setAttribute("width", this.workspaceWidth_), this.svgDialog_.setAttribute("height", this.workspaceHeight_), this.workspace_.setCachedParentSvgSize(this.workspaceWidth_, this.workspaceHeight_);
+            if (Math.abs(this.workspaceWidth_ - c) > a || Math.abs(this.workspaceHeight_ - d) > a) this.workspaceWidth_ = c, this.workspaceHeight_ = d, this.bubble_.setSize(new Blockly.utils.Size(c + a, d + a), !0), this.svgDialog_.setAttribute("width", this.workspaceWidth_), this.svgDialog_.setAttribute("height", this.workspaceHeight_), this.workspace_.setCachedParentSvgSize(this.workspaceWidth_, this.workspaceHeight_);
             this.block_.RTL && (a = "translate(" + this.workspaceWidth_ + ",0)", this.workspace_.getCanvas().setAttribute("transform", a));
             this.workspace_.resize()
         };
+
         this.onBubbleMove_ = function() {
             this.workspace_ && this.workspace_.recordDragTargets()
         };
-        this.setVisible = function(a) {
-            if (a != this.isVisible())
+        this.setBubbleVisible = function(a) {
+			console.log(this);
+            if (a != this.bubbleIsVisible())
                 if (Blockly.Events.fire(new(Blockly.Events.get(Blockly.Events.BUBBLE_OPEN))(this.block_, a, "mutator")), a) {
-                    this.bubble_ = new Blockly.Bubble(this.block_.workspace, this.createEditor_(), this.block_.pathObject.svgPath, this.iconXY_, null, null);
-                    this.bubble_.setSvgId(this.block_.id);
-                    this.bubble_.registerMoveEvent(this.onBubbleMove_.bind(this));
+                    this.bubble_ = new Blockly.Bubble(this.block_.workspace, this.createEditor_(), this.block_.pathObject.svgPath);
                     var b = this.workspace_.options.languageTree;
                     a = this.workspace_.getFlyout();
                     b && (a.init(this.workspace_), a.show(b));
-
+console.log("ok");
                     this.resizeBubble_();
                     this.workspace_.addChangeListener(this.workspaceChanged_.bind(this));
                     this.applyColour()

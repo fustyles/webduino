@@ -191,7 +191,7 @@ function registerPasteAllBackpack() {
       const contents = backpack.getContents();
       contents.forEach((blockText) => {
         const block =
-            Blockly.Xml.domToBlock(Blockly.Xml.textToDom(blockText), ws);
+            Blockly.Xml.domToBlock(Blockly.utils.xml.textToDom(blockText), ws);
         block.scheduleSnapAndBump();
       });
     },
