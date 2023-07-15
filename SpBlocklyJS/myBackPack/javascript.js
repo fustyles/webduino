@@ -17,13 +17,13 @@ Blockly.myBackpack.flyoutCategory=function(a){
 	var c=[];
 	var b = Blockly.myBackpack.Blocks;
 	for (var i=0;i<b.length;i++) {
-		c.push(Blockly.Xml.textToDom(b[i]));
+		c.push(Blockly.utils.xml.textToDom(b[i]));
 	}
 	return c
 };
 
 var checkMyBackpack = function(){
-	if(Blockly.mainWorkspace == null){
+	if(Blockly.getMainWorkspace() == null){
 		setTimeout(checkMyBackpack, 200);
 	} else {
 		Blockly.myBackpack&&Blockly.myBackpack.flyoutCategory&&(Blockly.getMainWorkspace().registerToolboxCategoryCallback(Blockly.MYBACKPACK_CATEGORY_NAME,Blockly.myBackpack.flyoutCategory));
@@ -193,7 +193,7 @@ function registerFileImportMyBackpack() {
 					var fr = new FileReader();           
 					fr.onload = function (event) {
 						Blockly.myBackpack.Blocks = [];
-						var blocks = Blockly.Xml.textToDom(event.target.result);
+						var blocks = Blockly.utils.xml.textToDom(event.target.result);
 						var child = blocks.childNodes;
 						for (var i=0;i<child.length;i++){
 							if (child[i].nodeName!="#text") {
