@@ -57,12 +57,16 @@ function registerMySearch() {
 						if (flyoutItems[j].blockxml) {
 							var block = Blockly.getMainWorkspace().newBlock(flyoutItems[j].type);
 							for (var k=0;k<block.inputList.length;k++) {
-								for (var m=0;m<block.inputList[k].fieldRow.length;m++) {
-									var value_ = block.inputList[k].fieldRow[m].value_.toString();
-									if (value_.toLowerCase().indexOf(keyword.toLowerCase())!=-1) {
-										var d = Blockly.Xml.blockToDom(block,true);
-										var b = Blockly.Xml.domToText(d).replace(/(?:\r\n|\r|\n|\t)/g, "").replace(/\"false\"/g, "\"0\"").replace(/\"true\"/g, "\"1\"");
-										Blockly.mySearch.Blocks.push(b);
+								if (block.inputList[k].fieldRow) {
+									for (var m=0;m<block.inputList[k].fieldRow.length;m++) {
+										var value_ = block.inputList[k].fieldRow[m].value_.toString();
+										if (value_.toLowerCase().indexOf(keyword.toLowerCase())!=-1) {
+											var d = Blockly.Xml.blockToDom(block,true);
+											var b = Blockly.Xml.domToText(d).replace(/(?:\r\n|\r|\n|\t)/g, "").replace(/\"false\"/g, "\"0\"").replace(/\"true\"/g, "\"1\"");
+											Blockly.mySearch.Blocks.push(b);
+											k=block.inputList.length;
+											break;
+										}
 									}
 								}
 							}
@@ -72,10 +76,12 @@ function registerMySearch() {
 				}				
 			}
 		}
+
 		if (Blockly.mySearch.Blocks.length>0) {
 			for (n=0;n<Blockly.getMainWorkspace().toolbox_.contents_.length;n++) {
 				if (Blockly.getMainWorkspace().toolbox_.contents_[n].name_==Blockly.Msg["MYSEARCH"]) {
 					var id = Blockly.getMainWorkspace().toolbox_.contents_[n].id_;
+					console.log(id);
 					Blockly.getMainWorkspace().toolbox_.setSelectedItem(Blockly.getMainWorkspace().toolbox_.getToolboxItemById(id));
 					break;
 				}
