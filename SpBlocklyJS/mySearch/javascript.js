@@ -57,7 +57,7 @@ function registerMySearch() {
 							for (var k=0;k<block.inputList.length;k++) {
 								for (var m=0;m<block.inputList[k].fieldRow.length;m++) {
 									var value_ = block.inputList[k].fieldRow[m].value_.toString();
-									if (value_.indexOf(keyword)!=-1) {
+									if (value_.toLowerCase().indexOf(keyword.toLowerCase())!=-1) {
 										var d = Blockly.Xml.blockToDom(block,true);
 										var b = Blockly.Xml.domToText(d).replace(/(?:\r\n|\r|\n|\t)/g, "").replace(/\"false\"/g, "\"0\"").replace(/\"true\"/g, "\"1\"");
 										Blockly.mySearch.Blocks.push(b);
