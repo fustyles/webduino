@@ -5,7 +5,9 @@ Author: ChungYi Fu, Taiwan
 https://github.com/fustyles
 https://www.facebook.com/francefu/
 
-
+@license
+Copyright 2023 Taiwan (ChungYi Fu)
+SPDX-License-Identifier: Apache-2.0
 */
 
 Blockly.mySearch={};
