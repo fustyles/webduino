@@ -1249,8 +1249,8 @@ Blockly.Msg["PROCEDURES_HUE"] = "290";
 
 
 // Custom
+Blockly.Msg["VARIABLES_SET"] = "Set %1 %2 to %3";
 Blockly.Msg["VARIABLES_SET_LOCAL"] = "Set %1 to %2";
-Blockly.Msg["VARIABLES_SET_CREATE_GET"] = "Create 'get %1'";
 
 return Blockly.Msg;
 }));
