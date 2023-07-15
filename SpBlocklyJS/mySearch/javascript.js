@@ -63,10 +63,10 @@ function registerMySearch() {
 										var d = Blockly.Xml.blockToDom(block,true);
 										var b = Blockly.Xml.domToText(d).replace(/(?:\r\n|\r|\n|\t)/g, "").replace(/\"false\"/g, "\"0\"").replace(/\"true\"/g, "\"1\"");
 										Blockly.mySearch.Blocks.push(b);
-										block.dispose(false);
 									}
 								}
 							}
+							block.dispose(false);
 						}
 					}
 				}				
