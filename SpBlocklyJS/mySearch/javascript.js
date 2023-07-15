@@ -73,7 +73,6 @@ function registerMySearch() {
 			for (n=0;n<Blockly.getMainWorkspace().toolbox_.contents_.length;n++) {
 				if (Blockly.getMainWorkspace().toolbox_.contents_[n].name_==Blockly.Msg["MYSEARCH"]) {
 					var id = Blockly.getMainWorkspace().toolbox_.contents_[n].id_;
-					console.log(id);
 					Blockly.getMainWorkspace().toolbox_.setSelectedItem(Blockly.getMainWorkspace().toolbox_.getToolboxItemById(id));
 					break;
 				}
