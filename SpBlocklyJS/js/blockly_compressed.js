@@ -396,9 +396,9 @@ registerDisable$$module$build$src$core$contextmenu_items=function(){
 		}
 		,callback(a){
 				a=a.block;
-				const b=getGroup$$module$build$src$core$events$utils();
-				b||setGroup$$module$build$src$core$events$utils(!0);
-				a.setEnabled(!a.isEnabled());setGroup$$module$build$src$core$events$utils(b)
+				const b=module$build$src$core$events$utils.getGroup();
+				b||module$build$src$core$events$utils.setGroup(!0);
+				a.setEnabled(!a.isEnabled());module$build$src$core$events$utils.setGroup(b)
 		}
 		,scopeType:ContextMenuRegistry$$module$build$src$core$contextmenu_registry.ScopeType.BLOCK,id:"blockDisable",weight:5
 	})
