@@ -1,7 +1,7 @@
 Blockly.Blocks['fu_mqtt_setup_js'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("MQTT")
+        .appendField(Blockly.Msg["MQTT_FU"])
         .appendField(Blockly.Msg["MQTT_FU_INITIAL_JS"]);
     this.appendValueInput("server")
         .setCheck("String")
@@ -58,9 +58,9 @@ Blockly.Blocks['fu_mqtt_gettopic_js'] = {
 Blockly.Blocks['fu_mqtt_senddata_js'] = {
   init: function() {
     this.appendValueInput("topic")
+		.appendField(Blockly.Msg["MQTT_FU"])
         .setCheck("String")
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField("MQTT")
+		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["MQTT_FU_TO_TOPIC_JS"]);
     this.appendValueInput("text")
         .setCheck("String")
@@ -76,7 +76,7 @@ Blockly.Blocks['fu_mqtt_senddata_js'] = {
 Blockly.Blocks['fu_mqtt_getdata_js'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("MQTT")
+        .appendField(Blockly.Msg["MQTT_FU"])
         .appendField(Blockly.Msg["MQTT_FU_GETDATA_JS"]);
 		this.appendDummyInput()
 			.appendField(new Blockly.FieldDropdown([

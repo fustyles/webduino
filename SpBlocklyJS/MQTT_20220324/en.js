@@ -1,4 +1,5 @@
 Blockly.Msg["CATMQTT"] = "Web MQTT";
+Blockly.Msg["MQTT_FU"] = "Web MQTT";
 Blockly.Msg["MQTT_FU_INITIAL_JS"] = "Initial";
 Blockly.Msg["MQTT_FU_ADDRESS_JS"] = "address";
 Blockly.Msg["MQTT_FU_PORT_JS"] = "port";

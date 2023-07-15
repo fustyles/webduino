@@ -1,4 +1,5 @@
 Blockly.Msg["CATMQTT"] = "网页MQTT";
+Blockly.Msg["MQTT_FU"] = "网页MQTT";
 Blockly.Msg["MQTT_FU_INITIAL_JS"] = "初始化";
 Blockly.Msg["MQTT_FU_ADDRESS_JS"] = "主机位址";
 Blockly.Msg["MQTT_FU_PORT_JS"] = "埠号";
