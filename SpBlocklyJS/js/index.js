@@ -392,24 +392,27 @@ document.addEventListener('DOMContentLoaded', function() {
 			var xml = new DOMParser().parseFromString(categoryString,"text/xml");
 			for (var j=0;j<xml.firstChild.childNodes.length;j++){
 				if (xml.firstChild.childNodes[j].nodeName=="category") {
-					if (xml.firstChild.childNodes[j].childNodes.length>0) {
-						for (var k=0;k<xml.firstChild.childNodes[j].childNodes.length;k++){
-							if (xml.firstChild.childNodes[j].childNodes[k].nodeName=="category") {
-								for (var m=0;m<xml.firstChild.childNodes[j].childNodes[k].childNodes.length;m++){
-									if (xml.firstChild.childNodes[j].childNodes[k].childNodes[m].nodeName=="block") {
-										categoryBlocks.push(new XMLSerializer().serializeToString(xml.firstChild.childNodes[j].childNodes[k].childNodes[m]));
-									}
-								}
-							}
-							else if (xml.firstChild.childNodes[j].childNodes[k].nodeName=="block") {
-								categoryBlocks.push(new XMLSerializer().serializeToString(xml.firstChild.childNodes[j].childNodes[k]));
-							}
-						}
-					}
+					searchToolboxCategory(xml.firstChild.childNodes[j].childNodes);
 				}
 			}
 		}
 		//console.log(categoryBlocks);
+	}
+	function searchToolboxCategory(nodes) {
+		if (nodes.length>0) {
+			for (var k=0;k<nodes.length;k++){
+				if (nodes[k].nodeName=="category") {
+					for (var m=0;m<nodes[k].childNodes.length;m++){
+						if (nodes[k].childNodes[m].nodeName=="block") {
+							categoryBlocks.push(new XMLSerializer().serializeToString(nodes[k].childNodes[m]));
+						}
+					}
+				}
+				else if (nodes[k].nodeName=="block") {
+					categoryBlocks.push(new XMLSerializer().serializeToString(nodes[k]));
+				}
+			}
+		}
 	}
 	updateCategoryBlocks(category);
 	
