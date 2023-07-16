@@ -1659,7 +1659,7 @@ var bumpDirection$$module$build$src$core$positionable_helpers;(function(a){a[a.U
 module$build$src$core$positionable_helpers.getCornerOppositeToolbox=getCornerOppositeToolbox$$module$build$src$core$positionable_helpers;module$build$src$core$positionable_helpers.getStartPositionRect=getStartPositionRect$$module$build$src$core$positionable_helpers;module$build$src$core$positionable_helpers.horizontalPosition=horizontalPosition$$module$build$src$core$positionable_helpers;module$build$src$core$positionable_helpers.verticalPosition=verticalPosition$$module$build$src$core$positionable_helpers;
 
 
-var SPRITE$$module$build$src$core$sprites={width:256,height:124,url:"sprites.png"},module$build$src$core$sprites={};module$build$src$core$sprites.SPRITE=SPRITE$$module$build$src$core$sprites;
+var SPRITE$$module$build$src$core$sprites={width:288,height:124,url:"sprites.png"},module$build$src$core$sprites={};module$build$src$core$sprites.SPRITE=SPRITE$$module$build$src$core$sprites;
 
 
 var ZoomControls$$module$build$src$core$zoom_controls=class{
@@ -1678,6 +1678,7 @@ createDom(){this.svgGroup=createSvgElement$$module$build$src$core$utils$dom(Svg$
 	this.createZoomShowCategorySvg(a);
 	this.createZoomFitSvg(a);
 	this.createZoomCleanupSvg(a);
+	this.createZoomSearchSvg(a);
 	
 	this.workspace.isMovable()&&this.createZoomResetSvg(a);
 	return this.svgGroup
@@ -1703,6 +1704,7 @@ new Size$$module$build$src$core$utils$size(this.WIDTH,d),this.MARGIN_HORIZONTAL,
 		this.ZoomShowCategoryGroup&&this.ZoomShowCategoryGroup.setAttribute("transform","translate(0, "+(e+4*(this.SMALL_SPACING+this.HEIGHT))+")");
 		this.zoomFitGroup&&this.zoomFitGroup.setAttribute("transform","translate(0, "+(e+5*(this.SMALL_SPACING+this.HEIGHT))+")");
 		this.zoomCleanupGroup&&this.zoomCleanupGroup&&this.zoomCleanupGroup_.setAttribute("transform","translate(0, "+(e+6*(this.LARGE_SPACING+this.HEIGHT))+")");
+		this.zoomSearchGroup&&this.zoomSearchGroup&&this.zoomSearchGroup_.setAttribute("transform","translate(0, "+(e+7*(this.LARGE_SPACING+this.HEIGHT))+")");
 		
 		
 	} else {
@@ -1716,13 +1718,14 @@ new Size$$module$build$src$core$utils$size(this.WIDTH,d),this.MARGIN_HORIZONTAL,
 		this.zoomCleanupGroup.setAttribute("transform","translate(0, "+(e+4*(this.SMALL_SPACING+this.HEIGHT))+")")
 		this.zoomNextGroup.setAttribute("transform","translate(0, "+(e+5*(this.SMALL_SPACING+this.HEIGHT))+")")		
 		this.zoomPreviousGroup.setAttribute("transform","translate(0, "+(e+6*(this.SMALL_SPACING+this.HEIGHT))+")")		
+		this.zoomSearchGroup.setAttribute("transform","translate(0, "+(e+7*(this.SMALL_SPACING+this.HEIGHT))+")")		
 	}
 	this.top=b.top;
 	this.left=b.left;
 	
 	var ToolboxDiv = document.getElementsByClassName("blocklyToolboxDiv blocklyNonSelectable");
 	if (ToolboxDiv) {
-		this.top += 30;
+		this.top += 10;
 		this.left = ToolboxDiv[0].clientWidth+69;
 	}
 		
@@ -1755,12 +1758,17 @@ createZoomResetSvg(a){this.zoomResetGroup=createSvgElement$$module$build$src$cor
 {width:32,height:32},b);createSvgElement$$module$build$src$core$utils$dom(Svg$$module$build$src$core$utils$svg.IMAGE,{width:SPRITE$$module$build$src$core$sprites.width,height:SPRITE$$module$build$src$core$sprites.height,x:0,y:-92,"clip-path":"url(#blocklyZoomresetClipPath"+a+")"},this.zoomResetGroup).setAttributeNS(XLINK_NS$$module$build$src$core$utils$dom,"xlink:href",this.workspace.options.pathToMedia+SPRITE$$module$build$src$core$sprites.url);this.boundEvents.push(conditionalBind$$module$build$src$core$browser_events(this.zoomResetGroup,
 "pointerdown",null,this.resetZoom.bind(this)))}
 
+createZoomSearchSvg(a){this.zoomSearchGroup=createSvgElement$$module$build$src$core$utils$dom(Svg$$module$build$src$core$utils$svg.G,{"class":"blocklyZoom"},this.svgGroup);const b=createSvgElement$$module$build$src$core$utils$dom(Svg$$module$build$src$core$utils$svg.CLIPPATH,{id:"blocklyZoomsearchClipPath"+a},this.zoomSearchGroup);createSvgElement$$module$build$src$core$utils$dom(Svg$$module$build$src$core$utils$svg.RECT,
+{width:32,height:32},b);createSvgElement$$module$build$src$core$utils$dom(Svg$$module$build$src$core$utils$svg.IMAGE,{width:SPRITE$$module$build$src$core$sprites.width,height:SPRITE$$module$build$src$core$sprites.height,x:-256,y:-92,"clip-path":"url(#blocklyZoomsearchClipPath"+a+")"},this.zoomSearchGroup).setAttributeNS(XLINK_NS$$module$build$src$core$utils$dom,"xlink:href",this.workspace.options.pathToMedia+SPRITE$$module$build$src$core$sprites.url);this.boundEvents.push(conditionalBind$$module$build$src$core$browser_events(this.zoomSearchGroup,
+"pointerdown",null,this.zoomSearch.bind(this)))}
+
 resetZoom(a){this.workspace.markFocused();const b=Math.log(this.workspace.options.zoomOptions.startScale/this.workspace.scale)/Math.log(this.workspace.options.zoomOptions.scaleSpeed);this.workspace.beginCanvasTransition();this.workspace.zoomCenter(b);this.workspace.scrollCenter();setTimeout(this.workspace.endCanvasTransition.bind(this.workspace),500);this.fireZoomEvent();clearTouchIdentifier$$module$build$src$core$touch();a.stopPropagation();a.preventDefault()}
 
 zoom(a,b){this.workspace.markFocused();this.workspace.zoomCenter(a);this.fireZoomEvent();clearTouchIdentifier$$module$build$src$core$touch();b.stopPropagation();b.preventDefault()}
 
 zoomPrevious(a){this.workspace.undo(false);};
 zoomNext(a){this.workspace.undo(true);};
+zoomSearch(a){mySearchBlocks();this.fireZoomEvent();clearTouchIdentifier$$module$build$src$core$touch();a.stopPropagation();a.preventDefault()};
 zoomShowCategory(a){
 	var toolbox = document.getElementsByClassName("blocklyToolboxDiv blocklyNonSelectable")[0];
 	if (toolbox) {
