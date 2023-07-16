@@ -1,13 +1,11 @@
 /*
-Last Update Time : 7/16/2023 01:30 (Taiwan Standard Time)
+Last Update Time : 7/16/2023 00:00 (Taiwan Standard Time)
 
 Author: ChungYi Fu, Taiwan
 https://github.com/fustyles
 https://www.facebook.com/francefu/
 
-@license
-Copyright 2023 Taiwan (ChungYi Fu)
-SPDX-License-Identifier: Apache-2.0
+
 */
 
 Blockly.mySearch={};
@@ -61,11 +59,12 @@ function registerMySearch() {
 									for (var m=0;m<block.inputList[k].fieldRow.length;m++) {
 										var fieldRow = block.inputList[k].fieldRow[m];
 										if (fieldRow.value_.toString().toLowerCase().indexOf(keyword.toLowerCase())!=-1&&fieldRow.name===undefined) {
-											var d = Blockly.Xml.blockToDom(block,true);
-											var b = Blockly.Xml.domToText(d).replace(/(?:\r\n|\r|\n|\t)/g, "").replace(/\"false\"/g, "\"0\"").replace(/\"true\"/g, "\"1\"");
-											Blockly.mySearch.Blocks.push(b);
-											k=block.inputList.length;
-											break;
+											for (var p=0;p<categoryBlocks.length;p++) {
+												if (categoryBlocks[p].indexOf('type="'+flyoutItems[j].type+'"')!=-1) {
+													var b = categoryBlocks[p].replace(/(?:\r\n|\r|\n|\t)/g, "").replace(/\"false\"/g, "\"0\"").replace(/\"true\"/g, "\"1\"");
+													Blockly.mySearch.Blocks.push(b);
+												}
+											}
 										}
 									}
 								}

@@ -10,6 +10,8 @@ var topCheck = true;
 var showCode = false;
 var myTimer;
 var myTimer1;
+var category;
+var categoryBlocks = [];
 
 document.addEventListener('DOMContentLoaded', function() {
 	
@@ -340,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}		
 	
 	//載入積木目錄
-	var category = [
+	category = [
 		catSystem,
 		catMyBackPack,
 		catMySearch,		
@@ -382,6 +384,26 @@ document.addEventListener('DOMContentLoaded', function() {
 		"<sep></sep>",
 		catRobotFly
 	];
+	
+	var categorySearch = category;
+	for (var i=0;i<categorySearch.length;i++){
+		var categoryString =  categorySearch[i].replace(/(?:\r\n|\r|\n|\t)/g, "").replace(/\"false\"/g, "\"0\"").replace(/\"true\"/g, "\"1\"");
+		var xml = new DOMParser().parseFromString(categoryString,"text/xml");
+		//console.log(xml.firstChild);
+		for (var j=0;j<xml.firstChild.childNodes.length;j++){
+			if (xml.firstChild.childNodes[j].nodeName!="#text") {
+				//console.log(xml.firstChild.childNodes[j]);
+				if (xml.firstChild.childNodes[j].childNodes.length>0) {
+					for (var k=0;k<xml.firstChild.childNodes[j].childNodes.length;k++){
+						if (xml.firstChild.childNodes[j].childNodes[k].nodeName!="#text") {
+							categoryBlocks.push(new XMLSerializer().serializeToString(xml.firstChild.childNodes[j].childNodes[k]));
+							//console.log(categoryBlocks);
+						}
+					}
+				}
+			}
+		}
+	}
 	
 	
 	setTimeout(function(){
