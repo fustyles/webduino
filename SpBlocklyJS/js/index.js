@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function() {
 								}
 							}
 						}
-						else if (xml.firstChild.childNodes[j].childNodes[k].nodeName!="#text") {
+						else if (xml.firstChild.childNodes[j].childNodes[k].nodeName=="block") {
 							categoryBlocks.push(new XMLSerializer().serializeToString(xml.firstChild.childNodes[j].childNodes[k]));
 						}
 					}
