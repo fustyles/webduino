@@ -91,11 +91,11 @@ function mySearchBlocks() {
 	}
 
 	if (Blockly.mySearch.Blocks.length>0) {
-		var contents = Blockly.getMainWorkspace().toolbox_.contents_;
-		for (n=0;n<contents.length;n++) {
-			if (contents[n].name_==Blockly.Msg["MYSEARCH"]) {
-				var id = contents[n].id_;
-				Blockly.getMainWorkspace().toolbox_.setSelectedItem(Blockly.getMainWorkspace().toolbox_.getToolboxItemById(id));
+		var toolbox = Blockly.getMainWorkspace().toolbox_;
+		for (n=0;n<toolbox.contents_.length;n++) {
+			if (toolbox.contents_[n].name_==Blockly.Msg["MYSEARCH"]) {
+				var id = toolbox.contents_[n].id_;
+				toolbox.setSelectedItem(toolbox.getToolboxItemById(id));
 				break;
 			}
 		}
