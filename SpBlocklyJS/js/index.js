@@ -404,7 +404,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				if (nodes[k].nodeName=="category") {
 					for (var m=0;m<nodes[k].childNodes.length;m++){
 						if (nodes[k].childNodes[m].nodeName=="category") {
-							searchToolboxCategory(nodes[k].childNodes[m]);
+							searchToolboxCategory(nodes[k].childNodes[m].childNodes);
 						}
 						else if (nodes[k].childNodes[m].nodeName=="block") {
 							categoryBlocks.push(new XMLSerializer().serializeToString(nodes[k].childNodes[m]));
