@@ -26,7 +26,7 @@ Blockly.mySearch.flyoutCategory=function(a){
 
 var registeryCallbackMySearch = function(){
 	if(Blockly.getMainWorkspace() == null){
-		setTimeout(checkMySearch, 200);
+		setTimeout(registeryCallbackMySearch, 200);
 	} else {
 		Blockly.mySearch&&Blockly.mySearch.flyoutCategory&&(Blockly.getMainWorkspace().registerToolboxCategoryCallback(Blockly.MYSEARCH_CATEGORY_NAME,Blockly.mySearch.flyoutCategory));
 	}
