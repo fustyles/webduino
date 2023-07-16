@@ -37,7 +37,7 @@ function registerMySearch() {
   if (Blockly.ContextMenuRegistry.registry.getItem('mySearch')) {
 	return;
   }
-  const funQueryMySearch = {
+  const funMySearch = {
 	displayText: function(){
 		return Blockly.Msg["MYSEARCH_QUERY"];
 	},
@@ -51,7 +51,7 @@ function registerMySearch() {
 	id: 'mySearch',
 	weight: 0,
   };
-  Blockly.ContextMenuRegistry.registry.register(funQueryMySearch);
+  Blockly.ContextMenuRegistry.registry.register(funMySearch);
 }
 registerMySearch();
 
