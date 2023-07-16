@@ -10,7 +10,6 @@ var topCheck = true;
 var showCode = false;
 var myTimer;
 var myTimer1;
-var category;
 var categoryBlocks = [];
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -342,7 +341,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}		
 	
 	//載入積木目錄
-	category = [
+	var category = [
 		catSystem,
 		catMyBackPack,
 		catMySearch,		
