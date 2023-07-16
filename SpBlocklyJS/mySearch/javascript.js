@@ -45,49 +45,7 @@ function registerMySearch() {
 		return 'enabled';
 	},
 	callback: function(a) {
-		Blockly.mySearch.Blocks=[];
-		Blockly.hideChaff();
-		var keyword = prompt(Blockly.Msg["MYSEARCH_PROMPT"]);
-		if (keyword) {
-			var toolboxItems = Blockly.getMainWorkspace().toolbox_.getToolboxItems();
-			for (var i=0;i<toolboxItems.length;i++) {
-				var flyoutItems = toolboxItems[i].flyoutItems_;
-				if (flyoutItems){
-					for (var j=0;j<flyoutItems.length;j++) {
-						if (flyoutItems[j].blockxml) {
-							var block = Blockly.getMainWorkspace().newBlock(flyoutItems[j].type);
-							for (var k=0;k<block.inputList.length;k++) {
-								if (block.inputList[k].fieldRow) {
-									for (var m=0;m<block.inputList[k].fieldRow.length;m++) {
-										var fieldRow = block.inputList[k].fieldRow[m];
-										if (fieldRow.value_.toString().toLowerCase().indexOf(keyword.toLowerCase())!=-1&&fieldRow.value_.toString().toLowerCase().indexOf(";base64,")==-1&&fieldRow.name===undefined) {
-											for (var p=0;p<categoryBlocks.length;p++) {
-												if (categoryBlocks[p].indexOf('type="'+flyoutItems[j].type+'"')!=-1) {
-													var b = categoryBlocks[p].replace(/(?:\r\n|\r|\n|\t)/g, "").replace(/\"false\"/g, "\"0\"").replace(/\"true\"/g, "\"1\"");
-													Blockly.mySearch.Blocks.push(b);
-													break;
-												}
-											}
-										}
-									}
-								}
-							}
-							block.dispose(false);
-						}
-					}
-				}				
-			}
-		}
-
-		if (Blockly.mySearch.Blocks.length>0) {
-			for (n=0;n<Blockly.getMainWorkspace().toolbox_.contents_.length;n++) {
-				if (Blockly.getMainWorkspace().toolbox_.contents_[n].name_==Blockly.Msg["MYSEARCH"]) {
-					var id = Blockly.getMainWorkspace().toolbox_.contents_[n].id_;
-					Blockly.getMainWorkspace().toolbox_.setSelectedItem(Blockly.getMainWorkspace().toolbox_.getToolboxItemById(id));
-					break;
-				}
-			}
-		}
+		mySearchBlocks();
 	},
 	scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
 	id: 'mySearch',
@@ -95,5 +53,50 @@ function registerMySearch() {
   };
   Blockly.ContextMenuRegistry.registry.register(funQueryMySearch);
 }
-  
 registerMySearch();
+
+function mySearchBlocks() {
+	Blockly.mySearch.Blocks=[];
+	Blockly.hideChaff();
+	var keyword = prompt(Blockly.Msg["MYSEARCH_PROMPT"]);
+	if (keyword) {
+		var toolboxItems = Blockly.getMainWorkspace().toolbox_.getToolboxItems();
+		for (var i=0;i<toolboxItems.length;i++) {
+			var flyoutItems = toolboxItems[i].flyoutItems_;
+			if (flyoutItems){
+				for (var j=0;j<flyoutItems.length;j++) {
+					if (flyoutItems[j].blockxml) {
+						var block = Blockly.getMainWorkspace().newBlock(flyoutItems[j].type);
+						for (var k=0;k<block.inputList.length;k++) {
+							if (block.inputList[k].fieldRow) {
+								for (var m=0;m<block.inputList[k].fieldRow.length;m++) {
+									var fieldRow = block.inputList[k].fieldRow[m];
+									if (fieldRow.value_.toString().toLowerCase().indexOf(keyword.toLowerCase())!=-1&&fieldRow.value_.toString().toLowerCase().indexOf(";base64,")==-1&&fieldRow.name===undefined) {
+										for (var p=0;p<categoryBlocks.length;p++) {
+											if (categoryBlocks[p].indexOf('type="'+flyoutItems[j].type+'"')!=-1) {
+												var b = categoryBlocks[p].replace(/(?:\r\n|\r|\n|\t)/g, "").replace(/\"false\"/g, "\"0\"").replace(/\"true\"/g, "\"1\"");
+												Blockly.mySearch.Blocks.push(b);
+												break;
+											}
+										}
+									}
+								}
+							}
+						}
+						block.dispose(false);
+					}
+				}
+			}				
+		}
+	}
+
+	if (Blockly.mySearch.Blocks.length>0) {
+		for (n=0;n<Blockly.getMainWorkspace().toolbox_.contents_.length;n++) {
+			if (Blockly.getMainWorkspace().toolbox_.contents_[n].name_==Blockly.Msg["MYSEARCH"]) {
+				var id = Blockly.getMainWorkspace().toolbox_.contents_[n].id_;
+				Blockly.getMainWorkspace().toolbox_.setSelectedItem(Blockly.getMainWorkspace().toolbox_.getToolboxItemById(id));
+				break;
+			}
+		}
+	}
+}

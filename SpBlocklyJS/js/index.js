@@ -384,11 +384,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		catRobotFly
 	];
 	
+	//My Search
 	for (var i=0;i<category.length;i++){
 		var categoryString =  category[i].replace(/(?:\r\n|\r|\n|\t)/g, "").replace(/\"false\"/g, "\"0\"").replace(/\"true\"/g, "\"1\"");
 		var xml = new DOMParser().parseFromString(categoryString,"text/xml");
 		for (var j=0;j<xml.firstChild.childNodes.length;j++){
-			if (xml.firstChild.childNodes[j].nodeName!="#text"&&xml.firstChild.childNodes[j].nodeName!=undefined) {
+			if (xml.firstChild.childNodes[j].nodeName=="category") {
 				if (xml.firstChild.childNodes[j].childNodes.length>0) {
 					for (var k=0;k<xml.firstChild.childNodes[j].childNodes.length;k++){
 						if (xml.firstChild.childNodes[j].childNodes[k].nodeName=="category") {
