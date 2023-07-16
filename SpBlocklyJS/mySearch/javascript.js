@@ -24,14 +24,14 @@ Blockly.mySearch.flyoutCategory=function(a){
 	return c
 };
 
-var checkMySearch = function(){
+var registeryCallbackMySearch = function(){
 	if(Blockly.getMainWorkspace() == null){
 		setTimeout(checkMySearch, 200);
 	} else {
 		Blockly.mySearch&&Blockly.mySearch.flyoutCategory&&(Blockly.getMainWorkspace().registerToolboxCategoryCallback(Blockly.MYSEARCH_CATEGORY_NAME,Blockly.mySearch.flyoutCategory));
 	}
 };
-checkMySearch();
+registeryCallbackMySearch();
 
 function registerMySearch() {
   if (Blockly.ContextMenuRegistry.registry.getItem('mySearch')) {
