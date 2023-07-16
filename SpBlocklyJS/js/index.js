@@ -402,14 +402,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (nodes.length>0) {
 			for (var k=0;k<nodes.length;k++){
 				if (nodes[k].nodeName=="category") {
-					for (var m=0;m<nodes[k].childNodes.length;m++){
-						if (nodes[k].childNodes[m].nodeName=="category") {
-							searchToolboxCategory(nodes[k].childNodes[m].childNodes);
-						}
-						else if (nodes[k].childNodes[m].nodeName=="block") {
-							categoryBlocks.push(new XMLSerializer().serializeToString(nodes[k].childNodes[m]));
-						}
-					}
+					searchToolboxCategory(nodes[k].childNodes);
 				}
 				else if (nodes[k].nodeName=="block") {
 					categoryBlocks.push(new XMLSerializer().serializeToString(nodes[k]));
