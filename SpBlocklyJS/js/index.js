@@ -392,17 +392,17 @@ document.addEventListener('DOMContentLoaded', function() {
 			var xml = new DOMParser().parseFromString(categoryString,"text/xml");
 			for (var j=0;j<xml.firstChild.childNodes.length;j++){
 				if (xml.firstChild.childNodes[j].nodeName=="category") {
-					searchToolboxCategory(xml.firstChild.childNodes[j].childNodes);
+					searchCategoryBlocks(xml.firstChild.childNodes[j].childNodes);
 				}
 			}
 		}
 		//console.log(categoryBlocks);
 	}
-	function searchToolboxCategory(nodes) {
+	function searchCategoryBlocks(nodes) {
 		if (nodes.length>0) {
 			for (var k=0;k<nodes.length;k++){
 				if (nodes[k].nodeName=="category") {
-					searchToolboxCategory(nodes[k].childNodes);
+					searchCategoryBlocks(nodes[k].childNodes);
 				}
 				else if (nodes[k].nodeName=="block") {
 					categoryBlocks.push(new XMLSerializer().serializeToString(nodes[k]));
