@@ -524,7 +524,7 @@ registerHideToolbox$$module$build$src$core$contextmenu_items=function(){
 					Blockly.getMainWorkspace().resize();
 				}
 			}
-			,scopeType:ContextMenuRegistry$$module$build$src$core$contextmenu_registry.ScopeType.WORKSPACE,id:"blockHideToolbox",weight:10
+			,scopeType:ContextMenuRegistry$$module$build$src$core$contextmenu_registry.ScopeType.WORKSPACE,id:"blockHideToolbox",weight:300
 		}
 	)
 };
