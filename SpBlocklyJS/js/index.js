@@ -385,29 +385,33 @@ document.addEventListener('DOMContentLoaded', function() {
 	];
 	
 	//My Search
-	for (var i=0;i<category.length;i++){
-		var categoryString =  category[i].replace(/(?:\r\n|\r|\n|\t)/g, "");
-		var xml = new DOMParser().parseFromString(categoryString,"text/xml");
-		for (var j=0;j<xml.firstChild.childNodes.length;j++){
-			if (xml.firstChild.childNodes[j].nodeName=="category") {
-				if (xml.firstChild.childNodes[j].childNodes.length>0) {
-					for (var k=0;k<xml.firstChild.childNodes[j].childNodes.length;k++){
-						if (xml.firstChild.childNodes[j].childNodes[k].nodeName=="category") {
-							for (var m=0;m<xml.firstChild.childNodes[j].childNodes[k].childNodes.length;m++){
-								if (xml.firstChild.childNodes[j].childNodes[k].childNodes[m].nodeName=="block") {
-									categoryBlocks.push(new XMLSerializer().serializeToString(xml.firstChild.childNodes[j].childNodes[k].childNodes[m]));
+	function updateCategoryBlocks(searchCategory) {
+		categoryBlocks = [];
+		for (var i=0;i<searchCategory.length;i++){
+			var categoryString =  searchCategory[i].replace(/(?:\r\n|\r|\n|\t)/g, "");
+			var xml = new DOMParser().parseFromString(categoryString,"text/xml");
+			for (var j=0;j<xml.firstChild.childNodes.length;j++){
+				if (xml.firstChild.childNodes[j].nodeName=="category") {
+					if (xml.firstChild.childNodes[j].childNodes.length>0) {
+						for (var k=0;k<xml.firstChild.childNodes[j].childNodes.length;k++){
+							if (xml.firstChild.childNodes[j].childNodes[k].nodeName=="category") {
+								for (var m=0;m<xml.firstChild.childNodes[j].childNodes[k].childNodes.length;m++){
+									if (xml.firstChild.childNodes[j].childNodes[k].childNodes[m].nodeName=="block") {
+										categoryBlocks.push(new XMLSerializer().serializeToString(xml.firstChild.childNodes[j].childNodes[k].childNodes[m]));
+									}
 								}
 							}
-						}
-						else if (xml.firstChild.childNodes[j].childNodes[k].nodeName=="block") {
-							categoryBlocks.push(new XMLSerializer().serializeToString(xml.firstChild.childNodes[j].childNodes[k]));
+							else if (xml.firstChild.childNodes[j].childNodes[k].nodeName=="block") {
+								categoryBlocks.push(new XMLSerializer().serializeToString(xml.firstChild.childNodes[j].childNodes[k]));
+							}
 						}
 					}
 				}
 			}
 		}
+		//console.log(categoryBlocks);
 	}
-	//console.log(categoryBlocks);
+	updateCategoryBlocks(category);
 	
 	
 	setTimeout(function(){
