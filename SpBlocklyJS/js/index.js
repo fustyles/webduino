@@ -390,19 +390,28 @@ document.addEventListener('DOMContentLoaded', function() {
 		var xml = new DOMParser().parseFromString(categoryString,"text/xml");
 		//console.log(xml.firstChild);
 		for (var j=0;j<xml.firstChild.childNodes.length;j++){
-			if (xml.firstChild.childNodes[j].nodeName!="#text") {
-				//console.log(xml.firstChild.childNodes[j]);
+			if (xml.firstChild.childNodes[j].nodeName!="#text"&&xml.firstChild.childNodes[j].nodeName!=undefined) {
 				if (xml.firstChild.childNodes[j].childNodes.length>0) {
 					for (var k=0;k<xml.firstChild.childNodes[j].childNodes.length;k++){
-						if (xml.firstChild.childNodes[j].childNodes[k].nodeName!="#text") {
+						//console.log(xml.firstChild.childNodes[j].childNodes[k].nodeName);
+						if (xml.firstChild.childNodes[j].childNodes[k].nodeName=="category") {
+							//console.log(xml.firstChild.childNodes[j].childNodes[k].childNodes.length);
+							for (var m=0;m<xml.firstChild.childNodes[j].childNodes[k].childNodes.length;m++){
+								//console.log(xml.firstChild.childNodes[j].childNodes[k].childNodes[m]);
+								if (xml.firstChild.childNodes[j].childNodes[k].childNodes[m].nodeName!="#text"&&xml.firstChild.childNodes[j].childNodes[k].childNodes[m].nodeName!=undefined) {
+									categoryBlocks.push(new XMLSerializer().serializeToString(xml.firstChild.childNodes[j].childNodes[k].childNodes[m]));
+								}
+							}
+						}
+						else if (xml.firstChild.childNodes[j].childNodes[k].nodeName!="#text") {
 							categoryBlocks.push(new XMLSerializer().serializeToString(xml.firstChild.childNodes[j].childNodes[k]));
-							//console.log(categoryBlocks);
 						}
 					}
 				}
 			}
 		}
 	}
+	//console.log(categoryBlocks);
 	
 	
 	setTimeout(function(){
