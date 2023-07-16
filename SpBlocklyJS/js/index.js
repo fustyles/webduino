@@ -386,7 +386,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//My Search
 	for (var i=0;i<category.length;i++){
-		var categoryString =  category[i].replace(/(?:\r\n|\r|\n|\t)/g, "").replace(/\"false\"/g, "\"0\"").replace(/\"true\"/g, "\"1\"");
+		var categoryString =  category[i].replace(/(?:\r\n|\r|\n|\t)/g, "");
 		var xml = new DOMParser().parseFromString(categoryString,"text/xml");
 		for (var j=0;j<xml.firstChild.childNodes.length;j++){
 			if (xml.firstChild.childNodes[j].nodeName=="category") {
