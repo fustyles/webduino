@@ -385,10 +385,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	];
 	
 	//My Search
-	function updateCategoryBlocks(searchCategory) {
+	function updateCategoryBlocks(newCategory) {
 		categoryBlocks = [];
-		for (var i=0;i<searchCategory.length;i++){
-			var categoryString =  searchCategory[i].replace(/(?:\r\n|\r|\n|\t)/g, "");
+		for (var i=0;i<newCategory.length;i++){
+			var categoryString = newCategory[i].replace(/(?:\r\n|\r|\n|\t)/g, "");
 			var xml = new DOMParser().parseFromString(categoryString,"text/xml");
 			for (var j=0;j<xml.firstChild.childNodes.length;j++){
 				if (xml.firstChild.childNodes[j].nodeName=="category") {
