@@ -384,9 +384,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		catRobotFly
 	];
 	
-	var categorySearch = category;
-	for (var i=0;i<categorySearch.length;i++){
-		var categoryString =  categorySearch[i].replace(/(?:\r\n|\r|\n|\t)/g, "").replace(/\"false\"/g, "\"0\"").replace(/\"true\"/g, "\"1\"");
+	for (var i=0;i<category.length;i++){
+		var categoryString =  category[i].replace(/(?:\r\n|\r|\n|\t)/g, "").replace(/\"false\"/g, "\"0\"").replace(/\"true\"/g, "\"1\"");
 		var xml = new DOMParser().parseFromString(categoryString,"text/xml");
 		for (var j=0;j<xml.firstChild.childNodes.length;j++){
 			if (xml.firstChild.childNodes[j].nodeName!="#text"&&xml.firstChild.childNodes[j].nodeName!=undefined) {

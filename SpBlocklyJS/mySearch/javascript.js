@@ -61,7 +61,6 @@ function registerMySearch() {
 									for (var m=0;m<block.inputList[k].fieldRow.length;m++) {
 										var fieldRow = block.inputList[k].fieldRow[m];
 										if (fieldRow.value_.toString().toLowerCase().indexOf(keyword.toLowerCase())!=-1&&fieldRow.value_.toString().toLowerCase().indexOf(";base64,")==-1&&fieldRow.name===undefined) {
-											console.log(fieldRow);
 											for (var p=0;p<categoryBlocks.length;p++) {
 												if (categoryBlocks[p].indexOf('type="'+flyoutItems[j].type+'"')!=-1) {
 													var b = categoryBlocks[p].replace(/(?:\r\n|\r|\n|\t)/g, "").replace(/\"false\"/g, "\"0\"").replace(/\"true\"/g, "\"1\"");
