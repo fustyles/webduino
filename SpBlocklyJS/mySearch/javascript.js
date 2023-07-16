@@ -91,9 +91,10 @@ function mySearchBlocks() {
 	}
 
 	if (Blockly.mySearch.Blocks.length>0) {
-		for (n=0;n<Blockly.getMainWorkspace().toolbox_.contents_.length;n++) {
-			if (Blockly.getMainWorkspace().toolbox_.contents_[n].name_==Blockly.Msg["MYSEARCH"]) {
-				var id = Blockly.getMainWorkspace().toolbox_.contents_[n].id_;
+		var contents = Blockly.getMainWorkspace().toolbox_.contents_;
+		for (n=0;n<contents.length;n++) {
+			if (contents[n].name_==Blockly.Msg["MYSEARCH"]) {
+				var id = contents[n].id_;
 				Blockly.getMainWorkspace().toolbox_.setSelectedItem(Blockly.getMainWorkspace().toolbox_.getToolboxItemById(id));
 				break;
 			}
