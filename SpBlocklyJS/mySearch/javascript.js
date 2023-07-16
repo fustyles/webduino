@@ -63,6 +63,7 @@ function registerMySearch() {
 												if (categoryBlocks[p].indexOf('type="'+flyoutItems[j].type+'"')!=-1) {
 													var b = categoryBlocks[p].replace(/(?:\r\n|\r|\n|\t)/g, "").replace(/\"false\"/g, "\"0\"").replace(/\"true\"/g, "\"1\"");
 													Blockly.mySearch.Blocks.push(b);
+													break;
 												}
 											}
 										}
