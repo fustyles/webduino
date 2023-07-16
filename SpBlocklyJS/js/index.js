@@ -388,17 +388,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	for (var i=0;i<categorySearch.length;i++){
 		var categoryString =  categorySearch[i].replace(/(?:\r\n|\r|\n|\t)/g, "").replace(/\"false\"/g, "\"0\"").replace(/\"true\"/g, "\"1\"");
 		var xml = new DOMParser().parseFromString(categoryString,"text/xml");
-		//console.log(xml.firstChild);
 		for (var j=0;j<xml.firstChild.childNodes.length;j++){
 			if (xml.firstChild.childNodes[j].nodeName!="#text"&&xml.firstChild.childNodes[j].nodeName!=undefined) {
 				if (xml.firstChild.childNodes[j].childNodes.length>0) {
 					for (var k=0;k<xml.firstChild.childNodes[j].childNodes.length;k++){
-						//console.log(xml.firstChild.childNodes[j].childNodes[k].nodeName);
 						if (xml.firstChild.childNodes[j].childNodes[k].nodeName=="category") {
-							//console.log(xml.firstChild.childNodes[j].childNodes[k].childNodes.length);
 							for (var m=0;m<xml.firstChild.childNodes[j].childNodes[k].childNodes.length;m++){
-								//console.log(xml.firstChild.childNodes[j].childNodes[k].childNodes[m]);
-								if (xml.firstChild.childNodes[j].childNodes[k].childNodes[m].nodeName!="#text"&&xml.firstChild.childNodes[j].childNodes[k].childNodes[m].nodeName!=undefined) {
+								if (xml.firstChild.childNodes[j].childNodes[k].childNodes[m].nodeName=="block") {
 									categoryBlocks.push(new XMLSerializer().serializeToString(xml.firstChild.childNodes[j].childNodes[k].childNodes[m]));
 								}
 							}
