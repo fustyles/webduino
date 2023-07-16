@@ -1,12 +1,14 @@
-/*
-Last Update Time : 7/16/2023 00:00 (Taiwan Standard Time)
+/**
+ * @license
+ * Copyright 2021 Taiwan
+ * SPDX-License-Identifier: Apache-2.0
+ */
 
-Author: ChungYi Fu, Taiwan
-https://github.com/fustyles
-https://www.facebook.com/francefu/
-
-
-*/
+/**
+ * @fileoverview My Search.
+ * @author https://www.facebook.com/francefu/ (ChungYi Fu)
+ * @Update 7/16/2023 11:00 (Taiwan Standard Time)
+ */
 
 Blockly.mySearch={};
 Blockly.MYSEARCH_CATEGORY_NAME="MYSEARCH";
@@ -58,7 +60,8 @@ function registerMySearch() {
 								if (block.inputList[k].fieldRow) {
 									for (var m=0;m<block.inputList[k].fieldRow.length;m++) {
 										var fieldRow = block.inputList[k].fieldRow[m];
-										if (fieldRow.value_.toString().toLowerCase().indexOf(keyword.toLowerCase())!=-1&&fieldRow.name===undefined) {
+										if (fieldRow.value_.toString().toLowerCase().indexOf(keyword.toLowerCase())!=-1&&fieldRow.value_.toString().toLowerCase().indexOf(";base64,")==-1&&fieldRow.name===undefined) {
+											console.log(fieldRow);
 											for (var p=0;p<categoryBlocks.length;p++) {
 												if (categoryBlocks[p].indexOf('type="'+flyoutItems[j].type+'"')!=-1) {
 													var b = categoryBlocks[p].replace(/(?:\r\n|\r|\n|\t)/g, "").replace(/\"false\"/g, "\"0\"").replace(/\"true\"/g, "\"1\"");
