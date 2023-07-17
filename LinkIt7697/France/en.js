@@ -46,7 +46,7 @@ Blockly.Msg.WEBBLUETOOTH_SERVICE_SHOW = "Service";
 Blockly.Msg.WEBBLUETOOTH_TX_SHOW = "TX";
 Blockly.Msg.WEBBLUETOOTH_RX_SHOW = "RX";
 Blockly.Msg.WEBBLUETOOTH_GETDATA_SHOW = "after getting data";
-Blockly.Msg.WEBBLUETOOTH_GETDATA_ONCES_SHOW = "after getting data onces";
+Blockly.Msg.WEBBLUETOOTH_GETDATA_ONCES_SHOW = "after getting (module) data onces";
 Blockly.Msg.WEBBLUETOOTH_GETMAC_SHOW = "get BLE mac address";
 
 Blockly.Msg.FRANCE1_CUSTOMCODE_SHOW = "Custom Code";
