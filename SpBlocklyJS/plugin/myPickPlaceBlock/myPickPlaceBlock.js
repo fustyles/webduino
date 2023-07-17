@@ -43,7 +43,7 @@ function registerPickPlaceEnabled() {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
     id: 'pick_place_enabled',
-    weight: 210,
+    weight: 30,
   };
   Blockly.ContextMenuRegistry.registry.register(pickPlaceEnabled);
 }
@@ -71,7 +71,7 @@ function registerClickToPick() {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     id: 'click_to_pick',
-    weight: 211,
+    weight: 31,
   };
   Blockly.ContextMenuRegistry.registry.register(clickToPick);
 }
@@ -143,7 +143,7 @@ function registerClickToPlace_next() {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     id: 'click_to_place_next',
-    weight: 212,
+    weight: 32,
   };
   Blockly.ContextMenuRegistry.registry.register(clickToPlace_next);
 }
@@ -227,7 +227,7 @@ function registerClickToPlace_previous() {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     id: 'click_to_place_previous',
-    weight: 213,
+    weight: 33,
   };
   Blockly.ContextMenuRegistry.registry.register(clickToPlace_previous);
 }
@@ -316,7 +316,7 @@ function registerClickToPlace_output(index) {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     id: 'click_to_place_input'+index,
-    weight: 214+index,
+    weight: 34+index,
   };
   Blockly.ContextMenuRegistry.registry.register(clickToPlace_input);
 }
