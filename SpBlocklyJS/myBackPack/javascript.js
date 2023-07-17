@@ -67,7 +67,7 @@ function registerCopyToMyBackpack() {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     id: 'copy_to_MyBackpack',
-    weight: 201,
+    weight: 101,
   };
   Blockly.ContextMenuRegistry.registry.register(copyToMyBackpack);
 }
@@ -115,7 +115,7 @@ function registerRemoveFromMyBackpack() {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     id: 'remove_from_MyBackpack',
-    weight: 202,
+    weight: 102,
   };
   Blockly.ContextMenuRegistry.registry.register(removeFromMyBackpack);
 }
@@ -156,7 +156,7 @@ function registerRemoveAllMyBackpack() {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     id: 'remove_all_MyBackpack',
-    weight: 203,
+    weight: 103,
   };
   Blockly.ContextMenuRegistry.registry.register(removeAllMyBackpack);
 }
@@ -223,7 +223,7 @@ function registerFileImportMyBackpack() {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
     id: 'file_import_MyBackpack',
-    weight: 204,
+    weight: 104,
   };
   Blockly.ContextMenuRegistry.registry.register(fileImportMyBackpack);
 }
@@ -263,7 +263,7 @@ function registerWorkspaceImportMyBackpack() {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
     id: 'workspace_import_MyBackpack',
-    weight: 205,
+    weight: 105,
   };
   Blockly.ContextMenuRegistry.registry.register(workspaceImportMyBackpack);
 }
@@ -300,7 +300,7 @@ function registerWorkspaceExportFile() {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
     id: 'workspace_export_file',
-    weight: 206,
+    weight: 106,
   };
   Blockly.ContextMenuRegistry.registry.register(workspaceExportFile);
 }
@@ -343,7 +343,7 @@ function registerMyBackpackExportFile() {
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     id: 'mybackpack_export_file',
-    weight: 207,
+    weight: 107,
   };
   Blockly.ContextMenuRegistry.registry.register(myBackpackExportFile);
 }
