@@ -66,7 +66,7 @@ function registerRemoveFromBackpack() {
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     id: 'remove_from_backpack',
     // Use a larger weight to push the option lower on the context menu.
-    weight: 200,
+    weight: 301,
   };
   Blockly.ContextMenuRegistry.registry.register(removeFromBackpack);
 }
@@ -114,7 +114,7 @@ function registerCopyToBackpack(disablePreconditionContainsCheck) {
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
     id: 'copy_to_backpack',
     // Use a larger weight to push the option lower on the context menu.
-    weight: 200,
+    weight: 302,
   };
   Blockly.ContextMenuRegistry.registry.register(copyToBackpack);
 }
@@ -149,7 +149,7 @@ function registerCopyAllBackpack() {
     scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
     id: 'copy_all_to_backpack',
     // Use a larger weight to push the option lower on the context menu.
-    weight: 200,
+    weight: 303,
   };
   Blockly.ContextMenuRegistry.registry.register(copyAllToBackpack);
 }
@@ -198,7 +198,7 @@ function registerPasteAllBackpack() {
     scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
     id: 'paste_all_from_backpack',
     // Use a larger weight to push the option lower on the context menu.
-    weight: 200,
+    weight: 304,
   };
   Blockly.ContextMenuRegistry.registry.register(pasteAllFromBackpack);
 }
