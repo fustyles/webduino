@@ -390,11 +390,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		for (var i=0;i<newCategory.length;i++){
 			var categoryString = newCategory[i].replace(/(?:\r\n|\r|\n|\t)/g, "");
 			var xml = new DOMParser().parseFromString(categoryString,"text/xml");
-			for (var j=0;j<xml.firstChild.childNodes.length;j++){
-				if (xml.firstChild.childNodes[j].nodeName=="category") {
-					searchCategoryBlocks(xml.firstChild.childNodes[j].childNodes);
-				}
-			}
+			searchCategoryBlocks(xml.firstChild.childNodes);
 		}
 		//console.log(categoryBlocks);
 	}
