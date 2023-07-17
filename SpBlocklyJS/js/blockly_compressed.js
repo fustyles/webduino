@@ -611,7 +611,7 @@ registerTopCheck$$module$build$src$core$contextmenu_items=function(){
 			,callback:function(a){
 				topCheck=!topCheck;
 			}
-			,scopeType:ContextMenuRegistry$$module$build$src$core$contextmenu_registry.ScopeType.WORKSPACE,id:"topCheck",weight:20
+			,scopeType:ContextMenuRegistry$$module$build$src$core$contextmenu_registry.ScopeType.WORKSPACE,id:"topCheck",weight:15
 		}
 	)
 };

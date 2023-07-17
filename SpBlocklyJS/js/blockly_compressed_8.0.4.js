@@ -2100,7 +2100,7 @@ module$exports$Blockly$ContextMenuItems.registerTopCheck=function(){
 			,callback:function(a){
 				topCheck=!topCheck;
 			}
-			,scopeType:module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.ScopeType.WORKSPACE,id:"topCheck",weight:20
+			,scopeType:module$exports$Blockly$ContextMenuRegistry.ContextMenuRegistry.ScopeType.WORKSPACE,id:"topCheck",weight:15
 		}
 	)
 };
