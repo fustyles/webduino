@@ -77,14 +77,12 @@ function mySearchBlocks() {
 										for (var n=0;n<fieldRow.menuGenerator_.length;n++) {
 											if (fieldRow.menuGenerator_[n][0].toString().toLowerCase().indexOf(keyword.toLowerCase())!=-1&&fieldRow.menuGenerator_[n][0].toString().toLowerCase().indexOf(";base64,")==-1) {
 												type = flyoutItems[j].type;
-												console.log(type);
 												break;
 											}
 										}
 									}
 									else if (fieldRow.value_.toString().toLowerCase().indexOf(keyword.toLowerCase())!=-1&&fieldRow.value_.toString().toLowerCase().indexOf(";base64,")==-1&&fieldRow.name===undefined) {
 										type = flyoutItems[j].type;
-										console.log(type);
 									}
 									if (type) {
 										for (var p=0;p<categoryBlocks.length;p++) {
