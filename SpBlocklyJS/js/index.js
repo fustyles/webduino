@@ -396,12 +396,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 	function searchCategoryBlocks(nodes) {
 		if (nodes.length>0) {
-			for (var k=0;k<nodes.length;k++){
-				if (nodes[k].nodeName=="category") {
-					searchCategoryBlocks(nodes[k].childNodes);
+			for (var j=0;j<nodes.length;j++){
+				if (nodes[j].nodeName=="category") {
+					searchCategoryBlocks(nodes[j].childNodes);
 				}
-				else if (nodes[k].nodeName=="block") {
-					categoryBlocks.push(new XMLSerializer().serializeToString(nodes[k]));
+				else if (nodes[j].nodeName=="block") {
+					categoryBlocks.push(new XMLSerializer().serializeToString(nodes[j]));
 				}
 			}
 		}
