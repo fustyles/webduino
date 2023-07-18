@@ -11,30 +11,33 @@
  */
 
 /*
-	var category = ['<xml><category name="%{BKY_TEST}" id="catTest"><block type="test"></block></category></xml>'];
- 
-	function updateCategoryBlocks(newCategory) {
-		categoryBlocks = [];
-		for (var i=0;i<newCategory.length;i++){
-			var categoryString = newCategory[i].replace(/(?:\r\n|\r|\n|\t)/g, "");
-			var xml = new DOMParser().parseFromString(categoryString,"text/xml");
-			searchCategoryBlocks(xml.firstChild.childNodes);
-		}
-		//console.log(categoryBlocks);
+
+//Blocks variable
+var category = ['<xml><category name="%{BKY_TEST}" id="catTest"><block type="test"></block></category></xml>'];
+
+function updateCategoryBlocks(newCategory) {
+	categoryBlocks = [];
+	for (var i=0;i<newCategory.length;i++){
+		var categoryString = newCategory[i].replace(/(?:\r\n|\r|\n|\t)/g, "");
+		var xml = new DOMParser().parseFromString(categoryString,"text/xml");
+		searchCategoryBlocks(xml.firstChild.childNodes);
 	}
-	function searchCategoryBlocks(nodes) {
-		if (nodes.length>0) {
-			for (var j=0;j<nodes.length;j++){
-				if (nodes[j].nodeName=="category") {
-					searchCategoryBlocks(nodes[j].childNodes);
-				}
-				else if (nodes[j].nodeName=="block") {
-					categoryBlocks.push(new XMLSerializer().serializeToString(nodes[j]));
-				}
+	//console.log(categoryBlocks);
+}
+function searchCategoryBlocks(nodes) {
+	if (nodes.length>0) {
+		for (var j=0;j<nodes.length;j++){
+			if (nodes[j].nodeName=="category") {
+				searchCategoryBlocks(nodes[j].childNodes);
+			}
+			else if (nodes[j].nodeName=="block") {
+				categoryBlocks.push(new XMLSerializer().serializeToString(nodes[j]));
 			}
 		}
 	}
-	updateCategoryBlocks(category);
+}
+updateCategoryBlocks(category);
+
 */
 
 Blockly.mySearch={};
