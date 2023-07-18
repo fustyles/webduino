@@ -378,7 +378,7 @@ var module$contents$Blockly$blocks$CONTROLS_SPREADSHEET_MUTATOR_MIXIN={
 	}
 	,reconnectChildBlocks_:function(a,b){	
 		for(var d=1;d<=this.allCount_;d++)
-			Blockly.Mutator.reconnect(a[d],this,String.fromCharCode(d+65));
+			Blockly.icons.MutatorIcon.reconnect(a[d],this,String.fromCharCode(d+65));
 	}
 };
 Blockly.Extensions.registerMutator("controls_spreadsheet_mutator",module$contents$Blockly$blocks$CONTROLS_SPREADSHEET_MUTATOR_MIXIN,null,["controls_spreadsheet_value"]);
