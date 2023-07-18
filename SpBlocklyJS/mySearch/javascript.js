@@ -25,12 +25,10 @@ function updateCategoryBlocks(newCategory) {
 function searchCategoryBlocks(nodes) {
 	if (nodes.length>0) {
 		for (var j=0;j<nodes.length;j++){
-			if (nodes[j].nodeName=="category") {
+			if (nodes[j].nodeName=="category")
 				searchCategoryBlocks(nodes[j].childNodes);
-			}
-			else if (nodes[j].nodeName=="block") {
+			else if (nodes[j].nodeName=="block")
 				categoryBlocks.push(new XMLSerializer().serializeToString(nodes[j]));
-			}
 		}
 	}
 }
