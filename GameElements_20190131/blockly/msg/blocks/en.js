@@ -551,3 +551,6 @@ Blockly.Msg.INCLUDE_HERE = "here";
 Blockly.Msg.INCLUDE_URL = "url";
 
 Blockly.Msg["CODE_TEXT"] = "Insert code";
+
+Blockly.Msg["ENCODEURI"] = "encodeURI";
+Blockly.Msg["DECODEURI"] = "decodeURI";
