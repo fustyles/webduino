@@ -73,7 +73,7 @@ function mySearchBlocks() {
 									var fieldRow = block.inputList[k].fieldRow[m];
 									if (fieldRow.value_.toString().toLowerCase().indexOf(keyword.toLowerCase())!=-1&&fieldRow.value_.toString().toLowerCase().indexOf(";base64,")==-1&&fieldRow.name===undefined) {
 										for (var p=0;p<categoryBlocks.length;p++) {
-											if (categoryBlocks[p].indexOf('type="'+flyoutItems[j].type+'"')!=-1) {
+											if (categoryBlocks[p].indexOf('type="'+flyoutItems[j].type+'"')!=-1&&categoryBlocks[p].indexOf('disabled="true"')==-1) {
 												var b = categoryBlocks[p].replace(/(?:\r\n|\r|\n|\t)/g, "");
 												Blockly.mySearch.Blocks.push(b);
 												break;
