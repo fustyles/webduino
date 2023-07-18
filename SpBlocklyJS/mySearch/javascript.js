@@ -12,7 +12,6 @@
 
 /*
 
-//Blocks variable
 var categoryBlocks = [];
 function updateCategoryBlocks(newCategory) {
 	categoryBlocks = [];
