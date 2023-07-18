@@ -1,3 +1,18 @@
+Blockly.Blocks['urlcode'] = {
+  init: function () {	  
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["ENCODEURI"],"encodeURI"],
+		[Blockly.Msg["DECODEURI"],"decodeURI"]	
+	  ]), "command");
+  this.appendValueInput("url")
+      .setCheck(null);	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(80);
+  }
+};
+
 Blockly.Blocks['code_text'] = {
   init: function () {
   this.appendValueInput("code")
