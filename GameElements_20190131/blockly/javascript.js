@@ -1,3 +1,10 @@
+Blockly.JavaScript['urlcode'] = function (block) {
+  var command = block.getFieldValue('command');
+  var url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var code = command+'('+url+')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['code_text'] = function (block) {
   var code = Blockly.JavaScript.valueToCode(block, 'code', Blockly.JavaScript.ORDER_ATOMIC)||"";
   if ((code.indexOf("'")==0)&&(code.lastIndexOf("'")==code.length-1))
