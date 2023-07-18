@@ -109,8 +109,7 @@ function mySearchBlocks() {
 												break;
 											}
 										}
-									}
-									else if (fieldRow.value_.toString().toLowerCase().indexOf(keyword.toLowerCase())!=-1&&fieldRow.value_.toString().toLowerCase().indexOf(";base64,")==-1&&fieldRow.name===undefined) {
+									} else if (fieldRow.value_.toString().toLowerCase().indexOf(keyword.toLowerCase())!=-1&&fieldRow.value_.toString().toLowerCase().indexOf(";base64,")==-1&&fieldRow.name===undefined) {
 										type = flyoutItems[j].type;
 									}
 									if (type) {
