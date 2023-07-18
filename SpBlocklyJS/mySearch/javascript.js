@@ -21,7 +21,6 @@ function updateCategoryBlocks(newCategory) {
 		var xml = new DOMParser().parseFromString(categoryString,"text/xml");
 		searchCategoryBlocks(xml.firstChild.childNodes);
 	}
-	//console.log(categoryBlocks);
 }
 function searchCategoryBlocks(nodes) {
 	if (nodes.length>0) {
