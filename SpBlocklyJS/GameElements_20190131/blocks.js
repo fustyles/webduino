@@ -18,7 +18,7 @@ Blockly.Blocks['procedures_return'] = {
   init: function () {
     this.appendValueInput("value_")
         .setCheck(null)
-        .appendField($.module$build$src$core$Msg.Msg.PROCEDURES_DEFRETURN_RETURN);   
+        .appendField(Blockly.Msg["PROCEDURES_DEFRETURN_RETURN"]);   
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
