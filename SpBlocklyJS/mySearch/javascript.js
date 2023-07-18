@@ -71,7 +71,6 @@ function mySearchBlocks() {
 							if (block.inputList[k].fieldRow) {
 								for (var m=0;m<block.inputList[k].fieldRow.length;m++) {
 									var fieldRow = block.inputList[k].fieldRow[m];
-									//console.log(fieldRow);
 									var type = "";
 									if (fieldRow.menuGenerator_) {
 										for (var n=0;n<fieldRow.menuGenerator_.length;n++) {
