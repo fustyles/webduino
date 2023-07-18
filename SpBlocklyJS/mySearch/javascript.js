@@ -13,7 +13,7 @@
 /*
 
 //Blocks variable
-var category = ['<xml><category name="%{BKY_TEST}" id="catTest"><block type="test"></block></category></xml>'];
+var category = ['<xml><category name="catTest" id="catTest"><block type="test"></block></category></xml>'];
 
 function updateCategoryBlocks(newCategory) {
 	categoryBlocks = [];
