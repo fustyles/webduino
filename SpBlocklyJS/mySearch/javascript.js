@@ -13,6 +13,7 @@
 /*
 
 //Blocks variable
+var categoryBlocks = [];
 var category = ['<xml><category name="catTest" id="catTest"><block type="test"></block></category></xml>'];
 
 function updateCategoryBlocks(newCategory) {
