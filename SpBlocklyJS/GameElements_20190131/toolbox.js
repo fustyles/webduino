@@ -195,6 +195,13 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    <block type="mouse_coordinate_get">'+
 '    </block>'+
+'    <block type="urlcode">'+
+'    <value name="url">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
 '    <block type="image_boundary">'+
 '    <value name="left_">'+
 '    <block type="math_number">'+

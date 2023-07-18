@@ -571,3 +571,6 @@ Blockly.Msg["SYSTEM_DATETIME_SECONDS"] = "seconds";
 
 Blockly.Msg["DOCUMENT_EXITFULLSCREEN"] = "Display screen exits fullscreen";
 Blockly.Msg["CODE_TEXT"] = "Insert code";
+
+Blockly.Msg["ENCODEURI"] = "encodeURI";
+Blockly.Msg["DECODEURI"] = "decodeURI";

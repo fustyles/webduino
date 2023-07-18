@@ -280,7 +280,14 @@
 		  <block type="mouse_coordinate_get_start">
 		  </block>
 		  <block type="mouse_coordinate_get">
-		  </block>  	
+		  </block> 
+		  <block type="urlcode">
+			<value name="url">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>    
+			</value>     
+		  </block>   		  
 		  <block type="image_sys_get">
 		  </block>  
 		  <block type="elements_collision">
