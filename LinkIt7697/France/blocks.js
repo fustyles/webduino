@@ -1,3 +1,32 @@
+Blockly.Blocks['pms7003m_read'] = {
+  init: function() {  
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PMS7003M_READ"]);
+    this.appendStatementInput("statement")
+        .setCheck(null);		
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(Blockly.Msg["HUE_20"]);
+  }
+};
+
+Blockly.Blocks['pms7003m_get'] = {
+  init: function() {  
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PMS7003M_GET"]);	
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["PMS7003M_PM25"],"PM_AE_UG_2_5"],
+				[Blockly.Msg["PMS7003M_PM1"],"PM_AE_UG_1_0"],
+				[Blockly.Msg["PMS7003M_PM10"],"PM_AE_UG_10_0"]
+		]),"type");		  
+	  this.setInputsInline(!0);
+	  this.setOutput(!0,null);
+	  this.setColour(Blockly.Msg["HUE_20"]); 
+  }
+};
+
 Blockly.Blocks['webbit_mooncar_ws2812_leds'] = {
   init: function() {
 
@@ -1036,11 +1065,11 @@ Blockly.Blocks['openai_chat_initial'] = {
 	this.appendDummyInput()  
       .appendField(Blockly.Msg.OPENAI_CHAT_MODEL_SHOW)
       .appendField(new Blockly.FieldDropdown([
+			["gpt-3.5-turbo","gpt-3.5-turbo"],	  
 			["gpt-3.5-turbo-16k","gpt-3.5-turbo-16k"],
-			["gpt-3.5-turbo","gpt-3.5-turbo"],
-			["gpt-3.5-turbo-16k-0613","gpt-3.5-turbo-16k-0613"],
 			["gpt-3.5-turbo-0613","gpt-3.5-turbo-0613"],
 			["gpt-3.5-turbo-0301","gpt-3.5-turbo-0301"],
+			["gpt-3.5-turbo-16k-0613","gpt-3.5-turbo-16k-0613"],
 			["gpt-4","gpt-4"],
 			["gpt-4-0613","gpt-4-0613"]	  
 	  ]), "model"); 	  

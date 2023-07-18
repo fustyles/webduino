@@ -1,3 +1,18 @@
+Blockly.Arduino['pms7003m_read'] = function(block) { 
+  Blockly.Arduino.definitions_['pms7003m_initial'] = "#include \"PMS.h\"\nPMS pms(Serial2);\nPMS::DATA pms_data;";
+  var statement = Blockly.Arduino.statementToCode(block, 'statement');
+
+  code = ' if (pms.readUntil(pms_data)) {\n'+statement+'\n}';
+  return code;
+};
+
+Blockly.Arduino['pms7003m_get'] = function(block) { 
+  var type = this.getFieldValue("type");
+
+  code = 'pms_data.'+type;
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
 Blockly.Arduino['webbit_mooncar_ws2812_leds'] = function(block) {
 	var leds=this.getFieldValue("leds");
 			  

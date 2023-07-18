@@ -10028,7 +10028,14 @@
 		</block>
 		<block type="fu_joystick_get">			
 		</block>		
-	</category>		
+	</category>	
+
+	<category id="france12" name="pms7003m">
+		<block type="pms7003m_read">			
+		</block>
+		<block type="pms7003m_get">			
+		</block>		
+	</category>	
 
 	 <sep id="category_sep"></sep>	
 	 

@@ -101,4 +101,5 @@
 <category><name>HX710B</name><replace>HX710B壓力感測器</replace></category>
 <category><name>MAX6675</name><replace>MAX6675溫度感測器</replace></category>
 <category><name>DS18B20</name><replace>DS18B20水溫感測器</replace></category>
+<category><name>pms7003m</name><replace>PMS7003M感測器</replace></category>
 </xml>

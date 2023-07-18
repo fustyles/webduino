@@ -2034,3 +2034,9 @@ Blockly.Msg["DS18B20_PIN"] = "腳位";
 Blockly.Msg["DS18B20_INDEX"] = "編號";
 Blockly.Msg["DS18B20_GET"] = "DS18B20水溫感測器 取得溫度值";
 Blockly.Msg["DS18B20_UNIT"] = "單位";
+
+Blockly.Msg["PMS7003M_READ"] = "PMS7003M 讀取到資料後執行";
+Blockly.Msg["PMS7003M_GET"] = "PMS7003M 取得";
+Blockly.Msg["PMS7003M_PM25"] = "PM2.5";
+Blockly.Msg["PMS7003M_PM1"] = "PM1.0";
+Blockly.Msg["PMS7003M_PM10"] = "PM10";

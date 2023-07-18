@@ -2026,3 +2026,9 @@ Blockly.Msg["DS18B20_PIN"] = "pin";
 Blockly.Msg["DS18B20_INDEX"] = "index";
 Blockly.Msg["DS18B20_GET"] = "DS18B20DS18B20 water temperature sensor Get value";
 Blockly.Msg["DS18B20_UNIT"] = "unit";
+
+Blockly.Msg["PMS7003M_READ"] = "PMS7003M after reading data";
+Blockly.Msg["PMS7003M_GET"] = "PMS7003M get";
+Blockly.Msg["PMS7003M_PM25"] = "PM2.5";
+Blockly.Msg["PMS7003M_PM1"] = "PM1.0";
+Blockly.Msg["PMS7003M_PM10"] = "PM10";
