@@ -37,6 +37,10 @@ updateCategoryBlocks(category);
 
 */
 
+/*
+<category id="catMySearch" name="%{BKY_MYSEARCH}" colour="%{BKY_MYSEARCH_HUE}"  custom="MYSEARCH"></category>
+*/
+
 Blockly.mySearch={};
 Blockly.MYSEARCH_CATEGORY_NAME="MYSEARCH";
 Blockly.mySearch.NAME_TYPE=Blockly.MYSEARCH_CATEGORY_NAME;
