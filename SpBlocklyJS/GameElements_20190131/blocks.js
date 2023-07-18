@@ -1,3 +1,31 @@
+Blockly.Blocks['text_br'] = {
+  init: function() {	
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["MSG_NEWLINE"]);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+	  ["<br>","<br>"]
+	  ,["\\n","\\n"]
+	  ,["\\\\n","\\\\n"]
+	  ]), "newline"); 		
+  this.setInputsInline(true);
+  this.setOutput(true, null);
+  this.setColour(160);  
+  }
+};
+
+Blockly.Blocks['procedures_return'] = {
+  init: function () {
+    this.appendValueInput("value_")
+        .setCheck(null)
+        .appendField($.module$build$src$core$Msg.Msg.PROCEDURES_DEFRETURN_RETURN);   
+    this.setInputsInline(true);    
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(Blockly.Msg["PROCEDURES_HUE"]);
+  }
+};
+
 Blockly.Blocks['urlcode'] = {
   init: function () {	  
   this.appendDummyInput()

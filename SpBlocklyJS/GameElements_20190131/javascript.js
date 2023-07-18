@@ -1,3 +1,14 @@
+Blockly.JavaScript['text_br'] = function (block) {
+  var code = "'"+this.getFieldValue("newline")+"'";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['procedures_return'] = function (block) {
+  var value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'return ' + value_ + ';\n';
+  return code;
+};
+
 Blockly.JavaScript['urlcode'] = function (block) {
   var command = block.getFieldValue('command');
   var url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC)||"";
