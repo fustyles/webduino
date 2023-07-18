@@ -551,3 +551,6 @@ Blockly.Msg.INCLUDE_HERE = "目前位置";
 Blockly.Msg.INCLUDE_URL = "网址";
 
 Blockly.Msg["CODE_TEXT"] = "插入程式码";
+
+Blockly.Msg["ENCODEURI"] = "网址编码";
+Blockly.Msg["DECODEURI"] = "网址解码";
