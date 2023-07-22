@@ -1331,7 +1331,7 @@ function searchBlocks() {
 		modal: false,
 		//show: "blind",
 		//hide: "blind",			
-		width: 280,
+		width: 260,
 		height: 185,
 		buttons: [	
 			{
