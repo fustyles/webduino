@@ -1332,7 +1332,7 @@ function searchBlocks() {
 		//show: "blind",
 		//hide: "blind",			
 		width: 250,
-		height: 165,
+		height: 180,
 		buttons: [	
 			{
 				text: Blockly.Msg.BUTTON_CLOSE,
