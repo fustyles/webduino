@@ -1282,6 +1282,7 @@ Blockly.Msg["PROCEDURES_HUE"] = "290";
 // Custom
 Blockly.Msg["VARIABLES_SET"] = "宣告 %1 %2 成 %3";
 Blockly.Msg["VARIABLES_SET_LOCAL"] = "設定 %1 成 %2";
+Blockly.Msg["ADD_VARIABLE"] = "建立變數…";
 
 return Blockly.Msg;
 }));
