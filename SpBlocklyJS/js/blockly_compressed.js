@@ -1847,7 +1847,7 @@ zoom(a,b){this.workspace.markFocused();this.workspace.zoomCenter(a);this.fireZoo
 
 zoomPrevious(a){this.workspace.undo(false);};
 zoomNext(a){this.workspace.undo(true);};
-zoomSearch(a){mySearchBlocks();this.fireZoomEvent();clearTouchIdentifier$$module$build$src$core$touch();a.stopPropagation();a.preventDefault()};
+zoomSearch(a){searchBlocks();this.fireZoomEvent();clearTouchIdentifier$$module$build$src$core$touch();a.stopPropagation();a.preventDefault()};
 zoomShowCategory(a){
 	var toolbox = document.getElementsByClassName("blocklyToolboxDiv blocklyNonSelectable")[0];
 	if (toolbox) {

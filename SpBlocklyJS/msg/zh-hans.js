@@ -718,6 +718,7 @@ Blockly.Msg.RELOAD_TITLE = "你要重启窗口加载新设定吗？";
 Blockly.Msg.COM_TITLE = "请先选择串行端口！";
 Blockly.Msg.BUTTON_OPEN = "开启";
 Blockly.Msg.BUTTON_CLOSE = "关闭";
+Blockly.Msg.BUTTON_CLEAR = "清除";
 Blockly.Msg.BUTTON_SURE = "确认";
 Blockly.Msg.BUTTON_RESET = "你确定要重设工作区？";
 Blockly.Msg.BUTTON_SERIAL_OPEN = "开启PUTTY";
@@ -1283,6 +1284,11 @@ Blockly.Msg["PROCEDURES_HUE"] = "290";
 Blockly.Msg["VARIABLES_SET"] = "宣告 %1 %2 成 %3";
 Blockly.Msg["VARIABLES_SET_LOCAL"] = "设定 %1 成 %2";
 Blockly.Msg["ADD_VARIABLE"] = "建立变数…";
+
+Blockly.Msg["MYSEARCH"] = "搜寻";
+Blockly.Msg["MYSEARCH_QUERY"] = "搜寻积木";
+Blockly.Msg["MYSEARCH_PROMPT"] = "请输入积木文字关键字";
+Blockly.Msg["MYSEARCH_HUE"] = "210";
 
 return Blockly.Msg;
 }));

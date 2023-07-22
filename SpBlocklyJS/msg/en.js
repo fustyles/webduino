@@ -686,6 +686,7 @@ Blockly.Msg.RELOAD_TITLE = "Do you want to restart the APP?";
 Blockly.Msg.COM_TITLE = "Please select com port.";
 Blockly.Msg.BUTTON_OPEN = "OPEN";
 Blockly.Msg.BUTTON_CLOSE = "CLOSE";
+Blockly.Msg.BUTTON_CLEAR = "CLEAR";
 Blockly.Msg.BUTTON_SURE = "SURE";
 Blockly.Msg.BUTTON_RESET = "Are you sure to reset the workspace?";
 Blockly.Msg.BUTTON_SERIAL_OPEN = "Open PUTTY";
@@ -1252,6 +1253,11 @@ Blockly.Msg["PROCEDURES_HUE"] = "290";
 Blockly.Msg["VARIABLES_SET"] = "Set %1 %2 to %3";
 Blockly.Msg["VARIABLES_SET_LOCAL"] = "Set %1 to %2";
 Blockly.Msg["ADD_VARIABLE"] = "Create variable...";
+
+Blockly.Msg["MYSEARCH"] = "SEARCH";
+Blockly.Msg["MYSEARCH_QUERY"] = "Search for blocks";
+Blockly.Msg["MYSEARCH_PROMPT"] = "Please input the keyword of blocks content.";
+Blockly.Msg["MYSEARCH_HUE"] = "210";
 
 return Blockly.Msg;
 }));

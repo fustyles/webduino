@@ -717,6 +717,7 @@ Blockly.Msg.RELOAD_TITLE = "你要重啟視窗載入新設定嗎？";
 Blockly.Msg.COM_TITLE = "請先選擇序列埠！";
 Blockly.Msg.BUTTON_OPEN = "開啟";
 Blockly.Msg.BUTTON_CLOSE = "關閉";
+Blockly.Msg.BUTTON_CLEAR = "清除";
 Blockly.Msg.BUTTON_SURE = "確認";
 Blockly.Msg.BUTTON_RESET = "你確定要重設工作區？";
 Blockly.Msg.BUTTON_SERIAL_OPEN = "開啟PUTTY";
@@ -1283,6 +1284,11 @@ Blockly.Msg["PROCEDURES_HUE"] = "290";
 Blockly.Msg["VARIABLES_SET"] = "宣告 %1 %2 成 %3";
 Blockly.Msg["VARIABLES_SET_LOCAL"] = "設定 %1 成 %2";
 Blockly.Msg["ADD_VARIABLE"] = "建立變數…";
+
+Blockly.Msg["MYSEARCH"] = "搜尋";
+Blockly.Msg["MYSEARCH_QUERY"] = "搜尋積木";
+Blockly.Msg["MYSEARCH_PROMPT"] = "請輸入積木文字關鍵字";
+Blockly.Msg["MYSEARCH_HUE"] = "210";
 
 return Blockly.Msg;
 }));
