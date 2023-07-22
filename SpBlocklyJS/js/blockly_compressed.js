@@ -101,9 +101,20 @@ measureFontMetrics$$module$build$src$core$utils$dom=function(a,b,c,d){const e=do
 confirmInternal$$module$build$src$core$dialog=function(a,b){confirmImplementation$$module$build$src$core$dialog(a,b)};setConfirm$$module$build$src$core$dialog=function(a){confirmImplementation$$module$build$src$core$dialog=a};prompt$$module$build$src$core$dialog=function(a,b,c){promptImplementation$$module$build$src$core$dialog(a,b,c)};setPrompt$$module$build$src$core$dialog=function(a){promptImplementation$$module$build$src$core$dialog=a};
 isVariableBackedParameterModel$$module$build$src$core$interfaces$i_variable_backed_parameter_model=function(a){return void 0!==a.getVariableModel};isLegacyProcedureDefBlock$$module$build$src$core$interfaces$i_legacy_procedure_blocks=function(a){return void 0!==a.getProcedureDef};isLegacyProcedureCallBlock$$module$build$src$core$interfaces$i_legacy_procedure_blocks=function(a){return void 0!==a.getProcedureCall&&void 0!==a.renameProcedure};
 $.allUsedVarModels$$module$build$src$core$variables=function(a){a=a.getAllBlocks(!1);const b=new Set;for(let c=0;c<a.length;c++){const d=a[c].getVarModels();if(d)for(let e=0;e<d.length;e++){const f=d[e];f.getId()&&b.add(f)}}return Array.from(b.values())};$.allDeveloperVariables$$module$build$src$core$variables=function(a){a=a.getAllBlocks(!1);const b=new Set;for(let d=0,e;e=a[d];d++){var c=e.getDeveloperVariables;if(c){c=c();for(let f=0;f<c.length;f++)b.add(c[f])}}return Array.from(b.values())};
-flyoutCategory$$module$build$src$core$variables=function(a){let b=[];const c=document.createElement("button");c.setAttribute("text","%{BKY_NEW_VARIABLE}");c.setAttribute("callbackKey","CREATE_VARIABLE");a.registerButtonCallback("CREATE_VARIABLE",function(d){createVariableButtonHandler$$module$build$src$core$variables(d.getTargetWorkspace())});b.push(c);a=flyoutCategoryBlocks$$module$build$src$core$variables(a);return b=b.concat(a)};
-flyoutCategoryBlocks$$module$build$src$core$variables=function(a){a=a.getVariablesOfType("");const b=[];if(0<a.length){var c=a[a.length-1];
 
+
+flyoutCategory$$module$build$src$core$variables=function(a){
+	let b=[];
+	const c=document.createElement("button");
+	c.setAttribute("text","%{BKY_NEW_VARIABLE}");
+	c.setAttribute("callbackKey","CREATE_VARIABLE");
+	a.registerButtonCallback("CREATE_VARIABLE",function(d){createVariableButtonHandler$$module$build$src$core$variables(d.getTargetWorkspace())});
+	b.push(c);
+	a=flyoutCategoryBlocks$$module$build$src$core$variables(a);
+	return b=b.concat(a)
+};
+
+flyoutCategoryBlocks$$module$build$src$core$variables=function(a){a=a.getVariablesOfType("");const b=[];if(0<a.length){var c=a[a.length-1];
 
 if(Blocks$$module$build$src$core$blocks.variables_set){
 	var d=$.createElement$$module$build$src$core$utils$xml("block");d.setAttribute("type","variables_set");d.setAttribute("gap",Blocks$$module$build$src$core$blocks.math_change?"8":"24");d.appendChild($.generateVariableFieldDom$$module$build$src$core$variables(c));b.push(d)
@@ -111,6 +122,7 @@ if(Blocks$$module$build$src$core$blocks.variables_set){
 if(Blocks$$module$build$src$core$blocks.variables_set_local){
 	var d=$.createElement$$module$build$src$core$utils$xml("block");d.setAttribute("type","variables_set_local");d.setAttribute("gap",Blocks$$module$build$src$core$blocks.math_change?"8":"24");d.appendChild($.generateVariableFieldDom$$module$build$src$core$variables(c));b.push(d)
 }
+
 
 
 Blocks$$module$build$src$core$blocks.math_change&&
@@ -1153,8 +1165,20 @@ module$build$src$core$contextmenu.workspaceCommentOption=workspaceCommentOption$
 (function(a){var b=a.ScopeType||(a.ScopeType={});b.BLOCK="block";b.WORKSPACE="workspace";a.registry=new a})(ContextMenuRegistry$$module$build$src$core$contextmenu_registry||(ContextMenuRegistry$$module$build$src$core$contextmenu_registry={}));var ScopeType$$module$build$src$core$contextmenu_registry=ContextMenuRegistry$$module$build$src$core$contextmenu_registry.ScopeType,module$build$src$core$contextmenu_registry={};module$build$src$core$contextmenu_registry.ContextMenuRegistry=ContextMenuRegistry$$module$build$src$core$contextmenu_registry;
 module$build$src$core$contextmenu_registry.ScopeType=ScopeType$$module$build$src$core$contextmenu_registry;var COLLAPSE_CHARS$$module$build$src$core$internal_constants=30,DRAG_STACK$$module$build$src$core$internal_constants=!0,OPPOSITE_TYPE$$module$build$src$core$internal_constants=[];OPPOSITE_TYPE$$module$build$src$core$internal_constants[ConnectionType$$module$build$src$core$connection_type.INPUT_VALUE]=ConnectionType$$module$build$src$core$connection_type.OUTPUT_VALUE;OPPOSITE_TYPE$$module$build$src$core$internal_constants[ConnectionType$$module$build$src$core$connection_type.OUTPUT_VALUE]=ConnectionType$$module$build$src$core$connection_type.INPUT_VALUE;
 OPPOSITE_TYPE$$module$build$src$core$internal_constants[ConnectionType$$module$build$src$core$connection_type.NEXT_STATEMENT]=ConnectionType$$module$build$src$core$connection_type.PREVIOUS_STATEMENT;OPPOSITE_TYPE$$module$build$src$core$internal_constants[ConnectionType$$module$build$src$core$connection_type.PREVIOUS_STATEMENT]=ConnectionType$$module$build$src$core$connection_type.NEXT_STATEMENT;
-var RENAME_VARIABLE_ID$$module$build$src$core$internal_constants="RENAME_VARIABLE_ID",DELETE_VARIABLE_ID$$module$build$src$core$internal_constants="DELETE_VARIABLE_ID",module$build$src$core$internal_constants={};module$build$src$core$internal_constants.COLLAPSE_CHARS=COLLAPSE_CHARS$$module$build$src$core$internal_constants;module$build$src$core$internal_constants.DELETE_VARIABLE_ID=DELETE_VARIABLE_ID$$module$build$src$core$internal_constants;module$build$src$core$internal_constants.DRAG_STACK=DRAG_STACK$$module$build$src$core$internal_constants;
-module$build$src$core$internal_constants.OPPOSITE_TYPE=OPPOSITE_TYPE$$module$build$src$core$internal_constants;module$build$src$core$internal_constants.RENAME_VARIABLE_ID=RENAME_VARIABLE_ID$$module$build$src$core$internal_constants;var ASTNode$$module$build$src$core$keyboard_nav$ast_node=class{constructor(a,b,c){this.wsCoordinate=null;if(!b)throw Error("Cannot create a node without a location.");this.type=a;this.isConnectionLocation=ASTNode$$module$build$src$core$keyboard_nav$ast_node.isConnectionType(a);this.location=b;this.processParams(c||null)}processParams(a){a&&a.wsCoordinate&&(this.wsCoordinate=a.wsCoordinate)}getLocation(){return this.location}getType(){return this.type}getWsCoordinate(){return this.wsCoordinate}isConnection(){return this.isConnectionLocation}findNextForInput(){var a=
+var RENAME_VARIABLE_ID$$module$build$src$core$internal_constants="RENAME_VARIABLE_ID"
+
+
+,ADD_VARIABLE_ID$$module$build$src$core$internal_constants="ADD_VARIABLE_ID"
+
+
+,DELETE_VARIABLE_ID$$module$build$src$core$internal_constants="DELETE_VARIABLE_ID",module$build$src$core$internal_constants={};module$build$src$core$internal_constants.COLLAPSE_CHARS=COLLAPSE_CHARS$$module$build$src$core$internal_constants;module$build$src$core$internal_constants.DELETE_VARIABLE_ID=DELETE_VARIABLE_ID$$module$build$src$core$internal_constants;module$build$src$core$internal_constants.DRAG_STACK=DRAG_STACK$$module$build$src$core$internal_constants;
+module$build$src$core$internal_constants.OPPOSITE_TYPE=OPPOSITE_TYPE$$module$build$src$core$internal_constants;module$build$src$core$internal_constants.RENAME_VARIABLE_ID=RENAME_VARIABLE_ID$$module$build$src$core$internal_constants;
+
+
+module$build$src$core$internal_constants.ADD_VARIABLE_ID=ADD_VARIABLE_ID$$module$build$src$core$internal_constants;
+
+
+var ASTNode$$module$build$src$core$keyboard_nav$ast_node=class{constructor(a,b,c){this.wsCoordinate=null;if(!b)throw Error("Cannot create a node without a location.");this.type=a;this.isConnectionLocation=ASTNode$$module$build$src$core$keyboard_nav$ast_node.isConnectionType(a);this.location=b;this.processParams(c||null)}processParams(a){a&&a.wsCoordinate&&(this.wsCoordinate=a.wsCoordinate)}getLocation(){return this.location}getType(){return this.type}getWsCoordinate(){return this.wsCoordinate}isConnection(){return this.isConnectionLocation}findNextForInput(){var a=
 this.location.getParentInput();const b=a.getSourceBlock();a=b.inputList.indexOf(a);for(a+=1;a<b.inputList.length;a++){const c=b.inputList[a],d=c.fieldRow;for(let e=0;e<d.length;e++){const f=d[e];if(f.isClickable()||ASTNode$$module$build$src$core$keyboard_nav$ast_node.NAVIGATE_ALL_FIELDS)return ASTNode$$module$build$src$core$keyboard_nav$ast_node.createFieldNode(f)}if(c.connection)return ASTNode$$module$build$src$core$keyboard_nav$ast_node.createInputNode(c)}return null}findNextForField(){var a=this.location,
 b=a.getParentInput();const c=a.getSourceBlock();if(!c)throw Error("The current AST location is not associated with a block");var d=c.inputList.indexOf(b);for(a=b.fieldRow.indexOf(a)+1;d<c.inputList.length;d++){b=c.inputList[d];const e=b.fieldRow;for(;a<e.length;){if(e[a].isClickable()||ASTNode$$module$build$src$core$keyboard_nav$ast_node.NAVIGATE_ALL_FIELDS)return ASTNode$$module$build$src$core$keyboard_nav$ast_node.createFieldNode(e[a]);a++}a=0;if(b.connection)return ASTNode$$module$build$src$core$keyboard_nav$ast_node.createInputNode(b)}return null}findPrevForInput(){const a=
 this.location.getParentInput(),b=a.getSourceBlock();for(var c=b.inputList.indexOf(a);0<=c;c--){var d=b.inputList[c];if(d.connection&&d!==a)return ASTNode$$module$build$src$core$keyboard_nav$ast_node.createInputNode(d);d=d.fieldRow;for(let e=d.length-1;0<=e;e--){const f=d[e];if(f.isClickable()||ASTNode$$module$build$src$core$keyboard_nav$ast_node.NAVIGATE_ALL_FIELDS)return ASTNode$$module$build$src$core$keyboard_nav$ast_node.createFieldNode(f)}}return null}findPrevForField(){var a=this.location;const b=
@@ -1571,10 +1595,57 @@ return super.shouldAddBorderRect_()&&(!this.getConstants().FIELD_DROPDOWN_NO_BOR
 b.type=this.variable.type);return b}loadState(a){const b=this.getSourceBlock();if(!b)throw new UnattachedFieldError$$module$build$src$core$field;this.loadLegacyState(FieldVariable$$module$build$src$core$field_variable,a)||(a=$.getOrCreateVariablePackage$$module$build$src$core$variables(b.workspace,a.id||null,a.name,a.type||""),this.setValue(a.getId()))}setSourceBlock(a){if(a.isShadow())throw Error("Variable fields are not allowed to exist on shadow blocks.");super.setSourceBlock(a)}getValue(){return this.variable?
 this.variable.getId():null}getText(){return this.variable?this.variable.name:""}getVariable(){return this.variable}getValidator(){return this.variable?this.validator_:null}doClassValidation_(a){if(null===a)return null;var b=this.getSourceBlock();if(!b)throw new UnattachedFieldError$$module$build$src$core$field;b=$.getVariable$$module$build$src$core$variables(b.workspace,a);if(!b)return console.warn("Variable id doesn't point to a real variable! ID was "+a),null;b=b.type;return this.typeIsAllowed(b)?
 a:(console.warn("Variable type doesn't match this field!  Type was "+b),null)}doValueUpdate_(a){const b=this.getSourceBlock();if(!b)throw new UnattachedFieldError$$module$build$src$core$field;this.variable=$.getVariable$$module$build$src$core$variables(b.workspace,a);super.doValueUpdate_(a)}typeIsAllowed(a){const b=this.getVariableTypes();if(!b)return!0;for(let c=0;c<b.length;c++)if(a===b[c])return!0;return!1}getVariableTypes(){var a=this.variableTypes;if(null===a&&this.sourceBlock_&&!this.sourceBlock_.isDeadOrDying())return this.sourceBlock_.workspace.getVariableTypes();
-a=a||[""];if(0===a.length)throw a=this.getText(),Error("'variableTypes' of field variable "+a+" was an empty list");return a}setTypes(a=null,b=""){if(Array.isArray(a)){let c=!1;for(let d=0;d<a.length;d++)a[d]===b&&(c=!0);if(!c)throw Error("Invalid default type '"+b+"' in the definition of a FieldVariable");}else if(null!==a)throw Error("'variableTypes' was not an array in the definition of a FieldVariable");this.defaultType=b;this.variableTypes=a}refreshVariableName(){this.forceRerender()}onItemSelected_(a,
-b){a=b.getValue();if(this.sourceBlock_&&!this.sourceBlock_.isDeadOrDying()){if(a===RENAME_VARIABLE_ID$$module$build$src$core$internal_constants){$.renameVariable$$module$build$src$core$variables(this.sourceBlock_.workspace,this.variable);return}if(a===DELETE_VARIABLE_ID$$module$build$src$core$internal_constants){this.sourceBlock_.workspace.deleteVariableById(this.variable.getId());return}}this.setValue(a)}referencesVariables(){return!0}static fromJson(a){return new this(replaceMessageReferences$$module$build$src$core$utils$parsing(a.variable),
-void 0,void 0,void 0,a)}static dropdownCreate(){if(!this.variable)throw Error("Tried to call dropdownCreate on a variable field with no variable selected.");const a=this.getText();let b=[];if(this.sourceBlock_&&!this.sourceBlock_.isDeadOrDying()){var c=this.getVariableTypes();for(var d=0;d<c.length;d++){const e=this.sourceBlock_.workspace.getVariablesOfType(c[d]);b=b.concat(e)}}b.sort(VariableModel$$module$build$src$core$variable_model.compareByName);c=[];for(d=0;d<b.length;d++)c[d]=[b[d].name,b[d].getId()];
-c.push([$.Msg$$module$build$src$core$msg.RENAME_VARIABLE,RENAME_VARIABLE_ID$$module$build$src$core$internal_constants]);$.Msg$$module$build$src$core$msg.DELETE_VARIABLE&&c.push([$.Msg$$module$build$src$core$msg.DELETE_VARIABLE.replace("%1",a),DELETE_VARIABLE_ID$$module$build$src$core$internal_constants]);return c}};register$$module$build$src$core$field_registry("field_variable",FieldVariable$$module$build$src$core$field_variable);var module$build$src$core$field_variable={};
+a=a||[""];if(0===a.length)throw a=this.getText(),Error("'variableTypes' of field variable "+a+" was an empty list");return a}setTypes(a=null,b=""){if(Array.isArray(a)){let c=!1;for(let d=0;d<a.length;d++)a[d]===b&&(c=!0);if(!c)throw Error("Invalid default type '"+b+"' in the definition of a FieldVariable");}else if(null!==a)throw Error("'variableTypes' was not an array in the definition of a FieldVariable");this.defaultType=b;this.variableTypes=a}refreshVariableName(){this.forceRerender()}
+onItemSelected_(a,b){
+	a=b.getValue();
+	if(this.sourceBlock_&&!this.sourceBlock_.isDeadOrDying()){
+		if(a===RENAME_VARIABLE_ID$$module$build$src$core$internal_constants){
+			$.renameVariable$$module$build$src$core$variables(this.sourceBlock_.workspace,this.variable);
+			return
+		}
+		if(a===DELETE_VARIABLE_ID$$module$build$src$core$internal_constants){
+			this.sourceBlock_.workspace.deleteVariableById(this.variable.getId());
+			return
+		}
+		if(a===ADD_VARIABLE_ID$$module$build$src$core$internal_constants){
+			createVariableButtonHandler$$module$build$src$core$variables(this.sourceBlock_.workspace,void 0,"");
+			var v=this.sourceBlock_.workspace.getVariablesOfType("");
+			v.sort(Blockly.VariableModel.compareByName);
+			if(v.length>0)
+				this.setValue(v[v.length-1].id_);
+			return
+		}		
+	}
+	this.setValue(a)
+}
+referencesVariables(){return!0}static fromJson(a){return new this(replaceMessageReferences$$module$build$src$core$utils$parsing(a.variable),
+void 0,void 0,void 0,a)}
+
+static dropdownCreate(){
+	if(!this.variable)
+		throw Error("Tried to call dropdownCreate on a variable field with no variable selected.");
+	const a=this.getText();
+	let b=[];
+	if(this.sourceBlock_&&!this.sourceBlock_.isDeadOrDying()){
+		var c=this.getVariableTypes();
+		for(var d=0;d<c.length;d++){
+			const e=this.sourceBlock_.workspace.getVariablesOfType(c[d]);
+			b=b.concat(e)
+		}
+	}
+	b.sort(VariableModel$$module$build$src$core$variable_model.compareByName);
+	c=[];
+	for(d=0;d<b.length;d++)
+		c[d]=[b[d].name,b[d].getId()];
+	c.push([$.Msg$$module$build$src$core$msg.RENAME_VARIABLE,RENAME_VARIABLE_ID$$module$build$src$core$internal_constants]);
+
+	$.Msg$$module$build$src$core$msg.DELETE_VARIABLE&&c.push([$.Msg$$module$build$src$core$msg.DELETE_VARIABLE.replace("%1",a),DELETE_VARIABLE_ID$$module$build$src$core$internal_constants]);
+	
+	$.Msg$$module$build$src$core$msg.ADD_VARIABLE&&c.push([$.Msg$$module$build$src$core$msg.ADD_VARIABLE,ADD_VARIABLE_ID$$module$build$src$core$internal_constants]);
+	return c
+}
+
+};register$$module$build$src$core$field_registry("field_variable",FieldVariable$$module$build$src$core$field_variable);var module$build$src$core$field_variable={};
 module$build$src$core$field_variable.FieldVariable=FieldVariable$$module$build$src$core$field_variable;var FlyoutButton$$module$build$src$core$flyout_button=class{constructor(a,b,c,d){this.workspace=a;this.targetWorkspace=b;this.isLabel_=d;this.onMouseUpWrapper=null;this.height=this.width=0;this.svgText=this.svgGroup=null;this.text=c.text;this.position=new Coordinate$$module$build$src$core$utils$coordinate(0,0);this.callbackKey=c.callbackKey||c.callbackkey;this.cssClass=c["web-class"]||null;this.info=c}createDom(){var a=this.isLabel_?"blocklyFlyoutLabel":"blocklyFlyoutButton";this.cssClass&&(a+=" "+
 this.cssClass);this.svgGroup=createSvgElement$$module$build$src$core$utils$dom(Svg$$module$build$src$core$utils$svg.G,{"class":a},this.workspace.getCanvas());let b;this.isLabel_||(b=createSvgElement$$module$build$src$core$utils$dom(Svg$$module$build$src$core$utils$svg.RECT,{"class":"blocklyFlyoutButtonShadow",rx:FlyoutButton$$module$build$src$core$flyout_button.BORDER_RADIUS,ry:FlyoutButton$$module$build$src$core$flyout_button.BORDER_RADIUS,x:1,y:1},this.svgGroup));a=createSvgElement$$module$build$src$core$utils$dom(Svg$$module$build$src$core$utils$svg.RECT,
 {"class":this.isLabel_?"blocklyFlyoutLabelBackground":"blocklyFlyoutButtonBackground",rx:FlyoutButton$$module$build$src$core$flyout_button.BORDER_RADIUS,ry:FlyoutButton$$module$build$src$core$flyout_button.BORDER_RADIUS},this.svgGroup);const c=createSvgElement$$module$build$src$core$utils$dom(Svg$$module$build$src$core$utils$svg.TEXT,{"class":this.isLabel_?"blocklyFlyoutLabelText":"blocklyText",x:0,y:0,"text-anchor":"middle"},this.svgGroup);var d=replaceMessageReferences$$module$build$src$core$utils$parsing(this.text);
@@ -2061,7 +2132,13 @@ module$build$src$core$trashcan.Trashcan=Trashcan$$module$build$src$core$trashcan
 NEXT_STATEMENT$$module$build$src$core$blockly=ConnectionType$$module$build$src$core$connection_type.NEXT_STATEMENT,PREVIOUS_STATEMENT$$module$build$src$core$blockly=ConnectionType$$module$build$src$core$connection_type.PREVIOUS_STATEMENT,DUMMY_INPUT$$module$build$src$core$blockly=$.inputTypes$$module$build$src$core$inputs$input_types.DUMMY,TOOLBOX_AT_TOP$$module$build$src$core$blockly=Position$$module$build$src$core$utils$toolbox.TOP,TOOLBOX_AT_BOTTOM$$module$build$src$core$blockly=Position$$module$build$src$core$utils$toolbox.BOTTOM,
 TOOLBOX_AT_LEFT$$module$build$src$core$blockly=Position$$module$build$src$core$utils$toolbox.LEFT,TOOLBOX_AT_RIGHT$$module$build$src$core$blockly=Position$$module$build$src$core$utils$toolbox.RIGHT,svgResize$$module$build$src$core$blockly=svgResize$$module$build$src$core$common,getMainWorkspace$$module$build$src$core$blockly=getMainWorkspace$$module$build$src$core$common,getSelected$$module$build$src$core$blockly=getSelected$$module$build$src$core$common,defineBlocksWithJsonArray$$module$build$src$core$blockly=
 defineBlocksWithJsonArray$$module$build$src$core$common,setParentContainer$$module$build$src$core$blockly=setParentContainer$$module$build$src$core$common,COLLAPSE_CHARS$$module$build$src$core$blockly=COLLAPSE_CHARS$$module$build$src$core$internal_constants,DRAG_STACK$$module$build$src$core$blockly=DRAG_STACK$$module$build$src$core$internal_constants,OPPOSITE_TYPE$$module$build$src$core$blockly=OPPOSITE_TYPE$$module$build$src$core$internal_constants,RENAME_VARIABLE_ID$$module$build$src$core$blockly=
-RENAME_VARIABLE_ID$$module$build$src$core$internal_constants,DELETE_VARIABLE_ID$$module$build$src$core$blockly=DELETE_VARIABLE_ID$$module$build$src$core$internal_constants,COLLAPSED_INPUT_NAME$$module$build$src$core$blockly=COLLAPSED_INPUT_NAME$$module$build$src$core$constants,COLLAPSED_FIELD_NAME$$module$build$src$core$blockly=COLLAPSED_FIELD_NAME$$module$build$src$core$constants,VARIABLE_CATEGORY_NAME$$module$build$src$core$blockly=CATEGORY_NAME$$module$build$src$core$variables,VARIABLE_DYNAMIC_CATEGORY_NAME$$module$build$src$core$blockly=
+RENAME_VARIABLE_ID$$module$build$src$core$internal_constants
+
+
+,ADD_VARIABLE_ID$$module$build$src$core$blockly=ADD_VARIABLE_ID$$module$build$src$core$internal_constants
+
+
+,COLLAPSED_INPUT_NAME$$module$build$src$core$blockly=COLLAPSED_INPUT_NAME$$module$build$src$core$constants,COLLAPSED_FIELD_NAME$$module$build$src$core$blockly=COLLAPSED_FIELD_NAME$$module$build$src$core$constants,VARIABLE_CATEGORY_NAME$$module$build$src$core$blockly=CATEGORY_NAME$$module$build$src$core$variables,VARIABLE_DYNAMIC_CATEGORY_NAME$$module$build$src$core$blockly=
 CATEGORY_NAME$$module$build$src$core$variables_dynamic,PROCEDURE_CATEGORY_NAME$$module$build$src$core$blockly=CATEGORY_NAME$$module$build$src$core$procedures;Workspace$$module$build$src$core$workspace.prototype.newBlock=function(a,b){return new Block$$module$build$src$core$block(this,a,b)};WorkspaceSvg$$module$build$src$core$workspace_svg.prototype.newBlock=function(a,b){return new BlockSvg$$module$build$src$core$block_svg(this,a,b)};WorkspaceSvg$$module$build$src$core$workspace_svg.newTrashcan=function(a){return new Trashcan$$module$build$src$core$trashcan(a)};
 WorkspaceCommentSvg$$module$build$src$core$workspace_comment_svg.prototype.showContextMenu=function(a){if(!this.workspace.options.readOnly){var b=[];this.isDeletable()&&this.isMovable()&&(b.push(commentDuplicateOption$$module$build$src$core$contextmenu(this)),b.push(commentDeleteOption$$module$build$src$core$contextmenu(this)));show$$module$build$src$core$contextmenu(a,b,this.RTL)}};MiniWorkspaceBubble$$module$build$src$core$bubbles$mini_workspace_bubble.prototype.newWorkspaceSvg=function(a){return new WorkspaceSvg$$module$build$src$core$workspace_svg(a)};
 $.Names$$module$build$src$core$names.prototype.populateProcedures=function(a){a=allProcedures$$module$build$src$core$procedures(a);a=a[0].concat(a[1]);for(let b=0;b<a.length;b++)this.getName(a[b][0],$.Names$$module$build$src$core$names.NameType.PROCEDURE)};var DropDownDiv$$module$build$src$core$blockly=module$build$src$core$dropdowndiv,connectionTypes$$module$build$src$core$blockly=ConnectionType$$module$build$src$core$connection_type,module$build$src$core$blockly={};
@@ -2077,7 +2154,13 @@ module$build$src$core$blockly.FieldVariable=FieldVariable$$module$build$src$core
 module$build$src$core$blockly.Gesture=Gesture$$module$build$src$core$gesture;module$build$src$core$blockly.Grid=Grid$$module$build$src$core$grid;module$build$src$core$blockly.HorizontalFlyout=HorizontalFlyout$$module$build$src$core$flyout_horizontal;module$build$src$core$blockly.INPUT_VALUE=INPUT_VALUE$$module$build$src$core$blockly;module$build$src$core$blockly.Input=Input$$module$build$src$core$inputs$input;module$build$src$core$blockly.InsertionMarkerManager=InsertionMarkerManager$$module$build$src$core$insertion_marker_manager;
 module$build$src$core$blockly.Marker=Marker$$module$build$src$core$keyboard_nav$marker;module$build$src$core$blockly.MarkerManager=MarkerManager$$module$build$src$core$marker_manager;module$build$src$core$blockly.Menu=Menu$$module$build$src$core$menu;module$build$src$core$blockly.MenuItem=MenuItem$$module$build$src$core$menuitem;module$build$src$core$blockly.MetricsManager=MetricsManager$$module$build$src$core$metrics_manager;module$build$src$core$blockly.Msg=$.Msg$$module$build$src$core$msg;
 module$build$src$core$blockly.NEXT_STATEMENT=NEXT_STATEMENT$$module$build$src$core$blockly;module$build$src$core$blockly.Names=$.Names$$module$build$src$core$names;module$build$src$core$blockly.OPPOSITE_TYPE=OPPOSITE_TYPE$$module$build$src$core$internal_constants;module$build$src$core$blockly.OUTPUT_VALUE=OUTPUT_VALUE$$module$build$src$core$blockly;module$build$src$core$blockly.Options=Options$$module$build$src$core$options;module$build$src$core$blockly.PREVIOUS_STATEMENT=PREVIOUS_STATEMENT$$module$build$src$core$blockly;
-module$build$src$core$blockly.PROCEDURE_CATEGORY_NAME=CATEGORY_NAME$$module$build$src$core$procedures;module$build$src$core$blockly.Procedures=module$build$src$core$procedures;module$build$src$core$blockly.RENAME_VARIABLE_ID=RENAME_VARIABLE_ID$$module$build$src$core$internal_constants;module$build$src$core$blockly.RenderedConnection=RenderedConnection$$module$build$src$core$rendered_connection;module$build$src$core$blockly.Scrollbar=Scrollbar$$module$build$src$core$scrollbar;
+module$build$src$core$blockly.PROCEDURE_CATEGORY_NAME=CATEGORY_NAME$$module$build$src$core$procedures;module$build$src$core$blockly.Procedures=module$build$src$core$procedures;module$build$src$core$blockly.RENAME_VARIABLE_ID=RENAME_VARIABLE_ID$$module$build$src$core$internal_constants;
+
+
+module$build$src$core$blockly.ADD_VARIABLE_ID=ADD_VARIABLE_ID$$module$build$src$core$internal_constants;
+
+
+module$build$src$core$blockly.RenderedConnection=RenderedConnection$$module$build$src$core$rendered_connection;module$build$src$core$blockly.Scrollbar=Scrollbar$$module$build$src$core$scrollbar;
 module$build$src$core$blockly.ScrollbarPair=ScrollbarPair$$module$build$src$core$scrollbar_pair;module$build$src$core$blockly.ShortcutItems=module$build$src$core$shortcut_items;module$build$src$core$blockly.ShortcutRegistry=ShortcutRegistry$$module$build$src$core$shortcut_registry;module$build$src$core$blockly.TOOLBOX_AT_BOTTOM=TOOLBOX_AT_BOTTOM$$module$build$src$core$blockly;module$build$src$core$blockly.TOOLBOX_AT_LEFT=TOOLBOX_AT_LEFT$$module$build$src$core$blockly;
 module$build$src$core$blockly.TOOLBOX_AT_RIGHT=TOOLBOX_AT_RIGHT$$module$build$src$core$blockly;module$build$src$core$blockly.TOOLBOX_AT_TOP=TOOLBOX_AT_TOP$$module$build$src$core$blockly;module$build$src$core$blockly.TabNavigateCursor=TabNavigateCursor$$module$build$src$core$keyboard_nav$tab_navigate_cursor;module$build$src$core$blockly.Theme=Theme$$module$build$src$core$theme;module$build$src$core$blockly.ThemeManager=ThemeManager$$module$build$src$core$theme_manager;
 module$build$src$core$blockly.Themes=module$build$src$core$theme$themes;module$build$src$core$blockly.Toolbox=Toolbox$$module$build$src$core$toolbox$toolbox;module$build$src$core$blockly.ToolboxCategory=ToolboxCategory$$module$build$src$core$toolbox$category;module$build$src$core$blockly.ToolboxItem=ToolboxItem$$module$build$src$core$toolbox$toolbox_item;module$build$src$core$blockly.ToolboxSeparator=ToolboxSeparator$$module$build$src$core$toolbox$separator;module$build$src$core$blockly.Tooltip=module$build$src$core$tooltip;
