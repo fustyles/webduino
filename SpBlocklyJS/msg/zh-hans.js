@@ -1290,7 +1290,7 @@ Blockly.Msg["MYSEARCH_QUERY"] = "搜寻积木";
 Blockly.Msg["MYSEARCH_PROMPT"] = "请输入积木文字关键字";
 Blockly.Msg["MYSEARCH_HUE"] = "210";
 
-Blockly.Msg["MYSWITCH_TITLE"] = "条件判断";
+Blockly.Msg["MYSWITCH_TITLE"] = "开关";
 Blockly.Msg["MYSWITCH_VALUE"] = "值";
 Blockly.Msg["MYSWITCH_CONDITION"] = "条件";
 Blockly.Msg["MYSWITCH_CASE"] = "如果等于";
