@@ -1295,7 +1295,7 @@ Blockly.Msg["MYSWITCH_VALUE"] = "值";
 Blockly.Msg["MYSWITCH_CONDITION"] = "比对";
 Blockly.Msg["MYSWITCH_CASE"] = "如果等于";
 Blockly.Msg["MYSWITCH_STATEMENT"] = "执行";
-Blockly.Msg["MYSWITCH_DEFAULT"] = "否则执行";
+Blockly.Msg["MYSWITCH_DEFAULT"] = "预设执行";
 Blockly.Msg["MYSWITCH_ELSE"] = "预设";
 
 return Blockly.Msg;
