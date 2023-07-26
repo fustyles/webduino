@@ -1290,7 +1290,7 @@ Blockly.Msg["MYSEARCH_QUERY"] = "搜尋積木";
 Blockly.Msg["MYSEARCH_PROMPT"] = "請輸入積木文字關鍵字";
 Blockly.Msg["MYSEARCH_HUE"] = "210";
 
-Blockly.Msg["MYSWITCH_TITLE"] = "條件判斷";
+Blockly.Msg["MYSWITCH_TITLE"] = "開關";
 Blockly.Msg["MYSWITCH_VALUE"] = "值";
 Blockly.Msg["MYSWITCH_CONDITION"] = "條件";
 Blockly.Msg["MYSWITCH_CASE"] = "如果等於";
