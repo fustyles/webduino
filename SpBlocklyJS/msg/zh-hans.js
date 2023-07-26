@@ -1292,11 +1292,11 @@ Blockly.Msg["MYSEARCH_HUE"] = "210";
 
 Blockly.Msg["MYSWITCH_TITLE"] = "开关";
 Blockly.Msg["MYSWITCH_VALUE"] = "值";
-Blockly.Msg["MYSWITCH_CONDITION"] = "条件";
+Blockly.Msg["MYSWITCH_CONDITION"] = "比对";
 Blockly.Msg["MYSWITCH_CASE"] = "如果等于";
 Blockly.Msg["MYSWITCH_STATEMENT"] = "执行";
 Blockly.Msg["MYSWITCH_DEFAULT"] = "否则执行";
-Blockly.Msg["MYSWITCH_ELSE"] = "否则";
+Blockly.Msg["MYSWITCH_ELSE"] = "预设";
 
 return Blockly.Msg;
 }));
