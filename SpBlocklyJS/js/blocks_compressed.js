@@ -52,21 +52,168 @@ style:"list_blocks",tooltip:"%{BKY_LISTS_SORT_TOOLTIP}",helpUrl:"%{BKY_LISTS_SOR
 blocks$$module$build$src$blocks$lists.lists_split={init:function(){const a=$.fromJson$$module$build$src$core$field_registry({type:"field_dropdown",options:[[$.Msg$$module$build$src$core$msg.LISTS_SPLIT_LIST_FROM_TEXT,"SPLIT"],[$.Msg$$module$build$src$core$msg.LISTS_SPLIT_TEXT_FROM_LIST,"JOIN"]]});if(!a)throw Error("field_dropdown not found");a.setValidator(b=>{this.updateType_(b)});this.setHelpUrl($.Msg$$module$build$src$core$msg.LISTS_SPLIT_HELPURL);this.setStyle("list_blocks");this.appendValueInput("INPUT").setCheck("String").appendField(a,
 "MODE");this.appendValueInput("DELIM").setCheck("String").appendField($.Msg$$module$build$src$core$msg.LISTS_SPLIT_WITH_DELIMITER);this.setInputsInline(!0);this.setOutput(!0,"Array");this.setTooltip(()=>{const b=this.getFieldValue("MODE");if("SPLIT"===b)return $.Msg$$module$build$src$core$msg.LISTS_SPLIT_TOOLTIP_SPLIT;if("JOIN"===b)return $.Msg$$module$build$src$core$msg.LISTS_SPLIT_TOOLTIP_JOIN;throw Error("Unknown mode: "+b);})},updateType_:function(a){if(this.getFieldValue("MODE")!==a){const b=
 this.getInput("INPUT").connection;b.setShadowDom(null);const c=b.targetBlock();c&&(b.disconnect(),c.isShadow()?c.dispose(!1):this.bumpNeighbours())}"SPLIT"===a?(this.outputConnection.setCheck("Array"),this.getInput("INPUT").setCheck("String")):(this.outputConnection.setCheck("String"),this.getInput("INPUT").setCheck("Array"))},mutationToDom:function(){const a=$.createElement$$module$build$src$core$utils$xml("mutation");a.setAttribute("mode",this.getFieldValue("MODE"));return a},domToMutation:function(a){this.updateType_(a.getAttribute("mode"))},
-saveExtraState:function(){return null},loadExtraState:function(){}};$.defineBlocks$$module$build$src$core$common(blocks$$module$build$src$blocks$lists);var module$build$src$blocks$lists={};module$build$src$blocks$lists.blocks=blocks$$module$build$src$blocks$lists;var blocks$$module$build$src$blocks$logic=$.createBlockDefinitionsFromJsonArray$$module$build$src$core$common([{type:"logic_boolean",message0:"%1",args0:[{type:"field_dropdown",name:"BOOL",options:[["%{BKY_LOGIC_BOOLEAN_TRUE}","TRUE"],["%{BKY_LOGIC_BOOLEAN_FALSE}","FALSE"]]}],output:"Boolean",style:"logic_blocks",tooltip:"%{BKY_LOGIC_BOOLEAN_TOOLTIP}",helpUrl:"%{BKY_LOGIC_BOOLEAN_HELPURL}"},{type:"controls_if",message0:"%{BKY_CONTROLS_IF_MSG_IF} %1",args0:[{type:"input_value",name:"IF0",check:"Boolean"}],
-message1:"%{BKY_CONTROLS_IF_MSG_THEN} %1",args1:[{type:"input_statement",name:"DO0"}],previousStatement:null,nextStatement:null,style:"logic_blocks",helpUrl:"%{BKY_CONTROLS_IF_HELPURL}",suppressPrefixSuffix:!0,mutator:"controls_if_mutator",extensions:["controls_if_tooltip"]},{type:"controls_ifelse",message0:"%{BKY_CONTROLS_IF_MSG_IF} %1",args0:[{type:"input_value",name:"IF0",check:"Boolean"}],message1:"%{BKY_CONTROLS_IF_MSG_THEN} %1",args1:[{type:"input_statement",name:"DO0"}],message2:"%{BKY_CONTROLS_IF_MSG_ELSE} %1",
+saveExtraState:function(){return null},loadExtraState:function(){}};$.defineBlocks$$module$build$src$core$common(blocks$$module$build$src$blocks$lists);var module$build$src$blocks$lists={};module$build$src$blocks$lists.blocks=blocks$$module$build$src$blocks$lists;var blocks$$module$build$src$blocks$logic=$.createBlockDefinitionsFromJsonArray$$module$build$src$core$common([{type:"logic_boolean",message0:"%1",args0:[{type:"field_dropdown",name:"BOOL",options:[["%{BKY_LOGIC_BOOLEAN_TRUE}","TRUE"],["%{BKY_LOGIC_BOOLEAN_FALSE}","FALSE"]]}],output:"Boolean",style:"logic_blocks",tooltip:"%{BKY_LOGIC_BOOLEAN_TOOLTIP}",helpUrl:"%{BKY_LOGIC_BOOLEAN_HELPURL}"},{type:"controls_if",message0:"%{BKY_CONTROLS_IF_MSG_IF} %1",args0:[{type:"input_value",name:"IF0",check:"Boolean"}],message1:"%{BKY_CONTROLS_IF_MSG_THEN} %1",args1:[{type:"input_statement",name:"DO0"}],previousStatement:null,nextStatement:null,style:"logic_blocks",helpUrl:"%{BKY_CONTROLS_IF_HELPURL}",suppressPrefixSuffix:!0,mutator:"controls_if_mutator",extensions:["controls_if_tooltip"]}
+
+
+,{type:"mySwitch"
+	,message0:"%{BKY_MYSWITCH_TITLE}"
+	,message1:"%{BKY_MYSWITCH_VALUE}" + " %1"	
+	,args1:[{type:"input_value",name:"VALUE",check:null,align:"RIGHT"}]
+	,message2:"%{BKY_MYSWITCH_CASE}" + " %1"
+	,args2:[{type:"input_value",name:"CASE0",check:null,align:"RIGHT"}]
+	,message3:"%{BKY_MYSWITCH_STATEMENT}" + " %1"
+	,args3:[{type:"input_statement",name:"DO0",align:"RIGHT"}]
+	,previousStatement:null
+	,nextStatement:null
+	,style:"logic_blocks"
+	,mutator:"mySwitch_mutator"
+	}
+	,{type:"mySwitch_switch"
+	,message0:"%{BKY_MYSWITCH_CASE}"
+	,nextStatement:null
+	,enableContextMenu:!1
+	,style:"logic_blocks"
+	}
+	,{type:"mySwitch_case"
+	,message0:"%{BKY_MYSWITCH_CASE}"
+	,previousStatement:null
+	,nextStatement:null
+	,enableContextMenu:!1
+	,style:"logic_blocks"
+	}
+	,{type:"mySwitch_default"
+	,message0:"%{BKY_MYSWITCH_DEFAULT}"
+	,previousStatement:null
+	,enableContextMenu:!1
+	,style:"logic_blocks"
+	}
+	
+	
+,{type:"controls_ifelse",message0:"%{BKY_CONTROLS_IF_MSG_IF} %1",args0:[{type:"input_value",name:"IF0",check:"Boolean"}],message1:"%{BKY_CONTROLS_IF_MSG_THEN} %1",args1:[{type:"input_statement",name:"DO0"}],message2:"%{BKY_CONTROLS_IF_MSG_ELSE} %1",
 args2:[{type:"input_statement",name:"ELSE"}],previousStatement:null,nextStatement:null,style:"logic_blocks",tooltip:"%{BKYCONTROLS_IF_TOOLTIP_2}",helpUrl:"%{BKY_CONTROLS_IF_HELPURL}",suppressPrefixSuffix:!0,extensions:["controls_if_tooltip"]},{type:"logic_compare",message0:"%1 %2 %3",args0:[{type:"input_value",name:"A"},{type:"field_dropdown",name:"OP",options:[["=","EQ"],["\u2260","NEQ"],["\u200f<","LT"],["\u200f\u2264","LTE"],["\u200f>","GT"],["\u200f\u2265","GTE"]]},{type:"input_value",name:"B"}],
 inputsInline:!0,output:"Boolean",style:"logic_blocks",helpUrl:"%{BKY_LOGIC_COMPARE_HELPURL}",extensions:["logic_compare","logic_op_tooltip"]},{type:"logic_operation",message0:"%1 %2 %3",args0:[{type:"input_value",name:"A",check:"Boolean"},{type:"field_dropdown",name:"OP",options:[["%{BKY_LOGIC_OPERATION_AND}","AND"],["%{BKY_LOGIC_OPERATION_OR}","OR"]]},{type:"input_value",name:"B",check:"Boolean"}],inputsInline:!0,output:"Boolean",style:"logic_blocks",helpUrl:"%{BKY_LOGIC_OPERATION_HELPURL}",extensions:["logic_op_tooltip"]},
 {type:"logic_negate",message0:"%{BKY_LOGIC_NEGATE_TITLE}",args0:[{type:"input_value",name:"BOOL",check:"Boolean"}],output:"Boolean",style:"logic_blocks",tooltip:"%{BKY_LOGIC_NEGATE_TOOLTIP}",helpUrl:"%{BKY_LOGIC_NEGATE_HELPURL}"},{type:"logic_null",message0:"%{BKY_LOGIC_NULL}",output:null,style:"logic_blocks",tooltip:"%{BKY_LOGIC_NULL_TOOLTIP}",helpUrl:"%{BKY_LOGIC_NULL_HELPURL}"},{type:"logic_ternary",message0:"%{BKY_LOGIC_TERNARY_CONDITION} %1",args0:[{type:"input_value",name:"IF",check:"Boolean"}],
 message1:"%{BKY_LOGIC_TERNARY_IF_TRUE} %1",args1:[{type:"input_value",name:"THEN"}],message2:"%{BKY_LOGIC_TERNARY_IF_FALSE} %1",args2:[{type:"input_value",name:"ELSE"}],output:null,style:"logic_blocks",tooltip:"%{BKY_LOGIC_TERNARY_TOOLTIP}",helpUrl:"%{BKY_LOGIC_TERNARY_HELPURL}",extensions:["logic_ternary"]},{type:"controls_if_if",message0:"%{BKY_CONTROLS_IF_IF_TITLE_IF}",nextStatement:null,enableContextMenu:!1,style:"logic_blocks",tooltip:"%{BKY_CONTROLS_IF_IF_TOOLTIP}"},{type:"controls_if_elseif",
 message0:"%{BKY_CONTROLS_IF_ELSEIF_TITLE_ELSEIF}",previousStatement:null,nextStatement:null,enableContextMenu:!1,style:"logic_blocks",tooltip:"%{BKY_CONTROLS_IF_ELSEIF_TOOLTIP}"},{type:"controls_if_else",message0:"%{BKY_CONTROLS_IF_ELSE_TITLE_ELSE}",previousStatement:null,enableContextMenu:!1,style:"logic_blocks",tooltip:"%{BKY_CONTROLS_IF_ELSE_TOOLTIP}"}]),TOOLTIPS_BY_OP$$module$build$src$blocks$logic={EQ:"%{BKY_LOGIC_COMPARE_TOOLTIP_EQ}",NEQ:"%{BKY_LOGIC_COMPARE_TOOLTIP_NEQ}",LT:"%{BKY_LOGIC_COMPARE_TOOLTIP_LT}",
 LTE:"%{BKY_LOGIC_COMPARE_TOOLTIP_LTE}",GT:"%{BKY_LOGIC_COMPARE_TOOLTIP_GT}",GTE:"%{BKY_LOGIC_COMPARE_TOOLTIP_GTE}",AND:"%{BKY_LOGIC_OPERATION_TOOLTIP_AND}",OR:"%{BKY_LOGIC_OPERATION_TOOLTIP_OR}"};$.register$$module$build$src$core$extensions("logic_op_tooltip",$.buildTooltipForDropdown$$module$build$src$core$extensions("OP",TOOLTIPS_BY_OP$$module$build$src$blocks$logic));
+
+
 var CONTROLS_IF_MUTATOR_MIXIN$$module$build$src$blocks$logic={elseifCount_:0,elseCount_:0,mutationToDom:function(){if(!this.elseifCount_&&!this.elseCount_)return null;const a=$.createElement$$module$build$src$core$utils$xml("mutation");this.elseifCount_&&a.setAttribute("elseif",String(this.elseifCount_));this.elseCount_&&a.setAttribute("else","1");return a},domToMutation:function(a){this.elseifCount_=parseInt(a.getAttribute("elseif"),10)||0;this.elseCount_=parseInt(a.getAttribute("else"),10)||0;this.rebuildShape_()},
 saveExtraState:function(){if(!this.elseifCount_&&!this.elseCount_)return null;const a=Object.create(null);this.elseifCount_&&(a.elseIfCount=this.elseifCount_);this.elseCount_&&(a.hasElse=!0);return a},loadExtraState:function(a){this.elseifCount_=a.elseIfCount||0;this.elseCount_=a.hasElse?1:0;this.updateShape_()},decompose:function(a){const b=a.newBlock("controls_if_if");b.initSvg();let c=b.nextConnection;for(let d=1;d<=this.elseifCount_;d++){const e=a.newBlock("controls_if_elseif");e.initSvg();c.connect(e.previousConnection);
 c=e.nextConnection}this.elseCount_&&(a=a.newBlock("controls_if_else"),a.initSvg(),c.connect(a.previousConnection));return b},compose:function(a){a=a.nextConnection.targetBlock();this.elseCount_=this.elseifCount_=0;const b=[null],c=[null];let d=null;for(;a;){if(!a.isInsertionMarker())switch(a.type){case "controls_if_elseif":this.elseifCount_++;b.push(a.valueConnection_);c.push(a.statementConnection_);break;case "controls_if_else":this.elseCount_++;d=a.statementConnection_;break;default:throw TypeError("Unknown block type: "+
 a.type);}a=a.getNextBlock()}this.updateShape_();this.reconnectChildBlocks_(b,c,d)},saveConnections:function(a){a=a.nextConnection.targetBlock();let b=1;for(;a;){if(!a.isInsertionMarker())switch(a.type){case "controls_if_elseif":var c=this.getInput("IF"+b);const d=this.getInput("DO"+b);a.valueConnection_=c&&c.connection.targetConnection;a.statementConnection_=d&&d.connection.targetConnection;b++;break;case "controls_if_else":c=this.getInput("ELSE");a.statementConnection_=c&&c.connection.targetConnection;
 break;default:throw TypeError("Unknown block type: "+a.type);}a=a.getNextBlock()}},rebuildShape_:function(){const a=[null],b=[null];let c=null;this.getInput("ELSE")&&(c=this.getInput("ELSE").connection.targetConnection);for(let d=1;this.getInput("IF"+d);d++){const e=this.getInput("IF"+d),f=this.getInput("DO"+d);a.push(e.connection.targetConnection);b.push(f.connection.targetConnection)}this.updateShape_();this.reconnectChildBlocks_(a,b,c)},updateShape_:function(){this.getInput("ELSE")&&this.removeInput("ELSE");
 for(var a=1;this.getInput("IF"+a);a++)this.removeInput("IF"+a),this.removeInput("DO"+a);for(a=1;a<=this.elseifCount_;a++)this.appendValueInput("IF"+a).setCheck("Boolean").appendField($.Msg$$module$build$src$core$msg.CONTROLS_IF_MSG_ELSEIF),this.appendStatementInput("DO"+a).appendField($.Msg$$module$build$src$core$msg.CONTROLS_IF_MSG_THEN);this.elseCount_&&this.appendStatementInput("ELSE").appendField($.Msg$$module$build$src$core$msg.CONTROLS_IF_MSG_ELSE)},reconnectChildBlocks_:function(a,b,c){for(let d=
-1;d<=this.elseifCount_;d++){let e;null==(e=a[d])||e.reconnect(this,"IF"+d);let f;null==(f=b[d])||f.reconnect(this,"DO"+d)}null==c||c.reconnect(this,"ELSE")}};$.registerMutator$$module$build$src$core$extensions("controls_if_mutator",CONTROLS_IF_MUTATOR_MIXIN$$module$build$src$blocks$logic,null,["controls_if_elseif","controls_if_else"]);
+1;d<=this.elseifCount_;d++){let e;null==(e=a[d])||e.reconnect(this,"IF"+d);let f;null==(f=b[d])||f.reconnect(this,"DO"+d)}null==c||c.reconnect(this,"ELSE")}};
+
+
+
+var MYSWITCH_MUTATOR_MIXIN$$module$build$src$blocks$logic={
+	caseCount_:0
+	,defaultCount_:0
+	,mutationToDom:function(){
+		if(!this.caseCount_&&!this.defaultCount_)return null;
+		var a=Blockly.utils.xml.createElement("mutation");
+		this.caseCount_&&a.setAttribute("case",this.caseCount_);
+		this.defaultCount_&&a.setAttribute("default",1);
+		return a
+	}
+	,domToMutation:function(a){
+		this.caseCount_=parseInt(a.getAttribute("case"),10)||0;this.defaultCount_=parseInt(a.getAttribute("default"),10)||0;this.rebuildShape_()
+	}
+	,decompose:function(a){
+		var b=a.newBlock("mySwitch_switch");
+		b.initSvg();
+		for(var c=b.nextConnection,d=1;d<=this.caseCount_;d++){
+			var e=a.newBlock("mySwitch_case");
+			e.initSvg();
+			c.connect(e.previousConnection);
+			c=e.nextConnection
+		}
+		this.defaultCount_&&(a=a.newBlock("mySwitch_default"),a.initSvg(),c.connect(a.previousConnection));
+		return b
+	}
+	,compose:function(a){
+		a=a.nextConnection.targetBlock();
+		this.defaultCount_=this.caseCount_=0;
+		for(var b=[null],c=[null],d=null;a&&!a.isInsertionMarker();){
+			switch(a.type){
+				case "mySwitch_case":
+					this.caseCount_++;
+					b.push(a.valueConnection_);
+					c.push(a.statementConnection_);
+					break;
+				case "mySwitch_default":
+					this.defaultCount_++;
+					d=a.statementConnection_;
+					break;
+				default:throw TypeError("Unknown block type: "+a.type);
+			}
+			a=a.nextConnection&&a.nextConnection.targetBlock()
+		}
+		this.updateShape_();
+		this.reconnectChildBlocks_(b,c,d)
+	}
+	,saveConnections:function(a){
+		a=a.nextConnection.targetBlock();
+		for(var b=1;a;){
+			switch(a.type){
+				case "mySwitch_case":
+					var c=this.getInput("CASE"+b),d=this.getInput("DO"+b);
+					a.valueConnection_=c&&c.connection.targetConnection;
+					a.statementConnection_=d&&d.connection.targetConnection;
+					b++;
+					break;
+				case "mySwitch_default":
+					d=this.getInput("DEFAULT");
+					a.statementConnection_=d&&d.connection.targetConnection;
+					break;
+				default:throw TypeError("Unknown block type: "+a.type);
+			}
+			a=a.nextConnection&&a.nextConnection.targetBlock()
+		}
+	}
+	,rebuildShape_:function(){
+		var a=[null],b=[null],c=null;
+		this.getInput("DEFAULT")&&(c=this.getInput("DEFAULT").connection.targetConnection);
+		for(var d=1;this.getInput("CASE"+d);){
+			var e=this.getInput("CASE"+d),f=this.getInput("DO"+d);
+			a.push(e.connection.targetConnection);
+			b.push(f.connection.targetConnection);d++
+		}
+		this.updateShape_();
+		this.reconnectChildBlocks_(a,b,c)
+	}
+	,updateShape_:function(){
+		this.getInput("DEFAULT")&&this.removeInput("DEFAULT");
+		for(var a=1;this.getInput("CASE"+a);)
+			this.removeInput("CASE"+a),this.removeInput("DO"+a),a++;
+		for(a=1;a<=this.caseCount_;a++)
+			this.appendValueInput("CASE"+a)
+			.setCheck(null)
+			.appendField("%{BKY_MYSWITCH_CASE}")
+			.setAlign(Blockly.ALIGN_RIGHT)
+		,this.appendStatementInput("DO"+a)
+			.appendField("%{BKY_MYSWITCH_STATEMENT}")
+			.setAlign(Blockly.ALIGN_RIGHT);
+		this.defaultCount_&&this.appendStatementInput("DEFAULT")
+			.appendField("%{BKY_MYSWITCH_DEFAULT}")
+			.setAlign(Blockly.ALIGN_RIGHT)
+	}
+	,reconnectChildBlocks_:function(a,b,c){
+		for(let d=1;d<=this.caseCount_;d++){
+			let e;null==(e=a[d])||e.reconnect(this,"CASE"+d);
+			let f;null==(f=b[d])||f.reconnect(this,"DO"+d)
+		}
+		null==c||c.reconnect(this,"DEFAULT")
+	}
+};
+
+$.registerMutator$$module$build$src$core$extensions("mySwitch_mutator",MYSWITCH_MUTATOR_MIXIN$$module$build$src$blocks$logic,null,["mySwitch_case","mySwitch_default"]);
+
+
+
+$.registerMutator$$module$build$src$core$extensions("controls_if_mutator",CONTROLS_IF_MUTATOR_MIXIN$$module$build$src$blocks$logic,null,["controls_if_elseif","controls_if_else"]);
 var CONTROLS_IF_TOOLTIP_EXTENSION$$module$build$src$blocks$logic=function(){this.setTooltip(function(){if(this.elseifCount_||this.elseCount_){if(!this.elseifCount_&&this.elseCount_)return $.Msg$$module$build$src$core$msg.CONTROLS_IF_TOOLTIP_2;if(this.elseifCount_&&!this.elseCount_)return $.Msg$$module$build$src$core$msg.CONTROLS_IF_TOOLTIP_3;if(this.elseifCount_&&this.elseCount_)return $.Msg$$module$build$src$core$msg.CONTROLS_IF_TOOLTIP_4}else return $.Msg$$module$build$src$core$msg.CONTROLS_IF_TOOLTIP_1;
 return""}.bind(this))};$.register$$module$build$src$core$extensions("controls_if_tooltip",CONTROLS_IF_TOOLTIP_EXTENSION$$module$build$src$blocks$logic);
 var LOGIC_COMPARE_ONCHANGE_MIXIN$$module$build$src$blocks$logic={onchange:function(a){this.prevBlocks_||(this.prevBlocks_=[null,null]);var b=this.getInputTargetBlock("A");const c=this.getInputTargetBlock("B");b&&c&&!this.workspace.connectionChecker.doTypeChecks(b.outputConnection,c.outputConnection)&&($.setGroup$$module$build$src$core$events$utils(a.group),a=this.prevBlocks_[0],a!==b&&(b.unplug(),!a||a.isDisposed()||a.isShadow()||this.getInput("A").connection.connect(a.outputConnection)),b=this.prevBlocks_[1],

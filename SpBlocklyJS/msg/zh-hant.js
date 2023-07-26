@@ -1290,5 +1290,11 @@ Blockly.Msg["MYSEARCH_QUERY"] = "搜尋積木";
 Blockly.Msg["MYSEARCH_PROMPT"] = "請輸入積木文字關鍵字";
 Blockly.Msg["MYSEARCH_HUE"] = "210";
 
+Blockly.Msg["MYSWITCH_TITLE"] = "條件判斷";
+Blockly.Msg["MYSWITCH_VALUE"] = "判斷值";
+Blockly.Msg["MYSWITCH_CASE"] = "等於";
+Blockly.Msg["MYSWITCH_STATEMENT"] = "執行";
+Blockly.Msg["MYSWITCH_DEFAULT"] = "否則執行";
+
 return Blockly.Msg;
 }));

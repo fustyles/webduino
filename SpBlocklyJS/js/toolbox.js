@@ -1,6 +1,7 @@
 var catSystem = '<xml>'+
 '    <category name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">'+
 '    <block type="controls_if"></block>'+
+'	 <block type="mySwitch"></block>'+
 '    <block type="logic_compare"></block>'+
 '    <block type="logic_operation"></block>'+
 '    <block type="logic_negate"></block>'+

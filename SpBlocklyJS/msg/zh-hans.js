@@ -1290,5 +1290,11 @@ Blockly.Msg["MYSEARCH_QUERY"] = "搜寻积木";
 Blockly.Msg["MYSEARCH_PROMPT"] = "请输入积木文字关键字";
 Blockly.Msg["MYSEARCH_HUE"] = "210";
 
+Blockly.Msg["MYSWITCH_TITLE"] = "条件判断";
+Blockly.Msg["MYSWITCH_VALUE"] = "判断值";
+Blockly.Msg["MYSWITCH_CASE"] = "等于";
+Blockly.Msg["MYSWITCH_STATEMENT"] = "执行";
+Blockly.Msg["MYSWITCH_DEFAULT"] = "否则执行";
+
 return Blockly.Msg;
 }));
