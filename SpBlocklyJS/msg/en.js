@@ -1261,9 +1261,11 @@ Blockly.Msg["MYSEARCH_HUE"] = "210";
 
 Blockly.Msg["MYSWITCH_TITLE"] = "Switch";
 Blockly.Msg["MYSWITCH_VALUE"] = "Value";
+Blockly.Msg["MYSWITCH_CONDITION"] = "Condition";
 Blockly.Msg["MYSWITCH_CASE"] = "Case";
 Blockly.Msg["MYSWITCH_STATEMENT"] = "Statement";
 Blockly.Msg["MYSWITCH_DEFAULT"] = "Default";
+Blockly.Msg["MYSWITCH_ELSE"] = "Default";
 
 return Blockly.Msg;
 }));

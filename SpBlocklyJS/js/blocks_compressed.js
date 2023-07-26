@@ -69,20 +69,20 @@ saveExtraState:function(){return null},loadExtraState:function(){}};$.defineBloc
 	,mutator:"mySwitch_mutator"
 	}
 	,{type:"mySwitch_switch"
-	,message0:"%{BKY_MYSWITCH_CASE}"
+	,message0:"%{BKY_MYSWITCH_CONDITION}"
 	,nextStatement:null
 	,enableContextMenu:!1
 	,style:"logic_blocks"
 	}
 	,{type:"mySwitch_case"
-	,message0:"%{BKY_MYSWITCH_CASE}"
+	,message0:"%{BKY_MYSWITCH_CONDITION}"
 	,previousStatement:null
 	,nextStatement:null
 	,enableContextMenu:!1
 	,style:"logic_blocks"
 	}
 	,{type:"mySwitch_default"
-	,message0:"%{BKY_MYSWITCH_DEFAULT}"
+	,message0:"%{BKY_MYSWITCH_ELSE}"
 	,previousStatement:null
 	,enableContextMenu:!1
 	,style:"logic_blocks"
