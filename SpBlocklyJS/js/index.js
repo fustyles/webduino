@@ -1415,7 +1415,6 @@ function searchBlocksKeyboard(keyword) {
 											for (var p=0;p<categoryBlocks.length;p++) {
 												if (categoryBlocks[p].indexOf('type="'+flyoutItems[j].type+'"')!=-1&&categoryBlocks[p].indexOf('disabled="true"')==-1) {
 													var b = categoryBlocks[p].replace(/(?:\r\n|\r|\n|\t)/g, "");
-													console.log(b);
 													Blockly.mySearch.Blocks.push(b);
 													break;
 												}
