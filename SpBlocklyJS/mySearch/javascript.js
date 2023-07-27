@@ -41,6 +41,7 @@ function searchCategoryBlocks(nodes) {
 var category = ['<xml><category name="catTest" id="catTest"><block type="test"></block></category></xml>'];
 updateCategoryBlocks(category);
 
+searchBlocksKeyword("keyword");
 */
 
 /*
@@ -72,7 +73,7 @@ var registeryCallbackMySearch = function(){
 };
 registeryCallbackMySearch();
 
-function searchBlocksKeyboard(keyword) {
+function searchBlocksKeyword(keyword) {
 	Blockly.mySearch.Blocks=[];
 	Blockly.hideChaff();
 	if (keyword) {
@@ -141,8 +142,6 @@ function searchBlocksKeyboard(keyword) {
 		}
 	}
 }
-
-// searchBlocksKeyboard("keyword");
 
 function registerOpenBlockToolbox() {
   if (Blockly.ContextMenuRegistry.registry.getItem('open_block_toolbox')) {
