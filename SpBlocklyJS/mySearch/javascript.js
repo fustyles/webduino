@@ -53,6 +53,8 @@ updateCategoryBlocks(category);
 
 */
 
+var categoryExpand = [];
+
 Blockly.mySearch={};
 Blockly.MYSEARCH_CATEGORY_NAME="MYSEARCH";
 Blockly.mySearch.NAME_TYPE=Blockly.MYSEARCH_CATEGORY_NAME;
