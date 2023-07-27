@@ -38,7 +38,11 @@ function searchCategoryBlocks(nodes) {
 	}
 }
 
-var category = ['<xml><category name="catTest" id="catTest"><block type="test"></block></category></xml>'];
+var category = [
+'<xml><category name="catTest1" id="catTest1"><block type="test1"></block></category></xml>',
+'<xml><category name="catTest2" id="catTest2"><block type="test2"></block></category></xml>'
+];
+
 updateCategoryBlocks(category);
 
 */
