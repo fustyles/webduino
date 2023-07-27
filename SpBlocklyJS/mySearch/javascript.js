@@ -129,7 +129,7 @@ function searchBlocksKeyboard(keyword) {
 	}
 }
 
-// searchBlocksKeyboard("keyword");
+// searchBlocksKeyboard(prompt(Blockly.Msg["MYSEARCH_PROMPT"]));
 
 function registerOpenBlockToolbox() {
   if (Blockly.ContextMenuRegistry.registry.getItem('open_block_toolbox')) {
