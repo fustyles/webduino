@@ -7,10 +7,46 @@
 /**
  * @fileoverview My Search.
  * @author https://www.facebook.com/francefu/ (ChungYi Fu)
- * @Update 7/18/2023 09:00 (Taiwan Standard Time)
+ * @Update 7/27/2023 21:00 (Taiwan Standard Time)
  */
 
 /*
+
+Blockly.Msg["MYSEARCH"] = "SEARCH";
+Blockly.Msg["MYSEARCH_QUERY"] = "Search for blocks";
+Blockly.Msg["MYSEARCH_PROMPT"] = "Please input the keyword of blocks content.";
+Blockly.Msg["MYSEARCH_HUE"] = "210";
+
+var categoryBlocks = [];
+function updateCategoryBlocks(newCategory) {
+	categoryBlocks = [];
+	for (var i=0;i<newCategory.length;i++){
+		var categoryString = newCategory[i].replace(/(?:\r\n|\r|\n|\t)/g, "");
+		var xml = new DOMParser().parseFromString(categoryString,"text/xml");
+		searchCategoryBlocks(xml.firstChild.childNodes);
+	}
+}
+function searchCategoryBlocks(nodes) {
+	if (nodes.length>0) {
+		for (var j=0;j<nodes.length;j++){
+			if (nodes[j].nodeName=="category")
+				searchCategoryBlocks(nodes[j].childNodes);
+			else if (nodes[j].nodeName=="block")
+				categoryBlocks.push(new XMLSerializer().serializeToString(nodes[j]));
+		}
+	}
+}
+
+var category = ['<xml><category name="catTest" id="catTest"><block type="test"></block></category></xml>'];
+updateCategoryBlocks(category);
+
+*/
+
+/*
+
+<category id="catMySearch" name="%{BKY_MYSEARCH}" colour="%{BKY_MYSEARCH_HUE}"  custom="MYSEARCH"></category>
+
+*/
 
 Blockly.mySearch={};
 Blockly.MYSEARCH_CATEGORY_NAME="MYSEARCH";
