@@ -51,7 +51,7 @@ function searchCategoryBlocks(nodes) {
 Blockly.Msg["MYSEARCH"] = "SEARCH";
 Blockly.Msg["MYSEARCH_QUERY"] = "Search for blocks";
 Blockly.Msg["MYSEARCH_PROMPT"] = "Please input the keyword of blocks content.";
-Blockly.Msg["MYSEARCH_OPENBLOCKTOOLBOX"] = "Open the original category of the block";
+Blockly.Msg["MYSEARCH_OPENBLOCKCATEGORY"] = "Open the original category of the block";
 Blockly.Msg["MYSEARCH_HUE"] = "210";
 
 Blockly.mySearch={};
@@ -147,13 +147,13 @@ function searchBlocksKeyword(keyword) {
 	}
 }
 
-function registerOpenBlockToolbox() {
-  if (Blockly.ContextMenuRegistry.registry.getItem('open_block_toolbox')) {
+function registerOpenBlockCategory() {
+  if (Blockly.ContextMenuRegistry.registry.getItem('open_block_category')) {
     return;
   }
-  const openBlockToolbox = {
+  const openBlockCategory = {
     displayText: function(){
-		return Blockly.Msg["MYSEARCH_OPENBLOCKTOOLBOX"];
+		return Blockly.Msg["MYSEARCH_OPENBLOCKCATEGORY"];
 	},
     preconditionFn: function(a) {
 		return 'enabled';
@@ -162,13 +162,13 @@ function registerOpenBlockToolbox() {
 		searchBlockCategory(a.block.type)
     },
     scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
-    id: 'open_block_toolbox',
+    id: 'open_block_category',
     weight: 400,
   };
-  Blockly.ContextMenuRegistry.registry.register(openBlockToolbox);
+  Blockly.ContextMenuRegistry.registry.register(openBlockCategory);
 }
   
-registerOpenBlockToolbox();
+registerOpenBlockCategory();
 
 function searchBlockCategory(blockType) {
 	Blockly.hideChaff();
