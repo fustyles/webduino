@@ -533,7 +533,7 @@ Blockly.Msg.TEXT_TRIM_TOOLTIP = "Return a copy of the text with spaces removed f
 
 Blockly.Msg.VALUE = "Value";
 Blockly.Msg.VARIABLE = "Variable";
-Blockly.Msg.VARIABLES_DEFAULT_NAME = "item";
+Blockly.Msg.VARIABLES_DEFAULT_NAME = "i";
 Blockly.Msg.VARIABLES_GET_CREATE_SET = "Create 'set %1'";
 Blockly.Msg.VARIABLES_GET_CREATE_SET1 = "Create 'set ";
 Blockly.Msg.VARIABLES_GET_CREATE_SET2 = "'";
@@ -1203,7 +1203,7 @@ Blockly.Msg["TEXT_TRIM_TOOLTIP"] = "Return a copy of the text with spaces remove
 Blockly.Msg["TODAY"] = "Today";
 Blockly.Msg["UNDO"] = "Undo";
 Blockly.Msg["UNNAMED_KEY"] = "unnamed";
-Blockly.Msg["VARIABLES_DEFAULT_NAME"] = "item";
+Blockly.Msg["VARIABLES_DEFAULT_NAME"] = "i";
 Blockly.Msg["VARIABLES_GET_CREATE_SET"] = "Create 'set %1'";
 Blockly.Msg["VARIABLES_GET_HELPURL"] = "https://github.com/google/blockly/wiki/Variables#get";
 Blockly.Msg["VARIABLES_GET_TOOLTIP"] = "Returns the value of this variable.";

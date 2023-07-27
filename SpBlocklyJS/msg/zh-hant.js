@@ -564,7 +564,7 @@ Blockly.Msg.TEXT_TRIM_TOOLTIP = "複製這段字串的同時刪除兩端多餘�
 
 Blockly.Msg.VALUE = "數值";
 Blockly.Msg.VARIABLE = "變數";
-Blockly.Msg.VARIABLES_DEFAULT_NAME = "項目";
+Blockly.Msg.VARIABLES_DEFAULT_NAME = "i";
 Blockly.Msg.VARIABLES_GET_CREATE_SET = "創立 '設定 %1'";
 Blockly.Msg.VARIABLES_GET_CREATE_SET1 = "創立 '設定 ";
 Blockly.Msg.VARIABLES_GET_CREATE_SET2 = "'";
@@ -1234,7 +1234,7 @@ Blockly.Msg["TEXT_TRIM_TOOLTIP"] = "複製這段文字，同時刪除兩端多�
 Blockly.Msg["TODAY"] = "今天";
 Blockly.Msg["UNDO"] = "還原";
 Blockly.Msg["UNNAMED_KEY"] = "未命名";
-Blockly.Msg["VARIABLES_DEFAULT_NAME"] = "項目";
+Blockly.Msg["VARIABLES_DEFAULT_NAME"] = "i";
 Blockly.Msg["VARIABLES_GET_CREATE_SET"] = "建立「賦值 %1」";
 Blockly.Msg["VARIABLES_GET_HELPURL"] = "https://github.com/google/blockly/wiki/Variables#get";  // untranslated
 Blockly.Msg["VARIABLES_GET_TOOLTIP"] = "返回此變數的值。";

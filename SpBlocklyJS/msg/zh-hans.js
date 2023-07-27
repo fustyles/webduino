@@ -564,7 +564,7 @@ Blockly.Msg.TEXT_TRIM_TOOLTIP = "复制这段字符串的同时删除两端多�
 
 Blockly.Msg.VALUE = "数值";
 Blockly.Msg.VARIABLE = "变数";
-Blockly.Msg.VARIABLES_DEFAULT_NAME = "项目";
+Blockly.Msg.VARIABLES_DEFAULT_NAME = "i";
 Blockly.Msg.VARIABLES_GET_CREATE_SET = "创立 '设定 %1'";
 Blockly.Msg.VARIABLES_GET_CREATE_SET1 = "创立 '设定 ";
 Blockly.Msg.VARIABLES_GET_CREATE_SET2 = "'";
@@ -1234,7 +1234,7 @@ Blockly.Msg["TEXT_TRIM_TOOLTIP"] = "从某一端或同时从两端删除多余�
 Blockly.Msg["TODAY"] = "今天";
 Blockly.Msg["UNDO"] = "撤销";
 Blockly.Msg["UNNAMED_KEY"] = "未命名";
-Blockly.Msg["VARIABLES_DEFAULT_NAME"] = "项目";
+Blockly.Msg["VARIABLES_DEFAULT_NAME"] = "i";
 Blockly.Msg["VARIABLES_GET_CREATE_SET"] = "创建“设定%1”";
 Blockly.Msg["VARIABLES_GET_HELPURL"] = "https://github.com/google/blockly/wiki/Variables#get";  // untranslated
 Blockly.Msg["VARIABLES_GET_TOOLTIP"] = "返回此变量的值。";
