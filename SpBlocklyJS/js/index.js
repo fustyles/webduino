@@ -11,6 +11,7 @@ var showCode = false;
 var myTimer;
 var myTimer1;
 var categoryBlocks = [];
+var category;
 
 document.addEventListener('DOMContentLoaded', function() {
 	
@@ -341,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}		
 	
 	//載入積木目錄
-	var category = [
+	category = [
 		catSystem,
 		catMyBackPack,	
 		"<sep></sep>",
@@ -408,23 +409,23 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	setTimeout(function(){
 		
-		var xmlNewValue='<xml id="toolbox">';
+		var xmlToolbox='<xml id="toolbox">';
 		try {
 			for (var i=0;i<category.length;i++){
 				category[i] = category[i].replace(/\<category /g, "<category expanded=\"false\" ");
 				//console.log(category[i]);
 				var xml = new DOMParser().parseFromString(category[i],"text/xml");
-				xmlNewValue+=new XMLSerializer().serializeToString(xml.firstChild).replace("<xml>","").replace("</xml>","");
+				xmlToolbox+=new XMLSerializer().serializeToString(xml.firstChild).replace("<xml>","").replace("</xml>","");
 			}
 		} catch (error) {
 			console.log(error);
 		}		
-		xmlNewValue+='</xml>';
+		xmlToolbox+='</xml>';
 
 		//初始化工作區	
 		const workspace = Blockly.inject('root',{
 				media: 'media/'
-				,toolbox: xmlNewValue
+				,toolbox: xmlToolbox
 				,grid:{spacing: 20,length: 3,colour: '#eee',snap: true}
 				,zoom:{controls: true, wheel: false, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2}
 				,trashcan: true
@@ -1322,6 +1323,29 @@ var registeryCallbackMySearch = function(){
 };
 registeryCallbackMySearch();
 
+function registerOpenBlockToolbox() {
+  if (Blockly.ContextMenuRegistry.registry.getItem('open_block_toolbox')) {
+    return;
+  }
+  const openBlockToolbox = {
+    displayText: function(){
+		return Blockly.Msg["MYSEARCH_OPENBLOCKTOOLBOX"];
+	},
+    preconditionFn: function(a) {
+		return 'enabled';
+    },
+    callback: function(a) {
+		searchBlockCategory(a.block.type)
+    },
+    scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
+    id: 'open_block_toolbox',
+    weight: 400,
+  };
+  Blockly.ContextMenuRegistry.registry.register(openBlockToolbox);
+}
+  
+registerOpenBlockToolbox();
+
 function searchBlocks() {
 	var opt = {
 		dialogClass: "dlg-no-close",
@@ -1413,6 +1437,30 @@ function searchBlocksKeyboard(keyword) {
 				break;
 			}
 		}
+	}
+}
+
+function searchBlockCategory(blockType) {
+	Blockly.hideChaff();
+	var toolbox = Blockly.getMainWorkspace().toolbox_;
+	//console.log(toolbox);
+	if (toolbox.contents_) {
+		for (var i=0;i<toolbox.contents_.length;i++) {
+			if (toolbox.contents_[i].flyoutItems_) {
+				for (var j=0;j<toolbox.contents_[i].flyoutItems_.length;j++) {
+					if (toolbox.contents_[i].flyoutItems_[j].kind=="BLOCK") {
+						//console.log(blockType);
+						//console.log(toolbox.contents_[i].flyoutItems_[j].type);
+						if (toolbox.contents_[i].flyoutItems_[j].type==blockType) {
+							var id = toolbox.contents_[i].id_;
+							//console.log(toolbox.contents_[i]);
+							toolbox.setSelectedItem(toolbox.getToolboxItemById(id));
+							return;
+						}
+					}
+				}
+			}
+		}	
 	}
 }
 
