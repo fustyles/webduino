@@ -83,11 +83,11 @@ function searchBlocksKeyboard(keyword) {
 				for (var j=0;j<flyoutItems.length;j++) {
 					if (flyoutItems[j].blockxml) {
 						var block = Blockly.getMainWorkspace().newBlock(flyoutItems[j].type);
+						var type = "";
 						for (var k=0;k<block.inputList.length;k++) {
-							if (block.inputList[k].fieldRow) {
+							if (block.inputList[k].fieldRow&&type=="") {
 								for (var m=0;m<block.inputList[k].fieldRow.length;m++) {
 									var fieldRow = block.inputList[k].fieldRow[m];
-									var type = "";
 									if (fieldRow.menuGenerator_) {
 										for (var n=0;n<fieldRow.menuGenerator_.length;n++) {
 											if (fieldRow.menuGenerator_[n][0].toString().toLowerCase().indexOf(keyword.toLowerCase())!=-1&&fieldRow.menuGenerator_[n][0].toString().toLowerCase().indexOf(";base64,")==-1) {
@@ -98,7 +98,7 @@ function searchBlocksKeyboard(keyword) {
 									} else if (fieldRow.value_.toString().toLowerCase().indexOf(keyword.toLowerCase())!=-1&&fieldRow.value_.toString().toLowerCase().indexOf(";base64,")==-1&&fieldRow.name===undefined) {
 										type = flyoutItems[j].type;
 									}
-									if (type) {
+									if (type!="") {
 										for (var p=0;p<categoryBlocks.length;p++) {
 											if (categoryBlocks[p].indexOf('type="'+flyoutItems[j].type+'"')!=-1&&categoryBlocks[p].indexOf('disabled="true"')==-1) {
 												var b = categoryBlocks[p].replace(/(?:\r\n|\r|\n|\t)/g, "");
