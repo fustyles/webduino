@@ -21,6 +21,9 @@ var showCodeMessage = false;
 var showCodeDelay = 6000;
 var myTimer;
 var myTimer1;
+var categoryBlocks = [];
+var categoryArray = [];
+var categoryExpand = [];
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -256,6 +259,10 @@ document.addEventListener('DOMContentLoaded', function() {
 					xmlNewValue+='</xml>';
 					xmlValue = xmlNewValue;
 					
+					categoryArray = [];
+					categoryArray.push(xmlValue);
+					updateCategoryBlocks(categoryArray);
+					
 					Blockly.getMainWorkspace().updateToolbox(xmlValue);	
 				} catch (error) {
 					console.log(error);
@@ -324,7 +331,11 @@ document.addEventListener('DOMContentLoaded', function() {
 						}
 					}
 						
-					Blockly.getMainWorkspace().updateToolbox(category);				
+					Blockly.getMainWorkspace().updateToolbox(category);	
+
+					categoryArray = [];
+					categoryArray.push(new XMLSerializer().serializeToString(category));
+					updateCategoryBlocks(categoryArray);						
 				}				
 			},
 			error: function (jqXHR, textStatus, errorThrown) {
@@ -921,6 +932,14 @@ document.addEventListener('DOMContentLoaded', function() {
 			alert("Web bluetooth is not supported.");
 	}
 	
+	//Web MQTT
+	document.getElementById('button_webMQTT').addEventListener("click", function(evt) {
+		if (typeof nw !== "undefined")
+			nw.Shell.openExternal("http://127.0.0.1:3000/WebMQTT.html")
+		else
+			window.open("https://fustyles.github.io/webduino/mqtt_basic_page.html")
+	}); 	
+	
 	//切換語言
 	document.getElementById('lang-selector').onchange = function () {
 		if (this.selectedIndex!=-1) 
@@ -983,7 +1002,62 @@ document.addEventListener('DOMContentLoaded', function() {
 		Blockly.Xml.domToWorkspace(xmlDoc, Blockly.getMainWorkspace());
 	}
 	
+	function updateCategoryBlocks(newCategory) {
+		categoryBlocks = [];
+		for (var i=0;i<newCategory.length;i++){
+			var categoryString = newCategory[i].replace(/(?:\r\n|\r|\n|\t)/g, "");
+			var xml = new DOMParser().parseFromString(categoryString,"text/xml");
+			searchCategoryBlocks(xml.firstChild.childNodes);
+		}
+	}
+	function searchCategoryBlocks(nodes) {
+		if (nodes.length>0) {
+			for (var j=0;j<nodes.length;j++){
+				if (nodes[j].nodeName=="category")
+					searchCategoryBlocks(nodes[j].childNodes);
+				else if (nodes[j].nodeName=="block")
+					categoryBlocks.push(new XMLSerializer().serializeToString(nodes[j]));
+			}
+		}
+	}	
 });	
+
+function searchBlocks() {
+	var opt = {
+		dialogClass: "dlg-no-close",
+		draggable: true,			
+		autoOpen: false,
+		resizable: true,
+		modal: false,
+		//show: "blind",
+		//hide: "blind",			
+		width: 260,
+		height: 180,
+		buttons: [	
+			{
+				text: Blockly.Msg.BUTTON_CLOSE,
+				click: function() {
+					$(this).dialog("close");
+				}
+			},
+			{
+				text: Blockly.Msg.BUTTON_CLEAR,
+				click: function() {
+					document.getElementById('searchblocks_keyword').value="";
+				}
+			},		
+			{
+				text: Blockly.Msg["MYSEARCH"],
+				click: function() {
+					mySearchBlocks(document.getElementById('searchblocks_keyword').value);
+				}
+			}
+		],
+		title: Blockly.Msg["MYSEARCH_QUERY"]
+	};
+	$("#dialog_searchblocks").dialog(opt).dialog("open");
+	event.preventDefault();
+}
 
 
 function addHeadScript(url) {
@@ -1057,4 +1131,62 @@ function contentZoom(content) {
 		editor.setValue(code);
 		showCode = true;
 	}
+}
+
+if (typeof require !== "undefined") {
+	var http = require('http');
+	var fs = require('fs');
+	var path = require('path');
+
+	http.createServer(function (request, response) {
+		//console.log('request ', request.url.split("?")[0]);
+
+		var filePath = './package.nw' + request.url.split("?")[0];
+		if (filePath == './package.nw/') {
+			filePath = './package.nw/main.html'
+		}
+
+		var extname = String(path.extname(filePath)).toLowerCase();
+		var mimeTypes = {
+			'.html': 'text/html',
+			'.js': 'text/javascript',
+			'.css': 'text/css',
+			'.json': 'application/json',
+			'.png': 'image/png',
+			'.jpg': 'image/jpg',
+			'.gif': 'image/gif',
+			'.svg': 'image/svg+xml',
+			'.wav': 'audio/wav',
+			'.mp4': 'video/mp4',
+			'.woff': 'application/font-woff',
+			'.ttf': 'application/font-ttf',
+			'.eot': 'application/vnd.ms-fontobject',
+			'.otf': 'application/font-otf',
+			'.wasm': 'application/wasm'
+		};
+
+		var contentType = mimeTypes[extname] || 'application/octet-stream';
+
+		fs.readFile(filePath, function(error, content) {
+			if (error) {
+				if(error.code == 'ENOENT') {
+					fs.readFile('./404.html', function(error, content) {
+						response.writeHead(404, { 'Content-Type': 'text/html' });
+						response.end(content, 'utf-8');
+					});
+				}
+				else {
+					response.writeHead(500);
+					response.end('Sorry, check with the site admin for error: '+error.code+' ..\n');
+				}
+			}
+			else {
+				response.writeHead(200, { 'Content-Type': contentType });
+				response.end(content, 'utf-8');
+			}
+		});
+
+	}).listen(3000);
+
+	// Server: http://127.0.0.1:3000
 }

@@ -1,0 +1,129 @@
+<html><head><meta charset='utf-8'><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><script src='https://unpkg.com/mqtt/dist/mqtt.min.js'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{var publicTopic, subscribeTopic, server, id, password;
+
+head_add_viewport(0.5,1,2,"yes");
+span_create('server',0,10,24,'主機：',999);
+text_create('server',300,30,120,10,'#ffffff','#000000',14,1,'ws://mqttgo.io:8000/mqtt',999,true);
+span_create('id',0,60,24,'帳號：',999);
+text_create('id',300,30,120,60,'#ffffff','#000000',14,1,'',999,true);
+span_create('password',0,110,24,'密碼：',999);
+text_create('password',300,30,120,110,'#ffffff','#000000',14,1,'',999,true);
+span_create('subscribeTopic',0,160,24,'訂閱頻道：',999);
+text_create('subscribeTopic',300,30,120,160,'#ffffff','#000000',14,1,'hello/aaa',999,true);
+span_create('publishTopic',0,210,24,'發布頻道：',999);
+text_create('publishTopic',300,30,120,210,'#ffffff','#000000',14,1,'hello/bbb',999,true);
+button_create('set',60,30,450,210,1,null,'設定',14,999,true);
+span_create('publishText',0,260,24,'發布內容：',999);
+text_create('publishText',300,30,120,260,'#ffffff','#000000',14,1,'',999,true);
+button_create('publish',60,30,450,260,1,null,'發布',14,999,true);
+span_create('message',0,310,24,'接收訊息：',999);
+span_create('response',120,310,24,'',999);
+span_set('response',"color",'red');
+async function gamebutton_set_onclick (event) {
+  publicTopic = (text_get('publishTopic',"value"));
+  subscribeTopic = (text_get('subscribeTopic',"value"));
+  server = (text_get('server',"value"));
+  id = (text_get('id',"value"));
+  password = (text_get('publishTopic',"value"));
+  const clientId = "mqtt_" + Math.random().toString(16).substr(2, 8);
+  const options = {
+  	username: id,
+  	password: password,
+  	keepalive: 60,
+  	clientId: clientId,
+  	protocolId: "MQTT",
+  	protocolVersion: 4,
+  	clean: true,
+  	reconnectPeriod: 1000,
+  	connectTimeout: 30 * 1000
+  }
+
+  var mqtt_client = mqtt.connect(server,options);
+  mqtt_client.on("connect", ()=>{
+  	console.log("connected");
+    span_set('response',"innerHTML","connected");
+    mqtt_client.subscribe(subscribeTopic);
+  	mqtt_client.on("message", async function (topic, payload) {
+    if (topic==subscribeTopic) {
+      span_set('response',"innerHTML",(payload));
+    }
+     })
+    }
+  )
+
+  async function gamebutton_publish_onclick (event) {
+    span_set('response',"innerHTML",'');
+    mqtt_client.publish(publicTopic, (text_get('publishText',"value")));
+  };
+  document.getElementById("gamebutton_publish").addEventListener("click", gamebutton_publish_onclick, true);
+};
+document.getElementById("gamebutton_set").addEventListener("click", gamebutton_set_onclick, true);
+};main();</script>
+<div style="position:absolute;top:400px">
+<table>
+<tr>
+<td>
+MQTTGO<br>
+Server: mqttgo.io<br>
+TCP Port: 1883<br>
+WebsocketPort: 8000<br><br>
+
+ESP32<br>
+mqttgo.io<br>
+1883  (http)<br><br>
+
+MQTT.js 網頁<br>
+ws://mqttgo.io:8000/mqtt<br><br><br><br>
+</td>
+</tr>
+<tr>
+<td>
+HiveMQ<br>
+Server: broker.hivemq.com<br>
+TCP Port: 1883<br>
+WebsocketPort: 8000<br><br>
+
+ESP32<br>
+broker.hivemq.com<br>
+1883  (http)<br><br>
+
+MQTT.js 網頁<br>
+ws://broker.hivemq.com:8000/mqtt<br><br><br><br>
+</td>
+</tr>
+<tr>
+<td>
+Mosquitto<br>
+Server: test.mosquitto.org<br>
+TCP Port: 1883 / 8883(TLS)<br>
+WebsocketPort: 8080 / 8081(TLS)<br><br>
+
+ESP32<br>
+test.mosquitto.org<br>
+1883  (http)<br>
+8883  (https)<br><br>
+
+MQTT.js 網頁<br>
+ws://test.mosquitto.org:8080/mqtt<br>
+wss://test.mosquitto.org:8081/mqtt<br><br><br><br>
+</td>
+</tr>
+<tr>
+<td>
+EMQX<br>
+Server: broker.emqx.io<br>
+TCP Port: 1883 / 8883(TLS)<br>
+WebsocketPort: 8083 / 8084(TLS)<br><br>
+
+ESP32<br>
+broker.emqx.io<br>
+1883  (http)<br>
+8883  (https)<br><br>
+
+MQTT.js 網頁<br>
+ws://broker.emqx.io:8083/mqtt<br>
+wss://broker.emqx.io:8084/mqtt
+</td>
+</tr>
+</table>
+</div>
+</body></html>
