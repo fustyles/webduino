@@ -1395,11 +1395,11 @@ function searchBlocksKeyboard(keyword) {
 				for (var j=0;j<flyoutItems.length;j++) {
 					if (flyoutItems[j].blockxml) {
 						var block = Blockly.getMainWorkspace().newBlock(flyoutItems[j].type);
+						var type = "";
 						for (var k=0;k<block.inputList.length;k++) {
-							if (block.inputList[k].fieldRow) {
+							if (block.inputList[k].fieldRow&&type=="") {
 								for (var m=0;m<block.inputList[k].fieldRow.length;m++) {
 									var fieldRow = block.inputList[k].fieldRow[m];
-									var type = "";
 									if (fieldRow.menuGenerator_) {
 										for (var n=0;n<fieldRow.menuGenerator_.length;n++) {
 											if (fieldRow.menuGenerator_[n][0].toString().toLowerCase().indexOf(keyword.toLowerCase())!=-1&&fieldRow.menuGenerator_[n][0].toString().toLowerCase().indexOf(";base64,")==-1) {
