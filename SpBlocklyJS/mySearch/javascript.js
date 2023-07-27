@@ -12,42 +12,6 @@
 
 /*
 
-Blockly.Msg["MYSEARCH"] = "SEARCH";
-Blockly.Msg["MYSEARCH_QUERY"] = "Search for blocks";
-Blockly.Msg["MYSEARCH_PROMPT"] = "Please input the keyword of blocks content.";
-Blockly.Msg["MYSEARCH_HUE"] = "210";
-
-var categoryBlocks = [];
-function updateCategoryBlocks(newCategory) {
-	categoryBlocks = [];
-	for (var i=0;i<newCategory.length;i++){
-		var categoryString = newCategory[i].replace(/(?:\r\n|\r|\n|\t)/g, "");
-		var xml = new DOMParser().parseFromString(categoryString,"text/xml");
-		searchCategoryBlocks(xml.firstChild.childNodes);
-	}
-}
-function searchCategoryBlocks(nodes) {
-	if (nodes.length>0) {
-		for (var j=0;j<nodes.length;j++){
-			if (nodes[j].nodeName=="category")
-				searchCategoryBlocks(nodes[j].childNodes);
-			else if (nodes[j].nodeName=="block")
-				categoryBlocks.push(new XMLSerializer().serializeToString(nodes[j]));
-		}
-	}
-}
-
-var category = ['<xml><category name="catTest" id="catTest"><block type="test"></block></category></xml>'];
-updateCategoryBlocks(category);
-
-*/
-
-/*
-
-<category id="catMySearch" name="%{BKY_MYSEARCH}" colour="%{BKY_MYSEARCH_HUE}"  custom="MYSEARCH"></category>
-
-*/
-
 Blockly.mySearch={};
 Blockly.MYSEARCH_CATEGORY_NAME="MYSEARCH";
 Blockly.mySearch.NAME_TYPE=Blockly.MYSEARCH_CATEGORY_NAME;
@@ -71,32 +35,69 @@ var registeryCallbackMySearch = function(){
 };
 registeryCallbackMySearch();
 
-function registerMySearch() {
-  if (Blockly.ContextMenuRegistry.registry.getItem('mySearch')) {
-	return;
+function registerOpenBlockToolbox() {
+  if (Blockly.ContextMenuRegistry.registry.getItem('open_block_toolbox')) {
+    return;
   }
-  const funMySearch = {
-	displayText: function(){
-		return Blockly.Msg["MYSEARCH_QUERY"];
+  const openBlockToolbox = {
+    displayText: function(){
+		return Blockly.Msg["MYSEARCH_OPENBLOCKTOOLBOX"];
 	},
-	preconditionFn: function(a) {
+    preconditionFn: function(a) {
 		return 'enabled';
-	},
-	callback: function(a) {
-		mySearchBlocks();
-	},
-	scopeType: Blockly.ContextMenuRegistry.ScopeType.WORKSPACE,
-	id: 'mySearch',
-	weight: 0,
+    },
+    callback: function(a) {
+		searchBlockCategory(a.block.type)
+    },
+    scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
+    id: 'open_block_toolbox',
+    weight: 400,
   };
-  Blockly.ContextMenuRegistry.registry.register(funMySearch);
+  Blockly.ContextMenuRegistry.registry.register(openBlockToolbox);
 }
-registerMySearch();
+  
+registerOpenBlockToolbox();
 
-function mySearchBlocks() {
+function searchBlocks() {
+	var opt = {
+		dialogClass: "dlg-no-close",
+		draggable: true,			
+		autoOpen: false,
+		resizable: true,
+		modal: false,
+		//show: "blind",
+		//hide: "blind",			
+		width: 260,
+		height: 190,
+		buttons: [	
+			{
+				text: Blockly.Msg.BUTTON_CLOSE,
+				click: function() {
+					$(this).dialog("close");
+				}
+			},
+			{
+				text: Blockly.Msg.BUTTON_CLEAR,
+				click: function() {
+					document.getElementById('searchblocks_keyword').value="";
+				}
+			},		
+			{
+				text: Blockly.Msg["MYSEARCH"],
+				click: function() {
+					searchBlocksKeyboard(document.getElementById('searchblocks_keyword').value);
+				}
+			}
+		],
+		title: Blockly.Msg["MYSEARCH_QUERY"]
+	};
+	$("#dialog_searchblocks").dialog(opt).dialog("open");
+	event.preventDefault();
+}
+
+function searchBlocksKeyboard(keyword) {
 	Blockly.mySearch.Blocks=[];
 	Blockly.hideChaff();
-	var keyword = prompt(Blockly.Msg["MYSEARCH_PROMPT"]);
 	if (keyword) {
 		var toolboxItems = Blockly.getMainWorkspace().toolbox_.getToolboxItems();
 		for (var i=0;i<toolboxItems.length;i++) {
@@ -105,11 +106,11 @@ function mySearchBlocks() {
 				for (var j=0;j<flyoutItems.length;j++) {
 					if (flyoutItems[j].blockxml) {
 						var block = Blockly.getMainWorkspace().newBlock(flyoutItems[j].type);
-						var type = "";
 						for (var k=0;k<block.inputList.length;k++) {
-							if (block.inputList[k].fieldRow&&type=="") {
+							if (block.inputList[k].fieldRow) {
 								for (var m=0;m<block.inputList[k].fieldRow.length;m++) {
 									var fieldRow = block.inputList[k].fieldRow[m];
+									var type = "";
 									if (fieldRow.menuGenerator_) {
 										for (var n=0;n<fieldRow.menuGenerator_.length;n++) {
 											if (fieldRow.menuGenerator_[n][0].toString().toLowerCase().indexOf(keyword.toLowerCase())!=-1&&fieldRow.menuGenerator_[n][0].toString().toLowerCase().indexOf(";base64,")==-1) {
@@ -120,7 +121,7 @@ function mySearchBlocks() {
 									} else if (fieldRow.value_.toString().toLowerCase().indexOf(keyword.toLowerCase())!=-1&&fieldRow.value_.toString().toLowerCase().indexOf(";base64,")==-1&&fieldRow.name===undefined) {
 										type = flyoutItems[j].type;
 									}
-									if (type!="") {
+									if (type) {
 										for (var p=0;p<categoryBlocks.length;p++) {
 											if (categoryBlocks[p].indexOf('type="'+flyoutItems[j].type+'"')!=-1&&categoryBlocks[p].indexOf('disabled="true"')==-1) {
 												var b = categoryBlocks[p].replace(/(?:\r\n|\r|\n|\t)/g, "");
@@ -146,6 +147,46 @@ function mySearchBlocks() {
 				var id = toolbox.contents_[n].id_;
 				toolbox.setSelectedItem(toolbox.getToolboxItemById(id));
 				break;
+			}
+		}
+	}
+}
+
+function searchBlockCategory(blockType) {
+	Blockly.hideChaff();
+	var toolbox = Blockly.getMainWorkspace().toolbox_;
+	if (toolbox.contents_) {
+		for (var i=0;i<toolbox.contents_.length;i++) {
+			if (toolbox.contents_[i].flyoutItems_) {
+				for (var j=0;j<toolbox.contents_[i].flyoutItems_.length;j++) {
+					if (toolbox.contents_[i].flyoutItems_[j].kind=="BLOCK") {
+						if (toolbox.contents_[i].flyoutItems_[j].type==blockType) {
+							categoryExpand = [];
+							parentCategoryExpand(toolbox.contents_[i].parent_);
+							
+							var id = toolbox.contents_[i].id_;
+							toolbox.setSelectedItem(toolbox.getToolboxItemById(id));
+							return;
+						}
+					}
+				}
+			}
+		}	
+	}
+}
+
+function parentCategoryExpand(parent_) {
+	if (parent_) {
+		if (parent_.id_) {
+			categoryExpand = [parent_.id_].concat(categoryExpand);
+			if (parent_.parent_) {
+				parentCategoryExpand(parent_.parent_);
+			} else {
+				for (var i=0;i<categoryExpand.length;i++) {
+					var toolbox = Blockly.getMainWorkspace().toolbox_;
+					toolbox.getToolboxItemById(categoryExpand[i]).setExpanded(true);
+					toolbox.setSelectedItem(toolbox.getToolboxItemById(categoryExpand[i]));
+				}
 			}
 		}
 	}
