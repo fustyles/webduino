@@ -10,8 +10,9 @@ var topCheck = true;
 var showCode = false;
 var myTimer;
 var myTimer1;
-var categoryBlocks = [];
 var category;
+var categoryBlocks = [];
+var categoryExpand = [];
 
 document.addEventListener('DOMContentLoaded', function() {
 	
@@ -1443,17 +1444,16 @@ function searchBlocksKeyboard(keyword) {
 function searchBlockCategory(blockType) {
 	Blockly.hideChaff();
 	var toolbox = Blockly.getMainWorkspace().toolbox_;
-	//console.log(toolbox);
 	if (toolbox.contents_) {
 		for (var i=0;i<toolbox.contents_.length;i++) {
 			if (toolbox.contents_[i].flyoutItems_) {
 				for (var j=0;j<toolbox.contents_[i].flyoutItems_.length;j++) {
 					if (toolbox.contents_[i].flyoutItems_[j].kind=="BLOCK") {
-						//console.log(blockType);
-						//console.log(toolbox.contents_[i].flyoutItems_[j].type);
 						if (toolbox.contents_[i].flyoutItems_[j].type==blockType) {
+							categoryExpand = [];
+							parentCategoryExpand(toolbox.contents_[i].parent_);
+							
 							var id = toolbox.contents_[i].id_;
-							//console.log(toolbox.contents_[i]);
 							toolbox.setSelectedItem(toolbox.getToolboxItemById(id));
 							return;
 						}
@@ -1461,6 +1461,23 @@ function searchBlockCategory(blockType) {
 				}
 			}
 		}	
+	}
+}
+
+function parentCategoryExpand(parent_) {
+	if (parent_) {
+		if (parent_.id_) {
+			categoryExpand = [parent_.id_].concat(categoryExpand);
+			if (parent_.parent_) {
+				parentCategoryExpand(parent_.parent_);
+			} else {
+				for (var i=0;i<categoryExpand.length;i++) {
+					var toolbox = Blockly.getMainWorkspace().toolbox_;
+					toolbox.getToolboxItemById(categoryExpand[i]).setExpanded(true);
+					toolbox.setSelectedItem(toolbox.getToolboxItemById(categoryExpand[i]));
+				}
+			}
+		}
 	}
 }
 
