@@ -18,6 +18,7 @@
 
 
 var categoryBlocks = [];
+var categoryExpand = [];
 
 /*
 function updateCategoryBlocks(newCategory) {
@@ -147,11 +148,6 @@ function searchBlocksKeyword(keyword) {
 		}
 	}
 }
-
-
-
-
-var categoryExpand = [];
 
 function registerOpenBlockToolbox() {
   if (Blockly.ContextMenuRegistry.registry.getItem('open_block_toolbox')) {
