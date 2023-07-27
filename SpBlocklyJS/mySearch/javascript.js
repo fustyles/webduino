@@ -12,13 +12,14 @@
 
 /*
 
-Blockly.Msg["MYSEARCH"] = "SEARCH";
-Blockly.Msg["MYSEARCH_QUERY"] = "Search for blocks";
-Blockly.Msg["MYSEARCH_PROMPT"] = "Please input the keyword of blocks content.";
-Blockly.Msg["MYSEARCH_OPENBLOCKTOOLBOX"] = "Open the original category of the block";
-Blockly.Msg["MYSEARCH_HUE"] = "210";
+<category id="catMySearch" name="%{BKY_MYSEARCH}" colour="%{BKY_MYSEARCH_HUE}" custom="MYSEARCH"></category>
+
+*/
+
 
 var categoryBlocks = [];
+
+/*
 function updateCategoryBlocks(newCategory) {
 	categoryBlocks = [];
 	for (var i=0;i<newCategory.length;i++){
@@ -44,14 +45,15 @@ var category = [
 ];
 
 updateCategoryBlocks(category);
-
 */
 
-/*
 
-<category id="catMySearch" name="%{BKY_MYSEARCH}" colour="%{BKY_MYSEARCH_HUE}" custom="MYSEARCH"></category>
+Blockly.Msg["MYSEARCH"] = "SEARCH";
+Blockly.Msg["MYSEARCH_QUERY"] = "Search for blocks";
+Blockly.Msg["MYSEARCH_PROMPT"] = "Please input the keyword of blocks content.";
+Blockly.Msg["MYSEARCH_OPENBLOCKTOOLBOX"] = "Open the original category of the block";
+Blockly.Msg["MYSEARCH_HUE"] = "210";
 
-*/
 
 Blockly.mySearch={};
 Blockly.MYSEARCH_CATEGORY_NAME="MYSEARCH";
