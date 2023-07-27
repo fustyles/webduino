@@ -7,7 +7,7 @@
 /**
  * @fileoverview My Search.
  * @author https://www.facebook.com/francefu/ (ChungYi Fu)
- * @Update 7/27/2023 22:00 (Taiwan Standard Time)
+ * @Update 7/28/2023 07:00 (Taiwan Standard Time)
  */
 
 /*
@@ -19,6 +19,13 @@ var categoryBlocks = [];
 var categoryExpand = [];
 
 /*
+var category = [
+	'<xml><category id="catTest1" name="catTest1"><block type="test1"></block></category></xml>',
+	'<xml><category id="catTest2" name="catTest2"><block type="test2"></block><block type="test3"></block></category></xml>'
+];
+
+updateCategoryBlocks(category);
+
 function updateCategoryBlocks(newCategory) {
 	categoryBlocks = [];
 	for (var i=0;i<newCategory.length;i++){
@@ -27,6 +34,7 @@ function updateCategoryBlocks(newCategory) {
 		searchCategoryBlocks(xml.firstChild.childNodes);
 	}
 }
+
 function searchCategoryBlocks(nodes) {
 	if (nodes.length>0) {
 		for (var j=0;j<nodes.length;j++){
@@ -37,13 +45,6 @@ function searchCategoryBlocks(nodes) {
 		}
 	}
 }
-
-var category = [
-'<xml><category id="catTest1" name="catTest1"><block type="test1"></block></category></xml>',
-'<xml><category id="catTest2" name="catTest2"><block type="test2"></block><block type="test3"></block></category></xml>'
-];
-
-updateCategoryBlocks(category);
 */
 
 
@@ -52,7 +53,6 @@ Blockly.Msg["MYSEARCH_QUERY"] = "Search for blocks";
 Blockly.Msg["MYSEARCH_PROMPT"] = "Please input the keyword of blocks content.";
 Blockly.Msg["MYSEARCH_OPENBLOCKTOOLBOX"] = "Open the original category of the block";
 Blockly.Msg["MYSEARCH_HUE"] = "210";
-
 
 Blockly.mySearch={};
 Blockly.MYSEARCH_CATEGORY_NAME="MYSEARCH";
