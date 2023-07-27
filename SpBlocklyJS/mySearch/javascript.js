@@ -138,8 +138,6 @@ function searchBlocksKeyword(keyword) {
 	}
 }
 
-// searchBlocksKeyword("keyword");
-
 function registerOpenBlockToolbox() {
   if (Blockly.ContextMenuRegistry.registry.getItem('open_block_toolbox')) {
     return;
