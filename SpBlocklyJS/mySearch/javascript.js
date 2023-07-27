@@ -41,7 +41,6 @@ function searchCategoryBlocks(nodes) {
 var category = ['<xml><category name="catTest" id="catTest"><block type="test"></block></category></xml>'];
 updateCategoryBlocks(category);
 
-searchBlocksKeyword("keyword");
 */
 
 /*
@@ -123,14 +122,6 @@ function searchBlocksKeyword(keyword) {
 		}
 	}
 
-	var allVariables = Blockly.getMainWorkspace().getAllVariables();
-	var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
-	xml = Blockly.Xml.domToText(xml);
-	for (var i=0;i<allVariables.length;i++) {
-		if (xml.indexOf(">"+allVariables[i].name+"</variable>")==-1)
-			Blockly.getMainWorkspace().deleteVariableById(allVariables[i].id_);
-	}	
-
 	if (Blockly.mySearch.Blocks.length>0) {
 		var toolbox = Blockly.getMainWorkspace().toolbox_;
 		for (n=0;n<toolbox.contents_.length;n++) {
@@ -142,6 +133,8 @@ function searchBlocksKeyword(keyword) {
 		}
 	}
 }
+
+// searchBlocksKeyword("keyword");
 
 function registerOpenBlockToolbox() {
   if (Blockly.ContextMenuRegistry.registry.getItem('open_block_toolbox')) {

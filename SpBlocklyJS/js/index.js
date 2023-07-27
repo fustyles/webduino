@@ -1374,7 +1374,7 @@ function searchBlocks() {
 			{
 				text: Blockly.Msg["MYSEARCH"],
 				click: function() {
-					searchBlocksKeyboard(document.getElementById('searchblocks_keyword').value);
+					searchBlocksKeyword(document.getElementById('searchblocks_keyword').value);
 				}
 			}
 		],
@@ -1384,9 +1384,12 @@ function searchBlocks() {
 	event.preventDefault();
 }
 
-function searchBlocksKeyboard(keyword) {
+function searchBlocksKeyword(keyword) {
 	Blockly.mySearch.Blocks=[];
 	Blockly.hideChaff();
+	
+	console.log(Blockly.getMainWorkspace().getAllVariables());
+	
 	if (keyword) {
 		var toolboxItems = Blockly.getMainWorkspace().toolbox_.getToolboxItems();
 		for (var i=0;i<toolboxItems.length;i++) {
@@ -1433,15 +1436,15 @@ function searchBlocksKeyboard(keyword) {
 			}				
 		}
 	}
-
+	
 	var allVariables = Blockly.getMainWorkspace().getAllVariables();
 	var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
 	xml = Blockly.Xml.domToText(xml);
 	for (var i=0;i<allVariables.length;i++) {
 		if (xml.indexOf(">"+allVariables[i].name+"</variable>")==-1)
 			Blockly.getMainWorkspace().deleteVariableById(allVariables[i].id_);
-	}	
-
+	}
+	
 	if (Blockly.mySearch.Blocks.length>0) {
 		var toolbox = Blockly.getMainWorkspace().toolbox_;
 		for (n=0;n<toolbox.contents_.length;n++) {
@@ -1452,6 +1455,8 @@ function searchBlocksKeyboard(keyword) {
 			}
 		}
 	}
+	
+	
 }
 
 function searchBlockCategory(blockType) {
