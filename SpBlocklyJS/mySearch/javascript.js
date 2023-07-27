@@ -15,6 +15,7 @@
 Blockly.Msg["MYSEARCH"] = "SEARCH";
 Blockly.Msg["MYSEARCH_QUERY"] = "Search for blocks";
 Blockly.Msg["MYSEARCH_PROMPT"] = "Please input the keyword of blocks content.";
+Blockly.Msg["MYSEARCH_OPENBLOCKTOOLBOX"] = "Open the original category of the block";
 Blockly.Msg["MYSEARCH_HUE"] = "210";
 
 var categoryBlocks = [];
@@ -70,66 +71,6 @@ var registeryCallbackMySearch = function(){
 	}
 };
 registeryCallbackMySearch();
-
-function registerOpenBlockToolbox() {
-  if (Blockly.ContextMenuRegistry.registry.getItem('open_block_toolbox')) {
-    return;
-  }
-  const openBlockToolbox = {
-    displayText: function(){
-		return Blockly.Msg["MYSEARCH_OPENBLOCKTOOLBOX"];
-	},
-    preconditionFn: function(a) {
-		return 'enabled';
-    },
-    callback: function(a) {
-		searchBlockCategory(a.block.type)
-    },
-    scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
-    id: 'open_block_toolbox',
-    weight: 400,
-  };
-  Blockly.ContextMenuRegistry.registry.register(openBlockToolbox);
-}
-  
-registerOpenBlockToolbox();
-
-function searchBlocks() {
-	var opt = {
-		dialogClass: "dlg-no-close",
-		draggable: true,			
-		autoOpen: false,
-		resizable: true,
-		modal: false,
-		//show: "blind",
-		//hide: "blind",			
-		width: 260,
-		height: 190,
-		buttons: [	
-			{
-				text: Blockly.Msg.BUTTON_CLOSE,
-				click: function() {
-					$(this).dialog("close");
-				}
-			},
-			{
-				text: Blockly.Msg.BUTTON_CLEAR,
-				click: function() {
-					document.getElementById('searchblocks_keyword').value="";
-				}
-			},		
-			{
-				text: Blockly.Msg["MYSEARCH"],
-				click: function() {
-					searchBlocksKeyboard(document.getElementById('searchblocks_keyword').value);
-				}
-			}
-		],
-		title: Blockly.Msg["MYSEARCH_QUERY"]
-	};
-	$("#dialog_searchblocks").dialog(opt).dialog("open");
-	event.preventDefault();
-}
 
 function searchBlocksKeyboard(keyword) {
 	Blockly.mySearch.Blocks=[];
@@ -187,6 +128,29 @@ function searchBlocksKeyboard(keyword) {
 		}
 	}
 }
+
+function registerOpenBlockToolbox() {
+  if (Blockly.ContextMenuRegistry.registry.getItem('open_block_toolbox')) {
+    return;
+  }
+  const openBlockToolbox = {
+    displayText: function(){
+		return Blockly.Msg["MYSEARCH_OPENBLOCKTOOLBOX"];
+	},
+    preconditionFn: function(a) {
+		return 'enabled';
+    },
+    callback: function(a) {
+		searchBlockCategory(a.block.type)
+    },
+    scopeType: Blockly.ContextMenuRegistry.ScopeType.BLOCK,
+    id: 'open_block_toolbox',
+    weight: 400,
+  };
+  Blockly.ContextMenuRegistry.registry.register(openBlockToolbox);
+}
+  
+registerOpenBlockToolbox();
 
 function searchBlockCategory(blockType) {
 	Blockly.hideChaff();
