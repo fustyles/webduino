@@ -96,7 +96,7 @@ Blockly.Blocks['window_confirm'] = {
 Blockly.Blocks['system_datetime_get'] = {
   init: function () {
   this.appendDummyInput()
-      .appendField(new Blockly.FieldVariable('newdate'), 'newdate');	  
+      .appendField(new Blockly.FieldVariable(), 'newdate');	  
   this.appendDummyInput()
       .appendField(Blockly.Msg.GET);
   this.appendDummyInput()
@@ -123,7 +123,7 @@ Blockly.Blocks['system_datetime_set'] = {
   this.appendDummyInput()
       .appendField(Blockly.Msg.SET);	  
   this.appendDummyInput()
-	  .appendField(new Blockly.FieldVariable('newdate'), 'newdate')
+	  .appendField(new Blockly.FieldVariable(), 'newdate')
       .appendField(Blockly.Msg["SYSTEM_DATETIME"]); 
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
@@ -1900,7 +1900,7 @@ Blockly.Blocks['document_timer'] = {
     this.appendValueInput("intervals_")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")
-        .appendField(new Blockly.FieldVariable('myTimer'), 'myTimer_')
+        .appendField(new Blockly.FieldVariable(), 'myTimer_')
         .appendField(Blockly.Msg.DOCUMENT_TIMER);  
     this.setInputsInline(true);    
     this.appendStatementInput("do_");
@@ -1915,7 +1915,7 @@ Blockly.Blocks['document_timer_once'] = {
     this.appendValueInput("intervals_")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")
-        .appendField(new Blockly.FieldVariable('myTimerOnce'), 'myTimerOnce_')
+        .appendField(new Blockly.FieldVariable(), 'myTimerOnce_')
         .appendField(Blockly.Msg.DOCUMENT_TIMER_ONCE);   
     this.setInputsInline(true);    
     this.appendStatementInput("do_");
@@ -1929,7 +1929,7 @@ Blockly.Blocks['document_timer_stop'] = {
   init: function () {
     this.appendDummyInput()
       .appendField(Blockly.Msg.DOCUMENT_TIMER_STOP)
-      .appendField(new Blockly.FieldVariable('myTimer'), 'myTimer_');
+      .appendField(new Blockly.FieldVariable(), 'myTimer_');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(110);
