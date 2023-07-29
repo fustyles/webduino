@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2023/7/21 00:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2023/7/29 23:00
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API
 
@@ -16,7 +16,7 @@ image:你的prompts
 image:美麗的台灣
 
 教學影片清單
-https://www.youtube.com/watch?v=79HhcJfHajE&list=PLxVtiYga8ehuaXM1UnvKsLKrq3eOgQ4qo
+https://www.youtube.com/playlist?list=PLxVtiYga8ehvi3lY9QYlEOL0tDLQFNfdM
 */
 
 // ThingSpeak
@@ -28,7 +28,7 @@ let channel_access_TOKEN = "";
 // chatGPT
 let openAI_api_KEY = "";  // openAI
 
-let openAI_model = "gpt-3.5-turbo";   // gpt-3.5-turbo, gpt-3.5-turbo-0301, gpt-4,  (gpt-4限已升級plus帳號或已有試用資格帳號)
+let openAI_model = "gpt-3.5-turbo";   // gpt-3.5-turbo, gpt-3.5-turbo-0301, gpt-4  (gpt-4限已升級plus帳號或已有試用資格帳號)
 let openAI_assistant_behavior = "你是使用繁體中文語言的專業助理";
 let reset_command = "reset";   //因對話紀錄會累計送出查詢，造成額度消費倍數增長，因此Line bot要在適當時候執行清除輸入文字"清除對話"。
 let reset_response = "您好，已為您清除歷史對話紀錄，讓我們重新聊天吧！";
@@ -44,6 +44,9 @@ let sheet_Name_chatgpt = "工作表2";  // chatgpt工作表名稱
 
 // 感測值分析
 let sensor_command = "sensor";
+
+// 查詢userId用於單晶片回傳通知
+let userId_command = "id";
 
 // 系統變數(無須填寫資料)
 let userMessage = "";
@@ -71,9 +74,11 @@ function doPost(e) {
     }
 
     if (userMessage.toLowerCase()=="help") {
-      openAI_response = "開門：on\n關門：off\n重設聊天："+reset_command+"\n算圖格式： image:提示詞\n感測值分析："+sensor_command+"\n";
+      openAI_response = "開門：on\n關門：off\n重設聊天："+reset_command+"\n算圖格式： image:提示詞\n感測值分析："+sensor_command+"\n查詢userId："+userId_command+"\n";
     }
-    else if (userMessage.toLowerCase()=="on") {
+    else if (userMessage.toLowerCase()==userId_command) {
+      openAI_response = userId;        
+    }else if (userMessage.toLowerCase()=="on") {
       let thingspeak_response = sendCommandToThingSpeak(thingspeak_key, 180, 0, 0, 0, 0, 0, 0, 0);
       if (thingspeak_response!=0)
         openAI_response = "已為您開門！";
