@@ -1918,7 +1918,7 @@ Blockly.Msg["PN532_NDEF_FORMAT_SHOW"] = "NDEF格式化";
 Blockly.Msg["PN532_KEYA"] = "讀寫 KEY";
 Blockly.Msg["PN532_KEYB"] = "NDEF KEY";
 		
-Blockly.Msg["FU_SERVO_INDEX"] = "編號";
+Blockly.Msg["FU_SERVO_INDEX"] = "編號(通道)";
 Blockly.Msg["FU_SERVO_PULSEWIDTH"] = "脈衝寬度";
 Blockly.Msg["FU_SERVO_DEFAULT"] = "預設";
 Blockly.Msg["FU_SERVO_CUSTOM"] = "自訂";
@@ -1977,7 +1977,7 @@ Blockly.Msg["FU_JOYSTICK_ROTATE"] = "旋轉方位";
 Blockly.Msg["FU_JOYSTICK_DIGITALREAD"] = "按鈕";
 Blockly.Msg["FU_JOYSTICK_ANALOGREAD_X"] = "X軸";
 Blockly.Msg["FU_JOYSTICK_ANALOGREAD_Y"] = "Y軸";
-Blockly.Msg["FU_JOYSTICK_INDEX"] = "編號";
+Blockly.Msg["FU_JOYSTICK_INDEX"] = "編號(通道)";
 Blockly.Msg["FU_JOYSTICK_STICK_DIRECTION"] = "Joystick搖桿 偵測方向";
 Blockly.Msg["FU_JOYSTICK_STICK_DIRECTION_UP"] = "↑";	
 Blockly.Msg["FU_JOYSTICK_STICK_DIRECTION_UPRIGHT"] = "↗";
@@ -2016,7 +2016,7 @@ Blockly.Msg["HX710B_INITIAL"] = "HX710B壓力感測器 初始化";
 Blockly.Msg["HX710B_PIN"] = "腳位";
 Blockly.Msg["HX710B_PIN_DOUT"] = "DOUT";
 Blockly.Msg["HX710B_PIN_SCLK"] = "SCLK";
-Blockly.Msg["HX710B_INDEX"] = "編號";
+Blockly.Msg["HX710B_INDEX"] = "編號(通道)";
 Blockly.Msg["HX710B_GET"] = "HX710B壓力感測器 取得壓力值";
 Blockly.Msg["HX710B_UNIT"] = "單位";
 
@@ -2025,13 +2025,13 @@ Blockly.Msg["MAX6675_PIN"] = "腳位";
 Blockly.Msg["MAX6675_PIN_DO"] = "DO";
 Blockly.Msg["MAX6675_PIN_CS"] = "CS";
 Blockly.Msg["MAX6675_PIN_CLK"] = "CLK";
-Blockly.Msg["MAX6675_INDEX"] = "編號";
+Blockly.Msg["MAX6675_INDEX"] = "編號(通道)";
 Blockly.Msg["MAX6675_GET"] = "MAX6675溫度感測器 取得溫度值";
 Blockly.Msg["MAX6675_UNIT"] = "單位";
 
 Blockly.Msg["DS18B20_INITIAL"] = "DS18B20水溫感測器 初始化";
 Blockly.Msg["DS18B20_PIN"] = "腳位";
-Blockly.Msg["DS18B20_INDEX"] = "編號";
+Blockly.Msg["DS18B20_INDEX"] = "編號(通道)";
 Blockly.Msg["DS18B20_GET"] = "DS18B20水溫感測器 取得溫度值";
 Blockly.Msg["DS18B20_UNIT"] = "單位";
 
