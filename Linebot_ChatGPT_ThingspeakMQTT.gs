@@ -74,7 +74,7 @@ function doPost(e) {
     }
 
     if (userMessage.toLowerCase()=="help") {
-      openAI_response = "開門：on\n關門：off\n重設聊天："+reset_command+"\n算圖格式： image:提示詞\n感測值分析："+sensor_command+"\n查詢userId："+userId_command+"\n";
+      openAI_response = "開門：on\n關門：off\n重設聊天："+reset_command+"\n生成圖片： image:提示詞\n感測值分析："+sensor_command+"\n查詢userId："+userId_command+"\n";
     } else if (userMessage.toLowerCase()==userId_command) {
       openAI_response = userId;        
     } else if (userMessage.toLowerCase()=="on") {
