@@ -10212,6 +10212,43 @@
 			<field name="TEXT"></field>
 		  </block>		
 		</value>
+	  </block>
+	  <block type="linebot_all">
+		<value name="token_">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>		
+		</value>
+		<value name="userid_">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>		
+		</value>		
+		<value name="text_">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>		
+		</value>		
+		<value name="packageId_">
+		  <block type="math_number">
+			<field name="NUM">1</field>
+		  </block>
+		</value>  
+		<value name="stickerId_">
+		  <block type="math_number">
+			<field name="NUM">2</field>
+		  </block>
+		</value> 
+		<value name="originalContentUrl_">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="previewImageUrl_">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value> 
 	  </block>	  
 	  <block type="linenotify_esp32_br">
 	  </block>	  

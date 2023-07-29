@@ -8346,7 +8346,8 @@ Blockly.Arduino['linenotify_esp32_no'] = function (block) {
 };
 
 Blockly.Arduino['linenotify_esp32_br'] = function (block) {
-  var code = '"\\n"';
+  var newline = block.getFieldValue('newline');
+  var code = '"'+newline+'"';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -8467,19 +8468,87 @@ Blockly.Arduino['linenotify_all'] = function(block) {
   else if (type=="image")
 	message = '"message="+String(' + text + ')+"&imageThumbnail="+String('+previewImageUrl + ')+"&imageFullsize="+String('+originalContentUrl+')';
 
-  var code = 'LineNotify('+token+','+message.replace(/\\\\/g,"\\")+');\n';
+  var code = 'LineNotify('+token+', '+message.replace(/\\\\/g,"\\")+');\n';
   return code;
 };
 
+Blockly.Arduino['linebot_all'] = function(block) {
+  Blockly.Arduino.definitions_['linebot'] ='\n'+
+											'String LineBot(String token, String request) {\n'+
+											'  Serial.println(request);\n'+
+											'  String getAll="", getBody="";\n';
+											
+	if (selectBoardType()=="LinkIt") {
+		Blockly.Arduino.definitions_['linebot'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+	} else {
+		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
+		Blockly.Arduino.definitions_['linebot'] += '  WiFiClientSecure client_tcp;\n';
+		if (arduinoCore_ESP32)
+			Blockly.Arduino.definitions_['linebot'] += '  client_tcp.setInsecure();\n';	
+	}		
+	
+	Blockly.Arduino.definitions_['linebot'] +='  if (client_tcp.connect("api.line.me", 443)) {\n'+
+											'    client_tcp.println("POST /v2/bot/message/push HTTP/1.1");\n'+
+											'    client_tcp.println("Connection: close");\n'+
+											'    client_tcp.println("Host: api.line.me");\n'+
+											'    client_tcp.println("Authorization: Bearer " + token);\n'+
+											'    client_tcp.println("Content-Type: application/json; charset=utf-8");\n'+
+											'    client_tcp.println("Content-Length: " + String(request.length()));\n'+
+											'    client_tcp.println();\n'+
+											'    client_tcp.println(request);\n'+
+											'    client_tcp.println();\n'+
+											'    boolean state = false;\n'+
+											'    long startTime = millis();\n'+
+											'    while ((startTime + 3000) > millis()) {\n'+
+											'      while (client_tcp.available()) {\n'+
+											'        char c = client_tcp.read();\n'+
+											'        if (c == \'\\n\') {\n'+
+											'          if (getAll.length()==0) state=true;\n'+
+											'           getAll = "";\n'+
+											'        }\n'+ 
+											'        else if (c != \'\\r\')\n'+
+											'          getAll += String(c);\n'+
+											'          if (state==true) getBody += String(c);\n'+
+											'          startTime = millis();\n'+
+											'        }\n'+
+											'        if (getBody.length()!= 0) break;\n'+
+											'      }\n'+
+											'      client_tcp.stop();\n'+
+											'      Serial.println(getBody);\n'+
+											'  }\n'+
+											'  else {\n'+
+											'    getBody="Connected to api.line.me failed.";\n'+
+											'    Serial.println("Connected to api.line.me failed.");\n'+
+											'  }\n'+
+											'  return getBody;\n'+
+											'}\n';
 
+  var token = Blockly.Arduino.valueToCode(block, 'token_', Blockly.Arduino.ORDER_ATOMIC);
+  var userid = Blockly.Arduino.valueToCode(block, 'userid_', Blockly.Arduino.ORDER_ATOMIC);
+  var type = block.getFieldValue('type_');
+  var text = Blockly.Arduino.valueToCode(block, 'text_', Blockly.Arduino.ORDER_ATOMIC); 
+  var packageId = Blockly.Arduino.valueToCode(block, 'packageId_', Blockly.Arduino.ORDER_ATOMIC);
+  var stickerId = Blockly.Arduino.valueToCode(block, 'stickerId_', Blockly.Arduino.ORDER_ATOMIC);  
+  var originalContentUrl = Blockly.Arduino.valueToCode(block, 'originalContentUrl_', Blockly.Arduino.ORDER_ATOMIC);
+  var previewImageUrl = Blockly.Arduino.valueToCode(block, 'previewImageUrl_', Blockly.Arduino.ORDER_ATOMIC);    
+  
+  if (!text) text='" "';
+  if (!packageId) packageId='""';
+  if (!stickerId) stickerId='""';
+  if (!originalContentUrl) originalContentUrl='""';
+  if (!previewImageUrl) previewImageUrl='""'; 
+  var message = "";
 
+  if (type=="text")
+	message = "\"{\\\"to\\\":\\\"\"+String(" + userid + ")+\"\\\",\\\"messages\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"\"+String(" + text + ")+\"\\\"}]}\"";
+  else if (type=="sticker")
+	message = "\"{\\\"to\\\":\\\"\"+String(" + userid + ")+\"\\\",\\\"messages\\\":[{\\\"type\\\":\\\"sticker\\\",\\\"packageId\\\":\"+String(" + packageId + ")+\",\\\"stickerId\\\":\"+String(" + stickerId + ")+\"}]}\"";
+  else if (type=="image")
+	message = "\"{\\\"to\\\":\\\"\"+String(" + userid + ")+\"\\\",\\\"messages\\\":[{\\\"type\\\":\\\"image\\\",\\\"originalContentUrl\\\":\\\"\"+String(" + originalContentUrl + ")+\"\\\",\\\"previewImageUrl\\\":\\\"\"+String(" + previewImageUrl + ")+\"\\\"}]}\"";
 
-
-
-
-
-
-
+  var code = 'LineBot('+token+', '+message+');\n';
+  return code;
+};
 
 Blockly.Arduino['linenotify_http'] = function (block) {
   Blockly.Arduino.definitions_['define_httpclient'] ='WiFiClient client;\n';
