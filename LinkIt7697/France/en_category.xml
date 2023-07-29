@@ -6,9 +6,9 @@
 <category><name>thingspeak</name><replace>Thingspeak</replace></category>
 <category><name>others</name><replace>Others</replace></category>
 <category><name>servermodule</name><replace>Server Module</replace></category>
-<category><name>serveresp32</name><replace>AP Server</replace></category>
-<category><name>serveresp32cam</name><replace>ESP32-CAM Server</replace></category>
-<category><name>serverlinkit7697</name><replace>LinkIt7697 Server</replace></category>
+<category><name>serveresp32</name><replace>ESP32、PICO AP Server</replace></category>
+<category><name>serveresp32cam</name><replace>ESP32-CAM AP Server</replace></category>
+<category><name>serverlinkit7697</name><replace>LinkIt7697 AP Server</replace></category>
 <category><name>servercommand</name><replace>Command Parameter</replace></category>
 <category><name>bluetoothmodule</name><replace>ESP32 Bluetooth Server</replace></category>
 <category><name>bluetooth</name><replace>Bluetooth Command</replace></category>
