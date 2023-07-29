@@ -80,14 +80,14 @@ function doPost(e) {
     } else if (userMessage.toLowerCase()=="on") {
       let thingspeak_response = sendCommandToThingSpeak(thingspeak_key, 180, 0, 0, 0, 0, 0, 0, 0);
       if (thingspeak_response!=0)
-        openAI_response = "已為您開門！";
+        openAI_response = "正為您開門！";
       else
         openAI_response = "請距離前次指令間隔15秒後再下指令！";        
     }
     else if (userMessage.toLowerCase()=="off") {
       let thingspeak_response = sendCommandToThingSpeak(thingspeak_key, 90, 0, 0, 0, 0, 0, 0, 0);      
       if (thingspeak_response!=0)
-        openAI_response = "已為您關門！";
+        openAI_response = "正為您關門！";
       else
         openAI_response = "請距離前次指令間隔15秒後再下指令！";
     }          
