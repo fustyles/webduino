@@ -45,7 +45,7 @@ let sheet_Name_chatgpt = "工作表2";  // chatgpt工作表名稱
 // 感測值分析
 let sensor_command = "sensor";
 
-// 查詢userId用於單晶片回傳通知
+// 查詢userId用於單晶片向Line bot回傳通知
 let userId_command = "id";
 
 // 系統變數(無須填寫資料)
@@ -75,10 +75,9 @@ function doPost(e) {
 
     if (userMessage.toLowerCase()=="help") {
       openAI_response = "開門：on\n關門：off\n重設聊天："+reset_command+"\n算圖格式： image:提示詞\n感測值分析："+sensor_command+"\n查詢userId："+userId_command+"\n";
-    }
-    else if (userMessage.toLowerCase()==userId_command) {
+    } else if (userMessage.toLowerCase()==userId_command) {
       openAI_response = userId;        
-    }else if (userMessage.toLowerCase()=="on") {
+    } else if (userMessage.toLowerCase()=="on") {
       let thingspeak_response = sendCommandToThingSpeak(thingspeak_key, 180, 0, 0, 0, 0, 0, 0, 0);
       if (thingspeak_response!=0)
         openAI_response = "已為您開門！";
