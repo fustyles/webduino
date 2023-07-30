@@ -312,6 +312,22 @@
 		  </block>
 		</value> 		
 	  </block>
+	  <block type="esp32_wifi_disconnect">		
+	  </block>	 
+	  <block type="esp32_wifi_reconnect">		
+	  </block>
+	  <block type="esp32_wifi_settings">
+		<value name="SSID">
+		  <block type="text">
+			<field name="TEXT">teacher</field>
+		  </block>
+		</value>
+		<value name="PASSWORD">
+		  <block type="text">
+			<field name="TEXT">87654321</field>
+		  </block>
+		</value> 		
+	  </block>	  
 	  <block type="esp32_wifi_localip">	
 	  </block>	  
 	  <block type="tcp_https_esp32">

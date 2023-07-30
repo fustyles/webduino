@@ -12280,6 +12280,43 @@ Blockly.Blocks['esp32_wifi_wait_until_ready'] = {
   }
 };
 
+Blockly.Blocks['esp32_wifi_disconnect'] = {
+  init:function(){
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.SET_WIFI_DISCONNECT);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
+Blockly.Blocks['esp32_wifi_reconnect'] = {
+  init:function(){
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.SET_WIFI_RECONNECT);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
+Blockly.Blocks['esp32_wifi_settings'] = {
+  init:function(){
+	this.appendDummyInput().appendField(Blockly.Msg.SET_WIFI_SETTINGS);
+	this.appendValueInput("SSID")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.SERVERMODULE_SSID_SHOW);
+	this.appendValueInput("PASSWORD")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.SERVERMODULE_PASSWORD_SHOW);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
 Blockly.Blocks['esp32_wifi_localip'] = {
   init:function(){
 	this.appendDummyInput()

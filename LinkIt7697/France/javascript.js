@@ -8674,6 +8674,57 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
   return code; 
 };
 
+Blockly.Arduino['esp32_wifi_disconnect'] = function(block) { 
+  var code = 'WiFi.disconnect();\n';
+  return code; 
+};
+
+Blockly.Arduino['esp32_wifi_reconnect'] = function(block) { 
+  var code = 'initWiFi();\n';
+  return code; 
+};
+
+Blockly.Arduino['esp32_wifi_settings']  = function(block){
+  var ssid = Blockly.Arduino.valueToCode(block,"SSID",Blockly.Arduino.ORDER_ATOMIC)||"";
+  var pass = Blockly.Arduino.valueToCode(block,"PASSWORD",Blockly.Arduino.ORDER_ATOMIC)||"";
+
+  Blockly.Arduino.definitions_.resetWiFi = ''+
+		'void resetWiFi(String ssid, String pass) {\n'+
+		'  int ssid_len = ssid.length() + 1;\n'+
+		'  int pass_len = pass.length() + 1;\n'+
+		'  char ssid_[ssid_len];\n'+
+		'  char pass_[pass_len];\n'+
+		'  ssid.toCharArray(ssid_, ssid_len);\n'+	
+		'  pass.toCharArray(pass_, pass_len);\n'+		
+		'  for (int i=0;i<2;i++) {\n'+
+		'    WiFi.begin(ssid_, pass_);\n'+
+		'    \n'+
+		'    delay(1000);\n'+
+		'    Serial.println("");\n'+
+		'    Serial.print("Connecting to ");\n'+
+		'    Serial.println(ssid_);\n'+
+		'    \n'+
+		'    long int StartTime=millis();\n'+
+		'    while (WiFi.status() != WL_CONNECTED) {\n'+
+		'        delay(500);\n'+
+		'        if ((StartTime+5000) < millis()) break;\n'+
+		'    }\n'+
+		'    \n'+
+		'    if (WiFi.status() == WL_CONNECTED) {\n'+     
+		'      Serial.println("");\n'+
+		'      Serial.println("STAIP address: ");\n'+
+		'      Serial.println(WiFi.localIP());\n'+
+		'      Serial.println("");\n'+
+		'    \n'+
+		'      break;\n'+
+		'    }\n'+
+		'  }\n'+	
+		'}\n';  
+		
+  var code = 'WiFi.disconnect();\nresetWiFi('+ssid+', '+pass+');\n';
+  return code; 
+};
+
 Blockly.Arduino['esp32_wifi_localip'] = function(block) { 
   var code = 'WiFi.localIP().toString()';
   return [code, Blockly.Arduino.ORDER_NONE];
