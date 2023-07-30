@@ -9698,6 +9698,13 @@ Blockly.Arduino['servermodule_parameter_set_address'] = function (block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['servermodule_parameter_set_address0'] = function (block) {
+  var cmd = Blockly.Arduino.valueToCode(block, 'cmd', Blockly.Arduino.ORDER_ATOMIC);
+  var p1 = Blockly.Arduino.valueToCode(block, 'p1', Blockly.Arduino.ORDER_ATOMIC);
+  var code = '"?"+String('+cmd+')+"="+String('+p1+')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['servermodule_parameter_set_address1'] = function (block) {
   var cmd = Blockly.Arduino.valueToCode(block, 'cmd', Blockly.Arduino.ORDER_ATOMIC);
   var p1 = Blockly.Arduino.valueToCode(block, 'p1', Blockly.Arduino.ORDER_ATOMIC);

@@ -522,7 +522,19 @@
 					<field name="TEXT"></field>
 				  </block>
 				</value>		
-			  </block>	
+			  </block>
+			  <block type="servermodule_parameter_set_address0">
+				<value name="cmd">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p1">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>		
+			  </block>				  
 			  <block type="servermodule_parameter_set_address1">
 				<value name="cmd">
 				  <block type="text">
@@ -836,6 +848,17 @@
 		</category> 		
 				
 		<category id="france7" name="bluetoothmodule">
+		 
+		  <block type="esp32_bluetooth_initial" id="4" inline="true">
+			<field name="baudrate">9600</field>
+			<value name="blename">
+			  <block type="text" id="6">
+				<field name="TEXT">ESP32 BLE</field>
+			  </block>
+			</value>
+		  </block>
+		  <block type="esp32_bluetooth_readdata" id="8"></block> 
+		  <block type="esp32_bluetooth_getdata" id="10"></block>
 		  <block type="esp32_myfirmata_bluetooth" id="232">
 			<field name="baudrate">9600</field>
 			<value name="blename">
@@ -931,17 +954,7 @@
 			  </block>
 			</statement>
 		  </block>
-		 
-		  <block type="esp32_bluetooth_initial" id="4" inline="true">
-			<field name="baudrate">9600</field>
-			<value name="blename">
-			  <block type="text" id="6">
-				<field name="TEXT">ESP32 BLE</field>
-			  </block>
-			</value>
-		  </block>
-		  <block type="esp32_bluetooth_readdata" id="8"></block> 
-		  <block type="esp32_bluetooth_getdata" id="10"></block>
+		  
 		</category>
 
 		<category name="esp32_webbluetooth" id="catwebbluetooth">
