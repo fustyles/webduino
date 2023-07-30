@@ -8725,6 +8725,12 @@ Blockly.Arduino['esp32_wifi_settings']  = function(block){
   return code; 
 };
 
+Blockly.Arduino['esp32_wifi_status'] = function(block) {
+	var status = block.getFieldValue('status');	
+	var code = '(WiFi.status()'+status+' WL_CONNECTED)';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['esp32_wifi_localip'] = function(block) { 
   var code = 'WiFi.localIP().toString()';
   return [code, Blockly.Arduino.ORDER_NONE];

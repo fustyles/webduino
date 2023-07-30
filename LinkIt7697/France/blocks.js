@@ -12317,6 +12317,21 @@ Blockly.Blocks['esp32_wifi_settings'] = {
   }
 };
 
+Blockly.Blocks['esp32_wifi_status'] = {
+  init:function(){
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.GET_WIFI_STATUS);
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.GET_WIFI_STATUS_Y,"=="],
+			[Blockly.Msg.GET_WIFI_STATUS_N,"!="]
+		]), "status"); 
+	this.setInputsInline(true);		
+	this.setOutput(true, null);  
+	this.setColour(20);
+  }
+};
+
 Blockly.Blocks['esp32_wifi_localip'] = {
   init:function(){
 	this.appendDummyInput()

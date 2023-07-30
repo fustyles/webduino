@@ -327,7 +327,9 @@
 			<field name="TEXT">87654321</field>
 		  </block>
 		</value> 		
-	  </block>	  
+	  </block>
+	  <block type="esp32_wifi_status">	
+	  </block>		  
 	  <block type="esp32_wifi_localip">	
 	  </block>	  
 	  <block type="tcp_https_esp32">
