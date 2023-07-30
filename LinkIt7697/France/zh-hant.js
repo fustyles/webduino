@@ -1513,7 +1513,7 @@ Blockly.Msg["LOOP_ASYNCHRONOUS_SHOW"] = "非同步";
 Blockly.Msg["LOOP_COUNT_SHOW"] = "計數累計達";
 Blockly.Msg["LOOP_EXECUTE_SHOW"] = "次後重新計數並執行";
 
-Blockly.Msg["TASKHANDLE_SHOW"] = "多核心任務";
+Blockly.Msg["TASKHANDLE_SHOW"] = "雙核心任務";
 Blockly.Msg["TASKHANDLE_INITIAL_SHOW"] = "初始化";
 Blockly.Msg["TASKHANDLE_PRIORITY_SHOW"] = "優先權順序";
 Blockly.Msg["TASKHANDLE_STACK_SHOW"] = "堆疊大小";

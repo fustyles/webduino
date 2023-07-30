@@ -74,7 +74,7 @@
 <category><name>pixelbit</name><replace>Pixel:Bit網頁模組</replace></category>
 <category><name>hands</name><replace>手勢辨識</replace></category>
 <category><name>spreadsheet</name><replace>Google試算表</replace></category>
-<category><name>taskhandle</name><replace>多核心任務</replace></category>
+<category><name>taskhandle</name><replace>雙核心任務</replace></category>
 <category><name>catpagemqtt</name><replace>網頁MQTT</replace></category>
 <category><name>catdashboard</name><replace>網頁儀表板</replace></category>
 <category><name>catchartdoughnut</name><replace>甜甜圈圖</replace></category>
