@@ -10201,18 +10201,6 @@
 		  </block>
 		</value> 
 	  </block>
-	  <block type="linenotify_http">
-		<value name="linenotify_token">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>		
-		</value>   
-		<value name="linenotify_msg">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>		
-		</value>
-	  </block>
 	  <block type="linebot_all">
 		<value name="token_">
 		  <block type="text">
