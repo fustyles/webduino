@@ -380,9 +380,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		catFaceRecognize,
 		catTrackingColor,
 		catTesseract,
-		catInstascan,
-		"<sep></sep>",
-		catRobotFly
+		catInstascan
+		//,"<sep></sep>",
+		//catRobotFly
 	];
 	
 	//My Search

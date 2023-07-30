@@ -643,7 +643,7 @@ registerBlockOptions_$$module$build$src$core$contextmenu_items=function(){regist
 
 registerDeleteNull$$module$build$src$core$contextmenu_items();
 registerSearchNull$$module$build$src$core$contextmenu_items();
-registerHideToolbox$$module$build$src$core$contextmenu_items();
+//registerHideToolbox$$module$build$src$core$contextmenu_items();
 registerDownload$$module$build$src$core$contextmenu_items();
 registerBackPackPlugin$$module$build$src$core$contextmenu_items();
 registerHighLightPlugin$$module$build$src$core$contextmenu_items();
@@ -1800,13 +1800,8 @@ new Size$$module$build$src$core$utils$size(this.WIDTH,d),this.MARGIN_HORIZONTAL,
 		this.zoomSearchGroup.setAttribute("transform","translate(0, "+(e+7*(this.SMALL_SPACING+this.HEIGHT))+")")		
 	}
 	this.top=b.top;
-	this.left=b.left;
-	
-	var ToolboxDiv = document.getElementsByClassName("blocklyToolboxDiv blocklyNonSelectable");
-	if (ToolboxDiv) {
-		this.top += 10;
-		this.left = ToolboxDiv[0].clientWidth+69;
-	}
+	//this.left=b.left;
+	this.left = this.workspace.getToolbox().getWidth()+60;
 		
 	var g;
 	null==(g=this.svgGroup)||g.setAttribute("transform","translate("+this.left+","+this.top+") rotate(180)")}
@@ -1849,11 +1844,11 @@ zoomPrevious(a){this.workspace.undo(false);};
 zoomNext(a){this.workspace.undo(true);};
 zoomSearch(a){searchBlocks();this.fireZoomEvent();clearTouchIdentifier$$module$build$src$core$touch();a.stopPropagation();a.preventDefault()};
 zoomShowCategory(a){
-	var toolbox = document.getElementsByClassName("blocklyToolboxDiv blocklyNonSelectable")[0];
-	if (toolbox) {
-		toolbox.style.display=toolbox.style.display=="none"?"block":"none";
-		this.workspace.resize();
-	}
+	if (this.workspace.getToolbox().isVisible_)
+		this.workspace.getToolbox().setVisible(false);
+	else
+		this.workspace.getToolbox().setVisible(true);
+	this.workspace.resize();
 };
 zoomFit(){this.workspace.zoomToFit();};
 zoomCleanup(){this.workspace.cleanUp();};
@@ -2110,11 +2105,8 @@ this.contents.map(function(c){return JSON.parse(c)}),b=this.workspace.getParentS
 position(a,b){
 	if(this.initialized){var c=getCornerOppositeToolbox$$module$build$src$core$positionable_helpers(this.workspace,a);a=getStartPositionRect$$module$build$src$core$positionable_helpers(c,new Size$$module$build$src$core$utils$size(WIDTH$$module$build$src$core$trashcan,BODY_HEIGHT$$module$build$src$core$trashcan+LID_HEIGHT$$module$build$src$core$trashcan),MARGIN_HORIZONTAL$$module$build$src$core$trashcan,MARGIN_VERTICAL$$module$build$src$core$trashcan,a,this.workspace);b=bumpPositionRect$$module$build$src$core$positionable_helpers(a,MARGIN_VERTICAL$$module$build$src$core$trashcan,c.vertical===verticalPosition$$module$build$src$core$positionable_helpers.TOP?bumpDirection$$module$build$src$core$positionable_helpers.DOWN:bumpDirection$$module$build$src$core$positionable_helpers.UP,b);
 	this.top=b.top;
-	this.left=b.left;
-	var ToolboxDiv = document.getElementsByClassName("blocklyToolboxDiv blocklyNonSelectable");
-	if (ToolboxDiv) {
-		this.left = ToolboxDiv[0].clientWidth+30;
-	}	
+	//this.left=b.left;
+	this.left = this.workspace.getToolbox().getWidth()+22;	
 	
 	var d;
 	null==(d=this.svgGroup)||d.setAttribute("transform","translate("+this.left+","+this.top+")")}
