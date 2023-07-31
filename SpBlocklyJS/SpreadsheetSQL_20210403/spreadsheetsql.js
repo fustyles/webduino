@@ -103,11 +103,13 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 		
 		var innerData = "";
 	  
+		var k = 0;
 		if (input_column) {
 			for (var i=0;i<spreadsheetsql_head_response.length;i++) {
+				k++;
 				innerData += "<tr style='border:1px solid black;border-collapse: collapse;'>";
 				for (var j=0;j<spreadsheetsql_head_response[i].length;j++) {
-					innerData += "<td style='border:1px solid black;border-collapse: collapse;'>"+spreadsheetsql_head_response[i][j]+"</td>";
+					innerData += "<td id='gametable_td_"+input_id+"_"+i+"_"+j+"' style='border:1px solid black;border-collapse: collapse;' onclick='javascript:onclickid_set(this);'>"+spreadsheetsql_head_response[i][j]+"</td>";
 				}
 				innerData += "</tr>";
 			}
@@ -115,10 +117,11 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 		for (var i=0;i<spreadsheetsql_response.length;i++) {
 			innerData += "<tr style='border:1px solid black;border-collapse: collapse;'>";
 			for (var j=0;j<spreadsheetsql_response[i].length;j++) {
-				innerData += "<td style='border:1px solid black;border-collapse: collapse;'>"+spreadsheetsql_response[i][j]+"</td>";
+				innerData += "<td id='gametable_td_"+input_id+"_"+(i+k)+"_"+j+"' style='border:1px solid black;border-collapse: collapse;' onclick='javascript:onclickid_set(this);'>"+spreadsheetsql_response[i][j]+"</td>";
 			}
 			innerData += "</tr>";
 		}
+		console.log(innerData);
 		obj.innerHTML = innerData;
 		document.body.appendChild(obj);  
 	}
