@@ -25,11 +25,11 @@ span_create('sheet',0,250,20,'工作表名稱：',999);
 span_create('',0,300,20,'SQL語法：',999);
 text_create('id',400,30,120,200,'#ffffff','#000000',12,1,'1xeTHqIrT4Buj1XxpXfUlwdmmqGSBgI3x4QXlo5JT4Po',999,true);
 text_create('sheet',400,30,120,250,'#ffffff','#000000',12,1,'SQL',999,true);
-text_create('',400,30,120,300,'#ffffff','#000000',12,1,'select *',999,true);
+text_create('',400,30,120,300,'#ffffff','#000000',12,1,'select A, B, C',999,true);
 button_create('',60,40,540,300,1,null,'查詢',20,999,true);
 async function gamebutton__onclick (event) {
   SQL_E6_9F_A5_E8_A9_A2('output', 0, 350, text_get('id',"value"), text_get('sheet',"value"), text_get('',"value"));
 };
 document.getElementById("gamebutton_").addEventListener("click", gamebutton__onclick, true);
-SQL_E6_9F_A5_E8_A9_A2('source', 0, 0, text_get('id',"value"), 'SQL', 'select A, B, C');
+SQL_E6_9F_A5_E8_A9_A2('source', 0, 0, text_get('id',"value"), 'SQL', 'select *');
 };main();</script></body></html>
