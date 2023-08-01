@@ -18,8 +18,8 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
   function spreadsheetsql_executeSql(spreadsheet_sql) {
 	spreadsheetsql_response = [];
 	//google.load("visualization", "1", {packages:["corechart"]});
-    //var input_url="https://docs.google.com/spreadsheets/d/"+spreadsheet_id+"/gviz/tq?tqx=out:json&sheet="+spreadsheet_name+"&tq="+spreadsheet_sql;
-    google.load('visualization', '1', {
+    	//var input_url="https://docs.google.com/spreadsheets/d/"+spreadsheet_id+"/gviz/tq?tqx=out:json&sheet="+spreadsheet_name+"&tq="+spreadsheet_sql;
+    	google.load('visualization', '1', {
 	  packages: ['corechart'],
 	  callback: function () {
 		var query = new google.visualization.Query("https://docs.google.com/spreadsheets/d/"+spreadsheet_id+"/gviz/tq?tqx=out:json&sheet="+spreadsheet_name);
