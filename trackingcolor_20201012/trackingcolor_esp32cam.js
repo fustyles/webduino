@@ -37,13 +37,15 @@ window.onload = function () {
 	}    
 
 	ShowImage.onload = function (event) {
+	  ShowImage.setAttribute("width", ShowImage.naturalWidth);
+	  ShowImage.setAttribute("height", ShowImage.naturalHeight);		
 	  canvas.setAttribute("width", ShowImage.width);
 	  canvas.setAttribute("height", ShowImage.height);		
 	  clearInterval(myTimer);
 	  restartCount=0;
 
 	  start()         
-	}	
+	}		
 	
 	start();
 		
