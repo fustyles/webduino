@@ -58,8 +58,10 @@ window.onload = function () {
 		
 	  clearInterval(myTimer);
 	  restartCount=0;
+		
 	  tracking.track('#gameimage_trackingcolor', tracker);
-	  start();       
+		
+	  setTimeout(function(){start();},200);     
 	}	
 	
 	start();
@@ -67,7 +69,6 @@ window.onload = function () {
 	var tracker = new tracking.ColorTracker();
 	
 	tracker.on('track', function(event) {
-		console.log("ok");
 			if (trackingcolorState.innerHTML=="0") {
 				//result.innerHTML = "";
 				return;
