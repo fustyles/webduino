@@ -41,15 +41,6 @@ window.onload = function () {
 	  ShowImage.setAttribute("height", ShowImage.naturalHeight);		
 	canvas.setAttribute("width", ShowImage.width);
 	canvas.setAttribute("height", ShowImage.height);	
-	
-	if (mirrorimage==1) {
-	  context.translate((canvas.width + ShowImage.width) / 2, 0);
-	  context.scale(-1, 1);
-	  context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
-	  context.setTransform(1, 0, 0, 1, 0, 0);
-	}
-	else
-	  context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
 		
 	  clearInterval(myTimer);
 	  restartCount=0;
@@ -60,7 +51,7 @@ window.onload = function () {
 		
 	var tracker = new tracking.ColorTracker();
 	
-	tracking.track('#gamecanvas_trackingcolor', tracker);
+	tracking.track('#gameimage_trackingcolor', tracker);
 
 	tracker.on('track', function(event) {
 		console.log(ShowImage.width);
