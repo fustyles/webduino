@@ -71,6 +71,7 @@ window.onload = function () {
 	var tracker = new tracking.ColorTracker();
 	
 	tracker.on('track', function(event) {
+		console.log("ok");
 			if (trackingcolorState.innerHTML=="0") {
 				//result.innerHTML = "";
 				return;
