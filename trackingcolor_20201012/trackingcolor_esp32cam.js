@@ -45,7 +45,7 @@ window.onload = function () {
 	  clearInterval(myTimer);
 	  restartCount=0;
 		
-	  setInterval(function(){start();},200);         
+	  start();       
 	}	
 	
 	start();
