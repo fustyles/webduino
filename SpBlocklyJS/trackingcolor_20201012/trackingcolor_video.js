@@ -115,10 +115,9 @@ window.onload = function () {
 						}
 					});
 
-					if (result.innerHTML!="") {
+					if (result.innerHTML!="")
 						result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4);
-						if (typeof trackingcolor_recognitionFinish === 'function') trackingcolor_recognitionFinish();
-					}
+					if (typeof trackingcolor_recognitionFinish === 'function') trackingcolor_recognitionFinish();
 				});
 				
 				tracking.ColorTracker.registerColor('red', function(r, g, b) {
