@@ -55,12 +55,14 @@ window.onload = function () {
 	tracking.track('#gameimage_trackingcolor', tracker);
 
 	tracker.on('track', function(event) {
-		console.log(ShowImage.width);
+		
 		if (ShowImage.width>0) {
 			if (trackingcolorState.innerHTML=="0") {
 				//result.innerHTML = "";
 				return;
-			}			
+			}
+
+			console.log(ShowImage.width);
 
 			myColor_r_min1 = document.getElementById('myColor_r_min1').value;
 			myColor_r_max1 = document.getElementById('myColor_r_max1').value;
@@ -124,8 +126,9 @@ window.onload = function () {
 
 			if (result.innerHTML!="") {
 				result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4);
-				if (typeof trackingcolor_recognitionFinish === 'function') trackingcolor_recognitionFinish();
 			}
+
+			if (typeof trackingcolor_recognitionFinish === 'function') trackingcolor_recognitionFinish();
 		
 		}
 	});
