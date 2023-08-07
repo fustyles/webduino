@@ -51,9 +51,11 @@ window.onload = function () {
 	start();
 		
 	var tracker = new tracking.ColorTracker();
-	
-	tracking.track('#gameimage_trackingcolor', tracker);
 
+	 setTimeout(function(){
+		tracking.track('#gameimage_trackingcolor', tracker);
+	},3000); 
+	
 	tracker.on('track', function(event) {
 		console.log(ShowImage.width);
 		if (ShowImage.width>0) {
