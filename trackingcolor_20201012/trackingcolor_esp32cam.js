@@ -37,6 +37,8 @@ window.onload = function () {
 	}    
 
 	ShowImage.onload = function (event) {
+		console.log(ShowImage.naturalWidth);
+		console.log(ShowImage.naturalHeight);
 	  ShowImage.setAttribute("width", ShowImage.naturalWidth);
 	  ShowImage.setAttribute("height", ShowImage.naturalHeight);		
 	  canvas.setAttribute("width", ShowImage.width);
@@ -55,15 +57,13 @@ window.onload = function () {
 	tracking.track('#gameimage_trackingcolor', tracker);
 
 	tracker.on('track', function(event) {
-		
+		console.log(ShowImage.width);
 		if (ShowImage.width>0) {
 			if (trackingcolorState.innerHTML=="0") {
 				//result.innerHTML = "";
 				return;
 			}
-
-			console.log(ShowImage.width);
-
+			
 			myColor_r_min1 = document.getElementById('myColor_r_min1').value;
 			myColor_r_max1 = document.getElementById('myColor_r_max1').value;
 			myColor_g_min1 = document.getElementById('myColor_g_min1').value;
