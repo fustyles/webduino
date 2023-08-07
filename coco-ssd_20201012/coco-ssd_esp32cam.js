@@ -85,8 +85,8 @@ window.onload = function () {
 		   }
 		   if (res!="")
 		       result.innerHTML = res.substr(0,res.length-4);
-           	   recognitionFinish();		   
-		}	
+		}
+		if (typeof recognitionFinish === 'function') recognitionFinish();
 		
 		try { 
 		  document.createEvent("TouchEvent");
