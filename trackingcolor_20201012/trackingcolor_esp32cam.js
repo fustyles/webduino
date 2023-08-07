@@ -78,11 +78,6 @@ window.onload = function () {
 				return;
 			}
 			
-			if (trackingcolorState.innerHTML=="0") {
-				//result.innerHTML = "";
-				return;
-			}
-			
 			myColor_r_min1 = document.getElementById('myColor_r_min1').value;
 			myColor_r_max1 = document.getElementById('myColor_r_max1').value;
 			myColor_g_min1 = document.getElementById('myColor_g_min1').value;
