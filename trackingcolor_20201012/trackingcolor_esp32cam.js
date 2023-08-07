@@ -41,9 +41,7 @@ window.onload = function() {
     }
 
     ShowImage.onload = function(event) {
-        console.log(ShowImage.width);
-        if (!ShowImage.width) {
-            console.log(ShowImage.width);
+        //if (!ShowImage.width) {
             ShowImage.setAttribute("width", ShowImage.naturalWidth);
             ShowImage.setAttribute("height", ShowImage.naturalHeight);
             canvas.setAttribute("width", ShowImage.width);
@@ -54,7 +52,7 @@ window.onload = function() {
             canvas_custom.setAttribute("height", ShowImage.height);
             canvas_custom.style.width = ShowImage.width + "px";
             canvas_custom.style.height = ShowImage.height + "px";
-        }
+        //}
         context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
 
         clearInterval(myTimer);
