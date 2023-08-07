@@ -6,7 +6,7 @@ document.write('<select id="mirrorimage_trackingcolor" style="position:absolute;
 document.write('<div id="trackingcolorState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="sourceId_trackingcolor" style="position:absolute;display:none;"></div>');
 
-//window.onload = function () {
+window.onload = function () {
     var ShowImage = document.getElementById('gameimage_trackingcolor');	
     var canvas = document.getElementById('gamecanvas_trackingcolor');
     var context = canvas.getContext('2d');
@@ -191,4 +191,4 @@ document.write('<div id="sourceId_trackingcolor" style="position:absolute;displa
       document.getElementById('myColor_b_max'+n).value = val[1].split(",")[2];
       document.getElementById('myColor_b_max_v'+n).innerHTML = val[1].split(",")[2];
     }    
-//}
+}
