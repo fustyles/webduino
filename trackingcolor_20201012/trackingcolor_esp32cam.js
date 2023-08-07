@@ -41,7 +41,8 @@ window.onload = function() {
     }
 
     ShowImage.onload = function(event) {
-        if (ShowImage.width==0) {
+        console.log(ShowImage.width);
+        if (!ShowImage.width) {
             console.log(ShowImage.width);
             ShowImage.setAttribute("width", ShowImage.naturalWidth);
             ShowImage.setAttribute("height", ShowImage.naturalHeight);
