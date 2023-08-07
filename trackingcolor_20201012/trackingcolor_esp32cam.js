@@ -124,7 +124,7 @@ window.onload = function () {
 				if (mirrorimage.value==1) {
 					context.strokeStyle = rect.color;
 					context.strokeRect(ShowImage.width-rect.x-rect.width, rect.y, rect.width, rect.height);
-					result.innerHTML+= rect.color+","+(obj.width-rect.x-rect.width)+","+rect.y+","+rect.width+","+rect.height+"<br>";
+					result.innerHTML+= rect.color+","+(ShowImage.width-rect.x-rect.width)+","+rect.y+","+rect.width+","+rect.height+"<br>";
 				}
 				else {
 					context.strokeStyle = rect.color;
