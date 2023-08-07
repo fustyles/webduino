@@ -41,18 +41,18 @@ window.onload = function() {
     }
 
     ShowImage.onload = function(event) {
-        //if (!ShowImage.width) {
+        if (!ShowImage.width) {
             ShowImage.setAttribute("width", ShowImage.naturalWidth);
             ShowImage.setAttribute("height", ShowImage.naturalHeight);
             canvas.setAttribute("width", ShowImage.width);
             canvas.setAttribute("height", ShowImage.height);
             canvas.style.width = ShowImage.width + "px";
             canvas.style.height = ShowImage.height + "px";
-            canvas_custom.setAttribute("width", ShowImage.width);
-            canvas_custom.setAttribute("height", ShowImage.height);
-            canvas_custom.style.width = ShowImage.width + "px";
-            canvas_custom.style.height = ShowImage.height + "px";
-        //}
+        }
+        canvas_custom.setAttribute("width", canvas.width);
+        canvas_custom.setAttribute("height", canvas.height);
+        canvas_custom.style.width = canvas.width + "px";
+        canvas_custom.style.height = canvas.height + "px";        
         context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
 
         clearInterval(myTimer);
