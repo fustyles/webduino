@@ -64,6 +64,7 @@ window.onload = function () {
 	start();
 
 	var tracker = new tracking.ColorTracker();
+	tracking.track('#gameimage_trackingcolor', tracker);
 	
 	tracker.on('track', function(event) {
 		console.log("ok");
