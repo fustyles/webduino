@@ -63,7 +63,7 @@ window.onload = function() {
 
         setTimeout(function() {
             start();
-        }, 200);
+        }, 300);
     }
 
     start();
