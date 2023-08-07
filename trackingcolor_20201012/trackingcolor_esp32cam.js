@@ -21,6 +21,7 @@ window.onload = function () {
     var myColor_r_min3,myColor_r_max3,myColor_g_min3,myColor_g_max3,myColor_b_min3,myColor_b_max3;
 	var myTimer;
 	var restartCount=0;
+	var imageState = true;
 	
 	function start() {
 	  clearInterval(myTimer);  
@@ -50,14 +51,16 @@ window.onload = function () {
 		
 	  clearInterval(myTimer);
 	  restartCount=0;
-		
+          if (imageState) {
+	    imageState = false;
+	    tracking.track('#gameimage_trackingcolor', tracker);
+	  }
 	  start();       
 	}	
 	
 	start();
 		
 	var tracker = new tracking.ColorTracker();
-	tracking.track('#gameimage_trackingcolor', tracker);
 	
 	tracker.on('track', function(event) {
 			if (mirrorimage==1) {
