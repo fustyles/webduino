@@ -47,7 +47,14 @@ window.onload = function() {
         canvas.setAttribute("height", ShowImage.height);
         canvas_custom.setAttribute("width", canvas.width);
         canvas_custom.setAttribute("height", canvas.height);     
-        context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
+        if (mirrorimage==1) {
+          context.translate((canvas.width + ShowImage.width) / 2, 0);
+          context.scale(-1, 1);
+          context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
+          context.setTransform(1, 0, 0, 1, 0, 0);
+        }
+        else
+          context.drawImage(ShowImage, 0, 0, obj.width, ShowImage.height);
 
         clearInterval(myTimer);
         restartCount = 0;
@@ -117,9 +124,16 @@ window.onload = function() {
         context_custom.putImageData(imgData, 0, 0);
 
         event.data.forEach(function(rect) {
+            if (mirrorimage.value==1) {
+                context.strokeStyle = rect.color;
+                context.strokeRect(ShowImage.width-rect.x-rect.width, rect.y, rect.width, rect.height);
+                result.innerHTML+= rect.color+","+(ShowImage.width-rect.x-rect.width)+","+rect.y+","+rect.width+","+rect.height+"<br>";
+            }
+            else {
                 context.strokeStyle = rect.color;
                 context.strokeRect(rect.x, rect.y, rect.width, rect.height);
-                result.innerHTML += rect.color + "," + rect.x + "," + rect.y + "," + rect.width + "," + rect.height + "<br>";
+                result.innerHTML+= rect.color+","+rect.x+","+rect.y+","+rect.width+","+rect.height+"<br>";
+            }
         });
 
         if (result.innerHTML != "")
