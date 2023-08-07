@@ -60,7 +60,6 @@ window.onload = function () {
 	tracking.track('#gameimage_trackingcolor', tracker);
 	
 	tracker.on('track', function(event) {
-		if (ShowImage.width>0) {
 			if (mirrorimage==1) {
 			  context.translate((canvas.width + ShowImage.width) / 2, 0);
 			  context.scale(-1, 1);
@@ -137,11 +136,8 @@ window.onload = function () {
 
 			if (result.innerHTML!="") {
 				result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4);
+				if (typeof trackingcolor_recognitionFinish === 'function') trackingcolor_recognitionFinish();
 			}
-
-			if (typeof trackingcolor_recognitionFinish === 'function') trackingcolor_recognitionFinish();
-		
-		}
 	});
 	
 	tracking.ColorTracker.registerColor('red', function(r, g, b) {
