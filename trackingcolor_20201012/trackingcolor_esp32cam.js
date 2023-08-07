@@ -40,7 +40,13 @@ window.onload = function () {
 	  ShowImage.setAttribute("width", ShowImage.naturalWidth);
 	  ShowImage.setAttribute("height", ShowImage.naturalHeight);		
 	  canvas.setAttribute("width", ShowImage.width);
-	  canvas.setAttribute("height", ShowImage.height);	
+	  canvas.setAttribute("height", ShowImage.height);
+	  canvas.style.width = ShowImage.width+"px";
+	  canvas.style.height = ShowImage.height+"px";
+	  canvas_custom.setAttribute("width", ShowImage.width);
+	  canvas_custom.setAttribute("height", ShowImage.height);
+	  canvas_custom.style.width = ShowImage.width+"px";
+	  canvas_custom.style.height = ShowImage.height+"px";	
 		
 	  clearInterval(myTimer);
 	  restartCount=0;
@@ -58,6 +64,20 @@ window.onload = function () {
 	
 	tracker.on('track', function(event) {
 		if (ShowImage.width>0) {
+			if (mirrorimage==1) {
+			  context.translate((canvas.width + obj.width) / 2, 0);
+			  context.scale(-1, 1);
+			  context.drawImage(obj, 0, 0, obj.width, obj.height);
+			  context.setTransform(1, 0, 0, 1, 0, 0);
+			}
+			else
+			  context.drawImage(obj, 0, 0, obj.width, obj.height);
+		  
+			if (trackingcolorState.innerHTML=="0") {
+				//result.innerHTML = "";
+				return;
+			}
+			
 			if (trackingcolorState.innerHTML=="0") {
 				//result.innerHTML = "";
 				return;
