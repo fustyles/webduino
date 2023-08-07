@@ -123,7 +123,7 @@ window.onload = function () {
 			event.data.forEach(function(rect) {
 				if (mirrorimage.value==1) {
 					context.strokeStyle = rect.color;
-					context.strokeRect(obj.width-rect.x-rect.width, rect.y, rect.width, rect.height);
+					context.strokeRect(ShowImage.width-rect.x-rect.width, rect.y, rect.width, rect.height);
 					result.innerHTML+= rect.color+","+(obj.width-rect.x-rect.width)+","+rect.y+","+rect.width+","+rect.height+"<br>";
 				}
 				else {
