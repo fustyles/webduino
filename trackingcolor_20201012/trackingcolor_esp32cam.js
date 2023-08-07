@@ -39,8 +39,7 @@ window.onload = function () {
 	ShowImage.onload = function (event) {
 	  ShowImage.setAttribute("width", ShowImage.naturalWidth);
 	  ShowImage.setAttribute("height", ShowImage.naturalHeight);		
-	  canvas.setAttribute("width", ShowImage.width);
-	  canvas.setAttribute("height", ShowImage.height);		
+	
 	  clearInterval(myTimer);
 	  restartCount=0;
 	  start()         
@@ -55,7 +54,9 @@ window.onload = function () {
 	tracker.on('track', function(event) {
 		console.log(ShowImage.width);
 		if (ShowImage.width>0) {
-		
+			canvas.setAttribute("width", ShowImage.width);
+			canvas.setAttribute("height", ShowImage.height);	
+			
 			if (mirrorimage==1) {
 			  context.translate((canvas.width + ShowImage.width) / 2, 0);
 			  context.scale(-1, 1);
