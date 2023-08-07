@@ -99,4 +99,5 @@
 <category><name>HX710B</name><replace>HX710B pressure sensor</replace></category>
 <category><name>MAX6675</name><replace>MAX6675 temperature sensor</replace></category>
 <category><name>pms7003m</name><replace>PMS7003M sensor</replace></category>
+<category><name>trackingcolor</name><replace>Tracking color(Tracking)</replace></category>
 </xml>

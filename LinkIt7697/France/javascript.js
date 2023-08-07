@@ -16106,6 +16106,91 @@ Blockly.Arduino['esp32_cam_stream_myfirmata'] = function(block) {
     return '';
 };
 
+Blockly.Arduino['trackingcolor_esp32cam'] = function(block) {
+	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
+	var javascript_recognition = Blockly.Arduino.statementToCode(block, 'javascript_recognition');
+		
+	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/fustyles.github.io/webduino/trackingcolor_20201012/tracking-min.js'></script><script src='https:\/\/fustyles.github.io/webduino/trackingcolor_20201012/trackingcolor_esp32cam.js'></script><script src='https:\/\/fustyles.github.io/webduino/trackingcolor_20201012/trackingcolor.js'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"/var ")+" trackingcolor_recognitionFinish = async function() {"+javascript_recognition.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"var ")+"}};main();</script></body></html>\"";
+
+  return [code,Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['trackingcolor_set'] = function(block) {
+  var value_display = block.getFieldValue('display_');
+  var value_pixel = block.getFieldValue('pixel_');
+  var value_result = block.getFieldValue('result_');
+  var value_mirrorimage = block.getFieldValue('mirrorimage_');
+  var value_opacity = block.getFieldValue('opacity_');
+  var code = 'trackingcolor_set("' + value_display + '","' + value_pixel + '","' + value_result + '","' + value_mirrorimage + '","' + value_opacity + '");\n';
+  return code;
+};
+
+Blockly.Arduino['trackingcolor_range_set'] = function(block) {
+  var value_rect = block.getFieldValue('rect_');
+  var value_display = block.getFieldValue('display_');
+  var value_left = Blockly.Arduino.valueToCode(block, 'left_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_top = Blockly.Arduino.valueToCode(block, 'top_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'trackingcolor_range_set("' + value_rect + '","' + value_display + '",' + value_left + ',' + value_top + ');\n';
+  return code;
+};
+
+Blockly.Arduino['trackingcolor_custom'] = function(block) {
+  var value_rect = block.getFieldValue('rect_');
+  var value_rmin = Blockly.Arduino.valueToCode(block, 'rmin_', Blockly.Arduino.ORDER_ATOMIC);  
+  var value_rmax = Blockly.Arduino.valueToCode(block, 'rmax_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_gmin = Blockly.Arduino.valueToCode(block, 'gmin_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_gmax = Blockly.Arduino.valueToCode(block, 'gmax_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_bmin = Blockly.Arduino.valueToCode(block, 'bmin_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_bmax = Blockly.Arduino.valueToCode(block, 'bmax_', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'trackingcolor_custom("' + value_rect + '",' + value_rmin + ',' + value_rmax + ',' + value_gmin + ',' + value_gmax + ',' + value_bmin + ',' + value_bmax + ');\n';
+  return code;
+};
+
+Blockly.Arduino['trackingcolor_video_position'] = function(block) { 
+  var value_left_ = Blockly.Arduino.valueToCode(block, 'left_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_top_ = Blockly.Arduino.valueToCode(block, 'top_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'trackingcolor_video_position(' + value_left_ + ',' + value_top_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['trackingcolor_get'] = function(block) { 
+  var value_rect = block.getFieldValue('rect_');
+  var code = 'trackingcolor_get("' + value_rect + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['trackingcolor_object'] = function(block) { 
+  var value_rect = block.getFieldValue('rect_');
+  var value_index = Blockly.Arduino.valueToCode(block, 'index_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_data = block.getFieldValue('data_');
+  var code = 'trackingcolor_object("' + value_rect + '",' + value_index + ',"' + value_data + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['trackingcolor_get_number'] = function(block) { 
+  var value_rect = block.getFieldValue('rect_');
+  var code = 'trackingcolor_get_number("' + value_rect + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['trackingcolor_state'] = function(block) {
+  var value_state_ = block.getFieldValue('state_');
+  var code = 'trackingcolor_state(' + value_state_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['trackingcolor_clear'] = function(block) { 
+  var code = 'trackingcolor_clear();\n';
+  return code;
+};
+
+Blockly.Arduino['trackingcolor_pause'] = function(block) { 
+  var value_time = Blockly.Arduino.valueToCode(block, 'time_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'trackingcolor_state(0);setTimeout(function(){trackingcolor_state(1);}, '+value_time+');\n';
+  return code;
+};
+
 Blockly.Arduino['cocossd_esp32cam'] = function(block) {
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
 	var javascript_recognition = Blockly.Arduino.statementToCode(block, 'javascript_recognition');
