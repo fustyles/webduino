@@ -39,7 +39,18 @@ window.onload = function () {
 	ShowImage.onload = function (event) {
 	  ShowImage.setAttribute("width", ShowImage.naturalWidth);
 	  ShowImage.setAttribute("height", ShowImage.naturalHeight);		
+	  canvas.setAttribute("width", ShowImage.width);
+	  canvas.setAttribute("height", ShowImage.height);	
 	
+	  if (mirrorimage==1) {
+	    context.translate((canvas.width + ShowImage.width) / 2, 0);
+	    context.scale(-1, 1);
+	    context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
+	    context.setTransform(1, 0, 0, 1, 0, 0);
+	  }
+	  else
+	    context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
+		
 	  clearInterval(myTimer);
 	  restartCount=0;
 	  start()         
@@ -54,17 +65,10 @@ window.onload = function () {
 	tracker.on('track', function(event) {
 		console.log(ShowImage.width);
 		if (ShowImage.width>0) {
-			canvas.setAttribute("width", ShowImage.width);
-			canvas.setAttribute("height", ShowImage.height);	
-			
-			if (mirrorimage==1) {
-			  context.translate((canvas.width + ShowImage.width) / 2, 0);
-			  context.scale(-1, 1);
-			  context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
-			  context.setTransform(1, 0, 0, 1, 0, 0);
-			}
-			else
-			  context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
+			if (trackingcolorState.innerHTML=="0") {
+				//result.innerHTML = "";
+				return;
+			}			
 
 			myColor_r_min1 = document.getElementById('myColor_r_min1').value;
 			myColor_r_max1 = document.getElementById('myColor_r_max1').value;
