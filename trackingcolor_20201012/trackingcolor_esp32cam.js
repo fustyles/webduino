@@ -47,13 +47,6 @@ window.onload = function () {
 	  canvas_custom.setAttribute("height", ShowImage.height);
 	  canvas_custom.style.width = ShowImage.width+"px";
 	  canvas_custom.style.height = ShowImage.height+"px";	
-	if (mirrorimage==1) {
-	  context.translate((canvas.width + ShowImage.width) / 2, 0);
-	  context.scale(-1, 1);
-	  context.drawImage(ShowImage, 0, 0, ShowImage.width,ShowImage.height);
-	  context.setTransform(1, 0, 0, 1, 0, 0);
-	}
-	else
 	  context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
 		
 	  clearInterval(myTimer);
