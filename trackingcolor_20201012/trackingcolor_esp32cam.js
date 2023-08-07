@@ -26,7 +26,6 @@ window.onload = function () {
 	  clearInterval(myTimer);  
 	  myTimer = setInterval(function(){error_handle();},5000);
 	  ShowImage.src = document.location.origin+'/?getstill='+Math.random();
-		console.log(ShowImage.src);
 	}
 
 	function error_handle() {
@@ -44,7 +43,6 @@ window.onload = function () {
 	  canvas.setAttribute("height", ShowImage.height);		
 	  clearInterval(myTimer);
 	  restartCount=0;
-console.log("ok");
 	  start()         
 	}	
 	
