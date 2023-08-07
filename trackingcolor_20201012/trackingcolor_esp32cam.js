@@ -57,6 +57,7 @@ window.onload = function () {
 	tracker.on('track', function(event) {
 		console.log(ShowImage.width);
 		if (ShowImage.width>0) {
+			console.log(trackingcolorState.innerHTML);
 			if (trackingcolorState.innerHTML=="0") {
 				//result.innerHTML = "";
 				return;
