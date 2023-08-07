@@ -53,7 +53,7 @@ window.onload = function () {
 	tracking.track('#gameimage_trackingcolor', tracker);
 
 	tracker.on('track', function(event) {
-		
+		console.log(ShowImage.width);
 		if (ShowImage.width>0) {
 		
 			if (mirrorimage==1) {
