@@ -65,11 +65,6 @@ window.onload = function () {
 			}
 			else
 			  context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
-		  
-			if (trackingcolorState.innerHTML=="0") {
-				//result.innerHTML = "";
-				return;
-			}				  
 
 			myColor_r_min1 = document.getElementById('myColor_r_min1').value;
 			myColor_r_max1 = document.getElementById('myColor_r_max1').value;
