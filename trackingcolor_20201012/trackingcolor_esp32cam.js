@@ -63,7 +63,7 @@ window.onload = function () {
 	
 	start();
 
-	sourceTimer = setInterval(
+	setInterval(
 		function(){
 			var tracker = new tracking.ColorTracker();
 			
