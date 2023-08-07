@@ -54,7 +54,7 @@ window.onload = function() {
           context.setTransform(1, 0, 0, 1, 0, 0);
         }
         else
-          context.drawImage(ShowImage, 0, 0, obj.width, ShowImage.height);
+          context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
 
         clearInterval(myTimer);
         restartCount = 0;
