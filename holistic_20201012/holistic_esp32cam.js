@@ -112,7 +112,7 @@ window.onload = function () {
 		
 		canvasCtx.restore();
 
-		if (typeof recognitionFinish === 'function') recognitionFinish(results);
+		if (typeof recognitionFinish === 'function') recognitionFinish();
 	}
 	
 	const holistic = new Holistic({locateFile: (file) => {
