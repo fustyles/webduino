@@ -171,9 +171,14 @@ Blockly.JavaScript['holistic_clear'] = function(block) {
 };
 
 Blockly.JavaScript['holistic_recognitied'] = function(block) { 
+  var value_status = block.getFieldValue('status_');
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'holistic_recognitionFinish = async function() {\nholistic_state(0);\n' + statements_do + '\nholistic_state(1);};\n';
-  return code;
+  
+  if (value_status=="Y")
+	  var code = 'holistic_recognitionFinish = async function() {\n  holistic_state(0);\n' + statements_do + '\n  holistic_state(1);\n};\n';
+  else
+	  var code = 'holistic_unrecognitionFinish = async function() {\n  holistic_state(0);\n' + statements_do + '\n  holistic_state(1);\n};\n';
+  return code;  
 };
 
 Blockly.JavaScript['holistic_unrecognitied'] = function(block) { 
