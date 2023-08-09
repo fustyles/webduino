@@ -68,7 +68,7 @@
 
 	function cocossd_object_number(input_object) {
 		var result = document.getElementById("gamediv_cocossd").innerHTML.split("<br>");
-		if (result=="")
+		if (result[0]=="")
 			return 0;
 		if (input_object=="") 
 			return result.length;
