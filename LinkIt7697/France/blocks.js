@@ -22068,6 +22068,23 @@ Blockly.Blocks['holistic_video'] = {
   }
 };
 
+Blockly.Blocks['holistic_recognitied'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.HOLISTIC_RECOGNITIED_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.HOLISTIC_RECOGNITIED_PERSONS_SHOW,"Y"],
+		[Blockly.Msg.HOLISTIC_RECOGNITIED_NOBODY_SHOW,"N"]	
+  ]), "status_");	  
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['holistic_face_position'] = {
   init: function() {	  
   this.appendDummyInput()  

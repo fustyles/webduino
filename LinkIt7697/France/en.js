@@ -1160,6 +1160,9 @@ Blockly.Msg.HOLISTIC_LEFTHAND_ANGLE_SHOW = "Holistic Detect Left hand Turn Angle
 Blockly.Msg.HOLISTIC_RIGHTHAND_ANGLE_SHOW = "Holistic Detect Right hand Turn Angle";
 Blockly.Msg.HOLISTIC_AXIS_SHOW  = "Axis"; 
 Blockly.Msg.HOLISTIC_ADJUST_SHOW  = "Adjust Angle";
+Blockly.Msg.HOLISTIC_RECOGNITIED_SHOW = "Holistic Detection recognitied";
+Blockly.Msg.HOLISTIC_RECOGNITIED_PERSONS_SHOW = "someone was detected";
+Blockly.Msg.HOLISTIC_RECOGNITIED_NOBODY_SHOW = "There is nobody";
 Blockly.Msg.HOLISTIC_PAUSE_SHOW = "Holistic Detect Pause";
 
 Blockly.Msg.ESP32_CAM_LINENOTIFY_SHOW = "ESP32-CAM send still to Line Notify";
