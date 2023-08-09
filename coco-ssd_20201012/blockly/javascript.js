@@ -72,9 +72,14 @@ Blockly.JavaScript['cocossd_pause'] = function(block) {
 };
 
 Blockly.JavaScript['cocossd_recognitied'] = function(block) { 
+  var value_status = block.getFieldValue('status_');
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'cocossd_recognitionFinish = async function() {\n  cocossd_state(0);\n  ' + statements_do + '\n  cocossd_state(1);\n};\n';
-  return code;
+  
+  if (value_status=="Y")
+	  var code = 'cocossd_recognitionFinish = async function() {\n  cocossd_state(0);\n' + statements_do + '\n  cocossd_state(1);\n};\n';
+  else
+	  var code = 'cocossd_unrecognitionFinish = async function() {\n  cocossd_state(0);\n' + statements_do + '\n  cocossd_state(1);\n};\n';
+  return code; 
 };
 
 Blockly.JavaScript['cocossd_unrecognitied'] = function(block) { 
