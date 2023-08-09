@@ -21870,40 +21870,17 @@ Blockly.Blocks['cocossd_video_position'] = {
   }
 };
 
-
-Blockly.Blocks['cocossd_startvideo_media'] = {
-  init: function() { 
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.COCOSSD_SHOW); 
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.COCOSSD_FACING_SHOW)
+Blockly.Blocks['cocossd_recognitied'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.COCOSSD_RECOGNITIED_SHOW);
+  this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
-        [Blockly.Msg.COCOSSD_FACING_FRONT_SHOW,"front"],
-        [Blockly.Msg.COCOSSD_FACING_BACK_SHOW,"back"]
-  ]), "facing_");  
-  this.appendValueInput("index_")
-      .setCheck("Number");  
-  this.appendValueInput("width_")
-      .setCheck("Number")
-      .appendField(Blockly.Msg.COCOSSD_WIDTH_SHOW);  
-  this.appendValueInput("height_")
-      .setCheck("Number")
-      .appendField(Blockly.Msg.COCOSSD_HEIGHT_SHOW);	  
-  this.setInputsInline(true);	  
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(Blockly.Msg["HUE_5"]);
-  }
-};
-
-Blockly.Blocks['cocossd_startvideo_stream'] = {
-  init: function() { 
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.COCOSSD_SHOW);    
-  this.appendValueInput("src_")
-      .setCheck("String")
-      .appendField(Blockly.Msg.COCOSSD_SRC_SHOW);	  
-  this.setInputsInline(true);	  
+		[Blockly.Msg.COCOSSD_RECOGNITIED_OBJECT_SHOW,"Y"],
+		[Blockly.Msg.COCOSSD_RECOGNITIED_NOTHING_SHOW,"N"]	
+  ]), "status_");	  
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(Blockly.Msg["HUE_5"]);
@@ -22081,7 +22058,7 @@ Blockly.Blocks['holistic_recognitied'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(Blockly.Msg["HUE_7"]);
   }
 };
 

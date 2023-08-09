@@ -2421,7 +2421,9 @@
 			  <block type="cocossd_esp32cam">
 			  </block>
 			  <block type="cocossd_video">    
-			  </block>  
+			  </block> 
+			  <block type="cocossd_recognitied">    
+			  </block> 			  
 			  <block type="cocossd_list">
 			  </block>  
 			  <block type="cocossd_object">

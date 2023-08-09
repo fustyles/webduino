@@ -16242,19 +16242,15 @@ Blockly.Arduino['cocossd_video_position'] = function(block) {
   return code;
 };
 
-Blockly.Arduino['cocossd_startvideo_media'] = function(block) { 
-  var value_width_ = Blockly.Arduino.valueToCode(block, 'width_', Blockly.Arduino.ORDER_ATOMIC);
-  var value_height_ = Blockly.Arduino.valueToCode(block, 'height_', Blockly.Arduino.ORDER_ATOMIC);
-  var value_facing_ = block.getFieldValue('facing_');
-  var value_index_ = Blockly.Arduino.valueToCode(block, 'index_', Blockly.Arduino.ORDER_ATOMIC);  
-  var code = 'cocossd_startvideo_media(' + value_width_ + ',' + value_height_ + ',"' + value_facing_ + '",' + value_index_ + ');\n';
-  return code;
-};
-
-Blockly.Arduino['cocossd_startvideo_stream'] = function(block) { 
-  var value_src_ = Blockly.Arduino.valueToCode(block, 'src_', Blockly.Arduino.ORDER_ATOMIC); 
-  var code = 'cocossd_startvideo_stream(' + value_src_ + ');\n';
-  return code;
+Blockly.Arduino['cocossd_recognitied'] = function(block) { 
+  var value_status = block.getFieldValue('status_');
+  var statements_do = Blockly.Arduino.statementToCode(block, 'do_');
+  
+  if (value_status=="Y")
+	  var code = 'if (cocossd_object_number("")>0){cocossd_state(0);' + statements_do + 'cocossd_state(1);}';
+  else
+	  var code = 'if (cocossd_object_number("")==0){cocossd_state(0);' + statements_do + 'cocossd_state(1);}';
+  return code;  
 };
 
 Blockly.Arduino['cocossd_canvas_get'] = function(block) { 

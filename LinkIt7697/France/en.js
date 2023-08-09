@@ -1064,6 +1064,9 @@ Blockly.Msg.COCOSSD_DATA_UPPERY_SHOW = "Upper Y";
 Blockly.Msg.COCOSSD_DATA_BOTTOMX_SHOW = "Bottom X";
 Blockly.Msg.COCOSSD_DATA_BOTTOMY_SHOW = "Bottom Y";
 Blockly.Msg.COCOSSD_PAUSE_SHOW = "Object Detection (coco-ssd) Pause";
+Blockly.Msg.COCOSSD_RECOGNITIED_SHOW = "Object Detection recognitied";
+Blockly.Msg.COCOSSD_RECOGNITIED_OBJECT_SHOW = "Object found";
+Blockly.Msg.COCOSSD_RECOGNITIED_NOTHING_SHOW = "No object found";
 
 Blockly.Msg.ESP32_CAM_HOLISTIC_SHOW = "Holistic Detect (mediapipe)";
 Blockly.Msg.ESP32_CAM_HOLISTIC_INITIAL_SHOW = "Initial";
