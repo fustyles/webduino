@@ -30,8 +30,6 @@ var catHolistic = '<xml>'+
   '</block>'+
   '<block type="holistic_recognitied">'+
   '</block>'+
-  '<block type="holistic_unrecognitied">'+
-  '</block>'+
   '<block type="holistic_video_position">'+
     '<value name="left_">'+
       '<block type="math_number">'+

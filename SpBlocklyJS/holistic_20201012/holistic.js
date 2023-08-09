@@ -1,7 +1,4 @@
 // Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
-
-+(function (window, document) {
-
   'use strict';
 
   function holistic_video(input_video, input_face, input_pose, input_lefthand, input_righthand, input_mirrorimage, input_opacity) {
@@ -474,23 +471,3 @@
 		ctxClip.restore();
 	} 
 
-	window.holistic_video = holistic_video;
-	window.holistic_face_position = holistic_face_position;
-	window.holistic_pose_position = holistic_pose_position;
-	window.holistic_lefthand_position = holistic_lefthand_position;
-	window.holistic_righthand_position = holistic_righthand_position;
-	window.holistic_all_position = holistic_all_position;	
-	window.holistic_distance = holistic_distance;
-	window.holistic_angle = holistic_angle;
-	window.holistic_part_angle =  holistic_part_angle;	
-	window.holistic_video_position = holistic_video_position;
-	window.holistic_state = holistic_state;
-	window.holistic_startvideo_media = holistic_startvideo_media;
-	window.holistic_startvideo_stream = holistic_startvideo_stream;
-	window.holistic_recognitionFinish = holistic_recognitionFinish;	
-	window.holistic_unrecognitionFinish = holistic_unrecognitionFinish;
-	window.holistic_clip_video = holistic_clip_video;
-	window.holistic_clip_image = holistic_clip_image;
-	window.holistic_clip_color = holistic_clip_color;
-	
-}(window, window.document));
