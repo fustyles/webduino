@@ -112,11 +112,7 @@ window.onload = function () {
 		
 		canvasCtx.restore();
 
-		if (results["rightHandLandmarks"]||results["leftHandLandmarks"]||results["faceLandmarks"]||results["poseLandmarks"]||results["ea"]) {
-			if (typeof recognitionFinish === 'function') recognitionFinish();
-		} else {
-			if (typeof unrecognitionFinish === 'function') unrecognitionFinish();
-		}
+		if (typeof recognitionFinish === 'function') recognitionFinish();
 	}
 	
 	const holistic = new Holistic({locateFile: (file) => {
