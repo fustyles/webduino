@@ -451,6 +451,11 @@ Blockly.Blocks['cocossd_recognitied'] = {
   init: function () {
   this.appendDummyInput()
       .appendField(Blockly.Msg.COCOSSD_RECOGNITIED_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.COCOSSD_RECOGNITIED_OBJECT_SHOW,"Y"],
+		[Blockly.Msg.COCOSSD_RECOGNITIED_NOTHING_SHOW,"N"]	
+  ]), "status_");	  
   this.appendStatementInput("do_");
   this.setInputsInline(true);
   this.setPreviousStatement(true);
