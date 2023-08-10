@@ -1,4 +1,3 @@
-
 Blockly.Blocks['cocossd_video'] = {
   init: function() {
   this.appendDummyInput()  
@@ -45,6 +44,8 @@ Blockly.Blocks['cocossd_video'] = {
 
 Blockly.Blocks['cocossd_list'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.COCOSSD_SHOW);	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.COCOSSD_OBJECT_SHOW)
       .appendField(new Blockly.FieldDropdown([
@@ -138,6 +139,8 @@ Blockly.Blocks['cocossd_list'] = {
 
 Blockly.Blocks['cocossd_object'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.COCOSSD_SHOW);	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.COCOSSD_OBJECT_SHOW)
       .appendField(new Blockly.FieldDropdown([
@@ -252,6 +255,8 @@ Blockly.Blocks['cocossd_object'] = {
 Blockly.Blocks['cocossd_object_number'] = {
   init: function() {
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.COCOSSD_SHOW);	  
+  this.appendDummyInput()  
       .appendField(Blockly.Msg.COCOSSD_OBJECT_NUMBER_SHOW)
       .appendField(new Blockly.FieldDropdown([
 		[" ",""],
@@ -343,7 +348,9 @@ Blockly.Blocks['cocossd_object_number'] = {
 };
 
 Blockly.Blocks['cocossd_state'] = {
-  init: function() { 
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.COCOSSD_SHOW);	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.COCOSSD_STATE_SHOW)
       .appendField(new Blockly.FieldDropdown([
@@ -359,6 +366,8 @@ Blockly.Blocks['cocossd_state'] = {
 
 Blockly.Blocks['cocossd_video_position'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.COCOSSD_SHOW);	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .appendField(Blockly.Msg.COCOSSD_VIDEO_LEFT_SHOW);  
@@ -415,6 +424,8 @@ Blockly.Blocks['cocossd_startvideo_stream'] = {
 Blockly.Blocks['cocossd_canvas_get'] = {
   init: function() {
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.COCOSSD_SHOW);	  
+  this.appendDummyInput()  
       .appendField(Blockly.Msg.COCOSSD_CANVAS_GET_SHOW); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
@@ -423,7 +434,9 @@ Blockly.Blocks['cocossd_canvas_get'] = {
 };
 
 Blockly.Blocks['cocossd_clear'] = {
-  init: function() { 
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.COCOSSD_SHOW);	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.COCOSSD_CLEAR_SHOW); 
   this.setInputsInline(true);	  
@@ -435,6 +448,8 @@ Blockly.Blocks['cocossd_clear'] = {
 
 Blockly.Blocks['cocossd_pause'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.COCOSSD_SHOW);	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.COCOSSD_PAUSE_SHOW);
   this.appendValueInput("time_")
@@ -449,6 +464,8 @@ Blockly.Blocks['cocossd_pause'] = {
 
 Blockly.Blocks['cocossd_recognitied'] = {
   init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.COCOSSD_SHOW);	  
   this.appendDummyInput()
       .appendField(Blockly.Msg.COCOSSD_RECOGNITIED_SHOW);
   this.appendDummyInput()
@@ -466,6 +483,8 @@ Blockly.Blocks['cocossd_recognitied'] = {
 
 Blockly.Blocks['cocossd_unrecognitied'] = {
   init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.COCOSSD_SHOW);	  
   this.appendDummyInput()
       .appendField(Blockly.Msg.COCOSSD_UNRECOGNITIED_SHOW);	  
   this.appendStatementInput("do_");
