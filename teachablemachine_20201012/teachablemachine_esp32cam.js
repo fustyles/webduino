@@ -94,7 +94,7 @@ window.onload = function () {
 			}
 			else
 				result.innerHTML = "";
-			recognitionFinish();
+			if (typeof recognitionFinish === 'function') recognitionFinish();
 		}
 
 		setTimeout(function(){start();},200);
