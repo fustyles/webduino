@@ -1,4 +1,4 @@
-Blockly.Msg.TEACHABLEMACHINE_SHOW = "机器学习(自订模型)";
+Blockly.Msg.TEACHABLEMACHINE_SHOW = "机器学习(google)";
 Blockly.Msg.TEACHABLEMACHINE_WIDTH_SHOW = "宽度";
 Blockly.Msg.TEACHABLEMACHINE_HEIGHT_SHOW = "高度";
 Blockly.Msg.TEACHABLEMACHINE_RESULT_SHOW = "结果";
