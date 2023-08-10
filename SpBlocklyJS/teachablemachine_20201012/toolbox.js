@@ -3,7 +3,7 @@ var catTeachablemachine ='<xml>'+
 '      <block type="teachablemachine_model">'+
 '        <value name="model_">'+
 '          <block type="text">'+
-'            <field name="TEXT">https:\/\/teachablemachine.withgoogle.com\/models/4UGykpZvR/</field>'+
+'            <field name="TEXT">https:\/\/teachablemachine.withgoogle.com\/models\/4UGykpZvR\/</field>'+
 '          </block>'+
 '        </value>'+
 '      </block>'+
