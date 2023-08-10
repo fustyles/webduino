@@ -1,1 +1,1 @@
-MSG.teachablemachine = "Teachable Machine (custom model)";
+MSG.teachablemachine = "Teachable Machine (google)";
