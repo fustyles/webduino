@@ -62,7 +62,9 @@ Blockly.Blocks['holistic_video'] = {
 };
 
 Blockly.Blocks['holistic_face_position'] = {
-  init: function() {	  
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_FACE_SHOW+" [1-468]");
   this.appendValueInput("part_")
@@ -83,7 +85,9 @@ Blockly.Blocks['holistic_face_position'] = {
 };
 
 Blockly.Blocks['holistic_face_lefteye_position'] = {
-  init: function() {	  
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_FACE_SHOW+" "+Blockly.Msg.HOLISTIC_LEFTEYE_SHOW);
   this.appendDummyInput()
@@ -120,7 +124,9 @@ Blockly.Blocks['holistic_face_lefteye_position'] = {
 };
 
 Blockly.Blocks['holistic_face_righteye_position'] = {
-  init: function() {	  
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_FACE_SHOW+" "+Blockly.Msg.HOLISTIC_RIGHTEYE_SHOW);
   this.appendDummyInput()
@@ -157,7 +163,9 @@ Blockly.Blocks['holistic_face_righteye_position'] = {
 };
 
 Blockly.Blocks['holistic_face_nose_position'] = {
-  init: function() {	  
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_FACE_SHOW+" "+Blockly.Msg.HOLISTIC_NOSE_SHOW);
   this.appendDummyInput()
@@ -187,7 +195,9 @@ Blockly.Blocks['holistic_face_nose_position'] = {
 };
 
 Blockly.Blocks['holistic_face_mouth_position'] = {
-  init: function() {	  
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_FACE_SHOW+" "+Blockly.Msg.HOLISTIC_MOUTH_SHOW);
   this.appendDummyInput()
@@ -248,7 +258,9 @@ Blockly.Blocks['holistic_face_mouth_position'] = {
 };
 
 Blockly.Blocks['holistic_pose_position'] = {
-  init: function() {	  
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_POSE_SHOW)
       .appendField(new Blockly.FieldDropdown([
@@ -301,7 +313,9 @@ Blockly.Blocks['holistic_pose_position'] = {
 };
 
 Blockly.Blocks['holistic_lefthand_position'] = {
-  init: function() {	  
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_LEFTHAND_SHOW)
       .appendField(new Blockly.FieldDropdown([
@@ -342,7 +356,9 @@ Blockly.Blocks['holistic_lefthand_position'] = {
 };
 
 Blockly.Blocks['holistic_righthand_position'] = {
-  init: function() {	  
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_RIGHTHAND_SHOW)
       .appendField(new Blockly.FieldDropdown([
@@ -385,6 +401,8 @@ Blockly.Blocks['holistic_righthand_position'] = {
 Blockly.Blocks['holistic_distance'] = {
   init: function() {
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
+  this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_DISTANCE_SHOW);
   this.appendValueInput("x0_")
       .setCheck("Number")
@@ -411,6 +429,8 @@ Blockly.Blocks['holistic_distance'] = {
 Blockly.Blocks['holistic_angle'] = {
   init: function() {
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
+  this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_ANGLE_SHOW);
   this.appendValueInput("x0_")
       .setCheck("Number")
@@ -435,7 +455,9 @@ Blockly.Blocks['holistic_angle'] = {
 };
 
 Blockly.Blocks['holistic_state'] = {
-  init: function() { 
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_STATE_SHOW)
       .appendField(new Blockly.FieldDropdown([
@@ -451,6 +473,8 @@ Blockly.Blocks['holistic_state'] = {
 
 Blockly.Blocks['holistic_video_position'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
   this.appendValueInput("left_")
       .setCheck("Number")
       .appendField(Blockly.Msg.HOLISTIC_VIDEO_LEFT_SHOW);  
@@ -506,6 +530,8 @@ Blockly.Blocks['holistic_startvideo_stream'] = {
 Blockly.Blocks['holistic_canvas_get'] = {
   init: function() {
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
+  this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_CANVAS_GET_SHOW); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
@@ -515,6 +541,8 @@ Blockly.Blocks['holistic_canvas_get'] = {
 
 Blockly.Blocks['holistic_all_poistion'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_ALL_SHOW); 
   this.appendDummyInput()
@@ -530,12 +558,10 @@ Blockly.Blocks['holistic_all_poistion'] = {
   }
 };
 
-
-
-
-
 Blockly.Blocks['holistic_face_angle'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_FACE_ANGLE_SHOW);
   this.appendDummyInput()
@@ -566,6 +592,8 @@ Blockly.Blocks['holistic_face_angle'] = {
 
 Blockly.Blocks['holistic_pose_angle'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_POSE_ANGLE_SHOW);
   this.appendDummyInput()
@@ -663,6 +691,8 @@ Blockly.Blocks['holistic_pose_angle'] = {
 Blockly.Blocks['holistic_lefthand_angle'] = {
   init: function() {
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
+  this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_LEFTHAND_ANGLE_SHOW);
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
@@ -735,6 +765,8 @@ Blockly.Blocks['holistic_lefthand_angle'] = {
 Blockly.Blocks['holistic_righthand_angle'] = {
   init: function() {
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
+  this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_RIGHTHAND_ANGLE_SHOW);
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
@@ -806,6 +838,8 @@ Blockly.Blocks['holistic_righthand_angle'] = {
 
 Blockly.Blocks['holistic_recognitied'] = {
   init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
   this.appendDummyInput()
       .appendField(Blockly.Msg.HOLISTIC_RECOGNITIED_SHOW);
   this.appendDummyInput()
@@ -835,6 +869,8 @@ Blockly.Blocks['holistic_unrecognitied'] = {
 
 Blockly.Blocks['holistic_clip_element'] = {
   init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
   this.appendDummyInput()
       .appendField(Blockly.Msg.HOLISTIC_CLIP_ELEMENT_SHOW);
   this.appendValueInput("canvasid")
@@ -856,6 +892,8 @@ Blockly.Blocks['holistic_clip_element'] = {
 
 Blockly.Blocks['holistic_clip_color'] = {
   init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
   this.appendDummyInput()
       .appendField(Blockly.Msg.HOLISTIC_CLIP_COLOR_SHOW);
   this.appendValueInput("canvasid")
@@ -877,6 +915,8 @@ Blockly.Blocks['holistic_clip_color'] = {
 
 Blockly.Blocks['holistic_clip_image'] = {
   init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
   this.appendDummyInput()
       .appendField(Blockly.Msg.HOLISTIC_CLIP_IMAGE_SHOW);
   this.appendValueInput("canvasid")
@@ -902,6 +942,8 @@ Blockly.Blocks['holistic_clip_image'] = {
 
 Blockly.Blocks['holistic_points'] = {
   init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
   this.appendDummyInput()
       .appendField(Blockly.Msg.HOLISTIC_CLIP_POINTS_SHOW);
   this.appendDummyInput()  
