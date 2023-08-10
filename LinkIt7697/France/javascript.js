@@ -3769,6 +3769,17 @@ Blockly.Arduino['hands_video'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['hands_recognitied'] = function(block) { 
+  var value_status = block.getFieldValue('status_');
+  var statements_do = Blockly.Arduino.statementToCode(block, 'do_');
+  
+  if (value_status=="Y")
+	  var code = 'if (hands_number("")>0){hands_state(0);' + statements_do + 'hands_state(1);}';
+  else
+	  var code = 'if (hands_number("")==0){hands_state(0);' + statements_do + 'hands_state(1);}';
+  return code;  
+};
+
 Blockly.Arduino['hands_position'] = function(block) {
   var value_hand_ = Blockly.Arduino.valueToCode(block, 'hand_', Blockly.Arduino.ORDER_ATOMIC);	
   var value_part_ = block.getFieldValue('part_');

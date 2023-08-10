@@ -5743,6 +5743,25 @@ Blockly.Blocks['hands_video'] = {
   }
 };
 
+Blockly.Blocks['hands_recognitied'] = {
+  init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDS_SHOW); 	  
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.HANDS_RECOGNITIED_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.HANDS_RECOGNITIED_OBJECT_SHOW,"Y"],
+		[Blockly.Msg.HANDS_RECOGNITIED_NOTHING_SHOW,"N"]	
+  ]), "status_");	  
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(Blockly.Msg["HUE_10"]);
+  }
+};
+
 Blockly.Blocks['hands_position'] = {
   init: function() {	  
   this.appendDummyInput()  
@@ -5792,6 +5811,8 @@ Blockly.Blocks['hands_position'] = {
 Blockly.Blocks['hands_distance'] = {
   init: function() {
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDS_SHOW);		  
+  this.appendDummyInput()  
       .appendField(Blockly.Msg.HANDS_DISTANCE_SHOW);
   this.appendValueInput("x0_")
       .setCheck("Number")
@@ -5818,6 +5839,8 @@ Blockly.Blocks['hands_distance'] = {
 Blockly.Blocks['hands_angle'] = {
   init: function() {
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDS_SHOW);		  
+  this.appendDummyInput()  
       .appendField(Blockly.Msg.HANDS_ANGLE_SHOW);
   this.appendValueInput("x0_")
       .setCheck("Number")
@@ -5842,7 +5865,9 @@ Blockly.Blocks['hands_angle'] = {
 };
 
 Blockly.Blocks['hands_state'] = {
-  init: function() { 
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDS_SHOW);		  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HANDS_STATE_SHOW)
       .appendField(new Blockly.FieldDropdown([
@@ -5858,6 +5883,8 @@ Blockly.Blocks['hands_state'] = {
 
 Blockly.Blocks['hands_video_position'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDS_SHOW);		  
   this.appendValueInput("left_")
       .setCheck("Number")
       .appendField(Blockly.Msg.HANDS_VIDEO_LEFT_SHOW);  
@@ -5874,6 +5901,8 @@ Blockly.Blocks['hands_video_position'] = {
 Blockly.Blocks['hands_canvas_get'] = {
   init: function() {
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDS_SHOW);		  
+  this.appendDummyInput()  
       .appendField(Blockly.Msg.HANDS_CANVAS_GET_SHOW); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
@@ -5884,6 +5913,8 @@ Blockly.Blocks['hands_canvas_get'] = {
 Blockly.Blocks['hands_number'] = {
   init: function() {
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDS_SHOW);		  
+  this.appendDummyInput()  
       .appendField(Blockly.Msg.HANDS_NUMBER_SHOW);	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
@@ -5893,6 +5924,8 @@ Blockly.Blocks['hands_number'] = {
 
 Blockly.Blocks['hands_part_angle'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDS_SHOW);		  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HANDS_ANGLE_SHOW);
   this.appendValueInput("hand_")
@@ -5970,6 +6003,8 @@ Blockly.Blocks['hands_part_angle'] = {
 Blockly.Blocks['hands_pause'] = {
   init: function() {
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDS_SHOW);		  
+  this.appendDummyInput()  
       .appendField(Blockly.Msg.HANDS_PAUSE_SHOW);
   this.appendValueInput("time_")
       .setCheck("Number")    
@@ -5982,7 +6017,9 @@ Blockly.Blocks['hands_pause'] = {
 };
 
 Blockly.Blocks['hands_clear'] = {
-  init: function() { 
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDS_SHOW);		  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HANDS_CLEAR_SHOW); 
   this.setInputsInline(true);	  
