@@ -19,3 +19,4 @@ Blockly.Msg.TEACHABLEMACHINE_MAXPROBABILITY_SHOW = "Max Probability";
 Blockly.Msg.TEACHABLEMACHINE_PAUSE_SHOW = "Teachable Machine (custom model) Pause";
 Blockly.Msg.TEACHABLEMACHINE_CLEAR_SHOW = "Teachable Machine (custom model) clear result";
 Blockly.Msg.TEACHABLEMACHINE_RECOGNITIED_SHOW = "Teachable Machine (custom model) recognitied";
+Blockly.Msg.TEACHABLEMACHINE_DATA_ARRAY_SHOW = "Result array";
