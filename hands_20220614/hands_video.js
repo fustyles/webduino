@@ -84,7 +84,11 @@ window.onload = function () {
 		result.innerHTML = JSON.stringify(results.multiHandLandmarks);
 		//canvasCtx.restore();
 		
-		if (typeof hands_recognitionFinish === 'function') hands_recognitionFinish();
+		if ((hands_number()) > 0) {
+			if (typeof hands_recognitionFinish === 'function') hands_recognitionFinish();
+		} else {
+			if (typeof hands_unrecognitionFinish === 'function') hands_unrecognitionFinish();
+		}
 	}
 	
 	const myHands = new Hands({locateFile: (file) => {
