@@ -22835,6 +22835,8 @@ Blockly.Blocks['teachablemachine_video'] = {
 Blockly.Blocks['teachablemachine_model'] = {
   init: function() {
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.TEACHABLEMACHINE_SHOW);	  
+  this.appendDummyInput()  
       .appendField(Blockly.Msg.TEACHABLEMACHINE_PROJECT_SHOW)
       .appendField(new Blockly.FieldDropdown([
 		["image","image"],
@@ -22853,11 +22855,13 @@ Blockly.Blocks['teachablemachine_model'] = {
 Blockly.Blocks['teachablemachine_result'] = {
   init: function() {
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.TEACHABLEMACHINE_SHOW);	  
+  this.appendDummyInput()  
       .appendField(Blockly.Msg.TEACHABLEMACHINE_PROPORTION_SHOW)
       .appendField(new Blockly.FieldDropdown([
-	  ["",""],
 	  [Blockly.Msg.TEACHABLEMACHINE_MAXCLASS_SHOW,"maxClass"], 
-	  [Blockly.Msg.TEACHABLEMACHINE_MAXPROBABILITY_SHOW,"maxProbability"]
+	  [Blockly.Msg.TEACHABLEMACHINE_MAXPROBABILITY_SHOW,"maxProbability"],
+	  [Blockly.Msg.TEACHABLEMACHINE_DATA_ARRAY_SHOW,""]
 	  ]), "result_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
@@ -22866,7 +22870,9 @@ Blockly.Blocks['teachablemachine_result'] = {
 };
 
 Blockly.Blocks['teachablemachine_state'] = {
-  init: function() { 
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TEACHABLEMACHINE_SHOW);	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TEACHABLEMACHINE_STATE_SHOW)
       .appendField(new Blockly.FieldDropdown([
@@ -22882,6 +22888,8 @@ Blockly.Blocks['teachablemachine_state'] = {
 
 Blockly.Blocks['teachablemachine_video_position'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TEACHABLEMACHINE_SHOW);	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .appendField(Blockly.Msg.TEACHABLEMACHINE_VIDEO_LEFT_SHOW);  
@@ -22897,6 +22905,8 @@ Blockly.Blocks['teachablemachine_video_position'] = {
 
 Blockly.Blocks['teachablemachine_pause'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TEACHABLEMACHINE_SHOW);	  
   this.appendDummyInput()  
 	  .appendField(Blockly.Msg.TEACHABLEMACHINE_PAUSE_SHOW);
   this.appendValueInput("time_")
