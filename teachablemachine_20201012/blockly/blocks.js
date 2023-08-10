@@ -69,7 +69,7 @@ Blockly.Blocks['teachablemachine_result'] = {
 	  ]), "result_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(60);
   }
 };
 
