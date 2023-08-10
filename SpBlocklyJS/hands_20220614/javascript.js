@@ -93,7 +93,12 @@ Blockly.JavaScript['hands_clear'] = function(block) {
 };
 
 Blockly.JavaScript['hands_recognitied'] = function(block) { 
+  var value_status = block.getFieldValue('status_');
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'hands_recognitionFinish = async function() {\nhands_state(0);\n' + statements_do + '\nhands_state(1);};\n';
-  return code;
+  
+  if (value_status=="Y")
+	  var code = 'hands_recognitionFinish = async function() {\n  hands_state(0);\n' + statements_do + '\n  hands_state(1);\n};\n';
+  else
+	  var code = 'hands_unrecognitionFinish = async function() {\n  hands_state(0);\n' + statements_do + '\n  hands_state(1);\n};\n';
+  return code;    
 };

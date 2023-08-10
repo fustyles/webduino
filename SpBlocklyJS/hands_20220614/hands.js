@@ -121,7 +121,6 @@
 		var json = document.getElementById("gamediv_hands").innerHTML;
 		if (json!=""&&json!="undefined") {
 			var result = JSON.parse('{"data":'+json+'}');
-			var canvasElement = document.getElementById('gamecanvas_canvasElement');
 			return result["data"].length;
 		}
 		return 0;
@@ -180,6 +179,9 @@
 	function hands_recognitionFinish() {
 	}
 	
+	function hands_unrecognitionFinish() {
+	}	
+	
 	window.hands_video = hands_video;
 	window.hands_position = hands_position;
 	window.hands_number = hands_number;	
@@ -191,6 +193,7 @@
 	window.hands_startvideo_media = hands_startvideo_media;
 	window.hands_startvideo_stream = hands_startvideo_stream;
 	window.hands_clear = hands_clear;
-	window.hands_recognitionFinish = hands_recognitionFinish;	
+	window.hands_recognitionFinish = hands_recognitionFinish;
+	window.hands_unrecognitionFinish = hands_unrecognitionFinish;
 	
 }(window, window.document));
