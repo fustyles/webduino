@@ -18,4 +18,5 @@ Blockly.Msg.TEACHABLEMACHINE_MAXCLASS_SHOW = "最大可能性分類名稱";
 Blockly.Msg.TEACHABLEMACHINE_MAXPROBABILITY_SHOW = "最大可能性";
 Blockly.Msg.TEACHABLEMACHINE_PAUSE_SHOW = "機器學習(自訂模型) 暫停偵測";
 Blockly.Msg.TEACHABLEMACHINE_CLEAR_SHOW = "機器學習(自訂模型) 清除結果";
-Blockly.Msg.TEACHABLEMACHINE_RECOGNITIED_SHOW = "機器學習(自訂模型) 辨識完成後執行";
+Blockly.Msg.TEACHABLEMACHINE_RECOGNITIED_SHOW = "機器學習(自訂模型) 偵測完成後執行";
+Blockly.Msg.TEACHABLEMACHINE_DATA_ARRAY_SHOW = "所有可能性資料陣列";
