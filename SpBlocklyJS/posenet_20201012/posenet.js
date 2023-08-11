@@ -153,6 +153,9 @@
 	}
 
 	function posenet_recognitionFinish() {
+	}
+
+	function posenet_unrecognitionFinish() {
 	}	
 
 	window.posenet_video = posenet_video;
@@ -166,5 +169,6 @@
 	window.posenet_startvideo_media = posenet_startvideo_media;
 	window.posenet_startvideo_stream = posenet_startvideo_stream;
 	window.posenet_recognitionFinish = posenet_recognitionFinish;
+	window.posenet_unrecognitionFinish = posenet_unrecognitionFinish;
 	
 }(window, window.document));
