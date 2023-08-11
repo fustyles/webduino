@@ -69,7 +69,7 @@
     region.style.top = input_top + "px";
   }
 
-  function posenet_persons(input_persons){
+  function posenet_persons(){
     var result = document.getElementById("gamediv_posenet").innerHTML.split("<br>");
 	var result_arr = [];
     if (result.length>0) {
