@@ -144,7 +144,13 @@
 		img.onload = function() {
 			document.getElementById("sourceId_posenet").innerHTML = "gameimage_posenet";
 		}	
-	}  
+	} 
+
+	function posenet_recognitionFinish() {
+	}
+
+	function posenet_unrecognitionFinish() {
+	}		
 
 	window.posenet_video = posenet_video;
 	window.posenet_list = posenet_list;
@@ -156,5 +162,7 @@
 	window.posenet_persons = posenet_persons;
 	window.posenet_startvideo_media = posenet_startvideo_media;
 	window.posenet_startvideo_stream = posenet_startvideo_stream;
+	window.posenet_recognitionFinish = posenet_recognitionFinish;
+	window.posenet_unrecognitionFinish = posenet_unrecognitionFinish;	
 	
 }(window, window.document));
