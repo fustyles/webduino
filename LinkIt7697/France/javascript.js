@@ -1,3 +1,96 @@
+Blockly.Arduino['posenet_esp32cam'] = function(block) {
+	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
+	var javascript_recognition = Blockly.Arduino.statementToCode(block, 'javascript_recognition');
+		
+	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.4'></script><script src='https:\/\/cdn.jsdelivr.net/npm/@tensorflow-models/posenet'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/fustyles.github.io/webduino/posenet_20201012/posenet.js'></script><script src='https:\/\/fustyles.github.io/webduino/posenet_20201012/posenet_esp32cam.js'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{posenet_video('block','1','1','1');"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"/var ")+" recognitionFinish = async function() {"+javascript_recognition.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"var ")+"}};main();</script></body></html>\"";
+
+  return [code,Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['posenet_video'] = function(block) { 
+  var value_modelname_ = block.getFieldValue('modelname_');
+  var value_video_ = block.getFieldValue('video_');
+  var value_skeleton_ = block.getFieldValue('skeleton_');
+  var value_persons_ = block.getFieldValue('persons_');
+  var value_scorelimit_ = block.getFieldValue('scorelimit_');
+  var value_mirrorimage_ = block.getFieldValue('mirrorimage_');
+  var value_result_ = block.getFieldValue('result_');
+  var value_opacity_ = block.getFieldValue('opacity_');
+  var code = 'posenet_video("' + value_modelname_ + '","' + value_video_ + '","' + value_skeleton_ + '","' + value_persons_ + '","' + value_scorelimit_ + '","' + value_mirrorimage_ + '","' + value_result_ + '","' + value_opacity_ + '");\n';
+  return code;
+};
+
+Blockly.Arduino['posenet_list'] = function(block) { 
+  var code = 'posenet_list()';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['posenet_person'] = function(block) { 
+  var value_person_ = Blockly.Arduino.valueToCode(block, 'person_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_part_ = block.getFieldValue('part_');
+  var value_data_ = block.getFieldValue('data_');
+  var code = 'posenet_person(' + value_person_ + ',"' + value_part_ + '","' + value_data_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['posenet_distance'] = function (block) {
+  var value_x0_ = Blockly.Arduino.valueToCode(block, 'x0_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0_ = Blockly.Arduino.valueToCode(block, 'y0_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_x1_ = Blockly.Arduino.valueToCode(block, 'x1_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y1_ = Blockly.Arduino.valueToCode(block, 'y1_', Blockly.Arduino.ORDER_ATOMIC);  
+  var code = 'posenet_distance(' + value_x0_ + ',' + value_y0_ + ','+ value_x1_ + ',' + value_y1_ + ')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['posenet_angle'] = function (block) {
+  var value_x0_ = Blockly.Arduino.valueToCode(block, 'x0_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y0_ = Blockly.Arduino.valueToCode(block, 'y0_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_x1_ = Blockly.Arduino.valueToCode(block, 'x1_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_y1_ = Blockly.Arduino.valueToCode(block, 'y1_', Blockly.Arduino.ORDER_ATOMIC);  
+  var code = 'posenet_angle(' + value_x0_ + ',' + value_y0_ + ','+ value_x1_ + ',' + value_y1_ + ')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['posenet_state'] = function(block) {
+  var value_state_ = block.getFieldValue('state_');
+  var code = 'posenet_state(' + value_state_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['posenet_video_position'] = function(block) { 
+  var value_left_ = Blockly.Arduino.valueToCode(block, 'left_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_top_ = Blockly.Arduino.valueToCode(block, 'top_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'posenet_video_position(' + value_left_ + ',' + value_top_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['posenet_persons'] = function(block) { 
+  var value_persons_ = block.getFieldValue('persons_');
+  var code = 'posenet_persons()';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['posenet_recognitied'] = function(block) { 
+  var value_status = block.getFieldValue('status_');
+  var statements_do = Blockly.Arduino.statementToCode(block, 'do_');
+  
+  if (value_status=="Y")
+	  var code = 'posenet_recognitionFinish = async function() {\n  posenet_state(0);\n' + statements_do + '\n  posenet_state(1);\n};\n';
+  else
+	  var code = 'posenet_unrecognitionFinish = async function() {\n  posenet_state(0);\n' + statements_do + '\n  posenet_state(1);\n};\n';
+  return code;  
+};
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Arduino['pms7003m_read'] = function(block) { 
   Blockly.Arduino.definitions_['pms7003m_initial'] = "#include \"PMS.h\"\nPMS pms(Serial2);\nPMS::DATA pms_data;";
   Blockly.Arduino.setups_['pms7003m_setup'] = "Serial2.begin(9600);";

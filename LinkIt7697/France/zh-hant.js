@@ -1,3 +1,60 @@
+Blockly.Msg.ESP32_CAM_TFJS_POSENET_SHOW = "姿態偵測 (posenet)";
+Blockly.Msg.ESP32_CAM_TFJS_POSENET_INITIAL_SHOW = "初始設定";
+Blockly.Msg.ESP32_CAM_TFJS_POSENET_RECOGNITION_SHOW = "偵測完成後執行";
+Blockly.Msg.POSENET_SHOW = "姿態偵測";
+Blockly.Msg.POSENET_PERSON_SHOW = "索引";
+Blockly.Msg.POSENET_PART_SHOW = "部位";
+Blockly.Msg.POSENET_WIDTH_SHOW = "寬度";
+Blockly.Msg.POSENET_HEIGHT_SHOW = "高度";
+Blockly.Msg.POSENET_MIRRORIMAGE_SHOW = "鏡像";
+Blockly.Msg.POSENET_PERSONS_SHOW = "偵測人數";
+Blockly.Msg.POSENET_PERSONS_NUMBER_SHOW = "偵測人數";
+Blockly.Msg.POSENET_RESULT_SHOW = "結果";
+Blockly.Msg.POSENET_SCORELIMIT_SHOW = "信心底限";
+Blockly.Msg.POSENET_SKELETON_SHOW = "骨架";
+Blockly.Msg.POSENET_OPACITY_SHOW = "透明度";
+Blockly.Msg.POSENET_DISTANCE_SHOW = "距離";
+Blockly.Msg.POSENET_ANGLE_SHOW = "角度";
+Blockly.Msg.POSENET_VIDEO_SHOW = "視訊";
+Blockly.Msg.POSENET_LIST_SHOW= "陣列結果";
+Blockly.Msg.POSENET_DATA_SHOW= "屬性";
+Blockly.Msg.POSENET_STATE_SHOW = "偵測狀態";
+Blockly.Msg.POSENET_VIDEO_LEFT_SHOW = "畫面 靠左距離";
+Blockly.Msg.POSENET_VIDEO_TOP_SHOW = "靠上距離";
+Blockly.Msg.POSENET_FACING_SHOW = "鏡頭";
+Blockly.Msg.POSENET_FACING_FRONT_SHOW = "前置";
+Blockly.Msg.POSENET_FACING_BACK_SHOW = "後置";
+Blockly.Msg.POSENET_SRC_SHOW = "串流網址";
+Blockly.Msg.POSENET_MODELNAME_SHOW = "模型";
+Blockly.Msg.POSENET_NOSE_SHOW = "鼻子";
+Blockly.Msg.POSENET_LEFTEYE_SHOW = "左眼";
+Blockly.Msg.POSENET_RIGHTEYE_SHOW = "右眼";
+Blockly.Msg.POSENET_LEFTEAR_SHOW = "左耳";
+Blockly.Msg.POSENET_RIGHTEAR_SHOW = "右耳";
+Blockly.Msg.POSENET_LEFTSHOULDER_SHOW = "左肩膀";
+Blockly.Msg.POSENET_RIGHTSHOULDER_SHOW = "右肩膀";
+Blockly.Msg.POSENET_LEFTELBOW_SHOW = "左手肘";
+Blockly.Msg.POSENET_RIGHTELBOW_SHOW = "右手肘";
+Blockly.Msg.POSENET_LEFTWRIST_SHOW = "左手腕";
+Blockly.Msg.POSENET_RIGHTWRIST_SHOW = "右手腕";
+Blockly.Msg.POSENET_LEFTHIP_SHOW = "左臀部";
+Blockly.Msg.POSENET_RIGHTHIP_SHOW = "右臀部";
+Blockly.Msg.POSENET_LEFTKNEE_SHOW = "左膝蓋";
+Blockly.Msg.POSENET_RIGHTKNEE_SHOW = "右膝蓋";
+Blockly.Msg.POSENET_LEFTANKLE_SHOW = "左腳踝";
+Blockly.Msg.POSENET_RIGHTANKLE_SHOW = "右腳踝";
+Blockly.Msg.POSENET_ALL_SHOW = "全部";
+Blockly.Msg.POSENET_RECOGNITIED_SHOW = "偵測完成後";
+Blockly.Msg.POSENET_LIMIT_SHOW = "無限制";
+Blockly.Msg.POSENET_RECOGNITIED_PERSONS_SHOW = "有人";
+Blockly.Msg.POSENET_RECOGNITIED_NOBODY_SHOW = "無人";
+
+
+
+
+
+
+
 Blockly.Msg["HUE_1"] = 10;
 Blockly.Msg["HUE_2"] = 60;
 Blockly.Msg["HUE_3"] = 110;

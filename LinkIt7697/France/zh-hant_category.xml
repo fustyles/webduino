@@ -103,4 +103,5 @@
 <category><name>DS18B20</name><replace>DS18B20水溫感測器</replace></category>
 <category><name>pms7003m</name><replace>PMS7003M感測器</replace></category>
 <category><name>trackingcolor</name><replace>顏色追蹤(Tracking)</replace></category>
+<category><name>posenet</name><replace>姿態偵測(posenet)</replace></category>
 </xml>
