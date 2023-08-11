@@ -41,3 +41,7 @@ Blockly.Msg.POSENET_RIGHTKNEE_SHOW = "右膝蓋";
 Blockly.Msg.POSENET_LEFTANKLE_SHOW = "左腳踝";
 Blockly.Msg.POSENET_RIGHTANKLE_SHOW = "右腳踝";
 Blockly.Msg.POSENET_ALL_SHOW = "全部";
+Blockly.Msg.POSENET_RECOGNITIED_SHOW = "偵測完成後";
+Blockly.Msg.POSENET_LIMIT_SHOW = "無限制";
+Blockly.Msg.POSENET_RECOGNITIED_PERSONS_SHOW = "有人";
+Blockly.Msg.POSENET_RECOGNITIED_NOBODY_SHOW = "無人";
