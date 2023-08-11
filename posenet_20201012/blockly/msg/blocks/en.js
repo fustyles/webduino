@@ -41,3 +41,7 @@ Blockly.Msg.POSENET_RIGHTKNEE_SHOW = "rightKnee";
 Blockly.Msg.POSENET_LEFTANKLE_SHOW = "leftAnkle";
 Blockly.Msg.POSENET_RIGHTANKLE_SHOW = "rightAnkle";
 Blockly.Msg.POSENET_ALL_SHOW = "all";
+Blockly.Msg.POSENET_RECOGNITIED_SHOW = "recognitied";
+Blockly.Msg.POSENET_LIMIT_SHOW = "No limit";
+Blockly.Msg.POSENET_RECOGNITIED_PERSONS_SHOW = "someone was detected";
+Blockly.Msg.POSENET_RECOGNITIED_NOBODY_SHOW = "There is nobody";
