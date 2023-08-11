@@ -70,7 +70,13 @@
   }
 
   function posenet_persons(input_persons){
-    document.getElementById('persons_posenet').value = input_persons; 
+    var result = document.getElementById("gamediv_posenet").innerHTML.split("<br>");
+	var result_arr = [];
+    if (result.length>0) {
+      var result_detail = result[result.length-1].split(",");
+	  return Number(result_detail[0])+1;
+    }
+    return 0;
   }
   
   	function posenet_startvideo_media(input_width, input_height, input_facing, input_videoInputIndex) {
