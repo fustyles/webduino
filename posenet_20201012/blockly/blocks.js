@@ -28,7 +28,7 @@ Blockly.Blocks['posenet_video'] = {
 		["3","3"],
 		["4","4"],
 		["5","5"],	  
-		["No Limit","999"]	  
+		[Blockly.Msg.POSENET_LIMIT_SHOW,"999"]	  
   ]), "persons_"); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.POSENET_SCORELIMIT_SHOW)
@@ -267,5 +267,24 @@ Blockly.Blocks['posenet_startvideo_stream'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
+  }
+};
+
+Blockly.Blocks['posenet_recognitied'] = {
+  init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.POSENET_SHOW);	  
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.POSENET_RECOGNITIED_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.POSENET_RECOGNITIED_PERSONS_SHOW,"Y"],
+		[Blockly.Msg.POSENET_RECOGNITIED_NOBODY_SHOW,"N"]	
+  ]), "status_");		  
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(200);
   }
 };
