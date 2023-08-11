@@ -27,8 +27,7 @@ Blockly.Blocks['posenet_video'] = {
 		["2","2"],
 		["3","3"],
 		["4","4"],
-		["5","5"],	  
-		[Blockly.Msg.POSENET_LIMIT_SHOW,"999"]	  
+		["5","5"]  
   ]), "persons_"); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.POSENET_SCORELIMIT_SHOW)
