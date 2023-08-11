@@ -76,3 +76,14 @@ Blockly.JavaScript['posenet_startvideo_stream'] = function(block) {
   var code = 'posenet_startvideo_stream(' + value_src_ + ');\n';
   return code;
 };
+
+Blockly.JavaScript['posenet_recognitied'] = function(block) { 
+  var value_status = block.getFieldValue('status_');
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
+  
+  if (value_status=="Y")
+	  var code = 'posenet_recognitionFinish = async function() {\n  posenet_state(0);\n' + statements_do + '\n  posenet_state(1);\n};\n';
+  else
+	  var code = 'posenet_unrecognitionFinish = async function() {\n  posenet_state(0);\n' + statements_do + '\n  posenet_state(1);\n};\n';
+  return code;  
+};
