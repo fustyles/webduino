@@ -80,20 +80,21 @@ async function DetectVideo(obj) {
 		message.innerHTML = res;
 		if (message.innerHTML!="")
 			message.innerHTML = message.innerHTML.substr(0,message.innerHTML.length-4);
+		results.forEach((result, i) => {
+			const box = resizedDetections[i].detection.box
+			var drawBox;
+			if (result.distance<=distanceLimit)
+				drawBox = new faceapi.draw.DrawBox(box, { label: result.toString()})
+			else
+				drawBox = new faceapi.draw.DrawBox(box, { label: (Math.round(result.distance*100)/100).toString()})
+			drawBox.draw(canvas);
+		})	
+		
 		if (typeof faceapirecognize_recognitionFinish === 'function') faceapirecognize_recognitionFinish();
 	}
 	else
 		if (typeof faceapirecognize_unrecognitionFinish === 'function') faceapirecognize_unrecognitionFinish();
-
-	results.forEach((result, i) => {
-		const box = resizedDetections[i].detection.box
-		var drawBox;
-		if (result.distance<=distanceLimit)
-			drawBox = new faceapi.draw.DrawBox(box, { label: result.toString()})
-		else
-			drawBox = new faceapi.draw.DrawBox(box, { label: (Math.round(result.distance*100)/100).toString()})
-		drawBox.draw(canvas);
-	})
+	
 	setTimeout('canvas.style.display = "none";', myTimer*1000);
 }
 
