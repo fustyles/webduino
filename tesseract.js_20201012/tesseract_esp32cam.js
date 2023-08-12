@@ -43,7 +43,7 @@ start();
 
 function DetectVideo() {
 	result.innerHTML = ""; 
-	
+	canvas.style.visibility = 'visible';
 	var imgData=context.getImageData(0,0,canvas.width,canvas.height);
 	for (var i=0;i<imgData.data.length;i+=4) {
 		var r=0;
@@ -89,8 +89,6 @@ function DetectVideo() {
 		}
 	}
 	context.putImageData(imgData,0,0);
-	canvas.style.visibility = 'visible';
-
 	Tesseract.recognize(
 			canvas,
 			lang.value  //,
