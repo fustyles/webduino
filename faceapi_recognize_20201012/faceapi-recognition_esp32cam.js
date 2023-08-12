@@ -125,6 +125,7 @@ window.onload = function () {
 		})
 
 		if (typeof recognitionFinish === 'function') recognitionFinish();
+		sourceId.innerHTML="";
 		setTimeout(function(){start();}, showtime*1000);
 	}  
 	
