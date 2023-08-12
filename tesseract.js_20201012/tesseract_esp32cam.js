@@ -32,6 +32,8 @@ window.onload = function () {
 	  setTimeout(function(){start();},150);
 	}
 
+	start();
+
 	function DetectVideo() {
 		ShowImage.style.width = ShowImage.width + 'px';
 		ShowImage.style.height = ShowImage.height + 'px';		
