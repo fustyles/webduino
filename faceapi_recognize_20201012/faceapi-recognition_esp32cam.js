@@ -86,18 +86,18 @@ window.onload = function () {
 		canvas.style.width = ShowImage.width+"px";
 		canvas.style.height = ShowImage.height+"px";
 		canvas.getContext('2d').drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height); 
-
+		console.log(1);
 		if (sourceId.innerHTML!="") {
 	  		setTimeout(function(){start();}, 150);
 			return;
 		}
 		sourceId.innerHTML="wait";
-		
+		console.log(2);
 		if (!labeledFaceDescriptors) {
 			labeledFaceDescriptors = await loadLabeledImages();
 			faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, distanceLimit)
 		}
-		console.log("ok");
+		console.log(3);
 		const detections = await faceapi.detectAllFaces(ShowImage).withFaceLandmarks().withFaceDescriptors();
 		const resizedDetections = faceapi.resizeResults(detections, JSON.parse(size.innerHTML));
 
@@ -135,11 +135,13 @@ window.onload = function () {
 			facelabels.map(async function(label, index) {
 				const descriptions = []
 				if (faceImagesCount==0) { 
+					console.log("2-1");
 					const img = await faceapi.fetchImage(faceImagesPath[index])
 					const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
 					descriptions.push(detections.descriptor)
 				}
-				else {				
+				else {			
+					console.log("2-2");
 					for (let i=1;i<=faceImagesCount;i++) {
 						const img = await faceapi.fetchImage(faceImagesPath+label+'/'+i+'.jpg')
 						const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
