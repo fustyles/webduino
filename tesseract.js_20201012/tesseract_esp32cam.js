@@ -37,7 +37,7 @@ ShowImage.onload = function (event) {
   canvas.style.height = ShowImage.height+"px";
   context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
   if (canvas.style.visibility=='hidden')
-  	imageTimer = setTimeout(function(){start();},150);
+  	imageTimer = setTimeout(function(){start();},250);
 }
 
 start();
