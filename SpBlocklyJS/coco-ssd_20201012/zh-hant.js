@@ -1,6 +1,8 @@
 Blockly.Msg["CATCOCOSSD"] = "物件偵測";
 Blockly.Msg.COCOSSD_SHOW = "物件偵測";
 Blockly.Msg.COCOSSD_OBJECT_SHOW = "偵測物件";
+Blockly.Msg.COCOSSD_OBJECT_ARRAY_SHOW = "偵測物件陣列";
+Blockly.Msg.COCOSSD_OBJECT_ALL_SHOW = "所有物件";
 Blockly.Msg.COCOSSD_OBJECT_NUMBER_SHOW = "偵測物件數目";
 Blockly.Msg.COCOSSD_INDEX_SHOW = "索引";
 Blockly.Msg.COCOSSD_WIDTH_SHOW = "寬度";

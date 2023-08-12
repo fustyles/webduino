@@ -1,6 +1,8 @@
 Blockly.Msg["CATCOCOSSD"] = "Object Detection";
 Blockly.Msg.COCOSSD_SHOW = "Object Detection";
 Blockly.Msg.COCOSSD_OBJECT_SHOW = "Object";
+Blockly.Msg.COCOSSD_OBJECT_ARRAY_SHOW = "Object array";
+Blockly.Msg.COCOSSD_OBJECT_ALL_SHOW = "all object";
 Blockly.Msg.COCOSSD_OBJECT_NUMBER_SHOW = "Object Number";
 Blockly.Msg.COCOSSD_INDEX_SHOW = "Index";
 Blockly.Msg.COCOSSD_WIDTH_SHOW = "Width";
