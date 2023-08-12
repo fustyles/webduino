@@ -103,7 +103,7 @@ window.onload = function () {
 			faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, distanceLimit)
 		}
 		console.log(3);
-		const detections = await faceapi.detectAllFaces(ShowImage).withFaceLandmarks().withFaceDescriptors();
+		const detections = await faceapi.detectAllFaces(canvas).withFaceLandmarks().withFaceDescriptors();
 		const resizedDetections = faceapi.resizeResults(detections, JSON.parse(size.innerHTML));
 
 		const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor));
