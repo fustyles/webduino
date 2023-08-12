@@ -101,4 +101,5 @@
 <category><name>pms7003m</name><replace>PMS7003M sensor</replace></category>
 <category><name>trackingcolor</name><replace>Tracking color(Tracking)</replace></category>
 <category><name>posenet</name><replace>Pose Detection(posenet)</replace></category>
+<category><name>tesseract</name><replace>Tesseract (OCR)</replace></category>
 </xml>

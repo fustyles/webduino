@@ -1,59 +1,3 @@
-Blockly.Msg.ESP32_CAM_TFJS_POSENET_SHOW = "Pose detection(posenet)";
-Blockly.Msg.ESP32_CAM_TFJS_POSENET_INITIAL_SHOW = "Initial";
-Blockly.Msg.ESP32_CAM_TFJS_POSENET_RECOGNITION_SHOW = "After recognizing";
-Blockly.Msg.POSENET_SHOW = "Pose Detection";
-Blockly.Msg.POSENET_PERSON_SHOW = "Index";
-Blockly.Msg.POSENET_PART_SHOW = "Part";
-Blockly.Msg.POSENET_WIDTH_SHOW = "Video Width";
-Blockly.Msg.POSENET_HEIGHT_SHOW = "Height";
-Blockly.Msg.POSENET_MIRRORIMAGE_SHOW = "Mirror Image";
-Blockly.Msg.POSENET_PERSONS_SHOW = "Persons";
-Blockly.Msg.POSENET_PERSONS_NUMBER_SHOW = "Persons";
-Blockly.Msg.POSENET_RESULT_SHOW = "Result";
-Blockly.Msg.POSENET_SCORELIMIT_SHOW = "Score Limit";
-Blockly.Msg.POSENET_SKELETON_SHOW = "Skeleton";
-Blockly.Msg.POSENET_OPACITY_SHOW = "Opacity";
-Blockly.Msg.POSENET_DISTANCE_SHOW = "Distance";
-Blockly.Msg.POSENET_ANGLE_SHOW = "Angle";
-Blockly.Msg.POSENET_VIDEO_SHOW = "Video";
-Blockly.Msg.POSENET_LIST_SHOW= "Result";
-Blockly.Msg.POSENET_DATA_SHOW= "Data";
-Blockly.Msg.POSENET_STATE_SHOW = "Detect State";
-Blockly.Msg.POSENET_VIDEO_LEFT_SHOW = "Video Left";
-Blockly.Msg.POSENET_VIDEO_TOP_SHOW = "TOP";
-Blockly.Msg.POSENET_FACING_SHOW = "Camera Facing";
-Blockly.Msg.POSENET_FACING_FRONT_SHOW = "Front";
-Blockly.Msg.POSENET_FACING_BACK_SHOW = "Back";
-Blockly.Msg.POSENET_SRC_SHOW = "Stream URL";
-Blockly.Msg.POSENET_MODELNAME_SHOW = "Model";
-Blockly.Msg.POSENET_NOSE_SHOW = "nose";
-Blockly.Msg.POSENET_LEFTEYE_SHOW = "leftEye";
-Blockly.Msg.POSENET_RIGHTEYE_SHOW = "rightEye";
-Blockly.Msg.POSENET_LEFTEAR_SHOW = "leftEar";
-Blockly.Msg.POSENET_RIGHTEAR_SHOW = "rightEar";
-Blockly.Msg.POSENET_LEFTSHOULDER_SHOW = "leftShoulder";
-Blockly.Msg.POSENET_RIGHTSHOULDER_SHOW = "rightShoulder";
-Blockly.Msg.POSENET_LEFTELBOW_SHOW = "leftElbow";
-Blockly.Msg.POSENET_RIGHTELBOW_SHOW = "rightElbow";
-Blockly.Msg.POSENET_LEFTWRIST_SHOW = "leftWrist";
-Blockly.Msg.POSENET_RIGHTWRIST_SHOW = "rightWrist";
-Blockly.Msg.POSENET_LEFTHIP_SHOW = "leftHip";
-Blockly.Msg.POSENET_RIGHTHIP_SHOW = "rightHip";
-Blockly.Msg.POSENET_LEFTKNEE_SHOW = "leftKnee";
-Blockly.Msg.POSENET_RIGHTKNEE_SHOW = "rightKnee";
-Blockly.Msg.POSENET_LEFTANKLE_SHOW = "leftAnkle";
-Blockly.Msg.POSENET_RIGHTANKLE_SHOW = "rightAnkle";
-Blockly.Msg.POSENET_ALL_SHOW = "all";
-Blockly.Msg.POSENET_RECOGNITIED_SHOW = "recognitied";
-Blockly.Msg.POSENET_LIMIT_SHOW = "No limit";
-Blockly.Msg.POSENET_RECOGNITIED_PERSONS_SHOW = "someone was detected";
-Blockly.Msg.POSENET_RECOGNITIED_NOBODY_SHOW = "There is nobody";
-
-
-
-
-
-
 Blockly.Msg["HUE_1"] = 10;
 Blockly.Msg["HUE_2"] = 60;
 Blockly.Msg["HUE_3"] = 110;
@@ -1261,6 +1205,58 @@ Blockly.Msg.TEACHABLEMACHINE_MAXPROBABILITY_SHOW = "Max Probability";
 Blockly.Msg.TEACHABLEMACHINE_PAUSE_SHOW = "Pause";
 Blockly.Msg.TEACHABLEMACHINE_DATA_ARRAY_SHOW = "Result array";
 
+Blockly.Msg.POSENET_SHOW = "Pose Detection";
+Blockly.Msg.POSENET_PERSON_SHOW = "Index";
+Blockly.Msg.POSENET_PART_SHOW = "Part";
+Blockly.Msg.POSENET_WIDTH_SHOW = "Video Width";
+Blockly.Msg.POSENET_HEIGHT_SHOW = "Height";
+Blockly.Msg.POSENET_MIRRORIMAGE_SHOW = "Mirror Image";
+Blockly.Msg.POSENET_PERSONS_SHOW = "Persons";
+Blockly.Msg.POSENET_PERSONS_NUMBER_SHOW = "Persons";
+Blockly.Msg.POSENET_RESULT_SHOW = "Result";
+Blockly.Msg.POSENET_SCORELIMIT_SHOW = "Score Limit";
+Blockly.Msg.POSENET_SKELETON_SHOW = "Skeleton";
+Blockly.Msg.POSENET_OPACITY_SHOW = "Opacity";
+Blockly.Msg.POSENET_DISTANCE_SHOW = "Distance";
+Blockly.Msg.POSENET_ANGLE_SHOW = "Angle";
+Blockly.Msg.POSENET_VIDEO_SHOW = "Video";
+Blockly.Msg.POSENET_LIST_SHOW= "Result";
+Blockly.Msg.POSENET_DATA_SHOW= "Data";
+Blockly.Msg.POSENET_STATE_SHOW = "Detect State";
+Blockly.Msg.POSENET_VIDEO_LEFT_SHOW = "Video Left";
+Blockly.Msg.POSENET_VIDEO_TOP_SHOW = "TOP";
+Blockly.Msg.POSENET_FACING_SHOW = "Camera Facing";
+Blockly.Msg.POSENET_FACING_FRONT_SHOW = "Front";
+Blockly.Msg.POSENET_FACING_BACK_SHOW = "Back";
+Blockly.Msg.POSENET_SRC_SHOW = "Stream URL";
+Blockly.Msg.POSENET_MODELNAME_SHOW = "Model";
+Blockly.Msg.POSENET_NOSE_SHOW = "nose";
+Blockly.Msg.POSENET_LEFTEYE_SHOW = "leftEye";
+Blockly.Msg.POSENET_RIGHTEYE_SHOW = "rightEye";
+Blockly.Msg.POSENET_LEFTEAR_SHOW = "leftEar";
+Blockly.Msg.POSENET_RIGHTEAR_SHOW = "rightEar";
+Blockly.Msg.POSENET_LEFTSHOULDER_SHOW = "leftShoulder";
+Blockly.Msg.POSENET_RIGHTSHOULDER_SHOW = "rightShoulder";
+Blockly.Msg.POSENET_LEFTELBOW_SHOW = "leftElbow";
+Blockly.Msg.POSENET_RIGHTELBOW_SHOW = "rightElbow";
+Blockly.Msg.POSENET_LEFTWRIST_SHOW = "leftWrist";
+Blockly.Msg.POSENET_RIGHTWRIST_SHOW = "rightWrist";
+Blockly.Msg.POSENET_LEFTHIP_SHOW = "leftHip";
+Blockly.Msg.POSENET_RIGHTHIP_SHOW = "rightHip";
+Blockly.Msg.POSENET_LEFTKNEE_SHOW = "leftKnee";
+Blockly.Msg.POSENET_RIGHTKNEE_SHOW = "rightKnee";
+Blockly.Msg.POSENET_LEFTANKLE_SHOW = "leftAnkle";
+Blockly.Msg.POSENET_RIGHTANKLE_SHOW = "rightAnkle";
+Blockly.Msg.POSENET_ALL_SHOW = "all";
+Blockly.Msg.POSENET_RECOGNITIED_SHOW = "recognitied";
+Blockly.Msg.POSENET_LIMIT_SHOW = "No limit";
+Blockly.Msg.POSENET_RECOGNITIED_PERSONS_SHOW = "someone was detected";
+Blockly.Msg.POSENET_RECOGNITIED_NOBODY_SHOW = "There is nobody";
+
+Blockly.Msg.ESP32_CAM_TFJS_POSENET_SHOW = "Pose detection(posenet)";
+Blockly.Msg.ESP32_CAM_TFJS_POSENET_INITIAL_SHOW = "Initial";
+Blockly.Msg.ESP32_CAM_TFJS_POSENET_RECOGNITION_SHOW = "After recognizing";
+
 Blockly.Msg.FACEAPIDETECT_SHOW = "Face Detection (faceapi.js)";
 Blockly.Msg.FACEAPIDETECT_INDEX_SHOW = "Index";
 Blockly.Msg.FACEAPIDETECT_PROPERTY_SHOW = "Property";
@@ -1334,6 +1330,10 @@ Blockly.Msg.FACEAPIRECOGNIZE_RECOGNITIED_PERSONS_SHOW = "someone was detected";
 Blockly.Msg.FACEAPIRECOGNIZE_RECOGNITIED_NOBODY_SHOW = "There is nobody";
 Blockly.Msg.FACEAPIRECOGNIZE_UNKNOWN_SHOW = "Face name is unknown. Index";
 
+Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_SHOW = "Face Recognition (faceapi.js)";
+Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_INITIAL_SHOW = "Initial";
+Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_RECOGNITION_SHOW = "After recognizing";
+
 Blockly.Msg.ESP32_CAM_TRACKINGCOLOR_SHOW = "Tracking color Page";
 Blockly.Msg.TRACKINGCOLOR_SHOW = "TrackColor";
 Blockly.Msg.TRACKINGCOLOR_SET_SHOW = "TrackColor Window Set";
@@ -1379,9 +1379,33 @@ Blockly.Msg.TRACKINGCOLOR_CLEAR_SHOW = "TrackColor clear result";
 Blockly.Msg.TRACKINGCOLOR_PAUSE_SHOW = "TrackColor Pause";
 Blockly.Msg.TRACKINGCOLOR_RECOGNITIED_SHOW = "TrackColor recognitied";
 
-Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_SHOW = "Face Recognition (faceapi.js)";
-Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_INITIAL_SHOW = "Initial";
-Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_RECOGNITION_SHOW = "After recognizing";
+Blockly.Msg.TESSERACT_SHOW = "Text Recognition (OCR)";
+Blockly.Msg.TESSERACT_WIDTH_SHOW = "Width";
+Blockly.Msg.TESSERACT_HEIGHT_SHOW = "Height";
+Blockly.Msg.TESSERACT_RECOGNITION_SHOW = "recognize";
+Blockly.Msg.TESSERACT_GET_SHOW = "Get Result";
+Blockly.Msg.TESSERACT_RESULT_SHOW = "Result";
+Blockly.Msg.TESSERACT_OPACITY_SHOW = "Opacity";
+Blockly.Msg.TESSERACT_LANG_SHOW = "Language";
+Blockly.Msg.TESSERACT_CLEAR_SHOW = "Clear Result";
+Blockly.Msg.TESSERACT_FACING_SHOW = "Camera Facing";
+Blockly.Msg.TESSERACT_FACING_FRONT_SHOW = "Front";
+Blockly.Msg.TESSERACT_FACING_BACK_SHOW = "Back";
+Blockly.Msg.TESSERACT_SRC_SHOW = "Stream URL";
+Blockly.Msg.TESSERACT_IMAGEPROCESSING_SHOW = "Image processing";
+Blockly.Msg.TESSERACT_REFERENCE_SHOW = "Reference";
+Blockly.Msg.TESSERACT_COLOR_SHOW = "Color";
+Blockly.Msg.TESSERACT_BLACKWORDS_SHOW = "Black Words";
+Blockly.Msg.TESSERACT_WHITEWORDS_SHOW = "White Words";
+Blockly.Msg.TESSERACT_GRAYSCALE_SHOW = "Gray Scale";
+Blockly.Msg.TESSERACT_VIDEO_LEFT_SHOW = "Screen Left";
+Blockly.Msg.TESSERACT_VIDEO_TOP_SHOW = "TOP";
+Blockly.Msg.TESSERACT_RECOGNITIED_SHOW = "recognitied";
+
+Blockly.Msg.ESP32_CAM_TESSERACT_SHOW = "Text Recognition";
+Blockly.Msg.ESP32_CAM_TESSERACT_INITIAL_SHOW = "Initial";
+Blockly.Msg.ESP32_CAM_TESSERACT_RECOGNITION_SHOW = "After recognizing";
+
 
 Blockly.Msg["FU_SERVO_ESP32"] = "Servo (ESP32)";
 Blockly.Msg["FU_SERVO_PIN"] = "pin";

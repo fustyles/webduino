@@ -1,60 +1,3 @@
-Blockly.Msg.ESP32_CAM_TFJS_POSENET_SHOW = "姿態偵測 (posenet)";
-Blockly.Msg.ESP32_CAM_TFJS_POSENET_INITIAL_SHOW = "初始設定";
-Blockly.Msg.ESP32_CAM_TFJS_POSENET_RECOGNITION_SHOW = "偵測完成後執行";
-Blockly.Msg.POSENET_SHOW = "姿態偵測";
-Blockly.Msg.POSENET_PERSON_SHOW = "索引";
-Blockly.Msg.POSENET_PART_SHOW = "部位";
-Blockly.Msg.POSENET_WIDTH_SHOW = "寬度";
-Blockly.Msg.POSENET_HEIGHT_SHOW = "高度";
-Blockly.Msg.POSENET_MIRRORIMAGE_SHOW = "鏡像";
-Blockly.Msg.POSENET_PERSONS_SHOW = "偵測人數";
-Blockly.Msg.POSENET_PERSONS_NUMBER_SHOW = "偵測人數";
-Blockly.Msg.POSENET_RESULT_SHOW = "結果";
-Blockly.Msg.POSENET_SCORELIMIT_SHOW = "信心底限";
-Blockly.Msg.POSENET_SKELETON_SHOW = "骨架";
-Blockly.Msg.POSENET_OPACITY_SHOW = "透明度";
-Blockly.Msg.POSENET_DISTANCE_SHOW = "距離";
-Blockly.Msg.POSENET_ANGLE_SHOW = "角度";
-Blockly.Msg.POSENET_VIDEO_SHOW = "視訊";
-Blockly.Msg.POSENET_LIST_SHOW= "陣列結果";
-Blockly.Msg.POSENET_DATA_SHOW= "屬性";
-Blockly.Msg.POSENET_STATE_SHOW = "偵測狀態";
-Blockly.Msg.POSENET_VIDEO_LEFT_SHOW = "畫面 靠左距離";
-Blockly.Msg.POSENET_VIDEO_TOP_SHOW = "靠上距離";
-Blockly.Msg.POSENET_FACING_SHOW = "鏡頭";
-Blockly.Msg.POSENET_FACING_FRONT_SHOW = "前置";
-Blockly.Msg.POSENET_FACING_BACK_SHOW = "後置";
-Blockly.Msg.POSENET_SRC_SHOW = "串流網址";
-Blockly.Msg.POSENET_MODELNAME_SHOW = "模型";
-Blockly.Msg.POSENET_NOSE_SHOW = "鼻子";
-Blockly.Msg.POSENET_LEFTEYE_SHOW = "左眼";
-Blockly.Msg.POSENET_RIGHTEYE_SHOW = "右眼";
-Blockly.Msg.POSENET_LEFTEAR_SHOW = "左耳";
-Blockly.Msg.POSENET_RIGHTEAR_SHOW = "右耳";
-Blockly.Msg.POSENET_LEFTSHOULDER_SHOW = "左肩膀";
-Blockly.Msg.POSENET_RIGHTSHOULDER_SHOW = "右肩膀";
-Blockly.Msg.POSENET_LEFTELBOW_SHOW = "左手肘";
-Blockly.Msg.POSENET_RIGHTELBOW_SHOW = "右手肘";
-Blockly.Msg.POSENET_LEFTWRIST_SHOW = "左手腕";
-Blockly.Msg.POSENET_RIGHTWRIST_SHOW = "右手腕";
-Blockly.Msg.POSENET_LEFTHIP_SHOW = "左臀部";
-Blockly.Msg.POSENET_RIGHTHIP_SHOW = "右臀部";
-Blockly.Msg.POSENET_LEFTKNEE_SHOW = "左膝蓋";
-Blockly.Msg.POSENET_RIGHTKNEE_SHOW = "右膝蓋";
-Blockly.Msg.POSENET_LEFTANKLE_SHOW = "左腳踝";
-Blockly.Msg.POSENET_RIGHTANKLE_SHOW = "右腳踝";
-Blockly.Msg.POSENET_ALL_SHOW = "全部";
-Blockly.Msg.POSENET_RECOGNITIED_SHOW = "偵測完成後";
-Blockly.Msg.POSENET_LIMIT_SHOW = "無限制";
-Blockly.Msg.POSENET_RECOGNITIED_PERSONS_SHOW = "有人";
-Blockly.Msg.POSENET_RECOGNITIED_NOBODY_SHOW = "無人";
-
-
-
-
-
-
-
 Blockly.Msg["HUE_1"] = 10;
 Blockly.Msg["HUE_2"] = 60;
 Blockly.Msg["HUE_3"] = 110;
@@ -1271,6 +1214,58 @@ Blockly.Msg.TEACHABLEMACHINE_MAXPROBABILITY_SHOW = "最大可能性";
 Blockly.Msg.TEACHABLEMACHINE_PAUSE_SHOW = "暫停偵測";
 Blockly.Msg.TEACHABLEMACHINE_DATA_ARRAY_SHOW = "所有可能性資料陣列";
 
+Blockly.Msg.POSENET_SHOW = "姿態偵測";
+Blockly.Msg.POSENET_PERSON_SHOW = "索引";
+Blockly.Msg.POSENET_PART_SHOW = "部位";
+Blockly.Msg.POSENET_WIDTH_SHOW = "寬度";
+Blockly.Msg.POSENET_HEIGHT_SHOW = "高度";
+Blockly.Msg.POSENET_MIRRORIMAGE_SHOW = "鏡像";
+Blockly.Msg.POSENET_PERSONS_SHOW = "偵測人數";
+Blockly.Msg.POSENET_PERSONS_NUMBER_SHOW = "偵測人數";
+Blockly.Msg.POSENET_RESULT_SHOW = "結果";
+Blockly.Msg.POSENET_SCORELIMIT_SHOW = "信心底限";
+Blockly.Msg.POSENET_SKELETON_SHOW = "骨架";
+Blockly.Msg.POSENET_OPACITY_SHOW = "透明度";
+Blockly.Msg.POSENET_DISTANCE_SHOW = "距離";
+Blockly.Msg.POSENET_ANGLE_SHOW = "角度";
+Blockly.Msg.POSENET_VIDEO_SHOW = "視訊";
+Blockly.Msg.POSENET_LIST_SHOW= "陣列結果";
+Blockly.Msg.POSENET_DATA_SHOW= "屬性";
+Blockly.Msg.POSENET_STATE_SHOW = "偵測狀態";
+Blockly.Msg.POSENET_VIDEO_LEFT_SHOW = "畫面 靠左距離";
+Blockly.Msg.POSENET_VIDEO_TOP_SHOW = "靠上距離";
+Blockly.Msg.POSENET_FACING_SHOW = "鏡頭";
+Blockly.Msg.POSENET_FACING_FRONT_SHOW = "前置";
+Blockly.Msg.POSENET_FACING_BACK_SHOW = "後置";
+Blockly.Msg.POSENET_SRC_SHOW = "串流網址";
+Blockly.Msg.POSENET_MODELNAME_SHOW = "模型";
+Blockly.Msg.POSENET_NOSE_SHOW = "鼻子";
+Blockly.Msg.POSENET_LEFTEYE_SHOW = "左眼";
+Blockly.Msg.POSENET_RIGHTEYE_SHOW = "右眼";
+Blockly.Msg.POSENET_LEFTEAR_SHOW = "左耳";
+Blockly.Msg.POSENET_RIGHTEAR_SHOW = "右耳";
+Blockly.Msg.POSENET_LEFTSHOULDER_SHOW = "左肩膀";
+Blockly.Msg.POSENET_RIGHTSHOULDER_SHOW = "右肩膀";
+Blockly.Msg.POSENET_LEFTELBOW_SHOW = "左手肘";
+Blockly.Msg.POSENET_RIGHTELBOW_SHOW = "右手肘";
+Blockly.Msg.POSENET_LEFTWRIST_SHOW = "左手腕";
+Blockly.Msg.POSENET_RIGHTWRIST_SHOW = "右手腕";
+Blockly.Msg.POSENET_LEFTHIP_SHOW = "左臀部";
+Blockly.Msg.POSENET_RIGHTHIP_SHOW = "右臀部";
+Blockly.Msg.POSENET_LEFTKNEE_SHOW = "左膝蓋";
+Blockly.Msg.POSENET_RIGHTKNEE_SHOW = "右膝蓋";
+Blockly.Msg.POSENET_LEFTANKLE_SHOW = "左腳踝";
+Blockly.Msg.POSENET_RIGHTANKLE_SHOW = "右腳踝";
+Blockly.Msg.POSENET_ALL_SHOW = "全部";
+Blockly.Msg.POSENET_RECOGNITIED_SHOW = "偵測完成後";
+Blockly.Msg.POSENET_LIMIT_SHOW = "無限制";
+Blockly.Msg.POSENET_RECOGNITIED_PERSONS_SHOW = "有人";
+Blockly.Msg.POSENET_RECOGNITIED_NOBODY_SHOW = "無人";
+
+Blockly.Msg.ESP32_CAM_TFJS_POSENET_SHOW = "姿態偵測 (posenet)";
+Blockly.Msg.ESP32_CAM_TFJS_POSENET_INITIAL_SHOW = "初始設定";
+Blockly.Msg.ESP32_CAM_TFJS_POSENET_RECOGNITION_SHOW = "偵測完成後執行";
+
 Blockly.Msg.FACEAPIDETECT_SHOW = "人臉偵測 (face-api)";
 Blockly.Msg.FACEAPIDETECT_INDEX_SHOW = "索引";
 Blockly.Msg.FACEAPIDETECT_PROPERTY_SHOW = "屬性";
@@ -1344,7 +1339,10 @@ Blockly.Msg.FACEAPIRECOGNIZE_RECOGNITIED_PERSONS_SHOW = "有人";
 Blockly.Msg.FACEAPIRECOGNIZE_RECOGNITIED_NOBODY_SHOW = "無人";
 Blockly.Msg.FACEAPIRECOGNIZE_UNKNOWN_SHOW = "取得人臉為陌生人 索引";
 
-Blockly.Msg.ESP32_CAM_TRACKINGCOLOR_SHOW = "Tracking顏色追蹤網頁";
+Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_SHOW = "人臉辨識 (face-api)";
+Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_INITIAL_SHOW = "初始設定";
+Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_RECOGNITION_SHOW = "偵測完成後執行";
+
 Blockly.Msg.TRACKINGCOLOR_SHOW = "顏色追蹤";
 Blockly.Msg.TRACKINGCOLOR_SET_SHOW = "顏色追蹤 視窗設定";
 Blockly.Msg.TRACKINGCOLOR_RANGE_SET_SHOW = "顏色追蹤 自訂範圍顯示";
@@ -1390,9 +1388,34 @@ Blockly.Msg.TRACKINGCOLOR_PAUSE_SHOW = "顏色追蹤 暫停偵測";
 Blockly.Msg.TRACKINGCOLOR_RECOGNITIED_SHOW = "顏色追蹤 偵測完成後執行";
 Blockly.Msg.TRACKINGCOLOR_RECOGNITION_SHOW = "偵測完成後執行";	
 
-Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_SHOW = "人臉辨識 (face-api)";
-Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_INITIAL_SHOW = "初始設定";
-Blockly.Msg.ESP32_CAM_FACEAPIRECOGNIZE_RECOGNITION_SHOW = "偵測完成後執行";
+Blockly.Msg.ESP32_CAM_TRACKINGCOLOR_SHOW = "Tracking顏色追蹤網頁";
+
+Blockly.Msg.TESSERACT_SHOW = "文字辨識 (OCR)";
+Blockly.Msg.TESSERACT_WIDTH_SHOW = "寬度";
+Blockly.Msg.TESSERACT_HEIGHT_SHOW = "高度";
+Blockly.Msg.TESSERACT_RECOGNITION_SHOW = "執行辨識";
+Blockly.Msg.TESSERACT_GET_SHOW = "取得結果";
+Blockly.Msg.TESSERACT_RESULT_SHOW = "結果";
+Blockly.Msg.TESSERACT_OPACITY_SHOW = "透明度";
+Blockly.Msg.TESSERACT_LANG_SHOW = "語言";
+Blockly.Msg.TESSERACT_CLEAR_SHOW = "清除結果";
+Blockly.Msg.TESSERACT_FACING_SHOW = "鏡頭";
+Blockly.Msg.TESSERACT_FACING_FRONT_SHOW = "前置";
+Blockly.Msg.TESSERACT_FACING_BACK_SHOW = "後置";
+Blockly.Msg.TESSERACT_SRC_SHOW = "串流網址";
+Blockly.Msg.TESSERACT_IMAGEPROCESSING_SHOW = "影像處理";
+Blockly.Msg.TESSERACT_REFERENCE_SHOW = "基準值";
+Blockly.Msg.TESSERACT_COLOR_SHOW = "彩色";
+Blockly.Msg.TESSERACT_BLACKWORDS_SHOW = "白底黑字";
+Blockly.Msg.TESSERACT_WHITEWORDS_SHOW = "黑底白字";
+Blockly.Msg.TESSERACT_GRAYSCALE_SHOW = "灰階";
+Blockly.Msg.TESSERACT_VIDEO_LEFT_SHOW = "畫面 靠左距離";
+Blockly.Msg.TESSERACT_VIDEO_TOP_SHOW = "靠上距離";
+Blockly.Msg.TESSERACT_RECOGNITIED_SHOW = "辨識完成後執行";
+
+Blockly.Msg.ESP32_CAM_TESSERACT_SHOW = "文字辨識 (OCR)";
+Blockly.Msg.ESP32_CAM_TESSERACT_INITIAL_SHOW = "初始設定";
+Blockly.Msg.ESP32_CAM_TESSERACT_RECOGNITION_SHOW = "偵測完成後執行";
 
 Blockly.Msg["FU_SERVO_ESP32"] = "伺服馬達 (ESP32)";
 Blockly.Msg["FU_SERVO_PIN"] = "腳位";
