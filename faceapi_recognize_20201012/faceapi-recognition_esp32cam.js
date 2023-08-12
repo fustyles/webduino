@@ -104,6 +104,7 @@ window.onload = function () {
 		const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor));
 		message.innerHTML = "";
 		setTimeout(function(){canvas.style.display = "none";}, showtime*1000);
+		
 		if (results.length>0) {
 			var res = "";
 			for (var i=0;i<results.length;i++) {
@@ -126,9 +127,7 @@ window.onload = function () {
 			setTimeout(function(){start();}, showtime*1000);
 		}
 		
-		if (typeof recognitionFinish === 'function') recognitionFinish();
-
-		setTimeout(function(){start();}, 150);		
+		if (typeof recognitionFinish === 'function') recognitionFinish();	
 	}  
 	
 	function loadLabeledImages() {
