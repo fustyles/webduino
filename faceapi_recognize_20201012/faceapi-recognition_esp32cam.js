@@ -1,4 +1,4 @@
-document.write('<div id="region_faceapirecognize" style="z-index:999;position:absolute"><video id="gamevideo_faceapirecognize" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_faceapirecognize" style="position:absolute;z-index:998;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_faceapirecognize" style="z-index:999;position:absolute;"></canvas><br><br><div id="gamediv_faceapirecognize" style="color:red;position:absolute; style="z-index:997;"></div></div>');
+document.write('<div id="region_faceapirecognize" style="z-index:999;position:absolute"><video id="gamevideo_faceapirecognize" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_faceapirecognize" style="position:absolute;z-index:998;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_faceapirecognize" style="z-index:999;"></canvas><br><br><div id="gamediv_faceapirecognize" style="color:red;position:absolute; style="z-index:997;"></div></div>');
 document.write('<div id="faceapirecognizeState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="sourceId_faceapirecognize" style="position:absolute;display:none;">wait</div>');
 document.write('<div id="size_faceapirecognize" style="position:absolute;display:none;"></div>');
@@ -25,8 +25,7 @@ window.onload = function () {
 	var canvas = document.getElementById('gamecanvas_faceapirecognize');
 	var context = canvas.getContext('2d');
 	var region = document.getElementById("region_faceapirecognize");
-	var detect = document.getElementById('detect_faceapirecognize');
-	var faceapirecognizeState = document.getElementById('faceapirecognizeState'); 	
+	var detect = document.getElementById('detect_faceapirecognize'); 
 	var message = document.getElementById('gamediv_faceapirecognize');
 	var size = document.getElementById("size_faceapirecognize");
 	var sourceId = document.getElementById("sourceId_faceapirecognize");
@@ -77,7 +76,7 @@ window.onload = function () {
 		  size.innerHTML = "{\"width\":"+ShowImage.width+", \"height\": "+ShowImage.height+"}";
 	  }
 		
-	  setTimeout(function(){DetectImage(); }, 100);
+	  DetectImage();
 	}
 
 	async function DetectImage() {
@@ -88,9 +87,11 @@ window.onload = function () {
 		canvas.style.height = ShowImage.height+"px";
 		canvas.getContext('2d').drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height); 
 
-		if (faceapirecognizeState.innerHTML=="0") {
+		if (sourceId.innerHTML!="") {
+	  		setTimeout(function(){start();}, 150);
 			return;
 		}
+		sourceId.innerHTML="wait";
 		
 		if (!labeledFaceDescriptors) {
 			labeledFaceDescriptors = await loadLabeledImages();
@@ -101,9 +102,6 @@ window.onload = function () {
 		const resizedDetections = faceapi.resizeResults(detections, JSON.parse(size.innerHTML));
 
 		const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor));
-		message.innerHTML = "";
-		setTimeout(function(){canvas.style.display = "none";}, showtime*1000);
-		
 		if (results.length>0) {
 			var res = "";
 			for (var i=0;i<results.length;i++) {
@@ -112,21 +110,21 @@ window.onload = function () {
 					res += "<br>";
 			}
 			message.innerHTML = res;
-
-			results.forEach((result, i) => {
-				const box = resizedDetections[i].detection.box
-				var drawBox;
-				if (result.distance<=distanceLimit)
-					drawBox = new faceapi.draw.DrawBox(box, { label: result.toString()})
-				else
-					drawBox = new faceapi.draw.DrawBox(box, { label: (Math.round(result.distance*100)/100).toString()})
-				drawBox.draw(canvas);
-			})
-
-			setTimeout(function(){start();}, showtime*1000);
+			if (typeof recognitionFinish === 'function') recognitionFinish();
 		}
-		
-		if (typeof recognitionFinish === 'function') recognitionFinish();	
+		else
+			message.innerHTML = "";
+
+		results.forEach((result, i) => {
+			const box = resizedDetections[i].detection.box
+			var drawBox;
+			if (result.distance<=distanceLimit)
+				drawBox = new faceapi.draw.DrawBox(box, { label: result.toString()})
+			else
+				drawBox = new faceapi.draw.DrawBox(box, { label: (Math.round(result.distance*100)/100).toString()})
+			drawBox.draw(canvas);
+		})
+		setTimeout(function(){start();}, showtime*1000);
 	}  
 	
 	function loadLabeledImages() {
