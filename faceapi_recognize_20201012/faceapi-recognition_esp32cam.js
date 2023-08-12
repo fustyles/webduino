@@ -1,4 +1,4 @@
-document.write('<div id="region_faceapirecognize" style="z-index:999;position:absolute"><video id="gamevideo_faceapirecognize" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_faceapirecognize" style="position:absolute;z-index:998;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_faceapirecognize" style="z-index:999;position:absolute;"></canvas><br><br><div id="gamediv_faceapirecognize" style="color:red;position:absolute; style="z-index:997;"></div></div>');
+document.write('<div id="region_faceapirecognize" style="z-index:999;position:absolute"><img id="gameimage_faceapirecognize" style="position:absolute;z-index:998;" crossorigin="anonymous"><canvas id="gamecanvas_faceapirecognize" style="z-index:999;position:absolute;"></canvas><br><br><div id="gamediv_faceapirecognize" style="color:red;position:absolute; style="z-index:997;"></div></div>');
 document.write('<div id="faceapirecognizeState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="sourceId_faceapirecognize" style="position:absolute;display:none;">wait</div>');
 document.write('<div id="size_faceapirecognize" style="position:absolute;display:none;"></div>');
@@ -44,8 +44,6 @@ window.onload = function () {
 	distanceLimit = Number(document.getElementById('distancelimit_faceapirecognize').innerHTML);
 	faceImagesCount = Number(document.getElementById('faceimagecount_faceapirecognize').innerHTML);
 	faceImagesPath = document.getElementById('faceimagepath_faceapirecognize').innerHTML;
-	console.log(faceImagesCount);
-	console.log(faceImagesPath);
 	if (faceImagesCount==0)
 		faceImagesPath = faceImagesPath.split(";");
 	facelabels = document.getElementById('facelabel_faceapirecognize').innerHTML;
@@ -91,18 +89,16 @@ window.onload = function () {
 		canvas.style.width = ShowImage.width+"px";
 		canvas.style.height = ShowImage.height+"px";
 		canvas.getContext('2d').drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height); 
-		console.log(1);
 		if (sourceId.innerHTML!="") {
 	  		setTimeout(function(){start();}, 150);
 			return;
 		}
 		sourceId.innerHTML="wait";
-		console.log(2);
+		
 		if (!labeledFaceDescriptors) {
 			labeledFaceDescriptors = await loadLabeledImages();
 			faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, distanceLimit)
 		}
-		console.log(3);
 		const detections = await faceapi.detectAllFaces(canvas).withFaceLandmarks().withFaceDescriptors();
 		const resizedDetections = faceapi.resizeResults(detections, JSON.parse(size.innerHTML));
 
@@ -141,18 +137,15 @@ window.onload = function () {
 				const descriptions = []
 				if (faceImagesCount==0) { 
 					console.log(faceImagesPath[index]);
-					const img = await faceapi.fetchImage(faceImagesPath[index])
-					console.log("2-1");
+					const img = await faceapi.fetchImage(faceImagesPath[index]);
 					const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
-					descriptions.push(detections.descriptor)
-					console.log("2-2");
+					descriptions.push(detections.descriptor);
 				}
 				else {			
-					console.log("2-3");
 					for (let i=1;i<=faceImagesCount;i++) {
-						const img = await faceapi.fetchImage(faceImagesPath+label+'/'+i+'.jpg')
+						const img = await faceapi.fetchImage(faceImagesPath+label+'/'+i+'.jpg');
 						const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
-						descriptions.push(detections.descriptor)
+						descriptions.push(detections.descriptor);
 					}
 				}
 				return new faceapi.LabeledFaceDescriptors(label, descriptions)
