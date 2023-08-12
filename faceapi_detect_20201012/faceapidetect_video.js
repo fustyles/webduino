@@ -118,6 +118,8 @@ window.onload = function () {
 			result.innerHTML = result.innerHTML.substring(0,result.innerHTML.length-4);
 			if (typeof faceapidetect_recognitionFinish === 'function') faceapidetect_recognitionFinish();
 		}
+		else
+			if (typeof faceapidetect_unrecognitionFinish === 'function') faceapidetect_unrecognitionFinish();
 
 		try { 
 			document.createEvent("TouchEvent");
