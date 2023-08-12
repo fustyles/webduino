@@ -16588,6 +16588,11 @@ Blockly.Arduino['teachablemachine_result'] = function(block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['teachablemachine_result_array'] = function(block) { 
+  var code = 'teachablemachine_result("")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['teachablemachine_state'] = function(block) {
   var value_state_ = block.getFieldValue('state_');
   var code = 'teachablemachine_state(' + value_state_ + ');\n';
