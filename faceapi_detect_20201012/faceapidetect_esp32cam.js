@@ -120,7 +120,7 @@ window.onload = function () {
 
 			i++;
 		})
-		if (typeof faceapidetect_recognitionFinish === 'function') faceapidetect_recognitionFinish();
+		if (typeof recognitionFinish === 'function') recognitionFinish();
 		
 		setTimeout(function(){start();},150);
 	}  
