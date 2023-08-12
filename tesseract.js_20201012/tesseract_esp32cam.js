@@ -9,6 +9,7 @@ var lang = document.getElementById('lang_tesseract');
 var mode = document.getElementById('mode_tesseract');
 var reference = document.getElementById('reference_tesseract');
 var myTimer;
+var imageTimer;
 var restartCount=0;	
 
 function start() {
@@ -36,12 +37,13 @@ ShowImage.onload = function (event) {
   canvas.style.height = ShowImage.height+"px";
   context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
   if (canvas.style.visibility=='hidden')
-  	setTimeout(function(){start();},150);
+  	imageTimer = setTimeout(function(){start();},150);
 }
 
 start();
 
 function DetectVideo() {
+	clearInterval(imageTimer);
 	result.innerHTML = ""; 
 	canvas.style.visibility = 'visible';
 	var imgData=context.getImageData(0,0,canvas.width,canvas.height);
