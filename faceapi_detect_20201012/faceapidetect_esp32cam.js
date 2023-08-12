@@ -122,8 +122,10 @@ window.onload = function () {
 		})
 		if (result.innerHTML.length>0) {
 			result.innerHTML = result.innerHTML.substring(0,result.innerHTML.length-4);
-			recognitionFinish();
+			if (typeof faceapidetect_recognitionFinish === 'function') faceapidetect_recognitionFinish();
 		}
+		else
+			if (typeof faceapidetect_unrecognitionFinish === 'function') faceapidetect_unrecognitionFinish();
 		
 		setTimeout(function(){start();},150);
 	}  
