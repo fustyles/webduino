@@ -284,6 +284,6 @@ Blockly.Blocks['posenet_recognitied'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(60);
   }
 };
