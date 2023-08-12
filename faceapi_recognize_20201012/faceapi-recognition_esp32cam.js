@@ -112,8 +112,7 @@ window.onload = function () {
 			}
 			message.innerHTML = res;
 		}
-		if (typeof recognitionFinish === 'function') recognitionFinish();
-
+		
 		results.forEach((result, i) => {
 			const box = resizedDetections[i].detection.box
 			var drawBox;
@@ -123,6 +122,9 @@ window.onload = function () {
 				drawBox = new faceapi.draw.DrawBox(box, { label: (Math.round(result.distance*100)/100).toString()})
 			drawBox.draw(canvas);
 		})
+
+		if (typeof recognitionFinish === 'function') recognitionFinish();
+		
 		setTimeout(function(){start();}, showtime*1000);
 	}  
 	
