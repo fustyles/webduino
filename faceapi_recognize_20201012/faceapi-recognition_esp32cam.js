@@ -90,7 +90,6 @@ window.onload = function () {
 	  		setTimeout(function(){start();}, 150);
 			return;
 		}
-		sourceId.innerHTML="wait";
 		
 		if (!labeledFaceDescriptors) {
 			labeledFaceDescriptors = await loadLabeledImages();
@@ -123,7 +122,7 @@ window.onload = function () {
 		})
 
 		if (typeof recognitionFinish === 'function') recognitionFinish();
-		sourceId.innerHTML="";
+		sourceId.innerHTML = "image";
 		setTimeout(function(){canvas.style.display = "none";}, showtime*1000);
 		setTimeout(function(){start();}, 150);
 	}  
