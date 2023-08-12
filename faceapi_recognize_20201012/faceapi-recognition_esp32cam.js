@@ -1,4 +1,4 @@
-document.write('<div id="region_faceapirecognize" style="z-index:999;position:absolute"><video id="gamevideo_faceapirecognize" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_faceapirecognize" style="position:absolute;z-index:998;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_faceapirecognize" style="z-index:999;"></canvas><br><br><div id="gamediv_faceapirecognize" style="color:red;position:absolute; style="z-index:997;"></div></div>');
+document.write('<div id="region_faceapirecognize" style="z-index:999;position:absolute"><video id="gamevideo_faceapirecognize" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_faceapirecognize" style="position:absolute;z-index:998;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_faceapirecognize" style="z-index:999;position:absolute;"></canvas><br><br><div id="gamediv_faceapirecognize" style="color:red;position:absolute; style="z-index:997;"></div></div>');
 document.write('<div id="faceapirecognizeState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="sourceId_faceapirecognize" style="position:absolute;display:none;">wait</div>');
 document.write('<div id="size_faceapirecognize" style="position:absolute;display:none;"></div>');
@@ -102,6 +102,7 @@ window.onload = function () {
 		const resizedDetections = faceapi.resizeResults(detections, JSON.parse(size.innerHTML));
 
 		const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor));
+		message.innerHTML = "";
 		if (results.length>0) {
 			var res = "";
 			for (var i=0;i<results.length;i++) {
@@ -110,11 +111,9 @@ window.onload = function () {
 					res += "<br>";
 			}
 			message.innerHTML = res;
-			if (typeof recognitionFinish === 'function') recognitionFinish();
+			
 		}
-		else
-			message.innerHTML = "";
-
+		
 		results.forEach((result, i) => {
 			const box = resizedDetections[i].detection.box
 			var drawBox;
@@ -124,6 +123,8 @@ window.onload = function () {
 				drawBox = new faceapi.draw.DrawBox(box, { label: (Math.round(result.distance*100)/100).toString()})
 			drawBox.draw(canvas);
 		})
+
+		if (typeof recognitionFinish === 'function') recognitionFinish();
 		setTimeout(function(){start();}, showtime*1000);
 	}  
 	
