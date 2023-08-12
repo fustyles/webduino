@@ -1,4 +1,4 @@
-Blockly.Msg["CATTEACHABLEMACHINE"] = "机器学习";
+Blockly.Msg["CATTEACHABLEMACHINE"] = "机器学习(google)";
 Blockly.Msg.TEACHABLEMACHINE_SHOW = "机器学习(google)";
 Blockly.Msg.TEACHABLEMACHINE_WIDTH_SHOW = "宽度";
 Blockly.Msg.TEACHABLEMACHINE_HEIGHT_SHOW = "高度";
