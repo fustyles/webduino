@@ -64,9 +64,21 @@ Blockly.Blocks['teachablemachine_result'] = {
       .appendField(Blockly.Msg.TEACHABLEMACHINE_PROPORTION_SHOW)
       .appendField(new Blockly.FieldDropdown([
 	  [Blockly.Msg.TEACHABLEMACHINE_MAXCLASS_SHOW,"maxClass"], 
-	  [Blockly.Msg.TEACHABLEMACHINE_MAXPROBABILITY_SHOW,"maxProbability"],
-	  [Blockly.Msg.TEACHABLEMACHINE_DATA_ARRAY_SHOW,""]
+	  [Blockly.Msg.TEACHABLEMACHINE_MAXPROBABILITY_SHOW,"maxProbability"]
 	  ]), "result_");
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
+
+Blockly.Blocks['teachablemachine_result_array'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TEACHABLEMACHINE_SHOW);		  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TEACHABLEMACHINE_PROPORTION_SHOW)
+      .appendField(Blockly.Msg.TEACHABLEMACHINE_DATA_ARRAY_SHOW);
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
