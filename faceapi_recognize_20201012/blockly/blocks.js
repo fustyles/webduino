@@ -65,7 +65,7 @@ Blockly.Blocks['faceapirecognize_video_one'] = {
   this.appendValueInput("faceimagepath")
       .setAlign(Blockly.ALIGN_RIGHT)  
       .setCheck("String")
-      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_FACEIMAGEPATH_SHOW);
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_FACEIMAGEPATH1_SHOW);
   this.appendValueInput("facelabel")
       .setAlign(Blockly.ALIGN_RIGHT)  
       .setCheck("String")
