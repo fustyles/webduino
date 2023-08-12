@@ -11,6 +11,18 @@ Blockly.JavaScript['faceapirecognize_video'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['faceapirecognize_video_one'] = function(block) { 
+  var value_result = block.getFieldValue('result_');
+  var value_opacity = block.getFieldValue('opacity_');  
+  var value_timer = Blockly.JavaScript.valueToCode(block, 'timer', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_faceimagepath = Blockly.JavaScript.valueToCode(block, 'faceimagepath', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_facelabel = Blockly.JavaScript.valueToCode(block, 'facelabel', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_distancelimit = Blockly.JavaScript.valueToCode(block, 'distancelimit', Blockly.JavaScript.ORDER_ATOMIC);
+
+  var code = 'faceapirecognize_video("' + value_result + '","' + value_opacity + '",' + value_timer + ',' + value_faceimagepath + ',' + value_facelabel + ',0,' + value_distancelimit + ');\n';
+  return code;
+};
+
 Blockly.JavaScript['faceapirecognize_detect'] = function(block) { 
   var code = 'faceapirecognize_detect();\n';
   return code;
@@ -31,6 +43,12 @@ Blockly.JavaScript['faceapirecognize_get'] = function(block) {
   var index = Blockly.JavaScript.valueToCode(block, 'index', Blockly.JavaScript.ORDER_ATOMIC);	
   var column = block.getFieldValue('column');
   var code = 'faceapirecognize_get('+index+',"'+column+'")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['faceapirecognize_unknown'] = function(block) {
+  var index = Blockly.JavaScript.valueToCode(block, 'index', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = '(faceapirecognize_get('+index+',"name")=="unknown")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -67,13 +85,12 @@ Blockly.JavaScript['faceapirecognize_canvas_get'] = function(block) {
 };
 
 Blockly.JavaScript['faceapirecognize_recognitied'] = function(block) { 
+  var value_status = block.getFieldValue('status_');
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'faceapirecognize_recognitionFinish = async function() {\nfaceapirecognize_state(0);\n' + statements_do + '\nfaceapirecognize_state(1);};\n';
-  return code;
-};
-
-Blockly.JavaScript['faceapirecognize_recognitied'] = function(block) { 
-  var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'faceapirecognize_recognitionFinish = async function() {\nfaceapirecognize_state(0);\n' + statements_do + '\nfaceapirecognize_state(1);};\n';
-  return code;
+  
+  if (value_status=="Y")
+	  var code = 'faceapirecognize_recognitionFinish = async function() {\n  faceapirecognize_state(0);\n' + statements_do + '\n  faceapirecognize_state(1);\n};\n';
+  else
+	  var code = 'faceapirecognize_unrecognitionFinish = async function() {\n  faceapirecognize_state(0);\n' + statements_do + '\n  faceapirecognize_state(1);\n};\n';
+  return code;   
 };

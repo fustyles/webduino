@@ -71,19 +71,19 @@ async function DetectVideo(obj) {
 	const resizedDetections = faceapi.resizeResults(detections, JSON.parse(size.innerHTML));
 
 	const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor));
+	message.innerHTML = "";
 	if (results.length>0) {
 		var res = "";
 		for (var i=0;i<results.length;i++) {
 			res += results[i]._label + "," + results[i]._distance + "<br>";
 		}
 		message.innerHTML = res;
-		if (message.innerHTML!="") {
-			message.innerHTML = message.innerHTML.substr(0,message.innerHTML.length-4); 
-			if (typeof faceapirecognize_recognitionFinish === 'function') faceapirecognize_recognitionFinish();
-		}
+		if (message.innerHTML!="")
+			message.innerHTML = message.innerHTML.substr(0,message.innerHTML.length-4);
+		if (typeof faceapirecognize_recognitionFinish === 'function') faceapirecognize_recognitionFinish();
 	}
 	else
-		message.innerHTML = "";
+		if (typeof faceapirecognize_unrecognitionFinish === 'function') faceapirecognize_unrecognitionFinish();
 
 	results.forEach((result, i) => {
 		const box = resizedDetections[i].detection.box

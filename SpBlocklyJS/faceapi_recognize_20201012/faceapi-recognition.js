@@ -121,7 +121,10 @@
 	}
 
 	function faceapirecognize_recognitionFinish() {
-	}    
+	}   
+	
+	function faceapirecognize_unrecognitionFinish() {
+	} 	
 
 	window.faceapirecognize_number = faceapirecognize_number;
 	window.faceapirecognize_get = faceapirecognize_get;
@@ -132,6 +135,7 @@
 	window.faceapirecognize_video_position = faceapirecognize_video_position;
 	window.faceapirecognize_startvideo_media = faceapirecognize_startvideo_media;
 	window.faceapirecognize_startvideo_stream = faceapirecognize_startvideo_stream;
-	window.faceapirecognize_recognitionFinish = faceapirecognize_recognitionFinish;    
+	window.faceapirecognize_recognitionFinish = faceapirecognize_recognitionFinish;
+	window.faceapirecognize_unrecognitionFinish = faceapirecognize_unrecognitionFinish;    
 
 }(window, window.document));

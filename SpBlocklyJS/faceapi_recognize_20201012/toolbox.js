@@ -27,7 +27,7 @@ var catFaceRecognize = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="faceapirecognize_video">'+
+'  <block type="faceapirecognize_video_one">'+
 '    <value name="facelabel">'+
 '      <block type="text">'+
 '        <field name="TEXT">France;Chiling</field>'+
@@ -36,11 +36,6 @@ var catFaceRecognize = '<xml>'+
 '    <value name="faceimagepath">'+
 '      <block type="text">'+
 '        <field name="TEXT">https:\/\/aaa\/bbb.jpg;https:\/\/ccc\/ddd.jpg</field>'+
-'      </block>'+
-'    </value>'+
-'    <value name="faceimagecount">'+
-'      <block type="math_number">'+
-'        <field name="NUM">0</field>'+
 '      </block>'+
 '    </value>'+
 '    <value name="distancelimit">'+
@@ -78,13 +73,11 @@ var catFaceRecognize = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="faceapirecognize_detect">'+
-'  </block>'+
 '  <block type="faceapirecognize_recognitied">'+
 '  </block>'+
-'  <block type="faceapirecognize_number">'+
+'  <block type="faceapirecognize_detect">'+
 '  </block>'+
-'  <block type="faceapirecognize_state">'+
+'  <block type="faceapirecognize_number">'+
 '  </block>'+
 '  <block type="faceapirecognize_get">'+
 '    <value name="index">'+
@@ -93,7 +86,12 @@ var catFaceRecognize = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="faceapirecognize_clear">'+
+'  <block type="faceapirecognize_unknown">'+
+'    <value name="index">'+
+'      <block type="math_number">'+
+'        <field name="NUM">1</field>'+
+'      </block>'+
+'    </value>'+
 '  </block>'+
 '  <block type="faceapirecognize_video_position">'+
 '    <value name="left_">'+
@@ -106,6 +104,10 @@ var catFaceRecognize = '<xml>'+
 '        <field name="NUM">0</field>'+
 '      </block>'+
 '    </value>'+
+'  </block>'+
+'  <block type="faceapirecognize_state">'+
+'  </block>'+
+'  <block type="faceapirecognize_clear">'+
 '  </block>'+
 '  <block type="faceapirecognize_canvas_get">'+
 '  </block>'+
