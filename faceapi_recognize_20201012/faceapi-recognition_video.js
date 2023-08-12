@@ -1,4 +1,4 @@
-document.write('<div id="region_faceapirecognize" style="z-index:999;position:absolute"><video id="gamevideo_faceapirecognize" style="position:absolute;z-index:998;" preload autoplay loop muted></video><img id="gameimage_faceapirecognize" style="position:absolute;z-index:998;" crossorigin="anonymous"><canvas id="gamecanvas_faceapirecognize" style="z-index:999;"></canvas><br><br><div id="gamediv_faceapirecognize" style="color:red;position:absolute; style="z-index:997;"></div></div>');
+document.write('<div id="region_faceapirecognize" style="z-index:999;position:absolute"><video id="gamevideo_faceapirecognize" style="position:absolute;z-index:998;" preload autoplay loop muted></video><img id="gameimage_faceapirecognize" style="position:absolute;z-index:998;" crossorigin="anonymous"><canvas id="gamecanvas_faceapirecognize" style="z-index:999;position:absolute;"></canvas><br><br><div id="gamediv_faceapirecognize" style="color:red;position:absolute; style="z-index:997;"></div></div>');
 document.write('<div id="faceapirecognizeState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="sourceId_faceapirecognize" style="position:absolute;display:none;"></div>');
 document.write('<div id="size_faceapirecognize" style="position:absolute;display:none;"></div>');
@@ -72,6 +72,7 @@ async function DetectVideo(obj) {
 
 	const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor));
 	message.innerHTML = "";
+	setTimeout('canvas.style.display = "none";', myTimer*1000);
 	if (results.length>0) {
 		var res = "";
 		for (var i=0;i<results.length;i++) {
@@ -94,8 +95,6 @@ async function DetectVideo(obj) {
 	}
 	else
 		if (typeof faceapirecognize_unrecognitionFinish === 'function') faceapirecognize_unrecognitionFinish();
-	
-	setTimeout('canvas.style.display = "none";', myTimer*1000);
 }
 
 function loadLabeledImages() {
