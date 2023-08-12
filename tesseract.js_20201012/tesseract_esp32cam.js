@@ -34,8 +34,6 @@ ShowImage.onload = function (event) {
   canvas.setAttribute("height", ShowImage.height);
   canvas.style.width = ShowImage.width+"px";
   canvas.style.height = ShowImage.height+"px";
-  if (canvas.style.visibility=='hidden')
-  	context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
 	
   setTimeout(function(){start();},150);
 }
@@ -44,7 +42,7 @@ start();
 
 function DetectVideo() {
 	result.innerHTML = ""; 
-	
+	context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
 	var imgData=context.getImageData(0,0,canvas.width,canvas.height);
 	for (var i=0;i<imgData.data.length;i+=4) {
 		var r=0;
