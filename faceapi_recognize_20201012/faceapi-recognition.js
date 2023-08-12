@@ -12,7 +12,8 @@
 		if (input_faceimagecount==0)
 			input_faceimagepath = input_faceimagepath.split(";");
 		input_facelabel = input_facelabel.split(";");
-		StartFaceRecognition(input_timer, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit);
+		if (typeof StartFaceRecognition === 'function') 
+			StartFaceRecognition(input_timer, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit);
 	}	
 
 	function faceapirecognize_detect() {
