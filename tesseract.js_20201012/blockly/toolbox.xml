@@ -32,6 +32,12 @@
       </block>
     </value> 
   </block>
+  <block type="tesseract_recognitied">   
+  </block>   
+  <block type="tesseract_recognition">   
+  </block>  
+  <block type="tesseract_get">
+  </block>    
   <block type="tesseract_video_position">
     <value name="left_">
       <block type="math_number">
@@ -44,10 +50,6 @@
       </block>
     </value>     
   </block> 
-  <block type="tesseract_recognition">   
-  </block>  
-  <block type="tesseract_get">
-  </block>  
   <block type="tesseract_clear">
   </block>
 </category>
