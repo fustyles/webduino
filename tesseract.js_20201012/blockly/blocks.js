@@ -160,6 +160,8 @@ Blockly.Blocks['tesseract_imageprocessing'] = {
 
 Blockly.Blocks['tesseract_video_position'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TESSERACT_SHOW);	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .appendField(Blockly.Msg.TESSERACT_VIDEO_LEFT_SHOW);  
@@ -175,6 +177,8 @@ Blockly.Blocks['tesseract_video_position'] = {
 
 Blockly.Blocks['tesseract_recognition'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TESSERACT_SHOW);	  
   this.appendDummyInput() 
       .appendField(Blockly.Msg.TESSERACT_RECOGNITION_SHOW);
   this.setInputsInline(true);
@@ -185,7 +189,9 @@ Blockly.Blocks['tesseract_recognition'] = {
 };
 
 Blockly.Blocks['tesseract_get'] = {
-  init: function() { 
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TESSERACT_SHOW);	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TESSERACT_GET_SHOW); 	  
   this.setInputsInline(true);
@@ -195,7 +201,9 @@ Blockly.Blocks['tesseract_get'] = {
 };
 
 Blockly.Blocks['tesseract_clear'] = {
-  init: function() { 
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TESSERACT_SHOW);	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TESSERACT_CLEAR_SHOW); 	  
   this.setInputsInline(true);	  
@@ -238,6 +246,20 @@ Blockly.Blocks['tesseract_startvideo_stream'] = {
       .setCheck("String")
       .appendField(Blockly.Msg.TESSERACT_SRC_SHOW);	  
   this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['tesseract_recognitied'] = {
+  init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TESSERACT_SHOW);	  
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.TESSERACT_RECOGNITIED_SHOW);	  
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
