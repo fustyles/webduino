@@ -3,9 +3,9 @@ Blockly.Blocks['keyboard_listener'] = {
 	this.appendDummyInput()
 	    .appendField(Blockly.Msg.KEYBOARD_LISTENER_SHOW)
 	    .appendField(new Blockly.FieldDropdown([
-	      ["keydown","keydown"],
-	      ["keyup","keyup"],
-	      ["keypress","keypress"]
+	      [Blockly.Msg["KEYBOARD_KEYDOWN"],"keydown"],
+	      [Blockly.Msg["KEYBOARD_KEYUP"],"keyup"],
+	      [Blockly.Msg["KEYBOARD_KEYPRESS"],"keypress"]
 	      ]), "event");
 	this.appendStatementInput("statement");
 	this.setPreviousStatement(true);
@@ -20,9 +20,9 @@ Blockly.Blocks['stop_keyboard_listener'] = {
 	this.appendDummyInput()
 	    .appendField(Blockly.Msg.STOP_KEYBOARD_LISTENER_SHOW)
 	    .appendField(new Blockly.FieldDropdown([
-	      ["keydown","keydown"],
-	      ["keyup","keyup"],
-	      ["keypress","keypress"]
+	      [Blockly.Msg["KEYBOARD_KEYDOWN"],"keydown"],
+	      [Blockly.Msg["KEYBOARD_KEYUP"],"keyup"],
+	      [Blockly.Msg["KEYBOARD_KEYPRESS"],"keypress"]
 	      ]), "event");
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
@@ -56,7 +56,7 @@ Blockly.Blocks['keyboard_keycode'] = {
 			["Pause","19"],
 			["Caps_Lock","20"],
 			["Escape","27"],
-			["space","32"],
+			["Space","32"],
 			["Prior","33"],
 			["Next","34"],
 			["End","35"],
