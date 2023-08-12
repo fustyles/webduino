@@ -102,6 +102,7 @@ window.onload = function () {
 		const resizedDetections = faceapi.resizeResults(detections, JSON.parse(size.innerHTML));
 
 		const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor));
+		message.innerHTML = "";
 		if (results.length>0) {
 			var res = "";
 			for (var i=0;i<results.length;i++) {
@@ -110,10 +111,8 @@ window.onload = function () {
 					res += "<br>";
 			}
 			message.innerHTML = res;
-			if (typeof recognitionFinish === 'function') recognitionFinish();
 		}
-		else
-			message.innerHTML = "";
+		if (typeof recognitionFinish === 'function') recognitionFinish();
 
 		results.forEach((result, i) => {
 			const box = resizedDetections[i].detection.box
