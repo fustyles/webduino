@@ -97,7 +97,7 @@ window.onload = function () {
 			labeledFaceDescriptors = await loadLabeledImages();
 			faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, distanceLimit)
 		}
-		
+		console.log("ok");
 		const detections = await faceapi.detectAllFaces(ShowImage).withFaceLandmarks().withFaceDescriptors();
 		const resizedDetections = faceapi.resizeResults(detections, JSON.parse(size.innerHTML));
 
