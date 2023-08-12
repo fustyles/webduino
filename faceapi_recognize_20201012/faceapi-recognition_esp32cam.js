@@ -25,7 +25,8 @@ window.onload = function () {
 	var canvas = document.getElementById('gamecanvas_faceapirecognize');
 	var context = canvas.getContext('2d');
 	var region = document.getElementById("region_faceapirecognize");
-	var detect = document.getElementById('detect_faceapirecognize'); 
+	var detect = document.getElementById('detect_faceapirecognize');
+	var faceapirecognizeState = document.getElementById('faceapirecognizeState'); 	
 	var message = document.getElementById('gamediv_faceapirecognize');
 	var size = document.getElementById("size_faceapirecognize");
 	var sourceId = document.getElementById("sourceId_faceapirecognize");
@@ -76,7 +77,7 @@ window.onload = function () {
 		  size.innerHTML = "{\"width\":"+ShowImage.width+", \"height\": "+ShowImage.height+"}";
 	  }
 		
-	  DetectImage();
+	  setTimeout(function(){DetectImage(); }, 100);
 	}
 
 	async function DetectImage() {
@@ -87,11 +88,9 @@ window.onload = function () {
 		canvas.style.height = ShowImage.height+"px";
 		canvas.getContext('2d').drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height); 
 
-		if (sourceId.innerHTML!="") {
-	  		setTimeout(function(){start();}, 150);
+		if (faceapirecognizeState.innerHTML=="0") {
 			return;
 		}
-		sourceId.innerHTML="wait";
 		
 		if (!labeledFaceDescriptors) {
 			labeledFaceDescriptors = await loadLabeledImages();
