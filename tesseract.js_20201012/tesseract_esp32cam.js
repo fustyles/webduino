@@ -41,7 +41,8 @@ ShowImage.onload = function (event) {
 start();
 
 function DetectVideo() {
-	clearInterval(imageTimer);
+	if (canvas.style.visibility == 'visible') return;
+	
 	result.innerHTML = "";
 	context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
 	canvas.style.visibility = 'visible';
