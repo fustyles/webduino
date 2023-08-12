@@ -17,9 +17,6 @@ function faceapirecognize1_video(input_result, input_opacity, input_timer, input
 	document.getElementById('facelabel_faceapirecognize').innerHTML = input_facelabel;
 	document.getElementById('faceimagecount_faceapirecognize').innerHTML = input_faceimagecount;
 	document.getElementById('distancelimit_faceapirecognize').innerHTML = input_distancelimit;
-
-	console.log(document.getElementById('faceimagecount_faceapirecognize').innerHTML);
-	console.log(document.getElementById('faceimagepath_faceapirecognize').innerHTML);	
 }
 
 window.onload = function () {
