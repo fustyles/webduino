@@ -34,15 +34,16 @@ ShowImage.onload = function (event) {
   canvas.setAttribute("height", ShowImage.height);
   canvas.style.width = ShowImage.width+"px";
   canvas.style.height = ShowImage.height+"px";
-	
-  setTimeout(function(){start();},150);
+  context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
+  if (canvas.style.visibility=='hidden')
+  	setTimeout(function(){start();},150);
 }
 
 start();
 
 function DetectVideo() {
 	result.innerHTML = ""; 
-	context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
+	
 	var imgData=context.getImageData(0,0,canvas.width,canvas.height);
 	for (var i=0;i<imgData.data.length;i+=4) {
 		var r=0;
@@ -100,5 +101,6 @@ function DetectVideo() {
 			result.innerHTML = text.replace(/\n/g, "<br>");
 			if (typeof recognitionFinish === 'function') recognitionFinish();
 			canvas.style.visibility='hidden';
+			start();
 		}) 
 }	
