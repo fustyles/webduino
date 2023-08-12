@@ -28,20 +28,20 @@ function error_handle() {
 ShowImage.onload = function (event) {
   clearInterval(myTimer);
   restartCount=0;
+  ShowImage.style.width = ShowImage.width + 'px';
+  ShowImage.style.height = ShowImage.height + 'px';		
+  canvas.setAttribute("width", ShowImage.width);
+  canvas.setAttribute("height", ShowImage.height);
+  canvas.style.width = ShowImage.width+"px";
+  canvas.style.height = ShowImage.height+"px";
+  context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
+	
   setTimeout(function(){start();},150);
 }
 
 start();
 
 function DetectVideo() {
-	ShowImage.style.width = ShowImage.width + 'px';
-	ShowImage.style.height = ShowImage.height + 'px';		
-	canvas.setAttribute("width", ShowImage.width);
-	canvas.setAttribute("height", ShowImage.height);
-	canvas.style.width = ShowImage.width+"px";
-	canvas.style.height = ShowImage.height+"px";
-	context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
-	
 	result.innerHTML = ""; 
 	
 	var imgData=context.getImageData(0,0,canvas.width,canvas.height);
