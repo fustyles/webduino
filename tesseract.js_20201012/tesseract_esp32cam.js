@@ -11,98 +11,95 @@ var reference = document.getElementById('reference_tesseract');
 var myTimer;
 var restartCount=0;	
 
-window.onload = function () {
-	function start() {
-	  clearInterval(myTimer);  
-	  myTimer = setInterval(function(){error_handle();},5000);
-	  ShowImage.src = document.location.origin+'/?getstill='+Math.random();
-	}
+function start() {
+  clearInterval(myTimer);  
+  myTimer = setInterval(function(){error_handle();},5000);
+  ShowImage.src = document.location.origin+'/?getstill='+Math.random();
+}
 
-	function error_handle() {
-	  restartCount++;
-	  clearInterval(myTimer);
-	  if (restartCount<=2) {
-		myTimer = setInterval(function(){start();},10000);
-	  }
-	}    
+function error_handle() {
+  restartCount++;
+  clearInterval(myTimer);
+  if (restartCount<=2) {
+	myTimer = setInterval(function(){start();},10000);
+  }
+}    
 
-	ShowImage.onload = function (event) {
-	  clearInterval(myTimer);
-	  restartCount=0;
-	  setTimeout(function(){start();},150);
-	}
+ShowImage.onload = function (event) {
+  clearInterval(myTimer);
+  restartCount=0;
+  setTimeout(function(){start();},150);
+}
 
-	start();
+start();
 
-	function DetectVideo() {
-		ShowImage.style.width = ShowImage.width + 'px';
-		ShowImage.style.height = ShowImage.height + 'px';		
-		canvas.setAttribute("width", ShowImage.width);
-		canvas.setAttribute("height", ShowImage.height);
-		canvas.style.width = ShowImage.width+"px";
-		canvas.style.height = ShowImage.height+"px";
-		context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
-		
-		result.innerHTML = ""; 
-		
-		var imgData=context.getImageData(0,0,canvas.width,canvas.height);
-		for (var i=0;i<imgData.data.length;i+=4) {
-			var r=0;
-			var g=0;
-			var b=0;
+function DetectVideo() {
+	ShowImage.style.width = ShowImage.width + 'px';
+	ShowImage.style.height = ShowImage.height + 'px';		
+	canvas.setAttribute("width", ShowImage.width);
+	canvas.setAttribute("height", ShowImage.height);
+	canvas.style.width = ShowImage.width+"px";
+	canvas.style.height = ShowImage.height+"px";
+	context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
+	
+	result.innerHTML = ""; 
+	
+	var imgData=context.getImageData(0,0,canvas.width,canvas.height);
+	for (var i=0;i<imgData.data.length;i+=4) {
+		var r=0;
+		var g=0;
+		var b=0;
 
-			if(mode.value=="1") {
-				var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
-				if (arg<=reference.value) {
-					imgData.data[i]=0;
-					imgData.data[i+1]=0;
-					imgData.data[i+2]=0;
-					imgData.data[i+3]=255;
-				}
-				else {
-					imgData.data[i]=255;
-					imgData.data[i+1]=255;
-					imgData.data[i+2]=255;
-					imgData.data[i+3]=255;
-				}
+		if(mode.value=="1") {
+			var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
+			if (arg<=reference.value) {
+				imgData.data[i]=0;
+				imgData.data[i+1]=0;
+				imgData.data[i+2]=0;
+				imgData.data[i+3]=255;
 			}
-			else if(mode.value=="2") {
-				var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
-				if (arg>=reference.value) {
-					imgData.data[i]=0;
-					imgData.data[i+1]=0;
-					imgData.data[i+2]=0;
-					imgData.data[i+3]=255;
-				}
-				else {
-					imgData.data[i]=255;
-					imgData.data[i+1]=255;
-					imgData.data[i+2]=255;
-					imgData.data[i+3]=255;
-				}
-			}
-			else if(mode.value=="3") {
-				var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
-				imgData.data[i]=arg;
-				imgData.data[i+1]=arg;
-				imgData.data[i+2]=arg;
+			else {
+				imgData.data[i]=255;
+				imgData.data[i+1]=255;
+				imgData.data[i+2]=255;
 				imgData.data[i+3]=255;
 			}
 		}
-		context.putImageData(imgData,0,0);
-		canvas.style.visibility = 'visible';
+		else if(mode.value=="2") {
+			var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
+			if (arg>=reference.value) {
+				imgData.data[i]=0;
+				imgData.data[i+1]=0;
+				imgData.data[i+2]=0;
+				imgData.data[i+3]=255;
+			}
+			else {
+				imgData.data[i]=255;
+				imgData.data[i+1]=255;
+				imgData.data[i+2]=255;
+				imgData.data[i+3]=255;
+			}
+		}
+		else if(mode.value=="3") {
+			var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
+			imgData.data[i]=arg;
+			imgData.data[i+1]=arg;
+			imgData.data[i+2]=arg;
+			imgData.data[i+3]=255;
+		}
+	}
+	context.putImageData(imgData,0,0);
+	canvas.style.visibility = 'visible';
 
-		Tesseract.recognize(
-				canvas,
-				lang.value  //,
-				//{ 
-				//	logger: m => console.log(m) 
-				//}
-			).then(({ data: { text } }) => {
-				result.innerHTML = text.replace(/\n/g, "<br>");
-				canvas.style.visibility='hidden';
-				if (typeof recognitionFinish === 'function') recognitionFinish();
-			}) 
-	}	
-}
-
+	Tesseract.recognize(
+			canvas,
+			lang.value  //,
+			//{ 
+			//	logger: m => console.log(m) 
+			//}
+		).then(({ data: { text } }) => {
+			result.innerHTML = text.replace(/\n/g, "<br>");
+			canvas.style.visibility='hidden';
+			if (typeof recognitionFinish === 'function') recognitionFinish();
+		}) 
+}	
