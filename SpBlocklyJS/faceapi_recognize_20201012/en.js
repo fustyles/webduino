@@ -7,6 +7,7 @@ Blockly.Msg.FACEAPIRECOGNIZE_RESULT_SHOW = "Show Result";
 Blockly.Msg.FACEAPIRECOGNIZE_OPACITY_SHOW = "Opacity";
 Blockly.Msg.FACEAPIRECOGNIZE_TIMER_SHOW = "Show Image Time(s)";
 Blockly.Msg.FACEAPIRECOGNIZE_FACEIMAGEPATH_SHOW = "Face Images Path";
+Blockly.Msg.FACEAPIRECOGNIZE_FACEIMAGEPATH1_SHOW = "Face Images Path(split with semicolon)";
 Blockly.Msg.FACEAPIRECOGNIZE_FACELABEL_SHOW = "Face Labels(split with semicolon)";
 Blockly.Msg.FACEAPIRECOGNIZE_FACEIMAGECOUNT_SHOW = "Face Images Count";
 Blockly.Msg.FACEAPIRECOGNIZE_DISTANCE_SHOW = "Distance"; 
