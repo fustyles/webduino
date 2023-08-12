@@ -45,6 +45,8 @@ var catTesseract = '<xml>'+
 '          </block>'+
 '        </value>'+
 '      </block>'+
+'      <block type="tesseract_recognitied">'+
+'      </block>'+
 '      <block type="tesseract_recognition">'+
 '      </block>'+
 '      <block type="tesseract_get">'+
