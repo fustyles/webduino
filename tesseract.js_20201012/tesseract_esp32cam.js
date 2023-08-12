@@ -9,7 +9,6 @@ var lang = document.getElementById('lang_tesseract');
 var mode = document.getElementById('mode_tesseract');
 var reference = document.getElementById('reference_tesseract');
 var myTimer;
-var imageTimer;
 var restartCount=0;	
 
 function start() {
@@ -35,16 +34,16 @@ ShowImage.onload = function (event) {
   canvas.setAttribute("height", ShowImage.height);
   canvas.style.width = ShowImage.width+"px";
   canvas.style.height = ShowImage.height+"px";
-  context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
-  if (canvas.style.visibility=='hidden')
-  	imageTimer = setTimeout(function(){start();},250);
+  
+  setTimeout(function(){start();},200);
 }
 
 start();
 
 function DetectVideo() {
 	clearInterval(imageTimer);
-	result.innerHTML = ""; 
+	result.innerHTML = "";
+	context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
 	canvas.style.visibility = 'visible';
 	var imgData=context.getImageData(0,0,canvas.width,canvas.height);
 	for (var i=0;i<imgData.data.length;i+=4) {
@@ -100,7 +99,9 @@ function DetectVideo() {
 		).then(({ data: { text } }) => {
 			result.innerHTML = text.replace(/\n/g, "<br>");
 			if (typeof recognitionFinish === 'function') recognitionFinish();
-			canvas.style.visibility='hidden';
-			start();
+			setTimeout(function(){
+				canvas.style.visibility='hidden';
+				start();
+			},2000);
 		}) 
 }	
