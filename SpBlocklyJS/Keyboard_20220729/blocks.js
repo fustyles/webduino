@@ -56,7 +56,7 @@ Blockly.Blocks['keyboard_keycode'] = {
 			["Pause","19"],
 			["Caps_Lock","20"],
 			["Escape","27"],
-			["space","32"],
+			["Space","32"],
 			["Prior","33"],
 			["Next","34"],
 			["End","35"],
