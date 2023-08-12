@@ -99,7 +99,7 @@ function DetectVideo() {
 			//}
 		).then(({ data: { text } }) => {
 			result.innerHTML = text.replace(/\n/g, "<br>");
-			canvas.style.visibility='hidden';
 			if (typeof recognitionFinish === 'function') recognitionFinish();
+			canvas.style.visibility='hidden';
 		}) 
 }	
