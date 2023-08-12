@@ -76,7 +76,7 @@ window.onload = function () {
 		  size.innerHTML = "{\"width\":"+ShowImage.width+", \"height\": "+ShowImage.height+"}";
 	  }
 		
-	  DetectImage();
+	  setInterval(function(){start();},150);
 	}
 
 	async function DetectImage() {
