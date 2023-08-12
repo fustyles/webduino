@@ -101,7 +101,6 @@ function DetectVideo() {
 			if (typeof recognitionFinish === 'function') recognitionFinish();
 			setTimeout(function(){
 				canvas.style.visibility='hidden';
-				start();
 			},2000);
 		}) 
 }	
