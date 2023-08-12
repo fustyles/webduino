@@ -142,13 +142,13 @@ window.onload = function () {
 				if (faceImagesCount==0) { 
 					console.log(faceImagesPath[index]);
 					const img = await faceapi.fetchImage(faceImagesPath[index])
-					console.log("2-2");
+					console.log("2-1");
 					const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
 					descriptions.push(detections.descriptor)
 					console.log("2-2");
 				}
 				else {			
-					console.log("2-2");
+					console.log("2-3");
 					for (let i=1;i<=faceImagesCount;i++) {
 						const img = await faceapi.fetchImage(faceImagesPath+label+'/'+i+'.jpg')
 						const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
