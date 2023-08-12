@@ -41,6 +41,8 @@ window.onload = function () {
 	distanceLimit = Number(document.getElementById('distancelimit_faceapirecognize').innerHTML);
 	faceImagesCount = Number(document.getElementById('faceimagecount_faceapirecognize').innerHTML);
 	faceImagesPath = document.getElementById('faceimagepath_faceapirecognize').innerHTML;
+	console.log(faceImagesCount);
+	console.log(faceImagesPath);
 	if (faceImagesCount==0)
 		faceImagesPath = faceImagesPath.split(";");
 	facelabels = document.getElementById('facelabel_faceapirecognize').innerHTML;
