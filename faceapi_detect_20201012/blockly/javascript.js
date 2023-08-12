@@ -5,6 +5,11 @@ Blockly.JavaScript['faceapidetect_face'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['faceapidetect_faces'] = function(block) { 
+  var code = 'faceapidetect_faces()';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['faceapidetect_number'] = function(block) { 
   var code = 'faceapidetect_number()';
   return [code, Blockly.JavaScript.ORDER_NONE];
@@ -58,9 +63,14 @@ Blockly.JavaScript['faceapidetect_pause'] = function(block) {
 };
 
 Blockly.JavaScript['faceapidetect_recognitied'] = function(block) { 
+  var value_status = block.getFieldValue('status_');
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'faceapidetect_recognitionFinish = async function() {\nfaceapidetect_state(0);\n' + statements_do + '\nfaceapidetect_state(1);};\n';
-  return code;
+  
+  if (value_status=="Y")
+	  var code = 'faceapidetect_recognitionFinish = async function() {\n  faceapidetect_state(0);\n' + statements_do + '\n  faceapidetect_state(1);\n};\n';
+  else
+	  var code = 'faceapidetect_unrecognitionFinish = async function() {\n  faceapidetect_state(0);\n' + statements_do + '\n  faceapidetect_state(1);\n};\n';
+  return code;  
 };
 
 Blockly.JavaScript['faceapidetect_canvas_get'] = function(block) { 
