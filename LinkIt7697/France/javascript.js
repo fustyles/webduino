@@ -17060,10 +17060,26 @@ Blockly.Arduino['faceapidetect_esp32cam'] = function(block) {
   return [code,Blockly.Arduino.ORDER_ATOMIC];
 };
 
+Blockly.Arduino['faceapidetect_recognitied'] = function(block) {
+  var value_status = block.getFieldValue('status_');
+  var statements_do = Blockly.Arduino.statementToCode(block, 'do_');
+  
+  if (value_status=="Y")
+	  var code = 'if (faceapidetect_number()>0) {\n  faceapidetect_state(0);\n' + statements_do + '\n  faceapidetect_state(1);\n};\n';
+  else
+	  var code = 'if (faceapidetect_number()==0) {\n  faceapidetect_state(0);\n' + statements_do + '\n  faceapidetect_state(1);\n};\n';
+  return code;
+};
+
 Blockly.Arduino['faceapidetect_face'] = function(block) { 
   var value_face_ = Blockly.Arduino.valueToCode(block, 'face_', Blockly.Arduino.ORDER_ATOMIC);
   var value_property_ = block.getFieldValue('property_');
   var code = 'faceapidetect_face(' + value_face_ + ',"' + value_property_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['faceapidetect_faces'] = function(block) { 
+  var code = 'faceapidetect_faces()';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 

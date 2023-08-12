@@ -23499,8 +23499,29 @@ Blockly.Blocks['faceapidetect_video'] = {
   }
 };
 
+Blockly.Blocks['faceapidetect_recognitied'] = {
+  init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIDETECT_SHOW);	  
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.FACEAPIDETECT_RECOGNITIED_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.FACEAPIDETECT_RECOGNITIED_PERSONS_SHOW,"Y"],
+		[Blockly.Msg.FACEAPIDETECT_RECOGNITIED_NOBODY_SHOW,"N"]	
+  ]), "status_");	  
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(Blockly.Msg["HUE_14"]);
+  }
+};
+
 Blockly.Blocks['faceapidetect_face'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIDETECT_SHOW);	  
   this.appendValueInput("face_")
       .setCheck("Number")
       .appendField(Blockly.Msg.FACEAPIDETECT_INDEX_SHOW);  
@@ -23530,8 +23551,22 @@ Blockly.Blocks['faceapidetect_face'] = {
   }
 };
 
+Blockly.Blocks['faceapidetect_faces'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIDETECT_SHOW);	  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIDETECT_FACES_ARRAY_SHOW);	
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(Blockly.Msg["HUE_14"]);
+  }
+};
+
 Blockly.Blocks['faceapidetect_number'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIDETECT_SHOW);	  
   this.appendDummyInput() 
       .appendField(Blockly.Msg.FACEAPIDETECT_NUMBER_SHOW); 	  
   this.setInputsInline(true);
@@ -23541,7 +23576,9 @@ Blockly.Blocks['faceapidetect_number'] = {
 };
 
 Blockly.Blocks['faceapidetect_state'] = {
-  init: function() { 
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIDETECT_SHOW);	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.FACEAPIDETECT_STATE_SHOW)
       .appendField(new Blockly.FieldDropdown([
@@ -23557,6 +23594,8 @@ Blockly.Blocks['faceapidetect_state'] = {
 
 Blockly.Blocks['faceapidetect_video_position'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIDETECT_SHOW);	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .appendField(Blockly.Msg.FACEAPIDETECT_VIDEO_LEFT_SHOW);  
@@ -23573,6 +23612,8 @@ Blockly.Blocks['faceapidetect_video_position'] = {
 Blockly.Blocks['faceapidetect_pause'] = {
   init: function() {
   this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIDETECT_SHOW);	  
+  this.appendDummyInput()  
 	  .appendField(Blockly.Msg.FACEAPIDETECT_PAUSE_SHOW);
   this.appendValueInput("time_")
 	  .setCheck("Number")    
@@ -23586,6 +23627,8 @@ Blockly.Blocks['faceapidetect_pause'] = {
 
 Blockly.Blocks['faceapidetect_canvas_get'] = {
   init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIDETECT_SHOW);	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.FACEAPIDETECT_CANVAS_GET_SHOW); 
   this.setInputsInline(true);

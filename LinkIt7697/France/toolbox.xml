@@ -2693,7 +2693,9 @@
 		  <block type="faceapidetect_esp32cam">
 		  </block>			
 		  <block type="faceapidetect_video">    
-		  </block>  
+		  </block> 
+		  <block type="faceapidetect_recognitied">
+		  </block>
 		  <block type="faceapidetect_number">
 		  </block>  		  
 		  <block type="faceapidetect_face">
@@ -2702,7 +2704,9 @@
 				<field name="NUM">0</field>
 			  </block>
 			</value> 
-		  </block>  		  
+		  </block>  
+		  <block type="faceapidetect_faces">
+		  </block> 		  
 		  <block type="faceapidetect_state">
 		  </block> 
 		  <block type="faceapidetect_video_position">
