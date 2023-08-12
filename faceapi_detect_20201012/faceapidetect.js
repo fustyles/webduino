@@ -9,8 +9,13 @@
 		var result_detail = [];
 		if (result.length>0) {
 			for (var i=0;i<result.length;i++) {
-				if (result[i]!="")
-					result_detail.push(result[i].split(","));
+				if (result[i]!="") {
+					var result_list = result[i].split(",");
+					result_detail.push(['index', result_list[0]]);
+					for (var j=1;j<result_list.length;j=j+2) {
+						result_detail.push([result_list[j], result_list[j+1]]);
+					}					
+				}
 			}
 		}
 		return result_detail;
