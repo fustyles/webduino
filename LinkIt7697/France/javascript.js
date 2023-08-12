@@ -17142,6 +17142,18 @@ Blockly.Arduino['faceapirecognize_video'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['faceapirecognize_video_one'] = function(block) { 
+  var value_result = block.getFieldValue('result_');
+  var value_opacity = block.getFieldValue('opacity_');  
+  var value_timer = Blockly.Arduino.valueToCode(block, 'timer', Blockly.Arduino.ORDER_ATOMIC);
+  var value_faceimagepath = Blockly.Arduino.valueToCode(block, 'faceimagepath', Blockly.Arduino.ORDER_ATOMIC);
+  var value_facelabel = Blockly.Arduino.valueToCode(block, 'facelabel', Blockly.Arduino.ORDER_ATOMIC);
+  var value_distancelimit = Blockly.Arduino.valueToCode(block, 'distancelimit', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'faceapirecognize_video("' + value_result + '","' + value_opacity + '",' + value_timer + ',' + value_faceimagepath + ',' + value_facelabel + ',0,' + value_distancelimit + ');\n';
+  return code;
+};
+
 Blockly.Arduino['faceapirecognize_detect'] = function(block) { 
   var code = 'faceapirecognize_detect();\n';
   return code;
@@ -17156,6 +17168,12 @@ Blockly.Arduino['faceapirecognize_get'] = function(block) {
   var index = Blockly.Arduino.valueToCode(block, 'index', Blockly.Arduino.ORDER_ATOMIC);	
   var column = block.getFieldValue('column');
   var code = 'faceapirecognize_get('+index+',"'+column+'")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['faceapirecognize_unknown'] = function(block) {
+  var index = Blockly.Arduino.valueToCode(block, 'index', Blockly.Arduino.ORDER_ATOMIC);
+  var code = '(faceapirecognize_get('+index+',"name")=="unknown")';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -17174,6 +17192,17 @@ Blockly.Arduino['faceapirecognize_video_position'] = function(block) {
 Blockly.Arduino['faceapirecognize_canvas_get'] = function(block) { 
   var code = '"faceapirecognize"';
   return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['faceapirecognize_recognitied'] = function(block) { 
+  var value_status = block.getFieldValue('status_');
+  var statements_do = Blockly.Arduino.statementToCode(block, 'do_');
+  
+  if (value_status=="Y")
+	  var code = 'if (faceapirecognize_number()>0) {\n  faceapirecognize_state(0);\n' + statements_do + '\n  faceapirecognize_state(1);\n};\n';
+  else
+	  var code = 'if (faceapirecognize_number()==0) {\n  faceapirecognize_state(0);\n' + statements_do + '\n  faceapirecognize_state(1);\n};\n';
+  return code;   
 };
 
 function selectBoardType() {

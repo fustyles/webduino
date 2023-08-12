@@ -2762,7 +2762,7 @@
 			  </block>
 			</value>	
 		  </block>
-		  <block type="faceapirecognize_video">
+		  <block type="faceapirecognize_video_one">
 			<value name="facelabel">
 			  <block type="text">
 				<field name="TEXT">France;Chiling</field>
@@ -2772,12 +2772,7 @@
 			  <block type="text">
 				<field name="TEXT">https://aaa/bbb.jpg;https://ccc/ddd.jpg</field>
 			  </block>    
-			</value> 			
-			<value name="faceimagecount">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>   
-			</value> 	
+			</value> 		
 			<value name="distancelimit">
 			  <block type="math_number">
 				<field name="NUM">0.4</field>
@@ -2788,7 +2783,9 @@
 				<field name="NUM">3</field>
 			  </block>
 			</value>	
-		  </block>  		  
+		  </block>
+		  <block type="faceapirecognize_recognitied">
+		  </block>    	  
 		  <block type="faceapirecognize_detect">
 		  </block>
 		  <block type="faceapirecognize_number"> 
@@ -2800,6 +2797,13 @@
 			  </block>   
 			</value> 
 		  </block>
+		  <block type="faceapirecognize_unknown">
+			<value name="index">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>
+		  </block> 		  
 		  <block type="faceapirecognize_clear">
 		  </block>
 		  <block type="faceapirecognize_video_position">
