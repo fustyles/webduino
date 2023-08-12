@@ -92,10 +92,6 @@
       </block>   
     </value> 
   </block>
-  <block type="faceapirecognize_state">
-  </block>  
-  <block type="faceapirecognize_clear">
-  </block>  
   <block type="faceapirecognize_video_position">
     <value name="left_">
       <block type="math_number">
@@ -107,7 +103,11 @@
         <field name="NUM">0</field>
       </block>
     </value>     
-  </block>
+  </block>  
+  <block type="faceapirecognize_state">
+  </block>  
+  <block type="faceapirecognize_clear">
+  </block>  
   <block type="faceapirecognize_canvas_get">
   </block>  
 </category>
