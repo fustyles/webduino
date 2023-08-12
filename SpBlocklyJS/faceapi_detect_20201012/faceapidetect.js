@@ -4,9 +4,20 @@
 
   'use strict';
 
+	function faceapidetect_faces(){
+		var result = document.getElementById("result_faceapidetect").innerHTML.split("<br>");
+		var result_detail = [];
+		if (result.length>0) {
+			for (var i=0;i<result.length;i++) {
+				if (result[i]!="")
+					result_detail.push(result[i].split(","));
+			}
+		}
+		return result_detail;
+	}
+	
 	function faceapidetect_face(input_index, input_property){
 		var result = document.getElementById("result_faceapidetect").innerHTML.split("<br>");
-		console.log(result);
 		if (result.length>0) {
 			for (var i=0;i<result.length;i++) {
 				var result_detail = result[i].split(",");
@@ -118,7 +129,11 @@
 	function faceapidetect_recognitionFinish() {
 	}
 	
+	function faceapidetect_unrecognitionFinish() {
+	}	
+	
 	window.faceapidetect_face = faceapidetect_face;
+	window.faceapidetect_faces = faceapidetect_faces;
 	window.faceapidetect_number = faceapidetect_number;
 	window.faceapidetect_video = faceapidetect_video;
 	window.faceapidetect_video_position = faceapidetect_video_position;
@@ -127,5 +142,6 @@
 	window.faceapidetect_startvideo_stream = faceapidetect_startvideo_stream;  
 	window.faceapidetect_clear = faceapidetect_clear;
 	window.faceapidetect_recognitionFinish = faceapidetect_recognitionFinish;
+	window.faceapidetect_unrecognitionFinish = faceapidetect_unrecognitionFinish;
 	
 }(window, window.document));
