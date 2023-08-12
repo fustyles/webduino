@@ -1093,6 +1093,8 @@ Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_RECOGNITION_SHOW = "After recognizing";
 
 Blockly.Msg.COCOSSD_SHOW = "Object Detection (coco-ssd)";
 Blockly.Msg.COCOSSD_OBJECT_SHOW = "Object";
+Blockly.Msg.COCOSSD_OBJECT_ARRAY_SHOW = "Object array";
+Blockly.Msg.COCOSSD_OBJECT_ALL_SHOW = "all";
 Blockly.Msg.COCOSSD_OBJECT_NUMBER_SHOW = "Object Number";
 Blockly.Msg.COCOSSD_INDEX_SHOW = "Index";
 Blockly.Msg.COCOSSD_WIDTH_SHOW = "Width";

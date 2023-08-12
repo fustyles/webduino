@@ -1103,6 +1103,8 @@ Blockly.Msg.ESP32_CAM_TFJS_COCOSSD_RECOGNITION_SHOW = "偵測完成後執行";
 
 Blockly.Msg.COCOSSD_SHOW = "物件偵測(coco-ssd)";
 Blockly.Msg.COCOSSD_OBJECT_SHOW = "偵測物件";
+Blockly.Msg.COCOSSD_OBJECT_ARRAY_SHOW = "偵測物件陣列";
+Blockly.Msg.COCOSSD_OBJECT_ALL_SHOW = "全部";
 Blockly.Msg.COCOSSD_OBJECT_NUMBER_SHOW = "偵測物件數目";
 Blockly.Msg.COCOSSD_INDEX_SHOW = "索引";
 Blockly.Msg.COCOSSD_WIDTH_SHOW = "寬度";
