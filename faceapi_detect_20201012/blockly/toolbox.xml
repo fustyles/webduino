@@ -35,7 +35,9 @@
         <field name="NUM">0</field>
       </block>
     </value> 
-  </block>  
+  </block>
+  <block type="faceapidetect_faces">
+  </block>   
   <block type="faceapidetect_state">
   </block>
   <block type="faceapidetect_clear">
