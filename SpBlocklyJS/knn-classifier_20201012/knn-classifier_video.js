@@ -103,24 +103,22 @@ window.onload = function () {
 	}
 	saveModel.addEventListener("click", saveModel_onclick, true);
 
-	function loadModel_click (event) {
-		var target = event.target || window.event.srcElement;
-		var files = target.files;
-		var fr = new FileReader();
-		if (files.length>0) {
+	loadModel.addEventListener("change", function(event) {
+	  var files = this.files;
+	  var fr = new FileReader();		
+	  if (this.files.length > 0) {
 			fr.onload = function () {
-				classifier.clearAllClasses();
 				var dataset = fr.result;
 				var myDataset = JSON.parse(dataset)
 				Object.keys(myDataset).forEach((key) => {
 					myDataset[key] = tf.tensor(myDataset[key], [myDataset[key].length / 1024, 1024]);
 				})
+				console.log(myDataset);
 				classifier.setClassifierDataset(myDataset);
 			}
 			fr.readAsText(files[0]);
-		}
-	}
-	loadModel.addEventListener("click", loadModel_click, true);
+	  }
+	}, false);	
 	
 	function loadModelUrl (target) {
 		$.ajax({
@@ -128,11 +126,11 @@ window.onload = function () {
 			dataType: "json",
 			url: target,
 			success: function(json) {
-				classifier.clearAllClasses();
 				var myDataset = json
 				Object.keys(myDataset).forEach((key) => {
 					myDataset[key] = tf.tensor(myDataset[key], [myDataset[key].length / 1024, 1024]);
 				})
+				console.log(myDataset);
 				classifier.setClassifierDataset(myDataset);
 			},
 			error: function(exception) {
