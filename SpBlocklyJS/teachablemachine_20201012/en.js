@@ -1,5 +1,5 @@
-Blockly.Msg["CATTEACHABLEMACHINE"] = "Teachable Machine(google)";
-Blockly.Msg.TEACHABLEMACHINE_SHOW = "Teachable Machine (google)";
+Blockly.Msg["CATTEACHABLEMACHINE"] = "Teachable Machine(TM)";
+Blockly.Msg.TEACHABLEMACHINE_SHOW = "Teachable Machine(Teachable Machine)";
 Blockly.Msg.TEACHABLEMACHINE_WIDTH_SHOW = "Width";
 Blockly.Msg.TEACHABLEMACHINE_HEIGHT_SHOW = "Height";
 Blockly.Msg.TEACHABLEMACHINE_RESULT_SHOW = "Result";
