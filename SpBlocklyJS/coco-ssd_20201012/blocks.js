@@ -133,7 +133,7 @@ Blockly.Blocks['cocossd_list'] = {
   ]), "object_");     
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
@@ -248,7 +248,7 @@ Blockly.Blocks['cocossd_object'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
@@ -343,7 +343,7 @@ Blockly.Blocks['cocossd_object_number'] = {
   ]), "object_");     
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
@@ -429,7 +429,7 @@ Blockly.Blocks['cocossd_canvas_get'] = {
       .appendField(Blockly.Msg.COCOSSD_CANVAS_GET_SHOW); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
