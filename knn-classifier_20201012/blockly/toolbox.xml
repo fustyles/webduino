@@ -35,7 +35,13 @@
   <block type="knnclassifier_train">  
   </block>  
   <block type="knnclassifier_detect">  
-  </block>  
+  </block>
+  <block type="knnclassifier_recognitied">
+  </block>
+  <block type="knnclassifier_proportion">
+  </block>
+  <block type="knnclassifier_proportion_array">
+  </block> 
   <block type="knnclassifier_clearclasses">  
   </block>  
   <block type="knnclassifier_savemodel">  
