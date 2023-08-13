@@ -29,6 +29,15 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["KEYBOARD_LISTENER_SHOW"] = "Keyboard Listener";
+Blockly.Msg["STOP_KEYBOARD_LISTENER_SHOW"] = "Stop Keyboard Listener";
+Blockly.Msg["GET_KEYCODE_SHOW"] = "Get Keycode";
+Blockly.Msg["KEYCODE_SHOW"] = "Key is";
+Blockly.Msg["HOTKEY_SHOW"] = "HotKey is";
+Blockly.Msg["KEYBOARD_KEYDOWN"] = "KEY DOWN";
+Blockly.Msg["KEYBOARD_KEYUP"] = "KEY UP";
+Blockly.Msg["KEYBOARD_KEYPRESS"] = "KEY PRESS";
+
 Blockly.Msg.WEBBLUETOOTH_ESP32_SHOW = "Web Bluetooth(ESP32)";
 Blockly.Msg.WEBBLUETOOTH_LINKIT7697_SHOW = "Web Bluetooth(LinkIt7697)";
 Blockly.Msg.WEBBLUETOOTH_BLENAME_SHOW = "Name";
