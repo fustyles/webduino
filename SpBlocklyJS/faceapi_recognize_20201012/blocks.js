@@ -129,7 +129,7 @@ Blockly.Blocks['faceapirecognize_number'] = {
       .appendField(Blockly.Msg.FACEAPIRECOGNIZE_NUMBER_SHOW); 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
@@ -165,7 +165,7 @@ Blockly.Blocks['faceapirecognize_get'] = {
   ]), "column"); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
@@ -179,7 +179,7 @@ Blockly.Blocks['faceapirecognize_unknown'] = {
 	  .setCheck("Number");  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
@@ -260,7 +260,7 @@ Blockly.Blocks['faceapirecognize_canvas_get'] = {
       .appendField(Blockly.Msg.FACEAPIRECOGNIZE_CANVAS_GET_SHOW); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
