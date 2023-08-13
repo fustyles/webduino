@@ -68,7 +68,7 @@ Blockly.Blocks['teachablemachine_result'] = {
 	  ]), "result_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
@@ -81,7 +81,7 @@ Blockly.Blocks['teachablemachine_result_array'] = {
       .appendField(Blockly.Msg.TEACHABLEMACHINE_DATA_ARRAY_SHOW);
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
