@@ -84,7 +84,7 @@ Blockly.Blocks['hands_position'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/master/hands_20201012/hand_landmarks.png");   
   }
 };
@@ -226,7 +226,7 @@ Blockly.Blocks['hands_canvas_get'] = {
       .appendField(Blockly.Msg.HANDS_CANVAS_GET_SHOW); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
@@ -238,7 +238,7 @@ Blockly.Blocks['hands_number'] = {
       .appendField(Blockly.Msg.HANDS_NUMBER_SHOW);	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
