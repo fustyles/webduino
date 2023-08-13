@@ -16,6 +16,21 @@
 			return document.getElementById("maxclass_knnclassifier").innerHTML;
 		else if (input_property=="probability")
 			return Number(document.getElementById("maxprobability_knnclassifier").innerHTML);
+		else if (input_property=="") {
+			var result = document.getElementById("gamediv_knnclassifier").innerHTML.split("<br>");
+			var result_detail = [];
+			if (result.length>0) {
+				for (var i=0;i<result.length;i++) {
+					if (result[i]!="") {
+						var result_list = result[i].split(",");
+						for (var j=0;j<result_list.length;j=j+2) {
+							result_detail.push([i, result_list[j], result_list[j+1]]);
+						}					
+					}
+				}
+			}
+			return result_detail;
+		}
 	}
 
 	function knnclassifier_train(input_index) {
