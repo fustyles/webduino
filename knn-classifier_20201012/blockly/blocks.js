@@ -1,17 +1,3 @@
-Blockly.Blocks['knnclassifier_proportion'] = {
-  init: function() {
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.KNNCLASSIFIER_PROPORTION_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-	  [Blockly.Msg.KNNCLASSIFIER_CLASSNAME_SHOW,"class"], 
-	  [Blockly.Msg.KNNCLASSIFIER_PROBABILITY_SHOW,"probability"]
-  ]), "property_");    
-  this.setInputsInline(true);
-  this.setOutput(true, null); 
-  this.setColour(65);
-  }
-};
-
 Blockly.Blocks['knnclassifier_video'] = {
   init: function() {
   this.appendDummyInput()
@@ -205,6 +191,48 @@ Blockly.Blocks['knnclassifier_startvideo_stream'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['knnclassifier_recognitied'] = {
+  init: function () {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.KNNCLASSIFIER_SHOW);	  
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.KNNCLASSIFIER_RECOGNITIED_SHOW);	  
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['knnclassifier_proportion'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.KNNCLASSIFIER_SHOW);	  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.KNNCLASSIFIER_PROPORTION_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.KNNCLASSIFIER_CLASSNAME_SHOW,"class"], 
+	  [Blockly.Msg.KNNCLASSIFIER_PROBABILITY_SHOW,"probability"]
+  ]), "property_");    
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['knnclassifier_proportion_array'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.KNNCLASSIFIER_SHOW);	  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.KNNCLASSIFIER_CLASS_ARRAY_SHOW);    
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
   this.setColour(60);
   }
 };
