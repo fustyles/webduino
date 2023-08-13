@@ -2600,11 +2600,40 @@
 		  </block> 		  
 		</category>
 		
-		
-		
-		
-		
-		
+		<category id="knnclassifier" name="knnclassifier">
+		  <block type="knnclassifier_esp32cam">
+		  </block>			
+		  <block type="knnclassifier_video"> 
+		  </block>
+		  <block type="knnclassifier_class">
+			<value name="classname_">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>
+		  </block>
+		  <block type="knnclassifier_train">
+		  </block>
+		  <block type="knnclassifier_detect">
+		  </block>
+		  <block type="knnclassifier_proportion">
+		  </block>
+		  <block type="knnclassifier_proportion_array">
+		  </block>
+		  <block type="knnclassifier_clearclasses">
+		  </block>
+		  <block type="knnclassifier_savemodel">
+		  </block>
+		  <block type="knnclassifier_loadmodel">
+		  </block>
+		  <block type="knnclassifier_loadmodelurl">
+			  <value name="url_">
+			  <block type="text">
+				<field name="TEXT">https://***.***.***.***/*****.json</field>
+			  </block>
+			</value>
+		  </block>
+		</category>
 		
 		<category name="posenet" id="posenet">
 		  <block type="posenet_esp32cam">
@@ -2683,12 +2712,6 @@
 		  </block>
 		</category>
 
-
-
-
-
-		
-		
 		<category id="france2˙" name="faceapidetect">
 		  <block type="faceapidetect_esp32cam">
 		  </block>			

@@ -105,4 +105,5 @@
 <category><name>trackingcolor</name><replace>顏色追蹤(Tracking)</replace></category>
 <category><name>posenet</name><replace>姿態偵測(posenet)</replace></category>
 <category><name>tesseract</name><replace>文字辨識 (OCR)</replace></category>
+<category><name>knnclassifier</name><replace>機器學習(KNN)</replace></category>
 </xml>

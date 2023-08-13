@@ -1406,6 +1406,33 @@ Blockly.Msg.ESP32_CAM_TESSERACT_SHOW = "Text Recognition";
 Blockly.Msg.ESP32_CAM_TESSERACT_INITIAL_SHOW = "Initial";
 Blockly.Msg.ESP32_CAM_TESSERACT_RECOGNITION_SHOW = "After recognizing";
 
+Blockly.Msg.KNNCLASSIFIER_SHOW = "Machine Learning(KNN)";
+Blockly.Msg.KNNCLASSIFIER_PROPORTION_SHOW = "max probability of class";
+Blockly.Msg.KNNCLASSIFIER_WIDTH_SHOW = "Width";
+Blockly.Msg.KNNCLASSIFIER_HEIGHT_SHOW = "Height";
+Blockly.Msg.KNNCLASSIFIER_MIRRORIMAGE_SHOW = "MirrorImage";
+Blockly.Msg.KNNCLASSIFIER_RESULT_SHOW = "Result";
+Blockly.Msg.KNNCLASSIFIER_OPACITY_SHOW = "Opacity";
+Blockly.Msg.KNNCLASSIFIER_TRAIN_SHOW = "Get still and train class";
+Blockly.Msg.KNNCLASSIFIER_DETECT_SHOW = "Recognize";
+Blockly.Msg.KNNCLASSIFIER_FACING_SHOW = "Camera facing";
+Blockly.Msg.KNNCLASSIFIER_FACING_FRONT_SHOW = "Front";
+Blockly.Msg.KNNCLASSIFIER_FACING_BACK_SHOW = "Back";
+Blockly.Msg.KNNCLASSIFIER_SRC_SHOW = "Stream URL";
+Blockly.Msg.KNNCLASSIFIER_CLASS_SHOW = "Set class";
+Blockly.Msg.KNNCLASSIFIER_CLASSNAME_SHOW = "Name";
+Blockly.Msg.KNNCLASSIFIER_CLEARCLASSES_SHOW = "Clear all classes";
+Blockly.Msg.KNNCLASSIFIER_SAVEMODEL_SHOW = "Save model";
+Blockly.Msg.KNNCLASSIFIER_LOADMODEL_SHOW = "Load model";
+Blockly.Msg.KNNCLASSIFIER_LOADMODELURL_SHOW = "Load model Url";
+Blockly.Msg.KNNCLASSIFIER_PROBABILITY_SHOW = "Probability";
+Blockly.Msg.KNNCLASSIFIER_RECOGNITIED_SHOW = "recognitied";
+Blockly.Msg.KNNCLASSIFIER_FACES_ARRAY_SHOW = "Get classes array";
+Blockly.Msg.KNNCLASSIFIER_CANVAS_GET_SHOW = "Get image ID";
+
+Blockly.Msg.ESP32_CAM_KNNCLASSIFIER_SHOW = "Machine Learning(KNN)";
+Blockly.Msg.ESP32_CAM_KNNCLASSIFIER_INITIAL_SHOW = "Initial";
+Blockly.Msg.ESP32_CAM_KNNCLASSIFIER_RECOGNITION_SHOW = "After recognizing";
 
 Blockly.Msg["FU_SERVO_ESP32"] = "Servo (ESP32)";
 Blockly.Msg["FU_SERVO_PIN"] = "pin";

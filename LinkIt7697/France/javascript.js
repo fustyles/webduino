@@ -1,3 +1,84 @@
+Blockly.Arduino['knnclassifier_esp32cam'] = function(block) {
+	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
+	var javascript_recognition = Blockly.Arduino.statementToCode(block, 'javascript_recognition');
+		
+	var code = "\"<!DOCTYPE html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><script src='https:\/\/ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script><script src='https:\/\/fustyles.github.io/webduino/GameElements_20190131/gameelements.js'></script><script src='https:\/\/fustyles.github.io/webduino/knn-classifier_20201012/knn-classifier_esp32cam.js'></script><script src='https:\/\/fustyles.github.io/webduino/knn-classifier_20201012/knn-classifier.js'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{knnclassifier_video('block','1','1');"+javascript_initial.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"/var ")+" recognitionFinish = async function() {"+javascript_recognition.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"var ")+"}};main();</script></body></html>\"";
+
+  return [code,Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['knnclassifier_video'] = function(block) { 
+  var value_result_ = block.getFieldValue('result_');
+  var value_mirrorimage_ = block.getFieldValue('mirrorimage_');
+  var value_opacity_ = block.getFieldValue('opacity_');
+  var code = 'knnclassifier_video("' + value_result_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '");\n';
+  return code;
+};
+
+Blockly.Arduino['knnclassifier_train'] = function (block) {
+  var value_index_ = block.getFieldValue('index_');
+  var code = 'knnclassifier_train("'+ value_index_ +'");\n';
+  return code;
+};
+
+Blockly.Arduino['knnclassifier_class'] = function (block) {
+  var value_index_ = block.getFieldValue('index_');
+  var value_classname_ = Blockly.Arduino.valueToCode(block, 'classname_', Blockly.Arduino.ORDER_ATOMIC);  
+  var code = 'knnclassifier_class("'+ value_index_ +'",'+ value_classname_ +');\n';
+  return code;
+};
+
+Blockly.Arduino['knnclassifier_detect'] = function (block) {
+  var code = 'knnclassifier_detect();\n';
+  return code;
+};
+
+Blockly.Arduino['knnclassifier_clearclasses'] = function (block) {
+  var code = 'knnclassifier_clearclasses();\n';
+  return code;
+};
+
+Blockly.Arduino['knnclassifier_savemodel'] = function (block) {
+  var code = 'knnclassifier_savemodel();\n';
+  return code;
+};
+
+Blockly.Arduino['knnclassifier_loadmodel'] = function (block) {
+  var code = 'knnclassifier_loadmodel();\n';
+  return code;
+};
+
+Blockly.Arduino['knnclassifier_loadmodelurl'] = function (block) {
+  var value_url_ = Blockly.Arduino.valueToCode(block, 'url_', Blockly.Arduino.ORDER_ATOMIC); 	
+  var code = 'knnclassifier_loadmodelurl('+ value_url_ +');\n';
+  return code;
+};
+
+Blockly.Arduino['knnclassifier_proportion'] = function(block) { 
+  var value_property_ = block.getFieldValue('property_');
+  var code = 'knnclassifier_proportion("' + value_property_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['knnclassifier_proportion_array'] = function(block) {
+  var code = 'knnclassifier_proportion("")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Arduino['tesseract_esp32cam'] = function(block) {
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
 	var javascript_recognition = Blockly.Arduino.statementToCode(block, 'javascript_recognition');
