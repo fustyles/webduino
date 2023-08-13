@@ -1,1 +1,1 @@
-MSG.teachablemachine = "机器学习 (TM)";
+MSG.teachablemachine = "机器学习 (google)";
