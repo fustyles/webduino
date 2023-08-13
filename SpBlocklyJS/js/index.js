@@ -174,6 +174,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (xml.indexOf("posenet_")!=-1) {
 			script += "<script src='posenet_20201012/posenet_video.js'></script>";			
 			script += "<script src='posenet_20201012/posenet.js'></script>";
+		}	
+		if (xml.indexOf("knnclassifier_")!=-1) {
+			script += "<script src='knn-classifier_20201012/knn-classifier_video.js'></script>";			
+			script += "<script src='knn-classifier_20201012/knn-classifier.js'></script>";
 		}		
 				
 		return script;
@@ -337,7 +341,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (xml.indexOf("posenet_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/posenet_20201012/posenet_video.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/posenet_20201012/posenet.js'></script>";
-		}		
+		}	
+		if (xml.indexOf("knnclassifier_")!=-1) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/knn-classifier_20201012/knn-classifier_video.js'></script>";			
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/knn-classifier_20201012/knn-classifier.js'></script>";
+		}			
 		
 		return script;
 	}		
@@ -372,7 +380,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		"<sep></sep>",
 		catOpenAI,	
 		catHolistic,	
-		catTeachablemachine,		
+		catTeachablemachine,
+		catKNNclassifier,		
 		catCocossd,	
 		catHands,
 		catPosenet,
