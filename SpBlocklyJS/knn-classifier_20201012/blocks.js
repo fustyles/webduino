@@ -221,7 +221,7 @@ Blockly.Blocks['knnclassifier_proportion'] = {
   ]), "property_");    
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(60);
+  this.setColour(200);
   }
 };
 
@@ -233,6 +233,6 @@ Blockly.Blocks['knnclassifier_proportion_array'] = {
       .appendField(Blockly.Msg.KNNCLASSIFIER_CLASS_ARRAY_SHOW);    
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(60);
+  this.setColour(200);
   }
 };
