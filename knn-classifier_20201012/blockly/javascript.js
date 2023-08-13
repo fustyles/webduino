@@ -1,9 +1,3 @@
-Blockly.JavaScript['knnclassifier_proportion'] = function(block) { 
-  var value_property_ = block.getFieldValue('property_');
-  var code = 'knnclassifier_proportion("' + value_property_ + '")';
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
 Blockly.JavaScript['knnclassifier_video'] = function(block) { 
   var value_result_ = block.getFieldValue('result_');
   var value_mirrorimage_ = block.getFieldValue('mirrorimage_');
@@ -60,6 +54,23 @@ Blockly.JavaScript['knnclassifier_startvideo_media'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['knnclassifier_recognitied'] = function(block) { 
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
+  
+  var code = 'recognitionFinish = async function() {\n  ' + statements_do + '\n};\n';
+  return code;  
+};
+
+Blockly.JavaScript['knnclassifier_proportion'] = function(block) { 
+  var value_property_ = block.getFieldValue('property_');
+  var code = 'knnclassifier_proportion("' + value_property_ + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['knnclassifier_proportion_array'] = function(block) {
+  var code = 'knnclassifier_proportion("")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
 Blockly.JavaScript['knnclassifier_startvideo_stream'] = function(block) { 
   var value_src_ = Blockly.JavaScript.valueToCode(block, 'src_', Blockly.JavaScript.ORDER_ATOMIC); 
   var code = 'knnclassifier_startvideo_stream(' + value_src_ + ');\n';
