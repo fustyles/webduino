@@ -106,5 +106,5 @@
 <category><name>posenet</name><replace>姿態偵測(posenet)</replace></category>
 <category><name>tesseract</name><replace>文字辨識 (ocr)</replace></category>
 <category><name>knnclassifier</name><replace>機器學習(knn)</replace></category>
-<category><name>Keyboard</name><replace>網頁鍵盤事件</replace></category>
+<category><name>Keyboard</name><replace>網頁鍵盤</replace></category>
 </xml>
