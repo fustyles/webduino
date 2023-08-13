@@ -69,7 +69,9 @@ window.onload = function () {
 			context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height); 
 		
 	  setTimeout(function(){start();},200);         
-	}	
+	}
+	
+	start();
 
 	function Detect_onclick (event) {
 		DetectVideo();
