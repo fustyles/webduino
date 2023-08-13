@@ -65,7 +65,7 @@ Blockly.Blocks['faceapidetect_face'] = {
   ]), "property_");  	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
@@ -77,7 +77,7 @@ Blockly.Blocks['faceapidetect_faces'] = {
       .appendField(Blockly.Msg.FACEAPIDETECT_FACES_ARRAY_SHOW);	
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
@@ -211,7 +211,7 @@ Blockly.Blocks['faceapidetect_number'] = {
       .appendField(Blockly.Msg.FACEAPIDETECT_NUMBER_SHOW); 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(60);
+  this.setColour(200);
   }
 };
 
@@ -223,6 +223,6 @@ Blockly.Blocks['faceapidetect_canvas_get'] = {
       .appendField(Blockly.Msg.FACEAPIDETECT_CANVAS_GET_SHOW); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(60);
+  this.setColour(200);
   }
 };
