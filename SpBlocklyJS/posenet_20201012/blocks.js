@@ -73,7 +73,7 @@ Blockly.Blocks['posenet_video'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(60);
   }
 };
 
@@ -200,7 +200,7 @@ Blockly.Blocks['posenet_state'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(60);
   }
 };
 
@@ -217,7 +217,7 @@ Blockly.Blocks['posenet_video_position'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(60);
   }
 };
 
@@ -255,7 +255,7 @@ Blockly.Blocks['posenet_startvideo_media'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(60);
   }
 };
 
@@ -269,7 +269,7 @@ Blockly.Blocks['posenet_startvideo_stream'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(60);
   }
 };
 
@@ -288,6 +288,6 @@ Blockly.Blocks['posenet_recognitied'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(60);
   }
 };
