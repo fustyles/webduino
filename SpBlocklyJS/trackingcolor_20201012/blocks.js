@@ -246,7 +246,7 @@ Blockly.Blocks['trackingcolor_object'] = {
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(65);
+  this.setColour(200);
   }
 };
 
