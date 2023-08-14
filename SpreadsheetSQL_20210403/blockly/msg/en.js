@@ -1,1 +1,1 @@
-MSG.catspreadsheetsql = "Google Spreadsheet SQL Query";
+MSG.catspreadsheetsql = "Google Spreadsheet";
