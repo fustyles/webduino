@@ -3600,7 +3600,30 @@
 	</value>	
   </block>   
   
-  </category>  
+  </category> 
+
+<category id="catGameElements_sub15" colour="120">
+	<block type="fetch_get">
+		<value name="id_">
+			<block type="text">
+				<field name="TEXT"></field>
+			</block>
+		</value>
+		<value name="url_">
+			<block type="text">
+				<field name="TEXT"></field>
+			</block>
+		</value>
+	</block>
+	<block type="fetch_getdata">
+		<value name="id_">
+			<block type="text">
+				<field name="TEXT"></field>
+			</block>
+		</value>
+	</block>
+</category>	
+	
   <category id="catGameElements_sub16" colour="120"> 
 
   <block type="ajax_get"> 
