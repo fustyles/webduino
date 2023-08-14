@@ -893,6 +893,9 @@
     if (document.getElementById("gameimage_"+input_id))
     {
 	  var obj = document.getElementById("gameimage_"+input_id);
+	  console.log(obj);
+	  console.log(input_value);
+	  
       if (input_property=='url')
         obj.src = input_value;
       else if (input_property=='width')

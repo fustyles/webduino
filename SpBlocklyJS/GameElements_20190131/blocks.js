@@ -1,3 +1,52 @@
+Blockly.Blocks['fetch_get'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.FETCH);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.FETCH_ID); 
+  this.appendValueInput("url_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.FETCH_URL); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FETCH_DATATYPE)
+      .appendField(new Blockly.FieldDropdown([["json","json"],["text","text"], ["blob","blob"]]), "datatype_"); 
+  this.appendStatementInput("do")
+      .appendField(Blockly.Msg.FETCH_RESPONSE);	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(350);
+  }
+};
+
+Blockly.Blocks['fetch_getdata'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.FETCH);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.FETCH_ID);
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.FETCH_GETDATA);
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(350);
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Blocks['text_br'] = {
   init: function() {	
     this.appendDummyInput()

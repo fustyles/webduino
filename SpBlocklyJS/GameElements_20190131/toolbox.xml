@@ -3541,6 +3541,29 @@
 		  </block>   
 		  
 		  </category>  
+		  
+		<category name="%{BKY_CATPAGEELEMENTS_FETCH}" id="catPageElements_fetch">
+			<block type="fetch_get">
+				<value name="id_">
+					<block type="text">
+						<field name="TEXT"></field>
+					</block>
+				</value>
+				<value name="url_">
+					<block type="text">
+						<field name="TEXT"></field>
+					</block>
+				</value>
+			</block>
+			<block type="fetch_getdata">
+				<value name="id_">
+					<block type="text">
+						<field name="TEXT"></field>
+					</block>
+				</value>
+			</block>
+		</category>
+		  
 		  <category name="%{BKY_CATPAGEELEMENTS_AJAX}" id="catPageElements_ajax" colour="120"> 
 
 		  <block type="ajax_get"> 

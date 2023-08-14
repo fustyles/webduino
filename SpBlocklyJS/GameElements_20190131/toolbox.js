@@ -3532,6 +3532,27 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    </block>'+
 '    </category>'+
+'    <category name="%{BKY_CATPAGEELEMENTS_FETCH}" id="catPageElements_fetch">'+
+'    <block type="fetch_get">'+
+	'    <value name="id_">'+
+		'    <block type="text">'+
+			'    <field name="TEXT"></field>'+
+		'    </block>'+
+	'    </value>'+
+	'    <value name="url_">'+
+		'    <block type="text">'+
+			'    <field name="TEXT"></field>'+
+		'    </block>'+
+	'    </value>'+
+'    </block>'+
+'    <block type="fetch_getdata">'+
+	'    <value name="id_">'+
+		'    <block type="text">'+
+			'    <field name="TEXT"></field>'+
+		'    </block>'+
+	'    </value>'+
+'    </block>'+
+'    </category>'+
 '    <category name="%{BKY_CATPAGEELEMENTS_AJAX}" id="catPageElements_ajax">'+
 '    <block type="ajax_get">'+
 '    <value name="id_">'+
@@ -3568,13 +3589,6 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    <block type="ajax_getdata_json_count">'+
 '    <value name="json_">'+
-'    </value>'+
-'    </block>'+
-'    <block type="ajax_cleardata">'+
-'    <value name="id_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
 '    </value>'+
 '    </block>'+
 '    </category>'+
