@@ -94,9 +94,9 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    <block type="console_log">'+
 '    <value name="text_">'+
-'    <block type="text">'+
+'    <shadow type="text">'+
 '    <field name="TEXT"></field>'+
-'    </block>'+
+'    </shadow>'+
 '    </value>'+
 '    </block>'+
 '    <block type="window_open">'+
@@ -108,9 +108,9 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    <block type="window_messagebox">'+
 '    <value name="message">'+
-'    <block type="text">'+
+'    <shadow type="text">'+
 '    <field name="TEXT"></field>'+
-'    </block>'+
+'    </shadow>'+
 '    </value>'+
 '    </block>'+
 '    <block type="window_confirm">'+
