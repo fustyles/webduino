@@ -56,6 +56,7 @@
 <category><name>catGameElements_sub24</name><replace>視訊媒體</replace></category>
 <category><name>catGameElements_sub25</name><replace>字型</replace></category>
 <category><name>catGameElements_sub26</name><replace>行內容器</replace></category>
+<category><name>catGameElements_sub27</name><replace>FETCH</replace></category>
 <category><name>oled</name><replace>OLED顯示器</replace></category>
 <category><name>EZ+</name><replace>EZ Start Kit+</replace></category>
 <category><name>airquality</name><replace>台灣空氣品質</replace></category>

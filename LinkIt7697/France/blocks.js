@@ -17585,6 +17585,47 @@ Blockly.Blocks['iframe_delete'] = {
   }
 };
 
+Blockly.Blocks['fetch_get'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.FETCH);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.FETCH_ID); 
+  this.appendValueInput("url_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.FETCH_URL); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FETCH_DATATYPE)
+      .appendField(new Blockly.FieldDropdown([["json","json"],["text","text"], ["blob","blob"]]), "datatype_"); 
+  this.appendStatementInput("do")
+      .appendField(Blockly.Msg.FETCH_RESPONSE);	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(350);
+  }
+};
+
+Blockly.Blocks['fetch_getdata'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.FETCH);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.FETCH_ID);
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.FETCH_GETDATA);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FETCH_FORMAT)
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.FETCH_FORMAT_DEFAULT,""], [Blockly.Msg.FETCH_FORMAT_JSON,"JSON to String"], [Blockly.Msg.FETCH_FORMAT_BLOB,"BLOB to ObjectURL"]]), "format_"); 	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(350);
+  }
+};
+
 Blockly.Blocks['ajax_get'] = {
   init: function () {
   this.appendDummyInput()   
@@ -17641,7 +17682,7 @@ Blockly.Blocks['ajax_getdata'] = {
       .appendField(Blockly.Msg.AJAX_GETDATA);
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AJAX_FORMAT)
-      .appendField(new Blockly.FieldDropdown([["　",""], [Blockly.Msg.AJAX_JSONTOSTRING,"JSON to String"], [Blockly.Msg.AJAX_XMLTOSTRING,"XML to String"]]), "format_"); 
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.AJAX_FORMAT_DEFAULT,""], [Blockly.Msg.AJAX_FORMAT_JSON,"JSON to String"], [Blockly.Msg.AJAX_FORMAT_XML,"XML to String"]]), "format_"); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(Blockly.Msg["HUE_26"]);

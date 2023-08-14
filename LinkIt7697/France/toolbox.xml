@@ -6645,7 +6645,30 @@
 		</value>	
 		</block>   
 
-		</category>		
+		</category>
+
+		<category name="catGameElements_sub27" id="catGameElements_sub27">
+			<block type="fetch_get">
+				<value name="id_">
+					<block type="text">
+						<field name="TEXT"></field>
+					</block>
+				</value>
+				<value name="url_">
+					<block type="text">
+						<field name="TEXT"></field>
+					</block>
+				</value>
+			</block>
+			<block type="fetch_getdata">
+				<value name="id_">
+					<block type="text">
+						<field name="TEXT"></field>
+					</block>
+				</value>
+			</block>
+		</category>
+		
 		<category id="catGameElements_sub16" name="catGameElements_sub16"> 
 
 		<block type="ajax_get"> 

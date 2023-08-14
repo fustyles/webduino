@@ -11672,6 +11672,49 @@ Blockly.Arduino['iframe_delete'] = function (block) {
   return code;
 };
 
+Blockly.Arduino['fetch_get'] = function (block) {
+  var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_url_ = Blockly.Arduino.valueToCode(block, 'url_', Blockly.Arduino.ORDER_ATOMIC); 
+  var value_datatype_ = block.getFieldValue('datatype_');
+  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);  
+  var statements_do = Blockly.Arduino.statementToCode(block, 'do');
+
+  Blockly.Arduino.definitions_['fetchData_'+value_id_.replace(/'/g,"")] = 'var fetchData_'+value_id_.replace(/'/g,"")+';';
+
+  var value_response_ = "response";
+  if (value_datatype_=="json")
+	  value_response_ = "return response.json();";
+  else if (value_datatype_=="text")
+	  value_response_ = "return response.text();";
+  else if (value_datatype_=="blob")
+	  value_response_ = "return response.blob();";
+  
+  var code = 'fetch('+value_url_+')\n.then(function (response) {\n    '+value_response_+'\n})\n.then(function (data) {\n    fetchData_'+value_id_.replace(/'/g,"")+'=data;\n  '+ statements_do +'\n})\n.catch(\n(error) => {\n    console.log(`Error: ${error}`);\n}\n);';
+
+  return code;
+};
+
+Blockly.Arduino['fetch_getdata'] = function (block) {
+  var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_format_ = block.getFieldValue('format_');
+  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);  
+
+  if (value_format_=="JSON to String")
+	var code = 'JSON.stringify(fetchData_'+value_id_.replace(/'/g,"")+')';
+  else if (value_format_=="BLOB to ObjectURL")
+	var code = 'URL.createObjectURL(fetchData_'+value_id_.replace(/'/g,"")+')';
+  else
+	var code = 'fetchData_'+value_id_.replace(/'/g,"");
+  
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['ajax_get'] = function (block) {
   var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);
   var value_url_ = Blockly.Arduino.valueToCode(block, 'url_', Blockly.Arduino.ORDER_ATOMIC); 
