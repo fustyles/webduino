@@ -29,11 +29,12 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
-Blockly.Msg["KEYBOARD_LISTENER_SHOW"] = "Keyboard Listener";
-Blockly.Msg["STOP_KEYBOARD_LISTENER_SHOW"] = "Keyboard stop Listener";
-Blockly.Msg["GET_KEYCODE_SHOW"] = "Keyboard get Keycode";
-Blockly.Msg["KEYCODE_SHOW"] = "Keyboard Key is";
-Blockly.Msg["HOTKEY_SHOW"] = "Keyboard HotKey is";
+Blockly.Msg["KEYBOARD_SHOW"] = "Page Keyboard";
+Blockly.Msg["KEYBOARD_LISTENER_SHOW"] = "Listener";
+Blockly.Msg["STOP_KEYBOARD_LISTENER_SHOW"] = "Stop Listener";
+Blockly.Msg["GET_KEYCODE_SHOW"] = "Get Keycode";
+Blockly.Msg["KEYCODE_SHOW"] = "Key is";
+Blockly.Msg["HOTKEY_SHOW"] = "HotKey is";
 Blockly.Msg["KEYBOARD_KEYDOWN"] = "KEY DOWN";
 Blockly.Msg["KEYBOARD_KEYUP"] = "KEY UP";
 Blockly.Msg["KEYBOARD_KEYPRESS"] = "KEY PRESS";

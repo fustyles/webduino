@@ -1,12 +1,15 @@
 Blockly.Blocks['keyboard_listener'] = {
 	init: function() {
 	this.appendDummyInput()
+	    .appendField(Blockly.Msg.KEYBOARD_SHOW);		
+	this.appendDummyInput()
 	    .appendField(Blockly.Msg.KEYBOARD_LISTENER_SHOW)
 	    .appendField(new Blockly.FieldDropdown([
 	      [Blockly.Msg["KEYBOARD_KEYDOWN"],"keydown"],
 	      [Blockly.Msg["KEYBOARD_KEYUP"],"keyup"],
 	      [Blockly.Msg["KEYBOARD_KEYPRESS"],"keypress"]
 	      ]), "event");
+	this.setInputsInline(true);		  
 	this.appendStatementInput("statement");
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
@@ -18,12 +21,15 @@ Blockly.Blocks['keyboard_listener'] = {
 Blockly.Blocks['stop_keyboard_listener'] = {
 	init: function() {
 	this.appendDummyInput()
+	    .appendField(Blockly.Msg.KEYBOARD_SHOW);		
+	this.appendDummyInput()
 	    .appendField(Blockly.Msg.STOP_KEYBOARD_LISTENER_SHOW)
 	    .appendField(new Blockly.FieldDropdown([
 	      [Blockly.Msg["KEYBOARD_KEYDOWN"],"keydown"],
 	      [Blockly.Msg["KEYBOARD_KEYUP"],"keyup"],
 	      [Blockly.Msg["KEYBOARD_KEYPRESS"],"keypress"]
 	      ]), "event");
+	this.setInputsInline(true);		  
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
 	this.setTooltip('');
@@ -33,6 +39,8 @@ Blockly.Blocks['stop_keyboard_listener'] = {
 
 Blockly.Blocks['get_keycode'] = {
 	init: function() {
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg.KEYBOARD_SHOW);		
     	this.appendDummyInput()
 	    .appendField(Blockly.Msg.GET_KEYCODE_SHOW);
 	this.setInputsInline(true);
@@ -43,6 +51,8 @@ Blockly.Blocks['get_keycode'] = {
 
 Blockly.Blocks['keyboard_keycode'] = {
 	init: function() {
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg.KEYBOARD_SHOW);		
     	this.appendDummyInput()
 		.appendField(Blockly.Msg.KEYCODE_SHOW)
 		.appendField(new Blockly.FieldDropdown([
@@ -116,7 +126,9 @@ Blockly.Blocks['keyboard_keycode'] = {
 
 Blockly.Blocks['hotkey'] = {
 	init: function() {
-    	this.appendDummyInput()
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg.KEYBOARD_SHOW);		
+    this.appendDummyInput()
 	    .appendField(Blockly.Msg.HOTKEY_SHOW)
 	    .appendField(new Blockly.FieldDropdown([
 	      ["Ctrl","Ctrl"],

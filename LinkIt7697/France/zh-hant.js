@@ -29,11 +29,12 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
-Blockly.Msg["KEYBOARD_LISTENER_SHOW"] = "網頁鍵盤 開始監聽";
-Blockly.Msg["STOP_KEYBOARD_LISTENER_SHOW"] = "網頁鍵盤 停止監聽";
-Blockly.Msg["GET_KEYCODE_SHOW"] = "網頁鍵盤 取得鍵碼值";
-Blockly.Msg["KEYCODE_SHOW"] = "網頁鍵盤 取得鍵碼值為";
-Blockly.Msg["HOTKEY_SHOW"] = "網頁鍵盤 取得組合鍵碼值為";
+Blockly.Msg["KEYBOARD_SHOW"] = "網頁鍵盤";
+Blockly.Msg["KEYBOARD_LISTENER_SHOW"] = "開始監聽";
+Blockly.Msg["STOP_KEYBOARD_LISTENER_SHOW"] = "停止監聽";
+Blockly.Msg["GET_KEYCODE_SHOW"] = "取得鍵碼值";
+Blockly.Msg["KEYCODE_SHOW"] = "取得鍵碼值為";
+Blockly.Msg["HOTKEY_SHOW"] = "取得組合鍵碼值為";
 Blockly.Msg["KEYBOARD_KEYDOWN"] = "按下";
 Blockly.Msg["KEYBOARD_KEYUP"] = "放開";
 Blockly.Msg["KEYBOARD_KEYPRESS"] = "按壓";
