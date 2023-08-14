@@ -16,7 +16,7 @@ Blockly.JavaScript['fetch_get'] = function (block) {
   else if (value_datatype_=="text")
 	  value_response_ = "return response.text();";
   else if (value_datatype_=="blob")
-	  value_response_ = "return URL.createObjectURL(response.blob());";
+	  value_response_ = "return response.blob();";
   
   var code = 'fetch('+value_url_+')\n.then(function (response) {\n    '+value_response_+'\n})\n.then(function (data) {\n    fetchData_'+value_id_.replace(/'/g,"")+'=data;\n  '+ statements_do +'\n})\n.catch(\n(error) => {\n    console.log(`Error: ${error}`);\n}\n);';
 
@@ -31,28 +31,15 @@ Blockly.JavaScript['fetch_getdata'] = function (block) {
   if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);  
 
-  var code = 'fetchData_'+value_id_.replace(/'/g,"");
+  if (value_format_=="JSON to String")
+	var code = 'JSON.stringify(fetchData_'+value_id_.replace(/'/g,"")+')';
+  else if (value_format_=="BLOB to ObjectURL")
+	var code = 'URL.createObjectURL(fetchData_'+value_id_.replace(/'/g,"")+')';
+  else
+	var code = 'fetchData_'+value_id_.replace(/'/g,"");
   
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
-
-Blockly.JavaScript['fetch_cleardata'] = function (block) {
-  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
-
-  var code = 'fetchData_'+value_id_.replace(/'/g,"")+' = "";\n';
-  return code;
-};
-
-
-
-
-
-
-
-
-
-
-
 
 Blockly.JavaScript['text_br'] = function (block) {
   var code = "'"+this.getFieldValue("newline")+"'";

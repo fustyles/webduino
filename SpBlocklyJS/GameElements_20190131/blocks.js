@@ -30,22 +30,14 @@ Blockly.Blocks['fetch_getdata'] = {
       .appendField(Blockly.Msg.FETCH_ID);
   this.appendDummyInput()   
       .appendField(Blockly.Msg.FETCH_GETDATA);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FETCH_FORMAT)
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.FETCH_FORMAT_DEFAULT,""], [Blockly.Msg.FETCH_FORMAT_JSON,"JSON to String"], [Blockly.Msg.FETCH_FORMAT_BLOB,"BLOB to ObjectURL"]]), "format_"); 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(350);
   }
 };
-
-
-
-
-
-
-
-
-
-
-
 
 Blockly.Blocks['text_br'] = {
   init: function() {	
@@ -3394,7 +3386,7 @@ Blockly.Blocks['ajax_getdata'] = {
       .appendField(Blockly.Msg.AJAX_GETDATA);
   this.appendDummyInput()  
       .appendField(Blockly.Msg.AJAX_FORMAT)
-      .appendField(new Blockly.FieldDropdown([["　",""], ["JSON to String","JSON to String"], ["XML to String","XML to String"]]), "format_"); 
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.AJAX_FORMAT_DEFAULT,""], [Blockly.Msg.AJAX_FORMAT_JSON,"JSON to String"], [Blockly.Msg.AJAX_FORMAT_XML,"XML to String"]]), "format_"); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(350);
