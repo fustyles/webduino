@@ -290,7 +290,7 @@ Blockly.Blocks['controls_spreadsheet'] = {
           [Blockly.Msg.SPREADSHEET_ROW2_SHOW,"insertrow2"],
           [Blockly.Msg.SPREADSHEET_INSERTLASTROW_SHOW,"insertlast"]		  
         ]), "func");
-    this.appendStatementInput('VALUE')
+    this.appendValueInput('VALUE')
         .appendField(Blockly.Msg.SPREADSHEET_COLUMN_SHOW+'A');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
