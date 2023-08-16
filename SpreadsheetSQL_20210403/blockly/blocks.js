@@ -324,7 +324,7 @@ Blockly.Blocks['controls_spreadsheet'] = {
 	,compose:function(a){
 		a=a.nextConnection.targetBlock();
 		this.allCount_=0;
-		for(var b=[null];a&&!a.isInsertionMarker();){
+		for(var b=[null];a;){
 			this.allCount_++;
 			b.push(a.valueConnection_);
 			a=a.nextConnection&&a.nextConnection.targetBlock()
