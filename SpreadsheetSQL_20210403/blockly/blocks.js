@@ -374,6 +374,7 @@ Blockly.Blocks['controls_spreadsheet_main'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.SPREADSHEET_COLUMN_SHOW);
     this.setPreviousStatement(false);
+    this.setNextStatement(true);	  
     this.contextMenu = false;
 	this.setColour(220);
   }
