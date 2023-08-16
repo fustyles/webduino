@@ -222,60 +222,81 @@
       }
     }  
   }
-
-  function table_change_colsrows(input_id,input_target,input_cmd,input_index) {
-    if (document.getElementById("gametable_"+input_id)) {
-      var obj = document.getElementById("gametable_"+input_id);
-      if (input_cmd=="remove") {
-        if (input_target=="row")
-  	  obj.deleteRow(input_index);
-        else if (input_target=="col") {  
-	  for (var i=0;i<obj.rows.length;i++) {
-	    var row = obj.rows[i];
-            row.deleteCell(input_index);
-	  }
+  
+function table_insert(input_id, input_cmd, input_value) {
+    if (document.getElementById("gametable_" + input_id)) {
+        var obj = document.getElementById("gametable_" + input_id);
+        if (input_cmd == "insertfirst") {
+            var row = obj.insertRow(0);
+            var data = input_value.split("|");
+            for (var j = 0; j < data.length; j++) {
+                let c = row.insertCell(j);
+				c.align = "center";
+                c.innerText = data[j];
+            }
+        } else if (input_cmd == "insertlast") {
+			var row = obj.insertRow(-1);
+            var data = input_value.split("|");
+            for (var j = 0; j < data.length; j++) {
+                let c = row.insertCell(j);
+				c.align = "center";
+                c.innerText = data[j];
+            }
         }
-      }
-      else if (input_cmd=="add") {
-        if (input_target=="row") {
-  	  obj.insertRow(input_index);
-	  for (var i=0;i<obj.rows[0].cells.length;i++) {
-	    var row = obj.rows[input_index];
-            row.insertCell(i);
-	    row.cells[i].style.textAlign="center";
-	    row.cells[i].style.verticalAlign = "middle";
-	    row.cells[i].style.background = obj.rows[0].cells[i].style.background;
-	    row.cells[i].style.width = obj.rows[0].cells[i].style.width;
-	    row.cells[i].style.height = obj.rows[0].cells[i].style.height;
-	    row.cells[i].setAttribute("onclick", "javascript:onclickid_set(this);");
-	    row.cells[i].setAttribute("ondragover","javascript:event.preventDefault();"); 		  
-	  }	      
-	}
-        else if (input_target=="col") {  
-	  for (var i=0;i<obj.rows.length;i++) {
-	    var row = obj.rows[i];
-            row.insertCell(input_index);
-	    row.cells[input_index].style.textAlign="center";
-	    row.cells[input_index].style.verticalAlign = "middle";
-	    row.cells[input_index].style.background = row.cells[0].style.background;
-	    row.cells[input_index].style.width = row.cells[0].style.width;
-	    row.cells[input_index].style.height = row.cells[0].style.height;
-	    row.cells[input_index].setAttribute("onclick", "javascript:onclickid_set(this);");
-	    row.cells[input_index].setAttribute("ondragover","javascript:event.preventDefault();"); 		  
-	  }
-        }
-      }	    
-      if (obj.rows.length>0) {
-	if (obj.rows[0].cells.length>0) {
-	  for (var i=0;i<obj.rows.length;i++) {
-	    for (var j=0;j<obj.rows[0].cells.length;j++) {
-	      obj.rows[i].cells[j].id="gametable_td_"+input_id+"_"+i+"_"+j;
-	    }	  	
-	  }
-	}
-      }
     }
-  }
+} 
+
+function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
+    if (document.getElementById("gametable_" + input_id)) {
+        var obj = document.getElementById("gametable_" + input_id);
+        if (input_cmd == "remove") {
+            if (input_target == "row")
+                obj.deleteRow(input_index);
+            else if (input_target == "col") {
+                for (var i = 0; i < obj.rows.length; i++) {
+                    var row = obj.rows[i];
+                    row.deleteCell(input_index);
+                }
+            }
+        } else if (input_cmd == "add") {
+            if (input_target == "row") {
+                obj.insertRow(input_index);
+                for (var i = 0; i < obj.rows[0].cells.length; i++) {
+                    var row = obj.rows[input_index];
+                    row.insertCell(i);
+                    row.cells[i].style.textAlign = "center";
+                    row.cells[i].style.verticalAlign = "middle";
+                    row.cells[i].style.background = obj.rows[0].cells[i].style.background;
+                    row.cells[i].style.width = obj.rows[0].cells[i].style.width;
+                    row.cells[i].style.height = obj.rows[0].cells[i].style.height;
+                    row.cells[i].setAttribute("onclick", "javascript:onclickid_set(this);");
+                    row.cells[i].setAttribute("ondragover", "javascript:event.preventDefault();");
+                }
+            } else if (input_target == "col") {
+                for (var i = 0; i < obj.rows.length; i++) {
+                    var row = obj.rows[i];
+                    row.insertCell(input_index);
+                    row.cells[input_index].style.textAlign = "center";
+                    row.cells[input_index].style.verticalAlign = "middle";
+                    row.cells[input_index].style.background = row.cells[0].style.background;
+                    row.cells[input_index].style.width = row.cells[0].style.width;
+                    row.cells[input_index].style.height = row.cells[0].style.height;
+                    row.cells[input_index].setAttribute("onclick", "javascript:onclickid_set(this);");
+                    row.cells[input_index].setAttribute("ondragover", "javascript:event.preventDefault();");
+                }
+            }
+        }
+        if (obj.rows.length > 0) {
+            if (obj.rows[0].cells.length > 0) {
+                for (var i = 0; i < obj.rows.length; i++) {
+                    for (var j = 0; j < obj.rows[0].cells.length; j++) {
+                        obj.rows[i].cells[j].id = "gametable_td_" + input_id + "_" + i + "_" + j;
+                    }
+                }
+            }
+        }
+    }
+}
   
   function table_td_set(input_id,input_x,input_y,input_property,input_value){
     if (document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x)) {
@@ -4239,6 +4260,7 @@ function HextoRgb(color) {
   window.span_delete = span_delete;  
   window.include_file = include_file; 
   window.getDatetime = getDatetime;  
-  window.setDatetime = setDatetime;  
+  window.setDatetime = setDatetime;
+  window.table_insert = table_insert;  
   
 }(window, window.document));

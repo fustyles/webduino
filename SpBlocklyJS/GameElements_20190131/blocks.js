@@ -1,3 +1,122 @@
+Blockly.defineBlocksWithJsonArray([
+	{type:"table_insert_row"
+	,lastDummyAlign0:"RIGHT"
+	,message0:"%{BKY_TABLE} %{BKY_TABLE_INSERT_ROW}"
+	,message1:"%{BKY_TABLE_ID} %1"	
+	,args1:[{type:"input_value",name:"id",check:null,align:"RIGHT"}]	
+	,message2:"%1"
+	,args2:[{type:"field_dropdown",name:"func",options:[["%{BKY_TABLE_INSERTFIRSTROW}","insertfirst"],["%{BKY_TABLE_INSERTLASTROW}","insertlast"]],align:"RIGHT"}]		
+	,message3:"%{BKY_TABLE_COLUMN}0 %1"	
+	,args3:[{type:"input_value",name:"VALUE",check:null,align:"RIGHT"}]	
+	,previousStatement:null
+	,nextStatement:null
+	,colour:240
+	,inputsInline:0
+	,mutator:"table_insert_mutator"
+	}
+	,{type:"table_insert_row_main"
+	,message0:"%{BKY_TABLE_COLUMN}"
+	,nextStatement:null
+	,enableContextMenu:!1
+	,style:"logic_blocks"
+	}	
+	,{type:"table_insert_row_value"
+	,message0:"%{BKY_TABLE_COLUMN}"
+	,previousStatement:null
+	,nextStatement:null
+	,enableContextMenu:!1
+	,style:"logic_blocks"
+	}
+]);
+
+var module$contents$Blockly$blocks$CONTROLS_SPREADSHEET_MUTATOR_MIXIN={
+	allCount_:0
+	,mutationToDom:function(){		
+		if(!this.allCount_)return null;
+		var a=Blockly.utils.xml.createElement("mutation");
+		this.allCount_&&a.setAttribute("all",this.allCount_);
+		return a
+	}
+	,domToMutation:function(a){		
+		this.allCount_=parseInt(a.getAttribute("all"),10)||0;
+		this.rebuildShape_()
+	}
+	,decompose:function(a){
+		var b=a.newBlock("table_insert_row_main");
+		b.initSvg();
+		
+		for(var c=b.nextConnection,d=1;d<=this.allCount_;d++){
+			var e=a.newBlock("table_insert_row_value");
+			e.initSvg();
+			c.connect(e.previousConnection);
+			c=e.nextConnection
+		}
+		return b
+	}
+	,compose:function(a){
+		a=a.nextConnection.targetBlock();
+		this.allCount_=0;
+		for(var b=[null];a&&!a.isInsertionMarker();){
+			this.allCount_++;
+			b.push(a.valueConnection_);
+			a=a.nextConnection&&a.nextConnection.targetBlock()
+		}
+		this.updateShape_();
+		this.reconnectChildBlocks_(b)
+	}
+	,saveConnections:function(a){	
+		a=a.nextConnection.targetBlock();
+		for(var b=1;a;){
+			switch(a.type){
+				case "table_insert_row_value":
+					var c=this.getInput(String.fromCharCode(b+65));
+					a.valueConnection_=c&&c.connection.targetConnection;
+					b++;
+					break;				
+				default:throw TypeError("Unknown block type: "+a.type);
+			}
+			a=a.nextConnection&&a.nextConnection.targetBlock()
+		}
+	}
+	,rebuildShape_:function(){	
+		var a=[null];
+		for(var d=1;this.getInput(String.fromCharCode(d+65));){
+			var e=this.getInput(String.fromCharCode(d+65));
+			a.push(e.connection.targetConnection);d++
+		}
+		this.updateShape_();
+		this.reconnectChildBlocks_(a)
+	}
+	,updateShape_:function(){	
+		for(var a=1;this.getInput(String.fromCharCode(a+65));)
+			this.removeInput(String.fromCharCode(a+65)),a++;
+		for(a=1;a<=this.allCount_;a++)
+			this.appendValueInput(String.fromCharCode(a+65))
+			.setCheck(null)
+			.appendField(Blockly.Msg["TABLE_COLUMN"]+a)
+			.setAlign(Blockly.ALIGN_RIGHT)
+	}
+	,reconnectChildBlocks_:function(a,b){	
+		for(var d=1;d<=this.allCount_;d++)
+			Blockly.icons.MutatorIcon.reconnect(a[d],this,String.fromCharCode(d+65));
+	}
+};
+Blockly.Extensions.registerMutator("table_insert_mutator",module$contents$Blockly$blocks$CONTROLS_SPREADSHEET_MUTATOR_MIXIN,null,["table_insert_row_value"]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Blocks['fetch_get'] = {
   init: function () {
   this.appendDummyInput()   

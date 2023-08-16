@@ -1318,6 +1318,15 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+
+'    <block type="table_insert_row">'+
+'    <value name="id">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
+
 '    <block type="table_change_colsrows">'+
 '    <value name="id_">'+
 '    <block type="text">'+
