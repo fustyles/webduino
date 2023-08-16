@@ -295,7 +295,7 @@ Blockly.Blocks['controls_spreadsheet'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
 	this.setColour(220);
-    this.setMutator(new Blockly.Mutator(['controls_spreadsheet_main', 'controls_spreadsheet_value'], 'controls_spreadsheet_mutator'));
+    this.setMutator(new Blockly.Mutator(['controls_spreadsheet_main', 'controls_spreadsheet_value']));
   },
 	allCount_:0
 	,mutationToDom:function(){		
