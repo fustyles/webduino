@@ -301,7 +301,7 @@ Blockly.Blocks['controls_spreadsheet'] = {
   }
 	,mutationToDom:function(){		
 		if(!this.allCount_)return null;
-		var a=Blockly.utils.xml.createElement("mutation");
+		var a=document.createElement("mutation");
 		this.allCount_&&a.setAttribute("all",this.allCount_);
 		return a
 	}
