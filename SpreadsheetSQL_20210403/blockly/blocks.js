@@ -394,7 +394,7 @@ Blockly.Blocks['controls_spreadsheet_value'] = {
 Blockly.Blocks['controls_spreadsheet_datetime'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(SPREADSHEET_SPREADSHEET_TEXT_SHOW);
+        .appendField(Blockly.Msg.SPREADSHEET_SPREADSHEET_TEXT_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
           [Blockly.Msg.CONTROLS_SPREADSHEET_DATETIME,"gmt_datetime"],		
