@@ -274,41 +274,29 @@ Blockly.Blocks['spreadsheetsql_getdatafinish'] = {
   }
 }
 
-Blockly.defineBlocksWithJsonArray([
-	{type:"controls_spreadsheet"
-	,message0:"%{BKY_CONTROLS_SPREADSHEET}"
-	,message1:"%{BKY_SPREADSHEET_INSERT_SHOW}"
-	,message2:"%{BKY_SPREADSHEET_SPREADSHEET_URL_SHOW} %1"	
-	,args2:[{type:"input_value",name:"spreadsheeturl",check:null,align:"RIGHT"}]	
-	,message3:"%{BKY_SPREADSHEET_SPREADSHEET_NAME_SHOW} %1"	
-	,args3:[{type:"input_value",name:"spreadsheetname",check:null,align:"RIGHT"}]		
-	,message4:"%1"
-	,args4:[{type:"field_dropdown",name:"func",options:[["%{BKY_SPREADSHEET_INSERTFIRSTROW_SHOW}","insertfirst"],["%{BKY_SPREADSHEET_ROW2_SHOW}","insertrow2"],["%{BKY_SPREADSHEET_INSERTLASTROW_SHOW}","insertlast"]],align:"RIGHT"}]		
-	,message5:"%{BKY_SPREADSHEET_COLUMN_SHOW}A %1"	
-	,args5:[{type:"input_value",name:"VALUE",check:null,align:"RIGHT"}]	
-	,previousStatement:null
-	,nextStatement:null
-	,style:"logic_blocks"
-	,inputsInline:0
-	,helpUrl:"https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs"
-	,mutator:"controls_spreadsheet_mutator"
-	}
-	,{type:"controls_spreadsheet_main"
-	,message0:"%{BKY_SPREADSHEET_COLUMN_SHOW}"
-	,nextStatement:null
-	,enableContextMenu:!1
-	,style:"logic_blocks"
-	}	
-	,{type:"controls_spreadsheet_value"
-	,message0:"%{BKY_SPREADSHEET_COLUMN_SHOW}"
-	,previousStatement:null
-	,nextStatement:null
-	,enableContextMenu:!1
-	,style:"logic_blocks"
-	}
-]);
-
-var module$contents$Blockly$blocks$CONTROLS_SPREADSHEET_MUTATOR_MIXIN={
+Blockly.Blocks['controls_spreadsheet'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.CONTROLS_SPREADSHEET); 
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SPREADSHEET_INSERT_SHOW); 		
+    this.appendValueInput('spreadsheeturl')
+        .appendField(Blockly.Msg.SPREADSHEET_SPREADSHEET_URL_SHOW);
+    this.appendStatementInput('spreadsheetname')
+        .appendField(Blockly.Msg.SPREADSHEET_SPREADSHEET_NAME_SHOW);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([
+          [Blockly.Msg.SPREADSHEET_INSERTFIRSTROW_SHOW,"insertfirst"],		
+          [Blockly.Msg.SPREADSHEET_ROW2_SHOW,"insertrow2"],
+          [Blockly.Msg.SPREADSHEET_INSERTLASTROW_SHOW,"insertlast"]		  
+        ]), "func");
+	this.appendStatementInput('input_value')
+        .appendField(Blockly.Msg.SPREADSHEET_COLUMN_SHOW+'A');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+	this.setColour(220);
+    this.setMutator(new Blockly.Mutator(['controls_spreadsheet_main', 'controls_spreadsheet_value'], 'controls_spreadsheet_mutator'));
+  },
 	allCount_:0
 	,mutationToDom:function(){		
 		if(!this.allCount_)return null;
@@ -377,20 +365,44 @@ var module$contents$Blockly$blocks$CONTROLS_SPREADSHEET_MUTATOR_MIXIN={
 	}
 	,reconnectChildBlocks_:function(a,b){	
 		for(var d=1;d<=this.allCount_;d++)
-			Blockly.icons.MutatorIcon.reconnect(a[d],this,String.fromCharCode(d+65));
+			Blockly.Mutator.reconnect(a[d],this,String.fromCharCode(d+65));
 	}
 };
-Blockly.Extensions.registerMutator("controls_spreadsheet_mutator",module$contents$Blockly$blocks$CONTROLS_SPREADSHEET_MUTATOR_MIXIN,null,["controls_spreadsheet_value"]);
 
+Blockly.Blocks['controls_spreadsheet_main'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SPREADSHEET_COLUMN_SHOW);
+    this.setPreviousStatement(false);
+    this.contextMenu = false;
+	this.setColour(220);
+  }
+};
 
-Blockly.defineBlocksWithJsonArray([
-	{type:"controls_spreadsheet_datetime"
-	,message0:"%{BKY_SPREADSHEET_SPREADSHEET_TEXT_SHOW}"	
-	,message1:"%1"
-	,args1:[{type:"field_dropdown",name:"datetime",options:[["%{BKY_CONTROLS_SPREADSHEET_DATETIME}","gmt_datetime"],["%{BKY_CONTROLS_SPREADSHEET_DATE}","gmt_date"],["%{BKY_CONTROLS_SPREADSHEET_TIME}","gmt_time"]],align:"RIGHT"}]		
-	,output:null
-	,inputsInline:!0
-	,style:"logic_blocks"
-	,helpUrl:"https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs"
-	}
-]);
+Blockly.Blocks['controls_spreadsheet_value'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SPREADSHEET_COLUMN_SHOW);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.contextMenu = false;
+	this.setColour(220);
+  }
+};
+
+Blockly.Blocks['controls_spreadsheet_datetime'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(SPREADSHEET_SPREADSHEET_TEXT_SHOW);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([
+          [Blockly.Msg.CONTROLS_SPREADSHEET_DATETIME,"gmt_datetime"],		
+          [Blockly.Msg.CONTROLS_SPREADSHEET_DATE,"gmt_date"],
+          [Blockly.Msg.CONTROLS_SPREADSHEET_TIME,"gmt_time"]		  
+        ]), "datetime");		
+	this.setInputsInline(true);
+	this.setOutput(true, null);
+	this.helpUrl("https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs");
+	this.setColour(220);
+  }
+};
