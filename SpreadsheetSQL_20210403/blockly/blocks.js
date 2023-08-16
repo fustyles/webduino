@@ -290,11 +290,11 @@ Blockly.Blocks['controls_spreadsheet'] = {
           [Blockly.Msg.SPREADSHEET_ROW2_SHOW,"insertrow2"],
           [Blockly.Msg.SPREADSHEET_INSERTLASTROW_SHOW,"insertlast"]		  
         ]), "func");
-	this.appendStatementInput('input_value')
+    this.appendStatementInput('input_value')
         .appendField(Blockly.Msg.SPREADSHEET_COLUMN_SHOW+'A');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-	this.setColour(220);
+    this.setColour(220);
     this.setMutator(new Blockly.Mutator(['controls_spreadsheet_main', 'controls_spreadsheet_value']));
     this.allCount_=0;
   }
