@@ -282,7 +282,7 @@ Blockly.Blocks['controls_spreadsheet'] = {
         .appendField(Blockly.Msg.SPREADSHEET_INSERT_SHOW); 		
     this.appendValueInput('spreadsheeturl')
         .appendField(Blockly.Msg.SPREADSHEET_SPREADSHEET_URL_SHOW);
-    this.appendStatementInput('spreadsheetname')
+    this.appendValueInput('spreadsheetname')
         .appendField(Blockly.Msg.SPREADSHEET_SPREADSHEET_NAME_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
