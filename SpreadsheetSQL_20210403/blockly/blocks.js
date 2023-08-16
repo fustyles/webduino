@@ -295,6 +295,7 @@ Blockly.Blocks['controls_spreadsheet'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(220);
+    this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs");	  
     this.setMutator(new Blockly.Mutator(['controls_spreadsheet_main', 'controls_spreadsheet_value']));
     this.allCount_=0;
   }
@@ -403,7 +404,7 @@ Blockly.Blocks['controls_spreadsheet_datetime'] = {
         ]), "datetime");		
 	this.setInputsInline(true);
 	this.setOutput(true, null);
-	this.helpUrl("https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs");
+	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs");
 	this.setColour(220);
   }
 };
