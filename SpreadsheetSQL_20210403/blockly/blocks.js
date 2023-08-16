@@ -296,8 +296,8 @@ Blockly.Blocks['controls_spreadsheet'] = {
     this.setNextStatement(true);
 	this.setColour(220);
     this.setMutator(new Blockly.Mutator(['controls_spreadsheet_main', 'controls_spreadsheet_value']));
-  },
-	allCount_:0
+    this.allCount_=0;
+  }
 	,mutationToDom:function(){		
 		if(!this.allCount_)return null;
 		var a=Blockly.utils.xml.createElement("mutation");
