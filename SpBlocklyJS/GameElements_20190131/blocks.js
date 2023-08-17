@@ -34,16 +34,18 @@ Blockly.defineBlocksWithJsonArray([
 
 Blockly.Extensions.register('dropdown_row',
   function init() {
-	var func = this.getFieldValue("func");
-	if (func=="insertfirst"||func=="insertlast") {
-		this.getInput("row").setVisible(false);
-		this.getField("row_label").setVisible(false);
-	} else {
-		this.getInput("row").setVisible(true);
-		this.getField("row_label").setVisible(true);
-	}
-				
     this.onchange = function(event) {
+		if (event.type=="finished_loading") {
+			var func = this.getFieldValue("func");
+			if (func=="insertfirst"||func=="insertlast") {
+				this.getInput("col").setVisible(false);
+				this.getField("col_label").setVisible(false);
+			} else {
+				this.getInput("col").setVisible(true);
+				this.getField("col_label").setVisible(true);
+			}	
+			this.render();
+		}		
 		if (event.name) {
 			if (event.name=="func"&&event.type=="change") {
 				if (event.newValue=="insertfirst"||event.newValue=="insertlast") {
@@ -169,17 +171,19 @@ Blockly.defineBlocksWithJsonArray([
 ]);
 
 Blockly.Extensions.register('dropdown_col',
-  function init() {
-	var func = this.getFieldValue("func");
-	if (func=="insertfirst"||func=="insertlast") {
-		this.getInput("col").setVisible(false);
-		this.getField("col_label").setVisible(false);
-	} else {
-		this.getInput("col").setVisible(true);
-		this.getField("col_label").setVisible(true);
-	}
-				
+  function init() {		
     this.onchange = function(event) {
+		if (event.type=="finished_loading") {
+			var func = this.getFieldValue("func");
+			if (func=="insertfirst"||func=="insertlast") {
+				this.getInput("col").setVisible(false);
+				this.getField("col_label").setVisible(false);
+			} else {
+				this.getInput("col").setVisible(true);
+				this.getField("col_label").setVisible(true);
+			}	
+			this.render();
+		}		
 		if (event.name) {
 			if (event.name=="func"&&event.type=="change") {
 				if (event.newValue=="insertfirst"||event.newValue=="insertlast") {
