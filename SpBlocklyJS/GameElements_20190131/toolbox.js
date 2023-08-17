@@ -1327,7 +1327,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="row">'+
 '    <block type="math_number">'+
-'    <field name="NUM">1</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
@@ -1339,7 +1339,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="col">'+
 '    <block type="math_number">'+
-'    <field name="NUM">1</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+

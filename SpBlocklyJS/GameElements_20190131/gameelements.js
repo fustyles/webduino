@@ -241,7 +241,7 @@ function table_insert_row(input_id, input_cmd, input_row, input_value) {
 				col.setAttribute("ondragover", "javascript:event.preventDefault();");
             }
         } else if (input_cmd == "insertone") {
-			var row = obj.insertRow(input_row-1);
+			var row = obj.insertRow(input_row);
             for (var j = 0; j < data.length; j++) {
                 let col = row.insertCell(j);
 				col.innerText = data[j];
@@ -267,7 +267,7 @@ function table_insert_row(input_id, input_cmd, input_row, input_value) {
 				col.setAttribute("ondragover", "javascript:event.preventDefault();");
             }
         } else if (input_cmd == "update") {
-			var row = obj.rows[input_row-1];
+			var row = obj.rows[input_row];
             for (var j = 0; j < data.length; j++) {
                 row.cells[j].innerText = data[j];
 				row.cells[j].style.textAlign = "center";
@@ -311,7 +311,7 @@ function table_insert_col(input_id, input_cmd, input_col, input_value) {
         } else if (input_cmd == "insertone") {
 			for (var i = 0; i < data.length; i++) {
 				var row = obj.rows[i];
-				var col = row.insertCell(input_col-1);
+				var col = row.insertCell(input_col);
 				col.innerText = data[i];
 				col.style.textAlign = "center";
 				col.style.verticalAlign = "middle";
@@ -337,15 +337,15 @@ function table_insert_col(input_id, input_cmd, input_col, input_value) {
         } else if (input_cmd == "update") {
 			for (var i = 0; i < data.length; i++) {
 				var row = obj.rows[i];
-				row.cells[input_col-1].style.textAlign = "center";
-				row.cells[input_col-1].innerText = data[i];
-				row.cells[input_col-1].style.textAlign = "center";
-				row.cells[input_col-1].style.verticalAlign = "middle";
-				row.cells[input_col-1].style.background = row.cells[0].style.background;
-				row.cells[input_col-1].style.width = row.cells[0].style.width;
-				row.cells[input_col-1].style.height = row.cells[0].style.height;
-				row.cells[input_col-1].setAttribute("onclick", "javascript:onclickid_set(this);");
-				row.cells[input_col-1].setAttribute("ondragover", "javascript:event.preventDefault();");
+				row.cells[input_col].style.textAlign = "center";
+				row.cells[input_col].innerText = data[i];
+				row.cells[input_col].style.textAlign = "center";
+				row.cells[input_col].style.verticalAlign = "middle";
+				row.cells[input_col].style.background = row.cells[0].style.background;
+				row.cells[input_col].style.width = row.cells[0].style.width;
+				row.cells[input_col].style.height = row.cells[0].style.height;
+				row.cells[input_col].setAttribute("onclick", "javascript:onclickid_set(this);");
+				row.cells[input_col].setAttribute("ondragover", "javascript:event.preventDefault();");
 			}
         }
         if (obj.rows.length > 0) {
