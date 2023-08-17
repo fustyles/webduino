@@ -1306,7 +1306,19 @@
 					<field name="NUM">1</field>
 				</block>
 			</value>
-		  </block>		  
+		  </block>	
+		  <block type="table_insert_col">
+			<value name="id">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+			<value name="col">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+		  </block>			  
 		  <block type="table_change_colsrows">  
 			<value name="id_">
 			  <block type="text">
