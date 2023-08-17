@@ -670,8 +670,7 @@ Blockly.Blocks['table_change_colsrows'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_COL,"col"], [Blockly.Msg.PROPERTY_ROW,"row"]]), "target_");     
   this.appendValueInput("index_")
       .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_INDEX);   
+      .setAlign(Blockly.ALIGN_RIGHT);   
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
