@@ -223,26 +223,39 @@
     }  
   }
   
-function table_insert(input_id, input_cmd, input_value) {
+function table_insert(input_id, input_cmd, input_row, input_value) {
     if (document.getElementById("gametable_" + input_id)) {
         var obj = document.getElementById("gametable_" + input_id);
+		var data = input_value.split("|");
         if (input_cmd == "insertfirst") {
             var row = obj.insertRow(0);
-            var data = input_value.split("|");
             for (var j = 0; j < data.length; j++) {
                 let c = row.insertCell(j);
 				c.align = "center";
                 c.innerText = data[j];
             }
+        } else if (input_cmd == "insertone") {
+			var row = obj.insertRow(input_row-1);
+            for (var j = 0; j < data.length; j++) {
+                let c = row.insertCell(j);
+				c.align = "center";
+                c.innerText = data[j];
+            }		
         } else if (input_cmd == "insertlast") {
 			var row = obj.insertRow(-1);
-            var data = input_value.split("|");
             for (var j = 0; j < data.length; j++) {
                 let c = row.insertCell(j);
 				c.align = "center";
                 c.innerText = data[j];
             }
-        }
+        } else if (input_cmd == "update") {
+			var row = obj.rows[input_row-1];
+			console.log(row);
+            
+            for (var j = 0; j < data.length; j++) {
+                row.cells[j].innerText = data[j];
+            }
+        }		
     }
 } 
 

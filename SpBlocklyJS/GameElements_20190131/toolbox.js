@@ -1271,7 +1271,8 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    <value name="bgcolor_">'+
-'    <block type="logic_null">'+
+'    <block type="colour_picker">'+
+'    <field name="COLOUR">#00ff00</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="zindex_">'+
@@ -1318,15 +1319,18 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
-
 '    <block type="table_insert_row">'+
 '    <value name="id">'+
 '    <block type="text">'+
 '    <field name="TEXT"></field>'+
 '    </block>'+
 '    </value>'+
+'    <value name="row">'+
+'    <block type="math_number">'+
+'    <field name="NUM">1</field>'+
 '    </block>'+
-
+'    </value>'+
+'    </block>'+
 '    <block type="table_change_colsrows">'+
 '    <value name="id_">'+
 '    <block type="text">'+

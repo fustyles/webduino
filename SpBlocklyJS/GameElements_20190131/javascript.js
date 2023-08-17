@@ -1,6 +1,7 @@
 Blockly.JavaScript['table_insert_row'] = function(block){
 	var value_id = Blockly.JavaScript.valueToCode(block,"id",Blockly.JavaScript.ORDER_NONE)||"";
 	var value_func = block.getFieldValue('func');
+	var value_row = Number(Blockly.JavaScript.valueToCode(block,"row",Blockly.JavaScript.ORDER_NONE)||-1);
 	var value_data = Blockly.JavaScript.valueToCode(block,"VALUE",Blockly.JavaScript.ORDER_NONE)||"";
 	value_data = 'String('+value_data+')+"|"';
 	for (var i=0;i<26;i++) {
@@ -10,7 +11,7 @@ Blockly.JavaScript['table_insert_row'] = function(block){
 	}
 	value_data = value_data.substring(0, value_data.length-4);
 			
-	var code = 'table_insert(' + value_id + ',"' + value_func + '", ' + value_data + ');\n';
+	var code = 'table_insert(' + value_id + ',"' + value_func + '",' + value_row + ', ' + value_data + ');\n';
 	return code;
 };
 

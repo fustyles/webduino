@@ -1,15 +1,18 @@
 Blockly.defineBlocksWithJsonArray([
 	{type:"table_insert_row"
 	,lastDummyAlign0:"RIGHT"
-	,message0:"%{BKY_TABLE} %{BKY_TABLE_INSERT_ROW}"
+	,message0:"%{BKY_TABLE} %{BKY_TABLE_ROW}"
 	,message1:"%{BKY_TABLE_ID} %1"	
 	,args1:[{type:"input_value",name:"id",check:null,align:"RIGHT"}]	
 	,message2:"%1"
-	,args2:[{type:"field_dropdown",name:"func",options:[["%{BKY_TABLE_INSERTFIRSTROW}","insertfirst"],["%{BKY_TABLE_INSERTLASTROW}","insertlast"]],align:"RIGHT"}]		
-	,message3:"%{BKY_TABLE_COLUMN}0 %1"	
-	,args3:[{type:"input_value",name:"VALUE",check:null,align:"RIGHT"}]	
+	,args2:[{type:"field_dropdown",name:"func",options:[["%{BKY_TABLE_INSERTFIRSTROW}","insertfirst"],["%{BKY_TABLE_INSERTONEROW}","insertone"],["%{BKY_TABLE_INSERTLASTROW}","insertlast"],["%{BKY_TABLE_UPDATE}","update"]],align:"RIGHT"}]
+	,message3:"%1 %2"	
+	,args3:[{type:"field_label_serializable",name:"row_label",text:"%{BKY_TABLE_ROW}"},{type:"input_value",name:"row",check:null,align:"RIGHT"}]	
+	,message4:"%{BKY_TABLE_COLUMN}1 %1"	
+	,args4:[{type:"input_value",name:"VALUE",check:null,align:"RIGHT"}]	
 	,previousStatement:null
 	,nextStatement:null
+	,"extensions": ["dropdown"]
 	,colour:240
 	,inputsInline:0
 	,mutator:"table_insert_mutator"
@@ -28,6 +31,34 @@ Blockly.defineBlocksWithJsonArray([
 	,style:"logic_blocks"
 	}
 ]);
+
+Blockly.Extensions.register('dropdown',
+  function init() {
+	var func = this.getFieldValue("func");
+	if (func=="insertfirst"||func=="insertlast") {
+		this.getInput("row").setVisible(false);
+		this.getField("row_label").setVisible(false);
+	} else {
+		this.getInput("row").setVisible(true);
+		this.getField("row_label").setVisible(true);
+	}
+				
+    this.onchange = function(event) {
+		if (event.name) {
+			if (event.name=="func"&&event.type=="change") {
+				if (event.newValue=="insertfirst"||event.newValue=="insertlast") {
+					this.getInput("row").setVisible(false);
+					this.getField("row_label").setVisible(false);
+				} else {
+					this.getInput("row").setVisible(true);
+					this.getField("row_label").setVisible(true);
+				}
+				this.render();
+			}
+		}
+	}
+  }
+)
 
 var module$contents$Blockly$blocks$CONTROLS_SPREADSHEET_MUTATOR_MIXIN={
 	allCount_:0
@@ -93,7 +124,7 @@ var module$contents$Blockly$blocks$CONTROLS_SPREADSHEET_MUTATOR_MIXIN={
 		for(a=1;a<=this.allCount_;a++)
 			this.appendValueInput(String.fromCharCode(a+65))
 			.setCheck(null)
-			.appendField(Blockly.Msg["TABLE_COLUMN"]+a)
+			.appendField(Blockly.Msg["TABLE_COLUMN"]+(a+1))
 			.setAlign(Blockly.ALIGN_RIGHT)
 	}
 	,reconnectChildBlocks_:function(a,b){	
@@ -102,10 +133,6 @@ var module$contents$Blockly$blocks$CONTROLS_SPREADSHEET_MUTATOR_MIXIN={
 	}
 };
 Blockly.Extensions.registerMutator("table_insert_mutator",module$contents$Blockly$blocks$CONTROLS_SPREADSHEET_MUTATOR_MIXIN,null,["table_insert_row_value"]);
-
-
-
-
 
 
 
