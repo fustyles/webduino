@@ -22,6 +22,7 @@
       obj.style.left = input_left + 'px';
       obj.style.top = input_top + 'px';
       obj.style.zIndex = input_zindex;
+      obj.style.borderCollapse = "collapse";
       obj.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor;
       if (input_display==0)
         obj.style.display = "none";
