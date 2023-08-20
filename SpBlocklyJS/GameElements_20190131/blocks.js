@@ -575,6 +575,10 @@ Blockly.Blocks['table_create'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TOP); 
+  this.appendValueInput("bgcolor_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_BGCOLOR); 	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TABLE_BORDERSTYLE)
       .appendField(new Blockly.FieldDropdown([
@@ -597,10 +601,6 @@ Blockly.Blocks['table_create'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TABLE_BORDERCOLOR);          
-  this.appendValueInput("bgcolor_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_BGCOLOR); 
   this.appendValueInput("zindex_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
