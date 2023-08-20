@@ -1262,6 +1262,23 @@
 			  </block>
 			</value>     
 		  </block>
+		  <block type="table_border_set">  
+			<value name="id_">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>     
+			<value name="borderwidth_">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>    
+			<value name="bordercolor_">
+			  <block type="colour_picker">
+				<field name="COLOUR">#000000</field>
+			  </block>
+			</value>
+		  </block>  		  
 		  <block type="table_set">
 			<value name="id_">
 			  <block type="text">
@@ -1281,20 +1298,6 @@
 			  </block>
 			</value>     
 		  </block>  
-		  <block type="table_clear">  
-			<value name="id_">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>     
-		  </block> 
-		  <block type="table_delete">
-			<value name="id_">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>     
-		  </block>
 		  <block type="table_insert_row">
 			<value name="id">
 				<block type="text">
@@ -1318,7 +1321,21 @@
 					<field name="NUM">0</field>
 				</block>
 			</value>
-		  </block>			  
+		  </block>
+		  <block type="table_clear">  
+			<value name="id_">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>     
+		  </block> 
+		  <block type="table_delete">
+			<value name="id_">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>     
+		  </block>
 		  <block type="table_change_colsrows">  
 			<value name="id_">
 			  <block type="text">
@@ -1468,45 +1485,6 @@
 			  </block>
 			</value>       
 		  </block>
-		  <block type="table_td_set">  
-			<value name="id_">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>     
-			<value name="x_">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
-			</value>
-			<value name="y_">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
-			</value>  
-			<value name="value_">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>      
-		  </block>
-		  <block type="table_border_set">  
-			<value name="id_">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>     
-			<value name="borderwidth_">
-			  <block type="math_number">
-				<field name="NUM">1</field>
-			  </block>
-			</value>    
-			<value name="bordercolor_">
-			  <block type="colour_picker">
-				<field name="COLOUR">#000000</field>
-			  </block>
-			</value>
-		  </block>  
 		  <block type="table_td_border_set">  
 			<value name="id_">
 			  <block type="text">
@@ -1534,6 +1512,28 @@
 			  </block>
 			</value>
 		  </block>
+		  <block type="table_td_set">  
+			<value name="id_">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>     
+			<value name="x_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="y_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>  
+			<value name="value_">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>      
+		  </block>		  
 		  <block type="table_td_get">    
 			<value name="id_">
 			  <block type="text">

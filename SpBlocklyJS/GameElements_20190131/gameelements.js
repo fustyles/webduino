@@ -438,10 +438,44 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
   } 
   
   function table_td_border_set(input_id,input_x,input_y,input_borderstyle,input_borderwidth,input_bordercolor){
-    if (document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x)) {
-      var obj = document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x);
-      obj.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor;
-    } 
+	if (document.getElementById("gametable_"+input_id)) {
+        var obj = document.getElementById("gametable_"+input_id);
+		console.log(input_x);
+		console.log(input_y);
+		if (input_x==-1&&input_y==-1) {
+			for (var i = 0; i < obj.rows.length; i++) {
+				for (var j = 0; j < obj.rows[0].cells.length; j++) {
+					if (document.getElementById("gametable_td_"+input_id+"_"+i+'_'+j)) {
+					  var td = document.getElementById("gametable_td_"+input_id+"_"+i+'_'+j);
+					  td.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor;
+					} 
+
+				} 
+			}  
+		}
+		else if (input_x==-1) {
+			for (var j = 0; j < obj.rows[0].cells.length; j++) {
+				if (document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+j)) {
+				  var td = document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+j);
+				  td.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor;
+				} 
+			} 
+		}
+		else if (input_y==-1) {
+			for (var i = 0; i < obj.rows.length; i++) {
+				if (document.getElementById("gametable_td_"+input_id+"_"+i+'_'+input_x)) {
+				  var td = document.getElementById("gametable_td_"+input_id+"_"+i+'_'+input_x);
+				  td.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor;
+				} 
+			}  
+		}
+		else {
+			if (document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x)) {
+			  var td = document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x);
+			  td.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor;
+			} 
+		}
+	}
   }  
   
   function table_td_get(input_id,input_x,input_y,input_property){

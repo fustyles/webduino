@@ -794,7 +794,7 @@ Blockly.Blocks['table_border_set'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TABLE_BORDERCOLOR);       
-  this.setInputsInline(true);
+  this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(240);
@@ -810,6 +810,14 @@ Blockly.Blocks['table_td_border_set'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TABLE_ID); 
+  this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)   
+      .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.PROPERTY_CELL,"cell"], 
+		  [Blockly.Msg.PROPERTY_COLUMN,"col"], 
+		  [Blockly.Msg.PROPERTY_ROW,"row"],
+		  [Blockly.Msg.PROPERTY_CELL_ALL,"all"]
+	  ], this.validate), "target_");	  
   this.appendValueInput("x_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -831,7 +839,7 @@ Blockly.Blocks['table_td_border_set'] = {
 	  [Blockly.Msg.PROPERTY_OUTSET,"outset"],  
 	  [Blockly.Msg.PROPERTY_NONE,"none"], 
 	  [Blockly.Msg.PROPERTY_HIDDEN,"hidden"]
-	  ]), "borderstyle_");  
+	  ], this.validate), "borderstyle_");  
   this.appendValueInput("borderwidth_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -844,7 +852,26 @@ Blockly.Blocks['table_td_border_set'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(240);
-  }
+  },
+  validate: function(newValue) {
+	 const block = this.sourceBlock_;
+	 if (newValue=="col") {
+		 block.getInput("x_").setVisible(true);
+		 block.getInput("y_").setVisible(false);
+	 }
+	 else if (newValue=="row") {
+		 block.getInput("x_").setVisible(false);
+		 block.getInput("y_").setVisible(true);
+	 }	
+	 else if (newValue=="all") {
+		 block.getInput("x_").setVisible(false);
+		 block.getInput("y_").setVisible(false);
+	 }		 
+	 else {
+		 block.getInput("x_").setVisible(true);
+		 block.getInput("y_").setVisible(true);	 
+	 }	 
+  } 
 };
 
 Blockly.Blocks['table_td_get'] = {

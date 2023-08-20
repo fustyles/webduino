@@ -1286,6 +1286,50 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="table_border_set">'+
+'    <value name="id_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="borderwidth_">'+
+'    <block type="math_number">'+
+'    <field name="NUM">1</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="bordercolor_">'+
+'    <block type="colour_picker">'+
+'    <field name="COLOUR">#000000</field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
+'    <block type="table_td_copy_move">'+
+'    <value name="id_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="x0_">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="y0_">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="x_">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="y_">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
 '    <block type="table_insert_row">'+
 '    <value name="id">'+
 '    <block type="text">'+
@@ -1378,6 +1422,20 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="table_clear">'+
+'    <value name="id_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
+'    <block type="table_delete">'+
+'    <value name="id_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
 '      <block type="image_onclick_listener">'+
 '        <statement name="do_">'+
 '          <block type="variables_set">'+
@@ -1417,17 +1475,86 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </statement>'+
 '    </block>'+
-'    <block type="table_clear">'+
+'    <block type="table_td_border_set">'+
 '    <value name="id_">'+
 '    <block type="text">'+
 '    <field name="TEXT"></field>'+
 '    </block>'+
 '    </value>'+
+'    <value name="x_">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
-'    <block type="table_delete">'+
+'    </value>'+
+'    <value name="y_">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="borderwidth_">'+
+'    <block type="math_number">'+
+'    <field name="NUM">1</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="bordercolor_">'+
+'    <block type="colour_picker">'+
+'    <field name="COLOUR">#000000</field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
+'    <block type="table_td_set">'+
 '    <value name="id_">'+
 '    <block type="text">'+
 '    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="x_">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="y_">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="value_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
+'    <block type="table_td_get">'+
+'    <value name="id_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="x_">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="y_">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
+'    <block type="table_td_clear">'+
+'    <value name="id_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="x_">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="y_">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
@@ -1501,134 +1628,6 @@ var catPageElements ='<xml>'+
 '    <value name="id_">'+
 '    <block type="text">'+
 '    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+
-'    </block>'+
-'    <block type="table_td_set">'+
-'    <value name="id_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="x_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">0</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="y_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">0</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="value_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+
-'    </block>'+
-
-'    <block type="table_border_set">'+
-'    <value name="id_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="borderwidth_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">1</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="bordercolor_">'+
-'    <block type="colour_picker">'+
-'    <field name="COLOUR">#000000</field>'+
-'    </block>'+
-'    </value>'+
-'    </block>'+
-'    <block type="table_td_copy_move">'+
-'    <value name="id_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="x0_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">0</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="y0_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">0</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="x_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">0</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="y_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">0</field>'+
-'    </block>'+
-'    </value>'+
-'    </block>'+
-'    <block type="table_td_border_set">'+
-'    <value name="id_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="x_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">0</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="y_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">0</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="borderwidth_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">1</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="bordercolor_">'+
-'    <block type="colour_picker">'+
-'    <field name="COLOUR">#000000</field>'+
-'    </block>'+
-'    </value>'+
-'    </block>'+
-'    <block type="table_td_get">'+
-'    <value name="id_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="x_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">0</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="y_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">0</field>'+
-'    </block>'+
-'    </value>'+
-'    </block>'+
-'    <block type="table_td_clear">'+
-'    <value name="id_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="x_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">0</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="y_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
