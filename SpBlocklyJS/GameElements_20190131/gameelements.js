@@ -568,8 +568,20 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
   }
   
   function table_td_insert_text(input_id,input_x,input_y,input_text,input_fontname,input_fontsize,input_color){
-    if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x))
-      document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x).innerHTML = "<font face='" + input_fontname + "' size='" + input_fontsize + "' color='" + input_color + "'>" + input_text + "</font>";
+	var obj = document.getElementById("gametable_"+input_id);
+	if (obj) {
+		if (input_x==-1) {
+			for (var i = 0; i < obj.rows.length; i++) {
+				document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+i).innerHTML = "<font face='" + input_fontname + "' size='" + input_fontsize + "' color='" + input_color + "'>" + input_text + "</font>";
+			}  
+		} else if (input_y==-1) {
+			for (var j = 0; j < obj.rows[0].cells.length; j++) {
+				document.getElementById("gametable_td_"+input_id+"_"+j+"_"+input_x).innerHTML = "<font face='" + input_fontname + "' size='" + input_fontsize + "' color='" + input_color + "'>" + input_text + "</font>";
+			} 
+		} else if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x)) {
+		  document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x).innerHTML = "<font face='" + input_fontname + "' size='" + input_fontsize + "' color='" + input_color + "'>" + input_text + "</font>";
+		}
+	}
   }  
   
   function table_td_clear(input_id,input_x,input_y){
