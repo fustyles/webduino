@@ -45,6 +45,11 @@ var catSpreadsheetsql = '<xml>'+
 '            <field name="TEXT">select A limit 1 offset 0</field>'+
 '          </block>'+
 '        </value>'+
+'        <value name="task_id">'+
+'          <block type="text">'+
+'            <field name="TEXT"></field>'+
+'          </block>'+
+'        </value>'+
 '      </block>'+
 '      <block type="spreadsheetsql_getCellSQL">'+
 '		 <value name="row">'+
@@ -54,6 +59,11 @@ var catSpreadsheetsql = '<xml>'+
 '		 </value>'+
 '      </block>'+
 '  	   <block type="spreadsheetsql_getdatafinish">'+
+'        <value name="task_id">'+
+'          <block type="text">'+
+'            <field name="TEXT"></field>'+
+'          </block>'+
+'        </value>'+
 '  	   </block>'+
 '      <block type="spreadsheetsql_getCell">'+
 '		 <value name="row">'+

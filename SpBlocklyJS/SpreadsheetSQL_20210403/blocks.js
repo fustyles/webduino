@@ -5,11 +5,11 @@ Blockly.Blocks['controls_spreadsheet_function'] = {
   this.appendValueInput("spreadsheeturl")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_URL_SHOW"]);
+      .appendField(Blockly.Msg["SPREADSHEET_URL_SHOW"]);
   this.appendValueInput("spreadsheetname")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_NAME_SHOW"]);
+      .appendField(Blockly.Msg["SPREADSHEET_NAME_SHOW"]);
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg["SPREADSHEET_SET_CELL_SHOW"],"setcell"],
@@ -22,20 +22,20 @@ Blockly.Blocks['controls_spreadsheet_function'] = {
   this.appendValueInput("col")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"]);		
+      .appendField(Blockly.Msg["SPREADSHEET_COL_SHOW"]);		
   this.appendValueInput("row")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"]);
+      .appendField(Blockly.Msg["SPREADSHEET_ROW_SHOW"]);
   this.appendValueInput("text")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_TEXT_SHOW"]);
+      .appendField(Blockly.Msg["SPREADSHEET_TEXT_SHOW"]);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs");	  
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(90);
+  this.setColour(130);
   },
   validate: function(newValue) {
 	const block = this.sourceBlock_;
@@ -98,6 +98,9 @@ Blockly.Blocks['spreadsheetsql_executeSql'] = {
       .appendField(Blockly.Msg.SPREADSHEETSQL_EXECUTESQL_SHOW);
   this.appendValueInput("spreadsheet_sql")
       .setCheck("String");
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
+      .appendField(new Blockly.FieldTextInput(""), "task_id");   
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -266,6 +269,9 @@ Blockly.Blocks['spreadsheetsql_getdatafinish'] = {
   init: function () {
   this.appendDummyInput()
       .appendField(Blockly.Msg.SPREADSHEETSQL_GETDATAFINISH_SHOW);
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
+      .appendField(new Blockly.FieldTextInput(""), "task_id"); 	  
   this.appendStatementInput("do_");
   this.setInputsInline(true);
   this.setPreviousStatement(true);
@@ -279,9 +285,9 @@ Blockly.defineBlocksWithJsonArray([
 	{type:"controls_spreadsheet"
 	,message0:"%{BKY_CONTROLS_SPREADSHEET}"
 	,message1:"%{BKY_SPREADSHEET_INSERT_SHOW}"
-	,message2:"%{BKY_SPREADSHEET_SPREADSHEET_URL_SHOW} %1"	
+	,message2:"%{BKY_SPREADSHEET_URL_SHOW} %1"	
 	,args2:[{type:"input_value",name:"spreadsheeturl",check:null,align:"RIGHT"}]	
-	,message3:"%{BKY_SPREADSHEET_SPREADSHEET_NAME_SHOW} %1"	
+	,message3:"%{BKY_SPREADSHEET_NAME_SHOW} %1"	
 	,args3:[{type:"input_value",name:"spreadsheetname",check:null,align:"RIGHT"}]		
 	,message4:"%1"
 	,args4:[{type:"field_dropdown",name:"func",options:[["%{BKY_SPREADSHEET_INSERTFIRSTROW_SHOW}","insertfirst"],["%{BKY_SPREADSHEET_ROW2_SHOW}","insertrow2"],["%{BKY_SPREADSHEET_INSERTLASTROW_SHOW}","insertlast"]],align:"RIGHT"}]		
@@ -386,7 +392,7 @@ Blockly.Extensions.registerMutator("controls_spreadsheet_mutator",module$content
 
 Blockly.defineBlocksWithJsonArray([
 	{type:"controls_spreadsheet_datetime"
-	,message0:"%{BKY_SPREADSHEET_SPREADSHEET_TEXT_SHOW}"	
+	,message0:"%{BKY_SPREADSHEET_TEXT_SHOW}"	
 	,message1:"%1"
 	,args1:[{type:"field_dropdown",name:"datetime",options:[["%{BKY_CONTROLS_SPREADSHEET_DATETIME}","gmt_datetime"],["%{BKY_CONTROLS_SPREADSHEET_DATE}","gmt_date"],["%{BKY_CONTROLS_SPREADSHEET_TIME}","gmt_time"]],align:"RIGHT"}]		
 	,output:null

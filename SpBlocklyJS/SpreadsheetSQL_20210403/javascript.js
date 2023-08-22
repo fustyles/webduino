@@ -19,11 +19,10 @@ Blockly.JavaScript['spreadsheetsql_queryData'] = function (block) {
 };
 
 Blockly.JavaScript['spreadsheetsql_executeSql'] = function (block) {
-  var spreadsheet_id = Blockly.JavaScript.valueToCode(block, 'spreadsheet_id', Blockly.JavaScript.ORDER_ATOMIC);  
-  var spreadsheet_name = Blockly.JavaScript.valueToCode(block, 'spreadsheet_name', Blockly.JavaScript.ORDER_ATOMIC);
   var spreadsheet_sql = Blockly.JavaScript.valueToCode(block, 'spreadsheet_sql', Blockly.JavaScript.ORDER_ATOMIC);
+  var task_id = block.getFieldValue('task_id');
   
-  var code = 'spreadsheetsql_executeSql('+spreadsheet_sql+');\n';
+  var code = 'spreadsheetsql_executeSql('+spreadsheet_sql+', "'+task_id+'");\n';
   return code; 
 };
 
@@ -77,9 +76,12 @@ Blockly.JavaScript['spreadsheetsql_clearData'] = function (block) {
   return code; 
 };
 
-Blockly.JavaScript['spreadsheetsql_getdatafinish'] = function(block) { 
+Blockly.JavaScript['spreadsheetsql_getdatafinish'] = function(block) {
+  var task_id = block.getFieldValue('task_id');
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'spreadsheetsql_getDataFinish = function() {\n' + statements_do + '\n};\n';
+  Blockly.JavaScript.definitions_['spreadsheetsql_task_'+task_id] = 'function spreadsheetsql_QueryResponse_'+task_id+'(res) {\n  spreadsheetsql_QueryResponse(res, "'+task_id+'");\n}\nwindow.spreadsheetsql_QueryResponse_'+task_id+' = spreadsheetsql_QueryResponse_'+task_id+';';
+  
+  var code = 'spreadsheetsql_getDataFinish_'+task_id+' = function() {\n' + statements_do + '\n};\n';
   return code;
 };
 
