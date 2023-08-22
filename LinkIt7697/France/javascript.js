@@ -15330,7 +15330,7 @@ Blockly.Arduino['fu_mqtt_getdata'] = function(block) {
 Blockly.Arduino['fu_mqtt_sendimage'] = function(block) {
   var topic = Blockly.Arduino.valueToCode(block, 'topic', Blockly.Arduino.ORDER_ATOMIC);
 												
-  Blockly.Arduino.definitions_.define_mqtt_sendimage =  'void mqtt_sendImage(String topic) {\n';
+  Blockly.Arduino.definitions_.define_mqtt_sendimage =  'void mqtt_sendImage(String topic) {\n'+
 														'    String clientId = "ESP32-"+String(random(0xffff), HEX);\n'+
 														'    if (mqtt_client.connect(clientId.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n'+	
 														'      camera_fb_t * fb = NULL;\n'+
