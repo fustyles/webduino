@@ -1,40 +1,44 @@
 <!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/spreadsheetsql.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/loader.js'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{
-var _E8_A1_A8_E6_A0_BC_E4_BB_A3_E7_A2_BC, a, b, c, d, e, f, _E8_A1_A8_E6_A0_BC_E9_9D_A0_E5_B7_A6_E8_B7_9D_E9_9B_A2, _E8_A1_A8_E6_A0_BC_E9_9D_A0_E4_B8_8A_E8_B7_9D_E9_9B_A2, _E6_9F_A5_E8_A9_A2_E7_B5_90_E6_9E_9C;
+var _E8_A1_A8_E6_A0_BC_E4_BB_A3_E7_A2_BC, _E8_A1_A8_E6_A0_BC_E9_9D_A0_E5_B7_A6_E8_B7_9D_E9_9B_A2, _E8_A1_A8_E6_A0_BC_E9_9D_A0_E4_B8_8A_E8_B7_9D_E9_9B_A2;
 
-function spreadsheetsql_QueryResponse_(res) {
-  spreadsheetsql_QueryResponse(res, "");
+function spreadsheetsql_QueryResponse_source(res) {
+  spreadsheetsql_QueryResponse(res, "source");
 }
-window.spreadsheetsql_QueryResponse_ = spreadsheetsql_QueryResponse_;
+window.spreadsheetsql_QueryResponse_source = spreadsheetsql_QueryResponse_source;
 
-// 描述此函式...
-function SQL_E6_9F_A5_E8_A9_A2(a, b, c, d, e, f) {
-  _E8_A1_A8_E6_A0_BC_E4_BB_A3_E7_A2_BC = a;
-  _E8_A1_A8_E6_A0_BC_E9_9D_A0_E5_B7_A6_E8_B7_9D_E9_9B_A2 = b;
-  _E8_A1_A8_E6_A0_BC_E9_9D_A0_E4_B8_8A_E8_B7_9D_E9_9B_A2 = c;
-  spreadsheetsql_settings(d,e);
-  spreadsheetsql_executeSql(f, "");
+function spreadsheetsql_QueryResponse_query(res) {
+  spreadsheetsql_QueryResponse(res, "query");
 }
+window.spreadsheetsql_QueryResponse_query = spreadsheetsql_QueryResponse_query;
 
 
 _E8_A1_A8_E6_A0_BC_E4_BB_A3_E7_A2_BC = '';
 _E8_A1_A8_E6_A0_BC_E9_9D_A0_E5_B7_A6_E8_B7_9D_E9_9B_A2 = 0;
 _E8_A1_A8_E6_A0_BC_E9_9D_A0_E4_B8_8A_E8_B7_9D_E9_9B_A2 = 0;
-spreadsheetsql_getDataFinish_ = function() {
-  _E6_9F_A5_E8_A9_A2_E7_B5_90_E6_9E_9C = (spreadsheetsql_getData());
-  table_delete(_E8_A1_A8_E6_A0_BC_E4_BB_A3_E7_A2_BC);
-  spreadsheetsql_getDataTable(_E8_A1_A8_E6_A0_BC_E4_BB_A3_E7_A2_BC,600,14,_E8_A1_A8_E6_A0_BC_E9_9D_A0_E5_B7_A6_E8_B7_9D_E9_9B_A2,_E8_A1_A8_E6_A0_BC_E9_9D_A0_E4_B8_8A_E8_B7_9D_E9_9B_A2,true);
+span_create('id',30,30,20,'試算表ID：',999);
+span_create('sheet',30,80,20,'工作表名稱：',999);
+text_create('id',400,30,150,30,'#ffffff','#000000',14,1,'1xeTHqIrT4Buj1XxpXfUlwdmmqGSBgI3x4QXlo5JT4Po',999,true);
+text_create('sheet',200,30,150,80,'#ffffff','#000000',14,1,'SQL',999,true);
+button_create('source',60,35,380,80,1,null,'載入',20,999,true);
+async function gamebutton_source_onclick (event) {
+  spreadsheetsql_settings((text_get('id',"value")),(text_get('sheet',"value")));
+  spreadsheetsql_executeSql('select *', "source");
+};
+document.getElementById("gamebutton_source").addEventListener("click", gamebutton_source_onclick, true);
+spreadsheetsql_getDataFinish_source = function() {
+  spreadsheetsql_getDataTable('source',600,14,30,150,true);
 
 };
-span_create('id',0,200,20,'試算表ID：',999);
-span_create('sheet',0,250,20,'工作表名稱：',999);
-span_create('',0,300,20,'SQL語法：',999);
-text_create('id',400,30,120,200,'#ffffff','#000000',12,1,'1xeTHqIrT4Buj1XxpXfUlwdmmqGSBgI3x4QXlo5JT4Po',999,true);
-text_create('sheet',400,30,120,250,'#ffffff','#000000',12,1,'SQL',999,true);
-text_create('',400,30,120,300,'#ffffff','#000000',12,1,'select *',999,true);
-button_create('',60,40,540,300,1,null,'查詢',20,999,true);
-async function gamebutton__onclick (event) {
-  SQL_E6_9F_A5_E8_A9_A2('output', 0, 350, text_get('id',"value"), text_get('sheet',"value"), text_get('',"value"));
+span_create('',660,30,20,'SQL語法：',999);
+textarea_create('query',660,80,80,3,'select *',1,999,true);
+button_create('query',60,40,1200,30,1,null,'查詢',20,999,true);
+async function gamebutton_query_onclick (event) {
+  spreadsheetsql_settings((text_get('id',"value")),(text_get('sheet',"value")));
+  spreadsheetsql_executeSql((textarea_get('query',"value")), "query");
 };
-document.getElementById("gamebutton_").addEventListener("click", gamebutton__onclick, true);
-SQL_E6_9F_A5_E8_A9_A2('source', 0, 0, text_get('id',"value"), 'SQL', 'select *');
+document.getElementById("gamebutton_query").addEventListener("click", gamebutton_query_onclick, true);
+spreadsheetsql_getDataFinish_query = function() {
+  spreadsheetsql_getDataTable('query',600,14,660,150,true);
+
+};
 };main();</script></body></html>
