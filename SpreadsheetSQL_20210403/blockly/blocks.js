@@ -5,11 +5,11 @@ Blockly.Blocks['controls_spreadsheet_function'] = {
   this.appendValueInput("spreadsheeturl")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_URL_SHOW"]);
+      .appendField(Blockly.Msg["SPREADSHEET_URL_SHOW"]);
   this.appendValueInput("spreadsheetname")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_NAME_SHOW"]);
+      .appendField(Blockly.Msg["SPREADSHEET_NAME_SHOW"]);
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg["SPREADSHEET_SET_CELL_SHOW"],"setcell"],
@@ -22,20 +22,20 @@ Blockly.Blocks['controls_spreadsheet_function'] = {
   this.appendValueInput("col")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"]);		
+      .appendField(Blockly.Msg["SPREADSHEET_COL_SHOW"]);		
   this.appendValueInput("row")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"]);
+      .appendField(Blockly.Msg["SPREADSHEET_ROW_SHOW"]);
   this.appendValueInput("text")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_TEXT_SHOW"]);
+      .appendField(Blockly.Msg["SPREADSHEET_TEXT_SHOW"]);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs");	  
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(90);
+  this.setColour(130);
   },
   validate: function(newValue) {
 	const block = this.sourceBlock_;
@@ -98,6 +98,9 @@ Blockly.Blocks['spreadsheetsql_executeSql'] = {
       .appendField(Blockly.Msg.SPREADSHEETSQL_EXECUTESQL_SHOW);
   this.appendValueInput("spreadsheet_sql")
       .setCheck("String");
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
+      .appendField(new Blockly.FieldTextInput(""), "task_id");   
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -266,6 +269,9 @@ Blockly.Blocks['spreadsheetsql_getdatafinish'] = {
   init: function () {
   this.appendDummyInput()
       .appendField(Blockly.Msg.SPREADSHEETSQL_GETDATAFINISH_SHOW);
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
+      .appendField(new Blockly.FieldTextInput(""), "task_id"); 	  
   this.appendStatementInput("do_");
   this.setInputsInline(true);
   this.setPreviousStatement(true);
