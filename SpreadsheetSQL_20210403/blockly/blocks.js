@@ -276,7 +276,7 @@ Blockly.Blocks['spreadsheetsql_getdatafinish'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(65);
   }
 }
 
