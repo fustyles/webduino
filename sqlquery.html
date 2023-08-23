@@ -22,6 +22,7 @@ text_create('sheet',200,30,150,80,'#ffffff','#000000',14,1,'SQL',999,true);
 button_create('source',60,35,380,80,1,null,'載入',20,999,true);
 async function gamebutton_source_onclick (event) {
   spreadsheetsql_settings((text_get('id',"value")),(text_get('sheet',"value")));
+  spreadsheetsql_clearDataTable('source');
   spreadsheetsql_executeSql('select *', "source");
 };
 document.getElementById("gamebutton_source").addEventListener("click", gamebutton_source_onclick, true);
@@ -35,6 +36,7 @@ textarea_set('query',"draggable",false);
 button_create('query',60,40,1200,30,1,null,'查詢',20,999,true);
 async function gamebutton_query_onclick (event) {
   spreadsheetsql_settings((text_get('id',"value")),(text_get('sheet',"value")));
+  spreadsheetsql_clearDataTable('query');
   spreadsheetsql_executeSql((textarea_get('query',"value")), "query");
 };
 document.getElementById("gamebutton_query").addEventListener("click", gamebutton_query_onclick, true);
