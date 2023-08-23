@@ -31,6 +31,7 @@ spreadsheetsql_getDataFinish_source = function() {
 };
 span_create('',660,30,20,'SQL語法：',999);
 textarea_create('query',660,80,80,3,'select *',1,999,true);
+textarea_set('query',"draggable",false);
 button_create('query',60,40,1200,30,1,null,'查詢',20,999,true);
 async function gamebutton_query_onclick (event) {
   spreadsheetsql_settings((text_get('id',"value")),(text_get('sheet',"value")));
