@@ -520,7 +520,7 @@ Blockly.Blocks['table_td_insert_text'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TABLE_TD_Y); 
   this.appendValueInput("text_")
-      .setCheck("String")
+      .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.CONTEXT);
   this.appendValueInput("fontname_")
