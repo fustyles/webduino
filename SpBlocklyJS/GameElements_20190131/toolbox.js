@@ -1382,7 +1382,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="fontsize_">'+
 '    <block type="math_number">'+
-'    <field name="NUM">12</field>'+
+'    <field name="NUM">4</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="color_">'+
