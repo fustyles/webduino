@@ -11,10 +11,10 @@ Line Bot Webhook & Google Apps script & ChatGTP API
 */
 
 // Line bot
-let channel_access_TOKEN = "zg/iMPeCUFdHY9UeiUseBDvRwWxBssuNEa8/ut23H5D05IOxm3AdSHSbX86xxJJEJ3m/s1p5zBJjWzns7WvVri40IaO/dNew4vwa7XKK19SyQdhQvLI2rISYERpUBJSkFgUWGS/Ebay12O7DiaiJKgdB04t89/1O/w1cDnyilFU=";  
+let channel_access_TOKEN = "";  
 
 // chatGPT
-let openAI_api_KEY = "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";  // openAI
+let openAI_api_KEY = "";  // openAI
 
 // 可記錄對話內容於試算表，若無需紀錄可空白不填
 let spreadsheet_ID = "1R-XQax1w3g9Y7suUHzLRln3GEmdHaEZC87lyExTyQWA";  // 試算表ID
