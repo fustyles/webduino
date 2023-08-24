@@ -20,7 +20,7 @@ let openAI_api_KEY = "";  // openAI
 let spreadsheet_ID = "";  // 試算表ID
 let sheet_Name = "對話紀錄";  // 工作表名稱
 let sheet_Name1 = "聯絡簿事項";  // 聯絡簿
-let sheet_Name2 = "考試成績";  // 考試成績
+let sheet_Name2 = "個人事項";  // 個人事項
 
 let openAI_model = "gpt-3.5-turbo";   // gpt-3.5-turbo, gpt-3.5-turbo-0301, gpt-4 (gpt-4限已升級plus帳號或已有試用資格帳號)
 let openAI_assistant_behavior = "你是班級導師，回答家長有關班級管理與教育子女的問題，且符合以下規範：\n- 分析家長提問內容是否與教育有關或為問候語，若不是則果斷回覆「很抱歉，無法回答非教育問題！」，不要多做解釋。\n- 回覆的內容開頭要加上「我是ChatGPT導師助手」。";
@@ -29,7 +29,7 @@ let reset_command = "reset";
 let reset_response = "您好，已為您清除歷史對話紀錄，讓我們重新聊天吧！";
 let userId_command = "id";
 let contactbook_command = "book";
-let grade_command = "grade";
+let private_command = "self";
 
 // 系統變數
 let userMessage = "";
@@ -53,14 +53,14 @@ function doPost(e) {
     replyToken = msg.events[0].replyToken;     
 
     if (userMessage.toLowerCase()=="help"||userMessage=="導師") {
-        openAI_response = "查詢聯絡簿："+contactbook_command+"\n查詢成績："+grade_command+"\n重設聊天："+reset_command+"\n查詢userId："+userId_command+"\n";
+        openAI_response = "查詢聯絡簿："+contactbook_command+"\n個人事項："+private_command+"\n重設聊天："+reset_command+"\n查詢userId："+userId_command+"\n";
     }
     else if (userMessage == contactbook_command) {
         var myDate = Utilities.formatDate(new Date(), "GMT+8", "yyyy-MM-dd");
         openAI_response = getSheetsQueryResult_(spreadsheet_ID, sheet_Name1, 'B:D', "select * where B >= date '" +myDate+ "'");
         openAI_response = openAI_response.join("\n");
     }
-    else if (userMessage == grade_command) {
+    else if (userMessage == private_command) {
         var myDate = Utilities.formatDate(new Date(), "GMT+8", "yyyy-MM-dd");
         openAI_response = getSheetsQueryResult_(spreadsheet_ID, sheet_Name2, 'B:E', "select C, D, E where C >= date '" +myDate+ "' and B = '" +userId+ "'");
         openAI_response = openAI_response.join("\n");
@@ -167,7 +167,8 @@ function addDataToSpreadsheet(spreadsheetId, sheetName, chatId, chatType, chatCo
 }
 
 //https://stackoverflow.com/questions/22330542/can-i-use-google-visualization-api-to-query-a-spreadsheet-in-apps-script
-function getSheetsQueryResult_(fileId, sheetName, rangeA1, sqlText) {
+function getSheetsQueryResult_(fileId, sheetName, rangeA1, sqlText)
+{
   var file = SpreadsheetApp.openById(fileId);
   var sheetId = file.getSheetByName(sheetName).getSheetId();
 
@@ -193,11 +194,13 @@ function getSheetsQueryResult_(fileId, sheetName, rangeA1, sqlText) {
   var row = [];
   var nRows = rows[0].c.length;
   var type = '';
-  for (var i = 0, l = rows.length; i < l; i++) {
+  for (var i = 0, l = rows.length; i < l; i++)
+  {
     rowQuery = rows[i].c;
     row = [];
     // loop values   
-    for (var k = 0; k < nRows; k++) {
+    for (var k = 0; k < nRows; k++)
+    {
       eltQuery = rowQuery[k];
       type = types[k];
       if (type === 'number') { 
