@@ -33,6 +33,7 @@ spreadsheetsql_getDataFinish_source = function() {
 span_create('',660,30,20,'SQL語法：',999);
 textarea_create('query',660,80,80,3,'select *',1,999,true);
 textarea_set('query',"draggable",false);
+a_create('',60,30,800,30,"none",1,'#000000','#ffffff','#000000',20,1,'教學','https://fustyles.github.io/webduino/sqlquery.html',"_blank",999,true);
 button_create('query',60,40,1200,30,1,null,'查詢',20,999,true);
 async function gamebutton_query_onclick (event) {
   spreadsheetsql_settings((text_get('id',"value")),(text_get('sheet',"value")));
