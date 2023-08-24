@@ -19,8 +19,8 @@ let openAI_api_KEY = "";  // openAI
 // 可記錄對話內容於試算表，若無需紀錄可空白不填
 let spreadsheet_ID = "";  // 試算表ID
 let sheet_Name = "對話紀錄";  // 工作表名稱
-let sheet_Name1 = "聯絡簿事項";  // 聯絡簿
-let sheet_Name2 = "個人事項";  // 個人事項
+let sheet_Name1 = "聯絡簿事項";  // 聯絡簿作業、物品
+let sheet_Name2 = "個人事項";  // 聯絡簿私人事項
 
 let openAI_model = "gpt-3.5-turbo";   // gpt-3.5-turbo, gpt-3.5-turbo-0301, gpt-4 (gpt-4限已升級plus帳號或已有試用資格帳號)
 let openAI_assistant_behavior = "你是班級導師，回答家長有關班級管理與教育子女的問題，且符合以下規範：\n- 分析家長提問內容是否與教育有關或為問候語，若不是則果斷回覆「很抱歉，無法回答非教育問題！」，不要多做解釋。\n- 回覆的內容開頭要加上「我是ChatGPT導師助手」。";
