@@ -193,13 +193,11 @@ function getSheetsQueryResult_(fileId, sheetName, rangeA1, sqlText) {
   var row = [];
   var nRows = rows[0].c.length;
   var type = '';
-  for (var i = 0, l = rows.length; i < l; i++)
-  {
+  for (var i = 0, l = rows.length; i < l; i++) {
     rowQuery = rows[i].c;
     row = [];
     // loop values   
-    for (var k = 0; k < nRows; k++)
-    {
+    for (var k = 0; k < nRows; k++) {
       eltQuery = rowQuery[k];
       type = types[k];
       if (type === 'number') { 
