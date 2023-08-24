@@ -167,8 +167,7 @@ function addDataToSpreadsheet(spreadsheetId, sheetName, chatId, chatType, chatCo
 }
 
 //https://stackoverflow.com/questions/22330542/can-i-use-google-visualization-api-to-query-a-spreadsheet-in-apps-script
-function getSheetsQueryResult_(fileId, sheetName, rangeA1, sqlText)
-{
+function getSheetsQueryResult_(fileId, sheetName, rangeA1, sqlText) {
   var file = SpreadsheetApp.openById(fileId);
   var sheetId = file.getSheetByName(sheetName).getSheetId();
 
