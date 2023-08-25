@@ -4270,7 +4270,7 @@ Blockly.Blocks['textarea_create'] = {
   this.appendValueInput("value_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.PROPERTY_VALUE);		  
+      .appendField(Blockly.Msg.PROPERTY_INNERHTML);		  
   this.appendValueInput("cols_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
