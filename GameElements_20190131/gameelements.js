@@ -2744,6 +2744,8 @@ function HextoRgb(color) {
         obj.rows = input_value;	  
       else if (input_property=="value")
         obj.value = input_value;
+      else if (input_property=="innerHTML")
+        obj.innerHTML = input_value; 	      
       else if (input_property=="readonly")
         obj.readonly = input_value;	  
       else if (input_property=="opacity")
@@ -2780,6 +2782,8 @@ function HextoRgb(color) {
         return obj.rows;	  
       else if (input_property=="value")
         return obj.value;
+      else if (input_property=="innerHTML")
+        return obj.innerHTML; 	      
       else if (input_property=="readonly")
         return obj.readonly;	   
       else if (input_property=="opacity")
