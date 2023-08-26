@@ -441,8 +441,6 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
   function table_td_border_set(input_id,input_x,input_y,input_borderstyle,input_borderwidth,input_bordercolor){
 	if (document.getElementById("gametable_"+input_id)) {
         var obj = document.getElementById("gametable_"+input_id);
-		console.log(input_x);
-		console.log(input_y);
 		if (input_x==-1&&input_y==-1) {
 			for (var i = 0; i < obj.rows.length; i++) {
 				for (var j = 0; j < obj.rows[0].cells.length; j++) {
@@ -606,12 +604,16 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
 	var obj = document.getElementById("gametable_"+input_id);
 	if (obj) {
 		if (input_x==-1) {
-			for (var i = 0; i < obj.rows.length; i++) {
-				document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+i).innerHTML = "<font face='" + input_fontname + "' size='" + input_fontsize + "' color='" + input_color + "'>" + input_text + "</font>";
+			for (var i = 0; i < obj.rows[0].cells.length; i++) {
+				if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+i)) {
+					document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+i).innerHTML = "<font face='" + input_fontname + "' size='" + input_fontsize + "' color='" + input_color + "'>" + input_text + "</font>";
+				}
 			}  
 		} else if (input_y==-1) {
-			for (var j = 0; j < obj.rows[0].cells.length; j++) {
-				document.getElementById("gametable_td_"+input_id+"_"+j+"_"+input_x).innerHTML = "<font face='" + input_fontname + "' size='" + input_fontsize + "' color='" + input_color + "'>" + input_text + "</font>";
+			for (var j = 0; j < obj.rows.length; j++) {
+				if (document.getElementById("gametable_td_"+input_id+"_"+j+"_"+input_x)) {
+					document.getElementById("gametable_td_"+input_id+"_"+j+"_"+input_x).innerHTML = "<font face='" + input_fontname + "' size='" + input_fontsize + "' color='" + input_color + "'>" + input_text + "</font>";
+				}
 			} 
 		} else if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x)) {
 		  document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x).innerHTML = "<font face='" + input_fontname + "' size='" + input_fontsize + "' color='" + input_color + "'>" + input_text + "</font>";
