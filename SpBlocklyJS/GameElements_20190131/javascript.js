@@ -38,123 +38,6 @@ Blockly.JavaScript['table_insert_col'] = function(block){
 
 
 
-Blockly.JavaScript['fetch_get'] = function (block) {
-  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_url_ = Blockly.JavaScript.valueToCode(block, 'url_', Blockly.JavaScript.ORDER_ATOMIC); 
-  var value_datatype_ = block.getFieldValue('datatype_');
-  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
-    value_id_ = value_id_.substring(1,value_id_.length-1);
-  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
-    value_id_ = value_id_.substring(1,value_id_.length-1);  
-  var statements_do = Blockly.JavaScript.statementToCode(block, 'do');
-
-  Blockly.JavaScript.definitions_['fetchData_'+value_id_.replace(/'/g,"")] = 'var fetchData_'+value_id_.replace(/'/g,"")+';';
-
-  var value_response_ = "response";
-  if (value_datatype_=="json")
-	  value_response_ = "return response.json();";
-  else if (value_datatype_=="text")
-	  value_response_ = "return response.text();";
-  else if (value_datatype_=="blob")
-	  value_response_ = "return response.blob();";
-  
-  var code = 'fetch('+value_url_+')\n.then(function (response) {\n    '+value_response_+'\n})\n.then(function (data) {\n    fetchData_'+value_id_.replace(/'/g,"")+'=data;\n  '+ statements_do +'\n})\n.catch(\n(error) => {\n    console.log(`Error: ${error}`);\n}\n);';
-
-  return code;
-};
-
-Blockly.JavaScript['fetch_getdata'] = function (block) {
-  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_format_ = block.getFieldValue('format_');
-  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
-    value_id_ = value_id_.substring(1,value_id_.length-1);
-  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
-    value_id_ = value_id_.substring(1,value_id_.length-1);  
-
-  if (value_format_=="JSON to String")
-	var code = 'JSON.stringify(fetchData_'+value_id_.replace(/'/g,"")+')';
-  else if (value_format_=="BLOB to ObjectURL")
-	var code = 'URL.createObjectURL(fetchData_'+value_id_.replace(/'/g,"")+')';
-  else
-	var code = 'fetchData_'+value_id_.replace(/'/g,"");
-  
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
-Blockly.JavaScript['text_br'] = function (block) {
-  var code = "'"+this.getFieldValue("newline")+"'";
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
-Blockly.JavaScript['procedures_return'] = function (block) {
-  var value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'return ' + value_ + ';\n';
-  return code;
-};
-
-Blockly.JavaScript['urlcode'] = function (block) {
-  var command = block.getFieldValue('command');
-  var url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  var code = command+'('+url+')';
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
-Blockly.JavaScript['code_text'] = function (block) {
-  var code = Blockly.JavaScript.valueToCode(block, 'code', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  if ((code.indexOf("'")==0)&&(code.lastIndexOf("'")==code.length-1))
-    code = code.substring(1,code.length-1);
-  if ((code.indexOf('"')==0)&&(code.lastIndexOf('"')==code.length-1))
-    code = code.substring(1,code.length-1);	
-  return code;
-};
-
-Blockly.JavaScript['document_exitFullscreen'] = function (block) {
-  var code = 'parent.document.exitFullscreen();\n';  
-  return code;
-};
-
-Blockly.JavaScript['window_messagebox'] = function (block) {
-  var message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC); 
-  var code = 'alert('+message+');\n';  
-  return code;
-};
-
-Blockly.JavaScript['window_confirm'] = function (block) {
-  var message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC); 	
-  var statements_yes = Blockly.JavaScript.statementToCode(block, 'yes');
-  var statements_no = Blockly.JavaScript.statementToCode(block, 'no');  
-  var code = 'var windowConfirm = window.confirm('+message+');\nif (windowConfirm==true) {\n  '+statements_yes +'\n}\nelse {\n  '+ statements_no + '\n}\n';  
-  return code;
-};
-
-Blockly.JavaScript['system_datetime_get'] = function (block) {
-  var newdate = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('newdate'), Blockly.VARIABLE_CATEGORY_NAME);	
-  var type = block.getFieldValue('type');
-  var code = 'getDatetime('+newdate+', "' + type + '")';
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
-Blockly.JavaScript['system_datetime_set'] = function (block) {
-  var newdate = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('newdate'), Blockly.VARIABLE_CATEGORY_NAME);
-  var years = Blockly.JavaScript.valueToCode(block, 'years', Blockly.JavaScript.ORDER_ATOMIC)||0;
-  var months = Blockly.JavaScript.valueToCode(block, 'months', Blockly.JavaScript.ORDER_ATOMIC)||0;  
-  var days = Blockly.JavaScript.valueToCode(block, 'days', Blockly.JavaScript.ORDER_ATOMIC)||0;
-  var hours = Blockly.JavaScript.valueToCode(block, 'hours', Blockly.JavaScript.ORDER_ATOMIC)||0;
-  var minutes = Blockly.JavaScript.valueToCode(block, 'minutes', Blockly.JavaScript.ORDER_ATOMIC)||0;
-  var seconds = Blockly.JavaScript.valueToCode(block, 'seconds', Blockly.JavaScript.ORDER_ATOMIC)||0; 
-  var code = newdate + ' = setDatetime('+years+', '+months+', '+days+', '+hours+', '+minutes+', '+seconds+');\n';
-  return code;
-};
-
-Blockly.JavaScript['include_file'] = function (block) {
-  var type = block.getFieldValue('type');
-  var position = block.getFieldValue('position');
-  var value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC); 
-  if (type=="css") position = "";
-  
-  var code = 'include_file("'+type+'", "'+position+'", '+value+');\n';
-  return code;
-};
 
 Blockly.JavaScript['table_create'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
@@ -2217,4 +2100,122 @@ Blockly.JavaScript['image_binarytobase64'] = function (block) {
   var value_array = Blockly.JavaScript.valueToCode(block, 'array_', Blockly.JavaScript.ORDER_ATOMIC);
   var code = '"data:image/jpeg;base64,"+ binarytobase64('+value_array+')';
   return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['fetch_get'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_url_ = Blockly.JavaScript.valueToCode(block, 'url_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_datatype_ = block.getFieldValue('datatype_');
+  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);  
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do');
+
+  Blockly.JavaScript.definitions_['fetchData_'+value_id_.replace(/'/g,"")] = 'var fetchData_'+value_id_.replace(/'/g,"")+';';
+
+  var value_response_ = "response";
+  if (value_datatype_=="json")
+	  value_response_ = "return response.json();";
+  else if (value_datatype_=="text")
+	  value_response_ = "return response.text();";
+  else if (value_datatype_=="blob")
+	  value_response_ = "return response.blob();";
+  
+  var code = 'fetch('+value_url_+')\n.then(function (response) {\n    '+value_response_+'\n})\n.then(function (data) {\n    fetchData_'+value_id_.replace(/'/g,"")+'=data;\n  '+ statements_do +'\n})\n.catch(\n(error) => {\n    console.log(`Error: ${error}`);\n}\n);';
+
+  return code;
+};
+
+Blockly.JavaScript['fetch_getdata'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_format_ = block.getFieldValue('format_');
+  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);  
+
+  if (value_format_=="JSON to String")
+	var code = 'JSON.stringify(fetchData_'+value_id_.replace(/'/g,"")+')';
+  else if (value_format_=="BLOB to ObjectURL")
+	var code = 'URL.createObjectURL(fetchData_'+value_id_.replace(/'/g,"")+')';
+  else
+	var code = 'fetchData_'+value_id_.replace(/'/g,"");
+  
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['text_br'] = function (block) {
+  var code = "'"+this.getFieldValue("newline")+"'";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['procedures_return'] = function (block) {
+  var value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'return ' + value_ + ';\n';
+  return code;
+};
+
+Blockly.JavaScript['urlcode'] = function (block) {
+  var command = block.getFieldValue('command');
+  var url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var code = command+'('+url+')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['code_text'] = function (block) {
+  var code = Blockly.JavaScript.valueToCode(block, 'code', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  if ((code.indexOf("'")==0)&&(code.lastIndexOf("'")==code.length-1))
+    code = code.substring(1,code.length-1);
+  if ((code.indexOf('"')==0)&&(code.lastIndexOf('"')==code.length-1))
+    code = code.substring(1,code.length-1);	
+  return code;
+};
+
+Blockly.JavaScript['document_exitFullscreen'] = function (block) {
+  var code = 'parent.document.exitFullscreen();\n';  
+  return code;
+};
+
+Blockly.JavaScript['window_messagebox'] = function (block) {
+  var message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC); 
+  var code = 'alert('+message+');\n';  
+  return code;
+};
+
+Blockly.JavaScript['window_confirm'] = function (block) {
+  var message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC); 	
+  var statements_yes = Blockly.JavaScript.statementToCode(block, 'yes');
+  var statements_no = Blockly.JavaScript.statementToCode(block, 'no');  
+  var code = 'var windowConfirm = window.confirm('+message+');\nif (windowConfirm==true) {\n  '+statements_yes +'\n}\nelse {\n  '+ statements_no + '\n}\n';  
+  return code;
+};
+
+Blockly.JavaScript['system_datetime_get'] = function (block) {
+  var newdate = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('newdate'), Blockly.VARIABLE_CATEGORY_NAME);	
+  var type = block.getFieldValue('type');
+  var code = 'getDatetime('+newdate+', "' + type + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['system_datetime_set'] = function (block) {
+  var newdate = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('newdate'), Blockly.VARIABLE_CATEGORY_NAME);
+  var years = Blockly.JavaScript.valueToCode(block, 'years', Blockly.JavaScript.ORDER_ATOMIC)||0;
+  var months = Blockly.JavaScript.valueToCode(block, 'months', Blockly.JavaScript.ORDER_ATOMIC)||0;  
+  var days = Blockly.JavaScript.valueToCode(block, 'days', Blockly.JavaScript.ORDER_ATOMIC)||0;
+  var hours = Blockly.JavaScript.valueToCode(block, 'hours', Blockly.JavaScript.ORDER_ATOMIC)||0;
+  var minutes = Blockly.JavaScript.valueToCode(block, 'minutes', Blockly.JavaScript.ORDER_ATOMIC)||0;
+  var seconds = Blockly.JavaScript.valueToCode(block, 'seconds', Blockly.JavaScript.ORDER_ATOMIC)||0; 
+  var code = newdate + ' = setDatetime('+years+', '+months+', '+days+', '+hours+', '+minutes+', '+seconds+');\n';
+  return code;
+};
+
+Blockly.JavaScript['include_file'] = function (block) {
+  var type = block.getFieldValue('type');
+  var position = block.getFieldValue('position');
+  var value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC); 
+  if (type=="css") position = "";
+  
+  var code = 'include_file("'+type+'", "'+position+'", '+value+');\n';
+  return code;
 };

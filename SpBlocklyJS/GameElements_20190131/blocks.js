@@ -275,273 +275,6 @@ var module$contents$Blockly$blocks$TABLE_COL_MUTATOR_MIXIN={
 Blockly.Extensions.registerMutator("table_insert_col_mutator",module$contents$Blockly$blocks$TABLE_COL_MUTATOR_MIXIN,null,["table_insert_col_value"]);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-Blockly.Blocks['fetch_get'] = {
-  init: function () {
-  this.appendDummyInput()   
-      .appendField(Blockly.Msg.FETCH);
-  this.appendValueInput("id_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.FETCH_ID); 
-  this.appendValueInput("url_")
-      .setCheck(null)
-      .appendField(Blockly.Msg.FETCH_URL); 
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.FETCH_DATATYPE)
-      .appendField(new Blockly.FieldDropdown([["json","json"],["text","text"], ["blob","blob"]]), "datatype_"); 
-  this.appendStatementInput("do")
-      .appendField(Blockly.Msg.FETCH_RESPONSE);	  
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(350);
-  }
-};
-
-Blockly.Blocks['fetch_getdata'] = {
-  init: function () {
-  this.appendDummyInput()   
-      .appendField(Blockly.Msg.FETCH);
-  this.appendValueInput("id_")
-      .setCheck(null)
-      .appendField(Blockly.Msg.FETCH_ID);
-  this.appendDummyInput()   
-      .appendField(Blockly.Msg.FETCH_GETDATA);
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.FETCH_FORMAT)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.FETCH_FORMAT_DEFAULT,""], [Blockly.Msg.FETCH_FORMAT_JSON,"JSON to String"], [Blockly.Msg.FETCH_FORMAT_BLOB,"BLOB to ObjectURL"]]), "format_"); 	  
-  this.setInputsInline(true);
-  this.setOutput(true, null); 
-  this.setColour(350);
-  }
-};
-
-Blockly.Blocks['text_br'] = {
-  init: function() {	
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["MSG_NEWLINE"]);
-  this.appendDummyInput()
-      .appendField(new Blockly.FieldDropdown([
-	  ["<br>","<br>"]
-	  ,["\\n","\\n"]
-	  ,["\\\\n","\\\\n"]
-	  ]), "newline"); 		
-  this.setInputsInline(true);
-  this.setOutput(true, null);
-  this.setColour(160);  
-  }
-};
-
-Blockly.Blocks['procedures_return'] = {
-  init: function () {
-    this.appendValueInput("value_")
-        .setCheck(null)
-        .appendField(Blockly.Msg["PROCEDURES_DEFRETURN_RETURN"]);   
-    this.setInputsInline(true);    
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(Blockly.Msg["PROCEDURES_HUE"]);
-  }
-};
-
-Blockly.Blocks['urlcode'] = {
-  init: function () {	  
-  this.appendDummyInput()
-      .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg["ENCODEURI"],"encodeURI"],
-		[Blockly.Msg["DECODEURI"],"decodeURI"]	
-	  ]), "command");
-  this.appendValueInput("url")
-      .setCheck(null);	  
-  this.setInputsInline(true);
-  this.setOutput(true, null); 
-  this.setColour(80);
-  }
-};
-
-Blockly.Blocks['code_text'] = {
-  init: function () {
-  this.appendValueInput("code")
-      .appendField(Blockly.Msg["CODE_TEXT"])
-      .setCheck(null);	  
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  }
-};
-
-Blockly.Blocks['document_exitFullscreen'] = {
-  init: function () {
-  this.appendDummyInput()
-	  .appendField(Blockly.Msg["DOCUMENT_EXITFULLSCREEN"]);
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(180);
-  }
-};
-
-Blockly.Blocks['window_messagebox'] = {
-  init: function () {
-  this.appendValueInput("message")
-	  .appendField(Blockly.Msg["WINDOW_MESSAGEBOX"])
-      .setCheck(null);
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(250);
-  }
-};
-
-Blockly.Blocks['window_confirm'] = {
-  init: function () {
-  this.appendValueInput("message")
-	  .appendField(Blockly.Msg["WINDOW_CONFIRM"])
-      .setCheck("String");
-  this.appendDummyInput()
-	  .appendField(Blockly.Msg["WINDOW_CONFIRM_YES"]); 
-  this.appendStatementInput("yes");
-  this.appendDummyInput()
-      .appendField(Blockly.Msg["WINDOW_CONFIRM_NO"]);   
-  this.appendStatementInput("no");
-  this.setInputsInline(false);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(250);
-  }
-};
-
-Blockly.Blocks['system_datetime_get'] = {
-  init: function () {
-  this.appendDummyInput()
-      .appendField(new Blockly.FieldVariable(), 'newdate');	  
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.GET);
-  this.appendDummyInput()
-      .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg["SYSTEM_DATETIME_DATETIME"],"datetime"],
-		[Blockly.Msg["SYSTEM_DATETIME_DATE"],"date"],
-		[Blockly.Msg["SYSTEM_DATETIME_TIME"],"time"],
-		[Blockly.Msg["SYSTEM_DATETIME_YEAR"],"year"],
-		[Blockly.Msg["SYSTEM_DATETIME_MONTH"],"month"],
-		[Blockly.Msg["SYSTEM_DATETIME_DAY"],"day"],
-		[Blockly.Msg["SYSTEM_DATETIME_WEEK"],"week"],
-		[Blockly.Msg["SYSTEM_DATETIME_HOUR"],"hour"],
-		[Blockly.Msg["SYSTEM_DATETIME_MINUTE"],"minute"],
-		[Blockly.Msg["SYSTEM_DATETIME_SECOND"],"second"]		
-	  ]), "type");	  
-  this.setInputsInline(true);
-  this.setOutput(true, null); 
-  this.setColour(50);
-  }
-};
-
-Blockly.Blocks['system_datetime_set'] = {
-  init: function () {
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.SET);	  
-  this.appendDummyInput()
-	  .appendField(new Blockly.FieldVariable(), 'newdate')
-      .appendField(Blockly.Msg["SYSTEM_DATETIME"]); 
-  this.appendDummyInput()
-      .appendField(new Blockly.FieldDropdown([
-		["　",""],
-		[Blockly.Msg["SYSTEM_DATETIME_ADD"],"add"]	
-	  ],this.validate), "type");	  
-  this.appendValueInput("years")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg["SYSTEM_DATETIME_YEARS"]);
-  this.appendValueInput("months")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg["SYSTEM_DATETIME_MONTHS"]); 	  
-  this.appendValueInput("days")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg["SYSTEM_DATETIME_DAYS"]);
-  this.appendValueInput("hours")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg["SYSTEM_DATETIME_HOURS"]);
-  this.appendValueInput("minutes")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg["SYSTEM_DATETIME_MINUTES"]);	 
-  this.appendValueInput("seconds")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg["SYSTEM_DATETIME_SECONDS"]);	  	  
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(50);
-  },
-  validate: function(newValue) {
-	const block = this.sourceBlock_;
-	if (newValue=="add") {
-		block.getInput("years").setVisible(true);
-		block.getInput("months").setVisible(true);
-		block.getInput("days").setVisible(true);
-		block.getInput("hours").setVisible(true);
-		block.getInput("minutes").setVisible(true);
-		block.getInput("seconds").setVisible(true);		
-	}
-	else if (newValue=="") {
-		block.getInput("years").setVisible(false);
-		block.getInput("months").setVisible(false);
-		block.getInput("days").setVisible(false);
-		block.getInput("hours").setVisible(false);
-		block.getInput("minutes").setVisible(false);
-		block.getInput("seconds").setVisible(false);	
-	}
-  }
-};
-
-Blockly.Blocks['include_file'] = {
-  init: function() {
-  this.appendDummyInput() 
-      .appendField(Blockly.Msg.INCLUDE);      
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.INCLUDE_TYPE) 
-      .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.INCLUDE_JS,"js"], [Blockly.Msg.INCLUDE_CSS,"css"]],this.validate), "type");
-  this.appendDummyInput("pos")  
-      .appendField(Blockly.Msg.INCLUDE_POSITION)
-      .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.INCLUDE_HEADER,"header"], [Blockly.Msg.INCLUDE_HERE,"here"]]), "position");	  
-  this.appendValueInput("value")
-      .appendField(Blockly.Msg.INCLUDE_URL)   
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .setCheck(null);    
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(50);
-  },
-  validate: function(newValue) {
-	const block = this.sourceBlock_;
-	if (newValue=="js") {
-		block.getInput("pos").setVisible(true);
-	}
-	else if (newValue=="css") {
-		block.getInput("pos").setVisible(false);
-	}
-  }
-};
-
 Blockly.Blocks['table_create'] = {
   init: function() {
   this.appendDummyInput()     
@@ -5738,5 +5471,260 @@ Blockly.Blocks['image_binarytobase64'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(60);   
+  }
+};
+
+Blockly.Blocks['fetch_get'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.FETCH);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.FETCH_ID); 
+  this.appendValueInput("url_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.FETCH_URL); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FETCH_DATATYPE)
+      .appendField(new Blockly.FieldDropdown([["json","json"],["text","text"], ["blob","blob"]]), "datatype_"); 
+  this.appendStatementInput("do")
+      .appendField(Blockly.Msg.FETCH_RESPONSE);	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(350);
+  }
+};
+
+Blockly.Blocks['fetch_getdata'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.FETCH);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.FETCH_ID);
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.FETCH_GETDATA);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FETCH_FORMAT)
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.FETCH_FORMAT_DEFAULT,""], [Blockly.Msg.FETCH_FORMAT_JSON,"JSON to String"], [Blockly.Msg.FETCH_FORMAT_BLOB,"BLOB to ObjectURL"]]), "format_"); 	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(350);
+  }
+};
+
+Blockly.Blocks['text_br'] = {
+  init: function() {	
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["MSG_NEWLINE"]);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+	  ["<br>","<br>"]
+	  ,["\\n","\\n"]
+	  ,["\\\\n","\\\\n"]
+	  ]), "newline"); 		
+  this.setInputsInline(true);
+  this.setOutput(true, null);
+  this.setColour(160);  
+  }
+};
+
+Blockly.Blocks['procedures_return'] = {
+  init: function () {
+    this.appendValueInput("value_")
+        .setCheck(null)
+        .appendField(Blockly.Msg["PROCEDURES_DEFRETURN_RETURN"]);   
+    this.setInputsInline(true);    
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(Blockly.Msg["PROCEDURES_HUE"]);
+  }
+};
+
+Blockly.Blocks['urlcode'] = {
+  init: function () {	  
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["ENCODEURI"],"encodeURI"],
+		[Blockly.Msg["DECODEURI"],"decodeURI"]	
+	  ]), "command");
+  this.appendValueInput("url")
+      .setCheck(null);	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(80);
+  }
+};
+
+Blockly.Blocks['code_text'] = {
+  init: function () {
+  this.appendValueInput("code")
+      .appendField(Blockly.Msg["CODE_TEXT"])
+      .setCheck(null);	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  }
+};
+
+Blockly.Blocks['document_exitFullscreen'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg["DOCUMENT_EXITFULLSCREEN"]);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(180);
+  }
+};
+
+Blockly.Blocks['window_messagebox'] = {
+  init: function () {
+  this.appendValueInput("message")
+	  .appendField(Blockly.Msg["WINDOW_MESSAGEBOX"])
+      .setCheck(null);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(250);
+  }
+};
+
+Blockly.Blocks['window_confirm'] = {
+  init: function () {
+  this.appendValueInput("message")
+	  .appendField(Blockly.Msg["WINDOW_CONFIRM"])
+      .setCheck("String");
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg["WINDOW_CONFIRM_YES"]); 
+  this.appendStatementInput("yes");
+  this.appendDummyInput()
+      .appendField(Blockly.Msg["WINDOW_CONFIRM_NO"]);   
+  this.appendStatementInput("no");
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(250);
+  }
+};
+
+Blockly.Blocks['system_datetime_get'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldVariable(), 'newdate');	  
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.GET);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["SYSTEM_DATETIME_DATETIME"],"datetime"],
+		[Blockly.Msg["SYSTEM_DATETIME_DATE"],"date"],
+		[Blockly.Msg["SYSTEM_DATETIME_TIME"],"time"],
+		[Blockly.Msg["SYSTEM_DATETIME_YEAR"],"year"],
+		[Blockly.Msg["SYSTEM_DATETIME_MONTH"],"month"],
+		[Blockly.Msg["SYSTEM_DATETIME_DAY"],"day"],
+		[Blockly.Msg["SYSTEM_DATETIME_WEEK"],"week"],
+		[Blockly.Msg["SYSTEM_DATETIME_HOUR"],"hour"],
+		[Blockly.Msg["SYSTEM_DATETIME_MINUTE"],"minute"],
+		[Blockly.Msg["SYSTEM_DATETIME_SECOND"],"second"]		
+	  ]), "type");	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(50);
+  }
+};
+
+Blockly.Blocks['system_datetime_set'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.SET);	  
+  this.appendDummyInput()
+	  .appendField(new Blockly.FieldVariable(), 'newdate')
+      .appendField(Blockly.Msg["SYSTEM_DATETIME"]); 
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		["　",""],
+		[Blockly.Msg["SYSTEM_DATETIME_ADD"],"add"]	
+	  ],this.validate), "type");	  
+  this.appendValueInput("years")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg["SYSTEM_DATETIME_YEARS"]);
+  this.appendValueInput("months")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg["SYSTEM_DATETIME_MONTHS"]); 	  
+  this.appendValueInput("days")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg["SYSTEM_DATETIME_DAYS"]);
+  this.appendValueInput("hours")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg["SYSTEM_DATETIME_HOURS"]);
+  this.appendValueInput("minutes")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg["SYSTEM_DATETIME_MINUTES"]);	 
+  this.appendValueInput("seconds")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg["SYSTEM_DATETIME_SECONDS"]);	  	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(50);
+  },
+  validate: function(newValue) {
+	const block = this.sourceBlock_;
+	if (newValue=="add") {
+		block.getInput("years").setVisible(true);
+		block.getInput("months").setVisible(true);
+		block.getInput("days").setVisible(true);
+		block.getInput("hours").setVisible(true);
+		block.getInput("minutes").setVisible(true);
+		block.getInput("seconds").setVisible(true);		
+	}
+	else if (newValue=="") {
+		block.getInput("years").setVisible(false);
+		block.getInput("months").setVisible(false);
+		block.getInput("days").setVisible(false);
+		block.getInput("hours").setVisible(false);
+		block.getInput("minutes").setVisible(false);
+		block.getInput("seconds").setVisible(false);	
+	}
+  }
+};
+
+Blockly.Blocks['include_file'] = {
+  init: function() {
+  this.appendDummyInput() 
+      .appendField(Blockly.Msg.INCLUDE);      
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.INCLUDE_TYPE) 
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.INCLUDE_JS,"js"], [Blockly.Msg.INCLUDE_CSS,"css"]],this.validate), "type");
+  this.appendDummyInput("pos")  
+      .appendField(Blockly.Msg.INCLUDE_POSITION)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.INCLUDE_HEADER,"header"], [Blockly.Msg.INCLUDE_HERE,"here"]]), "position");	  
+  this.appendValueInput("value")
+      .appendField(Blockly.Msg.INCLUDE_URL)   
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null);    
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(50);
+  },
+  validate: function(newValue) {
+	const block = this.sourceBlock_;
+	if (newValue=="js") {
+		block.getInput("pos").setVisible(true);
+	}
+	else if (newValue=="css") {
+		block.getInput("pos").setVisible(false);
+	}
   }
 };

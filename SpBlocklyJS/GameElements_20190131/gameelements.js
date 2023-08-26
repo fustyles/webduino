@@ -4276,6 +4276,8 @@ function HextoRgb(color) {
   window.table_td_insert_text = table_td_insert_text;
   window.table_td_clear = table_td_clear;
   window.table_delete = table_delete;
+  window.table_insert_row = table_insert_row; 
+  window.table_insert_col = table_insert_col;    
   window.music_create = music_create;
   window.music_delete = music_delete;
   window.canvas_create =  canvas_create;
@@ -4428,7 +4430,5 @@ function HextoRgb(color) {
   window.include_file = include_file; 
   window.getDatetime = getDatetime;  
   window.setDatetime = setDatetime;
-  window.table_insert_row = table_insert_row; 
-  window.table_insert_col = table_insert_col;  
   
 }(window, window.document));
