@@ -311,6 +311,7 @@ Blockly.Blocks['table_td_border_set'] = {
   },
   validate: function(newValue) {
 	 const block = this.sourceBlock_;
+	 if (!block) return;
 	 if (newValue=="col") {
 		 block.getInput("x_").setVisible(true);
 		 block.getInput("y_").setVisible(false);
@@ -603,6 +604,7 @@ Blockly.Blocks['table_td_insert_text'] = {
   },
   validate: function(newValue) {
 	 const block = this.sourceBlock_;
+	 if (!block) return;
 	 if (newValue=="col") {
 		 block.getInput("x_").setVisible(true);
 		 block.getInput("y_").setVisible(false);
@@ -735,6 +737,7 @@ Blockly.Blocks['include_file'] = {
   },
   validate: function(newValue) {
 	const block = this.sourceBlock_;
+	if (!block) return;
 	if (newValue=="js") {
 		block.getInput("pos").setVisible(true);
 	}
@@ -5312,6 +5315,7 @@ Blockly.Blocks['system_datetime_set'] = {
   },
   validate: function(newValue) {
 	const block = this.sourceBlock_;
+	if (!block) return;
 	if (newValue=="add") {
 		block.getInput("years").setVisible(true);
 		block.getInput("months").setVisible(true);
