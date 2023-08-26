@@ -11,7 +11,7 @@
   var onclicktimerid;
   var mouse_pageX,mouse_pageY,mouse_offsetX,mouse_offsetY,mouse_clientX,mouse_clientY,mouse_screenX,mouse_screenY;
   var ImageWidth,ImageHeight;
-                      
+
   function table_create(input_id,input_width,input_height,input_left,input_top,input_trcount,input_tdcount,input_borderstyle,input_borderwidth,input_bordercolor,input_bgcolor,input_zindex,input_display) {
     if (document.getElementById("gametable_"+input_id)) 
       document.getElementById("gametable_"+input_id).parentNode.removeChild(document.getElementById("gametable_"+input_id));
@@ -22,7 +22,7 @@
       obj.style.left = input_left + 'px';
       obj.style.top = input_top + 'px';
       obj.style.zIndex = input_zindex;
-      obj.style.borderCollapse = "collapse";
+	  obj.style.borderCollapse = "collapse";
       obj.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor;
       if (input_display==0)
         obj.style.display = "none";
@@ -223,60 +223,195 @@
       }
     }  
   }
-
-  function table_change_colsrows(input_id,input_target,input_cmd,input_index) {
-    if (document.getElementById("gametable_"+input_id)) {
-      var obj = document.getElementById("gametable_"+input_id);
-      if (input_cmd=="remove") {
-        if (input_target=="row")
-  	  obj.deleteRow(input_index);
-        else if (input_target=="col") {  
-	  for (var i=0;i<obj.rows.length;i++) {
-	    var row = obj.rows[i];
-            row.deleteCell(input_index);
-	  }
+  
+function table_insert_row(input_id, input_cmd, input_row, input_value) {
+    if (document.getElementById("gametable_" + input_id)) {
+        var obj = document.getElementById("gametable_" + input_id);
+		var data = input_value.split("|");
+        if (input_cmd == "insertfirst") {
+            var row = obj.insertRow(0);
+            for (var j = 0; j < data.length; j++) {
+                let col = row.insertCell(j);
+				col.innerText = data[j];
+				col.style.textAlign = "center";
+				col.style.verticalAlign = "middle";
+				col.style.background = row.cells[0].style.background;
+				col.style.width = row.cells[0].style.width;
+				col.style.height = row.cells[0].style.height;
+				col.setAttribute("onclick", "javascript:onclickid_set(this);");
+				col.setAttribute("ondragover", "javascript:event.preventDefault();");
+            }
+        } else if (input_cmd == "insertone") {
+			var row = obj.insertRow(input_row);
+            for (var j = 0; j < data.length; j++) {
+                let col = row.insertCell(j);
+				col.innerText = data[j];
+				col.style.textAlign = "center";
+				col.style.verticalAlign = "middle";
+				col.style.background = row.cells[0].style.background;
+				col.style.width = row.cells[0].style.width;
+				col.style.height = row.cells[0].style.height;
+				col.setAttribute("onclick", "javascript:onclickid_set(this);");
+				col.setAttribute("ondragover", "javascript:event.preventDefault();");
+            }		
+        } else if (input_cmd == "insertlast") {
+			var row = obj.insertRow(-1);
+            for (var j = 0; j < data.length; j++) {
+                let col = row.insertCell(j);
+				col.innerText = data[j];
+				col.style.textAlign = "center";
+				col.style.verticalAlign = "middle";
+				col.style.background = row.cells[0].style.background;
+				col.style.width = row.cells[0].style.width;
+				col.style.height = row.cells[0].style.height;
+				col.setAttribute("onclick", "javascript:onclickid_set(this);");
+				col.setAttribute("ondragover", "javascript:event.preventDefault();");
+            }
+        } else if (input_cmd == "update") {
+			var row = obj.rows[input_row];
+            for (var j = 0; j < data.length; j++) {
+                row.cells[j].innerText = data[j];
+				row.cells[j].style.textAlign = "center";
+				row.cells[j].style.verticalAlign = "middle";
+				row.cells[j].style.background = row.cells[0].style.background;
+				row.cells[j].style.width = row.cells[0].style.width;
+				row.cells[j].style.height = row.cells[0].style.height;
+				row.cells[j].setAttribute("onclick", "javascript:onclickid_set(this);");
+				row.cells[j].setAttribute("ondragover", "javascript:event.preventDefault();");				
+            }
         }
-      }
-      else if (input_cmd=="add") {
-        if (input_target=="row") {
-  	  obj.insertRow(input_index);
-	  for (var i=0;i<obj.rows[0].cells.length;i++) {
-	    var row = obj.rows[input_index];
-            row.insertCell(i);
-	    row.cells[i].style.textAlign="center";
-	    row.cells[i].style.verticalAlign = "middle";
-	    row.cells[i].style.background = obj.rows[0].cells[i].style.background;
-	    row.cells[i].style.width = obj.rows[0].cells[i].style.width;
-	    row.cells[i].style.height = obj.rows[0].cells[i].style.height;
-	    row.cells[i].setAttribute("onclick", "javascript:onclickid_set(this);");
-	    row.cells[i].setAttribute("ondragover","javascript:event.preventDefault();"); 		  
-	  }	      
-	}
-        else if (input_target=="col") {  
-	  for (var i=0;i<obj.rows.length;i++) {
-	    var row = obj.rows[i];
-            row.insertCell(input_index);
-	    row.cells[input_index].style.textAlign="center";
-	    row.cells[input_index].style.verticalAlign = "middle";
-	    row.cells[input_index].style.background = row.cells[0].style.background;
-	    row.cells[input_index].style.width = row.cells[0].style.width;
-	    row.cells[input_index].style.height = row.cells[0].style.height;
-	    row.cells[input_index].setAttribute("onclick", "javascript:onclickid_set(this);");
-	    row.cells[input_index].setAttribute("ondragover","javascript:event.preventDefault();"); 		  
-	  }
-        }
-      }	    
-      if (obj.rows.length>0) {
-	if (obj.rows[0].cells.length>0) {
-	  for (var i=0;i<obj.rows.length;i++) {
-	    for (var j=0;j<obj.rows[0].cells.length;j++) {
-	      obj.rows[i].cells[j].id="gametable_td_"+input_id+"_"+i+"_"+j;
-	    }	  	
-	  }
-	}
-      }
+        if (obj.rows.length > 0) {
+            if (obj.rows[0].cells.length > 0) {
+                for (var i = 0; i < obj.rows.length; i++) {
+                    for (var j = 0; j < obj.rows[0].cells.length; j++) {
+                        obj.rows[i].cells[j].id = "gametable_td_" + input_id + "_" + i + "_" + j;
+                    }
+                }
+            }
+        }		
     }
-  }
+} 
+
+function table_insert_col(input_id, input_cmd, input_col, input_value) {
+    if (document.getElementById("gametable_" + input_id)) {
+        var obj = document.getElementById("gametable_" + input_id);
+		var data = input_value.split("|");
+        if (input_cmd == "insertfirst") {
+			for (var i = 0; i < data.length; i++) {
+				var row = obj.rows[i];
+				var col = row.insertCell(0);
+				col.innerText = data[i];
+				col.style.textAlign = "center";
+				col.style.verticalAlign = "middle";
+				col.style.background = row.cells[0].style.background;
+				col.style.width = row.cells[0].style.width;
+				col.style.height = row.cells[0].style.height;
+				col.setAttribute("onclick", "javascript:onclickid_set(this);");
+				col.setAttribute("ondragover", "javascript:event.preventDefault();");
+			}
+        } else if (input_cmd == "insertone") {
+			for (var i = 0; i < data.length; i++) {
+				var row = obj.rows[i];
+				var col = row.insertCell(input_col);
+				col.innerText = data[i];
+				col.style.textAlign = "center";
+				col.style.verticalAlign = "middle";
+				col.style.background = row.cells[0].style.background;
+				col.style.width = row.cells[0].style.width;
+				col.style.height = row.cells[0].style.height;
+				col.setAttribute("onclick", "javascript:onclickid_set(this);");
+				col.setAttribute("ondragover", "javascript:event.preventDefault();");
+			}		
+        } else if (input_cmd == "insertlast") {
+			for (var i = 0; i < data.length; i++) {
+				var row = obj.rows[i];
+				var col = row.insertCell(-1);
+				col.innerText = data[i];
+				col.style.textAlign = "center";
+				col.style.verticalAlign = "middle";
+				col.style.background = row.cells[0].style.background;
+				col.style.width = row.cells[0].style.width;
+				col.style.height = row.cells[0].style.height;
+				col.setAttribute("onclick", "javascript:onclickid_set(this);");
+				col.setAttribute("ondragover", "javascript:event.preventDefault();");
+			}
+        } else if (input_cmd == "update") {
+			for (var i = 0; i < data.length; i++) {
+				var row = obj.rows[i];
+				row.cells[input_col].style.textAlign = "center";
+				row.cells[input_col].innerText = data[i];
+				row.cells[input_col].style.textAlign = "center";
+				row.cells[input_col].style.verticalAlign = "middle";
+				row.cells[input_col].style.background = row.cells[0].style.background;
+				row.cells[input_col].style.width = row.cells[0].style.width;
+				row.cells[input_col].style.height = row.cells[0].style.height;
+				row.cells[input_col].setAttribute("onclick", "javascript:onclickid_set(this);");
+				row.cells[input_col].setAttribute("ondragover", "javascript:event.preventDefault();");
+			}
+        }
+        if (obj.rows.length > 0) {
+            if (obj.rows[0].cells.length > 0) {
+                for (var i = 0; i < obj.rows.length; i++) {
+                    for (var j = 0; j < obj.rows[0].cells.length; j++) {
+                        obj.rows[i].cells[j].id = "gametable_td_" + input_id + "_" + i + "_" + j;
+                    }
+                }
+            }
+        }		
+    }
+} 
+
+function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
+    if (document.getElementById("gametable_" + input_id)) {
+        var obj = document.getElementById("gametable_" + input_id);
+        if (input_cmd == "remove") {
+            if (input_target == "row")
+                obj.deleteRow(input_index);
+            else if (input_target == "col") {
+                for (var i = 0; i < obj.rows.length; i++) {
+                    var row = obj.rows[i];
+                    row.deleteCell(input_index);
+                }
+            }
+        } else if (input_cmd == "add") {
+            if (input_target == "row") {
+                obj.insertRow(input_index);
+                for (var i = 0; i < obj.rows[0].cells.length; i++) {
+                    var row = obj.rows[input_index];
+                    row.insertCell(i);
+                    row.cells[i].style.textAlign = "center";
+                    row.cells[i].style.verticalAlign = "middle";
+                    row.cells[i].style.background = obj.rows[0].cells[i].style.background;
+                    row.cells[i].style.width = obj.rows[0].cells[i].style.width;
+                    row.cells[i].style.height = obj.rows[0].cells[i].style.height;
+                    row.cells[i].setAttribute("onclick", "javascript:onclickid_set(this);");
+                    row.cells[i].setAttribute("ondragover", "javascript:event.preventDefault();");
+                }
+            } else if (input_target == "col") {
+                for (var i = 0; i < obj.rows.length; i++) {
+                    var row = obj.rows[i];
+                    row.insertCell(input_index);
+                    row.cells[input_index].style.textAlign = "center";
+                    row.cells[input_index].style.verticalAlign = "middle";
+                    row.cells[input_index].style.background = row.cells[0].style.background;
+                    row.cells[input_index].style.width = row.cells[0].style.width;
+                    row.cells[input_index].style.height = row.cells[0].style.height;
+                    row.cells[input_index].setAttribute("onclick", "javascript:onclickid_set(this);");
+                    row.cells[input_index].setAttribute("ondragover", "javascript:event.preventDefault();");
+                }
+            }
+        }
+        if (obj.rows.length > 0) {
+            if (obj.rows[0].cells.length > 0) {
+                for (var i = 0; i < obj.rows.length; i++) {
+                    for (var j = 0; j < obj.rows[0].cells.length; j++) {
+                        obj.rows[i].cells[j].id = "gametable_td_" + input_id + "_" + i + "_" + j;
+                    }
+                }
+            }
+        }
+    }
+}
   
   function table_td_set(input_id,input_x,input_y,input_property,input_value){
     if (document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x)) {
@@ -304,10 +439,42 @@
   } 
   
   function table_td_border_set(input_id,input_x,input_y,input_borderstyle,input_borderwidth,input_bordercolor){
-    if (document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x)) {
-      var obj = document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x);
-      obj.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor;
-    } 
+	if (document.getElementById("gametable_"+input_id)) {
+        var obj = document.getElementById("gametable_"+input_id);
+		if (input_x==-1&&input_y==-1) {
+			for (var i = 0; i < obj.rows.length; i++) {
+				for (var j = 0; j < obj.rows[0].cells.length; j++) {
+					if (document.getElementById("gametable_td_"+input_id+"_"+i+'_'+j)) {
+					  var td = document.getElementById("gametable_td_"+input_id+"_"+i+'_'+j);
+					  td.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor;
+					} 
+
+				} 
+			}  
+		}
+		else if (input_x==-1) {
+			for (var j = 0; j < obj.rows[0].cells.length; j++) {
+				if (document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+j)) {
+				  var td = document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+j);
+				  td.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor;
+				} 
+			} 
+		}
+		else if (input_y==-1) {
+			for (var i = 0; i < obj.rows.length; i++) {
+				if (document.getElementById("gametable_td_"+input_id+"_"+i+'_'+input_x)) {
+				  var td = document.getElementById("gametable_td_"+input_id+"_"+i+'_'+input_x);
+				  td.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor;
+				} 
+			}  
+		}
+		else {
+			if (document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x)) {
+			  var td = document.getElementById("gametable_td_"+input_id+"_"+input_y+'_'+input_x);
+			  td.style.border = input_borderwidth +'px ' + input_borderstyle + ' ' + input_bordercolor;
+			} 
+		}
+	}
   }  
   
   function table_td_get(input_id,input_x,input_y,input_property){
@@ -434,8 +601,24 @@
   }
   
   function table_td_insert_text(input_id,input_x,input_y,input_text,input_fontname,input_fontsize,input_color){
-    if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x))
-      document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x).innerHTML = "<font face='" + input_fontname + "' size='" + input_fontsize + "' color='" + input_color + "'>" + input_text + "</font>";
+	var obj = document.getElementById("gametable_"+input_id);
+	if (obj) {
+		if (input_x==-1) {
+			for (var i = 0; i < obj.rows[0].cells.length; i++) {
+				if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+i)) {
+					document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+i).innerHTML = "<font face='" + input_fontname + "' size='" + input_fontsize + "' color='" + input_color + "'>" + input_text + "</font>";
+				}
+			}  
+		} else if (input_y==-1) {
+			for (var j = 0; j < obj.rows.length; j++) {
+				if (document.getElementById("gametable_td_"+input_id+"_"+j+"_"+input_x)) {
+					document.getElementById("gametable_td_"+input_id+"_"+j+"_"+input_x).innerHTML = "<font face='" + input_fontname + "' size='" + input_fontsize + "' color='" + input_color + "'>" + input_text + "</font>";
+				}
+			} 
+		} else if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x)) {
+		  document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x).innerHTML = "<font face='" + input_fontname + "' size='" + input_fontsize + "' color='" + input_color + "'>" + input_text + "</font>";
+		}
+	}
   }  
   
   function table_td_clear(input_id,input_x,input_y){
@@ -4215,6 +4398,8 @@ function HextoRgb(color) {
   window.table_td_insert_text = table_td_insert_text;
   window.table_td_clear = table_td_clear;
   window.table_delete = table_delete;
+  window.table_insert_row = table_insert_row; 
+  window.table_insert_col = table_insert_col;
   window.music_create = music_create;
   window.music_delete = music_delete;
   window.canvas_create =  canvas_create;
