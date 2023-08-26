@@ -1,3 +1,661 @@
+Blockly.Blocks['table_create'] = {
+  init: function() {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE)   
+      .appendField(Blockly.Msg.TABLE_CREATE);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_ID);
+  this.appendValueInput("trcount_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TRCOUNT);    
+  this.appendValueInput("tdcount_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TDCOUNT);   
+  this.appendValueInput("width_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_WIDTH);
+  this.appendValueInput("height_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_HEIGHT); 	  
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.LEFT);    
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TOP); 
+  this.appendValueInput("bgcolor_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_BGCOLOR); 	  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TABLE_BORDERSTYLE)
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.PROPERTY_SOLID,"solid"], 
+	  [Blockly.Msg.PROPERTY_DASHED,"dashed"], 
+	  [Blockly.Msg.PROPERTY_DOUBLE,"double"], 
+	  [Blockly.Msg.PROPERTY_DOTTED,"dotted"], 
+	  [Blockly.Msg.PROPERTY_GROOVE,"groove"], 
+	  [Blockly.Msg.PROPERTY_RIDGE,"ridge"], 
+	  [Blockly.Msg.PROPERTY_INSET,"inset"], 
+	  [Blockly.Msg.PROPERTY_OUTSET,"outset"],  
+	  [Blockly.Msg.PROPERTY_NONE,"none"], 
+	  [Blockly.Msg.PROPERTY_HIDDEN,"hidden"]
+	  ]), "borderstyle_");  
+  this.appendValueInput("borderwidth_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_BORDERWIDTH);       
+  this.appendValueInput("bordercolor_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_BORDERCOLOR);          
+  this.appendValueInput("zindex_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ZINDEX);   
+  this.appendValueInput("display_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.DISPLAY); 
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(240);
+  }
+};
+
+Blockly.Blocks['table_set'] = {
+  init: function() {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE)
+	  .appendField(Blockly.Msg.TABLE_SET);  
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.TABLE_ID);     
+  this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], 
+	  [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], 
+	  [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], 
+	  [Blockly.Msg.PROPERTY_CELLWIDTH,"cellwidth"], 
+	  [Blockly.Msg.PROPERTY_CELLHEIGHT,"cellheight"], 
+	  [Blockly.Msg.PROPERTY_CELLCOLOR,"cellcolor"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUND,"background"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUNDIMAGE,"backgroundimage"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"]
+	  ]), "property_");
+  this.appendValueInput("value_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null);    
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(240);
+  }
+};
+
+Blockly.Blocks['table_get'] = {
+  init: function () {   
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.TABLE_ID); 
+  this.appendDummyInput() 
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.PROPERTY_ONCLICK_COLUMN_ROW,"onclick[Column,Row]"], 
+	  [Blockly.Msg.PROPERTY_ONCLICKIMAGE,"onclickImage"], 
+	  [Blockly.Msg.PROPERTY_COLUMNS,"columns"], 
+	  [Blockly.Msg.PROPERTY_ROWS,"rows"], 
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], 
+	  [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], 
+	  [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUND,"background"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUNDIMAGE,"backgroundimage"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.ELEMENTID,"id"]
+	  ]), "property_");
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(240);
+  }
+};
+
+Blockly.Blocks['table_clear'] = {
+  init: function () {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE)
+	  .appendField(Blockly.Msg.TABLE_CLEAR); 	  
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.TABLE_ID);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(240);
+  }
+};
+
+Blockly.Blocks['table_change_colsrows'] = {
+  init: function () {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE)
+	  .appendField(Blockly.Msg.TABLE_CHANGE_COLSROWS);       
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_ID); 
+  this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)   
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.PROPERTY_ADD,"add"], 
+	  [Blockly.Msg.PROPERTY_REMOVE,"remove"]
+	  ]), "cmd_");  
+  this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField(" ")    
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.PROPERTY_COL,"col"], 
+	  [Blockly.Msg.PROPERTY_ROW,"row"]
+	  ]), "target_");     
+  this.appendValueInput("index_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT);   
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(240);
+  }
+};
+
+Blockly.Blocks['table_td_set'] = {
+  init: function() {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE)
+	  .appendField(Blockly.Msg.TABLE_TD_SET);	  
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.TABLE_ID); 
+  this.appendValueInput("x_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_X);
+  this.appendValueInput("y_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_Y);       
+  this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_TEXTALIGN,"textalign"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUND,"background"], 
+	  [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"]
+	  ]), "property_");
+  this.appendValueInput("value_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null);    
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(240);
+  }
+};
+
+Blockly.Blocks['table_border_set'] = {
+  init: function() {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE)
+	  .appendField(Blockly.Msg.TABLE_BORDER_SET);	  
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.TABLE_ID); 
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.TABLE_BORDERSTYLE)
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.PROPERTY_SOLID,"solid"], 
+	  [Blockly.Msg.PROPERTY_DASHED,"dashed"], 
+	  [Blockly.Msg.PROPERTY_DOUBLE,"double"], 
+	  [Blockly.Msg.PROPERTY_DOTTED,"dotted"], 
+	  [Blockly.Msg.PROPERTY_GROOVE,"groove"], 
+	  [Blockly.Msg.PROPERTY_RIDGE,"ridge"], 
+	  [Blockly.Msg.PROPERTY_INSET,"inset"], 
+	  [Blockly.Msg.PROPERTY_OUTSET,"outset"],  
+	  [Blockly.Msg.PROPERTY_NONE,"none"], 
+	  [Blockly.Msg.PROPERTY_HIDDEN,"hidden"]
+	  ]), "borderstyle_");  
+  this.appendValueInput("borderwidth_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_BORDERWIDTH);       
+  this.appendValueInput("bordercolor_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_BORDERCOLOR);       
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(240);
+  }
+};
+
+Blockly.Blocks['table_td_border_set'] = {
+  init: function() {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE)
+	  .appendField(Blockly.Msg.TABLE_TD_BORDER_SET);    
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_ID); 
+  this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)   
+      .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.PROPERTY_CELL,"cell"], 
+		  [Blockly.Msg.PROPERTY_COLUMN,"col"], 
+		  [Blockly.Msg.PROPERTY_ROW,"row"],
+		  [Blockly.Msg.PROPERTY_CELL_ALL,"all"]
+	  ], this.validate), "target_");	  
+  this.appendValueInput("x_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_X);
+  this.appendValueInput("y_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_Y);       
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TABLE_BORDERSTYLE)
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.PROPERTY_SOLID,"solid"], 
+	  [Blockly.Msg.PROPERTY_DASHED,"dashed"], 
+	  [Blockly.Msg.PROPERTY_DOUBLE,"double"], 
+	  [Blockly.Msg.PROPERTY_DOTTED,"dotted"], 
+	  [Blockly.Msg.PROPERTY_GROOVE,"groove"], 
+	  [Blockly.Msg.PROPERTY_RIDGE,"ridge"], 
+	  [Blockly.Msg.PROPERTY_INSET,"inset"], 
+	  [Blockly.Msg.PROPERTY_OUTSET,"outset"],  
+	  [Blockly.Msg.PROPERTY_NONE,"none"], 
+	  [Blockly.Msg.PROPERTY_HIDDEN,"hidden"]
+	  ], this.validate), "borderstyle_");  
+  this.appendValueInput("borderwidth_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_BORDERWIDTH);       
+  this.appendValueInput("bordercolor_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_BORDERCOLOR);       
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(240);
+  },
+  validate: function(newValue) {
+	 const block = this.sourceBlock_;
+	 if (newValue=="col") {
+		 block.getInput("x_").setVisible(true);
+		 block.getInput("y_").setVisible(false);
+	 }
+	 else if (newValue=="row") {
+		 block.getInput("x_").setVisible(false);
+		 block.getInput("y_").setVisible(true);
+	 }	
+	 else if (newValue=="all") {
+		 block.getInput("x_").setVisible(false);
+		 block.getInput("y_").setVisible(false);
+	 }		 
+	 else {
+		 block.getInput("x_").setVisible(true);
+		 block.getInput("y_").setVisible(true);	 
+	 }	 
+  } 
+};
+
+Blockly.Blocks['table_td_get'] = {
+  init: function () {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE)
+	  .appendField(Blockly.Msg.TABLE_TD_GET);	  
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.TABLE_ID); 
+  this.appendValueInput("x_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_X);
+  this.appendValueInput("y_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_Y); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.PROPERTY)
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUND,"background"], 
+	  [Blockly.Msg.PROPERTY_TEXT_SHOW,"text"], 
+	  [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], 
+	  [Blockly.Msg.PROPERTY_IMAGE,"image"], 
+	  [Blockly.Msg.PROPERTY_CHILDLENGTH,"childlength"], 
+	  [Blockly.Msg.PROPERTY_CHILDID,"childid"], 
+	  [Blockly.Msg.PROPERTY_TDID,"tdid"]
+	  ]), "property_");  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(240);
+  }
+};
+
+Blockly.Blocks['table_td_onclick_do'] = {
+  init: function () {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE);	  
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.TABLE_ID);     
+  this.appendValueInput("x_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.TABLE_TD_X);
+  this.appendValueInput("y_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.TABLE_TD_Y); 
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.TABLE_TD_ONCLICK_DO);    
+  this.appendStatementInput("do_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(240);
+  }
+};
+
+Blockly.Blocks['table_td_insert_img'] = {
+  init: function () {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE)
+	  .appendField(Blockly.Msg.TABLE_TD_INSERT_IMAGE);        
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_ID); 
+  this.appendValueInput("x_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_X);
+  this.appendValueInput("y_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_Y); 
+  this.appendValueInput("imgid_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField(Blockly.Msg.IMAGE)
+      .appendField(Blockly.Msg.ID);      
+  this.appendValueInput("url_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField(Blockly.Msg.IMAGE)
+      .appendField(Blockly.Msg.URL);     
+  this.appendValueInput("width_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField(Blockly.Msg.IMAGE)
+      .appendField(Blockly.Msg.WIDTH);
+  this.appendValueInput("height_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField(Blockly.Msg.IMAGE)
+      .appendField(Blockly.Msg.HEIGHT);   
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(240);
+  }
+};
+
+Blockly.Blocks['table_td_img_move'] = {
+  init: function () {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE);	  
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.TABLE_ID);
+  this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)   
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.IMAGE,"image"], 
+	  [Blockly.Msg.CANVAS,"canvas"]
+	  ]), "element_");  	  
+  this.appendValueInput("imgid_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ID);
+  this.appendValueInput("x_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField(Blockly.Msg.TABLE_TD_IMAGE_MOVE)
+      .appendField(Blockly.Msg.TABLE_TD_X);
+  this.appendValueInput("y_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_Y);     
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(240);
+  }
+};
+
+Blockly.Blocks['table_td_canvas_move'] = {
+  init: function () {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE)
+	  .appendField(Blockly.Msg.TABLE_TD_CANVAS_MOVE);	  
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.TABLE_ID); 
+  this.appendValueInput("canvasid_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.CANVAS_ID);
+  this.appendValueInput("x_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_X);
+  this.appendValueInput("y_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_Y);     
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(240);
+  }
+};
+
+Blockly.Blocks['table_td_copy_move'] = {
+  init: function () {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE)
+	  .appendField(Blockly.Msg.TABLE_TD_COPY_MOVE);       
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_ID); 
+  this.appendValueInput("x0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_X);
+  this.appendValueInput("y0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_Y);     
+this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.PROPERTY_COPYTO,"copy"], 
+	  [Blockly.Msg.PROPERTY_MOVETO,"move"]
+	  ]), "property_");
+  this.appendValueInput("x_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_X);
+  this.appendValueInput("y_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_Y);       
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(240);
+  }
+};
+
+Blockly.Blocks['table_td_img_get'] = {
+  init: function () {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE)
+	  .appendField(Blockly.Msg.TABLE_TD_IMAGE_GET);	  
+  this.appendValueInput("imgid_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.IMAGE_ID); 
+  this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.PROPERTY_COLUMN,"column"], 
+	  [Blockly.Msg.PROPERTY_ROW,"row"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_NATURALWIDTH,"naturalwidth"], 
+	  [Blockly.Msg.PROPERTY_NATURALHEIGHT,"naturalheight"], 
+	  [Blockly.Msg.PROPERTY_IMAGEID,"imageid"]
+	  ]), "property_");  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(240);
+  }
+};
+
+Blockly.Blocks['table_td_insert_text'] = {
+  init: function () {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE)
+	  .appendField(Blockly.Msg.TABLE_TD_INSERT_TEXT);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_ID);
+  this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)   
+      .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.PROPERTY_CELL,"cell"], 
+		  [Blockly.Msg.PROPERTY_COLUMN,"col"], 
+		  [Blockly.Msg.PROPERTY_ROW,"row"]
+	  ], this.validate), "target_");	  
+  this.appendValueInput("x_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_X);
+  this.appendValueInput("y_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_Y); 
+  this.appendValueInput("text_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.CONTEXT);
+  this.appendValueInput("fontname_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.FONTNAME);    
+  this.appendValueInput("fontsize_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.FONTSIZE); 
+  this.appendValueInput("color_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.FONTCOLOR);       
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(240);
+  this.setHelpUrl("https://tw.piliapp.com/symbol/");
+  },
+  validate: function(newValue) {
+	 const block = this.sourceBlock_;
+	 if (newValue=="col") {
+		 block.getInput("x_").setVisible(true);
+		 block.getInput("y_").setVisible(false);
+	 }
+	 else if (newValue=="row") {
+		 block.getInput("x_").setVisible(false);
+		 block.getInput("y_").setVisible(true);
+	 }	 
+	 else {
+		 block.getInput("x_").setVisible(true);
+		 block.getInput("y_").setVisible(true);	 
+	 }	 
+  } 
+};
+
+Blockly.Blocks['table_td_clear'] = {
+  init: function () {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE)
+	  .appendField(Blockly.Msg.TABLE_TD_CLEAR);	  
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.TABLE_ID); 
+  this.appendValueInput("x_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_X);
+  this.appendValueInput("y_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_Y); 
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(240);
+  }
+};
+
+Blockly.Blocks['table_delete'] = {
+  init: function () {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE)
+	  .appendField(Blockly.Msg.TABLE_DELETE);	  
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.TABLE_ID);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(240);
+  }
+};
+
 Blockly.Blocks['urlcode'] = {
   init: function () {	  
   this.appendDummyInput()
@@ -86,497 +744,6 @@ Blockly.Blocks['include_file'] = {
   }
 };
 
-Blockly.Blocks['table_create'] = {
-  init: function() {
-  this.appendDummyInput()     
-      .appendField(Blockly.Msg.TABLE_CREATE);
-  this.appendValueInput("id_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_ID);
-  this.appendValueInput("trcount_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TRCOUNT);    
-  this.appendValueInput("tdcount_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TDCOUNT); 	  
-  this.appendValueInput("left_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.LEFT);    
-  this.appendValueInput("top_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TOP); 
-  this.appendValueInput("width_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_WIDTH);
-  this.appendValueInput("height_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_HEIGHT); 	  
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.TABLE_BORDERSTYLE)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_SOLID,"solid"], [Blockly.Msg.PROPERTY_DASHED,"dashed"], [Blockly.Msg.PROPERTY_DOUBLE,"double"], [Blockly.Msg.PROPERTY_DOTTED,"dotted"], [Blockly.Msg.PROPERTY_GROOVE,"groove"], [Blockly.Msg.PROPERTY_RIDGE,"ridge"], [Blockly.Msg.PROPERTY_INSET,"inset"], [Blockly.Msg.PROPERTY_OUTSET,"outset"],  [Blockly.Msg.PROPERTY_NONE,"none"], [Blockly.Msg.PROPERTY_HIDDEN,"hidden"]]), "borderstyle_");  
-  this.appendValueInput("borderwidth_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_BORDERWIDTH);       
-  this.appendValueInput("bordercolor_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_BORDERCOLOR);       
-  this.appendValueInput("bgcolor_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_BGCOLOR); 
-  this.appendValueInput("zindex_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ZINDEX);   
-  this.appendValueInput("display_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.DISPLAY); 
-  this.setInputsInline(false);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
-  }
-};
-
-Blockly.Blocks['table_set'] = {
-  init: function() {
-  this.appendValueInput("id_")
-      .setCheck(null)
-	  .appendField(Blockly.Msg.TABLE)
-      .appendField(Blockly.Msg.TABLE_ID);     
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.TABLE_SET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], [Blockly.Msg.PROPERTY_CELLWIDTH,"cellwidth"], [Blockly.Msg.PROPERTY_CELLHEIGHT,"cellheight"], [Blockly.Msg.PROPERTY_CELLCOLOR,"cellcolor"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_BACKGROUNDIMAGE,"backgroundimage"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_STYLE,"style"]]), "property_");
-  this.appendValueInput("value_")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .setCheck(null);    
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
-  }
-};
-
-Blockly.Blocks['table_get'] = {
-  init: function () {   
-  this.appendValueInput("id_")
-      .setCheck(null)
-	  .appendField(Blockly.Msg.TABLE)
-      .appendField(Blockly.Msg.TABLE_ID); 
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.TABLE_GET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_ONCLICK_COLUMN_ROW,"onclick[Column,Row]"], [Blockly.Msg.PROPERTY_ONCLICKIMAGE,"onclickImage"], [Blockly.Msg.PROPERTY_COLUMNS,"columns"], [Blockly.Msg.PROPERTY_ROWS,"rows"], [Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_BACKGROUNDIMAGE,"backgroundimage"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.ELEMENTID,"id"]]), "property_");
-  this.setInputsInline(true);
-  this.setOutput(true, null); 
-  this.setColour(200);
-  }
-};
-
-Blockly.Blocks['table_clear'] = {
-  init: function () {
-  this.appendValueInput("id_")
-      .setCheck(null)
-	  .appendField(Blockly.Msg.TABLE)
-      .appendField(Blockly.Msg.TABLE_ID);
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.TABLE_CLEAR);
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
-  }
-};
-
-Blockly.Blocks['table_change_colsrows'] = {
-  init: function () {
-  this.appendDummyInput()     
-      .appendField(Blockly.Msg.TABLE_CHANGE_COLSROWS);       
-  this.appendValueInput("id_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_ID); 
-  this.appendDummyInput() 
-      .setAlign(Blockly.ALIGN_RIGHT)   
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_ADD,"add"], [Blockly.Msg.PROPERTY_REMOVE,"remove"]]), "cmd_");  
-  this.appendDummyInput() 
-      .setAlign(Blockly.ALIGN_RIGHT)    
-      .appendField(" ")    
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_COL,"col"], [Blockly.Msg.PROPERTY_ROW,"row"]]), "target_");     
-  this.appendValueInput("index_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_INDEX);   
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
-  }
-};
-
-Blockly.Blocks['table_td_set'] = {
-  init: function() {
-  this.appendValueInput("id_")
-      .setCheck(null)
-	  .appendField(Blockly.Msg.TABLE)
-      .appendField(Blockly.Msg.TABLE_ID); 
-  this.appendValueInput("x_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_SET)
-      .appendField(Blockly.Msg.TABLE_TD_X);
-  this.appendValueInput("y_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_Y);       
-  this.appendDummyInput()  
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_TEXTALIGN,"textalign"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], [Blockly.Msg.PROPERTY_STYLE,"style"]]), "property_");
-  this.appendValueInput("value_")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .setCheck(null);    
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
-  }
-};
-
-Blockly.Blocks['table_border_set'] = {
-  init: function() {
-  this.appendValueInput("id_")
-      .setCheck(null)
-	  .appendField(Blockly.Msg.TABLE)
-      .appendField(Blockly.Msg.TABLE_ID); 
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.TABLE_BORDER_SET)
-      .appendField(Blockly.Msg.TABLE_BORDERSTYLE)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_SOLID,"solid"], [Blockly.Msg.PROPERTY_DASHED,"dashed"], [Blockly.Msg.PROPERTY_DOUBLE,"double"], [Blockly.Msg.PROPERTY_DOTTED,"dotted"], [Blockly.Msg.PROPERTY_GROOVE,"groove"], [Blockly.Msg.PROPERTY_RIDGE,"ridge"], [Blockly.Msg.PROPERTY_INSET,"inset"], [Blockly.Msg.PROPERTY_OUTSET,"outset"],  [Blockly.Msg.PROPERTY_NONE,"none"], [Blockly.Msg.PROPERTY_HIDDEN,"hidden"]]), "borderstyle_");  
-  this.appendValueInput("borderwidth_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_BORDERWIDTH);       
-  this.appendValueInput("bordercolor_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_BORDERCOLOR);       
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
-  }
-};
-
-Blockly.Blocks['table_td_border_set'] = {
-  init: function() {
-  this.appendDummyInput()     
-      .appendField(Blockly.Msg.TABLE_TD_BORDER_SET);    
-  this.appendValueInput("id_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-	  .appendField(Blockly.Msg.TABLE)
-      .appendField(Blockly.Msg.TABLE_ID); 
-  this.appendValueInput("x_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_X);
-  this.appendValueInput("y_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_Y);       
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.TABLE_BORDERSTYLE)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_SOLID,"solid"], [Blockly.Msg.PROPERTY_DASHED,"dashed"], [Blockly.Msg.PROPERTY_DOUBLE,"double"], [Blockly.Msg.PROPERTY_DOTTED,"dotted"], [Blockly.Msg.PROPERTY_GROOVE,"groove"], [Blockly.Msg.PROPERTY_RIDGE,"ridge"], [Blockly.Msg.PROPERTY_INSET,"inset"], [Blockly.Msg.PROPERTY_OUTSET,"outset"],  [Blockly.Msg.PROPERTY_NONE,"none"], [Blockly.Msg.PROPERTY_HIDDEN,"hidden"]]), "borderstyle_");  
-  this.appendValueInput("borderwidth_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_BORDERWIDTH);       
-  this.appendValueInput("bordercolor_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_BORDERCOLOR);       
-  this.setInputsInline(false);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
-  }
-};
-
-Blockly.Blocks['table_td_get'] = {
-  init: function () {
-  this.appendValueInput("id_")
-      .setCheck(null)
-	  .appendField(Blockly.Msg.TABLE)
-      .appendField(Blockly.Msg.TABLE_ID); 
-  this.appendValueInput("x_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_GET)
-      .appendField(Blockly.Msg.TABLE_TD_X);
-  this.appendValueInput("y_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_Y); 
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.PROPERTY)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_TEXT_SHOW,"text"], [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], [Blockly.Msg.PROPERTY_IMAGE,"image"], [Blockly.Msg.PROPERTY_CHILDLENGTH,"childlength"], [Blockly.Msg.PROPERTY_CHILDID,"childid"], [Blockly.Msg.PROPERTY_TDID,"tdid"]]), "property_");  
-  this.setInputsInline(true);
-  this.setOutput(true, null); 
-  this.setColour(200);
-  }
-};
-
-Blockly.Blocks['table_td_onclick_do'] = {
-  init: function () {
-  this.appendValueInput("id_")
-      .setCheck(null)
-	  .appendField(Blockly.Msg.TABLE)
-      .appendField(Blockly.Msg.TABLE_ID);     
-  this.appendValueInput("x_")
-      .setCheck(null)
-      .appendField(Blockly.Msg.TABLE_TD_X);
-  this.appendValueInput("y_")
-      .setCheck(null)
-      .appendField(Blockly.Msg.TABLE_TD_Y); 
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.TABLE_TD_ONCLICK_DO);    
-  this.appendStatementInput("do_");
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
-  }
-};
-
-Blockly.Blocks['table_td_insert_img'] = {
-  init: function () {
-  this.appendDummyInput()     
-      .appendField(Blockly.Msg.TABLE_TD_INSERT_IMAGE);        
-  this.appendValueInput("id_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-	  .appendField(Blockly.Msg.TABLE)
-      .appendField(Blockly.Msg.TABLE_ID); 
-  this.appendValueInput("x_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_X);
-  this.appendValueInput("y_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_Y); 
-  this.appendValueInput("imgid_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-	  .appendField(Blockly.Msg.IMAGE)
-      .appendField(Blockly.Msg.ID);      
-  this.appendValueInput("url_")
-      .setCheck("String")
-      .setAlign(Blockly.ALIGN_RIGHT)
-	  .appendField(Blockly.Msg.IMAGE)
-      .appendField(Blockly.Msg.URL);     
-  this.appendValueInput("width_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-	  .appendField(Blockly.Msg.IMAGE)
-      .appendField(Blockly.Msg.WIDTH);
-  this.appendValueInput("height_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-	  .appendField(Blockly.Msg.IMAGE)
-      .appendField(Blockly.Msg.HEIGHT);   
-  this.setInputsInline(false);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
-  }
-};
-
-Blockly.Blocks['table_td_img_move'] = {
-  init: function () {
-  this.appendValueInput("id_")
-      .setCheck(null)
-	  .appendField(Blockly.Msg.TABLE)
-      .appendField(Blockly.Msg.TABLE_ID); 
-  this.appendValueInput("imgid_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.IMAGE_ID);
-  this.appendValueInput("x_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_IMAGE_MOVE)
-      .appendField(Blockly.Msg.TABLE_TD_X);
-  this.appendValueInput("y_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_Y);     
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
-  }
-};
-
-Blockly.Blocks['table_td_canvas_move'] = {
-  init: function () {
-  this.appendValueInput("id_")
-      .setCheck(null)
-	  .appendField(Blockly.Msg.TABLE)
-      .appendField(Blockly.Msg.TABLE_ID); 
-  this.appendValueInput("canvasid_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CANVAS_ID);
-  this.appendValueInput("x_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_CANVAS_MOVE)
-      .appendField(Blockly.Msg.TABLE_TD_X);
-  this.appendValueInput("y_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_Y);     
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
-  }
-};
-
-Blockly.Blocks['table_td_copy_move'] = {
-  init: function () {
-  this.appendDummyInput()     
-      .appendField(Blockly.Msg.TABLE_TD_COPY_MOVE);       
-  this.appendValueInput("id_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-	  .appendField(Blockly.Msg.TABLE)
-      .appendField(Blockly.Msg.TABLE_ID); 
-  this.appendValueInput("x0_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_X);
-  this.appendValueInput("y0_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_Y);     
-this.appendDummyInput() 
-      .setAlign(Blockly.ALIGN_RIGHT)    
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_COPYTO,"copy"], [Blockly.Msg.PROPERTY_MOVETO,"move"]]), "property_");
-  this.appendValueInput("x_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_X);
-  this.appendValueInput("y_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_Y);       
-  this.setInputsInline(false);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
-  }
-};
-
-Blockly.Blocks['table_td_img_get'] = {
-  init: function () {
-  this.appendValueInput("imgid_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_IMAGE_GET)
-      .appendField(Blockly.Msg.IMAGE_ID); 
-  this.appendDummyInput()  
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_COLUMN,"column"], [Blockly.Msg.PROPERTY_ROW,"row"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_NATURALWIDTH,"naturalwidth"], [Blockly.Msg.PROPERTY_NATURALHEIGHT,"naturalheight"], [Blockly.Msg.PROPERTY_IMAGEID,"imageid"]]), "property_");  
-  this.setInputsInline(true);
-  this.setOutput(true, null); 
-  this.setColour(200);
-  }
-};
-
-Blockly.Blocks['table_td_insert_text'] = {
-  init: function () {
-  this.appendDummyInput()     
-      .appendField(Blockly.Msg.TABLE_TD_INSERT_TEXT);     
-  this.appendValueInput("id_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-	  .appendField(Blockly.Msg.TABLE)
-      .appendField(Blockly.Msg.TABLE_ID); 
-  this.appendValueInput("x_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_X);
-  this.appendValueInput("y_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_Y); 
-  this.appendValueInput("text_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.CONTEXT);
-  this.appendValueInput("fontname_")
-      .setCheck("String")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.FONTNAME);    
-  this.appendValueInput("fontsize_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.FONTSIZE); 
-  this.appendValueInput("color_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.FONTCOLOR);       
-  this.setInputsInline(false);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
-  }
-};
-
-Blockly.Blocks['table_td_clear'] = {
-  init: function () {
-  this.appendValueInput("id_")
-      .setCheck(null)
-	  .appendField(Blockly.Msg.TABLE)
-      .appendField(Blockly.Msg.TABLE_ID); 
-  this.appendValueInput("x_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_CLEAR)
-      .appendField(Blockly.Msg.TABLE_TD_X);
-  this.appendValueInput("y_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TABLE_TD_Y); 
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
-  }
-};
-
-Blockly.Blocks['table_delete'] = {
-  init: function () {
-  this.appendValueInput("id_")
-      .setCheck(null)
-	  .appendField(Blockly.Msg.TABLE)
-      .appendField(Blockly.Msg.TABLE_ID); 
-  this.appendDummyInput() 
-      .appendField(Blockly.Msg.TABLE_DELETE);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
-  }
-};
 
 Blockly.Blocks['music_create'] = {
   init: function() {
