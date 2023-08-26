@@ -1,43 +1,3 @@
-Blockly.JavaScript['urlcode'] = function (block) {
-  var command = block.getFieldValue('command');
-  var url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  var code = command+'('+url+')';
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
-Blockly.JavaScript['code_text'] = function (block) {
-  var code = Blockly.JavaScript.valueToCode(block, 'code', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  if ((code.indexOf("'")==0)&&(code.lastIndexOf("'")==code.length-1))
-    code = code.substring(1,code.length-1);
-  if ((code.indexOf('"')==0)&&(code.lastIndexOf('"')==code.length-1))
-    code = code.substring(1,code.length-1);	
-  return code;
-};
-
-Blockly.JavaScript['window_messagebox'] = function (block) {
-  var message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC); 
-  var code = 'alert('+message+');\n';  
-  return code;
-};
-
-Blockly.JavaScript['window_confirm'] = function (block) {
-  var message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC); 	
-  var statements_yes = Blockly.JavaScript.statementToCode(block, 'yes');
-  var statements_no = Blockly.JavaScript.statementToCode(block, 'no');  
-  var code = 'var windowConfirm = window.confirm('+message+');\nif (windowConfirm==true) {\n  '+statements_yes +'\n}\nelse {\n  '+ statements_no + '\n}\n';  
-  return code;
-};
-
-Blockly.JavaScript['include_file'] = function (block) {
-  var type = block.getFieldValue('type');
-  var position = block.getFieldValue('position');
-  var value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC); 
-  if (type=="css") position = "";
-  
-  var code = 'include_file("'+type+'", "'+position+'", '+value+');\n';
-  return code;
-};
-
 Blockly.JavaScript['table_create'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
@@ -107,12 +67,22 @@ Blockly.JavaScript['table_border_set'] = function (block) {
 
 Blockly.JavaScript['table_td_border_set'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_target_ = block.getFieldValue('target_');
   var value_x_ = Blockly.JavaScript.valueToCode(block, 'x_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_borderstyle_ = block.getFieldValue('borderstyle_');
   var value_borderwidth_ = Blockly.JavaScript.valueToCode(block, 'borderwidth_', Blockly.JavaScript.ORDER_ATOMIC); 
   var value_bordercolor_ = Blockly.JavaScript.valueToCode(block, 'bordercolor_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'table_td_border_set(' + value_id_ + ','+ value_x_ + ',' + value_y_ + ',"'+ value_borderstyle_ + '",' + value_borderwidth_ + ',' + value_bordercolor_ + ');\n';
+  if (value_target_=="cell")
+	var code = 'table_td_border_set(' + value_id_ + ','+ value_x_ + ',' + value_y_ + ',"'+ value_borderstyle_ + '",' + value_borderwidth_ + ',' + value_bordercolor_ + ');\n';
+  else if (value_target_=="col")
+	var code = 'table_td_border_set(' + value_id_ + ','+ value_x_ + ',-1,"'+ value_borderstyle_ + '",' + value_borderwidth_ + ',' + value_bordercolor_ + ');\n';
+  else if (value_target_=="row")
+	var code = 'table_td_border_set(' + value_id_ + ',-1,' + value_y_ + ',"'+ value_borderstyle_ + '",' + value_borderwidth_ + ',' + value_bordercolor_ + ');\n';
+  else if (value_target_=="all")
+	var code = 'table_td_border_set(' + value_id_ + ',-1,-1,"'+ value_borderstyle_ + '",' + value_borderwidth_ + ',' + value_bordercolor_ + ');\n';
+  else
+	var code = 'table_td_border_set(' + value_id_ + ','+ value_x_ + ',' + value_y_ + ',"'+ value_borderstyle_ + '",' + value_borderwidth_ + ',' + value_bordercolor_ + ');\n';
   return code;
 };
 
@@ -130,10 +100,16 @@ Blockly.JavaScript['table_td_insert_img'] = function (block) {
 
 Blockly.JavaScript['table_td_img_move'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_element_ = block.getFieldValue('element_');
   var value_imgid_ = Blockly.JavaScript.valueToCode(block, 'imgid_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_x_ = Blockly.JavaScript.valueToCode(block, 'x_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'table_td_img_move(' + value_id_ + ','+ value_imgid_ + ','+ value_x_ + ',' + value_y_ + ');\n';
+  if (value_element_=="image")
+	var code = 'table_td_img_move(' + value_id_ + ','+ value_imgid_ + ','+ value_x_ + ',' + value_y_ + ');\n';
+  else if (value_element_=="canvas")
+    var code = 'table_td_canvas_move(' + value_id_ + ','+ value_imgid_ + ','+ value_x_ + ',' + value_y_ + ');\n';
+  else
+	var code = 'table_td_img_move(' + value_id_ + ','+ value_imgid_ + ','+ value_x_ + ',' + value_y_ + ');\n';
   return code;
 };
 
@@ -169,13 +145,19 @@ Blockly.JavaScript['table_td_img_get'] = function (block) {
 
 Blockly.JavaScript['table_td_insert_text'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_target_ = block.getFieldValue('target_');
   var value_x_ = Blockly.JavaScript.valueToCode(block, 'x_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_text_ = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_fontname_ = Blockly.JavaScript.valueToCode(block, 'fontname_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_fontsize_ = Blockly.JavaScript.valueToCode(block, 'fontsize_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'table_td_insert_text(' + value_id_ + ','+ value_x_ + ',' + value_y_ + ',' + value_text_+ ',' + value_fontname_ + ',' + value_fontsize_ + ',' + value_color_+ ');\n';
+  if (value_target_=="cell")
+	var code = 'table_td_insert_text(' + value_id_ + ','+ value_x_ + ',' + value_y_ + ',' + value_text_+ ',' + value_fontname_ + ',' + value_fontsize_ + ',' + value_color_+ ');\n';
+  else if  (value_target_=="col")
+	var code = 'table_td_insert_text(' + value_id_ + ','+ value_x_ + ',-1,' + value_text_+ ',' + value_fontname_ + ',' + value_fontsize_ + ',' + value_color_+ ');\n';
+  else if  (value_target_=="row")
+	var code = 'table_td_insert_text(' + value_id_ + ',-1,' + value_y_ + ',' + value_text_+ ',' + value_fontname_ + ',' + value_fontsize_ + ',' + value_color_+ ');\n';
   return code;
 };
 
@@ -208,24 +190,6 @@ Blockly.JavaScript['table_td_clear'] = function (block) {
 Blockly.JavaScript['table_delete'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
   var code = 'table_delete(' + value_id_ + ');\n';
-  return code;
-};
-
-Blockly.JavaScript['music_create'] = function (block) {
-  var value_url = Blockly.JavaScript.valueToCode(block, 'url_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_length = Blockly.JavaScript.valueToCode(block, 'length_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_loop = Blockly.JavaScript.valueToCode(block, 'loop_', Blockly.JavaScript.ORDER_ATOMIC);
-  if ((value_loop=="true")&&(value_length>0))
-    var code = 'music_create(' + value_url + ');\nvar musicTimer = setInterval(function(){\nmusic_create(' + value_url + ');},' + value_length + ');\n';
-  else if ((value_loop=="false")&&(value_length>0))
-    var code = 'music_create(' + value_url + ');\nvar musicTimer = setTimeout(function(){\nmusic_delete();},' + value_length + ');\n';
-  else
-    var code = 'music_create(' + value_url + ');\n';
-  return code;
-};
-
-Blockly.JavaScript['music_delete'] = function (block) {
-  var code = 'clearInterval(musicTimer);\nmusic_delete();\n';
   return code;
 };
 
@@ -2189,3 +2153,60 @@ Blockly.JavaScript['system_datetime_set'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['urlcode'] = function (block) {
+  var command = block.getFieldValue('command');
+  var url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var code = command+'('+url+')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['code_text'] = function (block) {
+  var code = Blockly.JavaScript.valueToCode(block, 'code', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  if ((code.indexOf("'")==0)&&(code.lastIndexOf("'")==code.length-1))
+    code = code.substring(1,code.length-1);
+  if ((code.indexOf('"')==0)&&(code.lastIndexOf('"')==code.length-1))
+    code = code.substring(1,code.length-1);	
+  return code;
+};
+
+Blockly.JavaScript['window_messagebox'] = function (block) {
+  var message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC); 
+  var code = 'alert('+message+');\n';  
+  return code;
+};
+
+Blockly.JavaScript['window_confirm'] = function (block) {
+  var message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC); 	
+  var statements_yes = Blockly.JavaScript.statementToCode(block, 'yes');
+  var statements_no = Blockly.JavaScript.statementToCode(block, 'no');  
+  var code = 'var windowConfirm = window.confirm('+message+');\nif (windowConfirm==true) {\n  '+statements_yes +'\n}\nelse {\n  '+ statements_no + '\n}\n';  
+  return code;
+};
+
+Blockly.JavaScript['include_file'] = function (block) {
+  var type = block.getFieldValue('type');
+  var position = block.getFieldValue('position');
+  var value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC); 
+  if (type=="css") position = "";
+  
+  var code = 'include_file("'+type+'", "'+position+'", '+value+');\n';
+  return code;
+};
+
+Blockly.JavaScript['music_create'] = function (block) {
+  var value_url = Blockly.JavaScript.valueToCode(block, 'url_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_length = Blockly.JavaScript.valueToCode(block, 'length_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_loop = Blockly.JavaScript.valueToCode(block, 'loop_', Blockly.JavaScript.ORDER_ATOMIC);
+  if ((value_loop=="true")&&(value_length>0))
+    var code = 'music_create(' + value_url + ');\nvar musicTimer = setInterval(function(){\nmusic_create(' + value_url + ');},' + value_length + ');\n';
+  else if ((value_loop=="false")&&(value_length>0))
+    var code = 'music_create(' + value_url + ');\nvar musicTimer = setTimeout(function(){\nmusic_delete();},' + value_length + ');\n';
+  else
+    var code = 'music_create(' + value_url + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['music_delete'] = function (block) {
+  var code = 'clearInterval(musicTimer);\nmusic_delete();\n';
+  return code;
+};
