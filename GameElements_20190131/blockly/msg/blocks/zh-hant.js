@@ -125,9 +125,6 @@ Blockly.Msg.PROPERTY_MUTED = "靜音";
 Blockly.Msg.PROPERTY_CONTROLS = "控制面板";
 Blockly.Msg.PROPERTY_PRELOAD = "預載影片";
 Blockly.Msg.PROPERTY_CAM = "本機攝影機";
-
-
-
 Blockly.Msg.TABLE = "表格";
 Blockly.Msg.TABLE_ID = "表格代碼";
 Blockly.Msg.TABLE_CREATE = "建立";
