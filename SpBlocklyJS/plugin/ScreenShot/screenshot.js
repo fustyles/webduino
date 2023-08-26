@@ -22,7 +22,7 @@ function svgToPng_(data, width, height, callback) {
   var context = canvas.getContext("2d");
   var img = new Image();
 
-  var pixelDensity = 2;
+  var pixelDensity = 1;
   canvas.width = width * pixelDensity;
   canvas.height = height * pixelDensity;
   img.onload = function() {
