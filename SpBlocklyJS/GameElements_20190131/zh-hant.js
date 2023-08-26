@@ -1,3 +1,4 @@
+Blockly.Msg.PROPERTY_ELEMENT = "元素";
 Blockly.Msg.PROPERTY_ANY = "任何方位";
 Blockly.Msg.PROPERTY_UP = "上方";
 Blockly.Msg.PROPERTY_DOWN = "下方";
@@ -137,6 +138,7 @@ Blockly.Msg.TABLE_BORDERWIDTH = "邊框寬度";
 Blockly.Msg.TABLE_BORDERCOLOR = "邊框顏色";
 Blockly.Msg.TABLE_BGCOLOR = "儲存格顏色";
 Blockly.Msg.TABLE_TD_INSERT_IMAGE = "儲存格插入圖片";
+Blockly.Msg.TABLE_TD_INSERT_ELEMENT = "儲存格插入元素";
 Blockly.Msg.TABLE_TD_X = "縱行";
 Blockly.Msg.TABLE_TD_Y = "橫列";
 Blockly.Msg.TABLE_TD_IMAGE_GET = "取得儲存格圖片";

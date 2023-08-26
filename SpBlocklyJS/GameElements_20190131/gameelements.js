@@ -621,6 +621,133 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
 	}
   }  
   
+  function table_td_insert_element(input_id,input_x,input_y,input_element){
+	var obj = document.getElementById("gametable_"+input_id);
+	if (obj) {
+		if (input_x==-1) {
+			for (var i = 0; i < obj.rows[0].cells.length; i++) {
+				if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+i)) {
+					var el = '';			
+					if (input_element=="image")
+						el = '<img id="gameimage_'+input_id+'_'+input_y+'_'+i+'" src="" onclick="javascript:onclickid_set(this);" draggable="false" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" width: 30px; height: 30px; left: 0px; top: 0px; z-index: 999; display: block;">';
+					else if (input_element=="canvas")
+						el = '<canvas id="gamecanvas_'+input_id+'_'+input_y+'_'+i+'" width="30" height="30" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" width: 30px; height: 30px; left: 0px; top: 0px; z-index: 999; display: block;"></canvas>';
+					else if (input_element=="button")
+						el = '<input type="button" id="gamebutton_'+input_id+'_'+input_y+'_'+i+'" value="" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 30px; opacity: 1; font-size: 12px; z-index: 999; outline-style: none; display: block;">';
+					else if (input_element=="color")
+						el = '<input type="color" id="gamecolor_'+input_id+'_'+input_y+'_'+i+'" name="" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 30px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="select")
+						el = '<select id="gameselect_'+input_id+'_'+input_y+'_'+i+'" name="" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 100px; height: 30px; background: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; opacity: 1; z-index: 999; display: block;"></select>';
+					else if (input_element=="range")
+						el = '<input type="range" id="gamerange_'+input_id+'_'+input_y+'_'+i+'" name="" max="100" min="0" step="1" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 30px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="text")
+						el = '<input type="text" id="gametext_'+input_id+'_'+input_y+'_'+i+'" name="" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 30px; background: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="div")
+						el = '<div id="gamediv_'+input_id+'_'+input_y+'_'+i+'" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 20px; border: 1px none rgb(0, 0, 0); background: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 12px; opacity: 1; z-index: 999; overflow-wrap: break-word; overflow: auto; display: block;">hi</div>';
+					else if (input_element=="a")
+						el = '<a id="gamea_'+input_id+'_'+input_y+'_'+i+'" href="https://fustyles.github.io/webduino/SpBlocklyJS/index.html" target="_blank" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 30px; border: 1px none rgb(0, 0, 0); background: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; opacity: 1; z-index: 999; overflow-wrap: break-word; display: block;">link</a>';
+					else if (input_element=="checkbox")
+						el = '<input type="checkbox" id="gamecheckbox_'+input_id+'_'+input_y+'_'+i+'" name="" value="" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 12px; height: 12px; opacity: 1; z-index: 999;">';
+					else if (input_element=="textarea")
+						el = '<textarea id="gametextarea_'+input_id+'_'+input_y+'_'+i+'" name="" cols="10" rows="1" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; opacity: 1; z-index: 999;"></textarea>';
+					else if (input_element=="number")
+						el = '<input type="number" id="gamenumber_'+input_id+'_'+input_y+'_'+i+'" name="" max="100" min="0" step="1" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 20px; font-size: 12px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="date")
+						el = '<input type="date" id="gamedate_'+input_id+'_'+input_y+'_'+i+'" name="" max="2100-12-31" min="1900-01-01" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="time")
+						el = '<input type="time" id="gametime_'+input_id+'_'+input_y+'_'+i+'" name="" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="datetime")
+						el = '<input type="datetime-local" id="gamedatetime_'+input_id+'_'+input_y+'_'+i+'" name="" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="progress")
+						el = '<progress id="gameprogress_'+input_id+'_'+input_y+'_'+i+'" max="100" value="0" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; opacity: 1; z-index: 999; display: block;"></progress>';
+					else if (input_element=="password")
+						el = '<input type="password" id="gamepassword_'+input_id+'_'+input_y+'_'+i+'" name="" maxlength="20" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 20px; background: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; opacity: 1; z-index: 999; display: block;">';
+					document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+i).innerHTML = el;
+				}
+			}  
+		} else if (input_y==-1) {
+			for (var j = 0; j < obj.rows.length; j++) {
+				if (document.getElementById("gametable_td_"+input_id+"_"+j+"_"+input_x)) {
+					var el = '';			
+					if (input_element=="image")
+						el = '<img id="gameimage_'+input_id+'_'+j+'_'+input_x+'" src="" onclick="javascript:onclickid_set(this);" draggable="false" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" width: 30px; height: 30px; left: 0px; top: 0px; z-index: 999; display: block;">';
+					else if (input_element=="canvas")
+						el = '<canvas id="gamecanvas_'+input_id+'_'+j+'_'+input_x+'" width="30" height="30" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" width: 30px; height: 30px; left: 0px; top: 0px; z-index: 999; display: block;"></canvas>';
+					else if (input_element=="button")
+						el = '<input type="button" id="gamebutton_'+input_id+'_'+j+'_'+input_x+'" value="" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 30px; opacity: 1; font-size: 12px; z-index: 999; outline-style: none; display: block;">';
+					else if (input_element=="color")
+						el = '<input type="color" id="gamecolor_'+input_id+'_'+j+'_'+input_x+'" name="" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 30px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="select")
+						el = '<select id="gameselect_'+input_id+'_'+j+'_'+input_x+'" name="" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 100px; height: 30px; background: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; opacity: 1; z-index: 999; display: block;"></select>';
+					else if (input_element=="range")
+						el = '<input type="range" id="gamerange_'+input_id+'_'+j+'_'+input_x+'" name="" max="100" min="0" step="1" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 30px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="text")
+						el = '<input type="text" id="gametext_'+input_id+'_'+j+'_'+input_x+'" name="" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 30px; background: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="div")
+						el = '<div id="gamediv_'+input_id+'_'+j+'_'+input_x+'" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 20px; border: 1px none rgb(0, 0, 0); background: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 12px; opacity: 1; z-index: 999; overflow-wrap: break-word; overflow: auto; display: block;">hi</div>';
+					else if (input_element=="a")
+						el = '<a id="gamea_'+input_id+'_'+j+'_'+input_x+'" href="https://fustyles.github.io/webduino/SpBlocklyJS/index.html" target="_blank" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 30px; border: 1px none rgb(0, 0, 0); background: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; opacity: 1; z-index: 999; overflow-wrap: break-word; display: block;">link</a>';
+					else if (input_element=="checkbox")
+						el = '<input type="checkbox" id="gamecheckbox_'+input_id+'_'+j+'_'+input_x+'" name="" value="" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 12px; height: 12px; opacity: 1; z-index: 999;">';
+					else if (input_element=="textarea")
+						el = '<textarea id="gametextarea_'+input_id+'_'+j+'_'+input_x+'" name="" cols="10" rows="1" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; opacity: 1; z-index: 999;"></textarea>';
+					else if (input_element=="number")
+						el = '<input type="number" id="gamenumber_'+input_id+'_'+j+'_'+input_x+'" name="" max="100" min="0" step="1" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 20px; font-size: 12px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="date")
+						el = '<input type="date" id="gamedate_'+input_id+'_'+j+'_'+input_x+'" name="" max="2100-12-31" min="1900-01-01" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="time")
+						el = '<input type="time" id="gametime_'+input_id+'_'+j+'_'+input_x+'" name="" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="datetime")
+						el = '<input type="datetime-local" id="gamedatetime_'+input_id+'_'+j+'_'+input_x+'" name="" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="progress")
+						el = '<progress id="gameprogress_'+input_id+'_'+j+'_'+input_x+'" max="100" value="0" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; opacity: 1; z-index: 999; display: block;"></progress>';
+					else if (input_element=="password")
+						el = '<input type="password" id="gamepassword_'+input_id+'_'+j+'_'+input_x+'" name="" maxlength="20" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 20px; background: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; opacity: 1; z-index: 999; display: block;">';
+					document.getElementById("gametable_td_"+input_id+"_"+j+"_"+input_x).innerHTML = el;
+				}
+			} 
+		} else if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x)) {
+					var el = '';			
+					if (input_element=="image")
+						el = '<img id="gameimage_'+input_id+'_'+input_y+'_'+input_x+'" src="" onclick="javascript:onclickid_set(this);" draggable="false" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" width: 30px; height: 30px; left: 0px; top: 0px; z-index: 999; display: block;">';
+					else if (input_element=="canvas")
+						el = '<canvas id="gamecanvas_'+input_id+'_'+input_y+'_'+input_x+'" width="30" height="30" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" width: 30px; height: 30px; left: 0px; top: 0px; z-index: 999; display: block;"></canvas>';
+					else if (input_element=="button")
+						el = '<input type="button" id="gamebutton_'+input_id+'_'+input_y+'_'+input_x+'" value="" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 30px; opacity: 1; font-size: 12px; z-index: 999; outline-style: none; display: block;">';
+					else if (input_element=="color")
+						el = '<input type="color" id="gamecolor_'+input_id+'_'+input_y+'_'+input_x+'" name="" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 30px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="select")
+						el = '<select id="gameselect_'+input_id+'_'+input_y+'_'+input_x+'" name="" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 100px; height: 30px; background: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; opacity: 1; z-index: 999; display: block;"></select>';
+					else if (input_element=="range")
+						el = '<input type="range" id="gamerange_'+input_id+'_'+input_y+'_'+input_x+'" name="" max="100" min="0" step="1" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 30px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="text")
+						el = '<input type="text" id="gametext_'+input_id+'_'+input_y+'_'+input_x+'" name="" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 30px; background: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="div")
+						el = '<div id="gamediv_'+input_id+'_'+input_y+'_'+input_x+'" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 20px; border: 1px none rgb(0, 0, 0); background: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 12px; opacity: 1; z-index: 999; overflow-wrap: break-word; overflow: auto; display: block;">hi</div>';
+					else if (input_element=="a")
+						el = '<a id="gamea_'+input_id+'_'+input_y+'_'+input_x+'" href="https://fustyles.github.io/webduino/SpBlocklyJS/index.html" target="_blank" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 30px; border: 1px none rgb(0, 0, 0); background: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; opacity: 1; z-index: 999; overflow-wrap: break-word; display: block;">link</a>';
+					else if (input_element=="checkbox")
+						el = '<input type="checkbox" id="gamecheckbox_'+input_id+'_'+input_y+'_'+input_x+'" name="" value="" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 12px; height: 12px; opacity: 1; z-index: 999;">';
+					else if (input_element=="textarea")
+						el = '<textarea id="gametextarea_'+input_id+'_'+input_y+'_'+input_x+'" name="" cols="10" rows="1" draggable="false" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; opacity: 1; z-index: 999;"></textarea>';
+					else if (input_element=="number")
+						el = '<input type="number" id="gamenumber_'+input_id+'_'+input_y+'_'+input_x+'" name="" max="100" min="0" step="1" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 20px; font-size: 12px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="date")
+						el = '<input type="date" id="gamedate_'+input_id+'_'+input_y+'_'+input_x+'" name="" max="2100-12-31" min="1900-01-01" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="time")
+						el = '<input type="time" id="gametime_'+input_id+'_'+input_y+'_'+input_x+'" name="" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="datetime")
+						el = '<input type="datetime-local" id="gamedatetime_'+input_id+'_'+input_y+'_'+input_x+'" name="" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; opacity: 1; z-index: 999; display: block;">';
+					else if (input_element=="progress")
+						el = '<progress id="gameprogress_'+input_id+'_'+input_y+'_'+input_x+'" max="100" value="0" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; opacity: 1; z-index: 999; display: block;"></progress>';
+					else if (input_element=="password")
+						el = '<input type="password" id="gamepassword_'+input_id+'_'+input_y+'_'+input_x+'" name="" maxlength="20" onclick="javascript:onclickid_set(this);" ondragstart="javascript:event.dataTransfer.setData(\'text/plain\',event.target.id);" style=" left: 0px; top: 0px; width: 60px; height: 20px; background: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; opacity: 1; z-index: 999; display: block;">';
+					document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x).innerHTML = el;
+					console.log(document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x));
+		}
+	}
+  }    
+  
   function table_td_clear(input_id,input_x,input_y){
     if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x)) 
       document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+input_x).innerHTML = "";
@@ -4274,6 +4401,7 @@ function HextoRgb(color) {
   window.table_td_canvas_move = table_td_canvas_move;
   window.table_td_img_get = table_td_img_get;
   window.table_td_insert_text = table_td_insert_text;
+  window.table_td_insert_element = table_td_insert_element;
   window.table_td_clear = table_td_clear;
   window.table_delete = table_delete;
   window.table_insert_row = table_insert_row; 

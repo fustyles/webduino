@@ -1,3 +1,4 @@
+Blockly.Msg.PROPERTY_ELEMENT = "Element";
 Blockly.Msg.PROPERTY_ANY = "ANY";
 Blockly.Msg.PROPERTY_UP = "UP";
 Blockly.Msg.PROPERTY_DOWN = "DOWN";
@@ -137,6 +138,7 @@ Blockly.Msg.TABLE_BORDERWIDTH = "BorderWidth";
 Blockly.Msg.TABLE_BORDERCOLOR = "BorderColor";
 Blockly.Msg.TABLE_BGCOLOR = "CellColor";
 Blockly.Msg.TABLE_TD_INSERT_IMAGE = "Insert CellImage";
+Blockly.Msg.TABLE_TD_INSERT_ELEMENT = "Insert CellElement";
 Blockly.Msg.TABLE_TD_X = "Column";
 Blockly.Msg.TABLE_TD_Y = "Row";
 Blockly.Msg.TABLE_TD_IMAGE_GET = "Get CellImage";
