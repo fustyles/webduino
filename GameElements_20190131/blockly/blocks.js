@@ -675,6 +675,7 @@ Blockly.Blocks['table_td_insert_element'] = {
   },
   validate: function(newValue) {
 	 const block = this.sourceBlock_;
+	 if (!block) return;
 	 if (newValue=="col") {
 		 block.getInput("x_").setVisible(true);
 		 block.getInput("y_").setVisible(false);
