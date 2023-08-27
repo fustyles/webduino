@@ -1,3 +1,7 @@
+Blockly.Msg.PROPERTY_ONCLICK_FUNCTION = "點擊事件";
+Blockly.Msg.PROPERTY_ONCHANGE_FUNCTION = "改變事件";
+Blockly.Msg.PROPERTY_FUNCTION_NAME = "函式名稱";
+Blockly.Msg.PROPERTY_ELEMENT = "元素";
 Blockly.Msg.PROPERTY_ANY = "任何方位";
 Blockly.Msg.PROPERTY_UP = "上方";
 Blockly.Msg.PROPERTY_DOWN = "下方";
