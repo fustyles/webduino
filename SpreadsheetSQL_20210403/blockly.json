@@ -1,5 +1,5 @@
 {
-  "types": ["controls_spreadsheet_function","spreadsheetsql_queryData","spreadsheetsql_executeSql","spreadsheetsql_getCellSQL","spreadsheetsql_getData","spreadsheetsql_getCell","spreadsheetsql_getDataTable","spreadsheetsql_clearDataTable","spreadsheetsql_getDataCount","spreadsheetsql_clearData","spreadsheetsql_getdatafinish","controls_spreadsheet","controls_spreadsheet_datetime"],
+  "types": ["controls_spreadsheet_function","spreadsheetsql_queryData","spreadsheetsql_executeSql","spreadsheetsql_getCellSQL","spreadsheetsql_getData","spreadsheetsql_getCell","spreadsheetsql_getDataTable","spreadsheetsql_clearDataTable","spreadsheetsql_getDataCount","spreadsheetsql_clearData","spreadsheetsql_getdatafinish","controls_spreadsheet","controls_spreadsheet_datetime","spreadsheetsql_insertRow"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
