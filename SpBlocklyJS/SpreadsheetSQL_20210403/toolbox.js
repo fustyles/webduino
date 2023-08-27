@@ -136,5 +136,7 @@ var catSpreadsheetsql = '<xml>'+
 '      </block>'+
 '      <block type="controls_spreadsheet_datetime">'+
 '      </block>'+
+'      <block type="spreadsheetsql_insertRow">'+
+'      </block>'+
 '    </category>'+
 '</xml>';

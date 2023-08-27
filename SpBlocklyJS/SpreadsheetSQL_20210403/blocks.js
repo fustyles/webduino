@@ -402,3 +402,13 @@ Blockly.defineBlocksWithJsonArray([
 	,helpUrl:"https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs"
 	}
 ]);
+
+Blockly.Blocks['spreadsheetsql_insertRow'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.SPREADSHEETSQL_GETROW_SHOW);  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};

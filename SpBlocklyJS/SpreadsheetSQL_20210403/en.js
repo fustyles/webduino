@@ -23,6 +23,7 @@ Blockly.Msg.SPREADSHEETSQL_GETCELL_SHOW = "Get SQL Response";
 Blockly.Msg.SPREADSHEETSQL_COLUMN_SHOW = "Column";
 Blockly.Msg.SPREADSHEETSQL_COL_SHOW = "Col";
 Blockly.Msg.SPREADSHEETSQL_ROW_SHOW = "Row";
+Blockly.Msg.SPREADSHEETSQL_GETROW_SHOW = "=Row()";
 Blockly.Msg["CONTROLS_SPREADSHEET"] = "Google spreadsheet";
 Blockly.Msg["CONTROLS_SPREADSHEET_VALUE"] = "Value";
 Blockly.Msg["CONTROLS_SPREADSHEET_INSERT"] = "Insert";

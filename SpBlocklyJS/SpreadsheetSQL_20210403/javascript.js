@@ -108,3 +108,8 @@ Blockly.JavaScript['controls_spreadsheet_datetime'] = function(block){
 	var code = '"'+datetime+'"';
 	return [code,Blockly.JavaScript.ORDER_ATOMIC];
 };
+
+Blockly.JavaScript['spreadsheetsql_insertRow'] = function(block){
+	var code = '"=Row()"';
+	return [code,Blockly.JavaScript.ORDER_ATOMIC];
+};
