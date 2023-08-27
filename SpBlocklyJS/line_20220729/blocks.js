@@ -49,6 +49,7 @@ Blockly.Blocks['linenotify'] = {
   },
   validate: function(newValue) {
 	 const block = this.sourceBlock_;
+	 if (!block) return;
 	 if (newValue=="text") {
 		 block.getInput("packageId_").setVisible(false);
 		 block.getField("S1").setVisible(false);
@@ -153,6 +154,7 @@ Blockly.Blocks['linebot_notify'] = {
   },
   validate: function(newValue) {
 	 const block = this.sourceBlock_;
+	 if (!block) return;
 	  if (newValue == 'text') {
 		block.getField('p1').setValue(Blockly.Msg.LINENOTIFY_TEXT_SHOW);  
 		block.getField('p2').setValue("");

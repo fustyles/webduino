@@ -94,6 +94,7 @@ Blockly.Blocks['javascript_function_math_function'] = {
   },
 	validate: function(newValue) {
 		const block = this.sourceBlock_;
+		if (!block) return;
 		if (newValue.indexOf("%1")!=-1)
 		 	block.getInput("p1").setVisible(true);
 		else {

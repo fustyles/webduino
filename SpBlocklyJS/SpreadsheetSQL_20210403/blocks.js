@@ -39,6 +39,7 @@ Blockly.Blocks['controls_spreadsheet_function'] = {
   },
   validate: function(newValue) {
 	const block = this.sourceBlock_;
+	if (!block) return;
 	if (newValue=="setcell") {
 		block.getInput("row").setVisible(true);
 		block.getInput("col").setVisible(true);
