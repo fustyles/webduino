@@ -1,3 +1,6 @@
+Blockly.Msg.PROPERTY_ONCLICK_FUNCTION = "onclick";
+Blockly.Msg.PROPERTY_ONCHANGE_FUNCTION = "onchang";
+Blockly.Msg.PROPERTY_FUNCTION_NAME = "Function name";
 Blockly.Msg.PROPERTY_ELEMENT = "Element";
 Blockly.Msg.PROPERTY_ANY = "ANY";
 Blockly.Msg.PROPERTY_UP = "UP";

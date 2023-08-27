@@ -1408,6 +1408,25 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="table_td_insert_element_function">'+
+'    <value name="id_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="x_">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="y_">'+
+'    <block type="math_number">'+
+'    <field name="NUM">0</field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
+'    <block type="table_td_insert_element_function_get">'+
+'    </block>'+
 '    <block type="table_change_colsrows">'+
 '    <value name="id_">'+
 '    <block type="text">'+

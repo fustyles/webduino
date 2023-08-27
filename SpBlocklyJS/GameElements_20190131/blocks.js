@@ -921,6 +921,9 @@ Blockly.Blocks['table_td_insert_element'] = {
       .appendField(Blockly.Msg.TABLE_TD_Y);
   this.appendDummyInput()
 	  .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField("ID: "+Blockly.Msg.TABLE_ID+"_"+Blockly.Msg.PROPERTY_COL+"_"+Blockly.Msg.PROPERTY_ROW);	  
+  this.appendDummyInput()
+	  .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(new Blockly.FieldDropdown([
 		  [Blockly.Msg.ELEMENT_IMAGE,"image"],
 		  [Blockly.Msg.ELEMENT_CANVAS,"canvas"],
@@ -940,9 +943,6 @@ Blockly.Blocks['table_td_insert_element'] = {
 		  [Blockly.Msg.ELEMENT_PROGRESS,"progress"],
 		  [Blockly.Msg.ELEMENT_PASSWORD,"password"]
 	  ]), "element_");
-  this.appendDummyInput()
-	  .setAlign(Blockly.ALIGN_RIGHT)
-	  .appendField("ID: "+Blockly.Msg.TABLE_ID+"_"+Blockly.Msg.PROPERTY_COL+"_"+Blockly.Msg.PROPERTY_ROW);
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -963,6 +963,77 @@ Blockly.Blocks['table_td_insert_element'] = {
 		 block.getInput("y_").setVisible(true);	 
 	 }	 
   } 
+};
+
+Blockly.Blocks['table_td_insert_element_function'] = {
+  init: function () {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE)
+	  .appendField(Blockly.Msg.TABLE_TD_INSERT_ELEMENT);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_ID);  
+  this.appendValueInput("x_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_X);
+  this.appendValueInput("y_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TABLE_TD_Y);	  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.ELEMENT)
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.ELEMENT_IMAGE,"image"],
+	  [Blockly.Msg.ELEMENT_CANVAS,"canvas"],
+	  [Blockly.Msg.ELEMENT_BUTTON,"button"],
+	  [Blockly.Msg.ELEMENT_COLOR,"color"],
+	  [Blockly.Msg.ELEMENT_SELECT,"select"],
+	  [Blockly.Msg.ELEMENT_RANGE,"range"],
+	  [Blockly.Msg.ELEMENT_TEXT,"text"],[
+	  Blockly.Msg.ELEMENT_DIV,"div"],
+	  [Blockly.Msg.ELEMENT_A,"a"],
+	  [Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],
+	  [Blockly.Msg.ELEMENT_TEXTAREA,"textarea"],
+	  [Blockly.Msg.ELEMENT_NUMBER,"number"],
+	  [Blockly.Msg.ELEMENT_DATE,"date"],
+	  [Blockly.Msg.ELEMENT_TIME,"time"],
+	  [Blockly.Msg.ELEMENT_DATETIME,"datetime"],
+	  [Blockly.Msg.ELEMENT_PROGRESS,"progress"],
+	  [Blockly.Msg.ELEMENT_PASSWORD,"password"]
+	  ]), "element");
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.PROPERTY_ONCLICK_FUNCTION,"click"],	  
+		[Blockly.Msg.PROPERTY_ONCHANGE_FUNCTION,"change"]
+	  ]), "event");
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.PROPERTY_FUNCTION_NAME)
+      .appendField(new Blockly.FieldTextInput(""), "fname"); 	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(240);
+  }
+};
+
+Blockly.Blocks['table_td_insert_element_function_get'] = {
+  init: function () {
+  this.appendDummyInput()     
+      .appendField(Blockly.Msg.TABLE)
+	  .appendField(Blockly.Msg.TABLE_TD_INSERT_ELEMENT);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.TABLE_ID,"id"],
+	  [Blockly.Msg.TABLE_COL,"col"],
+	  [Blockly.Msg.TABLE_ROW,"row"],
+	  [Blockly.Msg.PROPERTY_ELEMENT,"element"]
+	  ]), "property");	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(240);
+  }
 };
 
 Blockly.Blocks['table_td_clear'] = {
