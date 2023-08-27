@@ -415,3 +415,13 @@ Blockly.Blocks['controls_spreadsheet_datetime'] = {
 	this.setColour(220);
   }
 };
+
+Blockly.Blocks['spreadsheetsql_insertRow'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.SPREADSHEETSQL_GETROW_SHOW);  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
+  }
+};
