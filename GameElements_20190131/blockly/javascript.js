@@ -161,6 +161,40 @@ Blockly.JavaScript['table_td_insert_text'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['table_td_insert_element'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_target_ = block.getFieldValue('target_');
+  var value_x_ = Blockly.JavaScript.valueToCode(block, 'x_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_element_ = block.getFieldValue('element_');
+  if (value_target_=="cell")
+	var code = 'table_td_insert_element(' + value_id_ + ','+ value_x_ + ',' + value_y_ + ',"' + value_element_ + '");\n';
+  else if  (value_target_=="col")
+	var code = 'table_td_insert_element(' + value_id_ + ','+ value_x_ + ',-1,"' + value_element_ + '");\n';
+  else if  (value_target_=="row")
+	var code = 'table_td_insert_element(' + value_id_ + ',-1,' + value_y_ + ',"' + value_element_ + '");\n';
+  return code;
+};
+
+Blockly.JavaScript['table_td_insert_element_function'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_x_ = Blockly.JavaScript.valueToCode(block, 'x_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);
+  var element = block.getFieldValue('element');
+  var event = block.getFieldValue('event');
+  var fname = block.getFieldValue('fname');
+ 
+  var code = "var el = 'game"+element+"_'+"+value_id_+"+'_'+"+value_y_+"+'_'+"+value_x_+";\ndocument.getElementById(el).addEventListener('"+event+"', "+fname+", true);\n";
+  return code;
+};
+
+Blockly.JavaScript['table_td_insert_element_function_get'] = function (block) {
+  var property = block.getFieldValue('property');
+ 
+  var code = "table_td_insert_element_function_get(this.id, '"+ property +"')";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['table_td_get'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_x_ = Blockly.JavaScript.valueToCode(block, 'x_', Blockly.JavaScript.ORDER_ATOMIC);
