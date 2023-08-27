@@ -921,7 +921,6 @@ Blockly.Blocks['table_td_insert_element'] = {
       .appendField(Blockly.Msg.TABLE_TD_Y);
   this.appendDummyInput()
 	  .setAlign(Blockly.ALIGN_RIGHT)
-	  .appendField("ID: "+Blockly.Msg.PROPERTY_COL+"_"+Blockly.Msg.PROPERTY_ROW)
       .appendField(new Blockly.FieldDropdown([
 		  [Blockly.Msg.ELEMENT_IMAGE,"image"],
 		  [Blockly.Msg.ELEMENT_CANVAS,"canvas"],
@@ -941,6 +940,9 @@ Blockly.Blocks['table_td_insert_element'] = {
 		  [Blockly.Msg.ELEMENT_PROGRESS,"progress"],
 		  [Blockly.Msg.ELEMENT_PASSWORD,"password"]
 	  ]), "element_");
+  this.appendDummyInput()
+	  .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField("ID: "+Blockly.Msg.TABLE_ID+"_"+Blockly.Msg.PROPERTY_COL+"_"+Blockly.Msg.PROPERTY_ROW);
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
