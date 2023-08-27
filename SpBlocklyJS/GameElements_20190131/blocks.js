@@ -921,7 +921,7 @@ Blockly.Blocks['table_td_insert_element'] = {
       .appendField(Blockly.Msg.TABLE_TD_Y);
   this.appendDummyInput()
 	  .setAlign(Blockly.ALIGN_RIGHT)
-	  .appendField("ID: "+Blockly.Msg.TABLE_ID+"_"+Blockly.Msg.PROPERTY_COL+"_"+Blockly.Msg.PROPERTY_ROW);	  
+	  .appendField("ID: "+Blockly.Msg.TABLE_ID+"_"+Blockly.Msg.PROPERTY_ROW+"_"+Blockly.Msg.PROPERTY_COL);	  
   this.appendDummyInput()
 	  .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(new Blockly.FieldDropdown([
