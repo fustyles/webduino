@@ -21,6 +21,7 @@ Blockly.Msg.SPREADSHEETSQL_GETCELL_SHOW = "取得SQL查询资料";
 Blockly.Msg.SPREADSHEETSQL_COLUMN_SHOW = "栏位";
 Blockly.Msg.SPREADSHEETSQL_COL_SHOW = "行数";
 Blockly.Msg.SPREADSHEETSQL_ROW_SHOW = "列数";
+Blockly.Msg.SPREADSHEETSQL_GETROW_SHOW = "插入列号公式 Row()";
 Blockly.Msg["CONTROLS_SPREADSHEET"] = "Google试算表";
 Blockly.Msg["CONTROLS_SPREADSHEET_VALUE"] = "值";
 Blockly.Msg["CONTROLS_SPREADSHEET_INSERT"] = "插入";
