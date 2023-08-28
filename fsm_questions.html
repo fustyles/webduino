@@ -1,5 +1,15 @@
 <!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/spreadsheetsql.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/loader.js'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{
-var _E8_A9_A6_E7_AE_97_E8_A1_A8ID, _E8_A9_A6_E7_AE_97_E8_A1_A8_E5_85_B1_E7_94_A8_E7_B6_B2_E5_9D_80, arr, i;
+var _E8_A9_A6_E7_AE_97_E8_A1_A8ID, _E8_A9_A6_E7_AE_97_E8_A1_A8_E5_85_B1_E7_94_A8_E7_B6_B2_E5_9D_80, _E4_BA_82_E6_95_B8, _E6_8F_90_E5_95_8F_E4_B8_BB_E9_A1_8C, _E9_81_B8_E9_A0_85_E9_99_A3_E5_88_97, i;
+
+function mathRandomInt(a, b) {
+  if (a > b) {
+    // Swap a and b to ensure a is smaller.
+    var c = a;
+    a = b;
+    b = c;
+  }
+  return Math.floor(Math.random() * (b - a + 1) + a);
+}
 
 function spreadsheetsql_QueryResponse_teacher(res) {
   spreadsheetsql_QueryResponse(res, "teacher");
@@ -11,30 +21,29 @@ function spreadsheetsql_QueryResponse_topic(res) {
 }
 window.spreadsheetsql_QueryResponse_topic = spreadsheetsql_QueryResponse_topic;
 
+function spreadsheetsql_QueryResponse_add(res) {
+  spreadsheetsql_QueryResponse(res, "add");
+}
+window.spreadsheetsql_QueryResponse_add = spreadsheetsql_QueryResponse_add;
+
 // 描述此函式...
 function attention() {
-  var windowConfirm = window.confirm((['你確定要關注 [ ',table_td_get('',0,(table_td_insert_element_function_get(this.id, 'row')),"innerHTML"),' ]？'].join('')));
-  if (windowConfirm==true) {
-      spreadsheet_insert("insertfirst", String(table_td_get('',0,(table_td_insert_element_function_get(this.id, 'row')),"innerHTML"))+"|"+String('')+"|"+String("gmt_datetime"), 0, 0, "", _E8_A9_A6_E7_AE_97_E8_A1_A8_E5_85_B1_E7_94_A8_E7_B6_B2_E5_9D_80, '主題清單', "https://script.google.com/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");
-    setTimeout(async function(){
-      spreadsheetsql_settings(_E8_A9_A6_E7_AE_97_E8_A1_A8ID,'主題清單');
-      spreadsheetsql_executeSql('select A, count(A), \'關注\' group by A order by count(A) desc', "topic");
-    },2000);
-
-  }
-  else {
-
-  }
+  spreadsheetsql_settings(_E8_A9_A6_E7_AE_97_E8_A1_A8ID,'主題清單');
+  _E6_8F_90_E5_95_8F_E4_B8_BB_E9_A1_8C = (table_td_get('',0,(table_td_insert_element_function_get(this.id, 'row')),"innerHTML"));
+  console.log((['select count(A) where A=\'',_E6_8F_90_E5_95_8F_E4_B8_BB_E9_A1_8C,'\' and B=\'',_E4_BA_82_E6_95_B8,'\''].join('')));
+  spreadsheetsql_executeSql((['select count(A) where A=\'',_E6_8F_90_E5_95_8F_E4_B8_BB_E9_A1_8C,'\' and B=\'',_E4_BA_82_E6_95_B8,'\''].join('')), "add");
 }
 
 
 _E8_A9_A6_E7_AE_97_E8_A1_A8ID = '1B6SoFqvj1_kT-ZTFdq6x4mx8LVQ9e7n6ynOjVd3q4wM';
 _E8_A9_A6_E7_AE_97_E8_A1_A8_E5_85_B1_E7_94_A8_E7_B6_B2_E5_9D_80 = 'https://docs.google.com/spreadsheets/d/1B6SoFqvj1_kT-ZTFdq6x4mx8LVQ9e7n6ynOjVd3q4wM/edit?usp=sharing';
-head_add_viewport(0.8,0.5,2,"yes");
-select_create('',150,30,0,5,'#ffffff','#000000',20,1,[],'',999,true);
-span_create('',155,5,24,'提問',999);
-text_create('',260,30,210,5,'#ffffff','#000000',20,1,'',999,true);
-button_create('',60,35,490,5,1,null,'送出',22,999,true);
+_E4_BA_82_E6_95_B8 = mathRandomInt(1, 100000);
+_E6_8F_90_E5_95_8F_E4_B8_BB_E9_A1_8C = '';
+head_add_viewport(0.9,0.5,2,"yes");
+select_create('',100,20,0,5,'#ffffff','#000000',12,1,[],'',999,true);
+span_create('',105,5,16,'提問',999);
+text_create('',200,20,140,5,'#ffffff','#000000',12,1,'',999,true);
+button_create('',60,25,350,5,1,null,'送出',12,999,true);
 async function gamebutton__onclick (event) {
   var windowConfirm = window.confirm((['你確定要新增提問 [ ',text_get('',"value"),' ]嗎？'].join('')));
   if (windowConfirm==true) {
@@ -50,8 +59,10 @@ async function gamebutton__onclick (event) {
   }
 };
 document.getElementById("gamebutton_").addEventListener("click", gamebutton__onclick, true);
+spreadsheetsql_settings(_E8_A9_A6_E7_AE_97_E8_A1_A8ID,'教師名單');
+spreadsheetsql_executeSql('select A,B', "teacher");
 spreadsheetsql_getDataFinish_teacher = function() {
-  var arr = [['', '']];
+  var _E9_81_B8_E9_A0_85_E9_99_A3_E5_88_97 = [['', '']];
   var i_end = (spreadsheetsql_getDataCount("ROWS"));
   var i_inc = 1;
   if (1 > i_end) {
@@ -59,17 +70,17 @@ spreadsheetsql_getDataFinish_teacher = function() {
   }
   for (i = 1; i_inc >= 0 ? i <= i_end : i >= i_end; i += i_inc) {
     if ((spreadsheetsql_getCell(1, i)) != null) {
-      arr.push([spreadsheetsql_getCell(2, i), spreadsheetsql_getCell(2, i)]);
+      _E9_81_B8_E9_A0_85_E9_99_A3_E5_88_97.push([spreadsheetsql_getCell(2, i), spreadsheetsql_getCell(2, i)]);
     }
   }
-  select_set('',"option",arr);
+  select_set('',"option",_E9_81_B8_E9_A0_85_E9_99_A3_E5_88_97);
 
 };
-spreadsheetsql_settings(_E8_A9_A6_E7_AE_97_E8_A1_A8ID,'教師名單');
-spreadsheetsql_executeSql('select A,B', "teacher");
 await delay(3);
+spreadsheetsql_settings(_E8_A9_A6_E7_AE_97_E8_A1_A8ID,'主題清單');
+spreadsheetsql_executeSql('select A, count(A), \'關注\' group by A order by count(A) desc', "topic");
 spreadsheetsql_getDataFinish_topic = function() {
-  spreadsheetsql_getDataTable('',550,20,0,60,true);
+  spreadsheetsql_getDataTable('',410,12,0,60,true);
   table_td_insert_element('',2,-1,"button");
   var i_end2 = (table_get('',"rows")) - 1;
   var i_inc2 = 1;
@@ -81,14 +92,32 @@ spreadsheetsql_getDataFinish_topic = function() {
     document.getElementById(el).addEventListener('click', attention, true);
     button_set((['','_',i,'_',2].join('')),"value",'關注');
   }
-  table_td_insert_text('',0,0,'提問','Arial',5,'#009900');
+  table_td_insert_text('',0,0,'提問','Arial',3,'#009900');
   table_td_insert_text('',1,0,'關注數','Arial',3,'#009900');
-  table_td_insert_text('',2,0,'功能','Arial',5,'#009900');
-  table_td_set('',0,0,"width",450);
-  table_td_set('',1,0,"width",50);
+  table_td_insert_text('',2,0,'','Arial',5,'#009900');
+  table_td_set('',0,0,"width",300);
+  table_td_set('',1,0,"width",60);
   table_td_set('',2,0,"width",50);
 
 };
-spreadsheetsql_settings(_E8_A9_A6_E7_AE_97_E8_A1_A8ID,'主題清單');
-spreadsheetsql_executeSql('select A, count(A), \'關注\' group by A order by count(A) desc', "topic");
+spreadsheetsql_getDataFinish_add = function() {
+  console.log((spreadsheetsql_getDataCount("ROWS")));
+  if ((spreadsheetsql_getDataCount("ROWS")) == 0) {
+    var windowConfirm = window.confirm((['你確定要關注 [ ',_E6_8F_90_E5_95_8F_E4_B8_BB_E9_A1_8C,' ]？'].join('')));
+    if (windowConfirm==true) {
+        spreadsheet_insert("insertfirst", String(_E6_8F_90_E5_95_8F_E4_B8_BB_E9_A1_8C)+"|"+String(_E4_BA_82_E6_95_B8)+"|"+String("gmt_datetime"), 0, 0, "", _E8_A9_A6_E7_AE_97_E8_A1_A8_E5_85_B1_E7_94_A8_E7_B6_B2_E5_9D_80, '主題清單', "https://script.google.com/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");
+      setTimeout(async function(){
+        spreadsheetsql_settings(_E8_A9_A6_E7_AE_97_E8_A1_A8ID,'主題清單');
+        spreadsheetsql_executeSql('select A, count(A), \'關注\' group by A order by count(A) desc', "topic");
+      },2000);
+
+    }
+    else {
+
+    }
+  } else {
+    alert('已關注，無法重複關注。');
+  }
+
+};
 };main();</script></body></html>
