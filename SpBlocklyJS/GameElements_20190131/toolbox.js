@@ -332,6 +332,13 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="code_text_input">'+
+'    <value name="code">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+	
 '    <block type="video_base64_spreadsheet">'+
 '    <value name="id_">'+
 '    <block type="text">'+
