@@ -382,6 +382,13 @@
 			  </block>
 			</value> 
 		  </block> 
+		  <block type="code_text_input">
+			<value name="code">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value> 
+		  </block> 			
 		  </category>
 		  <category id="catGameElements_sub26" colour="120"> 
 
