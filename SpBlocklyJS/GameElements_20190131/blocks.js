@@ -5723,7 +5723,6 @@ Blockly.Blocks['code_text_input'] = {
       .setCheck(null);	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(80);
   }
 };
 
