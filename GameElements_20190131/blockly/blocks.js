@@ -826,6 +826,17 @@ Blockly.Blocks['code_text'] = {
   }
 };
 
+Blockly.Blocks['code_text_input'] = {
+  init: function () {
+  this.appendValueInput("code")
+      .appendField(Blockly.Msg["CODE_TEXT"])
+      .setCheck(null);	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(80);
+  }
+};
+
 Blockly.Blocks['window_messagebox'] = {
   init: function () {
   this.appendValueInput("message")
