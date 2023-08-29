@@ -49,10 +49,10 @@ _E8_A9_A6_E7_AE_97_E8_A1_A8_E5_85_B1_E7_94_A8_E7_B6_B2_E5_9D_80 = 'https://docs.
 _E4_BA_82_E6_95_B8 = mathRandomInt(1, 100000);
 _E6_8F_90_E5_95_8F_E4_B8_BB_E9_A1_8C = '';
 head_add_viewport(0.9,0.5,2,"yes");
-select_create('',90,25,15,5,'#ffffff','#000000',12,1,[],'',999,true);
-span_create('',110,5,16,'提問',999);
-text_create('',200,20,145,5,'#ffffff','#000000',12,1,'',999,true);
-button_create('',60,25,355,5,1,null,'送出',12,999,true);
+select_create('',90,25,15,15,'#ffffff','#000000',12,1,[],'',999,true);
+span_create('',110,15,16,'提問',999);
+text_create('',200,20,145,15,'#ffffff','#000000',12,1,'',999,true);
+button_create('',60,25,355,15,1,null,'送出',12,999,true);
 async function gamebutton__onclick (event) {
   if ((select_get('',"selectedValue")) != '' && (text_get('',"value")).trim() != '') {
     var windowConfirm = window.confirm((['你確定要新增提問 [ ',text_get('',"value"),' ]嗎？'].join('')));
