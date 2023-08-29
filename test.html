@@ -75,7 +75,7 @@ document.getElementById("gamebutton_").addEventListener("click", gamebutton__onc
 spreadsheetsql_settings(_E8_A9_A6_E7_AE_97_E8_A1_A8ID,'教師名單');
 spreadsheetsql_executeSql('select A,B', "teacher");
 spreadsheetsql_getDataFinish_teacher = function() {
-  var _E9_81_B8_E9_A0_85_E9_99_A3_E5_88_97 = [['', '請選擇']];
+  var _E9_81_B8_E9_A0_85_E9_99_A3_E5_88_97 = [['', '選擇姓名']];
   var i_end = (spreadsheetsql_getDataCount("ROWS"));
   var i_inc = 1;
   if (1 > i_end) {
