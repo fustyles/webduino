@@ -1,3 +1,283 @@
+Blockly.Blocks['table_insert_row'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.TABLE)
+		.appendField(Blockly.Msg.TABLE_ROW); 
+    this.appendValueInput('id')
+        .setAlign(Blockly.ALIGN_RIGHT)	    
+        .appendField(Blockly.Msg.TABLE_ID);	
+    this.appendDummyInput()  
+        .appendField(Blockly.Msg.TABLE_BORDERSTYLE)
+        .appendField(new Blockly.FieldDropdown([		
+			[Blockly.Msg.TABLE_INSERTFIRSTROW,"insertfirst"],
+			[Blockly.Msg.TABLE_INSERTONEROW,"insertone"],
+			[Blockly.Msg.TABLE_INSERTLASTROW,"insertlast"],
+			[Blockly.Msg.TABLE_ROW_UPDATE,"update"]
+		  ],this.validate), "func"); 
+    this.appendValueInput('row')
+        .setAlign(Blockly.ALIGN_RIGHT)	    
+        .appendField(Blockly.Msg.TABLE_ROW, "row_label"); 		
+    this.appendValueInput('VALUE')
+        .setAlign(Blockly.ALIGN_RIGHT)	    
+        .appendField(Blockly.Msg.TABLE_COL+'1');
+    this.setInputsInline(false);		
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(220);  
+    this.setMutator(new Blockly.Mutator(['table_insert_row_value']));
+    this.allCount_=0;
+  }  
+  ,validate:function(newValue) {
+		const block = this.sourceBlock_;	
+		if (!block) return;		
+		if (newValue=="insertfirst"||newValue=="insertlast") {
+			block.getInput("row").setVisible(false);
+			block.getField("row_label").setVisible(false);
+		} else {
+			block.getInput("row").setVisible(true);
+			block.getField("row_label").setVisible(true);
+		}
+   }
+  
+	,mutationToDom:function(){		
+		if(!this.allCount_)return null;
+		var a=document.createElement("mutation");
+		this.allCount_&&a.setAttribute("all",this.allCount_);
+		return a
+	}
+	,domToMutation:function(a){		
+		this.allCount_=parseInt(a.getAttribute("all"),10)||0;
+		this.rebuildShape_()
+	}
+	,decompose:function(a){
+		var b=a.newBlock("table_insert_row_main");
+		b.initSvg();
+		
+		for(var c=b.nextConnection,d=1;d<=this.allCount_;d++){
+			var e=a.newBlock("table_insert_row_value");
+			e.initSvg();
+			c.connect(e.previousConnection);
+			c=e.nextConnection
+		}
+		return b
+	}
+	,compose:function(a){
+		a=a.nextConnection.targetBlock();
+		this.allCount_=0;
+		for(var b=[null];a;){
+			this.allCount_++;
+			b.push(a.valueConnection_);
+			a=a.nextConnection&&a.nextConnection.targetBlock()
+		}
+		this.updateShape_();
+		this.reconnectChildBlocks_(b)
+	}
+	,saveConnections:function(a){	
+		a=a.nextConnection.targetBlock();
+		for(var b=1;a;){
+			switch(a.type){
+				case "table_insert_row_value":
+					var c=this.getInput(String.fromCharCode(b+65));
+					a.valueConnection_=c&&c.connection.targetConnection;
+					b++;
+					break;				
+				default:throw TypeError("Unknown block type: "+a.type);
+			}
+			a=a.nextConnection&&a.nextConnection.targetBlock()
+		}
+	}
+	,rebuildShape_:function(){	
+		var a=[null];
+		for(var d=1;this.getInput(String.fromCharCode(d+65));){
+			var e=this.getInput(String.fromCharCode(d+65));
+			a.push(e.connection.targetConnection);d++
+		}
+		this.updateShape_();
+		this.reconnectChildBlocks_(a)
+	}
+	,updateShape_:function(){	
+		for(var a=1;this.getInput(String.fromCharCode(a+65));)
+			this.removeInput(String.fromCharCode(a+65)),a++;
+		for(a=1;a<=this.allCount_;a++)
+			this.appendValueInput(String.fromCharCode(a+65))
+			.setCheck(null)
+			.appendField(Blockly.Msg.TABLE_COL+(a+1))
+			.setAlign(Blockly.ALIGN_RIGHT)
+	}
+	,reconnectChildBlocks_:function(a,b){	
+		for(var d=1;d<=this.allCount_;d++)
+			Blockly.Mutator.reconnect(a[d],this,String.fromCharCode(d+65));
+	}
+};
+
+Blockly.Blocks['table_insert_row_main'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.TABLE_COL);
+    this.setPreviousStatement(false);	  
+    this.setNextStatement(true);	  
+    this.contextMenu = false;
+	this.setColour(220);
+  }
+};
+
+Blockly.Blocks['table_insert_row_value'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.TABLE_COL);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.contextMenu = false;
+	this.setColour(220);
+  }
+};
+
+Blockly.Blocks['table_insert_col'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.TABLE)
+		.appendField(Blockly.Msg.TABLE_COL); 
+    this.appendValueInput('id')
+        .setAlign(Blockly.ALIGN_RIGHT)	    
+        .appendField(Blockly.Msg.TABLE_ID);	
+    this.appendDummyInput()  
+        .appendField(Blockly.Msg.TABLE_BORDERSTYLE)
+        .appendField(new Blockly.FieldDropdown([		
+			[Blockly.Msg.TABLE_INSERTFIRSTCOL,"insertfirst"],
+			[Blockly.Msg.TABLE_INSERTONECOL,"insertone"],
+			[Blockly.Msg.TABLE_INSERTLASTCOL,"insertlast"],
+			[Blockly.Msg.TABLE_ROW_UPDATE,"update"]
+		  ],this.validate), "func"); 
+    this.appendValueInput('col')
+        .setAlign(Blockly.ALIGN_RIGHT)	    
+        .appendField(Blockly.Msg.TABLE_COL, "col_label"); 		
+    this.appendValueInput('VALUE')
+        .setAlign(Blockly.ALIGN_RIGHT)	    
+        .appendField(Blockly.Msg.TABLE_ROW+'1');
+    this.setInputsInline(false);		
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(220);  
+    this.setMutator(new Blockly.Mutator(['table_insert_col_value']));
+    this.allCount_=0;
+	
+  }
+  ,validate:function(newValue) {
+	  	const block = this.sourceBlock_;	
+		if (!block) return;	
+		if (newValue=="insertfirst"||newValue=="insertlast") {
+			block.getInput("col").setVisible(false);
+			block.getField("col_label").setVisible(false);
+		} else {
+			block.getInput("col").setVisible(true);
+			block.getField("col_label").setVisible(true);
+		}
+   }
+	,mutationToDom:function(){		
+		if(!this.allCount_)return null;
+		var a=document.createElement("mutation");
+		this.allCount_&&a.setAttribute("all",this.allCount_);
+		return a
+	}
+	,domToMutation:function(a){		
+		this.allCount_=parseInt(a.getAttribute("all"),10)||0;
+		this.rebuildShape_()
+	}
+	,decompose:function(a){
+		var b=a.newBlock("table_insert_col_main");
+		b.initSvg();
+		
+		for(var c=b.nextConnection,d=1;d<=this.allCount_;d++){
+			var e=a.newBlock("table_insert_col_value");
+			e.initSvg();
+			c.connect(e.previousConnection);
+			c=e.nextConnection
+		}
+		return b
+	}
+	,compose:function(a){
+		a=a.nextConnection.targetBlock();
+		this.allCount_=0;
+		for(var b=[null];a;){
+			this.allCount_++;
+			b.push(a.valueConnection_);
+			a=a.nextConnection&&a.nextConnection.targetBlock()
+		}
+		this.updateShape_();
+		this.reconnectChildBlocks_(b)
+	}
+	,saveConnections:function(a){	
+		a=a.nextConnection.targetBlock();
+		for(var b=1;a;){
+			switch(a.type){
+				case "table_insert_col_value":
+					var c=this.getInput(String.fromCharCode(b+65));
+					a.valueConnection_=c&&c.connection.targetConnection;
+					b++;
+					break;				
+				default:throw TypeError("Unknown block type: "+a.type);
+			}
+			a=a.nextConnection&&a.nextConnection.targetBlock()
+		}
+	}
+	,rebuildShape_:function(){	
+		var a=[null];
+		for(var d=1;this.getInput(String.fromCharCode(d+65));){
+			var e=this.getInput(String.fromCharCode(d+65));
+			a.push(e.connection.targetConnection);d++
+		}
+		this.updateShape_();
+		this.reconnectChildBlocks_(a)
+	}
+	,updateShape_:function(){	
+		for(var a=1;this.getInput(String.fromCharCode(a+65));)
+			this.removeInput(String.fromCharCode(a+65)),a++;
+		for(a=1;a<=this.allCount_;a++)
+			this.appendValueInput(String.fromCharCode(a+65))
+			.setCheck(null)
+			.appendField(Blockly.Msg.TABLE_ROW+(a+1))
+			.setAlign(Blockly.ALIGN_RIGHT)
+	}
+	,reconnectChildBlocks_:function(a,b){	
+		for(var d=1;d<=this.allCount_;d++)
+			Blockly.Mutator.reconnect(a[d],this,String.fromCharCode(d+65));
+	}
+};
+
+Blockly.Blocks['table_insert_col_main'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.TABLE_ROW);
+    this.setPreviousStatement(false);	  
+    this.setNextStatement(true);	  
+    this.contextMenu = false;
+	this.setColour(220);
+  }
+};
+
+Blockly.Blocks['table_insert_col_value'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.TABLE_ROW);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.contextMenu = false;
+	this.setColour(220);
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Blocks['table_create'] = {
   init: function() {
   this.appendDummyInput()     

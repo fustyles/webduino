@@ -1460,6 +1460,30 @@
 				</block>
 			</value>
 		</block>
+		  <block type="table_insert_row">
+			<value name="id">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+			<value name="row">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+		  </block>	
+		  <block type="table_insert_col">
+			<value name="id">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+			<value name="col">
+				<block type="math_number">
+					<field name="NUM">0</field>
+				</block>
+			</value>
+		  </block>		
 		<block type="table_clear">
 			<value name="id_">
 				<block type="text">

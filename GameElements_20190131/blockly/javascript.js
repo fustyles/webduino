@@ -1,3 +1,37 @@
+Blockly.JavaScript['table_insert_row'] = function(block){
+	var value_id = Blockly.JavaScript.valueToCode(block,"id",Blockly.JavaScript.ORDER_NONE)||"";
+	var value_func = block.getFieldValue('func');
+	var value_row = Number(Blockly.JavaScript.valueToCode(block,"row",Blockly.JavaScript.ORDER_NONE)||-1);
+	var value_data = Blockly.JavaScript.valueToCode(block,"VALUE",Blockly.JavaScript.ORDER_NONE)||"";
+	value_data = 'String('+value_data+')+"|"';
+	for (var i=0;i<26;i++) {
+		var text = Blockly.JavaScript.valueToCode(block,String.fromCharCode(i+65),Blockly.JavaScript.ORDER_NONE);
+		if (block.getInput(String.fromCharCode(i+65)))
+			value_data += '+String('+text+')+"|"';
+	}
+	value_data = value_data.substring(0, value_data.length-4);
+			
+	var code = 'table_insert_row(' + value_id + ',"' + value_func + '",' + value_row + ', ' + value_data + ');\n';
+	return code;
+};
+
+Blockly.JavaScript['table_insert_col'] = function(block){
+	var value_id = Blockly.JavaScript.valueToCode(block,"id",Blockly.JavaScript.ORDER_NONE)||"";
+	var value_func = block.getFieldValue('func');
+	var value_col = Number(Blockly.JavaScript.valueToCode(block,"col",Blockly.JavaScript.ORDER_NONE)||-1);
+	var value_data = Blockly.JavaScript.valueToCode(block,"VALUE",Blockly.JavaScript.ORDER_NONE)||"";
+	value_data = 'String('+value_data+')+"|"';
+	for (var i=0;i<26;i++) {
+		var text = Blockly.JavaScript.valueToCode(block,String.fromCharCode(i+65),Blockly.JavaScript.ORDER_NONE);
+		if (block.getInput(String.fromCharCode(i+65)))
+			value_data += '+String('+text+')+"|"';
+	}
+	value_data = value_data.substring(0, value_data.length-4);
+			
+	var code = 'table_insert_col(' + value_id + ',"' + value_func + '",' + value_col + ', ' + value_data + ');\n';
+	return code;
+};
+
 Blockly.JavaScript['table_create'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
