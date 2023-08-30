@@ -6,8 +6,7 @@ Blockly.Blocks['table_insert_row'] = {
     this.appendValueInput('id')
         .setAlign(Blockly.ALIGN_RIGHT)	    
         .appendField(Blockly.Msg.TABLE_ID);	
-    this.appendDummyInput()  
-        .appendField(Blockly.Msg.TABLE_BORDERSTYLE)
+    this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([		
 			[Blockly.Msg.TABLE_INSERTFIRSTROW,"insertfirst"],
 			[Blockly.Msg.TABLE_INSERTONEROW,"insertone"],
@@ -140,8 +139,7 @@ Blockly.Blocks['table_insert_col'] = {
     this.appendValueInput('id')
         .setAlign(Blockly.ALIGN_RIGHT)	    
         .appendField(Blockly.Msg.TABLE_ID);	
-    this.appendDummyInput()  
-        .appendField(Blockly.Msg.TABLE_BORDERSTYLE)
+    this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([		
 			[Blockly.Msg.TABLE_INSERTFIRSTCOL,"insertfirst"],
 			[Blockly.Msg.TABLE_INSERTONECOL,"insertone"],
