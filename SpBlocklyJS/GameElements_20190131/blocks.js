@@ -38,11 +38,11 @@ Blockly.Extensions.register('dropdown_row',
 		if (event.type=="finished_loading") {
 			var func = this.getFieldValue("func");
 			if (func=="insertfirst"||func=="insertlast") {
-				this.getInput("col").setVisible(false);
-				this.getField("col_label").setVisible(false);
+				this.getInput("row").setVisible(false);
+				this.getField("row_label").setVisible(false);
 			} else {
-				this.getInput("col").setVisible(true);
-				this.getField("col_label").setVisible(true);
+				this.getInput("row").setVisible(true);
+				this.getField("row_label").setVisible(true);
 			}	
 			this.render();
 		}		
