@@ -1,5 +1,5 @@
-<!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/spreadsheetsql.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/loader.js'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{
-var _E8_A9_A6_E7_AE_97_E8_A1_A8ID, _E5_AE_9A_E6_99_82_E6_9B_B4_E6_96_B0_E4_B8_BB_E9_A1_8C_E9_97_9C_E6_B3_A8_E5_88_97_E8_A1_A8, _E8_A9_A6_E7_AE_97_E8_A1_A8_E5_85_B1_E7_94_A8_E7_B6_B2_E5_9D_80, _E6_8F_90_E5_95_8F_E4_B8_BB_E9_A1_8C, _E4_BA_82_E6_95_B8, clientip, _E9_81_B8_E9_A0_85_E9_99_A3_E5_88_97, i;
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/spreadsheetsql.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpreadsheetSQL_20210403/loader.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/line_20220729/line.js'></script></head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{
+var _E8_A9_A6_E7_AE_97_E8_A1_A8ID, _E8_A9_A6_E7_AE_97_E8_A1_A8_E5_85_B1_E7_94_A8_E7_B6_B2_E5_9D_80, _E5_AE_9A_E6_99_82_E6_9B_B4_E6_96_B0_E4_B8_BB_E9_A1_8C_E9_97_9C_E6_B3_A8_E5_88_97_E8_A1_A8, _E6_8F_90_E5_95_8F_E4_B8_BB_E9_A1_8C, _E4_BA_82_E6_95_B8, clientip, _E8_A8_8A_E6_81_AF_E9_80_9A_E7_9F_A5, _E9_81_B8_E9_A0_85_E9_99_A3_E5_88_97, i;
 
 function mathRandomInt(a, b) {
   if (a > b) {
@@ -74,6 +74,8 @@ async function gamebutton__onclick (event) {
     var windowConfirm = window.confirm((['你確定要新增提問 [ ',text_get('',"value"),' ]嗎？'].join('')));
     if (windowConfirm==true) {
         spreadsheet_insert("insertfirst", String([text_get('',"value"),'(',select_get('',"selectedValue"),')'].join(''))+"|"+String('IP_' + String(_E4_BA_82_E6_95_B8))+"|"+String("gmt_datetime"), 0, 0, "", _E8_A9_A6_E7_AE_97_E8_A1_A8_E5_85_B1_E7_94_A8_E7_B6_B2_E5_9D_80, '主題清單', "https://script.google.com/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");
+      var _E8_A8_8A_E6_81_AF_E9_80_9A_E7_9F_A5 = [text_get('',"value"),'(',select_get('',"selectedValue"),')'].join('');
+      linenotify_push_message('z1m6boQ4cvq9ntHQzbmydk7LlDI6J5xnuObeUAatiKb',{'type':'text','text':_E8_A8_8A_E6_81_AF_E9_80_9A_E7_9F_A5});
       text_set('',"value",'');
       setTimeout(async function(){
         _E4_B8_BB_E9_A1_8C_E6_B8_85_E5_96_AE_E5_88_97_E8_A1_A8();
