@@ -23,7 +23,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 	  packages: ['corechart'],
 	  callback: function () {
 		var query = new google.visualization.Query("https://docs.google.com/spreadsheets/d/"+spreadsheetsql_id[task_id]+"/gviz/tq?tqx=out:json&sheet="+spreadsheetsql_name[task_id]);
-		console.log(query);
+		//console.log(query);
 		query.setQuery(spreadsheet_sql);
 		query.send(eval("spreadsheetsql_QueryResponse_"+task_id));
 	  }
