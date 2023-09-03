@@ -11,10 +11,11 @@ Blockly.JavaScript['controls_spreadsheet_function'] = function(block){
 };
 
 Blockly.JavaScript['spreadsheetsql_queryData'] = function (block) {
+  var task_id = block.getFieldValue('task_id');	
   var spreadsheet_id = Blockly.JavaScript.valueToCode(block, 'spreadsheet_id', Blockly.JavaScript.ORDER_ATOMIC);  
   var spreadsheet_name = Blockly.JavaScript.valueToCode(block, 'spreadsheet_name', Blockly.JavaScript.ORDER_ATOMIC);
   
-  var code = 'spreadsheetsql_settings('+spreadsheet_id+','+spreadsheet_name+');\n';
+  var code = 'spreadsheetsql_settings('+spreadsheet_id+','+spreadsheet_name+', "'+task_id+'");\n';
   return code; 
 };
 
@@ -35,18 +36,21 @@ Blockly.JavaScript['spreadsheetsql_getCellSQL'] = function (block) {
 };
 
 Blockly.JavaScript['spreadsheetsql_getData'] = function (block) {
-  var code = 'spreadsheetsql_getData()';
+  var task_id = block.getFieldValue('task_id');
+  var code = 'spreadsheetsql_getData("'+task_id+'")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript['spreadsheetsql_getCell'] = function (block) {
+  var task_id = block.getFieldValue('task_id');
   var col = Blockly.JavaScript.valueToCode(block, 'col', Blockly.JavaScript.ORDER_ATOMIC);
   var row = Blockly.JavaScript.valueToCode(block, 'row', Blockly.JavaScript.ORDER_ATOMIC);	
-  var code = 'spreadsheetsql_getCell('+col+', '+row+')';
+  var code = 'spreadsheetsql_getCell('+col+', '+row+',"'+task_id+'")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript['spreadsheetsql_getDataTable'] = function (block) {
+  var task_id = block.getFieldValue('task_id');
   var id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);  
   var width = Blockly.JavaScript.valueToCode(block, 'width', Blockly.JavaScript.ORDER_ATOMIC); 
   var fontsize = Blockly.JavaScript.valueToCode(block, 'fontsize', Blockly.JavaScript.ORDER_ATOMIC);
@@ -54,7 +58,7 @@ Blockly.JavaScript['spreadsheetsql_getDataTable'] = function (block) {
   var top = Blockly.JavaScript.valueToCode(block, 'top', Blockly.JavaScript.ORDER_ATOMIC);
   var column = Blockly.JavaScript.valueToCode(block, 'column', Blockly.JavaScript.ORDER_ATOMIC);
   
-  var code = 'spreadsheetsql_getDataTable('+id+','+width+','+fontsize+','+left+','+top+','+column+');\n';
+  var code = 'spreadsheetsql_getDataTable('+id+','+width+','+fontsize+','+left+','+top+','+column+',"'+task_id+'");\n';
   return code; 
 };
 
@@ -66,13 +70,15 @@ Blockly.JavaScript['spreadsheetsql_clearDataTable'] = function (block) {
 };
 
 Blockly.JavaScript['spreadsheetsql_getDataCount'] = function (block) {
+  var task_id = block.getFieldValue('task_id');
   var value_count = block.getFieldValue('count'); 
-  var code = 'spreadsheetsql_getDataCount("'+value_count+'")';
+  var code = 'spreadsheetsql_getDataCount("'+value_count+'","'+task_id+'")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript['spreadsheetsql_clearData'] = function (block) {
-  var code = 'spreadsheetsql_clearData();\n';
+  var task_id = block.getFieldValue('task_id');
+  var code = 'spreadsheetsql_clearData("'+task_id+'");\n';
   return code; 
 };
 
@@ -81,7 +87,7 @@ Blockly.JavaScript['spreadsheetsql_getdatafinish'] = function(block) {
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
   Blockly.JavaScript.definitions_['spreadsheetsql_task_'+task_id] = 'function spreadsheetsql_QueryResponse_'+task_id+'(res) {\n  spreadsheetsql_QueryResponse(res, "'+task_id+'");\n}\nwindow.spreadsheetsql_QueryResponse_'+task_id+' = spreadsheetsql_QueryResponse_'+task_id+';';
   
-  var code = 'spreadsheetsql_getDataFinish_'+task_id+' = function() {\n' + statements_do + '\n};\n';
+  var code = 'spreadsheetsql_getDataFinish_'+task_id+' = function(head_response, response) {\n' + statements_do + '\n};\n';
   return code;
 };
 
