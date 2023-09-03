@@ -84,9 +84,12 @@ Blockly.Blocks['spreadsheetsql_queryData'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.SPREADSHEETSQL_NAME_SHOW);
+  this.appendDummyInput()
+	  .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
+      .appendField(new Blockly.FieldTextInput(""), "task_id");   	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setTooltip('');
   this.setColour(65);
   this.setHelpUrl("https://developers.google.com/chart/interactive/docs/querylanguage");
   }
@@ -99,12 +102,12 @@ Blockly.Blocks['spreadsheetsql_executeSql'] = {
   this.appendValueInput("spreadsheet_sql")
       .setCheck("String");
   this.appendDummyInput()
+	  .setAlign(Blockly.ALIGN_RIGHT)
 	  .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
       .appendField(new Blockly.FieldTextInput(""), "task_id");   
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setTooltip('');
   this.setColour(65);
   this.setHelpUrl("https://developers.google.com/chart/interactive/docs/querylanguage");
   }
@@ -147,7 +150,7 @@ Blockly.Blocks['spreadsheetsql_getCellSQL'] = {
     this.appendValueInput("row")
 		.setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")  
-        .appendField(Blockly.Msg.SPREADSHEETSQL_ROW_SHOW);	
+        .appendField(Blockly.Msg.SPREADSHEETSQL_ROW_SHOW);		
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
 	this.setColour(65);
@@ -158,6 +161,10 @@ Blockly.Blocks['spreadsheetsql_getData'] = {
   init: function() {
   this.appendDummyInput()
       .appendField(Blockly.Msg.SPREADSHEETSQL_GETDATA_SHOW);
+  this.appendDummyInput()
+	  .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
+      .appendField(new Blockly.FieldTextInput(""), "task_id");  	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
@@ -177,6 +184,10 @@ Blockly.Blocks['spreadsheetsql_getCell'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.setCheck("Number")  
 		.appendField(Blockly.Msg.SPREADSHEETSQL_COL_SHOW);
+    this.appendDummyInput()
+	    .setAlign(Blockly.ALIGN_RIGHT)
+	    .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
+        .appendField(new Blockly.FieldTextInput(""), "task_id"); 		
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
 	this.setColour(65);
@@ -214,11 +225,15 @@ Blockly.Blocks['spreadsheetsql_getDataTable'] = {
     this.appendValueInput("column")
 		.setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Boolean")  
-        .appendField(Blockly.Msg.SPREADSHEETSQL_COLUMNNAME_SHOW);	
+        .appendField(Blockly.Msg.SPREADSHEETSQL_COLUMNNAME_SHOW);
+    this.appendDummyInput()
+	    .setAlign(Blockly.ALIGN_RIGHT)
+	    .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
+        .appendField(new Blockly.FieldTextInput(""), "task_id"); 		
 	this.setInputsInline(false);	  
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
-	this.setTooltip('');
+	
 	this.setColour(65);
 	this.setHelpUrl("https://developers.google.com/chart/interactive/docs/querylanguage");   
   }
@@ -230,11 +245,11 @@ Blockly.Blocks['spreadsheetsql_clearDataTable'] = {
         .appendField(Blockly.Msg.SPREADSHEETSQL_CLEARDATATABLE_SHOW);
 	this.appendValueInput("id")
 		.appendField(Blockly.Msg.SPREADSHEETSQL_TABLEID_SHOW)
-		.setCheck("String");  
+		.setCheck("String");		
 	this.setInputsInline(true);	  
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
-	this.setTooltip('');
+	
 	this.setColour(65);		
   }
 };
@@ -247,7 +262,11 @@ Blockly.Blocks['spreadsheetsql_getDataCount'] = {
         .appendField(new Blockly.FieldDropdown([
           [Blockly.Msg.SPREADSHEETSQL_GETDATACOUNTROWS_SHOW,"ROWS"],		
           [Blockly.Msg.SPREADSHEETSQL_GETDATACOUNTCOLS_SHOW,"COLS"]
-        ]), "count"); 	  
+        ]), "count");
+    this.appendDummyInput()
+	    .setAlign(Blockly.ALIGN_RIGHT)
+	    .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
+        .appendField(new Blockly.FieldTextInput(""), "task_id"); 		
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
@@ -256,12 +275,16 @@ Blockly.Blocks['spreadsheetsql_getDataCount'] = {
 
 Blockly.Blocks['spreadsheetsql_clearData'] = {
   init: function() {
-  this.appendDummyInput()
+    this.appendDummyInput()
       .appendField(Blockly.Msg.SPREADSHEETSQL_CLEARDATA_SHOW);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setTooltip('');
-  this.setColour(65);
+    this.appendDummyInput()
+	    .setAlign(Blockly.ALIGN_RIGHT)
+	    .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
+        .appendField(new Blockly.FieldTextInput(""), "task_id"); 
+    this.setInputsInline(true);		
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(65);
   }
 };
 
@@ -269,14 +292,15 @@ Blockly.Blocks['spreadsheetsql_getdatafinish'] = {
   init: function () {
   this.appendDummyInput()
       .appendField(Blockly.Msg.SPREADSHEETSQL_GETDATAFINISH_SHOW);
-  this.appendDummyInput()
-	  .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
-      .appendField(new Blockly.FieldTextInput(""), "task_id"); 	  
+    this.appendDummyInput()
+	    .setAlign(Blockly.ALIGN_RIGHT)
+	    .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
+        .appendField(new Blockly.FieldTextInput(""), "task_id");  	  
   this.appendStatementInput("do_");
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(65);
+  this.setColour(60);
   }
 }
 
