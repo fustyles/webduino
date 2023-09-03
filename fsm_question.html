@@ -31,7 +31,7 @@ window.spreadsheetsql_QueryResponse_add = spreadsheetsql_QueryResponse_add;
 // 描述此函式...
 function _E4_B8_BB_E9_A1_8C_E6_B8_85_E5_96_AE_E5_88_97_E8_A1_A8() {
   clearInterval(_E5_AE_9A_E6_99_82_E6_9B_B4_E6_96_B0_E4_B8_BB_E9_A1_8C_E9_97_9C_E6_B3_A8_E5_88_97_E8_A1_A8);
-  spreadsheetsql_settings(_E8_A9_A6_E7_AE_97_E8_A1_A8ID,'主題清單');
+  spreadsheetsql_settings(_E8_A9_A6_E7_AE_97_E8_A1_A8ID,'主題清單', "topic");
   spreadsheetsql_executeSql('select A, count(A)-1, \'關注\' group by A order by count(A)-1 desc', "topic");
   _E5_AE_9A_E6_99_82_E6_9B_B4_E6_96_B0_E4_B8_BB_E9_A1_8C_E9_97_9C_E6_B3_A8_E5_88_97_E8_A1_A8 = setInterval(async function(){
     _E4_B8_BB_E9_A1_8C_E6_B8_85_E5_96_AE_E5_88_97_E8_A1_A8();
@@ -40,7 +40,7 @@ function _E4_B8_BB_E9_A1_8C_E6_B8_85_E5_96_AE_E5_88_97_E8_A1_A8() {
 
 // 描述此函式...
 function attention() {
-  spreadsheetsql_settings(_E8_A9_A6_E7_AE_97_E8_A1_A8ID,'主題清單');
+  spreadsheetsql_settings(_E8_A9_A6_E7_AE_97_E8_A1_A8ID,'主題清單', "add");
   _E6_8F_90_E5_95_8F_E4_B8_BB_E9_A1_8C = (table_td_get('',0,(table_td_insert_element_function_get(this.id, 'row')),"innerHTML"));
   spreadsheetsql_executeSql((['select count(A) where A=\'',_E6_8F_90_E5_95_8F_E4_B8_BB_E9_A1_8C,'\' and B=\'IP_',_E4_BA_82_E6_95_B8,'\''].join('')), "add");
 }
@@ -91,18 +91,18 @@ async function gamebutton__onclick (event) {
   }
 };
 document.getElementById("gamebutton_").addEventListener("click", gamebutton__onclick, true);
-spreadsheetsql_settings(_E8_A9_A6_E7_AE_97_E8_A1_A8ID,'教師名單');
+spreadsheetsql_settings(_E8_A9_A6_E7_AE_97_E8_A1_A8ID,'教師名單', "teacher");
 spreadsheetsql_executeSql('select A,B', "teacher");
-spreadsheetsql_getDataFinish_teacher = function() {
+spreadsheetsql_getDataFinish_teacher = function(head_response, response) {
   var _E9_81_B8_E9_A0_85_E9_99_A3_E5_88_97 = [['', '選擇姓名']];
-  var i_end = (spreadsheetsql_getDataCount("ROWS"));
+  var i_end = (spreadsheetsql_getDataCount("ROWS","teacher"));
   var i_inc = 1;
   if (1 > i_end) {
     i_inc = -i_inc;
   }
   for (i = 1; i_inc >= 0 ? i <= i_end : i >= i_end; i += i_inc) {
-    if ((spreadsheetsql_getCell(1, i)) != null) {
-      _E9_81_B8_E9_A0_85_E9_99_A3_E5_88_97.push([spreadsheetsql_getCell(2, i), spreadsheetsql_getCell(2, i)]);
+    if ((spreadsheetsql_getCell(1, i,"teacher")) != null) {
+      _E9_81_B8_E9_A0_85_E9_99_A3_E5_88_97.push([spreadsheetsql_getCell(2, i,"teacher"), spreadsheetsql_getCell(2, i,"teacher")]);
     }
   }
   select_set('',"option",_E9_81_B8_E9_A0_85_E9_99_A3_E5_88_97);
@@ -110,8 +110,8 @@ spreadsheetsql_getDataFinish_teacher = function() {
 };
 await delay(3);
 _E4_B8_BB_E9_A1_8C_E6_B8_85_E5_96_AE_E5_88_97_E8_A1_A8();
-spreadsheetsql_getDataFinish_topic = function() {
-  spreadsheetsql_getDataTable('',400,12,15,60,true);
+spreadsheetsql_getDataFinish_topic = function(head_response, response) {
+  spreadsheetsql_getDataTable('',400,12,15,60,true,"topic");
   table_td_insert_element('',2,-1,"button");
   var i_end2 = (table_get('',"rows")) - 1;
   var i_inc2 = 1;
@@ -131,8 +131,8 @@ spreadsheetsql_getDataFinish_topic = function() {
   table_td_set('',2,0,"width",50);
 
 };
-spreadsheetsql_getDataFinish_add = function() {
-  if ((spreadsheetsql_getDataCount("ROWS")) == 0) {
+spreadsheetsql_getDataFinish_add = function(head_response, response) {
+  if ((spreadsheetsql_getDataCount("ROWS","add")) == 0) {
     var windowConfirm = window.confirm((['你確定要關注 [ ',_E6_8F_90_E5_95_8F_E4_B8_BB_E9_A1_8C,' ]？'].join('')));
     if (windowConfirm==true) {
         spreadsheet_insert("insertfirst", String(_E6_8F_90_E5_95_8F_E4_B8_BB_E9_A1_8C)+"|"+String('IP_' + String(_E4_BA_82_E6_95_B8))+"|"+String("gmt_datetime"), 0, 0, "", _E8_A9_A6_E7_AE_97_E8_A1_A8_E5_85_B1_E7_94_A8_E7_B6_B2_E5_9D_80, '主題清單', "https://script.google.com/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");
