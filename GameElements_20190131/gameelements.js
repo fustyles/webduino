@@ -621,11 +621,11 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
 	}
   }  
   
-  function table_td_insert_element(input_id,input_x,input_y,input_element){
+  function table_td_insert_element(input_id,input_x,input_y,input_element,input_firstrow){
 	var obj = document.getElementById("gametable_"+input_id);
 	if (obj) {
 		if (input_x==-1) {
-			for (var i = 0; i < obj.rows[0].cells.length; i++) {
+			for (var i = 0+input_firstrow; i < obj.rows[0].cells.length; i++) {
 				if (document.getElementById("gametable_td_"+input_id+"_"+input_y+"_"+i)) {
 					var el = '';
 					var type = '';
@@ -701,7 +701,7 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
 				}
 			}  
 		} else if (input_y==-1) {
-			for (var j = 0; j < obj.rows.length; j++) {
+			for (var j = 0+input_firstrow; j < obj.rows.length; j++) {
 				if (document.getElementById("gametable_td_"+input_id+"_"+j+"_"+input_x)) {
 					var el = '';
 					var type = '';
