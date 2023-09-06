@@ -201,12 +201,13 @@ Blockly.JavaScript['table_td_insert_element'] = function (block) {
   var value_x_ = Blockly.JavaScript.valueToCode(block, 'x_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y_ = Blockly.JavaScript.valueToCode(block, 'y_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_element_ = block.getFieldValue('element_');
+  var value_firstrow_ = block.getFieldValue('firstrow_');
   if (value_target_=="cell")
-	var code = 'table_td_insert_element(' + value_id_ + ','+ value_x_ + ',' + value_y_ + ',"' + value_element_ + '");\n';
+	var code = 'table_td_insert_element(' + value_id_ + ','+ value_x_ + ',' + value_y_ + ',"' + value_element_ + '",' + value_firstrow_ + ');\n';
   else if  (value_target_=="col")
-	var code = 'table_td_insert_element(' + value_id_ + ','+ value_x_ + ',-1,"' + value_element_ + '");\n';
+	var code = 'table_td_insert_element(' + value_id_ + ','+ value_x_ + ',-1,"' + value_element_ + '",' + value_firstrow_ + ');\n';
   else if  (value_target_=="row")
-	var code = 'table_td_insert_element(' + value_id_ + ',-1,' + value_y_ + ',"' + value_element_ + '");\n';
+	var code = 'table_td_insert_element(' + value_id_ + ',-1,' + value_y_ + ',"' + value_element_ + '",' + value_firstrow_ + ');\n';
   return code;
 };
 
