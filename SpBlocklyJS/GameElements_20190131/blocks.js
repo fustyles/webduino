@@ -923,7 +923,13 @@ Blockly.Blocks['table_td_insert_element'] = {
       .appendField(Blockly.Msg.TABLE_TD_Y);
   this.appendDummyInput()
 	  .setAlign(Blockly.ALIGN_RIGHT)
-	  .appendField("ID: "+Blockly.Msg.TABLE_ID+"_"+Blockly.Msg.PROPERTY_ROW+"_"+Blockly.Msg.PROPERTY_COL);	  
+	  .appendField("ID: "+Blockly.Msg.TABLE_ID+"_"+Blockly.Msg.PROPERTY_ROW+"_"+Blockly.Msg.PROPERTY_COL);
+  this.appendDummyInput("first_")
+	  .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.TABLE_FIRSTROW_Y,"0"],
+		  [Blockly.Msg.TABLE_FIRSTROW_N,"1"]
+	  ]), "firstrow_");	  
   this.appendDummyInput()
 	  .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(new Blockly.FieldDropdown([
@@ -944,7 +950,7 @@ Blockly.Blocks['table_td_insert_element'] = {
 		  [Blockly.Msg.ELEMENT_DATETIME,"datetime"],
 		  [Blockly.Msg.ELEMENT_PROGRESS,"progress"],
 		  [Blockly.Msg.ELEMENT_PASSWORD,"password"]
-	  ]), "element_");
+	  ]), "element_");	  
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -956,16 +962,19 @@ Blockly.Blocks['table_td_insert_element'] = {
 	 if (newValue=="col") {
 		 block.getInput("x_").setVisible(true);
 		 block.getInput("y_").setVisible(false);
+		 block.getInput("first_").setVisible(true);
 	 }
 	 else if (newValue=="row") {
 		 block.getInput("x_").setVisible(false);
 		 block.getInput("y_").setVisible(true);
+		 block.getInput("first_").setVisible(true);
 	 }	 
 	 else {
 		 block.getInput("x_").setVisible(true);
-		 block.getInput("y_").setVisible(true);	 
+		 block.getInput("y_").setVisible(true);
+		 block.getInput("first_").setVisible(false);		 
 	 }	 
-  } 
+  }
 };
 
 Blockly.Blocks['table_td_insert_element_function'] = {
