@@ -1,5 +1,5 @@
 Blockly.Msg["CATTEACHABLEMACHINE"] = "Teachable Machine(TM)";
-Blockly.Msg.TEACHABLEMACHINE_SHOW = "Teachable Machine(Teachable Machine)";
+Blockly.Msg.TEACHABLEMACHINE_SHOW = "Teachable Machine";
 Blockly.Msg.TEACHABLEMACHINE_WIDTH_SHOW = "Width";
 Blockly.Msg.TEACHABLEMACHINE_HEIGHT_SHOW = "Height";
 Blockly.Msg.TEACHABLEMACHINE_RESULT_SHOW = "Result";
@@ -18,6 +18,6 @@ Blockly.Msg.TEACHABLEMACHINE_PROJECT_SHOW = "Project";
 Blockly.Msg.TEACHABLEMACHINE_MAXCLASS_SHOW = "Max ClassName";
 Blockly.Msg.TEACHABLEMACHINE_MAXPROBABILITY_SHOW = "Max Probability";
 Blockly.Msg.TEACHABLEMACHINE_PAUSE_SHOW = "Pause";
-Blockly.Msg.TEACHABLEMACHINE_CLEAR_SHOW = "Tclear result";
-Blockly.Msg.TEACHABLEMACHINE_RECOGNITIED_SHOW = "recognitied";
+Blockly.Msg.TEACHABLEMACHINE_CLEAR_SHOW = "Clear result";
+Blockly.Msg.TEACHABLEMACHINE_RECOGNITIED_SHOW = "Recognitied";
 Blockly.Msg.TEACHABLEMACHINE_DATA_ARRAY_SHOW = "Result array";
