@@ -74,8 +74,8 @@ window.onload = function () {
 				
 				setTimeout(function(){DetectImage();},100);
 			  });
-		}  
-		else
-			setTimeout(function(){DetectImage();},100);		
+		} catch (error) {
+			setTimeout(function(){DetectImage();},100);
+		}	
 	}
 }
