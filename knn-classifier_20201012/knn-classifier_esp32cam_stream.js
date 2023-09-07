@@ -37,6 +37,7 @@ window.onload = function () {
 		if (modelurl.innerHTML!="")
 			loadModelUrl(modelurl.innerHTML);
 		result.innerHTML = '';
+		start();
 	}); 
 
 	function start() {
