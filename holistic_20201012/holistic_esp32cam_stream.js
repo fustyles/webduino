@@ -50,9 +50,13 @@ window.onload = function () {
 		}
 		
 		if (holisticState.innerHTML =="1") {
-			holistic.send({image: canvas}).then(res => {
+			try {
+				holistic.send({image: canvas}).then(res => {
+					setTimeout(function(){start();},100);
+				});
+			} catch (error) {
 				setTimeout(function(){start();},100);
-			});
+			}
 		}
 		else {
 			//result_face.innerHTML = "";
