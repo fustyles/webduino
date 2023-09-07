@@ -18,39 +18,36 @@ window.onload = function () {
 	var result_pose = document.getElementById("gamediv_pose_holistic");
 	var result_lefthand = document.getElementById("gamediv_lefthand_holistic");
 	var result_righthand = document.getElementById("gamediv_righthand_holistic");
-	var myTimer;
-	var count=0;
 	
 	ShowImage.src = document.location.origin+':81/?stream';
 	start();
 	
 	function start() {
-		if (count==0) {
-			ShowImage.style.width = ShowImage.width + 'px';
-			ShowImage.style.height = ShowImage.height + 'px';		
-			canvas.setAttribute("width", ShowImage.width);
-			canvas.setAttribute("height", ShowImage.height);
-			canvas.style.width = ShowImage.width+"px";
-			canvas.style.height = ShowImage.height+"px";
-			canvasElement.setAttribute("width", ShowImage.width);
-			canvasElement.setAttribute("height", ShowImage.height);
-			canvasElement.style.width = ShowImage.width+"px";
-			canvasElement.style.height = ShowImage.height+"px";
-			count++;
-		}		
+		ShowImage.style.width = ShowImage.width + 'px';
+		ShowImage.style.height = ShowImage.height + 'px';		
+		canvas.setAttribute("width", ShowImage.width);
+		canvas.setAttribute("height", ShowImage.height);
+		canvas.style.width = ShowImage.width+"px";
+		canvas.style.height = ShowImage.height+"px";
+		canvasElement.setAttribute("width", ShowImage.width);
+		canvasElement.setAttribute("height", ShowImage.height);
+		canvasElement.style.width = ShowImage.width+"px";
+		canvasElement.style.height = ShowImage.height+"px";
 
-		if (mirrorimage.value==1) {
-			context.translate((canvas.width + ShowImage.width) / 2, 0);
-			context.scale(-1, 1);
-			context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
-			context.setTransform(1, 0, 0, 1, 0, 0);
+		if (canvasElement.width!=0) {
+			if (mirrorimage.value==1) {
+				context.translate((canvas.width + ShowImage.width) / 2, 0);
+				context.scale(-1, 1);
+				context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
+				context.setTransform(1, 0, 0, 1, 0, 0);
+			}
+			else
+				context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
+			
+			canvasCtx.save();
+			canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+			canvasCtx.drawImage(canvas, 0, 0, canvasElement.width, canvasElement.height);
 		}
-		else
-			context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
-		
-		canvasCtx.save();
-		canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-		canvasCtx.drawImage(canvas, 0, 0, canvasElement.width, canvasElement.height);		
 		
 		if (holisticState.innerHTML =="1") {
 			holistic.send({image: canvas}).then(res => {
