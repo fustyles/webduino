@@ -13611,6 +13611,12 @@ Blockly.Blocks['esp32_cam_myfirmata'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ESP32_CAM_SERVERMODULE_SHOW);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.ESP32_CAM_SERVERMODULE_STILL_SHOW,"still"],
+			[Blockly.Msg.ESP32_CAM_SERVERMODULE_STREAM_SHOW,"stream"]
+		]), "type");		
     this.appendValueInput("ssid")
         .setCheck(null)
 		.setAlign(Blockly.ALIGN_RIGHT)		
@@ -22936,9 +22942,7 @@ Blockly.Blocks['declare_variable_set'] = {
 Blockly.Blocks['holistic_esp32cam'] = {
   init: function() {
     this.appendDummyInput()
-		.appendField(Blockly.Msg.SERVERMODULE_JAVASCRIPT_SHOW);
-    this.appendDummyInput()
-      .appendField(Blockly.Msg.ESP32_CAM_HOLISTIC_SHOW);		
+		.appendField(Blockly.Msg.SERVERMODULE_JAVASCRIPT_SHOW);	  
     this.appendStatementInput("javascript_initial")
         .setCheck(null)
 		.appendField(Blockly.Msg.ESP32_CAM_HOLISTIC_INITIAL_SHOW);	
@@ -24071,7 +24075,13 @@ Blockly.Blocks['esp32_cam_telegrambot'] = {
 Blockly.Blocks['server_getrequest'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVER_GETREQUEST_SHOW);			
+        .appendField(Blockly.Msg.SERVER_GETREQUEST_SHOW);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.ESP32_CAM_SERVERMODULE_STILL_SHOW,"still"],
+			[Blockly.Msg.ESP32_CAM_SERVERMODULE_STREAM_SHOW,"stream"]
+		]), "type");		
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
