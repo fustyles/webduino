@@ -20,7 +20,8 @@ window.onload = function () {
 	var result_righthand = document.getElementById("gamediv_righthand_holistic");
 	
 	ShowImage.src = document.location.origin+':81/?stream';
-	setTimeout(function(){start();},5000);
+	ShowImage.style.visibility = "visible";
+	setTimeout(function(){ShowImage.style.visibility = "hidden";start();},5000);
 	
 	function start() {
 		ShowImage.style.width = ShowImage.width + 'px';
