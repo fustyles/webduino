@@ -1,4 +1,4 @@
-document.write('<div id="region_cocossd" style="z-index:999"><img id="gameimage_cocossd" style="position:absolute;visibility:hidden;"><canvas id="gamecanvas_cocossd"></canvas><br><select id="frame_cocossd" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage_cocossd" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><br><div id="gamediv_cocossd" style="color:red"></div></div>');
+document.write('<div id="region_cocossd" style="z-index:999"><img id="gameimage_cocossd" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_cocossd"></canvas><br><select id="frame_cocossd" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage_cocossd" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><br><div id="gamediv_cocossd" style="color:red"></div></div>');
 document.write('<div id="cocossdState" style="position:absolute;display:none;">1</div>');
 
 window.onload = function () {
@@ -12,10 +12,12 @@ window.onload = function () {
 	var Model;
 
 	ShowImage.src = document.location.origin+':81/?stream';
+	ShowImage.style.visibility = "visible";
 	
 	cocoSsd.load().then(cocoSsd_Model => {
+		ShowImage.style.visibility = "hidden";
 		Model = cocoSsd_Model;
-		setTimeout(function(){DetectImage();},3000);
+		DetectImage();
 	}); 
 
 	function DetectImage() {
