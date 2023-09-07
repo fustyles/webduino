@@ -47,24 +47,19 @@ window.onload = function () {
 			canvasCtx.save();
 			canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
 			canvasCtx.drawImage(canvas, 0, 0, canvasElement.width, canvasElement.height);
-		}
-		
-		if (holisticState.innerHTML =="1") {
-			try {
-				holistic.send({image: canvas}).then(res => {
+			
+			if (holisticState.innerHTML =="1") {
+				try {
+					holistic.send({image: canvas}).then(res => {
+						setTimeout(function(){start();},100);
+					});
+				} catch (error) {
 					setTimeout(function(){start();},100);
-				});
-			} catch (error) {
-				setTimeout(function(){start();},100);
-			}
-		}
-		else {
-			//result_face.innerHTML = "";
-			//result_pose.innerHTML = "";
-			//result_lefthand.innerHTML = "";
-			//result_righthand.innerHTML = "";				
-			setTimeout(function(){start();},100);
-		}   
+				}
+			}			
+		}				
+		
+		setTimeout(function(){start();},100);
 	}
 		
 	function onResults(results) {
