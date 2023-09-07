@@ -12,8 +12,10 @@ window.onload = function () {
 	var Model;
 
 	ShowImage.src = document.location.origin+':81/?stream';
+	ShowImage.style.visibility = "visible";
 	
 	cocoSsd.load().then(cocoSsd_Model => {
+		ShowImage.style.visibility = "hidden";
 		Model = cocoSsd_Model;
 		setTimeout(function(){DetectImage();},3000);
 	}); 
