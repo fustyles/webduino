@@ -39,7 +39,7 @@ window.onload = function () {
 		result.innerHTML = '';
 	}); 
 
-	ShowImage.onload = function (event) {
+	function start() {
 		ShowImage.style.width = ShowImage.width + 'px';
 		ShowImage.style.height = ShowImage.height + 'px';		
 		canvas.setAttribute("width", ShowImage.width);
@@ -54,7 +54,8 @@ window.onload = function () {
 			context.setTransform(1, 0, 0, 1, 0, 0);
 		}
 		else
-			context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);       
+			context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
+		setTimeout(function(){start();},100);
 	}
 
 	function Detect_onclick (event) {
