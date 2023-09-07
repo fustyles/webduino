@@ -20,7 +20,7 @@ window.onload = function () {
 	var result_righthand = document.getElementById("gamediv_righthand_holistic");
 	
 	ShowImage.src = document.location.origin+':81/?stream';
-	start();
+	setTimeout(function(){start();},5000);
 	
 	function start() {
 		ShowImage.style.width = ShowImage.width + 'px';
@@ -34,32 +34,30 @@ window.onload = function () {
 		canvasElement.style.width = ShowImage.width+"px";
 		canvasElement.style.height = ShowImage.height+"px";
 
-		if (canvasElement.width) {
-			if (mirrorimage.value==1) {
-				context.translate((canvas.width + ShowImage.width) / 2, 0);
-				context.scale(-1, 1);
-				context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
-				context.setTransform(1, 0, 0, 1, 0, 0);
-			}
-			else
-				context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
-			
-			canvasCtx.save();
-			canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-			canvasCtx.drawImage(canvas, 0, 0, canvasElement.width, canvasElement.height);
-			
-			if (holisticState.innerHTML =="1") {
-				try {
-					holistic.send({image: canvas}).then(res => {
-						setTimeout(function(){start();},100);
-					});
-				} catch (error) {
-					setTimeout(function(){start();},100);
-				}
-			}			
-		}				
+		if (mirrorimage.value==1) {
+			context.translate((canvas.width + ShowImage.width) / 2, 0);
+			context.scale(-1, 1);
+			context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
+			context.setTransform(1, 0, 0, 1, 0, 0);
+		}
+		else
+			context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
 		
-		setTimeout(function(){start();},100);
+		canvasCtx.save();
+		canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+		canvasCtx.drawImage(canvas, 0, 0, canvasElement.width, canvasElement.height);
+		
+		if (holisticState.innerHTML =="1") {
+			try {
+				holistic.send({image: canvas}).then(res => {
+					setTimeout(function(){start();},100);
+				});
+			} catch (error) {
+				setTimeout(function(){start();},100);
+			}
+		}
+		else
+			setTimeout(function(){start();},100);
 	}
 		
 	function onResults(results) {
