@@ -40,8 +40,12 @@ window.onload = function () {
 	}	
 
 	async function DetectImage() {
-	    canvas.setAttribute("width", ShowImage.width);
-	    canvas.setAttribute("height", ShowImage.height);
+		ShowImage.style.width = ShowImage.width + 'px';
+		ShowImage.style.height = ShowImage.height + 'px';		
+		canvas.setAttribute("width", ShowImage.width);
+		canvas.setAttribute("height", ShowImage.height);
+		canvas.style.width = ShowImage.width+"px";
+		canvas.style.height = ShowImage.height+"px";
 
 		if (mirrorimage.value==1) {
 			context.translate((canvas.width + ShowImage.width) / 2, 0);
@@ -75,6 +79,6 @@ window.onload = function () {
 			if (typeof recognitionFinish === 'function') recognitionFinish();
 		}
 
-		setTimeout(function(){start();},200);
+		setTimeout(function(){DetectImage();},100);
 	}  
 }
