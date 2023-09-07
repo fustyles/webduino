@@ -19,22 +19,25 @@ window.onload = function () {
 	var result_lefthand = document.getElementById("gamediv_lefthand_holistic");
 	var result_righthand = document.getElementById("gamediv_righthand_holistic");
 	var myTimer;
-	var restartCount=0;
+	var count=0;
 	
 	ShowImage.src = document.location.origin+':81/?stream';
 	start();
 	
 	function start() {
-		ShowImage.style.width = ShowImage.width + 'px';
-		ShowImage.style.height = ShowImage.height + 'px';		
-		canvas.setAttribute("width", ShowImage.width);
-		canvas.setAttribute("height", ShowImage.height);
-		canvas.style.width = ShowImage.width+"px";
-		canvas.style.height = ShowImage.height+"px";
-		canvasElement.setAttribute("width", ShowImage.width);
-		canvasElement.setAttribute("height", ShowImage.height);
-		canvasElement.style.width = ShowImage.width+"px";
-		canvasElement.style.height = ShowImage.height+"px";		
+		if (count==0) {
+			ShowImage.style.width = ShowImage.width + 'px';
+			ShowImage.style.height = ShowImage.height + 'px';		
+			canvas.setAttribute("width", ShowImage.width);
+			canvas.setAttribute("height", ShowImage.height);
+			canvas.style.width = ShowImage.width+"px";
+			canvas.style.height = ShowImage.height+"px";
+			canvasElement.setAttribute("width", ShowImage.width);
+			canvasElement.setAttribute("height", ShowImage.height);
+			canvasElement.style.width = ShowImage.width+"px";
+			canvasElement.style.height = ShowImage.height+"px";
+			count++;
+		}		
 
 		if (mirrorimage.value==1) {
 			context.translate((canvas.width + ShowImage.width) / 2, 0);
