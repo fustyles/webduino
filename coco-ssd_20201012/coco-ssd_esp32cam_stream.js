@@ -42,36 +42,40 @@ window.onload = function () {
 			setTimeout(function(){DetectImage();},100);
 			return;
 		}
-		
-	  Model.detect(canvas).then(Predictions => {    
-		var s = (canvas.width>canvas.height)?canvas.width:canvas.height;
-		var res = "";
-		result.innerHTML = "";
-		if (Predictions.length>0) {
-		    for (var i=0;i<Predictions.length;i++) {
-			    const x = Predictions[i].bbox[0];
-			    const y = Predictions[i].bbox[1];
-			    const width = Predictions[i].bbox[2];
-			    const height = Predictions[i].bbox[3];
-				if (frame.value==1) {
-					context.lineWidth = Math.round(s/200);
-					context.strokeStyle = "#00FFFF";
-					context.beginPath();
-					context.rect(x, y, width, height);
-					context.stroke(); 
-					context.lineWidth = "3";
-					context.fillStyle = "yellow";
-					context.font = Math.round(s/30) + "px Arial";
-					context.fillText(Predictions[i].class, x, y);
+
+		try {
+			  Model.detect(canvas).then(Predictions => {    
+				var s = (canvas.width>canvas.height)?canvas.width:canvas.height;
+				var res = "";
+				result.innerHTML = "";
+				if (Predictions.length>0) {
+				    for (var i=0;i<Predictions.length;i++) {
+					    const x = Predictions[i].bbox[0];
+					    const y = Predictions[i].bbox[1];
+					    const width = Predictions[i].bbox[2];
+					    const height = Predictions[i].bbox[3];
+						if (frame.value==1) {
+							context.lineWidth = Math.round(s/200);
+							context.strokeStyle = "#00FFFF";
+							context.beginPath();
+							context.rect(x, y, width, height);
+							context.stroke(); 
+							context.lineWidth = "3";
+							context.fillStyle = "yellow";
+							context.font = Math.round(s/30) + "px Arial";
+							context.fillText(Predictions[i].class, x, y);
+						}
+						res+= Predictions[i].class+","+Math.round(Predictions[i].score,2)+","+Math.round(x)+","+Math.round(y)+","+Math.round(width)+","+Math.round(height)+"<br>";
+				   }
+				   if (res!="")
+				       result.innerHTML = res.substr(0,res.length-4);
 				}
-				res+= Predictions[i].class+","+Math.round(Predictions[i].score,2)+","+Math.round(x)+","+Math.round(y)+","+Math.round(width)+","+Math.round(height)+"<br>";
-		   }
-		   if (res!="")
-		       result.innerHTML = res.substr(0,res.length-4);
-		}
-		if (typeof recognitionFinish === 'function') recognitionFinish();
-		
-		setTimeout(function(){DetectImage();},100);
-	  });
-	}  
+				if (typeof recognitionFinish === 'function') recognitionFinish();
+				
+				setTimeout(function(){DetectImage();},100);
+			  });
+		}  
+		else
+			setTimeout(function(){DetectImage();},100);		
+	}
 }
