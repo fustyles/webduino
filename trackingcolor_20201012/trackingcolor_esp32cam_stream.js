@@ -158,23 +158,22 @@ window.onload = function() {
         }
         tracker.setColors(colors);
     
-        function changeColor(detectColor, n) {
-            var val = detectColor.split("_");
-            document.getElementById('myColor_r_min' + n).value = val[1].split(",")[0];
-            document.getElementById('myColor_r_min_v' + n).innerHTML = val[1].split(",")[0];
-            document.getElementById('myColor_r_max' + n).value = val[1].split(",")[0];
-            document.getElementById('myColor_r_max_v' + n).innerHTML = val[1].split(",")[0];
-            document.getElementById('myColor_g_min' + n).value = val[1].split(",")[1];
-            document.getElementById('myColor_g_min_v' + n).innerHTML = val[1].split(",")[1];
-            document.getElementById('myColor_g_max' + n).value = val[1].split(",")[1];
-            document.getElementById('myColor_g_max_v' + n).innerHTML = val[1].split(",")[1];
-            document.getElementById('myColor_b_min' + n).value = val[1].split(",")[2];
-            document.getElementById('myColor_b_min_v' + n).innerHTML = val[1].split(",")[2];
-            document.getElementById('myColor_b_max' + n).value = val[1].split(",")[2];
-            document.getElementById('myColor_b_max_v' + n).innerHTML = val[1].split(",")[2];
-        }
-        
         setTimeout(function() {start();}, 100);
     }
 
+    function changeColor(detectColor, n) {
+        var val = detectColor.split("_");
+        document.getElementById('myColor_r_min' + n).value = val[1].split(",")[0];
+        document.getElementById('myColor_r_min_v' + n).innerHTML = val[1].split(",")[0];
+        document.getElementById('myColor_r_max' + n).value = val[1].split(",")[0];
+        document.getElementById('myColor_r_max_v' + n).innerHTML = val[1].split(",")[0];
+        document.getElementById('myColor_g_min' + n).value = val[1].split(",")[1];
+        document.getElementById('myColor_g_min_v' + n).innerHTML = val[1].split(",")[1];
+        document.getElementById('myColor_g_max' + n).value = val[1].split(",")[1];
+        document.getElementById('myColor_g_max_v' + n).innerHTML = val[1].split(",")[1];
+        document.getElementById('myColor_b_min' + n).value = val[1].split(",")[2];
+        document.getElementById('myColor_b_min_v' + n).innerHTML = val[1].split(",")[2];
+        document.getElementById('myColor_b_max' + n).value = val[1].split(",")[2];
+        document.getElementById('myColor_b_max_v' + n).innerHTML = val[1].split(",")[2];
+    }
 }
