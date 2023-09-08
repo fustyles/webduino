@@ -7,11 +7,11 @@ document.write('<div id="trackingcolorState" style="position:absolute;display:no
 document.write('<div id="sourceId_trackingcolor" style="position:absolute;display:none;"></div>');
 
 window.onload = function () {
-	var ShowImage = document.getElementById('gameimage_trackingcolor');	
+    var ShowImage = document.getElementById('gameimage_trackingcolor');	
     var canvas = document.getElementById('gamecanvas_trackingcolor');
     var context = canvas.getContext('2d');
     var canvas_custom = document.getElementById('gamecanvas_custom');
-	var trackingcolorState = document.getElementById('trackingcolorState');
+    var trackingcolorState = document.getElementById('trackingcolorState');
     var context_custom = canvas_custom.getContext('2d');
     var result = document.getElementById('gamediv_trackingcolor');
     var mirrorimage = document.getElementById("mirrorimage_trackingcolor");
@@ -22,15 +22,21 @@ window.onload = function () {
 
 	ShowImage.src = document.location.origin+':81/?stream';
 	ShowImage.style.visibility = "visible";
-		
-	var tracker = new tracking.ColorTracker();
-	
 	setTimeout(function(){
 		ShowImage.style.visibility = "hidden";
-		tracking.track('#gameimage_trackingcolor', tracker);
 	},5000);
+	
+	var tracker = new tracking.ColorTracker();
+	tracking.track('#gameimage_trackingcolor', tracker);
+
 
 	tracker.on('track', function(event) {
+		ShowImage.style.width = ShowImage.width + 'px';
+		ShowImage.style.height = ShowImage.height + 'px';		
+		canvas.setAttribute("width", ShowImage.width);
+		canvas.setAttribute("height", ShowImage.height);
+		canvas.style.width = ShowImage.width+"px";
+		canvas.style.height = ShowImage.height+"px";
 		
 		if (mirrorimage==1) {
 		  context.translate((canvas.width + ShowImage.width) / 2, 0);
