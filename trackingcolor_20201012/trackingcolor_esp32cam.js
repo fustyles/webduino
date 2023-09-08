@@ -41,12 +41,17 @@ window.onload = function() {
     }
 
     ShowImage.onload = function(event) {
-        ShowImage.setAttribute("width", ShowImage.naturalWidth);
-        ShowImage.setAttribute("height", ShowImage.naturalHeight);
+        ShowImage.style.width = ShowImage.width + 'px';
+        ShowImage.style.height = ShowImage.height + 'px';
         canvas.setAttribute("width", ShowImage.width);
         canvas.setAttribute("height", ShowImage.height);
-        canvas_custom.setAttribute("width", canvas.width);
-        canvas_custom.setAttribute("height", canvas.height);     
+        canvas.style.width = ShowImage.width + "px";
+        canvas.style.height = ShowImage.height + "px";
+        canvas_custom.setAttribute("width", ShowImage.width);
+        canvas_custom.setAttribute("height", ShowImage.height);
+        canvas_custom.style.width = ShowImage.width + "px";
+        canvas_custom.style.height = ShowImage.height + "px";
+        
         if (mirrorimage.value==1) {
           context.translate((canvas.width + ShowImage.width) / 2, 0);
           context.scale(-1, 1);
@@ -59,7 +64,7 @@ window.onload = function() {
         clearInterval(myTimer);
         restartCount = 0;
 
-        tracking.track('#gameimage_trackingcolor', tracker);
+        tracking.track('#gamecanvas_trackingcolor', tracker);
 
         setTimeout(function() {
             start();
@@ -124,16 +129,16 @@ window.onload = function() {
         context_custom.putImageData(imgData, 0, 0);
 
         event.data.forEach(function(rect) {
-            if (mirrorimage.value==1) {
-                context.strokeStyle = rect.color;
-                context.strokeRect(ShowImage.width-rect.x-rect.width, rect.y, rect.width, rect.height);
-                result.innerHTML+= rect.color+","+(ShowImage.width-rect.x-rect.width)+","+rect.y+","+rect.width+","+rect.height+"<br>";
-            }
-            else {
+            //if (mirrorimage.value==1) {
+            //    context.strokeStyle = rect.color;
+            //    context.strokeRect(ShowImage.width-rect.x-rect.width, rect.y, rect.width, rect.height);
+            //    result.innerHTML+= rect.color+","+(ShowImage.width-rect.x-rect.width)+","+rect.y+","+rect.width+","+rect.height+"<br>";
+            //}
+            //else {
                 context.strokeStyle = rect.color;
                 context.strokeRect(rect.x, rect.y, rect.width, rect.height);
                 result.innerHTML+= rect.color+","+rect.x+","+rect.y+","+rect.width+","+rect.height+"<br>";
-            }
+            //}
         });
 
         if (result.innerHTML != "")
