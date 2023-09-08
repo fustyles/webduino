@@ -22,12 +22,14 @@ window.onload = function () {
 
 	ShowImage.src = document.location.origin+':81/?stream';
 	ShowImage.style.visibility = "visible";
+	var tracker = new tracking.ColorTracker();
+	
 	setTimeout(function(){
+		tracking.track('#gameimage_trackingcolor', tracker);		
 		ShowImage.style.visibility = "hidden";
 	},5000);
 	
-	var tracker = new tracking.ColorTracker();
-	tracking.track('#gameimage_trackingcolor', tracker);
+
 
 
 	tracker.on('track', function(event) {
