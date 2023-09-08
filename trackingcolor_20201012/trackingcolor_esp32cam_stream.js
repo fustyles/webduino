@@ -29,9 +29,6 @@ window.onload = function () {
 		ShowImage.style.visibility = "hidden";
 	},5000);
 	
-
-
-
 	tracker.on('track', function(event) {
 		ShowImage.style.width = ShowImage.width + 'px';
 		ShowImage.style.height = ShowImage.height + 'px';		
