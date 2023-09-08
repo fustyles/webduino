@@ -42,7 +42,7 @@ window.onload = function() {
         canvas_custom.style.width = ShowImage.width + "px";
         canvas_custom.style.height = ShowImage.height + "px";
 
-        if (mirrorimage == 1) {
+        if (mirrorimage.value == 1) {
             context.translate((canvas.width + ShowImage.width) / 2, 0);
             context.scale(-1, 1);
             context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
