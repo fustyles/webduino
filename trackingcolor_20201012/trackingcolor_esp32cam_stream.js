@@ -22,15 +22,12 @@ window.onload = function () {
 
 	ShowImage.src = document.location.origin+':81/?stream';
 	ShowImage.style.visibility = "visible";
-	
-	var tracker = new tracking.ColorTracker();
-	
 	setTimeout(function(){
 		ShowImage.style.visibility = "hidden";
-		tracking.track('#gameimage_trackingcolor', tracker);
 	},5000);
 	
-	tracker.on('track', function(event) {
+	start();
+	function start() {
 		ShowImage.style.width = ShowImage.width + 'px';
 		ShowImage.style.height = ShowImage.height + 'px';		
 		canvas.setAttribute("width", ShowImage.width);
@@ -50,7 +47,14 @@ window.onload = function () {
 		}
 		else
 		  context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
-	  
+
+		setTimeout(function(){start();},100);
+	}
+	
+	var tracker = new tracking.ColorTracker();
+	tracking.track('#gamecanvas_trackingcolor', tracker);
+	
+	tracker.on('track', function(event) {
 		if (trackingcolorState.innerHTML=="0") {
 			//result.innerHTML = "";
 			return;
