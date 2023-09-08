@@ -25,8 +25,7 @@ window.onload = function () {
 	var tracker = new tracking.ColorTracker();
 	
 	setTimeout(function(){
-		tracking.track('#gamecanvas_trackingcolor', tracker);		
-		ShowImage.style.visibility = "hidden";
+		tracking.track('#gameimage_trackingcolor', tracker);
 	},5000);
 	
 	tracker.on('track', function(event) {
