@@ -23,8 +23,9 @@ window.onload = function() {
     ShowImage.src = document.location.origin + ':81/?stream';
     ShowImage.style.visibility = "visible";
     var tracker = new tracking.ColorTracker();
+    tracking.track('#gamecanvas_trackingcolor', tracker);
+    
     setTimeout(function() {
-        tracking.track('#gamecanvas_trackingcolor', tracker);        
         ShowImage.style.visibility = "hidden";
         start();
     }, 5000);
