@@ -1,4 +1,4 @@
-document.write('<div id="region_faceapidetect" style="z-index:999"><img id="gameimage_faceapidetect" style="position:absolute;" crossorigin="anonymous"><div id="webcam-container" style="position:absolute;"></div><select id="frame_faceapidetect" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><div id="result_faceapidetect" style="color:red;position:absolute"></div></div>');
+document.write('<div id="region_faceapidetect" style="z-index:999"><img id="gameimage_faceapidetect" style="position:absolute;" crossorigin="anonymous"><div id="webcam-container" style="position:absolute;z-index:999;"></div><select id="frame_faceapidetect" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><div id="result_faceapidetect" style="color:red;position:absolute"></div></div>');
 document.write('<div id="faceapiState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="size_faceapidetect" style="position:absolute;display:none;"></div>');
 
