@@ -153,11 +153,12 @@ Blockly.Blocks['faceapirecognize_state'] = {
 Blockly.Blocks['faceapirecognize_get'] = {
   init: function() {
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_SHOW);	  
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_SHOW);		  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.FACEAPIRECOGNIZE_GET_SHOW); 
   this.appendValueInput("index")
-	  .setCheck("Number");  
+	  .setCheck("Number")
+	  .appendField(Blockly.Msg.FACEAPIRECOGNIZE_INDEX_SHOW);  
   this.appendDummyInput()  
       .appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg.FACEAPIRECOGNIZE_NAME_SHOW,"name"],
@@ -165,21 +166,22 @@ Blockly.Blocks['faceapirecognize_get'] = {
   ]), "column"); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_18"]);
   }
 };
 
 Blockly.Blocks['faceapirecognize_unknown'] = {
   init: function() {
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_SHOW);	  
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_SHOW);
+  this.appendValueInput("index")
+	  .setCheck("Number")
+	  .appendField(Blockly.Msg.FACEAPIRECOGNIZE_INDEX_SHOW);  	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.FACEAPIRECOGNIZE_UNKNOWN_SHOW); 
-  this.appendValueInput("index")
-	  .setCheck("Number");  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);
+  this.setColour(Blockly.Msg["HUE_18"]);
   }
 };
 
