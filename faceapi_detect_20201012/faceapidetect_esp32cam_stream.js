@@ -13,7 +13,6 @@ window.onload = function () {
 	let canvas;	
 	
 	ShowImage.src = document.location.origin+':81/?stream';
-	ShowImage.style.visibility = "visible";	
 	
 	$(".progress-bar").removeClass('d-none');
 	Promise.all([
@@ -24,8 +23,7 @@ window.onload = function () {
 		faceapi.nets.ageGenderNet.load(modelPath)
 	]).then(function(){
 		canvas = faceapi.createCanvasFromMedia(ShowImage);
-		document.getElementById('webcam-container').append(canvas);
-		ShowImage.style.visibility = "hidden";			
+		document.getElementById('webcam-container').append(canvas);	
 		DetectImage();
 	})	
 
