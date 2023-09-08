@@ -109,15 +109,15 @@ window.onload = function() {
         context_custom.putImageData(imgData, 0, 0);
 
         event.data.forEach(function(rect) {
-            if (mirrorimage.value == 1) {
-                context.strokeStyle = rect.color;
-                context.strokeRect(ShowImage.width - rect.x - rect.width, rect.y, rect.width, rect.height);
-                result.innerHTML += rect.color + "," + (ShowImage.width - rect.x - rect.width) + "," + rect.y + "," + rect.width + "," + rect.height + "<br>";
-            } else {
+            //if (mirrorimage.value == 1) {
+            //    context.strokeStyle = rect.color;
+            //    context.strokeRect(ShowImage.width - rect.x - rect.width, rect.y, rect.width, rect.height);
+            //    result.innerHTML += rect.color + "," + (ShowImage.width - rect.x - rect.width) + "," + rect.y + "," + rect.width + "," + rect.height + "<br>";
+            //} else {
                 context.strokeStyle = rect.color;
                 context.strokeRect(rect.x, rect.y, rect.width, rect.height);
                 result.innerHTML += rect.color + "," + rect.x + "," + rect.y + "," + rect.width + "," + rect.height + "<br>";
-            }
+            //}
         });
 
         if (result.innerHTML != "") {
