@@ -27,10 +27,9 @@ window.onload = function () {
 	
 	start();
 	function start(){
-		
 		if (source.innerHTML!="") {
 			obj = document.getElementById(source.innerHTML);
-			
+			console.log(obj);
 			obj.style.width = obj.width + 'px';
 			obj.style.height = obj.height + 'px';
 			canvas.setAttribute("width", obj.width);
@@ -51,9 +50,8 @@ window.onload = function () {
 				context.drawImage(obj, 0, 0, obj.width, obj.height);
 
 			tracking.track('#gamecanvas_trackingcolor', tracker);
-		
-			setTimeout(function() {start();}, 100);
-		}				
+		}
+		setTimeout(function() {start();}, 100);		
 	}
 		
 	tracker.on('track', function(event) {			  
