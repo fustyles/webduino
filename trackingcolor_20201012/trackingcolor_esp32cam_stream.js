@@ -22,9 +22,11 @@ window.onload = function () {
 
 	ShowImage.src = document.location.origin+':81/?stream';
 	ShowImage.style.visibility = "visible";
+	
 	var tracker = new tracking.ColorTracker();
 	
 	setTimeout(function(){
+		ShowImage.style.visibility = "hidden";
 		tracking.track('#gameimage_trackingcolor', tracker);
 	},5000);
 	
@@ -35,6 +37,10 @@ window.onload = function () {
 		canvas.setAttribute("height", ShowImage.height);
 		canvas.style.width = ShowImage.width+"px";
 		canvas.style.height = ShowImage.height+"px";
+		canvas_custom.setAttribute("width", ShowImage.width);
+		canvas_custom.setAttribute("height", ShowImage.height);
+		canvas_custom.style.width = ShowImage.width+"px";
+		canvas_custom.style.height = ShowImage.height+"px";		
 		
 		if (mirrorimage==1) {
 		  context.translate((canvas.width + ShowImage.width) / 2, 0);
