@@ -22,11 +22,12 @@ window.onload = function() {
 
     ShowImage.src = document.location.origin + ':81/?stream';
     ShowImage.style.visibility = "visible";
+    var tracker = new tracking.ColorTracker();
     setTimeout(function() {
+        tracking.track('#gamecanvas_trackingcolor', tracker);        
         ShowImage.style.visibility = "hidden";
+        start();
     }, 5000);
-
-    start();
 
     function start() {
         ShowImage.style.width = ShowImage.width + 'px';
@@ -47,9 +48,6 @@ window.onload = function() {
             context.setTransform(1, 0, 0, 1, 0, 0);
         } else
             context.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
-
-        var tracker = new tracking.ColorTracker();
-        tracking.track('#gamecanvas_trackingcolor', tracker);
     
         tracker.on('track', function(event) {
             if (trackingcolorState.innerHTML == "0") {
