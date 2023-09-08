@@ -176,10 +176,7 @@ window.onload = function() {
             document.getElementById('myColor_b_max_v' + n).innerHTML = val[1].split(",")[2];
         }
         
-        setTimeout(function() {
-            start();
-        }, 100);
+        setTimeout(function() {start();}, 100);
     }
 
-    
 }
