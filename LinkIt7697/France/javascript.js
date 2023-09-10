@@ -1,3 +1,115 @@
+Blockly.Arduino['ps2_initial'] = function (block) {
+	var CLK = Blockly.Arduino.valueToCode(block, 'CLK', Blockly.Arduino.ORDER_ATOMIC);
+	var CS = Blockly.Arduino.valueToCode(block, 'CS', Blockly.Arduino.ORDER_ATOMIC); 
+	var CMD = Blockly.Arduino.valueToCode(block, 'CMD', Blockly.Arduino.ORDER_ATOMIC); 
+	var DAT = Blockly.Arduino.valueToCode(block, 'DAT', Blockly.Arduino.ORDER_ATOMIC);
+	var pressures = block.getFieldValue('pressures');
+	var rumble = block.getFieldValue('rumble');
+	if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040") {
+		Blockly.Arduino.definitions_['joystick_initial_analogMax'] = 'int analogMax = 4095;\n';
+	} else if (selectBoardType()=="arduino") {
+		Blockly.Arduino.definitions_['joystick_initial_analogMax'] = 'int analogMax = 255;\n';		
+	} else {
+		Blockly.Arduino.definitions_['joystick_initial_analogMax'] = 'int analogMax = 1023;\n';
+	}
+	
+	Blockly.Arduino.definitions_['define_ps2_initial'] = '#include "PS2X_lib.h"\n'
+														+'#define PS2_DAT        '+DAT+'\n'  
+														+'#define PS2_CMD        '+CMD+'\n' 
+														+'#define PS2_SEL        '+CS+'\n' 
+														+'#define PS2_CLK        '+CLK+'\n' 
+														+'#define pressures   '+pressures+'\n' 
+														+'#define rumble      '+rumble+'\n'
+														+'PS2X ps2x;\n'
+														+'int ps2_error = 0;\nbyte ps2_type = 0;\n';
+
+
+	Blockly.Arduino.setups_['define_ps2_initial'] = 'delay(300);\n  ps2_error = ps2x.config_gamepad(PS2_CLK, PS2_CMD, PS2_SEL, PS2_DAT, pressures, rumble);\n  if (ps2_error==0)\n    ps2_type = ps2x.readType();';
+	return '';
+};
+
+Blockly.Arduino['ps2_read'] = function (block) {
+	var vibrate = block.getFieldValue('vibrate');
+	var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+	if (vibrate=="false") val=0;
+	  
+	var code = 'if (ps2_error != 0) return;\nif (ps2_type == 2)\n  ps2x.read_gamepad();\nelse\n  ps2x.read_gamepad('+vibrate+', '+val+');\n';
+	return code;
+};
+
+Blockly.Arduino['ps2_button_press'] = function (block) {
+	var btn = block.getFieldValue('button');  
+	var code = 'ps2x.Button('+btn+')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['ps2_button_press_new'] = function (block) {
+	var btn = block.getFieldValue('button');
+	var code = 'ps2x.NewButtonState('+btn+')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['ps2_button_press_just'] = function (block) {
+	var btn = block.getFieldValue('button');
+	var code = 'ps2x.ButtonPressed('+btn+')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['ps2_button_release_just'] = function (block) {
+	var btn = block.getFieldValue('button');
+	var code = 'ps2x.ButtonReleased('+btn+')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['ps2_initial_func'] = function (block) {
+	var func = block.getFieldValue('func');
+	if (func=="PRESSURES")
+		var code = 'ps2x.enablePressures();\n';
+	else
+		var code = 'ps2x.enableRumble();\n';
+	return code;
+};
+
+Blockly.Arduino['ps2_stick_direction'] = function(block) {
+	var position = block.getFieldValue('position');
+	var direction = block.getFieldValue('direction');
+
+	Blockly.Arduino.definitions_['ps2_stick_direction'] = 'String ps2_rotate[8] = {"ul","u","ur","r","dr","d","dl","l"};\n'
+	+'String ps2_stick_direction(boolean position) {\n'
+	+'  float X = analogMax/2;\n'
+	+'  float Y = analogMax/2;\n'
+	+'  if (position) {\n'
+	+'    X = ps2x.Analog(PSS_LX);\n'
+	+'    Y = ps2x.Analog(PSS_LY);\n'
+	+'  } else {\n'
+	+'    X = ps2x.Analog(PSS_RX);\n'
+	+'    Y = ps2x.Analog(PSS_RY);\n'
+	+'  }\n'
+	+'  if (X<(analogMax/4)&&Y<(analogMax/4)) return ps2_rotate[0];\n'
+	+'  if (X>=(analogMax/4)&&X<(analogMax*3/4)&&Y<(analogMax/4)) return ps2_rotate[1];\n'
+	+'  if (X>=(analogMax*3/4)&&Y<(analogMax/4)) return ps2_rotate[2];\n'
+	+'  if (X>=(analogMax*3/4)&&Y>=(analogMax/4)&&Y<(analogMax*3/4)) return ps2_rotate[3];\n'	
+	+'  if (X>=(analogMax*3/4)&&Y>=(analogMax*3/4)) return ps2_rotate[4];\n'
+	+'  if (X>=(analogMax/4)&&X<(analogMax*3/4)&&Y>(analogMax*3/4)) return ps2_rotate[5];\n'
+	+'  if (X<(analogMax/4)&&Y>(analogMax*3/4)) return ps2_rotate[6];\n'
+	+'  if (X<(analogMax/4)&&Y>=(analogMax/4)&&Y<(analogMax*3/4)) return ps2_rotate[7];\n'
+	+'  return "x";\n'	
+	+'}\n';
+		
+	var code = '(ps2_stick_direction('+position+')=="'+direction+'")';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Arduino['keyboard_listener'] = function (block) {
   var statement = Blockly.Arduino.statementToCode(block, 'statement');  
   var event = block.getFieldValue('event');

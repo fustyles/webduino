@@ -10365,6 +10365,44 @@
 		<block type="fu_joystick_get">			
 		</block>		
 	</category>	
+	
+	<category id="france12" name="PS2">
+		<block type="ps2_initial">
+			<value name="CLK">
+			  <block type="math_number">
+				<field name="NUM">12</field>
+			  </block>
+			</value>
+			<value name="CMD">
+			  <block type="math_number">
+				<field name="NUM">11</field>
+			  </block>
+			</value> 			
+			<value name="CS">
+			  <block type="math_number">
+				<field name="NUM">10</field>
+			  </block>
+			</value>
+			<value name="DAT">
+			  <block type="math_number">
+				<field name="NUM">13</field>
+			  </block>
+			</value> 			
+		</block>
+		<block type="ps2_read">
+			<value name="val">
+			  <block type="math_number">
+				<field name="NUM">40</field>
+			  </block>
+			</value>		
+		</block>
+		<block type="ps2_button_press"></block>		
+		<block type="ps2_button_press_new"></block>
+		<block type="ps2_button_press_just"></block>
+		<block type="ps2_button_release_just"></block>
+		<block type="ps2_stick_direction"></block>			
+		<block type="ps2_initial_func"></block>		
+	</category>		
 
 	<category id="france12" name="pms7003m">
 		<block type="pms7003m_read">			

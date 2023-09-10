@@ -1,3 +1,297 @@
+Blockly.Blocks['ps2_initial'] = {
+	init: function() {
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2"])
+	    .appendField(Blockly.Msg["PS2_INITIAL"]);		
+	this.appendValueInput("CLK")
+		.setCheck("Number")
+		.appendField("CLK");
+	this.appendValueInput("CMD")
+		.setCheck("Number")
+		.appendField("CMD");		
+	this.appendValueInput("CS")
+		.setCheck("Number")
+		.appendField("CS");  
+	this.appendValueInput("DAT")
+		.setCheck("Number")
+		.appendField("DAT");
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2_PRESSURES"])
+	    .appendField(new Blockly.FieldDropdown([
+	      [Blockly.Msg["PS2_DISABLED"],"false"],
+	      [Blockly.Msg["PS2_ENABLED"],"true"]
+	      ]), "pressures");
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2_RUMBLE"])
+	    .appendField(new Blockly.FieldDropdown([
+	      [Blockly.Msg["PS2_DISABLED"],"false"],
+	      [Blockly.Msg["PS2_ENABLED"],"true"]
+	      ]), "rumble");			  
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(280);
+	}
+};
+
+Blockly.Blocks['ps2_read'] = {
+	init: function() {
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2"]);
+	this.appendDummyInput()
+	    .appendField(new Blockly.FieldDropdown([
+	      [Blockly.Msg["PS2_VIBRATE_Y"],"true"],
+	      [Blockly.Msg["PS2_VIBRATE_N"],"false"]
+	      ], this.validate), "vibrate");
+	this.appendValueInput("val")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["PS2_VIBRATE_VALUE"]);
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2_READ_CONTROLLER"]);		
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(280);
+	}
+	,validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="false")
+			block.getInput("val").setVisible(false);	
+		else
+			block.getInput("val").setVisible(true);
+			
+  }
+};
+
+Blockly.Blocks['ps2_button_press'] = {
+	init: function() {
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2"]);
+	this.appendDummyInput()
+	    .appendField(new Blockly.FieldDropdown([
+	      ["START","PSB_START"],
+	      ["SELECT","PSB_SELECT"],
+	      ["↑","PSB_PAD_UP"],
+	      ["→","PSB_PAD_RIGHT"],
+	      ["←","PSB_PAD_LEFT"],
+	      ["↓","PSB_PAD_DOWN"],
+	      ["△ (green)","PSB_CROSS"],
+	      ["○ (red)","PSB_CIRCLE"],
+	      ["Χ (blue)","PSAB_CROSS"],
+	      ["□ (pink)","PSB_SQUARE"],
+	      ["L1","PSB_L1"],
+	      ["L2","PSB_L2"],
+		  ["L3","PSB_L3"],
+	      ["R1","PSB_R1"],
+	      ["R2","PSB_R2"],			  
+	      ["R3","PSB_R3"],	  
+	      ["UP_STRUM(Guitar)","UP_STRUM"],
+	      ["DOWN_STRUM(Guitar)","DOWN_STRUM"],
+	      ["LEFT_STRUM(Guitar)","LEFT_STRUM"],
+	      ["RIGHT_STRUM(Guitar)","RIGHT_STRUM"],
+	      ["STAR_POWER(Guitar)","STAR_POWER"],
+	      ["GREEN_FRET(Guitar)","GREEN_FRET"],
+	      ["YELLOW_FRET(Guitar)","YELLOW_FRET"],
+	      ["RED_FRET(Guitar)","RED_FRET"],
+	      ["BLUE_FRET(Guitar)","BLUE_FRET"],
+	      ["ORANGE_FRET(Guitar)","ORANGE_FRET"],
+	      ["WHAMMY_BAR(Guitar)","WHAMMY_BAR"]		  
+	      ]), "button");
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2_BUTTON_PRESS"]);		  
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(280);
+	}
+};
+
+Blockly.Blocks['ps2_button_press_new'] = {
+	init: function() {
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2"]);
+	this.appendDummyInput()
+	    .appendField(new Blockly.FieldDropdown([
+	      ["START","PSB_START"],
+	      ["SELECT","PSB_SELECT"],
+	      ["↑","PSB_PAD_UP"],
+	      ["→","PSB_PAD_RIGHT"],
+	      ["←","PSB_PAD_LEFT"],
+	      ["↓","PSB_PAD_DOWN"],
+	      ["△ (green)","PSB_CROSS"],
+	      ["○ (red)","PSB_CIRCLE"],
+	      ["Χ (blue)","PSAB_CROSS"],
+	      ["□ (pink)","PSB_SQUARE"],
+	      ["L1","PSB_L1"],
+	      ["L2","PSB_L2"],
+		  ["L3","PSB_L3"],
+	      ["R1","PSB_R1"],
+	      ["R2","PSB_R2"],			  
+	      ["R3","PSB_R3"],	  
+	      ["UP_STRUM(Guitar)","UP_STRUM"],
+	      ["DOWN_STRUM(Guitar)","DOWN_STRUM"],
+	      ["LEFT_STRUM(Guitar)","LEFT_STRUM"],
+	      ["RIGHT_STRUM(Guitar)","RIGHT_STRUM"],
+	      ["STAR_POWER(Guitar)","STAR_POWER"],
+	      ["GREEN_FRET(Guitar)","GREEN_FRET"],
+	      ["YELLOW_FRET(Guitar)","YELLOW_FRET"],
+	      ["RED_FRET(Guitar)","RED_FRET"],
+	      ["BLUE_FRET(Guitar)","BLUE_FRET"],
+	      ["ORANGE_FRET(Guitar)","ORANGE_FRET"],
+	      ["WHAMMY_BAR(Guitar)","WHAMMY_BAR"]
+	      ]), "button");
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2_BUTTON_PRESS_NEW"]);		  
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(280);
+	}
+};
+
+Blockly.Blocks['ps2_button_press_just'] = {
+	init: function() {
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2"]);
+	this.appendDummyInput()
+	    .appendField(new Blockly.FieldDropdown([
+	      ["START","PSB_START"],
+	      ["SELECT","PSB_SELECT"],
+	      ["↑","PSB_PAD_UP"],
+	      ["→","PSB_PAD_RIGHT"],
+	      ["←","PSB_PAD_LEFT"],
+	      ["↓","PSB_PAD_DOWN"],
+	      ["△ (green)","PSB_CROSS"],
+	      ["○ (red)","PSB_CIRCLE"],
+	      ["Χ (blue)","PSAB_CROSS"],
+	      ["□ (pink)","PSB_SQUARE"],
+	      ["L1","PSB_L1"],
+	      ["L2","PSB_L2"],
+		  ["L3","PSB_L3"],
+	      ["R1","PSB_R1"],
+	      ["R2","PSB_R2"],			  
+	      ["R3","PSB_R3"],	  
+	      ["UP_STRUM(Guitar)","UP_STRUM"],
+	      ["DOWN_STRUM(Guitar)","DOWN_STRUM"],
+	      ["LEFT_STRUM(Guitar)","LEFT_STRUM"],
+	      ["RIGHT_STRUM(Guitar)","RIGHT_STRUM"],
+	      ["STAR_POWER(Guitar)","STAR_POWER"],
+	      ["GREEN_FRET(Guitar)","GREEN_FRET"],
+	      ["YELLOW_FRET(Guitar)","YELLOW_FRET"],
+	      ["RED_FRET(Guitar)","RED_FRET"],
+	      ["BLUE_FRET(Guitar)","BLUE_FRET"],
+	      ["ORANGE_FRET(Guitar)","ORANGE_FRET"],
+	      ["WHAMMY_BAR(Guitar)","WHAMMY_BAR"]	
+	      ]), "button");
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2_BUTTON_PRESS_JUST"]);		  
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(280);
+	}
+};
+
+Blockly.Blocks['ps2_button_release_just'] = {
+	init: function() {
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2"]);
+	this.appendDummyInput()
+	    .appendField(new Blockly.FieldDropdown([
+	      ["START","PSB_START"],
+	      ["SELECT","PSB_SELECT"],
+	      ["↑","PSB_PAD_UP"],
+	      ["→","PSB_PAD_RIGHT"],
+	      ["←","PSB_PAD_LEFT"],
+	      ["↓","PSB_PAD_DOWN"],
+	      ["△ (green)","PSB_CROSS"],
+	      ["○ (red)","PSB_CIRCLE"],
+	      ["Χ (blue)","PSAB_CROSS"],
+	      ["□ (pink)","PSB_SQUARE"],
+	      ["L1","PSB_L1"],
+	      ["L2","PSB_L2"],
+		  ["L3","PSB_L3"],
+	      ["R1","PSB_R1"],
+	      ["R2","PSB_R2"],			  
+	      ["R3","PSB_R3"],	  
+	      ["UP_STRUM(Guitar)","UP_STRUM"],
+	      ["DOWN_STRUM(Guitar)","DOWN_STRUM"],
+	      ["LEFT_STRUM(Guitar)","LEFT_STRUM"],
+	      ["RIGHT_STRUM(Guitar)","RIGHT_STRUM"],
+	      ["STAR_POWER(Guitar)","STAR_POWER"],
+	      ["GREEN_FRET(Guitar)","GREEN_FRET"],
+	      ["YELLOW_FRET(Guitar)","YELLOW_FRET"],
+	      ["RED_FRET(Guitar)","RED_FRET"],
+	      ["BLUE_FRET(Guitar)","BLUE_FRET"],
+	      ["ORANGE_FRET(Guitar)","ORANGE_FRET"],
+	      ["WHAMMY_BAR(Guitar)","WHAMMY_BAR"]	
+	      ]), "button");
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2_BUTTON_RELEASE_JUST"]);		  
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(280);
+	}
+};
+
+Blockly.Blocks['ps2_initial_func'] = {
+	init: function() {
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2"])
+		.appendField(Blockly.Msg["PS2_ENABLED"]);		
+	this.appendDummyInput()
+	    .appendField(new Blockly.FieldDropdown([
+	      [Blockly.Msg["PS2_PRESSURES"],"PRESSURES"],
+	      [Blockly.Msg["PS2_RUMBLE"],"RUMBLE"]
+	      ]), "func");			  
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(280);
+	}
+};
+
+Blockly.Blocks['ps2_stick_direction'] = {
+  init: function() {
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["PS2_STICK_LEFT"],"true"],		
+			[Blockly.Msg["PS2_STICK_RIGHT"],"false"]
+		]), "position");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PS2_STICK_DIRECTION"]);		
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["PS2_STICK_DIRECTION_UP"],"u"],		
+			[Blockly.Msg["PS2_STICK_DIRECTION_UPRIGHT"],"ur"],
+			[Blockly.Msg["PS2_STICK_DIRECTION_RIGHT"],"r"],		
+			[Blockly.Msg["PS2_STICK_DIRECTION_DOWNRIGHT"],"dr"],
+			[Blockly.Msg["PS2_STICK_DIRECTION_DOWN"],"d"],		
+			[Blockly.Msg["PS2_STICK_DIRECTION_DOWNLEFT"],"dl"],
+			[Blockly.Msg["PS2_STICK_DIRECTION_LEFT"],"l"],		
+			[Blockly.Msg["PS2_STICK_DIRECTION_LEFTUP"],"ul"],
+			[Blockly.Msg["PS2_STICK_DIRECTION_CENTER"],"x"],
+		]), "direction");
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(280);
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Blocks['keyboard_listener'] = {
 	init: function() {
 	this.appendDummyInput()

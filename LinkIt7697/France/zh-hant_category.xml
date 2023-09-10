@@ -108,4 +108,5 @@
 <category><name>tesseract</name><replace>文字辨識 (ocr)</replace></category>
 <category><name>knnclassifier</name><replace>機器學習(knn)</replace></category>
 <category><name>Keyboard</name><replace>網頁鍵盤</replace></category>
+<category><name>PS2</name><replace>PS2無線手把</replace></category>
 </xml>

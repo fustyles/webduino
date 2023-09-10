@@ -105,4 +105,5 @@
 <category><name>tesseract</name><replace>Tesseract (ocr)</replace></category>
 <category><name>knnclassifier</name><replace>Teachable Machine(knn)</replace></category>
 <category><name>Keyboard</name><replace>Page keyboard</replace></category>
+<category><name>PS2</name><replace>PS2 Wired Controller</replace></category>
 </xml>
