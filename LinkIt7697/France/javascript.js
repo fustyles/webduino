@@ -106,14 +106,10 @@ Blockly.Arduino['ps2_stick_direction'] = function(block) {
 	+'    X = ps2x.Analog(PSS_RX);\n'
 	+'    Y = ps2x.Analog(PSS_RY);\n'
 	+'  }\n'
-	+'  if (X<(analogMax/4)&&Y<(analogMax/4)) return ps2_rotate[0];\n'
-	+'  if (X>=(analogMax/4)&&X<(analogMax*3/4)&&Y<(analogMax/4)) return ps2_rotate[1];\n'
-	+'  if (X>=(analogMax*3/4)&&Y<(analogMax/4)) return ps2_rotate[2];\n'
-	+'  if (X>=(analogMax*3/4)&&Y>=(analogMax/4)&&Y<(analogMax*3/4)) return ps2_rotate[3];\n'	
-	+'  if (X>=(analogMax*3/4)&&Y>=(analogMax*3/4)) return ps2_rotate[4];\n'
-	+'  if (X>=(analogMax/4)&&X<(analogMax*3/4)&&Y>(analogMax*3/4)) return ps2_rotate[5];\n'
-	+'  if (X<(analogMax/4)&&Y>(analogMax*3/4)) return ps2_rotate[6];\n'
-	+'  if (X<(analogMax/4)&&Y>=(analogMax/4)&&Y<(analogMax*3/4)) return ps2_rotate[7];\n'
+	+'  if (X>=(analogMax/2-analogMax/(2*1.414))&&X<(analogMax/2+analogMax/(2*1.414))&&Y<(analogMax/2-analogMax/(2*1.414))) return ps2_rotate[1];\n'
+	+'  if (X>=(analogMax/2+analogMax/(2*1.414))&&Y>=(analogMax/2-analogMax/(2*1.414))&&Y<(analogMax/2+analogMax/(2*1.414))) return ps2_rotate[3];\n'
+	+'  if (X>=(analogMax/2-analogMax/(2*1.414))&&X<(analogMax/2+analogMax/(2*1.414))&&Y>(analogMax/2+analogMax/(2*1.414))) return ps2_rotate[5];\n'
+	+'  if (X<(analogMax/2-analogMax/(2*1.414))&&Y>=(analogMax/2-analogMax/(2*1.414))&&Y<(analogMax/2+analogMax/(2*1.414))) return ps2_rotate[7];\n'
 	+'  return "x";\n'	
 	+'}\n';	
 		
