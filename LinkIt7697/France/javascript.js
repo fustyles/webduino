@@ -75,7 +75,7 @@ Blockly.Arduino['ps2_stick_direction'] = function(block) {
 	var direction = block.getFieldValue('direction');
 
 	Blockly.Arduino.definitions_['ps2_stick_direction'] = 'String ps2_rotate[8] = {"ul","u","ur","r","dr","d","dl","l"};\n'
-	+'String ps2_stick_direction(boolean position) {\n'
+	+'String ps2_stick_direction8(boolean position) {\n'
 	+'  float X = analogMax/2;\n'
 	+'  float Y = analogMax/2;\n'
 	+'  if (position) {\n'
@@ -94,9 +94,29 @@ Blockly.Arduino['ps2_stick_direction'] = function(block) {
 	+'  if (X<(analogMax/4)&&Y>(analogMax*3/4)) return ps2_rotate[6];\n'
 	+'  if (X<(analogMax/4)&&Y>=(analogMax/4)&&Y<(analogMax*3/4)) return ps2_rotate[7];\n'
 	+'  return "x";\n'	
-	+'}\n';
+	+'}\n'
+	+'String ps2_stick_direction4(boolean position) {\n'
+	+'  float X = analogMax/2;\n'
+	+'  float Y = analogMax/2;\n'
+	+'  if (position) {\n'
+	+'    X = ps2x.Analog(PSS_LX);\n'
+	+'    Y = ps2x.Analog(PSS_LY);\n'
+	+'  } else {\n'
+	+'    X = ps2x.Analog(PSS_RX);\n'
+	+'    Y = ps2x.Analog(PSS_RY);\n'
+	+'  }\n'
+	+'  if (X<(analogMax/4)&&Y<(analogMax/4)) return ps2_rotate[0];\n'
+	+'  if (X>=(analogMax/4)&&X<(analogMax*3/4)&&Y<(analogMax/4)) return ps2_rotate[1];\n'
+	+'  if (X>=(analogMax*3/4)&&Y<(analogMax/4)) return ps2_rotate[2];\n'
+	+'  if (X>=(analogMax*3/4)&&Y>=(analogMax/4)&&Y<(analogMax*3/4)) return ps2_rotate[3];\n'	
+	+'  if (X>=(analogMax*3/4)&&Y>=(analogMax*3/4)) return ps2_rotate[4];\n'
+	+'  if (X>=(analogMax/4)&&X<(analogMax*3/4)&&Y>(analogMax*3/4)) return ps2_rotate[5];\n'
+	+'  if (X<(analogMax/4)&&Y>(analogMax*3/4)) return ps2_rotate[6];\n'
+	+'  if (X<(analogMax/4)&&Y>=(analogMax/4)&&Y<(analogMax*3/4)) return ps2_rotate[7];\n'
+	+'  return "x";\n'	
+	+'}\n';	
 		
-	var code = '(ps2_stick_direction('+position+')=="'+direction+'")';
+	var code = '(ps2_stick_direction8('+position+')=="'+direction+'")';
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
