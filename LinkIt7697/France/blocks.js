@@ -167,6 +167,26 @@ Blockly.Blocks['ps2_initial_func'] = {
 	}
 };
 
+var direction8 = [
+			[Blockly.Msg["PS2_STICK_DIRECTION_UP"],"u"],		
+			[Blockly.Msg["PS2_STICK_DIRECTION_UPRIGHT"],"ur"],
+			[Blockly.Msg["PS2_STICK_DIRECTION_RIGHT"],"r"],		
+			[Blockly.Msg["PS2_STICK_DIRECTION_DOWNRIGHT"],"dr"],
+			[Blockly.Msg["PS2_STICK_DIRECTION_DOWN"],"d"],		
+			[Blockly.Msg["PS2_STICK_DIRECTION_DOWNLEFT"],"dl"],
+			[Blockly.Msg["PS2_STICK_DIRECTION_LEFT"],"l"],		
+			[Blockly.Msg["PS2_STICK_DIRECTION_LEFTUP"],"ul"],
+			[Blockly.Msg["PS2_STICK_DIRECTION_CENTER"],"x"],
+		];
+		
+var direction4 = [
+			[Blockly.Msg["PS2_STICK_DIRECTION_UP"],"u"],
+			[Blockly.Msg["PS2_STICK_DIRECTION_RIGHT"],"r"],
+			[Blockly.Msg["PS2_STICK_DIRECTION_DOWN"],"d"],
+			[Blockly.Msg["PS2_STICK_DIRECTION_LEFT"],"l"],
+			[Blockly.Msg["PS2_STICK_DIRECTION_CENTER"],"x"],
+		];	
+
 Blockly.Blocks['ps2_stick_direction'] = {
   init: function() {
 	this.appendDummyInput()
@@ -182,23 +202,23 @@ Blockly.Blocks['ps2_stick_direction'] = {
         .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["PS2_STICK_DIRECTION8"],"8"],		
 			[Blockly.Msg["PS2_STICK_DIRECTION4"],"4"]
-		]), "type");			
-    this.appendDummyInput()
+		], this.validate), "type");			
+    this.appendDummyInput("opt")
         .setAlign(Blockly.ALIGN_RIGHT) 
-        .appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["PS2_STICK_DIRECTION_UP"],"u"],		
-			[Blockly.Msg["PS2_STICK_DIRECTION_UPRIGHT"],"ur"],
-			[Blockly.Msg["PS2_STICK_DIRECTION_RIGHT"],"r"],		
-			[Blockly.Msg["PS2_STICK_DIRECTION_DOWNRIGHT"],"dr"],
-			[Blockly.Msg["PS2_STICK_DIRECTION_DOWN"],"d"],		
-			[Blockly.Msg["PS2_STICK_DIRECTION_DOWNLEFT"],"dl"],
-			[Blockly.Msg["PS2_STICK_DIRECTION_LEFT"],"l"],		
-			[Blockly.Msg["PS2_STICK_DIRECTION_LEFTUP"],"ul"],
-			[Blockly.Msg["PS2_STICK_DIRECTION_CENTER"],"x"],
-		]), "direction");
+        .appendField(new Blockly.FieldDropdown(direction8), "direction");
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
     this.setColour(280);
+  }
+  ,validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		block.getInput("opt").removeField("direction");
+		if (newValue=="8")
+			block.getInput("opt").appendField(new Blockly.FieldDropdown(direction8),"direction");	
+		else
+			block.getInput("opt").appendField(new Blockly.FieldDropdown(direction4),"direction");
+			
   }
 };
 
