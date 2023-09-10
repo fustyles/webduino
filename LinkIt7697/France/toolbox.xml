@@ -10396,11 +10396,8 @@
 			  </block>
 			</value>		
 		</block>
-		<block type="ps2_state"></block>			
-		<block type="ps2_button_press"></block>		
-		<block type="ps2_button_press_new"></block>
-		<block type="ps2_button_press_just"></block>
-		<block type="ps2_button_release_just"></block>
+		<block type="ps2_state"></block>
+		<block type="ps2_button_event"></block>
 		<block type="ps2_analog_max">
 			<value name="val">
 			  <block type="math_number">

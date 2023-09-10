@@ -94,56 +94,19 @@ var ps2_button = [
 	      ["WHAMMY_BAR(Guitar)","WHAMMY_BAR"]	  
 ];
 
-Blockly.Blocks['ps2_button_press'] = {
+Blockly.Blocks['ps2_button_event'] = {
 	init: function() {
 	this.appendDummyInput()
 	    .appendField(Blockly.Msg["PS2"]);
 	this.appendDummyInput()
 	    .appendField(new Blockly.FieldDropdown(ps2_button), "button");
 	this.appendDummyInput()
-	    .appendField(Blockly.Msg["PS2_BUTTON_PRESS"]);		  
-	this.setInputsInline(true);
-	this.setOutput(true, null); 
-	this.setColour(280);
-	}
-};
-
-Blockly.Blocks['ps2_button_press_new'] = {
-	init: function() {
-	this.appendDummyInput()
-	    .appendField(Blockly.Msg["PS2"]);
-	this.appendDummyInput()
-	    .appendField(new Blockly.FieldDropdown(ps2_button), "button");
-	this.appendDummyInput()
-	    .appendField(Blockly.Msg["PS2_BUTTON_PRESS_NEW"]);		  
-	this.setInputsInline(true);
-	this.setOutput(true, null); 
-	this.setColour(280);
-	}
-};
-
-Blockly.Blocks['ps2_button_press_just'] = {
-	init: function() {
-	this.appendDummyInput()
-	    .appendField(Blockly.Msg["PS2"]);
-	this.appendDummyInput()
-	    .appendField(new Blockly.FieldDropdown(ps2_button), "button");
-	this.appendDummyInput()
-	    .appendField(Blockly.Msg["PS2_BUTTON_PRESS_JUST"]);		  
-	this.setInputsInline(true);
-	this.setOutput(true, null); 
-	this.setColour(280);
-	}
-};
-
-Blockly.Blocks['ps2_button_release_just'] = {
-	init: function() {
-	this.appendDummyInput()
-	    .appendField(Blockly.Msg["PS2"]);
-	this.appendDummyInput()
-	    .appendField(new Blockly.FieldDropdown(ps2_button), "button");
-	this.appendDummyInput()
-	    .appendField(Blockly.Msg["PS2_BUTTON_RELEASE_JUST"]);		  
+	    .appendField(new Blockly.FieldDropdown([
+	      [Blockly.Msg["PS2_BUTTON_PRESS"],"press"],
+	      [Blockly.Msg["PS2_BUTTON_PRESS_NEW"],"press_new"],
+	      [Blockly.Msg["PS2_BUTTON_PRESS_JUST"],"press_just"],
+	      [Blockly.Msg["PS2_BUTTON_RELEASE_JUST"],"release_just"]
+	      ]), "event");	  
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
 	this.setColour(280);

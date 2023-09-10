@@ -37,27 +37,18 @@ Blockly.Arduino['ps2_read'] = function (block) {
 	return code;
 };
 
-Blockly.Arduino['ps2_button_press'] = function (block) {
-	var btn = block.getFieldValue('button');  
-	var code = 'ps2x.Button('+btn+')';
-	return [code, Blockly.Arduino.ORDER_NONE];
-};
-
-Blockly.Arduino['ps2_button_press_new'] = function (block) {
+Blockly.Arduino['ps2_button_event'] = function (block) {
+	var event = block.getFieldValue('event');
 	var btn = block.getFieldValue('button');
-	var code = 'ps2x.NewButtonState('+btn+')';
-	return [code, Blockly.Arduino.ORDER_NONE];
-};
-
-Blockly.Arduino['ps2_button_press_just'] = function (block) {
-	var btn = block.getFieldValue('button');
-	var code = 'ps2x.ButtonPressed('+btn+')';
-	return [code, Blockly.Arduino.ORDER_NONE];
-};
-
-Blockly.Arduino['ps2_button_release_just'] = function (block) {
-	var btn = block.getFieldValue('button');
-	var code = 'ps2x.ButtonReleased('+btn+')';
+	var code = '';
+	if (event=="press")	
+		code = 'ps2x.Button('+btn+')';
+	else if (event=="press_new")	
+		code = 'ps2x.NewButtonState('+btn+')';
+	else if (event=="press_just")	
+		code = 'ps2x.ButtonPressed('+btn+')';
+	else if (event=="release_just")	
+		code = 'ps2x.ButtonReleased('+btn+')';
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
