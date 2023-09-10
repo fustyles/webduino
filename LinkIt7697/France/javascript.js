@@ -624,11 +624,14 @@ Blockly.Arduino['fu_joystick_initial'] = function(block) {
 	
 	Blockly.Arduino.setups_['joystick_initial_'+index] = 'pinMode(joystick_pin_'+index+'[0], INPUT_PULLUP);\n  pinMode(joystick_pin_'+index+'[1], INPUT_PULLUP);\n  pinMode(joystick_pin_'+index+'[2], INPUT_PULLUP);\n';
 	
+
 	if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040") {
 		Blockly.Arduino.definitions_['joystick_initial_analogMax'] = 'int analogMax = 4095;\n';
+	} else if (selectBoardType()=="arduino") {
+		Blockly.Arduino.definitions_['joystick_initial_analogMax'] = 'int analogMax = 255;\n';		
 	} else {
 		Blockly.Arduino.definitions_['joystick_initial_analogMax'] = 'int analogMax = 1023;\n';
-	}
+	}	
 	
 	var code = ';\n' ;
 	return code;
