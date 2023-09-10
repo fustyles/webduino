@@ -76,9 +76,9 @@ Blockly.Blocks['ps2_button_press'] = {
 	      ["→","PSB_PAD_RIGHT"],
 	      ["←","PSB_PAD_LEFT"],
 	      ["↓","PSB_PAD_DOWN"],
-	      ["△ (green)","PSB_CROSS"],
+	      ["△ (green)","PSB_TRIANGLE"],
 	      ["○ (red)","PSB_CIRCLE"],
-	      ["Χ (blue)","PSAB_CROSS"],
+	      ["Χ (blue)","PSB_CROSS"],
 	      ["□ (pink)","PSB_SQUARE"],
 	      ["L1","PSB_L1"],
 	      ["L2","PSB_L2"],
@@ -96,7 +96,7 @@ Blockly.Blocks['ps2_button_press'] = {
 	      ["RED_FRET(Guitar)","RED_FRET"],
 	      ["BLUE_FRET(Guitar)","BLUE_FRET"],
 	      ["ORANGE_FRET(Guitar)","ORANGE_FRET"],
-	      ["WHAMMY_BAR(Guitar)","WHAMMY_BAR"]		  
+	      ["WHAMMY_BAR(Guitar)","WHAMMY_BAR"]	  
 	      ]), "button");
 	this.appendDummyInput()
 	    .appendField(Blockly.Msg["PS2_BUTTON_PRESS"]);		  
@@ -160,9 +160,9 @@ Blockly.Blocks['ps2_button_press_just'] = {
 	      ["→","PSB_PAD_RIGHT"],
 	      ["←","PSB_PAD_LEFT"],
 	      ["↓","PSB_PAD_DOWN"],
-	      ["△ (green)","PSB_CROSS"],
+	      ["△ (green)","PSB_TRIANGLE"],
 	      ["○ (red)","PSB_CIRCLE"],
-	      ["Χ (blue)","PSAB_CROSS"],
+	      ["Χ (blue)","PSB_CROSS"],
 	      ["□ (pink)","PSB_SQUARE"],
 	      ["L1","PSB_L1"],
 	      ["L2","PSB_L2"],
@@ -202,9 +202,9 @@ Blockly.Blocks['ps2_button_release_just'] = {
 	      ["→","PSB_PAD_RIGHT"],
 	      ["←","PSB_PAD_LEFT"],
 	      ["↓","PSB_PAD_DOWN"],
-	      ["△ (green)","PSB_CROSS"],
+	      ["△ (green)","PSB_TRIANGLE"],
 	      ["○ (red)","PSB_CIRCLE"],
-	      ["Χ (blue)","PSAB_CROSS"],
+	      ["Χ (blue)","PSB_CROSS"],
 	      ["□ (pink)","PSB_SQUARE"],
 	      ["L1","PSB_L1"],
 	      ["L2","PSB_L2"],
@@ -259,8 +259,12 @@ Blockly.Blocks['ps2_stick_direction'] = {
 			[Blockly.Msg["PS2_STICK_LEFT"],"true"],		
 			[Blockly.Msg["PS2_STICK_RIGHT"],"false"]
 		]), "position");
-	this.appendDummyInput()
-		.appendField(Blockly.Msg["PS2_STICK_DIRECTION"]);		
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["PS2_STICK_DIRECTION8"],"8"],		
+			[Blockly.Msg["PS2_STICK_DIRECTION4"],"4"]
+		]), "type");			
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT) 
         .appendField(new Blockly.FieldDropdown([

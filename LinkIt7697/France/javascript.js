@@ -73,6 +73,7 @@ Blockly.Arduino['ps2_initial_func'] = function (block) {
 Blockly.Arduino['ps2_stick_direction'] = function(block) {
 	var position = block.getFieldValue('position');
 	var direction = block.getFieldValue('direction');
+	var type = block.getFieldValue('type');
 
 	Blockly.Arduino.definitions_['ps2_stick_direction'] = 'String ps2_rotate[8] = {"ul","u","ur","r","dr","d","dl","l"};\n'
 	+'String ps2_stick_direction8(boolean position) {\n'
@@ -116,7 +117,7 @@ Blockly.Arduino['ps2_stick_direction'] = function(block) {
 	+'  return "x";\n'	
 	+'}\n';	
 		
-	var code = '(ps2_stick_direction8('+position+')=="'+direction+'")';
+	var code = '(ps2_stick_direction'+type+'('+position+')=="'+direction+'")';
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
