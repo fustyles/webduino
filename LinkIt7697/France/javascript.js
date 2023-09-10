@@ -13,7 +13,7 @@ Blockly.Arduino['ps2_initial'] = function (block) {
 		Blockly.Arduino.definitions_['joystick_initial_analogMax'] = 'int analogMax = 1023;\n';
 	}
 	
-	Blockly.Arduino.definitions_['define_ps2_initial'] = '#include "PS2X_lib.h"\n'
+	Blockly.Arduino.definitions_['define_ps2_initial'] = '#include <PS2X_lib.h>\n'
 														+'#define PS2_DAT        '+DAT+'\n'  
 														+'#define PS2_CMD        '+CMD+'\n' 
 														+'#define PS2_SEL        '+CS+'\n' 
