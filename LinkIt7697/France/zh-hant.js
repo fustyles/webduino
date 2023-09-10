@@ -58,7 +58,6 @@ Blockly.Msg["PS2_STICK_DIRECTION_LEFTUP"] = "↖";
 Blockly.Msg["PS2_STICK_DIRECTION_CENTER"] = "o";
 Blockly.Msg["PS2_STATE"] = "連接控制器狀態";
 Blockly.Msg["PS2_ANALOG_MAX"] = "開發板類比輸入最大值";
-Blockly.Msg["PS2_ANALOG_READ"] = "讀取搖桿值";
 Blockly.Msg["PS2_ANALOG_READ_LX"] = "左搖桿X值";
 Blockly.Msg["PS2_ANALOG_READ_LY"] = "左搖桿Y值";
 Blockly.Msg["PS2_ANALOG_READ_RX"] = "右搖桿X值";

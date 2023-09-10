@@ -230,8 +230,7 @@ Blockly.Blocks['ps2_analog_max'] = {
 Blockly.Blocks['ps2_analog_read'] = {
   init: function() {
 	this.appendDummyInput()
-	    .appendField(Blockly.Msg["PS2"])
-		.appendField(Blockly.Msg["PS2_ANALOG_READ"]);
+	    .appendField(Blockly.Msg["PS2"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT) 
         .appendField(new Blockly.FieldDropdown([
