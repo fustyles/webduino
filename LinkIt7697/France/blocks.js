@@ -202,9 +202,30 @@ Blockly.Blocks['ps2_stick_direction'] = {
   }
 };
 
+Blockly.Blocks['ps2_state'] = {
+  init: function() {
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2"])
+		.appendField(Blockly.Msg["PS2_STATE"]);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(280);
+  }
+};
 
-
-
+Blockly.Blocks['ps2_analog'] = {
+	init: function() {
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2"])
+		.appendField(Blockly.Msg["PS2_ANALOG"]);		
+	this.appendValueInput("val")
+		.setCheck("Number");
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(280);
+	}
+};
 
 
 

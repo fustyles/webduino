@@ -117,9 +117,16 @@ Blockly.Arduino['ps2_stick_direction'] = function(block) {
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['ps2_state'] = function(block) {
+	var code = '(ps2_error == 0)';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
 
-
-
+Blockly.Arduino['ps2_analog'] = function(block) {
+	var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+	var code = 'analogMax = '+val+';\n';
+	return code;
+};
 
 
 

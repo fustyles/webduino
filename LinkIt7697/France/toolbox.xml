@@ -10396,6 +10396,14 @@
 			  </block>
 			</value>		
 		</block>
+		<block type="ps2_analog">
+			<value name="val">
+			  <block type="math_number">
+				<field name="NUM">255</field>
+			  </block>
+			</value>
+		</block>
+		<block type="ps2_state"></block>			
 		<block type="ps2_button_press"></block>		
 		<block type="ps2_button_press_new"></block>
 		<block type="ps2_button_press_just"></block>
