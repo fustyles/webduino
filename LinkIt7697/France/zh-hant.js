@@ -57,7 +57,7 @@ Blockly.Msg["PS2_STICK_DIRECTION_LEFT"] = "←";
 Blockly.Msg["PS2_STICK_DIRECTION_LEFTUP"] = "↖";
 Blockly.Msg["PS2_STICK_DIRECTION_CENTER"] = "o";
 Blockly.Msg["PS2_STATE"] = "連接控制器狀態";
-Blockly.Msg["PS2_ANALOG"] = "開發板類比輸入最大值";
+Blockly.Msg["PS2_ANALOG_MAX"] = "開發板類比輸入最大值";
 
 Blockly.Msg["KEYBOARD_SHOW"] = "網頁鍵盤";
 Blockly.Msg["KEYBOARD_LISTENER_SHOW"] = "開始監聽";

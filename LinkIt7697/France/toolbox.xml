@@ -10401,7 +10401,7 @@
 		<block type="ps2_button_press_new"></block>
 		<block type="ps2_button_press_just"></block>
 		<block type="ps2_button_release_just"></block>
-		<block type="ps2_analog">
+		<block type="ps2_analog_max">
 			<value name="val">
 			  <block type="math_number">
 				<field name="NUM">255</field>

@@ -213,11 +213,11 @@ Blockly.Blocks['ps2_state'] = {
   }
 };
 
-Blockly.Blocks['ps2_analog'] = {
+Blockly.Blocks['ps2_analog_max'] = {
 	init: function() {
 	this.appendDummyInput()
 	    .appendField(Blockly.Msg["PS2"])
-		.appendField(Blockly.Msg["PS2_ANALOG"]);		
+		.appendField(Blockly.Msg["PS2_ANALOG_MAX"]);		
 	this.appendValueInput("val")
 		.setCheck("Number");
 	this.setInputsInline(true);
@@ -225,6 +225,17 @@ Blockly.Blocks['ps2_analog'] = {
 	this.setNextStatement(true);
 	this.setColour(280);
 	}
+};
+
+Blockly.Blocks['ps2_state'] = {
+  init: function() {
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2"])
+		.appendField(Blockly.Msg["PS2_STATE"]);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(280);
+  }
 };
 
 
