@@ -17604,7 +17604,7 @@ Blockly.Blocks['fetch_get'] = {
       .appendField(Blockly.Msg.FETCH_URL); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.FETCH_DATATYPE)
-      .appendField(new Blockly.FieldDropdown([["json","json"],["text","text"], ["blob","blob"]]), "datatype_"); 
+      .appendField(new Blockly.FieldDropdown([["json","json"],[Blockly.Msg.PROPERTY_TEXT_SHOW,"text"], ["blob","blob"]]), "datatype_"); 
   this.appendStatementInput("do")
       .appendField(Blockly.Msg.FETCH_RESPONSE);	  
   this.setInputsInline(true);
