@@ -62,6 +62,10 @@ Blockly.Msg["PS2_STICK_DIRECTION_LEFTUP"] = "↖";
 Blockly.Msg["PS2_STICK_DIRECTION_CENTER"] = "o";
 Blockly.Msg["PS2_STATE"] = "connection state";
 Blockly.Msg["PS2_ANALOG_MAX"] = "ADC max value";
+Blockly.Msg["PS2_ANALOG_READ_LX"] = "Left stick X";
+Blockly.Msg["PS2_ANALOG_READ_LY"] = "Left stick Y";
+Blockly.Msg["PS2_ANALOG_READ_RX"] = "Right stick X";
+Blockly.Msg["PS2_ANALOG_READ_RY"] = "Right stick Y";
 
 Blockly.Msg["KEYBOARD_SHOW"] = "Page Keyboard";
 Blockly.Msg["KEYBOARD_LISTENER_SHOW"] = "Listener";

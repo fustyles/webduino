@@ -227,6 +227,25 @@ Blockly.Blocks['ps2_analog_max'] = {
 	}
 };
 
+Blockly.Blocks['ps2_analog_read'] = {
+  init: function() {
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2"])
+		.appendField(Blockly.Msg["PS2_ANALOG_READ"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["PS2_ANALOG_READ_LX"],"PSS_LX"],		
+			[Blockly.Msg["PS2_ANALOG_READ_LY"],"PSS_LY"],
+			[Blockly.Msg["PS2_ANALOG_READ_RX"],"PSS_RX"],		
+			[Blockly.Msg["PS2_ANALOG_READ_RY"],"PSS_RY"]
+		]), "analog");	
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(280);
+  }
+};
+
 Blockly.Blocks['ps2_state'] = {
   init: function() {
 	this.appendDummyInput()

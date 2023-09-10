@@ -128,7 +128,11 @@ Blockly.Arduino['ps2_analog_max'] = function(block) {
 	return code;
 };
 
-
+Blockly.Arduino['ps2_analog_read'] = function(block) {
+	var analog = block.getFieldValue('analog');
+	var code = 'ps2x.Analog('+analog+')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
 
 
 
