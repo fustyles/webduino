@@ -66,6 +66,10 @@ Blockly.Msg["PS2_ANALOG_READ_LX"] = "Left stick X";
 Blockly.Msg["PS2_ANALOG_READ_LY"] = "Left stick Y";
 Blockly.Msg["PS2_ANALOG_READ_RX"] = "Right stick X";
 Blockly.Msg["PS2_ANALOG_READ_RY"] = "Right stick Y";
+Blockly.Msg["PS2_BUTTON_GREEN"] = "△ GREEN";
+Blockly.Msg["PS2_BUTTON_RED"] = "○ RED";
+Blockly.Msg["PS2_BUTTON_BLUE"] = "Χ BLUE";
+Blockly.Msg["PS2_BUTTON_PINK"] = "□ PINK";
 
 Blockly.Msg["KEYBOARD_SHOW"] = "Page Keyboard";
 Blockly.Msg["KEYBOARD_LISTENER_SHOW"] = "Listener";
