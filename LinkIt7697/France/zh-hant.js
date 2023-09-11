@@ -59,10 +59,10 @@ Blockly.Msg["PS2_STICK_DIRECTION_LEFTUP"] = "↖";
 Blockly.Msg["PS2_STICK_DIRECTION_CENTER"] = "o";
 Blockly.Msg["PS2_STATE"] = "連接接收器狀態";
 Blockly.Msg["PS2_ANALOG_MAX"] = "開發板類比輸入最大值";
-Blockly.Msg["PS2_ANALOG_READ_LX"] = "左搖桿X類比值";
-Blockly.Msg["PS2_ANALOG_READ_LY"] = "左搖桿Y類比值";
-Blockly.Msg["PS2_ANALOG_READ_RX"] = "右搖桿X類比值";
-Blockly.Msg["PS2_ANALOG_READ_RY"] = "右搖桿Y類比值";
+Blockly.Msg["PS2_ANALOG_READ_LX"] = "左搖桿X軸類比值";
+Blockly.Msg["PS2_ANALOG_READ_LY"] = "左搖桿Y軸類比值";
+Blockly.Msg["PS2_ANALOG_READ_RX"] = "右搖桿X軸類比值";
+Blockly.Msg["PS2_ANALOG_READ_RY"] = "右搖桿Y軸類比值";
 
 Blockly.Msg["KEYBOARD_SHOW"] = "網頁鍵盤";
 Blockly.Msg["KEYBOARD_LISTENER_SHOW"] = "開始監聽";
