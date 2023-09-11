@@ -102,9 +102,9 @@ Blockly.Blocks['ps2_button_event'] = {
 	    .appendField(new Blockly.FieldDropdown(ps2_button), "button");
 	this.appendDummyInput()
 	    .appendField(new Blockly.FieldDropdown([
-	      [Blockly.Msg["PS2_BUTTON_PRESS"],"press"],
+	      [Blockly.Msg["PS2_BUTTON_PRESS_JUST"],"press_just"],		
 	      [Blockly.Msg["PS2_BUTTON_PRESS_NEW"],"press_new"],
-	      [Blockly.Msg["PS2_BUTTON_PRESS_JUST"],"press_just"],
+	      [Blockly.Msg["PS2_BUTTON_PRESS"],"press"],
 	      [Blockly.Msg["PS2_BUTTON_RELEASE_JUST"],"release_just"]
 	      ]), "event");	  
 	this.setInputsInline(true);
