@@ -228,6 +228,37 @@ Blockly.Blocks['ps2_analog_read'] = {
   }
 };
 
+var ps2_pressure_button = [
+	      ["START","PSAB_START"],
+	      ["SELECT","PSAB_SELECT"],
+	      ["↑","PSAB_PAD_UP"],
+	      ["→","PSAB_PAD_RIGHT"],
+	      ["←","PSAB_PAD_LEFT"],
+	      ["↓","PSAB_PAD_DOWN"],
+	      ["△ GREEN","PSAB_TRIANGLE"],
+	      ["○ RED","PSAB_CIRCLE"],
+	      ["Χ BLUE","PSAB_CROSS"],
+	      ["□ PINK","PSAB_SQUARE"],
+	      ["L1","PSAB_L1"],
+	      ["L2","PSAB_L2"],
+	      ["R1","PSAB_R1"],
+	      ["R2","PSAB_R2"]  
+];
+
+Blockly.Blocks['ps2_pressures_read'] = {
+  init: function() {
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2"])
+	    .appendField(Blockly.Msg["PS2_PRESSURES_ANALOG"]);		
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+        .appendField(new Blockly.FieldDropdown(ps2_pressure_button), "analog");	
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(280);
+  }
+};
+
 Blockly.Blocks['ps2_state'] = {
   init: function() {
 	this.appendDummyInput()

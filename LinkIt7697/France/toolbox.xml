@@ -10406,7 +10406,8 @@
 			</value>
 		</block>		
 		<block type="ps2_stick_direction"></block>		
-		<block type="ps2_analog_read"></block>				
+		<block type="ps2_analog_read"></block>
+		<block type="ps2_pressures_read"></block>	
 		<block type="ps2_initial_func"></block>		
 	</category>		
 

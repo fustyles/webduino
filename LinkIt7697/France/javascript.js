@@ -133,7 +133,11 @@ Blockly.Arduino['ps2_analog_read'] = function(block) {
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
-
+Blockly.Arduino['ps2_pressures_read'] = function(block) {
+	var analog = block.getFieldValue('analog');
+	var code = 'ps2x.Analog('+analog+')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
 
 
 

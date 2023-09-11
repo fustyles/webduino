@@ -32,6 +32,7 @@ Blockly.Msg["HUE_30"] = 50;
 Blockly.Msg["PS2"] = "PS2 Game controller";
 Blockly.Msg["PS2_INITIAL"] = "Initial";
 Blockly.Msg["PS2_PRESSURES"] = "Pressure sensitive mode";
+Blockly.Msg["PS2_PRESSURES_ANALOG"] = "Pressure sensitive value";
 Blockly.Msg["PS2_PRESSURES_N"] = "N";
 Blockly.Msg["PS2_PRESSURES_Y"] = "Y";
 Blockly.Msg["PS2_RUMBLE"] = "Vibration motor mode";

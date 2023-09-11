@@ -32,6 +32,7 @@ Blockly.Msg["HUE_30"] = 50;
 Blockly.Msg["PS2"] = "PS2無線手把";
 Blockly.Msg["PS2_INITIAL"] = "初始化";
 Blockly.Msg["PS2_PRESSURES"] = "壓力靈敏度";
+Blockly.Msg["PS2_PRESSURES_ANALOG"] = "壓力靈敏度類比值";
 Blockly.Msg["PS2_RUMBLE"] = "振動回饋";
 Blockly.Msg["PS2_READ_CONTROLLER"] = "讀取一次數據";
 Blockly.Msg["PS2_BUTTON_PRESS"] = "正按下";
