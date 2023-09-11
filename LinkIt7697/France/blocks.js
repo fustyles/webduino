@@ -77,7 +77,7 @@ var ps2_button = [
 	      [Blockly.Msg["PS2_BUTTON_PINK"],"PSB_SQUARE"],
 	      ["L1","PSB_L1"],
 	      ["L2","PSB_L2"],
-		  ["L3","PSB_L3"],
+	      ["L3","PSB_L3"],
 	      ["R1","PSB_R1"],
 	      ["R2","PSB_R2"],			  
 	      ["R3","PSB_R3"],	  
