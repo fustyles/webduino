@@ -63,6 +63,10 @@ Blockly.Msg["PS2_ANALOG_READ_LX"] = "左搖桿X軸類比值";
 Blockly.Msg["PS2_ANALOG_READ_LY"] = "左搖桿Y軸類比值";
 Blockly.Msg["PS2_ANALOG_READ_RX"] = "右搖桿X軸類比值";
 Blockly.Msg["PS2_ANALOG_READ_RY"] = "右搖桿Y軸類比值";
+Blockly.Msg["PS2_BUTTON_GREEN"] = "△ 綠";
+Blockly.Msg["PS2_BUTTON_RED"] = "○ 紅";
+Blockly.Msg["PS2_BUTTON_BLUE"] = "Χ 藍";
+Blockly.Msg["PS2_BUTTON_PINK"] = "□ 粉紅";
 
 Blockly.Msg["KEYBOARD_SHOW"] = "網頁鍵盤";
 Blockly.Msg["KEYBOARD_LISTENER_SHOW"] = "開始監聽";
