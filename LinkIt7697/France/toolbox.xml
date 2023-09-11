@@ -10389,6 +10389,7 @@
 			  </block>
 			</value> 			
 		</block>
+		<block type="ps2_state"></block>		
 		<block type="ps2_read">
 			<value name="val">
 			  <block type="math_number">
@@ -10396,17 +10397,16 @@
 			  </block>
 			</value>		
 		</block>
-		<block type="ps2_state"></block>
 		<block type="ps2_button_event"></block>
+		<block type="ps2_stick_direction"></block>		
+		<block type="ps2_analog_read"></block>			
 		<block type="ps2_analog_max">
 			<value name="val">
 			  <block type="math_number">
 				<field name="NUM">255</field>
 			  </block>
 			</value>
-		</block>
-		<block type="ps2_analog_read"></block>			
-		<block type="ps2_stick_direction"></block>			
+		</block>	
 		<block type="ps2_initial_func"></block>		
 	</category>		
 
