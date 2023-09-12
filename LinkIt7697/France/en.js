@@ -70,6 +70,7 @@ Blockly.Msg["PS2_BUTTON_GREEN"] = "△ GREEN";
 Blockly.Msg["PS2_BUTTON_RED"] = "○ RED";
 Blockly.Msg["PS2_BUTTON_BLUE"] = "✕ BLUE";
 Blockly.Msg["PS2_BUTTON_PINK"] = "□ PINK";
+Blockly.Msg["PS2_BUTTON"] = "Button";
 
 Blockly.Msg["KEYBOARD_SHOW"] = "Page Keyboard";
 Blockly.Msg["KEYBOARD_LISTENER_SHOW"] = "Listener";

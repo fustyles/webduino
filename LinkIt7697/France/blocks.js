@@ -37,7 +37,8 @@ Blockly.Blocks['ps2_initial'] = {
 Blockly.Blocks['ps2_read'] = {
 	init: function() {
 	this.appendDummyInput()
-	    .appendField(Blockly.Msg["PS2"]);
+	    .appendField(Blockly.Msg["PS2"])
+	    .appendField(Blockly.Msg["PS2_READ_CONTROLLER"]);			
 	this.appendDummyInput()
 	    .appendField(new Blockly.FieldDropdown([
 	      [Blockly.Msg["PS2_VIBRATE_N"],"false"],
@@ -46,8 +47,6 @@ Blockly.Blocks['ps2_read'] = {
 	this.appendValueInput("val")
 		.setCheck("Number")
 		.appendField(Blockly.Msg["PS2_VIBRATE_VALUE"]);
-	this.appendDummyInput()
-	    .appendField(Blockly.Msg["PS2_READ_CONTROLLER"]);		
 	this.setInputsInline(true);
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
@@ -99,6 +98,7 @@ Blockly.Blocks['ps2_button_event'] = {
 	this.appendDummyInput()
 	    .appendField(Blockly.Msg["PS2"]);
 	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2_BUTTON"])
 	    .appendField(new Blockly.FieldDropdown(ps2_button), "button");
 	this.appendDummyInput()
 	    .appendField(new Blockly.FieldDropdown([
@@ -249,10 +249,12 @@ Blockly.Blocks['ps2_pressures_read'] = {
   init: function() {
 	this.appendDummyInput()
 	    .appendField(Blockly.Msg["PS2"])
-	    .appendField(Blockly.Msg["PS2_PRESSURES_ANALOG"]);		
+	    .appendField(Blockly.Msg["PS2_BUTTON"]);	
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT) 
         .appendField(new Blockly.FieldDropdown(ps2_pressure_button), "analog");	
+	this.appendDummyInput()		
+	    .appendField(Blockly.Msg["PS2_PRESSURES_ANALOG"]);			
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
     this.setColour(280);

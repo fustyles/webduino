@@ -67,6 +67,7 @@ Blockly.Msg["PS2_BUTTON_GREEN"] = "△ 綠";
 Blockly.Msg["PS2_BUTTON_RED"] = "○ 紅";
 Blockly.Msg["PS2_BUTTON_BLUE"] = "✕ 藍";
 Blockly.Msg["PS2_BUTTON_PINK"] = "☐ 粉紅";
+Blockly.Msg["PS2_BUTTON"] = "按鈕";
 
 Blockly.Msg["KEYBOARD_SHOW"] = "網頁鍵盤";
 Blockly.Msg["KEYBOARD_LISTENER_SHOW"] = "開始監聽";
