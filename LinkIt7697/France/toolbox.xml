@@ -10389,7 +10389,11 @@
 			  </block>
 			</value> 			
 		</block>
-		<block type="ps2_state"></block>		
+	    <block type="controls_if">
+		  <value name="IF0">
+		    <block type="ps2_state"></block>
+		  </value>
+	    </block>		
 		<block type="ps2_read">
 			<value name="val">
 			  <block type="math_number">

@@ -40,8 +40,8 @@ Blockly.Blocks['ps2_read'] = {
 	    .appendField(Blockly.Msg["PS2"]);
 	this.appendDummyInput()
 	    .appendField(new Blockly.FieldDropdown([
-	      [Blockly.Msg["PS2_VIBRATE_Y"],"true"],
-	      [Blockly.Msg["PS2_VIBRATE_N"],"false"]
+	      [Blockly.Msg["PS2_VIBRATE_N"],"false"],
+		  [Blockly.Msg["PS2_VIBRATE_Y"],"true"]
 	      ], this.validate), "vibrate");
 	this.appendValueInput("val")
 		.setCheck("Number")
