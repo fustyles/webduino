@@ -10389,6 +10389,13 @@
 			  </block>
 			</value> 			
 		</block>
+		<block type="ps2_analog_max">
+			<value name="val">
+			  <block type="math_number">
+				<field name="NUM">255</field>
+			  </block>
+			</value>
+		</block>		
 	    <block type="controls_if">
 		  <value name="IF0">
 		    <block type="ps2_state"></block>
@@ -10406,14 +10413,7 @@
 		   <block type="ps2_button_event">
 		   </block>
 		 </value>
-	   </block>
-		<block type="ps2_analog_max">
-			<value name="val">
-			  <block type="math_number">
-				<field name="NUM">255</field>
-			  </block>
-			</value>
-		</block>		
+	   </block>		
 	    <block type="controls_if">
 	      <value name="IF0">
 		    <block type="ps2_stick_direction">
