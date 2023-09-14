@@ -1262,8 +1262,12 @@ Blockly.Arduino['fu_servo_initial'] = function(block) {
 };
 
 Blockly.Arduino['fu_servo_angle'] = function(block) {
+	var value_type = Number(block.getFieldValue('type'));
 	var value_index = Number(block.getFieldValue('index'));	
 	var value_angle = Blockly.Arduino.valueToCode(block, 'angle', Blockly.Arduino.ORDER_ATOMIC);
+	var value_rotate = Number(block.getFieldValue('rotate'));	
+	if (value_type==360)
+		value_angle = value_rotate ;
 
 	if (selectBoardType()=="esp32"||selectBoardType()=="esp8266") {
 		Blockly.Arduino.definitions_['servo_rotate_esp'] = ''+

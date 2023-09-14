@@ -1515,6 +1515,11 @@ Blockly.Msg["FU_SERVO_PIN"] = "腳位";
 Blockly.Msg["FU_SERVO_ANGLE"] = "角度";
 Blockly.Msg["FU_SERVO_CHANNEL"] = "頻道";
 Blockly.Msg["FU_SERVO"] = "伺服馬達";
+Blockly.Msg["FU_SERVO_CLOCKWISE"] = "順時鐘轉動";
+Blockly.Msg["FU_SERVO_COUNTERCLOCKWISE"] = "逆時鐘轉動";
+Blockly.Msg["FU_SERVO_STOP"] = "停止";
+Blockly.Msg["FU_SERVO_TYPE"] = "類型";
+
 
 Blockly.Msg.ESP32_TELEGRAMBOT_SHOW = "Telegram Bot 連線到Wi-Fi熱點";
 Blockly.Msg.ESP32CAM_TELEGRAMBOT_SHOW = "Telegram Bot(ESP32-CAM) 連線到Wi-Fi熱點";

@@ -2378,11 +2378,25 @@ Blockly.Blocks['fu_servo_angle'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg["FU_SERVO"]);		
-    this.appendValueInput("angle")
-        .setCheck("Number")
+        .appendField(Blockly.Msg["FU_SERVO"]);
+    this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg["FU_SERVO_ANGLE"]);
+		.appendField(Blockly.Msg["FU_SERVO_TYPE"])
+        .appendField(new Blockly.FieldDropdown([
+			["180°","180"],		
+			["360°","360"]	
+		], this.validate), "type");	
+    this.appendValueInput("angle")
+		.setAlign(Blockly.ALIGN_RIGHT)
+        .setCheck("Number")
+		.appendField(Blockly.Msg["FU_SERVO_ANGLE"]);
+    this.appendDummyInput("angle1")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["FU_SERVO_CLOCKWISE"],"180"],		
+			[Blockly.Msg["FU_SERVO_COUNTERCLOCKWISE"],"0"],
+			[Blockly.Msg["FU_SERVO_STOP"],"90"]	
+		]), "rotate");		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT) 
 		.appendField(Blockly.Msg["FU_SERVO_INDEX"])
@@ -2408,6 +2422,17 @@ Blockly.Blocks['fu_servo_angle'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(255);
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="180") {
+		 	block.getInput("angle").setVisible(true);
+			block.getInput("angle1").setVisible(false);
+		} else {
+		 	block.getInput("angle").setVisible(false);
+			block.getInput("angle1").setVisible(true);		
+		}
   }
 };
 

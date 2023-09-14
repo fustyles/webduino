@@ -1507,6 +1507,10 @@ Blockly.Msg["FU_SERVO_PIN"] = "pin";
 Blockly.Msg["FU_SERVO_ANGLE"] = "angle";
 Blockly.Msg["FU_SERVO_CHANNEL"] = "channel";
 Blockly.Msg["FU_SERVO"] = "Servo";
+Blockly.Msg["FU_SERVO_CLOCKWISE"] = "CLOCKWISE";
+Blockly.Msg["FU_SERVO_COUNTERCLOCKWISE"] = "COUNTERCLOCKWISE";
+Blockly.Msg["FU_SERVO_STOP"] = "STOP";
+Blockly.Msg["FU_SERVO_TYPE"] = "Type";
 
 Blockly.Msg.ESP32_TELEGRAMBOT_SHOW = "Telegram Bot Connect to Wi-Fi AP";
 Blockly.Msg.ESP32CAM_TELEGRAMBOT_SHOW = "Telegram Bot(ESP32-CAM) Connect to Wi-Fi AP";
