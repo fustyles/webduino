@@ -29,7 +29,7 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
-Blockly.Msg["PS2"] = "PS2無線手把";
+Blockly.Msg["PS2"] = "PS2手把";
 Blockly.Msg["PS2_INITIAL"] = "初始化";
 Blockly.Msg["PS2_PRESSURES"] = "壓力靈敏度";
 Blockly.Msg["PS2_PRESSURES_ANALOG"] = "壓力靈敏度類比值";

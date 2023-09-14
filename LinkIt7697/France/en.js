@@ -29,7 +29,7 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
-Blockly.Msg["PS2"] = "PS2 Game controller";
+Blockly.Msg["PS2"] = "PS2 controller";
 Blockly.Msg["PS2_INITIAL"] = "Initial";
 Blockly.Msg["PS2_PRESSURES"] = "Pressure sensitive mode";
 Blockly.Msg["PS2_PRESSURES_ANALOG"] = "Pressure sensitive value";
