@@ -29,6 +29,12 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["MOTORDRIVER"] = "馬達驅動模組";
+Blockly.Msg["MOTORDRIVER_INITIAL"] = "初始化";
+Blockly.Msg["MOTORDRIVER_PIN"] = "腳位";
+Blockly.Msg["MOTORDRIVER_PWM"] = "類比輸出值";
+Blockly.Msg["MOTORDRIVER_INDEX"] = "編號(通道)";
+
 Blockly.Msg["PS2"] = "PS2手把";
 Blockly.Msg["PS2_INITIAL"] = "初始化";
 Blockly.Msg["PS2_PRESSURES"] = "壓力靈敏度";

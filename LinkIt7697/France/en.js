@@ -29,6 +29,15 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["MOTORDRIVER"] = "Motor driver";
+Blockly.Msg["MOTORDRIVER_INITIAL"] = "Initial";
+Blockly.Msg["MOTORDRIVER_PIN1"] = "PIN 1";
+Blockly.Msg["MOTORDRIVER_PIN2"] = "PIN 2";
+Blockly.Msg["MOTORDRIVER_PWM"] = "analogWrite;
+Blockly.Msg["MOTORDRIVER_PWM1"] = "PIN 1[0-255]";
+Blockly.Msg["MOTORDRIVER_PWM2"] = "PIN 2[0-255]";
+Blockly.Msg["MOTORDRIVER_INDEX"] = "Index(channel)";
+
 Blockly.Msg["PS2"] = "PS2 controller";
 Blockly.Msg["PS2_INITIAL"] = "Initial";
 Blockly.Msg["PS2_PRESSURES"] = "Pressure sensitive mode";

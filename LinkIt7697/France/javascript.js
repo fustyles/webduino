@@ -1,3 +1,34 @@
+Blockly.Arduino.motordriver_pin=function(block){
+  var pin1=Blockly.Arduino.valueToCode(this,"pin1",Blockly.Arduino.ORDER_ATOMIC);
+  var pin2=Blockly.Arduino.valueToCode(this,"pin2",Blockly.Arduino.ORDER_ATOMIC);
+  var index1=this.getFieldValue("index1");  
+  var index2=this.getFieldValue("index2"); 
+  
+  Blockly.Arduino.definitions_['motordriver_pin_'+block.id] ='\n'+
+											'int motordriver_pin_'+index1+' = '+pin1+';\n'+
+											'int motordriver_pin_'+index2+' = '+pin2+';\n';
+	if (selectBoardType()=="esp32"||selectBoardType()=="esp8266") {
+		Blockly.Arduino.setups_['motordriver_pwm_'+block.id] = 'ledcAttachPin(motordriver_pin_'+index1+', '+index1+');\n  ledcSetup('+index1+', 5000, 8);\n  ledcAttachPin(motordriver_pin_'+index2+', '+index2+');\n  ledcSetup('+index2+', 5000, 8);\n';	
+    } else {
+		Blockly.Arduino.setups_['motordriver_pwm_'+block.id] = 'pinMode(motordriver_pin_'+index1+', OUTPUT);\n  pinMode(motordriver_pin_'+index2+', OUTPUT);\n';	
+    }	  
+  var code = '';
+  return code;
+};
+
+Blockly.Arduino.motordriver_set=function(block){
+  var pwm=Blockly.Arduino.valueToCode(this,"pwm",Blockly.Arduino.ORDER_ATOMIC);
+  var index=this.getFieldValue("index");
+  
+  if (selectBoardType()=="esp32"||selectBoardType()=="esp8266") {
+	var code = 'ledcWrite('+index+', '+pwm+');\n';											
+  } else {	
+	var code = 'analogWrite(motordriver_pin_'+index+', '+pwm+');\n';											
+  }
+
+  return code;
+};
+
 Blockly.Arduino['ps2_initial'] = function (block) {
 	var CLK = Blockly.Arduino.valueToCode(block, 'CLK', Blockly.Arduino.ORDER_ATOMIC);
 	var CS = Blockly.Arduino.valueToCode(block, 'CS', Blockly.Arduino.ORDER_ATOMIC); 

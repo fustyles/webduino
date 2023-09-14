@@ -10033,6 +10033,27 @@
 	  </block>		  	 
     </category>
 	<category id="france12" name="motordriveric">
+	  <block type="motordriver_pin">
+		<field name="index1">0</field>
+		<field name="index2">1</field>
+		<value name="pin1">
+		  <block type="math_number">
+			<field name="NUM">3</field>
+		  </block>
+		</value>
+		<value name="pin2">
+		  <block type="math_number">
+			<field name="NUM">5</field>
+		  </block>
+		</value>
+	  </block>
+		<block type="motordriver_set">
+			<value name="pwm">
+				<block type="math_number">
+					<field name="NUM">255</field>
+					</block>
+			</value>	
+		</block>	
 		<block type="webbit_mooncar_pin">
 			<value name="R1">
 				<block type="math_number">
