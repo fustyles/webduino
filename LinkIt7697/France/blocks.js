@@ -1,15 +1,3 @@
-Blockly.Blocks.emakefun_motordriver_initial={
-	init:function(){	
-	  this.appendDummyInput()
-		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER"])
-		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER_INITIAL"]);		  		  
-	  this.setInputsInline(true);
-	  this.setPreviousStatement(!0,null);
-	  this.setNextStatement(!0,null);
-	  this.setColour(220);  
-  }
-};
-
 Blockly.Blocks.emakefun_motordriver_set_spead={
 	init:function(){	
 	  this.appendDummyInput()

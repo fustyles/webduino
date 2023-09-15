@@ -30,7 +30,6 @@ Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
 Blockly.Msg["EMAKEFUN_MOTORDRIVER"] = "Emakefun 馬達驅動模組";
-Blockly.Msg["EMAKEFUN_MOTORDRIVER_INITIAL"] = "初始化";
 Blockly.Msg["EMAKEFUN_EDITOR"] = "版本";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_SET_SPEAD"] = "設定速度";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_SET_DIRECTION"] = "設定運動狀態";

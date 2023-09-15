@@ -1,4 +1,4 @@
-Blockly.Arduino.emakefun_motordriver_initial=function(block){
+Blockly.Arduino.emakefun_motordriver_set_spead=function(block){
   Blockly.Arduino.definitions_['emakefun_motordriver_definitions'] = '#include "Emakefun_MotorDriver.h"\n'+
 																'Emakefun_MotorDriver mMotor = Emakefun_MotorDriver(0x60);\n'+
 																'Emakefun_DCMotor *DCMotor_1 = mMotor.getMotor(M1);\n'+
@@ -8,11 +8,6 @@ Blockly.Arduino.emakefun_motordriver_initial=function(block){
 																
   Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'mMotor.begin(50);\n'; 
   
-  var code = '';
-  return code;
-};
-
-Blockly.Arduino.emakefun_motordriver_set_spead=function(block){
   var motor = this.getFieldValue("motor"); 
   var pwm = Blockly.Arduino.valueToCode(this,"pwm",Blockly.Arduino.ORDER_ATOMIC);
 
@@ -21,6 +16,15 @@ Blockly.Arduino.emakefun_motordriver_set_spead=function(block){
 };
 
 Blockly.Arduino.emakefun_motordriver_set_direction=function(block){
+  Blockly.Arduino.definitions_['emakefun_motordriver_definitions'] = '#include "Emakefun_MotorDriver.h"\n'+
+																'Emakefun_MotorDriver mMotor = Emakefun_MotorDriver(0x60);\n'+
+																'Emakefun_DCMotor *DCMotor_1 = mMotor.getMotor(M1);\n'+
+																'Emakefun_DCMotor *DCMotor_2 = mMotor.getMotor(M2);\n'+
+																'Emakefun_DCMotor *DCMotor_3 = mMotor.getMotor(M3);\n'+
+																'Emakefun_DCMotor *DCMotor_4 = mMotor.getMotor(M4);\n';
+																
+  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'mMotor.begin(50);\n'; 
+  
   var motor = this.getFieldValue("motor");
   var direction = this.getFieldValue("direction"); 
 

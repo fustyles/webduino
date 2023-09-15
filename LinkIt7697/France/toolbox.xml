@@ -10447,8 +10447,6 @@
 	</category>
 
 	<category id="france12" name="Emakefun">
-		<block type="emakefun_motordriver_initial">			
-		</block>
 		<block type="emakefun_motordriver_set_spead">
 			<value name="pwm">
 			  <block type="math_number">
@@ -10458,6 +10456,62 @@
 		</block>
 		<block type="emakefun_motordriver_set_direction">
 		</block>
+		<block type="ps2_initial">
+			<value name="CLK">
+			  <block type="math_number">
+				<field name="NUM">13</field>
+			  </block>
+			</value>
+			<value name="CMD">
+			  <block type="math_number">
+				<field name="NUM">11</field>
+			  </block>
+			</value> 			
+			<value name="CS">
+			  <block type="math_number">
+				<field name="NUM">10</field>
+			  </block>
+			</value>
+			<value name="DAT">
+			  <block type="math_number">
+				<field name="NUM">12</field>
+			  </block>
+			</value> 			
+		</block>
+		<block type="ps2_analog_max">
+			<value name="val">
+			  <block type="math_number">
+				<field name="NUM">255</field>
+			  </block>
+			</value>
+		</block>		
+	    <block type="controls_if">
+		  <value name="IF0">
+		    <block type="ps2_state"></block>
+		  </value>
+	    </block>		
+		<block type="ps2_read">
+			<value name="val">
+			  <block type="math_number">
+				<field name="NUM">40</field>
+			  </block>
+			</value>		
+		</block>
+	   <block type="controls_if">
+		 <value name="IF0">
+		   <block type="ps2_button_event">
+		   </block>
+		 </value>
+	   </block>		
+	    <block type="controls_if">
+	      <value name="IF0">
+		    <block type="ps2_stick_direction">
+		    </block>
+		  </value>
+	    </block>		
+		<block type="ps2_analog_read"></block>
+		<block type="ps2_pressures_read"></block>	
+		<block type="ps2_initial_func"></block>			
 	</category>
 	
 	<category id="france12" name="pms7003m">

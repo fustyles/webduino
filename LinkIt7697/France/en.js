@@ -30,7 +30,6 @@ Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
 Blockly.Msg["EMAKEFUN_MOTORDRIVER"] = "Emakefun motor";
-Blockly.Msg["EMAKEFUN_MOTORDRIVER_INITIAL"] = "Initial";
 Blockly.Msg["EMAKEFUN_EDITOR"] = "Editor";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_SET_SPEAD"] = "Set speed";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_SET_DIRECTION"] = "Set direction";
