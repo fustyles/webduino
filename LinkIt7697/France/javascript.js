@@ -1,38 +1,45 @@
-/*
 Blockly.Arduino.emakefun_motordriver_initial=function(block){
   var editor=this.getFieldValue("editor"); 
   
+	Blockly.Arduino.definitions_['joystick_initial_analogMax'] = '';
+	Blockly.Arduino.definitions_['define_ps2_initial'] = '';
+	if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040") {
+		var max = 'int analogMax = 4095;\n';
+	} else if (selectBoardType()=="arduino") {
+		var max = 'int analogMax = 255;\n';		
+	} else {
+		var max = 'int analogMax = 1023;\n';
+	}
+	
   Blockly.Arduino.definitions_['emakefun_motordriver_definitions'] = '#include "Emakefun_MotorDriver.h"\n'+
 																'Emakefun_MotorDriver mMotor = Emakefun_MotorDriver(0x60, '+editor+');\n'+
 																'Emakefun_DCMotor *DCMotor_1 = mMotor.getMotor(M1);\n'+
 																'Emakefun_DCMotor *DCMotor_2 = mMotor.getMotor(M2);\n'+
 																'Emakefun_DCMotor *DCMotor_3 = mMotor.getMotor(M3);\n'+
-																'Emakefun_DCMotor *DCMotor_4 = mMotor.getMotor(M4);\n';
-  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'mMotor.begin(50);\n';
+																'Emakefun_DCMotor *DCMotor_4 = mMotor.getMotor(M4);\n'+ max + 'PS2X *ps2x;\nint ps2_error = 0;\nbyte ps2_type = 0;\nString ps2_rotate[8] = {"ul","u","ur","r","dr","d","dl","l"};\n';														
+  Blockly.Arduino.setups_['define_ps2_initial'] = 'delay(300);\n  ps2x = mMotor.getSensor(E_PS2X);\n  ps2_type = ps2x.readType();';
+																
+  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'mMotor.begin(50);\n'; 
   
   var code = '';
   return code;
 };
-*/
 
-Blockly.Arduino.emakefun_motordriver_set=function(block){
+Blockly.Arduino.emakefun_motordriver_set_spead=function(block){
   var motor = this.getFieldValue("motor"); 
   var pwm = Blockly.Arduino.valueToCode(this,"pwm",Blockly.Arduino.ORDER_ATOMIC);
-  var direction = this.getFieldValue("direction"); 
-  
-  Blockly.Arduino.definitions_['emakefun_motordriver_definitions'] = '#include "Emakefun_MotorDriver.h"\n'+
-																'Emakefun_MotorDriver mMotor = Emakefun_MotorDriver(0x60);\n'+
-																'Emakefun_DCMotor *DCMotor_1 = mMotor.getMotor(M1);\n'+
-																'Emakefun_DCMotor *DCMotor_2 = mMotor.getMotor(M2);\n'+
-																'Emakefun_DCMotor *DCMotor_3 = mMotor.getMotor(M3);\n'+
-																'Emakefun_DCMotor *DCMotor_4 = mMotor.getMotor(M4);\n';
-  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'mMotor.begin(50);\n';  
 
-  var code = motor+'->setSpeed('+pwm+');\n'+motor+'->run('+direction+');\n';
+  var code = motor+'->setSpeed('+pwm+');\n';
   return code;
 };
 
+Blockly.Arduino.emakefun_motordriver_set_direction=function(block){
+  var motor = this.getFieldValue("motor");
+  var direction = this.getFieldValue("direction"); 
 
+  var code = motor+'->run('+direction+');\n';
+  return code;
+};
 
 
 

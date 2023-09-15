@@ -10447,17 +10447,17 @@
 	</category>
 
 	<category id="france12" name="Emakefun">
-		<!--
 		<block type="emakefun_motordriver_initial">			
 		</block>
-		-->
-		<block type="emakefun_motordriver_set">
+		<block type="emakefun_motordriver_set_spead">
 			<value name="pwm">
 			  <block type="math_number">
 				<field name="NUM">200</field>
 			  </block>
 			</value>
-		</block>	
+		</block>
+		<block type="emakefun_motordriver_set_direction">
+		</block>
 	</category>
 	
 	<category id="france12" name="pms7003m">

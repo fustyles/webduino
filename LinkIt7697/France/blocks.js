@@ -1,4 +1,3 @@
-/*
 Blockly.Blocks.emakefun_motordriver_initial={
 	init:function(){	
 	  this.appendDummyInput()
@@ -17,13 +16,12 @@ Blockly.Blocks.emakefun_motordriver_initial={
 	  this.setColour(220);  
   }
 };
-*/
 
-Blockly.Blocks.emakefun_motordriver_set={
+Blockly.Blocks.emakefun_motordriver_set_spead={
 	init:function(){	
 	  this.appendDummyInput()
 		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER"])
-		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER_SET"]);
+		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER_SET_SPEAD"]);
       this.appendDummyInput()
           .setAlign(Blockly.ALIGN_RIGHT) 
 		  .appendField(Blockly.Msg["EMAKEFUN_MOTOR"])
@@ -35,14 +33,7 @@ Blockly.Blocks.emakefun_motordriver_set={
 		  ]), "motor");				  
 	  this.appendValueInput("pwm")
 		  .setCheck("Number")
-		  .appendField(Blockly.Msg["EMAKEFUN_PWM"]);
-      this.appendDummyInput()
-          .setAlign(Blockly.ALIGN_RIGHT) 
-		  .appendField(Blockly.Msg["EMAKEFUN_DIRECTION"])
-          .appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["EMAKEFUN_CLOCKWISE"],"FORWARD"],		
-			[Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"],"BACKWARD"]		
-		  ]), "direction");			  
+		  .appendField(Blockly.Msg["EMAKEFUN_PWM"]);			  
 	  this.setInputsInline(true);
 	  this.setPreviousStatement(!0,null);
 	  this.setNextStatement(!0,null);
@@ -50,7 +41,34 @@ Blockly.Blocks.emakefun_motordriver_set={
 	}
 };
 
-
+Blockly.Blocks.emakefun_motordriver_set_direction={
+	init:function(){	
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER"])
+		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER_SET_DIRECTION"]);
+      this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT) 
+		  .appendField(Blockly.Msg["EMAKEFUN_MOTOR"])
+          .appendField(new Blockly.FieldDropdown([
+			["M1","DCMotor_1"],		
+			["M2","DCMotor_2"],
+			["M3","DCMotor_3"],		
+			["M4","DCMotor_4"]			
+		  ]), "motor");
+      this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT) 
+		  .appendField(Blockly.Msg["EMAKEFUN_DIRECTION"])
+          .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["EMAKEFUN_CLOCKWISE"],"FORWARD"],		
+			[Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"],"BACKWARD"],		
+			[Blockly.Msg["EMAKEFUN_RELEASE"],"RELEASE"]		
+		  ]), "direction");			  
+	  this.setInputsInline(true);
+	  this.setPreviousStatement(!0,null);
+	  this.setNextStatement(!0,null);
+	  this.setColour(220);  
+	}
+};
 
 
 
