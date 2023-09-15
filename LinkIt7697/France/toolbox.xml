@@ -10444,8 +10444,22 @@
 		<block type="ps2_analog_read"></block>
 		<block type="ps2_pressures_read"></block>	
 		<block type="ps2_initial_func"></block>		
-	</category>		
+	</category>
 
+	<category id="france12" name="Emakefun">
+		<!--
+		<block type="emakefun_motordriver_initial">			
+		</block>
+		-->
+		<block type="emakefun_motordriver_set">
+			<value name="pwm">
+			  <block type="math_number">
+				<field name="NUM">200</field>
+			  </block>
+			</value>
+		</block>	
+	</category>
+	
 	<category id="france12" name="pms7003m">
 		<block type="pms7003m_read">			
 		</block>

@@ -109,4 +109,5 @@
 <category><name>knnclassifier</name><replace>機器學習(knn)</replace></category>
 <category><name>Keyboard</name><replace>網頁鍵盤</replace></category>
 <category><name>PS2</name><replace>PS2手把</replace></category>
+<category><name>Emakefun</name><replace>Emakefun V5</replace></category>
 </xml>

@@ -1,3 +1,43 @@
+/*
+Blockly.Arduino.emakefun_motordriver_initial=function(block){
+  var editor=this.getFieldValue("editor"); 
+  
+  Blockly.Arduino.definitions_['emakefun_motordriver_definitions'] = '#include "Emakefun_MotorDriver.h"\n'+
+																'Emakefun_MotorDriver mMotor = Emakefun_MotorDriver(0x60, '+editor+');\n'+
+																'Emakefun_DCMotor *DCMotor_1 = mMotor.getMotor(M1);\n'+
+																'Emakefun_DCMotor *DCMotor_2 = mMotor.getMotor(M2);\n'+
+																'Emakefun_DCMotor *DCMotor_3 = mMotor.getMotor(M3);\n'+
+																'Emakefun_DCMotor *DCMotor_4 = mMotor.getMotor(M4);\n';
+  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'mMotor.begin(50);\n';
+  
+  var code = '';
+  return code;
+};
+*/
+
+Blockly.Arduino.emakefun_motordriver_set=function(block){
+  var motor = this.getFieldValue("motor"); 
+  var pwm = Blockly.Arduino.valueToCode(this,"pwm",Blockly.Arduino.ORDER_ATOMIC);
+  var direction = this.getFieldValue("direction"); 
+  
+  Blockly.Arduino.definitions_['emakefun_motordriver_definitions'] = '#include "Emakefun_MotorDriver.h"\n'+
+																'Emakefun_MotorDriver mMotor = Emakefun_MotorDriver(0x60);\n'+
+																'Emakefun_DCMotor *DCMotor_1 = mMotor.getMotor(M1);\n'+
+																'Emakefun_DCMotor *DCMotor_2 = mMotor.getMotor(M2);\n'+
+																'Emakefun_DCMotor *DCMotor_3 = mMotor.getMotor(M3);\n'+
+																'Emakefun_DCMotor *DCMotor_4 = mMotor.getMotor(M4);\n';
+  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'mMotor.begin(50);\n';  
+
+  var code = motor+'->setSpeed('+pwm+');\n'+motor+'->run('+direction+');\n';
+  return code;
+};
+
+
+
+
+
+
+
 Blockly.Arduino.motordriver_pin=function(block){
   var pin1=Blockly.Arduino.valueToCode(this,"pin1",Blockly.Arduino.ORDER_ATOMIC);
   var pin2=Blockly.Arduino.valueToCode(this,"pin2",Blockly.Arduino.ORDER_ATOMIC);
@@ -52,7 +92,7 @@ Blockly.Arduino['ps2_initial'] = function (block) {
 														+'#define pressures   '+pressures+'\n' 
 														+'#define rumble      '+rumble+'\n'
 														+'PS2X ps2x;\n'
-														+'int ps2_error = 0;\nbyte ps2_type = 0;\n';
+														+'int ps2_error = 0;\nbyte ps2_type = 0;\nString ps2_rotate[8] = {"ul","u","ur","r","dr","d","dl","l"};\n';
 
 
 	Blockly.Arduino.setups_['define_ps2_initial'] = 'delay(300);\n  ps2_error = ps2x.config_gamepad(PS2_CLK, PS2_CMD, PS2_SEL, PS2_DAT, pressures, rumble);\n  if (ps2_error==0)\n    ps2_type = ps2x.readType();';
@@ -98,8 +138,7 @@ Blockly.Arduino['ps2_stick_direction'] = function(block) {
 	var type = block.getFieldValue('type');
 
 	if (type==8) {
-		Blockly.Arduino.definitions_['ps2_stick_direction8'] = 'String ps2_rotate[8] = {"ul","u","ur","r","dr","d","dl","l"};\n'
-																+'String ps2_stick_direction8(boolean position) {\n'
+		Blockly.Arduino.definitions_['ps2_stick_direction8'] = 'String ps2_stick_direction8(boolean position) {\n'
 																+'  float X = analogMax/2;\n'
 																+'  float Y = analogMax/2;\n'
 																+'  if (position) {\n'
