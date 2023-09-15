@@ -10462,6 +10462,51 @@
 				<field name="NUM">90</field>
 			  </block>
 			</value>
+		</block>
+        <block type="esp32_buzzer">
+          <field name="frequency">131</field>
+          <field name="index">0</field>
+          <value name="pin">
+            <block type="math_number">
+              <field name="NUM">14</field>
+            </block>
+          </value>
+          <value name="delaytime">
+            <block type="math_number">
+              <field name="NUM">500</field>
+            </block>
+          </value>
+        </block>
+		<block type="BitMatrixLed_matrix_pin">
+			<value name="pin">
+			  <block type="math_number">
+				<field name="NUM">15</field>
+			  </block>
+			</value>
+			<value name="leds">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>
+		</block>
+		<block type="BitMatrixLed_matrix_brightness">
+			<value name="brightness">
+			  <block type="math_number">
+				<field name="NUM">100</field>
+			  </block>
+			</value>
+		</block>
+		<block type="BitMatrixLed_matrix_color_one_n">
+			<value name="N">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>
+			<value name="RGB">
+			  <block type="BitMatrixLed_color">
+				<field name="RGB">#ff0000</field>
+			  </block>
+			</value>
 		</block>		
 		<block type="ps2_initial">
 			<value name="CLK">
@@ -10496,6 +10541,8 @@
 		  <value name="IF0">
 		    <block type="ps2_state"></block>
 		  </value>
+	    </block>
+	    <block type="board_restart">
 	    </block>		
 		<block type="ps2_read">
 			<value name="val">
