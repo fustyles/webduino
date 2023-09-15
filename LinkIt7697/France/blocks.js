@@ -1,3 +1,20 @@
+Blockly.Blocks['board_restart'] = {
+  init: function() {
+	this.appendDummyInput() 
+		.appendField(Blockly.Msg["BOARD_RESTART_SHOW"]);
+      this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .appendField(new Blockly.FieldDropdown([
+			["Arduino UNO","uno"],		
+			["ESPX","esp"]		
+		  ]), "board");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(200);
+  }
+};
+
 Blockly.Blocks.emakefun_motordriver_set_spead={
 	init:function(){	
 	  this.appendDummyInput()

@@ -1,3 +1,17 @@
+Blockly.Arduino.board_restart=function(block){
+  var board = this.getFieldValue("board"); 
+  if (board=="uno") {
+	Blockly.Arduino.definitions_['board_restart_uno'] = 'void (* resetFunc) (void) = 0;\n';	  
+	var code = 'resetFunc();\n'; 
+  }
+  else if (board=="esp")
+	var code = 'ESP.restart();\n';
+  else
+	var code = '';
+
+  return code;
+};
+
 Blockly.Arduino.emakefun_motordriver_set_spead=function(block){
   Blockly.Arduino.definitions_['emakefun_motordriver_definitions'] = '#include "Emakefun_MotorDriver.h"\n'+
 																'Emakefun_MotorDriver mMotor = Emakefun_MotorDriver(0x60);\n'+

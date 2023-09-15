@@ -29,6 +29,8 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["BOARD_RESTART_SHOW"] = "Restart board";
+
 Blockly.Msg["EMAKEFUN_MOTORDRIVER"] = "Emakefun motor";
 Blockly.Msg["EMAKEFUN_EDITOR"] = "Editor";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_SET_SPEAD"] = "Set speed";

@@ -11058,7 +11058,9 @@
 	  <block type="esp32_setuploop">
 		<statement name="setup">
 		</statement>
-	  </block>		
+	  </block>
+	  <block type="board_restart">
+	  </block>	  
 	  <block type="close_powerdog">
 	  </block>
 	  <block type="customcode_comment">
