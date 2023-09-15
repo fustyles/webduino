@@ -33,7 +33,6 @@ Blockly.Msg["BOARD_RESTART_SHOW"] = "Restart board";
 
 Blockly.Msg["EMAKEFUN_MOTORDRIVER"] = "Emakefun motor";
 Blockly.Msg["EMAKEFUN_EDITOR"] = "Editor";
-Blockly.Msg["EMAKEFUN_MOTORDRIVER_SET_DIRECTION"] = "Set direction";
 Blockly.Msg["EMAKEFUN_MOTOR"] = "Motor";
 Blockly.Msg["EMAKEFUN_PWM"] = "PWM[0-255]";
 Blockly.Msg["EMAKEFUN_DIRECTION"] = "Direction";

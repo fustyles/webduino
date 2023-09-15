@@ -93,8 +93,7 @@ Blockly.Blocks.emakefun_motordriver_set_spead={
 Blockly.Blocks.emakefun_motordriver_set_direction={
 	init:function(){	
 	  this.appendDummyInput()
-		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER"])
-		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER_SET_DIRECTION"]);
+		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER"]);
       this.appendDummyInput()
           .setAlign(Blockly.ALIGN_RIGHT) 
 		  .appendField(Blockly.Msg["EMAKEFUN_MOTOR"])

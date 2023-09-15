@@ -33,7 +33,6 @@ Blockly.Msg["BOARD_RESTART_SHOW"] = "重啟開發板";
 
 Blockly.Msg["EMAKEFUN_MOTORDRIVER"] = "Emakefun 馬達驅動模組";
 Blockly.Msg["EMAKEFUN_EDITOR"] = "版本";
-Blockly.Msg["EMAKEFUN_MOTORDRIVER_SET_DIRECTION"] = "設定運動狀態";
 Blockly.Msg["EMAKEFUN_MOTOR"] = "馬達";
 Blockly.Msg["EMAKEFUN_PWM"] = "轉速[0-255]";
 Blockly.Msg["EMAKEFUN_DIRECTION"] = "轉動方向";
