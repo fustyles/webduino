@@ -12,15 +12,36 @@ Blockly.Arduino.board_restart=function(block){
   return code;
 };
 
+Blockly.Arduino.emakefun_servo_set_angle=function(block){
+  Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\nEmakefun_MotorDriver Emakefun = Emakefun_MotorDriver(0x60);\n';	
+  Blockly.Arduino.definitions_['emakefun_servo_definitions'] =  'Emakefun_Servo *mServo1 = Emakefun.getServo(1);\n'+
+																'Emakefun_Servo *mServo2 = Emakefun.getServo(2);\n'+
+																'Emakefun_Servo *mServo3 = Emakefun.getServo(3);\n'+
+																'Emakefun_Servo *mServo4 = Emakefun.getServo(4);\n'+
+																'Emakefun_Servo *mServo5 = Emakefun.getServo(5);\n'+
+																'Emakefun_Servo *mServo6 = Emakefun.getServo(6);\n'+	
+																'Emakefun_Servo *mServo7 = Emakefun.getServo(7);\n'+
+																'Emakefun_Servo *mServo8 = Emakefun.getServo(8);\n';
+  var angle = Blockly.Arduino.valueToCode(block, 'angle', Blockly.Arduino.ORDER_ATOMIC);
+  var rotate = Number(block.getFieldValue('rotate'));
+  var type = Number(block.getFieldValue('type'));
+  if (type==360)
+	  angle = rotate ;																
+  
+  var servo = this.getFieldValue("servo");
+
+  var code = servo+'->writeServo('+angle+');\n';
+  return code;
+};
+
 Blockly.Arduino.emakefun_motordriver_set_spead=function(block){
-  Blockly.Arduino.definitions_['emakefun_motordriver_definitions'] = '#include "Emakefun_MotorDriver.h"\n'+
-																'Emakefun_MotorDriver mMotor = Emakefun_MotorDriver(0x60);\n'+
-																'Emakefun_DCMotor *DCMotor_1 = mMotor.getMotor(M1);\n'+
-																'Emakefun_DCMotor *DCMotor_2 = mMotor.getMotor(M2);\n'+
-																'Emakefun_DCMotor *DCMotor_3 = mMotor.getMotor(M3);\n'+
-																'Emakefun_DCMotor *DCMotor_4 = mMotor.getMotor(M4);\n';
+  Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\nEmakefun_MotorDriver Emakefun = Emakefun_MotorDriver(0x60);\n';	
+  Blockly.Arduino.definitions_['emakefun_motordriver_definitions'] ='Emakefun_DCMotor *DCMotor_1 = Emakefun.getMotor(M1);\n'+
+																	'Emakefun_DCMotor *DCMotor_2 = Emakefun.getMotor(M2);\n'+
+																	'Emakefun_DCMotor *DCMotor_3 = Emakefun.getMotor(M3);\n'+
+																	'Emakefun_DCMotor *DCMotor_4 = Emakefun.getMotor(M4);\n';
 																
-  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'mMotor.begin(50);\n'; 
+  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'Emakefun.begin(50);\n'; 
   
   var motor = this.getFieldValue("motor"); 
   var pwm = Blockly.Arduino.valueToCode(this,"pwm",Blockly.Arduino.ORDER_ATOMIC);
@@ -30,14 +51,13 @@ Blockly.Arduino.emakefun_motordriver_set_spead=function(block){
 };
 
 Blockly.Arduino.emakefun_motordriver_set_direction=function(block){
-  Blockly.Arduino.definitions_['emakefun_motordriver_definitions'] = '#include "Emakefun_MotorDriver.h"\n'+
-																'Emakefun_MotorDriver mMotor = Emakefun_MotorDriver(0x60);\n'+
-																'Emakefun_DCMotor *DCMotor_1 = mMotor.getMotor(M1);\n'+
-																'Emakefun_DCMotor *DCMotor_2 = mMotor.getMotor(M2);\n'+
-																'Emakefun_DCMotor *DCMotor_3 = mMotor.getMotor(M3);\n'+
-																'Emakefun_DCMotor *DCMotor_4 = mMotor.getMotor(M4);\n';
+  Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\nEmakefun_MotorDriver Emakefun = Emakefun_MotorDriver(0x60);\n';	
+  Blockly.Arduino.definitions_['emakefun_motordriver_definitions'] ='Emakefun_DCMotor *DCMotor_1 = Emakefun.getMotor(M1);\n'+
+																	'Emakefun_DCMotor *DCMotor_2 = Emakefun.getMotor(M2);\n'+
+																	'Emakefun_DCMotor *DCMotor_3 = Emakefun.getMotor(M3);\n'+
+																	'Emakefun_DCMotor *DCMotor_4 = Emakefun.getMotor(M4);\n';
 																
-  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'mMotor.begin(50);\n'; 
+  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'Emakefun.begin(50);\n'; 
   
   var motor = this.getFieldValue("motor");
   var direction = this.getFieldValue("direction"); 

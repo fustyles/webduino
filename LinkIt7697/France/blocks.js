@@ -15,11 +15,62 @@ Blockly.Blocks['board_restart'] = {
   }
 };
 
+Blockly.Blocks['emakefun_servo_set_angle'] = {
+  init: function() {
+	this.appendDummyInput()
+		  .appendField(Blockly.Msg["EMAKEFUN_SERVO"]);
+    this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .appendField(new Blockly.FieldDropdown([
+			["S1","mServo1"],		
+			["S2","mServo2"],
+			["S3","mServo3"],		
+			["S4","mServo4"],
+			["S5","mServo5"],		
+			["S6","mServo6"],
+			["S7","mServo7"],		
+			["S8","mServo8"]			
+		  ]), "servo");		  
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["FU_SERVO_TYPE"])
+        .appendField(new Blockly.FieldDropdown([
+			["180°","180"],		
+			["360°","360"]	
+		], this.validate), "type");	
+    this.appendValueInput("angle")
+		.setAlign(Blockly.ALIGN_RIGHT)
+        .setCheck("Number")
+		.appendField(Blockly.Msg["FU_SERVO_ANGLE"]);
+    this.appendDummyInput("angle1")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["FU_SERVO_CLOCKWISE"],"180"],		
+			[Blockly.Msg["FU_SERVO_COUNTERCLOCKWISE"],"0"],
+			[Blockly.Msg["FU_SERVO_STOP"],"90"]	
+		]), "rotate");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(170);
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="180") {
+		 	block.getInput("angle").setVisible(true);
+			block.getInput("angle1").setVisible(false);
+		} else {
+		 	block.getInput("angle").setVisible(false);
+			block.getInput("angle1").setVisible(true);		
+		}
+  }
+};
+
 Blockly.Blocks.emakefun_motordriver_set_spead={
 	init:function(){	
 	  this.appendDummyInput()
-		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER"])
-		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER_SET_SPEAD"]);
+		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER"]);
       this.appendDummyInput()
           .setAlign(Blockly.ALIGN_RIGHT) 
 		  .appendField(Blockly.Msg["EMAKEFUN_MOTOR"])

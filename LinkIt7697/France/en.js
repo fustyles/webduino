@@ -33,7 +33,6 @@ Blockly.Msg["BOARD_RESTART_SHOW"] = "Restart board";
 
 Blockly.Msg["EMAKEFUN_MOTORDRIVER"] = "Emakefun motor";
 Blockly.Msg["EMAKEFUN_EDITOR"] = "Editor";
-Blockly.Msg["EMAKEFUN_MOTORDRIVER_SET_SPEAD"] = "Set speed";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_SET_DIRECTION"] = "Set direction";
 Blockly.Msg["EMAKEFUN_MOTOR"] = "Motor";
 Blockly.Msg["EMAKEFUN_PWM"] = "PWM[0-255]";
@@ -41,6 +40,8 @@ Blockly.Msg["EMAKEFUN_DIRECTION"] = "Direction";
 Blockly.Msg["EMAKEFUN_CLOCKWISE"] = "clockwise";
 Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"] = "countClockwise";
 Blockly.Msg["EMAKEFUN_BRAKE"] = "Stop";
+Blockly.Msg["EMAKEFUN_SERVO"] = "Servo(180°)";
+Blockly.Msg["EMAKEFUN_ANGLE"] = "Angle";
 
 Blockly.Msg["MOTORDRIVER"] = "Motor driver";
 Blockly.Msg["MOTORDRIVER_INITIAL"] = "Initial";
