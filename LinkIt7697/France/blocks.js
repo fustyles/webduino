@@ -105,7 +105,6 @@ Blockly.Blocks.emakefun_motordriver_set_direction={
 		  ]), "motor");
       this.appendDummyInput()
           .setAlign(Blockly.ALIGN_RIGHT) 
-		  .appendField(Blockly.Msg["EMAKEFUN_DIRECTION"])
           .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["EMAKEFUN_CLOCKWISE"],"FORWARD"],		
 			[Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"],"BACKWARD"],		
