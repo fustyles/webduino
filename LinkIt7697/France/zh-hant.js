@@ -29,7 +29,7 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
-Blockly.Msg["EMAKEFUN_MOTORDRIVER"] = "Emakefun 模組";
+Blockly.Msg["EMAKEFUN_MOTORDRIVER"] = "Emakefun 馬達驅動模組";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_INITIAL"] = "初始化";
 Blockly.Msg["EMAKEFUN_EDITOR"] = "版本";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_SET_SPEAD"] = "設定速度";
@@ -39,7 +39,7 @@ Blockly.Msg["EMAKEFUN_PWM"] = "輸出[0-255]";
 Blockly.Msg["EMAKEFUN_DIRECTION"] = "轉動方向";
 Blockly.Msg["EMAKEFUN_CLOCKWISE"] = "順時鐘";
 Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"] = "逆時鐘";
-Blockly.Msg["EMAKEFUN_RELEASE"] = "停止";
+Blockly.Msg["EMAKEFUN_BRAKE"] = "停止";
 
 Blockly.Msg["MOTORDRIVER"] = "馬達驅動模組";
 Blockly.Msg["MOTORDRIVER_INITIAL"] = "初始化";

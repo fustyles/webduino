@@ -2,14 +2,7 @@ Blockly.Blocks.emakefun_motordriver_initial={
 	init:function(){	
 	  this.appendDummyInput()
 		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER"])
-		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER_INITIAL"]);
-      this.appendDummyInput()
-          .setAlign(Blockly.ALIGN_RIGHT) 
-		  .appendField(Blockly.Msg["EMAKEFUN_EDITOR"])
-          .appendField(new Blockly.FieldDropdown([
-			["V5","MOTOR_DRIVER_BOARD_V5"],		
-			["V4","MOTOR_DRIVER_BOARD_V4"]			
-		  ]), "editor");		  		  
+		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER_INITIAL"]);		  		  
 	  this.setInputsInline(true);
 	  this.setPreviousStatement(!0,null);
 	  this.setNextStatement(!0,null);
@@ -61,7 +54,7 @@ Blockly.Blocks.emakefun_motordriver_set_direction={
           .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["EMAKEFUN_CLOCKWISE"],"FORWARD"],		
 			[Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"],"BACKWARD"],		
-			[Blockly.Msg["EMAKEFUN_RELEASE"],"RELEASE"]		
+			[Blockly.Msg["EMAKEFUN_BRAKE"],"BRAKE"]		
 		  ]), "direction");			  
 	  this.setInputsInline(true);
 	  this.setPreviousStatement(!0,null);
@@ -69,6 +62,14 @@ Blockly.Blocks.emakefun_motordriver_set_direction={
 	  this.setColour(220);  
 	}
 };
+
+
+
+
+
+
+
+
 
 
 
@@ -434,18 +435,6 @@ Blockly.Blocks['ps2_pressures_read'] = {
     this.setColour(280);
   }
 };
-
-Blockly.Blocks['ps2_state'] = {
-  init: function() {
-	this.appendDummyInput()
-	    .appendField(Blockly.Msg["PS2"])
-		.appendField(Blockly.Msg["PS2_STATE"]);
-	this.setInputsInline(true);
-	this.setOutput(true, null); 
-    this.setColour(280);
-  }
-};
-
 
 
 

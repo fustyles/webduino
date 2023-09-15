@@ -29,7 +29,7 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
-Blockly.Msg["EMAKEFUN_MOTORDRIVER"] = "Emakefun module";
+Blockly.Msg["EMAKEFUN_MOTORDRIVER"] = "Emakefun motor";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_INITIAL"] = "Initial";
 Blockly.Msg["EMAKEFUN_EDITOR"] = "Editor";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_SET_SPEAD"] = "Set speed";
@@ -39,7 +39,7 @@ Blockly.Msg["EMAKEFUN_PWM"] = "PWM[0-255]";
 Blockly.Msg["EMAKEFUN_DIRECTION"] = "Direction";
 Blockly.Msg["EMAKEFUN_CLOCKWISE"] = "clockwise";
 Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"] = "countClockwise";
-Blockly.Msg["EMAKEFUN_RELEASE"] = "Stop";
+Blockly.Msg["EMAKEFUN_BRAKE"] = "Stop";
 
 Blockly.Msg["MOTORDRIVER"] = "Motor driver";
 Blockly.Msg["MOTORDRIVER_INITIAL"] = "Initial";
