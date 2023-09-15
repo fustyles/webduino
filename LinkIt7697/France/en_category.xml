@@ -106,5 +106,5 @@
 <category><name>knnclassifier</name><replace>Teachable Machine(knn)</replace></category>
 <category><name>Keyboard</name><replace>Page keyboard</replace></category>
 <category><name>PS2</name><replace>PS2 Controller</replace></category>
-<category><name>Emakefun</name><replace>Emakefun</replace></category>
+<category><name>Emakefun</name><replace>Emakefun board</replace></category>
 </xml>
