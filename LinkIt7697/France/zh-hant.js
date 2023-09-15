@@ -29,7 +29,7 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
-Blockly.Msg["BOARD_RESTART_SHOW"] = "重啟開發板";
+Blockly.Msg["BOARD_RESTART_SHOW"] = "開發板重啟";
 
 Blockly.Msg["EMAKEFUN_MOTORDRIVER"] = "Emakefun 馬達驅動模組";
 Blockly.Msg["EMAKEFUN_EDITOR"] = "版本";
