@@ -15,6 +15,11 @@ Blockly.Blocks['board_restart'] = {
   }
 };
 
+var servo_angle = [];
+for (var i=90;i>=0;i--) {
+	servo_angle.push([i.toString(),i.toString()]);
+}
+
 Blockly.Blocks['emakefun_servo_set_angle'] = {
   init: function() {
 	this.appendDummyInput()
@@ -42,13 +47,17 @@ Blockly.Blocks['emakefun_servo_set_angle'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")
 		.appendField(Blockly.Msg["FU_SERVO_ANGLE"]);
-    this.appendDummyInput("angle1")
+    this.appendDummyInput("wise")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["FU_SERVO_CLOCKWISE"],"180"],		
-			[Blockly.Msg["FU_SERVO_COUNTERCLOCKWISE"],"0"],
-			[Blockly.Msg["FU_SERVO_STOP"],"90"]	
-		]), "rotate");		
+			[Blockly.Msg["FU_SERVO_CLOCKWISE"],"1"],		
+			[Blockly.Msg["FU_SERVO_COUNTERCLOCKWISE"],"-1"],
+			[Blockly.Msg["FU_SERVO_STOP"],"0"]	
+		],this.validate1), "rotate");
+    this.appendDummyInput("wise1")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["EMAKEFUN_PWM"])
+        .appendField(new Blockly.FieldDropdown(servo_angle), "angle1");			
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -59,10 +68,22 @@ Blockly.Blocks['emakefun_servo_set_angle'] = {
 		if (!block) return;
 		if (newValue=="180") {
 		 	block.getInput("angle").setVisible(true);
-			block.getInput("angle1").setVisible(false);
+			block.getInput("wise").setVisible(false);
+			block.getInput("wise1").setVisible(false);
 		} else {
 		 	block.getInput("angle").setVisible(false);
-			block.getInput("angle1").setVisible(true);		
+			block.getInput("wise").setVisible(true);
+			block.getInput("wise1").setVisible(true);
+			block.getField("rotate").setValue("0");			
+		}
+  },
+	validate1: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue!="0"&&block.getFieldValue("type")=="360") {
+			block.getInput("wise1").setVisible(true);
+		} else {
+			block.getInput("wise1").setVisible(false);			
 		}
   }
 };
@@ -196,7 +217,7 @@ Blockly.Blocks.motordriver_set={
 	init:function(){	
 	  this.appendDummyInput()
 		  .appendField(Blockly.Msg.MOTORDRIVER)
-		  .appendField(Blockly.Msg.MOTORDRIVER_PWM);
+		  .appendField(Blockly.Msg.MOTORDRIVER_PWM+"[0-255]");
 	  this.appendValueInput("pwm")
 		  .setCheck("Number");
       this.appendDummyInput()
