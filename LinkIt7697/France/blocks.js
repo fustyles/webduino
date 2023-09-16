@@ -2622,13 +2622,16 @@ Blockly.Blocks['fu_servo_angle'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")
 		.appendField(Blockly.Msg["FU_SERVO_ANGLE"]);
-    this.appendDummyInput("angle1")
+    this.appendDummyInput("wise")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["FU_SERVO_CLOCKWISE"],"180"],		
-			[Blockly.Msg["FU_SERVO_COUNTERCLOCKWISE"],"0"],
-			[Blockly.Msg["FU_SERVO_STOP"],"90"]	
-		]), "rotate");		
+			[Blockly.Msg["FU_SERVO_CLOCKWISE"],"1"],		
+			[Blockly.Msg["FU_SERVO_COUNTERCLOCKWISE"],"-1"],
+			[Blockly.Msg["FU_SERVO_STOP"],"0"]	
+		],this.validate1), "rotate");
+    this.appendValueInput("angle1")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["EMAKEFUN_PWM"]+"[0-90]");		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT) 
 		.appendField(Blockly.Msg["FU_SERVO_INDEX"])
@@ -2660,10 +2663,22 @@ Blockly.Blocks['fu_servo_angle'] = {
 		if (!block) return;
 		if (newValue=="180") {
 		 	block.getInput("angle").setVisible(true);
+			block.getInput("wise").setVisible(false);
 			block.getInput("angle1").setVisible(false);
 		} else {
 		 	block.getInput("angle").setVisible(false);
-			block.getInput("angle1").setVisible(true);		
+			block.getInput("wise").setVisible(true);
+			block.getInput("angle1").setVisible(true);
+			block.getField("rotate").setValue("0");			
+		}
+  },
+	validate1: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue!="0"&&block.getFieldValue("type")=="360") {
+			block.getInput("angle1").setVisible(true);
+		} else {
+			block.getInput("angle1").setVisible(false);			
 		}
   }
 };
