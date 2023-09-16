@@ -290,7 +290,7 @@ Blockly.Blocks['ps2_read'] = {
 	      ], this.validate), "vibrate");
 	this.appendValueInput("val")
 		.setCheck("Number")
-		.appendField(Blockly.Msg["PS2_VIBRATE_VALUE"]);
+		.appendField(Blockly.Msg["PS2_VIBRATE_VALUE"]+"[0-255]");
 	this.setInputsInline(true);
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
