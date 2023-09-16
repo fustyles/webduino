@@ -10396,7 +10396,7 @@
 		<block type="ps2_initial">
 			<value name="CLK">
 			  <block type="math_number">
-				<field name="NUM">12</field>
+				<field name="NUM">13</field>
 			  </block>
 			</value>
 			<value name="CMD">
@@ -10411,7 +10411,7 @@
 			</value>
 			<value name="DAT">
 			  <block type="math_number">
-				<field name="NUM">13</field>
+				<field name="NUM">12</field>
 			  </block>
 			</value> 			
 		</block>
