@@ -22,8 +22,8 @@ Blockly.Arduino.emakefun_servo_set_angle=function(block){
 																'Emakefun_Servo *mServo6 = Emakefun.getServo(6);\n'+	
 																'Emakefun_Servo *mServo7 = Emakefun.getServo(7);\n'+
 																'Emakefun_Servo *mServo8 = Emakefun.getServo(8);\n';
-  var angle = Blockly.Arduino.valueToCode(block, 'angle', Blockly.Arduino.ORDER_ATOMIC);
-  var angle1 = Number(block.getFieldValue('angle1'));
+  var angle = Blockly.Arduino.valueToCode(block, 'angle', Blockly.Arduino.ORDER_ATOMIC)||90;
+  var angle1 = Number(Blockly.Arduino.valueToCode(block, 'angle1', Blockly.Arduino.ORDER_ATOMIC)||90);
   var rotate = Number(block.getFieldValue('rotate'));
   var type = Number(block.getFieldValue('type'));
   if (type==360)

@@ -15,11 +15,6 @@ Blockly.Blocks['board_restart'] = {
   }
 };
 
-var servo_angle = [];
-for (var i=90;i>=0;i--) {
-	servo_angle.push([i.toString(),i.toString()]);
-}
-
 Blockly.Blocks['emakefun_servo_set_angle'] = {
   init: function() {
 	this.appendDummyInput()
@@ -54,10 +49,9 @@ Blockly.Blocks['emakefun_servo_set_angle'] = {
 			[Blockly.Msg["FU_SERVO_COUNTERCLOCKWISE"],"-1"],
 			[Blockly.Msg["FU_SERVO_STOP"],"0"]	
 		],this.validate1), "rotate");
-    this.appendDummyInput("wise1")
+    this.appendValueInput("angle1")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg["EMAKEFUN_PWM"])
-        .appendField(new Blockly.FieldDropdown(servo_angle), "angle1");			
+        .appendField(Blockly.Msg["EMAKEFUN_PWM"]+"[0-90]");			
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -69,11 +63,11 @@ Blockly.Blocks['emakefun_servo_set_angle'] = {
 		if (newValue=="180") {
 		 	block.getInput("angle").setVisible(true);
 			block.getInput("wise").setVisible(false);
-			block.getInput("wise1").setVisible(false);
+			block.getInput("angle1").setVisible(false);
 		} else {
 		 	block.getInput("angle").setVisible(false);
 			block.getInput("wise").setVisible(true);
-			block.getInput("wise1").setVisible(true);
+			block.getInput("angle1").setVisible(true);
 			block.getField("rotate").setValue("0");			
 		}
   },
@@ -81,9 +75,9 @@ Blockly.Blocks['emakefun_servo_set_angle'] = {
 		const block = this.sourceBlock_;
 		if (!block) return;
 		if (newValue!="0"&&block.getFieldValue("type")=="360") {
-			block.getInput("wise1").setVisible(true);
+			block.getInput("angle1").setVisible(true);
 		} else {
-			block.getInput("wise1").setVisible(false);			
+			block.getInput("angle1").setVisible(false);			
 		}
   }
 };
