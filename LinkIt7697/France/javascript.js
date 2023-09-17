@@ -3,7 +3,7 @@ Blockly.Arduino.emakefun_steppermotor_initial=function(block){
   var step = Blockly.Arduino.valueToCode(this,"step",Blockly.Arduino.ORDER_ATOMIC);
   
   Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\nEmakefun_MotorDriver Emakefun = Emakefun_MotorDriver(0x60);\n';	
-  Blockly.Arduino.definitions_['emakefun_steppermotor_initial_'+motor] ='Emakefun_StepperMotor *StepperMotor_'+motor+' = Emakefun.getStepper('+motor+', '+step+');';															
+  Blockly.Arduino.definitions_['emakefun_steppermotor_initial_'+motor] ='Emakefun_StepperMotor *StepperMotor_'+motor+' = Emakefun.getStepper(STEPPER'+motor+', '+step+');';															
   Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'Emakefun.begin(1600);'; 
 
   var code = '';
