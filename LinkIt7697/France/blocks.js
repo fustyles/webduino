@@ -1,3 +1,91 @@
+Blockly.Blocks.emakefun_steppermotor_initial={
+	init:function(){	
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["EMAKEFUN_STEPPERMOTOR"]);
+      this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .appendField(new Blockly.FieldDropdown([
+			["M1","1"],		
+			["M2","2"]			
+		  ]), "motor");	
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["EMAKEFUN_STEPPERMOTOR_INITIAL"]);
+	  this.appendValueInput("step")
+		  .setCheck("Number")
+		  .appendField(Blockly.Msg["EMAKEFUN_STEPPERMOTOR_STEPS"]);			  
+	  this.setInputsInline(true);
+	  this.setPreviousStatement(!0,null);
+	  this.setNextStatement(!0,null);
+	  this.setColour(60);  
+	}
+};
+
+Blockly.Blocks.emakefun_steppermotor_speed={
+	init:function(){	
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["EMAKEFUN_STEPPERMOTOR"]);
+      this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .appendField(new Blockly.FieldDropdown([
+			["M1","1"],		
+			["M2","2"]			
+		  ]), "motor");					  
+	  this.appendValueInput("speed")
+		  .setCheck("Number")
+		  .appendField(Blockly.Msg["EMAKEFUN_STEPPERMOTOR_SPEED"]);	
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["EMAKEFUN_STEPPERMOTOR_SPEED_UNIT"]);		  
+	  this.setInputsInline(true);
+	  this.setPreviousStatement(!0,null);
+	  this.setNextStatement(!0,null);
+	  this.setColour(60);  
+	}
+};
+
+Blockly.Blocks.emakefun_steppermotor_step={
+	init:function(){	
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["EMAKEFUN_STEPPERMOTOR"]);
+      this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .appendField(new Blockly.FieldDropdown([
+			["M1","1"],		
+			["M2","2"]			
+		  ]), "motor");
+      this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT) 
+          .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["EMAKEFUN_CLOCKWISE"],"FORWARD"],		
+			[Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"],"BACKWARD"]	
+		  ]), "direction");	  
+	  this.appendValueInput("step")
+		  .setCheck("Number")
+		  .appendField(Blockly.Msg["EMAKEFUN_STEPPERMOTOR_STEP"]);
+	  this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT) 
+          .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["EMAKEFUN_STEPPERMOTOR_SINGLE"],"SINGLE"],		  
+			[Blockly.Msg["EMAKEFUN_STEPPERMOTOR_DOUBLE"],"DOUBLE"],
+			[Blockly.Msg["EMAKEFUN_STEPPERMOTOR_INTERLEAVE"],"INTERLEAVE"]	
+		  ]), "mode");	
+	  this.setInputsInline(true);
+	  this.setPreviousStatement(!0,null);
+	  this.setNextStatement(!0,null);
+	  this.setColour(60);  
+	}
+};
+
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Blocks['board_restart'] = {
   init: function() {
 	this.appendDummyInput() 
@@ -82,7 +170,7 @@ Blockly.Blocks['emakefun_servo_set_angle'] = {
   }
 };
 
-Blockly.Blocks.emakefun_motordriver_set_spead={
+Blockly.Blocks.emakefun_motordriver_set_speed={
 	init:function(){	
 	  this.appendDummyInput()
 		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER"]);

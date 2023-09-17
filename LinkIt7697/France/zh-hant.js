@@ -29,6 +29,16 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["EMAKEFUN_STEPPERMOTOR"] = "Emakefun 步進馬達";
+Blockly.Msg["EMAKEFUN_STEPPERMOTOR_INITIAL"] = "初始化";
+Blockly.Msg["EMAKEFUN_STEPPERMOTOR_STEPS"] = "一圈步數";
+Blockly.Msg["EMAKEFUN_STEPPERMOTOR_SPEED"] = "速度";
+Blockly.Msg["EMAKEFUN_STEPPERMOTOR_SPEED_UNIT"] = "(步數/分)";
+Blockly.Msg["EMAKEFUN_STEPPERMOTOR_DOUBLE"] = "雙線圈(增扭矩)";
+Blockly.Msg["EMAKEFUN_STEPPERMOTOR_SINGLE"] = "單線圈";
+Blockly.Msg["EMAKEFUN_STEPPERMOTOR_INTERLEAVE"] = "交錯線圈(增分辨率)";
+Blockly.Msg["EMAKEFUN_STEPPERMOTOR_STEP"] = "步數";
+
 Blockly.Msg["BOARD_RESTART_SHOW"] = "開發板重啟";
 
 Blockly.Msg["EMAKEFUN_MOTORDRIVER"] = "Emakefun 馬達驅動模組";

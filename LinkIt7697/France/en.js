@@ -29,6 +29,16 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["EMAKEFUN_STEPPERMOTOR"] = "Emakefun Stepper motor";
+Blockly.Msg["EMAKEFUN_STEPPERMOTOR_INITIAL"] = "Initial";
+Blockly.Msg["EMAKEFUN_STEPPERMOTOR_STEPS"] = "Number of steps in a circle";
+Blockly.Msg["EMAKEFUN_STEPPERMOTOR_SPEED"] = "Speed";
+Blockly.Msg["EMAKEFUN_STEPPERMOTOR_SPEED_UNIT"] = "steps per minute";
+Blockly.Msg["EMAKEFUN_STEPPERMOTOR_DOUBLE"] = "DOUBLE";
+Blockly.Msg["EMAKEFUN_STEPPERMOTOR_SINGLE"] = "SINGLE";
+Blockly.Msg["EMAKEFUN_STEPPERMOTOR_INTERLEAVE"] = "INTERLEAVE";
+Blockly.Msg["EMAKEFUN_STEPPERMOTOR_STEP"] = "Steps";
+
 Blockly.Msg["BOARD_RESTART_SHOW"] = "Restart board";
 
 Blockly.Msg["EMAKEFUN_MOTORDRIVER"] = "Emakefun motor";

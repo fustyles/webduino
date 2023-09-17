@@ -1,3 +1,40 @@
+Blockly.Arduino.emakefun_steppermotor_initial=function(block){
+  var motor = this.getFieldValue("motor"); 
+  var step = Blockly.Arduino.valueToCode(this,"step",Blockly.Arduino.ORDER_ATOMIC);
+  
+  Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\nEmakefun_MotorDriver Emakefun = Emakefun_MotorDriver(0x60);\n';	
+  Blockly.Arduino.definitions_['emakefun_steppermotor_initial_'+motor] ='Emakefun_StepperMotor *StepperMotor_'+motor+' = Emakefun.getStepper('+motor+', '+step+');';															
+  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'Emakefun.begin(1600);'; 
+
+  var code = '';
+  return code;
+};
+
+Blockly.Arduino.emakefun_steppermotor_speed=function(block){
+  var motor = this.getFieldValue("motor"); 
+  var speed = Blockly.Arduino.valueToCode(this,"speed",Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'StepperMotor_'+motor+'->setSpeed('+speed+');\n';
+  return code;
+};
+
+Blockly.Arduino.emakefun_steppermotor_step=function(block){
+  var motor = this.getFieldValue("motor");
+  var direction = this.getFieldValue("direction"); 
+  var mode = this.getFieldValue("mode");
+  var step = Blockly.Arduino.valueToCode(this,"step",Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'StepperMotor_'+motor+'->step('+step+', '+direction+', '+mode+');\nStepperMotor_'+motor+'->release();\n';
+  return code;
+};
+
+
+
+
+
+
+
+
 Blockly.Arduino.board_restart=function(block){
   var board = this.getFieldValue("board"); 
   if (board=="uno") {
@@ -35,7 +72,7 @@ Blockly.Arduino.emakefun_servo_set_angle=function(block){
   return code;
 };
 
-Blockly.Arduino.emakefun_motordriver_set_spead=function(block){
+Blockly.Arduino.emakefun_motordriver_set_speed=function(block){
   Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\nEmakefun_MotorDriver Emakefun = Emakefun_MotorDriver(0x60);\n';	
   Blockly.Arduino.definitions_['emakefun_motordriver_definitions'] ='Emakefun_DCMotor *DCMotor_1 = Emakefun.getMotor(M1);\n'+
 																	'Emakefun_DCMotor *DCMotor_2 = Emakefun.getMotor(M2);\n'+
@@ -66,11 +103,6 @@ Blockly.Arduino.emakefun_motordriver_set_direction=function(block){
   var code = motor+'->run('+direction+');\n';
   return code;
 };
-
-
-
-
-
 
 Blockly.Arduino.motordriver_pin=function(block){
   var pin1=Blockly.Arduino.valueToCode(this,"pin1",Blockly.Arduino.ORDER_ATOMIC);

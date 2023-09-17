@@ -10452,7 +10452,7 @@
 	</category>
 
 	<category id="france12" name="Emakefun">
-		<block type="emakefun_motordriver_set_spead">
+		<block type="emakefun_motordriver_set_speed">
 			<value name="pwm">
 			  <block type="math_number">
 				<field name="NUM">200</field>
@@ -10531,6 +10531,27 @@
 		<block type="ps2_analog_read"></block>
 		<block type="ps2_pressures_read"></block>	
 		<block type="ps2_initial_func"></block>
+		<block type="emakefun_steppermotor_initial">
+			<value name="step">
+			  <block type="math_number">
+				<field name="NUM">200</field>
+			  </block>
+			</value>
+		</block>
+		<block type="emakefun_steppermotor_speed">
+			<value name="speed">
+			  <block type="math_number">
+				<field name="NUM">200</field>
+			  </block>
+			</value>
+		</block>		
+		<block type="emakefun_steppermotor_step">
+			<value name="step">
+			  <block type="math_number">
+				<field name="NUM">200</field>
+			  </block>
+			</value>
+		</block>		
         <block type="esp32_buzzer">
           <field name="frequency">131</field>
           <field name="index">0</field>
