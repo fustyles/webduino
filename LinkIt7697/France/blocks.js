@@ -66,7 +66,8 @@ Blockly.Blocks.emakefun_steppermotor_step={
           .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["EMAKEFUN_STEPPERMOTOR_SINGLE"],"SINGLE"],		  
 			[Blockly.Msg["EMAKEFUN_STEPPERMOTOR_DOUBLE"],"DOUBLE"],
-			[Blockly.Msg["EMAKEFUN_STEPPERMOTOR_INTERLEAVE"],"INTERLEAVE"]	
+			[Blockly.Msg["EMAKEFUN_STEPPERMOTOR_INTERLEAVE"],"INTERLEAVE"],
+			[Blockly.Msg["EMAKEFUN_STEPPERMOTOR_MICROSTEP"],"MICROSTEP"]
 		  ]), "mode");	
 	  this.setInputsInline(true);
 	  this.setPreviousStatement(!0,null);

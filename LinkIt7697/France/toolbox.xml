@@ -8265,7 +8265,7 @@
 			<block type="webbit_mooncar_ir_remote_read"></block>
 			<block type="webbit_mooncar_ir_remote_read_value"></block>
 			<block type="webbit_mooncar_ir_remote_read_type"></block>
-			<block type="webbit_mooncar_ir_remote_send_pin">
+			<block type="webbit_mooncar_ir_remote_send_pin">			
 			</block>
 			<block type="webbit_mooncar_ir_remote_send">
 				<value name="IR_SEND">

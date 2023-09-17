@@ -28,13 +28,6 @@ Blockly.Arduino.emakefun_steppermotor_step=function(block){
   return code;
 };
 
-
-
-
-
-
-
-
 Blockly.Arduino.board_restart=function(block){
   var board = this.getFieldValue("board"); 
   if (board=="uno") {
