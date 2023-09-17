@@ -168,10 +168,10 @@ Blockly.Blocks.emakefun_motordriver_set_speed={
           .setAlign(Blockly.ALIGN_RIGHT) 
 		  .appendField(Blockly.Msg["EMAKEFUN_MOTOR"])
           .appendField(new Blockly.FieldDropdown([
-			["M1","DCMotor_1"],		
-			["M2","DCMotor_2"],
-			["M3","DCMotor_3"],		
-			["M4","DCMotor_4"]			
+			["M1","1"],		
+			["M2","2"],
+			["M3","3"],		
+			["M4","4"]			
 		  ]), "motor");				  
 	  this.appendValueInput("pwm")
 		  .setCheck("Number")
@@ -191,10 +191,10 @@ Blockly.Blocks.emakefun_motordriver_set_direction={
           .setAlign(Blockly.ALIGN_RIGHT) 
 		  .appendField(Blockly.Msg["EMAKEFUN_MOTOR"])
           .appendField(new Blockly.FieldDropdown([
-			["M1","DCMotor_1"],		
-			["M2","DCMotor_2"],
-			["M3","DCMotor_3"],		
-			["M4","DCMotor_4"]			
+			["M1","1"],		
+			["M2","2"],
+			["M3","3"],		
+			["M4","4"]			
 		  ]), "motor");
       this.appendDummyInput()
           .setAlign(Blockly.ALIGN_RIGHT) 
