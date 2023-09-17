@@ -76,17 +76,6 @@ Blockly.Blocks.emakefun_steppermotor_step={
 	}
 };
 
-
-
-
-
-
-
-
-
-
-
-
 Blockly.Blocks['board_restart'] = {
   init: function() {
 	this.appendDummyInput() 
@@ -111,14 +100,14 @@ Blockly.Blocks['emakefun_servo_set_angle'] = {
     this.appendDummyInput()
           .setAlign(Blockly.ALIGN_RIGHT)
           .appendField(new Blockly.FieldDropdown([
-			["S1","mServo1"],		
-			["S2","mServo2"],
-			["S3","mServo3"],		
-			["S4","mServo4"],
-			["S5","mServo5"],		
-			["S6","mServo6"],
-			["S7","mServo7"],		
-			["S8","mServo8"]			
+			["S1","1"],		
+			["S2","2"],
+			["S3","3"],		
+			["S4","4"],
+			["S5","5"],		
+			["S6","6"],
+			["S7","7"],		
+			["S8","8"]			
 		  ]), "servo");		  
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
