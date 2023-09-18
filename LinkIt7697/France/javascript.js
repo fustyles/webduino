@@ -247,7 +247,35 @@ Blockly.Arduino['ps2_analog_max'] = function(block) {
 
 Blockly.Arduino['ps2_analog_read'] = function(block) {
 	var analog = block.getFieldValue('analog');
-	var code = 'ps2x.Analog('+analog+')';
+	if (analog=="true"||analog=="false") {
+		Blockly.Arduino.definitions_['String ps2_stick_angle'] = 'float ps2_stick_angle(boolean position) {\n'+
+																'	float X = analogMax/2;\n'+
+																'	float Y = analogMax/2;\n'+
+																'	if (position) {\n'+
+																'		X = ps2x.Analog(PSS_LX)-analogMax/2;\n'+
+																'		Y = (ps2x.Analog(PSS_LY)-analogMax/2)*-1;\n'+
+																'	} else {\n'+
+																'		X = ps2x.Analog(PSS_RX)-analogMax/2;\n'+
+																'		Y = (ps2x.Analog(PSS_RY)-analogMax/2)*-1;\n'+
+																'	}\n'+
+																'	float upper = analogMax/2*0.6;\n'+
+																'	if (sqrt(pow(X, 2)+pow(Y, 2))<upper) return -1;\n'+
+																'	float angle = atan(Y/X)*180/3.14;\n'+
+																'	if (isnan(angle)) return -1;\n'+
+																'	if (X>0&&Y==0) return 0;\n'+
+																'	if (X==0&&Y>0) return 90;\n'+
+																'	if (X<0&&Y==0) return 180;\n'+
+																'	if (X==0&&Y<0) return 270;\n'+
+																'	if (X<0&&Y>0) angle=180-angle*(-1);\n'+
+																'	if (X<0&&Y<0) angle=angle+180;\n'+
+																'	if (X>0&&Y<0) angle=angle+360;\n'+
+																'	return angle;\n'+
+																'	}\n';
+		
+		var code = 'ps2_stick_angle('+analog+')';
+	}
+	else
+		var code = 'ps2x.Analog('+analog+')';
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
