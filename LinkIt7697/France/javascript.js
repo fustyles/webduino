@@ -248,7 +248,7 @@ Blockly.Arduino['ps2_analog_max'] = function(block) {
 Blockly.Arduino['ps2_analog_read'] = function(block) {
 	var analog = block.getFieldValue('analog');
 	if (analog=="true"||analog=="false") {
-		Blockly.Arduino.definitions_['String ps2_stick_angle'] = 'float ps2_stick_angle(boolean position) {\n'+
+		Blockly.Arduino.definitions_['String ps2_stick_angle'] = 'int ps2_stick_angle(boolean position) {\n'+
 																'	float X = analogMax/2;\n'+
 																'	float Y = analogMax/2;\n'+
 																'	if (position) {\n'+
@@ -260,7 +260,7 @@ Blockly.Arduino['ps2_analog_read'] = function(block) {
 																'	}\n'+
 																'	float upper = analogMax/2*0.6;\n'+
 																'	if (sqrt(pow(X, 2)+pow(Y, 2))<upper) return -1;\n'+
-																'	float angle = atan(Y/X)*180/3.14;\n'+
+																'	int angle = atan(Y/X)*180/3.14;\n'+
 																'	if (isnan(angle)) return -1;\n'+
 																'	if (X>0&&Y==0) return 0;\n'+
 																'	if (X==0&&Y>0) return 90;\n'+
