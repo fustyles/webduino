@@ -134,6 +134,8 @@ Blockly.Blocks['emakefun_servo_set_angle'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(170);
+    this.getInput("wise").setVisible(false);
+    this.getInput("angle1").setVisible(false);	
   },
 	validate: function(newValue) {
 		const block = this.sourceBlock_;
@@ -373,6 +375,7 @@ Blockly.Blocks['ps2_read'] = {
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
 	this.setColour(280);
+	this.getInput("val").setVisible(false);	
 	}
 	,validate: function(newValue) {
 		const block = this.sourceBlock_;
