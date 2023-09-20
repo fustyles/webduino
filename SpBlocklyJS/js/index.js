@@ -178,6 +178,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (xml.indexOf("knnclassifier_")!=-1) {
 			script += "<script src='knn-classifier_20201012/knn-classifier_video.js'></script>";			
 			script += "<script src='knn-classifier_20201012/knn-classifier.js'></script>";
+		}
+		if (xml.indexOf("aes_")!=-1) {
+			script += "<script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js'></script>";
 		}		
 				
 		return script;
@@ -345,7 +348,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (xml.indexOf("knnclassifier_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/knn-classifier_20201012/knn-classifier_video.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/knn-classifier_20201012/knn-classifier.js'></script>";
-		}			
+		}
+		if (xml.indexOf("aes_")!=-1) {
+			script += "<script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js'></script>";
+		}		
 		
 		return script;
 	}		

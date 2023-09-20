@@ -2321,8 +2321,32 @@ Blockly.Blocks['document_timer_stop'] = {
 Blockly.Blocks['text_to_number'] = {
   init: function() {
     this.appendValueInput("value_text_")
+        .setCheck(null);	  
+	this.appendDummyInput()
+		  .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.TEXT_TO_NUMBER,"number"],
+		  [Blockly.Msg.TEXT_TO_BASE64,"btoa"],
+		  [Blockly.Msg.BASE64_TO_TEXT,"atob"]
+		]), "type");	  
+    this.setInputsInline(true); 		
+    this.setOutput(true);  
+    this.setColour(Blockly.Msg["TEXTS_HUE"]);
+  }  
+};
+
+Blockly.Blocks['aes_encryption'] = {
+  init: function() {
+    this.appendValueInput("value_text_")
+        .setCheck(null);	  
+	this.appendDummyInput()
+		  .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.AES_ENCODE,"encode"],
+		  [Blockly.Msg.AES_DECODE,"decode"]
+		]), "type");
+    this.appendValueInput("value_key_")
         .setCheck(null)
-        .appendField(Blockly.Msg.TEXT_TO_NUMBER);
+		.appendField(Blockly.Msg.AES_KEY);		
+    this.setInputsInline(true); 		
     this.setOutput(true);  
     this.setColour(Blockly.Msg["TEXTS_HUE"]);
   }  

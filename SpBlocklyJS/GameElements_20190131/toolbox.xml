@@ -342,9 +342,18 @@
 		  <block type="transform_async_function">    
 		  </block> 
 		  <block type="text_to_number">
-			<value name="value_text_">
+			<value name="value_text_"> 			
 			</value>    
-		  </block>  
+		  </block>
+		  <block type="aes_encryption">
+			<value name="value_text_"> 			
+			</value>
+			<value name="value_key_">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>  			
+			</value>  			
+		  </block>  		  
 		  <block type="loop_break">    
 		  </block>  
 		  <block type="loop_continue">    

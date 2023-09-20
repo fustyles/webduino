@@ -116,10 +116,19 @@ var catWindow ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
-'    <block type="text_to_number">'+
-'    <value name="value_text_">'+
-'    </value>'+
-'    </block>'+
+'		  <block type="text_to_number">'+
+'			<value name="value_text_">'+
+'			</value>'+
+'		  </block>'+
+'		  <block type="aes_encryption">'+
+'			<value name="value_text_">'+
+'			</value>'+
+'			<value name="value_key_">'+
+'			  <block type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </block>'+
+'			</value>'+
+'		  </block>'+
 '    <block type="document_timer_novar">'+
 '    <value name="intervals_">'+
 '    <block type="math_number">'+
