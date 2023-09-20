@@ -2676,6 +2676,8 @@ Blockly.Blocks['fu_servo_initial'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(255);
+    this.getInput("min").setVisible(false);
+    this.getInput("max").setVisible(false);	
   },
 	validate: function(newValue) {
 		const block = this.sourceBlock_;
@@ -2740,6 +2742,8 @@ Blockly.Blocks['fu_servo_angle'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(255);
+    this.getInput("wise").setVisible(false);
+    this.getInput("angle1").setVisible(false);	
   },
 	validate: function(newValue) {
 		const block = this.sourceBlock_;
