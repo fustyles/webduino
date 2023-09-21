@@ -731,7 +731,25 @@ Blockly.JavaScript['document_timer_stop'] = function (block) {
 
 Blockly.JavaScript['text_to_number'] = function (block) {
   var value_text = Blockly.JavaScript.valueToCode(block, 'value_text_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'text_to_number(' + value_text + ')';
+  var value_type = block.getFieldValue('type');
+  if (value_type=="btoa")
+	  var code = 'btoa(escape(' + value_text + '))';
+  else if (value_type=="atob")
+	  var code = 'unescape(atob(' + value_text + '))';	
+  else
+	  var code = 'text_to_number(' + value_text + ')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['aes_encryption'] = function (block) {
+  var value_text = Blockly.JavaScript.valueToCode(block, 'value_text_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_key = Blockly.JavaScript.valueToCode(block, 'value_key_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_type = block.getFieldValue('type');
+  if (value_type=="encode")
+	  var code = 'CryptoJS.AES.encrypt('+value_text+', '+value_key+').toString()';
+  else
+	  var code = 'CryptoJS.AES.decrypt('+value_text+', '+value_key+').toString(CryptoJS.enc.Utf8)';	
+
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
