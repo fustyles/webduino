@@ -393,9 +393,19 @@
 			</value>
 		</block>
 		<block type="variable_board"></block>
-		<block type="text_to_number">
-			<value name="value_text_"></value>
-		</block>
+		  <block type="text_to_number">
+			<value name="value_text_"> 			
+			</value>    
+		  </block>
+		  <block type="aes_encryption">
+			<value name="value_text_"> 			
+			</value>
+			<value name="value_key_">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>  			
+			</value>  			
+		  </block> 
 		<block type="loop_break"></block>
 		<block type="loop_continue"></block>
 		<block type="function_return">
