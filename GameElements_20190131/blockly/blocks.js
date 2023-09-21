@@ -2431,7 +2431,7 @@ Blockly.Blocks['text_to_number'] = {
 		]), "type");	  
     this.setInputsInline(true); 		
     this.setOutput(true);  
-    this.setColour(Blockly.Msg["TEXTS_HUE"]);
+    this.setColour(60);
   }  
 };
 
@@ -2449,7 +2449,7 @@ Blockly.Blocks['aes_encryption'] = {
 		.appendField(Blockly.Msg.AES_KEY);		
     this.setInputsInline(true); 		
     this.setOutput(true);  
-    this.setColour(Blockly.Msg["TEXTS_HUE"]);
+    this.setColour(60);
   }  
 };
 
