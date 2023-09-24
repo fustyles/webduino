@@ -1,7 +1,7 @@
 Blockly.Blocks['amb82_mini_linenotify'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg["AMB82_MINI_INITIAL"])
+        .appendField(Blockly.Msg["AMB82_MINI"])
         .appendField(Blockly.Msg["AMB82_MINI_LINENOTIFY"]);	
     this.appendValueInput("linetoken")
         .setCheck("String")
@@ -21,6 +21,7 @@ Blockly.Blocks['amb82_mini_linenotify'] = {
 Blockly.Blocks['amb82_mini_initial'] = {
   init: function() {
     this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])	
         .appendField(Blockly.Msg["AMB82_MINI_INITIAL"]);
 	this.appendDummyInput()
 		.setAlign(Blockly.ALIGN_RIGHT)	
