@@ -32,6 +32,7 @@ Blockly.Msg["HUE_30"] = 50;
 Blockly.Msg["AMB82_MINI"] = "AMB82-MINI";
 Blockly.Msg["AMB82_MINI_INITIAL"] = "Initial";
 Blockly.Msg["AMB82_MINI_LINENOTIFY"] = "Get still and send to Line";
+Blockly.Msg["AMB82_MINI_CUSTOM"] = "Custom";
 
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR"] = "Emakefun Stepper motor";
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR_INITIAL"] = "Initial";
@@ -946,7 +947,7 @@ Blockly.Msg["FU_SERIAL_PRINT_HEX"] = "HEX";
 Blockly.Msg["ESP32_CAM_GOOGLEDRIVE_SHOW"] = "ESP32-CAM Upload Still to Google drive";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_SHOW"] = "ESP32-CAM Upload Still to Google spreadsheet";
 Blockly.Msg["ESP32_CAM_SCRIPTID_SHOW"] = "Apps Script ID";	
-Blockly.Msg["ESP32_CAM_LINETOKEN_SHOW"] = "token";
+Blockly.Msg["ESP32_CAM_LINETOKEN_SHOW"] = "Token";
 Blockly.Msg["ESP32_CAM_FOLDERNAME_SHOW"] = "Folder Name";	
 Blockly.Msg["ESP32_CAM_FILENAME_SHOW"] = "File Name";
 

@@ -37,14 +37,14 @@ Blockly.Blocks['amb82_mini_initial'] = {
 			["WVGA (640×340)","VIDEO_WVGA"],
 			["CIF (352×288)","VIDEO_CIF"],
 			["QCIF (176×144)","VIDEO_QCIF"],
-			["CUSTOM","VIDEO_CUSTOM"]
+			[Blockly.Msg["AMB82_MINI_CUSTOM"],"VIDEO_CUSTOM"]
 		], this.validate), "framesize");
 	this.appendValueInput("width")
 		.setCheck("Number")
 		.appendField(Blockly.Msg["WIDTH"]);
 	this.appendValueInput("height")
 		.setCheck("Number")
-		.appendField(Blockly.Msg["HIGHT"]);		  
+		.appendField(Blockly.Msg["HEIGHT"]);		  
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);

@@ -32,6 +32,7 @@ Blockly.Msg["HUE_30"] = 50;
 Blockly.Msg["AMB82_MINI"] = "AMB82-MINI";
 Blockly.Msg["AMB82_MINI_INITIAL"] = "初始化";
 Blockly.Msg["AMB82_MINI_LINENOTIFY"] = "截圖上傳Line通知";
+Blockly.Msg["AMB82_MINI_CUSTOM"] = "自訂";
 
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR"] = "Emakefun 步進馬達";
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR_INITIAL"] = "初始化";
