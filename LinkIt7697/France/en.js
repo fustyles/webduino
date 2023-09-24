@@ -29,6 +29,9 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["AMB82_MINI_INITIAL"] = "AMB82-MINI";
+Blockly.Msg["AMB82_MINI_LINENOTIFY"] = "Get still and send to Line";
+
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR"] = "Emakefun Stepper motor";
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR_INITIAL"] = "Initial";
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR_STEPS"] = "Number of steps in a circle";
@@ -2310,7 +2313,8 @@ Blockly.Msg["MAX6675_UNIT"] = "unit";
 Blockly.Msg["DS18B20_INITIAL"] = "DS18B20 water temperature sensor Initial";
 Blockly.Msg["DS18B20_PIN"] = "pin";
 Blockly.Msg["DS18B20_INDEX"] = "index";
-Blockly.Msg["DS18B20_GET"] = "DS18B20DS18B20 water temperature sensor Get value";
+Blockly.Msg["DS18B20_REQUEST"] = "DS18B20DS18B20 water temperature sensor get data";
+Blockly.Msg["DS18B20_GET"] = "DS18B20DS18B20 water temperature sensor get temperature";
 Blockly.Msg["DS18B20_UNIT"] = "unit";
 
 Blockly.Msg["PMS7003M_READ"] = "PMS7003M after reading data";

@@ -1,3 +1,99 @@
+Blockly.Arduino['amb82_mini_linenotify'] = function(block) {
+    var linetoken = Blockly.Arduino.valueToCode(block, 'linetoken', Blockly.Arduino.ORDER_ATOMIC);
+    var linemessage = Blockly.Arduino.valueToCode(block, 'linemessage', Blockly.Arduino.ORDER_ATOMIC);
+	
+	Blockly.Arduino.definitions_['WiFiClientSecure'] ='wifiClient.setRootCA((unsigned char*)rootCABuff);\nwifiClient.setClientCertificate((unsigned char*)certificateBuff, (unsigned char*)privateKeyBuff);\n';
+	
+	Blockly.Arduino.definitions_.SendCapturedImageToLineNotify = '\n'+
+			'String SendStillToLineNotify(String token, String message) {\n'+
+			'  WiFiClientSecure client_tcp;\n';
+
+	Blockly.Arduino.definitions_.SendCapturedImageToLineNotify +='  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
+			'    Serial.println("Connection successful");\n'+
+			'    Camera.getImage(0, &img_addr, &img_len);\n'+
+			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
+            '    size_t fbLen = img_len;\n'+
+			'    if (message=="") message = "AMB82-MINI";\n'+
+			'    String head = "--Taiwan\\r\\nContent-Disposition: form-data; name=\\\"message\\\"; \\r\\n\\r\\n" + message + "\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\\"imageFile\\\"; filename=\\\"amb82_mini.jpg\\\"\\r\\nContent-Type: image\/jpeg\\r\\n\\r\\n";\n'+
+			'    String tail = "\\r\\n--Taiwan--\\r\\n";\n'+
+			'    \n'+
+ 			'    uint16_t imageLen = fbLen;\n'+
+			'    uint16_t extraLen = head.length() + tail.length();\n'+
+			'    uint16_t totalLen = imageLen + extraLen;\n'+
+			'    \n'+
+			'    client_tcp.println("POST \/api\/notify HTTP\/1.1");\n'+
+			'    client_tcp.println("Connection: close");\n'+
+			'    client_tcp.println("Host: notify-api.line.me");\n'+
+			'    client_tcp.println("Authorization: Bearer " + token);\n'+
+			'    client_tcp.println("Content-Length: " + String(totalLen));\n'+
+			'    client_tcp.println("Content-Type: multipart\/form-data; boundary=Taiwan");\n'+
+			'    client_tcp.println();\n'+
+			'    client_tcp.print(head);\n'+
+			'    \n'+
+			'    for (size_t n=0;n<fbLen;n=n+1024) {\n'+
+			'      if (n+1024<fbLen) {\n'+
+			'        client_tcp.write(fbBuf, 1024);\n'+
+			'        fbBuf += 1024;\n'+
+			'      }\n'+
+			'      else if (fbLen%1024>0) {\n'+
+			'        size_t remainder = fbLen%1024;\n'+
+			'        client_tcp.write(fbBuf, remainder);\n'+
+			'      }\n'+
+			'    }\n'+
+			'    \n'+
+			'    client_tcp.print(tail);\n'+
+			'    esp_camera_fb_return(fb);\n'+
+			'    \n'+
+			'    String getResponse="",Feedback="";\n'+
+			'    int waitTime = 10000;\n'+
+			'    long startTime = millis();\n'+
+			'    boolean state = false;\n'+
+			'    \n'+
+			'    while ((startTime + waitTime) > millis()) {\n'+
+			'      Serial.print(".");\n'+
+			'      delay(100);\n'+
+			'      while (client_tcp.available())  {\n'+
+			'          char c = client_tcp.read();\n'+
+			'          if (state==true) Feedback += String(c);\n'+
+			'          if (c == \'\\n\') {\n'+
+			'            if (getResponse.length()==0) state=true;\n'+
+			'            getResponse = "";\n'+
+ 			'         }\n'+
+			'          else if (c != \'\\r\')\n'+
+			'            getResponse += String(c);\n'+
+			'          startTime = millis();\n'+
+			'       }\n'+
+			'       if (Feedback.length()>0) break;\n'+
+			'    }\n'+
+			'    Serial.println();\n'+
+			'    client_tcp.stop();\n'+
+			'    return Feedback;\n'+
+			'  }\n'+
+			'  else {\n'+
+			'    return "Connected to notify-api.line.me failed.";\n'+
+			'  }\n'+
+			'};\n';
+			
+  var code = 'SendStillToLineNotify('+linetoken+', '+linemessage+');\n';
+  return code;			
+}
+
+Blockly.Arduino['amb82_mini_initial'] = function(block) {
+	var width = Blockly.Arduino.valueToCode(this,"width",Blockly.Arduino.ORDER_ATOMIC);
+	var height = Blockly.Arduino.valueToCode(this,"height",Blockly.Arduino.ORDER_ATOMIC);
+	var framesize = block.getFieldValue('framesize');
+	if (framesize=="VIDEO_CUSTOM")
+		framesize = width +", "+height;
+
+	Blockly.Arduino.definitions_['define_esp_camera'] ='#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+	Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
+	
+	Blockly.Arduino.setups_.write_peri_reg="";
+	Blockly.Arduino.setups_.setup_cam_initial='Camera.configVideoChannel(0, config);\n  Camera.videoInit();\n  Camera.channelBegin(0);';
+	
+    return '';
+};
+
 Blockly.Arduino.emakefun_steppermotor_initial=function(block){
   var motor = this.getFieldValue("motor"); 
   var step = Blockly.Arduino.valueToCode(this,"step",Blockly.Arduino.ORDER_ATOMIC);
@@ -650,6 +746,11 @@ Blockly.Arduino.DS18B20_initial=function(){
   return code;
 };
 
+Blockly.Arduino.DS18B20_request=function(){
+  var code = 'DS18B20.requestTemperatures();\n';
+  return code;
+};
+
 Blockly.Arduino.DS18B20_get=function(){
   var unit=this.getFieldValue("unit"); 
   var index=this.getFieldValue("index");
@@ -1193,7 +1294,7 @@ Blockly.Arduino['openai_chat_initial'] = function (block) {
 	
   Blockly.Arduino.definitions_['openai_chat_request'] = 'String openAI_chat_request(String message) {\n';
   
-	if (selectBoardType()=="LinkIt") {
+	if ((selectBoardType()=="LinkIt"||selectBoardType()=="realtek")) {
 		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	} else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -1291,7 +1392,7 @@ Blockly.Arduino['openai_text_request'] = function (block) {
   Blockly.Arduino.definitions_['openai_text_request'] = ''
 														+'String openAI_text(String token, int max_tokens, String words) {\n';
 														
-	if (selectBoardType()=="LinkIt") {
+	if ((selectBoardType()=="LinkIt"||selectBoardType()=="realtek")) {
 		Blockly.Arduino.definitions_['openai_text_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	} else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -3589,9 +3690,9 @@ Blockly.Arduino['esp32_telegrambot_getupdates'] = function(block) {
 			'  String getAll="", getBody = "";\n'+
 			'  JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek")
 		Blockly.Arduino.definitions_.telegrambot_getUpdates +='  DynamicJsonDocument doc(1024);\n';
-	else if (selectBoardType()=="LinkIt")
+	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_.telegrambot_getUpdates +='  DynamicJsonDocument doc(352);\n';
 	else
 		Blockly.Arduino.definitions_.telegrambot_getUpdates +='  DynamicJsonDocument doc(128);\n';
@@ -3602,7 +3703,7 @@ Blockly.Arduino.definitions_.telegrambot_getUpdates +='  String result;\n'+
 			'  long message_id;\n'+
 			'  String text;\n';
 			
-	if (selectBoardType()=="LinkIt") {
+	if (selectBoardType()=="LinkIt"||selectBoardType()=="realtek") {
 		Blockly.Arduino.definitions_.telegrambot_getUpdates += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	} else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -3676,7 +3777,7 @@ Blockly.Arduino['esp32_telegrambot_spreadsheet_sendcell'] = function(block){
 			'  String getAll="", getBody = "";\n'+
 			'  Serial.println("Connect to " + String(myDomain));\n';
 			
-	if (selectBoardType()=="LinkIt") {
+	if (selectBoardType()=="LinkIt"||selectBoardType()=="realtek") {
 		Blockly.Arduino.definitions_.telegram_Spreadsheet_send += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	} else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -3798,7 +3899,7 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 			'  String getAll="", getBody = "";\n'+
 			'  Serial.println("Connect to " + String(myDomain));\n';
 			
-	if (selectBoardType()=="LinkIt") {
+	if (selectBoardType()=="LinkIt"||selectBoardType()=="realtek") {
 		Blockly.Arduino.definitions_.Spreadsheet_insert += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	} else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -3917,7 +4018,7 @@ Blockly.Arduino['controls_spreadsheet_function'] = function(block){
 			'  String getAll="", getBody = "";\n'+
 			'  Serial.println("Connect to " + String(myDomain));\n';
 			
-	if (selectBoardType()=="LinkIt") {
+	if (selectBoardType()=="LinkIt"||selectBoardType()=="realtek") {
 		Blockly.Arduino.definitions_.Spreadsheet_insert += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	} else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -4028,7 +4129,7 @@ Blockly.Arduino['controls_spreadsheet_get'] = function(block){
 			'  String getAll="", getBody = "";\n'+
 			'  Serial.println("Connect to " + String(myDomain));\n';
 			
-	if (selectBoardType()=="LinkIt") {
+	if (selectBoardType()=="LinkIt"||selectBoardType()=="realtek") {
 		Blockly.Arduino.definitions_.Spreadsheet_get += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	} else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -4094,9 +4195,9 @@ Blockly.Arduino['controls_spreadsheet_getcell'] = function(block){
 			'    if (spreadsheetData!="") {\n'+
 			'    	JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040") {
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek") {
 		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(1024);\n';
-	} else if (selectBoardType()=="LinkIt") {
+	} else if ((selectBoardType()=="LinkIt")) {
 		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(352);\n';										
 	} else {
 		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(128);\n';										
@@ -4124,9 +4225,9 @@ Blockly.Arduino['controls_spreadsheet_getcell_number'] = function(block){
 			'    if (spreadsheetData!="") {\n'+
 			'    	JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek")
 		Blockly.Arduino.definitions_.Spreadsheet_getcell_number +='  DynamicJsonDocument doc(1024);\n';
-	else if (selectBoardType()=="LinkIt")
+	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_.Spreadsheet_getcell_number +='  DynamicJsonDocument doc(352);\n';
 	else
 		Blockly.Arduino.definitions_.Spreadsheet_getcell_number +='  DynamicJsonDocument doc(128);\n';
@@ -4169,7 +4270,7 @@ Blockly.Arduino['controls_spreadsheet_query'] = function(block){
 			'  String getAll="", getBody = "", getData = "";\n'+
 			'  Serial.println("Connect to " + String(myDomain));\n';
 			
-	if (selectBoardType()=="LinkIt") {
+	if (selectBoardType()=="LinkIt"||selectBoardType()=="realtek") {
 		Blockly.Arduino.definitions_.Spreadsheet_get += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	} else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -4287,9 +4388,9 @@ Blockly.Arduino['controls_spreadsheet_getcell_query'] = function(block){
 			'    if (spreadsheetQueryData!="") {\n'+
 			'    	JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek")
 		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(1024);\n';
-	else if (selectBoardType()=="LinkIt")
+	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(352);\n';
 	else
 		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(128);\n';
@@ -4316,9 +4417,9 @@ Blockly.Arduino['controls_spreadsheet_getcell_query_number'] = function(block){
 			'    if (spreadsheetQueryData!="") {\n'+
 			'    	JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek")
 		Blockly.Arduino.definitions_.Spreadsheet_getcell_query_number +='  DynamicJsonDocument doc(1024);\n';
-	else if (selectBoardType()=="LinkIt")
+	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_.Spreadsheet_getcell_query_number +='  DynamicJsonDocument doc(256);\n';
 	else
 		Blockly.Arduino.definitions_.Spreadsheet_getcell_query_number +='  DynamicJsonDocument doc(128);\n';
@@ -6116,9 +6217,9 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 			'  String getAll="", getBody = "";\n'+
 			'  JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek")
 		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(1024);\n';
-	else if (selectBoardType()=="LinkIt")
+	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(352);\n';
 	else
 		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(128);\n';
@@ -6374,9 +6475,9 @@ Blockly.Arduino['esp32cam_telegrambot'] = function(block) {
 			'  String getAll="", getBody = "";\n'+
 			'  JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek")
 		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(1024);\n';
-	else if (selectBoardType()=="LinkIt")
+	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(352);\n';
 	else
 		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(128);\n';
@@ -6514,7 +6615,7 @@ Blockly.Arduino['esp32_telegrambot_sendmessage_custom'] = function(block) {
 		'  if (keyboard!="") request += "&reply_markup="+keyboard;\n'+
 		'  Serial.println("Connect to " + String(myDomain));\n';
 		
-		if (selectBoardType()=="LinkIt") {
+		if (selectBoardType()=="LinkIt"||selectBoardType()=="realtek") {
 			Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';		
 		} else {
 			Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -6610,7 +6711,7 @@ Blockly.Arduino['esp32_telegrambot_sendlink_custom'] = function(block) {
 		'  if (keyboard!="") request += "&reply_markup="+keyboard;\n'+
 		'  Serial.println("Connect to " + String(myDomain));\n';
 		
-		if (selectBoardType()=="LinkIt") {
+		if (selectBoardType()=="LinkIt"||selectBoardType()=="realtek") {
 			Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';		
 		} else {
 			Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -6698,7 +6799,7 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'void opendataAirQuality(String Site, String Authorization) {\n'+
 			'  String request = "/api/v2/aqx_p_432?format=json&limit=5&api_key="+Authorization+"&filters=SiteName,EQ,"+urlencode(Site);\n';
 			
-	if (selectBoardType()=="LinkIt") {
+	if (selectBoardType()=="LinkIt"||selectBoardType()=="realtek") {
 		Blockly.Arduino.definitions_['opendataAirQuality'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	} else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -6744,9 +6845,9 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'    client_tcp.stop();\n'+
 			'    JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek")
 		Blockly.Arduino.definitions_['opendataAirQuality'] +='  DynamicJsonDocument doc(1024);\n';
-	else if (selectBoardType()=="LinkIt")
+	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_['opendataAirQuality'] +='  DynamicJsonDocument doc(352);\n';
 	else
 		Blockly.Arduino.definitions_['opendataAirQuality'] +='  DynamicJsonDocument doc(128);\n';
@@ -6830,7 +6931,7 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 	Blockly.Arduino.definitions_['opendataWeather'] = '\n' +
 			'void opendataWeather(String location, String Authorization) {\n';
 			
-	if (selectBoardType()=="LinkIt") {
+	if (selectBoardType()=="LinkIt"||selectBoardType()=="realtek") {
 		Blockly.Arduino.definitions_['opendataWeather'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	} else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -6886,9 +6987,9 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 			'    Weather2436[0] = location;\n'+
 			'    JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek")
 		Blockly.Arduino.definitions_['opendataWeather'] +='  DynamicJsonDocument doc(1024);\n';
-	else if (selectBoardType()=="LinkIt")
+	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_['opendataWeather'] +='  DynamicJsonDocument doc(352);\n';
 	else
 		Blockly.Arduino.definitions_['opendataWeather'] +='  DynamicJsonDocument doc(128);\n';
@@ -7007,7 +7108,7 @@ Blockly.Arduino['fu_ez_digitalwrite'] = function(block) {
   //console.log(selectBoardType());
   if (selectBoardType()=="esp32")
 	pin = pinRYG[0][dropdown_led]; 
-  else if (selectBoardType()=="LinkIt")
+  else if ((selectBoardType()=="LinkIt"))
 	pin = pinRYG[1][dropdown_led];
   else if (selectBoardType()=="sandeepmistry")
 	pin = pinRYG[2][dropdown_led];
@@ -7037,7 +7138,7 @@ Blockly.Arduino['fu_ez_digitalwrite_input'] = function(block) {
   var pin = pinRYG[0][dropdown_led]; 
   if (selectBoardType()=="esp32")
 	pin = pinRYG[0][dropdown_led]; 
-  else if (selectBoardType()=="LinkIt")
+  else if ((selectBoardType()=="LinkIt"))
 	pin = pinRYG[1][dropdown_led];
   else if (selectBoardType()=="sandeepmistry")
 	pin = pinRYG[2][dropdown_led];
@@ -7061,7 +7162,7 @@ Blockly.Arduino['fu_ez_digitalwrite_relay'] = function(block) {
   var pin = 25;
   if (selectBoardType()=="esp32")
 	pin = 25; 
-  else if (selectBoardType()=="LinkIt")
+  else if ((selectBoardType()=="LinkIt"))
 	pin = 5;
   else if (selectBoardType()=="sandeepmistry")
 	pin = 9; 
@@ -7086,7 +7187,7 @@ Blockly.Arduino['fu_ez_digitalwrite_input_relay'] = function(block) {
   var pin = 25;
   if (selectBoardType()=="esp32")
 	pin = 25; 
-  else if (selectBoardType()=="LinkIt")
+  else if ((selectBoardType()=="LinkIt"))
 	pin = 5;
   else if (selectBoardType()=="sandeepmistry")
 	pin = 9; 
@@ -7116,7 +7217,7 @@ Blockly.Arduino['fu_ez_analogwrite_input'] = function(block) {
 	  var pin = pinRYG[0][dropdown_led]; 
 	  if (selectBoardType()=="esp32")
 		pin = pinRYG[0][dropdown_led]; 
-	  else if (selectBoardType()=="LinkIt")
+	  else if ((selectBoardType()=="LinkIt"))
 		pin = pinRYG[1][dropdown_led];
 	  else if (selectBoardType()=="sandeepmistry")
 		pin = pinRYG[2][dropdown_led];
@@ -7146,7 +7247,7 @@ Blockly.Arduino['fu_ez_analogwrite_input_esp'] = function(block) {
 	  var pin = pinRYG[0][dropdown_led]; 
 	  if (selectBoardType()=="esp32")
 		pin = pinRYG[0][dropdown_led]; 
-	  else if (selectBoardType()=="LinkIt")
+	  else if ((selectBoardType()=="LinkIt"))
 		pin = pinRYG[1][dropdown_led];
 	  else if (selectBoardType()=="sandeepmistry")
 		pin = pinRYG[2][dropdown_led];
@@ -7177,7 +7278,7 @@ Blockly.Arduino['fu_ez_digitalread'] = function(block) {
   var pin = pinButton[0][dropdown_button];
   if (selectBoardType()=="esp32")
 	pin = pinButton[0][dropdown_button];
-  else if (selectBoardType()=="LinkIt")
+  else if ((selectBoardType()=="LinkIt"))
 	pin = pinButton[1][dropdown_button];
   else if (selectBoardType()=="sandeepmistry")
 	pin = pinButton[2][dropdown_button];
@@ -7205,7 +7306,7 @@ Blockly.Arduino['fu_ez_digitalread_button'] = function(block) {
 	pinA = pinButton[0][0];
 	pinB = pinButton[0][1];	
   }
-  else if (selectBoardType()=="LinkIt") {
+  else if ((selectBoardType()=="LinkIt")) {
 	pinA = pinButton[1][0];
 	pinB = pinButton[1][1];
   }
@@ -7267,7 +7368,7 @@ Blockly.Arduino['fu_ez_digitalread_button_statement'] = function(block) {
 	pinA = pinButton[0][0];
 	pinB = pinButton[0][1];	
   }
-  else if (selectBoardType()=="LinkIt") {
+  else if ((selectBoardType()=="LinkIt")) {
 	pinA = pinButton[1][0];
 	pinB = pinButton[1][1];
   }
@@ -7310,7 +7411,7 @@ Blockly.Arduino['fu_ez_analogread_potentiometer'] = function(block) {
   var pin = 34; 
   if (selectBoardType()=="esp32")
 	pin = 34; 
-  else if (selectBoardType()=="LinkIt")
+  else if ((selectBoardType()=="LinkIt"))
 	pin = 16;
   else if (selectBoardType()=="sandeepmistry")
 	pin = 2;
@@ -7333,7 +7434,7 @@ Blockly.Arduino['fu_ez_analogread_photoresistor'] = function(block) {
   var pin = 39;
   if (selectBoardType()=="esp32")
 	pin = 39; 
-  else if (selectBoardType()=="LinkIt")
+  else if ((selectBoardType()=="LinkIt"))
 	pin = 15;
   else if (selectBoardType()=="sandeepmistry")
 	pin = 1; 
@@ -7359,7 +7460,7 @@ Blockly.Arduino['fu_ez_buzzer_tone'] = function(block) {
       var pin = 14;	  
 	  if (selectBoardType()=="esp32")
 		pin = 14; 
-	  else if (selectBoardType()=="LinkIt")
+	  else if ((selectBoardType()=="LinkIt"))
 		pin = 14;
 	  else if (selectBoardType()=="sandeepmistry")
 		pin = 0; 
@@ -7387,7 +7488,7 @@ Blockly.Arduino['fu_ez_buzzer_tone_duration'] = function(block) {
 	  var pin = 14;
 	  if (selectBoardType()=="esp32")
 		pin = 14; 
-	  else if (selectBoardType()=="LinkIt")
+	  else if ((selectBoardType()=="LinkIt"))
 		pin = 14;
 	  else if (selectBoardType()=="sandeepmistry")
 		pin = 0; 
@@ -7416,7 +7517,7 @@ Blockly.Arduino['fu_ez_buzzer_tone_duration_array'] = function(block) {
 	  var pin = 14; 
 	  if (selectBoardType()=="esp32")
 		pin = 14; 
-	  else if (selectBoardType()=="LinkIt")
+	  else if ((selectBoardType()=="LinkIt"))
 		pin = 14;
 	  else if (selectBoardType()=="sandeepmistry")
 		pin = 0; 
@@ -7479,7 +7580,7 @@ Blockly.Arduino['fu_ez_buzzer_tone_duration_esp'] = function(block) {
 	  var pin = 14; 
 	  if (selectBoardType()=="esp32")
 		pin = 14; 
-	  else if (selectBoardType()=="LinkIt")
+	  else if ((selectBoardType()=="LinkIt"))
 		pin = 14;
 	  else if (selectBoardType()=="sandeepmistry")
 		pin = 0; 
@@ -7516,7 +7617,7 @@ Blockly.Arduino['fu_ez_buzzer_tone_duration_esp_array'] = function(block) {
 	  var pin = 14; 
 	  if (selectBoardType()=="esp32")
 		pin = 14; 
-	  else if (selectBoardType()=="LinkIt")
+	  else if ((selectBoardType()=="LinkIt"))
 		pin = 14;
 	  else if (selectBoardType()=="sandeepmistry")
 		pin = 0; 
@@ -7582,7 +7683,7 @@ Blockly.Arduino['fu_ez_buzzer_notone'] = function(block) {
 	  var pin = 14;
 	  if (selectBoardType()=="esp32")
 		pin = 14; 
-	  else if (selectBoardType()=="LinkIt")
+	  else if ((selectBoardType()=="LinkIt"))
 		pin = 14;
 	  else if (selectBoardType()=="sandeepmistry")
 		pin = 0; 
@@ -7626,7 +7727,7 @@ Blockly.Arduino['fu_ez_dht11'] = function(block) {
   var pin = 15;
   if (selectBoardType()=="esp32")
 	pin = 15; 
-  else if (selectBoardType()=="LinkIt")
+  else if ((selectBoardType()=="LinkIt"))
 	pin = 10;
   else if (selectBoardType()=="sandeepmistry")
 	pin = 16; 
@@ -7661,7 +7762,7 @@ Blockly.Arduino['fu_ez_pixel_rgb'] = function(block) {
   var pin = 26;
   if (selectBoardType()=="esp32")
 	pin = 26; 
-  else if (selectBoardType()=="LinkIt")
+  else if ((selectBoardType()=="LinkIt"))
 	pin = 4;
   else if (selectBoardType()=="sandeepmistry")
 	pin = 12;
@@ -7694,7 +7795,7 @@ Blockly.Arduino['fu_ez_pixel_clear'] = function(block) {
   var pin = 26;
   if (selectBoardType()=="esp32")
 	pin = 26; 
-  else if (selectBoardType()=="LinkIt")
+  else if ((selectBoardType()=="LinkIt"))
 	pin = 4;
   else if (selectBoardType()=="sandeepmistry")
 	pin = 12; 
@@ -7742,7 +7843,7 @@ Blockly.Arduino['fu_ez_pixel_picker'] = function(block) {
   var pin = 26;
   if (selectBoardType()=="esp32")
 	pin = 26; 
-  else if (selectBoardType()=="LinkIt")
+  else if ((selectBoardType()=="LinkIt"))
 	pin = 4;
   else if (selectBoardType()=="sandeepmistry")
 	pin = 12; 
@@ -7781,7 +7882,7 @@ Blockly.Arduino['fu_ez_pixel_brightness'] = function(block){
 	var pin = 26;
 	if (selectBoardType()=="esp32")
 		pin = 26; 
-	else if (selectBoardType()=="LinkIt")
+	else if ((selectBoardType()=="LinkIt"))
 		pin = 4;
 	else if (selectBoardType()=="sandeepmistry")
 		pin = 12; 
@@ -8719,7 +8820,7 @@ Blockly.Arduino['tcp_https_esp32'] = function(block) {
 											'  String getAll="", getBody="";\n';
 											
 											
-	if (selectBoardType()=="LinkIt") {
+	if (selectBoardType()=="LinkIt"||selectBoardType()=="realtek") {
 		Blockly.Arduino.definitions_['tcp_https_esp32'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	} else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -9005,7 +9106,7 @@ Blockly.Arduino['linenotify_all'] = function(block) {
 											'  request.replace("%20imageFullsize","&imageFullsize");\n'+
 											'  request.replace("%20imageThumbnail","&imageThumbnail");\n';
 											
-	if (selectBoardType()=="LinkIt") {
+	if (selectBoardType()=="LinkIt"||selectBoardType()=="realtek") {
 		Blockly.Arduino.definitions_['linenotify'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	} else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -9083,7 +9184,7 @@ Blockly.Arduino['linebot_all'] = function(block) {
 											'  Serial.println(request);\n'+
 											'  String getAll="", getBody="";\n';
 											
-	if (selectBoardType()=="LinkIt") {
+	if (selectBoardType()=="LinkIt"||selectBoardType()=="realtek") {
 		Blockly.Arduino.definitions_['linebot'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	} else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -9200,8 +9301,12 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
   ssid = ssid.replace(/"/g,"");
   pass = pass.replace(/"/g,"");
   
-  if (selectBoardType()=="LinkIt") {
-	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <LWiFi.h>\n\n"
+  if (selectBoardType()=="LinkIt"||selectBoardType()=="realtek") {
+	if (selectBoardType()=="LinkIt")
+		Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <LWiFi.h>\n\n";
+	else if (selectBoardType()=="realtek")
+		Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>\n\n";
+	Blockly.Arduino.definitions_.define_linkit_wifi_include+=''
 	+'static const char rootCA[] = "-----BEGIN CERTIFICATE-----\\r\\n"\n'
 	+'"MIIGYjCCBUqgAwIBAgIQCKNjEl2C+05Z7F44E4EjmzANBgkqhkiG9w0BAQsFADBG\\r\\n"\n'
 	+'"MQswCQYDVQQGEwJVUzEPMA0GA1UEChMGQW1hem9uMRUwEwYDVQQLEwxTZXJ2ZXIg\\r\\n"\n'
@@ -9346,7 +9451,7 @@ Blockly.Arduino['thingspeak_update_noreturn'] = function (block) {
 											'String tcp_https(String domain,String request,int waittime) {\n'+
 											'  String getAll="", getBody="";\n';
 											
-	if (selectBoardType()=="LinkIt") {
+	if (selectBoardType()=="LinkIt"||selectBoardType()=="realtek") {
 		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	} else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -9417,7 +9522,7 @@ Blockly.Arduino['thingspeak_update'] = function (block) {
 											'  String getAll="", getBody="";\n';
 											
 											'  WiFiClientSecure client_tcp;\n';
-	if (selectBoardType()=="LinkIt") {
+	if (selectBoardType()=="LinkIt"||selectBoardType()=="realtek") {
 		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	} else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -9487,7 +9592,7 @@ Blockly.Arduino['thingspeak_read1'] = function (block) {
 											'String tcp_https(String domain,String request,int waittime) {\n'+
 											'  String getAll="", getBody="";\n';
 											
-	if (selectBoardType()=="LinkIt") {
+	if (selectBoardType()=="LinkIt"||selectBoardType()=="realtek") {
 		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	} else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -9540,7 +9645,7 @@ Blockly.Arduino['thingspeak_read2'] = function (block) {
 											'String tcp_https(String domain,String request,int waittime) {\n'+
 											'  String getAll="", getBody="";\n';
 											
-	if (selectBoardType()=="LinkIt") {
+	if (selectBoardType()=="LinkIt"||selectBoardType()=="realtek") {
 		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	} else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -9595,7 +9700,7 @@ Blockly.Arduino['thingspeak_read3'] = function (block) {
 											'  String getAll="", getBody="";\n';
 											'  WiFiClientSecure client_tcp;\n';
 											
-	if (selectBoardType()=="LinkIt") {
+	if (selectBoardType()=="LinkIt"||selectBoardType()=="realtek") {
 		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	} else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -17941,7 +18046,7 @@ Blockly.Arduino['faceapirecognize_recognitied'] = function(block) {
 function selectBoardType() {
 	var selectBoard = document.getElementById('board-selector');
 	if (selectBoard) {
-		var state = [0,0,0,0,0,0,0,0,0];
+		var state = [0,0,0,0,0,0,0,0,0,0];
 		for (var i=0;i<selectBoard.options.length;i++) {
 			if (selectBoard.options[i].value.indexOf("LinkIt")!=-1)
 				state[0]=1;
@@ -17960,7 +18065,10 @@ function selectBoardType() {
 			if (selectBoard.options[i].value.indexOf("Pi Pico W")!=-1)
 				state[7]=1;	
 			if (selectBoard.options[i].value.indexOf("Digispark")!=-1)
-				state[8]=1;			
+				state[8]=1;	
+			if (selectBoard.options[i].value.indexOf("realtek")!=-1)
+				state[9]=1;	
+			
 		}
 		if (state[0]==0)
 			selectBoard.options.add(new Option("LinkIt 7697","LinkIt:linkit_rtos:linkit_7697"));
@@ -17980,6 +18088,8 @@ function selectBoardType() {
 			selectBoard.options.add(new Option("Raspberry Pi Pico W","rp2040:rp2040:rpipicow"));	
 		if (state[8]==0) 
 			selectBoard.options.add(new Option("Digispark (Default - 16.5mhz)","digistump:avr:digispark-tiny"));
+		if (state[9]==0) 
+			selectBoard.options.add(new Option("AMB82-MINI","realtek:AmebaPro2:Ameba_AMB82-MINI"));
 		
 		if (selectBoard.value.split(":")[2]=="bpi-bit")
 			return "BPI-BIT";

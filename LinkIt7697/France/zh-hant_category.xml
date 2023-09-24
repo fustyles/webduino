@@ -110,4 +110,5 @@
 <category><name>Keyboard</name><replace>網頁鍵盤</replace></category>
 <category><name>PS2</name><replace>PS2手把</replace></category>
 <category><name>Emakefun</name><replace>Emakefun擴展板</replace></category>
+<category><name>amb82_mini</name><replace>AMB82_MINI</replace></category>
 </xml>

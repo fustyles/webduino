@@ -29,6 +29,9 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["AMB82_MINI_INITIAL"] = "AMB82-MINI";
+Blockly.Msg["AMB82_MINI_LINENOTIFY"] = "截圖上傳Line通知";
+
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR"] = "Emakefun 步進馬達";
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR_INITIAL"] = "初始化";
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR_STEPS"] = "一圈步數";
@@ -2315,7 +2318,8 @@ Blockly.Msg["MAX6675_UNIT"] = "單位";
 Blockly.Msg["DS18B20_INITIAL"] = "DS18B20水溫感測器 初始化";
 Blockly.Msg["DS18B20_PIN"] = "腳位";
 Blockly.Msg["DS18B20_INDEX"] = "編號(通道)";
-Blockly.Msg["DS18B20_GET"] = "DS18B20水溫感測器 取得溫度值";
+Blockly.Msg["DS18B20_REQUEST"] = "DS18B20水溫感測器 取得資料";
+Blockly.Msg["DS18B20_GET"] = "DS18B20水溫感測器 溫度值";
 Blockly.Msg["DS18B20_UNIT"] = "單位";
 
 Blockly.Msg["PMS7003M_READ"] = "PMS7003M 讀取到資料後執行";

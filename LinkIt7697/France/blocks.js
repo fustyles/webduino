@@ -1,3 +1,69 @@
+Blockly.Blocks['amb82_mini_linenotify'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_INITIAL"])
+        .appendField(Blockly.Msg["AMB82_MINI_LINENOTIFY"]);	
+    this.appendValueInput("linetoken")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_CAM_LINETOKEN_SHOW);
+    this.appendValueInput("linemessage")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_CAM_LINEMESSAGE_SHOW);			
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_initial'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_INITIAL"]);
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			["2K (2560×1440)","VIDEO_2K"],
+			["5M (2448×2050)","VIDEO_5M"], 
+			["3M (2048×1536)","VIDEO_3M"],
+			["FHD (1920×1080)","VIDEO_FHD"],
+			["HD (1280×720)","VIDEO_HD"],
+			["D1 (704×576)","VIDEO_D1"],
+			["VGA (640×480)","VIDEO_VGA"],
+			["WVGA (640×340)","VIDEO_WVGA"],
+			["CIF (352×288)","VIDEO_CIF"],
+			["QCIF (176×144)","VIDEO_QCIF"],
+			["CUSTOM","VIDEO_CUSTOM"]
+		], this.validate), "framesize");
+	this.appendValueInput("width")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["WIDTH"]);
+	this.appendValueInput("height")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["HIGHT"]);		  
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_15"]);
+    this.getInput("width").setVisible(false);
+    this.getInput("height").setVisible(false);	
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="VIDEO_CUSTOM") {
+			block.getInput("width").setVisible(true);
+			block.getInput("height").setVisible(true);
+		} else {
+			block.getInput("width").setVisible(false);
+			block.getInput("height").setVisible(false);		
+		}
+  }
+};
+
 Blockly.Blocks.emakefun_steppermotor_initial={
 	init:function(){	
 	  this.appendDummyInput()
@@ -1586,6 +1652,18 @@ Blockly.Blocks.DS18B20_initial={
 	  this.setColour(Blockly.Msg["HUE_22"]);  
 	}
 };
+
+Blockly.Blocks.DS18B20_request={
+	init:function(){
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["DS18B20_REQUEST"]);	  
+	  this.setInputsInline(!0);
+	  this.setPreviousStatement(!0,null);
+	  this.setNextStatement(!0,null);
+	  this.setColour(Blockly.Msg["HUE_22"]);  
+	}
+};
+
 Blockly.Blocks.DS18B20_get={
 	init:function(){
 	  this.appendDummyInput()

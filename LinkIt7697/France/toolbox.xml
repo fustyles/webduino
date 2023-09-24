@@ -1928,7 +1928,7 @@
 			</block>
 			<block type="servermodule_parameter_stream_url">		
 			</block>			  
-		</category>	
+		</category>		
 		
 		<category id="france26" name="pixelbit">		
 			  <block type="esp32_pixelbit_stream_myfirmata">
@@ -2257,7 +2257,34 @@
 				</block>
 			  <block type="servermodule_parameter_stream_url">		
 			  </block>				  
-		</category>				  
+		</category>
+		<category id="france21" name="amb82_mini">
+			  <block type="amb82_mini_initial">
+				<field name="framesize">VIDEO_VGA</field>
+				<value name="width">
+				  <block type="math_number">
+					<field name="NUM">640</field>
+				  </block>
+				</value> 
+				<value name="height">
+				  <block type="math_number">
+					<field name="NUM">480</field>
+				  </block>
+				</value> 				
+			  </block>
+			  <block type="amb82_mini_linenotify">		
+					<value name="linetoken">
+					  <block type="text">
+						<field name="TEXT"></field>
+					  </block>
+					</value>
+					<value name="linemessage">
+					  <block type="text">
+						<field name="TEXT"></field>
+					  </block>
+					</value>					
+			  </block>				  
+		</category>
 		<category id="france2˙" name="holisticreconginition">
 			  <block type="holistic_esp32cam">
 			  </block>
@@ -10305,6 +10332,7 @@
 				</block>
 			</value>				
 		</block>
+		<block type="DS18B20_request"></block>		
 		<block type="DS18B20_get"></block>
 	</category>	
 	<category id="france12" name="PN532">
