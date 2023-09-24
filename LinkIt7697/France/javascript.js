@@ -1,9 +1,124 @@
+Blockly.Arduino['amb82_mini_googledrive'] = function(block) {
+    var scriptid = Blockly.Arduino.valueToCode(block, 'scriptid', Blockly.Arduino.ORDER_ATOMIC);
+    var linetoken = Blockly.Arduino.valueToCode(block, 'linetoken', Blockly.Arduino.ORDER_ATOMIC);
+    var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC);
+    var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
+	
+	Blockly.Arduino.definitions_['WiFiClientSecure'] ='WiFiSSLClient client_tcp;\n';
+	Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
+
+	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive = '\n'+
+			'String SendStillToGoogleDrive(String myScript, String myFoldername, String myFilename, String myImage, String myLineNotifyToken) {\n'+
+			'  const char* myDomain = "script.google.com";\n'+
+			'  String getAll="", getBody = "";\n'+
+			'  \n'+
+			'  Serial.println("Connect to " + String(myDomain));\n'+
+			'  if (client_tcp.connect(myDomain, 443)) {\n'+
+			'    Serial.println("Connection successful");\n'+
+			'    Camera.getImage(0, &img_addr, &img_len);\n'+
+			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
+            '    size_t fbLen = img_len;\n'+			
+			'    \n'+
+			'    char *input = (char *)fbBuf;\n'+
+			'    char output[base64_enc_len(3)];\n'+
+ 			'    String imageFile = "data:image/jpeg;base64,";\n'+
+			'    for (int i=0;i<fbLen;i++) {\n'+
+			'      base64_encode(output, (input++), 3);\n'+
+			'      if (i%3==0) imageFile += urlencode(String(output));\n'+
+			'    }\n'+
+			'    String Data = "myToken="+myLineNotifyToken+myFoldername+myFilename+myImage;\n'+
+			'    \n'+
+			'    client_tcp.println("POST " + myScript + " HTTP/1.1");\n'+
+			'    client_tcp.println("Host: " + String(myDomain));\n'+
+			'    client_tcp.println("Content-Length: " + String(Data.length()+imageFile.length()));\n'+
+			'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
+			'    client_tcp.println("Connection: close");\n'+
+			'    client_tcp.println();\n'+
+			'    \n'+
+			'    client_tcp.print(Data);\n'+
+			'    int Index;\n'+
+			'    for (Index = 0; Index < imageFile.length(); Index = Index+1024) {\n'+
+			'      client_tcp.print(imageFile.substring(Index, Index+1024));\n'+
+			'    }\n'+
+			'    \n'+
+			'    int waitTime = 10000;\n'+
+			'    long startTime = millis();\n'+
+			'    boolean state = false;\n'+
+			'    \n'+
+			'    while ((startTime + waitTime) > millis())\n'+
+			'    {\n'+
+			'      Serial.print(".");\n'+
+			'      delay(100);\n'+
+			'      while (client_tcp.available())\n'+
+			'      {\n'+
+			'          char c = client_tcp.read();\n'+
+			'          if (state==true) getBody += String(c);\n'+        
+			'          if (c == \'\\n\')\n'+
+			'          {\n'+
+			'            if (getAll.length()==0) state=true;\n'+
+			'            getAll = "";\n'+
+			'          }\n'+
+			'          else if (c != \'\\r\')\n'+
+			'            getAll += String(c);\n'+
+			'          startTime = millis();\n'+
+			'       }\n'+
+			'       if (getBody.length()>0) break;\n'+
+			'    }\n'+
+			'    client_tcp.stop();\n'+
+			'    Serial.println(getBody);\n'+
+			'  }\n'+
+			'  else {\n'+
+			'    getBody="Connected to " + String(myDomain) + " failed.";\n'+
+			'    Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
+			'  }\n'+
+			'  \n'+
+			'  return getBody;\n'+
+			'}\n';
+
+	Blockly.Arduino.definitions_.urlencode = '\n'+
+			'String urlencode(String str)\n'+
+			'{\n'+
+			'  String encodedString="";\n'+
+			'  char c;\n'+
+			'  char code0;\n'+
+			'  char code1;\n'+
+			'  char code2;\n'+
+			'  for (int i =0; i < str.length(); i++){\n'+
+			'    c=str.charAt(i);\n'+
+			'    if (c == \' \'){\n'+
+			'      encodedString+= \'+\';\n'+
+			'    } else if (isalnum(c)){\n'+
+			'      encodedString+=c;\n'+
+			'    } else{\n'+
+			'      code1=(c & 0xf)+\'0\';\n'+
+			'      if ((c & 0xf) >9){\n'+
+			'          code1=(c & 0xf) - 10 + \'A\';\n'+
+			'      }\n'+
+			'      c=(c>>4)&0xf;\n'+
+			'      code0=c+\'0\';\n'+
+			'      if (c > 9){\n'+
+			'          code0=c - 10 + \'A\';\n'+
+			'      }\n'+
+			'      code2=\'\\0\';\n'+
+			'      encodedString+=\'%\';\n'+
+			'      encodedString+=code0;\n'+
+			'      encodedString+=code1;\n'+
+			'      \/\/encodedString+=code2;\n'+
+			'    }\n'+
+			'    yield();\n'+
+			'  }\n'+
+			'  return encodedString;\n'+
+			'}\n';
+			
+  var code = 'SendStillToGoogleDrive("/macros/s/'+scriptid.replace(/"/g,'')+'/exec","&myFoldername='+foldername.replace(/"/g,'')+'","&myFilename='+filename.replace(/"/g,'')+'","&myFile=",'+linetoken+');\n';
+  return code;			
+}
+
 Blockly.Arduino['amb82_mini_linenotify'] = function(block) {
     var linetoken = Blockly.Arduino.valueToCode(block, 'linetoken', Blockly.Arduino.ORDER_ATOMIC);
     var linemessage = Blockly.Arduino.valueToCode(block, 'linemessage', Blockly.Arduino.ORDER_ATOMIC);
 	
-	Blockly.Arduino.definitions_['WiFiClientSecure'] ='';
-	Blockly.Arduino.definitions_['openai_chat_request'] = 'WiFiSSLClient client_tcp;\n';
+	Blockly.Arduino.definitions_['WiFiClientSecure'] ='WiFiSSLClient client_tcp;\n';
 	
 	Blockly.Arduino.definitions_.SendCapturedImageToLineNotify = '\n'+
 			'String SendStillToLineNotify(String token, String message) {\n';
@@ -64,8 +179,8 @@ Blockly.Arduino['amb82_mini_linenotify'] = function(block) {
 			'       }\n'+
 			'       if (Feedback.length()>0) break;\n'+
 			'    }\n'+
-			'    Serial.println();\n'+
 			'    client_tcp.stop();\n'+
+			'    Serial.println(Feedback);\n'+			
 			'    return Feedback;\n'+
 			'  }\n'+
 			'  else {\n'+

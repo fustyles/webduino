@@ -33,6 +33,7 @@ Blockly.Msg["AMB82_MINI"] = "AMB82-MINI";
 Blockly.Msg["AMB82_MINI_INITIAL"] = "Initial";
 Blockly.Msg["AMB82_MINI_LINENOTIFY"] = "Get still and send to Line";
 Blockly.Msg["AMB82_MINI_CUSTOM"] = "Custom";
+Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"] = "Upload Still to Google drive";
 
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR"] = "Emakefun Stepper motor";
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR_INITIAL"] = "Initial";

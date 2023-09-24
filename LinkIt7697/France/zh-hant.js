@@ -33,6 +33,7 @@ Blockly.Msg["AMB82_MINI"] = "AMB82-MINI";
 Blockly.Msg["AMB82_MINI_INITIAL"] = "初始化";
 Blockly.Msg["AMB82_MINI_LINENOTIFY"] = "截圖上傳Line通知";
 Blockly.Msg["AMB82_MINI_CUSTOM"] = "自訂";
+Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"] = "截圖上傳Google雲端硬碟";
 
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR"] = "Emakefun 步進馬達";
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR_INITIAL"] = "初始化";
@@ -943,7 +944,7 @@ Blockly.Msg["FU_SERIAL_PRINT_HEX"] = "十六進制";
 Blockly.Msg["ESP32_CAM_GOOGLEDRIVE_SHOW"] = "ESP32-CAM 截圖上傳Google雲端硬碟";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_SHOW"] = "ESP32-CAM 截圖上傳Google試算表";
 Blockly.Msg["ESP32_CAM_SCRIPTID_SHOW"] = "Apps Script ID";	
-Blockly.Msg["ESP32_CAM_LINETOKEN_SHOW"] = "權杖";
+Blockly.Msg["ESP32_CAM_LINETOKEN_SHOW"] = "Line權杖";
 Blockly.Msg["ESP32_CAM_FOLDERNAME_SHOW"] = "資料夾名";	
 Blockly.Msg["ESP32_CAM_FILENAME_SHOW"] = "儲存檔案名";
 

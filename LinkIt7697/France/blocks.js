@@ -1,3 +1,32 @@
+Blockly.Blocks['amb82_mini_googledrive'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"]);
+    this.appendValueInput("scriptid")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_CAM_SCRIPTID_SHOW);		
+    this.appendValueInput("linetoken")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_CAM_LINETOKEN_SHOW);	
+    this.appendValueInput("foldername")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_CAM_FOLDERNAME_SHOW);		
+    this.appendValueInput("filename")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_CAM_FILENAME_SHOW);			
+	this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(Blockly.Msg["HUE_15"]);
+	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToGoogleDriveAndLinenotify_doPost.gs");
+  }
+};
+
 Blockly.Blocks['amb82_mini_linenotify'] = {
   init: function() {
     this.appendDummyInput()
