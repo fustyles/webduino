@@ -3707,9 +3707,9 @@ Blockly.Arduino.definitions_.telegrambot_getUpdates +='  String result;\n'+
 			'  String text;\n';
 			
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+		Blockly.Arduino.definitions_.telegrambot_getUpdates += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="realtek")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
+		Blockly.Arduino.definitions_.telegrambot_getUpdates += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 		Blockly.Arduino.definitions_.telegrambot_getUpdates += '  WiFiClientSecure client_tcp;\n';
@@ -3783,9 +3783,9 @@ Blockly.Arduino['esp32_telegrambot_spreadsheet_sendcell'] = function(block){
 			'  Serial.println("Connect to " + String(myDomain));\n';
 			
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+		Blockly.Arduino.definitions_.telegram_Spreadsheet_send += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="realtek")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
+		Blockly.Arduino.definitions_.telegram_Spreadsheet_send += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 		Blockly.Arduino.definitions_.telegram_Spreadsheet_send += '  WiFiClientSecure client_tcp;\n';
@@ -3907,9 +3907,9 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 			'  Serial.println("Connect to " + String(myDomain));\n';
 			
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+		Blockly.Arduino.definitions_.Spreadsheet_insert += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="realtek")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
+		Blockly.Arduino.definitions_.Spreadsheet_insert += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 		Blockly.Arduino.definitions_.Spreadsheet_insert += '  WiFiClientSecure client_tcp;\n';
@@ -4028,9 +4028,9 @@ Blockly.Arduino['controls_spreadsheet_function'] = function(block){
 			'  Serial.println("Connect to " + String(myDomain));\n';
 			
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+		Blockly.Arduino.definitions_.Spreadsheet_insert += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="realtek")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
+		Blockly.Arduino.definitions_.Spreadsheet_insert += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 		Blockly.Arduino.definitions_.Spreadsheet_insert += '  WiFiClientSecure client_tcp;\n';
@@ -4141,9 +4141,9 @@ Blockly.Arduino['controls_spreadsheet_get'] = function(block){
 			'  Serial.println("Connect to " + String(myDomain));\n';
 			
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+		Blockly.Arduino.definitions_.Spreadsheet_get += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="realtek")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
+		Blockly.Arduino.definitions_.Spreadsheet_get += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 		Blockly.Arduino.definitions_.Spreadsheet_get += '  WiFiClientSecure client_tcp;\n';
@@ -4284,9 +4284,9 @@ Blockly.Arduino['controls_spreadsheet_query'] = function(block){
 			'  Serial.println("Connect to " + String(myDomain));\n';
 			
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+		Blockly.Arduino.definitions_.Spreadsheet_get += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="realtek")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
+		Blockly.Arduino.definitions_.Spreadsheet_get += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 		Blockly.Arduino.definitions_.Spreadsheet_get += '  WiFiClientSecure client_tcp;\n';
@@ -6631,9 +6631,9 @@ Blockly.Arduino['esp32_telegrambot_sendmessage_custom'] = function(block) {
 		'  Serial.println("Connect to " + String(myDomain));\n';
 		
 		if (selectBoardType()=="LinkIt")
-			Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+			Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 		else if (selectBoardType()=="realtek")
-			Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
+			Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  WiFiSSLClient client_tcp;\n';
 		else {
 			Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 			Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  WiFiClientSecure client_tcp;\n';
@@ -6729,9 +6729,9 @@ Blockly.Arduino['esp32_telegrambot_sendlink_custom'] = function(block) {
 		'  Serial.println("Connect to " + String(myDomain));\n';
 		
 		if (selectBoardType()=="LinkIt")
-			Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+			Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 		else if (selectBoardType()=="realtek")
-			Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
+			Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  WiFiSSLClient client_tcp;\n';
 		else {
 			Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 			Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  WiFiClientSecure client_tcp;\n';
@@ -6819,9 +6819,9 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'  String request = "/api/v2/aqx_p_432?format=json&limit=5&api_key="+Authorization+"&filters=SiteName,EQ,"+urlencode(Site);\n';
 			
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+		Blockly.Arduino.definitions_['opendataAirQuality'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="realtek")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
+		Blockly.Arduino.definitions_['opendataAirQuality'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 		Blockly.Arduino.definitions_['opendataAirQuality'] += '  WiFiClientSecure client_tcp;\n';
@@ -6953,9 +6953,9 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 			'void opendataWeather(String location, String Authorization) {\n';
 			
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+		Blockly.Arduino.definitions_['opendataWeather'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="realtek")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
+		Blockly.Arduino.definitions_['opendataWeather'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 		Blockly.Arduino.definitions_['opendataWeather'] += '  WiFiClientSecure client_tcp;\n';
@@ -8844,9 +8844,9 @@ Blockly.Arduino['tcp_https_esp32'] = function(block) {
 											
 											
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+		Blockly.Arduino.definitions_['tcp_https_esp32'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="realtek")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
+		Blockly.Arduino.definitions_['tcp_https_esp32'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 		Blockly.Arduino.definitions_['tcp_https_esp32'] += '  WiFiClientSecure client_tcp;\n';
@@ -9132,9 +9132,9 @@ Blockly.Arduino['linenotify_all'] = function(block) {
 											'  request.replace("%20imageThumbnail","&imageThumbnail");\n';
 											
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+		Blockly.Arduino.definitions_['linenotify'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="realtek")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
+		Blockly.Arduino.definitions_['linenotify'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 		Blockly.Arduino.definitions_['linenotify'] += '  WiFiClientSecure client_tcp;\n';
@@ -9212,9 +9212,9 @@ Blockly.Arduino['linebot_all'] = function(block) {
 											'  String getAll="", getBody="";\n';
 											
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+		Blockly.Arduino.definitions_['linebot'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="realtek")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
+		Blockly.Arduino.definitions_['linebot'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 		Blockly.Arduino.definitions_['linebot'] += '  WiFiClientSecure client_tcp;\n';
@@ -9479,9 +9479,9 @@ Blockly.Arduino['thingspeak_update_noreturn'] = function (block) {
 											'  String getAll="", getBody="";\n';
 											
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="realtek")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
+		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiClientSecure client_tcp;\n';
@@ -9552,9 +9552,9 @@ Blockly.Arduino['thingspeak_update'] = function (block) {
 											
 											'  WiFiClientSecure client_tcp;\n';
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="realtek")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
+		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiClientSecure client_tcp;\n';
@@ -9624,9 +9624,9 @@ Blockly.Arduino['thingspeak_read1'] = function (block) {
 											'  String getAll="", getBody="";\n';
 											
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="realtek")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
+		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiClientSecure client_tcp;\n';
@@ -9679,9 +9679,9 @@ Blockly.Arduino['thingspeak_read2'] = function (block) {
 											'  String getAll="", getBody="";\n';
 											
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="realtek")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
+		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiClientSecure client_tcp;\n';
@@ -9736,9 +9736,9 @@ Blockly.Arduino['thingspeak_read3'] = function (block) {
 											'  WiFiClientSecure client_tcp;\n';
 											
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="realtek")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
+		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
 		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiClientSecure client_tcp;\n';
@@ -9821,7 +9821,7 @@ Blockly.Arduino['thingspeak_field'] = function(block) {
  											'      fr = e+1;\n'+
  											'  }\n';
 											
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek")
 		Blockly.Arduino.definitions_['ThingspeakJson_field'] +='  DynamicJsonDocument doc(1024);\n';
 	else if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['ThingspeakJson_field'] +='  DynamicJsonDocument doc(352);\n';
