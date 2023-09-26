@@ -11,8 +11,7 @@ window.onload = function () {
 	var result = document.getElementById('gamediv_cocossd'); 
 	var Model;
 
-	ShowImage.src = document.location.origin+':81/?stream';
-	ShowImage.src = ShowImage.src.replace(":81:81",":81");
+	ShowImage.src = window.location.hostname+':81/?stream';
 	ShowImage.style.visibility = "visible";
 	
 	cocoSsd.load().then(cocoSsd_Model => {
