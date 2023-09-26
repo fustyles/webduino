@@ -9,8 +9,7 @@ var lang = document.getElementById('lang_tesseract');
 var mode = document.getElementById('mode_tesseract');
 var reference = document.getElementById('reference_tesseract');
 
-ShowImage.src = document.location.origin+':81/?stream';
-ShowImage.src = ShowImage.src.replace(":81:81",":81");
+ShowImage.src = window.location.hostname+':81/?stream';
 
 function DetectVideo() {
 	if (canvas.style.visibility == 'visible') return;
