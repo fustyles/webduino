@@ -16,6 +16,7 @@ window.onload = function () {
 	var maxPredictions;
 
 	ShowImage.src = document.location.origin+':81/?stream';
+	ShowImage.src = ShowImage.src.replace(":81:81",":81");
 	ShowImage.style.visibility = "visible";
 	
 	setTimeout(function(){ShowImage.style.visibility = "hidden";loadModel();}, 5000);
