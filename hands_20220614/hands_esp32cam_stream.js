@@ -12,8 +12,7 @@ window.onload = function () {
 	var hands = document.getElementById("hands");
 	var result = document.getElementById("gamediv_hands");
 
-	ShowImage.src = document.location.origin+':81/?stream';
-	ShowImage.src = ShowImage.src.replace(":81:81",":81");
+	ShowImage.src = window.location.hostname+':81/?stream';
 	ShowImage.style.visibility = "visible";
 	setTimeout(function(){ShowImage.style.visibility = "hidden";start();},5000);
 	
