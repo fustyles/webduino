@@ -19,8 +19,7 @@ window.onload = function () {
 	var modelnameTimer, sourceTimer; 
 	var modelname = document.getElementById("modelname_posenet");
 	
-	ShowImage.src = document.location.origin+':81/?stream';
-	ShowImage.src = ShowImage.src.replace(":81:81",":81");
+	ShowImage.src = window.location.hostname+':81/?stream';
 	ShowImage.style.visibility = "visible";
 	
 	setTimeout(function(){
