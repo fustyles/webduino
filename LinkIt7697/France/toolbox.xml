@@ -2305,9 +2305,9 @@
 						  </block>
 						</value>
 						<value name="url_">
-						  <block type="servermodule_parameter_set_address3_0">
-							<field name="cmd">getstill</field>
-						  </block>
+                          <block type="amb82_mini_stream_url">
+                            <field name="type">/?still</field>
+                          </block>
 						</value>
 						<value name="left_">
 						  <block type="math_number">
@@ -2345,8 +2345,8 @@
 								  </block>
 								</value>
 								<value name="value_">
-								  <block type="servermodule_parameter_set_address3_0">
-									<field name="cmd">getstill</field>
+								  <block type="amb82_mini_stream_url">
+									<field name="type">/?still</field>
 								  </block>
 								</value>
 							  </block>
@@ -2389,6 +2389,8 @@
 					</next>
 				  </block>
 				</statement>
+			  </block>
+			  <block type="amb82_mini_stream_url">							
 			  </block>			  
 			  <block type="amb82_mini_linenotify">		
 					<value name="linetoken">

@@ -1,3 +1,9 @@
+Blockly.Arduino['amb82_mini_stream_url'] = function (block) {
+  var type = block.getFieldValue('type');
+  var code = '"http:\/\/"+window.location.hostname+"'+type+'"';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 	
   var type = block.getFieldValue('type');
@@ -28,7 +34,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'  //Serial.println("");\n'+
 			'  if (cmd=="ip") {\n'+
 			'    IPAddress ip = WiFi.localIP();\n'+
-			'    Feedback=String(ip[0])+"."+String(ip[1])+"."+String(ip[2])+"."+String(ip[3]);\n'+
+			'    Feedback=String(ip[0])+"."+String(ip[1])+"."+String(ip[2])+"."+String(ip[3])+":'+port+'";\n'+
 			'  } else if (cmd=="mac") {\n'+
 			'    byte mac[6];\n'+
 			'    WiFi.macAddress(mac);\n'+
@@ -55,7 +61,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'      }\n'+
 			'      Serial.println("");\n'+
 			'      IPAddress ip = WiFi.localIP();\n'+
-			'      Feedback=String(ip[0])+"."+String(ip[1])+"."+String(ip[2])+"."+String(ip[3]);\n'+
+			'      Feedback=String(ip[0])+"."+String(ip[1])+"."+String(ip[2])+"."+String(ip[3])+":'+port+'";\n'+
 			'    }\n'+
 			'  } else if (cmd=="print") {\n'+
 			'    Serial.print(p1);\n'+
@@ -92,8 +98,8 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'      if (WiFi.status() == WL_CONNECTED) {\n'+    
 			'        Serial.println("");\n'+
 			'        Serial.println("STAIP address: ");\n'+
-			'        Serial.println(WiFi.localIP());\n'+
-			'        Serial.println("");\n'+
+			'        Serial.print(WiFi.localIP());\n'+
+			'        Serial.println(":'+port+'");\n'+
 			'        break;\n'+
 			'      }\n'+
 			'    }\n'+
@@ -12515,8 +12521,6 @@ Blockly.Arduino['fetch_get'] = function (block) {
     value_id_ = value_id_.substring(1,value_id_.length-1);  
   var statements_do = Blockly.Arduino.statementToCode(block, 'do');
 
-  Blockly.Arduino.definitions_['fetchData_'+value_id_.replace(/'/g,"")] = 'var fetchData_'+value_id_.replace(/'/g,"")+';';
-
   var value_response_ = "response";
   if (value_datatype_=="json")
 	  value_response_ = "return response.json();";
@@ -12525,7 +12529,7 @@ Blockly.Arduino['fetch_get'] = function (block) {
   else if (value_datatype_=="blob")
 	  value_response_ = "return response.blob();";
   
-  var code = 'fetch('+value_url_+')\n.then(function (response) {\n    '+value_response_+'\n})\n.then(function (data) {\n    fetchData_'+value_id_.replace(/'/g,"")+'=data;\n  '+ statements_do +'\n})\n.catch(\n(error) => {\n    console.log(`Error: ${error}`);\n}\n);';
+  var code = 'var fetchData_'+value_id_.replace(/'/g,"")+';\nfetch('+value_url_+')\n.then(function (response) {\n    '+value_response_+'\n})\n.then(function (data) {\n    fetchData_'+value_id_.replace(/'/g,"")+'=data;\n  '+ statements_do +'\n})\n.catch(\n(error) => {\n    console.log(`Error: ${error}`);\n}\n);';
 
   return code;
 };

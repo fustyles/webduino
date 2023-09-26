@@ -1,3 +1,19 @@
+Blockly.Blocks['amb82_mini_stream_url'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_STILL_URL"],"/?getstill"],
+			[Blockly.Msg["AMB82_MINI_STREAM_URL"],":81/?stream"]
+		]), "type");		
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
 Blockly.Blocks['amb82_mini_myfirmata'] = {
   init: function() {
     this.appendDummyInput()
