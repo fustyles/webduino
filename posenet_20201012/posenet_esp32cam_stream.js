@@ -20,6 +20,7 @@ window.onload = function () {
 	var modelname = document.getElementById("modelname_posenet");
 	
 	ShowImage.src = document.location.origin+':81/?stream';
+	ShowImage.src = ShowImage.src.replace(":81:81",":81");
 	ShowImage.style.visibility = "visible";
 	
 	setTimeout(function(){
