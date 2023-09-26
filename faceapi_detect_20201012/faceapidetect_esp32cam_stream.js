@@ -11,8 +11,9 @@ window.onload = function () {
 	const modelPath = 'https://fustyles.github.io/webduino/faceapi_detect_20201012/';
 	let faceDetection;
 	let canvas;	
-	
+
 	ShowImage.src = document.location.origin+':81/?stream';
+	ShowImage.src = ShowImage.src.replace(":81:81",":81");
 	
 	$(".progress-bar").removeClass('d-none');
 	Promise.all([
