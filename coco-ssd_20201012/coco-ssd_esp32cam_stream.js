@@ -12,6 +12,7 @@ window.onload = function () {
 	var Model;
 
 	ShowImage.src = document.location.origin+':81/?stream';
+	ShowImage.src = ShowImage.src.replace(":81:81",":81");
 	ShowImage.style.visibility = "visible";
 	
 	cocoSsd.load().then(cocoSsd_Model => {
