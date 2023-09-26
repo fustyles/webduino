@@ -2272,6 +2272,124 @@
 				  </block>
 				</value> 				
 			  </block>
+			  <block type="amb82_mini_myfirmata">
+				<field name="baudrate">115200</field>
+				<field name="framesize">VIDEO_VGA</field>
+				<value name="ssid">
+				  <block type="text">
+					<field name="TEXT">teacher</field>
+				  </block>
+				</value>
+				<value name="password">
+				  <block type="text">
+					<field name="TEXT">87654321</field>
+				  </block>
+				</value>
+				<value name="width">
+				  <block type="math_number">
+					<field name="NUM">640</field>
+				  </block>
+				</value> 
+				<value name="height">
+				  <block type="math_number">
+					<field name="NUM">480</field>
+				  </block>
+				</value> 
+				<value name="mainpage">
+				  <block type="servermodule_javascript">
+					<statement name="js">
+					  <block type="image_create_stream">
+						<value name="id_">
+						  <block type="text">
+							<field name="TEXT"></field>
+						  </block>
+						</value>
+						<value name="url_">
+						  <block type="servermodule_parameter_set_address3_0">
+							<field name="cmd">getstill</field>
+						  </block>
+						</value>
+						<value name="left_">
+						  <block type="math_number">
+							<field name="NUM">0</field>
+						  </block>
+						</value>
+						<value name="top_">
+						  <block type="math_number">
+							<field name="NUM">0</field>
+						  </block>
+						</value>
+						<value name="zindex_">
+						  <block type="math_number">
+							<field name="NUM">999</field>
+						  </block>
+						</value>
+						<value name="display_">
+						  <block type="logic_boolean">
+							<field name="BOOL">TRUE</field>
+						  </block>
+						</value>
+						<next>
+						  <block type="image_onload_dom">
+							<value name="id_">
+							  <block type="text">
+								<field name="TEXT"></field>
+							  </block>
+							</value>
+							<statement name="do_">
+							  <block type="image_set">
+								<field name="property_">url</field>
+								<value name="id_">
+								  <block type="text">
+									<field name="TEXT"></field>
+								  </block>
+								</value>
+								<value name="value_">
+								  <block type="servermodule_parameter_set_address3_0">
+									<field name="cmd">getstill</field>
+								  </block>
+								</value>
+							  </block>
+							</statement>
+						  </block>
+						</next>
+					  </block>
+					</statement>
+				  </block>
+				</value>
+				<statement name="ExecuteCommand">
+				  <block type="customcode_comment">
+					<value name="text">
+					  <block type="text">
+						<field name="TEXT">http://192.168.xxx.xxx/?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
+					  </block>
+					</value>
+					<next>
+					  <block type="controls_if">
+						<mutation else="1"></mutation>
+						<value name="IF0">
+						  <block type="servermodule_cmd">
+							<value name="text">
+							  <block type="text">
+								<field name="TEXT">yourcmd</field>
+							  </block>
+							</value>
+						  </block>
+						</value>
+						<statement name="ELSE">
+						  <block type="servermodule_feedback">
+							<value name="text">
+							  <block type="text">
+								<field name="TEXT">Command is not defined.</field>
+							  </block>
+							</value>
+						  </block>
+						</statement>
+					  </block>
+					</next>
+				  </block>
+				</statement>
+			  </block>			  
 			  <block type="amb82_mini_linenotify">		
 					<value name="linetoken">
 					  <block type="text">
