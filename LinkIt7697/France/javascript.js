@@ -333,40 +333,22 @@ Blockly.Arduino['amb82_mini_googledrive'] = function(block) {
 			'  return getBody;\n'+
 			'}\n';
 
-	Blockly.Arduino.definitions_.urlencode = '\n'+
-			'String urlencode(String str)\n'+
-			'{\n'+
-			'  String encodedString="";\n'+
-			'  char c;\n'+
-			'  char code0;\n'+
-			'  char code1;\n'+
-			'  char code2;\n'+
-			'  for (int i =0; i < str.length(); i++){\n'+
-			'    c=str.charAt(i);\n'+
-			'    if (c == \' \'){\n'+
-			'      encodedString+= \'+\';\n'+
-			'    } else if (isalnum(c)){\n'+
-			'      encodedString+=c;\n'+
-			'    } else{\n'+
-			'      code1=(c & 0xf)+\'0\';\n'+
-			'      if ((c & 0xf) >9){\n'+
-			'          code1=(c & 0xf) - 10 + \'A\';\n'+
-			'      }\n'+
-			'      c=(c>>4)&0xf;\n'+
-			'      code0=c+\'0\';\n'+
-			'      if (c > 9){\n'+
-			'          code0=c - 10 + \'A\';\n'+
-			'      }\n'+
-			'      code2=\'\\0\';\n'+
-			'      encodedString+=\'%\';\n'+
-			'      encodedString+=code0;\n'+
-			'      encodedString+=code1;\n'+
-			'      \/\/encodedString+=code2;\n'+
-			'    }\n'+
-			'    yield();\n'+
-			'  }\n'+
-			'  return encodedString;\n'+
-			'}\n';
+	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
+											'  const char *msg = str.c_str();\n'+
+											'  const char *hex = "0123456789ABCDEF";\n'+
+											'  String encodedMsg = "";\n'+
+											'  while (*msg != \'\\0\') {\n'+
+											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
+											'      encodedMsg += *msg;\n'+
+											'    } else {\n'+
+											'      encodedMsg += \'%\';\n'+
+											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
+											'      encodedMsg += hex[*msg & 0xf];\n'+
+											'    }\n'+
+											'    msg++;\n'+
+											'  }\n'+
+											'  return encodedMsg;\n'+
+											'}';
 			
   var code = 'SendStillToGoogleDrive("/macros/s/'+scriptid.replace(/"/g,'')+'/exec","&myFoldername='+foldername.replace(/"/g,'')+'","&myFilename='+filename.replace(/"/g,'')+'","&myFile=",'+linetoken+');\n';
   return code;			
@@ -875,20 +857,6 @@ Blockly.Arduino['knnclassifier_proportion_array'] = function(block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Blockly.Arduino['tesseract_esp32cam'] = function(block) {
 	var jsfile = 'tesseract_esp32cam.js';
 	if (block.parentBlock_) {
@@ -1033,16 +1001,6 @@ Blockly.Arduino['posenet_recognitied'] = function(block) {
 	  var code = 'posenet_unrecognitionFinish = async function() {\n  posenet_state(0);\n' + statements_do + '\n  posenet_state(1);\n};\n';
   return code;  
 };
-
-
-
-
-
-
-
-
-
-
 
 Blockly.Arduino['pms7003m_read'] = function(block) { 
   Blockly.Arduino.definitions_['pms7003m_initial'] = "#include \"PMS.h\"\nPMS pms(Serial2);\nPMS::DATA pms_data;";
@@ -4006,36 +3964,22 @@ Blockly.Arduino['variable_urldecode'] = function (block) {
 	var code = 'urldecode('+url+')';
   }
   else {
-	Blockly.Arduino.definitions_['urlencode'] = '' +
-			'String urlencode(String str) {\n'+
-			'    String encodedString="";\n'+
-			'    char c;\n'+
-			'    char code0;\n'+
-			'    char code1;\n'+
-			'    for (int i =0; i < str.length(); i++) {\n'+
-			'      c=str.charAt(i);\n'+
-			"      if (c == ' '){\n"+
-			"        encodedString+= '+';\n"+
-			'      } else if (isalnum(c)){\n'+
-			'        encodedString+=c;\n'+
-			'      } else{\n'+
-			"        code1=(c & 0xf)+'0';\n"+
-			'        if ((c & 0xf) >9){\n'+
-			"            code1=(c & 0xf) - 10 + 'A';\n"+
-			'        }\n'+
-			'        c=(c>>4)&0xf;\n'+
-			"        code0=c+'0';\n"+
-			'        if (c > 9){\n'+
-			"            code0=c - 10 + 'A';\n"+
-			'        }\n'+
-			'        encodedString+="%";\n'+
-			'        encodedString+=code0;\n'+
-			'        encodedString+=code1;\n'+
-			'      }\n'+
-			'      yield();\n'+
-			'    }\n'+
-			'    return encodedString;\n'+
-			'}';											
+	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
+											'  const char *msg = str.c_str();\n'+
+											'  const char *hex = "0123456789ABCDEF";\n'+
+											'  String encodedMsg = "";\n'+
+											'  while (*msg != \'\\0\') {\n'+
+											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
+											'      encodedMsg += *msg;\n'+
+											'    } else {\n'+
+											'      encodedMsg += \'%\';\n'+
+											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
+											'      encodedMsg += hex[*msg & 0xf];\n'+
+											'    }\n'+
+											'    msg++;\n'+
+											'  }\n'+
+											'  return encodedMsg;\n'+
+											'}';										
   
 	var code = 'urlencode('+url+')';
   
@@ -4215,40 +4159,22 @@ Blockly.Arduino['esp32_telegrambot_spreadsheet_sendcell'] = function(block){
 			'  return getBody;\n'+
 			'}\n';
 				
-	Blockly.Arduino.definitions_.urlencode = '\n'+
-			'String urlencode(String str)\n'+
-			'{\n'+
-			'  String encodedString="";\n'+
-			'  char c;\n'+
-			'  char code0;\n'+
-			'  char code1;\n'+
-			'  char code2;\n'+
-			'  for (int i =0; i < str.length(); i++){\n'+
-			'    c=str.charAt(i);\n'+
-			'    if (c == \' \'){\n'+
-			'      encodedString+= \'+\';\n'+
-			'    } else if (isalnum(c)){\n'+
-			'      encodedString+=c;\n'+
-			'    } else{\n'+
-			'      code1=(c & 0xf)+\'0\';\n'+
-			'      if ((c & 0xf) >9){\n'+
-			'          code1=(c & 0xf) - 10 + \'A\';\n'+
-			'      }\n'+
-			'      c=(c>>4)&0xf;\n'+
-			'      code0=c+\'0\';\n'+
-			'      if (c > 9){\n'+
-			'          code0=c - 10 + \'A\';\n'+
-			'      }\n'+
-			'      code2=\'\\0\';\n'+
-			'      encodedString+=\'%\';\n'+
-			'      encodedString+=code0;\n'+
-			'      encodedString+=code1;\n'+
-			'      \/\/encodedString+=code2;\n'+
-			'    }\n'+
-			'    yield();\n'+
-			'  }\n'+
-			'  return encodedString;\n'+
-			'}\n';			
+	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
+											'  const char *msg = str.c_str();\n'+
+											'  const char *hex = "0123456789ABCDEF";\n'+
+											'  String encodedMsg = "";\n'+
+											'  while (*msg != \'\\0\') {\n'+
+											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
+											'      encodedMsg += *msg;\n'+
+											'    } else {\n'+
+											'      encodedMsg += \'%\';\n'+
+											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
+											'      encodedMsg += hex[*msg & 0xf];\n'+
+											'    }\n'+
+											'    msg++;\n'+
+											'  }\n'+
+											'  return encodedMsg;\n'+
+											'}';		
 			
 	var code = 'telegram_Spreadsheet_send(' + row + ', ' + col + ',"' + type + '", ' + token + ', ' + chat_id + ', String(' + spreadsheeturl + '), String(' + spreadsheetname + '), ' +  '"/macros/s/AKfycbyQmCDrY9cJyjXp71fliwPr1xmbTQgTgfDb0j8rIjuJ44Ci61clvWBZnZ_upDDlSnjHNA/exec");\n';
 	return code;
@@ -4337,40 +4263,22 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 			'  return getBody;\n'+
 			'}\n';
 			
-	Blockly.Arduino.definitions_.urlencode = '\n'+
-			'String urlencode(String str)\n'+
-			'{\n'+
-			'  String encodedString="";\n'+
-			'  char c;\n'+
-			'  char code0;\n'+
-			'  char code1;\n'+
-			'  char code2;\n'+
-			'  for (int i =0; i < str.length(); i++){\n'+
-			'    c=str.charAt(i);\n'+
-			'    if (c == \' \'){\n'+
-			'      encodedString+= \'+\';\n'+
-			'    } else if (isalnum(c)){\n'+
-			'      encodedString+=c;\n'+
-			'    } else{\n'+
-			'      code1=(c & 0xf)+\'0\';\n'+
-			'      if ((c & 0xf) >9){\n'+
-			'          code1=(c & 0xf) - 10 + \'A\';\n'+
-			'      }\n'+
-			'      c=(c>>4)&0xf;\n'+
-			'      code0=c+\'0\';\n'+
-			'      if (c > 9){\n'+
-			'          code0=c - 10 + \'A\';\n'+
-			'      }\n'+
-			'      code2=\'\\0\';\n'+
-			'      encodedString+=\'%\';\n'+
-			'      encodedString+=code0;\n'+
-			'      encodedString+=code1;\n'+
-			'      \/\/encodedString+=code2;\n'+
-			'    }\n'+
-			'    yield();\n'+
-			'  }\n'+
-			'  return encodedString;\n'+
-			'}\n';			
+	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
+											'  const char *msg = str.c_str();\n'+
+											'  const char *hex = "0123456789ABCDEF";\n'+
+											'  String encodedMsg = "";\n'+
+											'  while (*msg != \'\\0\') {\n'+
+											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
+											'      encodedMsg += *msg;\n'+
+											'    } else {\n'+
+											'      encodedMsg += \'%\';\n'+
+											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
+											'      encodedMsg += hex[*msg & 0xf];\n'+
+											'    }\n'+
+											'    msg++;\n'+
+											'  }\n'+
+											'  return encodedMsg;\n'+
+											'}';		
 			
 	var code = 'Spreadsheet_insert("' + func + '", ' + data + ', 0, 0, "", String(' + spreadsheeturl + '), String(' + spreadsheetname + '), ' +  '"/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");\n';
 	return code;
@@ -4459,40 +4367,22 @@ Blockly.Arduino['controls_spreadsheet_function'] = function(block){
 			'  return getBody;\n'+
 			'}\n';
 			
-	Blockly.Arduino.definitions_.urlencode = '\n'+
-			'String urlencode(String str)\n'+
-			'{\n'+
-			'  String encodedString="";\n'+
-			'  char c;\n'+
-			'  char code0;\n'+
-			'  char code1;\n'+
-			'  char code2;\n'+
-			'  for (int i =0; i < str.length(); i++){\n'+
-			'    c=str.charAt(i);\n'+
-			'    if (c == \' \'){\n'+
-			'      encodedString+= \'+\';\n'+
-			'    } else if (isalnum(c)){\n'+
-			'      encodedString+=c;\n'+
-			'    } else{\n'+
-			'      code1=(c & 0xf)+\'0\';\n'+
-			'      if ((c & 0xf) >9){\n'+
-			'          code1=(c & 0xf) - 10 + \'A\';\n'+
-			'      }\n'+
-			'      c=(c>>4)&0xf;\n'+
-			'      code0=c+\'0\';\n'+
-			'      if (c > 9){\n'+
-			'          code0=c - 10 + \'A\';\n'+
-			'      }\n'+
-			'      code2=\'\\0\';\n'+
-			'      encodedString+=\'%\';\n'+
-			'      encodedString+=code0;\n'+
-			'      encodedString+=code1;\n'+
-			'      \/\/encodedString+=code2;\n'+
-			'    }\n'+
-			'    yield();\n'+
-			'  }\n'+
-			'  return encodedString;\n'+
-			'}\n';			
+	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
+											'  const char *msg = str.c_str();\n'+
+											'  const char *hex = "0123456789ABCDEF";\n'+
+											'  String encodedMsg = "";\n'+
+											'  while (*msg != \'\\0\') {\n'+
+											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
+											'      encodedMsg += *msg;\n'+
+											'    } else {\n'+
+											'      encodedMsg += \'%\';\n'+
+											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
+											'      encodedMsg += hex[*msg & 0xf];\n'+
+											'    }\n'+
+											'    msg++;\n'+
+											'  }\n'+
+											'  return encodedMsg;\n'+
+											'}';		
 			
 	var code = 'Spreadsheet_insert("' + func + '", "", ' + row + ', ' + col + ', String(' + text + '), String(' + spreadsheeturl + '), String(' + spreadsheetname + '), ' +  '"/macros/s/AKfycbxA3hhTlntwVTOcqngOC_iJL_zLmRwzcDbMYDs7FD8iinNsY9XZsMkD7AcXTIUbEc33EA/exec");\n';
 	return code;
@@ -4713,40 +4603,22 @@ Blockly.Arduino['controls_spreadsheet_query'] = function(block){
 			'  }\n'+
 			'}\n';
 			
-	Blockly.Arduino.definitions_.urlencode = '\n'+
-			'String urlencode(String str)\n'+
-			'{\n'+
-			'  String encodedString="";\n'+
-			'  char c;\n'+
-			'  char code0;\n'+
-			'  char code1;\n'+
-			'  char code2;\n'+
-			'  for (int i =0; i < str.length(); i++){\n'+
-			'    c=str.charAt(i);\n'+
-			'    if (c == \' \'){\n'+
-			'      encodedString+= \'+\';\n'+
-			'    } else if (isalnum(c)){\n'+
-			'      encodedString+=c;\n'+
-			'    } else{\n'+
-			'      code1=(c & 0xf)+\'0\';\n'+
-			'      if ((c & 0xf) >9){\n'+
-			'          code1=(c & 0xf) - 10 + \'A\';\n'+
-			'      }\n'+
-			'      c=(c>>4)&0xf;\n'+
-			'      code0=c+\'0\';\n'+
-			'      if (c > 9){\n'+
-			'          code0=c - 10 + \'A\';\n'+
-			'      }\n'+
-			'      code2=\'\\0\';\n'+
-			'      encodedString+=\'%\';\n'+
-			'      encodedString+=code0;\n'+
-			'      encodedString+=code1;\n'+
-			'      \/\/encodedString+=code2;\n'+
-			'    }\n'+
-			'    yield();\n'+
-			'  }\n'+
-			'  return encodedString;\n'+
-			'}\n';			
+	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
+											'  const char *msg = str.c_str();\n'+
+											'  const char *hex = "0123456789ABCDEF";\n'+
+											'  String encodedMsg = "";\n'+
+											'  while (*msg != \'\\0\') {\n'+
+											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
+											'      encodedMsg += *msg;\n'+
+											'    } else {\n'+
+											'      encodedMsg += \'%\';\n'+
+											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
+											'      encodedMsg += hex[*msg & 0xf];\n'+
+											'    }\n'+
+											'    msg++;\n'+
+											'  }\n'+
+											'  return encodedMsg;\n'+
+											'}';	
 			
 	if (option=="sql")
 		var code = 'spreadsheetQueryData = Spreadsheet_query(String(' + sql + '), String(' + spreadsheetid + '), String(' + spreadsheetname + '));\n';
@@ -7272,36 +7144,23 @@ Blockly.Arduino.definitions_['opendataAirQuality'] +='    deserializeJson(doc, F
 			'  return "";\n'+
 			'}';
 						
-	Blockly.Arduino.definitions_['urlencode'] = '' +
-			'String urlencode(String str) {\n'+
-			'    String encodedString="";\n'+
-			'    char c;\n'+
-			'    char code0;\n'+
-			'    char code1;\n'+
-			'    for (int i =0; i < str.length(); i++) {\n'+
-			'      c=str.charAt(i);\n'+
-			"      if (c == ' '){\n"+
-			"        encodedString+= '+';\n"+
-			'      } else if (isalnum(c)){\n'+
-			'        encodedString+=c;\n'+
-			'      } else{\n'+
-			"        code1=(c & 0xf)+'0';\n"+
-			'        if ((c & 0xf) >9){\n'+
-			"            code1=(c & 0xf) - 10 + 'A';\n"+
-			'        }\n'+
-			'        c=(c>>4)&0xf;\n'+
-			"        code0=c+'0';\n"+
-			'        if (c > 9){\n'+
-			"            code0=c - 10 + 'A';\n"+
-			'        }\n'+
-			'        encodedString+="%";\n'+
-			'        encodedString+=code0;\n'+
-			'        encodedString+=code1;\n'+
-			'      }\n'+
-			'      yield();\n'+
-			'    }\n'+
-			'    return encodedString;\n'+
-			'}';								   
+	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
+											'  const char *msg = str.c_str();\n'+
+											'  const char *hex = "0123456789ABCDEF";\n'+
+											'  String encodedMsg = "";\n'+
+											'  while (*msg != \'\\0\') {\n'+
+											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
+											'      encodedMsg += *msg;\n'+
+											'    } else {\n'+
+											'      encodedMsg += \'%\';\n'+
+											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
+											'      encodedMsg += hex[*msg & 0xf];\n'+
+											'    }\n'+
+											'    msg++;\n'+
+											'  }\n'+
+											'  return encodedMsg;\n'+
+											'}';
+											
 	var code = 'opendataAirQuality("'+dropdown_sitename+'",'+value_Authorization+');\n';
 	return code;
 };
@@ -7446,36 +7305,23 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 			'  return "";\n'+
 			'}';
 			
-	Blockly.Arduino.definitions_['urlencode'] = '' +
-			'String urlencode(String str) {\n'+
-			'    String encodedString="";\n'+
-			'    char c;\n'+
-			'    char code0;\n'+
-			'    char code1;\n'+
-			'    for (int i =0; i < str.length(); i++) {\n'+
-			'      c=str.charAt(i);\n'+
-			"      if (c == ' '){\n"+
-			"        encodedString+= '+';\n"+
-			'      } else if (isalnum(c)){\n'+
-			'        encodedString+=c;\n'+
-			'      } else{\n'+
-			"        code1=(c & 0xf)+'0';\n"+
-			'        if ((c & 0xf) >9){\n'+
-			"            code1=(c & 0xf) - 10 + 'A';\n"+
-			'        }\n'+
-			'        c=(c>>4)&0xf;\n'+
-			"        code0=c+'0';\n"+
-			'        if (c > 9){\n'+
-			"            code0=c - 10 + 'A';\n"+
-			'        }\n'+
-			'        encodedString+="%";\n'+
-			'        encodedString+=code0;\n'+
-			'        encodedString+=code1;\n'+
-			'      }\n'+
-			'      yield();\n'+
-			'    }\n'+
-			'    return encodedString;\n'+
-			'}';								   
+	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
+											'  const char *msg = str.c_str();\n'+
+											'  const char *hex = "0123456789ABCDEF";\n'+
+											'  String encodedMsg = "";\n'+
+											'  while (*msg != \'\\0\') {\n'+
+											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
+											'      encodedMsg += *msg;\n'+
+											'    } else {\n'+
+											'      encodedMsg += \'%\';\n'+
+											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
+											'      encodedMsg += hex[*msg & 0xf];\n'+
+											'    }\n'+
+											'    msg++;\n'+
+											'  }\n'+
+											'  return encodedMsg;\n'+
+											'}';
+											
 	var code = 'opendataWeather("'+dropdown_locationname+'",'+value_Authorization+');\n';
 	return code;
 };
@@ -10753,36 +10599,22 @@ Blockly.Arduino['servermodule_parameter_variable_urldecode'] = function (block) 
 	var code = 'urldecode('+parameter+')';
   }
   else {
-	Blockly.Arduino.definitions_['urlencode'] = '' +
-			'String urlencode(String str) {\n'+
-			'    String encodedString="";\n'+
-			'    char c;\n'+
-			'    char code0;\n'+
-			'    char code1;\n'+
-			'    for (int i =0; i < str.length(); i++) {\n'+
-			'      c=str.charAt(i);\n'+
-			"      if (c == ' '){\n"+
-			"        encodedString+= '+';\n"+
-			'      } else if (isalnum(c)){\n'+
-			'        encodedString+=c;\n'+
-			'      } else{\n'+
-			"        code1=(c & 0xf)+'0';\n"+
-			'        if ((c & 0xf) >9){\n'+
-			"            code1=(c & 0xf) - 10 + 'A';\n"+
-			'        }\n'+
-			'        c=(c>>4)&0xf;\n'+
-			"        code0=c+'0';\n"+
-			'        if (c > 9){\n'+
-			"            code0=c - 10 + 'A';\n"+
-			'        }\n'+
-			'        encodedString+="%";\n'+
-			'        encodedString+=code0;\n'+
-			'        encodedString+=code1;\n'+
-			'      }\n'+
-			'      yield();\n'+
-			'    }\n'+
-			'    return encodedString;\n'+
-			'}';											
+	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
+											'  const char *msg = str.c_str();\n'+
+											'  const char *hex = "0123456789ABCDEF";\n'+
+											'  String encodedMsg = "";\n'+
+											'  while (*msg != \'\\0\') {\n'+
+											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
+											'      encodedMsg += *msg;\n'+
+											'    } else {\n'+
+											'      encodedMsg += \'%\';\n'+
+											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
+											'      encodedMsg += hex[*msg & 0xf];\n'+
+											'    }\n'+
+											'    msg++;\n'+
+											'  }\n'+
+											'  return encodedMsg;\n'+
+											'}';											
   
 	var code = 'urlencode('+parameter+')';
   
@@ -17929,40 +17761,22 @@ Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
 			'  return getBody;\n'+
 			'}\n';
 
-	Blockly.Arduino.definitions_.urlencode = '\n'+
-			'String urlencode(String str)\n'+
-			'{\n'+
-			'  String encodedString="";\n'+
-			'  char c;\n'+
-			'  char code0;\n'+
-			'  char code1;\n'+
-			'  char code2;\n'+
-			'  for (int i =0; i < str.length(); i++){\n'+
-			'    c=str.charAt(i);\n'+
-			'    if (c == \' \'){\n'+
-			'      encodedString+= \'+\';\n'+
-			'    } else if (isalnum(c)){\n'+
-			'      encodedString+=c;\n'+
-			'    } else{\n'+
-			'      code1=(c & 0xf)+\'0\';\n'+
-			'      if ((c & 0xf) >9){\n'+
-			'          code1=(c & 0xf) - 10 + \'A\';\n'+
-			'      }\n'+
-			'      c=(c>>4)&0xf;\n'+
-			'      code0=c+\'0\';\n'+
-			'      if (c > 9){\n'+
-			'          code0=c - 10 + \'A\';\n'+
-			'      }\n'+
-			'      code2=\'\\0\';\n'+
-			'      encodedString+=\'%\';\n'+
-			'      encodedString+=code0;\n'+
-			'      encodedString+=code1;\n'+
-			'      \/\/encodedString+=code2;\n'+
-			'    }\n'+
-			'    yield();\n'+
-			'  }\n'+
-			'  return encodedString;\n'+
-			'}\n';
+	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
+											'  const char *msg = str.c_str();\n'+
+											'  const char *hex = "0123456789ABCDEF";\n'+
+											'  String encodedMsg = "";\n'+
+											'  while (*msg != \'\\0\') {\n'+
+											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
+											'      encodedMsg += *msg;\n'+
+											'    } else {\n'+
+											'      encodedMsg += \'%\';\n'+
+											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
+											'      encodedMsg += hex[*msg & 0xf];\n'+
+											'    }\n'+
+											'    msg++;\n'+
+											'  }\n'+
+											'  return encodedMsg;\n'+
+											'}';
 			
   var code = 'SendStillToGoogleDrive("/macros/s/'+scriptid.replace(/"/g,'')+'/exec","&myFoldername='+foldername.replace(/"/g,'')+'","&myFilename='+filename.replace(/"/g,'')+'","&myFile=",'+linetoken+');\n';
   return code;			
@@ -18060,40 +17874,22 @@ Blockly.Arduino['esp32_cam_spreadsheet'] = function(block) {
 			'  return getBody;\n'+
 			'}\n';
 
-	Blockly.Arduino.definitions_.urlencode = '\n'+
-			'String urlencode(String str)\n'+
-			'{\n'+
-			'  String encodedString="";\n'+
-			'  char c;\n'+
-			'  char code0;\n'+
-			'  char code1;\n'+
-			'  char code2;\n'+
-			'  for (int i =0; i < str.length(); i++){\n'+
-			'    c=str.charAt(i);\n'+
-			'    if (c == \' \'){\n'+
-			'      encodedString+= \'+\';\n'+
-			'    } else if (isalnum(c)){\n'+
-			'      encodedString+=c;\n'+
-			'    } else{\n'+
-			'      code1=(c & 0xf)+\'0\';\n'+
-			'      if ((c & 0xf) >9){\n'+
-			'          code1=(c & 0xf) - 10 + \'A\';\n'+
-			'      }\n'+
-			'      c=(c>>4)&0xf;\n'+
-			'      code0=c+\'0\';\n'+
-			'      if (c > 9){\n'+
-			'          code0=c - 10 + \'A\';\n'+
-			'      }\n'+
-			'      code2=\'\\0\';\n'+
-			'      encodedString+=\'%\';\n'+
-			'      encodedString+=code0;\n'+
-			'      encodedString+=code1;\n'+
-			'      \/\/encodedString+=code2;\n'+
-			'    }\n'+
-			'    yield();\n'+
-			'  }\n'+
-			'  return encodedString;\n'+
-			'}\n';
+	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
+											'  const char *msg = str.c_str();\n'+
+											'  const char *hex = "0123456789ABCDEF";\n'+
+											'  String encodedMsg = "";\n'+
+											'  while (*msg != \'\\0\') {\n'+
+											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
+											'      encodedMsg += *msg;\n'+
+											'    } else {\n'+
+											'      encodedMsg += \'%\';\n'+
+											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
+											'      encodedMsg += hex[*msg & 0xf];\n'+
+											'    }\n'+
+											'    msg++;\n'+
+											'  }\n'+
+											'  return encodedMsg;\n'+
+											'}';
 			
 	var code = 'SendStillToSpreadsheet("&spreadsheeturl="+String('+value_spreadsheeturl+')+"&spreadsheetname="+String(urlencode('+value_spreadsheetname+'))+"&datetime='+value_datetime+'&position='+value_position+'&column="+String('+value_column+')+"&row="+String('+value_row+')+"&file=",'+value_spreadsheet_script+');\n';
   	return code;		
