@@ -6,7 +6,7 @@ Blockly.Arduino['amb82_mini_stream_url'] = function (block) {
 
 Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 	
-  var type = block.getFieldValue('type');
+  var port = block.getFieldValue('type');
   var mainpage = Blockly.Arduino.valueToCode(block, 'mainpage', Blockly.Arduino.ORDER_ATOMIC);
   var ssid = Blockly.Arduino.valueToCode(block, 'ssid', Blockly.Arduino.ORDER_ATOMIC);
   var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
@@ -15,7 +15,6 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
   var baudrate = block.getFieldValue('baudrate');  
   var framesize = block.getFieldValue('framesize');
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
-  var port = (type=="still"?80:81);
 	
   if (framesize=="VIDEO_CUSTOM")
 	framesize = width +", "+height;
@@ -34,7 +33,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'  //Serial.println("");\n'+
 			'  if (cmd=="ip") {\n'+
 			'    IPAddress ip = WiFi.localIP();\n'+
-			'    Feedback=String(ip[0])+"."+String(ip[1])+"."+String(ip[2])+"."+String(ip[3])+":'+port+'";\n'+
+			'    Feedback=String(ip[0])+"."+String(ip[1])+"."+String(ip[2])+"."+String(ip[3])+"'+(port==80?"":":"+port)+'";\n'+
 			'  } else if (cmd=="mac") {\n'+
 			'    byte mac[6];\n'+
 			'    WiFi.macAddress(mac);\n'+
@@ -61,7 +60,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'      }\n'+
 			'      Serial.println("");\n'+
 			'      IPAddress ip = WiFi.localIP();\n'+
-			'      Feedback=String(ip[0])+"."+String(ip[1])+"."+String(ip[2])+"."+String(ip[3])+":'+port+'";\n'+
+			'      Feedback=String(ip[0])+"."+String(ip[1])+"."+String(ip[2])+"."+String(ip[3])+"'+(port==80?"":":"+port)+'";\n'+
 			'    }\n'+
 			'  } else if (cmd=="print") {\n'+
 			'    Serial.print(p1);\n'+
@@ -97,9 +96,15 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'      \n'+
 			'      if (WiFi.status() == WL_CONNECTED) {\n'+    
 			'        Serial.println("");\n'+
-			'        Serial.println("STAIP address: ");\n'+
+			'        Serial.print("Main page: http://");\n'+
 			'        Serial.print(WiFi.localIP());\n'+
-			'        Serial.println(":'+port+'");\n'+
+			'        Serial.println("'+(port==80?"":":"+port)+'");\n'+
+			'        Serial.print("Get-still: http://");\n'+
+			'        Serial.print(WiFi.localIP());\n'+
+			'        Serial.println("'+(port==80?"":":"+port)+'/?getstill");\n'+
+			'        Serial.print("Get-stream: http://");\n'+
+			'        Serial.print(WiFi.localIP());\n'+
+			'        Serial.println("'+(port==80?"":":"+port)+'/?stream");\n'+			
 			'        break;\n'+
 			'      }\n'+
 			'    }\n'+
@@ -173,7 +178,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'   	        				client.write(fbBuf, remainder);\n'+ 
 			'   	        			}\n'+ 
 			'   	        		}\n'+ 
-			'   	        		client.print("\\r\\n");\n'+ 
+			'   	        		client.print("\\r\\n");\n'+
 			'   	        	}\n'+ 
 			'   	        } else {\n'+
 			'   	        	client.println("HTTP/1.1 200 OK");\n'+
