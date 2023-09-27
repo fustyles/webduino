@@ -23017,7 +23017,13 @@ Blockly.Blocks['fu_mqtt_sendimage'] = {
 		.appendField("MQTT")
 		.appendField(Blockly.Msg["MQTT_FU_TO_TOPIC"]);
     this.appendDummyInput()	
-		.appendField(Blockly.Msg["MQTT_FU_PUBLISH_IMAGE"]);	
+		.appendField(Blockly.Msg["MQTT_FU_PUBLISH_IMAGE"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["ESP32-CAM","ESP32-CAM"],
+			["AMB82-MINI","AMB82-MINI"]
+		]), "board");		
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
