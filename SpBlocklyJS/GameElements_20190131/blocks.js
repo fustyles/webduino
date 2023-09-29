@@ -36,6 +36,7 @@ Blockly.Blocks['button_toolbox'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(90);
+  this.setHelpUrl("https://fustyles.github.io/webduino/google_icon.html"); 	  
   }
 };
 
