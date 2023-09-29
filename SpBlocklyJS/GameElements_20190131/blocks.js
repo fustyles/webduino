@@ -19,7 +19,7 @@ Blockly.Blocks['custom_googleicon'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(50);
-  this.setHelpUrl("https://fonts.google.com/icons");  
+  this.setHelpUrl("https://fustyles.github.io/webduino/google_icon.html");  
   }
 };
 
