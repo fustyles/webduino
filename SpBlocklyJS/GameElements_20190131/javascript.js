@@ -2,22 +2,8 @@ Blockly.JavaScript['custom_googleicon'] = function (block) {
   var element = block.getFieldValue('element');
   var id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
   var val = Blockly.JavaScript.valueToCode(block, 'val', Blockly.JavaScript.ORDER_ATOMIC);
-  if ((id.indexOf("'")==0)&&(id.lastIndexOf("'")==id.length-1))
-    id = id.substring(1,id.length-1);
-  if ((id.indexOf('"')==0)&&(id.lastIndexOf('"')==id.length-1))
-    id = id.substring(1,id.length-1);
-  var el = element;
-  if ((element.indexOf("'")==0)&&(element.lastIndexOf("'")==element.length-1))
-    el = element.substring(1,element.length-1);
-  if ((element.indexOf('"')==0)&&(element.lastIndexOf('"')==element.length-1))
-    el = element.substring(1,element.length-1); 
 
-  el = "document.getElementById('game"+el+"_"+id+"')";
-  
-  if (element=="button")
-	var code = el+".className = 'material-icons_custom';\n"+el+".value = "+val+";\n";
-  else
-	var code = el+".className = 'material-icons_custom';\n"+el+".innerText = "+val+";\n";
+  var code = 'icon_google("'+element+'", '+id+', '+val+');\n';
   return code;
 };
 
