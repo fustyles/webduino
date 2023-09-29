@@ -1872,7 +1872,7 @@ function button_toolbox(input_left,input_top,input_width,input_height,input_colo
 		obj.type="button";
 		obj.id = "gamebutton_"+icons[i];
 		obj.style.position = "absolute";
-		obj.style.left = (input_left+i*input_width) + 'px';
+		obj.style.left = (input_left+i*(input_width+5)) + 'px';
 		obj.style.top = input_top + 'px';
 		obj.style.width = input_width + 'px';
 		obj.style.height = input_height + 'px';
