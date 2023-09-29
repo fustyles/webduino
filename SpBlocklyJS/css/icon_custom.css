@@ -26,6 +26,7 @@
   white-space: nowrap;
   direction: ltr;
   border:none;
+  text-decoration: none;
 
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
@@ -58,6 +59,7 @@
   white-space: nowrap;
   direction: ltr;
   border:none;
+  text-decoration: none;
 
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;

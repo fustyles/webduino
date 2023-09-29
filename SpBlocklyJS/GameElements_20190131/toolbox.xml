@@ -47,6 +47,18 @@
 				</block>
 			  </value>	
 		  </block>
+		  <block type="custom_googleicon">
+			  <value name="id">
+				<block type="text">
+				  <field name="TEXT"></field>
+				</block>
+			  </value>
+			  <value name="val">
+				<block type="text">
+				  <field name="TEXT"></field>
+				</block>
+			  </value>	
+		  </block>		  
 		  <block type="head_add_viewport">
 			<value name="initialscale_">
 			  <block type="math_number">
