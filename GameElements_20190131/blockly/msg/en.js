@@ -25,3 +25,4 @@ MSG.catGameElements_sub23 = "Form";
 MSG.catGameElements_sub24 = "Video";
 MSG.catGameElements_sub25 = "Font";
 MSG.catGameElements_sub26 = "Span";
+MSG.catGameElements_sub27 = "Fetch";
