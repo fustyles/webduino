@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	function getScript() {
 		var script = "<script src='GameElements_20190131/gameelements.js'></script>";
-		
+		script += "<link rel='stylesheet' href='css/icon.css' />";
+	
 		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace(), true);
 		xml = Blockly.Xml.domToPrettyText(xml);
 		
@@ -188,6 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	function getScriptRemote() {
 		var script = "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script>";
+		script += "<link rel='stylesheet' href='https://fustyles.github.io/webduino/SpBlocklyJS/css/icon_custom.css' />";
 		
 		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace(), true);
 		xml = Blockly.Xml.domToPrettyText(xml);
