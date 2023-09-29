@@ -1,3 +1,44 @@
+Blockly.Blocks['button_toolbox'] = {
+  init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.BUTTON_TOOLBOX);	  
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.LEFT);    
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TOP);   
+  this.appendValueInput("width_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.WIDTH);
+  this.appendValueInput("height_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.HEIGHT);
+  this.appendValueInput("fontsize_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.FONTSIZE); 
+  this.appendValueInput("color_")
+	  .appendField(Blockly.Msg.BUTTON_FONTCOLOR)
+      .setAlign(Blockly.ALIGN_RIGHT);
+  this.appendValueInput("bgcolor_")
+	  .appendField(Blockly.Msg.BACKCOLOR)
+      .setAlign(Blockly.ALIGN_RIGHT);	
+  this.appendValueInput("list_")
+	  .appendField(Blockly.Msg.BUTTON_GOOGLEICON_LIST)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .setCheck(null);		  
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(90);
+  }
+};
+
 Blockly.Blocks['custom_googleicon'] = {
   init: function() {
   this.appendDummyInput() 
