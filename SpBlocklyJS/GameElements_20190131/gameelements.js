@@ -146,6 +146,8 @@
         return obj.id;
       else if (input_property=='name')
         return obj.name;
+      else if (input_property=='class')
+        return obj.className;	
       else if (input_property=="onclickColumn"){
         if (onclickid.indexOf("gametable_td_"+input_id)==0){     
           if (onclickid.split("_").length>=5){
@@ -499,6 +501,8 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
       }
       else if (input_property=="innerHTML")
         return obj.innerHTML;
+      else if (input_property=='class')
+        return obj.className;
       else if (input_property=="text") {
         if (obj.firstChild)
           return obj.firstChild.innerHTML;
@@ -1033,6 +1037,8 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
         return obj.id;
       else if (input_property=='name')
         return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";    
@@ -1445,6 +1451,8 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
         return obj.id;
       else if (input_property=='name')
         return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";    
@@ -1918,6 +1926,8 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
         return obj.id;
       else if (input_property=='name')
         return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
@@ -2018,6 +2028,8 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
         return obj.id;
       else if (input_property=='name')
         return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
@@ -2181,6 +2193,8 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
         return obj.id;
       else if (input_property=='name')
         return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
@@ -2295,7 +2309,9 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
       else if (input_property=='id')
         return obj.id;
       else if (input_property=='name')
-        return obj.name;	  
+        return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
@@ -2418,6 +2434,8 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
         return obj.id;
       else if (input_property=='name')
         return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
@@ -2572,6 +2590,8 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
         return obj.id;
       else if (input_property=='name')
         return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
@@ -2771,6 +2791,8 @@ function HextoRgb(color) {
         return obj.id;
       else if (input_property=='name')
         return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
@@ -2915,6 +2937,8 @@ function HextoRgb(color) {
         return obj.id;
       else if (input_property=='name')
         return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
@@ -3017,6 +3041,8 @@ function HextoRgb(color) {
         return obj.id;
       else if (input_property=='name')
         return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
@@ -3131,6 +3157,8 @@ function HextoRgb(color) {
         return obj.id;
       else if (input_property=='name')
         return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
@@ -3234,6 +3262,8 @@ function HextoRgb(color) {
         return obj.id;
       else if (input_property=='name')
         return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
@@ -3353,7 +3383,9 @@ function HextoRgb(color) {
       else if (input_property=='id')
         return obj.id;
       else if (input_property=='name')
-        return obj.name;	  
+        return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
@@ -3459,7 +3491,9 @@ function HextoRgb(color) {
       else if (input_property=='id')
         return obj.id;
       else if (input_property=='name')
-        return obj.name;	  
+        return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
@@ -3555,7 +3589,9 @@ function HextoRgb(color) {
       else if (input_property=='id')
         return obj.id;
       else if (input_property=='name')
-        return obj.name;	  
+        return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
@@ -3659,7 +3695,9 @@ function HextoRgb(color) {
       else if (input_property=='id')
         return obj.id;
       else if (input_property=='name')
-        return obj.name;	  
+        return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
@@ -3753,7 +3791,9 @@ function HextoRgb(color) {
       else if (input_property=='id')
         return obj.id;
       else if (input_property=='name')
-        return obj.name;	  
+        return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
@@ -3890,6 +3930,8 @@ function HextoRgb(color) {
         return obj.id;
       else if (input_property=='name')
         return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
@@ -3922,7 +3964,9 @@ function HextoRgb(color) {
       if (input_property=="action")
         obj.action = input_value;
       else if (input_property=="target")
-        obj.target = input_value;	    
+        obj.target = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }
 
@@ -3937,6 +3981,8 @@ function HextoRgb(color) {
         return obj.id;
       else if (input_property=='name')
         return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
@@ -4117,6 +4163,8 @@ function HextoRgb(color) {
         return obj.id;
       else if (input_property=='name')
         return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
@@ -4485,6 +4533,8 @@ function HextoRgb(color) {
         return obj.id;
       else if (input_property=='name')
         return obj.name;
+      else if (input_property=='class')
+        return obj.className;
     }
     else
       return "";
