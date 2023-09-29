@@ -1,3 +1,28 @@
+Blockly.Blocks['custom_googleicon'] = {
+  init: function() {
+  this.appendDummyInput() 
+	  .appendField(Blockly.Msg.CUSTOM_GOOGLEICON_SHOW);  
+  this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.ELEMENT_BUTTON,"button"],
+	  [Blockly.Msg.ELEMENT_SPAN,"span"],
+	  [Blockly.Msg.ELEMENT_A,"a"]
+	  ]), "element");
+  this.appendValueInput("id")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.ID);   
+  this.appendValueInput("val")
+	  .appendField(Blockly.Msg.CUSTOM_GOOGLEICON_NAME_SHOW)
+      .setCheck("String");	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(50);
+  this.setHelpUrl("https://fonts.google.com/icons");  
+  }
+};
+
 Blockly.Blocks['table_insert_row'] = {
   init: function() {
     this.appendDummyInput()
@@ -373,7 +398,8 @@ Blockly.Blocks['table_set'] = {
 	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
 	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
 	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
-	  [Blockly.Msg.PROPERTY_STYLE,"style"]
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
 	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -408,7 +434,8 @@ Blockly.Blocks['table_get'] = {
 	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
 	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
 	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
-	  [Blockly.Msg.ELEMENTID,"id"]
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
 	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
@@ -486,7 +513,8 @@ Blockly.Blocks['table_td_set'] = {
 	  [Blockly.Msg.PROPERTY_TEXTALIGN,"textalign"], 
 	  [Blockly.Msg.PROPERTY_BACKGROUND,"background"], 
 	  [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], 
-	  [Blockly.Msg.PROPERTY_STYLE,"style"]
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
 	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -636,8 +664,9 @@ Blockly.Blocks['table_td_get'] = {
 	  [Blockly.Msg.PROPERTY_IMAGE,"image"], 
 	  [Blockly.Msg.PROPERTY_CHILDLENGTH,"childlength"], 
 	  [Blockly.Msg.PROPERTY_CHILDID,"childid"], 
-	  [Blockly.Msg.PROPERTY_TDID,"tdid"]
-	  ]), "property_");  
+	  [Blockly.Msg.PROPERTY_TDID,"tdid"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");    
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(240);
@@ -1261,7 +1290,22 @@ Blockly.Blocks['canvas_set'] = {
       .appendField(Blockly.Msg.CANVAS_ID);    
   this.appendDummyInput() 
       .appendField(Blockly.Msg.SET)    
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_MOVEX,"moveX"], [Blockly.Msg.PROPERTY_MOVEY,"moveY"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_BORDER,"border"], [Blockly.Msg.PROPERTY_BACKGROUNDCOLOR,"backgroundColor"], [Blockly.Msg.PROPERTY_STYLE,"style"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_MOVEX,"moveX"], 
+	  [Blockly.Msg.PROPERTY_MOVEY,"moveY"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_BORDER,"border"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUNDCOLOR,"backgroundColor"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -1279,7 +1323,21 @@ Blockly.Blocks['canvas_get'] = {
       .appendField(Blockly.Msg.CANVAS_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.GET)    
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_EXIST,"exist"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_BORDER,"border"], [Blockly.Msg.PROPERTY_BACKGROUNDCOLOR,"backgroundColor"], [Blockly.Msg.ELEMENTID,"id"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.PROPERTY_EXIST,"exist"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_BORDER,"border"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUNDCOLOR,"backgroundColor"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -2011,7 +2069,26 @@ Blockly.Blocks['image_set'] = {
       .appendField(Blockly.Msg.IMAGE_ID);    
   this.appendDummyInput() 
       .appendField(Blockly.Msg.SET)    
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.URL,"url"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ROTATE,"rotate"], [Blockly.Msg.PROPERTY_ROTATEX,"rotateX"], [Blockly.Msg.PROPERTY_ROTATEY,"rotateY"], [Blockly.Msg.PROPERTY_ROTATEZ,"rotateZ"], [Blockly.Msg.PROPERTY_MOVEX,"moveX"], [Blockly.Msg.PROPERTY_MOVEY,"moveY"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.URL,"url"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ROTATE,"rotate"], 
+	  [Blockly.Msg.PROPERTY_ROTATEX,"rotateX"], 
+	  [Blockly.Msg.PROPERTY_ROTATEY,"rotateY"], 
+	  [Blockly.Msg.PROPERTY_ROTATEZ,"rotateZ"], 
+	  [Blockly.Msg.PROPERTY_MOVEX,"moveX"], 
+	  [Blockly.Msg.PROPERTY_MOVEY,"moveY"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -2029,7 +2106,26 @@ Blockly.Blocks['image_get'] = {
       .appendField(Blockly.Msg.IMAGE_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.GET)    
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_EXIST,"exist"], [Blockly.Msg.URL,"url"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_NATURALWIDTH,"naturalwidth"], [Blockly.Msg.PROPERTY_NATURALHEIGHT,"naturalheight"], [Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ROTATE,"rotate"], [Blockly.Msg.PROPERTY_ROTATEX,"rotateX"], [Blockly.Msg.PROPERTY_ROTATEY,"rotateY"], [Blockly.Msg.PROPERTY_ROTATEZ,"rotateZ"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ELEMENTID,"id"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.PROPERTY_EXIST,"exist"], 
+	  [Blockly.Msg.URL,"url"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_NATURALWIDTH,"naturalwidth"], 
+	  [Blockly.Msg.PROPERTY_NATURALHEIGHT,"naturalheight"], 
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ROTATE,"rotate"], 
+	  [Blockly.Msg.PROPERTY_ROTATEX,"rotateX"], 
+	  [Blockly.Msg.PROPERTY_ROTATEY,"rotateY"], 
+	  [Blockly.Msg.PROPERTY_ROTATEZ,"rotateZ"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -2639,7 +2735,25 @@ Blockly.Blocks['button_set'] = {
       .appendField(Blockly.Msg.BUTTON_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.BUTTON_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BORDERRADIUS,"borderradius"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.FONTCOLOR,"color"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_BORDERRADIUS,"borderradius"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUND,"background"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], 
+	  [Blockly.Msg.FONTCOLOR,"color"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -2657,7 +2771,24 @@ Blockly.Blocks['button_get'] = {
       .appendField(Blockly.Msg.BUTTON_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.BUTTON_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.FONTCOLOR,"color"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ELEMENTID,"id"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUND,"background"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], 
+	  [Blockly.Msg.FONTCOLOR,"color"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -3007,7 +3138,21 @@ Blockly.Blocks['colorpicker_set'] = {
       .appendField(Blockly.Msg.COLORPICKER_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.COLORPICKER_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -3025,7 +3170,21 @@ Blockly.Blocks['colorpicker_get'] = {
       .appendField(Blockly.Msg.COLORPICKER_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.COLORPICKER_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ELEMENTID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -3131,7 +3290,26 @@ Blockly.Blocks['select_set'] = {
       .appendField(Blockly.Msg.SELECT_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.SELECT_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_COLOR,"color"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_OPTION,"option"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUND,"background"], 
+	  [Blockly.Msg.PROPERTY_COLOR,"color"], 
+	  [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_OPTION,"option"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -3149,7 +3327,28 @@ Blockly.Blocks['select_get'] = {
       .appendField(Blockly.Msg.SELECT_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.SELECT_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_COLOR,"color"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_SELECTEDVALUE,"selectedValue"], [Blockly.Msg.PROPERTY_SELECTEDTEXT,"selectedText"], [Blockly.Msg.PROPERTY_SELECTEDINDEX,"selectedIndex"], [Blockly.Msg.PROPERTY_LENGTH,"length"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ELEMENTID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUND,"background"], 
+	  [Blockly.Msg.PROPERTY_COLOR,"color"], 
+	  [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_SELECTEDVALUE,"selectedValue"], 
+	  [Blockly.Msg.PROPERTY_SELECTEDTEXT,"selectedText"], 
+	  [Blockly.Msg.PROPERTY_SELECTEDINDEX,"selectedIndex"], 
+	  [Blockly.Msg.PROPERTY_LENGTH,"length"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -3251,7 +3450,25 @@ Blockly.Blocks['range_set'] = {
       .appendField(Blockly.Msg.RANGE_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.RANGE_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_MAX,"max"], [Blockly.Msg.PROPERTY_MIN,"min"], [Blockly.Msg.PROPERTY_STEP,"step"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_MAX,"max"], 
+	  [Blockly.Msg.PROPERTY_MIN,"min"], 
+	  [Blockly.Msg.PROPERTY_STEP,"step"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -3269,7 +3486,25 @@ Blockly.Blocks['range_get'] = {
       .appendField(Blockly.Msg.RANGE_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.RANGE_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_MAX,"max"], [Blockly.Msg.PROPERTY_MIN,"min"], [Blockly.Msg.PROPERTY_STEP,"step"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ELEMENTID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_MAX,"max"], 
+	  [Blockly.Msg.PROPERTY_MIN,"min"], 
+	  [Blockly.Msg.PROPERTY_STEP,"step"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -3373,7 +3608,25 @@ Blockly.Blocks['text_set'] = {
       .appendField(Blockly.Msg.TEXT_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TEXT_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_COLOR,"color"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUND,"background"], 
+	  [Blockly.Msg.PROPERTY_COLOR,"color"], 
+	  [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -3393,7 +3646,25 @@ Blockly.Blocks['text_get'] = {
       .appendField(Blockly.Msg.TEXT_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TEXT_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_COLOR,"color"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ELEMENTID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUND,"background"], 
+	  [Blockly.Msg.PROPERTY_COLOR,"color"], 
+	  [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -3510,7 +3781,32 @@ Blockly.Blocks['div_set'] = {
       .appendField(Blockly.Msg.DIV_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.DIV_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], [Blockly.Msg.PROPERTY_BORDERRADIUS,"borderradius"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_COLOR,"color"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_SCROLLX,"scrollX"], [Blockly.Msg.PROPERTY_SCROLLY,"scrollY"], [Blockly.Msg.PROPERTY_SCROLLLEFT,"scrollLeft"], [Blockly.Msg.PROPERTY_SCROLLTOP,"scrollTop"], [Blockly.Msg.PROPERTY_WRAP,"wrap"], [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], 
+	  [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], 
+	  [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], 
+	  [Blockly.Msg.PROPERTY_BORDERRADIUS,"borderradius"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUND,"background"], 
+	  [Blockly.Msg.PROPERTY_COLOR,"color"], 
+	  [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_SCROLLX,"scrollX"], 
+	  [Blockly.Msg.PROPERTY_SCROLLY,"scrollY"], 
+	  [Blockly.Msg.PROPERTY_SCROLLLEFT,"scrollLeft"], 
+	  [Blockly.Msg.PROPERTY_SCROLLTOP,"scrollTop"], 
+	  [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -3528,7 +3824,34 @@ Blockly.Blocks['div_get'] = {
       .appendField(Blockly.Msg.DIV_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.DIV_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], [Blockly.Msg.PROPERTY_SCROLLX,"scrollX"], [Blockly.Msg.PROPERTY_SCROLLY,"scrollY"], [Blockly.Msg.PROPERTY_COLOR,"color"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_SCROLLX,"scrollX"], [Blockly.Msg.PROPERTY_SCROLLY,"scrollY"], [Blockly.Msg.PROPERTY_SCROLLLEFT,"scrollLeft"], [Blockly.Msg.PROPERTY_SCROLLTOP,"scrollTop"], [Blockly.Msg.PROPERTY_SCROLLWIDTH,"scrollWidth"], [Blockly.Msg.PROPERTY_SCROLLHEIGHT,"scrollHeight"], [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ELEMENTID,"id"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], 
+	  [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], 
+	  [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], 
+	  [Blockly.Msg.PROPERTY_SCROLLX,"scrollX"], 
+	  [Blockly.Msg.PROPERTY_SCROLLY,"scrollY"], 
+	  [Blockly.Msg.PROPERTY_COLOR,"color"], 
+	  [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_SCROLLX,"scrollX"], 
+	  [Blockly.Msg.PROPERTY_SCROLLY,"scrollY"], 
+	  [Blockly.Msg.PROPERTY_SCROLLLEFT,"scrollLeft"], 
+	  [Blockly.Msg.PROPERTY_SCROLLTOP,"scrollTop"], 
+	  [Blockly.Msg.PROPERTY_SCROLLWIDTH,"scrollWidth"], 
+	  [Blockly.Msg.PROPERTY_SCROLLHEIGHT,"scrollHeight"], 
+	  [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(300);
@@ -3578,7 +3901,16 @@ Blockly.Blocks['body_set'] = {
   init: function() {    
   this.appendDummyInput()  
       .appendField(Blockly.Msg.SETWINDOW)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_BACKGROUNDCOLOR,"backgroundColor"], [Blockly.Msg.PROPERTY_BACKGROUNDIMAGE,"backgroundImage"], [Blockly.Msg.PROPERTY_BACKGROUNDREPEAT,"backgroundRepeat"], [Blockly.Msg.PROPERTY_OVERFLOW,"overflow"], [Blockly.Msg.PROPERTY_FULLSCREEN,"fullscreen"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.PROPERTY_DROPPABLE,"droppable"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.PROPERTY_BACKGROUNDCOLOR,"backgroundColor"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUNDIMAGE,"backgroundImage"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUNDREPEAT,"backgroundRepeat"], 
+	  [Blockly.Msg.PROPERTY_OVERFLOW,"overflow"], 
+	  [Blockly.Msg.PROPERTY_FULLSCREEN,"fullscreen"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_DROPPABLE,"droppable"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setCheck(null)
 	  .appendField(Blockly.Msg.PROPERTY_VALUE);    
@@ -3707,7 +4039,28 @@ Blockly.Blocks['iframe_set'] = {
       .appendField(Blockly.Msg.IFRAME_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.IFRAME_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_FRAMEBORDER,"frameborder"], [Blockly.Msg.PROPERTY_SCROLLING,"scrolling"], [Blockly.Msg.PROPERTY_SCROLLLEFT,"scrollLeft"], [Blockly.Msg.PROPERTY_SCROLLTOP,"scrollTop"], [Blockly.Msg.PROPERTY_SRC,"src"], [Blockly.Msg.PROPERTY_SRCDOC,"srcdoc"], [Blockly.Msg.PROPERTY_SANDBOX,"sandbox"], [Blockly.Msg.PROPERTY_ALLOW,"allow"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_FRAMEBORDER,"frameborder"], 
+	  [Blockly.Msg.PROPERTY_SCROLLING,"scrolling"], 
+	  [Blockly.Msg.PROPERTY_SCROLLLEFT,"scrollLeft"], 
+	  [Blockly.Msg.PROPERTY_SCROLLTOP,"scrollTop"], 
+	  [Blockly.Msg.PROPERTY_SRC,"src"], 
+	  [Blockly.Msg.PROPERTY_SRCDOC,"srcdoc"], 
+	  [Blockly.Msg.PROPERTY_SANDBOX,"sandbox"], 
+	  [Blockly.Msg.PROPERTY_ALLOW,"allow"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -3725,7 +4078,30 @@ Blockly.Blocks['iframe_get'] = {
       .appendField(Blockly.Msg.IFRAME_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.IFRAME_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_FRAMEBORDER,"frameborder"], [Blockly.Msg.PROPERTY_SCROLLING,"scrolling"], [Blockly.Msg.PROPERTY_SCROLLLEFT,"scrollLeft"], [Blockly.Msg.PROPERTY_SCROLLTOP,"scrollTop"], [Blockly.Msg.PROPERTY_SCROLLWIDTH,"scrollWidth"], [Blockly.Msg.PROPERTY_SCROLLHEIGHT,"scrollHeight"], [Blockly.Msg.PROPERTY_SRC,"src"], [Blockly.Msg.PROPERTY_SRCDOC,"srcdoc"], [Blockly.Msg.PROPERTY_SANDBOX,"sandbox"], [Blockly.Msg.PROPERTY_ALLOW,"allow"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ELEMENTID,"id"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_FRAMEBORDER,"frameborder"], 
+	  [Blockly.Msg.PROPERTY_SCROLLING,"scrolling"], 
+	  [Blockly.Msg.PROPERTY_SCROLLLEFT,"scrollLeft"], 
+	  [Blockly.Msg.PROPERTY_SCROLLTOP,"scrollTop"], 
+	  [Blockly.Msg.PROPERTY_SCROLLWIDTH,"scrollWidth"], 
+	  [Blockly.Msg.PROPERTY_SCROLLHEIGHT,"scrollHeight"], 
+	  [Blockly.Msg.PROPERTY_SRC,"src"], 
+	  [Blockly.Msg.PROPERTY_SRCDOC,"srcdoc"], 
+	  [Blockly.Msg.PROPERTY_SANDBOX,"sandbox"], 
+	  [Blockly.Msg.PROPERTY_ALLOW,"allow"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(330);
@@ -3969,7 +4345,29 @@ Blockly.Blocks['a_set'] = {
       .appendField(Blockly.Msg.A_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.A_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], [Blockly.Msg.PROPERTY_BORDERRADIUS,"borderradius"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_COLOR,"color"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_HREF,"href"], [Blockly.Msg.PROPERTY_TARGET,"target"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], 
+	  [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], 
+	  [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], 
+	  [Blockly.Msg.PROPERTY_BORDERRADIUS,"borderradius"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUND,"background"], 
+	  [Blockly.Msg.PROPERTY_COLOR,"color"], 
+	  [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_HREF,"href"], 
+	  [Blockly.Msg.PROPERTY_TARGET,"target"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -3987,7 +4385,28 @@ Blockly.Blocks['a_get'] = {
       .appendField(Blockly.Msg.A_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.A_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_COLOR,"color"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_HREF,"href"], [Blockly.Msg.PROPERTY_TARGET,"target"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ELEMENTID,"id"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], 
+	  [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], 
+	  [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUND,"background"], 
+	  [Blockly.Msg.PROPERTY_COLOR,"color"], 
+	  [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_HREF,"href"], 
+	  [Blockly.Msg.PROPERTY_TARGET,"target"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -4066,7 +4485,22 @@ Blockly.Blocks['radio_set'] = {
       .appendField(Blockly.Msg.RADIO_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.RADIO_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.SIZE,"size"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_CHECKED,"checked"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.SIZE,"size"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_CHECKED,"checked"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -4084,7 +4518,22 @@ Blockly.Blocks['radio_get'] = {
       .appendField(Blockly.Msg.RADIO_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.RADIO_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.SIZE,"size"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_CHECKED,"checked"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ELEMENTID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.SIZE,"size"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_CHECKED,"checked"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -4191,7 +4640,22 @@ Blockly.Blocks['checkbox_set'] = {
       .appendField(Blockly.Msg.CHECKBOX_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.CHECKBOX_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.SIZE,"size"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_CHECKED,"checked"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.SIZE,"size"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_CHECKED,"checked"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -4209,7 +4673,22 @@ Blockly.Blocks['checkbox_get'] = {
       .appendField(Blockly.Msg.CHECKBOX_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.CHECKBOX_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.SIZE,"size"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_CHECKED,"checked"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ELEMENTID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.SIZE,"size"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_CHECKED,"checked"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -4299,7 +4778,24 @@ Blockly.Blocks['textarea_set'] = {
       .appendField(Blockly.Msg.TEXTAREA_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TEXTAREA_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_COLUMNS,"cols"], [Blockly.Msg.PROPERTY_ROWS,"rows"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], [Blockly.Msg.PROPERTY_READONLY,"readonly"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.PROPERTY_COLUMNS,"cols"], 
+	  [Blockly.Msg.PROPERTY_ROWS,"rows"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], 
+	  [Blockly.Msg.PROPERTY_READONLY,"readonly"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -4317,7 +4813,24 @@ Blockly.Blocks['textarea_get'] = {
       .appendField(Blockly.Msg.TEXTAREA_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TEXTAREA_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_COLUMNS,"cols"], [Blockly.Msg.PROPERTY_ROWS,"rows"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], [Blockly.Msg.PROPERTY_READONLY,"readonly"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ELEMENTID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.PROPERTY_COLUMNS,"cols"], 
+	  [Blockly.Msg.PROPERTY_ROWS,"rows"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], 
+	  [Blockly.Msg.PROPERTY_READONLY,"readonly"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -4423,7 +4936,28 @@ Blockly.Blocks['number_set'] = {
       .appendField(Blockly.Msg.NUMBER_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.NUMBER_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_COLOR,"color"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.PROPERTY_MAX,"max"], [Blockly.Msg.PROPERTY_MIN,"min"], [Blockly.Msg.PROPERTY_STEP,"step"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUND,"background"], 
+	  [Blockly.Msg.PROPERTY_COLOR,"color"], 
+	  [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], 
+	  [Blockly.Msg.PROPERTY_MAX,"max"], 
+	  [Blockly.Msg.PROPERTY_MIN,"min"], 
+	  [Blockly.Msg.PROPERTY_STEP,"step"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -4441,7 +4975,24 @@ Blockly.Blocks['number_get'] = {
       .appendField(Blockly.Msg.NUMBER_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.NUMBER_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.PROPERTY_MAX,"max"], [Blockly.Msg.PROPERTY_MIN,"min"], [Blockly.Msg.PROPERTY_STEP,"step"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ELEMENTID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.PROPERTY_MAX,"max"], 
+	  [Blockly.Msg.PROPERTY_MIN,"min"], 
+	  [Blockly.Msg.PROPERTY_STEP,"step"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -4531,7 +5082,22 @@ Blockly.Blocks['date_set'] = {
       .appendField(Blockly.Msg.DATE_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.DATE_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_MAX,"max"], [Blockly.Msg.PROPERTY_MIN,"min"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.PROPERTY_MAX,"max"], 
+	  [Blockly.Msg.PROPERTY_MIN,"min"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -4549,7 +5115,22 @@ Blockly.Blocks['date_get'] = {
       .appendField(Blockly.Msg.DATE_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.DATE_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_MAX,"max"], [Blockly.Msg.PROPERTY_MIN,"min"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ELEMENTID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.PROPERTY_MAX,"max"], 
+	  [Blockly.Msg.PROPERTY_MIN,"min"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -4631,7 +5212,20 @@ Blockly.Blocks['time_set'] = {
       .appendField(Blockly.Msg.TIME_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TIME_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -4649,7 +5243,20 @@ Blockly.Blocks['time_get'] = {
       .appendField(Blockly.Msg.TIME_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TIME_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ELEMENTID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -4731,7 +5338,20 @@ Blockly.Blocks['datetime_set'] = {
       .appendField(Blockly.Msg.DATETIME_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.DATETIME_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -4749,7 +5369,20 @@ Blockly.Blocks['datetime_get'] = {
       .appendField(Blockly.Msg.DATETIME_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.DATETIME_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ELEMENTID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -4835,7 +5468,21 @@ Blockly.Blocks['progress_set'] = {
       .appendField(Blockly.Msg.PROGRESS_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.PROGRESS_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_MAX,"max"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.PROPERTY_MAX,"max"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -4853,7 +5500,21 @@ Blockly.Blocks['progress_get'] = {
       .appendField(Blockly.Msg.PROGRESS_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.PROGRESS_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_MAX,"max"], [Blockly.Msg.PROPERTY_VALUE,"value"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ELEMENTID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.PROPERTY_MAX,"max"], 
+	  [Blockly.Msg.PROPERTY_VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -4946,7 +5607,26 @@ Blockly.Blocks['password_set'] = {
       .appendField(Blockly.Msg.PASSWORD_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.PASSWORD_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_COLOR,"color"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.MAXLENGTH,"maxlength"], [Blockly.Msg.VALUE,"value"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUND,"background"], 
+	  [Blockly.Msg.PROPERTY_COLOR,"color"], 
+	  [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.MAXLENGTH,"maxlength"], 
+	  [Blockly.Msg.VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -4966,7 +5646,26 @@ Blockly.Blocks['password_get'] = {
       .appendField(Blockly.Msg.PASSWORD_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.PASSWORD_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_COLOR,"color"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.MAXLENGTH,"maxlength"], [Blockly.Msg.VALUE,"value"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ELEMENTID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUND,"background"], 
+	  [Blockly.Msg.PROPERTY_COLOR,"color"], 
+	  [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.MAXLENGTH,"maxlength"], 
+	  [Blockly.Msg.VALUE,"value"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -5028,7 +5727,7 @@ Blockly.Blocks['form_set'] = {
       .appendField(Blockly.Msg.FORM_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.FORM_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.FORM_ACTION,"action"], [Blockly.Msg.FORM_TARGET,"target"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.FORM_ACTION,"action"], [Blockly.Msg.FORM_TARGET,"target"], [Blockly.Msg.PROPERTY_CLASS,"class"]]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -5046,7 +5745,7 @@ Blockly.Blocks['form_get'] = {
       .appendField(Blockly.Msg.FORM_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.FORM_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.FORM_ACTION,"action"], [Blockly.Msg.FORM_TARGET,"target"], [Blockly.Msg.ELEMENTID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.FORM_ACTION,"action"], [Blockly.Msg.FORM_TARGET,"target"], [Blockly.Msg.ELEMENTID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"], [Blockly.Msg.PROPERTY_CLASS,"class"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -5203,7 +5902,27 @@ Blockly.Blocks['video_set'] = {
       .appendField(Blockly.Msg.VIDEO_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.VIDEO_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_SRC,"src"], [Blockly.Msg.PROPERTY_AUTOPLAY,"autoplay"], [Blockly.Msg.PROPERTY_LOOP,"loop"], [Blockly.Msg.PROPERTY_MUTED,"muted"], [Blockly.Msg.PROPERTY_CONTROLS,"controls"], [Blockly.Msg.PROPERTY_PRELOAD,"preload"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_SRC,"src"], 
+	  [Blockly.Msg.PROPERTY_AUTOPLAY,"autoplay"], 
+	  [Blockly.Msg.PROPERTY_LOOP,"loop"], 
+	  [Blockly.Msg.PROPERTY_MUTED,"muted"], 
+	  [Blockly.Msg.PROPERTY_CONTROLS,"controls"], 
+	  [Blockly.Msg.PROPERTY_PRELOAD,"preload"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -5221,7 +5940,28 @@ Blockly.Blocks['video_get'] = {
       .appendField(Blockly.Msg.VIDEO_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.VIDEO_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.WIDTH,"width"], [Blockly.Msg.HEIGHT,"height"], [Blockly.Msg.PROPERTY_SRC,"src"], [Blockly.Msg.PROPERTY_AUTOPLAY,"autoplay"], [Blockly.Msg.PROPERTY_LOOP,"loop"], [Blockly.Msg.PROPERTY_MUTED,"muted"], [Blockly.Msg.PROPERTY_CONTROLS,"controls"], [Blockly.Msg.PROPERTY_PRELOAD,"preload"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DISABLED,"disabled"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"], [Blockly.Msg.ELEMENTID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.WIDTH,"width"], 
+	  [Blockly.Msg.HEIGHT,"height"], 
+	  [Blockly.Msg.PROPERTY_SRC,"src"], 
+	  [Blockly.Msg.PROPERTY_AUTOPLAY,"autoplay"], 
+	  [Blockly.Msg.PROPERTY_LOOP,"loop"], 
+	  [Blockly.Msg.PROPERTY_MUTED,"muted"], 
+	  [Blockly.Msg.PROPERTY_CONTROLS,"controls"], 
+	  [Blockly.Msg.PROPERTY_PRELOAD,"preload"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DISABLED,"disabled"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_NAME,"name"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);
@@ -5671,7 +6411,25 @@ Blockly.Blocks['span_set'] = {
       .appendField(Blockly.Msg.SPAN_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.SPAN_SET) 
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], [Blockly.Msg.PROPERTY_BORDERRADIUS,"borderradius"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_COLOR,"color"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.PROPERTY_STYLE,"style"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], 
+	  [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], 
+	  [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], 
+	  [Blockly.Msg.PROPERTY_BORDERRADIUS,"borderradius"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUND,"background"], 
+	  [Blockly.Msg.PROPERTY_COLOR,"color"], 
+	  [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
@@ -5689,7 +6447,24 @@ Blockly.Blocks['span_get'] = {
       .appendField(Blockly.Msg.SPAN_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.SPAN_GET)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.LEFT,"left"], [Blockly.Msg.TOP,"top"], [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], [Blockly.Msg.PROPERTY_BACKGROUND,"background"], [Blockly.Msg.PROPERTY_COLOR,"color"], [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], [Blockly.Msg.PROPERTY_OPACITY,"opacity"], [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], [Blockly.Msg.PROPERTY_DISPLAY,"display"], [Blockly.Msg.PROPERTY_POSITION,"position"], [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], [Blockly.Msg.ELEMENTID,"id"]]), "property_");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.PROPERTY_BORDERSTYLE,"borderstyle"], 
+	  [Blockly.Msg.PROPERTY_BORDERWIDTH,"borderwidth"], 
+	  [Blockly.Msg.PROPERTY_BORDERCOLOR,"bordercolor"], 
+	  [Blockly.Msg.PROPERTY_BACKGROUND,"background"], 
+	  [Blockly.Msg.PROPERTY_COLOR,"color"], 
+	  [Blockly.Msg.PROPERTY_FONTSIZE,"fontsize"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(200);

@@ -32,7 +32,7 @@
 			"font_text","font_b","font_I","font_u","font_spu","font_sub","font_em","font_strong","font_code",
 	                "window_open","window_confirm","window_messagebox",
 			"span_create","span_set","span_get","span_delete",
-			"include_file","code_text","code_text_input","urlcode"
+			"include_file","code_text","code_text_input","urlcode","custom_googleicon"
 	    ],
   "category": "catPlus",
   "scripts": [
