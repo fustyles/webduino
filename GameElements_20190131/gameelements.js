@@ -4726,7 +4726,18 @@ function HextoRgb(color) {
 	  return now;
   }
 	
-  
+  function icon_google(input_element, input_id, input_value) {
+	  include_file("css", "", "https://fustyles.github.io/webduino/SpBlocklyJS/css/icon_custom.css");
+	  var obj = document.getElementById("game"+input_element+"_"+input_id);
+	  if (obj) {
+	    	  obj.className = "material-icons_custom";
+	    	  if (input_element=="button")
+		  	obj.value = input_value;
+	    	  else
+		  	obj.innerText = input_value;
+	  }
+  }	
+	
   window.table_create = table_create;
   window.table_set = table_set;
   window.table_get = table_get;
@@ -4901,5 +4912,6 @@ function HextoRgb(color) {
   window.include_file = include_file;
   window.getDatetime = getDatetime;  
   window.setDatetime = setDatetime; 	
-	
+  window.icon_google = icon_google;
+  
 }(window, window.document));
