@@ -78,7 +78,9 @@
         obj.style.backgroundImage="url("+input_value+")";
       }
       else if (input_property=="style")
-        obj.style = input_value;	    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
       else
       {
         if (obj.rows.length>0){
@@ -427,7 +429,9 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
       else if (input_property=="innerHTML")
         obj.innerHTML = input_value;
       else if (input_property=="style")
-        obj.style = input_value;		    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;		    
     } 
   }
   
@@ -975,7 +979,9 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
       else if (input_property=="backgroundColor")
         obj.style.backgroundColor = input_value;
       else if (input_property=="style")
-        obj.style = input_value;		    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;   
     }
   }  
   
@@ -1365,7 +1371,9 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
       else if (input_property=="draggable")
         obj.draggable = input_value;
       else if (input_property=="style")
-        obj.style = input_value;	    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }  
   
@@ -1863,7 +1871,9 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
       else if (input_property=="draggable")
         obj.draggable = input_value;
       else if (input_property=="style")
-	obj.style = input_value;
+		obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }
  
@@ -1973,7 +1983,9 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
       else if (input_property=="draggable")
         obj.draggable = input_value;	
       else if (input_property=="style")
-        obj.style = input_value;	    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }
 
@@ -2102,7 +2114,9 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
       else if (input_property=="draggable")
         obj.draggable = input_value;
       else if (input_property=="style")
-        obj.style = input_value;	    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }
 
@@ -2241,7 +2255,9 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
       else if (input_property=="draggable")
         obj.draggable = input_value;	
       else if (input_property=="style")
-        obj.style = input_value;	    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }
 
@@ -2355,7 +2371,9 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
       else if (input_property=="draggable")
         obj.draggable = input_value;
       else if (input_property=="style")
-        obj.style = input_value;	    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }
 
@@ -2495,7 +2513,9 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
       else if (input_property=="scrollTop")
         obj.scrollTop = input_value;		
       else if (input_property=="style")
-        obj.style = input_value;	    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }
 
@@ -2592,6 +2612,8 @@ function HextoRgb(color) {
       document.body.style.overflow = input_value;
     else if (input_property=="style")
       document.body.style = input_value;
+	else if (input_property=="class")
+      document.body.className = input_value;
     else if (input_property=="fullscreen") {
       if (input_value==true)
         window.parent.document.getElementById("demo-area").webkitRequestFullscreen();
@@ -2696,7 +2718,9 @@ function HextoRgb(color) {
     else if (input_property=="scrollTop")
       obj.contentWindow.scrollTo(obj.contentDocument.body.scrollLeft, input_value);
     else if (input_property=="style")
-	obj.style = input_value;	    
+		obj.style = input_value;
+	else if (input_property=="class")
+        obj.className = input_value;
     }
   }
 
@@ -2840,7 +2864,9 @@ function HextoRgb(color) {
       else if (input_property=="draggable")
         obj.draggable = input_value;
       else if (input_property=="style")
-        obj.style = input_value;	    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }
 
@@ -2956,7 +2982,9 @@ function HextoRgb(color) {
       else if (input_property=="draggable")
         obj.draggable = input_value;
       else if (input_property=="style")
-        obj.style = input_value;	    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }
 
@@ -3068,7 +3096,9 @@ function HextoRgb(color) {
       else if (input_property=="draggable")
         obj.draggable = input_value;
       else if (input_property=="style")
-        obj.style = input_value;	    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }
 
@@ -3165,7 +3195,9 @@ function HextoRgb(color) {
       else if (input_property=="draggable")
         obj.draggable = input_value;
       else if (input_property=="style")
-        obj.style = input_value;	    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }
 
@@ -3283,7 +3315,9 @@ function HextoRgb(color) {
       else if (input_property=="draggable")
         obj.draggable = input_value;	
       else if (input_property=="style")
-        obj.style = input_value;	    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }
 
@@ -3391,7 +3425,9 @@ function HextoRgb(color) {
       else if (input_property=="draggable")
         obj.draggable = input_value;	
       else if (input_property=="style")
-        obj.style = input_value;	    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }
 
@@ -3489,7 +3525,9 @@ function HextoRgb(color) {
       else if (input_property=="draggable")
         obj.draggable = input_value;	
       else if (input_property=="style")
-        obj.style = input_value;	    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }
 
@@ -3591,7 +3629,9 @@ function HextoRgb(color) {
       else if (input_property=="draggable")
         obj.draggable = input_value;	
       else if (input_property=="style")
-        obj.style = input_value;	    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }
 
@@ -3681,7 +3721,9 @@ function HextoRgb(color) {
       else if (input_property=="draggable")
         obj.draggable = input_value;	
       else if (input_property=="style")
-        obj.style = input_value;	    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }
 
@@ -3791,7 +3833,9 @@ function HextoRgb(color) {
       else if (input_property=="draggable")
         obj.draggable = input_value;
       else if (input_property=="style")
-        obj.style = input_value;	    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }
 
@@ -4029,6 +4073,8 @@ function HextoRgb(color) {
         obj.draggable = input_value;
       else if (input_property=="style")
         obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }
 
@@ -4398,7 +4444,9 @@ function HextoRgb(color) {
       else if (input_property=="draggable")
         obj.draggable = input_value;
       else if (input_property=="style")
-        obj.style = input_value;	    
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
     }
   }
 

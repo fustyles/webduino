@@ -128,6 +128,7 @@ Blockly.Msg.PROPERTY_MUTED = "Muted";
 Blockly.Msg.PROPERTY_CONTROLS = "Controls";
 Blockly.Msg.PROPERTY_PRELOAD = "Preload";
 Blockly.Msg.PROPERTY_CAM = "Web Cam";
+Blockly.Msg.PROPERTY_CLASS = "Class name";
 Blockly.Msg.TABLE = "Table";
 Blockly.Msg.TABLE_ID = "Table ID";
 Blockly.Msg.TABLE_CREATE = "Create";
