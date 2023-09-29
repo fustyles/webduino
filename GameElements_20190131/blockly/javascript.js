@@ -15,9 +15,9 @@ Blockly.JavaScript['custom_googleicon'] = function (block) {
   el = "document.getElementById('game"+el+"_"+id+"')";
   
   if (element=="button")
-	var code = el+".className = 'material-icons_custom';\n"+el+".value = "+val+";\n";
+	var code = 'include_file("css", "", "https://fustyles.github.io/webduino/SpBlocklyJS/css/icon_custom.css");\n'+el+".className = 'material-icons_custom';\n"+el+".value = "+val+";\n";
   else
-	var code = el+".className = 'material-icons_custom';\n"+el+".innerText = "+val+";\n";
+	var code = 'include_file("css", "", "https://fustyles.github.io/webduino/SpBlocklyJS/css/icon_custom.css");\n'+el+".className = 'material-icons_custom';\n"+el+".innerText = "+val+";\n";
   return code;
 };
 
