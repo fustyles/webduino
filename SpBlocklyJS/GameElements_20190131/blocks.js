@@ -18,7 +18,8 @@ Blockly.Blocks['custom_googleicon'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(50);   
+  this.setColour(50);
+  this.setHelpUrl("https://fonts.google.com/icons");  
   }
 };
 
