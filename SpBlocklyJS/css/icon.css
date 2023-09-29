@@ -25,6 +25,7 @@
   word-wrap: normal;
   white-space: nowrap;
   direction: ltr;
+  border:none;
 
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
@@ -56,6 +57,7 @@
   word-wrap: normal;
   white-space: nowrap;
   direction: ltr;
+  border:none;
 
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
