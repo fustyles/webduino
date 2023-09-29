@@ -807,58 +807,93 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
-'		  <block type="button_toolbox">'+
-'			<value name="left_">'+
-'			  <block type="math_number">'+
-'				<field name="NUM">0</field>'+
-'			  </block>'+
-'			</value>'+
-'			<value name="top_">'+
-'			  <block type="math_number">'+
-'				<field name="NUM">100</field>'+
-'			  </block>'+
-'			</value>'+
-'			<value name="width_">'+
-'			  <block type="math_number">'+
-'				<field name="NUM">60</field>'+
-'			  </block>'+
-'			</value>'+
-'			<value name="height_">'+
-'			  <block type="math_number">'+
-'				<field name="NUM">30</field>'+
-'			  </block>'+
-'			</value>'+
-'			<value name="fontsize_">'+
-'			  <block type="math_number">'+
-'				<field name="NUM">16</field>'+
-'			  </block>'+
-'			</value>'+
-'			<value name="color_">'+
-'    			<block type="colour_picker">'+
-'    				<field name="COLOUR">#000000</field>'+
-'    			</block>'+
-'			</value>'+
-'			<value name="bgcolor_">'+
-'    			<block type="colour_picker">'+
-'    				<field name="COLOUR">#ffffff</field>'+
-'    			</block>'+
-'			</value>'+
-'			<value name="list_">'+
-'			  <block type="lists_create_with">'+
-'				<mutation items="2"></mutation>'+
-'				<value name="ADD0">'+
-'				  <block type="text">'+
-'					<field name="TEXT">save</field>'+
-'				  </block>'+
-'				</value>'+
-'				<value name="ADD1">'+
-'				  <block type="text">'+
-'					<field name="TEXT">file_open</field>'+
-'				  </block>'+
-'				</value>'+
-'			  </block>'+
-'			</value>'+
-'		  </block>'+
+'  <block type="button_toolbox">'+
+'    <value name="left_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">5</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="top_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">5</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="width_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">100</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="height_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">100</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="fontsize_">'+
+'      <block type="math_number">'+
+'        <field name="NUM">80</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="color_">'+
+'      <block type="colour_picker">'+
+'        <field name="COLOUR">#ffffff</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="bgcolor_">'+
+'      <block type="colour_picker">'+
+'        <field name="COLOUR">#ff6666</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="list_">'+
+'      <block type="lists_create_with">'+
+'        <mutation items="3"></mutation>'+
+'        <value name="ADD0">'+
+'          <block type="lists_create_with">'+
+'            <mutation items="2"></mutation>'+
+'            <value name="ADD0">'+
+'              <block type="text">'+
+'                <field name="TEXT">file_open</field>'+
+'              </block>'+
+'            </value>'+
+'            <value name="ADD1">'+
+'              <block type="text">'+
+'                <field name="TEXT">開啟檔案</field>'+
+'              </block>'+
+'            </value>'+
+'          </block>'+
+'        </value>'+
+'        <value name="ADD1">'+
+'          <block type="lists_create_with">'+
+'            <mutation items="2"></mutation>'+
+'            <value name="ADD0">'+
+'              <block type="text">'+
+'                <field name="TEXT">save</field>'+
+'              </block>'+
+'            </value>'+
+'            <value name="ADD1">'+
+'              <block type="text">'+
+'                <field name="TEXT">儲存檔案</field>'+
+'              </block>'+
+'            </value>'+
+'          </block>'+
+'        </value>'+
+'        <value name="ADD2">'+
+'          <block type="lists_create_with">'+
+'            <mutation items="2"></mutation>'+
+'            <value name="ADD0">'+
+'              <block type="text">'+
+'                <field name="TEXT">close</field>'+
+'              </block>'+
+'            </value>'+
+'            <value name="ADD1">'+
+'              <block type="text">'+
+'                <field name="TEXT">關閉視窗</field>'+
+'              </block>'+
+'            </value>'+
+'          </block>'+
+'        </value>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+
 '    <block type="button_set">'+
 '    <value name="id_">'+
 '    <block type="text">'+
