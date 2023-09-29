@@ -1862,6 +1862,33 @@ function elements_collision_color(element1,input_id1,input_id2,input_color) {
     document.body.appendChild(obj);
   }
 
+function button_toolbox(input_left,input_top,input_width,input_height,input_color,input_bgcolor,input_fontsize,input_list) {
+	var icons = input_list;
+	for (var i=0;i<icons.length;i++) {
+		if (document.getElementById("gamebutton_"+icons[i])) 
+		  document.getElementById("gamebutton_"+icons[i]).parentNode.removeChild(document.getElementById("gamebutton_"+icons[i]));
+		var obj = document.createElement('input');
+		obj.type="button";
+		obj.id = "gamebutton_"+icons[i];
+		obj.style.position = "absolute";
+		obj.style.left = (input_left+i*input_width) + 'px';
+		obj.style.top = input_top + 'px';
+		obj.style.width = input_width + 'px';
+		obj.style.height = input_height + 'px';
+		obj.style.color = input_color;
+		obj.style.background = input_bgcolor;
+		obj.value = input_list[i];
+		obj.style.fontSize = input_fontsize + 'px';
+		obj.style.zIndex = 9999;
+		obj.style.outlineStyle = "none";
+		obj.draggable="false";
+		obj.className="material-icons_custom";
+		obj.setAttribute("onclick", "javascript:onclickid_set(this);");
+		obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
+		document.body.appendChild(obj);
+	}
+  } 	
+
   function button_set(input_id,input_property,input_value) {
     if (document.getElementById("gamebutton_"+input_id)) {
 	  var obj = document.getElementById("gamebutton_"+input_id);
@@ -4799,6 +4826,7 @@ function HextoRgb(color) {
   window.mouse_coordinate_get_start = mouse_coordinate_get_start;
   window.text_to_number = text_to_number;
   window.button_create = button_create;
+  window.button_toolbox = button_toolbox;	
   window.button_set = button_set;
   window.button_get = button_get;
   window.button_delete = button_delete;
