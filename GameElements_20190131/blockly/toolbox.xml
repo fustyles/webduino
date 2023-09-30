@@ -843,17 +843,17 @@
 			</value>
 			<value name="width_">
 			  <block type="math_number">
-				<field name="NUM">100</field>
+				<field name="NUM">30</field>
 			  </block>
 			</value>
 			<value name="height_">
 			  <block type="math_number">
-				<field name="NUM">100</field>
+				<field name="NUM">30</field>
 			  </block>
 			</value>
 			<value name="fontsize_">
 			  <block type="math_number">
-				<field name="NUM">80</field>
+				<field name="NUM">18</field>
 			  </block>
 			</value>
 			<value name="spacing_">
