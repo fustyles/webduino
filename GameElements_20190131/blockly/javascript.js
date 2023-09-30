@@ -3,13 +3,14 @@ Blockly.JavaScript['button_toolbox'] = function (block) {
   var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC)||0; 
   var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC)||15;
   var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC)||15;
+  var value_spacing_ = Blockly.JavaScript.valueToCode(block, 'spacing_', Blockly.JavaScript.ORDER_ATOMIC)||5;
   var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC)||"black";  
   var value_bgcolor_ = Blockly.JavaScript.valueToCode(block, 'bgcolor_', Blockly.JavaScript.ORDER_ATOMIC)||"white";
   var value_fontsize_ = Blockly.JavaScript.valueToCode(block, 'fontsize_', Blockly.JavaScript.ORDER_ATOMIC)||12;
   var value_direction_ = block.getFieldValue('direction_');
   var value_list_ = Blockly.JavaScript.valueToCode(block, 'list_', Blockly.JavaScript.ORDER_ATOMIC)||"settings";
   
-  var code = 'button_toolbox(' + value_left_ + ',' + value_top_ + ',' + value_width_ + ',' + value_height_ + ',' + value_color_ + ',' + value_bgcolor_ + ',' + value_fontsize_ + ',' + value_direction_ + ',' + value_list_ + ');\n';
+  var code = 'button_toolbox(' + value_left_ + ',' + value_top_ + ',' + value_width_ + ',' + value_height_ + ',' + value_color_ + ',' + value_bgcolor_ + ',' + value_fontsize_ + ',' + value_direction_ + ',' + value_spacing_ + ',' + value_list_ + ');\n';
   return code;
 };
 
