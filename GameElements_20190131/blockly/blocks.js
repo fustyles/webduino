@@ -27,7 +27,14 @@ Blockly.Blocks['button_toolbox'] = {
       .setAlign(Blockly.ALIGN_RIGHT);
   this.appendValueInput("bgcolor_")
 	  .appendField(Blockly.Msg.BACKCOLOR)
-      .setAlign(Blockly.ALIGN_RIGHT);	
+      .setAlign(Blockly.ALIGN_RIGHT);
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.BUTTON_GOOGLEICON_DIRECTION)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.BUTTON_GOOGLEICON_HORIZONTAL,"1"],
+	  [Blockly.Msg.BUTTON_GOOGLEICON_VERTICAL,"0"]
+	  ]), "direction_");	  
   this.appendValueInput("list_")
 	  .appendField(Blockly.Msg.BUTTON_GOOGLEICON_LIST)
       .setAlign(Blockly.ALIGN_RIGHT)	  
