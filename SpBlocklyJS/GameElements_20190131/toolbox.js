@@ -823,12 +823,12 @@ var catPageElements ='<xml>'+
 '  <block type="button_toolbox">'+
 '    <value name="left_">'+
 '      <block type="math_number">'+
-'        <field name="NUM">5</field>'+
+'        <field name="NUM">0</field>'+
 '      </block>'+
 '    </value>'+
 '    <value name="top_">'+
 '      <block type="math_number">'+
-'        <field name="NUM">5</field>'+
+'        <field name="NUM">0</field>'+
 '      </block>'+
 '    </value>'+
 '    <value name="width_">'+
