@@ -1863,6 +1863,7 @@ function elements_collision_color(element1,input_id1,input_id2,input_color) {
   }
 
   function button_toolbox(input_left,input_top,input_width,input_height,input_color,input_bgcolor,input_fontsize,input_direction,input_list) {
+	include_file("css", "", "https://fustyles.github.io/webduino/GameElements_20190131/icon_custom.css");
 	var icons = input_list;
 	for (var i=0;i<icons.length;i++) {
 		if (document.getElementById("gamebutton_"+icons[i])) 
