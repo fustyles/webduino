@@ -1862,7 +1862,7 @@ function elements_collision_color(element1,input_id1,input_id2,input_color) {
     document.body.appendChild(obj);
   }
 
-  function button_toolbox(input_left,input_top,input_width,input_height,input_color,input_bgcolor,input_fontsize,input_direction,input_list) {
+  function button_toolbox(input_left,input_top,input_width,input_height,input_color,input_bgcolor,input_fontsize,input_direction,input_spacing,input_list) {
 	include_file("css", "", "https://fustyles.github.io/webduino/GameElements_20190131/icon_custom.css");
 	var icons = input_list;
 	for (var i=0;i<icons.length;i++) {
@@ -1874,11 +1874,11 @@ function elements_collision_color(element1,input_id1,input_id2,input_color) {
 		obj.title = icons[i][1];
 		obj.style.position = "absolute";
 		if (input_direction) {
-			obj.style.left = (input_left+i*(input_width+5)) + 'px';
+			obj.style.left = (input_left+i*(input_width+input_spacing)) + 'px';
 			obj.style.top = input_top + 'px';
 		} else {
 			obj.style.left = input_left + 'px';
-			obj.style.top = (input_top+i*(input_height+5)) + 'px';
+			obj.style.top = (input_top+i*(input_height+input_spacing)) + 'px';
 		}
 		obj.style.width = input_width + 'px';
 		obj.style.height = input_height + 'px';
