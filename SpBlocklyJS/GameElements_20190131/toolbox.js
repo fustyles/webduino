@@ -833,19 +833,24 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="width_">'+
 '      <block type="math_number">'+
-'        <field name="NUM">100</field>'+
+'        <field name="NUM">30</field>'+
 '      </block>'+
 '    </value>'+
 '    <value name="height_">'+
 '      <block type="math_number">'+
-'        <field name="NUM">100</field>'+
+'        <field name="NUM">30</field>'+
 '      </block>'+
 '    </value>'+
 '    <value name="fontsize_">'+
 '      <block type="math_number">'+
-'        <field name="NUM">80</field>'+
+'        <field name="NUM">18</field>'+
 '      </block>'+
 '    </value>'+
+'			<value name="spacing_">'+
+'			  <block type="math_number">'+
+'				<field name="NUM">5</field>'+
+'			  </block>'+
+'			</value>'+
 '    <value name="color_">'+
 '      <block type="colour_picker">'+
 '        <field name="COLOUR">#ffffff</field>'+
