@@ -21,7 +21,11 @@ Blockly.Blocks['button_toolbox'] = {
   this.appendValueInput("fontsize_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.FONTSIZE); 
+      .appendField(Blockly.Msg.FONTSIZE);
+  this.appendValueInput("spacing_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.SPACING); 		  
   this.appendValueInput("color_")
 	  .appendField(Blockly.Msg.BUTTON_FONTCOLOR)
       .setAlign(Blockly.ALIGN_RIGHT);
