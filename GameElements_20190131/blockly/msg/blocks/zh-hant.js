@@ -207,6 +207,7 @@ Blockly.Msg.CONTEXT ="文字";
 Blockly.Msg.FONTNAME ="字型名稱";
 Blockly.Msg.FONTSIZE ="字型大小";
 Blockly.Msg.FONTCOLOR = "字型顏色";
+Blockly.Msg.SPACING = "間距";
 Blockly.Msg.TEXTALIGN ="對齊方式";
 Blockly.Msg.CANVAS_CLEAR = "畫布清除";
 Blockly.Msg.CANVAS_DELETE = "畫布刪除";
