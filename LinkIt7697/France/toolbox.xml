@@ -10728,6 +10728,29 @@
 				<field name="NUM">200</field>
 			  </block>
 			</value>
+		</block>
+		<block type="emakefun_encodeMotor_set_speed">
+			<value name="pwm">
+			  <block type="math_number">
+				<field name="NUM">200</field>
+			  </block>
+			</value>
+		</block>
+		<block type="emakefun_encodeMotor_set_direction">
+		</block>
+		<block type="emakefun_encodeMotor_set_direction_detail">
+			<value name="pwm">
+			  <block type="math_number">
+				<field name="NUM">200</field>
+			  </block>
+			</value>
+			<value name="pulse">
+			  <block type="math_number">
+				<field name="NUM">1080</field>
+			  </block>
+			</value>			
+		</block>		
+		<block type="emakefun_encodeMotor_get_pulse">
 		</block>		
         <block type="esp32_buzzer">
           <field name="frequency">131</field>

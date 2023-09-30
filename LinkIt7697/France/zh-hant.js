@@ -37,7 +37,11 @@ Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"] = "截圖上傳Google雲端硬碟";
 Blockly.Msg["AMB82_MINI_STILL_URL"] = "張流網址";
 Blockly.Msg["AMB82_MINI_STREAM_URL"] = "串流網址";
 
-Blockly.Msg["EMAKEFUN_IO"] = "Emakefun";
+Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun 編碼器馬達";
+Blockly.Msg["EMAKEFUN_MOTORDRIVER_ENCODERPULSE"] = "脈衝";
+Blockly.Msg["EMAKEFUN_PULSE"] = "一圈脈衝";
+
+Blockly.Msg["EMAKEFUN_IO"] = "Emakefun I/O";
 
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR"] = "Emakefun 步進馬達";
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR_INITIAL"] = "初始化";
@@ -58,7 +62,8 @@ Blockly.Msg["EMAKEFUN_MOTOR"] = "馬達";
 Blockly.Msg["EMAKEFUN_PWM"] = "轉速";
 Blockly.Msg["EMAKEFUN_CLOCKWISE"] = "正轉";
 Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"] = "反轉";
-Blockly.Msg["EMAKEFUN_BRAKE"] = "停止";
+Blockly.Msg["EMAKEFUN_RELEASE"] = "停止(低電位)";
+Blockly.Msg["EMAKEFUN_BRAKE"] = "停止(高電位)";
 Blockly.Msg["EMAKEFUN_SERVO"] = "Emakefun 伺服馬達";
 Blockly.Msg["EMAKEFUN_ANGLE"] = "角度";
 

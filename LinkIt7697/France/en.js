@@ -37,6 +37,12 @@ Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"] = "Upload Still to Google drive";
 Blockly.Msg["AMB82_MINI_STILL_URL"] = "Still url";
 Blockly.Msg["AMB82_MINI_STREAM_URL"] = "stream url";
 
+Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun Encode motor";
+Blockly.Msg["EMAKEFUN_MOTORDRIVER_ENCODERPULSE"] = "Pulse";
+Blockly.Msg["EMAKEFUN_PULSE"] = "One circle pulse";
+
+Blockly.Msg["EMAKEFUN_IO"] = "Emakefun I/O";
+
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR"] = "Emakefun Stepper motor";
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR_INITIAL"] = "Initial";
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR_STEPS"] = "Number of steps in a circle";
@@ -56,7 +62,8 @@ Blockly.Msg["EMAKEFUN_MOTOR"] = "Motor";
 Blockly.Msg["EMAKEFUN_PWM"] = "PWM[0-255]";
 Blockly.Msg["EMAKEFUN_CLOCKWISE"] = "Rotate clockwise";
 Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"] = "Rotate countClockwise";
-Blockly.Msg["EMAKEFUN_BRAKE"] = "Stop";
+Blockly.Msg["EMAKEFUN_RELEASE"] = "Stop(LOW)";
+Blockly.Msg["EMAKEFUN_BRAKE"] = "Stop(HIGH)";
 Blockly.Msg["EMAKEFUN_SERVO"] = "Servo(180°)";
 Blockly.Msg["EMAKEFUN_ANGLE"] = "Angle";
 

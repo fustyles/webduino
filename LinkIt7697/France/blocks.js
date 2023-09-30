@@ -452,13 +452,116 @@ Blockly.Blocks.emakefun_motordriver_set_direction={
           .setAlign(Blockly.ALIGN_RIGHT) 
           .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["EMAKEFUN_CLOCKWISE"],"FORWARD"],		
-			[Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"],"BACKWARD"],		
+			[Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"],"BACKWARD"],
+			[Blockly.Msg["EMAKEFUN_RELEASE"],"RELEASE"],			
 			[Blockly.Msg["EMAKEFUN_BRAKE"],"BRAKE"]		
 		  ]), "direction");			  
 	  this.setInputsInline(true);
 	  this.setPreviousStatement(!0,null);
 	  this.setNextStatement(!0,null);
 	  this.setColour(220);  
+	}
+};
+
+Blockly.Blocks.emakefun_encodeMotor_set_speed={
+	init:function(){	
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["EMAKEFUN_ENCODEMOTOR"]);
+      this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT) 
+          .appendField(new Blockly.FieldDropdown([
+			["E1","1"],		
+			["E2","2"],
+			["E3","3"],		
+			["E4","4"]			
+		  ]), "motor");				  
+	  this.appendValueInput("pwm")
+		  .setCheck("Number")
+		  .appendField(Blockly.Msg["EMAKEFUN_PWM"]+"[0-255]");			  
+	  this.setInputsInline(true);
+	  this.setPreviousStatement(!0,null);
+	  this.setNextStatement(!0,null);
+	  this.setColour(220);  
+	}
+};
+
+Blockly.Blocks.emakefun_encodeMotor_set_direction={
+	init:function(){	
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["EMAKEFUN_ENCODEMOTOR"]);
+      this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .appendField(new Blockly.FieldDropdown([
+			["E1","1"],		
+			["E2","2"],
+			["E3","3"],		
+			["E4","4"]			
+		  ]), "motor");
+      this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT) 
+          .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["EMAKEFUN_CLOCKWISE"],"FORWARD"],		
+			[Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"],"BACKWARD"],
+			[Blockly.Msg["EMAKEFUN_RELEASE"],"RELEASE"],
+			[Blockly.Msg["EMAKEFUN_BRAKE"],"BRAKE"]		
+		  ]), "direction");			  
+	  this.setInputsInline(true);
+	  this.setPreviousStatement(!0,null);
+	  this.setNextStatement(!0,null);
+	  this.setColour(220);  
+	}
+};
+
+Blockly.Blocks.emakefun_encodeMotor_set_direction_detail={
+	init:function(){	
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["EMAKEFUN_ENCODEMOTOR"]);
+      this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .appendField(new Blockly.FieldDropdown([
+			["E1","1"],		
+			["E2","2"],
+			["E3","3"],		
+			["E4","4"]			
+		  ]), "motor");
+      this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT) 
+          .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["EMAKEFUN_CLOCKWISE"],"FORWARD"],		
+			[Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"],"BACKWARD"],
+			[Blockly.Msg["EMAKEFUN_RELEASE"],"RELEASE"],
+			[Blockly.Msg["EMAKEFUN_BRAKE"],"BRAKE"]		
+		  ]), "direction");
+	  this.appendValueInput("pwm")
+		  .setCheck("Number")
+		  .appendField(Blockly.Msg["EMAKEFUN_PWM"]+"[0-255]");
+	  this.appendValueInput("pulse")
+		  .setCheck("Number")
+		  .appendField(Blockly.Msg["EMAKEFUN_PULSE"]);		  
+	  this.setInputsInline(true);
+	  this.setPreviousStatement(!0,null);
+	  this.setNextStatement(!0,null);
+	  this.setColour(220);  
+	}
+};
+
+Blockly.Blocks.emakefun_encodeMotor_get_pulse={
+	init:function(){	
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["EMAKEFUN_ENCODEMOTOR"]);
+      this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .appendField(new Blockly.FieldDropdown([
+			["E1","1"],		
+			["E2","2"],
+			["E3","3"],		
+			["E4","4"]			
+		  ]), "motor");
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER_ENCODERPULSE"]);
+	  this.setInputsInline(true);
+	  this.setOutput(true, null); 
+	  this.setColour(220); 
 	}
 };
 

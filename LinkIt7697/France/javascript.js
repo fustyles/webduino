@@ -557,6 +557,87 @@ Blockly.Arduino.emakefun_motordriver_set_direction=function(block){
   return code;
 };
 
+Blockly.Arduino.emakefun_encodeMotor_set_speed=function(block){
+  var motor = this.getFieldValue("motor"); 
+  var pwm = Blockly.Arduino.valueToCode(this,"pwm",Blockly.Arduino.ORDER_ATOMIC);
+  
+  Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\n';
+  Blockly.Arduino.definitions_['emakefun_motordriver_mEMotorDriver'] = 'Emakefun_MotorDriver mEMotorDriver = Emakefun_MotorDriver();\n';
+  Blockly.Arduino.definitions_['emakefun_motordriver_encodeMotor_'+motor] ='Emakefun_EncoderMotor *EncodeMotor_'+motor+' = mEMotorDriver.getEncoderMotor(E'+motor+');';	
+  Blockly.Arduino.definitions_['emakefun_motordriver_encodeMotor_pulse_'+motor] = 'void encoder'+motor+'(void) {\n'+
+																			'  if (digitalRead(EncodeMotor_'+motor+'->ENCODER2pin) == LOW)\n'+
+																			'    EncodeMotor_'+motor+'->EncoderPulse++;\n'+
+																			'  else\n'+
+																			'    EncodeMotor_'+motor+'->EncoderPulse--;\n'+
+																			'}';
+  Blockly.Arduino.setups_['emakefun_motordriver_setups_begin'] = 'mEMotorDriver.begin();\n';
+  Blockly.Arduino.setups_['emakefun_motordriver_setups_init_'+motor] = 'EncodeMotor_'+motor+'->init(encoder'+motor+');\n'; 
+
+  var code = 'EncodeMotor_'+motor+'->setSpeed('+pwm+');\n';
+  return code;
+};
+
+Blockly.Arduino.emakefun_encodeMotor_set_direction=function(block){
+  var motor = this.getFieldValue("motor");
+  var direction = this.getFieldValue("direction");
+
+  Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\n';
+  Blockly.Arduino.definitions_['emakefun_motordriver_mEMotorDriver'] = 'Emakefun_MotorDriver mEMotorDriver = Emakefun_MotorDriver();\n';
+  Blockly.Arduino.definitions_['emakefun_motordriver_encodeMotor_'+motor] ='Emakefun_EncoderMotor *EncodeMotor_'+motor+' = mEMotorDriver.getEncoderMotor(E'+motor+');';	
+  Blockly.Arduino.definitions_['emakefun_motordriver_encodeMotor_pulse_'+motor] = 'void encoder'+motor+'(void) {\n'+
+																			'  if (digitalRead(EncodeMotor_'+motor+'->ENCODER2pin) == LOW)\n'+
+																			'    EncodeMotor_'+motor+'->EncoderPulse++;\n'+
+																			'  else\n'+
+																			'    EncodeMotor_'+motor+'->EncoderPulse--;\n'+
+																			'}';
+  Blockly.Arduino.setups_['emakefun_motordriver_setups_begin'] = 'mEMotorDriver.begin();\n';
+  Blockly.Arduino.setups_['emakefun_motordriver_setups_init_'+motor] = 'EncodeMotor_'+motor+'->init(encoder'+motor+');\n';   
+
+  var code = 'EncodeMotor_'+motor+'->run('+direction+');\n';
+  return code;
+};
+
+Blockly.Arduino.emakefun_encodeMotor_set_direction_detail=function(block){
+  var motor = this.getFieldValue("motor");
+  var direction = this.getFieldValue("direction");
+  var pwm = Blockly.Arduino.valueToCode(this,"pwm",Blockly.Arduino.ORDER_ATOMIC);
+  var pulse = Blockly.Arduino.valueToCode(this,"pulse",Blockly.Arduino.ORDER_ATOMIC);
+
+  Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\n';
+  Blockly.Arduino.definitions_['emakefun_motordriver_mEMotorDriver'] = 'Emakefun_MotorDriver mEMotorDriver = Emakefun_MotorDriver();\n';
+  Blockly.Arduino.definitions_['emakefun_motordriver_encodeMotor_'+motor] ='Emakefun_EncoderMotor *EncodeMotor_'+motor+' = mEMotorDriver.getEncoderMotor(E'+motor+');';	
+  Blockly.Arduino.definitions_['emakefun_motordriver_encodeMotor_pulse_'+motor] = 'void encoder'+motor+'(void) {\n'+
+																			'  if (digitalRead(EncodeMotor_'+motor+'->ENCODER2pin) == LOW)\n'+
+																			'    EncodeMotor_'+motor+'->EncoderPulse++;\n'+
+																			'  else\n'+
+																			'    EncodeMotor_'+motor+'->EncoderPulse--;\n'+
+																			'}';
+  Blockly.Arduino.setups_['emakefun_motordriver_setups_begin'] = 'mEMotorDriver.begin();\n';
+  Blockly.Arduino.setups_['emakefun_motordriver_setups_init_'+motor] = 'EncodeMotor_'+motor+'->init(encoder'+motor+');\n';   
+
+  var code = 'EncodeMotor_'+motor+'->run('+direction+', '+pwm+', '+pulse+');\n';
+  return code;
+};
+
+Blockly.Arduino.emakefun_encodeMotor_get_pulse=function(block){
+  var motor = this.getFieldValue("motor");
+  
+  Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\n';
+  Blockly.Arduino.definitions_['emakefun_motordriver_mEMotorDriver'] = 'Emakefun_MotorDriver mEMotorDriver = Emakefun_MotorDriver();\n';
+  Blockly.Arduino.definitions_['emakefun_motordriver_encodeMotor_'+motor] ='Emakefun_EncoderMotor *EncodeMotor_'+motor+' = mEMotorDriver.getEncoderMotor(E'+motor+');';	
+  Blockly.Arduino.definitions_['emakefun_motordriver_encodeMotor_pulse_'+motor] = 'void encoder'+motor+'(void) {\n'+
+																			'  if (digitalRead(EncodeMotor_'+motor+'->ENCODER2pin) == LOW)\n'+
+																			'    EncodeMotor_'+motor+'->EncoderPulse++;\n'+
+																			'  else\n'+
+																			'    EncodeMotor_'+motor+'->EncoderPulse--;\n'+
+																			'}';
+  Blockly.Arduino.setups_['emakefun_motordriver_setups_begin'] = 'mEMotorDriver.begin();\n';
+  Blockly.Arduino.setups_['emakefun_motordriver_setups_init_'+motor] = 'EncodeMotor_'+motor+'->init(encoder'+motor+');\n'; 
+
+  var code = 'EncodeMotor_'+motor+'->EncoderPulse';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino.motordriver_pin=function(block){
   var pin1=Blockly.Arduino.valueToCode(this,"pin1",Blockly.Arduino.ORDER_ATOMIC);
   var pin2=Blockly.Arduino.valueToCode(this,"pin2",Blockly.Arduino.ORDER_ATOMIC);
