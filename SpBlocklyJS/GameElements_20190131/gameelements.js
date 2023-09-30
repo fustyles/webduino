@@ -1837,7 +1837,7 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
     document.body.appendChild(obj);
   }
   
-	function button_toolbox(input_left,input_top,input_width,input_height,input_color,input_bgcolor,input_fontsize,input_list) {
+	function button_toolbox(input_left,input_top,input_width,input_height,input_color,input_bgcolor,input_fontsize,input_direction,input_list) {
 		var icons = input_list;
 		for (var i=0;i<icons.length;i++) {
 			if (document.getElementById("gamebutton_"+icons[i])) 
@@ -1847,8 +1847,13 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
 			obj.id = "gamebutton_"+icons[i][0];
 			obj.title = icons[i][1];
 			obj.style.position = "absolute";
-			obj.style.left = (input_left+i*(input_width+5)) + 'px';
-			obj.style.top = input_top + 'px';
+			if (input_direction) {
+				obj.style.left = (input_left+i*(input_width+5)) + 'px';
+				obj.style.top = input_top + 'px';
+			} else {
+				obj.style.left = input_left + 'px';
+				obj.style.top = (input_top+i*(input_height+5)) + 'px';
+			}
 			obj.style.width = input_width + 'px';
 			obj.style.height = input_height + 'px';
 			obj.style.color = input_color;

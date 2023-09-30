@@ -482,6 +482,19 @@ var catPageElements ='<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
+'  <block type="custom_googleicon">'+
+'    <field name="element">span</field>'+
+'    <value name="id">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="val">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+
 '  <block type="span_set">'+
 '    <value name="id_">'+
 '      <block type="text">'+
@@ -891,6 +904,19 @@ var catPageElements ='<xml>'+
 '            </value>'+
 '          </block>'+
 '        </value>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+
+'  <block type="custom_googleicon">'+
+'    <field name="element">button</field>'+
+'    <value name="id">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="val">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
@@ -2700,6 +2726,19 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'  <block type="custom_googleicon">'+
+'    <field name="element">a</field>'+
+'    <value name="id">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="val">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+
 '    <block type="a_set">'+
 '    <value name="id_">'+
 '    <block type="text">'+
