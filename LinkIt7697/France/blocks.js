@@ -361,6 +361,57 @@ Blockly.Blocks['emakefun_servo_set_angle'] = {
   }
 };
 
+Blockly.Blocks['emakefun_io'] = {
+  init: function() {
+	this.appendDummyInput()
+		  .appendField(Blockly.Msg["EMAKEFUN_IO"]);
+    this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .appendField(new Blockly.FieldDropdown([
+			["S1","S1"],		
+			["S2","S2"],
+			["S3","S3"],		
+			["S4","S4"],
+			["S5","S5"],		
+			["S6","S6"],
+			["S7","S7"],		
+			["S8","S8"]			
+		  ]), "servo");		  
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.SERVERMODULE_DIGITALWRITE_SHOW,"dw"],		
+			[Blockly.Msg.SERVERMODULE_ANALOGWRITE_SHOW,"aw"]	
+		], this.validate), "type");
+    this.appendDummyInput("val_dw")
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.VALUE)
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.ESP32_DIGITALWRITE_HIGH_SHOW,"HIGH"],		
+			[Blockly.Msg.ESP32_DIGITALWRITE_LOW_SHOW,"LOW"]	
+		]), "dw_val");
+    this.appendValueInput("aw_val")
+		.appendField(Blockly.Msg.VALUE+"[0-4096]")
+        .setAlign(Blockly.ALIGN_RIGHT);			
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(170);
+    this.getInput("aw_val").setVisible(false);
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="dw") {
+		 	block.getInput("val_dw").setVisible(true);
+			block.getInput("aw_val").setVisible(false);
+		} else if (newValue=="aw") {
+		 	block.getInput("val_dw").setVisible(false);
+			block.getInput("aw_val").setVisible(true);			
+		}
+  }
+};
+
 Blockly.Blocks.emakefun_motordriver_set_speed={
 	init:function(){	
 	  this.appendDummyInput()
@@ -410,19 +461,6 @@ Blockly.Blocks.emakefun_motordriver_set_direction={
 	  this.setColour(220);  
 	}
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Blockly.Blocks.motordriver_pin={
 	init:function(){	

@@ -37,6 +37,8 @@ Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"] = "截圖上傳Google雲端硬碟";
 Blockly.Msg["AMB82_MINI_STILL_URL"] = "張流網址";
 Blockly.Msg["AMB82_MINI_STREAM_URL"] = "串流網址";
 
+Blockly.Msg["EMAKEFUN_IO"] = "Emakefun";
+
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR"] = "Emakefun 步進馬達";
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR_INITIAL"] = "初始化";
 Blockly.Msg["EMAKEFUN_STEPPERMOTOR_STEPS"] = "一圈步數";

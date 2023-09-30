@@ -10642,6 +10642,13 @@
 				<field name="NUM">90</field>
 			  </block>
 			</value>			
+		</block>
+		<block type="emakefun_io">
+			<value name="aw_val">
+			  <block type="math_number">
+				<field name="NUM">2048</field>
+			  </block>
+			</value>
 		</block>		
 		<block type="ps2_initial">
 			<value name="CLK">
@@ -10700,7 +10707,7 @@
 	    </block>		
 		<block type="ps2_analog_read"></block>
 		<block type="ps2_pressures_read"></block>	
-		<block type="ps2_initial_func"></block>
+		<block type="ps2_initial_func"></block>		
 		<block type="emakefun_steppermotor_initial">
 			<value name="step">
 			  <block type="math_number">
