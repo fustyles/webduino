@@ -2,12 +2,12 @@
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fustyles.github.io/webduino/SpBlocklyJS/font/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: url(https://fustyles.github.io/webduino/GameElements_20190131/font/MaterialIcons-Regular.eot); /* For IE6-8 */
   src: local('Material Icons'),
     local('MaterialIcons-Regular'),
-    url(https://fustyles.github.io/webduino/SpBlocklyJS/font/MaterialIcons-Regular.woff2) format('woff2'),
-    url(https://fustyles.github.io/webduino/SpBlocklyJS/font/MaterialIcons-Regular.woff) format('woff'),
-    url(https://fustyles.github.io/webduino/SpBlocklyJS/font/MaterialIcons-Regular.ttf) format('truetype');
+    url(https://fustyles.github.io/webduino/GameElements_20190131/font/MaterialIcons-Regular.woff2) format('woff2'),
+    url(https://fustyles.github.io/webduino/GameElements_20190131/font/MaterialIcons-Regular.woff) format('woff'),
+    url(https://fustyles.github.io/webduino/GameElements_20190131/font/MaterialIcons-Regular.ttf) format('truetype');
 }
 
 .material-icons {
