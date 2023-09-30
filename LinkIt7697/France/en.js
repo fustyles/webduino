@@ -340,6 +340,7 @@ Blockly.Msg.CONTEXT ="Context";
 Blockly.Msg.FONTNAME ="FontName";
 Blockly.Msg.FONTSIZE ="FontSize";
 Blockly.Msg.FONTCOLOR = "FontColor";
+Blockly.Msg.SPACING = "Spacing";
 Blockly.Msg.TEXTALIGN ="Align";
 Blockly.Msg.CANVAS_CLEAR = "Canvas Clear";
 Blockly.Msg.CANVAS_DELETE = "Canvas Delete";
