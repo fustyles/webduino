@@ -4109,7 +4109,7 @@
 			  <block type="math_number">
 				<field name="NUM">5</field>
 			  </block>
-			</value>			  
+			</value>			
 			<value name="color_">
 			  <block type="colour_picker">
 				<field name="COLOUR">#ffffff</field>
