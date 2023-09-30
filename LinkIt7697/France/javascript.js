@@ -1,3 +1,28 @@
+Blockly.Arduino['button_toolbox'] = function (block) { 
+  var value_left_ = Blockly.Arduino.valueToCode(block, 'left_', Blockly.Arduino.ORDER_ATOMIC)||0;
+  var value_top_ = Blockly.Arduino.valueToCode(block, 'top_', Blockly.Arduino.ORDER_ATOMIC)||0; 
+  var value_width_ = Blockly.Arduino.valueToCode(block, 'width_', Blockly.Arduino.ORDER_ATOMIC)||15;
+  var value_height_ = Blockly.Arduino.valueToCode(block, 'height_', Blockly.Arduino.ORDER_ATOMIC)||15;
+  var value_color_ = Blockly.Arduino.valueToCode(block, 'color_', Blockly.Arduino.ORDER_ATOMIC)||"black";  
+  var value_bgcolor_ = Blockly.Arduino.valueToCode(block, 'bgcolor_', Blockly.Arduino.ORDER_ATOMIC)||"white";
+  var value_fontsize_ = Blockly.Arduino.valueToCode(block, 'fontsize_', Blockly.Arduino.ORDER_ATOMIC)||12;
+  var value_direction_ = block.getFieldValue('direction_');
+  var value_list_ = Blockly.Arduino.valueToCode(block, 'list_', Blockly.Arduino.ORDER_ATOMIC)||"settings";0
+  value_list_ = value_list_.replace(/{/g,"[").replace(/}/g,"]");
+  
+  var code = 'button_toolbox(' + value_left_ + ',' + value_top_ + ',' + value_width_ + ',' + value_height_ + ',' + value_color_ + ',' + value_bgcolor_ + ',' + value_fontsize_ + ',' + value_direction_ + ',' + value_list_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['custom_googleicon'] = function (block) {
+  var element = block.getFieldValue('element');
+  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);
+  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'icon_google("'+element+'", '+id+', '+val+');\n';
+  return code;
+};
+
 Blockly.Arduino['amb82_mini_stream_url'] = function (block) {
   var type = block.getFieldValue('type');
   var code = '"http:\/\/"+window.location.hostname+"'+type+'"';

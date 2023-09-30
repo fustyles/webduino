@@ -43,7 +43,7 @@
 <category><name>catGameElements_sub13</name><replace>radio</replace></category>
 <category><name>catGameElements_sub14</name><replace>Checkbox</replace></category>
 <category><name>catGameElements_sub15</name><replace>Textarea</replace></category>
-<category><name>catGameElements_sub16</name><replace>AJAX</replace></category>
+<category><name>catGameElements_sub16</name><replace>Ajax</replace></category>
 <category><name>catGameElements_sub17</name><replace>Number</replace></category>
 <category><name>catGameElements_sub18</name><replace>Date</replace></category>
 <category><name>catGameElements_sub19</name><replace>Time</replace></category>
@@ -54,7 +54,7 @@
 <category><name>catGameElements_sub24</name><replace>Video</replace></category>
 <category><name>catGameElements_sub25</name><replace>Font</replace></category>
 <category><name>catGameElements_sub26</name><replace>Span</replace></category>
-<category><name>catGameElements_sub27</name><replace>FETCH</replace></category>
+<category><name>catGameElements_sub27</name><replace>Fetch</replace></category>
 <category><name>oled</name><replace>OLED Screen</replace></category>
 <category><name>EZ+</name><replace>EZ Start Kit+</replace></category>
 <category><name>airquality</name><replace>Taiwan Air Quality</replace></category>
