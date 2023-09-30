@@ -1,0 +1,74 @@
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fustyles.github.io/webduino/SpBlocklyJS/font/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(https://fustyles.github.io/webduino/SpBlocklyJS/font/MaterialIcons-Regular.woff2) format('woff2'),
+    url(https://fustyles.github.io/webduino/SpBlocklyJS/font/MaterialIcons-Regular.woff) format('woff'),
+    url(https://fustyles.github.io/webduino/SpBlocklyJS/font/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+  padding:24px 0;	
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 36px;  /* Preferred icon size */
+  color: rgba(0, 0, 0, 1);
+  /* display: inline-block; */
+  line-height: 0;
+  text-transform: none;
+  letter-spacing: normal;
+  display: inline-block;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  border:none;
+  text-decoration: none;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+.material-icons_custom {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  /* display: inline-block; */
+  line-height: 0;
+  text-transform: none;
+  letter-spacing: normal;
+  display: inline-block;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  border:none;
+  text-decoration: none;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
