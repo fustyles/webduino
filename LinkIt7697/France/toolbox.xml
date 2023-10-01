@@ -634,23 +634,23 @@
 
 		
 		<category id="france20" name="serverUart"> 
-			<block type="uart_server_initial" id="akthi4tt`9v$+(L%siBm">
+			<block type="uart_server_initial">
 				<field name="serial">Serial</field>
 				<field name="baudrate">9600</field>
 				<value name="rx">
-				  <block type="math_number" id="eA5)f:7.KA~#V6FKyvp0">
+				  <block type="math_number">
 					<field name="NUM">16</field>
 				  </block>
 				</value>
 				<value name="tx">
-				  <block type="math_number" id="O!A(*I{{qcNE?-YuBgJ6">
+				  <block type="math_number">
 					<field name="NUM">17</field>
 				  </block>
 				</value>
 				<statement name="statement">
 				  <block type="customcode_comment">
 					<value name="text">
-					  <block type="text" id="^Svb:Xgdt{j*|C9c^ebY">
+					  <block type="text">
 						<field name="TEXT">?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
 					  </block>
 					</value>
@@ -706,67 +706,67 @@
 		<category id="france20" name="serveresp32"> 
 			  <block type="esp32_myfirmata">
 				<value name="ssid">
-				  <block type="text" id="100">
+				  <block type="text">
 					<field name="TEXT"></field>
 				  </block>
 				</value>
 				<value name="password">
-				  <block type="text" id="101">
+				  <block type="text">
 					<field name="TEXT"></field>
 				  </block>
 				</value>
 				<value name="ssid_ap">
-				  <block type="text" id="100">
+				  <block type="text">
 					<field name="TEXT">myfirmata</field>
 				  </block>
 				</value>
 				<value name="password_ap">
-				  <block type="text" id="101">
+				  <block type="text">
 					<field name="TEXT">12345678</field>
 				  </block>
 				</value>
 				<field name="baudrate">115200</field>				
 				<value name="mainpage">
-				  <block type="servermodule_javascript" id="102">
+				  <block type="servermodule_javascript">
 					<statement name="js">
-					  <block type="image_create" id="103">
+					  <block type="image_create">
 						<value name="id_">
-						  <block type="text" id="104">
+						  <block type="text">
 							<field name="TEXT"></field>
 						  </block>
 						</value>
 						<value name="url_">
-						  <block type="text" id="105">
+						  <block type="text">
 							<field name="TEXT">https://www.ocac.gov.tw/ocac_manager/File/PageUpload/i-taiwan/taiwan-01.jpg</field>
 						  </block>
 						</value>
 						<value name="width_">
-						  <block type="math_number" id="106">
+						  <block type="math_number">
 							<field name="NUM">200</field>
 						  </block>
 						</value>
 						<value name="height_">
-						  <block type="math_number" id="107">
+						  <block type="math_number">
 							<field name="NUM">300</field>
 						  </block>
 						</value>
 						<value name="left_">
-						  <block type="math_number" id="108">
+						  <block type="math_number">
 							<field name="NUM">0</field>
 						  </block>
 						</value>
 						<value name="top_">
-						  <block type="math_number" id="109">
+						  <block type="math_number">
 							<field name="NUM">0</field>
 						  </block>
 						</value>
 						<value name="zindex_">
-						  <block type="math_number" id="110">
+						  <block type="math_number">
 							<field name="NUM">999</field>
 						  </block>
 						</value>
 						<value name="display_">
-						  <block type="logic_boolean" id="111">
+						  <block type="logic_boolean">
 							<field name="BOOL">TRUE</field>
 						  </block>
 						</value>
@@ -1266,7 +1266,7 @@
 		</category>				
 		
 		<category id="france20" name="telegrambot"> 
-		  <block type="esp32_telegrambot" id=":25@@FE6iA8FfSA8:XB-" x="250" y="30">
+		  <block type="esp32_telegrambot">
 			<field name="baudrate">115200</field>
 			<value name="ssid">
 			  <block type="text" id="d}6dlCn0`rz;)=]HjCyH">
@@ -1367,7 +1367,7 @@
 			  </block>
 			</statement>
 		  </block>
-		  <block type="esp32cam_telegrambot" id="iXPERi^0r/qjwgF(Y7KO" x="110" y="50">
+		  <block type="esp32cam_telegrambot">
 			<field name="baudrate">115200</field>
 			<field name="framesize">CIF</field>
 			<value name="ssid">
@@ -3885,7 +3885,7 @@
 		  </block>
 		</value> 
 		</block>  
-		<block type="image_onclick_listener" id="o(a?Wess1x(SbtJmfsA7" x="46" y="47">
+		<block type="image_onclick_listener">
 		<statement name="do_">
 		  <block type="image_onclick_do" id="c3b9fdE)Ol$%w-;AVKS$">
 			<value name="id_">
@@ -5002,21 +5002,21 @@
 		  </block>
 		</value>    
 		</block>
-		<block type="image_onclick_listener" id="dr3[S]LJj)EK]i`WZ_eW" x="-8" y="6"> 
+		<block type="image_onclick_listener"> 
 		<statement name="do_"> 
-		  <block type="table_td_onclick_do" id="N+ptDK;m?|L=[~!8lE7+"> 
+		  <block type="table_td_onclick_do"> 
 			<value name="id_"> 
-			  <block type="text" id="AN%=|3{PM~iC7c5s(3b;"> 
+			  <block type="text"> 
 				<field name="TEXT"></field> 
 			  </block> 
 			</value> 
 			<value name="x_"> 
-			  <block type="math_number" id="]@b%8K]-}VIT_MMIM-S%"> 
+			  <block type="math_number"> 
 			  <field name="NUM">0</field> 
 			  </block> 
 			</value> 
 			<value name="y_"> 
-			  <block type="math_number" id="v-D163zB;#TgK2yWb*gt"> 
+			  <block type="math_number"> 
 				<field name="NUM">0</field> 
 			  </block> 
 			</value> 
@@ -5119,7 +5119,7 @@
 		</value>      
 		</block>
 		<block type="variables_set">
-				<field name="VAR" id="{}=:kAN[Oiy:WY6$6?=n">imageData</field>
+				<field name="VAR">imageData</field>
 					<value name="VALUE">
 			  <block type="canvas_getimagedata">  
 				<value name="id_">
@@ -5158,7 +5158,7 @@
 			</value>
 			<value name="data_">
 			<block type="variables_get">
-			  <field name="VAR" id="{}=:kAN[Oiy:WY6$6?=n">imageData</field>
+			  <field name="VAR">imageData</field>
 			</block>
 			</value>
 		<value name="x0_">
@@ -8307,7 +8307,7 @@
 					</block>
 				</value>
 				<value name="frequency">
-				  <block type="array_create_with" id="105" inline="false">
+				  <block type="array_create_with" inline="false">
 					<mutation items="2"></mutation>
 					<value name="ADD0">
 					  <block type="text" id="117">
@@ -8322,15 +8322,15 @@
 				  </block>
 				</value>
 				<value name="delaytime">
-				  <block type="array_create_with" id="119" inline="false">
+				  <block type="array_create_with" inline="false">
 					<mutation items="2"></mutation>
 					<value name="ADD0">
-					  <block type="text" id="120">
+					  <block type="text">
 						<field name="TEXT">1000</field>
 					  </block>
 					</value>
 					<value name="ADD1">
-					  <block type="text" id="121">
+					  <block type="text">
 						<field name="TEXT">500</field>
 					  </block>
 					</value>
@@ -8344,10 +8344,10 @@
 					</block>
 				</value>
 				<value name="frequency">
-				  <block type="array_create_with" id="105" inline="false">
+				  <block type="array_create_with" inline="false">
 					<mutation items="2"></mutation>
 					<value name="ADD0">
-					  <block type="text" id="117">
+					  <block type="text">
 						<field name="TEXT">392,330</field>
 					  </block>
 					</value>
@@ -8359,15 +8359,15 @@
 				  </block>
 				</value>
 				<value name="delaytime">
-				  <block type="array_create_with" id="119" inline="false">
+				  <block type="array_create_with" inline="false">
 					<mutation items="2"></mutation>
 					<value name="ADD0">
-					  <block type="text" id="120">
+					  <block type="text">
 						<field name="TEXT">1000,500</field>
 					  </block>
 					</value>
 					<value name="ADD1">
-					  <block type="text" id="121">
+					  <block type="text">
 						<field name="TEXT">500,1000</field>
 					  </block>
 					</value>
@@ -8678,15 +8678,15 @@
 		  </block>
 		</value>
 		<value name="duration">
-		  <block type="array_create_with" id="119">
+		  <block type="array_create_with">
 			<mutation items="2"></mutation>
 			<value name="ADD0">
-			  <block type="text" id="120">
+			  <block type="text">
 				<field name="TEXT">1000</field>
 			  </block>
 			</value>
 			<value name="ADD1">
-			  <block type="text" id="121">
+			  <block type="text">
 				<field name="TEXT">500</field>
 			  </block>
 			</value>
@@ -8729,15 +8729,15 @@
 		  </block>
 		</value>
 		<value name="duration">
-		  <block type="array_create_with" id="119">
+		  <block type="array_create_with">
 			<mutation items="2"></mutation>
 			<value name="ADD0">
-			  <block type="text" id="120">
+			  <block type="text">
 				<field name="TEXT">1000</field>
 			  </block>
 			</value>
 			<value name="ADD1">
-			  <block type="text" id="121">
+			  <block type="text">
 				<field name="TEXT">500</field>
 			  </block>
 			</value>
@@ -9985,30 +9985,30 @@
 				</block>
 			</value>
 			<value name="frequency">
-			  <block type="array_create_with" id="105">
+			  <block type="array_create_with">
 				<mutation items="2"></mutation>
 				<value name="ADD0">
-				  <block type="text" id="117">
+				  <block type="text">
 					<field name="TEXT">392</field>
 				  </block>
 				</value>
 				<value name="ADD1">
-				  <block type="text" id="118">
+				  <block type="text">
 					<field name="TEXT">330</field>
 				  </block>
 				</value>
 			  </block>
 			</value>
 			<value name="delaytime">
-			  <block type="array_create_with" id="119">
+			  <block type="array_create_with">
 				<mutation items="2"></mutation>
 				<value name="ADD0">
-				  <block type="text" id="120">
+				  <block type="text">
 					<field name="TEXT">1000</field>
 				  </block>
 				</value>
 				<value name="ADD1">
-				  <block type="text" id="121">
+				  <block type="text">
 					<field name="TEXT">500</field>
 				  </block>
 				</value>
@@ -10022,30 +10022,30 @@
 					</block>
 				</value>
 				<value name="frequency">
-				  <block type="array_create_with" id="105" inline="false">
+				  <block type="array_create_with" inline="false">
 					<mutation items="2"></mutation>
 					<value name="ADD0">
-					  <block type="text" id="117">
+					  <block type="text">
 						<field name="TEXT">392,330</field>
 					  </block>
 					</value>
 					<value name="ADD1">
-					  <block type="text" id="118">
+					  <block type="text">
 						<field name="TEXT">330,392</field>
 					  </block>
 					</value>
 				  </block>
 				</value>
 				<value name="delaytime">
-				  <block type="array_create_with" id="119" inline="false">
+				  <block type="array_create_with" inline="false">
 					<mutation items="2"></mutation>
 					<value name="ADD0">
-					  <block type="text" id="120">
+					  <block type="text">
 						<field name="TEXT">1000,500</field>
 					  </block>
 					</value>
 					<value name="ADD1">
-					  <block type="text" id="121">
+					  <block type="text">
 						<field name="TEXT">500,1000</field>
 					  </block>
 					</value>
