@@ -775,7 +775,7 @@
 				  </block>
 				</value>
 				<statement name="ExecuteCommand">
-				  <block type="customcode_comment" id="112" inline="true">
+				  <block type="customcode_comment" inline="true">
 					<value name="text">
 					  <block type="text" id="113">
 						<field name="TEXT">http://192.168.xxx.xxx/?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
@@ -785,16 +785,16 @@
 					  <block type="controls_if" id="114">
 						<mutation else="1"></mutation>
 						<value name="IF0">
-						  <block type="servermodule_cmd" id="115" inline="true">
+						  <block type="servermodule_cmd" inline="true">
 							<value name="text">
-							  <block type="text" id="116">
+							  <block type="text">
 								<field name="TEXT">led</field>
 							  </block>
 							</value>
 						  </block>
 						</value>
 						<statement name="DO0">
-						  <block type="servermodule_pinwrite" id="119" inline="true">
+						  <block type="servermodule_pinwrite" inline="true">
 							<value name="pin">
 							  <block type="servermodule_parameter_variable" id="120">
 								<field name="parameter">p1</field>
