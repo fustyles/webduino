@@ -294,14 +294,14 @@ var catSystem = '<xml>'+
 '    </block>'+     
 '    <block type="colour_random">'+
 '    </block>'+
-'    <block type="colour_rgb" id="~:cvP%,`n_{%23dgQNT=G|" x="222" y="93">'+
+'    <block type="colour_rgb">'+
 '    <value name="RED">'+
-'    <block type="math_number" id="F-%*wH]f,^W0B3(UADA-">'+
+'    <block type="math_number">'+
 '    <field name="NUM">100</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="GREEN">'+
-'    <block type="math_number" id=";FX7DY9fUJg!1sC:~*-j">'+
+'    <block type="math_number">'+
 '    <field name="NUM">50</field>'+
 '    </block>'+
 '    </value>'+
