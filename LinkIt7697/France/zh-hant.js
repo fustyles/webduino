@@ -505,6 +505,7 @@ Blockly.Msg.AJAX_FORMAT_JSON = "JSON轉換字串";
 Blockly.Msg.AJAX_FORMAT_XML = "XML轉換字串";
 Blockly.Msg.AJAX_CLEARDATA = "清除資料";
 Blockly.Msg.AJAX_RESPONSE = "取得回應後執行";
+Blockly.Msg.AJAX_BOARD = "回傳開發板 模組指令";
 Blockly.Msg.A_ID = "連結 代碼";
 Blockly.Msg.A_CREATE = "連結 建立";
 Blockly.Msg.A_HREF = "網址";

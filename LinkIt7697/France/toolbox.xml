@@ -451,7 +451,6 @@
 				</value>
 			  </block>				
 		  
-				<!--
 				<block type="ajax_get_board">
 					<value name="url_">
 					    <block type="servermodule_parameter_set_address3_0">
@@ -472,7 +471,7 @@
 					  </block>
 					</value>
 				</block>	
-				-->				
+				
 			  <block type="servermodule_parameter_set_address3_0">				
 			  </block>	
 			  <block type="servermodule_parameter_set_address3_1">

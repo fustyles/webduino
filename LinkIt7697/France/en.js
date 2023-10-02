@@ -511,6 +511,7 @@ Blockly.Msg.AJAX_FORMAT_JSON = "JSON to String";
 Blockly.Msg.AJAX_FORMAT_XML = "XML to String";
 Blockly.Msg.AJAX_CLEARDATA = "Clear Data";
 Blockly.Msg.AJAX_RESPONSE = "after responsing";
+Blockly.Msg.AJAX_BOARD = "Return to board Module command";
 Blockly.Msg.A_ID = "A ID";
 Blockly.Msg.A_CREATE = "A Create";
 Blockly.Msg.A_HREF = "Link";
