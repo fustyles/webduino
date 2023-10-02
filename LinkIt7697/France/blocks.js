@@ -961,11 +961,9 @@ Blockly.Blocks['ps2_analog_read'] = {
         .setAlign(Blockly.ALIGN_RIGHT) 
         .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["PS2_ANALOG_READ_LX"],"PSS_LX"],		
-			[Blockly.Msg["PS2_ANALOG_READ_LY"],"PSS_LY"],
-			[Blockly.Msg["PS2_ANALOG_READ_LA"],"true"],			
+			[Blockly.Msg["PS2_ANALOG_READ_LY"],"PSS_LY"],	
 			[Blockly.Msg["PS2_ANALOG_READ_RX"],"PSS_RX"],		
-			[Blockly.Msg["PS2_ANALOG_READ_RY"],"PSS_RY"],
-			[Blockly.Msg["PS2_ANALOG_READ_RA"],"false"]			
+			[Blockly.Msg["PS2_ANALOG_READ_RY"],"PSS_RY"]		
 		]), "analog");	
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
