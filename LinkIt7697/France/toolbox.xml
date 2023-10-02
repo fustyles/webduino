@@ -1722,7 +1722,6 @@
 				  </block>
 				</statement>
 			  </block>
-			  <!--
 			  <block type="esp32_cam_stream_myfirmata">
 				<value name="ssid">
 				  <block type="text" id="100">
@@ -1816,8 +1815,7 @@
 					</next>
 				  </block>
 				</statement>
-			  </block>
-				-->			  
+			  </block>  
 			  <block type="server_getrequest">				
 			  </block>		  
 			  <block type="esp32_cam_camera_property">
