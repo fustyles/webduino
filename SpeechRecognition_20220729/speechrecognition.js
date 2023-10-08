@@ -64,6 +64,18 @@ if ('webkitSpeechRecognition' in window) {
       //console.log("interim = " + Recognition_interim);
     }
   };
+
+  if (!document.getElementById("gamespan_recognition")) {
+	var obj = document.createElement('div');
+	obj.id = "gamespan_recognition";
+	obj.style.display = "none";
+	obj.style.position = "absolute";
+	obj.style.zIndex = "9999";
+	obj.draggable="true";
+	obj.setAttribute("onclick", "javascript:onclickid_set(this);");
+	obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('div/plain',event.target.id);");
+	document.body.appendChild(obj);
+  }	
 }
 
 function linebreak(s) {
@@ -113,4 +125,11 @@ async function span_interim(input_left, input_top, input_fontsize, input_zindex,
 		obj.style.display = "none";
 	else
 		obj.style.display = "block";
+}
+
+function Recognition_recognitionFinish() {
+}  
+
+function Recognition_texttonumber(text) {
+    return text.replace(/零/g,"0").replace(/一/g,"1").replace(/二/g,"2").replace(/三/g,"3").replace(/四/g,"4").replace(/五/g,"5").replace(/六/g,"6").replace(/七/g,"7").replace(/八/g,"8").replace(/九/g,"9").replace(/十/g,"10");
 }
