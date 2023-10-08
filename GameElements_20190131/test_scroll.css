@@ -1,18 +1,16 @@
 .container{
-  width: 200px;
-  height: 200px;
-  background: #eee;
   overflow: auto;
   resize: both;
 }
+
 .container::-webkit-scrollbar {
   width: 1em;
 }
 .container::-webkit-scrollbar-button{
-  background: #fff;
+  background: pink;
 }
 .container::-webkit-scrollbar-track-piece{
-  background: #aaa;
+  background: #FFE4E1;
 }
  
 .container::::-webkit-scrollbar-corner{
@@ -23,6 +21,6 @@
 }
  
 .container::-webkit-scrollbar-thumb {
-  background-color: white;
+  background-color: pink;
   border: 1px solid slategrey;
 }
