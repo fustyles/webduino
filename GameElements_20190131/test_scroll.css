@@ -1,0 +1,28 @@
+.container{
+  width: 200px;
+  height: 200px;
+  background: #eee;
+  overflow: auto;
+  resize: both;
+}
+.container::-webkit-scrollbar {
+  width: 1em;
+}
+.container::-webkit-scrollbar-button{
+  background: #fff;
+}
+.container::-webkit-scrollbar-track-piece{
+  background: #aaa;
+}
+ 
+.container::::-webkit-scrollbar-corner{
+  border:1px solid red;
+}
+.container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+.container::-webkit-scrollbar-thumb {
+  background-color: white;
+  border: 1px solid slategrey;
+}
