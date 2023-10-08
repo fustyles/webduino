@@ -1,26 +1,9 @@
 .container{
-  overflow: auto;
-  resize: both;
-}
-
-.container::-webkit-scrollbar {
-  width: 1em;
-}
-.container::-webkit-scrollbar-button{
-  background: pink;
-}
-.container::-webkit-scrollbar-track-piece{
-  background: #FFE4E1;
-}
- 
-.container::::-webkit-scrollbar-corner{
-  border:1px solid red;
-}
-.container::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
- 
-.container::-webkit-scrollbar-thumb {
-  background-color: pink;
-  border: 1px solid slategrey;
+  scrollbar-3dlight-color: #000000;
+  scrollbar-arrow-color: #ffffff;
+  scrollbar-darkshadow-color: #000000;
+  scrollbar-face-color:#000000;
+  scrollbar-highlight-color: #ffffff;
+  scrollbar-shadow-color: #ffffff;
+  scrollbar-track-color: #000000;
 }
