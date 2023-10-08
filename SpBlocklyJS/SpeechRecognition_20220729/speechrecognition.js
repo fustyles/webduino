@@ -19,7 +19,6 @@ if ('webkitSpeechRecognition' in window) {
     recognition.interimResults = true;
   }   
   
-  
   recognition.onstart = function() {
     recognizing = true;
   };
@@ -60,6 +59,18 @@ if ('webkitSpeechRecognition' in window) {
 	  document.getElementById("gamespan_recognition").innerHTML = Recognition_interim;
     }
   };
+
+  if (!document.getElementById("gamespan_recognition")) {
+	var obj = document.createElement('div');
+	obj.id = "gamespan_recognition";
+	obj.style.display = "none";
+	obj.style.position = "absolute";
+	obj.style.zIndex = "9999";
+	obj.draggable="true";
+	obj.setAttribute("onclick", "javascript:onclickid_set(this);");
+	obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('div/plain',event.target.id);");
+	document.body.appendChild(obj);
+  }	
 }
 
 function linebreak(s) {
