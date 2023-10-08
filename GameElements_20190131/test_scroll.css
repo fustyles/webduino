@@ -1,9 +1,25 @@
-.containerbar{
-  scrollbar-3dlight-color: #000000;
-  scrollbar-arrow-color: pink;
-  scrollbar-darkshadow-color: #000000;
-  scrollbar-face-color:pink;
-  scrollbar-highlight-color: #ffffff;
-  scrollbar-shadow-color: #ffffff;
-  scrollbar-track-color: #FFE4E1;
+.container{
+}
+
+.container::-webkit-scrollbar {
+  width: 1em;
+}
+.container::-webkit-scrollbar-button{
+  background: pink;
+}
+
+.container::-webkit-scrollbar-track-piece{
+  background: #FFE4E1;
+}
+
+.container::::-webkit-scrollbar-corner{
+  border:1px solid red;
+}
+.container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: pink;
+  border: 1px solid slategrey;
 }
