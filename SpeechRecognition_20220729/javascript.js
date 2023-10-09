@@ -32,6 +32,33 @@ Blockly.JavaScript['SpeechRecognition_interim'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['SpeechRecognition_interim_element'] = function (block) { 
+  var value_element_ = block.getFieldValue('element_');
+  var value_id_ = block.getFieldValue('id_');
+	
+  if ((value_id_.indexOf("(")==0)&&(value_id_.lastIndexOf(")")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);	
+  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);	
+	
+  var source_id;
+  if (value_element_=="span")
+	source_id = 'gamespan_'+value_id_;
+  else if (value_element_=="text")
+	source_id = 'gametext_'+value_id_;
+  else if (value_element_=="div")
+	source_id = 'gamediv_'+value_id_;
+  else if (value_element_=="iframe")
+	source_id = 'gameiframe_'+value_id_;
+  else if (value_element_=="textarea")
+	source_id = 'gametextarea_'+value_id_;
+
+  var code = 'SpeechRecognition_interim = document.getElementById("'+source_id+'");\n';
+  return code;
+};
+
 Blockly.JavaScript['SpeechRecognition_state'] = function (block) {
   var code = 'Recognition_state()';
   return [code, Blockly.JavaScript.ORDER_NONE];
