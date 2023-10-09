@@ -54,13 +54,14 @@ if ('webkitSpeechRecognition' in window) {
 	  Recognition_final = linebreak(final_transcript);
 	  document.getElementById("gamespan_recognition").innerHTML = Recognition_final;
 	  if (typeof SpeechRecognition_interim === 'object' && SpeechRecognition_interim !== null) {
-		SpeechRecognition_interim.value = Recognition_final;
 		if (SpeechRecognition_interim.textContent)
 		  SpeechRecognition_interim.textContent = Recognition_final;
 		else if (SpeechRecognition_interim.innerText)
 		  SpeechRecognition_interim.innerText = Recognition_final;			
 		else if (SpeechRecognition_interim.innerHTML)
-		  SpeechRecognition_interim.innerHTML = Recognition_final;	  
+		  SpeechRecognition_interim.innerHTML = Recognition_final;
+		else
+		  SpeechRecognition_interim.value = Recognition_final;
 	  }
 	  if (typeof Recognition_recognitionFinish === 'function') Recognition_recognitionFinish();
     }
@@ -68,13 +69,14 @@ if ('webkitSpeechRecognition' in window) {
       	  Recognition_final = "";
 	  document.getElementById("gamespan_recognition").innerHTML = Recognition_interim;
 	  if (typeof SpeechRecognition_interim === 'object' && SpeechRecognition_interim !== null) {
-		SpeechRecognition_interim.value = Recognition_interim;
 		if (SpeechRecognition_interim.textContent)
 		  SpeechRecognition_interim.textContent = Recognition_interim;
 		else if (SpeechRecognition_interim.innerText)
 		  SpeechRecognition_interim.innerText = Recognition_interim;			
 		else if (SpeechRecognition_interim.innerHTML)
-		  SpeechRecognition_interim.innerHTML = Recognition_interim;			  
+		  SpeechRecognition_interim.innerHTML = Recognition_interim;
+		else
+		  SpeechRecognition_interim.value = Recognition_interim;
 	  } 
     }
   };	
