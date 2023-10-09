@@ -191,7 +191,6 @@ Blockly.Blocks['SpeechRecognition_interim_element'] = {
 		  [Blockly.Msg.ELEMENT_SPAN,"span"],	  
 		  [Blockly.Msg.ELEMENT_TEXT,"text"],
 		  [Blockly.Msg.ELEMENT_DIV,"div"],
-		  [Blockly.Msg.ELEMENT_IFRAME,"iframe"],
 		  [Blockly.Msg.ELEMENT_TEXTAREA,"textarea"]
 	  ]), "element_");    
   this.appendDummyInput()
