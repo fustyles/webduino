@@ -54,8 +54,8 @@ if ('webkitSpeechRecognition' in window) {
 	  Recognition_final = linebreak(final_transcript);
 	  document.getElementById("gamespan_recognition").innerHTML = Recognition_final;
 	  if (typeof SpeechRecognition_interim === 'object' && SpeechRecognition_interim !== null) {
-		console.log(SpeechRecognition_interim.tagName);
-		if (SpeechRecognition_interim.tagName=="text"||SpeechRecognition_interim.tagName=="textarea")
+		console.log(SpeechRecognition_interim.tagName.toLowerCase());
+		if (SpeechRecognition_interim.tagName.toLowerCase()=="text"||SpeechRecognition_interim.tagName.toLowerCase()=="textarea")
 		  SpeechRecognition_interim.value = Recognition_final;		  
 		else
 		  SpeechRecognition_interim.innerHTML = Recognition_final;
@@ -65,8 +65,8 @@ if ('webkitSpeechRecognition' in window) {
     else {
       	  Recognition_final = "";
 	  document.getElementById("gamespan_recognition").innerHTML = Recognition_interim;
-		console.log(SpeechRecognition_interim.tagName);
-		if (SpeechRecognition_interim.tagName=="text"||SpeechRecognition_interim.tagName=="textarea")
+		console.log(SpeechRecognition_interim.tagName.toLowerCase());
+		if (SpeechRecognition_interim.tagName.toLowerCase()=="text"||SpeechRecognition_interim.tagName.toLowerCase()=="textarea")
 		  SpeechRecognition_interim.value = Recognition_interim;		  
 		else
 		  SpeechRecognition_interim.innerHTML = Recognition_interim;
