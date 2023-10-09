@@ -64,10 +64,10 @@ if ('webkitSpeechRecognition' in window) {
     else {
       	  Recognition_final = "";
 	  document.getElementById("gamespan_recognition").innerHTML = Recognition_interim;
-		if (SpeechRecognition_interim.tagName.toLowerCase()=="input"||SpeechRecognition_interim.tagName.toLowerCase()=="textarea")
-		  SpeechRecognition_interim.value = Recognition_interim;		  
-		else
-		  SpeechRecognition_interim.innerHTML = Recognition_interim;
+	  if (SpeechRecognition_interim.tagName.toLowerCase()=="input"||SpeechRecognition_interim.tagName.toLowerCase()=="textarea")
+	    SpeechRecognition_interim.value = Recognition_interim;		  
+	  else
+	    SpeechRecognition_interim.innerHTML = Recognition_interim;
     }
   };	
 }
