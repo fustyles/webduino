@@ -513,6 +513,46 @@ Blockly.Blocks.emakefun_motordriver_set_speed={
 	}
 };
 
+Blockly.Blocks.emakefun_dcmotor={
+	init:function(){	
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER"]);
+      this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT) 
+		  .appendField(Blockly.Msg["EMAKEFUN_MOTOR"])
+          .appendField(new Blockly.FieldDropdown([
+			["M1","1"],		
+			["M2","2"],
+			["M3","3"],		
+			["M4","4"]			
+		  ]), "motor");
+      this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT) 
+          .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["EMAKEFUN_CLOCKWISE"],"FORWARD"],		
+			[Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"],"BACKWARD"],
+			[Blockly.Msg["EMAKEFUN_RELEASE"],"RELEASE"],			
+			[Blockly.Msg["EMAKEFUN_BRAKE"],"BRAKE"]		
+		  ], this.validate), "direction");
+	  this.appendValueInput("pwm")
+		  .setCheck("Number")
+		  .appendField(Blockly.Msg["EMAKEFUN_PWM"]+"[0-255]");		  
+	  this.setInputsInline(true);
+	  this.setPreviousStatement(!0,null);
+	  this.setNextStatement(!0,null);
+	  this.setColour(220);  
+	}
+	,validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="FORWARD"||newValue=="BACKWARD")
+			block.getInput("pwm").setVisible(true);	
+		else
+			block.getInput("pwm").setVisible(false);
+			
+	}
+};
+
 Blockly.Blocks.emakefun_motordriver_set_direction={
 	init:function(){	
 	  this.appendDummyInput()

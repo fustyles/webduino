@@ -10760,6 +10760,14 @@
 	</category>
 
 	<category id="france12" name="Emakefun">
+		<block type="emakefun_dcmotor">
+			<value name="pwm">
+			  <block type="math_number">
+				<field name="NUM">200</field>
+			  </block>
+			</value>	
+		</block>	
+		<!--
 		<block type="emakefun_motordriver_set_speed">
 			<value name="pwm">
 			  <block type="math_number">
@@ -10769,6 +10777,7 @@
 		</block>
 		<block type="emakefun_motordriver_set_direction">
 		</block>
+		-->
 		<block type="emakefun_servo_set_angle">
 			<value name="angle">
 			  <block type="math_number">
@@ -10780,13 +10789,6 @@
 				<field name="NUM">90</field>
 			  </block>
 			</value>			
-		</block>
-		<block type="emakefun_io">
-			<value name="aw_val">
-			  <block type="math_number">
-				<field name="NUM">2048</field>
-			  </block>
-			</value>
 		</block>		
 		<block type="ps2_initial">
 			<value name="CLK">
@@ -10845,7 +10847,14 @@
 	    </block>		
 		<block type="ps2_analog_read"></block>
 		<block type="ps2_pressures_read"></block>	
-		<block type="ps2_initial_func"></block>		
+		<block type="ps2_initial_func"></block>
+		<block type="emakefun_io">
+			<value name="aw_val">
+			  <block type="math_number">
+				<field name="NUM">2048</field>
+			  </block>
+			</value>
+		</block>		
 		<block type="emakefun_steppermotor_initial">
 			<value name="step">
 			  <block type="math_number">
