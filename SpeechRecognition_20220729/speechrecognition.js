@@ -46,9 +46,8 @@ if ('webkitSpeechRecognition' in window) {
       	Recognition_final = linebreak(final_transcript);
       	//console.log("final   = " + Recognition_final);
 	  if (typeof SpeechRecognition_interim === 'object' && SpeechRecognition_interim !== null) {
-		if (SpeechRecognition_interim.value)
-		  SpeechRecognition_interim.value = Recognition_final;
-		else if (SpeechRecognition_interim.textContent)
+		SpeechRecognition_interim.value = Recognition_final;
+		if (SpeechRecognition_interim.textContent)
 		  SpeechRecognition_interim.textContent = Recognition_final;
 		else if (SpeechRecognition_interim.innerText)
 		  SpeechRecognition_interim.innerText = Recognition_final;			
@@ -72,9 +71,8 @@ if ('webkitSpeechRecognition' in window) {
       }
 	document.getElementById("gamespan_recognition").innerHTML = Recognition_interim;
 	  if (typeof SpeechRecognition_interim === 'object' && SpeechRecognition_interim !== null) {
-		if (SpeechRecognition_interim.value)
-		  SpeechRecognition_interim.value = Recognition_interim;
-		else if (SpeechRecognition_interim.textContent)
+		SpeechRecognition_interim.value = Recognition_interim;
+		if (SpeechRecognition_interim.textContent)
 		  SpeechRecognition_interim.textContent = Recognition_interim;
 		else if (SpeechRecognition_interim.innerText)
 		  SpeechRecognition_interim.innerText = Recognition_interim;			
