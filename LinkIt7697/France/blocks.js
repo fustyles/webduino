@@ -493,10 +493,9 @@ Blockly.Blocks['emakefun_io'] = {
 Blockly.Blocks.emakefun_motordriver_set_speed={
 	init:function(){	
 	  this.appendDummyInput()
-		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER"]);
+		  .appendField(Blockly.Msg["EMAKEFUN_DCMOTOR"]);
       this.appendDummyInput()
           .setAlign(Blockly.ALIGN_RIGHT) 
-		  .appendField(Blockly.Msg["EMAKEFUN_MOTOR"])
           .appendField(new Blockly.FieldDropdown([
 			["M1","1"],		
 			["M2","2"],
@@ -509,17 +508,16 @@ Blockly.Blocks.emakefun_motordriver_set_speed={
 	  this.setInputsInline(true);
 	  this.setPreviousStatement(!0,null);
 	  this.setNextStatement(!0,null);
-	  this.setColour(220);  
+	  this.setColour(20);  
 	}
 };
 
 Blockly.Blocks.emakefun_dcmotor={
 	init:function(){	
 	  this.appendDummyInput()
-		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER"]);
+		  .appendField(Blockly.Msg["EMAKEFUN_DCMOTOR"]);
       this.appendDummyInput()
-          .setAlign(Blockly.ALIGN_RIGHT) 
-		  .appendField(Blockly.Msg["EMAKEFUN_MOTOR"])
+          .setAlign(Blockly.ALIGN_RIGHT)
           .appendField(new Blockly.FieldDropdown([
 			["M1","1"],		
 			["M2","2"],
@@ -540,7 +538,7 @@ Blockly.Blocks.emakefun_dcmotor={
 	  this.setInputsInline(true);
 	  this.setPreviousStatement(!0,null);
 	  this.setNextStatement(!0,null);
-	  this.setColour(220);  
+	  this.setColour(20);  
 	}
 	,validate: function(newValue) {
 		const block = this.sourceBlock_;
@@ -556,10 +554,9 @@ Blockly.Blocks.emakefun_dcmotor={
 Blockly.Blocks.emakefun_motordriver_set_direction={
 	init:function(){	
 	  this.appendDummyInput()
-		  .appendField(Blockly.Msg["EMAKEFUN_MOTORDRIVER"]);
+		  .appendField(Blockly.Msg["EMAKEFUN_DCMOTOR"]);
       this.appendDummyInput()
-          .setAlign(Blockly.ALIGN_RIGHT) 
-		  .appendField(Blockly.Msg["EMAKEFUN_MOTOR"])
+          .setAlign(Blockly.ALIGN_RIGHT)
           .appendField(new Blockly.FieldDropdown([
 			["M1","1"],		
 			["M2","2"],
@@ -577,7 +574,7 @@ Blockly.Blocks.emakefun_motordriver_set_direction={
 	  this.setInputsInline(true);
 	  this.setPreviousStatement(!0,null);
 	  this.setNextStatement(!0,null);
-	  this.setColour(220);  
+	  this.setColour(20);  
 	}
 };
 

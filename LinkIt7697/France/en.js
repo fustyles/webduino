@@ -56,9 +56,8 @@ Blockly.Msg["EMAKEFUN_STEPPERMOTOR_STEP"] = "Steps";
 
 Blockly.Msg["BOARD_RESTART_SHOW"] = "Restart board";
 
-Blockly.Msg["EMAKEFUN_MOTORDRIVER"] = "Emakefun motor";
 Blockly.Msg["EMAKEFUN_EDITOR"] = "Editor";
-Blockly.Msg["EMAKEFUN_MOTOR"] = "Motor";
+Blockly.Msg["EMAKEFUN_MOTOR"] = "Emakefun DCMotor";
 Blockly.Msg["EMAKEFUN_PWM"] = "PWM[0-255]";
 Blockly.Msg["EMAKEFUN_CLOCKWISE"] = "Rotate clockwise";
 Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"] = "Rotate countClockwise";
