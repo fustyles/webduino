@@ -63,7 +63,6 @@ async function DetectVideo(obj) {
 	}	
 
 	if (!labeledFaceDescriptors) {
-		faceImagesCount=-1;
 		labeledFaceDescriptors = await loadLabeledImages();
 		faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, distanceLimit)
 	}
