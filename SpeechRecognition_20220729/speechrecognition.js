@@ -53,9 +53,7 @@ if ('webkitSpeechRecognition' in window) {
 		else if (SpeechRecognition_interim.innerText)
 		  SpeechRecognition_interim.innerText = Recognition_final;			
 		else if (SpeechRecognition_interim.innerHTML)
-		  SpeechRecognition_interim.innerHTML = Recognition_final;
-		else if (SpeechRecognition_interim.srcdoc)
-		  SpeechRecognition_interim.srcdoc = Recognition_final;		  
+		  SpeechRecognition_interim.innerHTML = Recognition_final;	  
 	  }    
     }
     else {
@@ -81,9 +79,7 @@ if ('webkitSpeechRecognition' in window) {
 		else if (SpeechRecognition_interim.innerText)
 		  SpeechRecognition_interim.innerText = Recognition_interim;			
 		else if (SpeechRecognition_interim.innerHTML)
-		  SpeechRecognition_interim.innerHTML = Recognition_interim;
-		else if (SpeechRecognition_interim.srcdoc)
-		  SpeechRecognition_interim.srcdoc = Recognition_interim;			  
+		  SpeechRecognition_interim.innerHTML = Recognition_interim;			  
 	  }     
 	  
       //console.log("interim = " + Recognition_interim);
