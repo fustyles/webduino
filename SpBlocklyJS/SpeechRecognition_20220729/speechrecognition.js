@@ -54,9 +54,7 @@ if ('webkitSpeechRecognition' in window) {
 	  Recognition_final = linebreak(final_transcript);
 	  document.getElementById("gamespan_recognition").innerHTML = Recognition_final;
 	  if (typeof SpeechRecognition_interim === 'object' && SpeechRecognition_interim !== null) {
-		if (SpeechRecognition_interim.srcdoc)
-		  SpeechRecognition_interim.srcdoc = Recognition_final;			  
-		else if (SpeechRecognition_interim.value)
+		if (SpeechRecognition_interim.value)
 		  SpeechRecognition_interim.value = Recognition_final;
 		else if (SpeechRecognition_interim.textContent)
 		  SpeechRecognition_interim.textContent = Recognition_final;
@@ -71,9 +69,7 @@ if ('webkitSpeechRecognition' in window) {
       	  Recognition_final = "";
 	  document.getElementById("gamespan_recognition").innerHTML = Recognition_interim;
 	  if (typeof SpeechRecognition_interim === 'object' && SpeechRecognition_interim !== null) {
-		if (SpeechRecognition_interim.srcdoc)
-		  SpeechRecognition_interim.srcdoc = Recognition_interim;		  
-		else if (SpeechRecognition_interim.value)
+		if (SpeechRecognition_interim.value)
 		  SpeechRecognition_interim.value = Recognition_interim;
 		else if (SpeechRecognition_interim.textContent)
 		  SpeechRecognition_interim.textContent = Recognition_interim;
