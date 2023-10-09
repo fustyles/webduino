@@ -1,10 +1,8 @@
 Blockly.Blocks['faceapirecognize_video'] = {
   init: function() {
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_SHOW);	  
-  this.appendDummyInput() 
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_VIDEO_SHOW);	 
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_SHOW)
+	  .appendField(Blockly.Msg.FACEAPIRECOGNIZE_VIDEO_SHOW);	 
   this.appendValueInput("faceimagepath")
       .setAlign(Blockly.ALIGN_RIGHT)  
       .setCheck("String")
@@ -58,10 +56,8 @@ Blockly.Blocks['faceapirecognize_video'] = {
 Blockly.Blocks['faceapirecognize_video_one'] = {
   init: function() {
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_SHOW);	  
-  this.appendDummyInput() 
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_VIDEO_SHOW);	 
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_SHOW)
+	  .appendField(Blockly.Msg.FACEAPIRECOGNIZE_VIDEO_SHOW);	 
   this.appendValueInput("faceimagepath")
       .setAlign(Blockly.ALIGN_RIGHT)  
       .setCheck("String")
@@ -70,6 +66,56 @@ Blockly.Blocks['faceapirecognize_video_one'] = {
       .setAlign(Blockly.ALIGN_RIGHT)  
       .setCheck("String")
       .appendField(Blockly.Msg.FACEAPIRECOGNIZE_FACELABEL_SHOW); 
+  this.appendValueInput("distancelimit")
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_DISTANCELIMIT_SHOW); 
+  this.appendValueInput("timer")
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_TIMER_SHOW);   
+  this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_RESULT_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["Y","block"],
+		["N","none"]	  
+  ]), "result_");
+  this.appendDummyInput()  
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_OPACITY_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["1","1"],
+		["0.9","0.9"],
+		["0.8","0.8"],
+		["0.7","0.7"],
+		["0.6","0.6"],	  
+		["0.5","0.5"],
+		["0.4","0.4"],
+		["0.3","0.3"],
+		["0.2","0.2"],
+		["0.1","0.1"],	
+		["0","0"]	   
+  ]), "opacity_");  
+  this.setInputsInline(false);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
+Blockly.Blocks['faceapirecognize_video_capture'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_SHOW)
+	  .appendField(Blockly.Msg.FACEAPIRECOGNIZE_VIDEO_SHOW);
+  this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_FACEIMAGEPATH2_SHOW);	  
+  this.appendValueInput("facelabel")
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .setCheck("String")
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_FACELABEL1_SHOW); 
   this.appendValueInput("distancelimit")
       .setAlign(Blockly.ALIGN_RIGHT)  
       .setCheck("Number")

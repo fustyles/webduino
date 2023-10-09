@@ -23,6 +23,17 @@ Blockly.JavaScript['faceapirecognize_video_one'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['faceapirecognize_video_capture'] = function(block) { 
+  var value_result = block.getFieldValue('result_');
+  var value_opacity = block.getFieldValue('opacity_');  
+  var value_timer = Blockly.JavaScript.valueToCode(block, 'timer', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_facelabel = Blockly.JavaScript.valueToCode(block, 'facelabel', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_distancelimit = Blockly.JavaScript.valueToCode(block, 'distancelimit', Blockly.JavaScript.ORDER_ATOMIC);
+
+  var code = 'faceapirecognize_video("' + value_result + '","' + value_opacity + '",' + value_timer + ',"" ,' + value_facelabel + ',-1,' + value_distancelimit + ');\n';
+  return code;
+};
+
 Blockly.JavaScript['faceapirecognize_detect'] = function(block) { 
   var code = 'faceapirecognize_detect();\n';
   return code;

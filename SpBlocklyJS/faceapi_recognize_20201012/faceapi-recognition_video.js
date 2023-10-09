@@ -63,6 +63,7 @@ async function DetectVideo(obj) {
 	}	
 
 	if (!labeledFaceDescriptors) {
+		faceImagesCount=-1;
 		labeledFaceDescriptors = await loadLabeledImages();
 		faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, distanceLimit)
 	}
@@ -104,14 +105,20 @@ function loadLabeledImages() {
 	return Promise.all(
 		facelabels.map(async function(label, index) {
 			const descriptions = []
-			if (faceImagesCount==0) { 
-				const img = await faceapi.fetchImage(faceImagesPath[index])
+			if (faceImagesCount==-1) {
+				var img = document.createElement('img');
+				img.src = canvas.toDataURL("image/jpeg", 1.0);
+				const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
+				descriptions.push(detections.descriptor)
+			}				
+			else if (faceImagesCount==0) { 
+				const img = await faceapi.fetchImage(faceImagesPath[index]);
 				const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
 				descriptions.push(detections.descriptor)
 			}
 			else {
 				for (let i=1;i<=faceImagesCount;i++) {
-					const img = await faceapi.fetchImage(faceImagesPath+label+'/'+i+'.jpg')
+					const img = await faceapi.fetchImage(faceImagesPath+label+'/'+i+'.jpg');
 					const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
 					descriptions.push(detections.descriptor)
 				}
