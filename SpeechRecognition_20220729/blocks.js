@@ -182,6 +182,28 @@ Blockly.Blocks['SpeechRecognition_interim'] = {
   }
 };
 
+Blockly.Blocks['SpeechRecognition_interim_element'] = {
+  init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_INTERIM);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.ELEMENT_SPAN,"span"],	  
+		  [Blockly.Msg.ELEMENT_TEXT,"text"],
+		  [Blockly.Msg.ELEMENT_DIV,"div"],
+		  [Blockly.Msg.ELEMENT_IFRAME,"iframe"],
+		  [Blockly.Msg.ELEMENT_TEXTAREA,"textarea"]
+	  ]), "element_");    
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.ID)
+	  .appendField(new Blockly.FieldTextInput(""), "id_");  	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(180);
+  }
+};
+
 Blockly.Blocks['SpeechRecognition_state'] = {
   init: function () {     
   this.appendDummyInput()   
