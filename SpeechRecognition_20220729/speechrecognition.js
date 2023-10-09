@@ -43,8 +43,10 @@ if ('webkitSpeechRecognition' in window) {
     final_transcript = capitalize(final_transcript);
     Recognition_interim = linebreak(interim_transcript);
     if (Recognition_interim=='') {
-      Recognition_final = linebreak(final_transcript);
-      //console.log("final   = " + Recognition_final);
+      	Recognition_final = linebreak(final_transcript);
+      	//console.log("final   = " + Recognition_final);
+	  if (typeof SpeechRecognition_interim === 'object' && SpeechRecognition_interim !== null)
+		  SpeechRecognition_interim.innerHTML = Recognition_final;	    
     }
     else {
       Recognition_final = "";
@@ -60,7 +62,9 @@ if ('webkitSpeechRecognition' in window) {
         obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('div/plain',event.target.id);");
         document.body.appendChild(obj);
       }
-	  document.getElementById("gamespan_recognition").innerHTML = Recognition_interim;
+	document.getElementById("gamespan_recognition").innerHTML = Recognition_interim;
+	if (typeof SpeechRecognition_interim === 'object' && SpeechRecognition_interim !== null)
+	  SpeechRecognition_interim.innerHTML = Recognition_interim;	    
 	  
       //console.log("interim = " + Recognition_interim);
     }
