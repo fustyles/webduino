@@ -4770,7 +4770,15 @@ function HextoRgb(color) {
 	    	  else
 		  	obj.innerText = input_value;
 	  }
-  }	
+  }
+
+  function element_select(input_id) {
+    if (document.getElementById(input_id)) {
+	  var obj = document.getElementById(input_id);
+	  obj.focus();
+      obj.select();
+    }
+  }  	
 	
   window.table_create = table_create;
   window.table_set = table_set;
@@ -4948,5 +4956,6 @@ function HextoRgb(color) {
   window.getDatetime = getDatetime;  
   window.setDatetime = setDatetime; 	
   window.icon_google = icon_google;
+  window.element_select = element_select;  	
   
 }(window, window.document));
