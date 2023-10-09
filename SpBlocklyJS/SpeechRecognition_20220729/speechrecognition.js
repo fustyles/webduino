@@ -54,13 +54,10 @@ if ('webkitSpeechRecognition' in window) {
 	  Recognition_final = linebreak(final_transcript);
 	  document.getElementById("gamespan_recognition").innerHTML = Recognition_final;
 	  if (typeof SpeechRecognition_interim === 'object' && SpeechRecognition_interim !== null) {
-		if (SpeechRecognition_interim.hasOwnProperty('value'))
+		console.log(SpeechRecognition_interim.tagName);
+		if (SpeechRecognition_interim.tagName=="text"||SpeechRecognition_interim.tagName=="textarea")
 		  SpeechRecognition_interim.value = Recognition_final;		  
-		else if (SpeechRecognition_interim.hasOwnProperty('textContent'))
-		  SpeechRecognition_interim.textContent = Recognition_final;
-		else if (SpeechRecognition_interim.hasOwnProperty('innerText'))
-		  SpeechRecognition_interim.innerText = Recognition_final;			
-		else if (SpeechRecognition_interim.hasOwnProperty('innerHTML'))
+		else
 		  SpeechRecognition_interim.innerHTML = Recognition_final;
 	  }
 	  if (typeof Recognition_recognitionFinish === 'function') Recognition_recognitionFinish();
@@ -68,13 +65,10 @@ if ('webkitSpeechRecognition' in window) {
     else {
       	  Recognition_final = "";
 	  document.getElementById("gamespan_recognition").innerHTML = Recognition_interim;
-		if (SpeechRecognition_interim.hasOwnProperty('value'))
+		console.log(SpeechRecognition_interim.tagName);
+		if (SpeechRecognition_interim.tagName=="text"||SpeechRecognition_interim.tagName=="textarea")
 		  SpeechRecognition_interim.value = Recognition_interim;		  
-		else if (SpeechRecognition_interim.hasOwnProperty('textContent'))
-		  SpeechRecognition_interim.textContent = Recognition_interim;
-		else if (SpeechRecognition_interim.hasOwnProperty('innerText'))
-		  SpeechRecognition_interim.innerText = Recognition_interim;			
-		else if (SpeechRecognition_interim.hasOwnProperty('innerHTML'))
+		else
 		  SpeechRecognition_interim.innerHTML = Recognition_interim;
     }
   };	
