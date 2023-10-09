@@ -130,6 +130,7 @@ Blockly.Msg.PROPERTY_CONTROLS = "控制面板";
 Blockly.Msg.PROPERTY_PRELOAD = "預載影片";
 Blockly.Msg.PROPERTY_CAM = "本機攝影機";
 Blockly.Msg.PROPERTY_CLASS = "類別名稱";
+Blockly.Msg.PROPERTY_SELECT = "全選文字";
 Blockly.Msg.TABLE = "表格";
 Blockly.Msg.TABLE_ID = "表格代碼";
 Blockly.Msg.TABLE_CREATE = "建立";
