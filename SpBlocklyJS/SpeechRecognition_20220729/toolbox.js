@@ -62,6 +62,13 @@ var catSpeechRecognition = '<xml>'+
 '    	</block>'+
 '    </value>'+
 '  </block>'+
+'  <block type="SpeechRecognition_interim_element">'+
+'    <value name="id_">'+
+'          <block type="text">'+
+'            <field name="TEXT"></field>'+
+'          </block>'+
+'    </value>'+
+'  </block>'+
 '  <block type="SpeechRecognition_texttonumber">'+
 '    <value name="text">'+
 '          <block type="text">'+
