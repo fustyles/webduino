@@ -3657,6 +3657,28 @@ Blockly.Blocks['text_set'] = {
   }
 };
 
+Blockly.Blocks['element_select'] = {
+  init: function() {
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)		  
+      .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.ELEMENT_TEXT,"text"], 
+		  [Blockly.Msg.ELEMENT_TEXTAREA,"textarea"]
+	  ]), "source_");
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.ID); 
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)		  
+      .appendField(Blockly.Msg.PROPERTY_SELECT);      
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(140);
+  }
+};
+
 Blockly.Blocks['text_get'] = {
   init: function () {
   this.appendDummyInput()   

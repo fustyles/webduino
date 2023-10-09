@@ -1347,6 +1347,14 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="element_select">'+
+'    <field name="source_">text</field>'+
+'    <value name="id_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
 '    <block type="text_get">'+
 '    <value name="id_">'+
 '    <block type="text">'+
@@ -3002,6 +3010,14 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    <value name="value_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
+'    <block type="element_select">'+
+'    <field name="source_">textarea</field>'+
+'    <value name="id_">'+
 '    <block type="text">'+
 '    <field name="TEXT"></field>'+
 '    </block>'+

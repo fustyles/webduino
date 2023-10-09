@@ -2425,6 +2425,14 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
         obj.className = input_value;
     }
   }
+  
+  function element_select(input_id) {
+    if (document.getElementById(input_id)) {
+	  var obj = document.getElementById(input_id);
+	  obj.focus();
+      obj.select();
+    }
+  }  
 
   function text_get(input_id,input_property){
     if (document.getElementById("gametext_"+input_id)) {
@@ -4821,5 +4829,6 @@ function HextoRgb(color) {
   window.getDatetime = getDatetime;  
   window.setDatetime = setDatetime;
   window.icon_google = icon_google;
+  window.element_select = element_select;  
   
 }(window, window.document));
