@@ -49,7 +49,7 @@ if ('webkitSpeechRecognition' in window) {
     }
     final_transcript = capitalize(final_transcript);
     Recognition_interim = linebreak(interim_transcript);
-console.log(typeof SpeechRecognition_interim);
+
     if (Recognition_interim=='') {
 	  Recognition_final = linebreak(final_transcript);
 	  document.getElementById("gamespan_recognition").innerHTML = Recognition_final;
