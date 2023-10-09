@@ -490,28 +490,6 @@ Blockly.Blocks['emakefun_io'] = {
   }
 };
 
-Blockly.Blocks.emakefun_motordriver_set_speed={
-	init:function(){	
-	  this.appendDummyInput()
-		  .appendField(Blockly.Msg["EMAKEFUN_DCMOTOR"]);
-      this.appendDummyInput()
-          .setAlign(Blockly.ALIGN_RIGHT) 
-          .appendField(new Blockly.FieldDropdown([
-			["M1","1"],		
-			["M2","2"],
-			["M3","3"],		
-			["M4","4"]			
-		  ]), "motor");				  
-	  this.appendValueInput("pwm")
-		  .setCheck("Number")
-		  .appendField(Blockly.Msg["EMAKEFUN_PWM"]+"[0-255]");			  
-	  this.setInputsInline(true);
-	  this.setPreviousStatement(!0,null);
-	  this.setNextStatement(!0,null);
-	  this.setColour(20);  
-	}
-};
-
 Blockly.Blocks.emakefun_dcmotor={
 	init:function(){	
 	  this.appendDummyInput()
@@ -551,6 +529,28 @@ Blockly.Blocks.emakefun_dcmotor={
 	}
 };
 
+Blockly.Blocks.emakefun_motordriver_set_speed={
+	init:function(){	
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["EMAKEFUN_DCMOTOR"]);
+      this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT) 
+          .appendField(new Blockly.FieldDropdown([
+			["M1","1"],		
+			["M2","2"],
+			["M3","3"],		
+			["M4","4"]			
+		  ]), "motor");				  
+	  this.appendValueInput("pwm")
+		  .setCheck("Number")
+		  .appendField(Blockly.Msg["EMAKEFUN_PWM"]+"[0-255]");			  
+	  this.setInputsInline(true);
+	  this.setPreviousStatement(!0,null);
+	  this.setNextStatement(!0,null);
+	  this.setColour(90);  
+	}
+};
+
 Blockly.Blocks.emakefun_motordriver_set_direction={
 	init:function(){	
 	  this.appendDummyInput()
@@ -574,7 +574,7 @@ Blockly.Blocks.emakefun_motordriver_set_direction={
 	  this.setInputsInline(true);
 	  this.setPreviousStatement(!0,null);
 	  this.setNextStatement(!0,null);
-	  this.setColour(20);  
+	  this.setColour(90);  
 	}
 };
 

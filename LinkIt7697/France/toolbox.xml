@@ -10767,17 +10767,6 @@
 			  </block>
 			</value>	
 		</block>	
-		<!--
-		<block type="emakefun_motordriver_set_speed">
-			<value name="pwm">
-			  <block type="math_number">
-				<field name="NUM">200</field>
-			  </block>
-			</value>
-		</block>
-		<block type="emakefun_motordriver_set_direction">
-		</block>
-		-->
 		<block type="emakefun_servo_set_angle">
 			<value name="angle">
 			  <block type="math_number">
@@ -10898,7 +10887,16 @@
 			</value>			
 		</block>		
 		<block type="emakefun_encodeMotor_get_pulse">
-		</block>		
+		</block>
+		<block type="emakefun_motordriver_set_speed">
+			<value name="pwm">
+			  <block type="math_number">
+				<field name="NUM">200</field>
+			  </block>
+			</value>
+		</block>
+		<block type="emakefun_motordriver_set_direction">
+		</block>
         <block type="esp32_buzzer">
           <field name="frequency">131</field>
           <field name="index">0</field>
