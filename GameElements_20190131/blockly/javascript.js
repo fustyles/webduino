@@ -2331,3 +2331,18 @@ Blockly.JavaScript['music_delete'] = function (block) {
   var code = 'clearInterval(musicTimer);\nmusic_delete();\n';
   return code;
 };
+
+Blockly.JavaScript['element_select'] = function (block) {
+  var value_source_ = block.getFieldValue('source_');
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
+    value_id_ = value_id_.substring(1,value_id_.length-1);
+  var source_id;
+  if (value_source_=="text")
+	source_id = 'gametext_'+value_id_;
+  else if (value_source_=="textarea")
+	source_id = 'gametextarea_'+value_id_;
+
+  var code = 'element_select("' + source_id + '");\n';
+  return code;
+};
