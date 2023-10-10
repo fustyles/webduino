@@ -108,14 +108,14 @@ Blockly.Blocks['faceapirecognize_video_capture'] = {
   init: function() {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.FACEAPIRECOGNIZE_SHOW)
-      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_VIDEO_SHOW);
+	  .appendField(Blockly.Msg.FACEAPIRECOGNIZE_VIDEO_SHOW);
   this.appendDummyInput() 
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_FACEIMAGEPATH2_SHOW);	  
-  this.appendValueInput("facelabel")
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_FACEIMAGEPATH2_SHOW);
+  this.appendValueInput("faceimagecount")
       .setAlign(Blockly.ALIGN_RIGHT)  
-      .setCheck("String")
-      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_FACELABEL1_SHOW); 
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_PERSIONSCOUNT_SHOW);	  
   this.appendValueInput("distancelimit")
       .setAlign(Blockly.ALIGN_RIGHT)  
       .setCheck("Number")
