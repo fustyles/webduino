@@ -58,6 +58,10 @@ window.onload = function () {
 	})
 
 	async function DetectImage() {
+		if (!ShowImage.complete) {
+               		setTimeout(function(){DetectImage();}, 100);
+			return;
+		}
 		canvas.style.display = "block";
 		canvas.setAttribute("width", ShowImage.width);
 		canvas.setAttribute("height", ShowImage.height);
