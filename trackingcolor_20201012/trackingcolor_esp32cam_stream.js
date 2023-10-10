@@ -20,7 +20,7 @@ window.onload = function() {
     var myColor_r_min2, myColor_r_max2, myColor_g_min2, myColor_g_max2, myColor_b_min2, myColor_b_max2;
     var myColor_r_min3, myColor_r_max3, myColor_g_min3, myColor_g_max3, myColor_b_min3, myColor_b_max3;
 
-    ShowImage.src = window.location.hostname+':81/?stream';
+    ShowImage.src = 'http://'+window.location.hostname+':81/?stream';
     ShowImage.style.visibility = "visible";
     var tracker = new tracking.ColorTracker();
     
