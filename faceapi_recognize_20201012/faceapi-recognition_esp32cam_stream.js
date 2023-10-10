@@ -77,12 +77,15 @@ window.onload = function () {
 		}
 		
 		if (!labeledFaceDescriptors) {
+			console.log(1);
 			if (faceImagesCount<0) {
+				console.log(2);
 				facelabels = ",".repeat(Math.abs(faceImagesCount)-1).split(",");
 				labeledFaceDescriptors = await loadCaptureImages();
 			}
 			else
 				labeledFaceDescriptors = await loadLabeledImages();
+			console.log(4);
 			faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, distanceLimit)
 		}
 		
@@ -142,6 +145,7 @@ window.onload = function () {
 	function loadCaptureImages() {
 		return Promise.all(
 			facelabels.map(async function(label, index) {
+				console.log(3);
 				const descriptions = []
 				var n = prompt("Label name");
 				if (n!==""&&n!== null) {
