@@ -132,12 +132,12 @@ function loadCaptureImages() {
 		facelabels.map(async function(label, index) {
 			const descriptions = []
 			var n = prompt("Label name");
-			if (n) {
-				context.drawImage(source,0,0,source.width,source.height);				
+			if (n!==""&&n!== null) {
+				context.drawImage(source,0,0,source.width,source.height);
 				var img = document.createElement('img');
 				img.src = canvas.toDataURL("image/jpeg", 1.0);
 				const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
-				descriptions.push(detections.descriptor);
+				descriptions.push(detections.descriptor);			
 				return new faceapi.LabeledFaceDescriptors(n, descriptions);
 			}
 		})
