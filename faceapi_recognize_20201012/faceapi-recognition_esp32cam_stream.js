@@ -45,7 +45,7 @@ window.onload = function () {
 	facelabels = document.getElementById('facelabel_faceapirecognize').innerHTML;
 	facelabels = facelabels.split(";");
 	
-	ShowImage.src = window.location.hostname+':81/?stream';
+	ShowImage.src = 'http://'+window.location.hostname+':81/?stream';
 	ShowImage.style.visibility = "visible";	
 	
 	Promise.all([
