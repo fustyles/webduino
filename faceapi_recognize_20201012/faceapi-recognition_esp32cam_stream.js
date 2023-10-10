@@ -45,8 +45,10 @@ window.onload = function () {
 	facelabels = document.getElementById('facelabel_faceapirecognize').innerHTML;
 	facelabels = facelabels.split(";");
 	
-	ShowImage.src = window.location.hostname+':81/?stream';
-	ShowImage.style.visibility = "visible";	
+	
+	ShowImage.onload = function () {
+	  DetectImage();
+	}
 	
 	Promise.all([
 		faceapi.nets.faceLandmark68Net.load(modelPath),
@@ -54,7 +56,7 @@ window.onload = function () {
 		faceapi.nets.ssdMobilenetv1.load(modelPath)
 	]).then(function(){
 		ShowImage.style.visibility = "hidden";
-		DetectImage();
+		ShowImage.src = window.location.hostname+':81/?stream';
 	})
 
 	async function DetectImage() {
