@@ -31,3 +31,5 @@ Blockly.Msg.FACEAPIRECOGNIZE_RECOGNITIED_PERSONS_SHOW = "someone was detected";
 Blockly.Msg.FACEAPIRECOGNIZE_RECOGNITIED_NOBODY_SHOW = "There is nobody";
 Blockly.Msg.FACEAPIRECOGNIZE_UNKNOWN_SHOW = "is unknown";
 Blockly.Msg.FACEAPIRECOGNIZE_INDEX_SHOW = "Index";
+Blockly.Msg.FACEAPIRECOGNIZE_REGISTER_SHOW = "Please input face label then register faces using stills";
+Blockly.Msg.FACEAPIRECOGNIZE_PERSIONSCOUNT_SHOW = "Register persons";
