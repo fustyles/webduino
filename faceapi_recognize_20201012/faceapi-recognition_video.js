@@ -13,6 +13,7 @@ var detect = document.getElementById('detect_faceapirecognize');
 var faceapirecognizeState = document.getElementById('faceapirecognizeState'); 
 var message = document.getElementById('gamediv_faceapirecognize');
 var size = document.getElementById("size_faceapirecognize");
+var source;
 var sourceTimer; 
 
 var myTimer;
@@ -37,12 +38,12 @@ function StartFaceRecognition(input_timer, input_faceimagepath, input_facelabel,
 	]).then(function(){
 		sourceTimer = setInterval(
 			function(){
-				var source = document.getElementById("sourceId_faceapirecognize");
-				if (source.innerHTML!="") {
-					var obj = document.getElementById(source.innerHTML);
-					source.innerHTML = "";
-					DetectVideo(obj);
-				}				
+				var sourceId = document.getElementById("sourceId_faceapirecognize");
+				if (sourceId.innerHTML!="") {
+					source = document.getElementById(sourceId.innerHTML);
+					sourceId.innerHTML = "";
+					DetectVideo(source);
+				}					
 			}
 		, 200);
 	})
@@ -63,7 +64,12 @@ async function DetectVideo(obj) {
 	}	
 
 	if (!labeledFaceDescriptors) {
-		labeledFaceDescriptors = await loadLabeledImages();
+		if (faceImagesCount<0) {
+			facelabels = ",".repeat(Math.abs(faceImagesCount)-1).split(",");
+			labeledFaceDescriptors = await loadCaptureImages();
+		}
+		else
+			labeledFaceDescriptors = await loadLabeledImages();
 		faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, distanceLimit)
 	}
 
@@ -101,13 +107,7 @@ function loadLabeledImages() {
 	return Promise.all(
 		facelabels.map(async function(label, index) {
 			const descriptions = []
-			if (faceImagesCount==-1) {
-				var img = document.createElement('img');
-				img.src = canvas.toDataURL("image/jpeg", 1.0);
-				const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
-				descriptions.push(detections.descriptor)
-			}				
-			else if (faceImagesCount==0) { 
+			if (faceImagesCount==0) { 
 				const img = await faceapi.fetchImage(faceImagesPath[index]);
 				const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
 				descriptions.push(detections.descriptor)
@@ -120,6 +120,23 @@ function loadLabeledImages() {
 				}
 			}
 			return new faceapi.LabeledFaceDescriptors(label, descriptions)
+		})
+	)
+}
+
+function loadCaptureImages() {
+	return Promise.all(
+		facelabels.map(async function(label, index) {
+			const descriptions = []
+			var n = prompt("Label name");
+			if (n!==""&&n!== null) {
+				context.drawImage(source,0,0,source.width,source.height);
+				var img = document.createElement('img');
+				img.src = canvas.toDataURL("image/jpeg", 1.0);
+				const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
+				descriptions.push(detections.descriptor);			
+				return new faceapi.LabeledFaceDescriptors(n, descriptions);
+			}
 		})
 	)
 }
