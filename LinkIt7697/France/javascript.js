@@ -18361,6 +18361,17 @@ Blockly.Arduino['faceapirecognize_video_one'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['faceapirecognize_video_capture'] = function(block) {
+  var value_faceimagecount = Blockly.Arduino.valueToCode(block, 'faceimagecount', Blockly.Arduino.ORDER_ATOMIC);	
+  var value_result = block.getFieldValue('result_');
+  var value_opacity = block.getFieldValue('opacity_');  
+  var value_timer = Blockly.Arduino.valueToCode(block, 'timer', Blockly.Arduino.ORDER_ATOMIC);
+  var value_distancelimit = Blockly.Arduino.valueToCode(block, 'distancelimit', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'faceapirecognize1_video("' + value_result + '","' + value_opacity + '",' + value_timer + ',"" ,"" ,'+value_faceimagecount*(-1)+',' + value_distancelimit + ');\n';
+  return code;
+};
+
 Blockly.Arduino['faceapirecognize_detect'] = function(block) { 
   var code = 'faceapirecognize_detect();\n';
   return code;

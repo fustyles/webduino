@@ -2993,6 +2993,23 @@
 			  </block>
 			</value>	
 		  </block>
+		  <block type="faceapirecognize_video_capture">
+			<value name="faceimagecount">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>   
+			</value> 	  
+			 <value name="distancelimit">
+			   <block type="math_number">
+				 <field name="NUM">0.4</field>
+			   </block>
+			 </value>
+			 <value name="timer">
+			   <block type="math_number">
+				 <field name="NUM">3</field>
+			   </block>
+			 </value>
+		  </block>		  
 		  <block type="faceapirecognize_recognitied">
 		  </block>    	  
 		  <block type="faceapirecognize_detect">
