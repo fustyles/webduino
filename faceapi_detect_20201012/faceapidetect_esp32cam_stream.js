@@ -12,7 +12,7 @@ window.onload = function () {
 	let faceDetection;
 	let canvas;	
 
-	ShowImage.src = window.location.hostname+':81/?stream';
+	ShowImage.src = 'http://'+window.location.hostname+':81/?stream';
 	
 	$(".progress-bar").removeClass('d-none');
 	Promise.all([
