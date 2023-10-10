@@ -145,7 +145,7 @@ window.onload = function () {
 				const descriptions = []
 				var n = prompt("Label name");
 				if (n!==""&&n!== null) {
-					context.drawImage(source,0,0,source.width,source.height);
+					context.drawImage(ShowImage,0,0,ShowImage.width,ShowImage.height);
 					var img = document.createElement('img');
 					img.src = canvas.toDataURL("image/jpeg", 1.0);
 					const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
