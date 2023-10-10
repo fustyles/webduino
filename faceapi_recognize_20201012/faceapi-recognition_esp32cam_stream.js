@@ -16,6 +16,7 @@ function faceapirecognize1_video(input_result, input_opacity, input_timer, input
 	document.getElementById('faceimagepath_faceapirecognize').innerHTML = input_faceimagepath;
 	document.getElementById('facelabel_faceapirecognize').innerHTML = input_facelabel;
 	document.getElementById('faceimagecount_faceapirecognize').innerHTML = input_faceimagecount;
+	console.log(input_faceimagecount);
 	document.getElementById('distancelimit_faceapirecognize').innerHTML = input_distancelimit;
 }
 
@@ -39,6 +40,7 @@ window.onload = function () {
 	showtime = Number(document.getElementById('timer_faceapirecognize').innerHTML);
 	distanceLimit = Number(document.getElementById('distancelimit_faceapirecognize').innerHTML);
 	faceImagesCount = Number(document.getElementById('faceimagecount_faceapirecognize').innerHTML);
+	console.log(document.getElementById('faceimagecount_faceapirecognize').innerHTML);
 	console.log(faceImagesCount);
 	faceImagesPath = document.getElementById('faceimagepath_faceapirecognize').innerHTML;
 	if (faceImagesCount==0)
