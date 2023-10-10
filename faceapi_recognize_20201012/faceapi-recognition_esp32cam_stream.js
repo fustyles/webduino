@@ -39,6 +39,7 @@ window.onload = function () {
 	showtime = Number(document.getElementById('timer_faceapirecognize').innerHTML);
 	distanceLimit = Number(document.getElementById('distancelimit_faceapirecognize').innerHTML);
 	faceImagesCount = Number(document.getElementById('faceimagecount_faceapirecognize').innerHTML);
+	console.log(faceImagesCount);
 	faceImagesPath = document.getElementById('faceimagepath_faceapirecognize').innerHTML;
 	if (faceImagesCount==0)
 		faceImagesPath = faceImagesPath.split(";");
