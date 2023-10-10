@@ -45,23 +45,22 @@ window.onload = function () {
 	facelabels = document.getElementById('facelabel_faceapirecognize').innerHTML;
 	facelabels = facelabels.split(";");
 	
-	ShowImage.src = 'http://'+window.location.hostname+':81/?stream';
-	ShowImage.style.visibility = "visible";	
-	
 	Promise.all([
 		faceapi.nets.faceLandmark68Net.load(modelPath),
 		faceapi.nets.faceRecognitionNet.load(modelPath),
 		faceapi.nets.ssdMobilenetv1.load(modelPath)
 	]).then(function(){
-		ShowImage.style.visibility = "hidden";
-		DetectImage();
+		//DetectImage();
 	})
 
+	ShowImage.src = 'http://'+window.location.hostname+':81/?stream';
+	ShowImage.style.visibility = "visible";	
+	ShowImage.onload = function () {
+		ShowImage.style.visibility = "hidden";
+		DetectImage();
+	}
+
 	async function DetectImage() {
-		if (!ShowImage.complete) {
-               		setTimeout(function(){DetectImage();}, 100);
-			return;
-		} 
 		canvas.style.display = "block";
 		canvas.setAttribute("width", ShowImage.width);
 		canvas.setAttribute("height", ShowImage.height);
