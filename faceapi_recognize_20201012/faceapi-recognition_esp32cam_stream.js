@@ -74,9 +74,15 @@ window.onload = function () {
 		}
 		
 		if (!labeledFaceDescriptors) {
-			labeledFaceDescriptors = await loadLabeledImages();
+			if (faceImagesCount<0) {
+				facelabels = ",".repeat(Math.abs(faceImagesCount)-1).split(",");
+				labeledFaceDescriptors = await loadCaptureImages();
+			}
+			else
+				labeledFaceDescriptors = await loadLabeledImages();
 			faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, distanceLimit)
 		}
+		
 		const detections = await faceapi.detectAllFaces(canvas).withFaceLandmarks().withFaceDescriptors();
 		const resizedDetections = faceapi.resizeResults(detections, JSON.parse(size.innerHTML));
 
@@ -114,19 +120,35 @@ window.onload = function () {
 			facelabels.map(async function(label, index) {
 				const descriptions = []
 				if (faceImagesCount==0) { 
-					console.log(faceImagesPath[index]);
 					const img = await faceapi.fetchImage(faceImagesPath[index]);
 					const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
-					descriptions.push(detections.descriptor);
+					descriptions.push(detections.descriptor)
 				}
-				else {			
+				else {
 					for (let i=1;i<=faceImagesCount;i++) {
 						const img = await faceapi.fetchImage(faceImagesPath+label+'/'+i+'.jpg');
 						const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
-						descriptions.push(detections.descriptor);
+						descriptions.push(detections.descriptor)
 					}
 				}
 				return new faceapi.LabeledFaceDescriptors(label, descriptions)
+			})
+		)
+	}
+	
+	function loadCaptureImages() {
+		return Promise.all(
+			facelabels.map(async function(label, index) {
+				const descriptions = []
+				var n = prompt("Label name");
+				if (n!==""&&n!== null) {
+					context.drawImage(source,0,0,source.width,source.height);
+					var img = document.createElement('img');
+					img.src = canvas.toDataURL("image/jpeg", 1.0);
+					const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
+					descriptions.push(detections.descriptor);			
+					return new faceapi.LabeledFaceDescriptors(n, descriptions);
+				}
 			})
 		)
 	}
