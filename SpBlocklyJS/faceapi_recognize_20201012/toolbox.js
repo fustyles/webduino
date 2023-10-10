@@ -50,9 +50,9 @@ var catFaceRecognize = '<xml>'+
 '    </value>'+
 '  </block>'+
 '  <block type="faceapirecognize_video_capture">'+
-'    <value name="facelabel">'+
-'      <block type="text">'+
-'        <field name="TEXT">France</field>'+
+'    <value name="faceimagecount">'+
+'      <block type="math_number">'+
+'        <field name="NUM">1</field>'+
 '      </block>'+
 '    </value>'+
 '    <value name="distancelimit">'+
