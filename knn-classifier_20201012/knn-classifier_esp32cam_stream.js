@@ -27,7 +27,7 @@ window.onload = function () {
 	var classifier;
 	var mobilenetModule;
 
-	ShowImage.src = window.location.hostname+':81/?stream';
+	ShowImage.src = 'http://'+window.location.hostname+':81/?stream';
 	ShowImage.style.visibility = "visible";	
 
 	classifier = knnClassifier.create();
