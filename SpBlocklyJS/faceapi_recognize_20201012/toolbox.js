@@ -66,6 +66,55 @@ var catFaceRecognize = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
+'  <block type="faceapirecognize_video_base64">'+
+'    <field name="result_">block</field>'+
+'    <field name="opacity_">1</field>'+
+'    <value name="facelabel">'+
+'      <block type="lists_create_with">'+
+'        <mutation items="2"></mutation>'+
+'        <value name="ADD0">'+
+'          <block type="lists_create_with">'+
+'            <mutation items="2"></mutation>'+
+'            <value name="ADD0">'+
+'              <block type="text">'+
+'                <field name="TEXT">法蘭斯</field>'+
+'              </block>'+
+'            </value>'+
+'            <value name="ADD1">'+
+'              <block type="text">'+
+'                <field name="TEXT">data:image/jpeg;base64,...</field>'+
+'              </block>'+
+'            </value>'+
+'          </block>'+
+'        </value>'+
+'        <value name="ADD1">'+
+'          <block type="lists_create_with">'+
+'            <mutation items="2"></mutation>'+
+'            <value name="ADD0">'+
+'              <block type="text">'+
+'                <field name="TEXT">林志玲</field>'+
+'              </block>'+
+'            </value>'+
+'            <value name="ADD1">'+
+'              <block type="text">'+
+'                <field name="TEXT">data:image/jpeg;base64,...</field>'+
+'              </block>'+
+'            </value>'+
+'          </block>'+
+'        </value>'+
+'      </block>'+
+'    </value>'+
+'    <value name="distancelimit">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0.4</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="timer">'+
+'      <block type="math_number">'+
+'        <field name="NUM">3</field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+
 '  <block type="faceapirecognize_startvideo_media">'+
 '    <value name="width_">'+
 '      <block type="math_number">'+

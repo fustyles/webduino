@@ -17,7 +17,7 @@ var source;
 var sourceTimer; 
 
 var myTimer;
-var distanceLimit,faceImagesPath,facelabels,faceImagesCount;
+var distanceLimit,faceImagesPath,facelabels,facelabels_image,faceImagesCount;
 var Model,video,canvas,context,result; 
 
 let labeledFaceDescriptors;
@@ -28,8 +28,17 @@ function StartFaceRecognition(input_timer, input_faceimagepath, input_facelabel,
 
 	distanceLimit = input_distancelimit;
 	faceImagesPath = input_faceimagepath;
-	facelabels = input_facelabel;
-	faceImagesCount = input_faceimagecount ;
+	if (typeof input_facelabel==='object') {
+		if (typeof input_facelabel[0]==='object') {
+			facelabels = input_facelabel[0];
+			facelabels_image = input_facelabel[1];
+		}
+		else
+			facelabels = input_facelabel;
+	}
+	else
+		facelabels = input_facelabel;
+	faceImagesCount = input_faceimagecount;
 
 	Promise.all([
 		faceapi.nets.faceLandmark68Net.load(modelPath),
@@ -117,7 +126,12 @@ function loadLabeledImages() {
 			}
 			else {
 				for (let i=1;i<=faceImagesCount;i++) {
-					const img = await faceapi.fetchImage(faceImagesPath+label+'/'+i+'.jpg');
+					if (facelabels_image) {
+						var img = document.createElement('img');
+						img.src = facelabels_image[index];
+					}
+					else
+						const img = await faceapi.fetchImage(faceImagesPath+label+'/'+i+'.jpg');
 					const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
 					descriptions.push(detections.descriptor)
 				}

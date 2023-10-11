@@ -8,10 +8,22 @@
 
 	function faceapirecognize_video(input_result, input_opacity, input_timer, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit) {
 		document.getElementById('gamediv_faceapirecognize').style.display = input_result;
-		document.getElementById('region_faceapirecognize').style.opacity = Number(input_opacity);
+		document.getElementById('region_faceapirecognize').style.opacity = Number(input_opacity);	
 		if (input_faceimagecount==0)
 			input_faceimagepath = input_faceimagepath.split(";");
-		input_facelabel = input_facelabel.split(";");
+		if (typeof input_facelabel==='object') {
+			var label = [];
+			var base64 = [];
+			for (var i=0;i<input_facelabel.length;i++) {
+				label.push(input_facelabel[i][0]);
+				base64.push(input_facelabel[i][1]);
+			}
+			input_facelabel = [];
+			input_facelabel.push(label, base64);
+			input_faceimagecount = 1;
+		}
+		else
+			input_facelabel = input_facelabel.split(";");
 		if (typeof StartFaceRecognition === 'function') 
 			StartFaceRecognition(input_timer, input_faceimagepath, input_facelabel, input_faceimagecount, input_distancelimit);
 	}	
