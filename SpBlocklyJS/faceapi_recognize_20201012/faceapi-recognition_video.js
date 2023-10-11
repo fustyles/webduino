@@ -131,7 +131,7 @@ function loadLabeledImages() {
 						img.src = facelabels_image[index];
 					}
 					else
-						const img = await faceapi.fetchImage(faceImagesPath+label+'/'+i+'.jpg');
+						var img = await faceapi.fetchImage(faceImagesPath+label+'/'+i+'.jpg');
 					const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
 					descriptions.push(detections.descriptor)
 				}
