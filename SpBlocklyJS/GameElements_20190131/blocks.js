@@ -5948,7 +5948,7 @@ Blockly.Blocks['video_create1'] = {
       .appendField(Blockly.Msg.PROPERTY_CAM)
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_YES,"true"], [Blockly.Msg.PROPERTY_NO,"false"]], this.validate), "cam_");
-  this.appendDummyInput()  
+  this.appendDummyInput("facing")  
       .setAlign(Blockly.ALIGN_RIGHT)  
       .appendField(Blockly.Msg.VIDEO_FACING)
       .appendField(new Blockly.FieldDropdown([
@@ -6009,7 +6009,7 @@ Blockly.Blocks['video_create1'] = {
 	 const block = this.sourceBlock_;
 	 if (!block) return;
 	 if (newValue=="true") {
-		 block.getField("facing_").setVisible(true);
+		 block.getInput("facing").setVisible(true);
 		 block.getInput("index_").setVisible(true);		 
 		 block.getInput("src_").setVisible(false);
 		 block.getInput("v1").setVisible(false);
@@ -6019,7 +6019,7 @@ Blockly.Blocks['video_create1'] = {
 		 block.getInput("v5").setVisible(false);
 	 }
 	 else {
-		 block.getField("facing_").setVisible(false);
+		 block.getInput("facing").setVisible(false);
 		 block.getInput("index_").setVisible(false);		 
 		 block.getInput("src_").setVisible(true);
 		 block.getInput("v1").setVisible(true);
