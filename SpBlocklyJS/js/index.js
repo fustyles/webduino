@@ -612,11 +612,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		try {
 			try {
 				var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());
+				code = js_beautify("const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{\n"+code+"};main();");
 				var iframe_code="\<!DOCTYPE html\>\<html\>\<head\>\<meta charset='utf-8'\>\<meta http-equiv='Access-Control-Allow-Origin' content='*'\>\<meta http-equiv='Access-Control-Allow-Credentials' content='true'\>\<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'\>\<\/script\>";
 				
 				iframe_code += getScriptRemote(); 
 				  
-				iframe_code += "\<\/head\>\<body\>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{\n"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
+				iframe_code += "\<\/head\>\<body\>\n\<script\>\n"+code+"\n\<\/script\>\n\<\/body\>\<\/html\>";
 
 				var link = document.createElement('a');
 				link.download="project.html";
@@ -663,6 +664,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('button_run').onclick = function () {
 
 		stopCode();
+		javascriptCode();
 		var opt = {
 			//dialogClass: "dlg-no-close",
 			draggable: true,			
@@ -680,7 +682,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						stopCode();
 						$(this).dialog("close");
 					}
-				},
+				},				
 				{
 					text: Blockly.Msg["BUTTON_STOP"],
 					click: function() {
@@ -689,7 +691,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				},				
 				{
 					text: Blockly.Msg.BUTTON_FULLSCREEN,
-					click: function() {
+					click: function() {						
 						document.getElementById("iframe_run").requestFullscreen();
 						stopCode();
 						setTimeout(function(){
@@ -699,7 +701,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				},
 				{
 					text: Blockly.Msg["BUTTON_START"],
-					click: function() {
+					click: function() {						
 						stopCode();
 						setTimeout(function(){
 							runCode();
@@ -785,6 +787,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						Blockly.getMainWorkspace().clear();
 						var blocks = Blockly.utils.xml.textToDom(event.target.result);
 						Blockly.Xml.domToWorkspace(blocks, Blockly.getMainWorkspace());
+						javascriptCode();
 					};
 					fr.readAsText(file);
 				}
@@ -1519,6 +1522,7 @@ function parentCategoryExpand(parent_) {
 //JavaScript原始碼顯示
 function javascriptCode() {
 	var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());
+	code = js_beautify("const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{\n"+code+"};main();");
 	document.getElementById('code_content').innerHTML = code.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>").replace(/ /g,"&nbsp;");
 }
 

@@ -7,7 +7,7 @@ main .xml_content{height: calc(100vh - 87px); padding: 2ex; color:white; backgro
 #javascript_title { width: calc(100%); height: 40px; left: -1px; top: 0px; margin: 0; font-size: 14px !important; }
 #javascript_code { width: calc(100% - 0px); height:calc(100% - 40px); padding: 0px; overflow: scroll; background:white; border: 0px solid #8E8E8E;}
 
-#code_content { z-index:99998 !important; display:none; }
+#code_content { z-index:99998 !important; display:none; white-space: nowrap;}
 #xml_content { z-index:99998 !important; display:none; }
 #upload_code { width: 100%; height: 100%;  white-space:nowrap; overflow: auto; resize: none; }
 #dialog_toolbox  {  z-index:99998 !important; display: none; }
