@@ -5956,7 +5956,8 @@ Blockly.Blocks['video_create1'] = {
         [Blockly.Msg.VIDEO_FACING_BACK,"back"]
 		]), "facing_");  
   this.appendValueInput("index_")
-      .setAlign(Blockly.ALIGN_RIGHT)  
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.VIDEO_INDEX)
       .setCheck("Number");	  
   this.appendValueInput("src_")
       .setCheck(null)
