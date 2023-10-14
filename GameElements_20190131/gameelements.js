@@ -4138,6 +4138,82 @@ function HextoRgb(color) {
     document.body.appendChild(obj);
   }
 
+  function video_create1(input_id,input_width,input_height,input_left,input_top,input_cam,input_src,input_autoplay,input_loop,input_muted,input_controls,input_preload,input_opacity,input_zindex,input_display, input_facing, input_videoInputIndex) {
+    if (document.getElementById("gamevideo_"+input_id)) 
+      document.getElementById("gamevideo_"+input_id).parentNode.removeChild(document.getElementById("gamevideo_"+input_id));
+    var obj = document.createElement('video');
+    obj.id = "gamevideo_"+input_id;
+    obj.style.position = "absolute";
+    obj.style.left = input_left + 'px';
+    obj.style.top = input_top + 'px';
+    obj.style.width = input_width + 'px';
+    obj.width = input_width;
+    obj.style.height = input_height + 'px';
+	obj.height = input_height;
+	if (input_cam==true){
+		if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+			console.log("enumerateDevices() not supported.");
+			return;
+		}
+
+		var videoinput = false;
+		navigator.mediaDevices.enumerateDevices()
+		.then(function(devices) {
+			var i=-1;
+			var userMedia = "";
+			devices.forEach(function(device) {
+				if (device.kind=="videoinput"&&device.label.includes("facing back")&&input_facing=="back") {
+					i++;
+					if (i==input_videoInputIndex) {
+						if (device.deviceId=='')
+							userMedia = {audio: false,video: {facingMode: 'environment', width: obj.width, height: obj.height} };
+						else
+							userMedia = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment', width: obj.width, height: obj.height} };
+					}
+				}				
+				else if (device.kind=="videoinput"&&input_facing=="front") {
+					i++;
+					if (i==input_videoInputIndex) {
+						if (device.deviceId=='')
+							userMedia = {audio: false,video: {facingMode: 'user', width: obj.width, height: obj.height} };
+						else
+							userMedia = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'user', width: obj.width, height: obj.height} };
+					}
+				}
+			});
+
+			if (userMedia!="") {
+				navigator.mediaDevices
+				.getUserMedia(userMedia)
+				.then(stream => {
+					obj.srcObject = stream
+					obj.onloadedmetadata = () => {       
+						obj.play();
+					}
+				}) 
+			}
+		})   
+	}
+	else
+		obj.src = input_src;
+    obj.autoplay = input_autoplay;
+    obj.loop = input_loop;
+    obj.muted = input_muted;
+    obj.controls = input_controls;
+	obj.preload = input_preload;
+    obj.style.opacity = input_opacity;
+    obj.style.zIndex = input_zindex;
+    obj.crossOrigin = "anonymous";
+    if (input_display==0)
+      obj.style.display = "none";
+    else
+      obj.style.display = "block";
+    obj.draggable="true";
+    obj.setAttribute("onclick", "javascript:onclickid_set(this);");
+    obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
+    document.body.appendChild(obj);
+  }   	
+
   function video_set(input_id,input_property,input_value) {
     if (document.getElementById("gamevideo_"+input_id)) {
       var obj = document.getElementById("gamevideo_"+input_id); 
@@ -4925,6 +5001,7 @@ function HextoRgb(color) {
   window.form_submit = form_submit;
   window.head_add_viewport = head_add_viewport;
   window.video_create = video_create;
+  window.video_create1 = video_create1;	
   window.video_set = video_set;
   window.video_get = video_get;
   window.video_delete = video_delete;
