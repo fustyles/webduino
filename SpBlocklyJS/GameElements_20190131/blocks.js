@@ -5920,6 +5920,116 @@ Blockly.Blocks['video_create'] = {
   } 
 };
 
+Blockly.Blocks['video_create1'] = {
+  init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.VIDEO_CREATE);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ID);	  
+  this.appendValueInput("width_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.WIDTH);
+  this.appendValueInput("height_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.HEIGHT);  
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.LEFT);    
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TOP);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.PROPERTY_CAM)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_YES,"true"], [Blockly.Msg.PROPERTY_NO,"false"]], this.validate), "cam_");
+  this.appendDummyInput()  
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .appendField(Blockly.Msg.VIDEO_FACING)
+      .appendField(new Blockly.FieldDropdown([
+        [Blockly.Msg.VIDEO_FACING_FRONT,"front"],
+        [Blockly.Msg.VIDEO_FACING_BACK,"back"]
+		]), "facing_");  
+  this.appendValueInput("index_")
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .setCheck("Number");	  
+  this.appendValueInput("src_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.PROPERTY_SRC); 	  
+  this.appendDummyInput("v1")  
+      .appendField(Blockly.Msg.PROPERTY_AUTOPLAY)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_NO,"false"], [Blockly.Msg.PROPERTY_YES,"true"]]), "autoplay_");
+  this.appendDummyInput("v2")  
+      .appendField(Blockly.Msg.PROPERTY_LOOP)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_NO,"false"], [Blockly.Msg.PROPERTY_YES,"true"]]), "loop_");
+  this.appendDummyInput("v3")  
+      .appendField(Blockly.Msg.PROPERTY_MUTED)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_NO,"false"], [Blockly.Msg.PROPERTY_YES,"true"]]), "muted_");
+  this.appendDummyInput("v4")  
+      .appendField(Blockly.Msg.PROPERTY_CONTROLS)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_YES,"true"], [Blockly.Msg.PROPERTY_NO,"false"]]), "controls_");
+  this.appendDummyInput("v5")  
+      .appendField(Blockly.Msg.PROPERTY_PRELOAD)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_YES,"true"], [Blockly.Msg.PROPERTY_NO,"false"]]), "preload_");
+  this.appendValueInput("opacity_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.OPACITY);
+  this.appendValueInput("zindex_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ZINDEX);   
+  this.appendValueInput("display_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.DISPLAY); 
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(290);
+  this.getInput("v1").setVisible(false);
+  this.getInput("v2").setVisible(false);
+  this.getInput("v3").setVisible(false);
+  this.getInput("v4").setVisible(false);
+  this.getInput("v5").setVisible(false);  
+  },
+  validate: function(newValue) {
+	 const block = this.sourceBlock_;
+	 if (!block) return;
+	 if (newValue=="true") {
+		 block.getField("facing_").setVisible(true);
+		 block.getInput("index_").setVisible(true);		 
+		 block.getInput("src_").setVisible(false);
+		 block.getInput("v1").setVisible(false);
+		 block.getInput("v2").setVisible(false);
+		 block.getInput("v3").setVisible(false);
+		 block.getInput("v4").setVisible(false);
+		 block.getInput("v5").setVisible(false);
+	 }
+	 else {
+		 block.getField("facing_").setVisible(false);
+		 block.getInput("index_").setVisible(false);		 
+		 block.getInput("src_").setVisible(true);
+		 block.getInput("v1").setVisible(true);
+		 block.getInput("v2").setVisible(true);
+		 block.getInput("v3").setVisible(true);
+		 block.getInput("v4").setVisible(true);
+		 block.getInput("v5").setVisible(true);		 
+	 }	 
+  } 
+};
+
 Blockly.Blocks['video_set'] = {
   init: function() {
   this.appendValueInput("id_")

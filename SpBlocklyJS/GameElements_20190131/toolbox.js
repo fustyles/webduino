@@ -3603,53 +3603,58 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </category>'+
 '    <category name="%{BKY_CATPAGEELEMENTS_VIDEO}" id="catPageElements_video">'+
-'    <block type="video_create">'+
-'    <value name="id_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="left_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">0</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="top_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="width_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">320</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="height_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">240</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="src_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="opacity_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">1</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="zindex_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">999</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="display_">'+
-'    <block type="logic_boolean">'+
-'    <field name="BOOL">TRUE</field>'+
-'    </block>'+
-'    </value>'+
-'    </block>'+
+'	  <block type="video_create1">'+
+'		<value name="id_">'+
+'		  <block type="text">'+
+'			<field name="TEXT"></field>'+
+'		  </block>'+
+'		</value>'+
+'		<value name="left_">'+
+'		  <block type="math_number">'+
+'			<field name="NUM">0</field>'+
+'		  </block>'+
+'		</value>'+
+'		<value name="top_">'+
+'		  <block type="math_number">'+
+'			<field name="NUM">100</field>'+
+'		  </block>'+
+'		</value>'+
+'		<value name="width_">'+
+'		  <block type="math_number">'+
+'			<field name="NUM">320</field>'+
+'		  </block>'+
+'		</value>'+
+'		<value name="height_">'+
+'		  <block type="math_number">'+
+'			<field name="NUM">240</field>'+
+'		  </block>'+
+'		</value>'+
+'		<value name="index_">'+
+'		  <block type="math_number">'+
+'			<field name="NUM">0</field>'+
+'		  </block>'+
+'		</value>'+
+'		<value name="src_">'+
+'		  <block type="text">'+
+'			<field name="TEXT"></field>'+
+'		  </block>'+
+'		</value>'+
+'		<value name="opacity_">'+
+'		  <block type="math_number">'+
+'			<field name="NUM">1</field>'+
+'		  </block>'+
+'		</value>'+
+'		<value name="zindex_">'+
+'		  <block type="math_number">'+
+'			<field name="NUM">999</field>'+
+'		  </block>'+
+'		</value>'+
+'		<value name="display_">'+
+'		  <block type="logic_boolean">'+
+'			<field name="BOOL">TRUE</field>'+
+'		  </block>'+
+'		</value>'+
+'	  </block>'+
 '    <block type="video_set">'+
 '    <value name="id_">'+
 '    <block type="text">'+

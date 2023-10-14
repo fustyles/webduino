@@ -487,15 +487,16 @@ Blockly.Msg.INITIALSCALE = "initial-scale";
 Blockly.Msg.MINIMUMSCALE = "minimum-scale";
 Blockly.Msg.MAXIMUMSCALE = "maximum-scale";
 Blockly.Msg.SCALABLE = "user-scalable";
-
 Blockly.Msg.VIDEO = "Video";
 Blockly.Msg.VIDEO_ID = "Video ID";
 Blockly.Msg.VIDEO_CREATE = "Video Create";
 Blockly.Msg.VIDEO_SET = "Set";
 Blockly.Msg.VIDEO_GET = "Get";
 Blockly.Msg.VIDEO_DELETE = "Delete";
-
 Blockly.Msg.VIDEO_BASE64 = "transfer into Base64 string";
+Blockly.Msg.VIDEO_FACING = "Webcam";
+Blockly.Msg.VIDEO_FACING_FRONT = "Front";
+Blockly.Msg.VIDEO_FACING_BACK = "Back";
 Blockly.Msg.VEDIO_OUTPUT_JPG = "save still to jpg file";
 Blockly.Msg.CANVAS_CAPTUREVIDEO = "Canvas capture video screen";
 Blockly.Msg.STREAMURL = "Stream URL";
