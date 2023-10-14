@@ -13128,6 +13128,28 @@ Blockly.Arduino['video_create'] = function (block) {
   return code;
 };
 
+Blockly.Arduino['video_create1'] = function (block) {
+  var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);  
+  var value_width_ = Blockly.Arduino.valueToCode(block, 'width_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_height_ = Blockly.Arduino.valueToCode(block, 'height_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_left_ = Blockly.Arduino.valueToCode(block, 'left_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_top_ = Blockly.Arduino.valueToCode(block, 'top_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_facing_ = block.getFieldValue('facing_');  
+  var value_index_ = Blockly.Arduino.valueToCode(block, 'index_', Blockly.Arduino.ORDER_ATOMIC);  
+  var value_src_ = Blockly.Arduino.valueToCode(block, 'src_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_cam_ = block.getFieldValue('cam_');
+  var value_autoplay_ = block.getFieldValue('autoplay_');
+  var value_loop_ = block.getFieldValue('loop_');
+  var value_muted_ = block.getFieldValue('muted_');
+  var value_controls_ = block.getFieldValue('controls_');
+  var value_preload_ = block.getFieldValue('preload_');
+  var value_opacity_ = Blockly.Arduino.valueToCode(block, 'opacity_', Blockly.Arduino.ORDER_ATOMIC); 
+  var value_zindex_ = Blockly.Arduino.valueToCode(block, 'zindex_', Blockly.Arduino.ORDER_ATOMIC);    
+  var value_display_ = Blockly.Arduino.valueToCode(block, 'display_', Blockly.Arduino.ORDER_ATOMIC);  
+  var code = 'video_create1(' + value_id_ + ','+ value_width_ + ',' + value_height_ + ',' + value_left_ + ',' + value_top_ + ','+ value_cam_ + ','+ value_src_ + ',' + value_autoplay_ + ',' + value_loop_ + ',' + value_muted_ + ',' + value_controls_ + ',' + value_preload_ + ',' + value_opacity_ + ',' + value_zindex_ + ',' + value_display_ + ',"' + value_facing_ + '",' + value_index_ + ');\n';
+  return code;
+};
+
 Blockly.Arduino['video_set'] = function (block) {
   var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);  
   var value_property_ = block.getFieldValue('property_');
