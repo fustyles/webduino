@@ -3094,7 +3094,9 @@ Blockly.Arduino['tft_initial'] = function(block) {
 	if (board=="Pixel:Bit")
 		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_PIXELBIT.h>\n';
 	else if (board=="TTGO T1")
-		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_TTGO.h>\n';	
+		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_TTGO.h>\n';
+	else if (board=="EasyCam")
+		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_EC.h>\n';	
 	else
 		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI.h>\n';
 	
@@ -3122,13 +3124,16 @@ Blockly.Arduino['tft_initial'] = function(block) {
 												'}\n';
 												
 	Blockly.Arduino.setups_.tftsetup ='tft.begin();\n'+
-									  'tft.fillScreen(TFT_BLACK);\n'+
-									  'tft.initDMA();\n'+
-									  'TJpgDec.setJpgScale(1);\n'+
-									  'tft.setSwapBytes(true);\n'+
-									  'TJpgDec.setCallback(tft_output);\n';
+									  '  tft.fillScreen(TFT_BLACK);\n';
+	if (board!="EasyCam")
+		Blockly.Arduino.setups_.tftsetup += '  tft.initDMA();\n';
+	Blockly.Arduino.setups_.tftsetup += '  TJpgDec.setJpgScale(1);\n'+
+										  '  tft.setSwapBytes(true);\n'+
+										  '  TJpgDec.setCallback(tft_output);\n';
 	if (board=="Pixel:Bit")
-		Blockly.Arduino.setups_.tftsetup += 'tft.setRotation(3);\n';
+		Blockly.Arduino.setups_.tftsetup += '  tft.setRotation(3);\n';
+	else if (board=="EasyCam")
+		Blockly.Arduino.setups_.tftsetup += '  tft.setRotation(1);\n';
 	
 	Blockly.Arduino.setups_.tftsetup +=  'tft.setTextFont(1);\n'+
 										 'tft.setTextSize(1);\n'+
@@ -3142,9 +3147,16 @@ Blockly.Arduino['tft_initial'] = function(block) {
 
 
 Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
-	Blockly.Arduino.definitions_.tftinitial = ''+
-												'#include <TFT_eSPI_PIXELBIT.h>\n'+
-												'#include <U8g2_for_TFT_eSPI.h>\n'+
+	var board = block.getFieldValue('board');
+	
+	if (board=="Pixel:Bit")
+		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_PIXELBIT.h>\n';
+	else if (board=="EasyCam")
+		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_EC.h>\n';	
+	else
+		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI.h>\n';
+	
+	Blockly.Arduino.definitions_.tftinitial +=  '#include <U8g2_for_TFT_eSPI.h>\n'+
 												'TFT_eSPI tft = TFT_eSPI();\n'+
 												'U8g2_for_TFT_eSPI u8g2;\n'+
 												'byte tftTextSize=1;\n'+
@@ -3174,16 +3186,19 @@ Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
 									  'sg->set_saturation(sg, 1);\n'+	
 									  'tft.begin();\n'+
 									  'tft.fillScreen(TFT_BLACK);\n'+
-									  'tft.initDMA();\n'+
+									  'tft.initDMA();\n'+								  
 									  'TJpgDec.setJpgScale(1);\n'+
 									  'tft.setSwapBytes(true);\n'+
-									  'TJpgDec.setCallback(tft_output);\n'+
-									  'tft.setRotation(3);\n'+
-									  'tft.setTextFont(1);\n'+
-									  'tft.setTextSize(1);\n'+
-									  'tft.setTextColor(TFT_WHITE, TFT_BLACK ,0);\n'+
-									  'u8g2.begin(tft);\n'+	
-									  'u8g2.setForegroundColor(TFT_WHITE);\n';
+									  'TJpgDec.setCallback(tft_output);\n';
+	if (board=="Pixel:Bit")
+		Blockly.Arduino.setups_.tftsetup += '  tft.setRotation(3);\n';
+	else if (board=="EasyCam")
+		Blockly.Arduino.setups_.tftsetup += '  tft.setRotation(1);\n';
+	Blockly.Arduino.setups_.tftsetup += 'tft.setTextFont(1);\n'+
+										  'tft.setTextSize(1);\n'+
+										  'tft.setTextColor(TFT_WHITE, TFT_BLACK ,0);\n'+
+										  'u8g2.begin(tft);\n'+	
+										  'u8g2.setForegroundColor(TFT_WHITE);\n';
 										  
 	Blockly.Arduino.definitions_.tftshowcamera = ''+												
 												'void TFTShowCamera() {\n'+

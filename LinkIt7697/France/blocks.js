@@ -5911,7 +5911,8 @@ Blockly.Blocks['tft_initial'] = {
         .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["TFT_GENERAL"],""],
 			["Pixel:Bit","Pixel:Bit"], 
-			["TTGO T-Display","TTGO T-Display"]			
+			["TTGO T-Display","TTGO T-Display"], 
+			["EasyCam","EasyCam"]			
 		]), "board");
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
@@ -5924,6 +5925,14 @@ Blockly.Blocks['esp32_pixelbit_tftshowcamera'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg["ESP32_PIXELBIT_TFTSHOWCAMERA"]);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["TFT_BOARD"])
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["TFT_GENERAL"],""],
+			["Pixel:Bit","Pixel:Bit"],
+			["EasyCam","EasyCam"]			
+		]), "board");		
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
