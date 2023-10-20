@@ -18523,3 +18523,5 @@ function selectBoardType() {
 		return "";
 	}
 }
+
+Blockly.Arduino['board_initializes_setup'] = Blockly.Arduino['initializes_setup'];

@@ -25824,3 +25824,5 @@ Blockly.Blocks['faceapirecognize_recognitied'] = {
 
 if (typeof topCheck !== "undefined") topCheck = false;
 
+Blockly.Blocks['board_initializes_setup'] = Blockly.Blocks['initializes_setup'];
+
