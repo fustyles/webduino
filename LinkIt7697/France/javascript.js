@@ -18524,4 +18524,7 @@ function selectBoardType() {
 	}
 }
 
-//Blockly.Arduino['board_initializes_setup'] = Blockly.Arduino['initializes_setup'];
+setTimeout(function () {
+	if (typeof Blockly.Arduino['board_initializes_setup']=== 'undefined')
+		Blockly.Arduino['board_initializes_setup'] = Blockly.Arduino['initializes_setup'];
+}, 5000);
