@@ -776,7 +776,11 @@ Blockly.JavaScript['document_timer_stop'] = function (block) {
 Blockly.JavaScript['text_to_number'] = function (block) {
   var value_text = Blockly.JavaScript.valueToCode(block, 'value_text_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_type = block.getFieldValue('type');
-  if (value_type=="btoa")
+  if (value_type=="urlencode")
+	  var code = 'encodeURIComponent(' + value_text + ')';
+  else if (value_type=="urldecode")
+	  var code = 'decodeURIComponent(' + value_text + ')';
+  else if (value_type=="btoa")
 	  var code = 'btoa(escape(' + value_text + '))';
   else if (value_type=="atob")
 	  var code = 'unescape(atob(' + value_text + '))';	
