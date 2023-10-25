@@ -11971,7 +11971,17 @@ Blockly.Arduino['document_timer_stop'] = function (block) {
 
 Blockly.Arduino['text_to_number'] = function (block) {
   var value_text = Blockly.Arduino.valueToCode(block, 'value_text_', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'text_to_number(' + value_text + ')';
+  var value_type = block.getFieldValue('type');
+  if (value_type=="urlencode")
+	  var code = 'encodeURIComponent(' + value_text + ')';
+  else if (value_type=="urldecode")
+	  var code = 'decodeURIComponent(' + value_text + ')';
+  else if (value_type=="btoa")
+	  var code = 'btoa(escape(' + value_text + '))';
+  else if (value_type=="atob")
+	  var code = 'unescape(atob(' + value_text + '))';	
+  else
+	  var code = 'text_to_number(' + value_text + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 

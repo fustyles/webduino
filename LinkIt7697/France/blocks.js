@@ -17352,10 +17352,18 @@ Blockly.Blocks['document_timer_stop'] = {
 Blockly.Blocks['text_to_number'] = {
   init: function() {
     this.appendValueInput("value_text_")
-        .setCheck(null)
-        .appendField(Blockly.Msg.TEXT_TO_NUMBER);
+        .setCheck(null);	  
+	this.appendDummyInput()
+		  .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.TEXT_TO_NUMBER,"number"],
+		  [Blockly.Msg.TEXT_TO_URLENCODE,"urlencode"],
+		  [Blockly.Msg.TEXT_TO_URLDECODE,"urldecode"],
+		  [Blockly.Msg.TEXT_TO_BASE64,"btoa"],
+		  [Blockly.Msg.BASE64_TO_TEXT,"atob"]
+		]), "type");	  
+    this.setInputsInline(true); 		
     this.setOutput(true);  
-    this.setColour(Blockly.Msg["HUE_1"]);
+    this.setColour(Blockly.Msg["TEXTS_HUE"]);
   }  
 };
 
