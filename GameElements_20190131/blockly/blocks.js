@@ -2575,6 +2575,8 @@ Blockly.Blocks['text_to_number'] = {
 	this.appendDummyInput()
 		  .appendField(new Blockly.FieldDropdown([
 		  [Blockly.Msg.TEXT_TO_NUMBER,"number"],
+		  [Blockly.Msg.TEXT_TO_URLENCODE,"urlencode"],
+		  [Blockly.Msg.TEXT_TO_URLDECODE,"urldecode"],
 		  [Blockly.Msg.TEXT_TO_BASE64,"btoa"],
 		  [Blockly.Msg.BASE64_TO_TEXT,"atob"]
 		]), "type");	  
