@@ -18535,6 +18535,17 @@ function selectBoardType() {
 }
 
 setTimeout(function () {
-	if (typeof Blockly.Arduino['board_initializes_setup']=== 'undefined')
+	var xmlDoc = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml"><block type="board_initializes_setup" x="100" y="50"><next><block type="initializes_loop"></block></next></block></xml>');
+	var checkInit = function(){
+		if(Blockly.mainWorkspace == null){
+			setTimeout(checkInit, 200);
+		} else {
+			Blockly.getMainWorkspace().clear();
+			Blockly.Xml.domToWorkspace(xmlDoc, Blockly.mainWorkspace);
+		}
+	}	
+	if (typeof Blockly.Arduino['board_initializes_setup']=== 'undefined') {
 		Blockly.Arduino['board_initializes_setup'] = Blockly.Arduino['initializes_setup'];
+		checkInit();
+	}
 }, 5000);
