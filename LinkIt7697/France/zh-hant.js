@@ -61,8 +61,8 @@ Blockly.Msg["EMAKEFUN_DCMOTOR"] = "Emakefun 直流馬達";
 Blockly.Msg["EMAKEFUN_PWM"] = "轉速";
 Blockly.Msg["EMAKEFUN_CLOCKWISE"] = "正轉";
 Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"] = "反轉";
-Blockly.Msg["EMAKEFUN_RELEASE"] = "停止(雙低電位)";
-Blockly.Msg["EMAKEFUN_BRAKE"] = "停止(雙高電位)";
+Blockly.Msg["EMAKEFUN_RELEASE"] = "停止(空轉)";
+Blockly.Msg["EMAKEFUN_BRAKE"] = "停止(煞車)";
 Blockly.Msg["EMAKEFUN_SERVO"] = "Emakefun 伺服馬達";
 Blockly.Msg["EMAKEFUN_ANGLE"] = "角度";
 
