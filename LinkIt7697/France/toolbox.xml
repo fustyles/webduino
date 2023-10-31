@@ -308,7 +308,7 @@
 		</value>
 		<value name="PASSWORD">
 		  <block type="text">
-			<field name="TEXT">87654321</field>
+			<field name="TEXT">12345678</field>
 		  </block>
 		</value> 		
 	  </block>
@@ -320,7 +320,7 @@
 		</value>
 		<value name="PASSWORD">
 		  <block type="text">
-			<field name="TEXT">87654321</field>
+			<field name="TEXT">12345678</field>
 		  </block>
 		</value> 		
 	  </block>	  
@@ -1274,7 +1274,7 @@
 			</value>
 			<value name="password">
 			  <block type="text" id="^!iZs**M0qz0JX2CUG,g">
-				<field name="TEXT">87654321</field>
+				<field name="TEXT">12345678</field>
 			  </block>
 			</value>
 			<value name="token">
@@ -1376,7 +1376,7 @@
 			</value>
 			<value name="password">
 			  <block type="text" id="Ke~{(@F3N`2SP]4{_-hX">
-				<field name="TEXT">87654321</field>
+				<field name="TEXT">12345678</field>
 			  </block>
 			</value>
 			<value name="token">
@@ -1601,7 +1601,32 @@
 		<category id="france21" name="serveresp32cam">
 			  <block type="esp32_cam_initial">
 				<field name="framesize">QVGA</field>
-			  </block>			
+			  </block>
+			  <block type="esp32_cam_stream_only_myfirmata">
+				<field name="baudrate">115200</field>
+				<field name="framesize">QVGA</field>
+				<field name="flash">Y</field>
+				<value name="ssid">
+				  <block type="text" id="Cq8{^V,7${B,/!X@]b$[">
+					<field name="TEXT">teacher</field>
+				  </block>
+				</value>
+				<value name="password">
+				  <block type="text" id="G:jR7Hldfh0wV|69Z7`U">
+					<field name="TEXT">12345678</field>
+				  </block>
+				</value>
+				<value name="ssid_ap">
+				  <block type="text" id="{5XW%Rz}95[_Z38tmx61">
+					<field name="TEXT">esp32-cam</field>
+				  </block>
+				</value>
+				<value name="password_ap">
+				  <block type="text" id="%Tnxo@m^CfX(wa8[HTwJ">
+					<field name="TEXT">12345678</field>
+				  </block>
+				</value>
+			  </block>			  
 			  <block type="esp32_cam_myfirmata">
 				<field name="baudrate">115200</field>
 				<field name="framesize">QVGA</field>
@@ -1613,7 +1638,7 @@
 				</value>
 				<value name="password">
 				  <block type="text" id="G:jR7Hldfh0wV|69Z7`U">
-					<field name="TEXT">87654321</field>
+					<field name="TEXT">12345678</field>
 				  </block>
 				</value>
 				<value name="ssid_ap">
@@ -1729,7 +1754,7 @@
 				</value>
 				<value name="password">
 				  <block type="text" id="101">
-					<field name="TEXT">87654321</field>
+					<field name="TEXT">12345678</field>
 				  </block>
 				</value>
 				<value name="ssid_ap">
@@ -2279,7 +2304,7 @@
 				</value>
 				<value name="password">
 				  <block type="text">
-					<field name="TEXT">87654321</field>
+					<field name="TEXT">12345678</field>
 				  </block>
 				</value>
 				<value name="width">
