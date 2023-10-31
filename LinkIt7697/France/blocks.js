@@ -22824,7 +22824,8 @@ Blockly.Blocks['servermodule_parameter_set_address3_0'] = {
 		[Blockly.Msg["PARAMETER_IP"],"ip"],
 		[Blockly.Msg["PARAMETER_MAC"],"mac"],
 		[Blockly.Msg["PARAMETER_RESTART"],"restart"],	
-		[Blockly.Msg["PARAMETER_GETSTILL"],"getstill"]	
+		[Blockly.Msg["PARAMETER_GETSTILL"],"getstill"],	
+		[Blockly.Msg["PARAMETER_GETSTREAM"],"getstream"]		
 		]), "cmd");	
 	this.setInputsInline(true);
     this.setOutput(true, null);  

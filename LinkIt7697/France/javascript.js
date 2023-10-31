@@ -15922,6 +15922,8 @@ Blockly.Arduino['servermodule_parameter_set_address3_0'] = function (block) {
   var cmd = this.getFieldValue("cmd");
   if (cmd=="getstill")
 	var code = '"?"+"'+cmd+'"+"="+(new Date().getTime())';
+  else if (cmd=="getstream")
+	var code = '"http://"+window.location.hostname+":81/stream"';
   else
 	 var code = '"?"+"'+cmd+'"';
   return [code, Blockly.Arduino.ORDER_NONE];
