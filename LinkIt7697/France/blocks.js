@@ -439,6 +439,36 @@ Blockly.Blocks['emakefun_servo_set_angle'] = {
   }
 };
 
+Blockly.Blocks['emakefun_servo_set_angle_360'] = {
+  init: function() {
+	this.appendDummyInput()
+		  .appendField(Blockly.Msg["EMAKEFUN_SERVO"]);
+    this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT)
+          .appendField(new Blockly.FieldDropdown([
+			["S1","1"],		
+			["S2","2"],
+			["S3","3"],		
+			["S4","4"],
+			["S5","5"],		
+			["S6","6"],
+			["S7","7"],		
+			["S8","8"]			
+		  ]), "servo");	
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["FU_SERVO_TYPE"]+"360°");			  
+    this.appendValueInput("angle")
+		.setAlign(Blockly.ALIGN_RIGHT)
+        .setCheck("Number")
+        .appendField(Blockly.Msg["EMAKEFUN_PWM"]+"[0-180]");	
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(170);
+  }
+};
+
 Blockly.Blocks['emakefun_io'] = {
   init: function() {
 	this.appendDummyInput()
@@ -882,10 +912,10 @@ Blockly.Blocks['ps2_button_event'] = {
 	    .appendField(new Blockly.FieldDropdown(ps2_button), "button");
 	this.appendDummyInput()
 	    .appendField(new Blockly.FieldDropdown([
-	      [Blockly.Msg["PS2_BUTTON_PRESS_JUST"],"press_just"],		
-	      [Blockly.Msg["PS2_BUTTON_PRESS_NEW"],"press_new"],
-	      [Blockly.Msg["PS2_BUTTON_PRESS"],"press"],
-	      [Blockly.Msg["PS2_BUTTON_RELEASE_JUST"],"release_just"]
+	      [Blockly.Msg["PS2_BUTTON_PRESS_JUST"],"press_just"],
+	      [Blockly.Msg["PS2_BUTTON_RELEASE_JUST"],"release_just"],
+	      [Blockly.Msg["PS2_BUTTON_PRESS"],"press"],		  
+	      [Blockly.Msg["PS2_BUTTON_PRESS_NEW"],"press_new"]		  
 	      ]), "event");	  
 	this.setInputsInline(true);
 	this.setOutput(true, null); 

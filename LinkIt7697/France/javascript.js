@@ -539,7 +539,6 @@ Blockly.Arduino.emakefun_io=function(block){
 };
 
 Blockly.Arduino.emakefun_servo_set_angle=function(block){
-
   var angle = Blockly.Arduino.valueToCode(block, 'angle', Blockly.Arduino.ORDER_ATOMIC)||90;
   var angle1 = Number(Blockly.Arduino.valueToCode(block, 'angle1', Blockly.Arduino.ORDER_ATOMIC)||90);
   var rotate = Number(block.getFieldValue('rotate'));
@@ -547,6 +546,19 @@ Blockly.Arduino.emakefun_servo_set_angle=function(block){
   if (type==360)
 	  angle = 90+rotate*angle1;																
   
+  var servo = this.getFieldValue("servo");
+  
+  Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\n';
+  Blockly.Arduino.definitions_['emakefun_motordriver_mMotorDriver'] = 'Emakefun_MotorDriver mMotorDriver = Emakefun_MotorDriver(0x60);\n';
+  Blockly.Arduino.definitions_['emakefun_motordriver_servo_'+servo] =  'Emakefun_Servo *mServo'+servo+' = mMotorDriver.getServo('+servo+');';  
+  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'mMotorDriver.begin(50);\n'; 
+	
+  var code = 'mServo'+servo+'->writeServo('+angle+');\n';
+  return code;
+};
+
+Blockly.Arduino.emakefun_servo_set_angle_360=function(block){
+  var angle = Blockly.Arduino.valueToCode(block, 'angle', Blockly.Arduino.ORDER_ATOMIC)||90;
   var servo = this.getFieldValue("servo");
   
   Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\n';

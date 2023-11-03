@@ -10835,6 +10835,13 @@
 				<field name="NUM">90</field>
 			  </block>
 			</value>			
+		</block>	
+		<block type="emakefun_servo_set_angle_360">
+			<value name="angle">
+			  <block type="math_number">
+				<field name="NUM">90</field>
+			  </block>
+			</value>			
 		</block>		
 		<block type="ps2_initial">
 			<value name="CLK">
