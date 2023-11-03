@@ -543,7 +543,7 @@ Blockly.Blocks.emakefun_motordriver_set_speed={
 		  ]), "motor");				  
 	  this.appendValueInput("pwm")
 		  .setCheck("Number")
-		  .appendField(Blockly.Msg["EMAKEFUN_PWM"]+"[0-255]");			  
+		  .appendField(Blockly.Msg["EMAKEFUN_PWM_VARIABLE"]+"[0-255]");			  
 	  this.setInputsInline(true);
 	  this.setPreviousStatement(!0,null);
 	  this.setNextStatement(!0,null);
