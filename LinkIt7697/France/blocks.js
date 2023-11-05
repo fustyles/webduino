@@ -594,7 +594,7 @@ Blockly.Blocks.emakefun_motordriver_get_speed={
 			["M4","4"]			
 		  ]), "motor");
 	  this.appendDummyInput()
-		  .appendField(Blockly.Msg["EMAKEFUN_PWM"]);			  
+		  .appendField(Blockly.Msg["EMAKEFUN_PWM_VARIABLE"]);			  
 	  this.setInputsInline(true);
 	  this.setOutput(true, null); 
 	  this.setColour(20);  
