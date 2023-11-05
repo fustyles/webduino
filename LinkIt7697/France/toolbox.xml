@@ -10815,14 +10815,14 @@
 			  </block>
 			</value>	
 		</block>
+		<block type="emakefun_motordriver_get_speed">
+		</block>		
 		<block type="emakefun_motordriver_set_speed">
 			<value name="pwm">
 			  <block type="math_number">
 				<field name="NUM">200</field>
 			  </block>
 			</value>
-		</block>
-		<block type="emakefun_motordriver_get_speed">
 		</block>		
 		<block type="emakefun_motordriver_set_direction">
 		</block>		
