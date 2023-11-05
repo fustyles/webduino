@@ -599,6 +599,18 @@ Blockly.Arduino.emakefun_motordriver_set_speed=function(block){
   return code;
 };
 
+Blockly.Arduino.emakefun_motordriver_get_speed=function(block){
+  var motor = this.getFieldValue("motor"); 
+  
+  Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\n';
+  Blockly.Arduino.definitions_['emakefun_motordriver_mMotorDriver'] = 'Emakefun_MotorDriver mMotorDriver = Emakefun_MotorDriver(0x60);\n';
+  Blockly.Arduino.definitions_['emakefun_motordriver_motor_'+motor] ='Emakefun_DCMotor *DCMotor_'+motor+' = mMotorDriver.getMotor(M'+motor+');';															
+  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'mMotorDriver.begin(50);\n';  
+
+  var code = 'DCMotor_'+motor+'->getSpeed()';
+  return code;
+};
+
 Blockly.Arduino.emakefun_motordriver_set_direction=function(block){
   var motor = this.getFieldValue("motor");
   var direction = this.getFieldValue("direction");

@@ -581,6 +581,26 @@ Blockly.Blocks.emakefun_motordriver_set_speed={
 	}
 };
 
+Blockly.Blocks.emakefun_motordriver_get_speed={
+	init:function(){	
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["EMAKEFUN_DCMOTOR"]);
+      this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT) 
+          .appendField(new Blockly.FieldDropdown([
+			["M1","1"],		
+			["M2","2"],
+			["M3","3"],		
+			["M4","4"]			
+		  ]), "motor");
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["EMAKEFUN_PWM"]);			  
+	  this.setInputsInline(true);
+	  this.setOutput(true, null); 
+	  this.setColour(90);  
+	}
+};
+
 Blockly.Blocks.emakefun_motordriver_set_direction={
 	init:function(){	
 	  this.appendDummyInput()

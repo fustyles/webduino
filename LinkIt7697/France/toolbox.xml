@@ -10822,6 +10822,8 @@
 			  </block>
 			</value>
 		</block>
+		<block type="emakefun_motordriver_get_speed">
+		</block>		
 		<block type="emakefun_motordriver_set_direction">
 		</block>		
 		<block type="emakefun_servo_set_angle">
