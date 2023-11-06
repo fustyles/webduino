@@ -537,8 +537,8 @@ Blockly.Blocks.emakefun_dcmotor={
           .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["EMAKEFUN_CLOCKWISE"],"FORWARD"],		
 			[Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"],"BACKWARD"],
-			[Blockly.Msg["EMAKEFUN_RELEASE"],"RELEASE"],			
-			[Blockly.Msg["EMAKEFUN_BRAKE"],"BRAKE"]		
+			[Blockly.Msg["EMAKEFUN_BRAKE"],"BRAKE"],			
+			[Blockly.Msg["EMAKEFUN_RELEASE"],"RELEASE"]
 		  ], this.validate), "direction");
 	  this.appendValueInput("pwm")
 		  .setCheck("Number")
@@ -618,8 +618,8 @@ Blockly.Blocks.emakefun_motordriver_set_direction={
           .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["EMAKEFUN_CLOCKWISE"],"FORWARD"],		
 			[Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"],"BACKWARD"],
-			[Blockly.Msg["EMAKEFUN_RELEASE"],"RELEASE"],			
-			[Blockly.Msg["EMAKEFUN_BRAKE"],"BRAKE"]		
+			[Blockly.Msg["EMAKEFUN_BRAKE"],"BRAKE"],
+			[Blockly.Msg["EMAKEFUN_RELEASE"],"RELEASE"]			
 		  ]), "direction");			  
 	  this.setInputsInline(true);
 	  this.setPreviousStatement(!0,null);
