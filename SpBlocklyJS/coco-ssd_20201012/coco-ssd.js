@@ -118,7 +118,15 @@
 			var i=-1;
 			var userMedia = "";
 			devices.forEach(function(device) {
-				if (device.kind=="videoinput"&&device.label.includes("facing back")&&input_facing=="back") {
+				 if (device.kind=="videoinput"&&input_facing=="") {
+					i++;
+					if (i==input_videoInputIndex) {
+						if (device.deviceId=='')
+							userMedia = {audio: false,video: {facingMode: 'user', width: video.width, height: video.height} };
+						else
+							userMedia = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'user', width: video.width, height: video.height} };
+					}
+				} else if (device.kind=="videoinput"&&device.label.includes("facing back")&&input_facing=="back") {
 					i++;
 					if (i==input_videoInputIndex) {
 						if (device.deviceId=='')
@@ -126,8 +134,7 @@
 						else
 							userMedia = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment', width: video.width, height: video.height} };
 					}
-				}				
-				else if (device.kind=="videoinput"&&input_facing=="front") {
+				} else if (device.kind=="videoinput"&&input_facing=="front") {
 					i++;
 					if (i==input_videoInputIndex) {
 						if (device.deviceId=='')
