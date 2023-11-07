@@ -497,6 +497,7 @@ Blockly.Msg.VIDEO_BASE64 = "截图转换Base64字串";
 Blockly.Msg.VIDEO_FACING = "镜头";
 Blockly.Msg.VIDEO_FACING_FRONT = "前置";
 Blockly.Msg.VIDEO_FACING_BACK = "后置";
+Blockly.Msg.VIDEO_FACING_ALL = "不区分";
 Blockly.Msg.VIDEO_INDEX = "索引";
 Blockly.Msg.VEDIO_OUTPUT_JPG = "视讯媒体画面截图另存jpg档";
 Blockly.Msg.CANVAS_CAPTUREVIDEO = "画布 捕捉视讯画面";

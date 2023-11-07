@@ -5955,7 +5955,8 @@ Blockly.Blocks['video_create1'] = {
       .appendField(Blockly.Msg.VIDEO_FACING)
       .appendField(new Blockly.FieldDropdown([
         [Blockly.Msg.VIDEO_FACING_FRONT,"front"],
-        [Blockly.Msg.VIDEO_FACING_BACK,"back"]
+        [Blockly.Msg.VIDEO_FACING_BACK,"back"],
+        [Blockly.Msg.VIDEO_FACING_ALL,""]
 		]), "facing_");  
   this.appendValueInput("index_")
       .setAlign(Blockly.ALIGN_RIGHT)

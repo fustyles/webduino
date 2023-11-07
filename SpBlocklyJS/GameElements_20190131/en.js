@@ -499,6 +499,7 @@ Blockly.Msg.VIDEO_BASE64 = "transfer into Base64 string";
 Blockly.Msg.VIDEO_FACING = "Webcam";
 Blockly.Msg.VIDEO_FACING_FRONT = "Front";
 Blockly.Msg.VIDEO_FACING_BACK = "Back";
+Blockly.Msg.VIDEO_FACING_ALL = "All";
 Blockly.Msg.VIDEO_INDEX = "Index";
 Blockly.Msg.VEDIO_OUTPUT_JPG = "save still to jpg file";
 Blockly.Msg.CANVAS_CAPTUREVIDEO = "Canvas capture video screen";
