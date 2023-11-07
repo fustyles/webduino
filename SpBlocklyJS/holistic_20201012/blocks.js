@@ -496,7 +496,8 @@ Blockly.Blocks['holistic_startvideo_media'] = {
       .appendField(Blockly.Msg.HOLISTIC_FACING_SHOW)
       .appendField(new Blockly.FieldDropdown([
         [Blockly.Msg.HOLISTIC_FACING_FRONT_SHOW,"front"],
-        [Blockly.Msg.HOLISTIC_FACING_BACK_SHOW,"back"]
+        [Blockly.Msg.HOLISTIC_FACING_BACK_SHOW,"back"],
+        [Blockly.Msg.HOLISTIC_FACING_ALL_SHOW,""]
   ]), "facing_");  
   this.appendValueInput("index_")
       .setCheck("Number");  

@@ -19,6 +19,7 @@ Blockly.Msg.HOLISTIC_VIDEO_TOP_SHOW = "TOP";
 Blockly.Msg.HOLISTIC_FACING_SHOW = "Camera Facing";
 Blockly.Msg.HOLISTIC_FACING_FRONT_SHOW = "Front";
 Blockly.Msg.HOLISTIC_FACING_BACK_SHOW = "Back";
+Blockly.Msg.HOLISTIC_FACING_ALL_SHOW = "All";
 Blockly.Msg.HOLISTIC_SRC_SHOW = "Stream URL";
 Blockly.Msg.HOLISTIC_MODELNAME_SHOW = "Model";
 Blockly.Msg.HOLISTIC_NOSE_SHOW = "nose";
