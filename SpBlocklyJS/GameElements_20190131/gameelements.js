@@ -4139,7 +4139,6 @@ function HextoRgb(color) {
 			var i=-1;
 			var userMedia = "";
 			devices.forEach(function(device) {
-				console.log(device);
 				 if (device.kind=="videoinput"&&input_facing=="") {
 					i++;
 					if (i==input_videoInputIndex) {
@@ -4166,7 +4165,7 @@ function HextoRgb(color) {
 					}
 				}
 			});
-console.log(userMedia);
+
 			if (userMedia!="") {
 				navigator.mediaDevices
 				.getUserMedia(userMedia)
