@@ -4144,25 +4144,25 @@ function HextoRgb(color) {
 					i++;
 					if (i==input_videoInputIndex) {
 						if (device.deviceId=='')
-							userMedia = {audio: true,video: {facingMode: 'user', width: obj.width, height: obj.height} };
+							userMedia = {audio: false,video: {facingMode: 'user', width: obj.width, height: obj.height} };
 						else
-							userMedia = {audio: true,video: {deviceId: {'exact':device.deviceId}, facingMode: 'user', width: obj.width, height: obj.height} };
+							userMedia = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'user', width: obj.width, height: obj.height} };
 					}
 				} else if (device.kind=="videoinput"&&device.label.includes("facing back")&&input_facing=="back") {
 					i++;
 					if (i==input_videoInputIndex) {
 						if (device.deviceId=='')
-							userMedia = {audio: true,video: {facingMode: 'environment', width: obj.width, height: obj.height} };
+							userMedia = {audio: false,video: {facingMode: 'environment', width: obj.width, height: obj.height} };
 						else
-							userMedia = {audio: true,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment', width: obj.width, height: obj.height} };
+							userMedia = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment', width: obj.width, height: obj.height} };
 					}
 				} else if (device.kind=="videoinput"&&input_facing=="front") {
 					i++;
 					if (i==input_videoInputIndex) {
 						if (device.deviceId=='')
-							userMedia = {audio: true,video: {facingMode: 'user', width: obj.width, height: obj.height} };
+							userMedia = {audio: false,video: {facingMode: 'user', width: obj.width, height: obj.height} };
 						else
-							userMedia = {audio: true,video: {deviceId: {'exact':device.deviceId}, facingMode: 'user', width: obj.width, height: obj.height} };
+							userMedia = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'user', width: obj.width, height: obj.height} };
 					}
 				}
 			});
