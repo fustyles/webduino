@@ -96,5 +96,7 @@ var catPosenet = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
+'  <block type="posenet_canvas_get">'+
+'  </block>'+
 '</category>'+
 '</xml>';

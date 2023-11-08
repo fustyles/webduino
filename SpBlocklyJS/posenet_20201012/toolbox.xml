@@ -95,5 +95,7 @@
   <block type="posenet_state">
   </block>
   <block type="posenet_recognitied">
-  </block>    
+  </block>
+  <block type="posenet_canvas_get">
+  </block>
 </category>
