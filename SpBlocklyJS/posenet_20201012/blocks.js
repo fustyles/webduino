@@ -300,6 +300,6 @@ Blockly.Blocks['posenet_canvas_get'] = {
       .appendField(Blockly.Msg.POSENET_CANVAS_GET_SHOW); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(60);
+  this.setColour(200);
   }
 };
