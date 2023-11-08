@@ -113,3 +113,4 @@ Blockly.Msg.HOLISTIC_UMOUTH_SHOW = "上嘴唇";
 Blockly.Msg.HOLISTIC_DMOUTH_SHOW = "下嘴唇";
 Blockly.Msg.HOLISTIC_FACE_SHOW = "臉";
 Blockly.Msg.HOLISTIC_FACE_3_SHOW = "臉(內3)";
+Blockly.Msg.HOLISTIC_CANVAS_GET_SHOW = "取得畫面代碼";

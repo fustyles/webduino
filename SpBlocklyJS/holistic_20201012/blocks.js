@@ -967,3 +967,15 @@ Blockly.Blocks['holistic_points'] = {
   this.setColour(200);
   }
 };
+
+Blockly.Blocks['holistic_canvas_get'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_CANVAS_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};

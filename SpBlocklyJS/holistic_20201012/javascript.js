@@ -218,3 +218,8 @@ Blockly.JavaScript['holistic_points'] = function (block) {
   var code = '"'+points+'"';
   return [code, Blockly.JavaScript.ORDER_NONE];  
 };
+
+Blockly.JavaScript['holistic_canvas_get'] = function(block) { 
+  var code = '"canvasElement"';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};

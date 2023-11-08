@@ -294,6 +294,8 @@ var catHolistic = '<xml>'+
     '</value>'+    
   '</block>'+    
   '<block type="holistic_points">'+   
-  '</block>'+    
+  '</block>'+  
+'  <block type="holistic_canvas_get">'+
+'  </block>'+  
 '</category>'+
 '</xml>';

@@ -113,3 +113,4 @@ Blockly.Msg.HOLISTIC_UMOUTH_SHOW = "Up mouth";
 Blockly.Msg.HOLISTIC_DMOUTH_SHOW = "Down mouth";
 Blockly.Msg.HOLISTIC_FACE_SHOW = "Face";
 Blockly.Msg.HOLISTIC_FACE_3_SHOW = "Face(inner 3)";
+Blockly.Msg.HOLISTIC_CANVAS_GET_SHOW = "Get Canvas ID";
