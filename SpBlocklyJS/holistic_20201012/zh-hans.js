@@ -19,7 +19,6 @@ Blockly.Msg.HOLISTIC_VIDEO_TOP_SHOW = "靠上距离";
 Blockly.Msg.HOLISTIC_FACING_SHOW = "镜头";
 Blockly.Msg.HOLISTIC_FACING_FRONT_SHOW = "前置";
 Blockly.Msg.HOLISTIC_FACING_BACK_SHOW = "后置";
-Blockly.Msg.HOLISTIC_FACING_ALL_SHOW = "不区分";
 Blockly.Msg.HOLISTIC_SRC_SHOW = "串流网址";
 Blockly.Msg.HOLISTIC_MODELNAME_SHOW = "模型";
 Blockly.Msg.HOLISTIC_NOSE_SHOW = "鼻子";

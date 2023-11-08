@@ -19,7 +19,6 @@ Blockly.Msg.COCOSSD_FRAME_SHOW = "框架";
 Blockly.Msg.COCOSSD_FACING_SHOW = "鏡頭";
 Blockly.Msg.COCOSSD_FACING_FRONT_SHOW = "前置";
 Blockly.Msg.COCOSSD_FACING_BACK_SHOW = "後置";
-Blockly.Msg.COCOSSD_FACING_ALL_SHOW = "不區分";
 Blockly.Msg.COCOSSD_SRC_SHOW = "串流網址";
 Blockly.Msg.COCOSSD_CANVAS_GET_SHOW = "取得畫面代碼";
 Blockly.Msg.COCOSSD_DATA_CLASS_SHOW = "分類名稱";

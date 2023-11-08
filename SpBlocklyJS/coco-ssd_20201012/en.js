@@ -19,7 +19,6 @@ Blockly.Msg.COCOSSD_FRAME_SHOW = "Frame";
 Blockly.Msg.COCOSSD_FACING_SHOW = "Camera Facing";
 Blockly.Msg.COCOSSD_FACING_FRONT_SHOW = "Front";
 Blockly.Msg.COCOSSD_FACING_BACK_SHOW = "Back";
-Blockly.Msg.COCOSSD_FACING_ALL_SHOW = "All";
 Blockly.Msg.COCOSSD_SRC_SHOW = "Stream URL";
 Blockly.Msg.COCOSSD_CANVAS_GET_SHOW = "Get Canvas ID";
 Blockly.Msg.COCOSSD_DATA_CLASS_SHOW = "Class";
