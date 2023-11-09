@@ -287,3 +287,15 @@ Blockly.Blocks['posenet_recognitied'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['posenet_canvas_get'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.POSENET_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.POSENET_CANVAS_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
