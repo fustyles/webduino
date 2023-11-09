@@ -1974,8 +1974,6 @@ Blockly.JavaScript['video_delete'] = function (block) {
 Blockly.JavaScript['video_base64'] = function (block) {
   var value_source_ = block.getFieldValue('source_');
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
-  if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
-    value_id_ = value_id_.substring(1,value_id_.length-1);
   var source_id;
   if (value_source_=="video")
 	source_id = '"gamevideo_"+'+value_id_;
