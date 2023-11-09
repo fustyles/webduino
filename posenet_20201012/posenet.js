@@ -71,7 +71,9 @@
 
   function posenet_persons(){
     var result = document.getElementById("gamediv_posenet").innerHTML.split("<br>");
-	var result_arr = [];
+    if (result[0]=="")
+	return 0;		  
+    var result_arr = [];
     if (result.length>0) {
       var result_detail = result[result.length-1].split(",");
 	  return Number(result_detail[0])+1;
