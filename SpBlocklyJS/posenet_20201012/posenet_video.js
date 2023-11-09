@@ -59,6 +59,12 @@ window.onload = function () {
 	}
 
 	async function DetectVideo(obj) {
+		if (document.getElementById('posenetState').innerHTML=="0") {
+			result.innerHTML = "";
+			setTimeout(function(){DetectVideo(obj);}, 100);
+			return;
+		}
+		
 		obj.style.width = obj.width + 'px';
 		obj.style.height = obj.height + 'px';		
 		canvas.setAttribute("width", obj.width);
@@ -90,12 +96,6 @@ window.onload = function () {
 		}
 		else
 			context.drawImage(obj, 0, 0, obj.width, obj.height);
-
-		if (document.getElementById('posenetState').innerHTML=="0") {
-			result.innerHTML = "";
-			setTimeout(function(){DetectVideo(obj);}, 100);
-			return;
-		}
 
 		context_skeleton.clearRect(0, 0, canvas.width, canvas.height);
 
