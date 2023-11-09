@@ -45,3 +45,4 @@ Blockly.Msg.POSENET_RECOGNITIED_SHOW = "侦测完成后";
 Blockly.Msg.POSENET_LIMIT_SHOW = "无限制";
 Blockly.Msg.POSENET_RECOGNITIED_PERSONS_SHOW = "有人";
 Blockly.Msg.POSENET_RECOGNITIED_NOBODY_SHOW = "无人";
+Blockly.Msg.POSENET_CANVAS_GET_SHOW = "取得画面代码";
