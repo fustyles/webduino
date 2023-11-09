@@ -1976,16 +1976,14 @@ Blockly.JavaScript['video_base64'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
   if ((value_id_.indexOf("'")==0)&&(value_id_.lastIndexOf("'")==value_id_.length-1))
     value_id_ = value_id_.substring(1,value_id_.length-1);
-  if ((value_id_.indexOf('"')==0)&&(value_id_.lastIndexOf('"')==value_id_.length-1))
-    value_id_ = value_id_.substring(1,value_id_.length-1);
   var source_id;
   if (value_source_=="video")
-	source_id = 'gamevideo_'+value_id_;
+	source_id = '"gamevideo_"+'+value_id_;
   else if (value_source_=="canvas")
-	source_id = 'gamecanvas_'+value_id_;
+	source_id = '"gamecanvas_"+'+value_id_;
   else if (value_source_=="image")
-	source_id = 'gameimage_'+value_id_;
-  var code = 'video_base64("' + source_id + '")';
+	source_id = '"gameimage_"+'+value_id_;
+  var code = 'video_base64(' + source_id + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
