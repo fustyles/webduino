@@ -45,3 +45,4 @@ Blockly.Msg.POSENET_RECOGNITIED_SHOW = "偵測完成後";
 Blockly.Msg.POSENET_LIMIT_SHOW = "無限制";
 Blockly.Msg.POSENET_RECOGNITIED_PERSONS_SHOW = "有人";
 Blockly.Msg.POSENET_RECOGNITIED_NOBODY_SHOW = "無人";
+Blockly.Msg.POSENET_CANVAS_GET_SHOW = "取得畫面代碼";
