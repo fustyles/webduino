@@ -20,7 +20,7 @@ var catPosenet = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'    <block type="posenet_startvideo_stream">'+
+'  <block type="posenet_startvideo_stream">'+
 '    <value name="src_">'+
 '      <block type="text">'+
 '        <field name="TEXT">http://192.168.1.199:81/stream</field>'+

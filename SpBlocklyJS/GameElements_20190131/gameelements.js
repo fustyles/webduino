@@ -1296,6 +1296,8 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
     obj.style.position = "absolute";
     obj.id = "gameimage_"+input_id;
     obj.src = input_url;
+	if (input_url=="")
+		obj.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
     obj.style.width = input_width + 'px';
     obj.style.height = input_height + 'px';
     obj.style.left = input_left + 'px';
@@ -1318,6 +1320,8 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
     obj.style.position = "absolute";
     obj.id = "gameimage_"+input_id;
     obj.src = input_url;
+	if (input_url=="")
+		obj.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";	
     obj.style.left = input_left + 'px';
     obj.style.top = input_top + 'px';
     obj.style.zIndex = input_zindex;
@@ -1337,8 +1341,11 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
     {
 	  var obj = document.getElementById("gameimage_"+input_id);
 	  
-      if (input_property=='url')
+      if (input_property=='url') {
         obj.src = input_value;
+		if (input_value=="")
+			obj.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+	  }
       else if (input_property=='width')
         obj.style.width = input_value + 'px';
       else if (input_property=='height')
