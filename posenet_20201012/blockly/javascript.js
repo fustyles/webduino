@@ -87,3 +87,8 @@ Blockly.JavaScript['posenet_recognitied'] = function(block) {
 	  var code = 'posenet_unrecognitionFinish = async function() {\n  posenet_state(0);\n' + statements_do + '\n  posenet_state(1);\n};\n';
   return code;  
 };
+
+Blockly.JavaScript['posenet_canvas_get'] = function(block) { 
+  var code = '"posenet"';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
