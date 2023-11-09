@@ -45,3 +45,4 @@ Blockly.Msg.POSENET_RECOGNITIED_SHOW = "recognitied";
 Blockly.Msg.POSENET_LIMIT_SHOW = "No limit";
 Blockly.Msg.POSENET_RECOGNITIED_PERSONS_SHOW = "someone was detected";
 Blockly.Msg.POSENET_RECOGNITIED_NOBODY_SHOW = "There is nobody";
+Blockly.Msg.POSENET_CANVAS_GET_SHOW = "Get Canvas ID";
