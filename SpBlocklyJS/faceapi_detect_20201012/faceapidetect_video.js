@@ -46,6 +46,19 @@ window.onload = function () {
 	})
 
 	async function DetectVideo(obj) {
+		if (obj.tagName=="IMG") {
+			if (obj.src=="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7") {
+				try { 
+					document.createEvent("TouchEvent");
+					setTimeout(function(){DetectVideo(obj);},200);
+				}
+				catch(e) { 
+					setTimeout(function(){DetectVideo(obj);},150);
+				} 
+				return;
+			}
+		}
+		
 		canvas.setAttribute("width", obj.width);
 		canvas.setAttribute("height", obj.height);
 		canvas.style.width = obj.width+"px";
