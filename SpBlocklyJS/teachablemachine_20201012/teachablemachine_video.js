@@ -49,6 +49,12 @@ window.onload = function () {
 	}
 
 	async function DetectVideo(obj) {
+		if (obj.tagName=="IMG") {
+			if (obj.src=="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7") {
+				setTimeout(function(){DetectVideo(obj);}, 200);
+				return;
+			}
+		}		
 		obj.style.width = obj.width + 'px';
 		obj.style.height = obj.height + 'px';		
 		canvas.setAttribute("width", obj.width);
