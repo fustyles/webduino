@@ -1336,8 +1336,6 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
     if (document.getElementById("gameimage_"+input_id))
     {
 	  var obj = document.getElementById("gameimage_"+input_id);
-	  console.log(obj);
-	  console.log(input_value);
 	  
       if (input_property=='url')
         obj.src = input_value;
