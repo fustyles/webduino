@@ -975,8 +975,8 @@ Blockly.Blocks['holistic_canvas_get'] = {
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
 		[Blockly.Msg.HOLISTIC_VIDEO_SHOW,"holistic"],
-		[Blockly.Msg.HOLISTIC_CANVAS_SHOW,"canvasElement"],
-		[Blockly.Msg.HOLISTIC_IMAGE_SHOW,"holistic"]	
+		[Blockly.Msg.HOLISTIC_IMAGE_SHOW,"holistic"],
+		[Blockly.Msg.HOLISTIC_CANVAS_SHOW,"canvasElement"]	
   ]), "element_");	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_CANVAS_GET_SHOW); 
