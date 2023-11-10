@@ -20,3 +20,4 @@ Blockly.Msg.TEACHABLEMACHINE_PAUSE_SHOW = "Pause";
 Blockly.Msg.TEACHABLEMACHINE_CLEAR_SHOW = "clear result";
 Blockly.Msg.TEACHABLEMACHINE_RECOGNITIED_SHOW = "recognitied";
 Blockly.Msg.TEACHABLEMACHINE_DATA_ARRAY_SHOW = "Result array";
+Blockly.Msg.TEACHABLEMACHINE_CANVAS_GET_SHOW = "Get canvas ID";
