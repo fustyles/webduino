@@ -29,6 +29,12 @@ window.onload = function () {
 	function start(){
 		if (source.innerHTML!="") {
 			obj = document.getElementById(source.innerHTML);
+			if (obj.tagName=="IMG") {
+				if (obj.src=="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7") {
+					setTimeout(function() {start();}, 100);	
+					return;
+				}
+			}			
 			console.log(obj);
 			obj.style.width = obj.width + 'px';
 			obj.style.height = obj.height + 'px';
