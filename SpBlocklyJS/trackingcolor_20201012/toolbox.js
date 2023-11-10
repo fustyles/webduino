@@ -106,5 +106,7 @@ var catTrackingColor = '<xml>'+
 '          </block>'+
 '        </value>'+
 '      </block>'+
+'      <block type="trackingcolor_canvas_get">'+
+'      </block>'+  
 '    </category>'+
 '</xml>';
