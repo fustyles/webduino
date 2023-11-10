@@ -101,7 +101,7 @@ Blockly.JavaScript['hands_recognitied'] = function(block) {
 Blockly.JavaScript['hands_canvas_get'] = function(block) { 
   var element_ = block.getFieldValue('element_');
   if (element_=="VIDEO"||element_=="IMAGE")
-  	var code = '"holistic"';
+  	var code = '"hands"';
   else
   	var code = '"canvasElement"';
   return [code, Blockly.JavaScript.ORDER_NONE];
