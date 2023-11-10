@@ -232,6 +232,9 @@ Blockly.JavaScript['holistic_points'] = function (block) {
 
 Blockly.JavaScript['holistic_canvas_get'] = function(block) {
   var element_ = block.getFieldValue('element_');
-  var code = '"'+element_+'"';
+  if (element_=="VIDEO"||element_=="IMAGE")
+  	var code = '"holistic"';
+  else
+  	var code = '"canvasElement"';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
