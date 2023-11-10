@@ -59,12 +59,13 @@ window.onload = function () {
 	}
 
 	async function DetectVideo(obj) {
+		
 		if (obj.tagName=="IMG") {
 			if (obj.src=="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7") {
 				setTimeout(function(){DetectVideo(obj);}, 100);				
 				return;
 			}
-		}	
+		}		
 		
 		obj.style.width = obj.width + 'px';
 		obj.style.height = obj.height + 'px';		
@@ -97,12 +98,12 @@ window.onload = function () {
 		}
 		else
 			context.drawImage(obj, 0, 0, obj.width, obj.height);
-
+		
 		if (document.getElementById('posenetState').innerHTML=="0") {
 			result.innerHTML = "";
 			setTimeout(function(){DetectVideo(obj);}, 100);
 			return;
-		}
+		}		
 
 		context_skeleton.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -239,10 +240,12 @@ window.onload = function () {
 						}
 					}
 				}
+				
 				if (typeof posenet_recognitionFinish === 'function') posenet_recognitionFinish();
 			} else {
 				if (typeof posenet_unrecognitionFinish === 'function') posenet_unrecognitionFinish();
 			}
+			
 			setTimeout(function(){DetectVideo(obj);}, 100);
 		});
 	}
