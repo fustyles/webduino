@@ -57,12 +57,5 @@ var catCocossd ='<xml>'+
 '      </block>'+
 '      <block type="cocossd_canvas_get">'+
 '      </block>'+
-'      <block type="cocossd_pause">'+
-'        <value name="time_">'+
-'          <block type="math_number">'+
-'            <field name="NUM">1000</field>'+
-'          </block>'+
-'        </value>'+	  
-'      </block>'+
 '    </category>'+
 '</xml>';
