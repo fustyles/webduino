@@ -39,6 +39,22 @@ window.onload = function () {
 	, 100);
 		
 	function loadImage(obj) {
+		if (obj.tagName=="IMG") {
+			if (obj.src=="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7") {
+				setTimeout(function(){
+					canvasCtx.save();
+					canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+					canvasCtx.drawImage(canvas, 0, 0, canvasElement.width, canvasElement.height);
+					result_face.innerHTML = "";
+					result_pose.innerHTML = "";
+					result_lefthand.innerHTML = "";
+					result_righthand.innerHTML = "";				
+					var source = document.getElementById("sourceId_holistic");
+					loadImage(document.getElementById(source.innerHTML));
+				}, 100)
+				return;
+			}
+		}		
 		obj.style.width = obj.width + 'px';
 		obj.style.height = obj.height + 'px';		
 		canvas.setAttribute("width", obj.width);
@@ -70,11 +86,14 @@ window.onload = function () {
 			});
 		}
 		else {
-			//result_face.innerHTML = "";
-			//result_pose.innerHTML = "";
-			//result_lefthand.innerHTML = "";
-			//result_righthand.innerHTML = "";				
 			setTimeout(function(){
+				canvasCtx.save();
+				canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+				canvasCtx.drawImage(canvas, 0, 0, canvasElement.width, canvasElement.height);
+				result_face.innerHTML = "";
+				result_pose.innerHTML = "";
+				result_lefthand.innerHTML = "";
+				result_righthand.innerHTML = "";				
 				var source = document.getElementById("sourceId_holistic");
 				loadImage(document.getElementById(source.innerHTML));
 			}, 100)
