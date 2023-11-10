@@ -213,22 +213,14 @@ Blockly.Blocks['posenet_video_position'] = {
 Blockly.Blocks['posenet_persons'] = {
   init: function() {
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.POSENET_PERSONS_NUMBER_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["1","1"],
-		["2","2"],
-		["3","3"],
-		["4","4"],
-		["5","5"],	  
-		["No Limit","999"]	  
-  ]), "persons_");   
-  this.setInputsInline(true);	  
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(60);
+      .appendField(Blockly.Msg.POSENET_SHOW);	  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.POSENET_PERSONS_NUMBER_SHOW);  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
   }
 };
-
 
 Blockly.Blocks['posenet_startvideo_media'] = {
   init: function() { 
