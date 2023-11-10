@@ -18,14 +18,24 @@
       </block>
     </value> 
   </block> 
-    <block type="posenet_startvideo_stream">
+  <block type="posenet_startvideo_stream">
     <value name="src_">
       <block type="text">
-        <field name="TEXT">http://192.168.xxx.xxx:81/stream</field>
+        <field name="TEXT">http://192.168.1.199:81/stream</field>
       </block>
     </value> 
   </block>
-  <block type="posenet_recognitied">
+  <block type="posenet_video_position">
+    <value name="left_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value> 
+    <value name="top_">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>     
   </block>   
   <block type="posenet_list">
   </block>  
@@ -83,19 +93,9 @@
     </value>     
   </block>   
   <block type="posenet_state">
-  </block> 
-  <block type="posenet_video_position">
-    <value name="left_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value> 
-    <value name="top_">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>     
+  </block>
+  <block type="posenet_recognitied">
   </block>
   <block type="posenet_canvas_get">
-  </block>  
+  </block>
 </category>
