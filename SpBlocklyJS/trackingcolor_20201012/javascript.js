@@ -94,3 +94,8 @@ Blockly.JavaScript['trackingcolor_recognitied'] = function(block) {
   var code = 'trackingcolor_recognitionFinish = async function() {\ntrackingcolor_state(0);\n' + statements_do + '\ntrackingcolor_state(1);};\n';
   return code;
 };
+
+Blockly.JavaScript['trackingcolor_canvas_get'] = function(block) { 
+  var code = '"trackingcolor"';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
