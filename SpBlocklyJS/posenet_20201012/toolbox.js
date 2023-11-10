@@ -28,7 +28,9 @@ var catPosenet = '<xml>'+
 '    </value>'+
 '  </block>'+
 '  <block type="posenet_recognitied">'+
-'  </block>'+  
+'  </block>'+ 
+'  <block type="posenet_list">'+
+'  </block>'+
 '  <block type="posenet_person">'+
 '    <value name="person_">'+
 '      <block type="math_number">'+
