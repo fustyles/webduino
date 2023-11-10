@@ -57,8 +57,8 @@ Blockly.JavaScript['posenet_video_position'] = function(block) {
 
 Blockly.JavaScript['posenet_persons'] = function(block) { 
   var value_persons_ = block.getFieldValue('persons_');
-  var code = 'posenet_persons("' + value_persons_ + '");\n';
-  return code;
+  var code = 'posenet_persons()';
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 
