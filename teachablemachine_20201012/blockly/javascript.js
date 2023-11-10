@@ -68,3 +68,8 @@ Blockly.JavaScript['teachablemachine_recognitied'] = function(block) {
   var code = 'teachablemachine_recognitionFinish = async function() {\nteachablemachine_state(0);\n' + statements_do + '\nteachablemachine_state(1);};\n';
   return code;
 };
+
+Blockly.JavaScript['teachablemachine_canvas_get'] = function(block) {
+  var code = '"teachablemachine"';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
