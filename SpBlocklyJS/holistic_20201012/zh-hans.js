@@ -114,3 +114,6 @@ Blockly.Msg.HOLISTIC_DMOUTH_SHOW = "下嘴唇";
 Blockly.Msg.HOLISTIC_FACE_SHOW = "脸";
 Blockly.Msg.HOLISTIC_FACE_3_SHOW = "脸(内3)";
 Blockly.Msg.HOLISTIC_CANVAS_GET_SHOW = "取得画面代码";
+Blockly.Msg.HOLISTIC_VIDEO_SHOW = "视讯媒体";
+Blockly.Msg.HOLISTIC_CANVAS_SHOW = "画布";
+Blockly.Msg.HOLISTIC_IMAGE_SHOW = "图片";
