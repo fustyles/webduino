@@ -200,3 +200,15 @@ Blockly.Blocks['teachablemachine_recognitied'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['teachablemachine_canvas_get'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TEACHABLEMACHINE_SHOW);	  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TEACHABLEMACHINE_CANVAS_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
