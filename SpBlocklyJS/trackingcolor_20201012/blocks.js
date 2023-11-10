@@ -301,3 +301,15 @@ Blockly.Blocks['trackingcolor_recognitied'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['trackingcolor_canvas_get'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TRACKINGCOLOR_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TRACKINGCOLOR_CANVAS_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
