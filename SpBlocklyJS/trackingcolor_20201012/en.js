@@ -42,3 +42,4 @@ Blockly.Msg.TRACKINGCOLOR_STATE_SHOW = "TrackColor Detect State";
 Blockly.Msg.TRACKINGCOLOR_CLEAR_SHOW = "TrackColor clear result";
 Blockly.Msg.TRACKINGCOLOR_PAUSE_SHOW = "TrackColor Pause";
 Blockly.Msg.TRACKINGCOLOR_RECOGNITIED_SHOW = "TrackColor recognitied";
+Blockly.Msg.TRACKINGCOLOR_CANVAS_GET_SHOW = "Get Canvas ID";
