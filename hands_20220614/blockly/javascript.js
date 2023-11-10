@@ -61,11 +61,6 @@ Blockly.JavaScript['hands_startvideo_stream'] = function(block) {
   return code;
 };
 
-Blockly.JavaScript['hands_canvas_get'] = function(block) { 
-  var code = '"canvasElement"';
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
 Blockly.JavaScript['hands_number'] = function(block) {
   var code = 'hands_number()';
   return [code, Blockly.JavaScript.ORDER_NONE];
@@ -101,4 +96,13 @@ Blockly.JavaScript['hands_recognitied'] = function(block) {
   else
 	  var code = 'hands_unrecognitionFinish = async function() {\n  hands_state(0);\n' + statements_do + '\n  hands_state(1);\n};\n';
   return code;  
+};
+
+Blockly.JavaScript['hands_canvas_get'] = function(block) { 
+  var element_ = block.getFieldValue('element_');
+  if (element_=="VIDEO"||element_=="IMAGE")
+  	var code = '"holistic"';
+  else
+  	var code = '"canvasElement"';
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
