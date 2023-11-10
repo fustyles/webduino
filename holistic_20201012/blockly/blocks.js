@@ -998,3 +998,21 @@ Blockly.Blocks['holistic_points'] = {
   this.setColour(200);
   }
 };
+
+Blockly.Blocks['holistic_canvas_get'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.HOLISTIC_VIDEO_SHOW,"VIDEO"],
+		[Blockly.Msg.HOLISTIC_IMAGE_SHOW,"IMAGE"],
+		[Blockly.Msg.HOLISTIC_CANVAS_SHOW,"CANVAS"]	
+  ]), "element_");	  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_CANVAS_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
