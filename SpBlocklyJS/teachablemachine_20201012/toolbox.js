@@ -61,6 +61,8 @@ var catTeachablemachine ='<xml>'+
 '    				<field name="NUM">1000</field>'+
 '    			</block>'+
 '    		</value>'+
-'      </block>'+	  
+'      </block>'+
+'      <block type="teachablemachine_canvas_get">'+
+'      </block>'+  
 '    </category>'+
 '</xml>';
