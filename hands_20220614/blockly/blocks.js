@@ -218,18 +218,6 @@ Blockly.Blocks['hands_startvideo_stream'] = {
   }
 };
 
-Blockly.Blocks['hands_canvas_get'] = {
-  init: function() {
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.HANDS_SHOW);	  
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.HANDS_CANVAS_GET_SHOW); 
-  this.setInputsInline(true);
-  this.setOutput(true, null); 
-  this.setColour(65);
-  }
-};
-
 Blockly.Blocks['hands_number'] = {
   init: function() {
   this.appendDummyInput()  
@@ -365,5 +353,23 @@ Blockly.Blocks['hands_recognitied'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
+  }
+};
+
+Blockly.Blocks['hands_canvas_get'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDS_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.HANDS_VIDEO_SHOW,"VIDEO"],
+		[Blockly.Msg.HANDS_IMAGE_SHOW,"IMAGE"],
+		[Blockly.Msg.HANDS_CANVAS_SHOW,"CANVAS"]	
+  ]), "element_");	  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDS_CANVAS_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(65);
   }
 };
