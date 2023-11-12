@@ -1,5 +1,5 @@
 {
-  "types": ["tesseract_recognition", "tesseract_get", "tesseract_video", "tesseract_video_position", "tesseract_clear","tesseract_imageprocessing","tesseract_startvideo_media","tesseract_startvideo_stream"],
+  "types": ["tesseract_recognition", "tesseract_get", "tesseract_video", "tesseract_video_position", "tesseract_clear","tesseract_imageprocessing","tesseract_startvideo_media","tesseract_startvideo_stream","tesseract_canvas_get"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
