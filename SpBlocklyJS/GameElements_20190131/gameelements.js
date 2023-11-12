@@ -1399,8 +1399,12 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
     if (document.getElementById("gameimage_"+input_id))
     {
       var obj = document.getElementById("gameimage_"+input_id);
-      if (input_property=='url')
-        return obj.src;
+      if (input_property=='url') {
+	if (obj.src == "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")
+		return "";
+	else
+        	return obj.src;
+      }
       else if (input_property=='width')
         return Number(obj.style.width.replace(/px/ig,""));
       else if (input_property=='height')
