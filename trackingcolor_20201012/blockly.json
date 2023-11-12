@@ -1,5 +1,5 @@
 {
-  "types": ["trackingcolor_set","trackingcolor_range_set","trackingcolor_custom","trackingcolor_get","trackingcolor_object","trackingcolor_get_number","trackingcolor_video_position","trackingcolor_startvideo_media","trackingcolor_startvideo_stream", "trackingcolor_state", "trackingcolor_clear", "trackingcolor_pause", "trackingcolor_recognitied"],
+  "types": ["trackingcolor_set","trackingcolor_range_set","trackingcolor_custom","trackingcolor_get","trackingcolor_object","trackingcolor_get_number","trackingcolor_video_position","trackingcolor_startvideo_media","trackingcolor_startvideo_stream", "trackingcolor_state", "trackingcolor_clear", "trackingcolor_pause", "trackingcolor_recognitied","trackingcolor_canvas_get"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
