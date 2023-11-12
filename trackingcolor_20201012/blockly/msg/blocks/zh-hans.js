@@ -41,3 +41,4 @@ Blockly.Msg.TRACKINGCOLOR_STATE_SHOW = "颜色追踪 (Tracking) 侦测状态";
 Blockly.Msg.TRACKINGCOLOR_CLEAR_SHOW = "颜色追踪 (Tracking) 清除结果";
 Blockly.Msg.TRACKINGCOLOR_PAUSE_SHOW = "颜色追踪 (Tracking) 暂停侦测";
 Blockly.Msg.TRACKINGCOLOR_RECOGNITIED_SHOW = "颜色追踪 (Tracking) 辨识完成后执行";
+Blockly.Msg.TRACKINGCOLOR_CANVAS_GET_SHOW = "取得画面代码";
