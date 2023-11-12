@@ -104,5 +104,7 @@
         <field name="NUM">1000</field>
       </block>
     </value> 			  
-  </block>   
+  </block>
+  <block type="trackingcolor_canvas_get">
+  </block> 
 </category>
