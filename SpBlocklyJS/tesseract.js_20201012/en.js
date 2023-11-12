@@ -21,3 +21,4 @@ Blockly.Msg.TESSERACT_GRAYSCALE_SHOW = "Gray Scale";
 Blockly.Msg.TESSERACT_VIDEO_LEFT_SHOW = "Screen Left";
 Blockly.Msg.TESSERACT_VIDEO_TOP_SHOW = "TOP";
 Blockly.Msg.TESSERACT_RECOGNITIED_SHOW = "recognitied";
+Blockly.Msg.TESSERACT_CANVAS_GET_SHOW = "Get Canvas ID";
