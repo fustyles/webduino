@@ -55,3 +55,8 @@ Blockly.JavaScript['tesseract_startvideo_stream'] = function(block) {
   var code = 'tesseract_startvideo_stream(' + value_src_ + ');\n';
   return code;
 };
+
+Blockly.JavaScript['tesseract_canvas_get'] = function(block) { 
+  var code = '"tesseract"';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
