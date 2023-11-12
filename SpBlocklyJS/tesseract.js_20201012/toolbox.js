@@ -53,5 +53,7 @@ var catTesseract = '<xml>'+
 '      </block>'+
 '      <block type="tesseract_clear">'+
 '      </block>'+
+'      <block type="tesseract_canvas_get">'+
+'      </block>'+
 '    </category>'+
 '</xml>';
