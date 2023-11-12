@@ -265,3 +265,15 @@ Blockly.Blocks['tesseract_recognitied'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['tesseract_canvas_get'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TESSERACT_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TESSERACT_CANVAS_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);
+  }
+};
