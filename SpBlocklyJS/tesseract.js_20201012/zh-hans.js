@@ -21,3 +21,4 @@ Blockly.Msg.TESSERACT_GRAYSCALE_SHOW = "灰阶";
 Blockly.Msg.TESSERACT_VIDEO_LEFT_SHOW = "画面 靠左距离";
 Blockly.Msg.TESSERACT_VIDEO_TOP_SHOW = "靠上距离";
 Blockly.Msg.TESSERACT_RECOGNITIED_SHOW = "辨识完成后执行";
+Blockly.Msg.TESSERACT_CANVAS_GET_SHOW = "取得画面代码";
