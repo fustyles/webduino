@@ -1709,12 +1709,12 @@ Blockly.Arduino['esp32_blekeyboard'] = function(block) {
     var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
 	Blockly.Arduino.definitions_.define_esp32_blekeyboard_include = '#include <BleKeyboard.h>\nBleKeyboard bleKeyboard;\n';
 	Blockly.Arduino.definitions_.blekeyboard = '\n'+
-			'void blekeyboard(String type, int keycode1, int keycode2, int keycode3, int presstime, String characters) {\n'+
+			'void blekeyboard(String type, uint8_t keycode1, uint8_t keycode2, uint8_t keycode3, int presstime, String characters) {\n'+
 			'  if (type=="press") {\n'+
 			'    if(bleKeyboard.isConnected()) {\n'+
-			'      if (keycode1!=-1) bleKeyboard.press(char(keycode1));\n'+
-			'      if (keycode2!=-1) bleKeyboard.press(char(keycode2));\n'+
-			'      if (keycode3!=-1) bleKeyboard.press(char(keycode3));\n'+
+			'      if (keycode1!=-1) bleKeyboard.press(keycode1);\n'+
+			'      if (keycode2!=-1) bleKeyboard.press(keycode2);\n'+
+			'      if (keycode3!=-1) bleKeyboard.press(keycode3);\n'+
 			'      delay(presstime);\n'+
 			'      bleKeyboard.releaseAll();\n'+
 			'    }\n'+
