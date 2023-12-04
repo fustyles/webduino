@@ -39,8 +39,6 @@ var catTeachablemachine ='<xml>'+
 '      </block>'+
 '      <block type="teachablemachine_result_array">'+
 '      </block>'+
-'      <block type="teachablemachine_state">'+
-'      </block>'+
 '      <block type="teachablemachine_clear">'+
 '      </block>'+
 '      <block type="teachablemachine_video_position">'+

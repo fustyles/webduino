@@ -40,8 +40,6 @@ var catPosenet = '<xml>'+
 '  </block>'+
 '  <block type="posenet_persons">'+
 '  </block>'+
-'  <block type="posenet_state">'+
-'  </block>'+
 '  <block type="posenet_video_position">'+
 '    <value name="left_">'+
 '      <block type="math_number">'+

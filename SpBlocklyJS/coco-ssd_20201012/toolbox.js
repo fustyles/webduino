@@ -39,8 +39,6 @@ var catCocossd ='<xml>'+
 '      </block>'+
 '      <block type="cocossd_object_number">'+
 '      </block>'+
-'      <block type="cocossd_state">'+
-'      </block>'+
 '      <block type="cocossd_clear">'+
 '      </block> '+
 '      <block type="cocossd_video_position">'+

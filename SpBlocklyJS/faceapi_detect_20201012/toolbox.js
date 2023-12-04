@@ -39,8 +39,6 @@ var catFaceDetect ='<xml>'+
 '      </block>'+
 '      <block type="faceapidetect_number">'+
 '      </block>'+
-'      <block type="faceapidetect_state">'+
-'      </block>'+
 '      <block type="faceapidetect_clear">'+
 '      </block>'+
 '      <block type="faceapidetect_video_position">'+
