@@ -283,6 +283,7 @@ Blockly.Msg.TABLE_TD_COPY_MOVE = "Table Cell innerHTML";
 Blockly.Msg.ASYNC_FUNCTION = "async function ";
 Blockly.Msg.CALL_ASYNC_FUNCTION = "Call async function ";
 Blockly.Msg.TRANSFORM_ASYNC_FUNCTION = "Transform into async function";
+Blockly.Msg.TRANSFORM_FUNCTION = "Transform into non async function";
 Blockly.Msg.OPACITY = "Opacity";
 Blockly.Msg.ELEMENT = "Page Element";
 Blockly.Msg.ELEMENT_EVENT = "addEventListener";
