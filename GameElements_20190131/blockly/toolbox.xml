@@ -348,6 +348,10 @@
 				</block>
 			</value>
 		</block>
+		<block type="get_keycode">
+		</block>
+		<block type="hotkey"><field name="keycode">Ctrl</field></block>
+		<block type="keyboard_keycode"><field name="keycode">32</field></block>	
 		<block type="mouse_coordinate_get_start"></block>
 		<block type="mouse_coordinate_get"></block>
 		<block type="urlcode">
