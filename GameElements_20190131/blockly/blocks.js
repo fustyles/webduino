@@ -2919,6 +2919,11 @@ Blockly.Blocks['call_async_function'] = {
 Blockly.Blocks['transform_async_function'] = {
   init: function () {
   this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.TRANSFORM_ASYNC_FUNCTION,"ASYNC"],
+	  [Blockly.Msg.TRANSFORM_FUNCTION,""]
+	  ]), "type");	  
+  this.appendDummyInput()  
       .appendField(Blockly.Msg.TRANSFORM_ASYNC_FUNCTION);    
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
