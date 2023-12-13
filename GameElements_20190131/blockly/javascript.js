@@ -948,7 +948,10 @@ Blockly.JavaScript['call_async_function'] = function (block) {
 };
 
 Blockly.JavaScript['transform_async_function'] = function (block) {
+  var type = block.getFieldValue('type');
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
+  if (type=="")
+	  statements_do_ = statements_do_.replace(/await /g, "////await ");
   var code = statements_do_.replace(/function/g,"async function").replace(/async async/g,"async");
   return code;
 };
