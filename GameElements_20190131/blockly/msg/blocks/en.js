@@ -610,3 +610,7 @@ Blockly.Msg["CODE_TEXT"] = "Insert code";
 
 Blockly.Msg["ENCODEURI"] = "encodeURI";
 Blockly.Msg["DECODEURI"] = "decodeURI";
+
+Blockly.Msg["GET_KEYCODE_SHOW"] = "Get Keycode";
+Blockly.Msg["KEYCODE_SHOW"] = "Key is";
+Blockly.Msg["HOTKEY_SHOW"] = "HotKey is";
