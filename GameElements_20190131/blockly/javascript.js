@@ -2368,3 +2368,25 @@ Blockly.JavaScript['element_select'] = function (block) {
   var code = 'element_select("' + source_id + '");\n';
   return code;
 };
+
+Blockly.JavaScript['get_keycode'] = function(block) {
+  var code = 'event.keyCode';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['keyboard_keycode'] = function(block) {
+  var keycode = block.getFieldValue('keycode'); 
+  var code = 'event.keyCode == ' + keycode;
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['hotkey'] = function(block) {
+  var keycode = block.getFieldValue('keycode');
+  if (keycode=="Ctrl")
+    var code = 'event.ctrlKey == true';
+  else if (keycode=="Shift")
+    var code = 'event.shiftKey == true';
+  else if (keycode=="Alt")
+    var code = 'event.altKey == true';  
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
