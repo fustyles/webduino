@@ -951,7 +951,7 @@ Blockly.JavaScript['transform_async_function'] = function (block) {
   var type = block.getFieldValue('type');
   var statements_do_ = Blockly.JavaScript.statementToCode(block, 'do_');
   if (type=="") 
-  	var code = statements_do_ = statements_do_.replace(/await /g, "//await ");
+  	var code = statements_do_ = statements_do_.replace(/await /g, "//await ").replace(/async function/g,"function");
   else 
   	var code = statements_do_.replace(/function/g,"async function").replace(/async async/g,"async");
   return code;
