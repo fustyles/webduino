@@ -611,3 +611,7 @@ Blockly.Msg["CODE_TEXT"] = "插入程式碼";
 
 Blockly.Msg["ENCODEURI"] = "網址編碼";
 Blockly.Msg["DECODEURI"] = "網址解碼";
+
+Blockly.Msg["GET_KEYCODE_SHOW"] = "取得鍵碼值";
+Blockly.Msg["KEYCODE_SHOW"] = "取得鍵碼值為";
+Blockly.Msg["HOTKEY_SHOW"] = "取得組合鍵碼值為";
