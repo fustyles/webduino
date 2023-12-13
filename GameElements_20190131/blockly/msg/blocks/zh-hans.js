@@ -282,6 +282,7 @@ Blockly.Msg.ROTATE_HORIZONTAL_FLIP = "左右翻转";
 Blockly.Msg.ASYNC_FUNCTION = "函式(非同步) 名称";
 Blockly.Msg.CALL_ASYNC_FUNCTION = "函式(非同步) 名称";
 Blockly.Msg.TRANSFORM_ASYNC_FUNCTION = "转换成 函式(非同步)";
+Blockly.Msg.TRANSFORM_FUNCTION = "转换成 函式(同步)";
 Blockly.Msg.OPACITY = "透明度";
 Blockly.Msg.ELEMENT = "网页";
 Blockly.Msg.ELEMENT_EVENT = "监听到事件后执行";
