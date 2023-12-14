@@ -1,5 +1,23 @@
 <category id="catGameElements">
-	<category id="catGameElements_sub1" colour="120">	
+	<category id="catGameElements_sub1" colour="120">
+		<block type="controls_for">
+			<field name="VAR">i</field>
+			<value name="FROM"> 
+				<block type="math_number"> 
+					<field name="NUM">1</field>
+				</block>
+			</value>
+			<value name="TO">
+				<block type="math_number">
+					<field name="NUM">10</field>
+				</block>
+			</value>
+			<value name="BY">
+				<block type="math_number">
+					<field name="NUM">1</field>
+				</block>
+			</value>
+		</block>		
 		<block type="system_datetime_set">
 			<value name="years">
 				<block type="math_number">
