@@ -1,8 +1,9 @@
 Blockly.Arduino.wire_initial = function(block){
-	var address = Blockly.Arduino.valueToCode(block, 'address', Blockly.Arduino.ORDER_ATOMIC)||0;
-
-	Blockly.Arduino.definitions_['define_wire']='#include \<Wire.h\>\nint Wire_data;';
-	Blockly.Arduino.setups_["setups_wire"]='Wire.begin('+address+');\n  Wire.onReceive(receiveEvent);\n';
+	var address = Blockly.Arduino.valueToCode(block, 'address', Blockly.Arduino.ORDER_ATOMIC)||"0x12";
+	address = address.replace(/\"/g,"").replace(/\'/g,"");
+	var size = Blockly.Arduino.valueToCode(block, 'size', Blockly.Arduino.ORDER_ATOMIC)||8;
+	Blockly.Arduino.definitions_['define_wire']='#include \<Wire.h\>\n#define SLAVE_ADDRESS '+address+'\n#define DATA_SIZE '+size+'';
+	Blockly.Arduino.setups_["setups_wire"]='Wire.begin();\n';
 
 	var code = '';
 	return code;
@@ -10,11 +11,15 @@ Blockly.Arduino.wire_initial = function(block){
 
 Blockly.Arduino.wire_read = function(block){	
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
-	Blockly.Arduino.functions_["functions_wire_receiveEvent"]='\n'+
-																'void receiveEvent(int howMany) {\n'+
-																'  '+statement+
-																'}\n';			
-	var code = '';
+																			
+	var code = 'Wire.beginTransmission(SLAVE_ADDRESS);\n'+
+				'Wire.requestFrom(SLAVE_ADDRESS, DATA_SIZE);\n'+
+				'if (Wire.available()) {\n'+
+				'  while (Wire.available()) {\n'+
+				'    '+statement+
+				'  }\n'+
+				'}\n'+
+				'Wire.endTransmission();\n';
 	return code;
 };
 

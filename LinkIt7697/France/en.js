@@ -31,6 +31,7 @@ Blockly.Msg["HUE_30"] = 50;
 
 Blockly.Msg["WIRE_INITIAL"] = "I2C Initial";
 Blockly.Msg["WIRE_INITIAL_ADDRESS"] = "Address";
+Blockly.Msg["WIRE_INITIAL_SIZE"] = "Data size";
 Blockly.Msg["WIRE_INITIAL_READ"] = "After getting data";
 Blockly.Msg["WIRE_INITIAL_GET"] = "Get data(byte)";
 

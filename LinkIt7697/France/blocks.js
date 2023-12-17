@@ -3,9 +3,13 @@ Blockly.Blocks.wire_initial={
 		this.appendDummyInput()
 			.appendField(Blockly.Msg["WIRE_INITIAL"]);
 	    this.appendValueInput("address")
+		    .setCheck("String")
+		    .setAlign(Blockly.ALIGN_RIGHT)
+			.appendField(Blockly.Msg["WIRE_INITIAL_ADDRESS"]);
+	    this.appendValueInput("size")
 		    .setCheck("Number")
 		    .setAlign(Blockly.ALIGN_RIGHT)
-			.appendField(Blockly.Msg["WIRE_INITIAL_ADDRESS"]); 					
+			.appendField(Blockly.Msg["WIRE_INITIAL_SIZE"]); 			
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);

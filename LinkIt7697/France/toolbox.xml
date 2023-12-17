@@ -11011,10 +11011,15 @@
 	<category id="france12" name="wire">
 		<block type="wire_initial">
 			<value name="address">
-			  <block type="math_number">
-				<field name="NUM">13</field>
+			  <block type="text">
+				<field name="NUM">0x12</field>
 			  </block>
-			</value>		
+			</value>
+			<value name="size">
+			  <block type="math_number">
+				<field name="NUM">8</field>
+			  </block>
+			</value>			
 		</block>	
 		<block type="wire_read">			
 		</block>

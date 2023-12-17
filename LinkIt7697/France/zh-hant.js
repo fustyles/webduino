@@ -31,6 +31,7 @@ Blockly.Msg["HUE_30"] = 50;
 
 Blockly.Msg["WIRE_INITIAL"] = "Wire";
 Blockly.Msg["WIRE_INITIAL_ADDRESS"] = "初始化 位址";
+Blockly.Msg["WIRE_INITIAL_SIZE"] = "資料大小";
 Blockly.Msg["WIRE_INITIAL_READ"] = "當讀取到資料";
 Blockly.Msg["WIRE_INITIAL_GET"] = "取得資料(byte)";
 
