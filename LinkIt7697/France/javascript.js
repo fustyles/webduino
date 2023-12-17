@@ -802,7 +802,7 @@ Blockly.Arduino['ps2_read'] = function (block) {
 	var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
 	if (vibrate=="false") val=0;
 	  
-	var code = '//if (ps2_error != 0) return;\nif (ps2_type == 2)\n  ps2x.read_gamepad();\nelse\n  ps2x.read_gamepad('+vibrate+', '+val+');\n';
+	var code = 'if (ps2_error != 0) return;\nif (ps2_type == 2)\n  ps2x.read_gamepad();\nelse\n  ps2x.read_gamepad('+vibrate+', '+val+');\n';
 	return code;
 };
 
