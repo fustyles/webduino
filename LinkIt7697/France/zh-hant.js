@@ -29,11 +29,13 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
-Blockly.Msg["WIRE_INITIAL"] = "Wire";
+Blockly.Msg["WIRE"] = "Wire";
 Blockly.Msg["WIRE_INITIAL_ADDRESS"] = "初始化 位址";
-Blockly.Msg["WIRE_INITIAL_SIZE"] = "資料大小";
-Blockly.Msg["WIRE_INITIAL_READ"] = "當讀取到資料";
-Blockly.Msg["WIRE_INITIAL_GET"] = "取得資料(byte)";
+Blockly.Msg["WIRE_SIZE"] = "資料大小";
+Blockly.Msg["WIRE_WRITE_START"] = "開始寫入資料";
+Blockly.Msg["WIRE_WRITE"] = "寫入資料(byte)";
+Blockly.Msg["WIRE_READ"] = "當讀取到資料";
+Blockly.Msg["WIRE_GET"] = "取得資料(byte)";
 
 Blockly.Msg["AMB82_MINI"] = "AMB82-MINI";
 Blockly.Msg["AMB82_MINI_INITIAL"] = "初始化";

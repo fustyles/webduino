@@ -1,7 +1,7 @@
 Blockly.Blocks.wire_initial={
 	init:function(){
 		this.appendDummyInput()
-			.appendField(Blockly.Msg["WIRE_INITIAL"]);
+			.appendField(Blockly.Msg["WIRE"]);
 	    this.appendValueInput("address")
 		    .setCheck("String")
 		    .setAlign(Blockly.ALIGN_RIGHT)
@@ -9,7 +9,7 @@ Blockly.Blocks.wire_initial={
 	    this.appendValueInput("size")
 		    .setCheck("Number")
 		    .setAlign(Blockly.ALIGN_RIGHT)
-			.appendField(Blockly.Msg["WIRE_INITIAL_SIZE"]); 			
+			.appendField(Blockly.Msg["WIRE_SIZE"]); 			
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
@@ -17,12 +17,42 @@ Blockly.Blocks.wire_initial={
 	  }
 };
 
+Blockly.Blocks.wire_write_start={
+	init:function(){
+		this.appendDummyInput()
+			.appendField(Blockly.Msg["WIRE"]);
+		this.appendDummyInput()
+			.appendField(Blockly.Msg["WIRE_WRITE_START"]);			
+		this.appendStatementInput("statement")
+			.setCheck(null);			
+		this.setInputsInline(true);
+		this.setPreviousStatement(true);
+		this.setNextStatement(true);
+		this.setColour(Blockly.Msg["HUE_18"]);
+	}
+};
+
+Blockly.Blocks.wire_write={
+	init:function(){
+		this.appendDummyInput()
+			.appendField(Blockly.Msg["WIRE"]);
+	    this.appendValueInput("data")
+		    .setCheck(null)
+		    .setAlign(Blockly.ALIGN_RIGHT)
+			.appendField(Blockly.Msg["WIRE_WRITE"]);		
+		this.setInputsInline(true);
+		this.setPreviousStatement(true);
+		this.setNextStatement(true);
+		this.setColour(Blockly.Msg["HUE_18"]);
+	}
+};
+
 Blockly.Blocks.wire_read={
 	init:function(){
 		this.appendDummyInput()
-			.appendField(Blockly.Msg["WIRE_INITIAL"]);
+			.appendField(Blockly.Msg["WIRE"]);
 		this.appendDummyInput()
-			.appendField(Blockly.Msg["WIRE_INITIAL_READ"]);			
+			.appendField(Blockly.Msg["WIRE_READ"]);			
 		this.appendStatementInput("statement")
 			.setCheck(null);			
 		this.setInputsInline(true);
@@ -35,9 +65,9 @@ Blockly.Blocks.wire_read={
 Blockly.Blocks.wire_get={
 	init:function(){
 		this.appendDummyInput()
-			.appendField(Blockly.Msg["WIRE_INITIAL"]);
+			.appendField(Blockly.Msg["WIRE"]);
 		this.appendDummyInput()
-			.appendField(Blockly.Msg["WIRE_INITIAL_GET"]);		
+			.appendField(Blockly.Msg["WIRE_GET"]);		
 		this.setInputsInline(true);
 		this.setOutput(true, null);  
 		this.setColour(Blockly.Msg["HUE_18"]);	

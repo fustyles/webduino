@@ -9,6 +9,21 @@ Blockly.Arduino.wire_initial = function(block){
 	return code;
 };
 
+Blockly.Arduino.wire_write_start = function(block){	
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+																			
+	var code = 'Wire.beginTransmission(SLAVE_ADDRESS);\n'+
+				statement+
+				'Wire.endTransmission();\n';
+	return code;
+};
+
+Blockly.Arduino.wire_write = function(block){
+	var data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC)||0;	
+	var code = 'Wire.write('+data+');\n';
+	return code;
+};
+
 Blockly.Arduino.wire_read = function(block){	
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
 																			

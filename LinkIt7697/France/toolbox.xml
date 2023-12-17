@@ -11022,15 +11022,24 @@
 		<block type="wire_initial">
 			<value name="address">
 			  <block type="text">
-				<field name="NUM">0x12</field>
-			  </block>
+				<field name="TEXT">0x12</field>
+			  </block>	
 			</value>
 			<value name="size">
 			  <block type="math_number">
 				<field name="NUM">8</field>
 			  </block>
 			</value>			
-		</block>	
+		</block>
+		<block type="wire_write_start">			
+		</block>		
+		<block type="wire_write">
+			<value name="data">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>		
+		</block>			
 		<block type="wire_read">			
 		</block>
 		<block type="wire_get">			
