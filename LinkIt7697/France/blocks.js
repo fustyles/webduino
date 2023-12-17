@@ -1,3 +1,45 @@
+Blockly.Blocks.wire_initial={
+	init:function(){
+		this.appendDummyInput()
+			.appendField(Blockly.Msg["WIRE_INITIAL"]);
+	    this.appendValueInput("address")
+		    .setCheck("Number")
+		    .setAlign(Blockly.ALIGN_RIGHT)
+			.appendField(Blockly.Msg["WIRE_INITIAL_ADDRESS"]); 					
+		this.setInputsInline(true);
+		this.setPreviousStatement(true);
+		this.setNextStatement(true);
+		this.setColour(Blockly.Msg["HUE_18"]);
+	  }
+};
+
+Blockly.Blocks.wire_read={
+	init:function(){
+		this.appendDummyInput()
+			.appendField(Blockly.Msg["WIRE_INITIAL"]);
+		this.appendDummyInput()
+			.appendField(Blockly.Msg["WIRE_INITIAL_READ"]);			
+		this.appendStatementInput("statement")
+			.setCheck(null);			
+		this.setInputsInline(true);
+		this.setPreviousStatement(true);
+		this.setNextStatement(true);
+		this.setColour(Blockly.Msg["HUE_18"]);
+	}
+};
+
+Blockly.Blocks.wire_get={
+	init:function(){
+		this.appendDummyInput()
+			.appendField(Blockly.Msg["WIRE_INITIAL"]);
+		this.appendDummyInput()
+			.appendField(Blockly.Msg["WIRE_INITIAL_GET"]);		
+		this.setInputsInline(true);
+		this.setOutput(true, null);  
+		this.setColour(Blockly.Msg["HUE_18"]);	
+	}
+};
+
 Blockly.Blocks['button_toolbox'] = {
   init: function() {
   this.appendDummyInput()   

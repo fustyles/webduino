@@ -29,6 +29,11 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["WIRE_INITIAL"] = "I2C Initial";
+Blockly.Msg["WIRE_INITIAL_ADDRESS"] = "Address";
+Blockly.Msg["WIRE_INITIAL_READ"] = "After getting data";
+Blockly.Msg["WIRE_INITIAL_GET"] = "Get data(byte)";
+
 Blockly.Msg["AMB82_MINI"] = "AMB82-MINI";
 Blockly.Msg["AMB82_MINI_INITIAL"] = "Initial";
 Blockly.Msg["AMB82_MINI_LINENOTIFY"] = "Get still and send to Line";

@@ -1,3 +1,29 @@
+Blockly.Arduino.wire_initial = function(block){
+	var address = Blockly.Arduino.valueToCode(block, 'address', Blockly.Arduino.ORDER_ATOMIC)||0;
+
+	Blockly.Arduino.definitions_['define_wire']='#include \<Wire.h\>\nint Wire_data;';
+	Blockly.Arduino.setups_["setups_wire"]='Wire.begin('+address+');\n  Wire.onReceive(receiveEvent);\n';
+
+	var code = '';
+	return code;
+};
+
+Blockly.Arduino.wire_read = function(block){	
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+	Blockly.Arduino.functions_["functions_wire_receiveEvent"]='\n'+
+																'  void receiveEvent(int howMany) {\n'+
+																'    '+statement+
+																'  }\n';			
+	var code = '';
+	return code;
+};
+
+Blockly.Arduino.wire_get = function(block){				
+	var code = 'Wire.read()';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+
 Blockly.Arduino['button_toolbox'] = function (block) { 
   var value_left_ = Blockly.Arduino.valueToCode(block, 'left_', Blockly.Arduino.ORDER_ATOMIC)||0;
   var value_top_ = Blockly.Arduino.valueToCode(block, 'top_', Blockly.Arduino.ORDER_ATOMIC)||0; 

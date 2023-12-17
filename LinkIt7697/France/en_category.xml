@@ -108,4 +108,5 @@
 <category><name>PS2</name><replace>PS2 Controller</replace></category>
 <category><name>Emakefun</name><replace>Emakefun board</replace></category>
 <category><name>amb82_mini</name><replace>AMB82_MINI</replace></category>
+<category><name>wire</name><replace>Wire.h</replace></category>
 </xml>
