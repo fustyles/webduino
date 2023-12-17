@@ -10782,7 +10782,12 @@
 		  <value name="IF0">
 		    <block type="ps2_state"></block>
 		  </value>
-	    </block>		
+	    </block>
+		<block type="controls_if">
+		  <value name="IF0">
+		    <block type="ps2_receiver_state"></block>
+		  </value>
+	    </block>
 		<block type="ps2_read">
 			<value name="val">
 			  <block type="math_number">
@@ -10879,6 +10884,11 @@
 		    <block type="ps2_state"></block>
 		  </value>
 	    </block>
+	    <block type="controls_if">
+		  <value name="IF0">
+		    <block type="ps2_receiver_state"></block>
+		  </value>
+	    </block>		
 	    <block type="board_restart">
 	    </block>		
 		<block type="ps2_read">

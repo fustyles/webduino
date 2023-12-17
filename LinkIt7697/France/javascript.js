@@ -889,6 +889,11 @@ Blockly.Arduino['ps2_state'] = function(block) {
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['ps2_receiver_state'] = function(block) {
+	var code = '(ps2x.receiver_state != 0)';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['ps2_analog_max'] = function(block) {
 	var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
 	var code = 'analogMax = '+val+';\n';

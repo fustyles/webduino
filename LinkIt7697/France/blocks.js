@@ -1061,6 +1061,17 @@ Blockly.Blocks['ps2_stick_direction'] = {
   }
 };
 
+Blockly.Blocks['ps2_receiver_state'] = {
+  init: function() {
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["PS2"])
+		.appendField(Blockly.Msg["PS2_RECEIVER_STATE"]);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(280);
+  }
+};
+
 Blockly.Blocks['ps2_state'] = {
   init: function() {
 	this.appendDummyInput()
