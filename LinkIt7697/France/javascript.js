@@ -11,9 +11,9 @@ Blockly.Arduino.wire_initial = function(block){
 Blockly.Arduino.wire_read = function(block){	
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
 	Blockly.Arduino.functions_["functions_wire_receiveEvent"]='\n'+
-																'  void receiveEvent(int howMany) {\n'+
-																'    '+statement+
-																'  }\n';			
+																'void receiveEvent(int howMany) {\n'+
+																'  '+statement+
+																'}\n';			
 	var code = '';
 	return code;
 };
