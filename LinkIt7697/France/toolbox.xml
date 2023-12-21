@@ -11025,11 +11025,21 @@
 				<field name="TEXT">0x12</field>
 			  </block>	
 			</value>
-			<value name="size">
+			<value name="sda">
 			  <block type="math_number">
-				<field name="NUM">8</field>
+				<field name="NUM">21</field>
 			  </block>
-			</value>			
+			</value>
+			<value name="scl">
+			  <block type="math_number">
+				<field name="NUM">22</field>
+			  </block>
+			</value>	
+			<value name="frequency">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>				
 		</block>
 		<block type="wire_write_start">			
 		</block>		

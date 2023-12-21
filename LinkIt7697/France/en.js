@@ -31,11 +31,14 @@ Blockly.Msg["HUE_30"] = 50;
 
 Blockly.Msg["WIRE"] = "Wire";
 Blockly.Msg["WIRE_INITIAL_ADDRESS"] = "Address";
-Blockly.Msg["WIRE_SIZE"] = "Data size";
+Blockly.Msg["WIRE_FREQUENCY"] = "frequency";
 Blockly.Msg["WIRE_WRITE_START"] = "Start writing data";
 Blockly.Msg["WIRE_WRITE"] = "write data(byte)";
-Blockly.Msg["WIRE_READ"] = "After getting data(byte)";
+Blockly.Msg["WIRE_READ"] = "After getting data";
 Blockly.Msg["WIRE_GET"] = "Get data(byte)";
+Blockly.Msg["WIRE_READ_BYTE"] = "one byte";
+Blockly.Msg["WIRE_READ_CHAR"] = "one byte to char";
+Blockly.Msg["WIRE_READ_STRING"] = "all data to string";
 
 Blockly.Msg["AMB82_MINI"] = "AMB82-MINI";
 Blockly.Msg["AMB82_MINI_INITIAL"] = "Initial";

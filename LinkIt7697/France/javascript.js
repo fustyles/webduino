@@ -1,9 +1,12 @@
 Blockly.Arduino.wire_initial = function(block){
-	var address = Blockly.Arduino.valueToCode(block, 'address', Blockly.Arduino.ORDER_ATOMIC)||"0x12";
+	var address = Blockly.Arduino.valueToCode(block, 'address', Blockly.Arduino.ORDER_ATOMIC)||0;
 	address = address.replace(/\"/g,"").replace(/\'/g,"");
-	var size = Blockly.Arduino.valueToCode(block, 'size', Blockly.Arduino.ORDER_ATOMIC)||8;
-	Blockly.Arduino.definitions_['define_wire']='#include \<Wire.h\>\n#define SLAVE_ADDRESS '+address+'\n#define DATA_SIZE '+size+'';
-	Blockly.Arduino.setups_["setups_wire"]='Wire.begin();\n';
+	var sda=Blockly.Arduino.valueToCode(this,"sda",Blockly.Arduino.ORDER_ATOMIC)||21;
+	var scl=Blockly.Arduino.valueToCode(this,"scl",Blockly.Arduino.ORDER_ATOMIC)||22;
+	var frequency=Blockly.Arduino.valueToCode(this,"frequency",Blockly.Arduino.ORDER_ATOMIC)||0;
+
+	Blockly.Arduino.definitions_['define_wire']='#include \<Wire.h\>\n#define I2C_ADDR '+address+'\n#define FREQ '+frequency+'\n#define SDA_PIN '+sda+'\n#define SCL_PIN '+scl+'\n#define DATA_SIZE 8';
+	Blockly.Arduino.setups_["setups_wire"]='Wire.begin(SDA_PIN, SCL_PIN, FREQ);';
 
 	var code = '';
 	return code;
@@ -12,14 +15,15 @@ Blockly.Arduino.wire_initial = function(block){
 Blockly.Arduino.wire_write_start = function(block){	
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
 																			
-	var code = 'Wire.beginTransmission(SLAVE_ADDRESS);\n'+
+	var code = 'Wire.beginTransmission(I2C_ADDR);\n'+
 				statement+
 				'Wire.endTransmission();\n';
 	return code;
 };
 
 Blockly.Arduino.wire_write = function(block){
-	var data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC)||0;	
+	var data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC)||"";
+	data = data.replace(/\"/g,"");	
 	var code = 'Wire.write('+data+');\n';
 	return code;
 };
@@ -27,8 +31,8 @@ Blockly.Arduino.wire_write = function(block){
 Blockly.Arduino.wire_read = function(block){	
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
 																			
-	var code = 'Wire.beginTransmission(SLAVE_ADDRESS);\n'+
-				'Wire.requestFrom(SLAVE_ADDRESS, DATA_SIZE);\n'+
+	var code = 'Wire.beginTransmission(I2C_ADDR);\n'+
+				'Wire.requestFrom(I2C_ADDR, DATA_SIZE);\n'+
 				'if (Wire.available()) {\n'+
 				'  while (Wire.available()) {\n'+
 				'    '+statement+
@@ -38,8 +42,16 @@ Blockly.Arduino.wire_read = function(block){
 	return code;
 };
 
-Blockly.Arduino.wire_get = function(block){				
+Blockly.Arduino.wire_get = function(block){
+  var mode = block.getFieldValue('mode');
+  if (mode=="byte")	
 	var code = 'Wire.read()';
+  else if (mode=="char")
+	var code = '(char)Wire.read()';
+  else {
+	Blockly.Arduino.definitions_['define_WireReadString']='String WireReadString() {\n  String data = "";\n  while (Wire.available()) {\n    char c = Wire.read();\n    data += String(c);\n  }\n  return data;\n}';
+	var code = 'WireReadString()';
+  }	  
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 

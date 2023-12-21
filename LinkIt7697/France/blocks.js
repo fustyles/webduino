@@ -6,10 +6,18 @@ Blockly.Blocks.wire_initial={
 		    .setCheck("String")
 		    .setAlign(Blockly.ALIGN_RIGHT)
 			.appendField(Blockly.Msg["WIRE_INITIAL_ADDRESS"]);
-	    this.appendValueInput("size")
-		    .setCheck("Number")
-		    .setAlign(Blockly.ALIGN_RIGHT)
-			.appendField(Blockly.Msg["WIRE_SIZE"]); 			
+		this.appendValueInput("sda")
+			.setAlign(Blockly.ALIGN_RIGHT) 		
+			.appendField("SDA")
+			.setCheck("Number");
+		this.appendValueInput("scl")
+			.setAlign(Blockly.ALIGN_RIGHT) 		
+			.appendField("SCL")
+			.setCheck("Number");
+		this.appendValueInput("frequency")
+			.setAlign(Blockly.ALIGN_RIGHT) 		
+			.appendField(Blockly.Msg["WIRE_FREQUENCY"])
+			.setCheck("Number");			
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
@@ -67,7 +75,14 @@ Blockly.Blocks.wire_get={
 		this.appendDummyInput()
 			.appendField(Blockly.Msg["WIRE"]);
 		this.appendDummyInput()
-			.appendField(Blockly.Msg["WIRE_GET"]);		
+			.appendField(Blockly.Msg["WIRE_GET"]);
+		this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)	
+			.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["WIRE_READ_BYTE"],"byte"],
+				[Blockly.Msg["WIRE_READ_CHAR"],"char"],
+				[Blockly.Msg["WIRE_READ_STRING"],"string"]
+		]), "mode");			
 		this.setInputsInline(true);
 		this.setOutput(true, null);  
 		this.setColour(Blockly.Msg["HUE_18"]);	
@@ -76,79 +91,79 @@ Blockly.Blocks.wire_get={
 
 Blockly.Blocks['button_toolbox'] = {
   init: function() {
-  this.appendDummyInput()   
-      .appendField(Blockly.Msg.BUTTON_TOOLBOX);	  
-  this.appendValueInput("left_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.LEFT);    
-  this.appendValueInput("top_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TOP);   
-  this.appendValueInput("width_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.WIDTH);
-  this.appendValueInput("height_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.HEIGHT);
-  this.appendValueInput("fontsize_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.FONTSIZE);
-  this.appendValueInput("spacing_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.SPACING); 		  
-  this.appendValueInput("color_")
-	  .appendField(Blockly.Msg.BUTTON_FONTCOLOR)
-      .setAlign(Blockly.ALIGN_RIGHT);
-  this.appendValueInput("bgcolor_")
-	  .appendField(Blockly.Msg.BACKCOLOR)
-      .setAlign(Blockly.ALIGN_RIGHT);
-  this.appendDummyInput()
-	  .appendField(Blockly.Msg.BUTTON_GOOGLEICON_DIRECTION)
-      .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(new Blockly.FieldDropdown([
-	  [Blockly.Msg.BUTTON_GOOGLEICON_HORIZONTAL,"1"],
-	  [Blockly.Msg.BUTTON_GOOGLEICON_VERTICAL,"0"]
-	  ]), "direction_");	  
-  this.appendValueInput("list_")
-	  .appendField(Blockly.Msg.BUTTON_GOOGLEICON_LIST)
-      .setAlign(Blockly.ALIGN_RIGHT)	  
-      .setCheck(null);		  
-  this.setInputsInline(false);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(Blockly.Msg["HUE_4"]);
-  this.setHelpUrl("https://fustyles.github.io/webduino/google_icon.html");   
+	  this.appendDummyInput()   
+		  .appendField(Blockly.Msg.BUTTON_TOOLBOX);	  
+	  this.appendValueInput("left_")
+		  .setCheck("Number")
+		  .setAlign(Blockly.ALIGN_RIGHT)
+		  .appendField(Blockly.Msg.LEFT);    
+	  this.appendValueInput("top_")
+		  .setCheck("Number")
+		  .setAlign(Blockly.ALIGN_RIGHT)
+		  .appendField(Blockly.Msg.TOP);   
+	  this.appendValueInput("width_")
+		  .setCheck("Number")
+		  .setAlign(Blockly.ALIGN_RIGHT)
+		  .appendField(Blockly.Msg.WIDTH);
+	  this.appendValueInput("height_")
+		  .setCheck("Number")
+		  .setAlign(Blockly.ALIGN_RIGHT)
+		  .appendField(Blockly.Msg.HEIGHT);
+	  this.appendValueInput("fontsize_")
+		  .setCheck("Number")
+		  .setAlign(Blockly.ALIGN_RIGHT)
+		  .appendField(Blockly.Msg.FONTSIZE);
+	  this.appendValueInput("spacing_")
+		  .setCheck("Number")
+		  .setAlign(Blockly.ALIGN_RIGHT)
+		  .appendField(Blockly.Msg.SPACING); 		  
+	  this.appendValueInput("color_")
+		  .appendField(Blockly.Msg.BUTTON_FONTCOLOR)
+		  .setAlign(Blockly.ALIGN_RIGHT);
+	  this.appendValueInput("bgcolor_")
+		  .appendField(Blockly.Msg.BACKCOLOR)
+		  .setAlign(Blockly.ALIGN_RIGHT);
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg.BUTTON_GOOGLEICON_DIRECTION)
+		  .setAlign(Blockly.ALIGN_RIGHT)	  
+		  .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.BUTTON_GOOGLEICON_HORIZONTAL,"1"],
+		  [Blockly.Msg.BUTTON_GOOGLEICON_VERTICAL,"0"]
+		  ]), "direction_");	  
+	  this.appendValueInput("list_")
+		  .appendField(Blockly.Msg.BUTTON_GOOGLEICON_LIST)
+		  .setAlign(Blockly.ALIGN_RIGHT)	  
+		  .setCheck(null);		  
+	  this.setInputsInline(false);
+	  this.setPreviousStatement(true);
+	  this.setNextStatement(true);
+	  this.setColour(Blockly.Msg["HUE_4"]);
+	  this.setHelpUrl("https://fustyles.github.io/webduino/google_icon.html");   
   }
 };
 
 Blockly.Blocks['custom_googleicon'] = {
   init: function() {
-  this.appendDummyInput() 
-	  .appendField(Blockly.Msg.CUSTOM_GOOGLEICON_SHOW);  
-  this.appendDummyInput()  
-      .appendField(new Blockly.FieldDropdown([
-	  [Blockly.Msg.ELEMENT_BUTTON,"button"],
-	  [Blockly.Msg.ELEMENT_SPAN,"span"],
-	  [Blockly.Msg.ELEMENT_A,"a"]
-	  ]), "element");
-  this.appendValueInput("id")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg.ID);   
-  this.appendValueInput("val")
-	  .appendField(Blockly.Msg.CUSTOM_GOOGLEICON_NAME_SHOW)
-      .setCheck("String");	  
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(Blockly.Msg["HUE_18"]);
-  this.setHelpUrl("https://fustyles.github.io/webduino/google_icon.html");  
+	  this.appendDummyInput() 
+		  .appendField(Blockly.Msg.CUSTOM_GOOGLEICON_SHOW);  
+	  this.appendDummyInput()  
+		  .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.ELEMENT_BUTTON,"button"],
+		  [Blockly.Msg.ELEMENT_SPAN,"span"],
+		  [Blockly.Msg.ELEMENT_A,"a"]
+		  ]), "element");
+	  this.appendValueInput("id")
+		  .setCheck(null)
+		  .setAlign(Blockly.ALIGN_RIGHT)	  
+		  .appendField(Blockly.Msg.ID);   
+	  this.appendValueInput("val")
+		  .appendField(Blockly.Msg.CUSTOM_GOOGLEICON_NAME_SHOW)
+		  .setCheck("String");	  
+	  this.setInputsInline(true);
+	  this.setPreviousStatement(true);
+	  this.setNextStatement(true);
+	  this.setColour(Blockly.Msg["HUE_18"]);
+	  this.setHelpUrl("https://fustyles.github.io/webduino/google_icon.html");  
   }
 };
 
