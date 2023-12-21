@@ -39,7 +39,7 @@ Blockly.Msg["WIRE_READ"] = "當讀取到資料";
 Blockly.Msg["WIRE_GET"] = "取得資料";
 Blockly.Msg["WIRE_READ_BYTE"] = "一個位元";
 Blockly.Msg["WIRE_READ_CHAR"] = "一個位元轉換字元";
-Blockly.Msg["WIRE_READ_STRING"] = "所有位元轉成字串";
+Blockly.Msg["WIRE_READ_STRING"] = "位元組轉成字串";
 
 Blockly.Msg["AMB82_MINI"] = "AMB82-MINI";
 Blockly.Msg["AMB82_MINI_INITIAL"] = "初始化";
