@@ -39,7 +39,7 @@ Blockly.Arduino.wire_read = function(block){
 				'    '+statement+
 				'  }\n'+
 				'}\n'+
-				'//Wire.endTransmission();\n';
+				'Wire.endTransmission();\n';
 	return code;
 };
 
