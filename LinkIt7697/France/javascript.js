@@ -33,13 +33,13 @@ Blockly.Arduino.wire_read = function(block){
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
 																			
 	var code = '//Wire.beginTransmission(I2C_ADDR);\n'+
-				'Wire.requestFrom(I2C_ADDR, '+datasize+');\n'+
+				'//Wire.requestFrom(I2C_ADDR, '+datasize+');\n'+
 				'if (Wire.available()) {\n'+
 				'  while (Wire.available()) {\n'+
 				'    '+statement+
 				'  }\n'+
 				'}\n'+
-				'Wire.endTransmission();\n';
+				'//Wire.endTransmission();\n';
 	return code;
 };
 
