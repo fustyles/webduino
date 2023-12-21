@@ -5,7 +5,7 @@ Blockly.Arduino.wire_initial = function(block){
 	var scl=Blockly.Arduino.valueToCode(this,"scl",Blockly.Arduino.ORDER_ATOMIC)||22;
 	var frequency=Blockly.Arduino.valueToCode(this,"frequency",Blockly.Arduino.ORDER_ATOMIC)||0;
 
-	Blockly.Arduino.definitions_['define_wire']='#include \<Wire.h\>\n#define I2C_ADDR '+address+'\n#define FREQ '+frequency+'\n#define SDA_PIN '+sda+'\n#define SCL_PIN '+scl+'\n#define DATA_SIZE 8';
+	Blockly.Arduino.definitions_['define_wire']='#include \<Wire.h\>\n#define I2C_ADDR '+address+'\n#define FREQ '+frequency+'\n#define SDA_PIN '+sda+'\n#define SCL_PIN '+scl;
 	Blockly.Arduino.setups_["setups_wire"]='Wire.begin(SDA_PIN, SCL_PIN, FREQ);';
 
 	var code = '';
@@ -29,10 +29,11 @@ Blockly.Arduino.wire_write = function(block){
 };
 
 Blockly.Arduino.wire_read = function(block){	
+	var datasize = Blockly.Arduino.valueToCode(block, 'datasize', Blockly.Arduino.ORDER_ATOMIC)||"";
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
 																			
 	var code = 'Wire.beginTransmission(I2C_ADDR);\n'+
-				'Wire.requestFrom(I2C_ADDR, DATA_SIZE);\n'+
+				'Wire.requestFrom(I2C_ADDR, '+datasize+');\n'+
 				'if (Wire.available()) {\n'+
 				'  while (Wire.available()) {\n'+
 				'    '+statement+

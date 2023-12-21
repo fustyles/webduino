@@ -11050,9 +11050,14 @@
 			  </block>
 			</value>		
 		</block>			
-		<block type="wire_read">			
+		<block type="wire_read">
+			<value name="datasize">
+			  <block type="math_number">
+				<field name="NUM">8</field>
+			  </block>
+			</value>		
 		</block>
-		<block type="wire_get">			
+		<block type="wire_get">
 		</block>		
 	</category>		
 

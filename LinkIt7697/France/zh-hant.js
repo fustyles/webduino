@@ -32,6 +32,7 @@ Blockly.Msg["HUE_30"] = 50;
 Blockly.Msg["WIRE"] = "Wire(I2C)";
 Blockly.Msg["WIRE_INITIAL_ADDRESS"] = "初始化 位址";
 Blockly.Msg["WIRE_FREQUENCY"] = "頻率";
+Blockly.Msg["WIRE_DATASIZE"] = "資料位元數";
 Blockly.Msg["WIRE_WRITE_START"] = "開始寫入資料";
 Blockly.Msg["WIRE_WRITE"] = "寫入資料";
 Blockly.Msg["WIRE_READ"] = "當讀取到資料";

@@ -58,9 +58,12 @@ Blockly.Blocks.wire_write={
 Blockly.Blocks.wire_read={
 	init:function(){
 		this.appendDummyInput()
-			.appendField(Blockly.Msg["WIRE"]);
-		this.appendDummyInput()
-			.appendField(Blockly.Msg["WIRE_READ"]);			
+			.appendField(Blockly.Msg["WIRE"])
+			.appendField(Blockly.Msg["WIRE_READ"]);	
+		this.appendValueInput("datasize")
+			.setAlign(Blockly.ALIGN_RIGHT) 		
+			.appendField(Blockly.Msg["WIRE_DATASIZE"])
+			.setCheck("Number");
 		this.appendStatementInput("statement")
 			.setCheck(null);			
 		this.setInputsInline(true);

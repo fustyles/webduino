@@ -32,6 +32,7 @@ Blockly.Msg["HUE_30"] = 50;
 Blockly.Msg["WIRE"] = "Wire";
 Blockly.Msg["WIRE_INITIAL_ADDRESS"] = "Address";
 Blockly.Msg["WIRE_FREQUENCY"] = "frequency";
+Blockly.Msg["WIRE_DATASIZE"] = "bytes";
 Blockly.Msg["WIRE_WRITE_START"] = "Start writing data";
 Blockly.Msg["WIRE_WRITE"] = "write data(byte)";
 Blockly.Msg["WIRE_READ"] = "After getting data";
