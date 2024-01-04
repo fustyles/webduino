@@ -7821,14 +7821,14 @@ Blockly.Blocks['controls_spreadsheet_getcell_query'] = {
   init: function () {
   this.appendDummyInput()
 	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_ARRAY_SHOW"]); 
+  this.appendValueInput("row")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"]);		  
   this.appendValueInput("col")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"]);	  
-  this.appendValueInput("row")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"]);	  	  
   this.setHelpUrl("https://console.cloud.google.com/apis/library/sheets.googleapis.com");	  
   this.setInputsInline(true);
   this.setOutput(true, null);
