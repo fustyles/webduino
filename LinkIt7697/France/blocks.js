@@ -1,3 +1,79 @@
+Blockly.Blocks['esp32_blemouse'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_SHOW"])	
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_INITIAL_SHOW"]);
+    this.appendValueInput("blename")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["ESP32_BLUETOOTH_NAME_SHOW"]);
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(140);
+  }
+};
+
+Blockly.Blocks['esp32_blemouse_click'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_SHOW"])	
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_CLICK_SHOW"]);		
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)	
+			.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["ESP32_BLEMOUSE_LEFT"],"MOUSE_LEFT"],
+				[Blockly.Msg["ESP32_BLEMOUSE_RIGHT"],"MOUSE_RIGHT"],
+				[Blockly.Msg["ESP32_BLEMOUSE_MIDDLE"],"MOUSE_MIDDLE"],
+				[Blockly.Msg["ESP32_BLEMOUSE_BACK"],"MOUSE_BACK"],
+				[Blockly.Msg["ESP32_BLEMOUSE_FORWARD"],"MOUSE_FORWARD"],
+				[Blockly.Msg["ESP32_BLEMOUSE_LEFT_RIGHT"],"MOUSE_LEFT | MOUSE_RIGHT"],
+				[Blockly.Msg["ESP32_BLEMOUSE_LEFT_RIGHT_MIDDLE"],"MOUSE_LEFT | MOUSE_RIGHT | MOUSE_MIDDLE"]
+		]), "event");		
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(140);
+  }
+};
+
+Blockly.Blocks['esp32_blemouse_move'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_SHOW"])	
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_MOVE_SHOW"]);		
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)	
+			.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["ESP32_BLEMOUSE_SCROLLUP"],"SU"],
+				[Blockly.Msg["ESP32_BLEMOUSE_SCROLLDOWN"],"SD"],
+				[Blockly.Msg["ESP32_BLEMOUSE_SCROLLLEFT"],"SL"],
+				[Blockly.Msg["ESP32_BLEMOUSE_SCROLLRIGHT"],"SR"],
+				[Blockly.Msg["ESP32_BLEMOUSE_POINTUP"],"PU"],
+				[Blockly.Msg["ESP32_BLEMOUSE_POINTDOWN"],"PD"],
+				[Blockly.Msg["ESP32_BLEMOUSE_POINTLEFT"],"PL"],
+				[Blockly.Msg["ESP32_BLEMOUSE_POINTRIGHT"],"PR"]
+		]), "mode");
+	this.appendValueInput("delaytime")
+			.setAlign(Blockly.ALIGN_RIGHT) 		
+			.appendField(Blockly.Msg["ESP32_BLEMOUSE_DELAYTIME"])
+			.setCheck("Number");		
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(140);
+  }
+};
+
+
+
+
+
+
+
+
+
+
 Blockly.Blocks.wire_initial={
 	init:function(){
 		this.appendDummyInput()
@@ -7821,14 +7897,14 @@ Blockly.Blocks['controls_spreadsheet_getcell_query'] = {
   init: function () {
   this.appendDummyInput()
 	  .appendField(Blockly.Msg["SPREADSHEET_GET_CELL_ARRAY_SHOW"]); 
-  this.appendValueInput("row")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"]);		  
   this.appendValueInput("col")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_COL_SHOW"]);	  
+  this.appendValueInput("row")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROW_SHOW"]);	  	  
   this.setHelpUrl("https://console.cloud.google.com/apis/library/sheets.googleapis.com");	  
   this.setInputsInline(true);
   this.setOutput(true, null);

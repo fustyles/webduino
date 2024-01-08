@@ -1070,6 +1070,25 @@
 		  </block>		  
 		</category>
 		
+		<category id="france7" name="blemousemodule">
+		  <block type="esp32_blemouse">
+			<value name="blename">
+			  <block type="text" id="100">
+				<field name="TEXT">ESP32 MOUSE</field>
+			  </block>
+			</value>		  
+		  </block>
+		  <block type="esp32_blemouse_click">			
+		  </block>
+		  <block type="esp32_blemouse_move">
+			<value name="delaytime">
+			  <block type="math_number">
+				<field name="NUM">100</field>
+			  </block>
+			</value>		  
+		  </block>		  
+		</category>		
+		
 		<category id="france22" name="serverlinkit7697"> 	  
 			  <block type="linkit7697_myfirmata">
 				<value name="ssid">

@@ -1,3 +1,57 @@
+Blockly.Arduino['esp32_blemouse'] = function(block) {
+    var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_.define_esp32_blemouse_include = '#include <BleMouse.h>\nBleMouse bleMouse('+blename+', "Espressif", 100);\n';
+	Blockly.Arduino.definitions_.blemouse = '\n'+
+			'void blemouse(String type, byte event, String mode, float delaytime) {\n'+
+			'  if (type=="click") \n'+
+			'  	bleMouse.click(event);\n'+
+			'  else if (type=="move") {\n'+
+			'  	unsigned long startTime;\n'+
+			'  	startTime = millis();\n'+
+			'  	while(millis()<startTime+delaytime) {\n'+
+			'  	  if (mode=="SU")\n'+
+			'  		  bleMouse.move(0,0,1);\n'+
+			'  	  else if (mode=="SD")\n'+
+			'  		  bleMouse.move(0,0,-1);\n'+
+			'  	  else if (mode=="SL")\n'+
+			'  		  bleMouse.move(0,0,0,-1);\n'+
+			'  	  else if (mode=="SR")\n'+
+			'  		  bleMouse.move(0,0,0,1);\n'+
+			'  	  else if (mode=="PU")\n'+
+			'  		  bleMouse.move(0,-1);\n'+
+			'  	  else if (mode=="PD")\n'+
+			'  		  bleMouse.move(0,1);\n'+
+			'  	  else if (mode=="PL")\n'+
+			'  		  bleMouse.move(-1,0);\n'+
+			'  	  else if (mode=="PR")\n'+
+			'  		  bleMouse.move(1,0);\n'+
+			'  	  delay(100);\n'+
+			'  	}\n'+
+			' }\n'+			
+			'}\n';
+
+	Blockly.Arduino.setups_.blemouse='bleMouse.begin();\n';	
+			
+  code = '';
+  return code;
+};
+
+Blockly.Arduino['esp32_blemouse_click'] = function(block) {	
+    var event = block.getFieldValue('event');
+	return 'blemouse("click", '+event+', "", 0);\n';
+};
+
+Blockly.Arduino['esp32_blemouse_move'] = function(block) {
+	var mode = block.getFieldValue('mode');
+	var delaytime = Blockly.Arduino.valueToCode(block, 'delaytime', Blockly.Arduino.ORDER_ATOMIC)||0;
+	return 'blemouse("move", 0, "'+mode+'", '+delaytime+');\n';
+};
+
+
+
+
+
+
 Blockly.Arduino.wire_initial = function(block){
 	var address = Blockly.Arduino.valueToCode(block, 'address', Blockly.Arduino.ORDER_ATOMIC)||0;
 	address = address.replace(/\"/g,"").replace(/\'/g,"");

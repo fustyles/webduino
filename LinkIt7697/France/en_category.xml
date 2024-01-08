@@ -109,4 +109,5 @@
 <category><name>Emakefun</name><replace>Emakefun board</replace></category>
 <category><name>amb82_mini</name><replace>AMB82_MINI</replace></category>
 <category><name>wire</name><replace>Wire.h(I2C)</replace></category>
+<category><name>blemousemodule</name><replace>ESP32 Mouse Module</replace></category>
 </xml>
