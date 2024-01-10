@@ -93,7 +93,7 @@
 <category><name>adxl345</name><replace>ADXL345 3-axis accelerometer</replace></category>
 <category><name>openai_chat</name><replace>openAI chat</replace></category>
 <category><name>gy30</name><replace>GY-30 Light intensity sensor</replace></category>
-<category><name>blekeyboardmodule</name><replace>ESP32 Keyboard Module</replace></category>
+<category><name>blekeyboardmodule</name><replace>ESP32 Keyboard</replace></category>
 <category><name>webusb</name><replace>WebUSB Module</replace></category>
 <category><name>joystick</name><replace>Joystick</replace></category>
 <category><name>mpu6050</name><replace>MPU6050</replace></category>
@@ -109,5 +109,5 @@
 <category><name>Emakefun</name><replace>Emakefun board</replace></category>
 <category><name>amb82_mini</name><replace>AMB82_MINI</replace></category>
 <category><name>wire</name><replace>Wire.h(I2C)</replace></category>
-<category><name>blemousemodule</name><replace>ESP32 Mouse Module</replace></category>
+<category><name>blemousemodule</name><replace>ESP32 Mouse</replace></category>
 </xml>

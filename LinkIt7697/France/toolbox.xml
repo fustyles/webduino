@@ -1080,13 +1080,25 @@
 		  </block>
 		  <block type="esp32_blemouse_click">			
 		  </block>
-		  <block type="esp32_blemouse_move">
+		  <block type="esp32_blemouse_move_scroll">
 			<value name="delaytime">
 			  <block type="math_number">
 				<field name="NUM">100</field>
 			  </block>
 			</value>		  
-		  </block>		  
+		  </block>
+		  <block type="esp32_blemouse_move_point">
+			<value name="delaytime">
+			  <block type="math_number">
+				<field name="NUM">100</field>
+			  </block>
+			</value>
+			<value name="pixels">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>			
+		  </block>			  
 		</category>		
 		
 		<category id="france22" name="serverlinkit7697"> 	  
@@ -11060,6 +11072,13 @@
 			  </block>
 			</value>				
 		</block>
+		<block type="wire_clock">
+			<value name="frequency">
+			  <block type="math_number">
+				<field name="NUM">400000</field>
+			  </block>
+			</value>		
+		</block>		
 		<block type="wire_write_start">			
 		</block>		
 		<block type="wire_write">

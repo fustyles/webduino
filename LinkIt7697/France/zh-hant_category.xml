@@ -95,7 +95,7 @@
 <category><name>adxl345</name><replace>ADXL345加速度計</replace></category>
 <category><name>openai_chat</name><replace>openAI 聊天</replace></category>
 <category><name>gy30</name><replace>GY-30光照度</replace></category>
-<category><name>blekeyboardmodule</name><replace>ESP32藍芽鍵盤模組</replace></category>
+<category><name>blekeyboardmodule</name><replace>ESP32藍芽鍵盤</replace></category>
 <category><name>webusb</name><replace>網頁USB模組</replace></category>
 <category><name>joystick</name><replace>Joystick搖桿</replace></category>
 <category><name>mpu6050</name><replace>MPU6050六軸傳感器</replace></category>
@@ -112,5 +112,5 @@
 <category><name>Emakefun</name><replace>Emakefun擴展板</replace></category>
 <category><name>amb82_mini</name><replace>AMB82_MINI</replace></category>
 <category><name>wire</name><replace>Wire.h(I2C)</replace></category>
-<category><name>blemousemodule</name><replace>ESP32藍芽滑鼠模組</replace></category>
+<category><name>blemousemodule</name><replace>ESP32藍芽滑鼠</replace></category>
 </xml>

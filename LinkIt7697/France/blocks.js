@@ -37,7 +37,7 @@ Blockly.Blocks['esp32_blemouse_click'] = {
   }
 };
 
-Blockly.Blocks['esp32_blemouse_move'] = {
+Blockly.Blocks['esp32_blemouse_move_scroll'] = {
   init: function() {
 	this.appendDummyInput()
         .appendField(Blockly.Msg["ESP32_BLEMOUSE_SHOW"])	
@@ -48,11 +48,7 @@ Blockly.Blocks['esp32_blemouse_move'] = {
 				[Blockly.Msg["ESP32_BLEMOUSE_SCROLLUP"],"SU"],
 				[Blockly.Msg["ESP32_BLEMOUSE_SCROLLDOWN"],"SD"],
 				[Blockly.Msg["ESP32_BLEMOUSE_SCROLLLEFT"],"SL"],
-				[Blockly.Msg["ESP32_BLEMOUSE_SCROLLRIGHT"],"SR"],
-				[Blockly.Msg["ESP32_BLEMOUSE_POINTUP"],"PU"],
-				[Blockly.Msg["ESP32_BLEMOUSE_POINTDOWN"],"PD"],
-				[Blockly.Msg["ESP32_BLEMOUSE_POINTLEFT"],"PL"],
-				[Blockly.Msg["ESP32_BLEMOUSE_POINTRIGHT"],"PR"]
+				[Blockly.Msg["ESP32_BLEMOUSE_SCROLLRIGHT"],"SR"]
 		]), "mode");
 	this.appendValueInput("delaytime")
 			.setAlign(Blockly.ALIGN_RIGHT) 		
@@ -65,7 +61,33 @@ Blockly.Blocks['esp32_blemouse_move'] = {
   }
 };
 
-
+Blockly.Blocks['esp32_blemouse_move_point'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_SHOW"])	
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_MOVE_SHOW"]);		
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)	
+			.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["ESP32_BLEMOUSE_POINTUP"],"PU"],
+				[Blockly.Msg["ESP32_BLEMOUSE_POINTDOWN"],"PD"],
+				[Blockly.Msg["ESP32_BLEMOUSE_POINTLEFT"],"PL"],
+				[Blockly.Msg["ESP32_BLEMOUSE_POINTRIGHT"],"PR"]
+		]), "mode");
+	this.appendValueInput("delaytime")
+			.setAlign(Blockly.ALIGN_RIGHT) 		
+			.appendField(Blockly.Msg["ESP32_BLEMOUSE_DELAYTIME"])
+			.setCheck("Number");
+	this.appendValueInput("pixels")
+			.setAlign(Blockly.ALIGN_RIGHT) 		
+			.appendField(Blockly.Msg["ESP32_BLEMOUSE_PIXELS"])
+			.setCheck("Number");				
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(140);
+  }
+};
 
 
 
@@ -124,6 +146,21 @@ Blockly.Blocks.wire_write={
 		    .setCheck(null)
 		    .setAlign(Blockly.ALIGN_RIGHT)
 			.appendField(Blockly.Msg["WIRE_WRITE"]);		
+		this.setInputsInline(true);
+		this.setPreviousStatement(true);
+		this.setNextStatement(true);
+		this.setColour(Blockly.Msg["HUE_18"]);
+	}
+};
+
+Blockly.Blocks.wire_clock={
+	init:function(){
+		this.appendDummyInput()
+			.appendField(Blockly.Msg["WIRE"]);
+	    this.appendValueInput("frequency")
+		    .setCheck(null)
+		    .setAlign(Blockly.ALIGN_RIGHT)
+			.appendField(Blockly.Msg["WIRE_CLOCK"]);		
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
