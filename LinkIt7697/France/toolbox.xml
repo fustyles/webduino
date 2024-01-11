@@ -10801,13 +10801,6 @@
 				<field name="NUM">12</field>
 			  </block>
 			</value> 			
-		</block>
-		<block type="ps2_analog_max">
-			<value name="val">
-			  <block type="math_number">
-				<field name="NUM">255</field>
-			  </block>
-			</value>
 		</block>		
 	    <block type="controls_if">
 		  <value name="IF0">
