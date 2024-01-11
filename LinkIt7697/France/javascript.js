@@ -870,13 +870,13 @@ Blockly.Arduino['ps2_initial'] = function (block) {
 	var DAT = Blockly.Arduino.valueToCode(block, 'DAT', Blockly.Arduino.ORDER_ATOMIC);
 	var pressures = block.getFieldValue('pressures');
 	var rumble = block.getFieldValue('rumble');
-	if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040") {
-		Blockly.Arduino.definitions_['joystick_initial_analogMax'] = 'int analogMax = 4095;\n';
-	} else if (selectBoardType()=="arduino") {
+	//if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040") {
+	//	Blockly.Arduino.definitions_['joystick_initial_analogMax'] = 'int analogMax = 4095;\n';
+	//} else if (selectBoardType()=="arduino") {
 		Blockly.Arduino.definitions_['joystick_initial_analogMax'] = 'int analogMax = 255;\n';		
-	} else {
-		Blockly.Arduino.definitions_['joystick_initial_analogMax'] = 'int analogMax = 1023;\n';
-	}
+	//} else {
+	//	Blockly.Arduino.definitions_['joystick_initial_analogMax'] = 'int analogMax = 1023;\n';
+	//}
 	
 	Blockly.Arduino.definitions_['define_ps2_initial'] = '#include <PS2X_lib.h>\n'
 														+'#define PS2_DAT        '+DAT+'\n'  
