@@ -35,6 +35,7 @@ Blockly.Msg["ESP32_BLUETOOTH_NAME_SHOW"] = "藍芽名稱";
 Blockly.Msg["ESP32_BLEMOUSE_CLICK_SHOW"] = "點擊";
 Blockly.Msg["ESP32_BLEMOUSE_PRESS_SHOW"] = "按壓";
 Blockly.Msg["ESP32_BLEMOUSE_RELEASE_SHOW"] = "釋放";
+Blockly.Msg["ESP32_BLEMOUSE_ISPRESSED_SHOW"] = "被按壓";
 Blockly.Msg["ESP32_BLEMOUSE_LEFT"] = "左鍵";
 Blockly.Msg["ESP32_BLEMOUSE_RIGHT"] = "右鍵";
 Blockly.Msg["ESP32_BLEMOUSE_MIDDLE"] = "滾輪";
