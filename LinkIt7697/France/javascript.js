@@ -41,6 +41,16 @@ Blockly.Arduino['esp32_blemouse_click'] = function(block) {
 	return 'blemouse("click", '+event+', "", 0, 0);\n';
 };
 
+Blockly.Arduino['esp32_blemouse_press'] = function(block) {	
+    var event = block.getFieldValue('event');
+	return 'bleMouse.press('+event+');\n';
+};
+
+Blockly.Arduino['esp32_blemouse_release'] = function(block) {
+    var event = block.getFieldValue('event');	
+	return 'bleMouse.release('+event+');\n';
+};
+
 Blockly.Arduino['esp32_blemouse_move_scroll'] = function(block) {
 	var mode = block.getFieldValue('mode');
 	var delaytime = Blockly.Arduino.valueToCode(block, 'delaytime', Blockly.Arduino.ORDER_ATOMIC)||100;

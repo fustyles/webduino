@@ -1080,6 +1080,10 @@
 		  </block>
 		  <block type="esp32_blemouse_click">			
 		  </block>
+		  <block type="esp32_blemouse_press">			
+		  </block>
+		  <block type="esp32_blemouse_release">			
+		  </block>		  
 		  <block type="esp32_blemouse_move_scroll">
 			<value name="delaytime">
 			  <block type="math_number">
