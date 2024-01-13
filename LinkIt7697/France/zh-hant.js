@@ -2342,6 +2342,7 @@ Blockly.Msg["THINGSPEAK_RECORD_FIELD_SHOW"] = "欄位";
 Blockly.Msg["FU_JOYSTICK"] = "Joystick搖桿";
 Blockly.Msg["FU_JOYSTICK_INITIAL"] = "Joystick搖桿 初始化 腳位";
 Blockly.Msg["FU_JOYSTICK_ROTATE"] = "旋轉方位";
+Blockly.Msg["FU_JOYSTICK_ANALOG_MAX"] = "Joystick搖桿 類比輸入最大值";
 Blockly.Msg["FU_JOYSTICK_DIGITALREAD"] = "按鈕";
 Blockly.Msg["FU_JOYSTICK_ANALOGREAD_X"] = "X軸";
 Blockly.Msg["FU_JOYSTICK_ANALOGREAD_Y"] = "Y軸";

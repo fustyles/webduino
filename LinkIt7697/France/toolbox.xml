@@ -10805,6 +10805,13 @@
 			  </block>
 			</value> 			
 		</block>
+		<block type="fu_joystick_analog_max">
+			<value name="val">
+			  <block type="math_number">
+				<field name="NUM">4095</field>
+			  </block>
+			</value> 		
+		</block>		
 		<block type="fu_joystick_stick_direction">			
 		</block>
 		<block type="fu_joystick_button">			

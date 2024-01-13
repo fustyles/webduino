@@ -1657,7 +1657,13 @@ Blockly.Arduino['fu_joystick_initial'] = function(block) {
 		Blockly.Arduino.definitions_['joystick_initial_analogMax'] = 'int analogMax = 1023;\n';
 	}	
 	
-	var code = ';\n' ;
+	var code = '' ;
+	return code;
+};
+
+Blockly.Arduino['fu_joystick_analog_max'] = function(block) {
+	var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+	var code = 'analogMax = '+val+';\n';
 	return code;
 };
 

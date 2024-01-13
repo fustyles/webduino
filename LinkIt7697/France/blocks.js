@@ -3034,6 +3034,19 @@ Blockly.Blocks['fu_joystick_initial'] = {
   }
 };
 
+Blockly.Blocks['fu_joystick_analog_max'] = {
+	init: function() {
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg["FU_JOYSTICK_ANALOG_MAX"]);		
+	this.appendValueInput("val")
+		.setCheck("Number");
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(Blockly.Msg["HUE_25"]);
+	}
+};
+
 Blockly.Blocks['fu_joystick_stick_direction'] = {
   init: function() {
     this.appendDummyInput()

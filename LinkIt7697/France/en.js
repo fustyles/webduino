@@ -2332,6 +2332,7 @@ Blockly.Msg["THINGSPEAK_RECORD_FIELD_SHOW"] = "field name";
 Blockly.Msg["FU_JOYSTICK"] = "Joystick";
 Blockly.Msg["FU_JOYSTICK_INITIAL"] = "Joystick Initial pin";
 Blockly.Msg["FU_JOYSTICK_ROTATE"] = "Rotate angle";
+Blockly.Msg["FU_JOYSTICK_ANALOG_MAX"] = "Joystick  max analogRead value";
 Blockly.Msg["FU_JOYSTICK_DIGITALREAD"] = "button";
 Blockly.Msg["FU_JOYSTICK_ANALOGREAD_X"] = "X axis";
 Blockly.Msg["FU_JOYSTICK_ANALOGREAD_Y"] = "Y axis";
