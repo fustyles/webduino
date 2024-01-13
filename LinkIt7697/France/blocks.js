@@ -1,12 +1,12 @@
 Blockly.Blocks['esp32_blemouse'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg["ESP32_BLEMOUSE_SHOW"])	
-        .appendField(Blockly.Msg["ESP32_BLEMOUSE_INITIAL_SHOW"]);
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE"])	
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_INITIAL"]);
     this.appendValueInput("blename")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg["ESP32_BLUETOOTH_NAME_SHOW"]);
+		.appendField(Blockly.Msg["ESP32_BLUETOOTH_NAME"]);
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -14,11 +14,22 @@ Blockly.Blocks['esp32_blemouse'] = {
   }
 };
 
+Blockly.Blocks['esp32_blemouse_isConnected'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE"])
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_ISCONNECTED"]);		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(140);
+  }
+};
+
 Blockly.Blocks['esp32_blemouse_click'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg["ESP32_BLEMOUSE_SHOW"])	
-        .appendField(Blockly.Msg["ESP32_BLEMOUSE_CLICK_SHOW"]);		
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE"])	
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_CLICK"]);		
     this.appendDummyInput()	 
 			.setAlign(Blockly.ALIGN_RIGHT)	
 			.appendField(new Blockly.FieldDropdown([
@@ -40,8 +51,8 @@ Blockly.Blocks['esp32_blemouse_click'] = {
 Blockly.Blocks['esp32_blemouse_press'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg["ESP32_BLEMOUSE_SHOW"])	
-        .appendField(Blockly.Msg["ESP32_BLEMOUSE_PRESS_SHOW"]);		
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE"])	
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_PRESS"]);		
     this.appendDummyInput()	 
 			.setAlign(Blockly.ALIGN_RIGHT)	
 			.appendField(new Blockly.FieldDropdown([
@@ -63,8 +74,8 @@ Blockly.Blocks['esp32_blemouse_press'] = {
 Blockly.Blocks['esp32_blemouse_release'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg["ESP32_BLEMOUSE_SHOW"])	
-        .appendField(Blockly.Msg["ESP32_BLEMOUSE_RELEASE_SHOW"]);
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE"])	
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_RELEASE"]);
     this.appendDummyInput()	 
 			.setAlign(Blockly.ALIGN_RIGHT)	
 			.appendField(new Blockly.FieldDropdown([
@@ -86,7 +97,7 @@ Blockly.Blocks['esp32_blemouse_release'] = {
 Blockly.Blocks['esp32_blemouse_ispressed'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg["ESP32_BLEMOUSE_SHOW"]);
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE"]);
     this.appendDummyInput()	 
 			.setAlign(Blockly.ALIGN_RIGHT)
 			.appendField(new Blockly.FieldDropdown([
@@ -99,7 +110,7 @@ Blockly.Blocks['esp32_blemouse_ispressed'] = {
 				[Blockly.Msg["ESP32_BLEMOUSE_LEFT_RIGHT_MIDDLE"],"MOUSE_LEFT | MOUSE_RIGHT | MOUSE_MIDDLE"]
 		]), "event");
 	this.appendDummyInput()
-        .appendField(Blockly.Msg["ESP32_BLEMOUSE_ISPRESSED_SHOW"]);		
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_ISPRESSED"]);		
 	this.setInputsInline(true);
 	this.setOutput(true, null);  
 	this.setColour(140);
@@ -109,8 +120,8 @@ Blockly.Blocks['esp32_blemouse_ispressed'] = {
 Blockly.Blocks['esp32_blemouse_move_scroll'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg["ESP32_BLEMOUSE_SHOW"])	
-        .appendField(Blockly.Msg["ESP32_BLEMOUSE_MOVE_SHOW"]);		
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE"])	
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_MOVE"]);		
     this.appendDummyInput()	 
 			.setAlign(Blockly.ALIGN_RIGHT)	
 			.appendField(new Blockly.FieldDropdown([
@@ -133,8 +144,8 @@ Blockly.Blocks['esp32_blemouse_move_scroll'] = {
 Blockly.Blocks['esp32_blemouse_move_point'] = {
   init: function() {
 	this.appendDummyInput()
-        .appendField(Blockly.Msg["ESP32_BLEMOUSE_SHOW"])	
-        .appendField(Blockly.Msg["ESP32_BLEMOUSE_MOVE_SHOW"]);		
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE"])	
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_MOVE"]);		
     this.appendDummyInput()	 
 			.setAlign(Blockly.ALIGN_RIGHT)	
 			.appendField(new Blockly.FieldDropdown([

@@ -1078,6 +1078,8 @@
 			  </block>
 			</value>		  
 		  </block>
+		  <block type="esp32_blemouse_isConnected">			
+		  </block>		  
 		  <block type="esp32_blemouse_click">			
 		  </block>
 		  <block type="esp32_blemouse_press">			

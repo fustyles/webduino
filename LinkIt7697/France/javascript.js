@@ -36,6 +36,11 @@ Blockly.Arduino['esp32_blemouse'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['esp32_blemouse_isConnected'] = function(block) {
+	var code = 'bleMouse.isConnected()';	
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['esp32_blemouse_click'] = function(block) {	
     var event = block.getFieldValue('event');
 	return 'blemouse("click", '+event+', "", 0, 0);\n';
