@@ -2304,6 +2304,9 @@ Blockly.Msg["GY30_GETDATA_SHOW"] = "GY-30 Light intensity sensor read data(lx)";
 
 Blockly.Msg["ESP32_BLEKEYBOARD_SHOW"] = "ESP32 BLE Keyboard get data once from serial";
 Blockly.Msg["ESP32_BLEKEYBOARD_INITIAL_SHOW"] = "initial";
+Blockly.Msg["ESP32_BLEKEYBOARD_ISCONNECTED_SHOW"] = "is connected";
+Blockly.Msg["ESP32_BLEKEYBOARD_RELEASE_SHOW"] = "Release";
+Blockly.Msg["ESP32_BLEKEYBOARD_RELEASE_ALL_SHOW"] = "Release all";
 Blockly.Msg["ESP32_BLEKEYBOARD_AFTER_READ_SHOW"] = "after reading data once";
 Blockly.Msg["ESP32_BLEKEYBOARD_PRESS_SHOW"] = "ESP32 BLE Keyboard press";
 Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"] = "keycode";

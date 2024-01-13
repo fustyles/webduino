@@ -1029,6 +1029,8 @@
 			  </block>
 			</value>
 		  </block>
+		  <block type="esp32_blekeyboard_isConnected">
+		  </block>		  
 		  <block type="esp32_blekeyboard_press">
 			<value name="keycode1">
 			  <block type="esp32_blekeyboard_keycode">
@@ -1045,6 +1047,30 @@
 			  </block>
 			</value>			
 		  </block>
+		  <block type="esp32_blekeyboard_press_norelease">
+			<value name="keycode1">
+			  <block type="esp32_blekeyboard_keycode">
+				<field name="keycode">0</field>
+			  </block>
+			</value>
+			<value name="keycode2">
+			</value>
+			<value name="keycode3">
+			</value>			
+		  </block>	
+		  <block type="esp32_blekeyboard_release">
+			<value name="keycode1">
+			  <block type="esp32_blekeyboard_keycode">
+				<field name="keycode">0</field>
+			  </block>
+			</value>
+			<value name="keycode2">
+			</value>
+			<value name="keycode3">
+			</value>			
+		  </block>	
+		  <block type="esp32_blekeyboard_release_all">			
+		  </block>		  
 		  <block type="esp32_blekeyboard_print">
 			<value name="characters">
 			  <block type="text">

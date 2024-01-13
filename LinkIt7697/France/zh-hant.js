@@ -2315,7 +2315,10 @@ Blockly.Msg["GY30_GETDATA_SHOW"] = "GY-30光照度 讀取感測器值(lx)";
 
 Blockly.Msg["ESP32_BLEKEYBOARD_SHOW"] = "ESP32藍芽鍵盤";
 Blockly.Msg["ESP32_BLEKEYBOARD_INITIAL_SHOW"] = "初始化";
+Blockly.Msg["ESP32_BLEKEYBOARD_ISCONNECTED_SHOW"] = "已連線";
 Blockly.Msg["ESP32_BLEKEYBOARD_PRESS_SHOW"] = "按壓";
+Blockly.Msg["ESP32_BLEKEYBOARD_RELEASE_SHOW"] = "釋放";
+Blockly.Msg["ESP32_BLEKEYBOARD_RELEASE_ALL_SHOW"] = "釋放全部";
 Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"] = "鍵碼";
 Blockly.Msg["ESP32_BLEKEYBOARD_PRESSTIME_SHOW"] = "按壓時間(ms)";			
 Blockly.Msg["ESP32_BLEKEYBOARD_PRINT_SHOW"] = "印出";		
