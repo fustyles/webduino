@@ -82,12 +82,44 @@ SPDX-License-Identifier: Apache-2.0
 					<a href="#" id="button_tool" title="Open Developer Tool"><i class="small material-icons">construction</i></a>
 					
 					<i>　</i>
+				    <i class="material-icons">settings_applications</i>
+					<i style="text-align: center;line-height: 50px;-align: middle;">
+						<select id="board-selector" style="height:24px;font-size:18px" onclick="selectBoard(this.value)">
+						</select>
+						<script>
+							$.ajax({
+								type: "GET" ,
+								url: "board/board_F2.xml" ,
+								dataType: "xml",
+								timeout: 3000,
+								async: false,
+								success: function(xml, textStatus) {
+									var dropdown = document.getElementById('board-selector');
+									if (xml.firstChild) {
+										var Nodes = xml.firstChild.childNodes;
+										if (Nodes.length>0) {
+											for (var i=0;i<Nodes.length;i++){
+												if (Nodes[i].nodeName!="#text") {
+													dropdown.add(new Option(Nodes[i].getAttribute("name"), Nodes[i].getAttribute("upload")));
+												}							
+											}
+										}
+									}
+								},
+								error: function (jqXHR, textStatus, errorThrown) {
+									console.log(errorThrown);
+								}
+							});
+						</script>						
+					</i>
+					<i>　</i>					
 				    <i class="material-icons">language</i>
 					<i style="text-align: center;line-height: 50px;-align: middle;">
 						<select id="lang-selector" style="height:24px;font-size:18px">
 						</select>
 					</i>
 					<i>　</i>
+					
 				</ul>
 			</td>
 		</tr>					

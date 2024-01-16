@@ -201,6 +201,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		updateMsg();
 		newFile();
 		contentZoom('arduino');
+		
+		document.getElementById('button_addExtensionBlocks').click();
 	
 	}, 1000);
 	
@@ -1059,6 +1061,13 @@ function searchBlocks() {
 	event.preventDefault();
 }
 
+function selectBoard(board) {
+  if (Blockly.getMainWorkspace()) {
+	var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
+	Blockly.getMainWorkspace().clear();
+	Blockly.Xml.domToWorkspace(xml, Blockly.getMainWorkspace());
+  }	
+}
 
 function addHeadScript(url) {
 	var s = document.createElement("script");
