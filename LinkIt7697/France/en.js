@@ -1010,6 +1010,7 @@ Blockly.Msg["FU_SERIAL_PRINT_BIN"] = "BIN";
 Blockly.Msg["FU_SERIAL_PRINT_OCT"] = "OCT";
 Blockly.Msg["FU_SERIAL_PRINT_DEC"] = "DEC"; 
 Blockly.Msg["FU_SERIAL_PRINT_HEX"] = "HEX";
+Blockly.Msg["FU_SERIAL_NEWLINE"] = "Newline";
 
 Blockly.Msg["ESP32_CAM_GOOGLEDRIVE_SHOW"] = "ESP32-CAM Upload Still to Google drive";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_SHOW"] = "ESP32-CAM Upload Still to Google spreadsheet";

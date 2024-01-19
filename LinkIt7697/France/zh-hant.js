@@ -1011,6 +1011,7 @@ Blockly.Msg["FU_SERIAL_PRINT_BIN"] = "二進制";
 Blockly.Msg["FU_SERIAL_PRINT_OCT"] = "十進制";
 Blockly.Msg["FU_SERIAL_PRINT_DEC"] = "十二進制"; 
 Blockly.Msg["FU_SERIAL_PRINT_HEX"] = "十六進制";
+Blockly.Msg["FU_SERIAL_NEWLINE"] = "換行";
 
 Blockly.Msg["ESP32_CAM_GOOGLEDRIVE_SHOW"] = "ESP32-CAM 截圖上傳Google雲端硬碟";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_SHOW"] = "ESP32-CAM 截圖上傳Google試算表";

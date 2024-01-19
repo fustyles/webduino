@@ -16171,6 +16171,12 @@ Blockly.Arduino['servermodule_parameter_set_address4'] = function (block) {
 };
 
 //SERIAL
+Blockly.Arduino['fu_serial_newline'] = function(block) {
+  var code = '"\\n"';
+  return [code, Blockly.Arduino.ORDER_NONE];
+  return '';
+};
+
 Blockly.Arduino['fu_serial_begin'] = function(block) {
   var serial = block.getFieldValue('serial'); 
   var value_baudrate = Blockly.Arduino.valueToCode(block, 'baudrate', Blockly.Arduino.ORDER_ATOMIC);

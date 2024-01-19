@@ -87,6 +87,8 @@
 					<field name="TEXT"></field>
 				</shadow>
 			</value>
+		</block>
+		<block type="fu_serial_newline">
 		</block>		
 		<block type="fu_serial_begin_config">
 			<field name="config">SERIAL_8N1</field>

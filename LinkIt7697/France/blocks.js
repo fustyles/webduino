@@ -23459,6 +23459,17 @@ Blockly.Blocks['servermodule_parameter_set_address4'] = {
 
 
 //SERIAL
+
+Blockly.Blocks['fu_serial_newline'] = {
+  init: function() {
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["FU_SERIAL_NEWLINE"]);
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(Blockly.Msg["FU_SERIAL_HUE"]);
+  }
+};
+
 Blockly.Blocks['fu_serial_begin'] = {
   init: function() {
     this.appendDummyInput()
