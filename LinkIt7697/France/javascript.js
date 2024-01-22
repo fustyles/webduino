@@ -18676,7 +18676,7 @@ Blockly.Arduino['esp32_cam_linenotify'] = function(block) {
 			'    boolean state = false;\n'+
 			'    \n'+
 			'    while ((startTime + waitTime) > millis()) {\n'+
-			'      Serial.print(".");\n'+
+			'      //Serial.print(".");\n'+
 			'      delay(100);\n'+
 			'      while (client_tcp.available())  {\n'+
 			'          char c = client_tcp.read();\n'+
@@ -18691,7 +18691,7 @@ Blockly.Arduino['esp32_cam_linenotify'] = function(block) {
 			'       }\n'+
 			'       if (Feedback.length()>0) break;\n'+
 			'    }\n'+
-			'    Serial.println();\n'+
+			'    //Serial.println();\n'+
 			'    client_tcp.stop();\n'+
 			'    return Feedback;\n'+
 			'  }\n'+
