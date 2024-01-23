@@ -1,3 +1,74 @@
+Blockly.Arduino['TinyGPS_initial'] = function(block) { 
+	var tx = Blockly.Arduino.valueToCode(block, 'tx', Blockly.Arduino.ORDER_ATOMIC);
+	var rx = Blockly.Arduino.valueToCode(block, 'rx', Blockly.Arduino.ORDER_ATOMIC);
+	var baud = Blockly.Arduino.valueToCode(block, 'baud', Blockly.Arduino.ORDER_ATOMIC);
+  
+	Blockly.Arduino.definitions_['TinyGPS_initial'] = '#include <SoftwareSerial.h>\n'
+														 +'#include <TinyGPS.h>\n'
+														 +'TinyGPS gps;\n'
+														 +'SoftwareSerial ss('+rx+', '+tx+');\n';				 
+												 
+	Blockly.Arduino.setups_['TinyGPS_setups'] = ''	
+												 +'ss.begin('+baud+');\n';
+
+	var code = '';
+	return code;
+};
+
+Blockly.Arduino['TinyGPS_statement'] = function(block){
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+																			
+	var code = '//Wire.beginTransmission(I2C_ADDR);\n'+
+				  'bool newData = false;\n'+
+				  'unsigned long TinyGPS_chars;\n'+
+				  'unsigned short TinyGPS_sentences, TinyGPS_failed;\n'+
+				  'for (unsigned long start = millis(); millis() - start < 1000;) {\n'+
+				  '  while (ss.available()) {\n'+
+				  '    char c = ss.read();\n'+
+				  '    if (gps.encode(c)) newData = true;\n'+
+				  '  }\n'+
+				  '}\n'+
+				  'if (newData) {\n'+
+				  '  float TinyGPS_flat, TinyGPS_flon;\n'+
+				  '  unsigned long TinyGPS_age;\n'+
+				  '  gps.f_get_position(&TinyGPS_flat, &TinyGPS_flon, &TinyGPS_age);\n'+
+				  '  gps.stats(&TinyGPS_chars, &TinyGPS_sentences, &TinyGPS_failed);\n'+statement+
+				  '}\n';
+	return code;
+};
+
+Blockly.Arduino['TinyGPS_get_data'] = function(block){
+  var data = block.getFieldValue('data');
+  if (data=="flat")	
+	var code = '(TinyGPS_flat == TinyGPS::GPS_INVALID_F_ANGLE ? 0.0 : TinyGPS_flat, 6)';
+  else if (data=="flon")
+	var code = '(TinyGPS_flon == TinyGPS::GPS_INVALID_F_ANGLE ? 0.0 : TinyGPS_flon, 6)';
+  else if (data=="satellites")
+	var code = '(gps.satellites() == TinyGPS::GPS_INVALID_SATELLITES ? 0 : gps.satellites())';
+  else if (data=="hdop")
+	var code = '(gps.hdop() == TinyGPS::GPS_INVALID_HDOP ? 0 : gps.hdop())';
+  else
+	var code = ''; 
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['TinyGPS_get_state'] = function(block){
+  var state = block.getFieldValue('state');
+  if (state=="chars")	
+	var code = 'TinyGPS_chars';
+  else if (state=="sentences")
+	var code = 'TinyGPS_sentences';
+  else
+	var code = ''; 
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+
+
+
+
+
+
 Blockly.Arduino['esp32_blekeyboard'] = function(block) {
     var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
 	Blockly.Arduino.definitions_.define_esp32_blekeyboard_include = '#include <BleKeyboard.h>\nBleKeyboard bleKeyboard;\n';

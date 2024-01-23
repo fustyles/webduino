@@ -29,6 +29,18 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["TINYGPS_INITIAL"] = "TINYGPS Initial";
+Blockly.Msg["TINYGPS_BAUD"] = "Baud";
+Blockly.Msg["TINYGPS_READ"] = "TINYGPS After reading";
+Blockly.Msg["TINYGPS_GET_DATA"] = "TINYGPS Get data";
+Blockly.Msg["TINYGPS_GET_STATE"] = "TINYGPS Get state";
+Blockly.Msg["TINYGPS_FLAT"] = "Latitude";	
+Blockly.Msg["TINYGPS_FLON"] = "Longitude";
+Blockly.Msg["TINYGPS_SATELLITES"] = "satellites";	
+Blockly.Msg["TINYGPS_HDOP"] = "hdop";
+Blockly.Msg["TINYGPS_CHARS"] = "chars";		
+Blockly.Msg["TINYGPS_SENTENCES"] = "sentences";
+
 Blockly.Msg["ESP32_BLEMOUSE"] = "ESP32 Bluetooth mouse";
 Blockly.Msg["ESP32_BLEMOUSE_INITIAL"] = "Initial";
 Blockly.Msg["ESP32_BLUETOOTH_NAME"] = "Bletooth name";

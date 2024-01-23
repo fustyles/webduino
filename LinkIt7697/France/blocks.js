@@ -1,3 +1,81 @@
+Blockly.Blocks.TinyGPS_initial={
+	init:function(){
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["TINYGPS_INITIAL"]); 
+	  this.appendValueInput("rx")
+		  .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)			  
+		  .appendField("RX");
+	  this.appendValueInput("tx")
+		  .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)			  
+		  .appendField("TX");
+    this.appendValueInput("baud")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["TINYGPS_BAUD"]);		  
+	  this.setInputsInline(!0);
+	  this.setPreviousStatement(!0,null);
+	  this.setNextStatement(!0,null);
+	  this.setColour(Blockly.Msg["HUE_12"]);  
+	}
+};
+
+Blockly.Blocks.TinyGPS_statement={
+	init:function(){
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["TINYGPS_READ"]);
+		this.appendStatementInput("statement")
+			.setCheck(null);			
+		this.setInputsInline(true);
+		this.setPreviousStatement(true);
+		this.setNextStatement(true);
+		this.setColour(Blockly.Msg["HUE_12"]);
+	}
+};
+
+Blockly.Blocks.TinyGPS_get_data={
+	init:function(){
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["TINYGPS_GET_DATA"]);
+	  this.appendDummyInput()
+		  .appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["TINYGPS_FLAT"],"flat"],		
+				[Blockly.Msg["TINYGPS_FLON"],"flon"],
+				[Blockly.Msg["TINYGPS_SATELLITES"],"satellites"],		
+				[Blockly.Msg["TINYGPS_HDOP"],"hdop"]
+		  ]),"data");		    
+	  this.setInputsInline(!0);
+	  this.setOutput(!0,null);
+	  this.setColour(Blockly.Msg["HUE_12"]);  
+	}
+};
+
+Blockly.Blocks.TinyGPS_get_state={
+	init:function(){
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["TINYGPS_GET_STATE"]);
+	  this.appendDummyInput()
+		  .appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["TINYGPS_CHARS"],"chars"],		
+				[Blockly.Msg["TINYGPS_SENTENCES"],"sentences"]
+		  ]),"state");		  	  
+	  this.setInputsInline(!0);
+	  this.setOutput(!0,null);
+	  this.setColour(Blockly.Msg["HUE_12"]);  
+	}
+};
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Blocks['esp32_blekeyboard'] = {
   init: function() {
     this.appendDummyInput()

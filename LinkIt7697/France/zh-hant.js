@@ -29,6 +29,18 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["TINYGPS_INITIAL"] = "TINYGPS 初始化";
+Blockly.Msg["TINYGPS_BAUD"] = "鮑率";
+Blockly.Msg["TINYGPS_READ"] = "TINYGPS 讀取資料後";
+Blockly.Msg["TINYGPS_GET_DATA"] = "TINYGPS 取得資料";
+Blockly.Msg["TINYGPS_GET_STATE"] = "TINYGPS 取得狀態";
+Blockly.Msg["TINYGPS_FLAT"] = "經度";	
+Blockly.Msg["TINYGPS_FLON"] = "緯度";
+Blockly.Msg["TINYGPS_SATELLITES"] = "衛星數";	
+Blockly.Msg["TINYGPS_HDOP"] = "hdop";
+Blockly.Msg["TINYGPS_CHARS"] = "chars";		
+Blockly.Msg["TINYGPS_SENTENCES"] = "sentences";
+
 Blockly.Msg["ESP32_BLEMOUSE"] = "ESP32藍芽滑鼠";
 Blockly.Msg["ESP32_BLEMOUSE_INITIAL"] = "初始化";
 Blockly.Msg["ESP32_BLUETOOTH_NAME"] = "藍芽名稱";
