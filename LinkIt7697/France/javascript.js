@@ -17189,7 +17189,7 @@ Blockly.Arduino['esp32_cam_stream_only_myfirmata'] = function(block) {
   Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
   Blockly.Arduino.definitions_.define_custom_command = '';
 	
-  Blockly.Arduino.definitions_.ExecuteCommand = 'boolean cameraState = false;\nWiFiServer server(80);\nWiFiServer server81(81);\n';
+  Blockly.Arduino.definitions_.ExecuteCommand = 'boolean cameraState = false;\nWiFiServer server81(81);\n';
 	
 	Blockly.Arduino.setups_.write_peri_reg="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
 	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
@@ -17311,68 +17311,8 @@ Blockly.Arduino['esp32_cam_stream_only_myfirmata'] = function(block) {
 			'    Serial.println("APIP address: ");\n'+
 			'    Serial.println(WiFi.softAPIP());\n'+
 			'    \n'+
-			'    server.begin();\n'+ 
 			'    server81.begin();\n'+ 			
-			'  }\n';
-
-		Blockly.Arduino.definitions_.getRequest = ''+
-			'		void getRequest() {\n'+
-			'		  WiFiClient client = server.available();\n'+
-			'		  if (client) {\n'+
-			'		    String currentLine = "";\n'+
-			'		    while (client.connected()) {\n'+
-			'		      if (client.available()) {\n'+
-			'		        char c = client.read();\n'+
-			'		        if (c == \'\\n\') {\n'+
-			'		          if (currentLine.length() == 0) {\n'+
-			'		            String head = "--Taiwan\\r\\nContent-Type: image/jpeg\\r\\n\\r\\n";\n'+
-			'		            client.println("HTTP/1.1 200 OK");\n'+
-			'		            client.println("Access-Control-Allow-Origin: *");\n'+
-			'		            client.println("Content-Type: multipart/x-mixed-replace; boundary=Taiwan");\n'+
-			'		            client.println(); \n'+
-			'		            while(client.connected()) {\n'+
-			'		              while (cameraState) {vTaskDelay(10);}\n'+
-			'		              cameraState=true;\n'+
-			'		              camera_fb_t * fb = NULL;\n'+
-			'		              fb = esp_camera_fb_get();\n'+
-			'		              if(!fb) {\n'+
-			'		                Serial.println("Camera capture failed");\n'+
-			'		                delay(1000);\n'+
-			'		                ESP.restart();\n'+
-			'		              }\n'+
-			'		              client.print(head);\n'+
-			'		              uint8_t *fbBuf = fb->buf;\n'+
-			'		              size_t fbLen = fb->len;\n'+
-			'		              for (size_t n=0;n<fbLen;n=n+1024) {\n'+
-			'		                if (n+1024<fbLen) {\n'+
-			'		                  client.write(fbBuf, 1024);\n'+
-			'		                  fbBuf += 1024;\n'+
-			'		                }\n'+
-			'		                else if (fbLen%1024>0) {\n'+
-			'		                  size_t remainder = fbLen%1024;\n'+
-			'		                  client.write(fbBuf, remainder);\n'+
-			'		                }\n'+
-			'		              }\n'+
-			'		              esp_camera_fb_return(fb);\n'+
-			'		              client.print("\\r\\n");\n'+
-			'		              cameraState=false;\n'+
-			'		              vTaskDelay(10);\n'+
-			'		            }\n'+
-			'		            cameraState=0;\n'+
-			'		            break;\n'+
-			'		          } else {\n'+
-			'		            currentLine = "";\n'+
-			'		          }\n'+
-			'		        }\n'+
-			'		        else if (c != \'\\r\') {\n'+
-			'		          currentLine += c;\n'+
-			'		        }\n'+
-			'		      }\n'+
-			'		    }\n'+
-			'		    client.stop();\n'+
-			'		  }\n'+
-			'		}\n'+
-			'		\n';			
+			'  }\n';			
 			
 		Blockly.Arduino.definitions_.getRequest81 = ''+
 			'		void getRequest81() {\n'+
@@ -17435,12 +17375,10 @@ Blockly.Arduino['esp32_cam_stream_only_myfirmata'] = function(block) {
 			'		TaskHandle_t Task0;\n'+
 			'		void codeForTask0( void * parameter ) {\n'+
 			'		  while (true) {\n'+
-			'		    getRequest();\n'+
+			'		    getRequest81();\n'+
 			'		    vTaskDelay(10);\n'+
 			'		  }\n'+
 			'		}';			
-
-	Blockly.Arduino.loops_.server_getrequest = "getRequest81();\n";	
 			
     return '';
 };
