@@ -11135,23 +11135,10 @@
 		</block>		
 	</category>	
 	<category id="france12" name="TinyGPS">
-		<block type="TinyGPS_initial">
-			<value name="rx">
-			  <block type="math_number">
-				<field name="NUM">4</field>
-			  </block>
-			</value>
-			<value name="tx">
-			  <block type="math_number">
-				<field name="NUM">3</field>
-			  </block>
-			</value>	
-			<value name="baud">
-			  <block type="math_number">
-				<field name="NUM">9600</field>
-			  </block>
-			</value>				
+		<block type="TinyGPS_initial">				
 		</block>
+		<block type="TinyGPS_readchar">				
+		</block>		
 		<block type="TinyGPS_statement">		
 		</block>		
 		<block type="TinyGPS_get_data">			

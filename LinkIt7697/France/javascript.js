@@ -1,38 +1,26 @@
 Blockly.Arduino['TinyGPS_initial'] = function(block) { 
-	var tx = Blockly.Arduino.valueToCode(block, 'tx', Blockly.Arduino.ORDER_ATOMIC);
-	var rx = Blockly.Arduino.valueToCode(block, 'rx', Blockly.Arduino.ORDER_ATOMIC);
-	var baud = Blockly.Arduino.valueToCode(block, 'baud', Blockly.Arduino.ORDER_ATOMIC);
-  
-	Blockly.Arduino.definitions_['TinyGPS_initial'] = '#include <SoftwareSerial.h>\n'
-														 +'#include <TinyGPS.h>\n'
-														 +'TinyGPS gps;\n'
-														 +'SoftwareSerial ss('+rx+', '+tx+');\n';				 
-												 
-	Blockly.Arduino.setups_['TinyGPS_setups'] = ''	
-												 +'ss.begin('+baud+');\n';
+	Blockly.Arduino.definitions_['TinyGPS_initial'] = '#include <TinyGPS.h>\nTinyGPS gps;\nbool gpsNewData = false;\n';	
 
 	var code = '';
 	return code;
 };
 
+Blockly.Arduino['TinyGPS_readchar'] = function(block){
+	var c = Blockly.Arduino.valueToCode(block, 'c', Blockly.Arduino.ORDER_ATOMIC);														
+	var code = 'if (gps.encode('+c+')) gpsNewData = true;\n';
+	return code;
+};
+
 Blockly.Arduino['TinyGPS_statement'] = function(block){
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
-																			
-	var code = '//Wire.beginTransmission(I2C_ADDR);\n'+
-				  'bool newData = false;\n'+
-				  'unsigned long TinyGPS_chars;\n'+
+	var code = 'unsigned long TinyGPS_chars;\n'+
 				  'unsigned short TinyGPS_sentences, TinyGPS_failed;\n'+
-				  'for (unsigned long start = millis(); millis() - start < 1000;) {\n'+
-				  '  while (ss.available()) {\n'+
-				  '    char c = ss.read();\n'+
-				  '    if (gps.encode(c)) newData = true;\n'+
-				  '  }\n'+
-				  '}\n'+
-				  'if (newData) {\n'+
+				  'if (gpsNewData) {\n'+
 				  '  float TinyGPS_flat, TinyGPS_flon;\n'+
 				  '  unsigned long TinyGPS_age;\n'+
 				  '  gps.f_get_position(&TinyGPS_flat, &TinyGPS_flon, &TinyGPS_age);\n'+
 				  '  gps.stats(&TinyGPS_chars, &TinyGPS_sentences, &TinyGPS_failed);\n'+statement+
+				  '  gpsNewData = false;\n'+				  
 				  '}\n';
 	return code;
 };
@@ -40,9 +28,9 @@ Blockly.Arduino['TinyGPS_statement'] = function(block){
 Blockly.Arduino['TinyGPS_get_data'] = function(block){
   var data = block.getFieldValue('data');
   if (data=="flat")	
-	var code = '(TinyGPS_flat == TinyGPS::GPS_INVALID_F_ANGLE ? 0.0 : TinyGPS_flat, 6)';
+	var code = '(TinyGPS_flat == TinyGPS::GPS_INVALID_F_ANGLE ? 0.000000 : TinyGPS_flat)';
   else if (data=="flon")
-	var code = '(TinyGPS_flon == TinyGPS::GPS_INVALID_F_ANGLE ? 0.0 : TinyGPS_flon, 6)';
+	var code = '(TinyGPS_flon == TinyGPS::GPS_INVALID_F_ANGLE ? 0.000000 : TinyGPS_flon)';
   else if (data=="satellites")
 	var code = '(gps.satellites() == TinyGPS::GPS_INVALID_SATELLITES ? 0 : gps.satellites())';
   else if (data=="hdop")
@@ -6689,13 +6677,21 @@ Blockly.Arduino['uart_initial'] = function(block) {
 	}	
 	else if  (read=="char") {
 		code =	'if ('+serial+'.available()) {\n'+
+				'  char uartData = \'\\0\';\n'+
+				'  while ('+serial+'.available()) {\n'+
+				'    char uartData='+serial+'.read();\n'+ statement +
+				'  }\n'+	
+				'}\n';
+	}
+	else if  (read=="charstring") {
+		code =	'if ('+serial+'.available()) {\n'+
 				'  String uartData = "";\n'+
 				'  while ('+serial+'.available()) {\n'+
 				'    char c='+serial+'.read();\n'+
 				'    uartData=String(c);\n  '+statement+
 				'  }\n'+	
 				'}\n';
-	}
+	}	
 	else if  (read=="custom") {
 		code =	'if ('+serial+'.available()) {\n'+
 				'  String uartData = "";\n'+

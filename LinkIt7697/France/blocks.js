@@ -1,30 +1,34 @@
 Blockly.Blocks.TinyGPS_initial={
 	init:function(){
 	  this.appendDummyInput()
-		  .appendField(Blockly.Msg["TINYGPS_INITIAL"]); 
-	  this.appendValueInput("rx")
-		  .setCheck("Number")
-		.setAlign(Blockly.ALIGN_RIGHT)			  
-		  .appendField("RX");
-	  this.appendValueInput("tx")
-		  .setCheck("Number")
-		.setAlign(Blockly.ALIGN_RIGHT)			  
-		  .appendField("TX");
-    this.appendValueInput("baud")
-        .setCheck("Number")
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg["TINYGPS_BAUD"]);		  
+		  .appendField(Blockly.Msg["TINYGPS"])	  
+		  .appendField(Blockly.Msg["TINYGPS_INITIAL"]);	  
 	  this.setInputsInline(!0);
 	  this.setPreviousStatement(!0,null);
 	  this.setNextStatement(!0,null);
-	  this.setColour(Blockly.Msg["HUE_12"]);  
+	  this.setColour(Blockly.Msg["HUE_12"]); 
+	}
+};
+
+Blockly.Blocks.TinyGPS_readchar={
+	init:function(){
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["TINYGPS"])	  
+		  .appendField(Blockly.Msg["TINYGPS_READ_CHAR"]);
+		this.appendValueInput("c")
+			.setCheck(null);				
+		this.setInputsInline(true);
+		this.setPreviousStatement(true);
+		this.setNextStatement(true);
+		this.setColour(Blockly.Msg["HUE_12"]);
 	}
 };
 
 Blockly.Blocks.TinyGPS_statement={
 	init:function(){
 	  this.appendDummyInput()
-		  .appendField(Blockly.Msg["TINYGPS_READ"]);
+		  .appendField(Blockly.Msg["TINYGPS"])	  
+		  .appendField(Blockly.Msg["TINYGPS_STATEMENT"]);
 		this.appendStatementInput("statement")
 			.setCheck(null);			
 		this.setInputsInline(true);
@@ -37,6 +41,7 @@ Blockly.Blocks.TinyGPS_statement={
 Blockly.Blocks.TinyGPS_get_data={
 	init:function(){
 	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["TINYGPS"])	  
 		  .appendField(Blockly.Msg["TINYGPS_GET_DATA"]);
 	  this.appendDummyInput()
 		  .appendField(new Blockly.FieldDropdown([
@@ -48,12 +53,14 @@ Blockly.Blocks.TinyGPS_get_data={
 	  this.setInputsInline(!0);
 	  this.setOutput(!0,null);
 	  this.setColour(Blockly.Msg["HUE_12"]);  
+	  this.setHelpUrl("https://blog.ittraining.com.tw/2016/02/gpsgprmc.html");	  	  
 	}
 };
 
 Blockly.Blocks.TinyGPS_get_state={
 	init:function(){
 	  this.appendDummyInput()
+		  .appendField(Blockly.Msg["TINYGPS"])	  
 		  .appendField(Blockly.Msg["TINYGPS_GET_STATE"]);
 	  this.appendDummyInput()
 		  .appendField(new Blockly.FieldDropdown([
@@ -62,7 +69,8 @@ Blockly.Blocks.TinyGPS_get_state={
 		  ]),"state");		  	  
 	  this.setInputsInline(!0);
 	  this.setOutput(!0,null);
-	  this.setColour(Blockly.Msg["HUE_12"]);  
+	  this.setColour(Blockly.Msg["HUE_12"]); 
+	  this.setHelpUrl("https://blog.ittraining.com.tw/2016/02/gpsgprmc.html");	  	  
 	}
 };
 
@@ -8988,7 +8996,8 @@ Blockly.Blocks['uart_initial'] = {
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["UART_READ_ALL_SHOW"],"all"],
 			[Blockly.Msg["UART_READ_STRING_SHOW"],"string"],
-			[Blockly.Msg["UART_READ_CHAR_SHOW"],"char"],			
+			[Blockly.Msg["UART_READ_CHAR_SHOW"],"char"],
+			[Blockly.Msg["UART_READ_CHARSTRING_SHOW"],"charstring"],			
 			[Blockly.Msg["UART_READ_NEWLINE_SHOW"],"newline"],
 			[Blockly.Msg["UART_READ_RETURN_SHOW"],"return"],			
 			[Blockly.Msg["UART_READ_CUSTOM_SHOW"],"custom"]			
