@@ -26,11 +26,25 @@ Blockly.Arduino['TinyGPS_statement'] = function(block){
 };
 
 Blockly.Arduino['TinyGPS_get_data'] = function(block){
+	
+	Blockly.Arduino.definitions_.TinyGPS_coordinate = '\n'+
+			'String TinyGPS_coordinate(float coordinate) {\n'+
+			'  String val = String(coordinate);\n'+			
+			'  int point = val.indexOf(".");\n'+
+			'  val = val.substring(0, point);\n'+				
+			'  int len = val.length(); \n'+
+			'  if (len>=6) {\n'+			
+			'    return val.substring(0, len-6)+"."+val.substring(len-6, len);\n'+	
+			'  } else {\n'+	
+			'    return "";\n'+	
+			'  }'+				
+			'}\n';
+			
   var data = block.getFieldValue('data');
   if (data=="flat")	
-	var code = '(TinyGPS_flat == TinyGPS::GPS_INVALID_F_ANGLE ? 0.000000 : TinyGPS_flat*1000000)';
+	var code = '(TinyGPS_flat == TinyGPS::GPS_INVALID_F_ANGLE ? "0" : TinyGPS_coordinate(TinyGPS_flat*1000000))';
   else if (data=="flon")
-	var code = '(TinyGPS_flon == TinyGPS::GPS_INVALID_F_ANGLE ? 0.000000 : TinyGPS_flon*1000000)';
+	var code = '(TinyGPS_flon == TinyGPS::GPS_INVALID_F_ANGLE ? "0" : TinyGPS_coordinate(TinyGPS_flon*1000000))';
   else if (data=="satellites")
 	var code = '(gps.satellites() == TinyGPS::GPS_INVALID_SATELLITES ? 0 : gps.satellites())';
   else if (data=="hdop")
