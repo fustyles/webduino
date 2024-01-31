@@ -633,3 +633,9 @@ Blockly.Msg["CODE_TEXT"] = "插入程式码";
 
 Blockly.Msg["ENCODEURI"] = "网址编码";
 Blockly.Msg["DECODEURI"] = "网址解码";
+
+Blockly.Msg["GOOGLEMAP_EMBED"] = "Google地图嵌入程式码";
+Blockly.Msg["GOOGLEMAP_EMBED_KEY"] = "金钥";
+Blockly.Msg["GOOGLEMAP_EMBED_QUERY"] = "查询条件";
+Blockly.Msg["GOOGLEMAP_EMBED_WIDTH"] = "宽度";
+Blockly.Msg["GOOGLEMAP_EMBED_HEIGHT"] = "高度";
