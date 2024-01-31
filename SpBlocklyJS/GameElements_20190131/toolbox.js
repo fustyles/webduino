@@ -2580,6 +2580,28 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="googlemap_embed">'+
+'    <value name="key">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="query">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+	
+'    <value name="width">'+
+'    <block type="math_number">'+
+'    <field name="NUM">400</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="height">'+
+'    <block type="math_number">'+
+'    <field name="NUM">400</field>'+
+'    </block>'+
+'    </value>'+	
+'    </block>'+
 '    </category>'+
 '    <category name="%{BKY_CATPAGEELEMENTS_IFRAME}" id="catPageElements_iframe">'+
 '    <block type="iframe_create">'+
