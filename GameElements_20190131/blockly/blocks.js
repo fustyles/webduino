@@ -1,3 +1,29 @@
+Blockly.Blocks['googlemap_embed'] = {
+  init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg["GOOGLEMAP_EMBED"]);
+  this.appendValueInput("key")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["GOOGLEMAP_EMBED_KEY"]);
+  this.appendValueInput("query")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg["GOOGLEMAP_EMBED_QUERY"]);	  
+  this.appendValueInput("width")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.WIDTH);
+  this.appendValueInput("height")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.HEIGHT);	  	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(170);
+  }
+};
+
 Blockly.Blocks['button_toolbox'] = {
   init: function() {
   this.appendDummyInput()   
