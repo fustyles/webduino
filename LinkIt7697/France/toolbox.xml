@@ -11137,7 +11137,10 @@
 	<category id="france12" name="TinyGPS">
 		<block type="TinyGPS_initial">				
 		</block>
-		<block type="TinyGPS_readchar">				
+		<block type="TinyGPS_readchar">
+		        <value name="c">
+		          <block type="uart_getdata"></block>
+		        </value>			
 		</block>		
 		<block type="TinyGPS_statement">		
 		</block>		
