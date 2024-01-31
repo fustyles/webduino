@@ -640,5 +640,3 @@ Blockly.Msg["DECODEURI"] = "decodeURI";
 Blockly.Msg["GOOGLEMAP_EMBED"] = "Google map embed html";
 Blockly.Msg["GOOGLEMAP_EMBED_KEY"] = "Key";
 Blockly.Msg["GOOGLEMAP_EMBED_QUERY"] = "Query";
-Blockly.Msg["GOOGLEMAP_EMBED_WIDTH"] = "Width";
-Blockly.Msg["GOOGLEMAP_EMBED_HEIGHT"] = "Height";
