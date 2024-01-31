@@ -4804,6 +4804,10 @@ function HextoRgb(color) {
 	var Lo3 = String(("0."+Lo2.split(".")[1])*60);
 	var Lo_3 = parseInt(Lo3 * 10000) / 10000;
 	return ("https://www.google.com/maps/place/"+La_1+"°"+La_2+"'"+La_3+"\"N+"+Lo_1+"°"+Lo_2+"'"+Lo_3+"\"E/@"+La1+","+Lo1);
+  }
+
+  function getGoogleMapEmbedHTML(key, query, mapWidth, mapHeight) {
+	return '<iframe width="'+mapWidth+'" height="'+mapHeight+'" style="border:0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key='+key+'&q='+query+'"> </iframe>';
   }	
 	
   window.table_create = table_create;
@@ -4983,5 +4987,6 @@ function HextoRgb(color) {
   window.icon_google = icon_google;
   window.element_select = element_select;
   window.getGoogleMapUrl = getGoogleMapUrl;
-  
+  window.getGoogleMapEmbedHTML = getGoogleMapEmbedHTML;
+	
 }(window, window.document));
