@@ -1,6 +1,6 @@
 Blockly.JavaScript['googlemap_embed'] = function (block) { 
-  var value_key = Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_ATOMIC)||'AIzaSyCjnmJJqKsk6wqcfKRXuovtuJKBWlo4OIU';
-  var value_query = Blockly.JavaScript.valueToCode(block, 'query', Blockly.JavaScript.ORDER_ATOMIC)||''; 
+  var value_key = Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_ATOMIC)||'"AIzaSyCjnmJJqKsk6wqcfKRXuovtuJKBWlo4OIU"';
+  var value_query = Blockly.JavaScript.valueToCode(block, 'query', Blockly.JavaScript.ORDER_ATOMIC)||'"22.62561600155969,120.37205406931322"'; 
   var value_width = Blockly.JavaScript.valueToCode(block, 'width', Blockly.JavaScript.ORDER_ATOMIC)||400;
   var value_height = Blockly.JavaScript.valueToCode(block, 'height', Blockly.JavaScript.ORDER_ATOMIC)||400;
   var code = 'getGoogleMapEmbedHTML('+value_key+', '+value_query+', '+value_width+', '+value_height+')';
