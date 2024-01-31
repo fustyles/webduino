@@ -616,3 +616,7 @@ Blockly.Msg["DECODEURI"] = "網址解碼";
 Blockly.Msg["GET_KEYCODE_SHOW"] = "取得鍵碼值";
 Blockly.Msg["KEYCODE_SHOW"] = "取得鍵碼值為";
 Blockly.Msg["HOTKEY_SHOW"] = "取得組合鍵碼值為";
+
+Blockly.Msg["GOOGLEMAP_EMBED"] = "Google地圖嵌入程式碼";
+Blockly.Msg["GOOGLEMAP_EMBED_KEY"] = "金鑰";
+Blockly.Msg["GOOGLEMAP_EMBED_QUERY"] = "查詢條件";
