@@ -6631,12 +6631,16 @@ Blockly.Arduino['uart_initial'] = function(block) {
 		Blockly.Arduino.setups_.setup_serial = serial+'.begin('+baudrate+');\n  delay(10);\n';
 	}
 	else if (serial=="mySerial1") {
-		Blockly.Arduino.definitions_["define_HardwareSerial"+serial] = 'HardwareSerial mySerial1(1);';
+		Blockly.Arduino.definitions_["define_HardwareSerial_"+serial] = 'HardwareSerial '+serial+'(1);';
 		Blockly.Arduino.setups_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+', SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n';
 	}
 	else if  (serial=="mySerial2") {
-		Blockly.Arduino.definitions_["define_HardwareSerial"+serial] = 'HardwareSerial mySerial2(2);';		
+		Blockly.Arduino.definitions_["define_HardwareSerial_"+serial] = 'HardwareSerial '+serial+'(2);';		
 		Blockly.Arduino.setups_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+', SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n';
+	}
+	else if  (serial=="mySerialS") {
+		Blockly.Arduino.definitions_["define_SoftwareSerial"] = '#include <SoftwareSerial.h>\nSoftwareSerial '+serial+'('+rx+', '+tx+');';		
+		Blockly.Arduino.setups_["define_SoftwareSerial_"+serial] = serial+'.begin('+baudrate+');\n  delay(10);\n';
 	}
 	
 	var code;
@@ -6646,7 +6650,7 @@ Blockly.Arduino['uart_initial'] = function(block) {
 				'  while ('+serial+'.available()) {\n'+
 				'    char c='+serial+'.read();\n'+
 				'    if (c!=\'\\n\'&&c!=\'\\r\')\n'+				
-				'      uartData+=String(c);\n'+
+				'      uartData += String(c);\n'+
 				'    delay(1);\n'+
 				'  }\n'+statement+		
 				'}\n';
@@ -6655,7 +6659,7 @@ Blockly.Arduino['uart_initial'] = function(block) {
 		code =	'if ('+serial+'.available()) {\n'+
 				'  String uartData = "";\n'+
 				'  while ('+serial+'.available()) {\n'+
-				'    uartData='+serial+'.readString();\n  '+statement+
+				'    uartData = '+serial+'.readString();\n  '+statement+
 				'  }\n'+	
 				'}\n';
 	}	
@@ -6663,7 +6667,7 @@ Blockly.Arduino['uart_initial'] = function(block) {
 		code =	'if ('+serial+'.available()) {\n'+
 				'  String uartData = "";\n'+
 				'  while ('+serial+'.available()) {\n'+
-				'    uartData='+serial+'.readStringUntil(\'\\n\');\n  '+statement+
+				'    uartData = '+serial+'.readStringUntil(\'\\n\');\n  '+statement+
 				'  }\n'+	
 				'}\n';
 	}
@@ -6671,7 +6675,7 @@ Blockly.Arduino['uart_initial'] = function(block) {
 		code =	'if ('+serial+'.available()) {\n'+
 				'  String uartData = "";\n'+
 				'  while ('+serial+'.available()) {\n'+
-				'    uartData='+serial+'.readStringUntil(\'\\r\');\n  '+statement+
+				'    uartData = '+serial+'.readStringUntil(\'\\r\');\n  '+statement+
 				'  }\n'+	
 				'}\n';
 	}	
@@ -6679,7 +6683,7 @@ Blockly.Arduino['uart_initial'] = function(block) {
 		code =	'if ('+serial+'.available()) {\n'+
 				'  char uartData = \'\\0\';\n'+
 				'  while ('+serial+'.available()) {\n'+
-				'    char uartData='+serial+'.read();\n'+ statement +
+				'    char uartData = '+serial+'.read();\n'+ statement +
 				'  }\n'+	
 				'}\n';
 	}
@@ -6688,7 +6692,7 @@ Blockly.Arduino['uart_initial'] = function(block) {
 				'  String uartData = "";\n'+
 				'  while ('+serial+'.available()) {\n'+
 				'    char c='+serial+'.read();\n'+
-				'    uartData=String(c);\n  '+statement+
+				'    uartData = String(c);\n  '+statement+
 				'  }\n'+	
 				'}\n';
 	}	
