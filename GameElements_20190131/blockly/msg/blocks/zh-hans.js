@@ -614,3 +614,7 @@ Blockly.Msg["DECODEURI"] = "网址解码";
 Blockly.Msg["GET_KEYCODE_SHOW"] = "取得键码值";
 Blockly.Msg["KEYCODE_SHOW"] = "取得键码值为";
 Blockly.Msg["HOTKEY_SHOW"] = "取得组合键码值为";
+
+Blockly.Msg["GOOGLEMAP_EMBED"] = "Google地图嵌入程式码";
+Blockly.Msg["GOOGLEMAP_EMBED_KEY"] = "金钥";
+Blockly.Msg["GOOGLEMAP_EMBED_QUERY"] = "查询条件";
