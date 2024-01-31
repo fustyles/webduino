@@ -11137,17 +11137,88 @@
 	<category id="france12" name="TinyGPS">
 		<block type="TinyGPS_initial">				
 		</block>
-		<block type="TinyGPS_readchar">
-		        <value name="c">
-		          <block type="uart_getdata"></block>
-		        </value>			
+		<block type="TinyGPS_readchar">			
 		</block>		
 		<block type="TinyGPS_statement">		
 		</block>		
 		<block type="TinyGPS_get_data">			
 		</block>		
 		<block type="TinyGPS_get_state">		
-		</block>		
+		</block>
+		  <variables>
+			<variable id="1Q^.@HZKBMBTGNv.vArL">coordinate</variable>
+		  </variables>
+		  <block type="uart_initial">
+			<field name="serial">mySerial1</field>
+			<field name="baudrate">9600</field>
+			<field name="read">char</field>
+			<value name="rx">
+			  <block type="math_number">
+				<field name="NUM">16</field>
+			  </block>
+			</value>
+			<value name="tx">
+			  <block type="math_number">
+				<field name="NUM">17</field>
+			  </block>
+			</value>
+			<value name="custom">
+			  <shadow type="text">
+				<field name="TEXT">,</field>
+			  </shadow>
+			</value>
+			<statement name="statement">
+			  <block type="TinyGPS_readchar">
+				<value name="c">
+				  <block type="uart_getdata"></block>
+				</value>
+			  </block>
+			</statement>
+			<next>
+			  <block type="TinyGPS_statement">
+				<statement name="statement">
+				  <block type="variables_set">
+					<field name="POSITION">local</field>
+					<field name="TYPE">String</field>
+					<field name="VAR">coordinate</field>
+					<value name="VALUE">
+					  <shadow type="math_number">
+						<field name="NUM">0</field>
+					  </shadow>
+					  <block type="text_join">
+						<mutation items="3"></mutation>
+						<value name="ADD0">
+						  <block type="cast_number">
+							<field name="TYPE">String(%1)</field>
+							<value name="VAR">
+							  <block type="TinyGPS_get_data">
+								<field name="data">flat</field>
+							  </block>
+							</value>
+						  </block>
+						</value>
+						<value name="ADD1">
+						  <block type="text">
+							<field name="TEXT">,</field>
+						  </block>
+						</value>
+						<value name="ADD2">
+						  <block type="cast_number">
+							<field name="TYPE">String(%1)</field>
+							<value name="VAR">
+							  <block type="TinyGPS_get_data">
+								<field name="data">flon</field>
+							  </block>
+							</value>
+						  </block>
+						</value>
+					  </block>
+					</value>
+				  </block>
+				</statement>
+			  </block>
+			</next>
+		  </block>		
 	</category>		
 
 	 <sep id="category_sep"></sep>	
