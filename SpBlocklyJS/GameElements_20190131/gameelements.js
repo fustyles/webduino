@@ -4788,6 +4788,22 @@ function HextoRgb(color) {
 	  obj.value = input_value;
     else
 	  obj.innerText = input_value;
+  }
+
+  function getGoogleMapUrl(Latitude, Longitude) {
+	var La1 = String(Latitude);
+	var La_1 = La1.split(".")[0];
+	var La2 = String(("0."+La1.split(".")[1])*60);
+	var La_2 = La2.split(".")[0];
+	var La3 = String(("0."+La2.split(".")[1])*60);
+	var La_3 = parseInt(La3 * 10000) / 10000;
+	var Lo1 = String(Longitude);
+	var Lo_1 = Lo1.split(".")[0];
+	var Lo2 = String(("0."+Lo1.split(".")[1])*60);
+	var Lo_2 = Lo2.split(".")[0];
+	var Lo3 = String(("0."+Lo2.split(".")[1])*60);
+	var Lo_3 = parseInt(Lo3 * 10000) / 10000;
+	return ("https://www.google.com/maps/place/"+La_1+"°"+La_2+"'"+La_3+"\"N+"+Lo_1+"°"+Lo_2+"'"+Lo_3+"\"E/@"+La1+","+Lo1);
   }	
 	
   window.table_create = table_create;
@@ -4965,6 +4981,7 @@ function HextoRgb(color) {
   window.getDatetime = getDatetime;  
   window.setDatetime = setDatetime;
   window.icon_google = icon_google;
-  window.element_select = element_select;  
+  window.element_select = element_select;
+  window.getGoogleMapUrl = getGoogleMapUrl;
   
 }(window, window.document));
