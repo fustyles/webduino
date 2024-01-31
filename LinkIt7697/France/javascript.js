@@ -9620,7 +9620,7 @@ Blockly.Arduino['linenotify_esp32'] = function (block) {
 											'  String getAll="", getBody="";\n'+
 											'  request.replace("%","%25");\n'+
 											'  request.replace(" ","%20");\n'+
-											'  request.replace("&","%20");\n'+
+											'  request.replace("&","%26");\n'+
 											'  request.replace("#","%20");\n'+
 											'  request.replace("\\"","%22");\n'+
 											'  request.replace("\\n","%0D%0A");\n'+
@@ -9687,7 +9687,7 @@ Blockly.Arduino['linenotify_esp32_no'] = function (block) {
 											'  String getAll="", getBody="";\n'+
 											'  request.replace("%","%25");\n'+
 											'  request.replace(" ","%20");\n'+
-											'  request.replace("&","%20");\n'+
+											'  request.replace("&","%26");\n'+
 											'  request.replace("#","%20");\n'+
 											'  request.replace("\\"","%22");\n'+
 											'  request.replace("\\n","%0D%0A");\n'+
@@ -9963,7 +9963,7 @@ Blockly.Arduino['linenotify_http'] = function (block) {
 													'  String getAll="", getBody="";\n'+
 													'  message.replace("%","%25");\n'+
 													'  message.replace(" ","%20");\n'+
-													'  message.replace("&","%20");\n'+
+													'  message.replace("&","%26");\n'+
 													'  message.replace("#","%20");\n'+
 													'  message.replace("\\"","%22");\n'+
 													'  message.replace("\\n","%0D%0A");\n'+
