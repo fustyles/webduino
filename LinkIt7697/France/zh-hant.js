@@ -39,9 +39,9 @@ Blockly.Msg["TINYGPS_GET_STATE"] = "取得狀態";
 Blockly.Msg["TINYGPS_FLAT"] = "經度";	
 Blockly.Msg["TINYGPS_FLON"] = "緯度";
 Blockly.Msg["TINYGPS_SATELLITES"] = "衛星數";	
-Blockly.Msg["TINYGPS_HDOP"] = "hdop";
-Blockly.Msg["TINYGPS_CHARS"] = "chars";		
-Blockly.Msg["TINYGPS_SENTENCES"] = "sentences";
+Blockly.Msg["TINYGPS_HDOP"] = "水準精度因數";
+Blockly.Msg["TINYGPS_CHARS"] = "字元數";		
+Blockly.Msg["TINYGPS_SENTENCES"] = "句數";
 
 Blockly.Msg["ESP32_BLEMOUSE"] = "ESP32藍芽滑鼠";
 Blockly.Msg["ESP32_BLEMOUSE_INITIAL"] = "初始化";
