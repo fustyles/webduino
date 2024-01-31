@@ -19,9 +19,9 @@ Blockly.Arduino['TinyGPS_statement'] = function(block){
 				  '  float TinyGPS_flat, TinyGPS_flon;\n'+
 				  '  unsigned long TinyGPS_age;\n'+
 				  '  gps.f_get_position(&TinyGPS_flat, &TinyGPS_flon, &TinyGPS_age);\n'+
-				  '  gps.stats(&TinyGPS_chars, &TinyGPS_sentences, &TinyGPS_failed);\n'+statement+
-				  '  gpsNewData = false;\n'+				  
-				  '}\n';
+				  '  gps.stats(&TinyGPS_chars, &TinyGPS_sentences, &TinyGPS_failed);\n'+statement+	  
+				  '}\n'+
+				  'gpsNewData = false;\n';
 	return code;
 };
 
