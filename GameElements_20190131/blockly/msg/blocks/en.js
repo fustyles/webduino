@@ -615,3 +615,7 @@ Blockly.Msg["DECODEURI"] = "decodeURI";
 Blockly.Msg["GET_KEYCODE_SHOW"] = "Get Keycode";
 Blockly.Msg["KEYCODE_SHOW"] = "Key is";
 Blockly.Msg["HOTKEY_SHOW"] = "HotKey is";
+
+Blockly.Msg["GOOGLEMAP_EMBED"] = "Google map embed html";
+Blockly.Msg["GOOGLEMAP_EMBED_KEY"] = "Key";
+Blockly.Msg["GOOGLEMAP_EMBED_QUERY"] = "Query";
