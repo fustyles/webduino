@@ -3587,6 +3587,13 @@ Blockly.Arduino['uart_server_initial'] = function(block) {
 		Blockly.Arduino.definitions_["define_HardwareSerial"+serial] = 'HardwareSerial mySerial2(2);';		
 		Blockly.Arduino.setups_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+', SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n';
 	}
+	else if  (serial=="mySerialS") {
+		if (selectBoardType().indexOf("esp")!=-1)
+			Blockly.Arduino.definitions_["define_SoftwareSerial"] = '#include <SoftwareSerial_esp.h>\nSoftwareSerial '+serial+'('+rx+', '+tx+');';
+		else
+			Blockly.Arduino.definitions_["define_SoftwareSerial"] = '#include <SoftwareSerial.h>\nSoftwareSerial '+serial+'('+rx+', '+tx+');';	
+		Blockly.Arduino.setups_["define_SoftwareSerial_"+serial] = serial+'.begin('+baudrate+');\n  delay(10);\n';
+	}
 	
 	Blockly.Arduino.definitions_.getCommand = ''+
 			'void getCommand(char c) {\n'+

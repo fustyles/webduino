@@ -6537,7 +6537,8 @@ Blockly.Blocks['uart_server_initial'] = {
 		.appendField(new Blockly.FieldDropdown([
 			["Serial","Serial"],
 			["Serial1","mySerial1"],
-			["Serial2","mySerial2"]			
+			["Serial2","mySerial2"],
+			["SoftwareSerial","mySerialS"]		
 		], this.validate), "serial");
     this.appendValueInput("rx","rx")
         .setCheck("Number")
