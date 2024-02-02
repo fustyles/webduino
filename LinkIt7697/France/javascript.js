@@ -18671,6 +18671,12 @@ Blockly.Arduino['esp32_cam_linenotify'] = function(block) {
 			'    Serial.println("Connection successful");\n'+
 			'    \n'+
 			'    if (message=="") message = "ESP32-CAM";\n'+
+			'    message.replace("%","%25");\n'+
+			'    message.replace(" ","%20");\n'+
+			'    message.replace("&","%26");\n'+
+			'    message.replace("#","%23");\n'+
+			'    message.replace("\"","%22");\n'+
+			'    message.replace("\n","%0D%0A");\n'+
 			'    String head = "--Taiwan\\r\\nContent-Disposition: form-data; name=\\\"message\\\"; \\r\\n\\r\\n" + message + "\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\\"imageFile\\\"; filename=\\\"esp32-cam.jpg\\\"\\r\\nContent-Type: image\/jpeg\\r\\n\\r\\n";\n'+
 			'    String tail = "\\r\\n--Taiwan--\\r\\n";\n'+
 			'    \n'+
