@@ -29,7 +29,7 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
-Blockly.Msg["TINYGPS"] = "TinyGPS";
+Blockly.Msg["TINYGPS"] = "TINYGPS";
 Blockly.Msg["TINYGPS_INITIAL"] = "Initial";
 Blockly.Msg["TINYGPS_READ_CHAR"] = "Read serial char";
 Blockly.Msg["TINYGPS_STATEMENT"] = "After reading";

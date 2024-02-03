@@ -1,4 +1,4 @@
-Blockly.Blocks.TinyGPS_initial={["Serial2","mySerial2"]
+Blockly.Blocks.TinyGPS_initial={
 	init:function(){
 	  this.appendDummyInput()
 		  .appendField(Blockly.Msg["TINYGPS"])	  
@@ -8785,8 +8785,7 @@ Blockly.Blocks['fu_dfplayer_initial'] = {
 		.appendField(new Blockly.FieldDropdown([
 			["Serial","Serial"],
 			["Serial1","mySerial1"],
-			["Serial2","mySerial2"],
-			["SoftwareSerial","mySerialS"]
+			["Serial2","mySerial2"]			
 		], this.validate), "serial");
     this.appendValueInput("rx","rx")
         .setCheck("Number")
@@ -9046,8 +9045,7 @@ Blockly.Blocks['uart_initial_esp32'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.appendField(new Blockly.FieldDropdown([
 			["Serial1","mySerial1"],
-			["Serial2","mySerial2"],
-			["SoftwareSerial","mySerialS"]
+			["Serial2","mySerial2"]			
 		], this.validate), "serial");
     this.appendValueInput("baudrate")
 		.setAlign(Blockly.ALIGN_RIGHT)		
@@ -23570,7 +23568,7 @@ Blockly.Blocks['fu_serial_begin'] = {
 		.appendField(new Blockly.FieldDropdown([
 			["Serial","Serial"],
 			["Serial1","mySerial1"],
-			["Serial2","mySerial2"]
+			["Serial2","mySerial2"]			
 		]), "serial");		
     this.appendValueInput("baudrate")
         .setCheck("Number")
@@ -23593,7 +23591,7 @@ Blockly.Blocks['fu_serial_begin_select'] = {
 		.appendField(new Blockly.FieldDropdown([
 			["Serial","Serial"],
 			["Serial1","mySerial1"],
-			["Serial2","mySerial2"]
+			["Serial2","mySerial2"]			
 		]), "serial");		
     this.appendDummyInput()	 
 		.setAlign(Blockly.ALIGN_RIGHT)		
@@ -23684,8 +23682,7 @@ Blockly.Blocks['fu_serial_ready'] = {
 		.appendField(new Blockly.FieldDropdown([
 			["Serial","Serial"],
 			["Serial1","mySerial1"],
-			["Serial2","mySerial2"],
-			["SoftwareSerial","mySerialS"]
+			["Serial2","mySerial2"]			
 		]), "serial");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["FU_SERIAL_READY"]);
@@ -23708,8 +23705,7 @@ Blockly.Blocks['fu_serial_end'] = {
 		.appendField(new Blockly.FieldDropdown([
 			["Serial","Serial"],
 			["Serial1","mySerial1"],
-			["Serial2","mySerial2"],
-			["SoftwareSerial","mySerialS"]
+			["Serial2","mySerial2"]			
 		]), "serial");		
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -23732,8 +23728,7 @@ Blockly.Blocks['fu_serial_print'] = {
 		.appendField(new Blockly.FieldDropdown([
 			["Serial","Serial"],
 			["Serial1","mySerial1"],
-			["Serial2","mySerial2"],
-			["SoftwareSerial","mySerialS"]
+			["Serial2","mySerial2"]			
 		]), "serial");		
     this.appendValueInput("data")
         .setCheck(null)
@@ -23756,8 +23751,7 @@ Blockly.Blocks['fu_serial_print_format'] = {
 		.appendField(new Blockly.FieldDropdown([
 			["Serial","Serial"],
 			["Serial1","mySerial1"],
-			["Serial2","mySerial2"],
-			["SoftwareSerial","mySerialS"]
+			["Serial2","mySerial2"]			
 		]), "serial");		
     this.appendValueInput("data")
         .setCheck("Number")
@@ -23788,8 +23782,7 @@ Blockly.Blocks['fu_serial_println'] = {
 		.appendField(new Blockly.FieldDropdown([
 			["Serial","Serial"],
 			["Serial1","mySerial1"],
-			["Serial2","mySerial2"],
-			["SoftwareSerial","mySerialS"]
+			["Serial2","mySerial2"]			
 		]), "serial");		
     this.appendValueInput("data")
         .setCheck(null)
@@ -23812,8 +23805,7 @@ Blockly.Blocks['fu_serial_println_format'] = {
 		.appendField(new Blockly.FieldDropdown([
 			["Serial","Serial"],
 			["Serial1","mySerial1"],
-			["Serial2","mySerial2"],
-			["SoftwareSerial","mySerialS"]
+			["Serial2","mySerial2"]			
 		]), "serial");		
     this.appendValueInput("data")
         .setCheck("Number")
@@ -23845,8 +23837,7 @@ Blockly.Blocks['fu_serial_write'] = {
 		.appendField(new Blockly.FieldDropdown([
 			["Serial","Serial"],
 			["Serial1","mySerial1"],
-			["Serial2","mySerial2"],
-			["SoftwareSerial","mySerialS"]
+			["Serial2","mySerial2"]			
 		]), "serial");		
     this.appendValueInput("data")
         .setCheck(null)
@@ -23870,8 +23861,7 @@ Blockly.Blocks['fu_serial_write_format'] = {
 		.appendField(new Blockly.FieldDropdown([
 			["Serial","Serial"],
 			["Serial1","mySerial1"],
-			["Serial2","mySerial2"],
-			["SoftwareSerial","mySerialS"]
+			["Serial2","mySerial2"]			
 		]), "serial");		
     this.appendValueInput("data")
         .setCheck("Number")
