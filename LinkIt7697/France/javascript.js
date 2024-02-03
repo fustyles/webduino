@@ -37,7 +37,7 @@ Blockly.Arduino['TinyGPS_get_data'] = function(block){
 			'    return val.substring(0, len-6)+"."+val.substring(len-6, len);\n'+	
 			'  } else {\n'+	
 			'    return "";\n'+	
-			'  }'+				
+			'  }\n'+				
 			'}\n';
 			
   var data = block.getFieldValue('data');
