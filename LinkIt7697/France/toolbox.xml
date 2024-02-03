@@ -65,39 +65,23 @@
 	</category>
 	<category id="category_fu_serial" name="SERIAL">
 		<block type="fu_serial_begin_select">
-			<field name="baudrate">9600</field>
+			<field name="baudrate">115200</field>
 		</block>	
 		<block type="fu_serial_begin">
 			<value name="baudrate">
 				<shadow type="math_number">
-					<field name="NUM">9600</field>
+					<field name="NUM">115200</field>
 				</shadow>
 			</value>
 		</block>
-		<block type="fu_serial_print">
-			<value name="data">
-				<shadow type="text">
-					<field name="TEXT"></field>
-				</shadow>
-			</value>
-		</block>
-		<block type="fu_serial_println">
-			<value name="data">
-				<shadow type="text">
-					<field name="TEXT"></field>
-				</shadow>
-			</value>
-		</block>
-		<block type="fu_serial_newline">
-		</block>		
 		<block type="fu_serial_begin_config">
 			<field name="config">SERIAL_8N1</field>
 			<value name="baudrate">
 				<shadow type="math_number">
-					<field name="NUM">9600</field>
+					<field name="NUM">115200</field>
 				</shadow>
 			</value>
-		</block>
+		</block>		
 	  <block type="uart_initial_esp32">
 		<value name="baudrate">
 		  <shadow type="math_number">
@@ -114,7 +98,23 @@
 			<field name="NUM">17</field>
 		  </block>
 		</value>		
-	  </block>		
+	  </block>			
+		<block type="fu_serial_print">
+			<value name="data">
+				<shadow type="text">
+					<field name="TEXT"></field>
+				</shadow>
+			</value>
+		</block>
+		<block type="fu_serial_println">
+			<value name="data">
+				<shadow type="text">
+					<field name="TEXT"></field>
+				</shadow>
+			</value>
+		</block>
+		<block type="fu_serial_newline">
+		</block>			
 		<block type="fu_serial_ready"></block>
 		<block type="fu_serial_end"></block>
 
