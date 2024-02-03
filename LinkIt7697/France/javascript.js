@@ -6712,7 +6712,6 @@ Blockly.Arduino['uart_initial'] = function(block) {
 	}	
 	else if  (read=="char") {
 		code =	'if ('+serial+'.available()) {\n'+
-				'  char uartData = \'\\0\';\n'+
 				'  while ('+serial+'.available()) {\n'+
 				'    char uartData = '+serial+'.read();\n'+ statement +
 				'  }\n'+	
