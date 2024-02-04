@@ -29,12 +29,13 @@ Blockly.Arduino['TinyGPS_get_data'] = function(block){
 	
 	Blockly.Arduino.definitions_.TinyGPS_coordinateToString = '\n'+
 			'String TinyGPS_coordinateToString(float coordinate) {\n'+
-			'  String val = String(coordinate*1000000);\n'+			
+			'  int digits = 6;\n'+
+			'  String val = String(coordinate*pow(10, digits));\n'+			
 			'  int point = val.indexOf(".");\n'+
 			'  val = val.substring(0, point);\n'+				
 			'  int len = val.length(); \n'+
-			'  if (len>=6) {\n'+			
-			'    return val.substring(0, len-6)+"."+val.substring(len-6, len);\n'+	
+			'  if (len>=digits) {\n'+			
+			'    return val.substring(0, len-digits)+"."+val.substring(len-digits, len);\n'+	
 			'  } else {\n'+	
 			'    return "";\n'+	
 			'  }\n'+				
