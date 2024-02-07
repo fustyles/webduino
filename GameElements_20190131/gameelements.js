@@ -2677,6 +2677,11 @@ function elements_collision_color(element1,input_id1,input_id2,input_color) {
     if (document.getElementById("gamediv_"+input_id))
       document.getElementById("gamediv_"+input_id).parentNode.removeChild(document.getElementById("gamediv_"+input_id));
   }
+
+  function div_add(input_id, input_addid) {
+    if (document.getElementById("gamediv_"+input_id)&&document.getElementById(input_addid))
+      document.getElementById("gamediv_"+input_id).appendChild(document.getElementById(input_addid));
+  } 	
 	
 function HextoRgb(color) {
   if (!color) return null;
@@ -5067,5 +5072,6 @@ function HextoRgb(color) {
   window.element_select = element_select;  	
   window.getGoogleMapUrl = getGoogleMapUrl;
   window.getGoogleMapEmbedHTML = getGoogleMapEmbedHTML;
+  window.div_add = div_add;
 	
 }(window, window.document));
