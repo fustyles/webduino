@@ -2651,25 +2651,30 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
     if (document.getElementById("gamediv_"+input_id))
       document.getElementById("gamediv_"+input_id).parentNode.removeChild(document.getElementById("gamediv_"+input_id));
   }
-	
-function HextoRgb(color) {
-  if (!color) return null;
-  if (color.indexOf("'#")==0&&color.length==9) {
-    color = color.substring(1,color.length-1);
-    var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
-    return "'rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")'";
-  }
-  else  if (color.indexOf("#")==0&&color.length==7) {
-    var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
-    return "rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")";
+  
+  function div_add(input_id, input_addid) {
+    if (document.getElementById("gamediv_"+input_id)&&document.getElementById(input_addid))
+      document.getElementById("gamediv_"+input_id).appendChild(document.getElementById(input_addid));
   }  
-  else  if (color.length==6) {
-    color = "#"+ color;
-    var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
-    return "rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")";
-  }else
-    return color;
-} 	
+	
+	function HextoRgb(color) {
+	  if (!color) return null;
+	  if (color.indexOf("'#")==0&&color.length==9) {
+		color = color.substring(1,color.length-1);
+		var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+		return "'rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")'";
+	  }
+	  else  if (color.indexOf("#")==0&&color.length==7) {
+		var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+		return "rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")";
+	  }  
+	  else  if (color.length==6) {
+		color = "#"+ color;
+		var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+		return "rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")";
+	  }else
+		return color;
+	} 	
   
   function body_set(input_property,input_value) {
     if (input_property=="backgroundColor")
@@ -4988,5 +4993,6 @@ function HextoRgb(color) {
   window.element_select = element_select;
   window.getGoogleMapUrl = getGoogleMapUrl;
   window.getGoogleMapEmbedHTML = getGoogleMapEmbedHTML;
+  window.div_add = div_add;
 	
 }(window, window.document));
