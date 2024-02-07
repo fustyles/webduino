@@ -338,6 +338,7 @@ Blockly.Msg.DIV_VALUE = "值";
 Blockly.Msg.DIV_SET = "设定";
 Blockly.Msg.DIV_GET = "取得";
 Blockly.Msg.DIV_DELETE = "删除";
+Blockly.Msg.DIV_ADD_ID = "新增元素ID";
 Blockly.Msg.SETWINDOW = "视窗设定";
 Blockly.Msg.CANVAS_GETCOLOR = "取得色码值";
 Blockly.Msg.TIME_DELAY = "等待 (秒)";
