@@ -10,7 +10,7 @@
 			"select_create","select_set","select_get","select_delete","select_onchange_do",
 			"range_create","range_set","range_get","range_delete","range_onchange_do",
 			"text_create","text_set","text_get","text_delete","text_onchange_do",
-			"div_create","div_set","div_get","div_delete",
+			"div_create","div_set","div_get","div_delete","div_add",
 			"position_distance","position_angle",
 			"iframe_create","iframe_set","iframe_get","iframe_delete",
 			"ajax_get","ajax_getdata","ajax_cleardata","ajax_getdata_json","ajax_getdata_json_count","fetch_get","fetch_getdata",
