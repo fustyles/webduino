@@ -5874,7 +5874,18 @@
 		  </block>
 		</value>     
 		</block>  	
-
+		  <block type="div_add">
+			<value name="id_">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>     
+			<value name="addid_">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>   
+		  </block>
 		</category>
 		<category id="catGameElements_sub11" name="catGameElements_sub11"> 
 

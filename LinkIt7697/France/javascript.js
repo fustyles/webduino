@@ -12750,6 +12750,15 @@ Blockly.Arduino['div_delete'] = function (block) {
   return code;
 };
 
+Blockly.Arduino['div_add'] = function (block) {
+  var value_id = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_addid = Blockly.Arduino.valueToCode(block, 'addid_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_element = block.getFieldValue('element_');
+  value_element = "'game"+value_element+"_'+"+value_addid;  
+  var code = 'div_add(' + value_id + ', ' + value_element + ');\n';
+  return code;
+};
+
 Blockly.Arduino['color_hextorgb'] = function (block) {
   var value_color_ = Blockly.Arduino.valueToCode(block, 'color_', Blockly.Arduino.ORDER_ATOMIC);
   var code = 'HextoRgb(' + value_color_ + ')';
