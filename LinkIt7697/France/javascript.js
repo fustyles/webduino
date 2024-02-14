@@ -12754,7 +12754,10 @@ Blockly.Arduino['div_add'] = function (block) {
   var value_id = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);
   var value_addid = Blockly.Arduino.valueToCode(block, 'addid_', Blockly.Arduino.ORDER_ATOMIC);
   var value_element = block.getFieldValue('element_');
-  value_element = "'game"+value_element+"_'+"+value_addid;  
+  if (value_element=="")
+	value_element = value_addid;
+  else
+	value_element = "'game"+value_element+"_'+"+value_addid; 
   var code = 'div_add(' + value_id + ', ' + value_element + ');\n';
   return code;
 };
