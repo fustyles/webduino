@@ -1248,7 +1248,10 @@ Blockly.JavaScript['div_add'] = function (block) {
   var value_id = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_addid = Blockly.JavaScript.valueToCode(block, 'addid_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_element = block.getFieldValue('element_');
-  value_element = "'game"+value_element+"_'+"+value_addid;  
+  if (value_element=="")
+	value_element = value_addid;
+  else
+	value_element = "'game"+value_element+"_'+"+value_addid;  
   var code = 'div_add(' + value_id + ', ' + value_element + ');\n';
   return code;
 };
