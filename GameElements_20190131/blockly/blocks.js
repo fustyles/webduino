@@ -3982,7 +3982,8 @@ Blockly.Blocks['div_add'] = {
 		  [Blockly.Msg.ELEMENT_TIME,"time"],
 		  [Blockly.Msg.ELEMENT_DATETIME,"datetime"],
 		  [Blockly.Msg.ELEMENT_PROGRESS,"progress"],
-		  [Blockly.Msg.ELEMENT_PASSWORD,"password"]
+		  [Blockly.Msg.ELEMENT_PASSWORD,"password"],
+		  [Blockly.Msg.ELEMENTID,""]
 	  ]), "element_");	  
   this.appendValueInput("addid_")
       .setCheck(null);
