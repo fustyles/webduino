@@ -19142,6 +19142,7 @@ Blockly.Blocks['div_add'] = {
 	  .setAlign(Blockly.ALIGN_RIGHT)
 	  .appendField(Blockly.Msg.DIV_ADD_ID)  
       .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.ELEMENT_SPAN,"span"],
 		  [Blockly.Msg.ELEMENT_IMAGE,"image"],
 		  [Blockly.Msg.ELEMENT_CANVAS,"canvas"],
 		  [Blockly.Msg.ELEMENT_BUTTON,"button"],
