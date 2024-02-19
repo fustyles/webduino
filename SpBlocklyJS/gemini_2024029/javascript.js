@@ -3,7 +3,7 @@ Blockly.JavaScript['gemini_text_initial'] = function (block) {
   var model = block.getFieldValue('model');
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do');
 
-  var code = 'gemini_text_do('+token+', "'+model+'", "'+statements_do.replace(/\n/g,"")+'");\n';
+  var code = 'gemini_text_initial();\ngemini_text_do('+token+', "'+model+'", "'+statements_do.replace(/\n/g,"")+'");\n';
   console.log(code);
   return code; 
 };
