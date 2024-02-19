@@ -66,8 +66,9 @@ SPDX-License-Identifier: Apache-2.0
 	<script src="js/jquery.ui.touch-punch.min.js"></script>
 	<script src="js/toolbox.js"></script>
 	<script src='MQTT_20220324/mqtt.min.js'></script>
+	<script src='gemini_2024029/gemini.js'></script>	
 	<script>
-	var block_script = ["GameElements_20190131","holistic_20201012","faceapi_recognize_20201012","teachablemachine_20201012","MQTT_20220324","WebSerial_20220126","WebBluetooth_20220924","myBackPack","coco-ssd_20201012","faceapi_detect_20201012","hands_20220614","trackingcolor_20201012","instascan.js_20201012","tesseract.js_20201012","SpreadsheetSQL_20210403","chart_20220723","Keyboard_20220729","TextToSpeech_20220729","SpeechRecognition_20220729","system_20220729","line_20220729","ifttt_20220730","thingspeak_20220730","Telegram_20200809","MatrixLed_20180810","command_20220906","javascript_functions_20221025","openAI_20221212","WebUSB_20210813","RobotFly_20220127","posenet_20201012","knn-classifier_20201012"];
+	var block_script = ["GameElements_20190131","holistic_20201012","faceapi_recognize_20201012","teachablemachine_20201012","MQTT_20220324","WebSerial_20220126","WebBluetooth_20220924","myBackPack","coco-ssd_20201012","faceapi_detect_20201012","hands_20220614","trackingcolor_20201012","instascan.js_20201012","tesseract.js_20201012","SpreadsheetSQL_20210403","chart_20220723","Keyboard_20220729","TextToSpeech_20220729","SpeechRecognition_20220729","system_20220729","line_20220729","ifttt_20220730","thingspeak_20220730","Telegram_20200809","MatrixLed_20180810","command_20220906","javascript_functions_20221025","openAI_20221212","gemini_2024029","WebUSB_20210813","RobotFly_20220127","posenet_20201012","knn-classifier_20201012"];
 	for (var i=0;i<block_script.length;i++) {
 	  document.write("\<script src='"+block_script[i]+"/blocks.js'\>\<\/script>");
 	  document.write("\<script src='"+block_script[i]+"/javascript.js'\>\<\/script>");
@@ -93,11 +94,11 @@ SPDX-License-Identifier: Apache-2.0
 				<ul id="tabs">
 					<!-- https://fonts.google.com/icons -->
 					<a href="#" id="button_run" title="Import your blocks"><i class="material-icons md-dark">play_arrow</i></a>
-					<a href="#" id="button_code" title="Show/Hide Javascript Code"><i class="material-icons md-dark">list_alt</i></a>
 					<a href="#" id="button_reset" title="Reset Workspace"><i class="material-icons md-dark">create</i></a>
 					<a href="#" id="button_open_xml" title="Open xml file"><i class="material-icons md-dark">folder_open</i></a>
 					<a href="#" id="button_save_xml" title="Save xml"><i class="material-icons md-dark">save</i></a>
 					<a href="#" id="button_save_html" title="Save html"><i class="material-icons md-dark">download_for_offline</i></a>
+					<a href="#" id="button_code" title="Show/Hide Javascript Code"><i class="material-icons md-dark">list_alt</i></a>
 					<a href="#" id="button_webSerial" title="Web Serial"><i class="material-icons md-dark">usb</i></a>
 					<a href="#" id="button_webBluetooth" title="Web Bluetooth"><i class="material-icons md-dark">bluetooth</i></a>
 					<a href="#" id="button_webMQTT" class="hide-link tooltipped" data-tooltip="Web MQTT"><i class="material-icons md-dark">bookmark</i></a>							
