@@ -1,9 +1,9 @@
 Blockly.JavaScript['gemini_text_initial'] = function (block) {
-  var key = Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_ATOMIC); 
+  var token = Blockly.JavaScript.valueToCode(block, 'token', Blockly.JavaScript.ORDER_ATOMIC); 
   var model = block.getFieldValue('model');
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do');
 
-  var code = 'gemini_text_do('+key+', "'+model+'", "'+statements_do.replace(/\n/g,"")+'");\n';
+  var code = 'gemini_text_do('+token+', "'+model+'", "'+statements_do.replace(/\n/g,"")+'");\n';
   console.log(code);
   return code; 
 };

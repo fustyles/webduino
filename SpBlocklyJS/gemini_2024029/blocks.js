@@ -2,7 +2,7 @@ Blockly.Blocks['gemini_text_initial'] = {
   init: function() {
   this.appendDummyInput()
 	  .appendField(Blockly.Msg.GEMINI_TEXT_SHOW);
-  this.appendValueInput("key")
+  this.appendValueInput("token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.GEMINI_APIKEY_SHOW);  
