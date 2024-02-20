@@ -14,7 +14,7 @@ function gemini_text_initial() {
 	var bemini_map = document.createElement("script");
 	bemini_map.type = "importmap";
 	bemini_map.textContent = JSON.stringify(bemini_importMap);
-	document.getElementsByTagName('head')[0].append(bemini_map);
+	document.body.appendChild(bemini_map);
 } 
 
 async function gemini_text_do(input_key, input_model, input_code) {
