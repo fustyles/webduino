@@ -51,7 +51,14 @@ Blockly.Blocks['gemini_text_response_data'] = {
   this.appendDummyInput()
 	  .appendField(Blockly.Msg.GEMINI_TEXT_SHOW);
   this.appendDummyInput()
-      .appendField(Blockly.Msg.GEMINI_TEXT_RESPONSE_DATA_SHOW);  
+      .appendField(Blockly.Msg.GEMINI_TEXT_RESPONSE_DATA_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.GEMINI_TEXT_RESPONSE_DATA_BR_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+			["N",""],
+			["Y \<br\>","br"],
+			["Y \\n","n"]		  
+	  ]), "br"); 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(30);
