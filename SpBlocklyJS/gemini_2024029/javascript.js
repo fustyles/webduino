@@ -16,7 +16,7 @@ Blockly.JavaScript['gemini_text_request'] = function (block) {
 Blockly.JavaScript['gemini_text_response'] = function (block) {
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do'); 
   
-  var code = 'function gemini_text_respsonse(gemini_text_data) {\n  '+statements_do+'\n}\n';
+  var code = 'function gemini_text_respsonse(gemini_text_data) {\n  '+statements_do+'\n}\nwindow.gemini_text_respsonse = gemini_text_respsonse;';
   return code; 
 };
 
