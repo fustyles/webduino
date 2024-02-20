@@ -6,3 +6,4 @@ Blockly.Msg.GEMINI_TEXT_RESPONSE_SHOW = "取得回應後";
 Blockly.Msg.GEMINI_TEXT_RESPONSE_DATA_SHOW = "回應資料";
 Blockly.Msg.GEMINI_TEXT_REQUEST_SHOW = "對話內容";
 Blockly.Msg.GEMINI_TEXT_REQUEST_BR_SHOW = "換行處理";
+Blockly.Msg.GEMINI_TEXT_RESPONSE_DATA_BR_SHOW = "自動換行";
