@@ -9,7 +9,7 @@ Blockly.JavaScript['gemini_text_initial'] = function (block) {
 Blockly.JavaScript['gemini_text_request'] = function (block) {
   var words = Blockly.JavaScript.valueToCode(block, 'words', Blockly.JavaScript.ORDER_ATOMIC)||"";	
   
-  var code = 'gemini_run('+words+');\n';
+  var code = ' setTimeout(async function() {gemini_run('+words+');}, 100);\n';
   return code; 
 };
 
