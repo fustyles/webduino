@@ -21,6 +21,7 @@ Blockly.JavaScript['gemini_text_response'] = function (block) {
 };
 
 Blockly.JavaScript['gemini_text_response_data'] = function (block) {
-  var code = 'gemini_text_data';
+  var br = block.getFieldValue('br');
+  var code = 'gemini_text_respsonse_br(gemini_text_data, \''+br+'\')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
