@@ -26,3 +26,5 @@ async function gemini_text_do(input_key, input_model, input_code) {
 	document.body.appendChild(bemini_mod);
 } 
 
+function gemini_respsonse(text) {
+}
