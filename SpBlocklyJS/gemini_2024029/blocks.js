@@ -14,7 +14,7 @@ Blockly.Blocks['gemini_text_initial'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(250);
+  this.setColour(30);
   }
 };
 
@@ -29,7 +29,7 @@ Blockly.Blocks['gemini_text_request'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(250);
+  this.setColour(30);
   }
 };
 
@@ -42,7 +42,7 @@ Blockly.Blocks['gemini_text_response'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(250);
+  this.setColour(30);
   }
 };
 
@@ -54,6 +54,6 @@ Blockly.Blocks['gemini_text_response_data'] = {
       .appendField(Blockly.Msg.GEMINI_TEXT_RESPONSE_DATA_SHOW);  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(250);
+  this.setColour(30);
   }
 };
