@@ -4,27 +4,24 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
 'use strict';
 
-function gemini_text_initial() {
-	const bemini_importMap = 
-	{
-		"imports": {
-		  "@google/generative-ai": "https://esm.run/@google/generative-ai"
-		}
-	};
-	var bemini_map = document.createElement("script");
-	bemini_map.type = "importmap";
-	bemini_map.textContent = JSON.stringify(bemini_importMap);
-	document.body.appendChild(bemini_map);
+function gemini_text_initial(input_key, input_model) {
+		const gemini_importMap = {
+			"imports": {
+			  "@google/generative-ai": "https://esm.run/@google/generative-ai"
+			}
+		};
+		var gemini_map = document.createElement("script");
+		gemini_map.type = "importmap";
+		gemini_map.textContent = JSON.stringify(gemini_importMap);
+		document.getElementsByTagName('head')[0].append(gemini_map);
+	
+		var gemini_mod = document.createElement("script");
+		gemini_mod.type = "module";
+		gemini_mod.textContent = 'import { GoogleGenerativeAI } from "@google/generative-ai";\nconst genAI = new GoogleGenerativeAI("'+input_key+'");\nasync function gemini_run(prompt) {\nawait genAI.getGenerativeModel({ model: "'+input_model+'"}).generateContent(prompt).then(function(result) {\nconst response = result.response;\nconst text = response.text();\nif (typeof gemini_text_respsonse === "function") gemini_text_respsonse(text);\n});\n}\nwindow.gemini_run = gemini_run;\n';
+		console.log(gemini_mod.textContent);
+		document.body.appendChild(gemini_mod);
 } 
 
-async function gemini_text_do(input_key, input_model, input_code) {
-	var bemini_mod = document.createElement("script");
-	bemini_mod.type = "module";
-	bemini_mod.textContent = 'import { GoogleGenerativeAI } from "@google/generative-ai";\nconst genAI = new GoogleGenerativeAI("'+input_key+'");\nconst model = genAI.getGenerativeModel({ model: "'+input_model+'"});\nasync function bemini_text(requestText) {\n  const result = await model.generateContent(requestText);\n  const response = await result.response;\n  return response.text();\n}\n'+input_code.replace(/\'/g,'"');
-	console.log(input_code);
-	console.log(bemini_mod.textContent);
-	document.body.appendChild(bemini_mod);
-} 
-
-function gemini_respsonse(text) {
+function gemini_text_respsonse(gemini_text_data) {
+	console.log(gemini_text_data);
 }

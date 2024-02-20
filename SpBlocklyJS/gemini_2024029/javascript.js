@@ -1,15 +1,26 @@
 Blockly.JavaScript['gemini_text_initial'] = function (block) {
   var token = Blockly.JavaScript.valueToCode(block, 'token', Blockly.JavaScript.ORDER_ATOMIC); 
   var model = block.getFieldValue('model');
-  var statements_do = Blockly.JavaScript.statementToCode(block, 'do');
 
-  var code = 'gemini_text_initial();\ngemini_text_do('+token+', "'+model+'", "'+statements_do.replace(/\n/g,"")+'");\n';
+  var code = 'gemini_text_initial('+token+', "'+model+'");\n';
   return code; 
 };
 
 Blockly.JavaScript['gemini_text_request'] = function (block) {
   var words = Blockly.JavaScript.valueToCode(block, 'words', Blockly.JavaScript.ORDER_ATOMIC)||"";	
   
-  var code = 'bemini_text('+words+')';
+  var code = 'gemini_run('+words+');\n';
+  return code; 
+};
+
+Blockly.JavaScript['gemini_text_response'] = function (block) {
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do'); 
+  
+  var code = 'function gemini_text_respsonse(gemini_text_data) {\n  '+statements_do+'\n}\n';
+  return code; 
+};
+
+Blockly.JavaScript['gemini_text_response_data'] = function (block) {
+  var code = 'gemini_text_data';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };

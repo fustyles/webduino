@@ -10,13 +10,11 @@ Blockly.Blocks['gemini_text_initial'] = {
       .appendField(Blockly.Msg.GEMINI_MODEL_SHOW)
       .appendField(new Blockly.FieldDropdown([
 			["gemini-pro","gemini-pro"]  
-	  ]), "model"); 
-  this.appendStatementInput("do")
-      .appendField(Blockly.Msg.GEMINI_TEXT_DO_SHOW);	  
+	  ]), "model"); 	  
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(150);
+  this.setColour(250);
   }
 };
 
@@ -28,8 +26,34 @@ Blockly.Blocks['gemini_text_request'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.GEMINI_TEXT_REQUEST_SHOW);	  
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(250);
+  }
+};
+
+Blockly.Blocks['gemini_text_response'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.GEMINI_TEXT_SHOW)
+	  .appendField(Blockly.Msg.GEMINI_TEXT_RESPONSE_SHOW);
+  this.appendStatementInput("do");
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(250);
+  }
+};
+
+Blockly.Blocks['gemini_text_response_data'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.GEMINI_TEXT_SHOW);
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.GEMINI_TEXT_RESPONSE_DATA_SHOW);  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(150);
+  this.setColour(250);
   }
 };

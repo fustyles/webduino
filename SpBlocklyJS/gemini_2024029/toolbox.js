@@ -13,6 +13,10 @@ var catGEMINI = '<xml>'+
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+
-'  </block>'+    
+'  </block>'+ 
+'  <block type="gemini_text_response">'+
+'  </block>'+ 
+'  <block type="gemini_text_response_data">'+
+'  </block>'+   
 '</category>'+
 '</xml>';
