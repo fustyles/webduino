@@ -6,3 +6,4 @@ Blockly.Msg.GEMINI_TEXT_RESPONSE_SHOW = "After receiving the response";
 Blockly.Msg.GEMINI_TEXT_RESPONSE_DATA_SHOW = "Response data";
 Blockly.Msg.GEMINI_TEXT_REQUEST_SHOW = "Chat content";
 Blockly.Msg.GEMINI_TEXT_REQUEST_BR_SHOW = "New line";
+Blockly.Msg.GEMINI_TEXT_RESPONSE_DATA_BR_SHOW = "New line";
