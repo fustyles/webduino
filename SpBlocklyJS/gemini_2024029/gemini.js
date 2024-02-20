@@ -18,7 +18,6 @@ function gemini_text_initial(input_key, input_model) {
 		var gemini_mod = document.createElement("script");
 		gemini_mod.type = "module";
 		gemini_mod.textContent = 'import { GoogleGenerativeAI } from "@google/generative-ai";\nconst genAI = new GoogleGenerativeAI("'+input_key+'");\nasync function gemini_run(prompt) {\nawait genAI.getGenerativeModel({ model: "'+input_model+'"}).generateContent(prompt).then(function(result) {\nconst response = result.response;\nconst text = response.text();\nif (typeof gemini_text_respsonse === "function") gemini_text_respsonse(text);\n});\n}\nwindow.gemini_run = gemini_run;\n';
-		console.log(gemini_mod.textContent);
 		document.body.appendChild(gemini_mod);
 } 
 /*
