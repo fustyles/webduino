@@ -21,7 +21,8 @@ function gemini_text_initial(input_key, input_model) {
 		console.log(gemini_mod.textContent);
 		document.body.appendChild(gemini_mod);
 } 
-
+/*
 function gemini_text_respsonse(gemini_text_data) {
 	console.log(gemini_text_data);
 }
+*/
