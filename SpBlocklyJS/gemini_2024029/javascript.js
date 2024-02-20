@@ -2,14 +2,14 @@ Blockly.JavaScript['gemini_text_initial'] = function (block) {
   var token = Blockly.JavaScript.valueToCode(block, 'token', Blockly.JavaScript.ORDER_ATOMIC); 
   var model = block.getFieldValue('model');
 
-  var code = 'gemini_text_initial('+token+', "'+model+'");\n';
+  var code = 'gemini_text_initial('+token+', "'+model+'");\nawait delay(0.5);\n';
   return code; 
 };
 
 Blockly.JavaScript['gemini_text_request'] = function (block) {
   var words = Blockly.JavaScript.valueToCode(block, 'words', Blockly.JavaScript.ORDER_ATOMIC)||"";	
   
-  var code = 'setTimeout(async function() {gemini_run('+words+');}, 300);\n';
+  var code = 'gemini_run('+words+');\n';
   return code; 
 };
 
