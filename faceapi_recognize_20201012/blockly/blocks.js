@@ -158,9 +158,6 @@ Blockly.Blocks['faceapirecognize_video_base64'] = {
   init: function() {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.FACEAPIRECOGNIZE_SHOW);
-  this.appendDummyInput() 
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.FACEAPIRECOGNIZE_FACEIMAGEPATH2_SHOW);
   this.appendValueInput("facelabel")
       .setAlign(Blockly.ALIGN_RIGHT)  
       .setCheck(null)
