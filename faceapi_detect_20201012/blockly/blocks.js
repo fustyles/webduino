@@ -220,12 +220,7 @@ Blockly.Blocks['faceapidetect_canvas_get'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.FACEAPIDETECT_SHOW);	  
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.FACEAPIDETECT_CANVAS_GET_SHOW); 
-  this.appendDummyInput()
-      .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg.FACEAPIDETECT_RECOGNITIED_PERSONS_SHOW,"Y"],
-		[Blockly.Msg.FACEAPIDETECT_RECOGNITIED_NOBODY_SHOW,"N"]	
-  ]), "status_");	  
+      .appendField(Blockly.Msg.FACEAPIDETECT_CANVAS_GET_SHOW); 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(65);
