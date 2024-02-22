@@ -54,7 +54,5 @@
         <field name="TEXT">https://***.***.***.***/*****.json</field>
       </block>
     </value>
-  </block>   
-  <block type="knnclassifier_proportion">
-  </block>  
+  </block>    
 </category>
