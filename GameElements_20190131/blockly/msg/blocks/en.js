@@ -579,6 +579,7 @@ Blockly.Msg["WINDOW_CONFIRM"] = "Confirm box message";
 Blockly.Msg["WINDOW_CONFIRM_YES"] = "If choiced [Yes]"; 
 Blockly.Msg["WINDOW_CONFIRM_NO"] = "If choiced [No]";
 Blockly.Msg["WINDOW_MESSAGEBOX"] = "Alert box message";
+Blockly.Msg["WINDOW_PROMPT"] = "Set to the Inputbox text.  Propmt";
 
 Blockly.Msg["SYSTEM_DATETIME"] = "System Time";
 Blockly.Msg["SYSTEM_DATETIME_DATETIME"] = "DATETIME";
