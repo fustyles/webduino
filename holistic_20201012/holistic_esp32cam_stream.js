@@ -44,11 +44,11 @@ window.onload = function () {
 					setTimeout(function(){start();},100);
 				});
 			} catch (error) {
-				setTimeout(function(){start();},100);
+				setTimeout(function(){start();},150);
 			}
 		}
 		else
-			setTimeout(function(){start();},100);
+			setTimeout(function(){start();},150);
 	}
 		
 	function onResults(results) {
