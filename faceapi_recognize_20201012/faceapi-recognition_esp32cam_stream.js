@@ -72,7 +72,7 @@ window.onload = function () {
 		  }
 	  
 		if (sourceId.innerHTML!="") {
-	  		setTimeout(function(){DetectImage();}, 100);
+	  		setTimeout(function(){DetectImage();}, 150);
 			return;
 		}
 		
@@ -116,7 +116,7 @@ window.onload = function () {
 		if (typeof recognitionFinish === 'function') recognitionFinish();
 		sourceId.innerHTML = "image";
 		
-		setTimeout(function(){DetectImage();}, 100);
+		setTimeout(function(){DetectImage();}, 150);
 	}  
 	
 	function loadLabeledImages() {
