@@ -253,11 +253,9 @@ window.onload = function () {
 				}
 				
 				if (typeof posenet_recognitionFinish === 'function') posenet_recognitionFinish();
-			} else {
-				if (typeof posenet_unrecognitionFinish === 'function') posenet_unrecognitionFinish();
 			}
 			
-			
+			if (typeof recognitionFinish === 'function') recognitionFinish();
 			
 			try { 
 			  document.createEvent("TouchEvent");
