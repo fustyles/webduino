@@ -1265,7 +1265,7 @@ Blockly.Blocks['window_prompt'] = {
   init: function () {
   this.appendDummyInput()
       .appendField(new Blockly.FieldVariable(), 'inputText');	  
-  this.appendValueInput("title")
+  this.appendValueInput("promptTitle")
 	  .appendField(Blockly.Msg["WINDOW_PROMPT"])
       .setCheck("String");
   this.setInputsInline(true);
