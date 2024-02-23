@@ -131,7 +131,7 @@ window.onload = function () {
 		if (typeof recognitionFinish === 'function') recognitionFinish();
 		sourceId.innerHTML = "image";
 		
-		setTimeout(function(){canvas.style.display = "none";start();}, (showtime*1000+150));
+		setTimeout(function(){canvas.style.display = "none";start();}, showtime*1000);
 	}  
 	
 	function loadLabeledImages() {
