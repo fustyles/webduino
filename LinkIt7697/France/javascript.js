@@ -18271,9 +18271,15 @@ Blockly.Arduino['holistic_recognitied'] = function(block) {
   var statements_do = Blockly.Arduino.statementToCode(block, 'do_');
   
   if (value_status=="Y")
-	  var code = 'if(holistic_face_position("6","x")){' + statements_do + '}';
+	  var code = 'holistic_recognitionFinish = async function() {\n  holistic_state(0);\n' + statements_do + '\n  holistic_state(1);\n};\n';
   else
-	  var code = 'if(!holistic_face_position("6","x")){' + statements_do + '}';
+	  var code = 'holistic_unrecognitionFinish = async function() {\n  holistic_state(0);\n' + statements_do + '\n  holistic_state(1);\n};\n';
+  return code;
+};
+
+Blockly.Arduino['holistic_unrecognitied'] = function(block) { 
+  var statements_do = Blockly.Arduino.statementToCode(block, 'do_');
+  var code = 'holistic_unrecognitionFinish = async function() {\n  holistic_state(0);\n' + statements_do + '\n  holistic_state(1);\n};\n';
   return code;
 };
 
