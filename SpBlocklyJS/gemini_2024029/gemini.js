@@ -10,7 +10,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
 'use strict';
 
-function gemini_text_initial(input_key, input_model, input_tokens) {
+function gemini_chart_initial(input_key, input_model, input_tokens) {
 		const gemini_importMap = {
 			"imports": {
 			  "@google/generative-ai": "https://esm.run/@google/generative-ai"
