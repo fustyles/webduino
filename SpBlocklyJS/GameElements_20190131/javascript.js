@@ -1,24 +1,3 @@
-Blockly.JavaScript['div_add'] = function (block) {
-  var value_id = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_addid = Blockly.JavaScript.valueToCode(block, 'addid_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_element = block.getFieldValue('element_');
-  if (value_element=="")
-	value_element = value_addid;
-  else
-	value_element = "'game"+value_element+"_'+"+value_addid;  
-  var code = 'div_add(' + value_id + ', ' + value_element + ');\n';
-  return code;
-};
-
-Blockly.JavaScript['googlemap_embed'] = function (block) { 
-  var value_key = Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_ATOMIC)||'"AIzaSyCjnmJJqKsk6wqcfKRXuovtuJKBWlo4OIU"';
-  var value_query = Blockly.JavaScript.valueToCode(block, 'query', Blockly.JavaScript.ORDER_ATOMIC)||'"22.62561600155969,120.37205406931322"'; 
-  var value_width = Blockly.JavaScript.valueToCode(block, 'width', Blockly.JavaScript.ORDER_ATOMIC)||400;
-  var value_height = Blockly.JavaScript.valueToCode(block, 'height', Blockly.JavaScript.ORDER_ATOMIC)||400;
-  var code = 'getGoogleMapEmbedHTML('+value_key+', '+value_query+', '+value_width+', '+value_height+')';
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
 Blockly.JavaScript['button_toolbox'] = function (block) { 
   var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC)||0;
   var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC)||0; 
@@ -2335,6 +2314,13 @@ Blockly.JavaScript['window_confirm'] = function (block) {
   var statements_yes = Blockly.JavaScript.statementToCode(block, 'yes');
   var statements_no = Blockly.JavaScript.statementToCode(block, 'no');  
   var code = 'var windowConfirm = window.confirm('+message+');\nif (windowConfirm==true) {\n  '+statements_yes +'\n}\nelse {\n  '+ statements_no + '\n}\n';  
+  return code;
+};
+
+Blockly.JavaScript['window_prompt'] = function (block) {
+  var inputText = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('inputText'), Blockly.VARIABLE_CATEGORY_NAME);	
+  var title = Blockly.JavaScript.valueToCode(block, 'title', Blockly.JavaScript.ORDER_ATOMIC); 	
+  var code = 'var '+inputText+' = window.prompt('+title+');\n';  
   return code;
 };
 

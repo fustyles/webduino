@@ -132,6 +132,13 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="window_prompt">'+
+'    <value name="title">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
 '    <block type="document_exitFullscreen">'+
 '    </block>'+ 
 '    <block type="custom_comment">'+
@@ -2579,40 +2586,6 @@ var catPageElements ='<xml>'+
 '    <field name="TEXT"></field>'+
 '    </block>'+
 '    </value>'+
-'    </block>'+
-'    <block type="div_add">'+
-'    <value name="id_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="addid_">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+
-'    </block>'+
-'    <block type="googlemap_embed">'+
-'    <value name="key">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="query">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+	
-'    <value name="width">'+
-'    <block type="math_number">'+
-'    <field name="NUM">400</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="height">'+
-'    <block type="math_number">'+
-'    <field name="NUM">400</field>'+
-'    </block>'+
-'    </value>'+	
 '    </block>'+
 '    </category>'+
 '    <category name="%{BKY_CATPAGEELEMENTS_IFRAME}" id="catPageElements_iframe">'+

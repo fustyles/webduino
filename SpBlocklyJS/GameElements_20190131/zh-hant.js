@@ -337,7 +337,6 @@ Blockly.Msg.DIV_VALUE = "值";
 Blockly.Msg.DIV_SET = "設定";
 Blockly.Msg.DIV_GET = "取得";
 Blockly.Msg.DIV_DELETE = "刪除";
-Blockly.Msg.DIV_ADD_ID = "新增元素ID";
 Blockly.Msg.SETWINDOW = "視窗設定";
 Blockly.Msg.CANVAS_GETCOLOR = "取得色碼值";
 Blockly.Msg.TIME_DELAY = "等待 (秒)";
@@ -620,6 +619,7 @@ Blockly.Msg["WINDOW_CONFIRM"] = "確認視窗 訊息";
 Blockly.Msg["WINDOW_CONFIRM_YES"] = "如果選擇[是]執行"; 
 Blockly.Msg["WINDOW_CONFIRM_NO"] = "如果選擇[否]執行";
 Blockly.Msg["WINDOW_MESSAGEBOX"] = "警告視窗 顯示";
+Blockly.Msg["WINDOW_PROMPT"] = "設定為對話框輸入文字 提示詞";
 
 Blockly.Msg["SYSTEM_DATETIME_ADD"] = "增量"; 
 Blockly.Msg["SYSTEM_DATETIME_YEARS"] = "年數";
@@ -634,7 +634,3 @@ Blockly.Msg["CODE_TEXT"] = "插入程式碼";
 
 Blockly.Msg["ENCODEURI"] = "網址編碼";
 Blockly.Msg["DECODEURI"] = "網址解碼";
-
-Blockly.Msg["GOOGLEMAP_EMBED"] = "Google地圖嵌入程式碼";
-Blockly.Msg["GOOGLEMAP_EMBED_KEY"] = "金鑰";
-Blockly.Msg["GOOGLEMAP_EMBED_QUERY"] = "查詢條件";

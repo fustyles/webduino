@@ -2651,30 +2651,25 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
     if (document.getElementById("gamediv_"+input_id))
       document.getElementById("gamediv_"+input_id).parentNode.removeChild(document.getElementById("gamediv_"+input_id));
   }
-  
-  function div_add(input_id, input_addid) {
-    if (document.getElementById("gamediv_"+input_id)&&document.getElementById(input_addid))
-      document.getElementById("gamediv_"+input_id).appendChild(document.getElementById(input_addid));
-  }  
 	
-	function HextoRgb(color) {
-	  if (!color) return null;
-	  if (color.indexOf("'#")==0&&color.length==9) {
-		color = color.substring(1,color.length-1);
-		var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
-		return "'rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")'";
-	  }
-	  else  if (color.indexOf("#")==0&&color.length==7) {
-		var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
-		return "rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")";
-	  }  
-	  else  if (color.length==6) {
-		color = "#"+ color;
-		var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
-		return "rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")";
-	  }else
-		return color;
-	} 	
+function HextoRgb(color) {
+  if (!color) return null;
+  if (color.indexOf("'#")==0&&color.length==9) {
+    color = color.substring(1,color.length-1);
+    var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+    return "'rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")'";
+  }
+  else  if (color.indexOf("#")==0&&color.length==7) {
+    var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+    return "rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")";
+  }  
+  else  if (color.length==6) {
+    color = "#"+ color;
+    var color_rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+    return "rgb("+parseInt(color_rgb[1], 16)+", "+parseInt(color_rgb[2], 16)+", "+parseInt(color_rgb[3], 16)+")";
+  }else
+    return color;
+} 	
   
   function body_set(input_property,input_value) {
     if (input_property=="backgroundColor")
@@ -4793,26 +4788,6 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
 	  obj.value = input_value;
     else
 	  obj.innerText = input_value;
-  }
-
-  function getGoogleMapUrl(Latitude, Longitude) {
-	var La1 = String(Latitude);
-	var La_1 = La1.split(".")[0];
-	var La2 = String(("0."+La1.split(".")[1])*60);
-	var La_2 = La2.split(".")[0];
-	var La3 = String(("0."+La2.split(".")[1])*60);
-	var La_3 = parseInt(La3 * 10000) / 10000;
-	var Lo1 = String(Longitude);
-	var Lo_1 = Lo1.split(".")[0];
-	var Lo2 = String(("0."+Lo1.split(".")[1])*60);
-	var Lo_2 = Lo2.split(".")[0];
-	var Lo3 = String(("0."+Lo2.split(".")[1])*60);
-	var Lo_3 = parseInt(Lo3 * 10000) / 10000;
-	return ("https://www.google.com/maps/place/"+La_1+"°"+La_2+"'"+La_3+"\"N+"+Lo_1+"°"+Lo_2+"'"+Lo_3+"\"E/@"+La1+","+Lo1);
-  }
-
-  function getGoogleMapEmbedHTML(key, query, mapWidth, mapHeight) {
-	return '<iframe width="'+mapWidth+'" height="'+mapHeight+'" style="border:0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key='+key+'&q='+query+'"> </iframe>';
   }	
 	
   window.table_create = table_create;
@@ -4990,9 +4965,6 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
   window.getDatetime = getDatetime;  
   window.setDatetime = setDatetime;
   window.icon_google = icon_google;
-  window.element_select = element_select;
-  window.getGoogleMapUrl = getGoogleMapUrl;
-  window.getGoogleMapEmbedHTML = getGoogleMapEmbedHTML;
-  window.div_add = div_add;
-	
+  window.element_select = element_select;  
+  
 }(window, window.document));

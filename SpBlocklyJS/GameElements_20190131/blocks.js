@@ -1,67 +1,3 @@
-Blockly.Blocks['div_add'] = {
-  init: function () {
-  this.appendValueInput("id_")
-      .setCheck(null)
-      .appendField(Blockly.Msg.DIV_ID);
-  this.appendDummyInput()
-	  .setAlign(Blockly.ALIGN_RIGHT)
-	  .appendField(Blockly.Msg.DIV_ADD_ID)  
-      .appendField(new Blockly.FieldDropdown([
-		  [Blockly.Msg.ELEMENT_SPAN,"span"],
-		  [Blockly.Msg.ELEMENT_IMAGE,"image"],
-		  [Blockly.Msg.ELEMENT_CANVAS,"canvas"],
-		  [Blockly.Msg.ELEMENT_BUTTON,"button"],
-		  [Blockly.Msg.ELEMENT_COLOR,"color"],
-		  [Blockly.Msg.ELEMENT_SELECT,"select"],
-		  [Blockly.Msg.ELEMENT_RANGE,"range"],
-		  [Blockly.Msg.ELEMENT_TEXT,"text"],[
-		  Blockly.Msg.ELEMENT_DIV,"div"],
-		  [Blockly.Msg.ELEMENT_A,"a"],
-		  [Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],
-		  [Blockly.Msg.ELEMENT_TEXTAREA,"textarea"],
-		  [Blockly.Msg.ELEMENT_NUMBER,"number"],
-		  [Blockly.Msg.ELEMENT_DATE,"date"],
-		  [Blockly.Msg.ELEMENT_TIME,"time"],
-		  [Blockly.Msg.ELEMENT_DATETIME,"datetime"],
-		  [Blockly.Msg.ELEMENT_PROGRESS,"progress"],
-		  [Blockly.Msg.ELEMENT_PASSWORD,"password"],
-		  [Blockly.Msg.ELEMENTID,""]
-	  ]), "element_");	  
-  this.appendValueInput("addid_")
-      .setCheck(null);
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(300);
-  }
-};
-
-Blockly.Blocks['googlemap_embed'] = {
-  init: function() {
-  this.appendDummyInput()   
-      .appendField(Blockly.Msg["GOOGLEMAP_EMBED"]);
-  this.appendValueInput("key")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["GOOGLEMAP_EMBED_KEY"]);
-  this.appendValueInput("query")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg["GOOGLEMAP_EMBED_QUERY"]);	  
-  this.appendValueInput("width")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.WIDTH);
-  this.appendValueInput("height")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.HEIGHT);	  	  
-  this.setInputsInline(true);
-  this.setOutput(true, null); 
-  this.setColour(170);
-  }
-};
-
 Blockly.Blocks['button_toolbox'] = {
   init: function() {
   this.appendDummyInput()   
@@ -6825,6 +6761,20 @@ Blockly.Blocks['window_confirm'] = {
       .appendField(Blockly.Msg["WINDOW_CONFIRM_NO"]);   
   this.appendStatementInput("no");
   this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(250);
+  }
+};
+
+Blockly.Blocks['window_prompt'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldVariable(), 'inputText');	  
+  this.appendValueInput("title")
+	  .appendField(Blockly.Msg["WINDOW_PROMPT"])
+      .setCheck("String");
+  this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(250);

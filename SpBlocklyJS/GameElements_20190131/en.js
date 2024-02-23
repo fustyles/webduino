@@ -337,7 +337,6 @@ Blockly.Msg.DIV_VALUE = "Value";
 Blockly.Msg.DIV_SET = "Set";
 Blockly.Msg.DIV_GET = "Get";
 Blockly.Msg.DIV_DELETE = "Delete";
-Blockly.Msg.DIV_ADD_ID = "New element ID";
 Blockly.Msg.SETWINDOW = "Set Window";
 Blockly.Msg.CANVAS_GETCOLOR = "Get color";
 Blockly.Msg.TIME_DELAY = "Delay (s)";
@@ -623,6 +622,7 @@ Blockly.Msg["WINDOW_CONFIRM"] = "Confirm box message";
 Blockly.Msg["WINDOW_CONFIRM_YES"] = "If choiced [Yes]"; 
 Blockly.Msg["WINDOW_CONFIRM_NO"] = "If choiced [No]";
 Blockly.Msg["WINDOW_MESSAGEBOX"] = "Alert box message";
+Blockly.Msg["WINDOW_PROMPT"] = "Set to the Inputbox text. Propmt";
 
 Blockly.Msg["SYSTEM_DATETIME_ADD"] = "add";
 Blockly.Msg["SYSTEM_DATETIME_YEARS"] = "years";
@@ -637,7 +637,3 @@ Blockly.Msg["CODE_TEXT"] = "Insert code";
 
 Blockly.Msg["ENCODEURI"] = "encodeURI";
 Blockly.Msg["DECODEURI"] = "decodeURI";
-
-Blockly.Msg["GOOGLEMAP_EMBED"] = "Google map embed html";
-Blockly.Msg["GOOGLEMAP_EMBED_KEY"] = "Key";
-Blockly.Msg["GOOGLEMAP_EMBED_QUERY"] = "Query";
