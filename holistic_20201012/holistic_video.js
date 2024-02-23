@@ -10,7 +10,7 @@ document.write('<div id="gamediv_resultsFaceLandmarks" style="position:absolute;
 
 window.onload = function () {
 	var canvas = document.getElementById('gamecanvas_holistic');
-	var canvasCtx = canvas.getcanvasCtx('2d');
+	var canvasCtx = canvas.getContext('2d');
 	var mirrorimage = document.getElementById("mirrorimage_holistic");
 	var scorelimit = document.getElementById("scorelimit_holistic");
 	var result = document.getElementById('gamediv_holistic');
