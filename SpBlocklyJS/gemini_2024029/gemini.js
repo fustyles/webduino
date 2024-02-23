@@ -36,12 +36,3 @@ function gemini_chat_respsonse_br(data, newline) {
 	else
 		return data.replace(/\n/g,"");
 }
-
-function gemini_chat_respsonse_br(data, newline) {
-	if (newline=="br")
-		return data.replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");
-	else if (newline=="n")
-		return data;	
-	else
-		return data.replace(/\n/g,"");
-}
