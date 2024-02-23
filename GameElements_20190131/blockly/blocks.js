@@ -1261,6 +1261,20 @@ Blockly.Blocks['window_confirm'] = {
   }
 };
 
+Blockly.Blocks['window_prompt'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldVariable(), 'inputText');	  
+  this.appendValueInput("title")
+	  .appendField(Blockly.Msg["WINDOW_PROMPT"])
+      .setCheck("String");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(250);
+  }
+};
+
 Blockly.Blocks['include_file'] = {
   init: function() {
   this.appendDummyInput() 
