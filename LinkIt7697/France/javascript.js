@@ -3578,22 +3578,34 @@ Blockly.Arduino['uart_server_initial'] = function(block) {
 		Blockly.Arduino.definitions_.define_custom_command = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
 	
 	if (serial=="Serial") {
-		Blockly.Arduino.setups_.setup_serial = serial+'.begin('+baudrate+');\n  delay(10);\n';
+		if (Blockly.Arduino.setupsTop_)
+			Blockly.Arduino.setupsTop_.setup_serial = serial+'.begin('+baudrate+');\n  delay(10);\n  ';
+		else
+			Blockly.Arduino.setups_.setup_serial = serial+'.begin('+baudrate+');\n  delay(10);\n';
 	}
 	else if (serial=="mySerial1") {
 		Blockly.Arduino.definitions_["define_HardwareSerial"+serial] = 'HardwareSerial '+serial+'(1);';
-		Blockly.Arduino.setups_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+', SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n';
+		if (Blockly.Arduino.setupsTop_)
+			Blockly.Arduino.setupsTop_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+', SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n  ';
+		else
+			Blockly.Arduino.setups_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+', SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n';
 	}
 	else if  (serial=="mySerial2") {
-		Blockly.Arduino.definitions_["define_HardwareSerial"+serial] = 'HardwareSerial '+serial+'(2);';		
-		Blockly.Arduino.setups_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+', SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n';
+		Blockly.Arduino.definitions_["define_HardwareSerial"+serial] = 'HardwareSerial '+serial+'(2);';
+		if (Blockly.Arduino.setupsTop_)
+			Blockly.Arduino.setupsTop_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+', SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n  ';
+		else
+			Blockly.Arduino.setups_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+', SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n';
 	}
 	else if  (serial=="mySerialS") {
 		if (selectBoardType().indexOf("esp")!=-1)
 			Blockly.Arduino.definitions_["define_SoftwareSerial"] = '#include <SoftwareSerial_esp.h>\nSoftwareSerial '+serial+'('+rx+', '+tx+');';
 		else
-			Blockly.Arduino.definitions_["define_SoftwareSerial"] = '#include <SoftwareSerial.h>\nSoftwareSerial '+serial+'('+rx+', '+tx+');';	
-		Blockly.Arduino.setups_["define_SoftwareSerial_"+serial] = serial+'.begin('+baudrate+');\n  delay(10);\n';
+			Blockly.Arduino.definitions_["define_SoftwareSerial"] = '#include <SoftwareSerial.h>\nSoftwareSerial '+serial+'('+rx+', '+tx+');';
+		if (Blockly.Arduino.setupsTop_)		
+			Blockly.Arduino.setupsTop_["define_SoftwareSerial_"+serial] = serial+'.begin('+baudrate+');\n  delay(10);\n  ';
+		else
+			Blockly.Arduino.setups_["define_SoftwareSerial_"+serial] = serial+'.begin('+baudrate+');\n  delay(10);\n';
 	}
 	
 	Blockly.Arduino.definitions_.getCommand = ''+
@@ -6657,22 +6669,34 @@ Blockly.Arduino['uart_initial'] = function(block) {
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
 	
 	if (serial=="Serial") {
-		Blockly.Arduino.setups_.setup_serial = serial+'.begin('+baudrate+');\n  delay(10);\n';
+		if (Blockly.Arduino.setupsTop_)
+			Blockly.Arduino.setupsTop_.setup_serial = serial+'.begin('+baudrate+');\n  delay(10);\n  ';
+		else
+			Blockly.Arduino.setups_.setup_serial = serial+'.begin('+baudrate+');\n  delay(10);\n  ';
 	}
 	else if (serial=="mySerial1") {
 		Blockly.Arduino.definitions_["define_HardwareSerial_"+serial] = 'HardwareSerial '+serial+'(1);';
-		Blockly.Arduino.setups_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+', SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n';
+		if (Blockly.Arduino.setupsTop_)
+			Blockly.Arduino.setupsTop_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+', SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n  ';
+		else
+			Blockly.Arduino.setups_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+', SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n';	
 	}
 	else if  (serial=="mySerial2") {
-		Blockly.Arduino.definitions_["define_HardwareSerial_"+serial] = 'HardwareSerial '+serial+'(2);';		
-		Blockly.Arduino.setups_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+', SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n';
+		Blockly.Arduino.definitions_["define_HardwareSerial_"+serial] = 'HardwareSerial '+serial+'(2);';
+		if (Blockly.Arduino.setupsTop_)
+			Blockly.Arduino.setupsTop_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+', SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n  ';
+		else
+			Blockly.Arduino.setups_["define_HardwareSerial_"+serial] = serial+'.begin('+baudrate+', SERIAL_8N1, '+rx+', '+tx+');\n  delay(10);\n';	
 	}
 	else if  (serial=="mySerialS") {
 		if (selectBoardType().indexOf("esp")!=-1)
 			Blockly.Arduino.definitions_["define_SoftwareSerial"] = '#include <SoftwareSerial_esp.h>\nSoftwareSerial '+serial+'('+rx+', '+tx+');';
 		else
-			Blockly.Arduino.definitions_["define_SoftwareSerial"] = '#include <SoftwareSerial.h>\nSoftwareSerial '+serial+'('+rx+', '+tx+');';	
-		Blockly.Arduino.setups_["define_SoftwareSerial_"+serial] = serial+'.begin('+baudrate+');\n  delay(10);\n';
+			Blockly.Arduino.definitions_["define_SoftwareSerial"] = '#include <SoftwareSerial.h>\nSoftwareSerial '+serial+'('+rx+', '+tx+');';
+		if (Blockly.Arduino.setupsTop_)
+			Blockly.Arduino.setupsTop_["define_SoftwareSerial_"+serial] = serial+'.begin('+baudrate+');\n  delay(10);\n  ';
+		else
+			Blockly.Arduino.setups_["define_SoftwareSerial_"+serial] = serial+'.begin('+baudrate+');\n  delay(10);\n';
 	}
 	
 	var code;
