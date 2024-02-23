@@ -8,3 +8,4 @@ Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW = "Chat content";
 Blockly.Msg.GEMINI_CHAT_REQUEST_BR_SHOW = "New line";
 Blockly.Msg.GEMINI_CHAT_RESPONSE_DATA_BR_SHOW = "New line";
 Blockly.Msg.GEMINI_CHAT_CLEAR_SHOW = "Clear chat history";
+Blockly.Msg.GEMINI_CHAT_MAX_TOKENS = "Max output tokens";

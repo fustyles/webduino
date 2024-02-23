@@ -1,8 +1,9 @@
 Blockly.JavaScript['gemini_chat_initial'] = function (block) {
-  var token = Blockly.JavaScript.valueToCode(block, 'token', Blockly.JavaScript.ORDER_ATOMIC); 
+  var token = Blockly.JavaScript.valueToCode(block, 'token', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var tokens = Blockly.JavaScript.valueToCode(block, 'tokens', Blockly.JavaScript.ORDER_ATOMIC)||100;   
   var model = block.getFieldValue('model');
 
-  var code = 'gemini_chat_initial('+token+', "'+model+'");\nawait delay(0.5);\n';
+  var code = 'gemini_chat_initial('+token+', "'+model+'", '+tokens+');\nawait delay(0.5);\n';
   return code; 
 };
 

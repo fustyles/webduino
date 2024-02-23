@@ -8,3 +8,4 @@ Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW = "對話內容";
 Blockly.Msg.GEMINI_CHAT_REQUEST_BR_SHOW = "換行處理";
 Blockly.Msg.GEMINI_CHAT_RESPONSE_DATA_BR_SHOW = "自動換行";
 Blockly.Msg.GEMINI_CHAT_CLEAR_SHOW = "清除對話紀錄";
+Blockly.Msg.GEMINI_CHAT_MAX_TOKENS = "輸出最大字節數";
