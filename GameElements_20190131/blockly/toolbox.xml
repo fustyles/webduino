@@ -62,7 +62,7 @@
 			</value>
 		</block>
 		<block type="window_prompt">
-			<value name="title">
+			<value name="promptTitle">
 				<block type="text">
 			<field name="TEXT"></field>
 		</block>		
