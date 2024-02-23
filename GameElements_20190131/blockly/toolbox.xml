@@ -61,6 +61,11 @@
 				</block>
 			</value>
 		</block>
+		<block type="window_prompt">
+			<value name="title">
+				<block type="text">
+			<field name="TEXT"></field>
+		</block>		
 		<block type="window_open">
 			<value name="url_">
 				<block type="text">
