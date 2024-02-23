@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (xml.indexOf("aes_")!=-1) {
 			script += "<script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js'></script>";
 		}		
-		if (xml.indexOf("gemini_text_")!=-1) {
+		if (xml.indexOf("gemini_chat_")!=-1) {
 			script += "<script src='gemini_2024029/gemini.js'></script>";			
 			script += "<script src='gemini_2024029/gemini.js'></script>";
 		}
@@ -358,7 +358,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (xml.indexOf("aes_")!=-1) {
 			script += "<script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js'></script>";
 		}
-		if (xml.indexOf("gemini_text_")!=-1) {
+		if (xml.indexOf("gemini_chat_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/gemini_2024029/gemini.js'></script>";			
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/gemini_2024029/gemini.js'></script>";
 		}		
