@@ -578,6 +578,7 @@ Blockly.Msg["WINDOW_CONFIRM"] = "确认视窗 讯息";
 Blockly.Msg["WINDOW_CONFIRM_YES"] = "如果选择[是]执行"; 
 Blockly.Msg["WINDOW_CONFIRM_NO"] = "如果选择[否]执行";
 Blockly.Msg["WINDOW_MESSAGEBOX"] = "警告视窗 显示";
+Blockly.Msg["WINDOW_PROMPT"] = "设定为对话框输入文字  提示词";
 
 Blockly.Msg["SYSTEM_DATETIME"] = "系统时间";
 Blockly.Msg["SYSTEM_DATETIME_DATETIME"] = "完整时间";
