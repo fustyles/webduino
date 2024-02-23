@@ -3,7 +3,7 @@ document.write('<div id="region_holistic" style="z-index:999"><img id="gameimage
 window.onload = function () {
 	var ShowImage = document.getElementById('gameimage_holistic');	
 	var canvas = document.getElementById('gamecanvas_holistic');
-	var canvasCtx = canvas.getcanvasCtx('2d');
+	var canvasCtx = canvas.getContext('2d');
 	var mirrorimage = document.getElementById("mirrorimage_holistic");
 	var scorelimit = document.getElementById("scorelimit_holistic");
 	var result = document.getElementById('gamediv_holistic');
