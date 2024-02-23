@@ -4,6 +4,12 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
 'use strict';
 
+/*
+Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
+*/
+
+'use strict';
+
 function gemini_text_initial(input_key, input_model) {
 		const gemini_importMap = {
 			"imports": {
@@ -22,7 +28,16 @@ function gemini_text_initial(input_key, input_model) {
 		document.body.appendChild(gemini_mod);
 } 
 
-function gemini_text_respsonse_br(data, newline) {
+function gemini_chat_respsonse_br(data, newline) {
+	if (newline=="br")
+		return data.replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");
+	else if (newline=="n")
+		return data;	
+	else
+		return data.replace(/\n/g,"");
+}
+
+function gemini_chat_respsonse_br(data, newline) {
 	if (newline=="br")
 		return data.replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");
 	else if (newline=="n")
