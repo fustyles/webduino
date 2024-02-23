@@ -65,6 +65,7 @@
 	}
 
 	function faceapirecognize_video_position(input_left, input_top) {
+		var region = document.getElementById("region_faceapirecognize");
 		region.style.position = "absolute";
 		region.style.left = input_left + "px";
 		region.style.top = input_top + "px";
