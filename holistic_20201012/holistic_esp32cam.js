@@ -57,7 +57,7 @@ window.onload = function () {
 		
 		if (holisticState.innerHTML =="1") {
 			holistic.send({image: canvas}).then(res => {
-				setTimeout(function(){start();},100);
+				setTimeout(function(){start();},150);
 			});
 		}
 		else {
@@ -65,7 +65,7 @@ window.onload = function () {
 			//result_pose.innerHTML = "";
 			//result_lefthand.innerHTML = "";
 			//result_righthand.innerHTML = "";				
-			setTimeout(function(){start();},100);
+			setTimeout(function(){start();},150);
 		}   
 	}
 		
