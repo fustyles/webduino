@@ -11,7 +11,7 @@
 	document.getElementById("lefthand_holistic").value = input_lefthand;
 	document.getElementById("righthand_holistic").value = input_righthand;		
 	document.getElementById("region_holistic").style.opacity = input_opacity;
-    	document.getElementById("gamecanvas_canvasElement").style.display = input_video;
+	document.getElementById("gamecanvas_holistic").style.display = input_video;
   }
 	
   function holistic_distance(input_x0,input_y0,input_x1,input_y1) {
@@ -107,14 +107,14 @@
 		var json = document.getElementById("gamediv_face_holistic").innerHTML;
 		if (json!=""&&json!="undefined") {
 			var result = JSON.parse('{"data":'+json+'}');
-			var canvasElement = document.getElementById('gamecanvas_canvasElement');
+			var canvas = document.getElementById('gamecanvas_holistic');
 			if (result["data"].length>0) {
 				if (input_data=="x")
-					return Number(result["data"][input_index].x)*Number(canvasElement.width);
+					return Number(result["data"][input_index].x)*Number(canvas.width);
 				else if (input_data=="y")
-					return Number(result["data"][input_index].y)*Number(canvasElement.height);
+					return Number(result["data"][input_index].y)*Number(canvas.height);
 				else if (input_data=="z")
-					return Number(result["data"][input_index].z)*Number(canvasElement.width);
+					return Number(result["data"][input_index].z)*Number(canvas.width);
 			}
 		}
 		return "";
@@ -124,14 +124,14 @@
 		var json = document.getElementById("gamediv_pose_holistic").innerHTML;
 		if (json!=""&&json!="undefined") {
 			var result = JSON.parse('{"data":'+json+'}');
-			var canvasElement = document.getElementById('gamecanvas_canvasElement');
+			var canvas = document.getElementById('gamecanvas_holistic');
 			if (result["data"].length>0) {
 				if (input_data=="x")
-					return Number(result["data"][input_index].x)*Number(canvasElement.width);
+					return Number(result["data"][input_index].x)*Number(canvas.width);
 				else if (input_data=="y")
-					return Number(result["data"][input_index].y)*Number(canvasElement.height);
+					return Number(result["data"][input_index].y)*Number(canvas.height);
 				else if (input_data=="z")
-					return Number(result["data"][input_index].z)*Number(canvasElement.width);
+					return Number(result["data"][input_index].z)*Number(canvas.width);
 			}
 		}
 		return "";
@@ -141,14 +141,14 @@
 		var json = document.getElementById("gamediv_lefthand_holistic").innerHTML;
 		if (json!=""&&json!="undefined") {
 			var result = JSON.parse('{"data":'+json+'}');
-			var canvasElement = document.getElementById('gamecanvas_canvasElement');
+			var canvas = document.getElementById('gamecanvas_holistic');
 			if (result["data"].length>0) {
 				if (input_data=="x")
-					return Number(result["data"][input_index].x)*Number(canvasElement.width);
+					return Number(result["data"][input_index].x)*Number(canvas.width);
 				else if (input_data=="y")
-					return Number(result["data"][input_index].y)*Number(canvasElement.height);
+					return Number(result["data"][input_index].y)*Number(canvas.height);
 				else if (input_data=="z")
-					return Number(result["data"][input_index].z)*Number(canvasElement.width);
+					return Number(result["data"][input_index].z)*Number(canvas.width);
 			}
 		}
 		return "";
@@ -158,14 +158,14 @@
 		var json = document.getElementById("gamediv_righthand_holistic").innerHTML;
 		if (json!=""&&json!="undefined") {
 			var result = JSON.parse('{"data":'+json+'}');
-			var canvasElement = document.getElementById('gamecanvas_canvasElement');
+			var canvas = document.getElementById('gamecanvas_holistic');
 			if (result["data"].length>0) {
 				if (input_data=="x")
-					return Number(result["data"][input_index].x)*Number(canvasElement.width);
+					return Number(result["data"][input_index].x)*Number(canvas.width);
 				else if (input_data=="y")
-					return Number(result["data"][input_index].y)*Number(canvasElement.height);
+					return Number(result["data"][input_index].y)*Number(canvas.height);
 				else if (input_data=="z")
-					return Number(result["data"][input_index].z)*Number(canvasElement.width);
+					return Number(result["data"][input_index].z)*Number(canvas.width);
 			}
 		}
 		return "";
@@ -185,13 +185,13 @@
 		var result_property_arr = [];
 		if (json!=""&&json!="undefined") {
 			var result = JSON.parse('{"data":'+json+'}');
-			var canvasElement = document.getElementById('gamecanvas_canvasElement');
+			var canvas = document.getElementById('gamecanvas_holistic');
 			if (result["data"].length>0) {
 				for (var i=0;i<result["data"].length;i++) {
 					result_property_arr = [];
-					result_property_arr.push(Number(result["data"][i].x)*Number(canvasElement.width));
-					result_property_arr.push(Number(result["data"][i].y)*Number(canvasElement.height));
-					result_property_arr.push(Number(result["data"][i].z)*Number(canvasElement.width));
+					result_property_arr.push(Number(result["data"][i].x)*Number(canvas.width));
+					result_property_arr.push(Number(result["data"][i].y)*Number(canvas.height));
+					result_property_arr.push(Number(result["data"][i].z)*Number(canvas.width));
 					result_arr.push(result_property_arr);
 				}
 			}
