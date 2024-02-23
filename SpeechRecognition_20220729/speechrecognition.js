@@ -6,7 +6,7 @@ var one_line = /\n/g;
 var first_char = /\S/;
 var Recognition_interim = '';
 var Recognition_final = '';
-var SpeechRecognition_interim;
+var SpeechRecognition_interim = document.getElementById("gamespan_recognition");
 
 if ('webkitSpeechRecognition' in window) {
   var recognition = new webkitSpeechRecognition();
