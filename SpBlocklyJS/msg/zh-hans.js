@@ -835,6 +835,7 @@ Blockly.Msg["MYPICKPLACEBLOCK_CLICK_TO_PLACE_INPUT"] = "置放积木 [输入: #]
 
 Blockly.Msg["VARIABLES_GLOBAL"] = "全域";
 Blockly.Msg["VARIABLES_LOCAL"] = "区域";
+Blockly.Msg["VARIABLES_CONST"] = "常数";
 
 Blockly.Msg["BUTTON_COLLABORATION"] = "MQTT协同编辑";
 Blockly.Msg["COLLABORATION_BROKER_TITLE"] = "代理伺服器";

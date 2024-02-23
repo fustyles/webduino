@@ -270,11 +270,7 @@ PROCEDURE_DEF_COMMON$$module$build$src$blocks$procedures,{
 		a=$.fromJson$$module$build$src$core$field_registry({type:"field_input",text:a});
 		a.setValidator($.rename$$module$build$src$core$procedures);
 		a.setSpellcheck(!1);
-		this.appendDummyInput().appendField($.Msg$$module$build$src$core$msg.PROCEDURES_DEFNORETURN_TITLE).appendField(a,"NAME").appendField("","PARAMS")		
-		.appendField(new Blockly.FieldDropdown([
-			["　",""],
-			[$.Msg$$module$build$src$core$msg.FUNCTION_ASYNC,"async"]	  
-		]), "async");
+		this.appendDummyInput().appendField($.Msg$$module$build$src$core$msg.PROCEDURES_DEFNORETURN_TITLE).appendField(a,"NAME").appendField("","PARAMS");
 		this.setMutator(new $.MutatorIcon$$module$build$src$core$icons$mutator_icon(["procedures_mutatorarg"],this));
 		(this.workspace.options.comments||this.workspace.options.parentWorkspace&&this.workspace.options.parentWorkspace.options.comments)&&$.Msg$$module$build$src$core$msg.PROCEDURES_DEFNORETURN_COMMENT&&this.setCommentText($.Msg$$module$build$src$core$msg.PROCEDURES_DEFNORETURN_COMMENT);
 		this.setStyle("procedure_blocks");
@@ -296,11 +292,7 @@ blocks$$module$build$src$blocks$procedures.procedures_defreturn=Object.assign({}
 		a=$.fromJson$$module$build$src$core$field_registry({type:"field_input",text:a});
 		a.setValidator($.rename$$module$build$src$core$procedures);
 		a.setSpellcheck(!1);
-		this.appendDummyInput().appendField($.Msg$$module$build$src$core$msg.PROCEDURES_DEFRETURN_TITLE).appendField(a,"NAME").appendField("","PARAMS")
-		.appendField(new Blockly.FieldDropdown([
-			["　",""],
-			[$.Msg$$module$build$src$core$msg.FUNCTION_ASYNC,"async"]	  
-		]), "async");
+		this.appendDummyInput().appendField($.Msg$$module$build$src$core$msg.PROCEDURES_DEFRETURN_TITLE).appendField(a,"NAME").appendField("","PARAMS");
 		this.appendValueInput("RETURN").setAlign($.Align$$module$build$src$core$inputs$input.RIGHT).appendField($.Msg$$module$build$src$core$msg.PROCEDURES_DEFRETURN_RETURN);
 		this.setMutator(new $.MutatorIcon$$module$build$src$core$icons$mutator_icon(["procedures_mutatorarg"],this));
 		(this.workspace.options.comments||this.workspace.options.parentWorkspace&&this.workspace.options.parentWorkspace.options.comments)&&$.Msg$$module$build$src$core$msg.PROCEDURES_DEFRETURN_COMMENT&&this.setCommentText($.Msg$$module$build$src$core$msg.PROCEDURES_DEFRETURN_COMMENT);
@@ -514,7 +506,7 @@ $.registerMutator$$module$build$src$core$extensions("text_charAt_mutator",CHARAT
 {
 	type:"variables_set"
 	,message0:"%{BKY_VARIABLES_SET}"
-	,args0:[{type:"field_dropdown",name:"OP",options:[["%{BKY_VARIABLES_GLOBAL}","GLOBAL"],["%{BKY_VARIABLES_LOCAL}","LOCAL"]]},{type:"field_variable",name:"VAR",variable:"%{BKY_VARIABLES_DEFAULT_NAME}"},{type:"input_value",name:"VALUE"}]
+	,args0:[{type:"field_dropdown",name:"OP",options:[["%{BKY_VARIABLES_GLOBAL}","GLOBAL"],["%{BKY_VARIABLES_LOCAL}","LOCAL"],["%{BKY_VARIABLES_CONST}","CONST"]]},{type:"field_variable",name:"VAR",variable:"%{BKY_VARIABLES_DEFAULT_NAME}"},{type:"input_value",name:"VALUE"}]
 	,previousStatement:null
 	,nextStatement:null
 	,style:"variable_blocks"
