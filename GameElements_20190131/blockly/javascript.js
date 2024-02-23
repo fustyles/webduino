@@ -2351,6 +2351,13 @@ Blockly.JavaScript['window_confirm'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['window_prompt'] = function (block) {
+  var inputText = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('inputText'), Blockly.VARIABLE_CATEGORY_NAME);	
+  var title = Blockly.JavaScript.valueToCode(block, 'title', Blockly.JavaScript.ORDER_ATOMIC); 	
+  var code = 'var '+inputText+' = window.prompt('+title+');\n';  
+  return code;
+};
+
 Blockly.JavaScript['include_file'] = function (block) {
   var type = block.getFieldValue('type');
   var position = block.getFieldValue('position');
