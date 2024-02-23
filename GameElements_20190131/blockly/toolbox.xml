@@ -64,7 +64,9 @@
 		<block type="window_prompt">
 			<value name="promptTitle">
 				<block type="text">
-			<field name="TEXT"></field>
+					<field name="TEXT"></field>
+				</block>
+			</value>
 		</block>		
 		<block type="window_open">
 			<value name="url_">
