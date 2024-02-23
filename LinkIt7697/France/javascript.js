@@ -2388,6 +2388,13 @@ Blockly.Arduino['window_confirm'] = function (block) {
   return code;
 };
 
+Blockly.Arduino['window_prompt'] = function (block) {
+  var inputText = Blockly.Arduino.nameDB_.getName(block.getFieldValue('inputText'), Blockly.VARIABLE_CATEGORY_NAME);
+  var promptTitle = Blockly.Arduino.valueToCode(block, 'promptTitle', Blockly.Arduino.ORDER_ATOMIC); 	
+  var code = 'var '+inputText+' = window.prompt('+promptTitle+');\n';  
+  return code;
+};
+
 Blockly.Arduino['javascript_function_string_split'] = function(block) {
 	var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC)||" ";	
 	var delimiter = Blockly.Arduino.valueToCode(block, 'delimiter', Blockly.Arduino.ORDER_ATOMIC)||" ";

@@ -3424,7 +3424,14 @@
 					<field name="TEXT"></field>
 				</block>
 			</value>
-		</block>		
+		</block>	
+		<block type="window_prompt">
+			<value name="promptTitle">
+				<block type="text">
+					<field name="TEXT"></field>
+				</block>
+			</value>
+		</block>
 		<block type="time_delay">
 			<value name="seconds">
 				<block type="math_number">

@@ -3882,6 +3882,20 @@ Blockly.Blocks['window_confirm'] = {
   }
 };
 
+Blockly.Blocks['window_prompt'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldVariable('inputText'), 'inputText');	  
+  this.appendValueInput("promptTitle")
+	  .appendField(Blockly.Msg["WINDOW_PROMPT"])
+      .setCheck("String");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
 Blockly.Blocks['javascript_function_string_split'] = {
   init: function() {
     this.appendDummyInput()
