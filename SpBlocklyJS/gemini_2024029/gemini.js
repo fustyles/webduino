@@ -4,12 +4,6 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
 'use strict';
 
-/*
-Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
-*/
-
-'use strict';
-
 function gemini_chart_initial(input_key, input_model, input_tokens) {
 		const gemini_importMap = {
 			"imports": {
