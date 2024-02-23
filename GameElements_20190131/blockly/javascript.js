@@ -2353,8 +2353,8 @@ Blockly.JavaScript['window_confirm'] = function (block) {
 
 Blockly.JavaScript['window_prompt'] = function (block) {
   var inputText = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('inputText'), Blockly.VARIABLE_CATEGORY_NAME);	
-  var title = Blockly.JavaScript.valueToCode(block, 'title', Blockly.JavaScript.ORDER_ATOMIC); 	
-  var code = 'var '+inputText+' = window.prompt('+title+');\n';  
+  var promptTitle = Blockly.JavaScript.valueToCode(block, 'promptTitle', Blockly.JavaScript.ORDER_ATOMIC); 	
+  var code = 'var '+inputText+' = window.prompt('+promptTitle+');\n';  
   return code;
 };
 
