@@ -99,3 +99,36 @@ Blockly.Blocks['gemini_chat_clear'] = {
   this.setColour(40);
   }
 };
+
+Blockly.Blocks['gemini_chat_content_file'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.GEMINI_CHAT_SHOW)   
+	  .appendField(Blockly.Msg.GEMINI_CHAT_CONTENT_FILE_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.GEMINI_CHAT_CONTENT_FILE_OPEN_SHOW,"open"],
+			[Blockly.Msg.GEMINI_CHAT_CONTENT_FILE_SAVE_SHOW,"save"]	  
+	  ]), "func"); 	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true); 
+  this.setColour(40);
+  }
+};
+
+Blockly.Blocks['gemini_chat_content_file_remote'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.GEMINI_CHAT_SHOW)   
+	  .appendField(Blockly.Msg.GEMINI_CHAT_CONTENT_FILE_REMOTE_SHOW);
+  this.appendValueInput("url")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.GEMINI_CHAT_CONTENT_FILE_REMOTE_URL_SHOW);	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true); 
+  this.setColour(40);
+  }
+};
