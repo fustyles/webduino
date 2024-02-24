@@ -8,7 +8,7 @@ var catGEMINI = '<xml>'+
 '    </value>'+
 '    <value name="tokens">'+
 '    	<block type="math_number">'+
-'    		<field name="NUM">300</field>'+
+'    		<field name="NUM">1000</field>'+
 '    	</block>'+
 '    </value>'+
 '    <value name="role">'+
