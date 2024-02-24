@@ -34,6 +34,13 @@ var catGEMINI = '<xml>'+
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+   
+'  </block>'+
+'  <block type="gemini_chat_content_file_remote_insert">'+
+'    <value name="url">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
 '  </block>'+   
 '  <block type="gemini_chat_clear">'+
 '  </block>'+
