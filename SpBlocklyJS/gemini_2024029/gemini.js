@@ -25,9 +25,9 @@ function gemini_chat_initial(input_key, input_model, input_tokens) {
 		'		const text = response.text();\n'+
 		'		gemini_chat_insert(prompt, text);\n'+
 		'		if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(text);\n'+
-		'	});'+
-		'}'+
-		'async function gemini_chat_insert(request, response) {'+
+		'	});\n'+
+		'}\n'+
+		'async function gemini_chat_insert(request, response) {\n'+
 		'	var char_request = {};\n'+
 		'	char_request.role = "user";\n'+
 		'	char_request.parts = request;\n'+
@@ -36,11 +36,11 @@ function gemini_chat_initial(input_key, input_model, input_tokens) {
 		'	char_response.role = "model";\n'+
 		'	char_response.parts = response;\n'+
 		'	chatHistory["history"].push(char_response);\n'+
-		'	console.log(chatHistory);'+
+		'	console.log(chatHistory);\n'+
 		'}\n'+
-		'async function gemini_chat_clear(){'+
-		'	chatHistory["history"] = [];'+
-		'}\nv
+		'async function gemini_chat_clear(){\n'+
+		'	chatHistory["history"] = [];\n'+
+		'}\n'+
 		'window.gemini_chat_run = gemini_chat_run;\n'+
 		'window.gemini_chat_insert = gemini_chat_insert;\n'+
 		'window.gemini_chat_clear = gemini_chat_clear;\n';
