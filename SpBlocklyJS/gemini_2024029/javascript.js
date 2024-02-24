@@ -2,15 +2,16 @@ Blockly.JavaScript['gemini_chat_initial'] = function (block) {
   var token = Blockly.JavaScript.valueToCode(block, 'token', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var tokens = Blockly.JavaScript.valueToCode(block, 'tokens', Blockly.JavaScript.ORDER_ATOMIC)||100;   
   var model = block.getFieldValue('model');
+  var role = Blockly.JavaScript.valueToCode(block, 'role', Blockly.JavaScript.ORDER_ATOMIC);   
 
-  var code = 'gemini_chat_initial('+token+', "'+model+'", '+tokens+');\nawait delay(0.5);\n';
+  var code = 'gemini_chat_initial('+token+', "'+model+'", '+tokens+');\nawait delay(0.5);\ngemini_chat_insert('+role+', '');\n';
   return code; 
 };
 
 Blockly.JavaScript['gemini_chat_request'] = function (block) {
   var words = Blockly.JavaScript.valueToCode(block, 'words', Blockly.JavaScript.ORDER_ATOMIC)||"";	
   
-  var code = 'gemini_run('+words+');\n';
+  var code = 'gemini_chat_run('+words+');\n';
   return code; 
 };
 
@@ -27,6 +28,12 @@ Blockly.JavaScript['gemini_chat_response_data'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['gemini_chat_insert'] = function (block) {
+  var words = Blockly.JavaScript.valueToCode(block, 'words', Blockly.JavaScript.ORDER_ATOMIC)||"";	
+	
+  var code = 'gemini_chat_insert('+words+', '');\n';
+  return code; 
+};
 
 Blockly.JavaScript['gemini_chat_clear'] = function (block) {
   var code = 'gemini_clear();\n';
