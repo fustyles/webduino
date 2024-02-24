@@ -43,7 +43,8 @@ function gemini_chat_initial(input_key, input_model, input_tokens) {
 		'}\n'+
 		'window.gemini_chat_run = gemini_chat_run;\n'+
 		'window.gemini_chat_insert = gemini_chat_insert;\n'+
-		'window.gemini_chat_clear = gemini_chat_clear;\n';
+		'window.gemini_chat_clear = gemini_chat_clear;\n'+
+		'window.gemini_chat_clear = chatHistory["history"];
 		
 		console.log(gemini_mod.textContent);
 		document.body.appendChild(gemini_mod);
@@ -56,4 +57,69 @@ function gemini_chat_respsonse_br(data, newline) {
 		return data;	
 	else
 		return data.replace(/\n/g,"");
+}
+
+function gemini_chat_content_file(func) {
+	if (func=="open") {
+		var e = document.getElementById("importFile");
+		if (e) {
+			e.parentElement.removeChild(e);
+		}
+		
+		var input=document.createElement('input');
+		input.type="file";
+		input.id="importFile";
+		input.style.display = "none";
+		input.accept=".chat";
+		input.onchange = function(element) {
+			try {	
+				var file = this.files[0];
+				if (file) {
+					var fr = new FileReader();           
+					fr.onload = function (event) {
+						chatHistory_history = JSON.parse(event.target.result);
+					};
+					fr.readAsText(file);
+				}
+			} catch (e) {
+				alert(e);
+			}	  
+		}
+
+		document.body.appendChild(input);
+		setTimeout(function(){
+			input.click();
+		},500);
+	}
+	else if (func=="save") {
+		
+		var e = document.getElementById("outputFile");
+		if (e) {
+			e.parentElement.removeChild(e);
+		}
+		
+		var link = document.createElement('a');
+		link.id="outputFile";
+		link.style.display = "none";
+		link.download="gemini.chat";
+		link.target="_blank";
+		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(JSON.stringify(chatHistory_history));	  
+		document.body.appendChild(link);
+		setTimeout(function(){
+			link.click();
+		},500);	
+		
+		//window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(JSON.stringify(chatHistory_history));
+	}
+}
+
+function gemini_chat_content_file_remote(url) {
+	$.ajax({
+		url: url,
+		async: false,
+		success: function (data){
+			if (data!="")
+				chatHistory_history = JSON.parse(data);
+		}
+	});
 }
