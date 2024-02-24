@@ -26,3 +26,4 @@ Blockly.Msg.OPENAI_CHAT_CONTENT_FILE_OPEN_SHOW = "Open a local file";
 Blockly.Msg.OPENAI_CHAT_CONTENT_FILE_SAVE_SHOW = "Save to a local file";
 Blockly.Msg.OPENAI_CHAT_CONTENT_FILE_REMOTE_SHOW = "Open a remote file";
 Blockly.Msg.OPENAI_CHAT_CONTENT_FILE_REMOTE_URL_SHOW = "URL(.chat)";
+Blockly.Msg.OPENAI_CHAT_CONTENT_FILE_REMOTE_URL_INSERT_SHOW = "URL(.txt)";
