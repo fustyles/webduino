@@ -1,5 +1,5 @@
 {
-  "types": ["openai_text_initial","openai_text_request","openai_text_response","openai_text_response_get","openai_text_response_clear","openai_image_initial","openai_image_request","openai_image_response","openai_image_response_get","openai_image_response_clear","openai_chat_initial","openai_chat_request","openai_chat_response","openai_chat_response_get","openai_chat_response_clear","openai_chat_content_clear","openai_chat_insert","openai_chat_content_file","openai_chat_content_file_remote"],
+  "types": ["openai_text_initial","openai_text_request","openai_text_response","openai_text_response_get","openai_text_response_clear","openai_image_initial","openai_image_request","openai_image_response","openai_image_response_get","openai_image_response_clear","openai_chat_initial","openai_chat_request","openai_chat_response","openai_chat_response_get","openai_chat_response_clear","openai_chat_content_clear","openai_chat_insert","openai_chat_content_file","openai_chat_content_file_remote","openai_chat_content_file_remote_insert"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
