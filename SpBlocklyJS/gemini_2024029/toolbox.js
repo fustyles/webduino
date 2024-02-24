@@ -11,7 +11,7 @@ var catGEMINI = '<xml>'+
 '    		<field name="NUM">300</field>'+
 '    	</block>'+
 '    </value>'+
-'    <value name="words">'+
+'    <value name="role">'+
 '      <block type="text">'+
 '        <field name="TEXT">妳是繁體中文的助理，請儘量簡短回覆我的詢問。</field>'+
 '      </block>'+
