@@ -17,10 +17,10 @@ function gemini_chat_initial(input_key, input_model, input_tokens) {
 	
 		var gemini_mod = document.createElement("script");
 		gemini_mod.type = "module";
-		gemini_mod.textContent = 'import { GoogleGenerativeAI } from "@google/generative-ai";\nconst genAI = new GoogleGenerativeAI("'+input_key+'");\nvar chatHistory = {history: [],generationConfig: {maxOutputTokens: '+input_tokens+',},};\nasync function gemini_run(prompt) {\nconst model = await genAI.getGenerativeModel({ model: "'+input_model+'"});\nconst chat = model.startChat(chatHistory);\nawait chat.sendMessage(prompt).then(function(result) {\nconst response = result.response;\nconst text = response.text();\nvar char_request = {};\nchar_request.role = "user";\nchar_request.parts = prompt;\nchatHistory["history"].push(char_request);\nvar char_response = {};\nchar_response.role = "model";\nchar_response.parts = text;\nchatHistory["history"].push(char_response);\n//console.log(chatHistory);\nif (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(text);\n});\n}\nwindow.gemini_run = gemini_run;\nasync function gemini_clear(){chatHistory["history"] = [];}\nwindow.gemini_clear = gemini_clear;\n';
-		//console.log(gemini_mod.textContent);
+		gemini_mod.textContent = 'import { GoogleGenerativeAI } from "@google/generative-ai";\nconst genAI = new GoogleGenerativeAI("'+input_key+'");\nvar chatHistory = {history: [],generationConfig: {maxOutputTokens: '+input_tokens+',},};\nasync function gemini_run(prompt) {\nconst model = await genAI.getGenerativeModel({ model: "'+input_model+'"});\nconst chat = model.startChat(chatHistory);\nawait chat.sendMessage(prompt).then(function(result) {\nconst response = result.response;\nconst text = response.text();\ngemini_insert(prompt, text);\nif (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(text);\n});\n}\nwindow.gemini_run = gemini_run;\n async function gemini_insert(request, response) {var char_request = {};\nchar_request.role = "user";\nchar_request.parts = prompt;\nchatHistory["history"].push(char_request);\nvar char_response = {};\nchar_response.role = "model";\nchar_response.parts = text;\nchatHistory["history"].push(char_response);\nconsole.log(chatHistory);}\nasync function gemini_clear(){chatHistory["history"] = [];}\nwindow.gemini_insert = gemini_clear;\nwindow.gemini_insert = gemini_clear;\n';
+		console.log(gemini_mod.textContent);
 		document.body.appendChild(gemini_mod);
-} 
+}
 
 function gemini_chat_respsonse_br(data, newline) {
 	if (newline=="br")
