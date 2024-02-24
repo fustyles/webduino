@@ -36,6 +36,15 @@ var catGEMINI = '<xml>'+
 '    </value>'+   
 '  </block>'+   
 '  <block type="gemini_chat_clear">'+
+'  </block>'+
+'  <block type="gemini_chat_content_file">'+
+'  </block>'+
+'  <block type="gemini_chat_content_file_remote">'+
+'    <value name="url">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
 '  </block>'+  
 '</category>'+
 '</xml>';
