@@ -14,7 +14,11 @@ Blockly.Blocks['gemini_chat_initial'] = {
   this.appendValueInput("tokens")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.GEMINI_CHAT_MAX_TOKENS);  	  
+      .appendField(Blockly.Msg.GEMINI_CHAT_MAX_TOKENS);
+  this.appendValueInput("role")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.GEMINI_ROLE_SHOW);	  
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -66,6 +70,21 @@ Blockly.Blocks['gemini_chat_response_data'] = {
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(30);
+  }
+};
+
+Blockly.Blocks['gemini_chat_insert'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.GEMINI_CHAT_SHOW);
+  this.appendValueInput("words")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.GEMINI_CHAT_INSERT_SHOW);
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(150);
   }
 };
 
