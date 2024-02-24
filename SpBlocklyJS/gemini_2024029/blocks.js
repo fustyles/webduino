@@ -22,7 +22,7 @@ Blockly.Blocks['gemini_chat_initial'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(30);
+  this.setColour(40);
   }
 };
 
@@ -37,7 +37,7 @@ Blockly.Blocks['gemini_chat_request'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(30);
+  this.setColour(40);
   }
 };
 
@@ -50,7 +50,7 @@ Blockly.Blocks['gemini_chat_response'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(30);
+  this.setColour(40);
   }
 };
 
@@ -69,7 +69,7 @@ Blockly.Blocks['gemini_chat_response_data'] = {
 	  ]), "br"); 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(30);
+  this.setColour(40);
   }
 };
 
@@ -84,7 +84,7 @@ Blockly.Blocks['gemini_chat_insert'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(150);
+  this.setColour(40);
   }
 };
 
@@ -96,6 +96,6 @@ Blockly.Blocks['gemini_chat_clear'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(30);
+  this.setColour(40);
   }
 };
