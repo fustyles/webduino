@@ -125,3 +125,14 @@ function gemini_chat_content_file_remote(url) {
 		}
 	});
 }
+
+function gemini_chat_content_file_remote_insert(url) {
+	$.ajax({
+		url: url,
+		async: false,
+		success: function (data){
+			if (data!="")
+				gemini_chat_insert(data, "");			
+		}
+	});
+}
