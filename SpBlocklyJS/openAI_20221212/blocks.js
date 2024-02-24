@@ -88,7 +88,7 @@ Blockly.Blocks['openai_image_initial'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(250);
   }
 };
 
