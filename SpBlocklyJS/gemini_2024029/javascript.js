@@ -36,6 +36,6 @@ Blockly.JavaScript['gemini_chat_insert'] = function (block) {
 };
 
 Blockly.JavaScript['gemini_chat_clear'] = function (block) {
-  var code = 'gemini_clear();\n';
+  var code = 'gemini_chat_clear();\n';
   return code; 
 };
