@@ -36,7 +36,7 @@ function gemini_chat_initial(input_key, input_model, input_tokens) {
 		'	char_response.role = "model";\n'+
 		'	char_response.parts = response;\n'+
 		'	chatHistory["history"].push(char_response);\n'+
-		'	console.log(chatHistory);\n'+
+		'	//console.log(chatHistory);\n'+
 		'}\n'+
 		'async function gemini_chat_clear(){\n'+
 		'	chatHistory["history"] = [];\n'+
@@ -46,7 +46,7 @@ function gemini_chat_initial(input_key, input_model, input_tokens) {
 		'window.gemini_chat_clear = gemini_chat_clear;\n'+
 		'window.gemini_chat_history = chatHistory;\n';
 		
-		console.log(gemini_mod.textContent);
+		//console.log(gemini_mod.textContent);
 		document.body.appendChild(gemini_mod);
 } 
 
@@ -78,7 +78,6 @@ function gemini_chat_content_file(func) {
 					var fr = new FileReader();           
 					fr.onload = function (event) {
 						gemini_chat_history["history"] = JSON.parse(event.target.result);
-						console.log(gemini_chat_history["history"]);
 					};
 					fr.readAsText(file);
 				}
