@@ -31,7 +31,7 @@ Blockly.JavaScript['gemini_chat_response_data'] = function (block) {
 Blockly.JavaScript['gemini_chat_insert'] = function (block) {
   var words = Blockly.JavaScript.valueToCode(block, 'words', Blockly.JavaScript.ORDER_ATOMIC)||"";	
 	
-  var code = 'gemini_chat_insert('+words+', '');\n';
+  var code = 'gemini_chat_insert('+words+', "");\n';
   return code; 
 };
 
