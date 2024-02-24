@@ -132,3 +132,19 @@ Blockly.Blocks['gemini_chat_content_file_remote'] = {
   this.setColour(40);
   }
 };
+
+Blockly.Blocks['gemini_chat_content_file_remote_insert'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.GEMINI_CHAT_SHOW)   
+	  .appendField(Blockly.Msg.GEMINI_CHAT_INSERT_SHOW);
+  this.appendValueInput("url")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.GEMINI_CHAT_CONTENT_FILE_REMOTE_URL_INSERT_SHOW);	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true); 
+  this.setColour(40);
+  }
+};
