@@ -34,6 +34,10 @@ Blockly.JavaScript['gemini_chat_insert'] = function (block) {
   var code = 'gemini_chat_insert('+words+', "");\n';
   return code; 
 };
+Blockly.JavaScript['gemini_chat_clear'] = function (block) {
+  var code = 'gemini_chat_clear();\n';
+  return code; 
+};
 
 Blockly.JavaScript['gemini_chat_content_file'] = function (block) {
   var func = block.getFieldValue('func');
@@ -45,8 +49,4 @@ Blockly.JavaScript['gemini_chat_content_file_remote'] = function (block) {
   var url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var code = 'gemini_chat_content_file_remote('+url+');\n';
   return code;
-};
-Blockly.JavaScript['gemini_chat_clear'] = function (block) {
-  var code = 'gemini_chat_clear();\n';
-  return code; 
 };
