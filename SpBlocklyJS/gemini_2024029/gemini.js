@@ -78,6 +78,7 @@ function gemini_chat_content_file(func) {
 					var fr = new FileReader();           
 					fr.onload = function (event) {
 						gemini_chat_history = JSON.parse(event.target.result);
+						console.log(gemini_chat_history);
 					};
 					fr.readAsText(file);
 				}
@@ -118,8 +119,10 @@ function gemini_chat_content_file_remote(url) {
 		url: url,
 		async: false,
 		success: function (data){
-			if (data!="")
+			if (data!="") {
 				gemini_chat_history = JSON.parse(data);
+				console.log(gemini_chat_history);
+			}
 		}
 	});
 }
