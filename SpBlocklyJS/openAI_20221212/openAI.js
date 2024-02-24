@@ -323,3 +323,14 @@ function openai_chat_content_file_remote(url) {
 		}
 	});
 }
+
+function openai_chat_content_file_remote_insert(url) {
+	$.ajax({
+		url: url,
+		async: false,
+		success: function (data){
+			if (data!="")
+				openai_chat_insert(data);			
+		}
+	});
+}
