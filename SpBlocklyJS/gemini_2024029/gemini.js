@@ -119,10 +119,10 @@ function gemini_chat_content_file_remote(url) {
 		url: url,
 		async: false,
 		success: function (data){
-			if (data!="") {
-				gemini_chat_history["history"] = JSON.parse(event.target.result);
-				console.log(gemini_chat_history["history"]);
-			}
+			if (data!="")
+				gemini_chat_history["history"] = JSON.parse(data);
+			else
+				gemini_chat_clear();			
 		}
 	});
 }
