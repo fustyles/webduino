@@ -44,7 +44,7 @@ function gemini_chat_initial(input_key, input_model, input_tokens) {
 		'window.gemini_chat_run = gemini_chat_run;\n'+
 		'window.gemini_chat_insert = gemini_chat_insert;\n'+
 		'window.gemini_chat_clear = gemini_chat_clear;\n'+
-		'window.gemini_chatHistory = chatHistory["history"];
+		'window.gemini_chat_history = chatHistory["history"];
 		
 		console.log(gemini_mod.textContent);
 		document.body.appendChild(gemini_mod);
@@ -77,7 +77,7 @@ function gemini_chat_content_file(func) {
 				if (file) {
 					var fr = new FileReader();           
 					fr.onload = function (event) {
-						gemini_chatHistory = JSON.parse(event.target.result);
+						gemini_chat_history = JSON.parse(event.target.result);
 					};
 					fr.readAsText(file);
 				}
@@ -103,13 +103,13 @@ function gemini_chat_content_file(func) {
 		link.style.display = "none";
 		link.download="gemini.chat";
 		link.target="_blank";
-		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(JSON.stringify(gemini_chatHistory));	  
+		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(JSON.stringify(gemini_chat_history));	  
 		document.body.appendChild(link);
 		setTimeout(function(){
 			link.click();
 		},500);	
 		
-		//window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(JSON.stringify(gemini_chatHistory));
+		//window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(JSON.stringify(gemini_chat_history));
 	}
 }
 
@@ -119,7 +119,7 @@ function gemini_chat_content_file_remote(url) {
 		async: false,
 		success: function (data){
 			if (data!="")
-				gemini_chatHistory = JSON.parse(data);
+				gemini_chat_history = JSON.parse(data);
 		}
 	});
 }
