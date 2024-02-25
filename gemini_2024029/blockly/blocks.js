@@ -19,7 +19,7 @@ Blockly.Blocks['gemini_chat_initial'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.GEMINI_ROLE_SHOW);	  
-  this.setInputsInline(true);	  
+  this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(40);
