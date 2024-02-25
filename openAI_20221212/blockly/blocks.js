@@ -163,7 +163,8 @@ Blockly.Blocks['openai_chat_initial'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.OPENAI_CHAT_ROLE_SHOW);	  
-  this.appendDummyInput()  
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg.OPENAI_CHAT_MODEL_SHOW)
       .appendField(new Blockly.FieldDropdown([
 			["gpt-3.5-turbo","gpt-3.5-turbo"],
@@ -174,7 +175,7 @@ Blockly.Blocks['openai_chat_initial'] = {
 			["gpt-4","gpt-4"],	      
 			["gpt-4-0613","gpt-4-0613"]	
 	  ]), "model"); 	  
-  this.setInputsInline(true);	  
+  this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(150);
