@@ -11,7 +11,7 @@ Blockly.Blocks['openai_text_initial'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.OPENAI_TEXT_KEYS_SHOW); 
-  this.setInputsInline(true);	  
+  this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(250);
