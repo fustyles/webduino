@@ -1,12 +1,13 @@
 Blockly.Blocks['gemini_chat_initial'] = {
   init: function() {
   this.appendDummyInput()
-	  .appendField(Blockly.Msg.GEMINI_CHAT_SHOW);
+      .appendField(Blockly.Msg.GEMINI_CHAT_SHOW);
   this.appendValueInput("token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.GEMINI_APIKEY_SHOW);  
-  this.appendDummyInput()  
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg.GEMINI_MODEL_SHOW)
       .appendField(new Blockly.FieldDropdown([
 			["gemini-pro","gemini-pro"]  
