@@ -311,6 +311,6 @@ Blockly.Blocks['openai_chat_content_file_remote_insert'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true); 
-  this.setColour(40);
+  this.setColour(150);
   }
 };
