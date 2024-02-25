@@ -1,0 +1,15 @@
+{
+  "types": ["gemini_chat_initial","gemini_chat_request","gemini_chat_response","gemini_chat_response_data","gemini_chat_insert","gemini_chat_clear","gemini_chat_content_file","gemini_chat_content_file_remote","gemini_chat_content_file_remote_insert"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "gemini.js"    
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
+
