@@ -333,7 +333,7 @@ function openai_chat_content_file_remote_insert(url) {
 				openai_chat_insert(data);			
 		},
   		error: function(jqXHR, textStatus, errorThrown){
-      			console.log(jqXHR.statusText);
+      			console.log(jqXHR);
       			console.log(textStatus);
       			console.log(errorThrown);
   		}
