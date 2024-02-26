@@ -15,6 +15,7 @@ Blockly.Blocks['openai_text_initial'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(250);
+  this.setHelpUrl("https://aistudio.google.com/app/prompts/new_chat?utm_source=agd&utm_medium=referral&utm_campaign=core-cta&utm_content=");
   }
 };
 
