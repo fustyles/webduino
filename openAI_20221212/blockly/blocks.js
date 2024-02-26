@@ -11,11 +11,10 @@ Blockly.Blocks['openai_text_initial'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.OPENAI_TEXT_KEYS_SHOW); 
-  this.setInputsInline(false);	  
+  this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(250);
-  this.setHelpUrl("https://openai.com/blog/openai-api");	  
+  this.setColour(250);	  
   }
 };
 
@@ -180,6 +179,7 @@ Blockly.Blocks['openai_chat_initial'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(150);
+  this.setHelpUrl("https://openai.com/blog/openai-api");
   }
 };
 
