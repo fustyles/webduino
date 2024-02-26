@@ -122,7 +122,13 @@ function gemini_chat_content_file_remote(url) {
 				gemini_chat_history["history"] = JSON.parse(data);
 			else
 				gemini_chat_clear();			
-		}
+		},
+  		error: function(jqXHR, textStatus, errorThrown){
+      			//console.log(jqXHR);
+			alert(jqXHR.statusText);
+      			//console.log(textStatus);
+      			//console.log(errorThrown);
+  		}
 	});
 }
 
