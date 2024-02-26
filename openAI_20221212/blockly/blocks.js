@@ -15,6 +15,7 @@ Blockly.Blocks['openai_text_initial'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(250);
+  this.setHelpUrl("https://openai.com/blog/openai-api");	  
   }
 };
 
