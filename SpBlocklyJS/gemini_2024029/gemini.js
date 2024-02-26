@@ -133,6 +133,12 @@ function gemini_chat_content_file_remote_insert(url) {
 		success: function (data){
 			if (data!="")
 				gemini_chat_insert(data, "");			
-		}
+		},
+  		error: function(jqXHR, textStatus, errorThrown){
+      			//console.log(jqXHR);
+			alert(jqXHR.statusText);
+      			//console.log(textStatus);
+      			//console.log(errorThrown);
+  		}
 	});
 }
