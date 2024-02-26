@@ -332,10 +332,10 @@ function openai_chat_content_file_remote_insert(url) {
 			if (data!="")
 				openai_chat_insert(data);			
 		},
-  		error: function(xhr, textStatus, error){
-      			//console.log(xhr.statusText);
-      			//console.log(textStatus);
-      			alert(error);
+  		error: function(jqXHR, textStatus, errorThrown){
+      			console.log(jqXHR.statusText);
+      			console.log(textStatus);
+      			console.log(errorThrown);
   		}
 	});
 }
