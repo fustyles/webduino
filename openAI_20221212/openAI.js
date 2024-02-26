@@ -320,7 +320,13 @@ function openai_chat_content_file_remote(url) {
 				openai_response_chat_message = JSON.parse(data);
 			else
 				openai_chat_content_clear();
-		}
+		},
+  		error: function(jqXHR, textStatus, errorThrown){
+      			//console.log(jqXHR);
+			alert(jqXHR.statusText);
+      			//console.log(textStatus);
+      			//console.log(errorThrown);
+  		}
 	});
 }
 
@@ -331,6 +337,12 @@ function openai_chat_content_file_remote_insert(url) {
 		success: function (data){
 			if (data!="")
 				openai_chat_insert(data);			
-		}
+		},
+  		error: function(jqXHR, textStatus, errorThrown){
+      			//console.log(jqXHR);
+			alert(jqXHR.statusText);
+      			//console.log(textStatus);
+      			//console.log(errorThrown);
+  		}
 	});
 }
