@@ -32,6 +32,7 @@ function ttsSpeak(voice, text) {
 	if (ttsSpeakState&&text!="") {
 		ttsSetVoice(voice);
 		tts.text = text;
+		synth.cancel();
 		synth.speak(tts);
 	}
 }
