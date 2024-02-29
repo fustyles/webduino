@@ -1,0 +1,14 @@
+{
+  "types": ["SpeechRecognition_run","SpeechRecognition_get","SpeechRecognition_listener","SpeechRecognition_keyword","SpeechRecognition_interim","SpeechRecognition_interim_element","SpeechRecognition_state","SpeechRecognition_switch","SpeechRecognition_texttonumber"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [  
+    "speechrecognition.js"
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
