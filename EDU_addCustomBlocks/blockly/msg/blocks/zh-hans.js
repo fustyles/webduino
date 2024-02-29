@@ -34,3 +34,4 @@ Blockly.Msg.ADDCUSTOMBLOCKS_HANDS_SHOW = "[取得连结] 手势辨识(Mediapipe 
 Blockly.Msg.ADDCUSTOMBLOCKS_CHART_SHOW = "[取得连结] 仪表板";
 Blockly.Msg.ADDCUSTOMBLOCKS_WEBBLUETOOTH_SHOW = "[取得连结] Web Bluetooth";
 Blockly.Msg.ADDCUSTOMBLOCKS_OPENAI_TEXT_SHOW = "[取得连结] openAI";
+Blockly.Msg.ADDCUSTOMBLOCKS_SPEECHRECOGNITION_SHOW = "[取得连结] 语音辨识";
