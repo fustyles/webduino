@@ -34,3 +34,4 @@ Blockly.Msg.ADDCUSTOMBLOCKS_CHART_SHOW = "[取得連結] 儀表板";
 Blockly.Msg.ADDCUSTOMBLOCKS_WEBBLUETOOTH_SHOW = "[取得連結] Web Bluetooth";
 Blockly.Msg.ADDCUSTOMBLOCKS_OPENAI_TEXT_SHOW = "[取得連結] openAI";
 Blockly.Msg.ADDCUSTOMBLOCKS_GEMINI_TEXT_SHOW = "[取得連結] Gemini";
+Blockly.Msg.ADDCUSTOMBLOCKS_SPEECHRECOGNITION_SHOW = "[取得連結] 語音辨識";
