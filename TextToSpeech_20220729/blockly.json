@@ -1,0 +1,14 @@
+{
+  "types": ["TextToSpeech_initial","TextToSpeech_run","TextToSpeech_control","TextToSpeech_voice","TextToSpeech_switch","TextToSpeech_speaking"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [  
+    "texttospeech.js"
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
