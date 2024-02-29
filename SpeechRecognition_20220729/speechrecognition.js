@@ -147,3 +147,5 @@ window.onload = function () {
 	document.body.appendChild(obj);
   }
 }
+
+window.Recognition_recognitionFinish = Recognition_recognitionFinish;
