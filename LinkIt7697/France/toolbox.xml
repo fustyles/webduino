@@ -1022,120 +1022,6 @@
 			<block type="esp32_webbluetooth_get"> 
 			</block>			
 		</category>
-
-		<category id="france7" name="blekeyboardmodule">
-		  <block type="esp32_blekeyboard">
-			<value name="blename">
-			  <block type="text">
-				<field name="TEXT">ESP32 BLE Keyboard</field>
-			  </block>
-			</value>
-		  </block>
-		  <block type="esp32_blekeyboard_isConnected">
-		  </block>		  
-		  <block type="esp32_blekeyboard_press">
-			<value name="keycode1">
-			  <block type="esp32_blekeyboard_keycode">
-				<field name="keycode">0</field>
-			  </block>
-			</value>
-			<value name="keycode2">
-			</value>
-			<value name="keycode3">
-			</value>
-			<value name="presstime">
-			  <block type="math_number">
-				<field name="NUM">10</field>
-			  </block>
-			</value>			
-		  </block>
-		  <block type="esp32_blekeyboard_press_norelease">
-			<value name="keycode1">
-			  <block type="esp32_blekeyboard_keycode">
-				<field name="keycode">0</field>
-			  </block>
-			</value>
-			<value name="keycode2">
-			</value>
-			<value name="keycode3">
-			</value>			
-		  </block>	
-		  <block type="esp32_blekeyboard_release">
-			<value name="keycode1">
-			  <block type="esp32_blekeyboard_keycode">
-				<field name="keycode">0</field>
-			  </block>
-			</value>
-			<value name="keycode2">
-			</value>
-			<value name="keycode3">
-			</value>			
-		  </block>	
-		  <block type="esp32_blekeyboard_release_all">			
-		  </block>		  
-		  <block type="esp32_blekeyboard_print">
-			<value name="characters">
-			  <block type="text">
-				<field name="TEXT">Hello World</field>
-			  </block>
-			</value>			
-		  </block>
-		  <block type="esp32_blekeyboard_write">
-			<value name="keycode">
-			  <block type="esp32_blekeyboard_keycode">
-				<field name="keycode">0</field>
-			  </block>
-			</value>			
-		  </block>
-		  <block type="esp32_blekeyboard_keycode">			
-		  </block>
-		  <block type="esp32_blekeyboard_chartoascii">
-			<value name="character">
-			  <block type="text_quotationmark">
-				<field name="TEXT">A</field>
-			  </block>
-			</value>		  
-		  </block>		  
-		</category>
-		
-		<category id="france7" name="blemousemodule">
-		  <block type="esp32_blemouse">
-			<value name="blename">
-			  <block type="text" id="100">
-				<field name="TEXT">ESP32 MOUSE</field>
-			  </block>
-			</value>		  
-		  </block>
-		  <block type="esp32_blemouse_isConnected">			
-		  </block>		  
-		  <block type="esp32_blemouse_click">			
-		  </block>
-		  <block type="esp32_blemouse_press">			
-		  </block>
-		  <block type="esp32_blemouse_release">			
-		  </block>
-		  <block type="esp32_blemouse_ispressed">			
-		  </block>			  
-		  <block type="esp32_blemouse_move_scroll">
-			<value name="delaytime">
-			  <block type="math_number">
-				<field name="NUM">100</field>
-			  </block>
-			</value>		  
-		  </block>
-		  <block type="esp32_blemouse_move_point">
-			<value name="delaytime">
-			  <block type="math_number">
-				<field name="NUM">100</field>
-			  </block>
-			</value>
-			<value name="pixels">
-			  <block type="math_number">
-				<field name="NUM">10</field>
-			  </block>
-			</value>			
-		  </block>			  
-		</category>		
 		
 		<category id="france22" name="serverlinkit7697"> 	  
 			  <block type="linkit7697_myfirmata">
@@ -2347,175 +2233,6 @@
 			  <block type="servermodule_parameter_stream_url">		
 			  </block>				  
 		</category>
-		<category id="france21" name="amb82_mini">
-			  <block type="amb82_mini_initial">
-				<field name="framesize">VIDEO_VGA</field>
-				<value name="width">
-				  <block type="math_number">
-					<field name="NUM">640</field>
-				  </block>
-				</value> 
-				<value name="height">
-				  <block type="math_number">
-					<field name="NUM">480</field>
-				  </block>
-				</value> 				
-			  </block>
-			  <block type="amb82_mini_myfirmata">
-				<field name="baudrate">115200</field>
-				<field name="framesize">VIDEO_VGA</field>
-				<value name="ssid">
-				  <block type="text">
-					<field name="TEXT">teacher</field>
-				  </block>
-				</value>
-				<value name="password">
-				  <block type="text">
-					<field name="TEXT">12345678</field>
-				  </block>
-				</value>
-				<value name="width">
-				  <block type="math_number">
-					<field name="NUM">640</field>
-				  </block>
-				</value> 
-				<value name="height">
-				  <block type="math_number">
-					<field name="NUM">480</field>
-				  </block>
-				</value> 
-				<value name="mainpage">
-				  <block type="servermodule_javascript">
-					<statement name="js">
-					  <block type="image_create_stream">
-						<value name="id_">
-						  <block type="text">
-							<field name="TEXT"></field>
-						  </block>
-						</value>
-						<value name="url_">
-                          <block type="amb82_mini_stream_url">
-                            <field name="type">/?still</field>
-                          </block>
-						</value>
-						<value name="left_">
-						  <block type="math_number">
-							<field name="NUM">0</field>
-						  </block>
-						</value>
-						<value name="top_">
-						  <block type="math_number">
-							<field name="NUM">0</field>
-						  </block>
-						</value>
-						<value name="zindex_">
-						  <block type="math_number">
-							<field name="NUM">999</field>
-						  </block>
-						</value>
-						<value name="display_">
-						  <block type="logic_boolean">
-							<field name="BOOL">TRUE</field>
-						  </block>
-						</value>
-						<next>
-						  <block type="image_onload_dom">
-							<value name="id_">
-							  <block type="text">
-								<field name="TEXT"></field>
-							  </block>
-							</value>
-							<statement name="do_">
-							  <block type="image_set">
-								<field name="property_">url</field>
-								<value name="id_">
-								  <block type="text">
-									<field name="TEXT"></field>
-								  </block>
-								</value>
-								<value name="value_">
-								  <block type="amb82_mini_stream_url">
-									<field name="type">/?still</field>
-								  </block>
-								</value>
-							  </block>
-							</statement>
-						  </block>
-						</next>
-					  </block>
-					</statement>
-				  </block>
-				</value>
-				<statement name="ExecuteCommand">
-				  <block type="customcode_comment">
-					<value name="text">
-					  <block type="text">
-						<field name="TEXT">http://192.168.xxx.xxx/?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
-					  </block>
-					</value>
-					<next>
-					  <block type="controls_if">
-						<mutation else="1"></mutation>
-						<value name="IF0">
-						  <block type="servermodule_cmd">
-							<value name="text">
-							  <block type="text">
-								<field name="TEXT">yourcmd</field>
-							  </block>
-							</value>
-						  </block>
-						</value>
-						<statement name="ELSE">
-						  <block type="servermodule_feedback">
-							<value name="text">
-							  <block type="text">
-								<field name="TEXT">Command is not defined.</field>
-							  </block>
-							</value>
-						  </block>
-						</statement>
-					  </block>
-					</next>
-				  </block>
-				</statement>
-			  </block>
-			  <block type="amb82_mini_stream_url">							
-			  </block>			  
-			  <block type="amb82_mini_linenotify">		
-					<value name="linetoken">
-					  <block type="text">
-						<field name="TEXT"></field>
-					  </block>
-					</value>
-					<value name="linemessage">
-					  <block type="text">
-						<field name="TEXT"></field>
-					  </block>
-					</value>					
-			  </block>
-			  <block type="amb82_mini_googledrive">
-				<value name="scriptid">
-				  <block type="text">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="linetoken">
-				  <block type="text">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="foldername">
-				  <block type="text">
-					<field name="TEXT">esp32cam</field>
-				  </block>
-				</value>
-				<value name="filename">
-				  <block type="text">
-					<field name="TEXT">esp32cam</field>
-				  </block>
-				</value>				
-			  </block>			  
-		</category>
 		<category id="france2˙" name="holisticreconginition">
 			  <block type="holistic_esp32cam">
 			  </block>
@@ -3256,7 +2973,1170 @@
 		  </block>
 		</category>		
     </category>
+
 	
+	<category id="france21" name="amb82_mini">
+		<category id="france7" name="servermodule"> 
+			  <block type="amb82_mini_initial">
+				<field name="framesize">VIDEO_VGA</field>
+				<value name="width">
+				  <block type="math_number">
+					<field name="NUM">640</field>
+				  </block>
+				</value> 
+				<value name="height">
+				  <block type="math_number">
+					<field name="NUM">480</field>
+				  </block>
+				</value> 				
+			  </block>
+			  <block type="amb82_mini_myfirmata">
+				<field name="baudrate">115200</field>
+				<field name="framesize">VIDEO_VGA</field>
+				<value name="ssid">
+				  <block type="text">
+					<field name="TEXT">teacher</field>
+				  </block>
+				</value>
+				<value name="password">
+				  <block type="text">
+					<field name="TEXT">12345678</field>
+				  </block>
+				</value>
+				<value name="width">
+				  <block type="math_number">
+					<field name="NUM">640</field>
+				  </block>
+				</value> 
+				<value name="height">
+				  <block type="math_number">
+					<field name="NUM">480</field>
+				  </block>
+				</value> 
+				<value name="mainpage">
+				  <block type="servermodule_javascript">
+					<statement name="js">
+					  <block type="image_create_stream">
+						<value name="id_">
+						  <block type="text">
+							<field name="TEXT"></field>
+						  </block>
+						</value>
+						<value name="url_">
+						  <block type="amb82_mini_stream_url">
+							<field name="type">/?still</field>
+						  </block>
+						</value>
+						<value name="left_">
+						  <block type="math_number">
+							<field name="NUM">0</field>
+						  </block>
+						</value>
+						<value name="top_">
+						  <block type="math_number">
+							<field name="NUM">0</field>
+						  </block>
+						</value>
+						<value name="zindex_">
+						  <block type="math_number">
+							<field name="NUM">999</field>
+						  </block>
+						</value>
+						<value name="display_">
+						  <block type="logic_boolean">
+							<field name="BOOL">TRUE</field>
+						  </block>
+						</value>
+						<next>
+						  <block type="image_onload_dom">
+							<value name="id_">
+							  <block type="text">
+								<field name="TEXT"></field>
+							  </block>
+							</value>
+							<statement name="do_">
+							  <block type="image_set">
+								<field name="property_">url</field>
+								<value name="id_">
+								  <block type="text">
+									<field name="TEXT"></field>
+								  </block>
+								</value>
+								<value name="value_">
+								  <block type="amb82_mini_stream_url">
+									<field name="type">/?still</field>
+								  </block>
+								</value>
+							  </block>
+							</statement>
+						  </block>
+						</next>
+					  </block>
+					</statement>
+				  </block>
+				</value>
+				<statement name="ExecuteCommand">
+				  <block type="customcode_comment">
+					<value name="text">
+					  <block type="text">
+						<field name="TEXT">http://192.168.xxx.xxx/?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
+					  </block>
+					</value>
+					<next>
+					  <block type="controls_if">
+						<mutation else="1"></mutation>
+						<value name="IF0">
+						  <block type="servermodule_cmd">
+							<value name="text">
+							  <block type="text">
+								<field name="TEXT">yourcmd</field>
+							  </block>
+							</value>
+						  </block>
+						</value>
+						<statement name="ELSE">
+						  <block type="servermodule_feedback">
+							<value name="text">
+							  <block type="text">
+								<field name="TEXT">Command is not defined.</field>
+							  </block>
+							</value>
+						  </block>
+						</statement>
+					  </block>
+					</next>
+				  </block>
+				</statement>
+			  </block>
+			  <block type="amb82_mini_stream_url">							
+			  </block>			  
+			  <block type="amb82_mini_linenotify">		
+					<value name="linetoken">
+					  <block type="text">
+						<field name="TEXT"></field>
+					  </block>
+					</value>
+					<value name="linemessage">
+					  <block type="text">
+						<field name="TEXT"></field>
+					  </block>
+					</value>					
+			  </block>
+			  <block type="amb82_mini_googledrive">
+				<value name="scriptid">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="linetoken">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="foldername">
+				  <block type="text">
+					<field name="TEXT">amb82</field>
+				  </block>
+				</value>
+				<value name="filename">
+				  <block type="text">
+					<field name="TEXT">amb82</field>
+				  </block>
+				</value>				
+			  </block>			  
+		</category>
+		<category id="france23" name="amb82_mini_rtsp">
+			  <block type="amb82_mini_rtsp">
+			  </block>
+		</category>		
+		<category id="france23" name="servercommand">
+			  <block type="servermodule_parameter_get">
+			  </block>
+			  <block type="servermodule_cmd">
+				<value name="text">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+			  </block>
+			  <block type="servermodule_cmd_if">
+				<value name="text">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+			  </block>	
+			  <block type="servermodule_parameter_set">
+				<value name="text">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+			  </block>
+			  <block type="servermodule_parameter">
+			  </block>
+			  <block type="servermodule_parameter_variable">
+			  </block>
+			  <block type="servermodule_parameter_variable_urldecode">
+			  </block>
+			  <block type="variable_urldecode">
+				<value name="url">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>			  
+			  </block>			  
+			  <block type="servermodule_feedback">
+				<value name="text">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+			  </block>
+			  <block type="servermodule_bluetooth_feedback_newline">
+				<value name="text">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+			  </block>
+			  <block type="fetch_get">
+				<field name="datatype_">text</field>
+				<value name="id_">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="url_">
+				  <block type="servermodule_parameter_set_address3_0">
+					<field name="cmd">restart</field>
+				  </block>
+				</value>
+			  </block>				
+		  
+				<block type="ajax_get_board">
+					<value name="url_">
+						<block type="servermodule_parameter_set_address3_0">
+							<field name="cmd">restart</field>
+						</block>
+					</value>   
+				</block> 
+				
+				<block type="ajax_get_board" id="B:.k*BL(nNVgzET7xJ31">
+					<field name="async_">false</field>
+					<value name="url_">
+					  <block type="servermodule_parameter_stream">
+						<value name="cmd">
+						  <block type="servermodule_parameter_set_address3_0">
+							<field name="cmd">restart</field>
+						  </block>
+						</value>
+					  </block>
+					</value>
+				</block>	
+				
+			  <block type="servermodule_parameter_set_address3_0">				
+			  </block>	
+			  <block type="servermodule_parameter_set_address3_1">
+				<value name="p1">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>				
+			  </block>
+			  <block type="servermodule_parameter_set_address3_2">
+				<value name="p1">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p2">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>				
+			  </block>
+			  <block type="servermodule_parameter_set_address3">
+				<value name="p1">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p2">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p3">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>				
+			  </block>
+			  <block type="servermodule_parameter_set_address4">
+				<value name="p1">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p2">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p3">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p4">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>				
+			  </block>				  
+			  <block type="servermodule_parameter_set_address2">
+				<value name="cmd">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>		
+			  </block>
+			  <block type="servermodule_parameter_set_address0">
+				<value name="cmd">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p1">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>		
+			  </block>				  
+			  <block type="servermodule_parameter_set_address1">
+				<value name="cmd">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p1">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p2">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>		
+			  </block>	  	  
+			  <block type="servermodule_parameter_set_address">
+				<value name="cmd">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p1">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p2">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p3">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p4">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p5">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p6">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p7">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p8">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="p9">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>		
+			  </block>
+			  <!--
+			  <block type="servermodule_parameter_stream">
+				<value name="cmd">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>		
+			  </block>	
+			  -->
+		</category>		
+		
+		<sep id="category_sep"></sep>		
+		
+		<category id="france2˙" name="holisticreconginition">
+			  <block type="holistic_esp32cam">
+			  </block>
+			  <block type="holistic_video">    
+			  </block> 
+			  <block type="holistic_recognitied">
+			  </block> 			  
+			  <block type="holistic_state">
+			  </block> 
+			  <block type="holistic_video_position">
+				<value name="left_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value> 
+				<value name="top_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>     
+			  </block>
+			  <block type="holistic_face_position">
+				<value name="part_">
+				  <block type="math_number">
+					<field name="NUM">1</field>
+				  </block>
+				</value> 
+			  </block>  
+			  <block type="holistic_face_lefteye_position">
+			  </block>
+			  <block type="holistic_face_righteye_position">
+			  </block>
+			  <block type="holistic_face_nose_position">
+			  </block>
+			  <block type="holistic_face_mouth_position">
+			  </block>  
+			  <block type="holistic_pose_position">
+			  </block>
+			  <block type="holistic_lefthand_position">
+			  </block>
+			  <block type="holistic_righthand_position">
+			  </block>
+			  <block type="holistic_all_poistion">
+			  </block>
+			  <block type="holistic_canvas_get">
+			  </block>   
+			  <block type="holistic_distance">
+				<value name="x0_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>
+				<value name="y0_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>    
+				<value name="x1_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>
+				<value name="y1_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>     
+			  </block>
+			  <block type="holistic_angle">
+				<value name="x0_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>
+				<value name="y0_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>    
+				<value name="x1_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>
+				<value name="y1_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>     
+			  </block> 
+			  <block type="holistic_face_angle">
+				<field name="axis_">x</field>   
+				<value name="part1_">
+				  <block type="math_number">
+					<field name="NUM">11</field>
+				  </block>
+				</value>
+				<value name="part2_">
+				  <block type="math_number">
+					<field name="NUM">153</field>
+				  </block>
+				</value>    
+				<value name="adjust_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>   
+			  </block>
+			  <block type="holistic_face_angle">
+				<field name="axis_">y</field>  
+				<value name="part1_">
+				  <block type="math_number">
+					<field name="NUM">163</field>
+				  </block>
+				</value>
+				<value name="part2_">
+				  <block type="math_number">
+					<field name="NUM">390</field>
+				  </block>
+				</value>    
+				<value name="adjust_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>   
+			  </block>
+			  <block type="holistic_face_angle">
+				<field name="axis_">z</field>   
+				<value name="part1_">
+				  <block type="math_number">
+					<field name="NUM">11</field>
+				  </block>
+				</value>
+				<value name="part2_">
+				  <block type="math_number">
+					<field name="NUM">153</field>
+				  </block>
+				</value>    
+				<value name="adjust_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>   
+			  </block>  
+			  <block type="holistic_pose_angle">
+				<field name="part1_">12</field>                 
+				<field name="part2_">11</field>
+				<value name="adjust_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>   
+			  </block>
+			  <block type="holistic_lefthand_angle">
+				<field name="part1_">4</field>                 
+				<field name="part2_">20</field>  
+				<value name="adjust_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>   
+			  </block>
+			  <block type="holistic_righthand_angle">
+				<field name="part1_">4</field>                 
+				<field name="part2_">20</field>  
+				<value name="adjust_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>   
+			  </block>
+			  <block type="holistic_pause">
+				<value name="time_">
+				  <block type="math_number">
+					<field name="NUM">1000</field>
+				  </block>
+				</value> 			  
+			  </block>    			  
+		</category>		
+		<category id="france26" name="objectreconginition">
+			  <block type="cocossd_esp32cam">
+			  </block>
+			  <block type="cocossd_video">    
+			  </block> 
+			  <block type="cocossd_recognitied">    
+			  </block> 			  
+			  <block type="cocossd_list">
+			  </block>  
+			  <block type="cocossd_object">
+				<value name="index_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value> 
+			  </block>
+			  <block type="cocossd_object_number">
+			  </block>
+			  <block type="cocossd_state">
+			  </block>
+			  <block type="cocossd_clear">
+			  </block>   			
+			  <block type="cocossd_video_position">
+				<value name="left_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value> 
+				<value name="top_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>     
+			  </block> 
+			  <block type="cocossd_canvas_get">
+			  </block>
+			  <block type="cocossd_pause">
+				<value name="time_">
+				  <block type="math_number">
+					<field name="NUM">1000</field>
+				  </block>
+				</value> 			  
+			  </block>    			  
+		</category>	
+		<category id="hands" name="hands">
+		  <block type="hands_esp32cam">
+		  </block>		
+		  <block type="hands_video">    
+		  </block> 
+		  <block type="hands_recognitied">    
+		  </block> 			  
+		  <block type="hands_state">
+		  </block>
+		  <block type="hands_clear">
+		  </block>   
+		  <block type="hands_video_position">
+			<value name="left_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value> 
+			<value name="top_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>     
+		  </block>
+		  <block type="hands_position">
+			<value name="hand_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>   
+		  </block>
+		  <block type="hands_number">
+		  </block>
+		  <block type="hands_canvas_get">
+		  </block>   
+		  <block type="hands_distance">
+			<value name="x0_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="y0_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>    
+			<value name="x1_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="y1_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>     
+		  </block>
+		  <block type="hands_angle">
+			<value name="x0_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="y0_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>    
+			<value name="x1_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="y1_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>     
+		  </block> 
+		  <block type="hands_part_angle">
+			<value name="hand_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>   
+			<field name="part1_">4</field>                 
+			<field name="part2_">20</field>  
+			<value name="adjust_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>   
+		  </block>
+		  <block type="hands_pause">
+			<value name="time_">
+			  <block type="math_number">
+			<field name="NUM">1000</field>
+			  </block>
+			</value> 			  
+		  </block>	
+		</category>
+		<category id="france2˙" name="teachablemachine">
+		  <block type="teachablemachine_esp32cam">
+		  </block>		
+		  <block type="teachablemachine_model">
+			<value name="model_">
+			  <block type="text">
+				<field name="TEXT">https://teachablemachine.withgoogle.com/models/4UGykpZvR/</field>
+			  </block>
+			</value> 
+		  </block>  
+		  <block type="teachablemachine_video">    
+		  </block>    
+		  <block type="teachablemachine_result">
+		  </block>
+		  <block type="teachablemachine_result_array">
+		  </block>		  
+		  <block type="teachablemachine_state">
+		  </block> 
+		  <block type="teachablemachine_video_position">
+			<value name="left_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value> 
+			<value name="top_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>     
+		  </block>
+		  <block type="teachablemachine_pause">
+			<value name="time_">
+			  <block type="math_number">
+				<field name="NUM">1000</field>
+			  </block>
+			</value> 			  
+		  </block> 		  
+		</category>
+		
+		<category id="knnclassifier" name="knnclassifier">
+		  <block type="knnclassifier_esp32cam">
+		  </block>			
+		  <block type="knnclassifier_video"> 
+		  </block>
+		  <block type="knnclassifier_class">
+			<value name="classname_">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>
+		  </block>
+		  <block type="knnclassifier_train">
+		  </block>
+		  <block type="knnclassifier_detect">
+		  </block>
+		  <block type="knnclassifier_proportion">
+		  </block>
+		  <block type="knnclassifier_proportion_array">
+		  </block>
+		  <block type="knnclassifier_clearclasses">
+		  </block>
+		  <block type="knnclassifier_savemodel">
+		  </block>
+		  <block type="knnclassifier_loadmodel">
+		  </block>
+		  <block type="knnclassifier_loadmodelurl">
+			  <value name="url_">
+			  <block type="text">
+				<field name="TEXT">https://***.***.***.***/*****.json</field>
+			  </block>
+			</value>
+		  </block>
+		</category>
+		
+		<category name="posenet" id="posenet">
+		  <block type="posenet_esp32cam">
+		  </block>		
+		  <block type="posenet_video">
+			<field name="scorelimit_">0.6</field>
+		  </block>
+		  <block type="posenet_recognitied">
+		  </block>  
+		  <block type="posenet_person">
+			<value name="person_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+		  </block>
+		  <block type="posenet_persons">
+		  </block>
+		  <block type="posenet_state">
+		  </block>
+		  <block type="posenet_video_position">
+			<value name="left_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="top_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+		  </block>
+		  <block type="posenet_distance">
+			<value name="x0_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="y0_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="x1_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="y1_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+		  </block>
+		  <block type="posenet_angle">
+			<value name="x0_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="y0_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="x1_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="y1_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+		  </block>
+		</category>
+
+		<category id="france2˙" name="faceapidetect">
+		  <block type="faceapidetect_esp32cam">
+		  </block>			
+		  <block type="faceapidetect_video">    
+		  </block> 
+		  <block type="faceapidetect_recognitied">
+		  </block>
+		  <block type="faceapidetect_number">
+		  </block>  		  
+		  <block type="faceapidetect_face">
+			<value name="face_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value> 
+		  </block>  
+		  <block type="faceapidetect_faces">
+		  </block> 		  
+		  <block type="faceapidetect_state">
+		  </block> 
+		  <block type="faceapidetect_video_position">
+			<value name="left_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value> 
+			<value name="top_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>     
+		  </block>
+		  <block type="faceapidetect_pause">
+			<value name="time_">
+			  <block type="math_number">
+				<field name="NUM">1000</field>
+			  </block>
+			</value> 			  
+		  </block>
+		  <block type="faceapidetect_canvas_get">			  
+		  </block>		  
+		</category>
+		
+		<category id="france2˙" name="faceapirecognize">
+		  <block type="faceapirecognize_esp32cam">
+		  </block>			
+		  <block type="faceapirecognize_video">
+			<value name="facelabel">
+			  <block type="text">
+				<field name="TEXT">France;Chiling</field>
+			  </block>    
+			</value> 
+			<value name="faceimagepath">
+			  <block type="text">
+				<field name="TEXT">https://fustyles.github.io/webduino/faceapi_recognize_20201012/facelist/</field>
+			  </block>    
+			</value> 			
+			<value name="faceimagecount">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>   
+			</value> 	
+			<value name="distancelimit">
+			  <block type="math_number">
+				<field name="NUM">0.4</field>
+			  </block>   
+			</value>
+			<value name="timer">
+			  <block type="math_number">
+				<field name="NUM">3</field>
+			  </block>
+			</value>	
+		  </block>
+		  <block type="faceapirecognize_video_one">
+			<value name="facelabel">
+			  <block type="text">
+				<field name="TEXT">France;Chiling</field>
+			  </block>    
+			</value> 
+			<value name="faceimagepath">
+			  <block type="text">
+				<field name="TEXT">https://aaa/bbb.jpg;https://ccc/ddd.jpg</field>
+			  </block>    
+			</value> 		
+			<value name="distancelimit">
+			  <block type="math_number">
+				<field name="NUM">0.4</field>
+			  </block>   
+			</value>
+			<value name="timer">
+			  <block type="math_number">
+				<field name="NUM">3</field>
+			  </block>
+			</value>	
+		  </block>
+		  <block type="faceapirecognize_video_capture">
+			<value name="faceimagecount">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>   
+			</value> 	  
+			 <value name="distancelimit">
+			   <block type="math_number">
+				 <field name="NUM">0.4</field>
+			   </block>
+			 </value>
+			 <value name="timer">
+			   <block type="math_number">
+				 <field name="NUM">3</field>
+			   </block>
+			 </value>
+		  </block>		  
+		  <block type="faceapirecognize_recognitied">
+		  </block>    	  
+		  <block type="faceapirecognize_detect">
+		  </block>
+		  <block type="faceapirecognize_number"> 
+		  </block>
+		  <block type="faceapirecognize_get">
+			<value name="index">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>   
+			</value> 
+		  </block>
+		  <block type="faceapirecognize_unknown">
+			<value name="index">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>
+		  </block> 		  
+		  <block type="faceapirecognize_clear">
+		  </block>
+		  <block type="faceapirecognize_video_position">
+			<value name="left_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value> 
+			<value name="top_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>     
+		  </block>
+		  <block type="faceapirecognize_canvas_get">
+		  </block>		  
+		</category>		
+		<category id="france26" name="trackingcolor">
+			  <block type="trackingcolor_esp32cam">
+			  </block>
+			  <block type="trackingcolor_set">
+			  </block>
+			  <block type="trackingcolor_range_set">
+				<value name="left_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>
+				<value name="top_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>
+			  </block>
+			  <block type="trackingcolor_custom">
+				<value name="rmin_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>
+				<value name="rmax_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>
+				<value name="gmin_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>
+				<value name="gmax_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>
+				<value name="bmin_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>
+				<value name="bmax_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>
+			  </block>
+			  <block type="trackingcolor_video_position">
+				<value name="left_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>
+				<value name="top_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>
+			  </block>
+			  <block type="trackingcolor_get">
+			  </block>
+			  <block type="trackingcolor_get_number">
+			  </block>
+			  <block type="trackingcolor_object">
+				<value name="index_">
+				  <block type="math_number">
+					<field name="NUM">0</field>
+				  </block>
+				</value>
+			  </block>
+			  <block type="trackingcolor_state">
+			  </block>
+			  <block type="trackingcolor_clear">
+			  </block>
+			  <block type="trackingcolor_pause">
+				<value name="time_">
+				  <block type="math_number">
+					<field name="NUM">1000</field>
+				  </block>
+				</value>
+			  </block>
+		</category>	
+		
+		<category name="tesseract" id="tesseract">
+		  <block type="tesseract_esp32cam">
+		  </block>	
+		  <block type="tesseract_video">
+		  </block>
+		  <block type="tesseract_imageprocessing">
+			  <value name="reference_">
+			  <block type="math_number">
+				<field name="NUM">100</field>
+			  </block>
+			</value>
+		  </block>
+		  <block type="tesseract_video_position">
+			<value name="left_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="top_">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+		  </block>
+		  <block type="tesseract_recognition">
+		  </block>
+		  <block type="tesseract_get">
+		  </block>
+		  <block type="tesseract_clear">
+		  </block>
+		</category>		
+	</category>		
+		
 	<sep id="category_sep"></sep>
 	<category id="javascript_function" name="javascript_function"> 
 		<block type="javascript_function_math_constant">
@@ -3304,6 +4184,7 @@
       <block type="hotkey"><field name="keycode">Ctrl</field></block>
       <block type="keyboard_keycode"><field name="keycode">32</field></block>
     </category>
+
 	
 	<category id="catGameElements" name="catGameElements"> 
 		<category id="catGameElements_sub1" name="catGameElements_sub1">
@@ -7924,7 +8805,123 @@
 			</category>	
 	</category>
 	
-		<sep id="category_sep"></sep>
+	<sep id="category_sep"></sep>
+
+	<category id="france7" name="blekeyboardmodule">
+	  <block type="esp32_blekeyboard">
+		<value name="blename">
+		  <block type="text">
+			<field name="TEXT">ESP32 BLE Keyboard</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="esp32_blekeyboard_isConnected">
+	  </block>		  
+	  <block type="esp32_blekeyboard_press">
+		<value name="keycode1">
+		  <block type="esp32_blekeyboard_keycode">
+			<field name="keycode">0</field>
+		  </block>
+		</value>
+		<value name="keycode2">
+		</value>
+		<value name="keycode3">
+		</value>
+		<value name="presstime">
+		  <block type="math_number">
+			<field name="NUM">10</field>
+		  </block>
+		</value>			
+	  </block>
+	  <block type="esp32_blekeyboard_press_norelease">
+		<value name="keycode1">
+		  <block type="esp32_blekeyboard_keycode">
+			<field name="keycode">0</field>
+		  </block>
+		</value>
+		<value name="keycode2">
+		</value>
+		<value name="keycode3">
+		</value>			
+	  </block>	
+	  <block type="esp32_blekeyboard_release">
+		<value name="keycode1">
+		  <block type="esp32_blekeyboard_keycode">
+			<field name="keycode">0</field>
+		  </block>
+		</value>
+		<value name="keycode2">
+		</value>
+		<value name="keycode3">
+		</value>			
+	  </block>	
+	  <block type="esp32_blekeyboard_release_all">			
+	  </block>		  
+	  <block type="esp32_blekeyboard_print">
+		<value name="characters">
+		  <block type="text">
+			<field name="TEXT">Hello World</field>
+		  </block>
+		</value>			
+	  </block>
+	  <block type="esp32_blekeyboard_write">
+		<value name="keycode">
+		  <block type="esp32_blekeyboard_keycode">
+			<field name="keycode">0</field>
+		  </block>
+		</value>			
+	  </block>
+	  <block type="esp32_blekeyboard_keycode">			
+	  </block>
+	  <block type="esp32_blekeyboard_chartoascii">
+		<value name="character">
+		  <block type="text_quotationmark">
+			<field name="TEXT">A</field>
+		  </block>
+		</value>		  
+	  </block>		  
+	</category>
+	
+	<category id="france7" name="blemousemodule">
+	  <block type="esp32_blemouse">
+		<value name="blename">
+		  <block type="text" id="100">
+			<field name="TEXT">ESP32 MOUSE</field>
+		  </block>
+		</value>		  
+	  </block>
+	  <block type="esp32_blemouse_isConnected">			
+	  </block>		  
+	  <block type="esp32_blemouse_click">			
+	  </block>
+	  <block type="esp32_blemouse_press">			
+	  </block>
+	  <block type="esp32_blemouse_release">			
+	  </block>
+	  <block type="esp32_blemouse_ispressed">			
+	  </block>			  
+	  <block type="esp32_blemouse_move_scroll">
+		<value name="delaytime">
+		  <block type="math_number">
+			<field name="NUM">100</field>
+		  </block>
+		</value>		  
+	  </block>
+	  <block type="esp32_blemouse_move_point">
+		<value name="delaytime">
+		  <block type="math_number">
+			<field name="NUM">100</field>
+		  </block>
+		</value>
+		<value name="pixels">
+		  <block type="math_number">
+			<field name="NUM">10</field>
+		  </block>
+		</value>			
+	  </block>			  
+	</category>	
+
+	<sep id="category_sep"></sep>
 		
 	<category id="catWebbit" name="catWebbit">
 		<category id="catWebbitBoard" name="catWebbitBoard">

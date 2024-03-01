@@ -1,3 +1,223 @@
+Blockly.Blocks['amb82_mini_rtsp'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_RTSP"]);		
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_RTSP_VIDEOONLY"],"VideoOnly"],		
+			[Blockly.Msg["AMB82_MINI_RTSP_DOUBLEVIDEO"],"DoubleVideo"],
+			[Blockly.Msg["AMB82_MINI_RTSP_DOUBLEVIDEOWITHAUDIO"],"DoubleVideoWithAudio"],
+			[Blockly.Msg["AMB82_MINI_RTSP_SINGLEVIDEOWITHAUDIO"],"SingleVideoWithAudio"],
+			[Blockly.Msg["AMB82_MINI_RTSP_V7RC"],"V7RC"]
+		]), "type");		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_stream_url'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_STILL_URL"],"/?getstill"],
+			[Blockly.Msg["AMB82_MINI_STREAM_URL"],":81/?stream"]
+		]), "type");		
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_myfirmata'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])	
+        .appendField(Blockly.Msg["AMB82_MINI_INITIAL"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.ESP32_CAM_SERVERMODULE_STILL_SHOW,"80"],
+			[Blockly.Msg.ESP32_CAM_SERVERMODULE_STREAM_SHOW,"81"]
+		]), "type");		
+    this.appendValueInput("ssid")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_SSID_SHOW);
+    this.appendValueInput("password")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_PASSWORD_SHOW);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["FU_SERIAL_BAUDRATE"])	
+		.appendField(new Blockly.FieldDropdown([
+			["300","300"],
+			["1200","1200"],
+			["2400","2400"],
+			["4800","4800"],
+			["9600","9600"],	    
+			["19200","19200"],
+			["38400","38400"],
+			["57600","57600"],
+			["74880","74880"],
+			["115200","115200"],	
+			["230400","230400"],
+			["250000","250000"],
+			["500000","500000"],
+			["1000000","1000000"],	
+			["2000000","2000000"]
+		]), "baudrate");	
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			["2K (2560×1440)","VIDEO_2K"],
+			["5M (2448×2050)","VIDEO_5M"], 
+			["3M (2048×1536)","VIDEO_3M"],
+			["FHD (1920×1080)","VIDEO_FHD"],
+			["HD (1280×720)","VIDEO_HD"],
+			["D1 (704×576)","VIDEO_D1"],
+			["VGA (640×480)","VIDEO_VGA"],
+			["WVGA (640×340)","VIDEO_WVGA"],
+			["CIF (352×288)","VIDEO_CIF"],
+			["QCIF (176×144)","VIDEO_QCIF"],
+			[Blockly.Msg["AMB82_MINI_CUSTOM"],"VIDEO_CUSTOM"]
+		], this.validate), "framesize");
+	this.appendValueInput("width")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["WIDTH"]);
+	this.appendValueInput("height")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["HEIGHT"]);	
+    this.appendValueInput("mainpage")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_MAINPAGE_SHOW);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_EXECUTE_SHOW);
+    this.appendStatementInput("ExecuteCommand")
+        .setCheck(null);
+    this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="VIDEO_CUSTOM") {
+			block.getInput("width").setVisible(true);
+			block.getInput("height").setVisible(true);
+		} else {
+			block.getInput("width").setVisible(false);
+			block.getInput("height").setVisible(false);		
+		}
+  }
+};
+
+Blockly.Blocks['amb82_mini_googledrive'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"]);
+    this.appendValueInput("scriptid")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_CAM_SCRIPTID_SHOW);		
+    this.appendValueInput("linetoken")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_CAM_LINETOKEN_SHOW);	
+    this.appendValueInput("foldername")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_CAM_FOLDERNAME_SHOW);		
+    this.appendValueInput("filename")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_CAM_FILENAME_SHOW);			
+	this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(Blockly.Msg["HUE_15"]);
+	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToGoogleDriveAndLinenotify_doPost.gs");
+  }
+};
+
+Blockly.Blocks['amb82_mini_linenotify'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_LINENOTIFY"]);	
+    this.appendValueInput("linetoken")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_CAM_LINETOKEN_SHOW);
+    this.appendValueInput("linemessage")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_CAM_LINEMESSAGE_SHOW);			
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_initial'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])	
+        .appendField(Blockly.Msg["AMB82_MINI_INITIAL"]);
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			["2K (2560×1440)","VIDEO_2K"],
+			["5M (2448×2050)","VIDEO_5M"], 
+			["3M (2048×1536)","VIDEO_3M"],
+			["FHD (1920×1080)","VIDEO_FHD"],
+			["HD (1280×720)","VIDEO_HD"],
+			["D1 (704×576)","VIDEO_D1"],
+			["VGA (640×480)","VIDEO_VGA"],
+			["WVGA (640×340)","VIDEO_WVGA"],
+			["CIF (352×288)","VIDEO_CIF"],
+			["QCIF (176×144)","VIDEO_QCIF"],
+			[Blockly.Msg["AMB82_MINI_CUSTOM"],"VIDEO_CUSTOM"]
+		], this.validate), "framesize");
+	this.appendValueInput("width")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["WIDTH"]);
+	this.appendValueInput("height")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["HEIGHT"]);		  
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_15"]);
+    this.getInput("width").setVisible(false);
+    this.getInput("height").setVisible(false);	
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="VIDEO_CUSTOM") {
+			block.getInput("width").setVisible(true);
+			block.getInput("height").setVisible(true);
+		} else {
+			block.getInput("width").setVisible(false);
+			block.getInput("height").setVisible(false);		
+		}
+  }
+};
+
 Blockly.Blocks.TinyGPS_initial={
 	init:function(){
 	  this.appendDummyInput()
@@ -768,205 +988,6 @@ Blockly.Blocks['custom_googleicon'] = {
 	  this.setNextStatement(true);
 	  this.setColour(Blockly.Msg["HUE_18"]);
 	  this.setHelpUrl("https://fustyles.github.io/webduino/google_icon.html");  
-  }
-};
-
-Blockly.Blocks['amb82_mini_stream_url'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["AMB82_MINI"]);
-    this.appendDummyInput()	 
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["AMB82_MINI_STILL_URL"],"/?getstill"],
-			[Blockly.Msg["AMB82_MINI_STREAM_URL"],":81/?stream"]
-		]), "type");		
-	this.setInputsInline(true);
-    this.setOutput(true, null);  
-    this.setColour(Blockly.Msg["HUE_15"]);
-  }
-};
-
-Blockly.Blocks['amb82_mini_myfirmata'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["AMB82_MINI"])	
-        .appendField(Blockly.Msg["AMB82_MINI_INITIAL"]);
-    this.appendDummyInput()	 
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg.ESP32_CAM_SERVERMODULE_STILL_SHOW,"80"],
-			[Blockly.Msg.ESP32_CAM_SERVERMODULE_STREAM_SHOW,"81"]
-		]), "type");		
-    this.appendValueInput("ssid")
-        .setCheck(null)
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg.SERVERMODULE_SSID_SHOW);
-    this.appendValueInput("password")
-        .setCheck(null)
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg.SERVERMODULE_PASSWORD_SHOW);
-    this.appendDummyInput()	 
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg["FU_SERIAL_BAUDRATE"])	
-		.appendField(new Blockly.FieldDropdown([
-			["300","300"],
-			["1200","1200"],
-			["2400","2400"],
-			["4800","4800"],
-			["9600","9600"],	    
-			["19200","19200"],
-			["38400","38400"],
-			["57600","57600"],
-			["74880","74880"],
-			["115200","115200"],	
-			["230400","230400"],
-			["250000","250000"],
-			["500000","500000"],
-			["1000000","1000000"],	
-			["2000000","2000000"]
-		]), "baudrate");	
-	this.appendDummyInput()
-		.setAlign(Blockly.ALIGN_RIGHT)	
-		.appendField(Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW)	
-		.appendField(new Blockly.FieldDropdown([
-			["2K (2560×1440)","VIDEO_2K"],
-			["5M (2448×2050)","VIDEO_5M"], 
-			["3M (2048×1536)","VIDEO_3M"],
-			["FHD (1920×1080)","VIDEO_FHD"],
-			["HD (1280×720)","VIDEO_HD"],
-			["D1 (704×576)","VIDEO_D1"],
-			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×340)","VIDEO_WVGA"],
-			["CIF (352×288)","VIDEO_CIF"],
-			["QCIF (176×144)","VIDEO_QCIF"],
-			[Blockly.Msg["AMB82_MINI_CUSTOM"],"VIDEO_CUSTOM"]
-		], this.validate), "framesize");
-	this.appendValueInput("width")
-		.setCheck("Number")
-		.appendField(Blockly.Msg["WIDTH"]);
-	this.appendValueInput("height")
-		.setCheck("Number")
-		.appendField(Blockly.Msg["HEIGHT"]);	
-    this.appendValueInput("mainpage")
-        .setCheck(null)
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg.SERVERMODULE_MAINPAGE_SHOW);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.SERVERMODULE_EXECUTE_SHOW);
-    this.appendStatementInput("ExecuteCommand")
-        .setCheck(null);
-    this.setInputsInline(false);
-	this.setPreviousStatement(!0);
-	this.setNextStatement(!0);
-    this.setColour(Blockly.Msg["HUE_15"]);
-  },
-	validate: function(newValue) {
-		const block = this.sourceBlock_;
-		if (!block) return;
-		if (newValue=="VIDEO_CUSTOM") {
-			block.getInput("width").setVisible(true);
-			block.getInput("height").setVisible(true);
-		} else {
-			block.getInput("width").setVisible(false);
-			block.getInput("height").setVisible(false);		
-		}
-  }
-};
-
-Blockly.Blocks['amb82_mini_googledrive'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"]);
-    this.appendValueInput("scriptid")
-        .setCheck("String")
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.ESP32_CAM_SCRIPTID_SHOW);		
-    this.appendValueInput("linetoken")
-        .setCheck("String")
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.ESP32_CAM_LINETOKEN_SHOW);	
-    this.appendValueInput("foldername")
-        .setCheck("String")
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.ESP32_CAM_FOLDERNAME_SHOW);		
-    this.appendValueInput("filename")
-        .setCheck("String")
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.ESP32_CAM_FILENAME_SHOW);			
-	this.setInputsInline(false);
-	this.setPreviousStatement(!0);
-	this.setNextStatement(!0);
-	this.setColour(Blockly.Msg["HUE_15"]);
-	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToGoogleDriveAndLinenotify_doPost.gs");
-  }
-};
-
-Blockly.Blocks['amb82_mini_linenotify'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg["AMB82_MINI_LINENOTIFY"]);	
-    this.appendValueInput("linetoken")
-        .setCheck("String")
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.ESP32_CAM_LINETOKEN_SHOW);
-    this.appendValueInput("linemessage")
-        .setCheck("String")
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.ESP32_CAM_LINEMESSAGE_SHOW);			
-	this.setInputsInline(true);
-	this.setPreviousStatement(!0);
-	this.setNextStatement(!0);
-	this.setColour(Blockly.Msg["HUE_15"]);
-  }
-};
-
-Blockly.Blocks['amb82_mini_initial'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["AMB82_MINI"])	
-        .appendField(Blockly.Msg["AMB82_MINI_INITIAL"]);
-	this.appendDummyInput()
-		.setAlign(Blockly.ALIGN_RIGHT)	
-		.appendField(Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW)	
-		.appendField(new Blockly.FieldDropdown([
-			["2K (2560×1440)","VIDEO_2K"],
-			["5M (2448×2050)","VIDEO_5M"], 
-			["3M (2048×1536)","VIDEO_3M"],
-			["FHD (1920×1080)","VIDEO_FHD"],
-			["HD (1280×720)","VIDEO_HD"],
-			["D1 (704×576)","VIDEO_D1"],
-			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×340)","VIDEO_WVGA"],
-			["CIF (352×288)","VIDEO_CIF"],
-			["QCIF (176×144)","VIDEO_QCIF"],
-			[Blockly.Msg["AMB82_MINI_CUSTOM"],"VIDEO_CUSTOM"]
-		], this.validate), "framesize");
-	this.appendValueInput("width")
-		.setCheck("Number")
-		.appendField(Blockly.Msg["WIDTH"]);
-	this.appendValueInput("height")
-		.setCheck("Number")
-		.appendField(Blockly.Msg["HEIGHT"]);		  
-    this.setInputsInline(true);
-	this.setPreviousStatement(!0);
-	this.setNextStatement(!0);
-    this.setColour(Blockly.Msg["HUE_15"]);
-    this.getInput("width").setVisible(false);
-    this.getInput("height").setVisible(false);	
-  },
-	validate: function(newValue) {
-		const block = this.sourceBlock_;
-		if (!block) return;
-		if (newValue=="VIDEO_CUSTOM") {
-			block.getInput("width").setVisible(true);
-			block.getInput("height").setVisible(true);
-		} else {
-			block.getInput("width").setVisible(false);
-			block.getInput("height").setVisible(false);		
-		}
   }
 };
 

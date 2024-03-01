@@ -91,6 +91,12 @@ Blockly.Msg["AMB82_MINI_CUSTOM"] = "Custom";
 Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"] = "Upload Still to Google drive";
 Blockly.Msg["AMB82_MINI_STILL_URL"] = "Still url";
 Blockly.Msg["AMB82_MINI_STREAM_URL"] = "stream url";
+Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP stream initial";
+Blockly.Msg["AMB82_MINI_RTSP_VIDEOONLY"] = "Video only";
+Blockly.Msg["AMB82_MINI_RTSP_DOUBLEVIDEO"] = "Double video";
+Blockly.Msg["AMB82_MINI_RTSP_DOUBLEVIDEOWITHAUDIO"] = "Double video with audio";
+Blockly.Msg["AMB82_MINI_RTSP_SINGLEVIDEOWITHAUDIO"] = "Single video with audio";
+Blockly.Msg["AMB82_MINI_RTSP_V7RC"] = "V7RC";
 
 Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun Encode motor";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_ENCODERPULSE"] = "Pulse";

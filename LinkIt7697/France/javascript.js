@@ -1,343 +1,30 @@
-Blockly.Arduino['TinyGPS_initial'] = function(block) { 
-	Blockly.Arduino.definitions_['TinyGPS_initial'] = '#include <TinyGPS.h>\nTinyGPS gps;\nbool gpsNewData = false;\n';	
-
-	var code = '';
-	return code;
-};
-
-Blockly.Arduino['TinyGPS_readchar'] = function(block){
-	var c = Blockly.Arduino.valueToCode(block, 'c', Blockly.Arduino.ORDER_ATOMIC);														
-	var code = 'if (gps.encode('+c+')) gpsNewData = true;\n';
-	return code;
-};
-
-Blockly.Arduino['TinyGPS_statement'] = function(block){
-	var statement = Blockly.Arduino.statementToCode(block, 'statement');
-	var code = 'unsigned long TinyGPS_chars;\n'+
-				  'unsigned short TinyGPS_sentences, TinyGPS_failed;\n'+
-				  'if (gpsNewData) {\n'+
-				  '  float TinyGPS_flat, TinyGPS_flon;\n'+
-				  '  unsigned long TinyGPS_age;\n'+
-				  '  gps.f_get_position(&TinyGPS_flat, &TinyGPS_flon, &TinyGPS_age);\n'+
-				  '  gps.stats(&TinyGPS_chars, &TinyGPS_sentences, &TinyGPS_failed);\n'+statement+	  
-				  '}\n'+
-				  'gpsNewData = false;\n';
-	return code;
-};
-
-Blockly.Arduino['TinyGPS_get_data'] = function(block){
+Blockly.Arduino['amb82_mini_rtsp'] = function(block) {
 	
-	Blockly.Arduino.definitions_.TinyGPS_coordinateToString = '\n'+
-			'String TinyGPS_coordinateToString(float coordinate) {\n'+
-			'  int digits = 6;\n'+
-			'  String val = String(coordinate*pow(10, digits));\n'+			
-			'  int point = val.indexOf(".");\n'+
-			'  val = val.substring(0, point);\n'+				
-			'  int len = val.length(); \n'+
-			'  if (len>=digits) {\n'+			
-			'    return val.substring(0, len-digits)+"."+val.substring(len-digits, len);\n'+	
-			'  } else {\n'+	
-			'    return "";\n'+	
-			'  }\n'+				
-			'}\n';
-			
-  var data = block.getFieldValue('data');
-  if (data=="flat")	
-	var code = '(TinyGPS_flat == TinyGPS::GPS_INVALID_F_ANGLE ? "0" : TinyGPS_coordinateToString(TinyGPS_flat))';
-  else if (data=="flon")
-	var code = '(TinyGPS_flon == TinyGPS::GPS_INVALID_F_ANGLE ? "0" : TinyGPS_coordinateToString(TinyGPS_flon))';
-  else if (data=="satellites")
-	var code = '(gps.satellites() == TinyGPS::GPS_INVALID_SATELLITES ? 0 : gps.satellites())';
-  else if (data=="hdop")
-	var code = '(gps.hdop() == TinyGPS::GPS_INVALID_HDOP ? 0 : gps.hdop())';
-  else
-	var code = ''; 
-  return [code, Blockly.Arduino.ORDER_NONE];
-};
-
-Blockly.Arduino['TinyGPS_get_state'] = function(block){
-  var state = block.getFieldValue('state');
-  if (state=="chars")	
-	var code = 'TinyGPS_chars';
-  else if (state=="sentences")
-	var code = 'TinyGPS_sentences';
-  else
-	var code = ''; 
-  return [code, Blockly.Arduino.ORDER_NONE];
-};
-
-
-
-
-
-
-
-Blockly.Arduino['esp32_blekeyboard'] = function(block) {
-    var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_.define_esp32_blekeyboard_include = '#include <BleKeyboard.h>\nBleKeyboard bleKeyboard;\n';
-	Blockly.Arduino.definitions_.blekeyboard = '\n'+
-			'void blekeyboard(String type, uint8_t keycode1, uint8_t keycode2, uint8_t keycode3, int presstime, String characters) {\n'+
-			'  if(bleKeyboard.isConnected()) {\n'+			
-			'    if (type=="press") {\n'+
-			'      if (keycode1!=-1) bleKeyboard.press(keycode1);\n'+
-			'      if (keycode2!=-1) bleKeyboard.press(keycode2);\n'+
-			'      if (keycode3!=-1) bleKeyboard.press(keycode3);\n'+
-			'      delay(presstime);\n'+
-			'      bleKeyboard.releaseAll();\n'+
-			'    } else if (type=="press_norelease") {\n'+
-			'      if (keycode1!=-1) bleKeyboard.press(keycode1);\n'+
-			'    } else if (type=="release") {\n'+
-			'      if (keycode1!=-1) bleKeyboard.release(keycode1);\n'+
-			'    } else if (type=="release_all") {\n'+
-			'      bleKeyboard.releaseAll();\n'+
-			'    } else if (type=="print") {\n'+
-			'      bleKeyboard.print(characters);\n'+
-			'    } else if (type=="write") {\n'+
-			'      bleKeyboard.write(char(keycode1));\n'+
-			'    }\n'+
-			'  }\n'+			
-			'}\n';
-
-	Blockly.Arduino.setups_.bt_serial='bleKeyboard.setName('+blename+');\n  bleKeyboard.begin();\n  delay(10);\n';	
-			
-  code = '';
-  return code;
-};
-
-Blockly.Arduino['esp32_blekeyboard_isConnected'] = function(block) {
-	var code = 'bleKeyboard.isConnected()';	
-	return [code, Blockly.Arduino.ORDER_NONE];
-};
-
-Blockly.Arduino['esp32_blekeyboard_press'] = function(block) {	
-	var keycode1 = Blockly.Arduino.valueToCode(block, 'keycode1', Blockly.Arduino.ORDER_ATOMIC)||-1;
-	var keycode2 = Blockly.Arduino.valueToCode(block, 'keycode2', Blockly.Arduino.ORDER_ATOMIC)||-1;
-	var keycode3 = Blockly.Arduino.valueToCode(block, 'keycode3', Blockly.Arduino.ORDER_ATOMIC)||-1;
-	var presstime = Blockly.Arduino.valueToCode(block, 'presstime', Blockly.Arduino.ORDER_ATOMIC)||10;
-	
-	return 'blekeyboard("press", '+keycode1+', '+keycode2+', '+keycode3+', '+presstime+', "");\n';
-};
-
-Blockly.Arduino['esp32_blekeyboard_press_norelease'] = function(block) {	
-	var keycode1 = Blockly.Arduino.valueToCode(block, 'keycode1', Blockly.Arduino.ORDER_ATOMIC)||-1;
-	
-	return 'blekeyboard("press_norelease", '+keycode1+', -1, -1, 0, "");\n';
-};
-
-Blockly.Arduino['esp32_blekeyboard_release'] = function(block) {	
-	var keycode1 = Blockly.Arduino.valueToCode(block, 'keycode1', Blockly.Arduino.ORDER_ATOMIC)||-1;
-	
-	return 'blekeyboard("release", '+keycode1+', -1, -1, 0, "");\n';
-};
-
-Blockly.Arduino['esp32_blekeyboard_release_all'] = function(block) {
-	return 'blekeyboard("release_all", -1, -1, -1, 0, "");\n';
-};
-
-Blockly.Arduino['esp32_blekeyboard_print'] = function(block) {	
-	var characters = Blockly.Arduino.valueToCode(block, 'characters', Blockly.Arduino.ORDER_ATOMIC)||"";
-	
-	return 'blekeyboard("print", -1, -1, -1, -1, '+characters+');\n';
-};
-
-Blockly.Arduino['esp32_blekeyboard_write'] = function(block) {	
-	var keycode = Blockly.Arduino.valueToCode(block, 'keycode', Blockly.Arduino.ORDER_ATOMIC)||-1;
-	
-	return 'blekeyboard("write", '+keycode+', -1, -1, -1, "");\n';
-};
-
-Blockly.Arduino['esp32_blekeyboard_keycode'] = function(block) {	
-	var keycode = block.getFieldValue('keycode');
-	
-	return [keycode, Blockly.Arduino.ORDER_NONE];
-};
-
-Blockly.Arduino['esp32_blekeyboard_chartoascii'] = function(block) {	
-	var character = Blockly.Arduino.valueToCode(block, 'character', Blockly.Arduino.ORDER_ATOMIC)||"";
 	var type = block.getFieldValue('type');
 
-	if (character.indexOf('"')!=-1)
-		character = "'"+character.replace(/"/g,"")+"'";
-	if (type=="integer")
-		character = "(int)"+character;
-	else
-		character = "String((int)"+character+")";
-	return [character, Blockly.Arduino.ORDER_NONE];
-};
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#define amb82_CHANNEL 0\nVideoSetting config(amb82_CHANNEL);\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);';
 
-
-
-
-
-
-
-
-Blockly.Arduino['esp32_blemouse'] = function(block) {
-    var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_.define_esp32_blemouse_include = '#include <BleMouse.h>\nBleMouse bleMouse('+blename+', "Espressif", 100);\n';
-	Blockly.Arduino.definitions_.blemouse = '\n'+
-			'void blemouse(String type, byte event, String mode, float delaytime, int pixels) {\n'+
-			'  if (type=="click") \n'+
-			'  	bleMouse.click(event);\n'+
-			'  else if (type=="move") {\n'+
-			'  	unsigned long startTime;\n'+
-			'  	startTime = millis();\n'+
-			'  	while(millis()<startTime+delaytime) {\n'+
-			'  	  if (mode=="SU")\n'+
-			'  		  bleMouse.move(0,0,1);\n'+
-			'  	  else if (mode=="SD")\n'+
-			'  		  bleMouse.move(0,0,-1);\n'+
-			'  	  else if (mode=="SL")\n'+
-			'  		  bleMouse.move(0,0,0,-1);\n'+
-			'  	  else if (mode=="SR")\n'+
-			'  		  bleMouse.move(0,0,0,1);\n'+
-			'  	  else if (mode=="PU")\n'+
-			'  		  bleMouse.move(0,-1*pixels);\n'+
-			'  	  else if (mode=="PD")\n'+
-			'  		  bleMouse.move(0,pixels);\n'+
-			'  	  else if (mode=="PL")\n'+
-			'  		  bleMouse.move(-1*pixels,0);\n'+
-			'  	  else if (mode=="PR")\n'+
-			'  		  bleMouse.move(pixels,0);\n'+
-			'  	  delay(100);\n'+
-			'  	}\n'+
-			' }\n'+			
-			'}\n';
-
-	Blockly.Arduino.setups_.blemouse='bleMouse.begin();\n';	
-			
-  code = '';
-  return code;
-};
-
-Blockly.Arduino['esp32_blemouse_isConnected'] = function(block) {
-	var code = 'bleMouse.isConnected()';	
-	return [code, Blockly.Arduino.ORDER_NONE];
-};
-
-Blockly.Arduino['esp32_blemouse_click'] = function(block) {	
-    var event = block.getFieldValue('event');
-	return 'blemouse("click", '+event+', "", 0, 0);\n';
-};
-
-Blockly.Arduino['esp32_blemouse_press'] = function(block) {	
-    var event = block.getFieldValue('event');
-	return 'bleMouse.press('+event+');\n';
-};
-
-Blockly.Arduino['esp32_blemouse_release'] = function(block) {
-    var event = block.getFieldValue('event');	
-	return 'bleMouse.release('+event+');\n';
-};
-
-Blockly.Arduino['esp32_blemouse_ispressed'] = function(block) {
-    var event = block.getFieldValue('event');
-	var code = 'bleMouse.isPressed('+event+')';	
-	return [code, Blockly.Arduino.ORDER_NONE];
-};
-
-Blockly.Arduino['esp32_blemouse_move_scroll'] = function(block) {
-	var mode = block.getFieldValue('mode');
-	var delaytime = Blockly.Arduino.valueToCode(block, 'delaytime', Blockly.Arduino.ORDER_ATOMIC)||100;
-	return 'blemouse("move", 0, "'+mode+'", '+delaytime+', 0);\n';
-};
-
-Blockly.Arduino['esp32_blemouse_move_point'] = function(block) {
-	var mode = block.getFieldValue('mode');
-	var delaytime = Blockly.Arduino.valueToCode(block, 'delaytime', Blockly.Arduino.ORDER_ATOMIC)||100;
-	var pixels = Blockly.Arduino.valueToCode(block, 'pixels', Blockly.Arduino.ORDER_ATOMIC)||1;
-	return 'blemouse("move", 0, "'+mode+'", '+delaytime+', '+pixels+');\n';
-};
-
-Blockly.Arduino.wire_initial = function(block){
-	var address = Blockly.Arduino.valueToCode(block, 'address', Blockly.Arduino.ORDER_ATOMIC)||0;
-	address = address.replace(/\"/g,"").replace(/\'/g,"");
-	var sda=Blockly.Arduino.valueToCode(this,"sda",Blockly.Arduino.ORDER_ATOMIC)||21;
-	var scl=Blockly.Arduino.valueToCode(this,"scl",Blockly.Arduino.ORDER_ATOMIC)||22;
-	var frequency=Blockly.Arduino.valueToCode(this,"frequency",Blockly.Arduino.ORDER_ATOMIC)||0;
-
-	Blockly.Arduino.definitions_['define_wire']='#include \<Wire.h\>\n#define I2C_ADDR '+address+'\n#define FREQ '+frequency+'\n#define SDA_PIN '+sda+'\n#define SCL_PIN '+scl;
-	Blockly.Arduino.setups_["setups_wire"]='Wire.begin(SDA_PIN, SCL_PIN, FREQ);';
-
-	var code = '';
-	return code;
-};
-
-Blockly.Arduino.wire_write_start = function(block){	
-	var statement = Blockly.Arduino.statementToCode(block, 'statement');
-																			
-	var code = 'Wire.beginTransmission(I2C_ADDR);\n'+
-				statement+
-				'Wire.endTransmission();\n';
-	return code;
-};
-
-Blockly.Arduino.wire_clock = function(block){	
-	var frequency = Blockly.Arduino.valueToCode(block, 'frequency', Blockly.Arduino.ORDER_ATOMIC)||"";						
-	var code = 'Wire.setClock('+frequency+');\n';
-	return code;
-};
-
-Blockly.Arduino.wire_write = function(block){
-	var data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC)||"";
-	data = data.replace(/\"/g,"");	
-	var code = 'Wire.write('+data+');\n';
-	return code;
-};
-
-Blockly.Arduino.wire_read = function(block){	
-	var datasize = Blockly.Arduino.valueToCode(block, 'datasize', Blockly.Arduino.ORDER_ATOMIC)||"";
-	var statement = Blockly.Arduino.statementToCode(block, 'statement');
-																			
-	var code = '//Wire.beginTransmission(I2C_ADDR);\n'+
-				'//Wire.requestFrom(I2C_ADDR, '+datasize+');\n'+
-				'if (Wire.available()) {\n'+
-				'  while (Wire.available()) {\n'+
-				'    '+statement+
-				'  }\n'+
-				'}\n'+
-				'//Wire.endTransmission();\n';
-	return code;
-};
-
-Blockly.Arduino.wire_get = function(block){
-  var mode = block.getFieldValue('mode');
-  if (mode=="byte")	
-	var code = 'Wire.read()';
-  else if (mode=="char")
-	var code = '(char)Wire.read()';
-  else {
-	Blockly.Arduino.definitions_['define_WireReadString']='String WireReadString() {\n  String data = "";\n  while (Wire.available()) {\n    char c = Wire.read();\n    data += String(c);\n  }\n  return data;\n}';
-	var code = 'WireReadString()';
-  }	  
-  return [code, Blockly.Arduino.ORDER_NONE];
-};
-
-
-Blockly.Arduino['button_toolbox'] = function (block) { 
-  var value_left_ = Blockly.Arduino.valueToCode(block, 'left_', Blockly.Arduino.ORDER_ATOMIC)||0;
-  var value_top_ = Blockly.Arduino.valueToCode(block, 'top_', Blockly.Arduino.ORDER_ATOMIC)||0; 
-  var value_width_ = Blockly.Arduino.valueToCode(block, 'width_', Blockly.Arduino.ORDER_ATOMIC)||15;
-  var value_height_ = Blockly.Arduino.valueToCode(block, 'height_', Blockly.Arduino.ORDER_ATOMIC)||15;
-  var value_spacing_ = Blockly.Arduino.valueToCode(block, 'spacing_', Blockly.Arduino.ORDER_ATOMIC)||5;  
-  var value_color_ = Blockly.Arduino.valueToCode(block, 'color_', Blockly.Arduino.ORDER_ATOMIC)||"black";  
-  var value_bgcolor_ = Blockly.Arduino.valueToCode(block, 'bgcolor_', Blockly.Arduino.ORDER_ATOMIC)||"white";
-  var value_fontsize_ = Blockly.Arduino.valueToCode(block, 'fontsize_', Blockly.Arduino.ORDER_ATOMIC)||12;
-  var value_direction_ = block.getFieldValue('direction_');
-  var value_list_ = Blockly.Arduino.valueToCode(block, 'list_', Blockly.Arduino.ORDER_ATOMIC)||"settings";0
-  value_list_ = value_list_.replace(/{/g,"[").replace(/}/g,"]");
-  
-  var code = 'button_toolbox(' + value_left_ + ',' + value_top_ + ',' + value_width_ + ',' + value_height_ + ',' + value_color_ + ',' + value_bgcolor_ + ',' + value_fontsize_ + ',' + value_direction_ + ',' + value_spacing_ + ',' + value_list_ + ');\n';
-  return code;
-};
-
-Blockly.Arduino['custom_googleicon'] = function (block) {
-  var element = block.getFieldValue('element');
-  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);
-  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
-
-  var code = 'icon_google("'+element+'", '+id+', '+val+');\n';
-  return code;
+	Blockly.Arduino.definitions_.define_custom_command = '';
+	Blockly.Arduino.setups_.write_peri_reg="";
+	Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
+										'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
+										'Camera.videoInit();\n  '+
+										'rtsp.configVideo(config);\n  '+
+										'rtsp.begin();\n  '+
+										'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
+										'videoStreamer.registerOutput(rtsp);\n  '+
+										'if (videoStreamer.begin() != 0) {\n  '+
+										'    Serial.println("StreamIO link start failed");\n  '+
+										'}\n  '+
+										'Camera.channelBegin(amb82_CHANNEL);\n  '+
+										'delay(1000);\n  '+
+										'IPAddress ip = WiFi.localIP();\n  '+
+										'Serial.print("rtsp://");\n  '+
+										'Serial.print(ip);\n  '+
+										'Serial.print(":");\n  '+
+										'rtsp.printInfo();';
+										
+	return '';
 };
 
 Blockly.Arduino['amb82_mini_stream_url'] = function (block) {
@@ -788,6 +475,348 @@ Blockly.Arduino['amb82_mini_initial'] = function(block) {
 	Blockly.Arduino.setups_.setup_cam_initial='Camera.configVideoChannel(0, config);\n  Camera.videoInit();\n  Camera.channelBegin(0);';
 	
     return '';
+};
+
+Blockly.Arduino['TinyGPS_initial'] = function(block) { 
+	Blockly.Arduino.definitions_['TinyGPS_initial'] = '#include <TinyGPS.h>\nTinyGPS gps;\nbool gpsNewData = false;\n';	
+
+	var code = '';
+	return code;
+};
+
+Blockly.Arduino['TinyGPS_readchar'] = function(block){
+	var c = Blockly.Arduino.valueToCode(block, 'c', Blockly.Arduino.ORDER_ATOMIC);														
+	var code = 'if (gps.encode('+c+')) gpsNewData = true;\n';
+	return code;
+};
+
+Blockly.Arduino['TinyGPS_statement'] = function(block){
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+	var code = 'unsigned long TinyGPS_chars;\n'+
+				  'unsigned short TinyGPS_sentences, TinyGPS_failed;\n'+
+				  'if (gpsNewData) {\n'+
+				  '  float TinyGPS_flat, TinyGPS_flon;\n'+
+				  '  unsigned long TinyGPS_age;\n'+
+				  '  gps.f_get_position(&TinyGPS_flat, &TinyGPS_flon, &TinyGPS_age);\n'+
+				  '  gps.stats(&TinyGPS_chars, &TinyGPS_sentences, &TinyGPS_failed);\n'+statement+	  
+				  '}\n'+
+				  'gpsNewData = false;\n';
+	return code;
+};
+
+Blockly.Arduino['TinyGPS_get_data'] = function(block){
+	
+	Blockly.Arduino.definitions_.TinyGPS_coordinateToString = '\n'+
+			'String TinyGPS_coordinateToString(float coordinate) {\n'+
+			'  int digits = 6;\n'+
+			'  String val = String(coordinate*pow(10, digits));\n'+			
+			'  int point = val.indexOf(".");\n'+
+			'  val = val.substring(0, point);\n'+				
+			'  int len = val.length(); \n'+
+			'  if (len>=digits) {\n'+			
+			'    return val.substring(0, len-digits)+"."+val.substring(len-digits, len);\n'+	
+			'  } else {\n'+	
+			'    return "";\n'+	
+			'  }\n'+				
+			'}\n';
+			
+  var data = block.getFieldValue('data');
+  if (data=="flat")	
+	var code = '(TinyGPS_flat == TinyGPS::GPS_INVALID_F_ANGLE ? "0" : TinyGPS_coordinateToString(TinyGPS_flat))';
+  else if (data=="flon")
+	var code = '(TinyGPS_flon == TinyGPS::GPS_INVALID_F_ANGLE ? "0" : TinyGPS_coordinateToString(TinyGPS_flon))';
+  else if (data=="satellites")
+	var code = '(gps.satellites() == TinyGPS::GPS_INVALID_SATELLITES ? 0 : gps.satellites())';
+  else if (data=="hdop")
+	var code = '(gps.hdop() == TinyGPS::GPS_INVALID_HDOP ? 0 : gps.hdop())';
+  else
+	var code = ''; 
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['TinyGPS_get_state'] = function(block){
+  var state = block.getFieldValue('state');
+  if (state=="chars")	
+	var code = 'TinyGPS_chars';
+  else if (state=="sentences")
+	var code = 'TinyGPS_sentences';
+  else
+	var code = ''; 
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+
+
+
+
+
+
+Blockly.Arduino['esp32_blekeyboard'] = function(block) {
+    var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_.define_esp32_blekeyboard_include = '#include <BleKeyboard.h>\nBleKeyboard bleKeyboard;\n';
+	Blockly.Arduino.definitions_.blekeyboard = '\n'+
+			'void blekeyboard(String type, uint8_t keycode1, uint8_t keycode2, uint8_t keycode3, int presstime, String characters) {\n'+
+			'  if(bleKeyboard.isConnected()) {\n'+			
+			'    if (type=="press") {\n'+
+			'      if (keycode1!=-1) bleKeyboard.press(keycode1);\n'+
+			'      if (keycode2!=-1) bleKeyboard.press(keycode2);\n'+
+			'      if (keycode3!=-1) bleKeyboard.press(keycode3);\n'+
+			'      delay(presstime);\n'+
+			'      bleKeyboard.releaseAll();\n'+
+			'    } else if (type=="press_norelease") {\n'+
+			'      if (keycode1!=-1) bleKeyboard.press(keycode1);\n'+
+			'    } else if (type=="release") {\n'+
+			'      if (keycode1!=-1) bleKeyboard.release(keycode1);\n'+
+			'    } else if (type=="release_all") {\n'+
+			'      bleKeyboard.releaseAll();\n'+
+			'    } else if (type=="print") {\n'+
+			'      bleKeyboard.print(characters);\n'+
+			'    } else if (type=="write") {\n'+
+			'      bleKeyboard.write(char(keycode1));\n'+
+			'    }\n'+
+			'  }\n'+			
+			'}\n';
+
+	Blockly.Arduino.setups_.bt_serial='bleKeyboard.setName('+blename+');\n  bleKeyboard.begin();\n  delay(10);\n';	
+			
+  code = '';
+  return code;
+};
+
+Blockly.Arduino['esp32_blekeyboard_isConnected'] = function(block) {
+	var code = 'bleKeyboard.isConnected()';	
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['esp32_blekeyboard_press'] = function(block) {	
+	var keycode1 = Blockly.Arduino.valueToCode(block, 'keycode1', Blockly.Arduino.ORDER_ATOMIC)||-1;
+	var keycode2 = Blockly.Arduino.valueToCode(block, 'keycode2', Blockly.Arduino.ORDER_ATOMIC)||-1;
+	var keycode3 = Blockly.Arduino.valueToCode(block, 'keycode3', Blockly.Arduino.ORDER_ATOMIC)||-1;
+	var presstime = Blockly.Arduino.valueToCode(block, 'presstime', Blockly.Arduino.ORDER_ATOMIC)||10;
+	
+	return 'blekeyboard("press", '+keycode1+', '+keycode2+', '+keycode3+', '+presstime+', "");\n';
+};
+
+Blockly.Arduino['esp32_blekeyboard_press_norelease'] = function(block) {	
+	var keycode1 = Blockly.Arduino.valueToCode(block, 'keycode1', Blockly.Arduino.ORDER_ATOMIC)||-1;
+	
+	return 'blekeyboard("press_norelease", '+keycode1+', -1, -1, 0, "");\n';
+};
+
+Blockly.Arduino['esp32_blekeyboard_release'] = function(block) {	
+	var keycode1 = Blockly.Arduino.valueToCode(block, 'keycode1', Blockly.Arduino.ORDER_ATOMIC)||-1;
+	
+	return 'blekeyboard("release", '+keycode1+', -1, -1, 0, "");\n';
+};
+
+Blockly.Arduino['esp32_blekeyboard_release_all'] = function(block) {
+	return 'blekeyboard("release_all", -1, -1, -1, 0, "");\n';
+};
+
+Blockly.Arduino['esp32_blekeyboard_print'] = function(block) {	
+	var characters = Blockly.Arduino.valueToCode(block, 'characters', Blockly.Arduino.ORDER_ATOMIC)||"";
+	
+	return 'blekeyboard("print", -1, -1, -1, -1, '+characters+');\n';
+};
+
+Blockly.Arduino['esp32_blekeyboard_write'] = function(block) {	
+	var keycode = Blockly.Arduino.valueToCode(block, 'keycode', Blockly.Arduino.ORDER_ATOMIC)||-1;
+	
+	return 'blekeyboard("write", '+keycode+', -1, -1, -1, "");\n';
+};
+
+Blockly.Arduino['esp32_blekeyboard_keycode'] = function(block) {	
+	var keycode = block.getFieldValue('keycode');
+	
+	return [keycode, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['esp32_blekeyboard_chartoascii'] = function(block) {	
+	var character = Blockly.Arduino.valueToCode(block, 'character', Blockly.Arduino.ORDER_ATOMIC)||"";
+	var type = block.getFieldValue('type');
+
+	if (character.indexOf('"')!=-1)
+		character = "'"+character.replace(/"/g,"")+"'";
+	if (type=="integer")
+		character = "(int)"+character;
+	else
+		character = "String((int)"+character+")";
+	return [character, Blockly.Arduino.ORDER_NONE];
+};
+
+
+
+
+
+
+
+
+Blockly.Arduino['esp32_blemouse'] = function(block) {
+    var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_.define_esp32_blemouse_include = '#include <BleMouse.h>\nBleMouse bleMouse('+blename+', "Espressif", 100);\n';
+	Blockly.Arduino.definitions_.blemouse = '\n'+
+			'void blemouse(String type, byte event, String mode, float delaytime, int pixels) {\n'+
+			'  if (type=="click") \n'+
+			'  	bleMouse.click(event);\n'+
+			'  else if (type=="move") {\n'+
+			'  	unsigned long startTime;\n'+
+			'  	startTime = millis();\n'+
+			'  	while(millis()<startTime+delaytime) {\n'+
+			'  	  if (mode=="SU")\n'+
+			'  		  bleMouse.move(0,0,1);\n'+
+			'  	  else if (mode=="SD")\n'+
+			'  		  bleMouse.move(0,0,-1);\n'+
+			'  	  else if (mode=="SL")\n'+
+			'  		  bleMouse.move(0,0,0,-1);\n'+
+			'  	  else if (mode=="SR")\n'+
+			'  		  bleMouse.move(0,0,0,1);\n'+
+			'  	  else if (mode=="PU")\n'+
+			'  		  bleMouse.move(0,-1*pixels);\n'+
+			'  	  else if (mode=="PD")\n'+
+			'  		  bleMouse.move(0,pixels);\n'+
+			'  	  else if (mode=="PL")\n'+
+			'  		  bleMouse.move(-1*pixels,0);\n'+
+			'  	  else if (mode=="PR")\n'+
+			'  		  bleMouse.move(pixels,0);\n'+
+			'  	  delay(100);\n'+
+			'  	}\n'+
+			' }\n'+			
+			'}\n';
+
+	Blockly.Arduino.setups_.blemouse='bleMouse.begin();\n';	
+			
+  code = '';
+  return code;
+};
+
+Blockly.Arduino['esp32_blemouse_isConnected'] = function(block) {
+	var code = 'bleMouse.isConnected()';	
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['esp32_blemouse_click'] = function(block) {	
+    var event = block.getFieldValue('event');
+	return 'blemouse("click", '+event+', "", 0, 0);\n';
+};
+
+Blockly.Arduino['esp32_blemouse_press'] = function(block) {	
+    var event = block.getFieldValue('event');
+	return 'bleMouse.press('+event+');\n';
+};
+
+Blockly.Arduino['esp32_blemouse_release'] = function(block) {
+    var event = block.getFieldValue('event');	
+	return 'bleMouse.release('+event+');\n';
+};
+
+Blockly.Arduino['esp32_blemouse_ispressed'] = function(block) {
+    var event = block.getFieldValue('event');
+	var code = 'bleMouse.isPressed('+event+')';	
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['esp32_blemouse_move_scroll'] = function(block) {
+	var mode = block.getFieldValue('mode');
+	var delaytime = Blockly.Arduino.valueToCode(block, 'delaytime', Blockly.Arduino.ORDER_ATOMIC)||100;
+	return 'blemouse("move", 0, "'+mode+'", '+delaytime+', 0);\n';
+};
+
+Blockly.Arduino['esp32_blemouse_move_point'] = function(block) {
+	var mode = block.getFieldValue('mode');
+	var delaytime = Blockly.Arduino.valueToCode(block, 'delaytime', Blockly.Arduino.ORDER_ATOMIC)||100;
+	var pixels = Blockly.Arduino.valueToCode(block, 'pixels', Blockly.Arduino.ORDER_ATOMIC)||1;
+	return 'blemouse("move", 0, "'+mode+'", '+delaytime+', '+pixels+');\n';
+};
+
+Blockly.Arduino.wire_initial = function(block){
+	var address = Blockly.Arduino.valueToCode(block, 'address', Blockly.Arduino.ORDER_ATOMIC)||0;
+	address = address.replace(/\"/g,"").replace(/\'/g,"");
+	var sda=Blockly.Arduino.valueToCode(this,"sda",Blockly.Arduino.ORDER_ATOMIC)||21;
+	var scl=Blockly.Arduino.valueToCode(this,"scl",Blockly.Arduino.ORDER_ATOMIC)||22;
+	var frequency=Blockly.Arduino.valueToCode(this,"frequency",Blockly.Arduino.ORDER_ATOMIC)||0;
+
+	Blockly.Arduino.definitions_['define_wire']='#include \<Wire.h\>\n#define I2C_ADDR '+address+'\n#define FREQ '+frequency+'\n#define SDA_PIN '+sda+'\n#define SCL_PIN '+scl;
+	Blockly.Arduino.setups_["setups_wire"]='Wire.begin(SDA_PIN, SCL_PIN, FREQ);';
+
+	var code = '';
+	return code;
+};
+
+Blockly.Arduino.wire_write_start = function(block){	
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+																			
+	var code = 'Wire.beginTransmission(I2C_ADDR);\n'+
+				statement+
+				'Wire.endTransmission();\n';
+	return code;
+};
+
+Blockly.Arduino.wire_clock = function(block){	
+	var frequency = Blockly.Arduino.valueToCode(block, 'frequency', Blockly.Arduino.ORDER_ATOMIC)||"";						
+	var code = 'Wire.setClock('+frequency+');\n';
+	return code;
+};
+
+Blockly.Arduino.wire_write = function(block){
+	var data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC)||"";
+	data = data.replace(/\"/g,"");	
+	var code = 'Wire.write('+data+');\n';
+	return code;
+};
+
+Blockly.Arduino.wire_read = function(block){	
+	var datasize = Blockly.Arduino.valueToCode(block, 'datasize', Blockly.Arduino.ORDER_ATOMIC)||"";
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+																			
+	var code = '//Wire.beginTransmission(I2C_ADDR);\n'+
+				'//Wire.requestFrom(I2C_ADDR, '+datasize+');\n'+
+				'if (Wire.available()) {\n'+
+				'  while (Wire.available()) {\n'+
+				'    '+statement+
+				'  }\n'+
+				'}\n'+
+				'//Wire.endTransmission();\n';
+	return code;
+};
+
+Blockly.Arduino.wire_get = function(block){
+  var mode = block.getFieldValue('mode');
+  if (mode=="byte")	
+	var code = 'Wire.read()';
+  else if (mode=="char")
+	var code = '(char)Wire.read()';
+  else {
+	Blockly.Arduino.definitions_['define_WireReadString']='String WireReadString() {\n  String data = "";\n  while (Wire.available()) {\n    char c = Wire.read();\n    data += String(c);\n  }\n  return data;\n}';
+	var code = 'WireReadString()';
+  }	  
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+
+Blockly.Arduino['button_toolbox'] = function (block) { 
+  var value_left_ = Blockly.Arduino.valueToCode(block, 'left_', Blockly.Arduino.ORDER_ATOMIC)||0;
+  var value_top_ = Blockly.Arduino.valueToCode(block, 'top_', Blockly.Arduino.ORDER_ATOMIC)||0; 
+  var value_width_ = Blockly.Arduino.valueToCode(block, 'width_', Blockly.Arduino.ORDER_ATOMIC)||15;
+  var value_height_ = Blockly.Arduino.valueToCode(block, 'height_', Blockly.Arduino.ORDER_ATOMIC)||15;
+  var value_spacing_ = Blockly.Arduino.valueToCode(block, 'spacing_', Blockly.Arduino.ORDER_ATOMIC)||5;  
+  var value_color_ = Blockly.Arduino.valueToCode(block, 'color_', Blockly.Arduino.ORDER_ATOMIC)||"black";  
+  var value_bgcolor_ = Blockly.Arduino.valueToCode(block, 'bgcolor_', Blockly.Arduino.ORDER_ATOMIC)||"white";
+  var value_fontsize_ = Blockly.Arduino.valueToCode(block, 'fontsize_', Blockly.Arduino.ORDER_ATOMIC)||12;
+  var value_direction_ = block.getFieldValue('direction_');
+  var value_list_ = Blockly.Arduino.valueToCode(block, 'list_', Blockly.Arduino.ORDER_ATOMIC)||"settings";0
+  value_list_ = value_list_.replace(/{/g,"[").replace(/}/g,"]");
+  
+  var code = 'button_toolbox(' + value_left_ + ',' + value_top_ + ',' + value_width_ + ',' + value_height_ + ',' + value_color_ + ',' + value_bgcolor_ + ',' + value_fontsize_ + ',' + value_direction_ + ',' + value_spacing_ + ',' + value_list_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['custom_googleicon'] = function (block) {
+  var element = block.getFieldValue('element');
+  var id = Blockly.Arduino.valueToCode(block, 'id', Blockly.Arduino.ORDER_ATOMIC);
+  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'icon_google("'+element+'", '+id+', '+val+');\n';
+  return code;
 };
 
 Blockly.Arduino.emakefun_steppermotor_initial=function(block){

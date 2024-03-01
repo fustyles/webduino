@@ -90,6 +90,12 @@ Blockly.Msg["AMB82_MINI_CUSTOM"] = "自訂";
 Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"] = "截圖上傳Google雲端硬碟";
 Blockly.Msg["AMB82_MINI_STILL_URL"] = "張流網址";
 Blockly.Msg["AMB82_MINI_STREAM_URL"] = "串流網址";
+Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP串流初始化";
+Blockly.Msg["AMB82_MINI_RTSP_VIDEOONLY"] = "影像";
+Blockly.Msg["AMB82_MINI_RTSP_DOUBLEVIDEO"] = "雙影像";
+Blockly.Msg["AMB82_MINI_RTSP_DOUBLEVIDEOWITHAUDIO"] = "雙影音";
+Blockly.Msg["AMB82_MINI_RTSP_SINGLEVIDEOWITHAUDIO"] = "單影音";
+Blockly.Msg["AMB82_MINI_RTSP_V7RC"] = "V7RC";
 
 Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun 編碼器馬達";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_ENCODERPULSE"] = "脈衝";
