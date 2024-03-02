@@ -111,5 +111,7 @@
 <category><name>wire</name><replace>Wire.h(I2C)</replace></category>
 <category><name>blemousemodule</name><replace>ESP32 Mouse</replace></category>
 <category><name>TinyGPS</name><replace>TinyGPS</replace></category>
-<category><name>amb82_mini_rtsp</name><replace>RTSP串流</replace></category>
+<category><name>amb82_mini_rtsp</name><replace>RTSP stream</replace></category>
+<category><name>pagerecognition</name><replace>Page recognition</replace></category>
+<category><name>blemodule</name><replace>Bluetooth module</replace></category>
 </xml>
