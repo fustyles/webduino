@@ -31,24 +31,21 @@ Blockly.Arduino['amb82_mini_rtsp'] = function(block) {
 
 		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
 											'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
-											'Camera.videoInit();\n  '+
+											'Camera.videoInit();\n  '+				
 											'rtsp1.configVideo(config);\n  '+
 											'rtsp1.begin();\n  '+
 											'rtsp2.configVideo(config);\n  '+
-											'rtsp2.begin();\n  '+											
+											'rtsp2.begin();\n  '+
 											'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
-											'videoStreamer.registerOutput(rtsp1);\n  '+
-											'videoStreamer.registerOutput(rtsp2);\n  '+
-											'if (videoStreamer.begin() != 0) {\n  '+
-											'    Serial.println("StreamIO link start failed");\n  '+
-											'}\n  '+
-											'Camera.channelBegin(amb82_CHANNEL);\n  '+
+											'videoStreamer.registerOutput1(rtsp1);\n  '+
+											'videoStreamer.registerOutput2(rtsp2);\n  '+								
+											'Camera.channelBegin(amb82_CHANNEL);\n  '+									
 											'delay(1000);\n  '+
 											'IPAddress ip = WiFi.localIP();\n  '+
 											'Serial.print("rtsp://");\n  '+
 											'Serial.print(ip);\n  '+
 											'Serial.print(":");\n  '+
-											'rtsp1.printInfo();';
+											'rtsp1.printInfo();'+
 											'Serial.print("rtsp://");\n  '+
 											'Serial.print(ip);\n  '+
 											'Serial.print(":");\n  '+
@@ -123,11 +120,11 @@ Blockly.Arduino['amb82_mini_rtsp'] = function(block) {
 											'Serial.print("rtsp://");\n  '+
 											'Serial.print(ip);\n  '+
 											'Serial.print(":");\n  '+
-											'rtsp1.printInfo();';
+											'rtsp1.printInfo();'+
 											'Serial.print("rtsp://");\n  '+
 											'Serial.print(ip);\n  '+
 											'Serial.print(":");\n  '+
-											'rtsp2.printInfo();';	
+											'rtsp2.printInfo();'+
 											'Serial.println("- Audio -");\n  '+
 											'audio.printInfo();';					
 	} else if (type=="V7RC") {
