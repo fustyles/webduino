@@ -8,14 +8,45 @@ Blockly.Blocks['amb82_mini_rtsp'] = {
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["AMB82_MINI_RTSP_VIDEOONLY"],"VideoOnly"],		
 			[Blockly.Msg["AMB82_MINI_RTSP_DOUBLEVIDEO"],"DoubleVideo"],
+			[Blockly.Msg["AMB82_MINI_RTSP_SINGLEVIDEOWITHAUDIO"],"SingleVideoWithAudio"],			
 			[Blockly.Msg["AMB82_MINI_RTSP_DOUBLEVIDEOWITHAUDIO"],"DoubleVideoWithAudio"],
-			[Blockly.Msg["AMB82_MINI_RTSP_SINGLEVIDEOWITHAUDIO"],"SingleVideoWithAudio"],
 			[Blockly.Msg["AMB82_MINI_RTSP_V7RC"],"V7RC"]
-		]), "type");		
+		], this.validate), "type");
+    this.appendDummyInput("cha")
+        .appendField(Blockly.Msg["AMB82_MINI_RTSP_CHANNEL"])	
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["1920 x 1080 30FPS H264 0","0"],		
+			["1280 x 720  30FPS H264 1","1"],
+			["1280 x 720  30FPS MJPEG 2","2"]
+		]), "channel");	
+    this.appendDummyInput("aud")
+        .appendField(Blockly.Msg["AMB82_MINI_RTSP_AUDIO"])	
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["8kHz Mono Analog Mic 0","0"],		
+			["16kHz Mono Analog Mic 1","1"],
+			["8kHz Mono Digital PDM Mic 2","2"],
+			["16kHz Mono Digital PDM Mic 3","3"]
+		]), "audio");		
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
     this.setColour(Blockly.Msg["HUE_15"]);
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="SingleVideoWithAudio"||newValue=="DoubleVideoWithAudio") {
+			block.getInput("aud").setVisible(true);
+		} else {
+			block.getInput("aud").setVisible(false);	
+		}
+		if (newValue=="DoubleVideoWithAudio") {
+			block.getInput("cha").setVisible(false);
+		} else {
+			block.getInput("cha").setVisible(true);	
+		}		
   }
 };
 

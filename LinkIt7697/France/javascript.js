@@ -1,28 +1,156 @@
 Blockly.Arduino['amb82_mini_rtsp'] = function(block) {
 	
 	var type = block.getFieldValue('type');
-
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#define amb82_CHANNEL 0\nVideoSetting config(amb82_CHANNEL);\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);';
-
+	var channel = block.getFieldValue('channel');
+	var audio = block.getFieldValue('audio');
 	Blockly.Arduino.definitions_.define_custom_command = '';
 	Blockly.Arduino.setups_.write_peri_reg="";
-	Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
-										'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
-										'Camera.videoInit();\n  '+
-										'rtsp.configVideo(config);\n  '+
-										'rtsp.begin();\n  '+
-										'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
-										'videoStreamer.registerOutput(rtsp);\n  '+
-										'if (videoStreamer.begin() != 0) {\n  '+
-										'    Serial.println("StreamIO link start failed");\n  '+
-										'}\n  '+
-										'Camera.channelBegin(amb82_CHANNEL);\n  '+
-										'delay(1000);\n  '+
-										'IPAddress ip = WiFi.localIP();\n  '+
-										'Serial.print("rtsp://");\n  '+
-										'Serial.print(ip);\n  '+
-										'Serial.print(":");\n  '+
-										'rtsp.printInfo();';
+	
+	if (type=="VideoOnly") {
+		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);';
+
+		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
+											'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
+											'Camera.videoInit();\n  '+
+											'rtsp.configVideo(config);\n  '+
+											'rtsp.begin();\n  '+
+											'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
+											'videoStreamer.registerOutput(rtsp);\n  '+
+											'if (videoStreamer.begin() != 0) {\n  '+
+											'    Serial.println("StreamIO link start failed");\n  '+
+											'}\n  '+
+											'Camera.channelBegin(amb82_CHANNEL);\n  '+
+											'delay(1000);\n  '+
+											'IPAddress ip = WiFi.localIP();\n  '+
+											'Serial.print("rtsp://");\n  '+
+											'Serial.print(ip);\n  '+
+											'Serial.print(":");\n  '+
+											'rtsp.printInfo();';
+	} else if (type=="DoubleVideo") {
+		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\nRTSP rtsp1;\nRTSP rtsp2;\nStreamIO videoStreamer(1, 2);';
+
+		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
+											'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
+											'Camera.videoInit();\n  '+
+											'rtsp1.configVideo(config);\n  '+
+											'rtsp1.begin();\n  '+
+											'rtsp2.configVideo(config);\n  '+
+											'rtsp2.begin();\n  '+											
+											'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
+											'videoStreamer.registerOutput(rtsp1);\n  '+
+											'videoStreamer.registerOutput(rtsp2);\n  '+
+											'if (videoStreamer.begin() != 0) {\n  '+
+											'    Serial.println("StreamIO link start failed");\n  '+
+											'}\n  '+
+											'Camera.channelBegin(amb82_CHANNEL);\n  '+
+											'delay(1000);\n  '+
+											'IPAddress ip = WiFi.localIP();\n  '+
+											'Serial.print("rtsp://");\n  '+
+											'Serial.print(ip);\n  '+
+											'Serial.print(":");\n  '+
+											'rtsp1.printInfo();';
+											'Serial.print("rtsp://");\n  '+
+											'Serial.print(ip);\n  '+
+											'Serial.print(":");\n  '+
+											'rtsp2.printInfo();';											
+	} else if (type=="SingleVideoWithAudio") {
+		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting configV(amb82_CHANNEL);\nAudioSetting configA('+audio+');\nAudio audio;\nAAC aac;\nRTSP rtsp;\nStreamIO audioStreamer(1, 1);\nStreamIO avMixStreamer(2, 1);';
+
+		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
+											'Camera.configVideoChannel(amb82_CHANNEL, configV);\n  '+
+											'Camera.videoInit();\n  '+
+											'audio.configAudio(configA);\n  '+
+											'audio.begin();\n  '+
+											'aac.configAudio(configA);\n  '+
+											'aac.begin();\n  '+					
+											'rtsp.configVideo(configV);\n  '+
+											'rtsp.configAudio(configA, CODEC_AAC);\n  '+
+											'rtsp.begin();\n  '+
+											'audioStreamer.registerInput(audio);\n  '+
+											'audioStreamer.registerOutput(aac);\n  '+
+											'if (audioStreamer.begin() != 0) {\n  '+
+											'    Serial.println("StreamIO link start failed");\n  '+
+											'}\n  '+
+											'avMixStreamer.registerInput1(Camera.getStream(amb82_CHANNEL));\n  '+
+											'avMixStreamer.registerInput2(aac);\n  '+
+											'avMixStreamer.registerOutput(rtsp);\n  '+
+											'if (avMixStreamer.begin() != 0) {\n  '+
+											'    Serial.println("StreamIO link start failed");\n  '+
+											'}\n  '+
+											'Camera.channelBegin(amb82_CHANNEL);\n  '+
+											'delay(1000);\n  '+
+											'IPAddress ip = WiFi.localIP();\n  '+
+											'Serial.print("rtsp://");\n  '+
+											'Serial.print(ip);\n  '+
+											'Serial.print(":");\n  '+
+											'rtsp.printInfo();\n  '+
+											'Serial.println("- Audio -");\n  '+
+											'audio.printInfo();';					
+	} else if (type=="DoubleVideoWithAudio") {
+		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "RTSP.h"\nVideoSetting configV1(VIDEO_FHD, CAM_FPS, VIDEO_H264, 0);\nVideoSetting configV2(VIDEO_HD, CAM_FPS, VIDEO_H264, 0);\nAudioSetting configA('+audio+');\nAudio audio;\nAAC aac;\nRTSP rtsp1;\nRTSP rtsp2;\nStreamIO audioStreamer(1, 1);\nStreamIO avMixStreamer(3, 2);';
+
+		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
+											'Camera.configVideoChannel(0, configV1);\n  '+
+											'Camera.configVideoChannel(1, configV2);\n  '+
+											'Camera.videoInit();\n  '+
+											'audio.configAudio(configA);\n  '+
+											'audio.begin();\n  '+
+											'aac.configAudio(configA);\n  '+
+											'aac.begin();\n  '+					
+											'rtsp1.configVideo(configV1);\n  '+
+											'rtsp1.configAudio(configA, CODEC_AAC);\n  '+
+											'rtsp1.begin();\n  '+
+											'rtsp2.configVideo(configV2);\n  '+
+											'rtsp2.configAudio(configA, CODEC_AAC);\n  '+
+											'rtsp2.begin();\n  '+											
+											'audioStreamer.registerInput(audio);\n  '+
+											'audioStreamer.registerOutput(aac);\n  '+
+											'if (audioStreamer.begin() != 0) {\n  '+
+											'    Serial.println("StreamIO link start failed");\n  '+
+											'}\n  '+
+											'avMixStreamer.registerInput1(Camera.getStream(0));\n  '+
+											'avMixStreamer.registerInput2(Camera.getStream(1));\n  '+
+											'avMixStreamer.registerInput3(aac);\n  '+
+											'avMixStreamer.registerOutput1(rtsp1);\n  '+
+											'avMixStreamer.registerOutput2(rtsp2);\n  '+
+											'if (avMixStreamer.begin() != 0) {\n  '+
+											'    Serial.println("StreamIO link start failed");\n  '+
+											'}\n  '+
+											'Camera.channelBegin(0);\n  '+
+											'Camera.channelBegin(1);\n  '+											
+											'delay(1000);\n  '+
+											'IPAddress ip = WiFi.localIP();\n  '+
+											'Serial.print("rtsp://");\n  '+
+											'Serial.print(ip);\n  '+
+											'Serial.print(":");\n  '+
+											'rtsp1.printInfo();';
+											'Serial.print("rtsp://");\n  '+
+											'Serial.print(ip);\n  '+
+											'Serial.print(":");\n  '+
+											'rtsp2.printInfo();';	
+											'Serial.println("- Audio -");\n  '+
+											'audio.printInfo();';					
+	} else if (type=="V7RC") {
+		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(VIDEO_D1, CAM_FPS, VIDEO_H264, 0);\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);';
+
+		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
+											'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
+											'Camera.videoInit();\n  '+
+											'rtsp.configVideo(config);\n  '+
+											'rtsp.begin();\n  '+
+											'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
+											'videoStreamer.registerOutput(rtsp);\n  '+
+											'if (videoStreamer.begin() != 0) {\n  '+
+											'    Serial.println("StreamIO link start failed");\n  '+
+											'}\n  '+
+											'Camera.channelBegin(amb82_CHANNEL);\n  '+
+											'delay(1000);\n  '+
+											'IPAddress ip = WiFi.localIP();\n  '+
+											'Serial.print("rtsp://");\n  '+
+											'Serial.print(ip);\n  '+
+											'Serial.print(":");\n  '+
+											'rtsp.printInfo();';
+	}
 										
 	return '';
 };

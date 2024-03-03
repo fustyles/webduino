@@ -96,6 +96,8 @@ Blockly.Msg["AMB82_MINI_RTSP_DOUBLEVIDEO"] = "雙影像";
 Blockly.Msg["AMB82_MINI_RTSP_DOUBLEVIDEOWITHAUDIO"] = "雙影音";
 Blockly.Msg["AMB82_MINI_RTSP_SINGLEVIDEOWITHAUDIO"] = "單影音";
 Blockly.Msg["AMB82_MINI_RTSP_V7RC"] = "V7RC";
+Blockly.Msg["AMB82_MINI_RTSP_CHANNEL"] = "通道";
+Blockly.Msg["AMB82_MINI_RTSP_AUDIO"] = "音訊";
 
 Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun 編碼器馬達";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_ENCODERPULSE"] = "脈衝";

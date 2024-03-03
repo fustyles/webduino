@@ -97,6 +97,8 @@ Blockly.Msg["AMB82_MINI_RTSP_DOUBLEVIDEO"] = "Double video";
 Blockly.Msg["AMB82_MINI_RTSP_DOUBLEVIDEOWITHAUDIO"] = "Double video with audio";
 Blockly.Msg["AMB82_MINI_RTSP_SINGLEVIDEOWITHAUDIO"] = "Single video with audio";
 Blockly.Msg["AMB82_MINI_RTSP_V7RC"] = "V7RC";
+Blockly.Msg["AMB82_MINI_RTSP_CHANNEL"] = "Channel";
+Blockly.Msg["AMB82_MINI_RTSP_AUDIO"] = "Audio";
 
 Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun Encode motor";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_ENCODERPULSE"] = "Pulse";
