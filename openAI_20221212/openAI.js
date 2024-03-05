@@ -86,9 +86,6 @@ function openai_text_request(input_text) {
   xhr.send(JSON.stringify(data));
 }
 
-function openai_text_response() {
-} 
-
 function openai_text_response_get(newline) {
 	if (newline=="br")
 		return openai_response_text_br;
