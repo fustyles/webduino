@@ -15,7 +15,7 @@ Blockly.JavaScript['openai_text_request'] = function (block) {
 
 Blockly.JavaScript['openai_text_response'] = function (block) {
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'openai_text_response = async function() {\n' + statements_do + '\n};\n';
+  var code = 'openai_text_response = async function() {\n' + statements_do + '\n};\nwindow.openai_text_response = openai_text_response;\n';
   return code;
 };
 
