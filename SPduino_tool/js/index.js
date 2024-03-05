@@ -470,7 +470,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('button_tool').onclick = function () {
 		var link = document.createElement('a');
 		link.target="_blank";
-		link.href="https://blockly-demo.appspot.com/static/demos/blockfactory/index.html";
+		link.href="https://fustyles.github.io/BlocklyResearch/blockfactoryV9/index.html";
 		document.body.appendChild(link);
 		link.click();
 		link.remove();
