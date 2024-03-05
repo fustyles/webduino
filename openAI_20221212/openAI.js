@@ -95,6 +95,9 @@ function openai_text_response_get(newline) {
 		return openai_response_text;	
 }
 
+function openai_text_response() {
+} 
+
 function openai_text_response_clear() {
 	openai_response_text = "";
 	openai_response_text_br = "";
