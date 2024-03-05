@@ -47,7 +47,7 @@ Blockly.JavaScript['openai_image_request'] = function (block) {
 
 Blockly.JavaScript['openai_image_response'] = function (block) {
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'openai_image_response = async function() {\n' + statements_do + '\n};\n';
+  var code = 'openai_image_response = async function() {\n' + statements_do + '\n};\nwindow.openai_image_response = openai_image_response;\n';
   return code;
 };
 
@@ -86,7 +86,7 @@ Blockly.JavaScript['openai_chat_insert'] = function (block) {
 
 Blockly.JavaScript['openai_chat_response'] = function (block) {
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
-  var code = 'openai_chat_response = async function() {\n' + statements_do + '\n};\n';
+  var code = 'openai_chat_response = async function() {\n' + statements_do + '\n};\nwindow.openai_chat_response = openai_chat_response;\n';
   return code;
 };
 
