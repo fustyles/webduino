@@ -3916,6 +3916,44 @@ Blockly.Blocks['div_delete'] = {
   }
 };
 
+Blockly.Blocks['div_add'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.DIV_ID);
+  this.appendDummyInput()
+	  .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField(Blockly.Msg.DIV_ADD_ID)  
+      .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.ELEMENT_SPAN,"span"],
+		  [Blockly.Msg.ELEMENT_IMAGE,"image"],
+		  [Blockly.Msg.ELEMENT_CANVAS,"canvas"],
+		  [Blockly.Msg.ELEMENT_BUTTON,"button"],
+		  [Blockly.Msg.ELEMENT_COLOR,"color"],
+		  [Blockly.Msg.ELEMENT_SELECT,"select"],
+		  [Blockly.Msg.ELEMENT_RANGE,"range"],
+		  [Blockly.Msg.ELEMENT_TEXT,"text"],[
+		  Blockly.Msg.ELEMENT_DIV,"div"],
+		  [Blockly.Msg.ELEMENT_A,"a"],
+		  [Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],
+		  [Blockly.Msg.ELEMENT_TEXTAREA,"textarea"],
+		  [Blockly.Msg.ELEMENT_NUMBER,"number"],
+		  [Blockly.Msg.ELEMENT_DATE,"date"],
+		  [Blockly.Msg.ELEMENT_TIME,"time"],
+		  [Blockly.Msg.ELEMENT_DATETIME,"datetime"],
+		  [Blockly.Msg.ELEMENT_PROGRESS,"progress"],
+		  [Blockly.Msg.ELEMENT_PASSWORD,"password"],
+		  [Blockly.Msg.ELEMENTID,""]
+	  ]), "element_");	  
+  this.appendValueInput("addid_")
+      .setCheck(null);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(300);
+  }
+};
+
 Blockly.Blocks['color_hextorgb'] = {
   init: function() {
   this.appendDummyInput()  
