@@ -337,6 +337,7 @@ Blockly.Msg.DIV_VALUE = "Value";
 Blockly.Msg.DIV_SET = "Set";
 Blockly.Msg.DIV_GET = "Get";
 Blockly.Msg.DIV_DELETE = "Delete";
+Blockly.Msg.DIV_ADD_ID = "New element ID";
 Blockly.Msg.SETWINDOW = "Set Window";
 Blockly.Msg.CANVAS_GETCOLOR = "Get color";
 Blockly.Msg.TIME_DELAY = "Delay (s)";
