@@ -2587,6 +2587,18 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="div_add">'+
+'    <value name="id_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="addid_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
 '    </category>'+
 '    <category name="%{BKY_CATPAGEELEMENTS_IFRAME}" id="catPageElements_iframe">'+
 '    <block type="iframe_create">'+
