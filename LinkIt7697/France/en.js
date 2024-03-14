@@ -978,6 +978,7 @@ Blockly.Msg.FRANCEFU_MOONCAR_SONAR_PIN = "PIN ";
 Blockly.Msg.FRANCEFU_MOONCAR_SONAR_PIN_TRIG = "TRIG";
 Blockly.Msg.FRANCEFU_MOONCAR_SONAR_PIN_ECHO = "ECHO";
 Blockly.Msg.FRANCEFU_MOONCAR_SONAR_INDEX = "Index(channel)";
+Blockly.Msg.FRANCEFU_MOONCAR_SONAR_DISTANCE = "Distance";
 Blockly.Msg.FRANCEFU_TCS_INIT = "init TCS";
 Blockly.Msg.FRANCEFU_TCS_READ = "Read color sensor";
 Blockly.Msg.FRANCEFU_TCS_SET = "Set color sensor";

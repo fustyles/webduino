@@ -23190,7 +23190,13 @@ Blockly.Blocks.webbit_mooncar_sonar_pin={
 Blockly.Blocks.webbit_mooncar_sonar={
 	init:function(){
 	  this.appendDummyInput()
-		  .appendField(Blockly.Msg.FRANCEFU_SONAR);
+		  .appendField(Blockly.Msg.FRANCEFU_SONAR)	  
+		  .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_DISTANCE);
+	  this.appendDummyInput()
+		  .appendField(new Blockly.FieldDropdown([
+			["CM","1"],		
+			["IN","0"]
+		  ]),"unit");		  
 	  this.appendDummyInput()
 		  .appendField(Blockly.Msg.FRANCEFU_MOONCAR_SONAR_INDEX)
 		  .appendField(new Blockly.FieldDropdown([

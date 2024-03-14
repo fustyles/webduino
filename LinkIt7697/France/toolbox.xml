@@ -2333,28 +2333,6 @@
 					<field name="TEXT"></field>
 				  </block>
 				</value>				
-			  </block>
-			  <block type="servermodule_parameter_set_address4">
-				<value name="p1">
-				  <block type="text">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="p2">
-				  <block type="text">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="p3">
-				  <block type="text">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="p4">
-				  <block type="text">
-					<field name="TEXT"></field>
-				  </block>
-				</value>				
 			  </block>				  
 			  <block type="servermodule_parameter_set_address2">
 				<value name="cmd">
@@ -2458,9 +2436,15 @@
 		<category id="france23" name="amb82_mini_rtsp">
 			  <block type="amb82_mini_rtsp">
 			  </block>
-		</category>		
+		</category>
+
+		<sep id="category_sep"></sep>
 		
-	</category>		
+
+		
+	</category>	
+
+	
 		
 	<sep id="category_sep"></sep>
 	
@@ -9218,7 +9202,7 @@
       <field name="type">irType</field>
     </block>		
   </category>
-	<category id="oled" name="oled">
+  <category id="oled" name="oled">
     <block type="fu_oled_initial">	  
     </block>
     <block type="fu_oled_nextPage"></block>		

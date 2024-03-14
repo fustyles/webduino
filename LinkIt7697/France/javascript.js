@@ -2410,6 +2410,10 @@ Blockly.Arduino['fu_servo_initial'] = function(block) {
 
 	if (selectBoardType()=="esp32"||selectBoardType()=="esp8266") {
 		Blockly.Arduino.setups_['ledc_'+ value_pin] = 'ledcSetup('+value_index+', 50, 16);\n'+							  '  ledcAttachPin('+value_pin+', '+value_index+');'; 
+	} else if (selectBoardType()=="AMB82-MINI") {
+		Blockly.Arduino.definitions_['define_servo'] = '#include <AmebaServo.h>\n';
+		Blockly.Arduino.definitions_['define_servo_'+value_pin] = 'AmebaServo myServo'+value_index+';';
+		Blockly.Arduino.setups_['setup_servo_'+ value_pin] = 'myServo'+value_index+'.attach('+value_pin+');';
 	} else {
 		Blockly.Arduino.definitions_['define_servo'] = '#include <Servo.h>\n';
 		Blockly.Arduino.definitions_['define_servo_'+value_pin] = 'Servo myServo'+value_index+';';
@@ -16109,15 +16113,20 @@ Blockly.Arduino.webbit_mooncar_sonar_pin=function(){
   trig = trig.replace(/"/g,'');
   echo = echo.replace(/"/g,'');
   var index=this.getFieldValue("index");  
-  Blockly.Arduino.definitions_['define_sonar_']="#include <Ultrasonic.h>\n";
-  Blockly.Arduino.definitions_['define_sonar_set'+index]="Ultrasonic ultrasonic_"+index+"("+trig+", "+echo+");"
+  if (selectBoardType().indexOf("AMB82-MINI")!=-1)
+	Blockly.Arduino.definitions_['define_sonar_include']="#include <Ultrasonic_amb82.h>\n";
+  else
+	Blockly.Arduino.definitions_['define_sonar_include']="#include <Ultrasonic.h>\n";
+  Blockly.Arduino.definitions_['define_sonar_set'+index]="Ultrasonic ultrasonic"+index+"("+trig+", "+echo+");"
   var code = '';
   return code;
 };
 Blockly.Arduino.webbit_mooncar_sonar=function(){
+  var unit=this.getFieldValue("unit"); 	
   var index=this.getFieldValue("index"); 	
-  return ["ultrasonic_"+index+".convert(ultrasonic_"+index+".timing(), Ultrasonic::CM)", Blockly.Arduino.ORDER_ATOMIC];
+  return ["ultrasonic"+index+".convert(ultrasonic"+index+".timing(), "+unit+")", Blockly.Arduino.ORDER_ATOMIC];
 };
+
 Blockly.Arduino.webbit_mooncar_tcs_init=function(){
   Blockly.Arduino.definitions_['define_wire']='#include <Wire.h>';
   Blockly.Arduino.definitions_['define_tcs']='#include "Adafruit_TCS34725.h"\n'+
@@ -19281,6 +19290,8 @@ function selectBoardType() {
 			return "Arduino Pro or Pro Mini";
 		else if (selectBoard.value.split(":")[2]=="esp32s2")
 			return "esp32s2";
+		else if (selectBoard.value.split(":")[2]=="Ameba_AMB82-MINI")
+			return "AMB82-MINI";		
 		else
 			return selectBoard.value.split(":")[0];
 	}
