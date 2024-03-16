@@ -16178,7 +16178,8 @@ Blockly.Blocks['lcd1602_initial'] = {
         .setAlign(Blockly.ALIGN_RIGHT) 
         .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg.ESP32_LCD1602_CUSTOM,"custom"],
-			[Blockly.Msg.ESP32_LCD1602_DEFAULT,""]
+			[Blockly.Msg.ESP32_LCD1602_DEFAULT+"(Wire)","Wire"],
+			[Blockly.Msg.ESP32_LCD1602_DEFAULT+"(Wire1)","Wire1"]
 		], this.validate), "custom");		
 	this.appendValueInput("sda")
 	    .setCheck("Number")
@@ -16193,7 +16194,7 @@ Blockly.Blocks['lcd1602_initial'] = {
   },
 	validate: function(newValue) {
 		const block = this.sourceBlock_;
-		if (newValue=="") {
+		if (newValue!="custom") {
 			block.getInput("sda").setVisible(false);
 			block.getInput("scl").setVisible(false);	
 		} else {
