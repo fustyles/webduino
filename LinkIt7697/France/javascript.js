@@ -9833,7 +9833,7 @@ Blockly.Arduino['linenotify_esp32'] = function (block) {
 											'  String getAll="", getBody="";\n'+
 											'  request.replace("%","%25");\n'+
 											'  request.replace(" ","%20");\n'+
-											'  request.replace("&","%26");\n'+
+											'  //request.replace("&","%26");\n'+
 											'  request.replace("#","%23");\n'+
 											'  request.replace("\\"","%22");\n'+
 											'  request.replace("\\n","%0D%0A");\n'+
@@ -9900,7 +9900,7 @@ Blockly.Arduino['linenotify_esp32_no'] = function (block) {
 											'  String getAll="", getBody="";\n'+
 											'  request.replace("%","%25");\n'+
 											'  request.replace(" ","%20");\n'+
-											'  request.replace("&","%26");\n'+
+											'  //request.replace("&","%26");\n'+
 											'  request.replace("#","%23");\n'+
 											'  request.replace("\\"","%22");\n'+
 											'  request.replace("\\n","%0D%0A");\n'+
@@ -10006,7 +10006,7 @@ Blockly.Arduino['linenotify_all'] = function(block) {
 											'  String getAll="", getBody="";\n'+
 											'  request.replace("%","%25");\n'+
 											'  request.replace(" ","%20");\n'+
-											'  request.replace("&","%26");\n'+
+											'  //request.replace("&","%26");\n'+
 											'  request.replace("#","%23");\n'+
 											'  request.replace("\\"","%22");\n'+
 											'  request.replace("\\n","%0D%0A");\n'+
@@ -10176,7 +10176,7 @@ Blockly.Arduino['linenotify_http'] = function (block) {
 													'  String getAll="", getBody="";\n'+
 													'  message.replace("%","%25");\n'+
 													'  message.replace(" ","%20");\n'+
-													'  message.replace("&","%26");\n'+
+													'  //message.replace("&","%26");\n'+
 													'  message.replace("#","%23");\n'+
 													'  message.replace("\\"","%22");\n'+
 													'  message.replace("\\n","%0D%0A");\n'+
@@ -16132,8 +16132,11 @@ Blockly.Arduino.webbit_mooncar_sonar_pin=function(){
   var echo=Blockly.Arduino.valueToCode(this,"ECHO",Blockly.Arduino.ORDER_ATOMIC);
   trig = trig.replace(/"/g,'');
   echo = echo.replace(/"/g,'');
-  var index=this.getFieldValue("index");  
-  Blockly.Arduino.definitions_['define_sonar_include']="#include <Ultrasonic.h>\n";
+  var index=this.getFieldValue("index");
+  if (selectBoardType()=="AMB82-MINI")
+	Blockly.Arduino.definitions_['define_sonar_include']="#include <Ultrasonic_amb82.h>\n";
+  else
+	Blockly.Arduino.definitions_['define_sonar_include']="#include <Ultrasonic.h>\n";
   Blockly.Arduino.definitions_['define_sonar_set'+index]="Ultrasonic ultrasonic"+index+"("+trig+", "+echo+");"
   var code = '';
   return code;
