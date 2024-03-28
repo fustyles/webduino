@@ -311,9 +311,9 @@ Blockly.Blocks['controls_spreadsheet'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.SPREADSHEET_INSERT_SHOW); 		
     this.appendValueInput('spreadsheeturl')
-        .appendField(Blockly.Msg.SPREADSHEET_SPREADSHEET_URL_SHOW);
+        .appendField(Blockly.Msg.SPREADSHEET_URL_SHOW);
     this.appendValueInput('spreadsheetname')
-        .appendField(Blockly.Msg.SPREADSHEET_SPREADSHEET_NAME_SHOW);
+        .appendField(Blockly.Msg.SPREADSHEET_NAME_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
           [Blockly.Msg.SPREADSHEET_INSERTFIRSTROW_SHOW,"insertfirst"],		
