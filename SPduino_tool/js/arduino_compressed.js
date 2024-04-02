@@ -30,9 +30,9 @@ Blockly.Arduino.init=function(a){
 	
 	this.definitions_=Object.create(null);
 	this.setups_=Object.create(null);
-	this.setups_bottom_=Object.create(null);
+	this.setupsTop_=Object.create(null);	
 	this.loops_=Object.create(null);
-	this.loops_bottom_=Object.create(null);
+	this.loopsTop_=Object.create(null);	
 	this.functions_=Object.create(null);
 	
 	this.isInitialized=!0
@@ -45,10 +45,11 @@ Blockly.Arduino.finish=function(a){
 		d.match(/^#include/)?b.push(d):c.push(d)
 	}
 	
-	f=Blockly.utils.object.values(this.setups_);
-	g=Blockly.utils.object.values(this.setups_bottom_);
-	h=Blockly.utils.object.values(this.loops_);
-	i=Blockly.utils.object.values(this.loops_bottom_);
+	
+	f=Blockly.utils.object.values(this.setupsTop_);
+	g=Blockly.utils.object.values(this.setups_);
+	h=Blockly.utils.object.values(this.loopsTop_);
+	i=Blockly.utils.object.values(this.loops_);
 	j=Blockly.utils.object.values(this.functions_);
 	
 	a=a.replace(" %1 ",f.join("\n")?f.join("\n").replace(/\n/g,"\n  ")+"\n  ":"");
