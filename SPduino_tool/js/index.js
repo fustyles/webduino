@@ -594,9 +594,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		"Blockly.Arduino['test'] = function(block) {\n"+
 		"  //Blockly.Arduino.definitions_['name'] = '\/\/definitions_';\n"+
 		"  //Blockly.Arduino.setups_['name'] = '\/\/setups_';\n"+
-		"  //Blockly.Arduino.setups_bottom_['name'] = '\/\/setups_bottom_';\n"+
+		"  //Blockly.Arduino.setupsTop_['name'] = '\/\/setupsTop_';\n"+
 		//"  //Blockly.Arduino.loops_['name'] = '\/\/loops_';\n"+
-		//"  //Blockly.Arduino.loops_bottom_['name'] = '\/\/loops_bottom_';\n"+		
+		//"  //Blockly.Arduino.loopsTop_['name'] = '\/\/loopTop_';\n"+		
 		"  //Blockly.Arduino.functions_['name'] = 'String blockly() {\\n  return \"Hello World\";\\n}';\n\n"+
 		"  var value_pin = Blockly.Arduino.valueToCode(block, 'pin', Blockly.Arduino.ORDER_ATOMIC);\n"+
 		"  var value_val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);\n"+
