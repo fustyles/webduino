@@ -10,7 +10,8 @@ Blockly.Blocks['amb82_mini_rtsp'] = {
 			[Blockly.Msg["AMB82_MINI_RTSP_DOUBLEVIDEO"],"DoubleVideo"],
 			[Blockly.Msg["AMB82_MINI_RTSP_SINGLEVIDEOWITHAUDIO"],"SingleVideoWithAudio"],			
 			[Blockly.Msg["AMB82_MINI_RTSP_DOUBLEVIDEOWITHAUDIO"],"DoubleVideoWithAudio"],
-			[Blockly.Msg["AMB82_MINI_RTSP_V7RC"],"V7RC"]
+			[Blockly.Msg["AMB82_MINI_RTSP_V7RC"],"V7RC"],
+			[Blockly.Msg["AMB82_MINI_RTSP_AUDIO"],"Audio"]
 		], this.validate), "type");
     this.appendDummyInput("cha")
         .appendField(Blockly.Msg["AMB82_MINI_RTSP_CHANNEL"])	
@@ -37,12 +38,12 @@ Blockly.Blocks['amb82_mini_rtsp'] = {
 	validate: function(newValue) {
 		const block = this.sourceBlock_;
 		if (!block) return;
-		if (newValue=="SingleVideoWithAudio"||newValue=="DoubleVideoWithAudio") {
+		if (newValue=="SingleVideoWithAudio"||newValue=="DoubleVideoWithAudio"||newValue=="Audio") {
 			block.getInput("aud").setVisible(true);
 		} else {
 			block.getInput("aud").setVisible(false);	
 		}
-		if (newValue=="DoubleVideoWithAudio") {
+		if (newValue=="DoubleVideoWithAudio"||newValue=="Audio") {
 			block.getInput("cha").setVisible(false);
 		} else {
 			block.getInput("cha").setVisible(true);	

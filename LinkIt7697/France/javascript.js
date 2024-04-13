@@ -147,6 +147,30 @@ Blockly.Arduino['amb82_mini_rtsp'] = function(block) {
 											'Serial.print(ip);\n  '+
 											'Serial.print(":");\n  '+
 											'rtsp.printInfo();';
+	} else if (type=="Audio") {
+		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "RTSP.h"\nAAC encoder;\nAudioSetting configA('+audio+');\nAudio audio;\nRTSP rtsp;\nStreamIO audioStreamer1(1, 1);\nStreamIO audioStreamer2(1, 1);';
+
+		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
+											'audio.configAudio(configA);\n  '+
+											'audio.begin();\n  '+
+											'encoder.configAudio(configA);\n  '+
+											'encoder.begin();\n  '+
+											'rtsp.configAudio(configA, CODEC_AAC);\n  '+
+											'rtsp.begin();\n  '+
+											'audioStreamer1.registerInput(audio);\n  '+
+											'audioStreamer1.registerOutput1(encoder);\n  '+
+											'audioStreamer1.begin();\n  '+
+											'audioStreamer2.registerInput(encoder);\n  '+
+											'audioStreamer2.registerOutput(rtsp);\n  '+
+											'audioStreamer2.begin();\n  '+
+											'delay(1000);\n  '+
+											'IPAddress ip = WiFi.localIP();\n  '+
+											'Serial.print("rtsp://");\n  '+
+											'Serial.print(ip);\n  '+
+											'Serial.print(":");\n  '+
+											'rtsp.printInfo();\n  '+
+											'Serial.println("- Audio -");\n  '+
+											'audio.printInfo();';
 	}
 										
 	return '';
