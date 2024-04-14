@@ -1,10 +1,10 @@
-Blockly.Blocks['amb82_mini_vedio_initial'] = {
+Blockly.Blocks['amb82_mini_video_initial'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI"])	
-        .appendField(Blockly.Msg["AMB82_MINI_VEDIO_INITIAL"]);		
+        .appendField(Blockly.Msg["AMB82_MINI_VIDEO_INITIAL"]);		
     this.appendDummyInput()
-        .appendField(Blockly.Msg["AMB82_MINI_VEDIO_RESOLUTION"])	
+        .appendField(Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION"])	
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
 			["FHD (1920*1080)", "VIDEO_FHD"],
@@ -17,14 +17,98 @@ Blockly.Blocks['amb82_mini_vedio_initial'] = {
   }
 };
 
-Blockly.Blocks['amb82_mini_vedio_capture_sd'] = {
+Blockly.Blocks['amb82_mini_video_settings'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS"]);		
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_VIDEO_SETBRIGHTNESS"], "setBrightness"],
+			[Blockly.Msg["AMB82_MINI_VIDEO_SETCONTRAST"], "setContrast"],
+			[Blockly.Msg["AMB82_MINI_VIDEO_SETSATURATION"], "setSaturation"],
+			[Blockly.Msg["AMB82_MINI_VIDEO_SETSHARPNESS"], "setSharpness"],
+			[Blockly.Msg["AMB82_MINI_VIDEO_SETLDC"], "setLDC"],
+			[Blockly.Msg["AMB82_MINI_VIDEO_SETWDR"], "setWDR"],
+			[Blockly.Msg["AMB82_MINI_VIDEO_SETWDRLEVEL"], "setWDRLevel"],
+			[Blockly.Msg["AMB82_MINI_VIDEO_SETEXPOSUREMODE"], "setExposureMode"],
+			[Blockly.Msg["AMB82_MINI_VIDEO_SETEXPOSURETIME"], "setExposureTime"],
+			[Blockly.Msg["AMB82_MINI_VIDEO_SETAEGAIN"], "setAEGain"],
+			[Blockly.Msg["AMB82_MINI_VIDEO_SETPOWERLINEFREQ"], "setPowerLineFreq"],
+			[Blockly.Msg["AMB82_MINI_VIDEO_SETAWB"], "setAWB"],
+			[Blockly.Msg["AMB82_MINI_VIDEO_SETREDBALANCE"], "setRedBalance"],
+			[Blockly.Msg["AMB82_MINI_VIDEO_SETBLUEBALANCE"], "setBlueBalance"],
+			[Blockly.Msg["AMB82_MINI_VIDEO_SETGRAYMODE"], "setGrayMode"],
+			[Blockly.Msg["AMB82_MINI_VIDEO_SETDAYNIGHTMODE"], "setDayNightMode"],
+			[Blockly.Msg["AMB82_MINI_VIDEO_RESET"], "reset"]
+		], this.validate), "setting");
+    this.appendValueInput("val")
+        .appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_VALUE"])	
+		.setAlign(Blockly.ALIGN_RIGHT);	
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_12"]);
+	this.setHelpUrl("https://www.amebaiot.com/zh/amebapro2-arduino-multimedia-isp-control/");	
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="reset") {
+			block.getInput("val").setVisible(false);
+		} else {
+			block.getInput("val").setVisible(true);	
+		}	
+  }
+};
+/*
+  AE          Set Auto Exposure, 0: Manual, 1: Auto
+  AE           Get value of Auto Exposure
+  EXPTIME     Set Exposure Time: Max: 33333us
+  EXPTIME      Get Exposure Time
+  GAIN        Set AE Gain: Range from 256 to 32768
+  GAIN         Get AE Gain
+  PLF         Set Power Line Frequency, 0: Disabled, 1: 50Hz, 2: 60Hz, 3: Auto
+  PLF          Get value of Power Line Frequency
+  BRIGHTNESS  Set Brightness: Range from -64 to 64
+  BRIGHTNESS   Get Brightness level
+  CONTRAST    Set Contrast: Range from 0 to 100
+  CONTRAST     Get Contrast level
+  SATURATION  Set Contrast: Range from 0 to 100
+  SATURATION   Get Contrast level
+  SHARPNESS   Set Sharpness: Range from 0 to 100
+  SHARPNESS    Get Sharpness level
+  LDC         Len Distortion Correction: 0: Disabled, 1: Enabled
+  LDC          Get value of Len Distortion Correction
+  DAYNIGHT  	Set Day/Night Mode: 0: Day, 1: Night
+  DAYNIGHT   	Get value of DayNight Mode to determine whether is day or night mode
+  GRAY      	Set Gray Mode:  0: Color Mode, 1: Gray Mode
+  GRAY       	Get value of Gray Mode to determine whether if it is gray mode
+  AWB         Set Auto White Balance, 0:Manual, 1: Auto
+  AWB          Get value of Auto White Balance
+  RED         Set Red balance gain: Range from 256 to 2047
+  RED          Get Red balance gain
+  BLUE        Set Blue balance gain: Range from 256 to 2047
+  BLUE         Get Blue balance gain
+  WBTEMP       Get White Balance Temperature
+  WDR       	Set Wide Dynamic Range, 0: Disabled, 1: Manual, 2: Auto
+  WDR        	Get value of WDR
+  LEVEL     	Set WDR level: Range from 0 to 100
+  LEVEL      	Get WDR level
+  RESET      	Reset to default
+ */
+ 
+Blockly.Blocks['amb82_mini_video_capture_sd'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI"])	
-        .appendField(Blockly.Msg["AMB82_MINI_VEDIO_CAPTURE_SD"]);
+        .appendField(Blockly.Msg["AMB82_MINI_VIDEO_CAPTURE_SD"]);
     this.appendValueInput("filename")
         .appendField(Blockly.Msg["AMB82_MINI_FILENAME"])	
-		.setAlign(Blockly.ALIGN_RIGHT);					
+		.setAlign(Blockly.ALIGN_RIGHT);
+    this.appendDummyInput()
+        .appendField(".jpg");		
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -21675,7 +21759,7 @@ this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.VIDEO_ID);	  
   this.appendDummyInput()
-	  .appendField(Blockly.Msg.VEDIO_OUTPUT_JPG);
+	  .appendField(Blockly.Msg.VIDEO_OUTPUT_JPG);
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);

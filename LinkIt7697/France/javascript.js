@@ -1,4 +1,4 @@
-Blockly.Arduino['amb82_mini_vedio_initial'] = function(block) {
+Blockly.Arduino['amb82_mini_video_initial'] = function(block) {
 	
 	var resolution = block.getFieldValue('resolution');
 	if (resolution=="VIDEO_FHD")
@@ -8,24 +8,32 @@ Blockly.Arduino['amb82_mini_vedio_initial'] = function(block) {
 	Blockly.Arduino.definitions_.define_custom_command = '';
 	Blockly.Arduino.setups_.write_peri_reg="";
 	
-	Blockly.Arduino.definitions_['amb82_mini_vedio_initial'] ='#include "VideoStream.h"\n#include "AmebaFatFS.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config('+resolution+', CAM_FPS, VIDEO_JPEG, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\nAmebaFatFS fs;';
+	Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#include "VideoStream.h"\n#include "AmebaFatFS.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config('+resolution+', CAM_FPS, VIDEO_JPEG, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\nAmebaFatFS fs;';
 
-	Blockly.Arduino.setups_['amb82_mini_vedio_initial'] =''+   
+	Blockly.Arduino.setups_['amb82_mini_video_initial'] =''+   
 											'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
 											'Camera.videoInit();\n  '+
 											'Camera.channelBegin(amb82_CHANNEL);\n  '+
 											'Camera.printInfo();\n';									
-
-										
 	return '';
 };
 
-Blockly.Arduino['amb82_mini_vedio_capture_sd'] = function(block) {
+Blockly.Arduino['amb82_mini_video_settings'] = function(block) {
+	var setting = block.getFieldValue('setting');
+	var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_['amb82_mini_video_settings'] ='CameraSetting configCam;';
+	if (setting=="reset")
+		return 'configCam.'+setting+'();\n';
+	else
+		return 'configCam.'+setting+'('+val+');\n';
+};
+
+Blockly.Arduino['amb82_mini_video_capture_sd'] = function(block) {
 	
 	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
 	
-	Blockly.Arduino.definitions_['amb82_mini_vedio_capture_sd'] = ''+
-		'void amb82_mini_vedio_capture_sd(int channel, String filename) {\n'+
+	Blockly.Arduino.definitions_['amb82_mini_video_capture_sd'] = ''+
+		'void amb82_mini_video_capture_sd(int channel, String filename) {\n'+
 		'  fs.begin();\n'+
 		'  File file = fs.open(String(fs.getRootPath()) + filename);\n'+
 		'  delay(1000);\n'+
@@ -34,7 +42,7 @@ Blockly.Arduino['amb82_mini_vedio_capture_sd'] = function(block) {
 		'  file.close();\n'+
 		'  fs.end();\n'+
 		'}';			
-	return 'amb82_mini_vedio_capture_sd(amb82_CHANNEL, '+filename+');\n';
+	return 'amb82_mini_video_capture_sd(amb82_CHANNEL, '+filename+'+".jpg");\n';
 };
 
 

@@ -113,7 +113,7 @@
 <category><name>TinyGPS</name><replace>TinyGPS</replace></category>
 <category><name>amb82_mini_rtsp</name><replace>RTSP stream</replace></category>
 <category><name>amb82_mini_mp4</name><replace>Record MP4</replace></category>
-<category><name>amb82_mini_vedio_capture</name><replace>Vedio capture</replace></category>
+<category><name>amb82_mini_video_capture</name><replace>Vedio capture</replace></category>
 <category><name>pagerecognition</name><replace>Page recognition</replace></category>
 <category><name>blemodule</name><replace>Bluetooth module</replace></category>
 </xml>
