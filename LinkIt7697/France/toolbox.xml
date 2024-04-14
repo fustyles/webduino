@@ -2437,7 +2437,29 @@
 			  <block type="amb82_mini_rtsp">
 			  </block>
 		</category>
-
+		<category id="france23" name="amb82_mini_mp4">				
+			  <block type="amb82_mini_mp4_initial">
+					<value name="fileduration">
+					  <block type="math_number">
+							<field name="NUM">30</field>
+					  </block>
+					</value> 
+					<value name="filecount">
+					  <block type="math_number">
+							<field name="NUM">1</field>
+					  </block>
+					</value> 			  
+					<value name="filename">
+						<block type="text">
+							<field name="TEXT">recordMP4</field>
+						</block>
+					</value>					  
+			  </block>
+			  <block type="amb82_mini_mp4_state">		  
+			  </block>	
+			  <block type="amb82_mini_mp4_getstate">		  
+			  </block>				  
+		</category>
 		<sep id="category_sep"></sep>
 		
 

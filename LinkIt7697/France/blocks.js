@@ -1,3 +1,92 @@
+Blockly.Blocks['amb82_mini_mp4_initial'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])
+		.appendField(Blockly.Msg["AMB82_MINI_MP4"])
+        .appendField(Blockly.Msg["AMB82_MINI_MP4_INITIAL"]);		
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_VIDEOONLY"],"VideoOnly"],
+			[Blockly.Msg["AMB82_MINI_SINGLEVIDEOWITHAUDIO"],"SingleVideoWithAudio"],
+			[Blockly.Msg["AMB82_MINI_AUDIO"],"AudioOnly"]
+		], this.validate), "type");
+    this.appendDummyInput("cha")
+        .appendField(Blockly.Msg["AMB82_MINI_CHANNEL"])	
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["1920 x 1080 30FPS H264 0","0"],		
+			["1280 x 720  30FPS H264 1","1"]
+		]), "channel");	
+    this.appendDummyInput("aud")
+        .appendField(Blockly.Msg["AMB82_MINI_AUDIO"])	
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["8kHz Mono Analog Mic 0","0"],		
+			["16kHz Mono Analog Mic 1","1"],
+			["8kHz Mono Digital PDM Mic 2","2"],
+			["16kHz Mono Digital PDM Mic 3","3"]
+		]), "audio");
+    this.appendValueInput("filename")
+        .appendField(Blockly.Msg["AMB82_MINI_FILENAME"])	
+		.setAlign(Blockly.ALIGN_RIGHT);	
+    this.appendValueInput("fileduration")
+        .appendField(Blockly.Msg["AMB82_MINI_FILEDURATION"])	
+		.setAlign(Blockly.ALIGN_RIGHT);	
+    this.appendValueInput("filecount")
+        .appendField(Blockly.Msg["AMB82_MINI_FILECOUNT"])	
+		.setAlign(Blockly.ALIGN_RIGHT);		
+    this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_10"]);
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="SingleVideoWithAudio"||newValue=="DoubleVideoWithAudio"||newValue=="AudioOnly") {
+			block.getInput("aud").setVisible(true);
+		} else {
+			block.getInput("aud").setVisible(false);	
+		}
+		if (newValue=="DoubleVideoWithAudio"||newValue=="AudioOnly") {
+			block.getInput("cha").setVisible(false);
+		} else {
+			block.getInput("cha").setVisible(true);	
+		}		
+  }
+};
+
+Blockly.Blocks['amb82_mini_mp4_state'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])	
+        .appendField(Blockly.Msg["AMB82_MINI_MP4"]);	
+    this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_MP4_BEGIN"],"begin"],		
+			[Blockly.Msg["AMB82_MINI_MP4_END"],"end"]
+		]), "state");			
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_10"]);		
+  }
+};
+
+Blockly.Blocks['amb82_mini_mp4_getstate'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])	
+        .appendField(Blockly.Msg["AMB82_MINI_MP4"])
+		.appendField(Blockly.Msg["AMB82_MINI_MP4_STATE"]);			
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(Blockly.Msg["HUE_10"]);	
+  }
+};
+
 Blockly.Blocks['amb82_mini_rtsp'] = {
   init: function() {
     this.appendDummyInput()
@@ -6,15 +95,15 @@ Blockly.Blocks['amb82_mini_rtsp'] = {
     this.appendDummyInput()	 
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["AMB82_MINI_RTSP_VIDEOONLY"],"VideoOnly"],		
-			[Blockly.Msg["AMB82_MINI_RTSP_DOUBLEVIDEO"],"DoubleVideo"],
-			[Blockly.Msg["AMB82_MINI_RTSP_SINGLEVIDEOWITHAUDIO"],"SingleVideoWithAudio"],			
-			[Blockly.Msg["AMB82_MINI_RTSP_DOUBLEVIDEOWITHAUDIO"],"DoubleVideoWithAudio"],
-			[Blockly.Msg["AMB82_MINI_RTSP_V7RC"],"V7RC"],
-			[Blockly.Msg["AMB82_MINI_RTSP_AUDIO"],"Audio"]
+			[Blockly.Msg["AMB82_MINI_VIDEOONLY"],"VideoOnly"],		
+			[Blockly.Msg["AMB82_MINI_DOUBLEVIDEO"],"DoubleVideo"],
+			[Blockly.Msg["AMB82_MINI_SINGLEVIDEOWITHAUDIO"],"SingleVideoWithAudio"],
+			[Blockly.Msg["AMB82_MINI_DOUBLEVIDEOWITHAUDIO"],"DoubleVideoWithAudio"],
+			[Blockly.Msg["AMB82_MINI_V7RC"],"V7RC"],
+			[Blockly.Msg["AMB82_MINI_AUDIO"],"AudioOnly"]
 		], this.validate), "type");
     this.appendDummyInput("cha")
-        .appendField(Blockly.Msg["AMB82_MINI_RTSP_CHANNEL"])	
+        .appendField(Blockly.Msg["AMB82_MINI_CHANNEL"])	
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
 			["1920 x 1080 30FPS H264 0","0"],		
@@ -22,7 +111,7 @@ Blockly.Blocks['amb82_mini_rtsp'] = {
 			["1280 x 720  30FPS MJPEG 2","2"]
 		]), "channel");	
     this.appendDummyInput("aud")
-        .appendField(Blockly.Msg["AMB82_MINI_RTSP_AUDIO"])	
+        .appendField(Blockly.Msg["AMB82_MINI_AUDIO"])	
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
 			["8kHz Mono Analog Mic 0","0"],		
@@ -38,12 +127,12 @@ Blockly.Blocks['amb82_mini_rtsp'] = {
 	validate: function(newValue) {
 		const block = this.sourceBlock_;
 		if (!block) return;
-		if (newValue=="SingleVideoWithAudio"||newValue=="DoubleVideoWithAudio"||newValue=="Audio") {
+		if (newValue=="SingleVideoWithAudio"||newValue=="DoubleVideoWithAudio"||newValue=="AudioOnly") {
 			block.getInput("aud").setVisible(true);
 		} else {
 			block.getInput("aud").setVisible(false);	
 		}
-		if (newValue=="DoubleVideoWithAudio"||newValue=="Audio") {
+		if (newValue=="DoubleVideoWithAudio"||newValue=="AudioOnly") {
 			block.getInput("cha").setVisible(false);
 		} else {
 			block.getInput("cha").setVisible(true);	
