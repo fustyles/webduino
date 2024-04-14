@@ -2417,7 +2417,14 @@
 							<field name="NUM">0</field>
 					  </block>
 					</value>			  
-			  </block>				  
+			  </block>
+			  <block type="amb82_mini_video_settings_rotation">
+					<value name="val">
+					  <block type="math_number">
+							<field name="NUM">0</field>
+					  </block>
+					</value>			  
+			  </block>			  
 			  <block type="amb82_mini_video_capture_sd">
 					<value name="filename">
 						<block type="text">

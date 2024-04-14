@@ -130,6 +130,7 @@ Blockly.Msg["AMB82_MINI_VIDEO_SETDAYNIGHTMODE"] = "日夜模式(0~1)";
 Blockly.Msg["AMB82_MINI_VIDEO_RESET"] = "重設";
 Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_VALUE"] = "值";
 Blockly.Msg["AMB82_MINI_VIDEO_QRCODE"] = "掃描QR code";
+Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"] = "視訊旋轉角度";
 
 Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun 編碼器馬達";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_ENCODERPULSE"] = "脈衝";

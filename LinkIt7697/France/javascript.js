@@ -59,6 +59,12 @@ Blockly.Arduino['amb82_mini_video_settings'] = function(block) {
 		return 'configCam.'+setting+'('+val+');\n';
 };
 
+Blockly.Arduino['amb82_mini_video_settings_rotation'] = function(block) {
+	var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_['amb82_mini_video_settings'] ='CameraSetting configCam;';
+	return 'configCam.setRotation('+val+');\n';
+};
+
 Blockly.Arduino['amb82_mini_video_capture_sd'] = function(block) {
 	
 	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
