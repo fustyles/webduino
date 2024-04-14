@@ -33,7 +33,7 @@ Blockly.Arduino['amb82_mini_video_initial'] = function(block) {
 	Blockly.Arduino.setups_.write_peri_reg="";
 	
 	if (resolution!=""){
-		Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#include "VideoStream.h"\n#define amb82_CHANNEL 0\nVideoSetting config('+resolution+', CAM_FPS, VIDEO_JPEG, 1);';
+		Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#include "VideoStream.h"\n#define amb82_CHANNEL 0\nVideoSetting config('+resolution+', CAM_FPS, VIDEO_JPEG, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
 		Blockly.Arduino.setups_['amb82_mini_video_initial'] =''+   
 											'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
