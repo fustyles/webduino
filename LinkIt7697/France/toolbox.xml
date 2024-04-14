@@ -2174,41 +2174,7 @@
 				</statement>
 			  </block>
 			  <block type="amb82_mini_stream_url">							
-			  </block>			  
-			  <block type="amb82_mini_linenotify">		
-					<value name="linetoken">
-					  <block type="text">
-						<field name="TEXT"></field>
-					  </block>
-					</value>
-					<value name="linemessage">
-					  <block type="text">
-						<field name="TEXT"></field>
-					  </block>
-					</value>					
-			  </block>
-			  <block type="amb82_mini_googledrive">
-				<value name="scriptid">
-				  <block type="text">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="linetoken">
-				  <block type="text">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="foldername">
-				  <block type="text">
-					<field name="TEXT">amb82</field>
-				  </block>
-				</value>
-				<value name="filename">
-				  <block type="text">
-					<field name="TEXT">amb82</field>
-				  </block>
-				</value>				
-			  </block>			  
+			  </block>			  		  
 		</category>		
 		<category id="france23" name="servercommand">
 			  <block type="servermodule_parameter_get">
@@ -2432,7 +2398,68 @@
 			  </block>	
 			  -->
 		</category>
-
+		<category id="france23" name="amb82_mini_video">				
+			  <block type="amb82_mini_video_initial">
+					<value name="width">
+					  <block type="math_number">
+							<field name="NUM">640</field>
+					  </block>
+					</value>
+					<value name="height">
+					  <block type="math_number">
+							<field name="NUM">480</field>
+					  </block>
+					</value>					
+			  </block>
+			  <block type="amb82_mini_video_settings">
+					<value name="val">
+					  <block type="math_number">
+							<field name="NUM">0</field>
+					  </block>
+					</value>			  
+			  </block>				  
+			  <block type="amb82_mini_video_capture_sd">
+					<value name="filename">
+						<block type="text">
+							<field name="TEXT">1</field>
+						</block>
+					</value>			  
+			  </block>
+			  <block type="amb82_mini_linenotify">		
+					<value name="linetoken">
+					  <block type="text">
+						<field name="TEXT"></field>
+					  </block>
+					</value>
+					<value name="linemessage">
+					  <block type="text">
+						<field name="TEXT"></field>
+					  </block>
+					</value>					
+			  </block>
+			  <block type="amb82_mini_googledrive">
+				<value name="scriptid">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="linetoken">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="foldername">
+				  <block type="text">
+					<field name="TEXT">amb82</field>
+				  </block>
+				</value>
+				<value name="filename">
+				  <block type="text">
+					<field name="TEXT">amb82</field>
+				  </block>
+				</value>				
+			  </block>				  
+		</category>	
 		<category id="france23" name="amb82_mini_rtsp">
 			  <block type="amb82_mini_rtsp">
 			  </block>
@@ -2460,24 +2487,7 @@
 			  <block type="amb82_mini_mp4_getstate">		  
 			  </block>				  
 		</category>
-		<category id="france23" name="amb82_mini_video_capture">				
-			  <block type="amb82_mini_video_initial">					  
-			  </block>
-			  <block type="amb82_mini_video_settings">
-					<value name="val">
-					  <block type="math_number">
-							<field name="NUM">0</field>
-					  </block>
-					</value>			  
-			  </block>				  
-			  <block type="amb82_mini_video_capture_sd">
-					<value name="filename">
-						<block type="text">
-							<field name="TEXT">1</field>
-						</block>
-					</value>			  
-			  </block>			  
-		</category>		
+	
 		<sep id="category_sep"></sep>
 		
 

@@ -102,6 +102,7 @@ Blockly.Msg["AMB82_MINI_MP4"] = "MP4錄製";
 Blockly.Msg["AMB82_MINI_MP4_INITIAL"] = "初始化";
 Blockly.Msg["AMB82_MINI_MP4_BEGIN"] = "開始";
 Blockly.Msg["AMB82_MINI_MP4_END"] = "結束";
+Blockly.Msg["AMB82_MINI_MP4_STATE"] = "狀態";
 Blockly.Msg["AMB82_MINI_FILENAME"] = "檔名";
 Blockly.Msg["AMB82_MINI_FILEDURATION"] = "長度(秒)";
 Blockly.Msg["AMB82_MINI_FILECOUNT"] = "數目";

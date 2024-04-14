@@ -103,6 +103,7 @@ Blockly.Msg["AMB82_MINI_MP4"] = "Record MP4";
 Blockly.Msg["AMB82_MINI_MP4_INITIAL"] = "Initial";
 Blockly.Msg["AMB82_MINI_MP4_BEGIN"] = "Begin";
 Blockly.Msg["AMB82_MINI_MP4_END"] = "End";
+Blockly.Msg["AMB82_MINI_MP4_STATE"] = "State";
 Blockly.Msg["AMB82_MINI_FILENAME"] = "File name";
 Blockly.Msg["AMB82_MINI_FILEDURATION"] = "File length(s)";
 Blockly.Msg["AMB82_MINI_FILECOUNT"] = "Count";

@@ -116,7 +116,7 @@
 <category><name>TinyGPS</name><replace>TinyGPS</replace></category>
 <category><name>amb82_mini_rtsp</name><replace>RTSP串流</replace></category>
 <category><name>amb82_mini_mp4</name><replace>MP4錄製</replace></category>
-<category><name>amb82_mini_video_capture</name><replace>視訊截圖</replace></category>
+<category><name>amb82_mini_video</name><replace>視訊</replace></category>
 <category><name>pagerecognition</name><replace>網頁辨識</replace></category>
 <category><name>blemodule</name><replace>藍芽模組</replace></category>
 </xml>
