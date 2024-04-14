@@ -86,7 +86,8 @@ Blockly.Msg["WIRE_CLOCK"] = "匯流排計時器頻率";
 Blockly.Msg["AMB82_MINI"] = "AMB82-MINI";
 Blockly.Msg["AMB82_MINI_INITIAL"] = "初始化";
 Blockly.Msg["AMB82_MINI_LINENOTIFY"] = "截圖上傳Line通知";
-Blockly.Msg["AMB82_MINI_CUSTOM"] = "自訂";
+Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_DEFAULT"] = "預設";
+Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"] = "自訂";
 Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"] = "截圖上傳Google雲端硬碟";
 Blockly.Msg["AMB82_MINI_STILL_URL"] = "張流網址";
 Blockly.Msg["AMB82_MINI_STREAM_URL"] = "串流網址";
@@ -128,6 +129,7 @@ Blockly.Msg["AMB82_MINI_VIDEO_SETGRAYMODE"] = "灰階模式(0~1)";
 Blockly.Msg["AMB82_MINI_VIDEO_SETDAYNIGHTMODE"] = "日夜模式(0~1)";
 Blockly.Msg["AMB82_MINI_VIDEO_RESET"] = "重設";
 Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_VALUE"] = "值";
+Blockly.Msg["AMB82_MINI_VIDEO_QRCODE"] = "掃描QR code";
 
 Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun 編碼器馬達";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_ENCODERPULSE"] = "脈衝";

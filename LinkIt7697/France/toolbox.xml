@@ -2487,7 +2487,13 @@
 			  <block type="amb82_mini_mp4_getstate">		  
 			  </block>				  
 		</category>
-	
+		<category id="france23" name="amb82_mini_video_qrcode">				
+			  <block type="amb82_mini_video_qrcode">		  
+			  </block>				  
+		</category>
+		<category id="france23" name="amb82_mini_video_neuralnetwork">				
+				  
+		</category>		
 		<sep id="category_sep"></sep>
 		
 

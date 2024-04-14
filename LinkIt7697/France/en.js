@@ -87,7 +87,8 @@ Blockly.Msg["WIRE_CLOCK"] = "bus clock";
 Blockly.Msg["AMB82_MINI"] = "AMB82-MINI";
 Blockly.Msg["AMB82_MINI_INITIAL"] = "Initial";
 Blockly.Msg["AMB82_MINI_LINENOTIFY"] = "Get still and send to Line";
-Blockly.Msg["AMB82_MINI_CUSTOM"] = "Custom";
+Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_DEFAULT"] = "Default";
+Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"] = "Custom";
 Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"] = "Upload Still to Google drive";
 Blockly.Msg["AMB82_MINI_STILL_URL"] = "Still url";
 Blockly.Msg["AMB82_MINI_STREAM_URL"] = "stream url";
@@ -129,6 +130,7 @@ Blockly.Msg["AMB82_MINI_VIDEO_SETGRAYMODE"] = "Set GrayMode(0~1)";
 Blockly.Msg["AMB82_MINI_VIDEO_SETDAYNIGHTMODE"] = "Set DayNightMode(0~1)";
 Blockly.Msg["AMB82_MINI_VIDEO_RESET"] = "Reset";
 Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_VALUE"] = "Value";
+Blockly.Msg["AMB82_MINI_VIDEO_QRCODE"] = "Scan QR code";
 
 Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun Encode motor";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_ENCODERPULSE"] = "Pulse";

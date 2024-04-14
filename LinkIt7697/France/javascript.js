@@ -1,3 +1,26 @@
+Blockly.Arduino['amb82_mini_video_qrcode'] = function(block) {
+
+	Blockly.Arduino.definitions_.define_custom_command = '';
+	Blockly.Arduino.setups_.write_peri_reg="";
+	
+	Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#undef DEFAULT\n#include "VideoStream.h"\n#include "QRCodeScanner.h"\n#define amb82_CHANNEL 0\nVideoSetting config(amb82_CHANNEL);\nQRCodeScanner Scanner;\n';
+
+	Blockly.Arduino.setups_['amb82_mini_video_initial'] = 'Camera.configVideoChannel(amb82_CHANNEL, config);\n  Camera.videoInit();\n';	
+	
+	Blockly.Arduino.definitions_['amb82_mini_video_qrcode_scan'] = ''+
+			'String amb82_mini_video_qrcode_scan() {\n'+
+			'  Scanner.GetResultString();\n'+
+			'  Scanner.GetResultLength();\n'+
+			'  if (Scanner.ResultString != nullptr)\n'+
+			'      return String(Scanner.ResultString);\n'+
+			'  else\n'+
+			'      return "";\n'+
+			'}';	
+	Blockly.Arduino.setups_['amb82_mini_video_qrcode'] ='Scanner.StartScanning();';	
+	
+	return 'amb82_mini_video_qrcode_scan()';
+};
+
 Blockly.Arduino['amb82_mini_video_initial'] = function(block) {
 	
 	var resolution = block.getFieldValue('resolution');
@@ -9,13 +32,20 @@ Blockly.Arduino['amb82_mini_video_initial'] = function(block) {
 	Blockly.Arduino.definitions_.define_custom_command = '';
 	Blockly.Arduino.setups_.write_peri_reg="";
 	
-	Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#include "VideoStream.h"\n#include "AmebaFatFS.h"\n#define amb82_CHANNEL 0\nVideoSetting config('+resolution+', CAM_FPS, VIDEO_JPEG, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\nAmebaFatFS fs;';
+	if (resolution!=""){
+		Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#include "VideoStream.h"\n#define amb82_CHANNEL 0\nVideoSetting config('+resolution+', CAM_FPS, VIDEO_JPEG, 1);';
 
-	Blockly.Arduino.setups_['amb82_mini_video_initial'] =''+   
+		Blockly.Arduino.setups_['amb82_mini_video_initial'] =''+   
 											'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
 											'Camera.videoInit();\n  '+
 											'Camera.channelBegin(amb82_CHANNEL);\n  '+
-											'Camera.printInfo();\n';									
+											'Camera.printInfo();\n';
+	} else {
+		Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#include "VideoStream.h"\n#define amb82_CHANNEL 0\nVideoSetting config(amb82_CHANNEL);';
+
+		Blockly.Arduino.setups_['amb82_mini_video_initial'] = 'Camera.configVideoChannel(amb82_CHANNEL, config);\n  Camera.videoInit();';
+	}
+											
 	return '';
 };
 
@@ -32,6 +62,8 @@ Blockly.Arduino['amb82_mini_video_settings'] = function(block) {
 Blockly.Arduino['amb82_mini_video_capture_sd'] = function(block) {
 	
 	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
+
+	Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS'] ='#include "AmebaFatFS.h"\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\nAmebaFatFS fs;';
 	
 	Blockly.Arduino.definitions_['amb82_mini_video_capture_sd'] = ''+
 		'void amb82_mini_video_capture_sd(int channel, String filename) {\n'+

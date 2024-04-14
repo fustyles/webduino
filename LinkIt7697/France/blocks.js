@@ -1,3 +1,14 @@
+Blockly.Blocks['amb82_mini_video_qrcode'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])	
+        .appendField(Blockly.Msg["AMB82_MINI_VIDEO_QRCODE"]);			
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(Blockly.Msg["HUE_18"]);		
+  }
+};
+
 Blockly.Blocks['amb82_mini_video_initial'] = {
   init: function() {
     this.appendDummyInput()
@@ -7,6 +18,7 @@ Blockly.Blocks['amb82_mini_video_initial'] = {
         .appendField(Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION"])	
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_DEFAULT"],""],
 			["2K (2560×1440)","VIDEO_2K"],
 			["5M (2448×2050)","VIDEO_5M"], 
 			["3M (2048×1536)","VIDEO_3M"],
@@ -17,7 +29,7 @@ Blockly.Blocks['amb82_mini_video_initial'] = {
 			["WVGA (640×340)","VIDEO_WVGA"],
 			["CIF (352×288)","VIDEO_CIF"],
 			["QCIF (176×144)","VIDEO_QCIF"],
-			[Blockly.Msg["AMB82_MINI_CUSTOM"],"VIDEO_CUSTOM"]
+			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"],"VIDEO_CUSTOM"]
 		], this.validate), "resolution");
 	this.appendValueInput("width")
 		.setCheck("Number")

@@ -114,6 +114,8 @@
 <category><name>amb82_mini_rtsp</name><replace>RTSP stream</replace></category>
 <category><name>amb82_mini_mp4</name><replace>Record MP4</replace></category>
 <category><name>amb82_mini_video</name><replace>Video</replace></category>
+<category><name>amb82_mini_video_qrcode</name><replace>QR code</replace></category>
+<category><name>amb82_mini_video_neuralnetwork</name><replace>Neural Network</replace></category>
 <category><name>pagerecognition</name><replace>Page recognition</replace></category>
 <category><name>blemodule</name><replace>Bluetooth module</replace></category>
 </xml>
