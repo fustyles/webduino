@@ -2460,7 +2460,7 @@
 			  <block type="amb82_mini_mp4_getstate">		  
 			  </block>				  
 		</category>
-		<category id="france23" name="amb82_mini_vedio_capture_sd">				
+		<category id="france23" name="amb82_mini_vedio_capture">				
 			  <block type="amb82_mini_vedio_initial">					  
 			  </block>
 			  <block type="amb82_mini_vedio_capture_sd">

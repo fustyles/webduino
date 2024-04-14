@@ -1,4 +1,4 @@
-Blockly.Blocks['amb82_mini_vedio_capture_initial'] = {
+Blockly.Blocks['amb82_mini_vedio_initial'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI"])	
