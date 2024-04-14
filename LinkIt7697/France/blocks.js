@@ -166,7 +166,7 @@ Blockly.Blocks['amb82_mini_googledrive'] = {
 	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(Blockly.Msg["HUE_15"]);
+	this.setColour(Blockly.Msg["HUE_12"]);
 	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToGoogleDriveAndLinenotify_doPost.gs");
   }
 };
@@ -187,7 +187,7 @@ Blockly.Blocks['amb82_mini_linenotify'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(Blockly.Msg["HUE_15"]);
+	this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
 
