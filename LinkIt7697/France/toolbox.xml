@@ -2460,6 +2460,17 @@
 			  <block type="amb82_mini_mp4_getstate">		  
 			  </block>				  
 		</category>
+		<category id="france23" name="amb82_mini_vedio_capture_sd">				
+			  <block type="amb82_mini_vedio_initial">					  
+			  </block>
+			  <block type="amb82_mini_vedio_capture_sd">
+					<value name="filename">
+						<block type="text">
+							<field name="TEXT">1.jpg</field>
+						</block>
+					</value>			  
+			  </block>			  
+		</category>		
 		<sep id="category_sep"></sep>
 		
 

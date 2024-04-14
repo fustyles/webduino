@@ -106,6 +106,9 @@ Blockly.Msg["AMB82_MINI_MP4_END"] = "End";
 Blockly.Msg["AMB82_MINI_FILENAME"] = "File name";
 Blockly.Msg["AMB82_MINI_FILEDURATION"] = "File length(s)";
 Blockly.Msg["AMB82_MINI_FILECOUNT"] = "Count";
+Blockly.Msg["AMB82_MINI_VEDIO_INITIAL"] = "Vedio Initial";
+Blockly.Msg["AMB82_MINI_VEDIO_RESOLUTION"] = "Vedio resolution";
+Blockly.Msg["AMB82_MINI_VEDIO_CAPTURE_SD"] = "Capture jpeg and save to SD";
 
 Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun Encode motor";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_ENCODERPULSE"] = "Pulse";

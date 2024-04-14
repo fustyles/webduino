@@ -1,3 +1,37 @@
+Blockly.Blocks['amb82_mini_vedio_capture_initial'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])	
+        .appendField(Blockly.Msg["AMB82_MINI_VEDIO_INITIAL"]);		
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_VEDIO_RESOLUTION"])	
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["FHD (1920*1080)", "VIDEO_FHD"],
+			["HD (1280*720)", "VIDEO_HD"]
+		]), "resolution");				
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_12"]);		
+  }
+};
+
+Blockly.Blocks['amb82_mini_vedio_capture_sd'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])	
+        .appendField(Blockly.Msg["AMB82_MINI_VEDIO_CAPTURE_SD"]);
+    this.appendValueInput("filename")
+        .appendField(Blockly.Msg["AMB82_MINI_FILENAME"])	
+		.setAlign(Blockly.ALIGN_RIGHT);					
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_12"]);		
+  }
+};
+
 Blockly.Blocks['amb82_mini_mp4_initial'] = {
   init: function() {
     this.appendDummyInput()

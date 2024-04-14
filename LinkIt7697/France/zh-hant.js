@@ -105,6 +105,9 @@ Blockly.Msg["AMB82_MINI_MP4_END"] = "結束";
 Blockly.Msg["AMB82_MINI_FILENAME"] = "檔名";
 Blockly.Msg["AMB82_MINI_FILEDURATION"] = "長度(秒)";
 Blockly.Msg["AMB82_MINI_FILECOUNT"] = "數目";
+Blockly.Msg["AMB82_MINI_VEDIO_INITIAL"] = "視訊初始化";
+Blockly.Msg["AMB82_MINI_VEDIO_RESOLUTION"] = "解析度";
+Blockly.Msg["AMB82_MINI_VEDIO_CAPTURE_SD"] = "擷取影像保存SD";
 
 Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun 編碼器馬達";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_ENCODERPULSE"] = "脈衝";
