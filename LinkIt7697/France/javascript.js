@@ -63,7 +63,7 @@ Blockly.Arduino['amb82_mini_video_capture_sd'] = function(block) {
 	
 	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
 
-	Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS'] ='#include "AmebaFatFS.h"\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\nAmebaFatFS fs;';
+	Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS'] ='#include "AmebaFatFS.h"\nAmebaFatFS fs;';
 	
 	Blockly.Arduino.definitions_['amb82_mini_video_capture_sd'] = ''+
 		'void amb82_mini_video_capture_sd(int channel, String filename) {\n'+
