@@ -414,7 +414,7 @@ Blockly.Blocks['amb82_mini_myfirmata'] = {
 			["WVGA (640×340)","VIDEO_WVGA"],
 			["CIF (352×288)","VIDEO_CIF"],
 			["QCIF (176×144)","VIDEO_QCIF"],
-			[Blockly.Msg["AMB82_MINI_CUSTOM"],"VIDEO_CUSTOM"]
+			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"],"VIDEO_CUSTOM"]
 		], this.validate), "framesize");
 	this.appendValueInput("width")
 		.setCheck("Number")
@@ -467,7 +467,7 @@ Blockly.Blocks['amb82_mini_initial'] = {
 			["WVGA (640×340)","VIDEO_WVGA"],
 			["CIF (352×288)","VIDEO_CIF"],
 			["QCIF (176×144)","VIDEO_QCIF"],
-			[Blockly.Msg["AMB82_MINI_CUSTOM"],"VIDEO_CUSTOM"]
+			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"],"VIDEO_CUSTOM"]
 		], this.validate), "framesize");
 	this.appendValueInput("width")
 		.setCheck("Number")
@@ -25171,7 +25171,9 @@ Blockly.Blocks['declare_variable_set'] = {
 Blockly.Blocks['holistic_esp32cam'] = {
   init: function() {
     this.appendDummyInput()
-		.appendField(Blockly.Msg.SERVERMODULE_JAVASCRIPT_SHOW);	  
+		.appendField(Blockly.Msg.SERVERMODULE_JAVASCRIPT_SHOW);
+    this.appendDummyInput()
+		.appendField(Blockly.Msg.ESP32_CAM_HOLISTIC_SHOW);		
     this.appendStatementInput("javascript_initial")
         .setCheck(null)
 		.appendField(Blockly.Msg.ESP32_CAM_HOLISTIC_INITIAL_SHOW);	
