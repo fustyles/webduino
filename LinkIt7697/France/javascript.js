@@ -53,7 +53,7 @@ Blockly.Arduino['amb82_mini_googledrive'] = function(block) {
     var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
 	
 	Blockly.Arduino.definitions_['WiFiClientSecure'] ='WiFiSSLClient client_tcp;\n';
-	Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
+	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 
 	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive = '\n'+
 			'String SendStillToGoogleDrive(String myScript, String myFoldername, String myFilename, String myImage, String myLineNotifyToken) {\n'+
