@@ -559,7 +559,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 	framesize = width +", "+height;
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\nchar ssid[] = '+ssid+';\nchar pass[] = '+pass+';';
 
-  Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
+  Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
   Blockly.Arduino.definitions_.define_custom_command = '';
 	
   Blockly.Arduino.definitions_.ExecuteCommand = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\nboolean cameraState = false;\nWiFiServer server('+port+');\n';
