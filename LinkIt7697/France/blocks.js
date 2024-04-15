@@ -152,6 +152,21 @@ Blockly.Blocks['amb82_mini_video_settings_rotation'] = {
   }
 };
 
+Blockly.Blocks['amb82_mini_video_settings_bitrate'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_BITRATE"]);
+    this.appendValueInput("val")
+        .appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_VALUE"])	
+		.setAlign(Blockly.ALIGN_RIGHT);	
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_12"]);	
+  }
+};
+
 Blockly.Blocks['amb82_mini_video_capture_sd'] = {
   init: function() {
     this.appendDummyInput()
