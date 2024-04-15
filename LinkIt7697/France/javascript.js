@@ -800,22 +800,6 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
     return '';
 };
 
-Blockly.Arduino['amb82_mini_initial'] = function(block) {
-	var width = Blockly.Arduino.valueToCode(this,"width",Blockly.Arduino.ORDER_ATOMIC);
-	var height = Blockly.Arduino.valueToCode(this,"height",Blockly.Arduino.ORDER_ATOMIC);
-	var framesize = block.getFieldValue('framesize');
-	if (framesize=="VIDEO_CUSTOM")
-		framesize = width +", "+height;
-
-	Blockly.Arduino.definitions_['define_esp_camera'] ='#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
-	Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
-	
-	Blockly.Arduino.setups_.write_peri_reg="";
-	Blockly.Arduino.setups_.setup_cam_initial='Camera.configVideoChannel(0, config);\n  Camera.videoInit();\n  Camera.channelBegin(0);';
-	
-    return '';
-};
-
 Blockly.Arduino['TinyGPS_initial'] = function(block) { 
 	Blockly.Arduino.definitions_['TinyGPS_initial'] = '#include <TinyGPS.h>\nTinyGPS gps;\nbool gpsNewData = false;\n';	
 
