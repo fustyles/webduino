@@ -36,7 +36,16 @@ Blockly.Blocks['amb82_mini_video_initial'] = {
 		.appendField(Blockly.Msg["WIDTH"]);
 	this.appendValueInput("height")
 		.setCheck("Number")
-		.appendField(Blockly.Msg["HEIGHT"]);			
+		.appendField(Blockly.Msg["HEIGHT"]);
+    this.appendDummyInput()
+	.appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"])
+	.setAlign(Blockly.ALIGN_RIGHT)
+	.appendField(new Blockly.FieldDropdown([
+		["0", "0"],
+		["90", "1"],
+		["270", "2"],
+		["180", "3"]
+	]), "rotation");	  
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -136,21 +145,6 @@ Blockly.Blocks['amb82_mini_video_settings'] = {
   LEVEL      	Get WDR level
   RESET      	Reset to default
  */
-
-Blockly.Blocks['amb82_mini_video_settings_rotation'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"]);
-    this.appendValueInput("val")
-        .appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_VALUE"])	
-		.setAlign(Blockly.ALIGN_RIGHT);	
-	this.setInputsInline(true);
-	this.setPreviousStatement(!0);
-	this.setNextStatement(!0);
-    this.setColour(Blockly.Msg["HUE_12"]);	
-  }
-};
 
 Blockly.Blocks['amb82_mini_video_settings_bitrate'] = {
   init: function() {
