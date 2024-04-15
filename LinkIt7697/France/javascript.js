@@ -1,3 +1,76 @@
+Blockly.Arduino['amb82_mini_blemouse'] = function(block) {
+    var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_.define_esp32_blemouse_include = '#include "BLEHIDDevice.h"\n#include "BLEHIDMouse.h"\n#include "BLEDevice.h"\nBLEHIDMouse mouseDev;\nBLEAdvertData advdata;';
+	Blockly.Arduino.definitions_.blemouse = '\n'+
+			'void blemouse(String mode, float delaytime, int pixels) {\n'+
+			'  	unsigned long startTime;\n'+
+			'  	startTime = millis();\n'+
+			'  	while(millis()<startTime+delaytime) {\n'+
+			'  	  if (mode=="SU")\n'+
+			'  		  mouseDev.mouseScroll(1);\n'+
+			'  	  else if (mode=="SD")\n'+
+			'  		  mouseDev.mouseScroll(-1);\n'+
+			'  	  else if (mode=="PU")\n'+
+			'  		  mouseDev.mouseMove(0, -1*pixels);\n'+
+			'  	  else if (mode=="PD")\n'+
+			'  		  mouseDev.mouseMove(0, pixels);\n'+
+			'  	  else if (mode=="PL")\n'+
+			'  		  mouseDev.mouseMove(-1*pixels, 0);\n'+
+			'  	  else if (mode=="PR")\n'+
+			'  		  mouseDev.mouseMove(pixels, 0);\n'+			
+			'  	  delay(100);\n'+
+			'  	}\n'+		
+			'}\n';
+
+	Blockly.Arduino.setups_.blemouse=''+
+			'advdata.addFlags();\n  '+
+			'advdata.addCompleteName('+blename+');\n  '+
+			'advdata.addAppearance(GAP_GATT_APPEARANCE_HUMAN_INTERFACE_DEVICE);\n  '+
+			'advdata.addCompleteServices(BLEUUID(HID_SERVICE_UUID));\n  '+
+			'BLEHIDDev.init();\n  '+
+			'BLE.init();\n  '+
+			'BLE.configAdvert()->setAdvData(advdata);\n  '+
+			'BLE.setDeviceName('+blename+');\n  '+
+			'BLE.setDeviceAppearance(GAP_GATT_APPEARANCE_HUMAN_INTERFACE_DEVICE);\n  '+
+			'BLE.configSecurity()->setPairable(true);\n  '+
+			'BLE.configSecurity()->setAuthFlags(GAP_AUTHEN_BIT_BONDING_FLAG);\n  '+
+			'BLE.configServer(3);\n  '+
+			'BLE.addService(BLEHIDDev.hidService());\n  '+
+			'BLE.addService(BLEHIDDev.battService());\n  '+
+			'BLE.addService(BLEHIDDev.devInfoService());\n  '+
+			'BLE.beginPeripheral();';
+			
+  code = '';
+  return code;
+};
+
+Blockly.Arduino['amb82_mini_blemouse_press'] = function(block) {	
+    var event = block.getFieldValue('event');
+	return 'mouseDev.mousePress('+event+');\n';
+};
+
+Blockly.Arduino['amb82_mini_blemouse_release'] = function(block) {
+    var event = block.getFieldValue('event');	
+	return 'mouseDev.mouseRelease('+event+');\n';
+};
+
+Blockly.Arduino['amb82_mini_blemouse_move_scroll'] = function(block) {
+	var mode = block.getFieldValue('mode');
+	var delaytime = Blockly.Arduino.valueToCode(block, 'delaytime', Blockly.Arduino.ORDER_ATOMIC)||100;
+	return 'blemouse("'+mode+'", '+delaytime+', 0);\n';
+};
+
+Blockly.Arduino['amb82_mini_blemouse_move_point'] = function(block) {
+	var mode = block.getFieldValue('mode');
+	var delaytime = Blockly.Arduino.valueToCode(block, 'delaytime', Blockly.Arduino.ORDER_ATOMIC)||100;
+	var pixels = Blockly.Arduino.valueToCode(block, 'pixels', Blockly.Arduino.ORDER_ATOMIC)||1;
+	return 'blemouse("'+mode+'", '+delaytime+', '+pixels+');\n';
+};
+
+
+
+
+
 Blockly.Arduino['amb82_mini_blekeyboard'] = function(block) {
     var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
 	Blockly.Arduino.definitions_.define_esp32_blekeyboard_include = '#include "BLEHIDDevice.h"\n#include "BLEHIDKeyboard.h"\n#include "BLEDevice.h"\nBLEHIDKeyboard keyboardDev;\nBLEAdvertData advdata;\n';

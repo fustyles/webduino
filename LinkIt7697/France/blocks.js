@@ -1,3 +1,142 @@
+Blockly.Blocks['amb82_mini_blemouse'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_BLEMOUSE"])	
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_INITIAL"]);
+    this.appendValueInput("blename")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["ESP32_BLUETOOTH_NAME"]);
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_8"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_blemouse_isConnected'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_BLEMOUSE"])
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_ISCONNECTED"]);		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_8"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_blemouse_press'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_BLEMOUSE"])	
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_PRESS"]);		
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)	
+			.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["ESP32_BLEMOUSE_LEFT"],"MOUSE_BUTTON_LEFT"],
+				[Blockly.Msg["ESP32_BLEMOUSE_RIGHT"],"MOUSE_BUTTON_RIGHT"],
+				[Blockly.Msg["ESP32_BLEMOUSE_MIDDLE"],"MOUSE_BUTTON_MIDDLE"],
+				[Blockly.Msg["ESP32_BLEMOUSE_BACK"],"MOUSE_BUTTON_BACKWARD"],
+				[Blockly.Msg["ESP32_BLEMOUSE_FORWARD"],"MOUSE_BUTTON_FORWARD"],
+				[Blockly.Msg["ESP32_BLEMOUSE_LEFT_RIGHT"],"MOUSE_BUTTON_LEFT | MOUSE_BUTTON_RIGHT"],
+				[Blockly.Msg["ESP32_BLEMOUSE_LEFT_RIGHT_MIDDLE"],"MOUSE_BUTTON_LEFT | MOUSE_BUTTON_RIGHT | MOUSE_BUTTON_MIDDLE"]
+		]), "event");		
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(Blockly.Msg["HUE_8"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_blemouse_release'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_BLEMOUSE"])	
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_RELEASE"]);
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)	
+			.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["ESP32_BLEMOUSE_LEFT"],"MOUSE_BUTTON_LEFT"],
+				[Blockly.Msg["ESP32_BLEMOUSE_RIGHT"],"MOUSE_BUTTON_RIGHT"],
+				[Blockly.Msg["ESP32_BLEMOUSE_MIDDLE"],"MOUSE_BUTTON_MIDDLE"],
+				[Blockly.Msg["ESP32_BLEMOUSE_BACK"],"MOUSE_BUTTON_BACKWARD"],
+				[Blockly.Msg["ESP32_BLEMOUSE_FORWARD"],"MOUSE_BUTTON_FORWARD"],
+				[Blockly.Msg["ESP32_BLEMOUSE_LEFT_RIGHT"],"MOUSE_BUTTON_LEFT | MOUSE_BUTTON_RIGHT"],
+				[Blockly.Msg["ESP32_BLEMOUSE_LEFT_RIGHT_MIDDLE"],"MOUSE_BUTTON_LEFT | MOUSE_BUTTON_RIGHT | MOUSE_BUTTON_MIDDLE"]
+		]), "event");		
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(Blockly.Msg["HUE_8"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_blemouse_move_scroll'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_BLEMOUSE"])	
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_MOVE"]);		
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)	
+			.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["ESP32_BLEMOUSE_SCROLLUP"],"SU"],
+				[Blockly.Msg["ESP32_BLEMOUSE_SCROLLDOWN"],"SD"]
+		]), "mode");
+	this.appendValueInput("delaytime")
+			.setAlign(Blockly.ALIGN_RIGHT) 		
+			.appendField(Blockly.Msg["ESP32_BLEMOUSE_DELAYTIME"])
+			.setCheck("Number");		
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(Blockly.Msg["HUE_8"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_blemouse_move_point'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_BLEMOUSE"])	
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_MOVE"]);		
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)	
+			.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["ESP32_BLEMOUSE_POINTUP"],"PU"],
+				[Blockly.Msg["ESP32_BLEMOUSE_POINTDOWN"],"PD"],
+				[Blockly.Msg["ESP32_BLEMOUSE_POINTLEFT"],"PL"],
+				[Blockly.Msg["ESP32_BLEMOUSE_POINTRIGHT"],"PR"]
+		]), "mode");
+	this.appendValueInput("pixels")
+			.setAlign(Blockly.ALIGN_RIGHT) 		
+			.appendField(Blockly.Msg["ESP32_BLEMOUSE_PIXELS"])
+			.setCheck("Number");		
+	this.appendValueInput("delaytime")
+			.setAlign(Blockly.ALIGN_RIGHT) 		
+			.appendField(Blockly.Msg["ESP32_BLEMOUSE_DELAYTIME"])
+			.setCheck("Number");	
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(Blockly.Msg["HUE_8"]);
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Blocks['amb82_mini_blekeyboard'] = {
   init: function() {
     this.appendDummyInput()
@@ -10,7 +149,7 @@ Blockly.Blocks['amb82_mini_blekeyboard'] = {
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(110);
+    this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -21,7 +160,7 @@ Blockly.Blocks['amb82_mini_blekeyboard_isConnected'] = {
         .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_ISCONNECTED_SHOW"]);		
 	this.setInputsInline(true);
 	this.setOutput(true, null);  
-	this.setColour(110);
+	this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -49,7 +188,7 @@ Blockly.Blocks['amb82_mini_blekeyboard_press'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(110);
+	this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -65,7 +204,7 @@ Blockly.Blocks['amb82_mini_blekeyboard_press_norelease'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(110);
+	this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -81,7 +220,7 @@ Blockly.Blocks['amb82_mini_blekeyboard_release'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(110);
+	this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -93,7 +232,7 @@ Blockly.Blocks['amb82_mini_blekeyboard_release_all'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(110);
+	this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -109,7 +248,7 @@ Blockly.Blocks['amb82_mini_blekeyboard_print'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(110);
+	this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -125,7 +264,7 @@ Blockly.Blocks['amb82_mini_blekeyboard_write'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(110);
+	this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -141,7 +280,7 @@ Blockly.Blocks['amb82_mini_blekeyboard_press_norelease_consumer'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(110);
+	this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -153,7 +292,7 @@ Blockly.Blocks['amb82_mini_blekeyboard_release_consumer'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(110);
+	this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -334,7 +473,7 @@ Blockly.Blocks['amb82_mini_blekeyboard_keycode'] = {
 		]), "keycode");	
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
-    this.setColour(150);
+    this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 
@@ -382,7 +521,7 @@ Blockly.Blocks['amb82_mini_blekeyboard_keycode_consumer'] = {
 		]), "keycode");	
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
-    this.setColour(150);
+    this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 

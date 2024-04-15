@@ -2568,7 +2568,36 @@
 		  </block>		  
 		</category>
 		<category id="france23" name="amb82_mini_ble_mouse">				
-				  
+		  <block type="amb82_mini_blemouse">
+			<value name="blename">
+			  <block type="text" id="100">
+				<field name="TEXT">AMB82-MINI MOUSE</field>
+			  </block>
+			</value>		  
+		  </block>
+		  <block type="amb82_mini_blemouse_press">			
+		  </block>
+		  <block type="amb82_mini_blemouse_release">			
+		  </block>			  
+		  <block type="amb82_mini_blemouse_move_scroll">
+			<value name="delaytime">
+			  <block type="math_number">
+				<field name="NUM">100</field>
+			  </block>
+			</value>		  
+		  </block>
+		  <block type="amb82_mini_blemouse_move_point">
+			<value name="delaytime">
+			  <block type="math_number">
+				<field name="NUM">100</field>
+			  </block>
+			</value>
+			<value name="pixels">
+			  <block type="math_number">
+				<field name="NUM">10</field>
+			  </block>
+			</value>			
+		  </block>			  
 		</category>	
 		<category id="france23" name="amb82_mini_video_neuralnetwork">				
 				  
