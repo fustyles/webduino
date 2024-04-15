@@ -115,6 +115,9 @@
 <category><name>blemousemodule</name><replace>ESP32藍芽滑鼠</replace></category>
 <category><name>TinyGPS</name><replace>TinyGPS</replace></category>
 <category><name>amb82_mini_rtsp</name><replace>RTSP串流</replace></category>
+<category><name>amb82_mini_rtp</name><replace>RTP串流</replace></category>
+<category><name>amb82_mini_ble_keyboard</name><replace>藍芽鍵盤</replace></category>
+<category><name>amb82_mini_ble_mouse</name><replace>藍芽滑鼠</replace></category>
 <category><name>amb82_mini_mp4</name><replace>MP4錄製</replace></category>
 <category><name>amb82_mini_video</name><replace>視訊</replace></category>
 <category><name>amb82_mini_video_qrcode</name><replace>QR code</replace></category>
