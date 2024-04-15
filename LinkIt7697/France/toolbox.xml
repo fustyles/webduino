@@ -2489,9 +2489,6 @@
 			  <block type="amb82_mini_video_qrcode">		  
 			  </block>				  
 		</category>
-		<category id="france23" name="amb82_mini_video_neuralnetwork">				
-				  
-		</category>
 		<category id="france23" name="amb82_mini_ble_keyboard">				
 		  <block type="amb82_mini_blekeyboard">
 			<value name="blename">
@@ -2571,6 +2568,9 @@
 		  </block>		  
 		</category>
 		<category id="france23" name="amb82_mini_ble_mouse">				
+				  
+		</category>	
+		<category id="france23" name="amb82_mini_video_neuralnetwork">				
 				  
 		</category>		
 		<sep id="category_sep"></sep>
