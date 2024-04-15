@@ -66,7 +66,7 @@ Blockly.Arduino['amb82_mini_video_settings_rotation'] = function(block) {
 
 Blockly.Arduino['amb82_mini_video_settings_bitrate'] = function(block) {
 	var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
-	return 'config.setBitrate('+val+');\n';
+	return 'config.setBitrate('+val.replace(/"/g,'').replace(/'/g,"")+');\n';
 };
 
 Blockly.Arduino['amb82_mini_video_capture_sd'] = function(block) {
