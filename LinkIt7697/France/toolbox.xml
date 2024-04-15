@@ -2465,6 +2465,9 @@
 			  <block type="amb82_mini_rtsp">
 			  </block>
 		</category>
+		<category id="france23" name="amb82_mini_rtp">				
+				  
+		</category>		
 		<category id="france23" name="amb82_mini_mp4">				
 			  <block type="amb82_mini_mp4_initial">
 					<value name="fileduration">
@@ -2493,6 +2496,12 @@
 			  </block>				  
 		</category>
 		<category id="france23" name="amb82_mini_video_neuralnetwork">				
+				  
+		</category>
+		<category id="france23" name="amb82_mini_ble_keyboard">				
+				  
+		</category>
+		<category id="france23" name="amb82_mini_ble_mouse">				
 				  
 		</category>		
 		<sep id="category_sep"></sep>
