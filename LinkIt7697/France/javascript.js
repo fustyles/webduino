@@ -1,3 +1,119 @@
+Blockly.Arduino['amb82_mini_blekeyboard'] = function(block) {
+    var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_.define_esp32_blekeyboard_include = '#include "BLEHIDDevice.h"\n#include "BLEHIDKeyboard.h"\n#include "BLEDevice.h"\nBLEHIDKeyboard keyboardDev;\nBLEAdvertData advdata;\n';
+	Blockly.Arduino.definitions_.blekeyboard = '\n'+
+			'void blekeyboard(String type, uint16_t keycode1, uint16_t keycode2, uint16_t keycode3, int presstime, String characters) {\n'+
+			'  if(BLE.connected()) {\n'+			
+			'    if (type=="press") {\n'+
+			'      if (keycode1!=-1) keyboardDev.keyPress(keycode1);\n'+
+			'      if (keycode2!=-1) keyboardDev.keyPress(keycode2);\n'+
+			'      if (keycode3!=-1) keyboardDev.keyPress(keycode3);\n'+
+			'      delay(presstime);\n'+
+			'      keyboardDev.keyReleaseAll();\n'+
+			'    } else if (type=="press_norelease") {\n'+
+			'      if (keycode1!=-1) keyboardDev.keyPress(keycode1);\n'+
+			'    } else if (type=="release") {\n'+
+			'      if (keycode1!=-1) keyboardDev.keyRelease(keycode1);\n'+
+			'    } else if (type=="release_all") {\n'+
+			'      keyboardDev.keyReleaseAll();\n'+
+			'    } else if (type=="print") {\n'+
+			'      keyboardDev.keySequence(characters);\n'+
+			'    } else if (type=="write") {\n'+
+			'      keyboardDev.keyCharPress(char(keycode1));\n'+
+			'    } else if (type=="press_norelease_consumer") {\n'+
+			'      if (keycode1!=-1) keyboardDev.consumerPress(keycode1);\n'+
+			'    } else if (type=="release_consumer") {\n'+
+			'      keyboardDev.consumerRelease();\n'+			
+			'    }\n'+
+			'  }\n'+			
+			'}\n';
+
+	Blockly.Arduino.setups_.bt_serial = ''+
+			'advdata.addFlags();\n  '+
+			'advdata.addCompleteName('+blename+');\n  '+
+			'advdata.addAppearance(GAP_GATT_APPEARANCE_HUMAN_INTERFACE_DEVICE);\n  '+
+			'advdata.addCompleteServices(BLEUUID(HID_SERVICE_UUID));\n  '+
+			'BLEHIDDev.init();\n  '+
+			'BLE.init();\n  '+
+			'BLE.configAdvert()->setAdvData(advdata);\n  '+
+			'BLE.setDeviceName('+blename+');\n  '+
+			'BLE.setDeviceAppearance(GAP_GATT_APPEARANCE_HUMAN_INTERFACE_DEVICE);\n  '+
+			'BLE.configSecurity()->setPairable(true);\n  '+
+			'BLE.configSecurity()->setAuthFlags(GAP_AUTHEN_BIT_BONDING_FLAG);\n  '+
+			'BLE.configServer(3);\n  '+
+			'BLE.addService(BLEHIDDev.hidService());\n  '+
+			'BLE.addService(BLEHIDDev.battService());\n  '+
+			'BLE.addService(BLEHIDDev.devInfoService());\n  '+
+			'BLE.beginPeripheral();\n';
+			
+  code = '';
+  return code;
+};
+
+Blockly.Arduino['amb82_mini_blekeyboard_isConnected'] = function(block) {
+	var code = 'BLE.connected()';	
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['amb82_mini_blekeyboard_press'] = function(block) {	
+	var keycode1 = Blockly.Arduino.valueToCode(block, 'keycode1', Blockly.Arduino.ORDER_ATOMIC)||-1;
+	var keycode2 = Blockly.Arduino.valueToCode(block, 'keycode2', Blockly.Arduino.ORDER_ATOMIC)||-1;
+	var keycode3 = Blockly.Arduino.valueToCode(block, 'keycode3', Blockly.Arduino.ORDER_ATOMIC)||-1;
+	var presstime = Blockly.Arduino.valueToCode(block, 'presstime', Blockly.Arduino.ORDER_ATOMIC)||10;
+	
+	return 'blekeyboard("press", '+keycode1+', '+keycode2+', '+keycode3+', '+presstime+', "");\n';
+};
+
+Blockly.Arduino['amb82_mini_blekeyboard_press_norelease'] = function(block) {	
+	var keycode1 = Blockly.Arduino.valueToCode(block, 'keycode1', Blockly.Arduino.ORDER_ATOMIC)||-1;
+	
+	return 'blekeyboard("press_norelease", '+keycode1+', -1, -1, 0, "");\n';
+};
+
+Blockly.Arduino['amb82_mini_blekeyboard_release'] = function(block) {	
+	var keycode1 = Blockly.Arduino.valueToCode(block, 'keycode1', Blockly.Arduino.ORDER_ATOMIC)||-1;
+	
+	return 'blekeyboard("release", '+keycode1+', -1, -1, 0, "");\n';
+};
+
+Blockly.Arduino['amb82_mini_blekeyboard_release_all'] = function(block) {
+	return 'blekeyboard("release_all", -1, -1, -1, 0, "");\n';
+};
+
+Blockly.Arduino['amb82_mini_blekeyboard_print'] = function(block) {	
+	var characters = Blockly.Arduino.valueToCode(block, 'characters', Blockly.Arduino.ORDER_ATOMIC)||"";
+	
+	return 'blekeyboard("print", -1, -1, -1, -1, '+characters+');\n';
+};
+
+Blockly.Arduino['amb82_mini_blekeyboard_write'] = function(block) {	
+	var keycode = Blockly.Arduino.valueToCode(block, 'keycode', Blockly.Arduino.ORDER_ATOMIC)||-1;
+	
+	return 'blekeyboard("write", '+keycode+', -1, -1, -1, "");\n';
+};
+
+Blockly.Arduino['amb82_mini_blekeyboard_press_norelease_consumer'] = function(block) {	
+	var keycode = Blockly.Arduino.valueToCode(block, 'keycode', Blockly.Arduino.ORDER_ATOMIC)||-1;
+	
+	return 'blekeyboard("press_norelease_consumer", '+keycode+', -1, -1, 0, "");\n';
+};
+
+Blockly.Arduino['amb82_mini_blekeyboard_release_consumer'] = function(block) {
+	return 'blekeyboard("release_consumer", -1, -1, -1, 0, "");\n';
+};
+
+Blockly.Arduino['amb82_mini_blekeyboard_keycode'] = function(block) {	
+	var keycode = block.getFieldValue('keycode');
+	
+	return [keycode, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['amb82_mini_blekeyboard_keycode_consumer'] = function(block) {	
+	var keycode = block.getFieldValue('keycode');
+	
+	return [keycode, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['amb82_mini_rtp_audio'] = function(block) {
 	
 	Blockly.Arduino.definitions_.define_custom_command = "";

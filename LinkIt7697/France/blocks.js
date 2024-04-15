@@ -1,3 +1,394 @@
+Blockly.Blocks['amb82_mini_blekeyboard'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])		
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_INITIAL_SHOW"]);
+    this.appendValueInput("blename")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_BLUETOOTH_NAME_SHOW);
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(110);
+  }
+};
+
+Blockly.Blocks['amb82_mini_blekeyboard_isConnected'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])	
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_ISCONNECTED_SHOW"]);		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(110);
+  }
+};
+
+Blockly.Blocks['amb82_mini_blekeyboard_press'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])		
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_PRESS_SHOW"]);		
+    this.appendValueInput("keycode1")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"]+"1");
+    this.appendValueInput("keycode2")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"]+"2");	
+    this.appendValueInput("keycode3")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"]+"3");	
+    this.appendValueInput("presstime")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_PRESSTIME_SHOW"]);			
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(110);
+  }
+};
+
+Blockly.Blocks['amb82_mini_blekeyboard_press_norelease'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])		
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_PRESS_SHOW"]);		
+    this.appendValueInput("keycode1")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"]);	
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(110);
+  }
+};
+
+Blockly.Blocks['amb82_mini_blekeyboard_release'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])		
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_RELEASE_SHOW"]);		
+    this.appendValueInput("keycode1")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"]);		
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(110);
+  }
+};
+
+Blockly.Blocks['amb82_mini_blekeyboard_release_all'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])		
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_RELEASE_ALL_SHOW"]);		
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(110);
+  }
+};
+
+Blockly.Blocks['amb82_mini_blekeyboard_print'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])		
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_PRINT_SHOW"]);		
+    this.appendValueInput("characters")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_CHARACTERS_SHOW"]);			
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(110);
+  }
+};
+
+Blockly.Blocks['amb82_mini_blekeyboard_write'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])		
+        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_WRITE_SHOW"]);		
+    this.appendValueInput("keycode")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"]);	
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(110);
+  }
+};
+
+Blockly.Blocks['amb82_mini_blekeyboard_press_norelease_consumer'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])		
+        .appendField(Blockly.Msg["AMB82_MINI_BLEKEYBOARD_PRESS_CONSUMER_SHOW"]);		
+    this.appendValueInput("keycode")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"]);	
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(110);
+  }
+};
+
+Blockly.Blocks['amb82_mini_blekeyboard_release_consumer'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])		
+        .appendField(Blockly.Msg["AMB82_MINI_BLEKEYBOARD_RELEASE_CONSUMER_SHOW"]);		
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(110);
+  }
+};
+
+Blockly.Blocks['amb82_mini_blekeyboard_keycode'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([
+			["NONE", "0x00"],
+			["A", "0x04"],
+			["B", "0x05"],
+			["C", "0x06"],
+			["D", "0x07"],
+			["E", "0x08"],
+			["F", "0x09"],
+			["G", "0x0A"],
+			["H", "0x0B"],
+			["I", "0x0C"],
+			["J", "0x0D"],
+			["K", "0x0E"],
+			["L", "0x0F"],
+			["M", "0x10"],
+			["N", "0x11"],
+			["O", "0x12"],
+			["P", "0x13"],
+			["Q", "0x14"],
+			["R", "0x15"],
+			["S", "0x16"],
+			["T", "0x17"],
+			["U", "0x18"],
+			["V", "0x19"],
+			["W", "0x1A"],
+			["X", "0x1B"],
+			["Y", "0x1C"],
+			["Z", "0x1D"],
+			["1", "0x1E"],
+			["2", "0x1F"],
+			["3", "0x20"],
+			["4", "0x21"],
+			["5", "0x22"],
+			["6", "0x23"],
+			["7", "0x24"],
+			["8", "0x25"],
+			["9", "0x26"],
+			["0", "0x27"],
+			["ENTER", "0x28"],
+			["ESCAPE", "0x29"],
+			["BACKSPACE", "0x2A"],
+			["TAB", "0x2B"],
+			["SPACE", "0x2C"],
+			["MINUS", "0x2D"],
+			["EQUAL", "0x2E"],
+			["BRACKET_LEFT", "0x2F"],
+			["BRACKET_RIGHT", "0x30"],
+			["BACKSLASH", "0x31"],
+			["EUROPE_1", "0x32"],
+			["SEMICOLON", "0x33"],
+			["APOSTROPHE", "0x34"],
+			["GRAVE", "0x35"],
+			["COMMA", "0x36"],
+			["PERIOD", "0x37"],
+			["SLASH", "0x38"],
+			["CAPS_LOCK", "0x39"],
+			["F1", "0x3A"],
+			["F2", "0x3B"],
+			["F3", "0x3C"],
+			["F4", "0x3D"],
+			["F5", "0x3E"],
+			["F6", "0x3F"],
+			["F7", "0x40"],
+			["F8", "0x41"],
+			["F9", "0x42"],
+			["F10", "0x43"],
+			["F11", "0x44"],
+			["F12", "0x45"],
+			["PRINT_SCREEN", "0x46"],
+			["SCROLL_LOCK", "0x47"],
+			["PAUSE", "0x48"],
+			["INSERT", "0x49"],
+			["HOME", "0x4A"],
+			["PAGE_UP", "0x4B"],
+			["DELETE", "0x4C"],
+			["END", "0x4D"],
+			["PAGE_DOWN", "0x4E"],
+			["ARROW_RIGHT", "0x4F"],
+			["ARROW_LEFT", "0x50"],
+			["ARROW_DOWN", "0x51"],
+			["ARROW_UP", " 0x52"],
+			["NUM_LOCK", " 0x53"],
+			["KEYPAD_DIVIDE", "0x54"],
+			["KEYPAD_MULTIPLY", "0x55"],
+			["KEYPAD_SUBTRACT", "0x56"],
+			["KEYPAD_ADD", "0x57"],
+			["KEYPAD_ENTER", "0x58"],
+			["KEYPAD_1", "0x59"],
+			["KEYPAD_2", "0x5A"],
+			["KEYPAD_3", "0x5B"],
+			["KEYPAD_4", "0x5C"],
+			["KEYPAD_5", "0x5D"],
+			["KEYPAD_6", "0x5E"],
+			["KEYPAD_7", "0x5F"],
+			["KEYPAD_8", "0x60"],
+			["KEYPAD_9", "0x61"],
+			["KEYPAD_0", "0x62"],
+			["KEYPAD_DECIMAL", "0x63"],
+			["EUROPE_2", "0x64"],
+			["APPLICATION", "0x65"],
+			["POWER", "0x66"],
+			["KEYPAD_EQUAL", "0x67"],
+			["F13", "0x68"],
+			["F14", "0x69"],
+			["F15", "0x6A"],
+			["F16", "0x6B"],
+			["F17", "0x6C"],
+			["F18", "0x6D"],
+			["F19", "0x6E"],
+			["F20", "0x6F"],
+			["F21", "0x70"],
+			["F22", "0x71"],
+			["F23", "0x72"],
+			["F24", "0x73"],
+			["EXECUTE", "0x74"],
+			["HELP", "0x75"],
+			["MENU", "0x76"],
+			["SELECT", "0x77"],
+			["STOP", "0x78"],
+			["AGAIN", "0x79"],
+			["UNDO", "0x7A"],
+			["CUT", "0x7B"],
+			["COPY", "0x7C"],
+			["PASTE", "0x7D"],
+			["FIND", "0x7E"],
+			["MUTE", "0x7F"],
+			["VOLUME_UP", "0x80"],
+			["VOLUME_DOWN", "0x81"],
+			["LOCKING_CAPS_LOCK", "0x82"],
+			["LOCKING_NUM_LOCK", "0x83"],
+			["LOCKING_SCROLL_LOCK", "0x84"],
+			["KEYPAD_COMMA", "0x85"],
+			["KEYPAD_EQUAL_SIGN", "0x86"],
+			["KANJI1", "0x87"],
+			["KANJI2", "0x88"],
+			["KANJI3", "0x89"],
+			["KANJI4", "0x8A"],
+			["KANJI5", "0x8B"],
+			["KANJI6", "0x8C"],
+			["KANJI7", "0x8D"],
+			["KANJI8", "0x8E"],
+			["KANJI9", "0x8F"],
+			["LANG1", "0x90"],
+			["LANG2", "0x91"],
+			["LANG3", "0x92"],
+			["LANG4", "0x93"],
+			["LANG5", "0x94"],
+			["LANG6", "0x95"],
+			["LANG7", "0x96"],
+			["LANG8", "0x97"],
+			["LANG9", "0x98"],
+			["ALTERNATE_ERASE", "0x99"],
+			["SYSREQ_ATTENTION", "0x9A"],
+			["CANCEL", "0x9B"],
+			["CLEAR", "0x9C"],
+			["PRIOR", "0x9D"],
+			["RETURN", "0x9E"],
+			["SEPARATOR", "0x9F"],
+			["OUT", "0xA0"],
+			["OPER", "0xA1"],
+			["CLEAR_AGAINv", "0xA2"],
+			["CRSEL_PROPS", "0xA3"],
+			["EXSEL", "0xA4"],
+			["CONTROL_LEFT", "0xE0"],
+			["SHIFT_LEFT", "0xE1"],
+			["ALT_LEFT", "0xE2"],
+			["GUI_LEFT", "0xE3"],
+			["CONTROL_RIGHT", "0xE4"],
+			["SHIFT_RIGHT", "0xE5"],
+			["ALT_RIGHT", "0xE6"],
+			["GUI_RIGHT", "0xE7"]
+		]), "keycode");	
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(150);
+  }
+};
+
+Blockly.Blocks['amb82_mini_blekeyboard_keycode_consumer'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([
+			["CONTROL", "0x0001"],
+			["POWER", "0x0030"],
+			["RESET", "0x0031"],
+			["SLEEP", "0x0032"],
+			["BRIGHTNESS_INCREMENT", "0x006F"],
+			["BRIGHTNESS_DECREMENT", "0x0070"],
+			["WIRELESS_RADIO_CONTROLS", "0x000C"],
+			["WIRELESS_RADIO_BUTTONS", "0x00C6"],
+			["WIRELESS_RADIO_LED", "0x00C7"],
+			["WIRELESS_RADIO_SLIDER_SWITCH", "0x00C8"],
+			["PLAY_PAUSE", "0x00CD"],
+			["SCAN_NEXT", "0x00B5"],
+			["SCAN_PREVIOUS", "0x00B6"],
+			["STOP", "0x00B7"],
+			["VOLUME", "0x00E0"],
+			["MUTE", "0x00E2"],
+			["BASS", "0x00E3"],
+			["TREBLE", "0x00E4"],
+			["BASS_BOOST", "0x00E5"],
+			["VOLUME_INCREMENT", "0x00E9"],
+			["VOLUME_DECREMENT", "0x00EA"],
+			["BASS_INCREMENT", "0x0152"],
+			["BASS_DECREMENT", "0x0153"],
+			["TREBLE_INCREMENT", "0x0154"],
+			["TREBLE_DECREMENT", "0x0155"],
+			["AL_CONSUMER_CONTROL_CONFIGURATION", "0x0183"],
+			["AL_EMAIL_READER", "0x018A"],
+			["AL_CALCULATOR", "0x0192"],
+			["AL_LOCAL_BROWSER", "0x0194"],
+			["AC_SEARCH", "0x0221"],
+			["AC_HOME", "0x0223"],
+			["AC_BACK", "0x0224"],
+			["AC_FORWARD", "0x0225"],
+			["AC_STOP", "0x0226"],
+			["AC_REFRESH", "0x0227"],
+			["AC_BOOKMARKS", "0x022A"],
+			["AC_PAN", "0x0238"]
+		]), "keycode");	
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(150);
+  }
+};
+
+
+
+
 Blockly.Blocks['amb82_mini_rtp_audio'] = {
   init: function() {
     this.appendDummyInput()
