@@ -2042,19 +2042,6 @@
 	
 	<category id="france21" name="amb82_mini">
 		<category id="france7" name="servermodule"> 
-			  <block type="amb82_mini_initial">
-				<field name="framesize">VIDEO_VGA</field>
-				<value name="width">
-				  <block type="math_number">
-					<field name="NUM">640</field>
-				  </block>
-				</value> 
-				<value name="height">
-				  <block type="math_number">
-					<field name="NUM">480</field>
-				  </block>
-				</value> 				
-			  </block>
 			  <block type="amb82_mini_myfirmata">
 				<field name="baudrate">115200</field>
 				<field name="framesize">VIDEO_VGA</field>
