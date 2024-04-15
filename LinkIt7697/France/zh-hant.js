@@ -85,10 +85,10 @@ Blockly.Msg["WIRE_CLOCK"] = "匯流排計時器頻率";
 
 Blockly.Msg["AMB82_MINI"] = "AMB82-MINI";
 Blockly.Msg["AMB82_MINI_INITIAL"] = "初始化";
-Blockly.Msg["AMB82_MINI_LINENOTIFY"] = "截圖上傳Line通知";
+Blockly.Msg["AMB82_MINI_LINENOTIFY"] = "擷取影像上傳Line通知";
 Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_DEFAULT"] = "預設";
 Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"] = "自訂";
-Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"] = "截圖上傳Google雲端硬碟";
+Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"] = "擷取影像上傳Google雲端硬碟";
 Blockly.Msg["AMB82_MINI_STILL_URL"] = "張流網址";
 Blockly.Msg["AMB82_MINI_STREAM_URL"] = "串流網址";
 Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP初始化";
