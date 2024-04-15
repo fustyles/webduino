@@ -1,7 +1,34 @@
+Blockly.Arduino['amb82_mini_rtp_audio'] = function(block) {
+	
+	Blockly.Arduino.definitions_.define_custom_command = "";
+	Blockly.Arduino.setups_.write_peri_reg = "";
+	
+
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "AudioStream.h"\n#include "AudioDecoder.h"\n#include "RTP.h"\nAAD decoder;\n#define amb82_CHANNEL 0\nAudioSetting configA(amb82_CHANNEL);\nAudio audio;\nRTP rtp;\nStreamIO audioStreamer1(1, 1);\nStreamIO audioStreamer2(1, 1);\n';
+
+	Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
+										'audio.configAudio(configA);\n  '+
+										'audio.begin();\n  '+
+										'decoder.configAudio(configA);\n  '+
+										'decoder.begin();\n  '+
+										'rtp.begin();\n  '+
+										'audioStreamer1.registerInput(rtp);\n  '+
+										'audioStreamer1.registerOutput(decoder);\n  '+
+										'audioStreamer1.setStackSize();\n  '+
+										'audioStreamer1.begin();\n  '+
+										'audioStreamer2.registerInput(decoder);\n  '+
+										'audioStreamer2.registerOutput(audio);\n  '+
+										'audioStreamer2.begin();';						
+								
+	return '';
+};
+
+
+
 Blockly.Arduino['amb82_mini_video_qrcode'] = function(block) {
 
-	Blockly.Arduino.definitions_.define_custom_command = '';
-	Blockly.Arduino.setups_.write_peri_reg="";
+	Blockly.Arduino.definitions_.define_custom_command = "";
+	Blockly.Arduino.setups_.write_peri_reg = "";
 	
 	Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#undef DEFAULT\n#include "VideoStream.h"\n#include "QRCodeScanner.h"\n#define amb82_CHANNEL 0\nVideoSetting config(amb82_CHANNEL);\nQRCodeScanner Scanner;\n';
 
@@ -30,8 +57,8 @@ Blockly.Arduino['amb82_mini_video_initial'] = function(block) {
 	if (resolution=="VIDEO_CUSTOM")
 		resolution = width +", "+height;
 
-	Blockly.Arduino.definitions_.define_custom_command = '';
-	Blockly.Arduino.setups_.write_peri_reg="";
+	Blockly.Arduino.definitions_.define_custom_command = "";
+	Blockly.Arduino.setups_.write_peri_reg = "";
 	
 	if (resolution!=""){
 		Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#include "VideoStream.h"\n#define amb82_CHANNEL 0\nVideoSetting config('+resolution+', CAM_FPS, VIDEO_JPEG, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
@@ -268,8 +295,8 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
 	var fileduration = Blockly.Arduino.valueToCode(block, 'fileduration', Blockly.Arduino.ORDER_ATOMIC);
 	var filecount = Blockly.Arduino.valueToCode(block, 'filecount', Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_.define_custom_command = '';
-	Blockly.Arduino.setups_.write_peri_reg="";
+	Blockly.Arduino.definitions_.define_custom_command = "";
+	Blockly.Arduino.setups_.write_peri_reg = "";
 	
 	if (type=="VideoOnly") {
 		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\nMP4Recording mp4;\nStreamIO videoStreamer(1, 1);';
@@ -367,8 +394,8 @@ Blockly.Arduino['amb82_mini_rtsp'] = function(block) {
 	var type = block.getFieldValue('type');
 	var channel = block.getFieldValue('channel');
 	var audio = block.getFieldValue('audio');
-	Blockly.Arduino.definitions_.define_custom_command = '';
-	Blockly.Arduino.setups_.write_peri_reg="";
+	Blockly.Arduino.definitions_.define_custom_command = "";
+	Blockly.Arduino.setups_.write_peri_reg = "";
 	
 	if (type=="VideoOnly") {
 		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);';
@@ -566,7 +593,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\nchar ssid[] = '+ssid+';\nchar pass[] = '+pass+';';
 
   Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
-  Blockly.Arduino.definitions_.define_custom_command = '';
+  Blockly.Arduino.definitions_.define_custom_command = "";
 	
   Blockly.Arduino.definitions_.ExecuteCommand = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\nboolean cameraState = false;\nWiFiServer server('+port+');\n';
 
@@ -618,7 +645,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'}\n'+ 
 			'}\n';
 	
-	Blockly.Arduino.setups_.write_peri_reg="";
+	Blockly.Arduino.setups_.write_peri_reg = "";
 	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
 	Blockly.Arduino.setups_.setup_cam_initial='initWiFi();\n';
 	
@@ -2806,7 +2833,7 @@ Blockly.Arduino['linkit7697_webbluetooth_uuid'] = function(block) {
 Blockly.Arduino['linkit7697_webbluetooth_listen'] = function(block) { 
 	var statements_do = Blockly.Arduino.statementToCode(block, 'do_')||"";
 
-	Blockly.Arduino.definitions_.define_custom_command = '';
+	Blockly.Arduino.definitions_.define_custom_command = "";
 	Blockly.Arduino.definitions_['ExecuteCommand'] = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
 	
 	Blockly.Arduino.definitions_['ExecuteCommand'] +='void ExecuteCommand() {\n'
@@ -2953,7 +2980,7 @@ Blockly.Arduino['esp32_webbluetooth_uuid'] = function(block) {
 												 +'bool deviceConnected = false;\n'
 												 +'String bleData = "";\n';
 	
-	Blockly.Arduino.definitions_.define_custom_command = '';
+	Blockly.Arduino.definitions_.define_custom_command = "";
 	Blockly.Arduino.definitions_['ExecuteCommand'] += 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
 												 
 	Blockly.Arduino.definitions_['ExecuteCommand'] +='void ExecuteCommand() {\n'
@@ -5898,7 +5925,7 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
 			'    }\n'+
 			'  }\n';
 			
-	Blockly.Arduino.definitions_.define_custom_command = '';
+	Blockly.Arduino.definitions_.define_custom_command = "";
 	
 	Blockly.Arduino.definitions_.stream_function = ''+
 			'  static esp_err_t bmp_handler(httpd_req_t *req) {\n'+
@@ -6538,7 +6565,7 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
   else
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 
-  Blockly.Arduino.definitions_.define_custom_command = '';
+  Blockly.Arduino.definitions_.define_custom_command = "";
 	
   Blockly.Arduino.definitions_.ExecuteCommand = 'void executeCommand() {\n'+
 			'  //Serial.println("");\n'+
@@ -10978,7 +11005,7 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
   Blockly.Arduino.definitions_.define_linkit_wifi_appass='const char* appassword = '+pass_ap+';';   
   Blockly.Arduino.definitions_.define_linkit_wifi_server= 'WiFiServer server(80);\n';
 
-  Blockly.Arduino.definitions_.define_custom_command = '';
+  Blockly.Arduino.definitions_.define_custom_command = "";
 	
   Blockly.Arduino.definitions_.ExecuteCommand = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
 
@@ -11784,7 +11811,7 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
   Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = '+pass+';';
   Blockly.Arduino.definitions_.define_linkit_wifi_server= 'WiFiServer server(80);';
   
-  Blockly.Arduino.definitions_.define_custom_command = '';
+  Blockly.Arduino.definitions_.define_custom_command = "";
 
   Blockly.Arduino.definitions_.ExecuteCommand = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
   
@@ -17142,7 +17169,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
   else
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 
-  Blockly.Arduino.definitions_.define_custom_command = '';
+  Blockly.Arduino.definitions_.define_custom_command = "";
 	
   if (type=="still") {
 	Blockly.Arduino.definitions_.ExecuteCommand = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
@@ -17650,7 +17677,7 @@ Blockly.Arduino['esp32_cam_stream_only_myfirmata'] = function(block) {
 
   
   Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
-  Blockly.Arduino.definitions_.define_custom_command = '';
+  Blockly.Arduino.definitions_.define_custom_command = "";
 	
   Blockly.Arduino.definitions_.ExecuteCommand = 'boolean cameraState = false;\nWiFiServer server81(81);\n';
 	
@@ -17892,7 +17919,7 @@ Blockly.Arduino['esp32_cam_stream_myfirmata'] = function(block) {
 																'#define HREF_GPIO_NUM     23\n'+
 																'#define PCLK_GPIO_NUM     22\n';
 
-  	Blockly.Arduino.definitions_.define_custom_command = '';
+  	Blockly.Arduino.definitions_.define_custom_command = "";
 	
 	Blockly.Arduino.definitions_.ExecuteCommand = 'String Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
   

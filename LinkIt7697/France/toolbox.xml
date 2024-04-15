@@ -2459,7 +2459,8 @@
 			  </block>
 		</category>
 		<category id="france23" name="amb82_mini_rtp">				
-				  
+			  <block type="amb82_mini_rtp_audio">
+			  </block>
 		</category>		
 		<category id="france23" name="amb82_mini_mp4">				
 			  <block type="amb82_mini_mp4_initial">

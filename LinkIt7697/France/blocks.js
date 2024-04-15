@@ -1,3 +1,15 @@
+Blockly.Blocks['amb82_mini_rtp_audio'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])	
+        .appendField(Blockly.Msg["AMB82_MINI_RTP_AUDIO"]);			
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_14"]);			
+  }
+};
+
 Blockly.Blocks['amb82_mini_video_qrcode'] = {
   init: function() {
     this.appendDummyInput()

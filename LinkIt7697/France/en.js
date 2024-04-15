@@ -133,6 +133,7 @@ Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_VALUE"] = "Value";
 Blockly.Msg["AMB82_MINI_VIDEO_QRCODE"] = "Scan QR code";
 Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"] = "Rotate angle";
 Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_BITRATE"] = "Bit rate";
+Blockly.Msg["AMB82_MINI_RTP_AUDIO"] = "RTP audio stream";
 
 Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun Encode motor";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_ENCODERPULSE"] = "Pulse";
