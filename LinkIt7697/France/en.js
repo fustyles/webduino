@@ -131,7 +131,7 @@ Blockly.Msg["AMB82_MINI_VIDEO_SETDAYNIGHTMODE"] = "Set DayNightMode(0~1)";
 Blockly.Msg["AMB82_MINI_VIDEO_RESET"] = "Reset";
 Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_VALUE"] = "Value";
 Blockly.Msg["AMB82_MINI_VIDEO_QRCODE"] = "Scan QR code";
-Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"] = "Video rotate angle";
+Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"] = "Rotate angle";
 Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_BITRATE"] = "Bit rate";
 
 Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun Encode motor";
