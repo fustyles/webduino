@@ -43,8 +43,8 @@ Blockly.Blocks['amb82_mini_video_initial'] = {
 	.appendField(new Blockly.FieldDropdown([
 		["0", "0"],
 		["90", "1"],
-		["270", "2"],
-		["180", "3"]
+		["180", "3"],		
+		["270", "2"]
 	]), "rotation");	  
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
