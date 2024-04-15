@@ -24,6 +24,7 @@ Blockly.Arduino['amb82_mini_video_qrcode'] = function(block) {
 Blockly.Arduino['amb82_mini_video_initial'] = function(block) {
 	
 	var resolution = block.getFieldValue('resolution');
+	var rotation = block.getFieldValue('rotation');
 	var width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC)||640;
 	var height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC)||480;
 	if (resolution=="VIDEO_CUSTOM")
@@ -35,7 +36,7 @@ Blockly.Arduino['amb82_mini_video_initial'] = function(block) {
 	if (resolution!=""){
 		Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#include "VideoStream.h"\n#define amb82_CHANNEL 0\nVideoSetting config('+resolution+', CAM_FPS, VIDEO_JPEG, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
-		Blockly.Arduino.setups_['amb82_mini_video_initial'] =''+   
+		Blockly.Arduino.setups_['amb82_mini_video_initial'] ='config.setRotation('+rotation+');\n  '+   
 											'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
 											'Camera.videoInit();\n  '+
 											'Camera.channelBegin(amb82_CHANNEL);\n  '+
@@ -43,7 +44,7 @@ Blockly.Arduino['amb82_mini_video_initial'] = function(block) {
 	} else {
 		Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#include "VideoStream.h"\n#define amb82_CHANNEL 0\nVideoSetting config(amb82_CHANNEL);';
 
-		Blockly.Arduino.setups_['amb82_mini_video_initial'] = 'Camera.configVideoChannel(amb82_CHANNEL, config);\n  Camera.videoInit();';
+		Blockly.Arduino.setups_['amb82_mini_video_initial'] = 'config.setRotation('+rotation+');\n  Camera.configVideoChannel(amb82_CHANNEL, config);\n  Camera.videoInit();';
 	}
 											
 	return '';
@@ -57,11 +58,6 @@ Blockly.Arduino['amb82_mini_video_settings'] = function(block) {
 		return 'configCam.'+setting+'();\n';
 	else
 		return 'configCam.'+setting+'('+val+');\n';
-};
-
-Blockly.Arduino['amb82_mini_video_settings_rotation'] = function(block) {
-	var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
-	return 'config.setRotation('+val+');\n';
 };
 
 Blockly.Arduino['amb82_mini_video_settings_bitrate'] = function(block) {
