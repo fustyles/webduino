@@ -112,6 +112,9 @@
 <category><name>blemousemodule</name><replace>ESP32 Mouse</replace></category>
 <category><name>TinyGPS</name><replace>TinyGPS</replace></category>
 <category><name>amb82_mini_rtsp</name><replace>RTSP stream</replace></category>
+<category><name>amb82_mini_rtp</name><replace>RTP stream</replace></category>
+<category><name>amb82_mini_ble_keyboard</name><replace>BLE Keyboard</replace></category>
+<category><name>amb82_mini_ble_mouse</name><replace>BLE Mouse</replace></category>
 <category><name>amb82_mini_mp4</name><replace>Record MP4</replace></category>
 <category><name>amb82_mini_video</name><replace>Video</replace></category>
 <category><name>amb82_mini_video_qrcode</name><replace>QR code</replace></category>
