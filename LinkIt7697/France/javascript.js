@@ -2405,7 +2405,7 @@ Blockly.Arduino['openai_chat_initial'] = function (block) {
   
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="realtek")
+	else if (selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -2505,7 +2505,7 @@ Blockly.Arduino['openai_text_request'] = function (block) {
 														
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="realtek")
+	else if (selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -4834,7 +4834,7 @@ Blockly.Arduino['esp32_telegrambot_getupdates'] = function(block) {
 			'  String getAll="", getBody = "";\n'+
 			'  JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_.telegrambot_getUpdates +='  DynamicJsonDocument doc(1024);\n';
 	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_.telegrambot_getUpdates +='  DynamicJsonDocument doc(352);\n';
@@ -4849,7 +4849,7 @@ Blockly.Arduino.definitions_.telegrambot_getUpdates +='  String result;\n'+
 			
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_.telegrambot_getUpdates += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="realtek")
+	else if (selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_.telegrambot_getUpdates += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -4925,7 +4925,7 @@ Blockly.Arduino['esp32_telegrambot_spreadsheet_sendcell'] = function(block){
 			
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_.telegram_Spreadsheet_send += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="realtek")
+	else if (selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_.telegram_Spreadsheet_send += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -5031,7 +5031,7 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 			
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_.Spreadsheet_insert += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="realtek")
+	else if (selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_.Spreadsheet_insert += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -5134,7 +5134,7 @@ Blockly.Arduino['controls_spreadsheet_function'] = function(block){
 			
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_.Spreadsheet_insert += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="realtek")
+	else if (selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_.Spreadsheet_insert += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -5229,7 +5229,7 @@ Blockly.Arduino['controls_spreadsheet_get'] = function(block){
 			
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_.Spreadsheet_get += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="realtek")
+	else if (selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_.Spreadsheet_get += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -5295,7 +5295,7 @@ Blockly.Arduino['controls_spreadsheet_getcell'] = function(block){
 			'    if (spreadsheetData!="") {\n'+
 			'    	JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek") {
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI") {
 		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(1024);\n';
 	} else if ((selectBoardType()=="LinkIt")) {
 		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(352);\n';										
@@ -5325,7 +5325,7 @@ Blockly.Arduino['controls_spreadsheet_getcell_number'] = function(block){
 			'    if (spreadsheetData!="") {\n'+
 			'    	JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_.Spreadsheet_getcell_number +='  DynamicJsonDocument doc(1024);\n';
 	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_.Spreadsheet_getcell_number +='  DynamicJsonDocument doc(352);\n';
@@ -5372,7 +5372,7 @@ Blockly.Arduino['controls_spreadsheet_query'] = function(block){
 			
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_.Spreadsheet_get += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="realtek")
+	else if (selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_.Spreadsheet_get += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -5472,7 +5472,7 @@ Blockly.Arduino['controls_spreadsheet_getcell_query'] = function(block){
 			'    if (spreadsheetQueryData!="") {\n'+
 			'    	JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(1024);\n';
 	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(352);\n';
@@ -5501,7 +5501,7 @@ Blockly.Arduino['controls_spreadsheet_getcell_query_number'] = function(block){
 			'    if (spreadsheetQueryData!="") {\n'+
 			'    	JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_.Spreadsheet_getcell_query_number +='  DynamicJsonDocument doc(1024);\n';
 	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_.Spreadsheet_getcell_query_number +='  DynamicJsonDocument doc(256);\n';
@@ -7341,7 +7341,7 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 			'  String getAll="", getBody = "";\n'+
 			'  JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(1024);\n';
 	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(352);\n';
@@ -7599,7 +7599,7 @@ Blockly.Arduino['esp32cam_telegrambot'] = function(block) {
 			'  String getAll="", getBody = "";\n'+
 			'  JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(1024);\n';
 	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(352);\n';
@@ -7741,7 +7741,7 @@ Blockly.Arduino['esp32_telegrambot_sendmessage_custom'] = function(block) {
 		
 		if (selectBoardType()=="LinkIt")
 			Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-		else if (selectBoardType()=="realtek")
+		else if (selectBoardType()=="AMB82-MINI")
 			Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  WiFiSSLClient client_tcp;\n';
 		else {
 			Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -7839,7 +7839,7 @@ Blockly.Arduino['esp32_telegrambot_sendlink_custom'] = function(block) {
 		
 		if (selectBoardType()=="LinkIt")
 			Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-		else if (selectBoardType()=="realtek")
+		else if (selectBoardType()=="AMB82-MINI")
 			Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  WiFiSSLClient client_tcp;\n';
 		else {
 			Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -7929,7 +7929,7 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['opendataAirQuality'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="realtek")
+	else if (selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_['opendataAirQuality'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -7975,7 +7975,7 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'    client_tcp.stop();\n'+
 			'    JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_['opendataAirQuality'] +='  DynamicJsonDocument doc(1024);\n';
 	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_['opendataAirQuality'] +='  DynamicJsonDocument doc(352);\n';
@@ -8050,7 +8050,7 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 			
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['opendataWeather'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="realtek")
+	else if (selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_['opendataWeather'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -8106,7 +8106,7 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 			'    Weather2436[0] = location;\n'+
 			'    JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_['opendataWeather'] +='  DynamicJsonDocument doc(1024);\n';
 	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_['opendataWeather'] +='  DynamicJsonDocument doc(352);\n';
@@ -9928,7 +9928,7 @@ Blockly.Arduino['tcp_https_esp32'] = function(block) {
 											
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['tcp_https_esp32'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="realtek")
+	else if (selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_['tcp_https_esp32'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -10216,7 +10216,7 @@ Blockly.Arduino['linenotify_all'] = function(block) {
 											
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['linenotify'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="realtek")
+	else if (selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_['linenotify'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -10296,7 +10296,7 @@ Blockly.Arduino['linebot_all'] = function(block) {
 											
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['linebot'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="realtek")
+	else if (selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_['linebot'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -10563,7 +10563,7 @@ Blockly.Arduino['thingspeak_update_noreturn'] = function (block) {
 											
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="realtek")
+	else if (selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -10636,7 +10636,7 @@ Blockly.Arduino['thingspeak_update'] = function (block) {
 											'  WiFiClientSecure client_tcp;\n';
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="realtek")
+	else if (selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -10708,7 +10708,7 @@ Blockly.Arduino['thingspeak_read1'] = function (block) {
 											
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="realtek")
+	else if (selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -10763,7 +10763,7 @@ Blockly.Arduino['thingspeak_read2'] = function (block) {
 											
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="realtek")
+	else if (selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -10820,7 +10820,7 @@ Blockly.Arduino['thingspeak_read3'] = function (block) {
 											
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="realtek")
+	else if (selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiSSLClient client_tcp;\n';
 	else {
 		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
@@ -10904,7 +10904,7 @@ Blockly.Arduino['thingspeak_field'] = function(block) {
  											'      fr = e+1;\n'+
  											'  }\n';
 											
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="realtek")
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_['ThingspeakJson_field'] +='  DynamicJsonDocument doc(1024);\n';
 	else if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['ThingspeakJson_field'] +='  DynamicJsonDocument doc(352);\n';
