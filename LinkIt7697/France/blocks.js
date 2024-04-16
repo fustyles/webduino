@@ -251,11 +251,10 @@ Blockly.Blocks['amb82_mini_blekeyboard_print'] = {
   init: function() {
 	this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI"])		
-        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_PRINT_SHOW"]);		
+        .appendField(Blockly.Msg["AMB82_MINI_BLEKEYBOARD_PRINT_SHOW"]);		
     this.appendValueInput("characters")
         .setCheck("String")
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_CHARACTERS_SHOW"]);			
+		.setAlign(Blockly.ALIGN_RIGHT);			
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -286,8 +285,7 @@ Blockly.Blocks['amb82_mini_blekeyboard_press_norelease_consumer'] = {
         .appendField(Blockly.Msg["AMB82_MINI_BLEKEYBOARD_PRESS_CONSUMER_SHOW"]);		
     this.appendValueInput("keycode")
         .setCheck("Number")
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"]);	
+		.setAlign(Blockly.ALIGN_RIGHT);	
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);

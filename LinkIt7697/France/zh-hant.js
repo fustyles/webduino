@@ -136,6 +136,7 @@ Blockly.Msg["AMB82_MINI_RTP_AUDIO"] = "RTP音訊串流";
 Blockly.Msg["AMB82_MINI_BLEKEYBOARD_SHOW"] = "藍芽鍵盤";
 Blockly.Msg["AMB82_MINI_BLEKEYBOARD_PRESS_CONSUMER_SHOW"] = "按壓 特殊鍵碼";
 Blockly.Msg["AMB82_MINI_BLEKEYBOARD_RELEASE_CONSUMER_SHOW"] = "釋放 特殊鍵碼";
+Blockly.Msg["AMB82_MINI_BLEKEYBOARD_PRINT_SHOW"] = "印出字串";
 Blockly.Msg["AMB82_MINI_BLEKEYBOARD_WRITE_SHOW"] = "寫入字元";
 Blockly.Msg["AMB82_MINI_BLEMOUSE"] = "藍芽滑鼠";
 
