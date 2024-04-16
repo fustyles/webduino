@@ -137,6 +137,7 @@ Blockly.Msg["AMB82_MINI_RTP_AUDIO"] = "RTP audio stream";
 Blockly.Msg["AMB82_MINI_BLEKEYBOARD_SHOW"] = "BLE Keyboard";
 Blockly.Msg["AMB82_MINI_BLEKEYBOARD_PRESS_CONSUMER_SHOW"] = "Press consumer keycode";
 Blockly.Msg["AMB82_MINI_BLEKEYBOARD_RELEASE_CONSUMER_SHOW"] = "Release consumer keycode";
+Blockly.Msg["AMB82_MINI_BLEKEYBOARD_WRITE_SHOW"] = "Write character";
 Blockly.Msg["AMB82_MINI_BLEMOUSE"] = "BLE Mouse";
 
 Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun Encode motor";

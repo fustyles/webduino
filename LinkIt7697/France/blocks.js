@@ -148,14 +148,6 @@ Blockly.Blocks['amb82_mini_blemouse_move_xy'] = {
   }
 };
 
-
-
-
-
-
-
-
-
 Blockly.Blocks['amb82_mini_blekeyboard'] = {
   init: function() {
     this.appendDummyInput()
@@ -275,11 +267,11 @@ Blockly.Blocks['amb82_mini_blekeyboard_write'] = {
   init: function() {
 	this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI"])		
-        .appendField(Blockly.Msg["ESP32_BLEKEYBOARD_WRITE_SHOW"]);		
+        .appendField(Blockly.Msg["AMB82_MINI_BLEKEYBOARD_WRITE_SHOW"]);		
     this.appendValueInput("keycode")
-        .setCheck("Number")
+        .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"]);	
+		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_CHAR_SHOW"]);	
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);

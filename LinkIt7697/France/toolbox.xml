@@ -2558,17 +2558,17 @@
 		  </block>
 		  <block type="amb82_mini_blekeyboard_write">
 			<value name="keycode">
-			  <block type="amb82_mini_blekeyboard_keycode">
-				<field name="keycode">0</field>
+			  <block type="text_quotationmark">
+				<field name="TEXT">A</field>
 			  </block>
 			</value>			
 		  </block>
 		  <block type="amb82_mini_blekeyboard_press_norelease_consumer">
 			<value name="keycode">
 			  <block type="amb82_mini_blekeyboard_keycode_consumer">
-				<field name="keycode">0</field>
+				<field name="keycode">0x0001</field>
 			  </block>
-			</value>			
+			</value>
 		  </block>	
 		  <block type="amb82_mini_blekeyboard_release_consumer">			
 		  </block>			  
