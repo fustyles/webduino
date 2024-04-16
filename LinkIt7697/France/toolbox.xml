@@ -2055,6 +2055,16 @@
 					<field name="TEXT">12345678</field>
 				  </block>
 				</value>
+				<value name="ssid_ap">
+				  <block type="text">
+					<field name="TEXT">amb82mini</field>
+				  </block>
+				</value>
+				<value name="password_ap">
+				  <block type="text">
+					<field name="TEXT">12345678</field>
+				  </block>
+				</value>				
 				<value name="width">
 				  <block type="math_number">
 					<field name="NUM">640</field>

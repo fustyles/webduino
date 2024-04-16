@@ -946,6 +946,14 @@ Blockly.Blocks['amb82_mini_myfirmata'] = {
         .setCheck(null)
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg.SERVERMODULE_PASSWORD_SHOW);
+    this.appendValueInput("ssid_ap")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_SSID_AP_SHOW);
+    this.appendValueInput("password_ap")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_PASSWORD_AP_SHOW);		
     this.appendDummyInput()	 
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg["FU_SERIAL_BAUDRATE"])	
