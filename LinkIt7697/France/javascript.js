@@ -67,7 +67,11 @@ Blockly.Arduino['amb82_mini_blemouse_move_point'] = function(block) {
 	return 'blemouse("'+mode+'", '+delaytime+', '+pixels+');\n';
 };
 
-
+Blockly.Arduino['amb82_mini_blemouse_move_xy'] = function(block) {
+	var x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC)||0;
+	return 'mouseDev.mouseMove('+x+', '+y+');\n';
+};
 
 
 

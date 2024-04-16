@@ -127,7 +127,26 @@ Blockly.Blocks['amb82_mini_blemouse_move_point'] = {
   }
 };
 
-
+Blockly.Blocks['amb82_mini_blemouse_move_xy'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_BLEMOUSE"])	
+        .appendField(Blockly.Msg["ESP32_BLEMOUSE_MOVE"]);		
+	this.appendValueInput("x")
+			.setAlign(Blockly.ALIGN_RIGHT) 		
+			.appendField("x")
+			.setCheck("Number");		
+	this.appendValueInput("y")
+			.setAlign(Blockly.ALIGN_RIGHT) 		
+			.appendField("y")
+			.setCheck("Number");	
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(Blockly.Msg["HUE_8"]);
+  }
+};
 
 
 

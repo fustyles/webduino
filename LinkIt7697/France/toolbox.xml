@@ -2607,6 +2607,18 @@
 				<field name="NUM">10</field>
 			  </block>
 			</value>			
+		  </block>
+		  <block type="amb82_mini_blemouse_move_xy">
+			<value name="x">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>
+			<value name="y">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>			
 		  </block>			  
 		</category>	
 		<category id="france23" name="amb82_mini_video_neuralnetwork">				
