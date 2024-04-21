@@ -2621,8 +2621,15 @@
 			  <block type="amb82_mini_video_qrcode">		  
 			  </block>				  
 		</category>		
-		<category id="france23" name="amb82_mini_ObjectDetection">				
-				  
+		<category id="france23" name="amb82_mini_ObjectDetection_RTPS">				
+			  <block type="amb82_mini_objectdetection_rtsp">		  
+			  </block>
+			  <block type="amb82_mini_objectdetection_rtsp_count">		  
+			  </block> 
+			  <block type="amb82_mini_objectdetection_rtsp_rect">		  
+			  </block> 
+			  <block type="amb82_mini_objectdetection_rtsp_object">		  
+			  </block> 			  
 		</category>
 		<category id="france23" name="amb82_mini_FaceDetection">				
 				  

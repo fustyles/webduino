@@ -121,7 +121,7 @@
 <category><name>amb82_mini_mp4</name><replace>MP4錄製</replace></category>
 <category><name>amb82_mini_video</name><replace>視訊</replace></category>
 <category><name>amb82_mini_video_qrcode</name><replace>QR code</replace></category>
-<category><name>amb82_mini_ObjectDetection</name><replace>物件偵測</replace></category>				
+<category><name>amb82_mini_ObjectDetection_RTPS</name><replace>物件偵測</replace></category>				
 <category><name>amb82_mini_FaceDetection</name><replace>人臉偵測</replace></category>			
 <category><name>amb82_mini_FaceDetection_RTPS</name><replace>人臉偵測(RTPS)</replace></category>
 <category><name>amb82_mini_FaceRecognition</name><replace>人臉辨識</replace></category>

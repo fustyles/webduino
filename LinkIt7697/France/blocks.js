@@ -1,3 +1,161 @@
+Blockly.Blocks['amb82_mini_objectdetection_rtsp'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION"]);
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)
+			.appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_MODEL"])
+			.appendField(new Blockly.FieldDropdown([
+				["YOLOv3","DEFAULT_YOLOV3TINY"],
+				["YOLOv4","DEFAULT_YOLOV4TINY"],
+				["YOLOv7","DEFAULT_YOLOV7TINY"],
+				["SCRFD","DEFAULT_SCRFD"],
+				["MobileFaceNet","DEFAULT_MOBILEFACENET"]
+		]), "model");		
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_AFTER"]);	  
+    this.appendStatementInput("statement")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_FINISH"]);	  
+    this.appendStatementInput("statement_finish")
+        .setCheck(null);		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_22"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_objectdetection_rtsp_count'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION"])
+        .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_COUNT"]);		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_22"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_objectdetection_rtsp_rect'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION"])
+        .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_ITEMLIST"]);
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)	
+			.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_OBJECT"],"OBJECT"],			
+				["X","X"],
+				["Y","Y"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_WIDTH"],"WIDTH"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HIGHT"],"HEIGHT"]
+		]), "property");		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_22"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_objectdetection_rtsp_object'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION"])
+        .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_ITEMOBJECT"]);
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_PERSON"], "person"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BICYCLE"], "bicycle"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CAR"], "car"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_MOTORBIKE"], "motorbike"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_AEROPLANE"], "aeroplane"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BUS"], "bus"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TRAIN"], "train"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TRUCK"], "truck"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BOAT"], "boat"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TRAFFICLIGHT"], "traffic light"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_FIREHYDRANT"], "fire hydrant"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_STOPSIGN"], "stop sign"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_PARKINGMETER"], "parking meter"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BENCH"], "bench"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BIRD"], "bird"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CAT"], "cat"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_DOG"], "dog"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HORSE"], "horse"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SHEEP"], "sheep"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_COW"], "cow"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_ELEPHANT"], "elephant"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BEAR"], "bear"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_ZEBRA"], "zebra"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_GIRAFFE"], "giraffe"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BACKPACK"], "backpack"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_UMBRELLA"], "umbrella"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HANDBAG"], "handbag"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TIE"], "tie"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SUITCASE"], "suitcase"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_FRISBEE"], "frisbee"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SKIS"], "skis"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SNOWBOARD"], "snowboard"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SPORTSBALL"], "sportsball"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_KITE"], "kite"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BASEBALLBAT"], "baseball bat"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BASEBALLGLOVE"], "baseball glove"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SKATEBOARD"], "skateboard"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SURFBOARD"], "surfboard"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TENNISRACKET"], "tennis racket"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BOTTLE"], "bottle"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_WINEGLASS"], "wine glass"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CUP"], "cup"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_FORK"], "fork"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_KNIFE"], "knife"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SPOON"], "spoon"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BOWL"], "bowl"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BANANA"], "banana"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_APPLE"], "apple"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SANDWICH"], "sandwich"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_ORANGE"], "orange"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BROCCOLI"], "broccoli"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CARROT"], "carrot"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HOTDOG"], "hot dog"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_PIZZA"], "pizza"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_DONUT"], "donut"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CAKE"], "cake"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CHAIR"], "chair"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SOFA"], "sofa"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_POTTEDPLANT"], "pottedplant"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BED"], "bed"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_DININGTABLE"], "diningtable"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TOILET"], "toilet"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TVMONITOR"], "tvmonitor"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_LAPTOP"], "laptop"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_MOUSE"], "mouse"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_REMOTE"], "remote"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_KEYBOARD"], "keyboard"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CELLPHONE"], "cell phone"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_MICROWAVE"], "microwave"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_OVEN"], "oven"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TOASTER"], "toaster"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SINK"], "sink"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_REFRIGERATOR"], "refrigerator"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BOOK"], "book"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CLOCK"], "clock"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_VASE"], "vase"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SCISSORS"], "scissors"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TEDDYBEAR"], "teddy bear"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HAIRDRYER"], "hair dryer"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TOOTHBRUSH"], "toothbrush"]
+		]), "objclass");		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_22"]);
+  }
+};
+
 Blockly.Blocks['amb82_mini_blemouse'] = {
   init: function() {
     this.appendDummyInput()
@@ -7336,31 +7494,31 @@ Blockly.Blocks['esp32_cam_camera_property'] = {
 	this.appendDummyInput()
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_FRAMESIZE_SHOW,"framesize"],      		//解析度 value = 21->QSXGA(2560x1920), 20->P FHD(1080x1920), 19->WQXGA(2560x1600), 18->QHD(2560x1440), 17->QXGA(2048x1564), 16->P 3MP(864x1564), 15->P HD(720x1280), 14->FHD(1920x1080), 13->UXGA(1600x1200), 12->SXGA(1280x1024), 11->HD(1280x720), 10->XGA(1024x768), 9->SVGA(800x600), 8->VGA(640x480), 7->HVGA(480x320), 6->CIF(400x296), 5->QVGA(320x240), 4->240x240, 3->HQVGA(240x176), 2->QCIF(176x144), 1->QQVGA(160x120), 0->96x96
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_QUALITY_SHOW,"quality"],        			//畫質 value = 4 ~ 63
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_BRIGHTNESS_SHOW,"brightness"],     		//亮度 value = -3 ~ 3
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_CONTRAST_SHOW,"contrast"],       		//對比 value = -3 ~ 3
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_SATURATION_SHOW,"saturation"],     		//飽和度 value = -4 ~ 4
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_SHARPNESS_SHOW,"sharpness"],      		//清晰度 value = -3 ~ 3
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_DENOISE_SHOW,"denoise"],        			//降噪 0 ~ 8
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AE_LEVEL_SHOW,"ae_level"],       		//自動曝光層級 value = -5 ~ 5 
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_GAINCEILING_SHOW,"gainceiling"],    		//自動增益上限(開啟時) value = 0 ~ 511
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_FRAMESIZE_SHOW,"framesize"], 		//解析度 value = 21->QSXGA(2560x1920), 20->P FHD(1080x1920), 19->WQXGA(2560x1600), 18->QHD(2560x1440), 17->QXGA(2048x1564), 16->P 3MP(864x1564), 15->P HD(720x1280), 14->FHD(1920x1080), 13->UXGA(1600x1200), 12->SXGA(1280x1024), 11->HD(1280x720), 10->XGA(1024x768), 9->SVGA(800x600), 8->VGA(640x480), 7->HVGA(480x320), 6->CIF(400x296), 5->QVGA(320x240), 4->240x240, 3->HQVGA(240x176), 2->QCIF(176x144), 1->QQVGA(160x120), 0->96x96
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_QUALITY_SHOW,"quality"], 			//畫質 value = 4 ~ 63
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_BRIGHTNESS_SHOW,"brightness"], 		//亮度 value = -3 ~ 3
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_CONTRAST_SHOW,"contrast"], 		//對比 value = -3 ~ 3
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_SATURATION_SHOW,"saturation"], 		//飽和度 value = -4 ~ 4
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_SHARPNESS_SHOW,"sharpness"], 		//清晰度 value = -3 ~ 3
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_DENOISE_SHOW,"denoise"], 			//降噪 0 ~ 8
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AE_LEVEL_SHOW,"ae_level"], 		//自動曝光層級 value = -5 ~ 5 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_GAINCEILING_SHOW,"gainceiling"], 		//自動增益上限(開啟時) value = 0 ~ 511
 			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_SPECIAL_EFFECT_SHOW,"special_effect"], 	//特效 value = 0 ~ 6
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AWB_SHOW,"awb"],            				//白平衡 value = 0 or 1 
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_DCW_SHOW,"dcw"],            				//使用自訂影像尺寸 value = 0 or 1 
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AWB_GAIN_SHOW,"awb_gain"],       		//自動白平衡增益 value = 0 or 1 
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_WB_MODE_SHOW,"wb_mode"],        			//白平衡模式 value = 0自動，1晴天，2陰天，3日光燈，4鎢絲燈
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AEC_SHOW,"aec"],            				//自動曝光感測器 value = 0 or 1 
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AEC_value_SHOW,"aec_value"],      		//曝光值 value = 0 ~ 1920
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AEC2_SHOW,"aec2"],           			//自動曝光控制 value = 0 or 1 
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AGC_SHOW,"agc"],            				//自動增益控制 value = 0 or 1 
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AGC_GAIN_SHOW,"agc_gain"],       		//自動增益(關閉時) value = 0 ~ 30
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_RAW_GMA_SHOW,"raw_gma"],        			//原始伽瑪 value = 0 or 1 
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_LENC_SHOW,"lenc"],           			//鏡頭校正 value = 0 or 1 
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_HMIRROR_SHOW,"hmirror"],        			//水平鏡像 value = 0 or 1 
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_VFLIP_SHOW,"vflip"],          			//垂直翻轉 value = 0 or 1 
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_BPC_SHOW,"bpc"],            				//黑色像素校正 value = 0 or 1
-			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_WPC_SHOW,"wpc"],            				//白色像素校正 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AWB_SHOW,"awb"], 				//白平衡 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_DCW_SHOW,"dcw"], 				//使用自訂影像尺寸 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AWB_GAIN_SHOW,"awb_gain"], 		//自動白平衡增益 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_WB_MODE_SHOW,"wb_mode"], 			//白平衡模式 value = 0自動，1晴天，2陰天，3日光燈，4鎢絲燈
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AEC_SHOW,"aec"], 				//自動曝光感測器 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AEC_value_SHOW,"aec_value"], 		//曝光值 value = 0 ~ 1920
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AEC2_SHOW,"aec2"], 			//自動曝光控制 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AGC_SHOW,"agc"], 				//自動增益控制 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_AGC_GAIN_SHOW,"agc_gain"], 		//自動增益(關閉時) value = 0 ~ 30
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_RAW_GMA_SHOW,"raw_gma"], 			//原始伽瑪 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_LENC_SHOW,"lenc"], 			//鏡頭校正 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_HMIRROR_SHOW,"hmirror"], 			//水平鏡像 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_VFLIP_SHOW,"vflip"], 			//垂直翻轉 value = 0 or 1 
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_BPC_SHOW,"bpc"], 				//黑色像素校正 value = 0 or 1
+			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_WPC_SHOW,"wpc"], 				//白色像素校正 value = 0 or 1 
 			[Blockly.Msg.ESP32_CAM_CAMERA_PROPERTY_COLORBAR_SHOW,"colorbar"]        		//顏色條畫面 value = 0 or 1
 		]), "property");	
     this.appendValueInput("value")
@@ -8960,7 +9118,7 @@ Blockly.Blocks['controls_spreadsheet_query'] = {
   this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT) 
       .appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["SPREADSHEET_SPREADSHEET_SQL_SHOW"],"sql"],  
+			[Blockly.Msg["SPREADSHEET_SPREADSHEET_SQL_SHOW"],"sql"], 
 			[Blockly.Msg["SPREADSHEET_SPREADSHEET_RANGE_SHOW"],"range"]  
 		], this.validate), "option");	  
   this.appendValueInput("sql","sql")
@@ -10256,7 +10414,7 @@ Blockly.Blocks['fu_taiwan_aqi'] = {
           ["新北市-菜寮","菜寮"],
           ["新北市-林口","林口"],
           ["新北市-淡水","淡水"],
-          ["新北市-永和","永和"],  
+          ["新北市-永和","永和"], 
           ["新北市-三重","三重"],
           ["新北市-富貴角","富貴角"],
           ["臺北市-士林","士林"],
@@ -10265,7 +10423,7 @@ Blockly.Blocks['fu_taiwan_aqi'] = {
           ["臺北市-古亭","古亭"],
           ["臺北市-松山","松山"],
           ["臺北市-大同","大同"],
-          ["臺北市-陽明","陽明"],  
+          ["臺北市-陽明","陽明"], 
           ["桃園市-桃園","桃園"],
           ["桃園市-大園","大園"],
           ["桃園市-觀音","觀音"],
@@ -10288,7 +10446,7 @@ Blockly.Blocks['fu_taiwan_aqi'] = {
           ["彰化縣-二林","二林"],
           ["南投縣-南投","南投"],
           ["南投縣-竹山","竹山"], 
-          ["南投縣-埔里","埔里"],  
+          ["南投縣-埔里","埔里"], 
           ["雲林縣-斗六","斗六"],
           ["雲林縣-崙背","崙背"],
           ["雲林縣-臺西","臺西"],
@@ -10311,12 +10469,12 @@ Blockly.Blocks['fu_taiwan_aqi'] = {
           ["高雄市-前金","前金"],
           ["高雄市-前鎮","前鎮"],
           ["高雄市-小港","小港"],
-          ["高雄市-復興","復興"],  
+          ["高雄市-復興","復興"], 
           ["屏東縣-屏東","屏東"],
           ["屏東縣-潮州","潮州"],
           ["屏東縣-恆春","恆春"],
           ["臺東縣-臺東","臺東"],
-          ["臺東縣-關山","關山"],  
+          ["臺東縣-關山","關山"], 
           ["花蓮縣-花蓮","花蓮"],
           ["宜蘭縣-宜蘭","宜蘭"],
           ["宜蘭縣-冬山","冬山"],
@@ -11492,8 +11650,8 @@ Blockly.Blocks['fu_oled_initial'] = {
 			["U8G2_NT7534_TG12864R_F_4W_HW_SPI","U8G2_NT7534_TG12864R_F_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);"],
 			["U8G2_ST7588_JLX12864_F_SW_I2C","U8G2_ST7588_JLX12864_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ SCL, /* data=*/ SDA, /* reset=*/ 5);"],
 			["U8G2_ST7588_JLX12864_F_HW_I2C","U8G2_ST7588_JLX12864_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ 5);"],
-			["U8G2_IST3020_ERC19264_F_6800","U8G2_IST3020_ERC19264_F_6800 u8g2(U8G2_R0, 44, 43, 42, 41, 40, 39, 38, 37,  /*enable=*/ 28, /*cs=*/ 32, /*dc=*/ 30, /*reset=*/ 31);"],
-			["U8G2_IST3020_ERC19264_F_8080","U8G2_IST3020_ERC19264_F_8080 u8g2(U8G2_R0, 44, 43, 42, 41, 40, 39, 38, 37,  /*enable=*/ 29, /*cs=*/ 32, /*dc=*/ 30, /*reset=*/ 31);"],
+			["U8G2_IST3020_ERC19264_F_6800","U8G2_IST3020_ERC19264_F_6800 u8g2(U8G2_R0, 44, 43, 42, 41, 40, 39, 38, 37, /*enable=*/ 28, /*cs=*/ 32, /*dc=*/ 30, /*reset=*/ 31);"],
+			["U8G2_IST3020_ERC19264_F_8080","U8G2_IST3020_ERC19264_F_8080 u8g2(U8G2_R0, 44, 43, 42, 41, 40, 39, 38, 37, /*enable=*/ 29, /*cs=*/ 32, /*dc=*/ 30, /*reset=*/ 31);"],
 			["U8G2_IST3020_ERC19264_F_4W_SW_SPI","U8G2_IST3020_ERC19264_F_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);"],
 			["U8G2_IST7920_128X128_F_4W_SW_SPI","U8G2_IST7920_128X128_F_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);"],
 			["U8G2_IST7920_128X128_F_4W_HW_SPI","U8G2_IST7920_128X128_F_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);"],
@@ -11510,7 +11668,7 @@ Blockly.Blocks['fu_oled_initial'] = {
 			["U8G2_SED1330_240X128_F_8080","U8G2_SED1330_240X128_F_8080 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7, /*enable=*/ 17, /*cs=*/ 14, /*dc=*/ 15, /*reset=*/ 16);"],
 			["U8G2_SED1330_240X128_F_6800","U8G2_SED1330_240X128_F_6800 u8g2(U8G2_R0, 13, 11, 2, 3, 4, 5, 6, A4, /*enable=*/ 7, /*cs=*/ 10, /*dc=*/ 9, /*reset=*/ 8);"],
 			["U8G2_RA8835_NHD_240X128_F_8080","U8G2_RA8835_NHD_240X128_F_8080 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7, /*enable=*/ 17, /*cs=*/ 14, /*dc=*/ 15, /*reset=*/ 16);"],
-			["U8G2_RA8835_NHD_240X128_F_6800","U8G2_RA8835_NHD_240X128_F_6800 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7,  /*enable=*/ 17, /*cs=*/ 14, /*dc=*/ 15, /*reset=*/ 16);"],
+			["U8G2_RA8835_NHD_240X128_F_6800","U8G2_RA8835_NHD_240X128_F_6800 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7, /*enable=*/ 17, /*cs=*/ 14, /*dc=*/ 15, /*reset=*/ 16);"],
 			["U8G2_UC1601_128X32_F_4W_SW_SPI","U8G2_UC1601_128X32_F_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);"],
 			["U8G2_UC1601_128X64_F_4W_SW_SPI","U8G2_UC1601_128X64_F_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);"],
 			["U8G2_UC1604_JLX19264_F_4W_SW_SPI","U8G2_UC1604_JLX19264_F_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);"],
@@ -11525,8 +11683,8 @@ Blockly.Blocks['fu_oled_initial'] = {
 			["U8G2_UC1611_EA_DOGM240_F_4W_SW_SPI","U8G2_UC1611_EA_DOGM240_F_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);"],
 			["U8G2_UC1611_EA_DOGXL240_F_2ND_HW_I2C","U8G2_UC1611_EA_DOGXL240_F_2ND_HW_I2C u8g2(U8G2_R0, /* reset=*/ 8);"],
 			["U8G2_UC1611_EA_DOGXL240_F_4W_SW_SPI","U8G2_UC1611_EA_DOGXL240_F_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);"],
-			["U8G2_UC1611_EW50850_F_8080","U8G2_UC1611_EW50850_F_8080 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7,  /*enable=*/ 18, /*cs=*/ 3, /*dc=*/ 16, /*reset=*/ 17);"],
-			["U8G2_UC1611_CG160160_F_8080","U8G2_UC1611_CG160160_F_8080 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7,  /*enable=*/ 18, /*cs=*/ 3, /*dc=*/ 16, /*reset=*/ 17);"],
+			["U8G2_UC1611_EW50850_F_8080","U8G2_UC1611_EW50850_F_8080 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7, /*enable=*/ 18, /*cs=*/ 3, /*dc=*/ 16, /*reset=*/ 17);"],
+			["U8G2_UC1611_CG160160_F_8080","U8G2_UC1611_CG160160_F_8080 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7, /*enable=*/ 18, /*cs=*/ 3, /*dc=*/ 16, /*reset=*/ 17);"],
 			["U8G2_UC1611_IDS4073_F_4W_SW_SPI","U8G2_UC1611_IDS4073_F_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);"],
 			["U8G2_UC1611_IDS4073_F_4W_HW_SPI","U8G2_UC1611_IDS4073_F_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);"],
 			["U8G2_UC1617_JLX128128_F_4W_SW_SPI","U8G2_UC1617_JLX128128_F_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);"],
@@ -17146,7 +17304,7 @@ Blockly.Blocks['table_create'] = {
       .appendField(Blockly.Msg.TABLE_TD_HEIGHT); 	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TABLE_BORDERSTYLE)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_SOLID,"solid"], [Blockly.Msg.PROPERTY_DASHED,"dashed"], [Blockly.Msg.PROPERTY_DOUBLE,"double"], [Blockly.Msg.PROPERTY_DOTTED,"dotted"], [Blockly.Msg.PROPERTY_GROOVE,"groove"], [Blockly.Msg.PROPERTY_RIDGE,"ridge"], [Blockly.Msg.PROPERTY_INSET,"inset"], [Blockly.Msg.PROPERTY_OUTSET,"outset"],  [Blockly.Msg.PROPERTY_NONE,"none"], [Blockly.Msg.PROPERTY_HIDDEN,"hidden"]]), "borderstyle_");  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_SOLID,"solid"], [Blockly.Msg.PROPERTY_DASHED,"dashed"], [Blockly.Msg.PROPERTY_DOUBLE,"double"], [Blockly.Msg.PROPERTY_DOTTED,"dotted"], [Blockly.Msg.PROPERTY_GROOVE,"groove"], [Blockly.Msg.PROPERTY_RIDGE,"ridge"], [Blockly.Msg.PROPERTY_INSET,"inset"], [Blockly.Msg.PROPERTY_OUTSET,"outset"], [Blockly.Msg.PROPERTY_NONE,"none"], [Blockly.Msg.PROPERTY_HIDDEN,"hidden"]]), "borderstyle_");  
   this.appendValueInput("borderwidth_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -17285,7 +17443,7 @@ Blockly.Blocks['table_border_set'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TABLE_BORDER_SET)
       .appendField(Blockly.Msg.TABLE_BORDERSTYLE)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_SOLID,"solid"], [Blockly.Msg.PROPERTY_DASHED,"dashed"], [Blockly.Msg.PROPERTY_DOUBLE,"double"], [Blockly.Msg.PROPERTY_DOTTED,"dotted"], [Blockly.Msg.PROPERTY_GROOVE,"groove"], [Blockly.Msg.PROPERTY_RIDGE,"ridge"], [Blockly.Msg.PROPERTY_INSET,"inset"], [Blockly.Msg.PROPERTY_OUTSET,"outset"],  [Blockly.Msg.PROPERTY_NONE,"none"], [Blockly.Msg.PROPERTY_HIDDEN,"hidden"]]), "borderstyle_");  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_SOLID,"solid"], [Blockly.Msg.PROPERTY_DASHED,"dashed"], [Blockly.Msg.PROPERTY_DOUBLE,"double"], [Blockly.Msg.PROPERTY_DOTTED,"dotted"], [Blockly.Msg.PROPERTY_GROOVE,"groove"], [Blockly.Msg.PROPERTY_RIDGE,"ridge"], [Blockly.Msg.PROPERTY_INSET,"inset"], [Blockly.Msg.PROPERTY_OUTSET,"outset"], [Blockly.Msg.PROPERTY_NONE,"none"], [Blockly.Msg.PROPERTY_HIDDEN,"hidden"]]), "borderstyle_");  
   this.appendValueInput("borderwidth_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -17320,7 +17478,7 @@ Blockly.Blocks['table_td_border_set'] = {
       .appendField(Blockly.Msg.TABLE_TD_Y);       
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TABLE_BORDERSTYLE)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_SOLID,"solid"], [Blockly.Msg.PROPERTY_DASHED,"dashed"], [Blockly.Msg.PROPERTY_DOUBLE,"double"], [Blockly.Msg.PROPERTY_DOTTED,"dotted"], [Blockly.Msg.PROPERTY_GROOVE,"groove"], [Blockly.Msg.PROPERTY_RIDGE,"ridge"], [Blockly.Msg.PROPERTY_INSET,"inset"], [Blockly.Msg.PROPERTY_OUTSET,"outset"],  [Blockly.Msg.PROPERTY_NONE,"none"], [Blockly.Msg.PROPERTY_HIDDEN,"hidden"]]), "borderstyle_");  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_SOLID,"solid"], [Blockly.Msg.PROPERTY_DASHED,"dashed"], [Blockly.Msg.PROPERTY_DOUBLE,"double"], [Blockly.Msg.PROPERTY_DOTTED,"dotted"], [Blockly.Msg.PROPERTY_GROOVE,"groove"], [Blockly.Msg.PROPERTY_RIDGE,"ridge"], [Blockly.Msg.PROPERTY_INSET,"inset"], [Blockly.Msg.PROPERTY_OUTSET,"outset"], [Blockly.Msg.PROPERTY_NONE,"none"], [Blockly.Msg.PROPERTY_HIDDEN,"hidden"]]), "borderstyle_");  
   this.appendValueInput("borderwidth_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -20401,7 +20559,7 @@ Blockly.Blocks['a_create'] = {
       .appendField(Blockly.Msg.HEIGHT);
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TABLE_BORDERSTYLE)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_SOLID,"solid"], [Blockly.Msg.PROPERTY_DASHED,"dashed"], [Blockly.Msg.PROPERTY_DOUBLE,"double"], [Blockly.Msg.PROPERTY_DOTTED,"dotted"], [Blockly.Msg.PROPERTY_GROOVE,"groove"], [Blockly.Msg.PROPERTY_RIDGE,"ridge"], [Blockly.Msg.PROPERTY_INSET,"inset"], [Blockly.Msg.PROPERTY_OUTSET,"outset"],  [Blockly.Msg.PROPERTY_NONE,"none"], [Blockly.Msg.PROPERTY_HIDDEN,"hidden"]]), "borderstyle_");  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_SOLID,"solid"], [Blockly.Msg.PROPERTY_DASHED,"dashed"], [Blockly.Msg.PROPERTY_DOUBLE,"double"], [Blockly.Msg.PROPERTY_DOTTED,"dotted"], [Blockly.Msg.PROPERTY_GROOVE,"groove"], [Blockly.Msg.PROPERTY_RIDGE,"ridge"], [Blockly.Msg.PROPERTY_INSET,"inset"], [Blockly.Msg.PROPERTY_OUTSET,"outset"], [Blockly.Msg.PROPERTY_NONE,"none"], [Blockly.Msg.PROPERTY_HIDDEN,"hidden"]]), "borderstyle_");  
   this.appendValueInput("borderwidth_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -22284,11 +22442,11 @@ Blockly.Blocks['location'] = {
         .appendField(new Blockly.FieldDropdown([
           [Blockly.Msg.LOCATION_HOSTURL_SHOW,"hosturl"],	
           [Blockly.Msg.LOCATION_HOST_SHOW,"host"],
-          [Blockly.Msg.LOCATION_HOSTNAME_SHOW,"hostname"],    
+          [Blockly.Msg.LOCATION_HOSTNAME_SHOW,"hostname"], 
           [Blockly.Msg.LOCATION_HREF_SHOW,"href"],
-          [Blockly.Msg.LOCATION_PATHNAME_SHOW,"pathname"],    
+          [Blockly.Msg.LOCATION_PATHNAME_SHOW,"pathname"], 
           [Blockly.Msg.LOCATION_PORT_SHOW,"port"],
-          [Blockly.Msg.LOCATION_PROTOCAL_SHOW,"protocol"],    
+          [Blockly.Msg.LOCATION_PROTOCAL_SHOW,"protocol"], 
           [Blockly.Msg.LOCATION_SEARCH_SHOW,"seellipseh"],
           [Blockly.Msg.LOCATION_HASH_SHOW,"hash"]		  
         ]), "value_property");

@@ -1,3 +1,187 @@
+Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
+	
+	Blockly.Arduino.definitions_.define_custom_command = "";
+	Blockly.Arduino.setups_.write_peri_reg = "";
+	
+	var model = block.getFieldValue('model');
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+	var statement_finish = Blockly.Arduino.statementToCode(block, 'statement_finish');
+
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "WiFi.h"\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNObjectDetection.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\nVideoSetting config(VIDEO_FHD, 30, VIDEO_H264, 0);\nVideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNObjectDetection ObjDet;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nint rtsp_portnum;\n';
+	Blockly.Arduino.definitions_['define_amb82_mini_objectdetection_rtsp_ObjectDetectionItem'] =''+	
+	'#ifndef __OBJECTCLASSLIST_H__\n'+
+	'#define __OBJECTCLASSLIST_H__\n'+
+	'struct ObjectDetectionItem {\n'+
+	'    uint8_t index;\n'+
+	'    const char* objectName;\n'+
+	'    uint8_t filter;\n'+
+	'};\n'+
+	'ObjectDetectionItem itemList[80] = {\n'+
+	'    {0,  "person",         1},\n'+
+	'    {1,  "bicycle",        1},\n'+
+	'    {2,  "car",            1},\n'+
+	'    {3,  "motorbike",      1},\n'+
+	'    {4,  "aeroplane",      1},\n'+
+	'    {5,  "bus",            1},\n'+
+	'    {6,  "train",          1},\n'+
+	'    {7,  "truck",          1},\n'+
+	'    {8,  "boat",           1},\n'+
+	'    {9,  "traffic light",  1},\n'+
+	'    {10, "fire hydrant",   1},\n'+
+	'    {11, "stop sign",      1},\n'+
+	'    {12, "parking meter",  1},\n'+
+	'    {13, "bench",          1},\n'+
+	'    {14, "bird",           1},\n'+
+	'    {15, "cat",            1},\n'+
+	'    {16, "dog",            1},\n'+
+	'    {17, "horse",          1},\n'+
+	'    {18, "sheep",          1},\n'+
+	'    {19, "cow",            1},\n'+
+	'    {20, "elephant",       1},\n'+
+	'    {21, "bear",           1},\n'+
+	'    {22, "zebra",          1},\n'+
+	'    {23, "giraffe",        1},\n'+
+	'    {24, "backpack",       1},\n'+
+	'    {25, "umbrella",       1},\n'+
+	'    {26, "handbag",        1},\n'+
+	'    {27, "tie",            1},\n'+
+	'    {28, "suitcase",       1},\n'+
+	'    {29, "frisbee",        1},\n'+
+	'    {30, "skis",           1},\n'+
+	'    {31, "snowboard",      1},\n'+
+	'    {32, "sports ball",    1},\n'+
+	'    {33, "kite",           1},\n'+
+	'    {34, "baseball bat",   1},\n'+
+	'    {35, "baseball glove", 1},\n'+
+	'    {36, "skateboard",     1},\n'+
+	'    {37, "surfboard",      1},\n'+
+	'    {38, "tennis racket",  1},\n'+
+	'    {39, "bottle",         1},\n'+
+	'    {40, "wine glass",     1},\n'+
+	'    {41, "cup",            1},\n'+
+	'    {42, "fork",           1},\n'+
+	'    {43, "knife",          1},\n'+
+	'    {44, "spoon",          1},\n'+
+	'    {45, "bowl",           1},\n'+
+	'    {46, "banana",         1},\n'+
+	'    {47, "apple",          1},\n'+
+	'    {48, "sandwich",       1},\n'+
+	'    {49, "orange",         1},\n'+
+	'    {50, "broccoli",       1},\n'+
+	'    {51, "carrot",         1},\n'+
+	'    {52, "hot dog",        1},\n'+
+	'    {53, "pizza",          1},\n'+
+	'    {54, "donut",          1},\n'+
+	'    {55, "cake",           1},\n'+
+	'    {56, "chair",          1},\n'+
+	'    {57, "sofa",           1},\n'+
+	'    {58, "pottedplant",    1},\n'+
+	'    {59, "bed",            1},\n'+
+	'    {60, "diningtable",    1},\n'+
+	'    {61, "toilet",         1},\n'+
+	'    {62, "tvmonitor",      1},\n'+
+	'    {63, "laptop",         1},\n'+
+	'    {64, "mouse",          1},\n'+
+	'    {65, "remote",         1},\n'+
+	'    {66, "keyboard",       1},\n'+
+	'    {67, "cell phone",     1},\n'+
+	'    {68, "microwave",      1},\n'+
+	'    {69, "oven",           1},\n'+
+	'    {70, "toaster",        1},\n'+
+	'    {71, "sink",           1},\n'+
+	'    {72, "refrigerator",   1},\n'+
+	'    {73, "book",           1},\n'+
+	'    {74, "clock",          1},\n'+
+	'    {75, "vase",           1},\n'+
+	'    {76, "scissors",       1},\n'+
+	'    {77, "teddy bear",     1},\n'+
+	'    {78, "hair dryer",     1},\n'+
+	'    {79, "toothbrush",     1},\n'+
+	'};\n'+
+	'#endif\n\n'+	
+	'void ODPostProcess(std::vector<ObjectDetectionResult> results) {\n'+
+	'    uint16_t im_h = config.height();\n'+
+	'    uint16_t im_w = config.width();\n'+
+	'    OSD.createBitmap(amb82_CHANNEL);\n'+
+	'    if (ObjDet.getResultCount() > 0) {\n'+
+	'        for (int i = 0; i < ObjDet.getResultCount(); i++) {\n'+
+	'            int obj_type = results[i].type();\n'+
+	'            if (itemList[obj_type].filter) {\n'+
+	'                ObjectDetectionResult item = results[i];\n'+
+	'                int xmin = (int)(item.xMin() * im_w);\n'+
+	'                int xmax = (int)(item.xMax() * im_w);\n'+
+	'                int ymin = (int)(item.yMin() * im_h);\n'+
+	'                int ymax = (int)(item.yMax() * im_h);\n'+ statement+
+	'                //printf("Item %d %s:\\t%d %d %d %d\\n\\r", i, itemList[obj_type].objectName, xmin, xmax, ymin, ymax);\n'+
+	'                OSD.drawRect(amb82_CHANNEL, xmin, ymin, xmax, ymax, 3, OSD_COLOR_WHITE);\n'+
+	'                char text_str[20];\n'+
+	'                //snprintf(text_str, sizeof(text_str), "%s %d", itemList[obj_type].objectName, item.score());\n'+
+	'                OSD.drawText(amb82_CHANNEL, xmin, ymin - OSD.getTextHeight(amb82_CHANNEL), text_str, OSD_COLOR_CYAN);\n'+
+	'            }\n'+
+	'        }\n'+
+	'    }\n'+
+	'    OSD.update(amb82_CHANNEL);\n'+ statement_finish+
+	'}';	
+	
+
+	Blockly.Arduino.setups_.setup_amb82_mini_objectdetection = ''+   
+										'config.setBitrate(2 * 1024 * 1024);\n  '+
+										'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
+										'Camera.configVideoChannel(CHANNELNN, configNN);\n  '+
+										'Camera.videoInit();\n  '+
+										'rtsp.configVideo(config);\n  '+
+										'rtsp.begin();\n  '+
+										'rtsp_portnum = rtsp.getPort();\n  '+
+										'ObjDet.configVideo(configNN);\n  '+
+										'ObjDet.setResultCallback(ODPostProcess);\n  '+
+										'ObjDet.modelSelect(OBJECT_DETECTION, '+model+', NA_MODEL, NA_MODEL);\n  '+
+										'ObjDet.begin();\n  '+
+										'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
+										'videoStreamer.registerOutput(rtsp);\n  '+
+										'if (videoStreamer.begin() != 0) {\n  '+
+										'    Serial.println("StreamIO link start failed");\n  '+
+										'}\n  '+
+										'Camera.channelBegin(amb82_CHANNEL);\n  '+
+										'videoStreamerNN.registerInput(Camera.getStream(CHANNELNN));\n  '+
+										'videoStreamerNN.setStackSize();\n  '+
+										'videoStreamerNN.setTaskPriority();\n  '+
+										'videoStreamerNN.registerOutput(ObjDet);\n  '+
+										'if (videoStreamerNN.begin() != 0) {\n  '+
+										'    Serial.println("StreamIO link start failed");\n  '+
+										'}\n  '+
+										'Camera.channelBegin(CHANNELNN);\n  '+
+										'OSD.configVideo(amb82_CHANNEL, config);\n  '+
+										'OSD.begin();\n';
+
+  return "";
+};
+
+Blockly.Arduino['amb82_mini_objectdetection_rtsp_count'] = function(block) {	
+	var code = 'ObjDet.getResultCount()';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['amb82_mini_objectdetection_rtsp_rect'] = function(block) {
+    var property = block.getFieldValue('property');
+	if (property == "OBJECT")
+		var code = 'String(itemList[obj_type].objectName)';	
+	if (property == "X")
+		var code = 'xmin';
+	else if (property == "Y")
+		var code = 'ymin';
+	else if (property == "WIDTH")
+		var code = '(xmax-xmin)';
+	else if (property == "HEIGHT")
+		var code = '(ymax-ymin)';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['amb82_mini_objectdetection_rtsp_object'] = function(block) {
+    var objclass = block.getFieldValue('objclass');	
+	var code = '(String(itemList[obj_type].objectName)=="'+objclass+'")';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['amb82_mini_blemouse'] = function(block) {
     var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
 	Blockly.Arduino.definitions_.define_esp32_blemouse_include = '#include "BLEHIDDevice.h"\n#include "BLEHIDMouse.h"\n#include "BLEDevice.h"\nBLEHIDMouse mouseDev;\nBLEAdvertData advdata;';
