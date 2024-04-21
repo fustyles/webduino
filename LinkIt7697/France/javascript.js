@@ -164,8 +164,10 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp_count'] = function(block) {
 Blockly.Arduino['amb82_mini_objectdetection_rtsp_rect'] = function(block) {
     var property = block.getFieldValue('property');
 	if (property == "OBJECT")
-		var code = 'String(itemList[obj_type].objectName)';	
-	if (property == "X")
+		var code = 'String(itemList[obj_type].objectName)';
+	else if (property == "SCORE")
+		var code = 'item.score()';		
+	else if (property == "X")
 		var code = 'xmin';
 	else if (property == "Y")
 		var code = 'ymin';

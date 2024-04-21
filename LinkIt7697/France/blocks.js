@@ -49,7 +49,8 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp_rect'] = {
     this.appendDummyInput()	 
 			.setAlign(Blockly.ALIGN_RIGHT)	
 			.appendField(new Blockly.FieldDropdown([
-				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_OBJECT"],"OBJECT"],			
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_OBJECT"],"OBJECT"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SCORE"],"SCORE"],			
 				["X","X"],
 				["Y","Y"],
 				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_WIDTH"],"WIDTH"],
@@ -10755,7 +10756,7 @@ Blockly.Blocks['fu_ez_digitalwrite'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
 		.appendField("Led")
         .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_RED"],"0"], [Blockly.Msg["EZ_YELLOW"],"1"], [Blockly.Msg["EZ_GREEN"],"2"]]), "led");
     this.appendDummyInput()
@@ -10775,7 +10776,7 @@ Blockly.Blocks['fu_ez_digitalwrite_input'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
 		.appendField("Led")
         .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_RED"],"0"], [Blockly.Msg["EZ_YELLOW"],"1"], [Blockly.Msg["EZ_GREEN"],"2"]]), "led");
     this.appendValueInput("value")
@@ -10794,7 +10795,7 @@ Blockly.Blocks['fu_ez_digitalwrite_input'] = {
 Blockly.Blocks['fu_ez_digitalwrite_relay'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
         .appendField(Blockly.Msg["EZ_RELAY"]);
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -10812,7 +10813,7 @@ Blockly.Blocks['fu_ez_digitalwrite_relay'] = {
 Blockly.Blocks['fu_ez_digitalwrite_input_relay'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
         .appendField(Blockly.Msg["EZ_RELAY"])
         .appendField(Blockly.Msg["EZ_DIGITALWRITE"]); 
    this.appendValueInput("value")
@@ -10831,7 +10832,7 @@ Blockly.Blocks['fu_ez_analogwrite_input'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
 		.appendField("Led")
         .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_RED"],"0"], [Blockly.Msg["EZ_YELLOW"],"1"], [Blockly.Msg["EZ_GREEN"],"2"]]), "led");
     this.appendValueInput("value")
@@ -10851,7 +10852,7 @@ Blockly.Blocks['fu_ez_analogwrite_input_esp'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
 		.appendField("Led")
         .appendField("(ESP32)")		
         .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_RED"],"0"], [Blockly.Msg["EZ_YELLOW"],"1"], [Blockly.Msg["EZ_GREEN"],"2"]]), "led");
@@ -10876,7 +10877,7 @@ Blockly.Blocks['fu_ez_digitalread'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
 		.appendField(Blockly.Msg["EZ_BUTTON"])
 		.appendField(Blockly.Msg["EZ_DIGITALREAD"])
         .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_BUTTONA"],"0"],[Blockly.Msg["EZ_BUTTONB"],"1"]]), "button");
@@ -10892,7 +10893,7 @@ Blockly.Blocks['fu_ez_digitalread_button'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
 		.appendField(Blockly.Msg["EZ_BUTTON"])
 		.appendField(Blockly.Msg["EZ_PRESS"])
         .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_BUTTONA"],"A"],[Blockly.Msg["EZ_BUTTONB"],"B"],[Blockly.Msg["EZ_BUTTONAB"],"AB"]]), "type");
@@ -10907,7 +10908,7 @@ Blockly.Blocks['fu_ez_digitalread_button'] = {
 Blockly.Blocks['fu_ez_digitalread_button_statement'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
 		.appendField(Blockly.Msg["EZ_BUTTON"]);	  
     this.appendStatementInput("execute")
 		.appendField(Blockly.Msg["EZ_PRESS"]+Blockly.Msg["EZ_BUTTONAB"]);
@@ -10926,7 +10927,7 @@ Blockly.Blocks['fu_ez_analogread_potentiometer'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
         .appendField(Blockly.Msg["EZ_POTENTIOMETER"])
         .appendField(Blockly.Msg["EZ_ANALOGINREAD"]);         
     this.setInputsInline(true);
@@ -10941,7 +10942,7 @@ Blockly.Blocks['fu_ez_analogread_photoresistor'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
         .appendField(Blockly.Msg["EZ_PHOTORESISTER"])
         .appendField(Blockly.Msg["EZ_ANALOGINREAD"]);         
     this.setInputsInline(true);
@@ -10956,7 +10957,7 @@ Blockly.Blocks['fu_ez_buzzer_tone'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
         .appendField(Blockly.Msg["EZ_BUZZER"]);
     this.appendValueInput("frequency")
         .setCheck("Number")
@@ -10975,7 +10976,7 @@ Blockly.Blocks['fu_ez_buzzer_tone_duration'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
         .appendField(Blockly.Msg["EZ_BUZZER"]);
     this.appendValueInput("frequency")
         .setCheck("Number")
@@ -10998,7 +10999,7 @@ Blockly.Blocks['fu_ez_buzzer_tone_duration_array'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
         .appendField(Blockly.Msg["EZ_BUZZER"]);
     this.appendValueInput("frequency")
         .setCheck(null)
@@ -11021,7 +11022,7 @@ Blockly.Blocks['fu_ez_buzzer_notone'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
         .appendField(Blockly.Msg["EZ_BUZZER"])
         .appendField(Blockly.Msg["EZ_STOP"]);		
     this.setInputsInline(true);
@@ -11037,7 +11038,7 @@ Blockly.Blocks['fu_ez_buzzer_tone_duration_esp'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
         .appendField(Blockly.Msg["EZ_BUZZER_ESP32"]);
     this.appendValueInput("frequency")
         .setCheck("Number")
@@ -11064,7 +11065,7 @@ Blockly.Blocks['fu_ez_buzzer_tone_duration_esp_array'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
         .appendField(Blockly.Msg["EZ_BUZZER_ESP32"]);
     this.appendValueInput("frequency")
         .setCheck(null)
@@ -11196,7 +11197,7 @@ Blockly.Blocks['fu_ez_dht11'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
         .appendField("DHT11");
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
@@ -11298,7 +11299,7 @@ Blockly.Blocks['fu_ez_pixel_rgb'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
         .appendField(Blockly.Msg["EZ_RGB"]);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([[Blockly.Msg["EZ_RGB1"],"0"], [Blockly.Msg["EZ_RGB2"],"1"], [Blockly.Msg["EZ_RGB3"],"2"]]), "no");
@@ -11326,7 +11327,7 @@ Blockly.Blocks['fu_ez_pixel_picker'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
         .appendField(Blockly.Msg["EZ_RGB"]);
     this.appendDummyInput()
         .appendField(Blockly.Msg["EZ_RGB_NUMBER_NO"])
@@ -11346,7 +11347,7 @@ Blockly.Blocks['fu_ez_pixel_clear'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
         .appendField(Blockly.Msg["EZ_RGB"])
         .appendField(Blockly.Msg["EZ_RGB_CLEAR"]);
     this.setInputsInline(true);
@@ -11361,7 +11362,7 @@ Blockly.Blocks['fu_ez_pixel_clear'] = {
 Blockly.Blocks['fu_ez_pixel_brightness'] = {
 	init:function(){
 		this.appendDummyInput()
-			.appendField("EZ+")
+			.appendField("EZ Start Kit+")
 			.appendField(Blockly.Msg["EZ_RGB"]);
 		this.appendValueInput("brightness")
 			.appendField(Blockly.Msg["EZ_RGB_BRIGHTNESS"])
@@ -11376,7 +11377,7 @@ Blockly.Blocks['fu_ez_pixel_brightness'] = {
 Blockly.Blocks['fu_ez_pixel_color'] = {
   init: function() {
     this.appendDummyInput()
-		.appendField("EZ+")
+		.appendField("EZ Start Kit+")
 		.appendField(Blockly.Msg["EZ_RGB"]);	
 	this.appendValueInput("L1")
 		.setCheck("String")
@@ -11397,7 +11398,7 @@ Blockly.Blocks['fu_ez_pixel_color'] = {
 Blockly.Blocks['fu_ez_pixel_color_n'] = {
   init: function() {
     this.appendDummyInput()
-		.appendField("EZ+")
+		.appendField("EZ Start Kit+")
 		.appendField(Blockly.Msg["EZ_RGB"]);
 	this.appendValueInput("num")
 		.appendField(Blockly.Msg["EZ_RGB_NUMBER"])	
@@ -11435,7 +11436,7 @@ Blockly.Blocks['fu_ez_ir_receive'] = {
   init: function() {
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("EZ+")
+        .appendField("EZ Start Kit+")
         .appendField(Blockly.Msg["EZ_IR"])
         .appendField(Blockly.Msg["EZ_IR_GET_EXECUTE"]);
     this.appendDummyInput()
