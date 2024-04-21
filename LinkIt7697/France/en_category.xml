@@ -118,11 +118,9 @@
 <category><name>amb82_mini_mp4</name><replace>Record MP4</replace></category>
 <category><name>amb82_mini_video</name><replace>Video</replace></category>
 <category><name>amb82_mini_video_qrcode</name><replace>QR code</replace></category>
-<category><name>amb82_mini_ObjectDetection_RTPS</name><replace>Object Detection</replace></category>				
-<category><name>amb82_mini_FaceDetection</name><replace>Face Detection</replace></category>			
-<category><name>amb82_mini_FaceDetection_RTPS</name><replace>Face Detection RTPS</replace></category>
+<category><name>amb82_mini_ObjectDetection_RTPS</name><replace>Object Detection</replace></category>
+<category><name>amb82_mini_FaceDetection</name><replace>Face Detection</replace></category>
 <category><name>amb82_mini_FaceRecognition</name><replace>Face Recognition</replace></category>
-<category><name>amb82_mini_FaceRecognition_RTPS</name><replace>Face Recognition RTPS</replace></category>
 <category><name>amb82_mini_ImageClassification</name><replace>Image Classification</replace></category>
 <category><name>amb82_mini_AudioClassification</name><replace>Audio Classification</replace></category>
 <category><name>pagerecognition</name><replace>Page recognition</replace></category>

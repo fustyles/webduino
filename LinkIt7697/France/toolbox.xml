@@ -2634,13 +2634,7 @@
 		<category id="france23" name="amb82_mini_FaceDetection">				
 				  
 		</category>
-		<category id="france23" name="amb82_mini_FaceDetection_RTPS">				
-				  
-		</category>
 		<category id="france23" name="amb82_mini_FaceRecognition">				
-				  
-		</category>
-		<category id="france23" name="amb82_mini_FaceRecognition_RTPS">				
 				  
 		</category>
 		<category id="france23" name="amb82_mini_ImageClassification">				
