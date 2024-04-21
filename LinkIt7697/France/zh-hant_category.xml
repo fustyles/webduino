@@ -121,7 +121,13 @@
 <category><name>amb82_mini_mp4</name><replace>MP4錄製</replace></category>
 <category><name>amb82_mini_video</name><replace>視訊</replace></category>
 <category><name>amb82_mini_video_qrcode</name><replace>QR code</replace></category>
-<category><name>amb82_mini_video_neuralnetwork</name><replace>神經網路</replace></category>
+<category><name>amb82_mini_ObjectDetection</name><replace>物件偵測</replace></category>				
+<category><name>amb82_mini_FaceDetection</name><replace>人臉偵測</replace></category>			
+<category><name>amb82_mini_FaceDetection_RTPS</name><replace>人臉偵測(RTPS)</replace></category>
+<category><name>amb82_mini_FaceRecognition</name><replace>人臉辨識</replace></category>
+<category><name>amb82_mini_FaceRecognition_RTPS</name><replace>人臉辨識(RTPS)</replace></category>
+<category><name>amb82_mini_ImageClassification</name><replace>圖像分類</replace></category>
+<category><name>amb82_mini_AudioClassification</name><replace>音訊分類</replace></category>
 <category><name>pagerecognition</name><replace>網頁辨識</replace></category>
 <category><name>blemodule</name><replace>藍芽模組</replace></category>
 </xml>

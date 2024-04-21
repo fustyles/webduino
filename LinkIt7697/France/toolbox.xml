@@ -2495,10 +2495,6 @@
 			  <block type="amb82_mini_mp4_getstate">		  
 			  </block>				  
 		</category>
-		<category id="france23" name="amb82_mini_video_qrcode">				
-			  <block type="amb82_mini_video_qrcode">		  
-			  </block>				  
-		</category>
 		<category id="france23" name="amb82_mini_ble_keyboard">				
 		  <block type="amb82_mini_blekeyboard">
 			<value name="blename">
@@ -2620,8 +2616,30 @@
 			  </block>
 			</value>			
 		  </block>			  
-		</category>	
-		<category id="france23" name="amb82_mini_video_neuralnetwork">				
+		</category>
+		<category id="france23" name="amb82_mini_video_qrcode">				
+			  <block type="amb82_mini_video_qrcode">		  
+			  </block>				  
+		</category>		
+		<category id="france23" name="amb82_mini_ObjectDetection">				
+				  
+		</category>
+		<category id="france23" name="amb82_mini_FaceDetection">				
+				  
+		</category>
+		<category id="france23" name="amb82_mini_FaceDetection_RTPS">				
+				  
+		</category>
+		<category id="france23" name="amb82_mini_FaceRecognition">				
+				  
+		</category>
+		<category id="france23" name="amb82_mini_FaceRecognition_RTPS">				
+				  
+		</category>
+		<category id="france23" name="amb82_mini_ImageClassification">				
+				  
+		</category>		
+		<category id="france23" name="amb82_mini_AudioClassification">				
 				  
 		</category>		
 		<sep id="category_sep"></sep>
