@@ -10957,8 +10957,16 @@ Blockly.Arduino['esp32_wifi_status'] = function(block) {
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
-Blockly.Arduino['esp32_wifi_localip'] = function(block) { 
-  var code = 'WiFi.localIP().toString()';
+Blockly.Arduino['esp32_wifi_localip'] = function(block) {
+  if (selectBoardType()=="AMB82-MINI") {
+	Blockly.Arduino.definitions_['Ip2String'] =''+
+	'String Ip2String(IPAddress ip) {\n'+
+	'  return String(ip[0])+String(".")+String(ip[1])+String(".")+String(ip[2])+String(".")+String(ip[3]);\n'+
+	'}\n';
+	var code = 'Ip2String(WiFi.localIP())';
+  }
+  else 
+	var code = 'WiFi.localIP().toString()';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
