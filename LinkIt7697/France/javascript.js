@@ -115,7 +115,7 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 	'                //printf("Item %d %s:\\t%d %d %d %d\\n\\r", i, itemList[obj_type].objectName, xmin, xmax, ymin, ymax);\n'+
 	'                OSD.drawRect(amb82_CHANNEL, xmin, ymin, xmax, ymax, 3, OSD_COLOR_WHITE);\n'+
 	'                char text_str[20];\n'+
-	'                //snprintf(text_str, sizeof(text_str), "%s %d", itemList[obj_type].objectName, item.score());\n'+
+	'                snprintf(text_str, sizeof(text_str), "%s %d", itemList[obj_type].objectName, item.score());\n'+
 	'                OSD.drawText(amb82_CHANNEL, xmin, ymin - OSD.getTextHeight(amb82_CHANNEL), text_str, OSD_COLOR_CYAN);\n'+
 	'            }\n'+
 	'        }\n'+
