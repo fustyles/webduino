@@ -2642,7 +2642,10 @@
 		</category>		
 		<category id="france23" name="amb82_mini_AudioClassification">				
 				  
-		</category>		
+		</category>	
+		<category id="france23" name="amb82_mini_osd_draw">				
+				  
+		</category>			
 		<sep id="category_sep"></sep>
 		
 

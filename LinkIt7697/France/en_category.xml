@@ -111,6 +111,8 @@
 <category><name>wire</name><replace>Wire.h(I2C)</replace></category>
 <category><name>blemousemodule</name><replace>ESP32 Mouse</replace></category>
 <category><name>TinyGPS</name><replace>TinyGPS</replace></category>
+<category><name>pagerecognition</name><replace>Page recognition</replace></category>
+<category><name>blemodule</name><replace>Bluetooth module</replace></category>
 <category><name>amb82_mini_rtsp</name><replace>RTSP stream</replace></category>
 <category><name>amb82_mini_rtp</name><replace>RTP stream</replace></category>
 <category><name>amb82_mini_ble_keyboard</name><replace>BLE Keyboard</replace></category>
@@ -123,6 +125,5 @@
 <category><name>amb82_mini_FaceRecognition</name><replace>Face Recognition</replace></category>
 <category><name>amb82_mini_ImageClassification</name><replace>Image Classification</replace></category>
 <category><name>amb82_mini_AudioClassification</name><replace>Audio Classification</replace></category>
-<category><name>pagerecognition</name><replace>Page recognition</replace></category>
-<category><name>blemodule</name><replace>Bluetooth module</replace></category>
+<category><name>amb82_mini_osd_draw</name><replace>OSD draw</replace></category>
 </xml>

@@ -114,6 +114,8 @@
 <category><name>wire</name><replace>Wire.h(I2C)</replace></category>
 <category><name>blemousemodule</name><replace>ESP32藍芽滑鼠</replace></category>
 <category><name>TinyGPS</name><replace>TinyGPS</replace></category>
+<category><name>blemodule</name><replace>藍芽模組</replace></category>
+<category><name>pagerecognition</name><replace>網頁辨識</replace></category>
 <category><name>amb82_mini_rtsp</name><replace>RTSP串流</replace></category>
 <category><name>amb82_mini_rtp</name><replace>RTP串流</replace></category>
 <category><name>amb82_mini_ble_keyboard</name><replace>藍芽鍵盤</replace></category>
@@ -126,6 +128,5 @@
 <category><name>amb82_mini_FaceRecognition</name><replace>人臉辨識</replace></category>
 <category><name>amb82_mini_ImageClassification</name><replace>圖像分類</replace></category>
 <category><name>amb82_mini_AudioClassification</name><replace>音訊分類</replace></category>
-<category><name>pagerecognition</name><replace>網頁辨識</replace></category>
-<category><name>blemodule</name><replace>藍芽模組</replace></category>
+<category><name>amb82_mini_osd_draw</name><replace>OSD繪圖</replace></category>
 </xml>
