@@ -3877,6 +3877,27 @@ var catPageElements ='<xml>'+
 '		  </block>'+
 '		  <block type="json_string">'+
 '		  </block>'+
+'		  <block type="json_get_length">'+
+'		  </block>'+
+'		  <block type="json_get_column_length">'+
+'			<value name="COLUMN">'+
+'			  <block type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </block>'+
+'			</value>'+
+'		  </block>'+
+'		  <block type="json_get_column_index_length">'+
+'			<value name="COLUMN">'+
+'			  <block type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </block>'+
+'			</value>'+
+'			<value name="INDEX">'+
+'			  <block type="math_number">'+
+'				<field name="NUM">0</field>'+
+'			  </block>'+
+'			</value>'+
+'		  </block>'+
 '	  </category>'+
 '    </category>'+
 '</xml>';

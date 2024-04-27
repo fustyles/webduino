@@ -643,3 +643,4 @@ Blockly.Msg["JSON_VARIABLE_GET"] = "获取JSON格式数据";
 Blockly.Msg["JSON_COLUMN"] = "参数名称";
 Blockly.Msg["JSON_INDEX"] = "索引";
 Blockly.Msg["JSON_VARIABLE_STRING"] = "JSON格式转成文字格式";
+Blockly.Msg["JSON_VARIABLE_LENGTH"] = "长度";
