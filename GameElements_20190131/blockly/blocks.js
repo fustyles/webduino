@@ -6,11 +6,8 @@ Blockly.Blocks['json_variable'] = {
 	this.appendValueInput("OBJ")
 		.setCheck(null);
 	this.appendDummyInput()
-		.setAlign(Blockly.ALIGN_RIGHT)	  
-		.appendField(new Blockly.FieldDropdown([
-		  [Blockly.Msg["JSON_TYPE_STRING"],"STRING"],
-		  [Blockly.Msg["JSON_TYPE_JSON"],"JSON"]
-		]), "type");		
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["JSON_TYPE_STRING"]);	
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
