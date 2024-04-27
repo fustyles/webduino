@@ -1,17 +1,35 @@
-Blockly.JavaScript['button_toolbox'] = function (block) { 
-  var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC)||0;
-  var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC)||0; 
-  var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC)||15;
-  var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC)||15;
-  var value_spacing_ = Blockly.JavaScript.valueToCode(block, 'spacing_', Blockly.JavaScript.ORDER_ATOMIC)||5;
-  var value_color_ = Blockly.JavaScript.valueToCode(block, 'color_', Blockly.JavaScript.ORDER_ATOMIC)||"black";  
-  var value_bgcolor_ = Blockly.JavaScript.valueToCode(block, 'bgcolor_', Blockly.JavaScript.ORDER_ATOMIC)||"white";
-  var value_fontsize_ = Blockly.JavaScript.valueToCode(block, 'fontsize_', Blockly.JavaScript.ORDER_ATOMIC)||12;
-  var value_direction_ = block.getFieldValue('direction_');
-  var value_list_ = Blockly.JavaScript.valueToCode(block, 'list_', Blockly.JavaScript.ORDER_ATOMIC)||"settings";
-  
-  var code = 'button_toolbox(' + value_left_ + ',' + value_top_ + ',' + value_width_ + ',' + value_height_ + ',' + value_color_ + ',' + value_bgcolor_ + ',' + value_fontsize_ + ',' + value_direction_ + ',' + value_spacing_ + ',' + value_list_ + ');\n';
+Blockly.JavaScript['json_variable'] = function (block) {
+  var VAR = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('VAR'), Blockly.VARIABLE_CATEGORY_NAME);
+  var OBJ = Blockly.JavaScript.valueToCode(block, 'OBJ', Blockly.JavaScript.ORDER_ATOMIC);
+  var TYPE = block.getFieldValue('TYPE');
+  if (TYPE == "STRING")
+	  var code = VAR + ' = '+OBJ+';\n';
+  else
+	  var code = VAR + ' = JSON.parse('+OBJ+');\n';
   return code;
+};
+
+Blockly.JavaScript['json_get'] = function (block) { 
+  var VAR = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('VAR'), Blockly.VARIABLE_CATEGORY_NAME);
+  var COLUMN = Blockly.JavaScript.valueToCode(block, 'COLUMN', Blockly.JavaScript.ORDER_ATOMIC);
+  
+  var code = VAR +'['+COLUMN+']';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['json_get_index'] = function (block) { 
+  var VAR = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('VAR'), Blockly.VARIABLE_CATEGORY_NAME);
+  var COLUMN = Blockly.JavaScript.valueToCode(block, 'COLUMN', Blockly.JavaScript.ORDER_ATOMIC);
+  var INDEX = Blockly.JavaScript.valueToCode(block, 'INDEX', Blockly.JavaScript.ORDER_ATOMIC);
+  
+  var code = VAR +'['+COLUMN+']'+'['+INDEX+']';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['json_string'] = function (block) { 
+  var VAR = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('VAR'), Blockly.VARIABLE_CATEGORY_NAME);
+  var code = 'JSON.stringify('+VAR+')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript['custom_googleicon'] = function (block) {

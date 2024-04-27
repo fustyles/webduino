@@ -3848,5 +3848,35 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    </block>'+
 '    </category>'+
+'	  <category name="%{BKY_CATPAGEELEMENTS_JSON}" id="catPageElements_json">'+
+'		  <block type="json_variable">'+
+'			<value name="OBJ">'+
+'			  <block type="text">'+
+'				<field name="TEXT">{"a":1, "b":[{"c":2}, {"d":3}]}</field>'+
+'			  </block>'+
+'			</value>'+
+'		  </block>'+
+'		  <block type="json_get">'+
+'			<value name="COLUMN">'+
+'			  <block type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </block>'+
+'			</value>'+
+'		  </block>'+
+'		  <block type="json_get_index">'+
+'			<value name="COLUMN">'+
+'			  <block type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </block>'+
+'			</value>'+	  
+'			<value name="INDEX">'+
+'			  <block type="math_number">'+
+'				<field name="NUM">0</field>'+
+'			  </block>'+
+'			</value>'+
+'		  </block>'+
+'		  <block type="json_string">'+
+'		  </block>'+
+'	  </category>'+
 '    </category>'+
 '</xml>';

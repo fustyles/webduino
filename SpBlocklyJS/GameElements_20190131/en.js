@@ -638,3 +638,12 @@ Blockly.Msg["CODE_TEXT"] = "Insert code";
 
 Blockly.Msg["ENCODEURI"] = "encodeURI";
 Blockly.Msg["DECODEURI"] = "decodeURI";
+
+Blockly.Msg["CATPAGEELEMENTS_JSON"] = "Json";
+Blockly.Msg["JSON_VARIABLE_SET"] = "Set to"
+Blockly.Msg["JSON_TYPE_STRING"] = "Convert to JSON format"
+Blockly.Msg["JSON_TYPE_JSON"] = "Original JSON format"
+Blockly.Msg["JSON_VARIABLE_GET"] = "Get"
+Blockly.Msg["JSON_COLUMN"] = "Column name"
+Blockly.Msg["JSON_INDEX"] = "Index"
+Blockly.Msg["JSON_VARIABLE_STRING"] = "JSON format to text"
