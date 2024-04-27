@@ -32,7 +32,8 @@
 			"font_text","font_b","font_I","font_u","font_spu","font_sub","font_em","font_strong","font_code",
 	                "window_open","window_confirm","window_messagebox","window_prompt",
 			"span_create","span_set","span_get","span_delete",
-			"include_file","code_text","code_text_input","urlcode","custom_googleicon","button_toolbox","element_select","googlemap_embed"
+			"include_file","code_text","code_text_input","urlcode","custom_googleicon","button_toolbox","element_select","googlemap_embed",
+	  		"json_variable","json_get","json_get_index","json_string"
 	    ],
   "category": "catPlus",
   "scripts": [
