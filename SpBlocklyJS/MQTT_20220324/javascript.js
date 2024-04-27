@@ -7,10 +7,10 @@ Blockly.JavaScript['fu_mqtt_setup_js'] = function(block) {
   if (user!="")
 	var clientId = user;
   else
-	var clientId = '"mqtt_" + Math.random().toString(16).substr(2, 8)+";\n"';
+	var clientId = '"mqtt_" + Math.random().toString(16).substr(2, 8)';
   
   var code = "";
-  code += 'const clientId = ' + clientId +			
+  code += 'const clientId = ' + clientId + ';\n'			
 											'const options = {\n'+
 											'	username: '+user+',\n'+
 											'	password: '+password+',\n'+
