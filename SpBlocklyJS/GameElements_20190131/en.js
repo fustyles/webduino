@@ -641,7 +641,7 @@ Blockly.Msg["DECODEURI"] = "decodeURI";
 
 Blockly.Msg["CATPAGEELEMENTS_JSON"] = "Json";
 Blockly.Msg["JSON_VARIABLE_SET"] = "Set to"
-Blockly.Msg["JSON_TYPE_STRING"] = "Convert to JSON format"
+Blockly.Msg["JSON_TYPE_STRING"] = "String format convert to JSON format"
 Blockly.Msg["JSON_VARIABLE_GET"] = "Get JSON data"
 Blockly.Msg["JSON_COLUMN"] = "Column name"
 Blockly.Msg["JSON_INDEX"] = "Index"
