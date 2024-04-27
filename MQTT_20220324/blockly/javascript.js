@@ -10,24 +10,24 @@ Blockly.JavaScript['fu_mqtt_setup_js'] = function(block) {
 	var clientId = '"mqtt_" + Math.random().toString(16).substr(2, 8)';
   
   var code = 'const clientId = ' + clientId + ';\n' +			
-											'const options = {\n'+
-											'	username: '+user+',\n'+
-											'	password: '+password+',\n'+
-											'	keepalive: 60,\n'+
-											'	clientId: clientId,\n'+
-											'	protocolId: "MQTT",\n'+
-											'	protocolVersion: 4,\n'+
-											'	clean: true,\n'+
-											'	reconnectPeriod: 1000,\n'+
-											'	connectTimeout: 30 * 1000\n'+
-											'}\n\n';										
+				'const options = {\n'+
+				'	username: '+user+',\n'+
+				'	password: '+password+',\n'+
+				'	keepalive: 60,\n'+
+				'	clientId: clientId,\n'+
+				'	protocolId: "MQTT",\n'+
+				'	protocolVersion: 4,\n'+
+				'	clean: true,\n'+
+				'	reconnectPeriod: 1000,\n'+
+				'	connectTimeout: 30 * 1000\n'+
+				'}\n\n';										
   code += 'var mqtt_client = mqtt.connect('+server+',options);\n'+				
-															'mqtt_client.on("connect", ()=>{\n'+
-															'	console.log("connected");\n'+topic_subscribe+
-															'	mqtt_client.on("message", async function (topic, payload) {\n'+topic_getdata+
-															'   })\n'+
-															'  }\n'+															
-															')\n\n';	
+				'mqtt_client.on("connect", ()=>{\n'+
+				'	console.log("connected");\n'+topic_subscribe+
+				'	mqtt_client.on("message", async function (topic, payload) {\n'+topic_getdata+
+				'   })\n'+
+				'  }\n'+															
+				')\n\n';	
 												
   return code;
 };
