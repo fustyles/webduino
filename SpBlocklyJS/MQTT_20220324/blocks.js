@@ -14,7 +14,11 @@ Blockly.Blocks['fu_mqtt_setup_js'] = {
     this.appendValueInput("password")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg["MQTT_FU_PASSWORD_JS"]);	
+		.appendField(Blockly.Msg["MQTT_FU_PASSWORD_JS"]);
+    this.appendValueInput("userid")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["MQTT_FU_USERID_JS"]);	  
     this.appendStatementInput("topic_subscribe")
         .appendField(Blockly.Msg["MQTT_FU_SUBSCRIBE_TOPIC_JS"]);		
     this.appendStatementInput("topic_getdata")
