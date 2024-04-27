@@ -3899,7 +3899,7 @@
 			</value>
 		</block>
 	</category>
-	  <category id="catPageElements_json" colour="160"> 
+	  <category id="MSG.catGameElements_sub28" colour="160"> 
 		  <block type="json_variable">
 			<value name="OBJ">
 			  <block type="text">
