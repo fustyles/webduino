@@ -5,6 +5,7 @@ Blockly.Msg["MQTT_FU_ADDRESS_JS"] = "主機位址";
 Blockly.Msg["MQTT_FU_PORT_JS"] = "埠號";
 Blockly.Msg["MQTT_FU_ID_JS"] = "帳號";
 Blockly.Msg["MQTT_FU_PASSWORD_JS"] = "密碼";
+Blockly.Msg["MQTT_FU_USERID_JS"] = "客戶端ID";
 Blockly.Msg["MQTT_FU_SUBSCRIBE_TOPIC_JS"] = "訂閱主題";
 Blockly.Msg["MQTT_FU_WHEN_GETDATA_JS"] = "當收到訊息時";
 Blockly.Msg["MQTT_FU_GETDATA_TOPIC_JS"] = "當收得訊息的主題為";
