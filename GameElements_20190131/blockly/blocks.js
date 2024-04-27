@@ -49,8 +49,8 @@ Blockly.Blocks['json_get_index'] = {
 Blockly.Blocks['json_string'] = {
   init: function () {
 	this.appendDummyInput()
-		.appendField(Blockly.Msg["JSON_VARIABLE_STRING"])
-		.appendField(new Blockly.FieldVariable(), 'VAR');	  
+		.appendField(new Blockly.FieldVariable(), 'VAR')
+		.appendField(Blockly.Msg["JSON_VARIABLE_STRING"]);	  
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
 	this.setColour(160);
