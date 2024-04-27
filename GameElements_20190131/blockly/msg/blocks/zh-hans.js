@@ -620,3 +620,12 @@ Blockly.Msg["HOTKEY_SHOW"] = "取得组合键码值为";
 Blockly.Msg["GOOGLEMAP_EMBED"] = "Google地图嵌入程式码";
 Blockly.Msg["GOOGLEMAP_EMBED_KEY"] = "金钥";
 Blockly.Msg["GOOGLEMAP_EMBED_QUERY"] = "查询条件";
+
+Blockly.Msg["CATPAGEELEMENTS_JSON"] = "Json";
+Blockly.Msg["JSON_VARIABLE_SET"] = "设定为";
+Blockly.Msg["JSON_TYPE_STRING"] = "转成JSON格式";
+Blockly.Msg["JSON_TYPE_JSON"] = "原为JSON格式";
+Blockly.Msg["JSON_VARIABLE_GET"] = "取得";
+Blockly.Msg["JSON_COLUMN"] = "栏位名称";
+Blockly.Msg["JSON_INDEX"] = "索引";
+Blockly.Msg["JSON_VARIABLE_STRING"] = "JSON格式转文字";
