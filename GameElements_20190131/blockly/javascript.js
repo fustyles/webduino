@@ -5,7 +5,15 @@ Blockly.JavaScript['json_variable'] = function (block) {
   return code;
 };
 
-Blockly.JavaScript['json_get'] = function (block) { 
+Blockly.JavaScript['json_get_index'] = function (block) { 
+  var VAR = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
+  var INDEX = Blockly.JavaScript.valueToCode(block, 'INDEX', Blockly.JavaScript.ORDER_ATOMIC);
+  
+  var code = VAR +'['+INDEX+']';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['json_get_column'] = function (block) { 
   var VAR = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
   var COLUMN = Blockly.JavaScript.valueToCode(block, 'COLUMN', Blockly.JavaScript.ORDER_ATOMIC);
   
@@ -13,7 +21,7 @@ Blockly.JavaScript['json_get'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript['json_get_index'] = function (block) { 
+Blockly.JavaScript['json_get_column_index'] = function (block) { 
   var VAR = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
   var COLUMN = Blockly.JavaScript.valueToCode(block, 'COLUMN', Blockly.JavaScript.ORDER_ATOMIC);
   var INDEX = Blockly.JavaScript.valueToCode(block, 'INDEX', Blockly.JavaScript.ORDER_ATOMIC);
