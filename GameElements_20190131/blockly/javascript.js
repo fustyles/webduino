@@ -1,3 +1,37 @@
+Blockly.JavaScript['json_variable'] = function (block) {
+  var VAR = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('VAR'), Blockly.VARIABLE_CATEGORY_NAME);
+  var OBJ = Blockly.JavaScript.valueToCode(block, 'OBJ', Blockly.JavaScript.ORDER_ATOMIC);
+  var TYPE = block.getFieldValue('TYPE');
+  if (TYPE == "STRING")
+	  var code = VAR + ' = '+OBJ+';\n';
+  else
+	  var code = VAR + ' = JSON.parse('+OBJ+');\n';
+  return code;
+};
+
+Blockly.JavaScript['json_get'] = function (block) { 
+  var VAR = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('VAR'), Blockly.VARIABLE_CATEGORY_NAME);
+  var COLUMN = Blockly.JavaScript.valueToCode(block, 'COLUMN', Blockly.JavaScript.ORDER_ATOMIC);
+  
+  var code = VAR +'['+COLUMN+']';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['json_get_index'] = function (block) { 
+  var VAR = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('VAR'), Blockly.VARIABLE_CATEGORY_NAME);
+  var COLUMN = Blockly.JavaScript.valueToCode(block, 'COLUMN', Blockly.JavaScript.ORDER_ATOMIC);
+  var INDEX = Blockly.JavaScript.valueToCode(block, 'INDEX', Blockly.JavaScript.ORDER_ATOMIC);
+  
+  var code = VAR +'['+COLUMN+']'+'['+INDEX+']';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['json_string'] = function (block) { 
+  var VAR = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('VAR'), Blockly.VARIABLE_CATEGORY_NAME);
+  var code = 'JSON.stringify('+VAR+')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['googlemap_embed'] = function (block) { 
   var value_key = Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_ATOMIC)||'"AIzaSyCjnmJJqKsk6wqcfKRXuovtuJKBWlo4OIU"';
   var value_query = Blockly.JavaScript.valueToCode(block, 'query', Blockly.JavaScript.ORDER_ATOMIC)||'"22.62561600155969,120.37205406931322"'; 
