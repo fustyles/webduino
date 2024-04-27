@@ -2079,6 +2079,7 @@ Blockly.Msg["PAGE_MQTT_ADDRESS_JS"] = "主機位址";
 Blockly.Msg["PAGE_MQTT_PORT_JS"] = "埠號";
 Blockly.Msg["PAGE_MQTT_ID_JS"] = "帳號";
 Blockly.Msg["PAGE_MQTT_PASSWORD_JS"] = "密碼";
+Blockly.Msg["PAGE_MQTT_USERID_JS"] = "客戶端ID";
 Blockly.Msg["PAGE_MQTT_SUBSCRIBE_TOPIC_JS"] = "訂閱主題";
 Blockly.Msg["PAGE_MQTT_WHEN_GETDATA_JS"] = "當收到訊息時";
 Blockly.Msg["PAGE_MQTT_GETDATA_TOPIC_JS"] = "當收得訊息的主題為";

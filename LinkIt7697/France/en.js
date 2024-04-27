@@ -2065,6 +2065,7 @@ Blockly.Msg["PAGE_MQTT_ADDRESS_JS"] = "address";
 Blockly.Msg["PAGE_MQTT_PORT_JS"] = "port";
 Blockly.Msg["PAGE_MQTT_ID_JS"] = "id";
 Blockly.Msg["PAGE_MQTT_PASSWORD_JS"] = "password";
+Blockly.Msg["PAGE_MQTT_USERID_JS"] = "Client ID";
 Blockly.Msg["PAGE_MQTT_SUBSCRIBE_TOPIC_JS"] = "subscribe topic";
 Blockly.Msg["PAGE_MQTT_WHEN_GETDATA_JS"] = "when getting text";
 Blockly.Msg["PAGE_MQTT_GETDATA_TOPIC_JS"] = "when getting text and the topic is";

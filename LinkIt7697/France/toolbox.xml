@@ -7346,6 +7346,11 @@
 				<field name="TEXT"></field>
 			  </block>
 			</value>
+			<value name="userid">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>			
 			<statement name="topic_subscribe">
 			  <block type="page_mqtt_subscribe_js">
 				<value name="topic">

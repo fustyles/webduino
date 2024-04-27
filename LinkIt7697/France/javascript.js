@@ -4952,13 +4952,17 @@ Blockly.Arduino['page_mqtt_setup_js'] = function(block) {
   var server = Blockly.Arduino.valueToCode(block, 'server', Blockly.Arduino.ORDER_ATOMIC);
   var user = Blockly.Arduino.valueToCode(block, 'user', Blockly.Arduino.ORDER_ATOMIC);
   var password = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
+  var userid = Blockly.Arduino.valueToCode(block, 'userid', Blockly.Arduino.ORDER_ATOMIC)||"";
   var topic_subscribe = Blockly.Arduino.statementToCode(block, 'topic_subscribe');
   var topic_getdata = Blockly.Arduino.statementToCode(block, 'topic_getdata');
-  
+  if (userid!=""&&userid!='""')
+	var clientId = userid;
+  else
+	var clientId = '"mqtt_" + Math.random().toString(16).substr(2, 8)';
 
   var code = "";
   code += 'include_file("js", "header", "https://unpkg.com/mqtt/dist/mqtt.min.js");\nawait delay(3);\n';
-  code += 'const clientId = "mqtt_" + Math.random().toString(16).substr(2, 8);\n'+			
+  code += 'const clientId = ' + clientId + ';\n' +			
 											'const options = {\n'+
 											'	username: '+user+',\n'+
 											'	password: '+password+',\n'+
