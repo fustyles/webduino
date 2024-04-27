@@ -638,7 +638,7 @@ Blockly.Msg["DECODEURI"] = "网址解码";
 
 Blockly.Msg["CATPAGEELEMENTS_JSON"] = "Json";
 Blockly.Msg["JSON_VARIABLE_SET"] = "设定为";
-Blockly.Msg["JSON_TYPE_STRING"] = "转成JSON格式";
+Blockly.Msg["JSON_TYPE_STRING"] = "文字格式转成JSON格式";
 Blockly.Msg["JSON_VARIABLE_GET"] = "获取JSON数据";
 Blockly.Msg["JSON_COLUMN"] = "参数名称";
 Blockly.Msg["JSON_INDEX"] = "索引";
