@@ -20518,6 +20518,127 @@ Blockly.Blocks['ajax_cleardata'] = {
   }
 };
 
+Blockly.Blocks['json_variable'] = {
+  init: function () {
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["JSON_VARIABLE_SET"])
+		.appendField(new Blockly.FieldVariable("j"), 'VAR');		
+	this.appendValueInput("OBJ")
+		.setCheck(null);
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["JSON_TYPE_STRING"]);	
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(160);
+  }
+};
+
+Blockly.Blocks['json_get_index'] = {
+  init: function () {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["JSON_VARIABLE_GET"])
+		.appendField(new Blockly.FieldVariable("j"), 'VAR');			
+	this.appendValueInput("INDEX")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["JSON_INDEX"]);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(160);
+  }
+};
+
+Blockly.Blocks['json_get_column'] = {
+  init: function () {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["JSON_VARIABLE_GET"])
+		.appendField(new Blockly.FieldVariable("j"), 'VAR');
+	this.appendValueInput("COLUMN")
+		.setCheck("String")
+		.appendField(Blockly.Msg["JSON_COLUMN"]);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(160);
+  }
+};
+
+Blockly.Blocks['json_get_column_index'] = {
+  init: function () {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["JSON_VARIABLE_GET"])
+		.appendField(new Blockly.FieldVariable("j"), 'VAR');
+	this.appendValueInput("COLUMN")
+		.setCheck("String")
+		.appendField(Blockly.Msg["JSON_COLUMN"]);			
+	this.appendValueInput("INDEX")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["JSON_INDEX"]);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(160);
+  }
+};
+
+Blockly.Blocks['json_string'] = {
+  init: function () {
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldVariable("j"), 'VAR')
+		.appendField(Blockly.Msg["JSON_VARIABLE_STRING"]);	  
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(160);
+  }
+};
+
+Blockly.Blocks['json_get_length'] = {
+  init: function () {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["JSON_VARIABLE_GET"])
+		.appendField(new Blockly.FieldVariable("j"), 'VAR');
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["JSON_VARIABLE_LENGTH"]);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(160);
+  }
+};
+
+Blockly.Blocks['json_get_column_length'] = {
+  init: function () {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["JSON_VARIABLE_GET"])
+		.appendField(new Blockly.FieldVariable("j"), 'VAR');
+	this.appendValueInput("COLUMN")
+		.setCheck("String")
+		.appendField(Blockly.Msg["JSON_COLUMN"]);
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["JSON_VARIABLE_LENGTH"]);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(160);
+  }
+};
+
+Blockly.Blocks['json_get_column_index_length'] = {
+  init: function () {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["JSON_VARIABLE_GET"])
+		.appendField(new Blockly.FieldVariable("j"), 'VAR');
+	this.appendValueInput("COLUMN")
+		.setCheck("String")
+		.appendField(Blockly.Msg["JSON_COLUMN"]);
+	this.appendValueInput("INDEX")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["JSON_INDEX"]);		
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["JSON_VARIABLE_LENGTH"]);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(160);
+  }
+};
+
 Blockly.Blocks['a_create'] = {
   init: function() {
   this.appendDummyInput()   

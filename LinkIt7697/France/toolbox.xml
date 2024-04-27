@@ -7268,7 +7268,66 @@
 		  </block>
 		</value> 
 		</block> 
-		</category>	
+		</category>
+		
+	  <category id="catGameElements_sub28" name="catGameElements_sub28"> 
+		  <block type="json_variable">
+			<value name="OBJ">
+			  <block type="text">
+				<field name="TEXT">{"a":1, "b":[{"c":2}, {"d":3}]}</field>
+			  </block>
+			</value>
+		  </block>
+		  <block type="json_get_index">		  
+			<value name="INDEX">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>	
+		  </block> 		  
+		  <block type="json_get_column">
+			<value name="COLUMN">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>	
+		  </block> 		  
+		  <block type="json_get_column_index">
+			<value name="COLUMN">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>		  
+			<value name="INDEX">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>	
+		  </block>    
+		  <block type="json_string">
+		  </block>
+		  <block type="json_get_length">	
+		  </block> 
+		  <block type="json_get_column_length">
+			<value name="COLUMN">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>	
+		  </block> 		  
+		  <block type="json_get_column_index_length">
+			<value name="COLUMN">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>		  
+			<value name="INDEX">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>	
+		  </block>		  
+	  </category>		
 		
 		<category id="catpagemqtt" name="catpagemqtt">
 		  <block type="page_mqtt_setup_js">
