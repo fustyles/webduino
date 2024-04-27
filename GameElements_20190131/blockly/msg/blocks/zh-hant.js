@@ -622,3 +622,12 @@ Blockly.Msg["HOTKEY_SHOW"] = "取得組合鍵碼值為";
 Blockly.Msg["GOOGLEMAP_EMBED"] = "Google地圖嵌入程式碼";
 Blockly.Msg["GOOGLEMAP_EMBED_KEY"] = "金鑰";
 Blockly.Msg["GOOGLEMAP_EMBED_QUERY"] = "查詢條件";
+
+Blockly.Msg["CATPAGEELEMENTS_JSON"] = "Json";
+Blockly.Msg["JSON_VARIABLE_SET"] = "設定為";
+Blockly.Msg["JSON_TYPE_STRING"] = "轉成JSON格式";
+Blockly.Msg["JSON_TYPE_JSON"] = "原為JSON格式";
+Blockly.Msg["JSON_VARIABLE_GET"] = "取得";
+Blockly.Msg["JSON_COLUMN"] = "欄位名稱";
+Blockly.Msg["JSON_INDEX"] = "索引";
+Blockly.Msg["JSON_VARIABLE_STRING"] = "JSON格式轉文字";
