@@ -1,11 +1,7 @@
 Blockly.JavaScript['json_variable'] = function (block) {
   var VAR = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
   var OBJ = Blockly.JavaScript.valueToCode(block, 'OBJ', Blockly.JavaScript.ORDER_ATOMIC);
-  var TYPE = block.getFieldValue('TYPE');
-  if (TYPE == "STRING")
-	  var code = VAR + ' = '+OBJ+';\n';
-  else
-	  var code = VAR + ' = JSON.parse('+OBJ+');\n';
+  var code = VAR + ' = JSON.parse('+OBJ+');\n';
   return code;
 };
 
