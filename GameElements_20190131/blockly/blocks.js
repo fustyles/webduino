@@ -1,13 +1,13 @@
 Blockly.Blocks['json_variable'] = {
   init: function () {
     this.appendDummyInput()
-		.appendField(Blockly.Msg["JSON_VARIABLE_SET"])
-		.appendField(new Blockly.FieldVariable("j"), 'VAR');		
-	this.appendValueInput("OBJ")
-		.setCheck(null);
-	this.appendDummyInput()
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg["JSON_TYPE_STRING"]);	
+	.appendField(new Blockly.FieldVariable("j"), 'VAR')
+	.appendField(Blockly.Msg["JSON_VARIABLE_SET"]);		
+    this.appendValueInput("OBJ")
+	.setCheck(null);
+    this.appendDummyInput()
+	.setAlign(Blockly.ALIGN_RIGHT)
+	.appendField(Blockly.Msg["JSON_TYPE_STRING"]);	
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
