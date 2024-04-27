@@ -26,3 +26,4 @@ MSG.catGameElements_sub24 = "視訊媒體";
 MSG.catGameElements_sub25 = "字型";
 MSG.catGameElements_sub26 = "行內容器";
 MSG.catGameElements_sub27 = "Fetch";
+MSG.catGameElements_sub28 = "Json";
