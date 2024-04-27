@@ -33,7 +33,7 @@
 	                "window_open","window_confirm","window_messagebox","window_prompt",
 			"span_create","span_set","span_get","span_delete",
 			"include_file","code_text","code_text_input","urlcode","custom_googleicon","button_toolbox","element_select","googlemap_embed",
-	  		"json_variable","json_get","json_get_index","json_string","json_get_length","json_get_column_length","json_get_column_index_length"
+	  		"json_variable","json_get_index","json_get_column","json_get_column_index","json_string","json_get_length","json_get_column_length","json_get_column_index_length"
 	    ],
   "category": "catPlus",
   "scripts": [
