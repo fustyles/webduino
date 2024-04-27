@@ -1,7 +1,7 @@
 Blockly.JavaScript['fu_mqtt_setup_js'] = function(block) {
   var server = Blockly.JavaScript.valueToCode(block, 'server', Blockly.JavaScript.ORDER_ATOMIC);
-  var user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC);
-  var password = Blockly.JavaScript.valueToCode(block, 'password', Blockly.JavaScript.ORDER_ATOMIC);
+  var user = Blockly.JavaScript.valueToCode(block, 'user', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var password = Blockly.JavaScript.valueToCode(block, 'password', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var userid = Blockly.JavaScript.valueToCode(block, 'userid', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var topic_subscribe = Blockly.JavaScript.statementToCode(block, 'topic_subscribe');
   var topic_getdata = Blockly.JavaScript.statementToCode(block, 'topic_getdata');
