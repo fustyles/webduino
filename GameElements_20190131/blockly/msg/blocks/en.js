@@ -629,3 +629,4 @@ Blockly.Msg["JSON_VARIABLE_GET"] = "Get JSON data"
 Blockly.Msg["JSON_COLUMN"] = "Column name"
 Blockly.Msg["JSON_INDEX"] = "Index"
 Blockly.Msg["JSON_VARIABLE_STRING"] = "JSON format to text"
+Blockly.Msg["JSON_VARIABLE_LENGTH"] = "Length";
