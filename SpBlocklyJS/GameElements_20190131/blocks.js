@@ -15,7 +15,21 @@ Blockly.Blocks['json_variable'] = {
   }
 };
 
-Blockly.Blocks['json_get'] = {
+Blockly.Blocks['json_get_index'] = {
+  init: function () {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["JSON_VARIABLE_GET"])
+		.appendField(new Blockly.FieldVariable("j"), 'VAR');			
+	this.appendValueInput("INDEX")
+		.setCheck("Number")
+		.appendField(Blockly.Msg["JSON_INDEX"]);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(160);
+  }
+};
+
+Blockly.Blocks['json_get_column'] = {
   init: function () {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["JSON_VARIABLE_GET"])
@@ -29,7 +43,7 @@ Blockly.Blocks['json_get'] = {
   }
 };
 
-Blockly.Blocks['json_get_index'] = {
+Blockly.Blocks['json_get_column_index'] = {
   init: function () {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["JSON_VARIABLE_GET"])
