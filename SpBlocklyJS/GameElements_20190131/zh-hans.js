@@ -641,6 +641,6 @@ Blockly.Msg["JSON_VARIABLE_SET"] = "设定为";
 Blockly.Msg["JSON_TYPE_STRING"] = "转成JSON格式";
 Blockly.Msg["JSON_TYPE_JSON"] = "原为JSON格式";
 Blockly.Msg["JSON_VARIABLE_GET"] = "取得";
-Blockly.Msg["JSON_COLUMN"] = "栏位名称";
+Blockly.Msg["JSON_COLUMN"] = "参数名称";
 Blockly.Msg["JSON_INDEX"] = "索引";
 Blockly.Msg["JSON_VARIABLE_STRING"] = "JSON格式转文字";
