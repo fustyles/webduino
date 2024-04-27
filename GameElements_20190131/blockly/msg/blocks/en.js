@@ -621,3 +621,12 @@ Blockly.Msg["HOTKEY_SHOW"] = "HotKey is";
 Blockly.Msg["GOOGLEMAP_EMBED"] = "Google map embed html";
 Blockly.Msg["GOOGLEMAP_EMBED_KEY"] = "Key";
 Blockly.Msg["GOOGLEMAP_EMBED_QUERY"] = "Query";
+
+Blockly.Msg["CATPAGEELEMENTS_JSON"] = "Json";
+Blockly.Msg["JSON_VARIABLE_SET"] = "Set to"
+Blockly.Msg["JSON_TYPE_STRING"] = "Convert to JSON format"
+Blockly.Msg["JSON_TYPE_JSON"] = "Original JSON format"
+Blockly.Msg["JSON_VARIABLE_GET"] = "Get"
+Blockly.Msg["JSON_COLUMN"] = "Column name"
+Blockly.Msg["JSON_INDEX"] = "Index"
+Blockly.Msg["JSON_VARIABLE_STRING"] = "JSON format to text"
