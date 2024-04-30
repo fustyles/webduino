@@ -1,3 +1,22 @@
+Blockly.Blocks['try_catch_finally'] = {
+  init: function () {
+    this.appendDummyInput()
+	.appendField(Blockly.Msg["TRY_CATCH_SUCCESS"]);
+    this.appendStatementInput("statement_try");
+    this.appendDummyInput()
+	.appendField(Blockly.Msg["TRY_CATCH_FAIL"])
+	.appendField(new Blockly.FieldVariable("e"), 'VAR');
+    this.appendStatementInput("statement_catch");
+    this.appendDummyInput()
+	.appendField(Blockly.Msg["TRY_CATCH_FINALLY"]);
+    this.appendStatementInput("statement_finally");		
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(240);
+  }
+};
+
 Blockly.Blocks['json_variable'] = {
   init: function () {
     this.appendDummyInput()
