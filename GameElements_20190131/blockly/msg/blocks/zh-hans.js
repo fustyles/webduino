@@ -629,3 +629,7 @@ Blockly.Msg["JSON_COLUMN"] = "参数名称";
 Blockly.Msg["JSON_INDEX"] = "索引";
 Blockly.Msg["JSON_VARIABLE_STRING"] = "JSON格式转成文字格式";
 Blockly.Msg["JSON_VARIABLE_LENGTH"] = "长度";
+
+Blockly.Msg["TRY_CATCH_SUCCESS"] = "程式执行(Try)";
+Blockly.Msg["TRY_CATCH_FAIL"] = "发生错误时执行(Catch)";
+Blockly.Msg["TRY_CATCH_FINALLY"] = "最后执行(Finally)";
