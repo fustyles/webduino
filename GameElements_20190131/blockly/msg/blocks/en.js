@@ -630,3 +630,7 @@ Blockly.Msg["JSON_COLUMN"] = "Column name"
 Blockly.Msg["JSON_INDEX"] = "Index"
 Blockly.Msg["JSON_VARIABLE_STRING"] = "JSON format to text"
 Blockly.Msg["JSON_VARIABLE_LENGTH"] = "Length";
+
+Blockly.Msg["TRY_CATCH_SUCCESS"] = "Try";
+Blockly.Msg["TRY_CATCH_FAIL"] = "Catch";
+Blockly.Msg["TRY_CATCH_FINALLY"] = "Finally";
