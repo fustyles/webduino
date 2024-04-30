@@ -132,6 +132,8 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'		<block type="try_catch_finally">'+
+'		</block>'+
 '    <block type="window_prompt">'+
 '    <value name="title">'+
 '    <block type="text">'+

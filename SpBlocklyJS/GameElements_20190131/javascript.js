@@ -1,3 +1,12 @@
+Blockly.JavaScript['try_catch_finally'] = function (block) {
+  var statements_try = Blockly.JavaScript.statementToCode(block, 'statement_try');
+  var statements_catch = Blockly.JavaScript.statementToCode(block, 'statement_catch');
+  var VAR = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('VAR'), Blockly.VARIABLE_CATEGORY_NAME); 
+  var statements_finally = Blockly.JavaScript.statementToCode(block, 'statement_finally');
+  var code = 'try {\n' + statements_try + '\n} catch('+VAR+') {\n'+statements_catch+'\n} finally {\n'+statements_finally+'\n}';
+  return code;
+};
+
 Blockly.JavaScript['json_variable'] = function (block) {
   var VAR = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('VAR'), Blockly.VARIABLE_CATEGORY_NAME);
   var OBJ = Blockly.JavaScript.valueToCode(block, 'OBJ', Blockly.JavaScript.ORDER_ATOMIC);

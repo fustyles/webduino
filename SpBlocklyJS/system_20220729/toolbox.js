@@ -95,6 +95,8 @@ var catWindow ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'		<block type="try_catch_finally">'+
+'		</block>'+
 '    <block type="window_open">'+
 '    <value name="url_">'+
 '    <block type="text">'+
