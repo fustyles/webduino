@@ -3160,6 +3160,15 @@ Blockly.Arduino['window_prompt'] = function (block) {
   return code;
 };
 
+Blockly.Arduino['try_catch_finally'] = function (block) {
+  var statements_try = Blockly.Arduino.statementToCode(block, 'statement_try');
+  var statements_catch = Blockly.Arduino.statementToCode(block, 'statement_catch');
+  var VAR = Blockly.Arduino.nameDB_.getName(block.getFieldValue('VAR'), Blockly.VARIABLE_CATEGORY_NAME); 
+  var statements_finally = Blockly.Arduino.statementToCode(block, 'statement_finally');
+  var code = 'try {\n' + statements_try + '\n} catch('+VAR+') {\n'+statements_catch+'\n} finally {\n'+statements_finally+'\n}';
+  return code;
+};
+
 Blockly.Arduino['javascript_function_string_split'] = function(block) {
 	var text = Blockly.Arduino.valueToCode(block, 'text', Blockly.Arduino.ORDER_ATOMIC)||" ";	
 	var delimiter = Blockly.Arduino.valueToCode(block, 'delimiter', Blockly.Arduino.ORDER_ATOMIC)||" ";

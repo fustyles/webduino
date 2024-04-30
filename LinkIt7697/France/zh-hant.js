@@ -2412,6 +2412,10 @@ Blockly.Msg["WINDOW_CONFIRM_NO"] = "如果選擇[否]執行";
 Blockly.Msg["WINDOW_MESSAGEBOX"] = "警告視窗 顯示";
 Blockly.Msg["WINDOW_PROMPT"] = "設定為對話框輸入文字  提示詞";
 
+Blockly.Msg["TRY_CATCH_SUCCESS"] = "程式執行(Try)";
+Blockly.Msg["TRY_CATCH_FAIL"] = "發生錯誤時執行(Catch)";
+Blockly.Msg["TRY_CATCH_FINALLY"] = "最後執行(Finally)";
+
 Blockly.Msg["SYSTEM_DATETIME_ADD"] = "增量"; 
 Blockly.Msg["SYSTEM_DATETIME_YEARS"] = "年數";
 Blockly.Msg["SYSTEM_DATETIME_MONTHS"] = "月數";	  

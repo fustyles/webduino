@@ -3525,6 +3525,8 @@
 				</block>
 			</value>
 		</block>
+		<block type="try_catch_finally">
+		</block>			
 		<block type="time_delay">
 			<value name="seconds">
 				<block type="math_number">
