@@ -235,6 +235,26 @@ Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TEDDYBEAR"] = "泰迪熊";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HAIRDRYER"] = "吹風機";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TOOTHBRUSH"] = "牙刷";
 
+Blockly.Msg["AMB82_MINI_DRAWLINE"] = "影像畫線";
+Blockly.Msg["AMB82_MINI_LINEWIDTH"] = "線條寬度";
+Blockly.Msg["AMB82_MINI_COLOR"] = "顏色";
+Blockly.Msg["AMB82_MINI_ALPHA"] = "透明度";
+Blockly.Msg["AMB82_MINI_DRAWPOINT"] = "影像畫點";
+Blockly.Msg["AMB82_MINI_POINTWIDTH"] = "點的寬度";
+Blockly.Msg["AMB82_MINI_COLOR_RED"] = "紅色";
+Blockly.Msg["AMB82_MINI_COLOR_BLUE"] = "藍色";
+Blockly.Msg["AMB82_MINI_COLOR_GREEN"] = "綠色";
+Blockly.Msg["AMB82_MINI_COLOR_CYAN"] = "青色";
+Blockly.Msg["AMB82_MINI_COLOR_MAGENTA"] = "洋紅色";
+Blockly.Msg["AMB82_MINI_COLOR_YELLOW"] = "黃色";
+Blockly.Msg["AMB82_MINI_COLOR_WHITE"] = "白色";
+Blockly.Msg["AMB82_MINI_COLOR_BLACK"] = "黑色";
+Blockly.Msg["AMB82_MINI_COLOR_GRAY"] = "灰色";
+Blockly.Msg["AMB82_MINI_COLOR_ORANGE"] = "橙色";
+Blockly.Msg["AMB82_MINI_DRAWRECT"] = "影像畫方框";
+Blockly.Msg["AMB82_MINI_DRAWTEXT"] = "影像畫文字";
+Blockly.Msg["AMB82_MINI_TEXT"] = "文字";
+
 Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun 編碼器馬達";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_ENCODERPULSE"] = "脈衝";
 Blockly.Msg["EMAKEFUN_PULSE"] = "一圈脈衝";

@@ -233,6 +233,26 @@ Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TEDDYBEAR"] = "TEDDY BEAR";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HAIRDRYER"] = "HAIR DRYER";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TOOTHBRUSH"] = "TOOTHBRUSH";
 
+Blockly.Msg["AMB82_MINI_DRAWLINE"] = "Draw Line";
+Blockly.Msg["AMB82_MINI_LINEWIDTH"] = "Line Width";
+Blockly.Msg["AMB82_MINI_COLOR"] = "Color";
+Blockly.Msg["AMB82_MINI_ALPHA"] = "Opacity";
+Blockly.Msg["AMB82_MINI_DRAWPOINT"] = "Draw Point";
+Blockly.Msg["AMB82_MINI_POINTWIDTH"] = "Point Width";
+Blockly.Msg["AMB82_MINI_COLOR_RED"] = "Red";
+Blockly.Msg["AMB82_MINI_COLOR_BLUE"] = "Blue";
+Blockly.Msg["AMB82_MINI_COLOR_GREEN"] = "Green";
+Blockly.Msg["AMB82_MINI_COLOR_CYAN"] = "Cyan";
+Blockly.Msg["AMB82_MINI_COLOR_MAGENTA"] = "Magenta";
+Blockly.Msg["AMB82_MINI_COLOR_YELLOW"] = "Yellow";
+Blockly.Msg["AMB82_MINI_COLOR_WHITE"] = "White";
+Blockly.Msg["AMB82_MINI_COLOR_BLACK"] = "Black";
+Blockly.Msg["AMB82_MINI_COLOR_GRAY"] = "Gray";
+Blockly.Msg["AMB82_MINI_COLOR_ORANGE"] = "Orange";
+Blockly.Msg["AMB82_MINI_DRAWRECT"] = "Draw Rectangle";
+Blockly.Msg["AMB82_MINI_DRAWTEXT"] = "Draw Text";
+Blockly.Msg["AMB82_MINI_TEXT"] = "Text";
+
 Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun Encode motor";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_ENCODERPULSE"] = "Pulse";
 Blockly.Msg["EMAKEFUN_PULSE"] = "One circle pulse";

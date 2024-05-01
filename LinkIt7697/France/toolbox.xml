@@ -2629,7 +2629,116 @@
 			  <block type="amb82_mini_objectdetection_rtsp_rect">		  
 			  </block> 
 			  <block type="amb82_mini_objectdetection_rtsp_object">		  
-			  </block> 			  
+			  </block> 
+
+			  <block type="amb82_mini_drawline">
+					<value name="x">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+					<value name="y">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+					<value name="x1">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+					<value name="y1">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+					<value name="linewidth">
+					  <block type="math_number">
+						<field name="NUM">3</field>
+					  </block>
+					</value>
+					<value name="alpha">
+					  <block type="math_number">
+						<field name="NUM">255</field>
+					  </block>
+					</value>						
+			  </block>
+			  <block type="amb82_mini_drawpoint">
+					<value name="x">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+					<value name="y">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+					<value name="pointwidth">
+					  <block type="math_number">
+						<field name="NUM">3</field>
+					  </block>
+					</value>
+					<value name="alpha">
+					  <block type="math_number">
+						<field name="NUM">255</field>
+					  </block>
+					</value>
+			  </block> 
+			  <block type="amb82_mini_drawrect">
+					<value name="x">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+					<value name="y">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+					<value name="x1">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+					<value name="y1">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+					<value name="linewidth">
+					  <block type="math_number">
+						<field name="NUM">3</field>
+					  </block>
+					</value>
+					<value name="alpha">
+					  <block type="math_number">
+						<field name="NUM">255</field>
+					  </block>
+					</value>
+			  </block> 
+			  <block type="amb82_mini_drawtext">
+					<value name="x">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+					<value name="y">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+					<value name="txt">
+					  <block type="text">
+						<field name="TEXT"></field>
+					  </block>    
+					</value> 
+					<value name="alpha">
+					  <block type="math_number">
+						<field name="NUM">255</field>
+					  </block>
+					</value>
+			  </block>			  
 		</category>
 		<category id="france23" name="amb82_mini_FaceDetection">				
 				  
@@ -2641,9 +2750,6 @@
 				  
 		</category>		
 		<category id="france23" name="amb82_mini_AudioClassification">				
-				  
-		</category>	
-		<category id="france23" name="amb82_mini_osd_draw">				
 				  
 		</category>			
 		<sep id="category_sep"></sep>

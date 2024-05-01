@@ -126,5 +126,4 @@
 <category><name>amb82_mini_FaceRecognition</name><replace>Face Recognition</replace></category>
 <category><name>amb82_mini_ImageClassification</name><replace>Image Classification</replace></category>
 <category><name>amb82_mini_AudioClassification</name><replace>Audio Classification</replace></category>
-<category><name>amb82_mini_osd_draw</name><replace>OSD draw</replace></category>
 </xml>
