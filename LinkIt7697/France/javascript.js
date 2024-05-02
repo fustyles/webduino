@@ -35,21 +35,14 @@ Blockly.Arduino['amb82_mini_drawrect'] = function(block) {
 	return code;
 };
 
-Blockly.Arduino['amb82_mini_drawtext'] = function(block) {
-	Blockly.Arduino.definitions_['define_string2char'] = ''+
-	'char text_str[20];\n'+		
-	'const char * string2char(String txt) {\n'+
-	'	snprintf(text_str, sizeof(text_str), "%s", txt);\n'+
-	'	return text_str;\n'+
-	'}\n';
-				
+Blockly.Arduino['amb82_mini_drawtext'] = function(block) {	
 	var x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var txt = Blockly.Arduino.valueToCode(block, 'txt', Blockly.Arduino.ORDER_ATOMIC)||"Hello World";
 	var color = block.getFieldValue('color');
 	var alpha = Blockly.Arduino.valueToCode(block, 'alpha', Blockly.Arduino.ORDER_ATOMIC)||255;	
 	
-	var code = 'OSD.drawText(amb82_CHANNEL, '+x+', '+y+' - OSD.getTextHeight(amb82_CHANNEL), string2char('+txt+'), '+color.replace("alpha", alpha)+');\n';
+	var code = 'OSD.drawText(amb82_CHANNEL, '+x+', '+y+' - OSD.getTextHeight(amb82_CHANNEL), String('+txt+').c_str(), '+color.replace("alpha", alpha)+');\n';
 	return code;
 };
 
