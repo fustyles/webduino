@@ -263,7 +263,7 @@ Blockly.Msg["AMB82_MINI_DRAWRECT"] = "影像畫方框";
 Blockly.Msg["AMB82_MINI_DRAWTEXT"] = "影像畫文字";
 Blockly.Msg["AMB82_MINI_TEXT"] = "文字";
 
-Blockly.Msg["AMB82_MINI_XY_IN_TRIANGLE"] = "在凸三邊形的範圍內";
+Blockly.Msg["AMB82_MINI_XY_IN_TRIANGLE"] = "在三邊形的範圍內";
 Blockly.Msg["AMB82_MINI_XY_IN_QUADRILATERAL"] = "在凸四邊形的範圍內";
 
 Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun 編碼器馬達";
