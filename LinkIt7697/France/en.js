@@ -261,7 +261,7 @@ Blockly.Msg["AMB82_MINI_DRAWRECT"] = "Draw Rectangle";
 Blockly.Msg["AMB82_MINI_DRAWTEXT"] = "Draw Text";
 Blockly.Msg["AMB82_MINI_TEXT"] = "Text";
 
-Blockly.Msg["AMB82_MINI_XY_IN_TRIANGLE"] = "Inside the range of a convex triangle";
+Blockly.Msg["AMB82_MINI_XY_IN_TRIANGLE"] = "Inside the range of a triangle";
 Blockly.Msg["AMB82_MINI_XY_IN_QUADRILATERAL"] = "Inside the range of a convex quadrilateral";
 
 Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun Encode motor";
