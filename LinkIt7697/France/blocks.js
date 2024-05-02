@@ -55,7 +55,7 @@ Blockly.Blocks['amb82_mini_xy_in_quadrilateral'] = {
 		.appendField("Y")
 		.setCheck("Number");
 	this.appendDummyInput()
-		.appendField(Blockly.Msg["AMB82_MINI_XY_IN_TRIANGLE"]);			
+		.appendField(Blockly.Msg["AMB82_MINI_XY_IN_QUADRILATERAL"]);			
 	this.appendValueInput("x1")
 		.setAlign(Blockly.ALIGN_RIGHT) 		
 		.appendField("X1")
