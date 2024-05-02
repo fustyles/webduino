@@ -53,7 +53,7 @@ Blockly.Blocks['amb82_mini_drawpoint'] = {
   init: function() {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg["AMB82_MINI_DRAWPOINT"])		
+        .appendField(Blockly.Msg["AMB82_MINI_DRAWPOINT"]);		
 	this.appendValueInput("x")
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField("X")
@@ -96,7 +96,7 @@ Blockly.Blocks['amb82_mini_drawrect'] = {
   init: function() {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg["AMB82_MINI_DRAWRECT"])		
+        .appendField(Blockly.Msg["AMB82_MINI_DRAWRECT"]);		
 	this.appendValueInput("x")
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField("X0")
@@ -147,7 +147,7 @@ Blockly.Blocks['amb82_mini_drawtext'] = {
   init: function() {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg["AMB82_MINI_DRAWTEXT"])		
+        .appendField(Blockly.Msg["AMB82_MINI_DRAWTEXT"]);		
 	this.appendValueInput("x")
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField("X")
