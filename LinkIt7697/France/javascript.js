@@ -1,10 +1,59 @@
+Blockly.Arduino['amb82_mini_xy_in_triangle'] = function(block) {
+	Blockly.Arduino.definitions_['define_xy_in_triangle'] =''+
+	'boolean xy_in_triangle(int x,int y,int x1,int y1,int x2,int y2,int x3,int y3) {\n'+
+	'    int area = abs(x1*y2+x2*y3+x3*y1-x2*y1-x3*y2-x1*y3);\n'+
+	'    int area1 = abs(x1*y2+x2*y+x*y1-x2*y1-x*y2-x1*y);\n'+
+	'    int area2 = abs(x*y2+x2*y3+x3*y-x2*y-x3*y2-x*y3);\n'+
+	'    int area3 = abs(x1*y+x*y3+x3*y1-x*y1-x3*y-x1*y3);\n'+
+	'    return (area==(area1+area2+area3));\n'+	
+	'}';
+	
+	var x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var x1 = Blockly.Arduino.valueToCode(block, 'x1', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y1 = Blockly.Arduino.valueToCode(block, 'y1', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var x2 = Blockly.Arduino.valueToCode(block, 'x2', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y2 = Blockly.Arduino.valueToCode(block, 'y2', Blockly.Arduino.ORDER_ATOMIC)||0;	
+	var x3 = Blockly.Arduino.valueToCode(block, 'x3', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y3 = Blockly.Arduino.valueToCode(block, 'y3', Blockly.Arduino.ORDER_ATOMIC)||0;
+	
+	var code = 'xy_in_triangle('+x+', '+y+', '+x1+', '+y1+', '+x2+', '+y2+', '+x3+', '+y3+')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['amb82_mini_xy_in_quadrilateral'] = function(block) {
+	Blockly.Arduino.definitions_['define_xy_in_quadrilateral'] =''+
+	'boolean xy_in_quadrilateral(int x,int y,int x1,int y1,int x2,int y2,int x3,int y3,int x4,int y4) {\n'+
+	'    int area = abs(x1*y2+x2*y3+x3*y1-x2*y1-x3*y2-x1*y3)+abs(x1*y4+x4*y3+x3*y1-x4*y1-x3*y4-x1*y3);\n'+
+	'    int area1 = abs(x1*y2+x2*y+x*y1-x2*y1-x*y2-x1*y);\n'+
+	'    int area2 = abs(x*y2+x2*y3+x3*y-x2*y-x3*y2-x*y3);\n'+
+	'    int area3 = abs(x3*y4+x4*y+x*y3-x4*y3-x*y4-x3*y);\n'+
+	'    int area4 = abs(x1*y4+x4*y+x*y1-x4*y1-x*y4-x1*y);\n'+
+	'    return (area==(area1+area2+area3+area4));\n'+	
+	'}';
+	
+	var x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var x1 = Blockly.Arduino.valueToCode(block, 'x1', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y1 = Blockly.Arduino.valueToCode(block, 'y1', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var x2 = Blockly.Arduino.valueToCode(block, 'x2', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y2 = Blockly.Arduino.valueToCode(block, 'y2', Blockly.Arduino.ORDER_ATOMIC)||0;	
+	var x3 = Blockly.Arduino.valueToCode(block, 'x3', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y3 = Blockly.Arduino.valueToCode(block, 'y3', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var x4 = Blockly.Arduino.valueToCode(block, 'x4', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y4 = Blockly.Arduino.valueToCode(block, 'y4', Blockly.Arduino.ORDER_ATOMIC)||0;
+	
+	var code = 'xy_in_quadrilateral('+x+', '+y+', '+x1+', '+y1+', '+x2+', '+y2+', '+x3+', '+y3+', '+x4+', '+y4+')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['amb82_mini_drawline'] = function(block) {
 	var x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var x1 = Blockly.Arduino.valueToCode(block, 'x1', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var y1 = Blockly.Arduino.valueToCode(block, 'y1', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var linewidth = Blockly.Arduino.valueToCode(block, 'linewidth', Blockly.Arduino.ORDER_ATOMIC)||3;
-	var color = block.getFieldValue('color');
+    var color = block.getFieldValue('color');
 	var alpha = Blockly.Arduino.valueToCode(block, 'alpha', Blockly.Arduino.ORDER_ATOMIC)||255;	
 	
 	var code = 'OSD.drawLine(amb82_CHANNEL, '+x+', '+y+', '+x1+', '+y1+', '+linewidth+', '+color.replace("alpha", alpha)+');\n';
@@ -15,7 +64,7 @@ Blockly.Arduino['amb82_mini_drawpoint'] = function(block) {
 	var x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var pointwidth = Blockly.Arduino.valueToCode(block, 'pointwidth', Blockly.Arduino.ORDER_ATOMIC)||3;
-	var color = block.getFieldValue('color');
+    var color = block.getFieldValue('color');
 	var alpha = Blockly.Arduino.valueToCode(block, 'alpha', Blockly.Arduino.ORDER_ATOMIC)||255;	
 	
 	var code = 'OSD.drawPoint(amb82_CHANNEL, '+x+', '+y+',  '+pointwidth+', '+color.replace("alpha", alpha)+');\n';
@@ -28,7 +77,7 @@ Blockly.Arduino['amb82_mini_drawrect'] = function(block) {
 	var x1 = Blockly.Arduino.valueToCode(block, 'x1', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var y1 = Blockly.Arduino.valueToCode(block, 'y1', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var linewidth = Blockly.Arduino.valueToCode(block, 'linewidth', Blockly.Arduino.ORDER_ATOMIC)||3;
-	var color = block.getFieldValue('color');
+    var color = block.getFieldValue('color');
 	var alpha = Blockly.Arduino.valueToCode(block, 'alpha', Blockly.Arduino.ORDER_ATOMIC)||255;	
 	
 	var code = 'OSD.drawRect(amb82_CHANNEL, '+x+', '+y+', '+x1+', '+y1+', '+linewidth+', '+color.replace("alpha", alpha)+');\n';
@@ -39,7 +88,7 @@ Blockly.Arduino['amb82_mini_drawtext'] = function(block) {
 	var x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var txt = Blockly.Arduino.valueToCode(block, 'txt', Blockly.Arduino.ORDER_ATOMIC)||"Hello World";
-	var color = block.getFieldValue('color');
+    var color = block.getFieldValue('color');
 	var alpha = Blockly.Arduino.valueToCode(block, 'alpha', Blockly.Arduino.ORDER_ATOMIC)||255;	
 	
 	var code = 'OSD.drawText(amb82_CHANNEL, '+x+', '+y+' - OSD.getTextHeight(amb82_CHANNEL), String('+txt+').c_str(), '+color.replace("alpha", alpha)+');\n';
@@ -52,6 +101,7 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 	Blockly.Arduino.setups_.write_peri_reg = "";
 	
 	var model = block.getFieldValue('model');
+	var label = block.getFieldValue('label');
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
 	var statement_finish = Blockly.Arduino.statementToCode(block, 'statement_finish');
 
@@ -159,12 +209,18 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 	'                int xmin = (int)(item.xMin() * im_w);\n'+
 	'                int xmax = (int)(item.xMax() * im_w);\n'+
 	'                int ymin = (int)(item.yMin() * im_h);\n'+
-	'                int ymax = (int)(item.yMax() * im_h);\n'+ statement+
-	'                //printf("Item %d %s:\\t%d %d %d %d\\n\\r", i, itemList[obj_type].objectName, xmin, xmax, ymin, ymax);\n'+
-	'                OSD.drawRect(amb82_CHANNEL, xmin, ymin, xmax, ymax, 3, OSD_COLOR_WHITE);\n'+
-	'                char text_str[20];\n'+
-	'                snprintf(text_str, sizeof(text_str), "%s %d", itemList[obj_type].objectName, item.score());\n'+
-	'                OSD.drawText(amb82_CHANNEL, xmin, ymin - OSD.getTextHeight(amb82_CHANNEL), text_str, OSD_COLOR_CYAN);\n'+
+	'                int ymax = (int)(item.yMax() * im_h);\n'+ statement;
+	
+	if (label=="Y") {
+		Blockly.Arduino.definitions_['define_amb82_mini_objectdetection_rtsp_ObjectDetectionItem'] +=
+		'                //printf("Item %d %s:\\t%d %d %d %d\\n\\r", i, itemList[obj_type].objectName, xmin, xmax, ymin, ymax);\n'+		
+		'                OSD.drawRect(amb82_CHANNEL, xmin, ymin, xmax, ymax, 3, OSD_COLOR_WHITE);\n'+
+		'                char text_str[20];\n'+
+		'                snprintf(text_str, sizeof(text_str), "%s %d", itemList[obj_type].objectName, item.score());\n'+
+		'                OSD.drawText(amb82_CHANNEL, xmin, ymin - OSD.getTextHeight(amb82_CHANNEL), text_str, OSD_COLOR_CYAN);\n';
+	}
+	
+	Blockly.Arduino.definitions_['define_amb82_mini_objectdetection_rtsp_ObjectDetectionItem'] +=
 	'            }\n'+
 	'        }\n'+
 	'    }\n'+ statement_finish +
@@ -219,6 +275,10 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp_rect'] = function(block) {
 		var code = 'xmin';
 	else if (property == "Y")
 		var code = 'ymin';
+	else if (property == "XM")
+		var code = 'int((xmin+xmax)/2)';
+	else if (property == "YM")
+		var code = 'int((ymin+ymax)/2)';	
 	else if (property == "X1")
 		var code = 'xmax';
 	else if (property == "Y1")

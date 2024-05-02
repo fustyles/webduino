@@ -144,6 +144,7 @@ Blockly.Msg["AMB82_MINI_BLEMOUSE"] = "藍芽滑鼠";
 
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION"] = "物件偵測";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CLASS"] = "分類";
+Blockly.Msg["AMB82_MINI_OBJECTDETECTION_LABEL"] = "標記";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_AFTER"] = "列舉所有物件";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_FINISH"] = "列舉完成後";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_MODEL"] = "模型";
@@ -151,6 +152,12 @@ Blockly.Msg["AMB82_MINI_OBJECTDETECTION_COUNT"] = "物件數";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_ITEMLIST"] = "列舉物件屬性";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_OBJECT"] = "物件名稱";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SCORE"] = "信心分數";
+Blockly.Msg["AMB82_MINI_OBJECTDETECTION_X_MIN"] = "X左上";
+Blockly.Msg["AMB82_MINI_OBJECTDETECTION_Y_MIN"] = "Y左上";
+Blockly.Msg["AMB82_MINI_OBJECTDETECTION_X_MIDDLE"] = "X中間";
+Blockly.Msg["AMB82_MINI_OBJECTDETECTION_Y_MIDDLE"] = "Y中間";				
+Blockly.Msg["AMB82_MINI_OBJECTDETECTION_X_MAX"] = "X右下";
+Blockly.Msg["AMB82_MINI_OBJECTDETECTION_Y_MAX"] = "Y右下";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_WIDTH"] = "寬度";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HIGHT"] = "高度";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_ITEMOBJECT"] = "列舉物件名稱為";
@@ -254,6 +261,9 @@ Blockly.Msg["AMB82_MINI_COLOR_ORANGE"] = "橙色";
 Blockly.Msg["AMB82_MINI_DRAWRECT"] = "影像畫方框";
 Blockly.Msg["AMB82_MINI_DRAWTEXT"] = "影像畫文字";
 Blockly.Msg["AMB82_MINI_TEXT"] = "文字";
+
+Blockly.Msg["AMB82_MINI_XY_IN_TRIANGLE"] = "在凸三邊形的範圍內";
+Blockly.Msg["AMB82_MINI_XY_IN_QUADRILATERAL"] = "在凸四邊形的範圍內";
 
 Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun 編碼器馬達";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_ENCODERPULSE"] = "脈衝";

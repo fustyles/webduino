@@ -1,8 +1,104 @@
+Blockly.Blocks['amb82_mini_xy_in_triangle'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI"]);		
+	this.appendValueInput("x")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("X")
+		.setCheck("Number");		
+	this.appendValueInput("y")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("Y")
+		.setCheck("Number");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI_XY_IN_TRIANGLE"]);			
+	this.appendValueInput("x1")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("X1")
+		.setCheck("Number");		
+	this.appendValueInput("y1")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("Y1")
+		.setCheck("Number");
+	this.appendValueInput("x2")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("X2")
+		.setCheck("Number");		
+	this.appendValueInput("y2")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("Y2")
+		.setCheck("Number");
+	this.appendValueInput("x3")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("X3")
+		.setCheck("Number");		
+	this.appendValueInput("y3")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("Y3")
+		.setCheck("Number");			
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(Blockly.Msg["HUE_20"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_xy_in_quadrilateral'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI"]);		
+	this.appendValueInput("x")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("X")
+		.setCheck("Number");		
+	this.appendValueInput("y")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("Y")
+		.setCheck("Number");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI_XY_IN_TRIANGLE"]);			
+	this.appendValueInput("x1")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("X1")
+		.setCheck("Number");		
+	this.appendValueInput("y1")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("Y1")
+		.setCheck("Number");
+	this.appendValueInput("x2")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("X2")
+		.setCheck("Number");		
+	this.appendValueInput("y2")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("Y2")
+		.setCheck("Number");
+	this.appendValueInput("x3")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("X3")
+		.setCheck("Number");		
+	this.appendValueInput("y3")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("Y3")
+		.setCheck("Number");
+	this.appendValueInput("x4")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("X4")
+		.setCheck("Number");		
+	this.appendValueInput("y4")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("Y4")
+		.setCheck("Number");		
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(Blockly.Msg["HUE_20"]);
+  }
+};
+
 Blockly.Blocks['amb82_mini_drawline'] = {
   init: function() {
 	this.appendDummyInput()
-			.appendField(Blockly.Msg["AMB82_MINI"])
-			.appendField(Blockly.Msg["AMB82_MINI_DRAWLINE"]);		
+		.appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_DRAWLINE"]);		
 	this.appendValueInput("x")
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField("X0")
@@ -23,7 +119,7 @@ Blockly.Blocks['amb82_mini_drawline'] = {
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField(Blockly.Msg["AMB82_MINI_LINEWIDTH"])
 			.setCheck("Number");
-	this.appendDummyInput()	 
+    this.appendDummyInput()	 
 			.setAlign(Blockly.ALIGN_RIGHT)
 			.appendField(Blockly.Msg["AMB82_MINI_COLOR"])
 			.appendField(new Blockly.FieldDropdown([
@@ -37,7 +133,7 @@ Blockly.Blocks['amb82_mini_drawline'] = {
 				[Blockly.Msg["AMB82_MINI_COLOR_BLACK"], "ARGB((uint8_t) alpha, 0x00, 0x00, 0x00)"],
 				[Blockly.Msg["AMB82_MINI_COLOR_GRAY"], "ARGB((uint8_t) alpha, 0x7f, 0x7f, 0x7f)"],
 				[Blockly.Msg["AMB82_MINI_COLOR_ORANGE"], "ARGB((uint8_t) alpha, 0xf3, 0x70, 0x21)"]
-		]), "color");
+			]), "color");
 	this.appendValueInput("alpha")
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField(Blockly.Msg["AMB82_MINI_ALPHA"]+" (0-255)")
@@ -53,7 +149,7 @@ Blockly.Blocks['amb82_mini_drawpoint'] = {
   init: function() {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg["AMB82_MINI_DRAWPOINT"]);		
+        .appendField(Blockly.Msg["AMB82_MINI_DRAWPOINT"]);
 	this.appendValueInput("x")
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField("X")
@@ -66,7 +162,7 @@ Blockly.Blocks['amb82_mini_drawpoint'] = {
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField(Blockly.Msg["AMB82_MINI_POINTWIDTH"])
 			.setCheck("Number");
-	this.appendDummyInput()	 
+    this.appendDummyInput()	 
 			.setAlign(Blockly.ALIGN_RIGHT)
 			.appendField(Blockly.Msg["AMB82_MINI_COLOR"])
 			.appendField(new Blockly.FieldDropdown([
@@ -80,7 +176,7 @@ Blockly.Blocks['amb82_mini_drawpoint'] = {
 				[Blockly.Msg["AMB82_MINI_COLOR_BLACK"], "ARGB((uint8_t) alpha, 0x00, 0x00, 0x00)"],
 				[Blockly.Msg["AMB82_MINI_COLOR_GRAY"], "ARGB((uint8_t) alpha, 0x7f, 0x7f, 0x7f)"],
 				[Blockly.Msg["AMB82_MINI_COLOR_ORANGE"], "ARGB((uint8_t) alpha, 0xf3, 0x70, 0x21)"]
-		]), "color");
+			]), "color");
 	this.appendValueInput("alpha")
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField(Blockly.Msg["AMB82_MINI_ALPHA"]+" (0-255)")
@@ -96,7 +192,7 @@ Blockly.Blocks['amb82_mini_drawrect'] = {
   init: function() {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg["AMB82_MINI_DRAWRECT"]);		
+        .appendField(Blockly.Msg["AMB82_MINI_DRAWRECT"]);
 	this.appendValueInput("x")
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField("X0")
@@ -117,7 +213,7 @@ Blockly.Blocks['amb82_mini_drawrect'] = {
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField(Blockly.Msg["AMB82_MINI_LINEWIDTH"])
 			.setCheck("Number");
-	this.appendDummyInput()	 
+    this.appendDummyInput()	 
 			.setAlign(Blockly.ALIGN_RIGHT)
 			.appendField(Blockly.Msg["AMB82_MINI_COLOR"])
 			.appendField(new Blockly.FieldDropdown([
@@ -131,7 +227,7 @@ Blockly.Blocks['amb82_mini_drawrect'] = {
 				[Blockly.Msg["AMB82_MINI_COLOR_BLACK"], "ARGB((uint8_t) alpha, 0x00, 0x00, 0x00)"],
 				[Blockly.Msg["AMB82_MINI_COLOR_GRAY"], "ARGB((uint8_t) alpha, 0x7f, 0x7f, 0x7f)"],
 				[Blockly.Msg["AMB82_MINI_COLOR_ORANGE"], "ARGB((uint8_t) alpha, 0xf3, 0x70, 0x21)"]
-		]), "color");
+			]), "color");
 	this.appendValueInput("alpha")
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField(Blockly.Msg["AMB82_MINI_ALPHA"]+" (0-255)")
@@ -147,7 +243,7 @@ Blockly.Blocks['amb82_mini_drawtext'] = {
   init: function() {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg["AMB82_MINI_DRAWTEXT"]);		
+        .appendField(Blockly.Msg["AMB82_MINI_DRAWTEXT"])		
 	this.appendValueInput("x")
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField("X")
@@ -160,7 +256,7 @@ Blockly.Blocks['amb82_mini_drawtext'] = {
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField(Blockly.Msg["AMB82_MINI_TEXT"])
 			.setCheck("String");
-	this.appendDummyInput()	 
+    this.appendDummyInput()	 
 			.setAlign(Blockly.ALIGN_RIGHT)
 			.appendField(Blockly.Msg["AMB82_MINI_COLOR"])
 			.appendField(new Blockly.FieldDropdown([
@@ -174,7 +270,7 @@ Blockly.Blocks['amb82_mini_drawtext'] = {
 				[Blockly.Msg["AMB82_MINI_COLOR_BLACK"], "ARGB((uint8_t) alpha, 0x00, 0x00, 0x00)"],
 				[Blockly.Msg["AMB82_MINI_COLOR_GRAY"], "ARGB((uint8_t) alpha, 0x7f, 0x7f, 0x7f)"],
 				[Blockly.Msg["AMB82_MINI_COLOR_ORANGE"], "ARGB((uint8_t) alpha, 0xf3, 0x70, 0x21)"]
-		]), "color");
+			]), "color");
 	this.appendValueInput("alpha")
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField(Blockly.Msg["AMB82_MINI_ALPHA"]+" (0-255)")
@@ -195,12 +291,16 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp'] = {
 			.setAlign(Blockly.ALIGN_RIGHT)
 			.appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_MODEL"])
 			.appendField(new Blockly.FieldDropdown([
-				["YOLOv3","DEFAULT_YOLOV3TINY"],
 				["YOLOv4","DEFAULT_YOLOV4TINY"],
-				["YOLOv7","DEFAULT_YOLOV7TINY"],
-				["SCRFD","DEFAULT_SCRFD"],
-				["MobileFaceNet","DEFAULT_MOBILEFACENET"]
-		]), "model");		
+				["YOLOv7","DEFAULT_YOLOV7TINY"]
+		]), "model");
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_LABEL"])
+		.appendField(new Blockly.FieldDropdown([
+			["Y","Y"],
+			["N","N"]
+		]), "label");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_AFTER"]);	  
     this.appendStatementInput("statement")
@@ -239,10 +339,12 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp_rect'] = {
 			.appendField(new Blockly.FieldDropdown([
 				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_OBJECT"],"OBJECT"],
 				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SCORE"],"SCORE"],			
-				["X_MIN","X"],
-				["Y_MIN","Y"],
-				["X_MAX","X1"],
-				["Y_MAX","Y1"],				
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_X_MIN"],"X"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_Y_MIN"],"Y"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_X_MIDDLE"],"XM"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_Y_MIDDLE"],"YM"],				
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_X_MAX"],"X1"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_Y_MAX"],"Y1"],				
 				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_WIDTH"],"WIDTH"],
 				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HIGHT"],"HEIGHT"]
 		]), "property");		

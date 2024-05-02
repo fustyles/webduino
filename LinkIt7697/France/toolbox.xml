@@ -2630,7 +2630,48 @@
 			  </block> 
 			  <block type="amb82_mini_objectdetection_rtsp_object">		  
 			  </block> 
-
+			  <block type="amb82_mini_xy_in_triangle">
+					<value name="x">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+					<value name="y">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+					<value name="x1">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+					<value name="y1">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+					<value name="x2">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+					<value name="y2">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+					<value name="x3">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+					<value name="y3">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>					
+			  </block> 
 			  <block type="amb82_mini_drawline">
 					<value name="x">
 					  <block type="math_number">
