@@ -158,6 +158,7 @@ Blockly.Msg["AMB82_MINI_OBJECTDETECTION_X_MAX"] = "X bottom-right";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_Y_MAX"] = "Y bottom-right";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_WIDTH"] = "Width";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HIGHT"] = "Height";
+Blockly.Msg["AMB82_MINI_OBJECTDETECTION_XY_ARRANGE"] = "(Coordinate arrangement in order)";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_ITEMOBJECT"] = "Object name is";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_PERSON"] = "PERSON";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BICYCLE"] = "BICYCLE";

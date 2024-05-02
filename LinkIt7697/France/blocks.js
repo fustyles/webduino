@@ -87,7 +87,9 @@ Blockly.Blocks['amb82_mini_xy_in_quadrilateral'] = {
 	this.appendValueInput("y4")
 		.setAlign(Blockly.ALIGN_RIGHT) 		
 		.appendField("Y4")
-		.setCheck("Number");		
+		.setCheck("Number");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_XY_ARRANGE"]);
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
 	this.setColour(Blockly.Msg["HUE_20"]);
