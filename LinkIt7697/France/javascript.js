@@ -4,7 +4,7 @@ Blockly.Arduino['amb82_mini_drawline'] = function(block) {
 	var x1 = Blockly.Arduino.valueToCode(block, 'x1', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var y1 = Blockly.Arduino.valueToCode(block, 'y1', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var linewidth = Blockly.Arduino.valueToCode(block, 'linewidth', Blockly.Arduino.ORDER_ATOMIC)||3;
-    var color = block.getFieldValue('color');
+	var color = block.getFieldValue('color');
 	var alpha = Blockly.Arduino.valueToCode(block, 'alpha', Blockly.Arduino.ORDER_ATOMIC)||255;	
 	
 	var code = 'OSD.drawLine(amb82_CHANNEL, '+x+', '+y+', '+x1+', '+y1+', '+linewidth+', '+color.replace("alpha", alpha)+');\n';
@@ -15,7 +15,7 @@ Blockly.Arduino['amb82_mini_drawpoint'] = function(block) {
 	var x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var pointwidth = Blockly.Arduino.valueToCode(block, 'pointwidth', Blockly.Arduino.ORDER_ATOMIC)||3;
-    var color = block.getFieldValue('color');
+	var color = block.getFieldValue('color');
 	var alpha = Blockly.Arduino.valueToCode(block, 'alpha', Blockly.Arduino.ORDER_ATOMIC)||255;	
 	
 	var code = 'OSD.drawPoint(amb82_CHANNEL, '+x+', '+y+',  '+pointwidth+', '+color.replace("alpha", alpha)+');\n';
@@ -28,7 +28,7 @@ Blockly.Arduino['amb82_mini_drawrect'] = function(block) {
 	var x1 = Blockly.Arduino.valueToCode(block, 'x1', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var y1 = Blockly.Arduino.valueToCode(block, 'y1', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var linewidth = Blockly.Arduino.valueToCode(block, 'linewidth', Blockly.Arduino.ORDER_ATOMIC)||3;
-    var color = block.getFieldValue('color');
+	var color = block.getFieldValue('color');
 	var alpha = Blockly.Arduino.valueToCode(block, 'alpha', Blockly.Arduino.ORDER_ATOMIC)||255;	
 	
 	var code = 'OSD.drawRect(amb82_CHANNEL, '+x+', '+y+', '+x1+', '+y1+', '+linewidth+', '+color.replace("alpha", alpha)+');\n';
@@ -36,9 +36,9 @@ Blockly.Arduino['amb82_mini_drawrect'] = function(block) {
 };
 
 Blockly.Arduino['amb82_mini_drawtext'] = function(block) {
-	Blockly.Arduino.definitions_['define_string2char'] = ''+	
+	Blockly.Arduino.definitions_['define_string2char'] = ''+
+	'char text_str[20];\n'+		
 	'const char * string2char(String txt) {\n'+
-	'	char text_str[20];\n'+
 	'	snprintf(text_str, sizeof(text_str), "%s", txt);\n'+
 	'	return text_str;\n'+
 	'}\n';
@@ -46,7 +46,7 @@ Blockly.Arduino['amb82_mini_drawtext'] = function(block) {
 	var x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var txt = Blockly.Arduino.valueToCode(block, 'txt', Blockly.Arduino.ORDER_ATOMIC)||"Hello World";
-    var color = block.getFieldValue('color');
+	var color = block.getFieldValue('color');
 	var alpha = Blockly.Arduino.valueToCode(block, 'alpha', Blockly.Arduino.ORDER_ATOMIC)||255;	
 	
 	var code = 'OSD.drawText(amb82_CHANNEL, '+x+', '+y+' - OSD.getTextHeight(amb82_CHANNEL), string2char('+txt+'), '+color.replace("alpha", alpha)+');\n';
