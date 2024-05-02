@@ -293,8 +293,16 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp'] = {
 			.setAlign(Blockly.ALIGN_RIGHT)
 			.appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_MODEL"])
 			.appendField(new Blockly.FieldDropdown([
-				["YOLOv4","DEFAULT_YOLOV4TINY"],
-				["YOLOv7","DEFAULT_YOLOV7TINY"]
+ 				["YOLOv4","DEFAULT_YOLOV4TINY"],
+ 				["YOLOv7","DEFAULT_YOLOV7TINY"],
+ 				["YOLOv3","DEFAULT_YOLOV3TINY"],				
+ 				["SCRFD","DEFAULT_SCRFD"],
+ 				["MobileFaceNet","DEFAULT_MOBILEFACENET"],
+ 				["YOLOv4-SD", "CUSTOMIZED_YOLOV4TINY"],
+ 				["YOLOv7-SD", "CUSTOMIZED_YOLOV7TINY"],
+ 				["YOLOv3-SD", "CUSTOMIZED_YOLOV3TINY"],				
+ 				["SCRFD-SD", "CUSTOMIZED_SCRFD"],
+ 				["MobileFaceNet-SD", "CUSTOMIZED_MOBILEFACENET"]
 		]), "model");
     this.appendDummyInput()	 
 		.setAlign(Blockly.ALIGN_RIGHT)
