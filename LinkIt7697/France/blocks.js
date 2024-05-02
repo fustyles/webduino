@@ -1,8 +1,8 @@
 Blockly.Blocks['amb82_mini_drawline'] = {
   init: function() {
 	this.appendDummyInput()
-		.appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg["AMB82_MINI_DRAWLINE"])		
+			.appendField(Blockly.Msg["AMB82_MINI"])
+			.appendField(Blockly.Msg["AMB82_MINI_DRAWLINE"]);		
 	this.appendValueInput("x")
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField("X0")
