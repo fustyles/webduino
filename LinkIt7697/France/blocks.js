@@ -23,7 +23,7 @@ Blockly.Blocks['amb82_mini_drawline'] = {
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField(Blockly.Msg["AMB82_MINI_LINEWIDTH"])
 			.setCheck("Number");
-    this.appendDummyInput()	 
+	this.appendDummyInput()	 
 			.setAlign(Blockly.ALIGN_RIGHT)
 			.appendField(Blockly.Msg["AMB82_MINI_COLOR"])
 			.appendField(new Blockly.FieldDropdown([
@@ -66,7 +66,7 @@ Blockly.Blocks['amb82_mini_drawpoint'] = {
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField(Blockly.Msg["AMB82_MINI_POINTWIDTH"])
 			.setCheck("Number");
-    this.appendDummyInput()	 
+	this.appendDummyInput()	 
 			.setAlign(Blockly.ALIGN_RIGHT)
 			.appendField(Blockly.Msg["AMB82_MINI_COLOR"])
 			.appendField(new Blockly.FieldDropdown([
@@ -117,7 +117,7 @@ Blockly.Blocks['amb82_mini_drawrect'] = {
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField(Blockly.Msg["AMB82_MINI_LINEWIDTH"])
 			.setCheck("Number");
-    this.appendDummyInput()	 
+	this.appendDummyInput()	 
 			.setAlign(Blockly.ALIGN_RIGHT)
 			.appendField(Blockly.Msg["AMB82_MINI_COLOR"])
 			.appendField(new Blockly.FieldDropdown([
@@ -160,7 +160,7 @@ Blockly.Blocks['amb82_mini_drawtext'] = {
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField(Blockly.Msg["AMB82_MINI_TEXT"])
 			.setCheck("String");
-    this.appendDummyInput()	 
+	this.appendDummyInput()	 
 			.setAlign(Blockly.ALIGN_RIGHT)
 			.appendField(Blockly.Msg["AMB82_MINI_COLOR"])
 			.appendField(new Blockly.FieldDropdown([
