@@ -1,3 +1,120 @@
+Blockly.Arduino['amb82_mini_emotionclassification_rtsp'] = function(block) {
+	
+	Blockly.Arduino.definitions_.define_custom_command = "";
+	Blockly.Arduino.setups_.write_peri_reg = "";
+	
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+	var statement_finish = Blockly.Arduino.statementToCode(block, 'statement_finish');
+
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "WiFi.h"\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNImageClassification.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\nVideoSetting config(VIDEO_FHD, 30, VIDEO_H264, 0);\nVideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNImageClassification imgclass;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nint rtsp_portnum;\n';
+	Blockly.Arduino.definitions_['define_amb82_mini_emotionclassification_rtsp'] =''+	
+	'#ifndef __EMOTIONCLASSLIST_H__\n'+
+	'#define __EMOTIONCLASSLIST_H__\n'+
+	'struct EmotionDetectionItem {\n'+
+	'    uint8_t index;\n'+
+	'    String imgclassName;\n'+
+	'    uint8_t filter;\n'+
+	'    int score;\n'+	
+	'};\n'+
+	'EmotionDetectionItem imgclassItemList[8] = {\n'+
+	'    {0, "angry", 1, 0},\n'+
+	'    {1, "disgust", 1, 0},\n'+
+	'    {2, "fear", 1, 0},\n'+
+	'    {3, "happy", 1, 0},\n'+
+	'    {4, "neutral", 1, 0},\n'+
+	'    {5, "sad", 1, 0},\n'+
+	'    {6, "surprise", 1, 0},\n'+
+	'    {7, "", 0, 0}\n'+	
+	'};\n'+
+	'#endif\n\n'+
+	'const size_t imgclassItemListLength = sizeof(imgclassItemList) / sizeof(imgclassItemList[0]);\n'+		
+	'int getClassScore(String className) {\n'+
+	'    for (size_t k = 0; k < imgclassItemListLength; k++) {\n'+
+	'        if (imgclassItemList[k].imgclassName==className) {\n'+
+	'            return imgclassItemList[k].score;\n'+
+	'        }\n'+
+	'    }\n'+
+	'    return -1;\n'+
+	'}\n\n'+	
+	'void ICPostProcess(std::vector<ImageClassificationResult> results) {\n'+
+	'    for (size_t j = 0; j < imgclassItemListLength; j++) {\n'+
+	'        if (imgclassItemList[j].filter) {\n'+
+	'            imgclassItemList[j].score = 0;\n'+
+	'        }\n'+
+	'    }\n'+
+	'    imgclassItemList[imgclassItemListLength-1].score = 0;\n'+
+	'    imgclassItemList[imgclassItemListLength-1].imgclassName = "";\n'+
+	'    if (imgclass.getResultCount() > 0) {\n'+
+	'        for (int i = 0; i < imgclass.getResultCount(); i++) {\n'+
+	'            ImageClassificationResult imgclass_item = results[i];\n'+
+	'            int class_id = (int)imgclass_item.classID();\n'+
+	'            if (imgclassItemList[class_id].filter) {\n'+
+	'                int prob = imgclass_item.score();\n'+
+	'                String className = imgclassItemList[class_id].imgclassName;\n'+ 	
+	'                imgclassItemList[class_id].score = prob;\n'+
+	'                if (prob>imgclassItemList[imgclassItemListLength-1].score) {\n'+
+	'                	imgclassItemList[imgclassItemListLength-1].score = prob;\n'+
+	'                	imgclassItemList[imgclassItemListLength-1].imgclassName = className;\n'+
+	'                }\n'+statement+
+	'            }\n'+
+	'        }\n'+
+	'    }\n'+ statement_finish +
+	'}';	
+	
+	Blockly.Arduino.setups_['define_amb82_mini_emotionclassification_rtsp'] = ''+   
+										'config.setBitrate(2 * 1024 * 1024);\n  '+
+										'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
+										'Camera.configVideoChannel(CHANNELNN, configNN);\n  '+
+										'Camera.videoInit();\n  '+
+										'rtsp.configVideo(config);\n  '+
+										'rtsp.begin();\n  '+
+										'rtsp_portnum = rtsp.getPort();\n  '+
+										'imgclass.configVideo(configNN);\n  '+
+										'imgclass.setResultCallback(ICPostProcess);\n  '+
+										'imgclass.modelSelect(IMAGE_CLASSIFICATION, NA_MODEL, NA_MODEL, NA_MODEL, NA_MODEL, DEFAULT_IMGCLASS);\n  '+
+										'imgclass.begin();\n  '+
+										'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
+										'videoStreamer.registerOutput(rtsp);\n  '+
+										'if (videoStreamer.begin() != 0) {\n  '+
+										'    Serial.println("StreamIO link start failed");\n  '+
+										'}\n  '+
+										'Camera.channelBegin(amb82_CHANNEL);\n  '+
+										'videoStreamerNN.registerInput(Camera.getStream(CHANNELNN));\n  '+
+										'videoStreamerNN.setStackSize();\n  '+
+										'videoStreamerNN.setTaskPriority();\n  '+
+										'videoStreamerNN.registerOutput(imgclass);\n  '+
+										'if (videoStreamerNN.begin() != 0) {\n  '+
+										'    Serial.println("StreamIO link start failed");\n  '+
+										'}\n  '+
+										'Camera.channelBegin(CHANNELNN);\n  ';
+
+  return "";
+};
+
+Blockly.Arduino['amb82_mini_emotionclassification_rtsp_count'] = function(block) {	
+	var code = 'imgclass.getResultCount()';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['amb82_mini_emotionclassification_rtsp_get'] = function(block) {
+    var property = block.getFieldValue('property');
+	
+	if (property == "maxClass")
+		var code = "imgclassItemList[imgclassItemListLength-1].imgclassName";
+	else if (property == "maxScore")
+		var code = "imgclassItemList[imgclassItemListLength-1].score";
+	else {
+		var code = 'getClassScore("'+property+'")';
+	}
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['amb82_mini_emotionclassification_rtsp_emotion'] = function(block) {
+    var emption = block.getFieldValue('emption');	
+	var code = '(String(imgclassItemList[class_id].imgclassName)=="'+emption+'")';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['amb82_mini_xy_in_triangle'] = function(block) {
 	Blockly.Arduino.definitions_['define_xy_in_triangle'] =''+
 	'boolean xy_in_triangle(int x,int y,int x1,int y1,int x2,int y2,int x3,int y3) {\n'+

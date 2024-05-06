@@ -2624,12 +2624,12 @@
 		<category id="france23" name="amb82_mini_ObjectDetection_RTPS">				
 			  <block type="amb82_mini_objectdetection_rtsp">		  
 			  </block>
-			  <block type="amb82_mini_objectdetection_rtsp_count">		  
+			  <block type="amb82_mini_objectdetection_rtsp_object">		  
 			  </block> 
 			  <block type="amb82_mini_objectdetection_rtsp_rect">		  
 			  </block> 
-			  <block type="amb82_mini_objectdetection_rtsp_object">		  
-			  </block> 
+			  <block type="amb82_mini_objectdetection_rtsp_count">		  
+			  </block> 			  
 			  <block type="amb82_mini_xy_in_triangle">
 					<value name="x">
 					  <block type="math_number">
@@ -2839,8 +2839,15 @@
 		<category id="france23" name="amb82_mini_FaceRecognition">				
 				  
 		</category>
-		<category id="france23" name="amb82_mini_ImageClassification">				
-				  
+		<category id="france23" name="amb82_mini_EmotionClassification">				
+			  <block type="amb82_mini_emotionclassification_rtsp">		  
+			  </block>
+			  <block type="amb82_mini_emotionclassification_rtsp_emotion">		  
+			  </block> 			  
+			  <block type="amb82_mini_emotionclassification_rtsp_count">		  
+			  </block>			  
+			  <block type="amb82_mini_emotionclassification_rtsp_get">		  
+			  </block> 
 		</category>		
 		<category id="france23" name="amb82_mini_AudioClassification">				
 				  

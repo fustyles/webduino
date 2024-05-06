@@ -261,6 +261,22 @@ Blockly.Msg["AMB82_MINI_DRAWRECT"] = "Draw Rectangle";
 Blockly.Msg["AMB82_MINI_DRAWTEXT"] = "Draw Text";
 Blockly.Msg["AMB82_MINI_TEXT"] = "Text";
 
+Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION"] = "Emotion Classification";
+Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_AFTER"] = "List all emotions";
+Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_EMOTION"] = "Enumerate emotions as";
+Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_FINISH"] = "After enumeration";
+Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_COUNT"] = "Number of emotions";
+Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_ITEMLIST"] = "Get score of emotion after enumeration";
+Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_MAXCLASS"]  = "Maximum confidence score emotion";
+Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_MAXSCORE"] = "Maximum confidence score";
+Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_ANGRY"] = "Angry";
+Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_DISGUST"] = "Disgust";
+Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_FEAR"] = "Fear";
+Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_HAPPY"] = "Happy";
+Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_NEUTRAL"] = "Neutral";
+Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_SAD"] = "Sad";
+Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_SURPRISE"] = "Surprise";
+
 Blockly.Msg["AMB82_MINI_XY_IN_TRIANGLE"] = "Inside the range of a triangle";
 Blockly.Msg["AMB82_MINI_XY_IN_QUADRILATERAL"] = "Inside the range of a convex quadrilateral";
 

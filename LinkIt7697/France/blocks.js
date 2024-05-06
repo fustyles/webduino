@@ -1,3 +1,82 @@
+Blockly.Blocks['amb82_mini_emotionclassification_rtsp'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION"]);	
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_AFTER"]);	  
+    this.appendStatementInput("statement")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_FINISH"]);	  
+    this.appendStatementInput("statement_finish")
+        .setCheck(null);		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_22"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_emotionclassification_rtsp_count'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION"])
+        .appendField(Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_COUNT"]);		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_22"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_emotionclassification_rtsp_get'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION"])
+        .appendField(Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_ITEMLIST"]);
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)	
+			.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_MAXCLASS"],"maxClass"],
+				[Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_MAXSCORE"],"maxScore"],
+				[Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_ANGRY"], "angry"],
+				[Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_DISGUST"], "disgust"],
+				[Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_FEAR"], "fear"],
+				[Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_HAPPY"], "happy"],
+				[Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_NEUTRAL"], "neutral"],
+				[Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_SAD"], "sad"],
+				[Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_SURPRISE"], "surprise"]				
+		]), "property");		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_22"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_emotionclassification_rtsp_emotion'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION"])
+        .appendField(Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_EMOTION"]);
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_ANGRY"], "angry"],
+				[Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_DISGUST"], "disgust"],
+				[Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_FEAR"], "fear"],
+				[Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_HAPPY"], "happy"],
+				[Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_NEUTRAL"], "neutral"],
+				[Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_SAD"], "sad"],
+				[Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_SURPRISE"], "surprise"]
+		]), "emption");		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_22"]);
+  }
+};
+
 Blockly.Blocks['amb82_mini_xy_in_triangle'] = {
   init: function() {
 	this.appendDummyInput()
