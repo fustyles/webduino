@@ -396,7 +396,7 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp_rect'] = function(block) {
 	else if (property == "XM")
 		var code = 'int((xmin+xmax)/2)';
 	else if (property == "YM")
-		var code = 'int((ymin+ymax)/2)';	
+		var code = 'int((ymin+ymax)/2)';
 	else if (property == "X1")
 		var code = 'xmax';
 	else if (property == "Y1")
