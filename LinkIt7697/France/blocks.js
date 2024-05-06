@@ -2,7 +2,14 @@ Blockly.Blocks['amb82_mini_emotionclassification_rtsp'] = {
   init: function() {
     this.appendDummyInput()
 	    .appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION"]);	
+        .appendField(Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION"]);
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)
+			.appendField(Blockly.Msg["AMB82_MINI_MODEL"])
+			.appendField(new Blockly.FieldDropdown([
+ 				["IMGCLASS","DEFAULT_IMGCLASS"],
+ 				["IMGCLASS_SD","CUSTOMIZED_IMGCLASS"]
+		]), "model");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_AFTER"]);	  
     this.appendStatementInput("statement")
@@ -370,7 +377,7 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp'] = {
         .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION"]);
     this.appendDummyInput()	 
 			.setAlign(Blockly.ALIGN_RIGHT)
-			.appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_MODEL"])
+			.appendField(Blockly.Msg["AMB82_MINI_MODEL"])
 			.appendField(new Blockly.FieldDropdown([
  				["YOLOv4","DEFAULT_YOLOV4TINY"],
  				["YOLOv7","DEFAULT_YOLOV7TINY"],

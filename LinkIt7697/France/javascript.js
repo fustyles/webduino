@@ -3,6 +3,7 @@ Blockly.Arduino['amb82_mini_emotionclassification_rtsp'] = function(block) {
 	Blockly.Arduino.definitions_.define_custom_command = "";
 	Blockly.Arduino.setups_.write_peri_reg = "";
 	
+	var model = block.getFieldValue('model');
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
 	var statement_finish = Blockly.Arduino.statementToCode(block, 'statement_finish');
 
@@ -71,7 +72,7 @@ Blockly.Arduino['amb82_mini_emotionclassification_rtsp'] = function(block) {
 										'rtsp_portnum = rtsp.getPort();\n  '+
 										'imgclass.configVideo(configNN);\n  '+
 										'imgclass.setResultCallback(ICPostProcess);\n  '+
-										'imgclass.modelSelect(IMAGE_CLASSIFICATION, NA_MODEL, NA_MODEL, NA_MODEL, NA_MODEL, DEFAULT_IMGCLASS);\n  '+
+										'imgclass.modelSelect(IMAGE_CLASSIFICATION, NA_MODEL, NA_MODEL, NA_MODEL, NA_MODEL, '+model+');\n  '+
 										'imgclass.begin();\n  '+
 										'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
 										'videoStreamer.registerOutput(rtsp);\n  '+
