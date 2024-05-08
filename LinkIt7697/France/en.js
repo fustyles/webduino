@@ -2492,6 +2492,8 @@ Blockly.Msg["PN532_VERSION"] = "Reader version";
 Blockly.Msg["PN532_NDEF_FORMAT_SHOW"] = "NDEF format";
 Blockly.Msg["PN532_KEYA"] = "Read/Write KEY";
 Blockly.Msg["PN532_KEYB"] = "NDEF KEY";
+Blockly.Msg["PN532_CLEAN"] = "Clean";
+Blockly.Msg["PN532_ERASE"] = "Erase";
 
 Blockly.Msg["FU_SERVO_INDEX"] = "index";
 Blockly.Msg["FU_SERVO_DEFAULT"] = "default";

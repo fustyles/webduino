@@ -4855,6 +4855,30 @@ Blockly.Blocks['PN532_clear_data'] = {
   }
 };
 
+Blockly.Blocks['PN532_clean'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SHOW"])
+		.appendField(Blockly.Msg["PN532_CLEAN"]);
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+    this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
+Blockly.Blocks['PN532_erase'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SHOW"])
+		.appendField(Blockly.Msg["PN532_ERASE"]);
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+    this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
 Blockly.Blocks['webusb_server_initial'] = {
   init: function() {
 	this.appendDummyInput()

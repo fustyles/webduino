@@ -2820,8 +2820,8 @@ Blockly.Arduino['PN532_initial'] = function(block) {
 												+ '  }\n'
 												+ '  readerChip = "PN5"+String(((int((versiondata>>24) & 0xFF)-int((versiondata>>24) & 0xFF)%16)*10/16)+int((versiondata>>24) & 0xFF)%16);\n'
 												+ '  readerVersion = String(((int((versiondata>>16) & 0xFF)-int((versiondata>>16) & 0xFF)%16)*10/16)+int((versiondata>>16) & 0xFF)%16)+"."+String(((int((versiondata>>8) & 0xFF)-int((versiondata>>8) & 0xFF)%16)*10/16)+int((versiondata>>8) & 0xFF)%16);\n'
-												+ '  nfc.setPassiveActivationRetries(0xFF);\n'
-												+ '  nfc.SAMConfig();\n';
+												+ '  //nfc.setPassiveActivationRetries(0xFF);\n'
+												+ '  //nfc.SAMConfig();\n';
 								
 	Blockly.Arduino.definitions_['PN532_readInfo'] = ''
 														+'String PN532_readInfo(String type) {\n'
@@ -2859,7 +2859,7 @@ Blockly.Arduino['PN532_initial'] = function(block) {
 													+'  	}\n'
 													+'  	char *data = new char[text.length() + 1];\n'
 													+'  	strcpy(data, text.c_str());\n'
-													+'  	//Serial.println("write: "+String(data));\n'
+													+'  	Serial.println("write: "+String(data));\n'
 													+'  	if (NDEF) {\n'
 													+'  	  if (strlen(data) <= 38) {\n'
 													+'          success = nfc.mifareclassic_WriteNDEFURI(1, ndefprefix, (char *)text.c_str());\n'
@@ -2890,7 +2890,7 @@ Blockly.Arduino['PN532_initial'] = function(block) {
 													+'	    success = nfc.mifareclassic_ReadDataBlock(block, data);\n'
 													+'	  else if (uidLength == 7)\n'
 													+'	    success = nfc.mifareultralight_ReadPage(block, data);\n'
-													+'	  //Serial.println("read: "+String((char *)data));\n'
+													+'	    Serial.println("read: "+String((char *)data));\n'
 													+'	  if (success)\n'
 													+'	    return String((char *)data);\n'
 													+'	  else\n'
@@ -2926,12 +2926,12 @@ Blockly.Arduino['PN532_NDEF_format'] = function(block) {
 														+'    boolean success;\n'
 														+'    success = nfc.mifareclassic_AuthenticateBlock (uid, uidLength, 0, 0, keya);\n'
 														+'    if (!success) {\n'
-														+'      //Serial.println("Unable to authenticate block 0 to enable card formatting!");\n'
+														+'      Serial.println("Unable to authenticate block 0 to enable card formatting!");\n'
 														+'      return;\n'
 														+'    }\n'
 														+'    success = nfc.mifareclassic_FormatNDEF();\n'
 														+'    if (!success) {\n'
-														+'      //Serial.println("Unable to format the card for NDEF");\n'
+														+'      Serial.println("Unable to format the card for NDEF");\n'
 														+'      return;\n'
 														+'    }\n'
 														+'    Serial.println("Format OK");\n'
@@ -2963,6 +2963,22 @@ Blockly.Arduino['PN532_clear_data'] = function(block) {
 	var block_ = Number(block.getFieldValue('block_'))||0;
 
     var code = 'PN532_writeData('+(sector_*4+block_)+', "", false, 0);\n';
+	return code;
+};
+
+Blockly.Arduino['PN532_clean'] = function(block) {
+	var sector_ = Number(block.getFieldValue('sector_'))||2;
+	var block_ = Number(block.getFieldValue('block_'))||0;
+
+    var code = 'bool clean_success = nfc.clean();\nif (clean_success) {\n    Serial.println("Success, tag contains an empty record.");\n} else {\n    Serial.println("Error, unable to clean tag.");\n}\n';
+	return code;
+};
+
+Blockly.Arduino['PN532_erase'] = function(block) {
+	var sector_ = Number(block.getFieldValue('sector_'))||2;
+	var block_ = Number(block.getFieldValue('block_'))||0;
+
+    var code = 'bool erase_success = nfc.erase();\nif (erase_success) {\n    Success, tag restored to factory state.");\n} else {\n    Serial.println("Unable to erase tag.");\n}\n';
 	return code;
 };
 
