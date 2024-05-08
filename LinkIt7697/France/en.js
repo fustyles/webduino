@@ -2473,6 +2473,7 @@ Blockly.Msg["TASKHANDLE_LOOP1_SHOW"] = "loop1";
 
 Blockly.Msg["PN532_SHOW"] = "PN532 NFC";
 Blockly.Msg["PN532_INITIAL_SHOW"] = "I2C Initial";
+Blockly.Msg["PN532_CONNECTED"] = "is connected";
 Blockly.Msg["PN532_READ_SHOW"] = "Read string";
 Blockly.Msg["PN52_PIN_DEFAULT"] = "default pins";		
 Blockly.Msg["PN52_PIN_CUSTOM"] = "custom pins";

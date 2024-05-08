@@ -2808,7 +2808,8 @@ Blockly.Arduino['PN532_initial'] = function(block) {
 		+'uint8_t keya[6] = { '+keya+' };\n'
 		+'uint8_t keyb[6] = { '+keyb+' };\n'
 		+'String readerChip = "";\n'
-		+'String readerVersion = "";\n';
+		+'String readerVersion = "";\n'
+		+'boolean pn532Connected = false;\n';
 	if (mode==1)
 		Blockly.Arduino.setups_['PN532_wire'] = 'Wire.begin(I2C_SDA, I2C_SCL);\n';
 
@@ -2817,7 +2818,10 @@ Blockly.Arduino['PN532_initial'] = function(block) {
 		+ '  uint32_t versiondata = nfc.getFirmwareVersion();\n'
 		+ '  if (! versiondata) {\n'
 		+ '    Serial.println("PN53x card not found!");\n'
+		+ '    pn532Connected = false;\n'
 		+ '  }\n'
+		+ '  else\n'
+		+ '    pn532Connected = true;\n'		
 		+ '  readerChip = "PN5"+String(((int((versiondata>>24) & 0xFF)-int((versiondata>>24) & 0xFF)%16)*10/16)+int((versiondata>>24) & 0xFF)%16);\n'
 		+ '  readerVersion = String(((int((versiondata>>16) & 0xFF)-int((versiondata>>16) & 0xFF)%16)*10/16)+int((versiondata>>16) & 0xFF)%16)+"."+String(((int((versiondata>>8) & 0xFF)-int((versiondata>>8) & 0xFF)%16)*10/16)+int((versiondata>>8) & 0xFF)%16);\n'
 		+ '  nfc.setPassiveActivationRetries(0xFF);\n'
@@ -2905,6 +2909,11 @@ Blockly.Arduino['PN532_initial'] = function(block) {
 												
     var code = '' ;
     return code;
+};
+
+Blockly.Arduino['PN532_connected'] = function(block) {
+    var code = 'pn532Connected' ;
+	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['PN532_read'] = function(block) {	

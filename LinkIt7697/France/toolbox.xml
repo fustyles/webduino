@@ -11500,7 +11500,9 @@
 			<field name="NUM">22</field>
 		  </block>
 		</value>			
-	  </block>		  
+	  </block>
+	  <block type="PN532_connected">			
+	  </block>	  
 	  <block type="PN532_read">			
 	  </block>
 	  <block type="PN532_clear_sector_data">  

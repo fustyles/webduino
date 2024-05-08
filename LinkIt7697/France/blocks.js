@@ -4921,6 +4921,17 @@ Blockly.Blocks['PN532_clear_sector_data'] = {
   }
 };
 
+Blockly.Blocks['PN532_connected'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SHOW"])
+		.appendField(Blockly.Msg["PN532_CONNECTED"]);		
+	this.setInputsInline(true);	
+	this.setOutput(true, null); 
+    this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
 Blockly.Blocks['webusb_server_initial'] = {
   init: function() {
 	this.appendDummyInput()

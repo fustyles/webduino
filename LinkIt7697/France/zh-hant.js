@@ -2486,6 +2486,7 @@ Blockly.Msg["TASKHANDLE_LOOP1_SHOW"] = "重複執行1";
 
 Blockly.Msg["PN532_SHOW"] = "PN532 NFC";
 Blockly.Msg["PN532_INITIAL_SHOW"] = "I2C初始化";
+Blockly.Msg["PN532_CONNECTED"] = "已連線";
 Blockly.Msg["PN532_READ_SHOW"] = "讀取字串";
 Blockly.Msg["PN52_PIN_DEFAULT"] = "預設腳位";		
 Blockly.Msg["PN52_PIN_CUSTOM"] = "自訂腳位";
