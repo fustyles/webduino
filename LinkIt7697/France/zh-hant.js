@@ -2502,11 +2502,9 @@ Blockly.Msg["PN532_UID"] = "磁卡(扣)識別碼";
 Blockly.Msg["PN532_UIDLENGTH"] = "磁卡(扣)識別碼長度";
 Blockly.Msg["PN532_CHIP"] = "讀寫器晶片";
 Blockly.Msg["PN532_VERSION"] = "讀寫器版本";
-Blockly.Msg["PN532_NDEF_FORMAT_SHOW"] = "格式化";
+Blockly.Msg["PN532_NDEF_FORMAT_SHOW"] = "NDEF認證";
 Blockly.Msg["PN532_KEYA"] = "讀寫 KEY";
 Blockly.Msg["PN532_KEYB"] = "NDEF KEY";
-Blockly.Msg["PN532_CLEAN"] = "還原出廠設定";
-Blockly.Msg["PN532_ERASE"] = "清除資料";
 		
 Blockly.Msg["FU_SERVO_INDEX"] = "序號(通道)";
 Blockly.Msg["FU_SERVO_PULSEWIDTH"] = "脈衝寬度";

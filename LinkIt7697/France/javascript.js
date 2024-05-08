@@ -2820,8 +2820,8 @@ Blockly.Arduino['PN532_initial'] = function(block) {
 												+ '  }\n'
 												+ '  readerChip = "PN5"+String(((int((versiondata>>24) & 0xFF)-int((versiondata>>24) & 0xFF)%16)*10/16)+int((versiondata>>24) & 0xFF)%16);\n'
 												+ '  readerVersion = String(((int((versiondata>>16) & 0xFF)-int((versiondata>>16) & 0xFF)%16)*10/16)+int((versiondata>>16) & 0xFF)%16)+"."+String(((int((versiondata>>8) & 0xFF)-int((versiondata>>8) & 0xFF)%16)*10/16)+int((versiondata>>8) & 0xFF)%16);\n'
-												+ '  //nfc.setPassiveActivationRetries(0xFF);\n'
-												+ '  //nfc.SAMConfig();\n';
+												+ '  nfc.setPassiveActivationRetries(0xFF);\n'
+												+ '  nfc.SAMConfig();\n';
 								
 	Blockly.Arduino.definitions_['PN532_readInfo'] = ''
 														+'String PN532_readInfo(String type) {\n'
@@ -2963,22 +2963,6 @@ Blockly.Arduino['PN532_clear_data'] = function(block) {
 	var block_ = Number(block.getFieldValue('block_'))||0;
 
     var code = 'PN532_writeData('+(sector_*4+block_)+', "", false, 0);\n';
-	return code;
-};
-
-Blockly.Arduino['PN532_clean'] = function(block) {
-	var sector_ = Number(block.getFieldValue('sector_'))||2;
-	var block_ = Number(block.getFieldValue('block_'))||0;
-
-    var code = 'bool clean_success = nfc.clean();\nif (clean_success) {\n    Serial.println("Success, tag contains an empty record.");\n} else {\n    Serial.println("Error, unable to clean tag.");\n}\n';
-	return code;
-};
-
-Blockly.Arduino['PN532_erase'] = function(block) {
-	var sector_ = Number(block.getFieldValue('sector_'))||2;
-	var block_ = Number(block.getFieldValue('block_'))||0;
-
-    var code = 'bool erase_success = nfc.erase();\nif (erase_success) {\n    Success, tag restored to factory state.");\n} else {\n    Serial.println("Unable to erase tag.");\n}\n';
 	return code;
 };
 

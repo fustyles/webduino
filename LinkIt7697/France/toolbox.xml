@@ -11500,10 +11500,6 @@
 			<field name="NUM">22</field>
 		  </block>
 		</value>			
-	  </block>
-	  <block type="PN532_erase">			
-	  </block>
-	  <block type="PN532_clean">			
 	  </block>		  
 	  <block type="PN532_read">			
 	  </block>
