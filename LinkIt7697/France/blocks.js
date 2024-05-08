@@ -4766,9 +4766,42 @@ Blockly.Blocks['PN532_write_data_NDEF'] = {
 		.appendField(Blockly.Msg["PN532_WRITE_DATA_NDEF_SHOW"]);		
 	this.appendDummyInput()
 		.appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["PN532_HTTP_WWWDOT"],"NDEF_URIPREFIX_HTTP_WWWDOT"],	
-			[Blockly.Msg["PN532_MAILTO"],"NDEF_URIPREFIX_MAILTO"],
-			[Blockly.Msg["PN532_TEL"],"NDEF_URIPREFIX_TEL"]
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_NONE"],"NDEF_URIPREFIX_NONE"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_HTTP_WWWDOT"],"NDEF_URIPREFIX_HTTP_WWWDOT"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_HTTPS_WWWDOT"],"NDEF_URIPREFIX_HTTPS_WWWDOT"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_HTTP"],"NDEF_URIPREFIX_HTTP"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_HTTPS"],"NDEF_URIPREFIX_HTTPS"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_TEL"],"NDEF_URIPREFIX_TEL"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_MAILTO"],"NDEF_URIPREFIX_MAILTO"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_FTP_ANONAT"],"NDEF_URIPREFIX_FTP_ANONAT"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_FTP_FTPDOT"],"NDEF_URIPREFIX_FTP_FTPDOT"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_FTPS"],"NDEF_URIPREFIX_FTPS"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_SFTP"],"NDEF_URIPREFIX_SFTP"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_SMB"],"NDEF_URIPREFIX_SMB"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_NFS"],"NDEF_URIPREFIX_NFS"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_FTP"],"NDEF_URIPREFIX_FTP"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_DAV"],"NDEF_URIPREFIX_DAV"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_NEWS"],"NDEF_URIPREFIX_NEWS"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_TELNET"],"NDEF_URIPREFIX_TELNET"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_IMAP"],"NDEF_URIPREFIX_IMAP"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_RTSP"],"NDEF_URIPREFIX_RTSP"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_URN"],"NDEF_URIPREFIX_URN"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_POP"],"NDEF_URIPREFIX_POP"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_SIP"],"NDEF_URIPREFIX_SIP"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_SIPS"],"NDEF_URIPREFIX_SIPS"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_TFTP"],"NDEF_URIPREFIX_TFTP"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_BTSPP"],"NDEF_URIPREFIX_BTSPP"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_BTL2CAP"],"NDEF_URIPREFIX_BTL2CAP"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_BTGOEP"],"NDEF_URIPREFIX_BTGOEP"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_TCPOBEX"],"NDEF_URIPREFIX_TCPOBEX"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_IRDAOBEX"],"NDEF_URIPREFIX_IRDAOBEX"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_FILE"],"NDEF_URIPREFIX_FILE"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_URN_EPC_ID"],"NDEF_URIPREFIX_URN_EPC_ID"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_URN_EPC_TAG"],"NDEF_URIPREFIX_URN_EPC_TAG"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_URN_EPC_PAT"],"NDEF_URIPREFIX_URN_EPC_PAT"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_URN_EPC_RAW"],"NDEF_URIPREFIX_URN_EPC_RAW"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_URN_EPC"],"NDEF_URIPREFIX_URN_EPC"],
+			[Blockly.Msg["PN532_NDEF_URIPREFIX_URN_NFC"],"NDEF_URIPREFIX_URN_NFC"]		
 		]), "ndefprefix");		
 	this.appendValueInput("data")
 		.appendField(Blockly.Msg["PN532_DATA"])
@@ -4787,6 +4820,7 @@ Blockly.Blocks['PN532_read_data'] = {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["PN532_SECTOR_SHOW"])
 		.appendField(new Blockly.FieldDropdown([
+			["1","1"],		
 			["2","2"],	
 			["3","3"],
 			["4","4"],
@@ -4824,6 +4858,7 @@ Blockly.Blocks['PN532_clear_data'] = {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["PN532_SECTOR_SHOW"])
 		.appendField(new Blockly.FieldDropdown([
+			["1","1"],		
 			["2","2"],	
 			["3","3"],
 			["4","4"],
@@ -4846,6 +4881,37 @@ Blockly.Blocks['PN532_clear_data'] = {
 			["1","1"],
 			["2","2"]		
 		]), "block_");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_CLEAR_DATA_SHOW"]);
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+    this.setColour(Blockly.Msg["HUE_25"]);
+  }
+};
+
+Blockly.Blocks['PN532_clear_sector_data'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SHOW"]);
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["PN532_SECTOR_SHOW"])
+		.appendField(new Blockly.FieldDropdown([
+			["2","2"],	
+			["3","3"],
+			["4","4"],
+			["5","5"],	
+			["6","6"],
+			["7","7"],
+			["8","8"],	
+			["9","9"],
+			["10","10"],
+			["11","11"],	
+			["12","12"],
+			["13","13"],
+			["14","14"],
+			["15","15"]
+		]), "sector_");
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["PN532_CLEAR_DATA_SHOW"]);
 	this.setInputsInline(true);

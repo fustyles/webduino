@@ -11503,8 +11503,10 @@
 	  </block>		  
 	  <block type="PN532_read">			
 	  </block>
+	  <block type="PN532_clear_sector_data">  
+	  </block>	  
 	  <block type="PN532_clear_data">  
-	  </block>
+	  </block> 
 	  <block type="PN532_write_data">
 		<value name="data">
 		  <block type="text">
