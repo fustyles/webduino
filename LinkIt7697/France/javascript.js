@@ -15096,7 +15096,7 @@ Blockly.Arduino.esp32_lum = function(){
 Blockly.Arduino.esp32_temperature_pin = function(){
 	var pin=Blockly.Arduino.valueToCode(this,"pin",Blockly.Arduino.ORDER_ATOMIC);
 	Blockly.Arduino.definitions_['define_webbit_temperature']='\n'+
-											'int pin_temperature = '+pin+';\n';  
+											'int webbit_temperature_pin = '+pin+';\n';  
 	Blockly.Arduino.definitions_['define_webbit_temperature_func']='\n'+
 											'double getTemperature(int pin) {\n'+
 											'  double Temp_Value = analogRead(pin);\n'+
@@ -15105,14 +15105,14 @@ Blockly.Arduino.esp32_temperature_pin = function(){
 											'  double temperature = ((298.15 * 3950) / (3950 + 298.15 * log(Rt / 10))) - 273.15;\n'+
 											'  return temperature;\n'+
 											'}\n'; 
-	Blockly.Arduino.setups_["setup_webbit_temperature"]="pinMode(pin_temperature, INPUT);\n";
+	Blockly.Arduino.setups_["setup_webbit_temperature"]="pinMode(webbit_temperature_pin, INPUT);\n";
 
 	var code = '';
 	return code;
 };
 
 Blockly.Arduino.esp32_temperature = function(){
-	var code = "getTemperature(pin_temperature)";
+	var code = "getTemperature(webbit_temperature_pin)";
 	return[code, Blockly.Arduino.ORDER_ATOMIC];
 };
 

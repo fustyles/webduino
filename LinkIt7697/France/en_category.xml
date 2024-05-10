@@ -15,8 +15,11 @@
 <category><name>mlx90614</name><replace>MLX9061X Temperature sensor</replace></category>
 <category><name>DHT11</name><replace>DHT11</replace></category>
 <category><name>buzzer</name><replace>Buzzer</replace></category>
+<category><name>photodetector</name><replace>Photodetector</replace></category>
+<category><name>temperature</name><replace>Temperature</replace></category>
+<category><name>button</name><replace>Button</replace></category>
 <category><name>mpu9250</name><replace>MPU9250</replace></category>
-<category><name>ws2816</name><replace>WS2812</replace></category>
+<category><name>ws2812</name><replace>WS2812</replace></category>
 <category><name>motordriveric</name><replace>Motor Driver IC</replace></category>
 <category><name>ultrasonicsensor</name><replace>Ultrasonic Sensor</replace></category>
 <category><name>colorsensor</name><replace>Color Sensor</replace></category>

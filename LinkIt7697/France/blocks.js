@@ -23196,6 +23196,7 @@ Blockly.Blocks.esp32_lum={
 Blockly.Blocks.esp32_temperature_pin={
 	init:function(){
 		this.appendDummyInput()
+			.appendField(Blockly.Msg.ESP32_TEMPERATURE)		
 			.appendField(Blockly.Msg.ESP32_TEMPERATURE_PIN);
 		this.appendValueInput("pin")
 			.setCheck("Number");			
@@ -23209,7 +23210,8 @@ Blockly.Blocks.esp32_temperature_pin={
 Blockly.Blocks.esp32_temperature={
 	init:function(){
 		this.appendDummyInput()
-			.appendField(Blockly.Msg.ESP32_TEMPERATURE);
+			.appendField(Blockly.Msg.ESP32_TEMPERATURE)
+			.appendField(Blockly.Msg.ESP32_TEMPERATURE_VALUE);			
 		this.setInputsInline(true);
 		this.setOutput(true);
 		this.setColour(200);			

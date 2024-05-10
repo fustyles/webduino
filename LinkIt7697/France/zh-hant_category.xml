@@ -15,8 +15,11 @@
 <category><name>mlx90614</name><replace>MLX9061X溫度感測器</replace></category>
 <category><name>DHT11</name><replace>溫溼度感測器</replace></category>
 <category><name>buzzer</name><replace>蜂鳴器</replace></category>
+<category><name>temperature</name><replace>溫度感測器</replace></category>
+<category><name>photodetector</name><replace>光敏感測器</replace></category>
+<category><name>button</name><replace>按鈕</replace></category>
 <category><name>mpu9250</name><replace>MPU9250九軸傳感器</replace></category>
-<category><name>ws2816</name><replace>WS2812燈條</replace></category>
+<category><name>ws2812</name><replace>WS2812燈條</replace></category>
 <category><name>motordriveric</name><replace>馬達驅動板</replace></category>
 <category><name>ultrasonicsensor</name><replace>超音波感測器</replace></category>
 <category><name>colorsensor</name><replace>顏色感測器</replace></category>
