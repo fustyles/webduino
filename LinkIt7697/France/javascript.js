@@ -7,7 +7,7 @@ Blockly.Arduino['esp32_aes_encryption'] = function (block) {
   
   Blockly.Arduino.definitions_['define_esp32_aes_encryption'] =''
 		+'#include "mbedtls/aes.h"\n'
-		+'const unsigned char aes_key['+(value_key.length+1)+'] = "'+value_key+'";\n'
+		+'const unsigned char aes_key[17] = "'+value_key+'";\n'
 		+'const unsigned char aes_iv[17] = "'+value_iv+'";\n'
 		+'String aes_process(String inputStr, String mode) {\n'
 		+'    mbedtls_aes_context aes;\n'
