@@ -2947,7 +2947,7 @@ Blockly.Arduino['PN532_write_long_data'] = function(block) {
 		+'      subStr[copyLength] = \'\\0\';\n'
 		+'      Serial.println("S"+String(sector)+", B" +String(block)+": "+subStr);\n'
 		+'      PN532_writeData((sector * 4 + block), String(subStr), false, 0);\n'
-		+'      Serial.println(PN532_readData(sector * 4 + block));\n'		
+		+'      //Serial.println(PN532_readData(sector * 4 + block));\n'		
 		+'      if (block % 3 == 2) {\n'
 		+'        sector++;\n'
 		+'        block = 0;\n'
