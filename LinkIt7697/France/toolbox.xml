@@ -11515,12 +11515,19 @@
 	  <block type="PN532_connected">			
 	  </block>	  
 	  <block type="PN532_read">			
-	  </block>
-	  <block type="PN532_clear_sector_data">  
-	  </block>	  
+	  </block>  
 	  <block type="PN532_clear_data">  
 	  </block> 
+	  <block type="PN532_clear_sector_data">  
+	  </block> 	  
 	  <block type="PN532_write_data">
+		<value name="data">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>		
+		</value>		
+	  </block>
+	  <block type="PN532_write_long_data">
 		<value name="data">
 		  <block type="text">
 			<field name="TEXT"></field>
@@ -11529,6 +11536,8 @@
 	  </block>	  
 	  <block type="PN532_read_data">	  
 	  </block>
+	  <block type="PN532_read_long_data">	  
+	  </block>	  
 	  <block type="PN532_NDEF_format">	  
 	  </block>  	  
 	  <block type="PN532_write_data_NDEF">

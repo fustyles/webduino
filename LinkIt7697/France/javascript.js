@@ -2901,10 +2901,8 @@ Blockly.Arduino['PN532_initial'] = function(block) {
 		+'	    return "";\n'
 		+'  }\n'
 		+'}\n'
-		+'void PN532_clear_block(int sector, int block_s, int block_e) {\n'
-		+'  for (int i=block_s;i<=block_e;i++) {\n'														
-		+'    PN532_writeData((sector*4+i), "", false, 0);\n'
-		+'  }\n'	
+		+'void PN532_clear_block(int sector, int block) {\n'
+		+'  PN532_writeData((sector*4+block), "", false, 0);\n'	
 		+'}';
 												
     var code = '' ;
@@ -2933,6 +2931,37 @@ Blockly.Arduino['PN532_write_data'] = function(block) {
 	return code;
 };
 
+Blockly.Arduino['PN532_write_long_data'] = function(block) {
+	var sector = Number(block.getFieldValue('sector_'))||2;
+	var data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC)||"";
+	
+	Blockly.Arduino.definitions_['PN532_write_long_data'] = ''
+		+'void PN532_writeLongData(int sector, const char data[]) {\n'
+		+'  if (PN532_readInfo("uid") != "") {\n'
+		+'    char subStr[13];\n'
+		+'    size_t len = strlen(data);\n'
+		+'    int block = 0;\n'
+		+'    for (size_t j = 0; j < len; j += 12) {\n'
+		+'      size_t copyLength = (len - j < 12) ? (len - j) : 12;\n'
+		+'      strncpy(subStr, data + j, copyLength);\n'
+		+'      subStr[copyLength] = \'\\0\';\n'
+		+'      Serial.println("S"+String(sector)+", B" +String(block)+": "+subStr);\n'
+		+'      PN532_writeData((sector * 4 + block), String(subStr), false, 0);\n'
+		+'      Serial.println(PN532_readData(sector * 4 + block));\n'		
+		+'      if (block % 3 == 2) {\n'
+		+'        sector++;\n'
+		+'        block = 0;\n'
+		+'      } else {\n'
+		+'        block++;\n'
+		+'      }\n'
+		+'    }\n'
+		+'  }\n'
+		+'}';
+		
+    var code = 'PN532_writeLongData('+sector+', String('+data+').c_str());\n' ;
+	return code;
+};
+
 Blockly.Arduino['PN532_NDEF_format'] = function(block) {													
 	Blockly.Arduino.definitions_['PN532_NDEF_format'] = ''
 		+'void PN532_NDEF_format() {\n'
@@ -2954,7 +2983,7 @@ Blockly.Arduino['PN532_NDEF_format'] = function(block) {
 		+'      Serial.println("Authentication failed.");\n'
 		+'      //return;\n'
 		+'    }\n'
-		+'    Serial.println("Format OK.");\n'			
+		+'    Serial.println("Finish");\n'			
 		+'  }\n'
 		+'}';											
 												
@@ -2978,18 +3007,55 @@ Blockly.Arduino['PN532_read_data'] = function(block) {
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['PN532_read_long_data'] = function(block) {
+	Blockly.Arduino.definitions_['PN532_read_long_data'] = ''
+		+'String PN532_readLongData(int sector1, int sector2) {\n'
+		+'  String data = "";\n'
+		+'  String blockdata = "";\n'		
+		+'  if (PN532_readInfo("uid") != "") {\n'
+		+'    for (int i=sector1*4; i<(sector2+1)*4;i++) {\n'
+		+'      if (i%4!=3) {\n'
+		+'      	blockdata = PN532_readData(i);\n'
+		+'      	Serial.println(blockdata);\n'
+		+'      	if (blockdata.length() == 0 || blockdata == "")\n'
+		+'      		break;\n'
+		+'      	data += blockdata;\n'
+		+'      }\n'
+		+'    }\n'
+		+'  }\n'
+		+'  return data;\n'
+		+'}';
+		
+	var sector1 = Number(block.getFieldValue('sector1'))||2;
+	var sector2 = Number(block.getFieldValue('sector2'))||2;
+								
+    var code = 'PN532_readLongData('+sector1+', '+sector2+')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['PN532_clear_data'] = function(block) {										
 	var sector_ = Number(block.getFieldValue('sector_'))||2;
 	var block_ = Number(block.getFieldValue('block_'))||0;
 
-    var code = 'PN532_clear_block('+sector_+', '+block_+', '+block_+');\n';
+    var code = 'PN532_clear_block('+sector_+', '+block_+');\n';
 	return code;
 };
 
 Blockly.Arduino['PN532_clear_sector_data'] = function(block) {
-	var sector_ = Number(block.getFieldValue('sector_'));
+	Blockly.Arduino.definitions_['PN532_clear_sector'] = ''
+		+'void PN532_clear_sector(int sector1, int sector2) {\n'		
+		+'  if (PN532_readInfo("uid") != "") {\n'
+		+'    for (int j=sector1*4; j<(sector2+1)*4;j++) {\n'
+		+'    	if (j%4!=3)\n'
+		+'      	PN532_writeData(j, "", false, 0);\n'
+		+'    }\n'
+		+'  }\n'
+		+'}';
+		
+	var sector1 = Number(block.getFieldValue('sector1'));
+	var sector2 = Number(block.getFieldValue('sector2'));
 
-    var code = 'PN532_clear_block('+sector_+', 0, 2);\n';
+    var code = 'PN532_clear_sector('+sector1+', '+sector2+');\n';
 	return code;
 };
 
