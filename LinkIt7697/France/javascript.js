@@ -3016,7 +3016,7 @@ Blockly.Arduino['PN532_read_long_data'] = function(block) {
 		+'    for (int i=sector1*4; i<(sector2+1)*4;i++) {\n'
 		+'      if (i%4!=3) {\n'
 		+'      	blockdata = PN532_readData(i);\n'
-		+'      	Serial.println(blockdata);\n'
+		+'      	//Serial.println(blockdata);\n'
 		+'      	if (blockdata.length() == 0 || blockdata == "")\n'
 		+'      		break;\n'
 		+'      	data += blockdata;\n'
