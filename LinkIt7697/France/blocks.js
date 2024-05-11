@@ -1,3 +1,24 @@
+Blockly.Blocks['esp32_aes_encryption'] = {
+  init: function() {
+    this.appendValueInput("value_text")
+        .setCheck(null);	  
+	this.appendDummyInput()
+		  .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg["ESP32_AES_ENCRYPT"],"encrypt"],
+		  [Blockly.Msg["ESP32_AES_DECRYPT"],"decrypt"]
+		]), "type");
+    this.appendDummyInput()		
+        .appendField(Blockly.Msg["ESP32_AES_KEY"]+"(<=16 bytes)")
+		.appendField(new Blockly.FieldTextInput("12345678"), "value_key");			
+    this.appendDummyInput()		
+        .appendField(Blockly.Msg["ESP32_AES_IV"]+"(16 bytes)")
+		.appendField(new Blockly.FieldTextInput("0000000000000000"), "value_iv");	
+    this.setInputsInline(true); 		
+    this.setOutput(true);  
+    this.setColour(Blockly.Msg["HUE_5"]);
+  }  
+};
+
 Blockly.Blocks['amb82_mini_emotionclassification_rtsp'] = {
   init: function() {
     this.appendDummyInput()

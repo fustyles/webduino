@@ -1,3 +1,51 @@
+Blockly.Arduino['esp32_aes_encryption'] = function (block) {
+
+  var value_text = Blockly.Arduino.valueToCode(block, 'value_text', Blockly.Arduino.ORDER_ATOMIC);
+  var value_key = block.getFieldValue('value_key');
+  var value_iv = block.getFieldValue('value_iv');
+  var value_type = block.getFieldValue('type');
+  
+  Blockly.Arduino.definitions_['define_esp32_aes_encryption'] =''
+		+'#include "mbedtls/aes.h"\n'
+		+'const unsigned char aes_key['+(value_key.length+1)+'] = "'+value_key+'";\n'
+		+'const unsigned char aes_iv[17] = "'+value_iv+'";\n'
+		+'String aes_process(String inputStr, String mode) {\n'
+		+'    mbedtls_aes_context aes;\n'
+		+'    unsigned char input[17];\n'
+		+'    unsigned char output[17];\n'
+		+'    String result = "";\n'
+		+'    inputStr.toCharArray((char*)input, 16);\n'
+		+'    if (mode == "ENCRYPT") {\n'
+		+'        mbedtls_aes_init(&aes);\n'
+		+'        mbedtls_aes_setkey_enc(&aes, aes_key, 128);\n'
+		+'        mbedtls_aes_crypt_cbc(&aes, MBEDTLS_AES_ENCRYPT, 16, (unsigned char *)aes_iv, input, output);\n'
+		+'        mbedtls_aes_free(&aes);\n'
+		+'        for(int i = 0; i < 16; i++) {\n'
+		+'            char str[3];\n'
+		+'            sprintf(str, "%02x", output[i]);\n'
+		+'            result += String(str);\n'
+		+'        }\n'
+		+'    } else if (mode == "DECRYPT") {\n'
+		+'        mbedtls_aes_init(&aes);\n'
+		+'        mbedtls_aes_setkey_dec(&aes, aes_key, 128);\n'
+		+'        mbedtls_aes_crypt_cbc(&aes, MBEDTLS_AES_DECRYPT, 16, (unsigned char *)aes_iv, input, output);\n'
+		+'        mbedtls_aes_free(&aes);\n'
+		+'        for(int i = 0; i < 16; i++) {\n'
+		+'            result += (char)output[i];\n'
+		+'        }\n'
+		+'    }\n'
+		+'    return result;\n'
+		+'}\n';
+
+
+  if (value_type=="encrypt")
+	  var code = 'aes_process('+value_text+', "ENCRYPT")';
+  else
+	  var code = 'aes_process('+value_text+', "DECRYPT")';
+
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['amb82_mini_emotionclassification_rtsp'] = function(block) {
 	
 	Blockly.Arduino.definitions_.define_custom_command = "";

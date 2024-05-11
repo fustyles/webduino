@@ -29,6 +29,12 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+
+Blockly.Msg["ESP32_AES_ENCRYPT"] = "AES加密";
+Blockly.Msg["ESP32_AES_DECRYPT"] = "AES解密";
+Blockly.Msg["ESP32_AES_KEY"] = "金鑰";
+Blockly.Msg["ESP32_AES_IV"] = "初始化向量";
+
 Blockly.Msg["TINYGPS"] = "TinyGPS";
 Blockly.Msg["TINYGPS_INITIAL"] = "初始化";
 Blockly.Msg["TINYGPS_READ_CHAR"] = "讀取序列埠字元";
