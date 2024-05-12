@@ -7,41 +7,38 @@ Blockly.Arduino['esp32_aes_encryption'] = function (block) {
   
   Blockly.Arduino.definitions_['define_esp32_aes_encryption'] =''
 		+'#include "mbedtls/aes.h"\n'
-		+'const unsigned char aes_key[17] = "'+value_key+'";\n'
-		+'const unsigned char aes_iv[17] = "'+value_iv+'";\n'
-		+'String aes_process(String inputStr, String mode) {\n'
+		+'unsigned char aes_key[17] = "'+value_key+'";\n'
+		+'unsigned char aes_iv[17] = "'+value_iv+'";\n'
+		+'String aes_process(unsigned char *input, String mode) {\n'
 		+'    mbedtls_aes_context aes;\n'
-		+'    unsigned char input[17];\n'
-		+'    unsigned char output[17];\n'
+		+'    unsigned char output[16];\n'
 		+'    String result = "";\n'
-		+'    inputStr.toCharArray((char*)input, 16);\n'
+		+'    size_t inputLen = 16;\n'
+		+'    mbedtls_aes_init(&aes);\n'
 		+'    if (mode == "ENCRYPT") {\n'
-		+'        mbedtls_aes_init(&aes);\n'
 		+'        mbedtls_aes_setkey_enc(&aes, aes_key, 128);\n'
-		+'        mbedtls_aes_crypt_cbc(&aes, MBEDTLS_AES_ENCRYPT, 16, (unsigned char *)aes_iv, input, output);\n'
-		+'        mbedtls_aes_free(&aes);\n'
+		+'        mbedtls_aes_crypt_cbc(&aes, MBEDTLS_AES_ENCRYPT, inputLen, aes_iv, input, output);\n'
 		+'        for(int i = 0; i < 16; i++) {\n'
 		+'            char str[3];\n'
 		+'            sprintf(str, "%02x", output[i]);\n'
 		+'            result += String(str);\n'
-		+'        }\n'
+		+'        }\n'		
 		+'    } else if (mode == "DECRYPT") {\n'
-		+'        mbedtls_aes_init(&aes);\n'
 		+'        mbedtls_aes_setkey_dec(&aes, aes_key, 128);\n'
-		+'        mbedtls_aes_crypt_cbc(&aes, MBEDTLS_AES_DECRYPT, 16, (unsigned char *)aes_iv, input, output);\n'
-		+'        mbedtls_aes_free(&aes);\n'
-		+'        for(int i = 0; i < 16; i++) {\n'
-		+'            result += (char)output[i];\n'
-		+'        }\n'
+		+'        mbedtls_aes_crypt_cbc(&aes, MBEDTLS_AES_DECRYPT, inputLen, aes_iv, input, output);\n'
+		+'        for(int i = 0; i < sizeof(output); i++) {\n'
+		+'            result += String((char)output[i]);\n'
+		+'        }\n'		
 		+'    }\n'
+		+'    mbedtls_aes_free(&aes);\n'
 		+'    return result;\n'
-		+'}\n';
+		+'}';
 
 
   if (value_type=="encrypt")
-	  var code = 'aes_process('+value_text+', "ENCRYPT")';
+	  var code = 'aes_process((unsigned char*)String('+value_text+').c_str(), "ENCRYPT")';
   else
-	  var code = 'aes_process('+value_text+', "DECRYPT")';
+	  var code = 'aes_process((unsigned char*)String('+value_text+').c_str(), "DECRYPT")';
 
   return [code, Blockly.Arduino.ORDER_NONE];
 };
@@ -13506,6 +13503,18 @@ Blockly.Arduino['text_to_number'] = function (block) {
 	  var code = 'unescape(atob(' + value_text + '))';	
   else
 	  var code = 'text_to_number(' + value_text + ')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['aes_encryption'] = function (block) {
+  var value_text = Blockly.Arduino.valueToCode(block, 'value_text_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_key = Blockly.Arduino.valueToCode(block, 'value_key_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_type = block.getFieldValue('type');
+  if (value_type=="encode")
+	  var code = 'CryptoJS.AES.encrypt('+value_text+', '+value_key+').toString()';
+  else
+	  var code = 'CryptoJS.AES.decrypt('+value_text+', '+value_key+').toString(CryptoJS.enc.Utf8)';	
+
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 

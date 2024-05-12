@@ -1070,7 +1070,9 @@ Blockly.Msg.SPAN_VALUE = "值";
 Blockly.Msg.SPAN_SET = "設定";
 Blockly.Msg.SPAN_GET = "取得";
 Blockly.Msg.SPAN_DELETE = "刪除";
-
+Blockly.Msg["AES_ENCRYPT"] = "AES加密";
+Blockly.Msg["AES_DECRYPT"] = "AES解密";
+Blockly.Msg["AES_KEY"] = "AES金鑰";
 
 Blockly.Msg.ESP32_BUTTON = "按鈕";
 Blockly.Msg.ESP32_BUTTON_PIN = "按鈕 腳位";

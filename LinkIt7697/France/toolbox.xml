@@ -3829,6 +3829,15 @@
 		  <block type="logic_null"></block>
 		</value>     
 		</block> 
+	  <block type="aes_encryption">
+		<value name="value_text_"> 			
+		</value>
+		<value name="value_key_">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>  			
+		</value> 		
+	  </block>		
 		<block type="document_timer_novar">
 		<value name="intervals_">
 		  <block type="math_number">
@@ -12510,15 +12519,6 @@
 			<field name="TEXT">World Peace</field>
 		  </block>
 		</value>  
-	  </block>
-	  <block type="esp32_aes_encryption">
-		<value name="value_text"> 			
-		</value>
-		<value name="value_key">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>  			
-		</value> 		
 	  </block>	  
 	</category>	
 	<category id="france1" name="customcode">

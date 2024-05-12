@@ -1066,6 +1066,9 @@ Blockly.Msg.SPAN_VALUE = "Value";
 Blockly.Msg.SPAN_SET = "Set";
 Blockly.Msg.SPAN_GET = "Get";
 Blockly.Msg.SPAN_DELETE = "Delete";
+Blockly.Msg["AES_ENCRYPT"] = "AES ENCRYPT";
+Blockly.Msg["AES_DECRYPT"] = "AES DECRYPT";
+Blockly.Msg["AES_KEY"] = "AES KEY";
 
 Blockly.Msg.ESP32_BUTTON = "button ";
 Blockly.Msg.ESP32_BUTTON_PIN = "Button Set Pins ";

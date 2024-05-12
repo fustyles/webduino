@@ -9,7 +9,7 @@ Blockly.Blocks['esp32_aes_encryption'] = {
 		]), "type");
     this.appendDummyInput()		
         .appendField(Blockly.Msg["ESP32_AES_KEY"]+"(<=16 bytes)")
-		.appendField(new Blockly.FieldTextInput("12345678"), "value_key");			
+		.appendField(new Blockly.FieldTextInput("0123456789ABCDE"), "value_key");			
     this.appendDummyInput()		
         .appendField(Blockly.Msg["ESP32_AES_IV"]+"(16 bytes)")
 		.appendField(new Blockly.FieldTextInput("0000000000000000"), "value_iv");	
@@ -19581,6 +19581,24 @@ Blockly.Blocks['text_to_number'] = {
 		  [Blockly.Msg.TEXT_TO_BASE64,"btoa"],
 		  [Blockly.Msg.BASE64_TO_TEXT,"atob"]
 		]), "type");	  
+    this.setInputsInline(true); 		
+    this.setOutput(true);  
+    this.setColour(Blockly.Msg["TEXTS_HUE"]);
+  }  
+};
+
+Blockly.Blocks['aes_encryption'] = {
+  init: function() {
+    this.appendValueInput("value_text_")
+        .setCheck(null);	  
+	this.appendDummyInput()
+		  .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.AES_ENCRYPT,"encode"],
+		  [Blockly.Msg.AES_DECRYPT,"decode"]
+		]), "type");
+    this.appendValueInput("value_key_")
+        .setCheck(null)
+		.appendField(Blockly.Msg.AES_KEY);		
     this.setInputsInline(true); 		
     this.setOutput(true);  
     this.setColour(Blockly.Msg["TEXTS_HUE"]);
