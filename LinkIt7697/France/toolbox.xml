@@ -11558,6 +11558,50 @@
 	  </block>
 	</category>	
 	
+	<category id="france12" name="RC522">
+	  <block type="RC522_initial">	
+		<value name="sda">
+		  <block type="math_number">
+			<field name="NUM">21</field>
+		  </block>
+		</value>
+		<value name="rst">
+		  <block type="math_number">
+			<field name="NUM">22</field>
+		  </block>
+		</value>
+		<value name="keya">
+		  <block type="text">
+			<field name="TEXT">0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF</field>
+		  </block>		
+		</value>
+		<value name="keyb">
+		  <block type="text">
+			<field name="TEXT">0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF</field>
+		  </block>		
+		</value>		
+	  </block>
+	  <block type="RC522_newcard">			
+	  </block>		  
+	  <block type="RC522_connected">			
+	  </block>	  
+	  <block type="RC522_read">			
+	  </block>  
+	  <block type="RC522_clear_data">  
+	  </block> 
+	  <block type="RC522_clear_sector_data">  
+	  </block> 	  
+	  <block type="RC522_write_data">
+		<value name="data">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>		
+		</value>		
+	  </block>
+	  <block type="RC522_read_data">	  
+	  </block>
+	</category>		
+	
 	<category id="france12" name="adxl345">
 	  <block type="adxl345_getdata">			
 	  </block> 	

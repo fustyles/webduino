@@ -1,3 +1,179 @@
+Blockly.Arduino['RC522_initial'] = function(block) {
+	var keya = Blockly.Arduino.valueToCode(block, 'keya', Blockly.Arduino.ORDER_ATOMIC)||"0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF";
+	var keyb = Blockly.Arduino.valueToCode(block, 'keyb', Blockly.Arduino.ORDER_ATOMIC)||"0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF";
+	var sda = Blockly.Arduino.valueToCode(block, 'sda', Blockly.Arduino.ORDER_ATOMIC)||21;
+	var rst = Blockly.Arduino.valueToCode(block, 'rst', Blockly.Arduino.ORDER_ATOMIC)||22;
+	
+	if ((keya.indexOf("'")==0)&&(keya.lastIndexOf("'")==keya.length-1))
+		keya = keya.substring(1,keya.length-1);
+	if ((keya.indexOf('"')==0)&&(keya.lastIndexOf('"')==keya.length-1))
+		keya = keya.substring(1,keya.length-1);
+	if ((keyb.indexOf("'")==0)&&(keyb.lastIndexOf("'")==keyb.length-1))
+		keyb = keyb.substring(1,keyb.length-1);
+	if ((keyb.indexOf('"')==0)&&(keyb.lastIndexOf('"')==keyb.length-1))
+		keyb = keyb.substring(1,keyb.length-1);	
+	
+	Blockly.Arduino.definitions_['RC522_initial'] = '#include <Wire.h>\n#include <SPI.h>\n#include <MFRC522.h>\n#define SS_PIN '+sda+'\n#define RST_PIN '+rst+'\nMFRC522 rfid(SS_PIN, RST_PIN);\nbyte nuidPICC[4] = {0xFF, 0xFF, 0xFF, 0xFF};\nMFRC522::MIFARE_Key keyA = {'+keya+'};\nMFRC522::MIFARE_Key keyB = {'+keyb+'};\nString RC522_UID = "";\n';
+	Blockly.Arduino.setups_['RC522_initial'] = ''
+		+'SPI.begin();\n'
+		+'  rfid.PCD_Init();\n';
+								
+	Blockly.Arduino.definitions_['RC522_readInfo'] = ''
+		+'String RC522_readInfo(String type) {\n'
+		+'  String response = "";\n'
+		+'  if (type=="chip") {\n'
+		+'  	MFRC522::PICC_Type piccType = rfid.PICC_GetType(rfid.uid.sak);\n'
+		+'  	if (piccType != MFRC522::PICC_TYPE_MIFARE_MINI && piccType != MFRC522::PICC_TYPE_MIFARE_1K && piccType != MFRC522::PICC_TYPE_MIFARE_4K) {\n'
+		+'  	  return "Your tag is not of type MIFARE Classic.";\n'
+		+'  	}\n'
+		+'  	else\n'
+		+'  	  response = String(rfid.PICC_GetTypeName(piccType));\n'
+		+'  }\n'
+		+'  else if (type=="uid") {\n'									
+		+'  	if (rfid.uid.uidByte[0] != nuidPICC[0] || rfid.uid.uidByte[1] != nuidPICC[1] || rfid.uid.uidByte[2] != nuidPICC[2] || rfid.uid.uidByte[3] != nuidPICC[3] ) {\n'	
+		+'  	  RC522_UID = "";\n'
+		+'  	  for (byte i = 0; i < 4; i++) {\n'	
+		+'  	    nuidPICC[i] = rfid.uid.uidByte[i];\n'
+		+'  	    RC522_UID += String(nuidPICC[i], HEX);\n'		
+		+'  	  }\n'
+  		+'  	}\n'	
+  		+'  	response = RC522_UID;\n'	
+		+'  }\n'	
+		+'  return response;\n'														
+		+'}';
+
+	Blockly.Arduino.definitions_['RC522_writedata'] = ''
+		+'void RC522_writeData(int sectorAddr, int blockAddr, String text) {\n'
+		+'  if (RC522_readInfo("uid") != "") {\n'
+		+'    MFRC522::StatusCode status;\n'
+		+'    int trailerBlock = sectorAddr*4+3;\n'
+		+'    status = (MFRC522::StatusCode) rfid.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_B, trailerBlock, &keyB, &(rfid.uid));\n'
+		+'    if (status != MFRC522::STATUS_OK) {\n'
+		+'      Serial.print(F("PCD_Authenticate() failed: "));\n'
+		+'      Serial.println(rfid.GetStatusCodeName(status));\n'
+		+'      //return;\n'
+		+'    }\n'
+		+'    byte buf[16];\n'
+		+'    text.getBytes(buf, text.length()+1);\n'
+		+'    buf[text.length()] = 0;\n'
+		+'    status = (MFRC522::StatusCode) rfid.MIFARE_Write((sectorAddr*4+blockAddr), buf, 16);\n'
+		+'    if (status != MFRC522::STATUS_OK) {\n'
+		+'        Serial.print(F("MIFARE_Write() failed: "));\n'
+		+'        Serial.println(rfid.GetStatusCodeName(status));\n'
+		+'    }\n'
+		+'    //rfid.PICC_HaltA();\n'
+		+'    //rfid.PCD_StopCrypto1();\n'
+		+'  }\n'
+		+'}';
+		
+	Blockly.Arduino.definitions_['RC522_readdata'] = ''
+		+'String RC522_readData(int sectorAddr, int blockAddr) {\n'
+		+'  if (RC522_readInfo("uid") != "") {\n'
+		+'    byte trailerBlock = sectorAddr*4+3;\n'
+		+'    MFRC522::StatusCode status;\n'
+		+'    byte buffer[18];\n'
+		+'    byte buffersize = 18;\n'
+		+'    status = (MFRC522::StatusCode) rfid.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, trailerBlock, &keyA, &(rfid.uid));\n'
+		+'    if (status != MFRC522::STATUS_OK) {\n'
+		+'        Serial.print(F("PCD_Authenticate() failed: "));\n'
+		+'        Serial.println(rfid.GetStatusCodeName(status));\n'
+		+'        //return "error";\n'
+		+'    }\n'
+		+'    status = (MFRC522::StatusCode) rfid.MIFARE_Read(sectorAddr*4+blockAddr, buffer, &buffersize);\n'
+		+'    if (status != MFRC522::STATUS_OK) {\n'
+		+'        Serial.print(F("MIFARE_Read() failed: "));\n'
+		+'        Serial.println(rfid.GetStatusCodeName(status));\n'
+		+'    	  return "error";\n'
+		+'    }\n'
+		+'    String response = "";\n'
+		+'    for (byte i = 0; i < 16; i++) {\n'
+		+'    	if (char(buffer[i])==\'\\0\')\n'
+		+'        break;\n'
+		+'      response += char(buffer[i]);\n'
+		+'    }\n'
+		+'    //rfid.PICC_HaltA();\n'
+		+'    //rfid.PCD_StopCrypto1();\n'		
+		+'    return response;\n'
+		+'  }\n'
+		+'}\n';
+											
+    var code = '' ;
+    return code;
+};
+
+Blockly.Arduino['RC522_newcard'] = function(block) {
+    var code = 'rfid.PICC_IsNewCardPresent()' ;
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['RC522_connected'] = function(block) {
+    var code = 'rfid.PICC_ReadCardSerial()' ;
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['RC522_read'] = function(block) {	
+	var type = block.getFieldValue('type');
+
+					
+    var code = 'RC522_readInfo("'+type+'")' ;
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['RC522_write_data'] = function(block) {
+	var sector_ = Number(block.getFieldValue('sector_'))||2;
+	var block_ = Number(block.getFieldValue('block_'))||0;
+	var data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC)||"";
+														
+    var code = 'RC522_writeData('+sector_+', '+block_+', '+data+');\n' ;
+	return code;
+};
+
+Blockly.Arduino['RC522_read_data'] = function(block) {
+	var sector_ = Number(block.getFieldValue('sector_'))||2;
+	var block_ = Number(block.getFieldValue('block_'))||0;
+								
+    var code = 'RC522_readData('+sector_+', '+block_+')' ;
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['RC522_clear_data'] = function(block) {										
+	var sector_ = Number(block.getFieldValue('sector_'))||2;
+	var block_ = Number(block.getFieldValue('block_'))||0;
+
+    var code = 'RC522_writeData('+sector_+', '+block_+',"");\n';
+	return code;
+};
+
+Blockly.Arduino['RC522_clear_sector_data'] = function(block) {
+	Blockly.Arduino.definitions_['RC522_clear_sector'] = ''
+		+'void RC522_clear_sector(int sector1, int sector2) {\n'		
+		+'  if (RC522_readInfo("uid") != "") {\n'
+		+'    for (int j=sector1*4; j<(sector2+1)*4;j++) {\n'
+		+'    	if (j%4!=3)\n'
+		+'      	RC522_writeData((j-(j%4))/4, (j%4), "");\n'
+		+'    }\n'
+		+'  }\n'
+		+'}';
+		
+	var sector1 = Number(block.getFieldValue('sector1'));
+	var sector2 = Number(block.getFieldValue('sector2'));
+
+    var code = 'RC522_clear_sector('+sector1+', '+sector2+');\n';
+	return code;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Arduino['esp32_aes_encryption'] = function (block) {
 
   var value_text = Blockly.Arduino.valueToCode(block, 'value_text', Blockly.Arduino.ORDER_ATOMIC);
