@@ -185,36 +185,32 @@ Blockly.Arduino['esp32_aes_encryption'] = function (block) {
 		+'#include "mbedtls/aes.h"\n'
 		+'unsigned char aes_key[17] = "'+value_key+'";\n'
 		+'unsigned char aes_iv[17] = "'+value_iv+'";\n'
-		+'String aes_process(unsigned char input[16], String mode) {\n'
+		+'String aes_process(const unsigned char *input, size_t inputLen, String mode) {\n'
 		+'    mbedtls_aes_context aes;\n'
-		+'    unsigned char output[16];\n'
+		+'    mbedtls_aes_init(&aes);\n'		
 		+'    String result = "";\n'
-		+'    size_t inputLen = sizeof(input);\n'
-		+'    mbedtls_aes_init(&aes);\n'
+		+'    unsigned char output[16];\n'
 		+'    if (mode == "ENCRYPT") {\n'
 		+'        mbedtls_aes_setkey_enc(&aes, aes_key, 128);\n'
-		+'        mbedtls_aes_crypt_cbc(&aes, MBEDTLS_AES_ENCRYPT, inputLen, aes_iv, input, output);\n'
-		+'        for(int i = 0; i < sizeof(output); i++) {\n'
-		+'            char str[3];\n'
-		+'            sprintf(str, "%02x", output[i]);\n'
-		+'            result += String(str);\n'
-		+'        }\n'		
+		+'        mbedtls_aes_crypt_cbc(&aes, MBEDTLS_AES_ENCRYPT, inputLen, aes_iv, input, output);\n'		
 		+'    } else if (mode == "DECRYPT") {\n'
 		+'        mbedtls_aes_setkey_dec(&aes, aes_key, 128);\n'
-		+'        mbedtls_aes_crypt_cbc(&aes, MBEDTLS_AES_DECRYPT, inputLen, aes_iv, input, output);\n'
-		+'        for(int i = 0; i < sizeof(output); i++) {\n'
-		+'            result += (char)output[i];\n'
-		+'        }\n'		
+		+'        mbedtls_aes_crypt_cbc(&aes, MBEDTLS_AES_DECRYPT, inputLen, aes_iv, input, output);\n'	
 		+'    }\n'
+		+'    for (size_t i = 0; i < sizeof(output); i++) {\n'
+		+'        char str[3];\n'
+		+'        sprintf(str, "%02x", output[i]);\n'
+		+'        result += String(str);\n'
+		+'    }\n'			
 		+'    mbedtls_aes_free(&aes);\n'
 		+'    return result;\n'
 		+'}';
 
 
   if (value_type=="encrypt")
-	  var code = 'aes_process((unsigned char*)String('+value_text+').c_str(), "ENCRYPT")';
+	  var code = 'aes_process((const unsigned char*)String('+value_text+').c_str(), String('+value_text+').length(), "ENCRYPT")';
   else
-	  var code = 'aes_process((unsigned char*)String('+value_text+').c_str(), "DECRYPT")';
+	  var code = 'aes_process((const unsigned char*)String('+value_text+').c_str(), String('+value_text+').length(), "DECRYPT")';
 
   return [code, Blockly.Arduino.ORDER_NONE];
 };
