@@ -2489,7 +2489,7 @@ Blockly.Msg["PN532_PIN_CUSTOM"] = "Custom pins";
 Blockly.Msg["PN532_SECTOR_START"] = "Section strart from";
 Blockly.Msg["PN532_WRITE_LONG_DATA"] = "Write long string";
 Blockly.Msg["PN532_SECTOR_LONG_DATA"] = "Long string";
-Blockly.Msg["PN532_WRITE_DATA"] = "write data";
+Blockly.Msg["PN532_WRITE_DATA"] = "write data(<=16bytes)";
 Blockly.Msg["PN532_READ_DATA"] = "Read data";
 Blockly.Msg["PN532_CLEAR_DATA"] = "Clear data";
 Blockly.Msg["PN532_BLOCK"] = "Block";

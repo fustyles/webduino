@@ -71,6 +71,7 @@ Blockly.Blocks['RC522_write_data'] = {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["RC522_SECTOR"])
 		.appendField(new Blockly.FieldDropdown([
+			["1","1"],		
 			["2","2"],	
 			["3","3"],
 			["4","4"],
@@ -111,6 +112,7 @@ Blockly.Blocks['RC522_read_data'] = {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["RC522_SECTOR"])
 		.appendField(new Blockly.FieldDropdown([
+			["1","1"],		
 			["2","2"],	
 			["3","3"],
 			["4","4"],
@@ -148,6 +150,7 @@ Blockly.Blocks['RC522_clear_data'] = {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["RC522_SECTOR"])
 		.appendField(new Blockly.FieldDropdown([
+			["1","1"],		
 			["2","2"],	
 			["3","3"],
 			["4","4"],
@@ -186,6 +189,7 @@ Blockly.Blocks['RC522_clear_sector_data'] = {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["RC522_SECTOR"])
 		.appendField(new Blockly.FieldDropdown([
+			["1","1"],		
 			["2","2"],	
 			["3","3"],
 			["4","4"],
@@ -204,6 +208,7 @@ Blockly.Blocks['RC522_clear_sector_data'] = {
 	this.appendDummyInput()
 		.appendField("~"+Blockly.Msg["RC522_SECTOR"])
 		.appendField(new Blockly.FieldDropdown([
+			["1","1"],		
 			["2","2"],	
 			["3","3"],
 			["4","4"],
@@ -5128,6 +5133,7 @@ Blockly.Blocks['PN532_read_data'] = {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["PN532_SECTOR"])
 		.appendField(new Blockly.FieldDropdown([
+			["1","1"],		
 			["2","2"],	
 			["3","3"],
 			["4","4"],
