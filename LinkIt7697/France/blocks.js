@@ -16467,7 +16467,9 @@ Blockly.Blocks['linenotify_esp32_br'] = {
 	this.appendDummyInput()
 		.appendField(new Blockly.FieldDropdown([
 		  ["\\n","\\n"]
-		  ,["\\\\n","\\\\n"]		  
+		  ,["\\\\n","\\\\n"]
+		  ,["\\n\\r","\\n\\r"]	
+		  ,["\\\\n\\\\r","\\\\n\\\\r"]			
 		  ,["<br>","<br>"]
 		  ]), "newline"); 		
 	this.setInputsInline(true);
