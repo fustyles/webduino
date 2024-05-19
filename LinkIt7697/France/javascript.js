@@ -20573,7 +20573,7 @@ setTimeout(function () {
 			Blockly.Xml.domToWorkspace(xmlDoc, Blockly.mainWorkspace);
 		}
 	}	
-	if (typeof Blockly.Blocks['board_initializes_setup']=== 'undefined') {
+	if (typeof Blockly.Arduino['board_initializes_setup']=== 'undefined') {
 		Blockly.Blocks['board_initializes_setup'] = Blockly.Blocks['initializes_setup'];
 		Blockly.Arduino['board_initializes_setup'] = Blockly.Arduino['initializes_setup'];
 		checkInit();
