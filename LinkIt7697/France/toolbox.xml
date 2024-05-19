@@ -12564,7 +12564,7 @@
 		  </block>
 		</value>  
 	  </block>
-	  <block type="fu_serial_newline">
+	  <block type="linenotify_esp32_br">
 	  </block>		
 	</category>	
 	<category id="france1" name="customcode">
