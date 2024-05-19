@@ -12563,7 +12563,9 @@
 			<field name="TEXT">World Peace</field>
 		  </block>
 		</value>  
-	  </block>	  
+	  </block>
+	  <block type="fu_serial_newline">
+	  </block>		
 	</category>	
 	<category id="france1" name="customcode">
 	  <block type="customcode_instruction5">
