@@ -40,6 +40,13 @@ var catHands ='<xml>'+
 '          </block>'+
 '        </value>'+
 '      </block>'+
+'      <block type="hands_pause">'+
+'        <value name="time_">'+
+'          <block type="math_number">'+
+'    	<field name="NUM">1000</field>'+
+'          </block>'+
+'        </value>'+  
+'      </block>'+  
 '      <block type="hands_position">'+
 '        <value name="hand_">'+
 '          <block type="math_number">'+
@@ -108,13 +115,6 @@ var catHands ='<xml>'+
 '            <field name="NUM">0</field>'+
 '          </block>'+
 '        </value>'+
-'      </block>'+
-'      <block type="hands_pause">'+
-'        <value name="time_">'+
-'          <block type="math_number">'+
-'    	<field name="NUM">1000</field>'+
-'          </block>'+
-'        </value>'+  
 '      </block>'+
 '    </category>'+
 '</xml>';
