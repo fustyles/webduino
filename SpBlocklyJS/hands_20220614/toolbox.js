@@ -28,8 +28,6 @@ var catHands ='<xml>'+
 '      </block>'+
 '      <block type="hands_recognitied">'+
 '      </block>'+
-'      <block type="hands_clear">'+
-'      </block>'+
 '      <block type="hands_video_position">'+
 '        <value name="left_">'+
 '          <block type="math_number">'+
