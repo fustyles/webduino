@@ -89,7 +89,7 @@ Blockly.Msg["WIRE_READ_CHAR"] = "一個位元轉換字元";
 Blockly.Msg["WIRE_READ_STRING"] = "位元組轉成字串";
 Blockly.Msg["WIRE_CLOCK"] = "匯流排計時器頻率";
 
-Blockly.Msg["AMB82_MINI"] = "AMB82-MINI";
+Blockly.Msg["AMB82_MINI"] = "AmebaPro2";
 Blockly.Msg["AMB82_MINI_INITIAL"] = "初始化";
 Blockly.Msg["AMB82_MINI_LINENOTIFY"] = "擷取影像上傳Line通知";
 Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_DEFAULT"] = "預設";

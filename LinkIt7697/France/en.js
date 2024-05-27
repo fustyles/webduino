@@ -89,7 +89,7 @@ Blockly.Msg["WIRE_READ_STRING"] = "all data to string";
 Blockly.Msg["WIRE_READ_STRING"] = "位元組轉成字串";
 Blockly.Msg["WIRE_CLOCK"] = "bus clock";
 
-Blockly.Msg["AMB82_MINI"] = "AMB82-MINI";
+Blockly.Msg["AMB82_MINI"] = "AmebaPro2";
 Blockly.Msg["AMB82_MINI_INITIAL"] = "Initial";
 Blockly.Msg["AMB82_MINI_LINENOTIFY"] = "Get still and send to Line";
 Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_DEFAULT"] = "Default";

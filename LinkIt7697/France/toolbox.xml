@@ -2057,7 +2057,7 @@
 				</value>
 				<value name="ssid_ap">
 				  <block type="text">
-					<field name="TEXT">amb82mini</field>
+					<field name="TEXT">AmebaPro2</field>
 				  </block>
 				</value>
 				<value name="password_ap">
