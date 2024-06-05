@@ -23200,10 +23200,12 @@ Blockly.Blocks['text_br'] = {
         .appendField(Blockly.Msg.SERVERMODULE_BR_SHOW);
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
-	  ["<br>","<br>"]
-	  ,["\\n","\\n"]
-	  ,["\\\\n","\\\\n"]	  
-	  ]), "newline"); 		
+	["\\n","\\n"]
+	,["\\\\n","\\\\n"]
+	,["\\n\\r","\\n\\r"]	
+	,["\\\\n\\\\r","\\\\n\\\\r"]			
+	,["<br>","<br>"]	  
+  ]), "newline"); 		
   this.setInputsInline(true);
   this.setOutput(true, null);
   this.setColour(Blockly.Msg["HUE_1"]);  
