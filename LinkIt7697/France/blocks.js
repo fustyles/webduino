@@ -1392,16 +1392,16 @@ Blockly.Blocks['amb82_mini_video_initial'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_DEFAULT"],""],
-			["2K (2560×1440)","VIDEO_2K"],
-			["5M (2448×2050)","VIDEO_5M"], 
-			["3M (2048×1536)","VIDEO_3M"],
+			//["2K (2560×1440)","VIDEO_2K"],
+			//["5M (2448×2050)","VIDEO_5M"], 
+			//["3M (2048×1536)","VIDEO_3M"],
 			["FHD (1920×1080)","VIDEO_FHD"],
 			["HD (1280×720)","VIDEO_HD"],
 			["D1 (704×576)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
 			["WVGA (640×340)","VIDEO_WVGA"],
-			["CIF (352×288)","VIDEO_CIF"],
-			["QCIF (176×144)","VIDEO_QCIF"],
+			//["CIF (352×288)","VIDEO_CIF"],
+			//["QCIF (176×144)","VIDEO_QCIF"],
 			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"],"VIDEO_CUSTOM"]
 		], this.validate), "resolution");
 	this.appendValueInput("width")
