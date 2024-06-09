@@ -1418,7 +1418,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 	
   if (framesize=="VIDEO_CUSTOM")
 	framesize = width +", "+height;
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\nchar ssid[] = '+ssid+';\nchar pass[] = '+pass+';\nchar ssid_ap[] = '+ssid_ap+';\nchar pass_ap[] = '+pass_ap+';\nchar channel_ap[] = "1";';
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\nchar ssid[] = '+ssid+';\nchar pass[] = '+pass+';\nchar ssid_ap[] = '+ssid_ap+';\nchar pass_ap[] = '+pass_ap+';\nchar channel_ap[] = "2";';
 
   Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
   Blockly.Arduino.definitions_.define_custom_command = "";
@@ -1477,6 +1477,11 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
 	Blockly.Arduino.setups_.setup_cam_initial='initWiFi();\n';
 	
+	Blockly.Arduino.definitions_['Ip2String'] =''+
+	'String Ip2String(IPAddress ip) {\n'+
+	'  return String(ip[0])+String(".")+String(ip[1])+String(".")+String(ip[2])+String(".")+String(ip[3]);\n'+
+	'}\n';
+
 	Blockly.Arduino.definitions_.initWiFi = ''+
 			'  void initWiFi() {\n'+
 			'    for (int i=0;i<2;i++) {\n'+
@@ -1508,8 +1513,9 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'        break;\n'+
 			'      }\n'+
 			'    }\n'+
-			'    //if (String(ssid_ap)!="")\n'+
-			'      //WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
+			'    if (String(ssid_ap)!=""&&WiFi.status()!=WL_CONNECTED) {\n'+
+			'      WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
+			'    }\n'+
 			'    Serial.println("");\n'+
 			'    Camera.configVideoChannel(0, config);\n'+
 			'    Camera.videoInit();\n'+
