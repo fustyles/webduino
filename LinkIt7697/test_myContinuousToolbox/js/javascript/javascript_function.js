@@ -132,7 +132,7 @@ function start() {
 	
 	//初始積木匯入工作區
 	function startBlocks() {
-		var xmlDoc = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml"><block type="test1" x="100" y="100"><value name="message"><block type="text"><field name="TEXT">Hello World</field></block></value></block></xml>');
+		var xmlDoc = Blockly.utils.xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml"></xml>');
 		Blockly.getMainWorkspace().clear();
 		Blockly.Xml.domToWorkspace(xmlDoc, workspace);
 	}
@@ -262,7 +262,7 @@ function start() {
 					var fr = new FileReader();           
 					fr.onload = function (event) {
 						Blockly.getMainWorkspace().clear();
-						var blocks = Blockly.Xml.textToDom(event.target.result);
+						var blocks = Blockly.utils.xml.textToDom(event.target.result);
 						Blockly.Xml.domToWorkspace(blocks, Blockly.mainWorkspace);
 					};
 					fr.readAsText(file);
