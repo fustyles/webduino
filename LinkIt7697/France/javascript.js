@@ -1,3 +1,125 @@
+Blockly.Arduino['amb82_mini_facedetection_rtsp'] = function(block) {
+	
+	Blockly.Arduino.definitions_.define_custom_command = "";
+	Blockly.Arduino.setups_.write_peri_reg = "";
+	
+	var model = block.getFieldValue('model');
+	var label = block.getFieldValue('label');
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+	var statement_finish = Blockly.Arduino.statementToCode(block, 'statement_finish');
+
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "WiFi.h"\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNFaceDetection.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\nVideoSetting config(VIDEO_FHD, 30, VIDEO_H264, 0);\nVideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNFaceDetection facedet;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\n';
+	Blockly.Arduino.definitions_['define_amb82_mini_facedetection_rtsp_faceDetectionItem'] =''+	
+	'void FDPostProcess(std::vector<FaceDetectionResult> results) {\n'+
+	'    uint16_t im_h = config.height();\n'+
+	'    uint16_t im_w = config.width();\n'+
+	'    OSD.createBitmap(amb82_CHANNEL);\n'+
+	'    if (facedet.getResultCount() > 0) {\n'+
+	'        for (int i = 0; i < facedet.getResultCount(); i++) {\n'+
+	'            FaceDetectionResult item = results[i];\n'+
+	'            int xmin = (int)(item.xMin() * im_w);\n'+
+	'            int xmax = (int)(item.xMax() * im_w);\n'+
+	'            int ymin = (int)(item.yMin() * im_h);\n'+
+	'            int ymax = (int)(item.yMax() * im_h);\n'+ statement;
+	
+	if (label=="Y") {
+		Blockly.Arduino.definitions_['define_amb82_mini_facedetection_rtsp_faceDetectionItem'] +=
+		'                //printf("Face %ld confidence %d:\\t%d %d %d %d\\n\\r", i, item.score(), xmin, xmax, ymin, ymax);\n'+		
+		'                OSD.drawRect(amb82_CHANNEL, xmin, ymin, xmax, ymax, 3, OSD_COLOR_WHITE);\n'+
+		'                char text_str[40];\n'+
+		'                snprintf(text_str, sizeof(text_str), "%s %d", item.name(), item.score());\n'+
+		'                OSD.drawText(amb82_CHANNEL, xmin, ymin - OSD.getTextHeight(amb82_CHANNEL), text_str, OSD_COLOR_CYAN);\n';
+	}
+	
+	Blockly.Arduino.definitions_['define_amb82_mini_facedetection_rtsp_faceDetectionItem'] +=
+	'        }\n'+
+	'    }\n'+ statement_finish +
+	'    OSD.update(amb82_CHANNEL);\n'+ 
+	'}';	
+	
+
+	Blockly.Arduino.setups_.setup_amb82_mini_facedetection = ''+   
+										'config.setBitrate(2 * 1024 * 1024);\n  '+
+										'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
+										'Camera.configVideoChannel(CHANNELNN, configNN);\n  '+
+										'Camera.videoInit();\n  '+
+										'rtsp.configVideo(config);\n  '+
+										'rtsp.begin();\n  '+
+										'facedet.configVideo(configNN);\n  '+
+										'facedet.setResultCallback(FDPostProcess);\n  '+
+										'facedet.modelSelect(FACE_DETECTION, NA_MODEL, '+model+', NA_MODEL);\n  '+
+										'facedet.begin();\n  '+
+										'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
+										'videoStreamer.registerOutput(rtsp);\n  '+
+										'if (videoStreamer.begin() != 0) {\n  '+
+										'    Serial.println("StreamIO link start failed");\n  '+
+										'}\n  '+
+										'Camera.channelBegin(amb82_CHANNEL);\n  '+
+										'videoStreamerNN.registerInput(Camera.getStream(CHANNELNN));\n  '+
+										'videoStreamerNN.setStackSize();\n  '+
+										'videoStreamerNN.setTaskPriority();\n  '+
+										'videoStreamerNN.registerOutput(facedet);\n  '+
+										'if (videoStreamerNN.begin() != 0) {\n  '+
+										'    Serial.println("StreamIO link start failed");\n  '+
+										'}\n  '+
+										'Camera.channelBegin(CHANNELNN);\n  '+
+										'OSD.configVideo(amb82_CHANNEL, config);\n  '+
+										'OSD.begin();\n';
+
+  return "";
+};
+
+Blockly.Arduino['amb82_mini_facedetection_rtsp_count'] = function(block) {	
+	var code = 'facedet.getResultCount()';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['amb82_mini_facedetection_rtsp_rect'] = function(block) {
+    var property = block.getFieldValue('property');
+	if (property == "OBJECT")
+		var code = 'String(item.name())';
+	else if (property == "SCORE")
+		var code = 'item.score()';		
+	else if (property == "X")
+		var code = 'xmin';
+	else if (property == "Y")
+		var code = 'ymin';
+	else if (property == "XM")
+		var code = 'int((xmin+xmax)/2)';
+	else if (property == "YM")
+		var code = 'int((ymin+ymax)/2)';
+	else if (property == "X1")
+		var code = 'xmax';
+	else if (property == "Y1")
+		var code = 'ymax';	
+	else if (property == "WIDTH")
+		var code = '(xmax-xmin)';
+	else if (property == "HEIGHT")
+		var code = '(ymax-ymin)';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['amb82_mini_facedetection_rtsp_point'] = function(block) {
+    var index = block.getFieldValue('index');
+	var property = block.getFieldValue('property');
+	if (property == "X")
+		var code = '(int)(item.xFeature('+index+') * im_w);';
+	else if (property == "Y")
+		var code = '(int)(item.yFeature('+index+') * im_h)';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Arduino['RC522_initial'] = function(block) {
 	var keya = Blockly.Arduino.valueToCode(block, 'keya', Blockly.Arduino.ORDER_ATOMIC)||"0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF";
 	var keyb = Blockly.Arduino.valueToCode(block, 'keyb', Blockly.Arduino.ORDER_ATOMIC)||"0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF";

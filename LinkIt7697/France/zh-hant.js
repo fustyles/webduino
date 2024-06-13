@@ -29,6 +29,23 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["AMB82_MINI_FACEDETECTION"] = "人臉偵測";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_LABEL"] = "標記";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_AFTER"] = "列舉所有人臉";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_FINISH"] = "列舉完成後";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_COUNT"] = "人臉數";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_ITEMLIST"] = "列舉人臉屬性";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_OBJECT"] = "人臉名稱";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_SCORE"] = "信心分數";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_X_MIN"] = "X左上";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_Y_MIN"] = "Y左上";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_X_MIDDLE"] = "X中間";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_Y_MIDDLE"] = "Y中間";			
+Blockly.Msg["AMB82_MINI_FACEDETECTION_X_MAX"] = "X右下";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_Y_MAX"] = "Y右下";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_WIDTH"] = "寬度";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_HIGHT"] = "高度";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_POINT"] = "特徵點";
 
 Blockly.Msg["ESP32_AES_ENCRYPT"] = "AES加密";
 Blockly.Msg["ESP32_AES_DECRYPT"] = "AES解密";

@@ -29,6 +29,25 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["AMB82_MINI_FACEDETECTION"] = "Face Detection";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_LABEL"] = "Label";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_AFTER"] = "Enumerate All Faces";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_FINISH"] = "After Enumeration";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_COUNT"] = "Number of Faces";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_ITEMLIST"] = "Enumerate Face Attributes";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_OBJECT"] = "Face Name";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_SCORE"] = "Confidence Score";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_X_MIN"] = "X Top Left";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_Y_MIN"] = "Y Top Left";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_X_MIDDLE"] = "X Middle";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_Y_MIDDLE"] = "Y Middle";			
+Blockly.Msg["AMB82_MINI_FACEDETECTION_X_MAX"] = "X Bottom Right";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_Y_MAX"] = "Y Bottom Right";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_WIDTH"] = "Width";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_HIGHT"] = "Height";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_POINT"] = "Feature Point";
+
+
 Blockly.Msg["ESP32_AES_ENCRYPT"] = "AES ENCRYPT";
 Blockly.Msg["ESP32_AES_DECRYPT"] = "AES DECRYPT";
 Blockly.Msg["ESP32_AES_KEY"] = "Key";
