@@ -3093,6 +3093,12 @@
 			  </block> 			  
 			  <block type="amb82_mini_audioclassification_get">		  
 			  </block>  
+		</category>	
+		<category id="france23" name="amb82_mini_ImageClassification">				
+			  <block type="amb82_mini_imageclassification">		  
+			  </block>		  
+			  <block type="amb82_mini_imageclassification_get">		  
+			  </block>  
 		</category>			
 		<sep id="category_sep"></sep>
 		

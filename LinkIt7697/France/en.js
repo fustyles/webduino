@@ -29,11 +29,18 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION"] = "Image classification";
+Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_AFTER"] = "Enumerate all categories";
+Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_FINISH"] = "After enumeration";
+Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_LIST"] = "Get category attributes";
+Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_NAME"] = "Category name";
+Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_SCORE"] = "Confidence score";
+
 Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION"] = "Audio Classification";
 Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_AFTER"] = "Enumerate all classifications";
 Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_FINISH"] = "After enumeration";
 Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_COUNT"] = "Number of classifications";
-Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_LIST"] = "List audio attributes";
+Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_LIST"] = "Get audio attributes";
 Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_NAME"] = "Classification name";
 Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_SCORE"] = "Confidence score";
 
@@ -42,7 +49,7 @@ Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_LABEL"] = "Label";
 Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_AFTER"] = "Enumerate all faces";
 Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_FINISH"] = "After enumeration";
 Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_COUNT"] = "Number of faces";
-Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_LIST"] = "List face attributes";
+Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_LIST"] = "Get face attributes";
 Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_NAME"] = "Face name";
 Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_X_MIN"] = "X top-left";
 Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_Y_MIN"] = "Y top-left";
@@ -65,7 +72,7 @@ Blockly.Msg["AMB82_MINI_FACEDETECTION_LABEL"] = "Label";
 Blockly.Msg["AMB82_MINI_FACEDETECTION_AFTER"] = "Enumerate All Faces";
 Blockly.Msg["AMB82_MINI_FACEDETECTION_FINISH"] = "After Enumeration";
 Blockly.Msg["AMB82_MINI_FACEDETECTION_COUNT"] = "Number of Faces";
-Blockly.Msg["AMB82_MINI_FACEDETECTION_LIST"] = "Enumerate Face Attributes";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_LIST"] = "Get Face Attributes";
 Blockly.Msg["AMB82_MINI_FACEDETECTION_NAME"] = "Face Name";
 Blockly.Msg["AMB82_MINI_FACEDETECTION_SCORE"] = "Confidence Score";
 Blockly.Msg["AMB82_MINI_FACEDETECTION_X_MIN"] = "X Top Left";

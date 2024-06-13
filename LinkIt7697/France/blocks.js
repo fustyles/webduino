@@ -1,3 +1,57 @@
+Blockly.Blocks['amb82_mini_imageclassification'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION"]);
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)
+			.appendField(Blockly.Msg["AMB82_MINI_MODEL"])
+			.appendField(new Blockly.FieldDropdown([
+ 				["IMGCLASS","DEFAULT_IMGCLASS"],
+ 				["IMGCLASS_SD","CUSTOMIZED_IMGCLASS"]
+		]), "model");		
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_AFTER"]);	  
+    this.appendStatementInput("statement")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_FINISH"]);	  
+    this.appendStatementInput("statement_finish")
+        .setCheck(null);		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_28"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_imageclassification_get'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION"])
+        .appendField(Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_LIST"]);
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)	
+			.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_NAME"],"NAME"],
+				[Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_SCORE"],"SCORE"]				
+		]), "property");		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_28"]);
+  }
+};
+
+
+
+
+
+
+
+
+
+
 Blockly.Blocks['amb82_mini_audioclassification'] = {
   init: function() {
     this.appendDummyInput()
@@ -54,14 +108,6 @@ Blockly.Blocks['amb82_mini_audioclassification_get'] = {
 	this.setColour(Blockly.Msg["HUE_24"]);
   }
 };
-
-
-
-
-
-
-
-
 
 Blockly.Blocks['amb82_mini_facedetectionrecognition_rtsp'] = {
   init: function() {

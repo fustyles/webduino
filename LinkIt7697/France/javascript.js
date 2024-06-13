@@ -1,3 +1,87 @@
+Blockly.Arduino['amb82_mini_imageclassification'] = function(block) {
+	
+	Blockly.Arduino.definitions_.define_custom_command = "";
+	Blockly.Arduino.setups_.write_peri_reg = "";
+	
+	var model = block.getFieldValue('model');
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+	var statement_finish = Blockly.Arduino.statementToCode(block, 'statement_finish');
+
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "WiFi.h"\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNImageClassification.h"\n#include "VideoStreamOverlay.h"\n#include "ClassificationClassList.h"\n#define IMAGERGB 1\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  224\n#define NNHEIGHT 224\nVideoSetting config(VIDEO_FHD, 30, VIDEO_H264, 0);\nVideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNImageClassification imgclass;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\n';
+	
+	Blockly.Arduino.definitions_['define_amb82_mini_facedetectionrecognition_list'] =''+
+	'#ifndef __CLASSIFICATIONCLASSLIST_H__\n'+
+	'#define __CLASSIFICATIONCLASSLIST_H__\n'+
+	'	struct ClassificationDetectionItem {\n'+
+	'	uint8_t index;\n'+
+	'	const char* imgclassName;\n'+
+	'	uint8_t filter;\n'+
+	'};\n'+
+	'ClassificationDetectionItem imgclassItemList[6] = {\n'+
+	'	{0, "cardboard", 1},\n'+
+	'	{1, "glass",     1},\n'+
+	'	{2, "metal",     1},\n'+
+	'	{3, "paper",     1},\n'+
+	'	{4, "plastic",   1},\n'+
+	'	{5, "trash",     1}\n'+
+	'};\n'+	
+	'#endif\n'+	
+	'void ICPostProcess(void) {\n'+
+	'    int class_id = imgclass.classID(); {\n'+
+	'    if (imgclassItemList[class_id].filter) {\n'+ statement+
+	'    }\n'+ statement_finish +
+	'}';	
+
+	Blockly.Arduino.setups_.setup_amb82_mini_facedetection = ''+   
+										'config.setBitrate(2 * 1024 * 1024);\n'+
+										'Camera.configVideoChannel(amb82_CHANNEL, config);\n'+
+										'Camera.configVideoChannel(CHANNELNN, configNN);\n'+
+										'Camera.videoInit();\n'+
+										'rtsp.configVideo(config);\n'+
+										'rtsp.begin();\n'+
+										'rtsp_portnum = rtsp.getPort();\n'+
+										'imgclass.configVideo(configNN);\n'+
+										'imgclass.configInputImageColor(IMAGERGB);\n'+
+										'imgclass.setResultCallback(ICPostProcess);\n'+
+										'imgclass.modelSelect(IMAGE_CLASSIFICATION, NA_MODEL, NA_MODEL, NA_MODEL, NA_MODEL, '+model+');\n'+
+										'imgclass.begin();\n'+
+										'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n'+
+										'videoStreamer.registerOutput(rtsp);\n'+
+										'if (videoStreamer.begin() != 0) {\n'+
+										'    Serial.println("StreamIO link start failed");\n'+
+										'}\n'+
+										'Camera.channelBegin(amb82_CHANNEL);\n'+
+										'videoStreamerNN.registerInput(Camera.getStream(CHANNELNN));\n'+
+										'videoStreamerNN.setStackSize();\n'+
+										'videoStreamerNN.setTaskPriority();\n'+
+										'videoStreamerNN.registerOutput(imgclass);\n'+
+										'if (videoStreamerNN.begin() != 0) {\n'+
+										'    Serial.println("StreamIO link start failed");\n'+
+										'}\n'+
+										'Camera.channelBegin(CHANNELNN);\n';
+
+  return "";
+};
+
+Blockly.Arduino['amb82_mini_imageclassification_get'] = function(block) {
+    var property = block.getFieldValue('property');
+	if (property == "NAME")
+		var code = 'String(imgclassItemList[class_id].imgclassName)';	
+	else if (property == "SCORE")
+		var code = 'imgclass.score()';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Arduino['amb82_mini_audioclassification'] = function(block) {
 	
 	Blockly.Arduino.definitions_.define_custom_command = "";
@@ -584,18 +668,6 @@ Blockly.Arduino['amb82_mini_audioclassification_get'] = function(block) {
 		var code = 'audio_item.score()';
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 Blockly.Arduino['amb82_mini_facedetectionrecognition_rtsp'] = function(block) {
 	
