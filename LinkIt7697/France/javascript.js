@@ -7,7 +7,7 @@ Blockly.Arduino['amb82_mini_imageclassification'] = function(block) {
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
 	var statement_finish = Blockly.Arduino.statementToCode(block, 'statement_finish');
 
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "WiFi.h"\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNImageClassification.h"\n#include "VideoStreamOverlay.h"\n#include "ClassificationClassList.h"\n#define IMAGERGB 1\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  224\n#define NNHEIGHT 224\nVideoSetting config(VIDEO_FHD, 30, VIDEO_H264, 0);\nVideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNImageClassification imgclass;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\n';
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "WiFi.h"\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNImageClassification.h"\n#include "VideoStreamOverlay.h"\n#define IMAGERGB 1\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  224\n#define NNHEIGHT 224\nVideoSetting config(VIDEO_FHD, 30, VIDEO_H264, 0);\nVideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNImageClassification imgclass;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\n';
 	
 	Blockly.Arduino.definitions_['define_amb82_mini_facedetectionrecognition_list'] =''+
 	'#ifndef __CLASSIFICATIONCLASSLIST_H__\n'+
