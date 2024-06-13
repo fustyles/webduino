@@ -1,3 +1,128 @@
+Blockly.Blocks['amb82_mini_facedetectionrecognition_rtsp'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION"]);
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)
+			.appendField(Blockly.Msg["AMB82_MINI_MODEL"])
+			.appendField(new Blockly.FieldDropdown([
+ 				["SCRFD","DEFAULT_SCRFD"],
+ 				["SCRFD_SD","CUSTOMIZED_SCRFD"]
+		]), "model");
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_LABEL"])
+		.appendField(new Blockly.FieldDropdown([
+			["Y","Y"],
+			["N","N"]
+		]), "label");		
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_AFTER"]);	  
+    this.appendStatementInput("statement")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_FINISH"]);	  
+    this.appendStatementInput("statement_finish")
+        .setCheck(null);		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_23"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_facedetectionrecognition_rtsp_count'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION"])
+        .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_COUNT"]);		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_23"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_facedetectionrecognition_rtsp_rect'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION"])
+        .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_LIST"]);
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)	
+			.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_NAME"],"NAME"],		
+				[Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_X_MIN"],"X"],
+				[Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_Y_MIN"],"Y"],
+				[Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_X_MIDDLE"],"XM"],
+				[Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_Y_MIDDLE"],"YM"],				
+				[Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_X_MAX"],"X1"],
+				[Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_Y_MAX"],"Y1"],				
+				[Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_WIDTH"],"WIDTH"],
+				[Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_HIGHT"],"HEIGHT"]			
+		]), "property");		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_23"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_facedetectionrecognition_rtsp_action'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION"]);
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)	
+			.appendField(new Blockly.FieldDropdown([			
+				[Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_REG"],"reg"],
+				[Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_DEL"],"del"],
+				[Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_RESET"],"reset"],
+				[Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_BACKUP"],"backup"],
+				[Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_RESTORE"],"restore"]		
+		], this.validate), "action");
+	this.appendValueInput("regname")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)   
+		.appendField(Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_NAME"]); 		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_23"]);
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="reg"||newValue=="del") {
+			block.getInput("regname").setVisible(true);
+		} else {
+			block.getInput("regname").setVisible(false);	
+		}
+  }
+};
+
+Blockly.Blocks['amb82_mini_facedetectionrecognition_rtsp_notunknown'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION"])
+        .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_NOTUNKNOWN"]);	
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_23"]);
+  }
+};
+
+
+
+
+
+
+
+
+
 Blockly.Blocks['amb82_mini_facedetection_rtsp'] = {
   init: function() {
     this.appendDummyInput()
@@ -49,11 +174,11 @@ Blockly.Blocks['amb82_mini_facedetection_rtsp_rect'] = {
     this.appendDummyInput()
 	    .appendField(Blockly.Msg["AMB82_MINI"])
         .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTION"])
-        .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTION_ITEMLIST"]);
+        .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTION_LIST"]);
     this.appendDummyInput()	 
 			.setAlign(Blockly.ALIGN_RIGHT)	
 			.appendField(new Blockly.FieldDropdown([
-				[Blockly.Msg["AMB82_MINI_FACEDETECTION_OBJECT"],"OBJECT"],			
+				[Blockly.Msg["AMB82_MINI_FACEDETECTION_NAME"],"NAME"],			
 				[Blockly.Msg["AMB82_MINI_FACEDETECTION_SCORE"],"SCORE"],			
 				[Blockly.Msg["AMB82_MINI_FACEDETECTION_X_MIN"],"X"],
 				[Blockly.Msg["AMB82_MINI_FACEDETECTION_Y_MIN"],"Y"],
@@ -95,16 +220,6 @@ Blockly.Blocks['amb82_mini_facedetection_rtsp_point'] = {
 	this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
-
-
-
-
-
-
-
-
-
-
 
 Blockly.Blocks['RC522_initial'] = {
   init: function() {
