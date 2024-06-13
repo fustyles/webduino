@@ -27,7 +27,7 @@ Blockly.Arduino['amb82_mini_imageclassification'] = function(block) {
 	'};\n'+	
 	'#endif\n'+	
 	'void ICPostProcess(void) {\n'+
-	'    int class_id = imgclass.classID(); {\n'+
+	'    int class_id = imgclass.classID();\n'+
 	'    if (imgclassItemList[class_id].filter) {\n'+ statement+
 	'    }\n'+ statement_finish +
 	'}';	
