@@ -39,7 +39,6 @@ Blockly.Arduino['amb82_mini_imageclassification'] = function(block) {
 										'Camera.videoInit();\n'+
 										'rtsp.configVideo(config);\n'+
 										'rtsp.begin();\n'+
-										'rtsp_portnum = rtsp.getPort();\n'+
 										'imgclass.configVideo(configNN);\n'+
 										'imgclass.configInputImageColor(IMAGERGB);\n'+
 										'imgclass.setResultCallback(ICPostProcess);\n'+
