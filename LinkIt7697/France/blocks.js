@@ -1,3 +1,68 @@
+Blockly.Blocks['amb82_mini_audioclassification'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION"]);
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)
+			.appendField(Blockly.Msg["AMB82_MINI_MODEL"])
+			.appendField(new Blockly.FieldDropdown([
+ 				["YAMNET","DEFAULT_YAMNET"],
+ 				["YAMNET_SD","CUSTOMIZED_YAMNET"]
+		]), "model");		
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_AFTER"]);	  
+    this.appendStatementInput("statement")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_FINISH"]);	  
+    this.appendStatementInput("statement_finish")
+        .setCheck(null);		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_24"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_audioclassification_count'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION"])
+        .appendField(Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_COUNT"]);		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_24"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_audioclassification_get'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION"])
+        .appendField(Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_LIST"]);
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)	
+			.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_NAME"],"NAME"],
+				[Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_SCORE"],"SCORE"]				
+		]), "property");		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_24"]);
+  }
+};
+
+
+
+
+
+
+
+
+
 Blockly.Blocks['amb82_mini_facedetectionrecognition_rtsp'] = {
   init: function() {
     this.appendDummyInput()
@@ -114,14 +179,6 @@ Blockly.Blocks['amb82_mini_facedetectionrecognition_rtsp_notunknown'] = {
 	this.setColour(Blockly.Msg["HUE_23"]);
   }
 };
-
-
-
-
-
-
-
-
 
 Blockly.Blocks['amb82_mini_facedetection_rtsp'] = {
   init: function() {
@@ -455,21 +512,6 @@ Blockly.Blocks['RC522_clear_sector_data'] = {
     this.setColour(Blockly.Msg["HUE_29"]);
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Blockly.Blocks['esp32_aes_encryption'] = {
   init: function() {

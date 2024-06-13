@@ -29,6 +29,14 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION"] = "Audio Classification";
+Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_AFTER"] = "Enumerate all classifications";
+Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_FINISH"] = "After enumeration";
+Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_COUNT"] = "Number of classifications";
+Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_LIST"] = "List audio attributes";
+Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_NAME"] = "Classification name";
+Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_SCORE"] = "Confidence score";
+
 Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION"] = "Face Detection";
 Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_LABEL"] = "Label";
 Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_AFTER"] = "Enumerate all faces";

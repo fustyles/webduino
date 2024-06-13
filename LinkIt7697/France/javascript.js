@@ -1,3 +1,602 @@
+Blockly.Arduino['amb82_mini_audioclassification'] = function(block) {
+	
+	Blockly.Arduino.definitions_.define_custom_command = "";
+	Blockly.Arduino.setups_.write_peri_reg = "";
+	
+	var model = block.getFieldValue('model');
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+	var statement_finish = Blockly.Arduino.statementToCode(block, 'statement_finish');
+
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "WiFi.h"\n#include "StreamIO.h"\n#include "NNAudioClassification.h"\nAudioSetting configA(16000, 1, USE_AUDIO_AMIC);\nAudio audio;\nNNAudioClassification audioNN;\nStreamIO audioStreamerNN(1, 1);\n';
+	
+	Blockly.Arduino.definitions_['define_amb82_mini_facedetectionrecognition_list'] =''+
+	'#ifndef __AUDIOCLASSLIST_H__\n'+
+	'#define __AUDIOCLASSLIST_H__\n'+
+	'struct AudioDetectionItem {\n'+
+	'    uint32_t index;\n'+
+	'    const char* audioName;\n'+
+	'    uint8_t filter;\n'+
+	'};\n'+
+	'AudioDetectionItem audioNames[521] = {\n'+
+	'    {0,   "Speech",                                   1},\n'+
+	'    {1,   "Child speech, kid speaking",               1},\n'+
+	'    {2,   "Conversation",                             1},\n'+
+	'    {3,   "Narration, monologue",                     1},\n'+
+	'    {4,   "Babbling",                                 1},\n'+
+	'    {5,   "Speech synthesizer",                       1},\n'+
+	'    {6,   "Shout",                                    1},\n'+
+	'    {7,   "Bellow",                                   1},\n'+
+	'    {8,   "Whoop",                                    1},\n'+
+	'    {9,   "Yell",                                     1},\n'+
+	'    {10,  "Children shouting",                        1},\n'+
+	'    {11,  "Screaming",                                1},\n'+
+	'    {12,  "Whispering",                               1},\n'+
+	'    {13,  "Laughter",                                 1},\n'+
+	'    {14,  "Baby laughter",                            1},\n'+
+	'    {15,  "Giggle",                                   1},\n'+
+	'    {16,  "Snicker",                                  1},\n'+
+	'    {17,  "Belly laugh",                              1},\n'+
+	'    {18,  "Chuckle, chortle",                         1},\n'+
+	'    {19,  "Crying, sobbing",                          1},\n'+
+	'    {20,  "Baby cry, infant cry",                     1},\n'+
+	'    {21,  "Whimper",                                  1},\n'+
+	'    {22,  "Wail, moan",                               1},\n'+
+	'    {23,  "Sigh",                                     1},\n'+
+	'    {24,  "Singing",                                  1},\n'+
+	'    {25,  "Choir",                                    1},\n'+
+	'    {26,  "Yodeling",                                 1},\n'+
+	'    {27,  "Chant",                                    1},\n'+
+	'    {28,  "Mantra",                                   1},\n'+
+	'    {29,  "Child singing",                            1},\n'+
+	'    {30,  "Synthetic singing",                        1},\n'+
+	'    {31,  "Rapping",                                  1},\n'+
+	'    {32,  "Humming",                                  1},\n'+
+	'    {33,  "Groan",                                    1},\n'+
+	'    {34,  "Grunt",                                    1},\n'+
+	'    {35,  "Whistling",                                1},\n'+
+	'    {36,  "Breathing",                                1},\n'+
+	'    {37,  "Wheeze",                                   1},\n'+
+	'    {38,  "Snoring",                                  1},\n'+
+	'    {39,  "Gasp",                                     1},\n'+
+	'    {40,  "Pant",                                     1},\n'+
+	'    {41,  "Snort",                                    1},\n'+
+	'    {42,  "Cough",                                    1},\n'+
+	'    {43,  "Throat clearing",                          1},\n'+
+	'    {44,  "Sneeze",                                   1},\n'+
+	'    {45,  "Sniff",                                    1},\n'+
+	'    {46,  "Run",                                      1},\n'+
+	'    {47,  "Shuffle",                                  1},\n'+
+	'    {48,  "Walk, footsteps",                          1},\n'+
+	'    {49,  "Chewing, mastication",                     1},\n'+
+	'    {50,  "Biting",                                   1},\n'+
+	'    {51,  "Gargling",                                 1},\n'+
+	'    {52,  "Stomach rumble",                           1},\n'+
+	'    {53,  "Burping, eructation",                      1},\n'+
+	'    {54,  "Hiccup",                                   1},\n'+
+	'    {55,  "Fart",                                     1},\n'+
+	'    {56,  "Hands",                                    1},\n'+
+	'    {57,  "Finger snapping",                          1},\n'+
+	'    {58,  "Clapping",                                 1},\n'+
+	'    {59,  "Heart sounds, heartbeat",                  1},\n'+
+	'    {60,  "Heart murmur",                             1},\n'+
+	'    {61,  "Cheering",                                 1},\n'+
+	'    {62,  "Applause",                                 1},\n'+
+	'    {63,  "Chatter",                                  1},\n'+
+	'    {64,  "Crowd",                                    1},\n'+
+	'    {65,  "Hubbub, speech noise, speech babble",      1},\n'+
+	'    {66,  "Children playing",                         1},\n'+
+	'    {67,  "Animal",                                   1},\n'+
+	'    {68,  "Domestic animals, pets",                   1},\n'+
+	'    {69,  "Dog",                                      1},\n'+
+	'    {70,  "Bark",                                     1},\n'+
+	'    {71,  "Yip",                                      1},\n'+
+	'    {72,  "Howl",                                     1},\n'+
+	'    {73,  "Bow-wow",                                  1},\n'+
+	'    {74,  "Growling",                                 1},\n'+
+	'    {75,  "Whimper (dog)",                            1},\n'+
+	'    {76,  "Cat",                                      1},\n'+
+	'    {77,  "Purr",                                     1},\n'+
+	'    {78,  "Meow",                                     1},\n'+
+	'    {79,  "Hiss",                                     1},\n'+
+	'    {80,  "Caterwaul",                                1},\n'+
+	'    {81,  "Livestock, farm animals, working animals", 1},\n'+
+	'    {82,  "Horse",                                    1},\n'+
+	'    {83,  "Clip-clop",                                1},\n'+
+	'    {84,  "Neigh, whinny",                            1},\n'+
+	'    {85,  "Cattle, bovinae",                          1},\n'+
+	'    {86,  "Moo",                                      1},\n'+
+	'    {87,  "Cowbell",                                  1},\n'+
+	'    {88,  "Pig",                                      1},\n'+
+	'    {89,  "Oink",                                     1},\n'+
+	'    {90,  "Goat",                                     1},\n'+
+	'    {91,  "Bleat",                                    1},\n'+
+	'    {92,  "Sheep",                                    1},\n'+
+	'    {93,  "Fowl",                                     1},\n'+
+	'    {94,  "Chicken, rooster",                         1},\n'+
+	'    {95,  "Cluck",                                    1},\n'+
+	'    {96,  "Crowing, cock-a-doodle-doo",               1},\n'+
+	'    {97,  "Turkey",                                   1},\n'+
+	'    {98,  "Gobble",                                   1},\n'+
+	'    {99,  "Duck",                                     1},\n'+
+	'    {100, "Quack",                                    1},\n'+
+	'    {101, "Goose",                                    1},\n'+
+	'    {102, "Honk",                                     1},\n'+
+	'    {103, "Wild animals",                             1},\n'+
+	'    {104, "Roaring cats (lions, tigers)",             1},\n'+
+	'    {105, "Roar",                                     1},\n'+
+	'    {106, "Bird",                                     1},\n'+
+	'    {107, "Bird vocalization, bird call, bird song",  1},\n'+
+	'    {108, "Chirp, tweet",                             1},\n'+
+	'    {109, "Squawk",                                   1},\n'+
+	'    {110, "Pigeon, dove",                             1},\n'+
+	'    {111, "Coo",                                      1},\n'+
+	'    {112, "Crow",                                     1},\n'+
+	'    {113, "Caw",                                      1},\n'+
+	'    {114, "Owl",                                      1},\n'+
+	'    {115, "Hoot",                                     1},\n'+
+	'    {116, "Bird flight, flapping wings",              1},\n'+
+	'    {117, "Canidae, dogs, wolves",                    1},\n'+
+	'    {118, "Rodents, rats, mice",                      1},\n'+
+	'    {119, "Mouse",                                    1},\n'+
+	'    {120, "Patter",                                   1},\n'+
+	'    {121, "Insect",                                   1},\n'+
+	'    {122, "Cricket",                                  1},\n'+
+	'    {123, "Mosquito",                                 1},\n'+
+	'    {124, "Fly, housefly",                            1},\n'+
+	'    {125, "Buzz",                                     1},\n'+
+	'    {126, "Bee, wasp, etc.",                          1},\n'+
+	'    {127, "Frog",                                     1},\n'+
+	'    {128, "Croak",                                    1},\n'+
+	'    {129, "Snake",                                    1},\n'+
+	'    {130, "Rattle",                                   1},\n'+
+	'    {131, "Whale vocalization",                       1},\n'+
+	'    {132, "Music",                                    1},\n'+
+	'    {133, "Musical instrument",                       1},\n'+
+	'    {134, "Plucked string instrument",                1},\n'+
+	'    {135, "Guitar",                                   1},\n'+
+	'    {136, "Electric guitar",                          1},\n'+
+	'    {137, "Bass guitar",                              1},\n'+
+	'    {138, "Acoustic guitar",                          1},\n'+
+	'    {139, "Steel guitar, slide guitar",               1},\n'+
+	'    {140, "Tapping (guitar technique)",               1},\n'+
+	'    {141, "Strum",                                    1},\n'+
+	'    {142, "Banjo",                                    1},\n'+
+	'    {143, "Sitar",                                    1},\n'+
+	'    {144, "Mandolin",                                 1},\n'+
+	'    {145, "Zither",                                   1},\n'+
+	'    {146, "Ukulele",                                  1},\n'+
+	'    {147, "Keyboard (musical)",                       1},\n'+
+	'    {148, "Piano",                                    1},\n'+
+	'    {149, "Electric piano",                           1},\n'+
+	'    {150, "Organ",                                    1},\n'+
+	'    {151, "Electronic organ",                         1},\n'+
+	'    {152, "Hammond organ",                            1},\n'+
+	'    {153, "Synthesizer",                              1},\n'+
+	'    {154, "Sampler",                                  1},\n'+
+	'    {155, "Harpsichord",                              1},\n'+
+	'    {156, "Percussion",                               1},\n'+
+	'    {157, "Drum kit",                                 1},\n'+
+	'    {158, "Drum machine",                             1},\n'+
+	'    {159, "Drum",                                     1},\n'+
+	'    {160, "Snare drum",                               1},\n'+
+	'    {161, "Rimshot",                                  1},\n'+
+	'    {162, "Drum roll",                                1},\n'+
+	'    {163, "Bass drum",                                1},\n'+
+	'    {164, "Timpani",                                  1},\n'+
+	'    {165, "Tabla",                                    1},\n'+
+	'    {166, "Cymbal",                                   1},\n'+
+	'    {167, "Hi-hat",                                   1},\n'+
+	'    {168, "Wood block",                               1},\n'+
+	'    {169, "Tambourine",                               1},\n'+
+	'    {170, "Rattle (instrument)",                      1},\n'+
+	'    {171, "Maraca",                                   1},\n'+
+	'    {172, "Gong",                                     1},\n'+
+	'    {173, "Tubular bells",                            1},\n'+
+	'    {174, "Mallet percussion",                        1},\n'+
+	'    {175, "Marimba, xylophone",                       1},\n'+
+	'    {176, "Glockenspiel",                             1},\n'+
+	'    {177, "Vibraphone",                               1},\n'+
+	'    {178, "Steelpan",                                 1},\n'+
+	'    {179, "Orchestra",                                1},\n'+
+	'    {180, "Brass instrument",                         1},\n'+
+	'    {181, "French horn",                              1},\n'+
+	'    {182, "Trumpet",                                  1},\n'+
+	'    {183, "Trombone",                                 1},\n'+
+	'    {184, "Bowed string instrument",                  1},\n'+
+	'    {185, "String section",                           1},\n'+
+	'    {186, "Violin, fiddle",                           1},\n'+
+	'    {187, "Pizzicato",                                1},\n'+
+	'    {188, "Cello",                                    1},\n'+
+	'    {189, "Double bass",                              1},\n'+
+	'    {190, "Wind instrument, woodwind instrument",     1},\n'+
+	'    {191, "Flute",                                    1},\n'+
+	'    {192, "Saxophone",                                1},\n'+
+	'    {193, "Clarinet",                                 1},\n'+
+	'    {194, "Harp",                                     1},\n'+
+	'    {195, "Bell",                                     1},\n'+
+	'    {196, "Church bell",                              1},\n'+
+	'    {197, "Jingle bell",                              1},\n'+
+	'    {198, "Bicycle bell",                             1},\n'+
+	'    {199, "Tuning fork",                              1},\n'+
+	'    {200, "Chime",                                    1},\n'+
+	'    {201, "Wind chime",                               1},\n'+
+	'    {202, "Change ringing (campanology)",             1},\n'+
+	'    {203, "Harmonica",                                1},\n'+
+	'    {204, "Accordion",                                1},\n'+
+	'    {205, "Bagpipes",                                 1},\n'+
+	'    {206, "Didgeridoo",                               1},\n'+
+	'    {207, "Shofar",                                   1},\n'+
+	'    {208, "Theremin",                                 1},\n'+
+	'    {209, "Singing bowl",                             1},\n'+
+	'    {210, "Scratching (performance technique)",       1},\n'+
+	'    {211, "Pop music",                                1},\n'+
+	'    {212, "Hip hop music",                            1},\n'+
+	'    {213, "Beatboxing",                               1},\n'+
+	'    {214, "Rock music",                               1},\n'+
+	'    {215, "Heavy metal",                              1},\n'+
+	'    {216, "Punk rock",                                1},\n'+
+	'    {217, "Grunge",                                   1},\n'+
+	'    {218, "Progressive rock",                         1},\n'+
+	'    {219, "Rock and roll",                            1},\n'+
+	'    {220, "Psychedelic rock",                         1},\n'+
+	'    {221, "Rhythm and blues",                         1},\n'+
+	'    {222, "Soul music",                               1},\n'+
+	'    {223, "Reggae",                                   1},\n'+
+	'    {224, "Country",                                  1},\n'+
+	'    {225, "Swing music",                              1},\n'+
+	'    {226, "Bluegrass",                                1},\n'+
+	'    {227, "Funk",                                     1},\n'+
+	'    {228, "Folk music",                               1},\n'+
+	'    {229, "Middle Eastern music",                     1},\n'+
+	'    {230, "Jazz",                                     1},\n'+
+	'    {231, "Disco",                                    1},\n'+
+	'    {232, "Classical music",                          1},\n'+
+	'    {233, "Opera",                                    1},\n'+
+	'    {234, "Electronic music",                         1},\n'+
+	'    {235, "House music",                              1},\n'+
+	'    {236, "Techno",                                   1},\n'+
+	'    {237, "Dubstep",                                  1},\n'+
+	'    {238, "Drum and bass",                            1},\n'+
+	'    {239, "Electronica",                              1},\n'+
+	'    {240, "Electronic dance music",                   1},\n'+
+	'    {241, "Ambient music",                            1},\n'+
+	'    {242, "Trance music",                             1},\n'+
+	'    {243, "Music of Latin America",                   1},\n'+
+	'    {244, "Salsa music",                              1},\n'+
+	'    {245, "Flamenco",                                 1},\n'+
+	'    {246, "Blues",                                    1},\n'+
+	'    {247, "Music for children",                       1},\n'+
+	'    {248, "New-age music",                            1},\n'+
+	'    {249, "Vocal music",                              1},\n'+
+	'    {250, "A capella",                                1},\n'+
+	'    {251, "Music of Africa",                          1},\n'+
+	'    {252, "Afrobeat",                                 1},\n'+
+	'    {253, "Christian music",                          1},\n'+
+	'    {254, "Gospel music",                             1},\n'+
+	'    {255, "Music of Asia",                            1},\n'+
+	'    {256, "Carnatic music",                           1},\n'+
+	'    {257, "Music of Bollywood",                       1},\n'+
+	'    {258, "Ska",                                      1},\n'+
+	'    {259, "Traditional music",                        1},\n'+
+	'    {260, "Independent music",                        1},\n'+
+	'    {261, "Song",                                     1},\n'+
+	'    {262, "Background music",                         1},\n'+
+	'    {263, "Theme music",                              1},\n'+
+	'    {264, "Jingle (music)",                           1},\n'+
+	'    {265, "Soundtrack music",                         1},\n'+
+	'    {266, "Lullaby",                                  1},\n'+
+	'    {267, "Video game music",                         1},\n'+
+	'    {268, "Christmas music",                          1},\n'+
+	'    {269, "Dance music",                              1},\n'+
+	'    {270, "Wedding music",                            1},\n'+
+	'    {271, "Happy music",                              1},\n'+
+	'    {272, "Sad music",                                1},\n'+
+	'    {273, "Tender music",                             1},\n'+
+	'    {274, "Exciting music",                           1},\n'+
+	'    {275, "Angry music",                              1},\n'+
+	'    {276, "Scary music",                              1},\n'+
+	'    {277, "Wind",                                     1},\n'+
+	'    {278, "Rustling leaves",                          1},\n'+
+	'    {279, "Wind noise (microphone)",                  1},\n'+
+	'    {280, "Thunderstorm",                             1},\n'+
+	'    {281, "Thunder",                                  1},\n'+
+	'    {282, "Water",                                    1},\n'+
+	'    {283, "Rain",                                     1},\n'+
+	'    {284, "Raindrop",                                 1},\n'+
+	'    {285, "Rain on surface",                          1},\n'+
+	'    {286, "Stream",                                   1},\n'+
+	'    {287, "Waterfall",                                1},\n'+
+	'    {288, "Ocean",                                    1},\n'+
+	'    {289, "Waves, surf",                              1},\n'+
+	'    {290, "Steam",                                    1},\n'+
+	'    {291, "Gurgling",                                 1},\n'+
+	'    {292, "Fire",                                     1},\n'+
+	'    {293, "Crackle",                                  1},\n'+
+	'    {294, "Vehicle",                                  1},\n'+
+	'    {295, "Boat, Water vehicle",                      1},\n'+
+	'    {296, "Sailboat, sailing ship",                   1},\n'+
+	'    {297, "Rowboat, canoe, kayak",                    1},\n'+
+	'    {298, "Motorboat, speedboat",                     1},\n'+
+	'    {299, "Ship",                                     1},\n'+
+	'    {300, "Motor vehicle (road)",                     1},\n'+
+	'    {301, "Car",                                      1},\n'+
+	'    {302, "Vehicle horn, car horn, honking",          1},\n'+
+	'    {303, "Toot",                                     1},\n'+
+	'    {304, "Car alarm",                                1},\n'+
+	'    {305, "Power windows, electric windows",          1},\n'+
+	'    {306, "Skidding",                                 1},\n'+
+	'    {307, "Tire squeal",                              1},\n'+
+	'    {308, "Car passing by",                           1},\n'+
+	'    {309, "Race car, auto racing",                    1},\n'+
+	'    {310, "Truck",                                    1},\n'+
+	'    {311, "Air brake",                                1},\n'+
+	'    {312, "Air horn, truck horn",                     1},\n'+
+	'    {313, "Reversing beeps",                          1},\n'+
+	'    {314, "Ice cream truck, ice cream van",           1},\n'+
+	'    {315, "Bus",                                      1},\n'+
+	'    {316, "Emergency vehicle",                        1},\n'+
+	'    {317, "Police car (siren)",                       1},\n'+
+	'    {318, "Ambulance (siren)",                        1},\n'+
+	'    {319, "Fire engine, fire truck (siren)",          1},\n'+
+	'    {320, "Motorcycle",                               1},\n'+
+	'    {321, "Traffic noise, roadway noise",             1},\n'+
+	'    {322, "Rail transport",                           1},\n'+
+	'    {323, "Train",                                    1},\n'+
+	'    {324, "Train whistle",                            1},\n'+
+	'    {325, "Train horn",                               1},\n'+
+	'    {326, "Railroad car, train wagon",                1},\n'+
+	'    {327, "Train wheels squealing",                   1},\n'+
+	'    {328, "Subway, metro, underground",               1},\n'+
+	'    {329, "Aircraft",                                 1},\n'+
+	'    {330, "Aircraft engine",                          1},\n'+
+	'    {331, "Jet engine",                               1},\n'+
+	'    {332, "Propeller, airscrew",                      1},\n'+
+	'    {333, "Helicopter",                               1},\n'+
+	'    {334, "Fixed-wing aircraft, airplane",            1},\n'+
+	'    {335, "Bicycle",                                  1},\n'+
+	'    {336, "Skateboard",                               1},\n'+
+	'    {337, "Engine",                                   1},\n'+
+	'    {338, "Light engine (high frequency)",            1},\n'+
+	'    {339, "Dental drill, dentist\'s drill",            1},\n'+
+	'    {340, "Lawn mower",                               1},\n'+
+	'    {341, "Chainsaw",                                 1},\n'+
+	'    {342, "Medium engine (mid frequency)",            1},\n'+
+	'    {343, "Heavy engine (low frequency)",             1},\n'+
+	'    {344, "Engine knocking",                          1},\n'+
+	'    {345, "Engine starting",                          1},\n'+
+	'    {346, "Idling",                                   1},\n'+
+	'    {347, "Accelerating, revving, vroom",             1},\n'+
+	'    {348, "Door",                                     1},\n'+
+	'    {349, "Doorbell",                                 1},\n'+
+	'    {350, "Ding-dong",                                1},\n'+
+	'    {351, "Sliding door",                             1},\n'+
+	'    {352, "Slam",                                     1},\n'+
+	'    {353, "Knock",                                    1},\n'+
+	'    {354, "Tap",                                      1},\n'+
+	'    {355, "Squeak",                                   1},\n'+
+	'    {356, "Cupboard open or close",                   1},\n'+
+	'    {357, "Drawer open or close",                     1},\n'+
+	'    {358, "Dishes, pots, and pans",                   1},\n'+
+	'    {359, "Cutlery, silverware",                      1},\n'+
+	'    {360, "Chopping (food)",                          1},\n'+
+	'    {361, "Frying (food)",                            1},\n'+
+	'    {362, "Microwave oven",                           1},\n'+
+	'    {363, "Blender",                                  1},\n'+
+	'    {364, "Water tap, faucet",                        1},\n'+
+	'    {365, "Sink (filling or washing)",                1},\n'+
+	'    {366, "Bathtub (filling or washing)",             1},\n'+
+	'    {367, "Hair dryer",                               1},\n'+
+	'    {368, "Toilet flush",                             1},\n'+
+	'    {369, "Toothbrush",                               1},\n'+
+	'    {370, "Electric toothbrush",                      1},\n'+
+	'    {371, "Vacuum cleaner",                           1},\n'+
+	'    {372, "Zipper (clothing)",                        1},\n'+
+	'    {373, "Keys jangling",                            1},\n'+
+	'    {374, "Coin (dropping)",                          1},\n'+
+	'    {375, "Scissors",                                 1},\n'+
+	'    {376, "Electric shaver, electric razor",          1},\n'+
+	'    {377, "Shuffling cards",                          1},\n'+
+	'    {378, "Typing",                                   1},\n'+
+	'    {379, "Typewriter",                               1},\n'+
+	'    {380, "Computer keyboard",                        1},\n'+
+	'    {381, "Writing",                                  1},\n'+
+	'    {382, "Alarm",                                    1},\n'+
+	'    {383, "Telephone",                                1},\n'+
+	'    {384, "Telephone bell ringing",                   1},\n'+
+	'    {385, "Ringtone",                                 1},\n'+
+	'    {386, "Telephone dialing, DTMF",                  1},\n'+
+	'    {387, "Dial tone",                                1},\n'+
+	'    {388, "Busy signal",                              1},\n'+
+	'    {389, "Alarm clock",                              1},\n'+
+	'    {390, "Siren",                                    1},\n'+
+	'    {391, "Civil defense siren",                      1},\n'+
+	'    {392, "Buzzer",                                   1},\n'+
+	'    {393, "Smoke detector, smoke alarm",              1},\n'+
+	'    {394, "Fire alarm",                               1},\n'+
+	'    {395, "Foghorn",                                  1},\n'+
+	'    {396, "Whistle",                                  1},\n'+
+	'    {397, "Steam whistle",                            1},\n'+
+	'    {398, "Mechanisms",                               1},\n'+
+	'    {399, "Ratchet, pawl",                            1},\n'+
+	'    {400, "Clock",                                    1},\n'+
+	'    {401, "Tick",                                     1},\n'+
+	'    {402, "Tick-tock",                                1},\n'+
+	'    {403, "Gears",                                    1},\n'+
+	'    {404, "Pulleys",                                  1},\n'+
+	'    {405, "Sewing machine",                           1},\n'+
+	'    {406, "Mechanical fan",                           1},\n'+
+	'    {407, "Air conditioning",                         1},\n'+
+	'    {408, "Cash register",                            1},\n'+
+	'    {409, "Printer",                                  1},\n'+
+	'    {410, "Camera",                                   1},\n'+
+	'    {411, "Single-lens reflex camera",                1},\n'+
+	'    {412, "Tools",                                    1},\n'+
+	'    {413, "Hammer",                                   1},\n'+
+	'    {414, "Jackhammer",                               1},\n'+
+	'    {415, "Sawing",                                   1},\n'+
+	'    {416, "Filing (rasp)",                            1},\n'+
+	'    {417, "Sanding",                                  1},\n'+
+	'    {418, "Power tool",                               1},\n'+
+	'    {419, "Drill",                                    1},\n'+
+	'    {420, "Explosion",                                1},\n'+
+	'    {421, "Gunshot, gunfire",                         1},\n'+
+	'    {422, "Machine gun",                              1},\n'+
+	'    {423, "Fusillade",                                1},\n'+
+	'    {424, "Artillery fire",                           1},\n'+
+	'    {425, "Cap gun",                                  1},\n'+
+	'    {426, "Fireworks",                                1},\n'+
+	'    {427, "Firecracker",                              1},\n'+
+	'    {428, "Burst, pop",                               1},\n'+
+	'    {429, "Eruption",                                 1},\n'+
+	'    {430, "Boom",                                     1},\n'+
+	'    {431, "Wood",                                     1},\n'+
+	'    {432, "Chop",                                     1},\n'+
+	'    {433, "Splinter",                                 1},\n'+
+	'    {434, "Crack",                                    1},\n'+
+	'    {435, "Glass",                                    1},\n'+
+	'    {436, "Chink, clink",                             1},\n'+
+	'    {437, "Shatter",                                  1},\n'+
+	'    {438, "Liquid",                                   1},\n'+
+	'    {439, "Splash, splatter",                         1},\n'+
+	'    {440, "Slosh",                                    1},\n'+
+	'    {441, "Squish",                                   1},\n'+
+	'    {442, "Drip",                                     1},\n'+
+	'    {443, "Pour",                                     1},\n'+
+	'    {444, "Trickle, dribble",                         1},\n'+
+	'    {445, "Gush",                                     1},\n'+
+	'    {446, "Fill (with liquid)",                       1},\n'+
+	'    {447, "Spray",                                    1},\n'+
+	'    {448, "Pump (liquid)",                            1},\n'+
+	'    {449, "Stir",                                     1},\n'+
+	'    {450, "Boiling",                                  1},\n'+
+	'    {451, "Sonar",                                    1},\n'+
+	'    {452, "Arrow",                                    1},\n'+
+	'    {453, "Whoosh, swoosh, swish",                    1},\n'+
+	'    {454, "Thump, thud",                              1},\n'+
+	'    {455, "Thunk",                                    1},\n'+
+	'    {456, "Electronic tuner",                         1},\n'+
+	'    {457, "Effects unit",                             1},\n'+
+	'    {458, "Chorus effect",                            1},\n'+
+	'    {459, "Basketball bounce",                        1},\n'+
+	'    {460, "Bang",                                     1},\n'+
+	'    {461, "Slap, smack",                              1},\n'+
+	'    {462, "Whack, thwack",                            1},\n'+
+	'    {463, "Smash, crash",                             1},\n'+
+	'    {464, "Breaking",                                 1},\n'+
+	'    {465, "Bouncing",                                 1},\n'+
+	'    {466, "Whip",                                     1},\n'+
+	'    {467, "Flap",                                     1},\n'+
+	'    {468, "Scratch",                                  1},\n'+
+	'    {469, "Scrape",                                   1},\n'+
+	'    {470, "Rub",                                      1},\n'+
+	'    {471, "Roll",                                     1},\n'+
+	'    {472, "Crushing",                                 1},\n'+
+	'    {473, "Crumpling, crinkling",                     1},\n'+
+	'    {474, "Tearing",                                  1},\n'+
+	'    {475, "Beep, bleep",                              1},\n'+
+	'    {476, "Ping",                                     1},\n'+
+	'    {477, "Ding",                                     1},\n'+
+	'    {478, "Clang",                                    1},\n'+
+	'    {479, "Squeal",                                   1},\n'+
+	'    {480, "Creak",                                    1},\n'+
+	'    {481, "Rustle",                                   1},\n'+
+	'    {482, "Whir",                                     1},\n'+
+	'    {483, "Clatter",                                  1},\n'+
+	'    {484, "Sizzle",                                   1},\n'+
+	'    {485, "Clicking",                                 1},\n'+
+	'    {486, "Clickety-clack",                           1},\n'+
+	'    {487, "Rumble",                                   1},\n'+
+	'    {488, "Plop",                                     1},\n'+
+	'    {489, "Jingle, tinkle",                           1},\n'+
+	'    {490, "Hum",                                      1},\n'+
+	'    {491, "Zing",                                     1},\n'+
+	'    {492, "Boing",                                    1},\n'+
+	'    {493, "Crunch",                                   1},\n'+
+	'    {494, "Silence",                                  1},\n'+
+	'    {495, "Sine wave",                                1},\n'+
+	'    {496, "Harmonic",                                 1},\n'+
+	'    {497, "Chirp tone",                               1},\n'+
+	'    {498, "Sound effect",                             1},\n'+
+	'    {499, "Pulse",                                    1},\n'+
+	'    {500, "Inside, small room",                       1},\n'+
+	'    {501, "Inside, large room or hall",               1},\n'+
+	'    {502, "Inside, public space",                     1},\n'+
+	'    {503, "Outside, urban or manmade",                1},\n'+
+	'    {504, "Outside, rural or natural",                1},\n'+
+	'    {505, "Reverberation",                            1},\n'+
+	'    {506, "Echo",                                     1},\n'+
+	'    {507, "Noise",                                    1},\n'+
+	'    {508, "Environmental noise",                      1},\n'+
+	'    {509, "Static",                                   1},\n'+
+	'    {510, "Mains hum",                                1},\n'+
+	'    {511, "Distortion",                               1},\n'+
+	'    {512, "Sidetone",                                 1},\n'+
+	'    {513, "Cacophony",                                1},\n'+
+	'    {514, "White noise",                              1},\n'+
+	'    {515, "Pink noise",                               1},\n'+
+	'    {516, "Throbbing",                                1},\n'+
+	'    {517, "Vibration",                                1},\n'+
+	'    {518, "Television",                               1},\n'+
+	'    {519, "Radio",                                    1},\n'+
+	'    {520, "Field recording",                          1}\n'+
+	'};\n'+	
+	'#endif\n'+	
+	'void ACPostProcess(std::vector<AudioClassificationResult> results) {\n'+
+	'    //printf("No of Audio Detected = %d\\r\\n", audioNN.getResultCount());\n'+
+	'    if (audioNN.getResultCount() > 0) {\n'+
+	'        for (int i = 0; i < audioNN.getResultCount(); i++) {\n'+
+	'            AudioClassificationResult audio_item = results[i];\n'+
+	'            int class_id = (int)audio_item.classID();\n'+
+	'            if (audioNames[class_id].filter) {\n'+
+	'                int prob = audio_item.score();\n'+
+	'                //printf("%d class %d, score: %d, audio name: %s\\r\\n", i, class_id, prob, audioNames[class_id].audioName);\n'+ statement+
+	'            }\n'+
+	'        }\n'+
+	'    }\n'+ statement_finish +
+	'}';	
+
+	Blockly.Arduino.setups_.setup_amb82_mini_facedetection = ''+   
+										'audio.configAudio(configA);\n  '+
+										'audio.begin();\n  '+
+										'audioNN.configAudio(configA);\n  '+
+										'audioNN.setResultCallback(ACPostProcess);\n  '+
+										'audioNN.modelSelect(AUDIO_CLASSIFICATION, NA_MODEL, NA_MODEL, NA_MODEL, DEFAULT_YAMNET);\n  '+
+										'audioNN.begin();\n  '+
+										'audioStreamerNN.registerInput(audio);\n  '+
+										'audioStreamerNN.registerOutput(audioNN);\n  '+
+										'if (audioStreamerNN.begin() != 0) {\n  '+
+										'    Serial.println("StreamIO link start failed");\n  '+
+										'}\n  ';
+
+  return "";
+};
+
+Blockly.Arduino['amb82_mini_audioclassification_count'] = function(block) {	
+	var code = 'audioNN.getResultCount()';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['amb82_mini_audioclassification_get'] = function(block) {
+    var property = block.getFieldValue('property');
+	if (property == "NAME")
+		var code = 'String(audioNames[class_id].audioName)';	
+	else if (property == "SCORE")
+		var code = 'audio_item.score()';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Arduino['amb82_mini_facedetectionrecognition_rtsp'] = function(block) {
 	
 	Blockly.Arduino.definitions_.define_custom_command = "";
@@ -118,16 +717,6 @@ Blockly.Arduino['amb82_mini_facedetectionrecognition_rtsp_notunknown'] = functio
     var code = '(String(item.name()) != String("unknown"))';
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
-
-
-
-
-
-
-
-
-
-
 
 Blockly.Arduino['amb82_mini_facedetection_rtsp'] = function(block) {
 	
