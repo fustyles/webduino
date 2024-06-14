@@ -11,17 +11,6 @@ var catSpeechRecognition = '<xml>'+
 '  </block>'+
 '  <block type="SpeechRecognition_get">'+
 '  </block>'+ 
-'  <variables>'+
-'  <variable type="">Result</variable></variables>'+
-'  <block type="variables_set">'+
-'      <field name="VAR" variabletype="">Result</field>'+
-'      <value name="VALUE">'+
-'          <block type="SpeechRecognition_get">'+
-'          </block>'+
-'      </value>'+
-'  </block>'+
-'  <variables>'+
-'  <variable type="">Result</variable></variables>'+
 '  <block type="SpeechRecognition_state">'+
 '  </block>'+
 '  <block type="SpeechRecognition_interim">'+
