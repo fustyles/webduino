@@ -133,5 +133,5 @@
 <category><name>amb82_mini_FaceRecognition</name><replace>人臉辨識</replace></category>
 <category><name>amb82_mini_EmotionClassification</name><replace>表情分類</replace></category>
 <category><name>amb82_mini_AudioClassification</name><replace>音訊分類</replace></category>
-<category><name>amb82_mini_ImageClassification</name><replace>圖像分類</replace></category>
+<category><name>amb82_mini_ImageClassification</name><replace>影像分類</replace></category>
 </xml>

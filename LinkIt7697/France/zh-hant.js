@@ -29,7 +29,7 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
-Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION"] = "圖像分類";
+Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION"] = "影像分類";
 Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_AFTER"] = "列舉所有分類";
 Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_FINISH"] = "列舉完成後";
 Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_LIST"] = "取得分類屬性";
