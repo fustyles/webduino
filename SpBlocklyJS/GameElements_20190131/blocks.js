@@ -2625,6 +2625,22 @@ Blockly.Blocks['text_to_number'] = {
   }  
 };
 
+Blockly.Blocks['text_keyword'] = {
+  init: function () {   
+  this.appendValueInput("myVar_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT);    
+  this.appendValueInput("keyword")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_KEYWORD_SHOW);    
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(Blockly.Msg["TEXTS_HUE"]);
+  }
+};
+
+
 Blockly.Blocks['aes_encryption'] = {
   init: function() {
     this.appendValueInput("value_text_")

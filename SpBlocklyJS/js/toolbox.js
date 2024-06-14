@@ -178,7 +178,7 @@ var catSystem = '<xml>'+
 '    <block type="text_indexOf">'+
 '    <value name="VALUE">'+
 '    <block type="variables_get">'+
-'    <field name="VAR">{textVariable}</field>'+
+'    <field name="VAR">i</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="FIND">'+
@@ -187,17 +187,28 @@ var catSystem = '<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="text_keyword">'+
+'    <value name="myVar_"><block type="variables_get">'+
+'    <field name="VAR">i</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="keyword">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
 '    <block type="text_charAt">'+
 '    <value name="VALUE">'+
 '    <block type="variables_get">'+
-'    <field name="VAR">{textVariable}</field>'+
+'    <field name="VAR">i</field>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
 '    <block type="text_getSubstring">'+
 '    <value name="STRING">'+
 '    <block type="variables_get">'+
-'    <field name="VAR">{textVariable}</field>'+
+'    <field name="VAR">i</field>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
