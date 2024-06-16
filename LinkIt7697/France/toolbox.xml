@@ -3076,7 +3076,6 @@
 					</value>
 			  </block> 
 		</category>
-<!--
 		<category id="france23" name="amb82_mini_EmotionClassification">				
 			  <block type="amb82_mini_emotionclassification_rtsp">		  
 			  </block>
@@ -3087,7 +3086,6 @@
 			  <block type="amb82_mini_emotionclassification_rtsp_get">		  
 			  </block> 
 		</category>	
--->		
 		<category id="france23" name="amb82_mini_AudioClassification">				
 			  <block type="amb82_mini_audioclassification">		  
 			  </block>
