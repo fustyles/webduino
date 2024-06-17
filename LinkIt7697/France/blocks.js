@@ -1,3 +1,92 @@
+Blockly.Blocks['amb82_mini_deepsleep_initial'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_DEEPSLEEP_INITIAL"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_DEEPSLEEP_WAKEUP"])
+		.appendField(new Blockly.FieldDropdown([
+ 				["AON timer","0"],
+ 				["AON GPIO","1"],
+ 				["RTC","2"]
+		], this.validate), "type_");
+    this.appendValueInput("days_")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["AMB82_MINI_DEEPSLEEP_DAY"]);
+    this.appendValueInput("hours_")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["AMB82_MINI_DEEPSLEEP_HOUR"]);		
+    this.appendValueInput("minutes_")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["AMB82_MINI_DEEPSLEEP_MINUTE"]);
+    this.appendValueInput("seconds_")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["AMB82_MINI_DEEPSLEEP_SECOND"]);		
+    this.appendDummyInput("pin")	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_DEEPSLEEP_GPIO"])
+		.appendField(new Blockly.FieldDropdown([
+ 				["21","21"],
+ 				["22","22"]
+		]), "pin_");			
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_21"]);
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="0") {
+			block.getInput("days_").setVisible(false);
+			block.getInput("hours_").setVisible(false);
+			block.getInput("minutes_").setVisible(false);
+			block.getInput("seconds_").setVisible(true);
+			block.getInput("pin").setVisible(false);
+		} else if (newValue=="1") {
+			block.getInput("days_").setVisible(false);
+			block.getInput("hours_").setVisible(false);
+			block.getInput("minutes_").setVisible(false);
+			block.getInput("seconds_").setVisible(false);
+			block.getInput("pin").setVisible(true);			
+		} else if (newValue=="2") {
+			block.getInput("days_").setVisible(true);
+			block.getInput("hours_").setVisible(true);
+			block.getInput("minutes_").setVisible(true);
+			block.getInput("seconds_").setVisible(true);
+			block.getInput("pin").setVisible(false);			
+		}
+  }
+};
+
+Blockly.Blocks['amb82_mini_deepsleep_start'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_DEEPSLEEP_START"]);
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_21"]);
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Blocks['amb82_mini_gtimer_initial'] = {
   init: function() {
     this.appendDummyInput()
@@ -48,13 +137,6 @@ Blockly.Blocks['amb82_mini_gtimer_function'] = {
     this.setColour(Blockly.Msg["HUE_21"]);
   }
 };
-
-
-
-
-
-
-
 
 Blockly.Blocks['amb82_mini_imageclassification'] = {
   init: function() {

@@ -29,6 +29,16 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["AMB82_MINI_DEEPSLEEP_INITIAL"] = "Deep sleep";
+Blockly.Msg["AMB82_MINI_DEEPSLEEP_WAKEUP"] = "Wake-up mode";
+Blockly.Msg["AMB82_MINI_DEEPSLEEP_DAY"] = "Days";
+Blockly.Msg["AMB82_MINI_DEEPSLEEP_HOUR"] = "Hours";
+Blockly.Msg["AMB82_MINI_DEEPSLEEP_MINUTE"] = "Minutes";
+Blockly.Msg["AMB82_MINI_DEEPSLEEP_SECOND"] = "Seconds";
+Blockly.Msg["AMB82_MINI_DEEPSLEEP_GPIO"] = "Pin";
+Blockly.Msg["AMB82_MINI_DEEPSLEEP_START"] = "Start deep sleep";
+
+
 Blockly.Msg["AMB82_MINI_GTIMER"] = "Hardware timer";
 Blockly.Msg["AMB82_MINI_GTIMER_INTERVAL1"] = "Interval";
 Blockly.Msg["AMB82_MINI_GTIMER_INTERVAL2"] = "seconds to execute once";

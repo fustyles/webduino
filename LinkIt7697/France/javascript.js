@@ -1,5 +1,49 @@
-Blockly.Arduino['amb82_mini_gtimer_initial'] = function(block) {
+Blockly.Arduino['amb82_mini_deepsleep_initial'] = function(block) {
+	var type_ = block.getFieldValue('type_');
+	var days_ = Blockly.Arduino.valueToCode(block, 'days_', Blockly.Arduino.ORDER_ATOMIC);
+	var hours_ = Blockly.Arduino.valueToCode(block, 'hours_', Blockly.Arduino.ORDER_ATOMIC);
+	var minutes_ = Blockly.Arduino.valueToCode(block, 'minutes_', Blockly.Arduino.ORDER_ATOMIC);
+	var seconds_ = Blockly.Arduino.valueToCode(block, 'seconds_', Blockly.Arduino.ORDER_ATOMIC);
+	var pin_ = block.getFieldValue('pin_');
 	
+	Blockly.Arduino.definitions_['amb82_mini_deepsleep_initial'] = '#include "PowerMode.h"\n#define WAKEUP_SOURCE '+type_+'\n';
+	Blockly.Arduino.definitions_['amb82_mini_deepsleep_type'] = '#define WAKUPE_SETTING 0\n';
+	if (type_==0) {
+		Blockly.Arduino.definitions_['amb82_mini_deepsleep_type'] =''
+			+'#define CLOCK 0\n'
+			+'#define SLEEP_DURATION '+seconds_+'\n'
+			+'uint32_t PM_AONtimer_setting[2] = {CLOCK, SLEEP_DURATION};\n'
+			+'#define WAKUPE_SETTING (uint32_t)(PM_AONtimer_setting)\n';
+	} else if (type_==1) {
+		Blockly.Arduino.definitions_['amb82_mini_deepsleep_type'] =''
+			+'#define WAKUPE_SETTING '+pin_+'\n';	
+	} else if (type_==2) {
+		Blockly.Arduino.definitions_['amb82_mini_deepsleep_type'] =''
+			+'#define ALARM_DAY      '+days_+'\n'
+			+'#define ALARM_HOUR     '+hours_+'\n'
+			+'#define ALARM_MIN      '+minutes_+'\n'
+			+'#define ALARM_SEC      '+seconds_+'\n'
+			+'uint32_t PM_rtc_Alarm[4] = {ALARM_DAY, ALARM_HOUR, ALARM_MIN, ALARM_SEC};\n'
+			+'#define WAKUPE_SETTING (uint32_t)(PM_rtc_Alarm)\n';
+	}	
+	
+	Blockly.Arduino.setups_['amb82_mini_deepsleep'] = 'PowerMode.begin(DEEPSLEEP_MODE, WAKEUP_SOURCE, WAKUPE_SETTING);\n';		
+	
+	var code = '';
+    return code;
+};
+
+Blockly.Arduino['amb82_mini_deepsleep_start'] = function(block) {
+	var code = 'PowerMode.start();\n';
+    return code;
+};
+
+
+
+
+
+
+Blockly.Arduino['amb82_mini_gtimer_initial'] = function(block) {
 	var index_ = block.getFieldValue('index_');
     var interval_ = Blockly.Arduino.valueToCode(block, 'interval_', Blockly.Arduino.ORDER_ATOMIC);
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
@@ -14,17 +58,10 @@ Blockly.Arduino['amb82_mini_gtimer_initial'] = function(block) {
 };
 
 Blockly.Arduino['amb82_mini_gtimer_function'] = function(block) {
-	
 	var index_ = block.getFieldValue('index_');
 	var code = 'Gtimer'+index_+'(0);\n';
     return code;
 };
-
-
-
-
-
-
 
 Blockly.Arduino['amb82_mini_imageclassification'] = function(block) {
 	

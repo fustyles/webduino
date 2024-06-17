@@ -29,6 +29,15 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["AMB82_MINI_DEEPSLEEP_INITIAL"] = "深度睡眠";
+Blockly.Msg["AMB82_MINI_DEEPSLEEP_WAKEUP"] = "喚醒模式";
+Blockly.Msg["AMB82_MINI_DEEPSLEEP_DAY"] = "天數";
+Blockly.Msg["AMB82_MINI_DEEPSLEEP_HOUR"] = "時數";
+Blockly.Msg["AMB82_MINI_DEEPSLEEP_MINUTE"] = "分數";
+Blockly.Msg["AMB82_MINI_DEEPSLEEP_SECOND"] = "秒數";
+Blockly.Msg["AMB82_MINI_DEEPSLEEP_GPIO"] = "腳位";
+Blockly.Msg["AMB82_MINI_DEEPSLEEP_START"] = "深度睡眠 開始";
+
 Blockly.Msg["AMB82_MINI_GTIMER"] = "硬體定時器";
 Blockly.Msg["AMB82_MINI_GTIMER_INTERVAL1"] = "間隔";
 Blockly.Msg["AMB82_MINI_GTIMER_INTERVAL2"] = "秒後執行一次";

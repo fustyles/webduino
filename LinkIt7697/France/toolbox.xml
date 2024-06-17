@@ -2629,6 +2629,30 @@
 			  </block>			  
 		</category>	
 		<category id="france23" name="amb82_mini_DeepSleep">
+			  <block type="amb82_mini_deepsleep_initial">
+			  		<value name="days_">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+			  		<value name="hours_">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+			  		<value name="minutes_">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>					
+			  		<value name="seconds_">
+					  <block type="math_number">
+						<field name="NUM">10</field>
+					  </block>
+					</value>					
+			  </block>	
+			  <block type="amb82_mini_deepsleep_start">
+			  </block>
 		</category>		
 		<category id="france23" name="amb82_mini_FileSystem">
 		</category>		
