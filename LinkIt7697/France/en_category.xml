@@ -132,4 +132,6 @@
 <category><name>amb82_mini_AudioClassification</name><replace>Audio Classification</replace></category>
 <category><name>amb82_mini_ImageClassification</name><replace>Image Classification</replace></category>
 <category><name>amb82_mini_Gtimer</name><replace>hardware timers</replace></category>
+<category><name>amb82_mini_DeepSleep</name><replace>Deep sleep</replace></category>
+<category><name>amb82_mini_FileSystem</name><replace>File system</replace></category>
 </xml>

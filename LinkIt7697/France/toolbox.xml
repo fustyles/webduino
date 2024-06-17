@@ -2627,7 +2627,11 @@
 			  </block>	
 			  <block type="amb82_mini_gtimer_function">
 			  </block>			  
-		</category>			
+		</category>	
+		<category id="france23" name="amb82_mini_DeepSleep">
+		</category>		
+		<category id="france23" name="amb82_mini_FileSystem">
+		</category>		
 		<category id="france23" name="amb82_mini_video_qrcode">				
 			  <block type="amb82_mini_video_qrcode">		  
 			  </block>				  

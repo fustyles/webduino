@@ -135,4 +135,6 @@
 <category><name>amb82_mini_AudioClassification</name><replace>音訊分類</replace></category>
 <category><name>amb82_mini_ImageClassification</name><replace>影像分類</replace></category>
 <category><name>amb82_mini_Gtimer</name><replace>硬體定時器</replace></category>
+<category><name>amb82_mini_DeepSleep</name><replace>深度睡眠</replace></category>
+<category><name>amb82_mini_FileSystem</name><replace>檔案系統</replace></category>
 </xml>
