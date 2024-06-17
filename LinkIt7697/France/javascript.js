@@ -1,3 +1,92 @@
+Blockly.Arduino['amb82_mini_rtc_initial'] = function(block) {
+	var YEAR = Blockly.Arduino.valueToCode(block, 'year_', Blockly.Arduino.ORDER_ATOMIC);
+	var MONTH = Blockly.Arduino.valueToCode(block, 'month_', Blockly.Arduino.ORDER_ATOMIC);
+	var DAY = Blockly.Arduino.valueToCode(block, 'day_', Blockly.Arduino.ORDER_ATOMIC);
+	var HOUR = Blockly.Arduino.valueToCode(block, 'hour_', Blockly.Arduino.ORDER_ATOMIC);
+	var MIN = Blockly.Arduino.valueToCode(block, 'minute_', Blockly.Arduino.ORDER_ATOMIC);
+	var SEC = Blockly.Arduino.valueToCode(block, 'second_', Blockly.Arduino.ORDER_ATOMIC);
+	
+	Blockly.Arduino.definitions_['amb82_mini_rtc_initial'] = '#include <stdio.h>\n#include <time.h>\n#include "rtc.h"\nstruct tm *timeinfo;\nint currentTimeValue[6] = {0,0,0,0,0,0};\nString currentTime[3] = {"","",""};\n';
+	Blockly.Arduino.setups_['amb82_mini_rtc_initial'] = ''
+	+'rtc.Init();\n'	
+	+'  long long initTime = rtc.SetEpoch('+YEAR+', '+MONTH+', '+DAY+', '+HOUR+', '+MIN+', '+SEC+');\n'	
+	+'  rtc.Write(initTime);\n';
+	Blockly.Arduino.loopsTop_['amb82_mini_rtc_initial'] = '  rtc.Wait(1);\n';
+	
+	var code = '';
+    return code;
+};
+
+Blockly.Arduino['amb82_mini_rtc_enablealarm'] = function(block) {
+	var ALARM_DAY = Blockly.Arduino.valueToCode(block, 'days_', Blockly.Arduino.ORDER_ATOMIC);
+	var ALARM_HOUR = Blockly.Arduino.valueToCode(block, 'hours_', Blockly.Arduino.ORDER_ATOMIC);
+	var ALARM_MIN = Blockly.Arduino.valueToCode(block, 'minutes_', Blockly.Arduino.ORDER_ATOMIC);
+	var ALARM_SEC = Blockly.Arduino.valueToCode(block, 'seconds_', Blockly.Arduino.ORDER_ATOMIC);
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+	
+	Blockly.Arduino.definitions_['amb82_mini_rtc_enablealarm'] =''
+		+'void rtc_handler(void) {\n'
+		+ statement
+		+'}\n';
+		
+	var code = 'rtc.EnableAlarm('+ALARM_DAY+', '+ALARM_HOUR+', '+ALARM_MIN+', '+ALARM_SEC+', rtc_handler);';
+    return code;
+};
+
+Blockly.Arduino['amb82_mini_rtc_disablealarm'] = function(block) {
+	var code = 'rtc.DisableAlarm();\n';
+    return code;
+};
+
+Blockly.Arduino['amb82_mini_rtc_gettime'] = function(block) {
+	var option = block.getFieldValue('option');
+	
+	Blockly.Arduino.definitions_.define_getLocalTime = '\n'+
+			'boolean getLocalTime() {\n'+
+			'  long long seconds = rtc.Read();\n'+
+			'  timeinfo = localtime(&seconds);\n'+
+			'  currentTimeValue[0] = timeinfo->tm_year+1900;\n'+
+			'  currentTimeValue[1] = timeinfo->tm_mon+1;\n'+
+			'  currentTimeValue[2] = timeinfo->tm_mday;\n'+
+			'  currentTimeValue[3] = timeinfo->tm_hour;\n'+
+			'  currentTimeValue[4] = timeinfo->tm_min;\n'+
+			'  currentTimeValue[5] = timeinfo->tm_sec;\n'+
+			'  currentTime[0] = String(timeinfo->tm_year+1900)+"/"+ ((timeinfo->tm_mon+1)<10?"0":"") + String(timeinfo->tm_mon+1)+"/"+(timeinfo->tm_mday<10?"0":"")+String(timeinfo->tm_mday);\n'+
+			'  currentTime[1] = (timeinfo->tm_mday<10?"0":"")+String(timeinfo->tm_hour)+":"+(timeinfo->tm_min<10?"0":"")+String(timeinfo->tm_min)+":"+(timeinfo->tm_sec<10?"0":"")+String(timeinfo->tm_sec);\n'+
+			'  currentTime[2] = currentTime[0] + " "+ currentTime[1];\n'+
+			'  return true;\n'+			
+			'}\n';
+			
+	  
+	  var code ="";
+	  if (option=="year")
+		code = 'getLocalTime()?currentTimeValue[0]:-1';
+	  else if (option=="month")
+		code = 'getLocalTime()?currentTimeValue[1]:-1';
+	  else if (option=="day")
+		code = 'getLocalTime()?currentTimeValue[2]:-1';
+	  else if (option=="hour")
+		code = 'getLocalTime()?currentTimeValue[3]:-1';
+	  else if (option=="minute")
+		code = 'getLocalTime()?currentTimeValue[4]:-1';
+	  else if (option=="second")
+		code = 'getLocalTime()?currentTimeValue[5]:-1';
+	  else if (option=="date")
+		code = 'getLocalTime()?currentTime[0]:""';
+	  else if (option=="time")
+		code = 'getLocalTime()?currentTime[1]:""';
+	  else if (option=="full")
+		code = 'getLocalTime()?currentTime[2]:""';
+	  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+
+
+
+
+
+
+
 Blockly.Arduino['amb82_mini_interrupt'] = function(block) {
 	var pin_ = Blockly.Arduino.valueToCode(block, 'pin_', Blockly.Arduino.ORDER_ATOMIC);
 	var mode_ = block.getFieldValue('mode_');
@@ -12,9 +101,6 @@ Blockly.Arduino['amb82_mini_interrupt'] = function(block) {
 	var code = '';
     return code;
 };
-
-
-
 
 Blockly.Arduino['amb82_mini_deepsleep_initial'] = function(block) {
 	var mode_ = block.getFieldValue('mode_');
@@ -9155,7 +9241,7 @@ Blockly.Arduino['fu_ntpserver_get'] = function(block) {
 	code = 'currentTime[1]';
   else if (option=="full")
 	code = 'currentTime[2]';
-  return code;
+	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['esp32_telegrambot'] = function(block) {

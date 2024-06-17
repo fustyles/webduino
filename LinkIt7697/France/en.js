@@ -29,6 +29,18 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["AMB82_MINI_RTC_INITIAL"] = "RTC set current time";
+Blockly.Msg["AMB82_MINI_RTC_YEAR"] = "Year";
+Blockly.Msg["AMB82_MINI_RTC_MONTH"] = "Month";
+Blockly.Msg["AMB82_MINI_RTC_DAY"] = "Day";
+Blockly.Msg["AMB82_MINI_RTC_HOUR"] = "Hours";
+Blockly.Msg["AMB82_MINI_RTC_MINUTE"] = "Minutes";
+Blockly.Msg["AMB82_MINI_RTC_SECOND"] = "Seconds";
+Blockly.Msg["AMB82_MINI_RTC_ENABLEALARM"] = "RTC enable alarm set time";
+Blockly.Msg["AMB82_MINI_RTC_DISABLEALARM"] = "RTC disable alarm";
+Blockly.Msg["AMB82_MINI_RTC_EXECUTE"] = "Execute";
+Blockly.Msg["AMB82_MINI_RTC_GETTIME"] = "Get time";
+
 Blockly.Msg["AMB82_MINI_INTERRUPT"] = "GPIO interrupt";
 Blockly.Msg["AMB82_MINI_INTERRUPT_GPIO"] = "Pin";
 Blockly.Msg["AMB82_MINI_INTERRUPT_EXECUTE"] = "Execute";

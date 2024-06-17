@@ -2662,7 +2662,67 @@
 				  </block>
 				</value>
 			</block>	
-		</category>				
+		</category>	
+		<category id="france23" name="amb82_mini_RTC">
+			<block type="amb82_mini_rtc_initial">
+			  		<value name="year_">
+					  <block type="math_number">
+						<field name="NUM">2024</field>
+					  </block>
+					</value>
+			  		<value name="month_">
+					  <block type="math_number">
+						<field name="NUM">6</field>
+					  </block>
+					</value>					
+			  		<value name="day_">
+					  <block type="math_number">
+						<field name="NUM">18</field>
+					  </block>
+					</value>
+			  		<value name="hour_">
+					  <block type="math_number">
+						<field name="NUM">12</field>
+					  </block>
+					</value>
+			  		<value name="minute_">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>					
+			  		<value name="second_">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+			</block>
+			<block type="amb82_mini_rtc_enablealarm">
+			  		<value name="days_">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+			  		<value name="hours_">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+			  		<value name="minutes_">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>					
+			  		<value name="seconds_">
+					  <block type="math_number">
+						<field name="NUM">10</field>
+					  </block>
+					</value>
+			</block>
+			<block type="amb82_mini_rtc_disablealarm">
+			</block>	
+			<block type="amb82_mini_rtc_gettime">
+			</block>			
+		</category>			
 		<category id="france23" name="amb82_mini_FileSystem">
 		
 		</category>		

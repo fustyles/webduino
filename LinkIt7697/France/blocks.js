@@ -1,3 +1,124 @@
+Blockly.Blocks['amb82_mini_rtc_initial'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_RTC_INITIAL"]);
+    this.appendValueInput("year_")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_RTC_YEAR"]);			
+    this.appendValueInput("month_")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_RTC_MONTH"]);			
+    this.appendValueInput("day_")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_RTC_DAY"]);			
+    this.appendValueInput("hour_")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_RTC_HOUR"]);			
+    this.appendValueInput("minute_")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_RTC_MINUTE"]);			
+    this.appendValueInput("second_")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_RTC_SECOND"]);		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_13"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_rtc_enablealarm'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_RTC_ENABLEALARM"]);
+    this.appendValueInput("days_")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_RTC_DAY"]);			
+    this.appendValueInput("hours_")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_RTC_HOUR"]);			
+    this.appendValueInput("minutes_")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_RTC_MINUTE"]);
+    this.appendValueInput("seconds_")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_RTC_SECOND"]);			
+    this.appendStatementInput("statement")
+        .setCheck(null)
+		.appendField(Blockly.Msg["AMB82_MINI_RTC_EXECUTE"]);		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_13"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_rtc_disablealarm'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_RTC_DISABLEALARM"]);			
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_13"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_rtc_gettime'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_RTC_GETTIME"]);
+	this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.NTPSERVER_GET_YEAR_SHOW,"year"],
+		  [Blockly.Msg.NTPSERVER_GET_MONTH_SHOW,"month"],		  
+		  [Blockly.Msg.NTPSERVER_GET_DAY_SHOW,"day"],
+		  [Blockly.Msg.NTPSERVER_GET_HOUR_SHOW,"hour"],		  
+		  [Blockly.Msg.NTPSERVER_GET_MINUTE_SHOW,"minute"],
+		  [Blockly.Msg.NTPSERVER_GET_SECOND_SHOW,"second"],		  
+		  [Blockly.Msg.NTPSERVER_GET_DATE_SHOW,"date"],		  
+		  [Blockly.Msg.NTPSERVER_GET_TIME_SHOW,"time"],		  
+		  [Blockly.Msg.NTPSERVER_GET_FULL_SHOW,"full"]				  
+	  ]), "option");		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_13"]);
+  }
+};
+
+
+
+
+
+
+
+
+
 Blockly.Blocks['amb82_mini_interrupt'] = {
   init: function() {
     this.appendDummyInput()
@@ -22,17 +143,6 @@ Blockly.Blocks['amb82_mini_interrupt'] = {
     this.setColour(Blockly.Msg["HUE_17"]);
   }
 };
-
-
-
-
-
-
-
-
-
-
-
 
 Blockly.Blocks['amb82_mini_deepsleep_initial'] = {
   init: function() {

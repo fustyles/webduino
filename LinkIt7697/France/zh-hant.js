@@ -29,6 +29,18 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["AMB82_MINI_RTC_INITIAL"] = "RTC設定現在時間";
+Blockly.Msg["AMB82_MINI_RTC_YEAR"] = "年";
+Blockly.Msg["AMB82_MINI_RTC_MONTH"] = "月";
+Blockly.Msg["AMB82_MINI_RTC_DAY"] = "日";
+Blockly.Msg["AMB82_MINI_RTC_HOUR"] = "時";
+Blockly.Msg["AMB82_MINI_RTC_MINUTE"] = "分";
+Blockly.Msg["AMB82_MINI_RTC_SECOND"] = "秒";
+Blockly.Msg["AMB82_MINI_RTC_ENABLEALARM"] = "RTC啟用鬧鐘 設定時間";
+Blockly.Msg["AMB82_MINI_RTC_DISABLEALARM"] = "RTC停用鬧鐘";
+Blockly.Msg["AMB82_MINI_RTC_EXECUTE"] = "執行";
+Blockly.Msg["AMB82_MINI_RTC_GETTIME"] = "取得時間";
+
 Blockly.Msg["AMB82_MINI_INTERRUPT"] = "GPIO中斷";
 Blockly.Msg["AMB82_MINI_INTERRUPT_GPIO"] = "腳位";
 Blockly.Msg["AMB82_MINI_INTERRUPT_EXECUTE"] = "執行";
@@ -37,7 +49,7 @@ Blockly.Msg["AMB82_MINI_INTERRUPT_LOW"] = "低電位中斷";
 
 Blockly.Msg["AMB82_MINI_DEEPSLEEP_INITIAL"] = "深度睡眠";
 Blockly.Msg["AMB82_MINI_DEEPSLEEP_MODE"] = "喚醒模式";
-Blockly.Msg["AMB82_MINI_DEEPSLEEP_DAY"] = "天數";
+Blockly.Msg["AMB82_MINI_DEEPSLEEP_DAY"] = "日數";
 Blockly.Msg["AMB82_MINI_DEEPSLEEP_HOUR"] = "時數";
 Blockly.Msg["AMB82_MINI_DEEPSLEEP_MINUTE"] = "分數";
 Blockly.Msg["AMB82_MINI_DEEPSLEEP_SECOND"] = "秒數";
