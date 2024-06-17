@@ -1,23 +1,41 @@
+Blockly.Arduino['amb82_mini_interrupt'] = function(block) {
+	var pin_ = Blockly.Arduino.valueToCode(block, 'pin_', Blockly.Arduino.ORDER_ATOMIC);
+	var mode_ = block.getFieldValue('mode_');
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+	
+	Blockly.Arduino.setups_['amb82_mini_interrupt'] = 'pinMode('+pin_+', '+mode_+');\n  digitalSetIrqHandler('+pin_+', gpioInterrupt);\n';
+		
+	Blockly.Arduino.definitions_['amb82_mini_interrupt'] = ''
+	+'void gpioInterrupt(uint32_t id, uint32_t event) {\n'
+	+statement
+	+'}\n';	
+	var code = '';
+    return code;
+};
+
+
+
+
 Blockly.Arduino['amb82_mini_deepsleep_initial'] = function(block) {
-	var type_ = block.getFieldValue('type_');
+	var mode_ = block.getFieldValue('mode_');
 	var days_ = Blockly.Arduino.valueToCode(block, 'days_', Blockly.Arduino.ORDER_ATOMIC);
 	var hours_ = Blockly.Arduino.valueToCode(block, 'hours_', Blockly.Arduino.ORDER_ATOMIC);
 	var minutes_ = Blockly.Arduino.valueToCode(block, 'minutes_', Blockly.Arduino.ORDER_ATOMIC);
 	var seconds_ = Blockly.Arduino.valueToCode(block, 'seconds_', Blockly.Arduino.ORDER_ATOMIC);
 	var pin_ = block.getFieldValue('pin_');
 	
-	Blockly.Arduino.definitions_['amb82_mini_deepsleep_initial'] = '#include "PowerMode.h"\n#define WAKEUP_SOURCE '+type_+'\n';
+	Blockly.Arduino.definitions_['amb82_mini_deepsleep_initial'] = '#include "PowerMode.h"\n#define WAKEUP_SOURCE '+mode_+'\n';
 	Blockly.Arduino.definitions_['amb82_mini_deepsleep_type'] = '#define WAKUPE_SETTING 0\n';
-	if (type_==0) {
+	if (mode_==0) {
 		Blockly.Arduino.definitions_['amb82_mini_deepsleep_type'] =''
 			+'#define CLOCK 0\n'
 			+'#define SLEEP_DURATION '+seconds_+'\n'
 			+'uint32_t PM_AONtimer_setting[2] = {CLOCK, SLEEP_DURATION};\n'
 			+'#define WAKUPE_SETTING (uint32_t)(PM_AONtimer_setting)\n';
-	} else if (type_==1) {
+	} else if (mode_==1) {
 		Blockly.Arduino.definitions_['amb82_mini_deepsleep_type'] =''
 			+'#define WAKUPE_SETTING '+pin_+'\n';	
-	} else if (type_==2) {
+	} else if (mode_==2) {
 		Blockly.Arduino.definitions_['amb82_mini_deepsleep_type'] =''
 			+'#define ALARM_DAY      '+days_+'\n'
 			+'#define ALARM_HOUR     '+hours_+'\n'
@@ -37,11 +55,6 @@ Blockly.Arduino['amb82_mini_deepsleep_start'] = function(block) {
 	var code = 'PowerMode.start();\n';
     return code;
 };
-
-
-
-
-
 
 Blockly.Arduino['amb82_mini_gtimer_initial'] = function(block) {
 	var index_ = block.getFieldValue('index_');

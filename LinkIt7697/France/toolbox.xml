@@ -2653,8 +2653,18 @@
 			  </block>	
 			  <block type="amb82_mini_deepsleep_start">
 			  </block>
-		</category>		
+		</category>
+		<category id="france23" name="amb82_mini_Interrupt">
+			<block type="amb82_mini_interrupt">
+				<value name="pin_">
+				  <block type="math_number">
+					<field name="NUM">21</field>
+				  </block>
+				</value>
+			</block>	
+		</category>				
 		<category id="france23" name="amb82_mini_FileSystem">
+		
 		</category>		
 		<category id="france23" name="amb82_mini_video_qrcode">				
 			  <block type="amb82_mini_video_qrcode">		  

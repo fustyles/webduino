@@ -29,8 +29,14 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["AMB82_MINI_INTERRUPT"] = "GPIO interrupt";
+Blockly.Msg["AMB82_MINI_INTERRUPT_GPIO"] = "Pin";
+Blockly.Msg["AMB82_MINI_INTERRUPT_EXECUTE"] = "Execute";
+Blockly.Msg["AMB82_MINI_INTERRUPT_HIGH"] = "High level interrupt";
+Blockly.Msg["AMB82_MINI_INTERRUPT_LOW"] = "Low level interrupt";
+
 Blockly.Msg["AMB82_MINI_DEEPSLEEP_INITIAL"] = "Deep sleep";
-Blockly.Msg["AMB82_MINI_DEEPSLEEP_WAKEUP"] = "Wake-up mode";
+Blockly.Msg["AMB82_MINI_DEEPSLEEP_MODE"] = "Wake-up mode";
 Blockly.Msg["AMB82_MINI_DEEPSLEEP_DAY"] = "Days";
 Blockly.Msg["AMB82_MINI_DEEPSLEEP_HOUR"] = "Hours";
 Blockly.Msg["AMB82_MINI_DEEPSLEEP_MINUTE"] = "Minutes";
