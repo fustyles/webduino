@@ -1,3 +1,31 @@
+Blockly.Arduino['amb82_mini_gtimer_initial'] = function(block) {
+	
+	var index_ = block.getFieldValue('index_');
+    var interval_ = Blockly.Arduino.valueToCode(block, 'interval_', Blockly.Arduino.ORDER_ATOMIC);
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+	
+	Blockly.Arduino.definitions_['define_amb82_mini_gtimer_initial'] ='#include <GTimer.h>\n';
+	Blockly.Arduino.definitions_['define_amb82_mini_gtimer_function_'+index_] =''
+		+'void Gtimer'+index_+'(uint32_t data) {\n'
+		+ statement
+		+'}\n';
+	var code = 'GTimer.begin('+index_+', '+interval_+' * 1000 * 1000, Gtimer'+index_+', false, 0);\n';
+    return code;
+};
+
+Blockly.Arduino['amb82_mini_gtimer_function'] = function(block) {
+	
+	var index_ = block.getFieldValue('index_');
+	var code = 'Gtimer'+index_+'(0);\n';
+    return code;
+};
+
+
+
+
+
+
+
 Blockly.Arduino['amb82_mini_imageclassification'] = function(block) {
 	
 	Blockly.Arduino.definitions_.define_custom_command = "";
@@ -70,16 +98,6 @@ Blockly.Arduino['amb82_mini_imageclassification_get'] = function(block) {
 		var code = 'imgclass.score()';
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
-
-
-
-
-
-
-
-
-
-
 
 Blockly.Arduino['amb82_mini_audioclassification'] = function(block) {
 	

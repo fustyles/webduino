@@ -29,6 +29,11 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["AMB82_MINI_GTIMER"] = "Hardware timer";
+Blockly.Msg["AMB82_MINI_GTIMER_INTERVAL1"] = "Interval";
+Blockly.Msg["AMB82_MINI_GTIMER_INTERVAL2"] = "seconds to execute once";
+Blockly.Msg["AMB82_MINI_GTIMER_FUNCTION"] = "Execute function";
+
 Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION"] = "Image classification";
 Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_AFTER"] = "Enumerate all categories";
 Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_FINISH"] = "After enumeration";

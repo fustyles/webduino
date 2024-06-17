@@ -2617,6 +2617,17 @@
 			</value>			
 		  </block>			  
 		</category>
+		<category id="france23" name="amb82_mini_Gtimer">				
+			  <block type="amb82_mini_gtimer_initial">
+			  		<value name="interval_">
+					  <block type="math_number">
+						<field name="NUM">1</field>
+					  </block>
+					</value>
+			  </block>	
+			  <block type="amb82_mini_gtimer_function">
+			  </block>			  
+		</category>			
 		<category id="france23" name="amb82_mini_video_qrcode">				
 			  <block type="amb82_mini_video_qrcode">		  
 			  </block>				  

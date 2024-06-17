@@ -1,3 +1,61 @@
+Blockly.Blocks['amb82_mini_gtimer_initial'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_GTIMER"]);
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)
+			.appendField(new Blockly.FieldDropdown([
+ 				["0","0"],
+ 				["1","1"],
+ 				["2","2"],
+ 				["3","3"],
+ 				["4","4"]
+		]), "index_");
+    this.appendValueInput("interval_")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["AMB82_MINI_GTIMER_INTERVAL1"]);
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI_GTIMER_INTERVAL2"]);		
+    this.appendStatementInput("statement")
+        .setCheck(null);		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_21"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_gtimer_function'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_GTIMER"]);
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)
+			.appendField(Blockly.Msg["AMB82_MINI_GTIMER_FUNCTION"])
+			.appendField(new Blockly.FieldDropdown([
+ 				["0","0"],
+ 				["1","1"],
+ 				["2","2"],
+ 				["3","3"],
+ 				["4","4"]
+		]), "index_");	
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_21"]);
+  }
+};
+
+
+
+
+
+
+
+
 Blockly.Blocks['amb82_mini_imageclassification'] = {
   init: function() {
     this.appendDummyInput()
@@ -42,15 +100,6 @@ Blockly.Blocks['amb82_mini_imageclassification_get'] = {
 	this.setColour(Blockly.Msg["HUE_28"]);
   }
 };
-
-
-
-
-
-
-
-
-
 
 Blockly.Blocks['amb82_mini_audioclassification'] = {
   init: function() {
