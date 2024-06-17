@@ -52,7 +52,7 @@ Blockly.Arduino['amb82_mini_rtc_gettime'] = function(block) {
 			'  currentTimeValue[4] = timeinfo->tm_min;\n'+
 			'  currentTimeValue[5] = timeinfo->tm_sec;\n'+
 			'  currentTime[0] = String(timeinfo->tm_year+1900)+"/"+ ((timeinfo->tm_mon+1)<10?"0":"") + String(timeinfo->tm_mon+1)+"/"+(timeinfo->tm_mday<10?"0":"")+String(timeinfo->tm_mday);\n'+
-			'  currentTime[1] = (timeinfo->tm_mday<10?"0":"")+String(timeinfo->tm_hour)+":"+(timeinfo->tm_min<10?"0":"")+String(timeinfo->tm_min)+":"+(timeinfo->tm_sec<10?"0":"")+String(timeinfo->tm_sec);\n'+
+			'  currentTime[1] = (timeinfo->tm_hour<10?"0":"")+String(timeinfo->tm_hour)+":"+(timeinfo->tm_min<10?"0":"")+String(timeinfo->tm_min)+":"+(timeinfo->tm_sec<10?"0":"")+String(timeinfo->tm_sec);\n'+
 			'  currentTime[2] = currentTime[0] + " "+ currentTime[1];\n'+
 			'  return true;\n'+			
 			'}\n';
@@ -9207,7 +9207,7 @@ Blockly.Arduino['fu_ntpserver_initial'] = function(block) {
 			'  currentTimeValue[4] = timeinfo.tm_min;\n'+
 			'  currentTimeValue[5] = timeinfo.tm_sec;\n'+
 			'  currentTime[0] = String(timeinfo.tm_year+1900)+"/"+ ((timeinfo.tm_mon+1)<10?"0":"") + String(timeinfo.tm_mon+1)+"/"+(timeinfo.tm_mday<10?"0":"")+String(timeinfo.tm_mday);\n'+
-			'  currentTime[1] = (timeinfo.tm_mday<10?"0":"")+String(timeinfo.tm_hour)+":"+(timeinfo.tm_min<10?"0":"")+String(timeinfo.tm_min)+":"+(timeinfo.tm_sec<10?"0":"")+String(timeinfo.tm_sec);\n'+
+			'  currentTime[1] = (timeinfo.tm_hour<10?"0":"")+String(timeinfo.tm_hour)+":"+(timeinfo.tm_min<10?"0":"")+String(timeinfo.tm_min)+":"+(timeinfo.tm_sec<10?"0":"")+String(timeinfo.tm_sec);\n'+
 			'  currentTime[2] = currentTime[0] + " "+ currentTime[1];\n'+
 			'}\n';
   var code = '';
