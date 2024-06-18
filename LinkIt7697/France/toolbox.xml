@@ -2395,6 +2395,7 @@
 			  </block>	
 			  -->
 		</category>
+		<sep id="category_sep"></sep>		
 		<category id="france23" name="amb82_mini_video">				
 			  <block type="amb82_mini_video_initial">
 					<value name="width">
@@ -2494,238 +2495,7 @@
 			  </block>	
 			  <block type="amb82_mini_mp4_getstate">		  
 			  </block>				  
-		</category>
-		<category id="france23" name="amb82_mini_ble_keyboard">				
-		  <block type="amb82_mini_blekeyboard">
-			<value name="blename">
-			  <block type="text">
-				<field name="TEXT">AMB82-MINI BLE Keyboard</field>
-			  </block>
-			</value>
-		  </block>
-		  <block type="amb82_mini_blekeyboard_isConnected">
-		  </block>		  
-		  <block type="amb82_mini_blekeyboard_press">
-			<value name="keycode1">
-			  <block type="amb82_mini_blekeyboard_keycode">
-				<field name="keycode">0</field>
-			  </block>
-			</value>
-			<value name="keycode2">
-			</value>
-			<value name="keycode3">
-			</value>
-			<value name="presstime">
-			  <block type="math_number">
-				<field name="NUM">10</field>
-			  </block>
-			</value>			
-		  </block>
-		  <block type="amb82_mini_blekeyboard_press_norelease">
-			<value name="keycode1">
-			  <block type="amb82_mini_blekeyboard_keycode">
-				<field name="keycode">0</field>
-			  </block>
-			</value>
-			<value name="keycode2">
-			</value>
-			<value name="keycode3">
-			</value>			
-		  </block>	
-		  <block type="amb82_mini_blekeyboard_release">
-			<value name="keycode1">
-			  <block type="amb82_mini_blekeyboard_keycode">
-				<field name="keycode">0</field>
-			  </block>
-			</value>
-			<value name="keycode2">
-			</value>
-			<value name="keycode3">
-			</value>			
-		  </block>	
-		  <block type="amb82_mini_blekeyboard_release_all">			
-		  </block>		  
-		  <block type="amb82_mini_blekeyboard_print">
-			<value name="characters">
-			  <block type="text">
-				<field name="TEXT">Hello World</field>
-			  </block>
-			</value>			
-		  </block>
-		  <block type="amb82_mini_blekeyboard_write">
-			<value name="keycode">
-			  <block type="text_quotationmark">
-				<field name="TEXT">A</field>
-			  </block>
-			</value>			
-		  </block>
-		  <block type="amb82_mini_blekeyboard_press_norelease_consumer">
-			<value name="keycode">
-			  <block type="amb82_mini_blekeyboard_keycode_consumer">
-				<field name="keycode">0x0001</field>
-			  </block>
-			</value>
-		  </block>	
-		  <block type="amb82_mini_blekeyboard_release_consumer">			
-		  </block>			  
-		  <block type="amb82_mini_blekeyboard_keycode">			
-		  </block>
-		  <block type="amb82_mini_blekeyboard_keycode_consumer">			
-		  </block>		  
-		</category>
-		<category id="france23" name="amb82_mini_ble_mouse">				
-		  <block type="amb82_mini_blemouse">
-			<value name="blename">
-			  <block type="text" id="100">
-				<field name="TEXT">AMB82-MINI MOUSE</field>
-			  </block>
-			</value>		  
-		  </block>
-		  <block type="amb82_mini_blemouse_press">			
-		  </block>
-		  <block type="amb82_mini_blemouse_release">			
-		  </block>			  
-		  <block type="amb82_mini_blemouse_move_scroll">
-			<value name="delaytime">
-			  <block type="math_number">
-				<field name="NUM">100</field>
-			  </block>
-			</value>		  
-		  </block>
-		  <block type="amb82_mini_blemouse_move_point">
-			<value name="delaytime">
-			  <block type="math_number">
-				<field name="NUM">100</field>
-			  </block>
-			</value>
-			<value name="pixels">
-			  <block type="math_number">
-				<field name="NUM">10</field>
-			  </block>
-			</value>			
-		  </block>
-		  <block type="amb82_mini_blemouse_move_xy">
-			<value name="x">
-			  <block type="math_number">
-				<field name="NUM">1</field>
-			  </block>
-			</value>
-			<value name="y">
-			  <block type="math_number">
-				<field name="NUM">1</field>
-			  </block>
-			</value>			
-		  </block>			  
-		</category>
-		<category id="france23" name="amb82_mini_Gtimer">				
-			  <block type="amb82_mini_gtimer_initial">
-			  		<value name="interval_">
-					  <block type="math_number">
-						<field name="NUM">1</field>
-					  </block>
-					</value>
-			  </block>	
-			  <block type="amb82_mini_gtimer_function">
-			  </block>			  
 		</category>	
-		<category id="france23" name="amb82_mini_DeepSleep">
-			  <block type="amb82_mini_deepsleep_initial">
-			  		<value name="days_">
-					  <block type="math_number">
-						<field name="NUM">0</field>
-					  </block>
-					</value>
-			  		<value name="hours_">
-					  <block type="math_number">
-						<field name="NUM">0</field>
-					  </block>
-					</value>
-			  		<value name="minutes_">
-					  <block type="math_number">
-						<field name="NUM">0</field>
-					  </block>
-					</value>					
-			  		<value name="seconds_">
-					  <block type="math_number">
-						<field name="NUM">10</field>
-					  </block>
-					</value>					
-			  </block>	
-			  <block type="amb82_mini_deepsleep_start">
-			  </block>
-		</category>
-		<category id="france23" name="amb82_mini_Interrupt">
-			<block type="amb82_mini_interrupt">
-				<value name="pin_">
-				  <block type="math_number">
-					<field name="NUM">21</field>
-				  </block>
-				</value>
-			</block>	
-		</category>	
-		<category id="france23" name="amb82_mini_RTC">
-			<block type="amb82_mini_rtc_initial">
-			  		<value name="year_">
-					  <block type="math_number">
-						<field name="NUM">2024</field>
-					  </block>
-					</value>
-			  		<value name="month_">
-					  <block type="math_number">
-						<field name="NUM">6</field>
-					  </block>
-					</value>					
-			  		<value name="day_">
-					  <block type="math_number">
-						<field name="NUM">18</field>
-					  </block>
-					</value>
-			  		<value name="hour_">
-					  <block type="math_number">
-						<field name="NUM">12</field>
-					  </block>
-					</value>
-			  		<value name="minute_">
-					  <block type="math_number">
-						<field name="NUM">0</field>
-					  </block>
-					</value>					
-			  		<value name="second_">
-					  <block type="math_number">
-						<field name="NUM">0</field>
-					  </block>
-					</value>
-			</block>
-			<block type="amb82_mini_rtc_enablealarm">
-			  		<value name="days_">
-					  <block type="math_number">
-						<field name="NUM">0</field>
-					  </block>
-					</value>
-			  		<value name="hours_">
-					  <block type="math_number">
-						<field name="NUM">0</field>
-					  </block>
-					</value>
-			  		<value name="minutes_">
-					  <block type="math_number">
-						<field name="NUM">0</field>
-					  </block>
-					</value>					
-			  		<value name="seconds_">
-					  <block type="math_number">
-						<field name="NUM">10</field>
-					  </block>
-					</value>
-			</block>
-			<block type="amb82_mini_rtc_disablealarm">
-			</block>	
-			<block type="amb82_mini_rtc_gettime">
-			</block>			
-		</category>			
-		<category id="france23" name="amb82_mini_FileSystem">
-		
-		</category>		
 		<category id="france23" name="amb82_mini_video_qrcode">				
 			  <block type="amb82_mini_video_qrcode">		  
 			  </block>				  
@@ -3209,10 +2979,237 @@
 			  <block type="amb82_mini_imageclassification_get">		  
 			  </block>  
 		</category>			
-		<sep id="category_sep"></sep>
-		
-
-		
+		<sep id="category_sep"></sep>		
+		<category id="france23" name="amb82_mini_ble_keyboard">				
+		  <block type="amb82_mini_blekeyboard">
+			<value name="blename">
+			  <block type="text">
+				<field name="TEXT">AMB82-MINI BLE Keyboard</field>
+			  </block>
+			</value>
+		  </block>
+		  <block type="amb82_mini_blekeyboard_isConnected">
+		  </block>		  
+		  <block type="amb82_mini_blekeyboard_press">
+			<value name="keycode1">
+			  <block type="amb82_mini_blekeyboard_keycode">
+				<field name="keycode">0</field>
+			  </block>
+			</value>
+			<value name="keycode2">
+			</value>
+			<value name="keycode3">
+			</value>
+			<value name="presstime">
+			  <block type="math_number">
+				<field name="NUM">10</field>
+			  </block>
+			</value>			
+		  </block>
+		  <block type="amb82_mini_blekeyboard_press_norelease">
+			<value name="keycode1">
+			  <block type="amb82_mini_blekeyboard_keycode">
+				<field name="keycode">0</field>
+			  </block>
+			</value>
+			<value name="keycode2">
+			</value>
+			<value name="keycode3">
+			</value>			
+		  </block>	
+		  <block type="amb82_mini_blekeyboard_release">
+			<value name="keycode1">
+			  <block type="amb82_mini_blekeyboard_keycode">
+				<field name="keycode">0</field>
+			  </block>
+			</value>
+			<value name="keycode2">
+			</value>
+			<value name="keycode3">
+			</value>			
+		  </block>	
+		  <block type="amb82_mini_blekeyboard_release_all">			
+		  </block>		  
+		  <block type="amb82_mini_blekeyboard_print">
+			<value name="characters">
+			  <block type="text">
+				<field name="TEXT">Hello World</field>
+			  </block>
+			</value>			
+		  </block>
+		  <block type="amb82_mini_blekeyboard_write">
+			<value name="keycode">
+			  <block type="text_quotationmark">
+				<field name="TEXT">A</field>
+			  </block>
+			</value>			
+		  </block>
+		  <block type="amb82_mini_blekeyboard_press_norelease_consumer">
+			<value name="keycode">
+			  <block type="amb82_mini_blekeyboard_keycode_consumer">
+				<field name="keycode">0x0001</field>
+			  </block>
+			</value>
+		  </block>	
+		  <block type="amb82_mini_blekeyboard_release_consumer">			
+		  </block>			  
+		  <block type="amb82_mini_blekeyboard_keycode">			
+		  </block>
+		  <block type="amb82_mini_blekeyboard_keycode_consumer">			
+		  </block>		  
+		</category>
+		<category id="france23" name="amb82_mini_ble_mouse">				
+		  <block type="amb82_mini_blemouse">
+			<value name="blename">
+			  <block type="text" id="100">
+				<field name="TEXT">AMB82-MINI MOUSE</field>
+			  </block>
+			</value>		  
+		  </block>
+		  <block type="amb82_mini_blemouse_press">			
+		  </block>
+		  <block type="amb82_mini_blemouse_release">			
+		  </block>			  
+		  <block type="amb82_mini_blemouse_move_scroll">
+			<value name="delaytime">
+			  <block type="math_number">
+				<field name="NUM">100</field>
+			  </block>
+			</value>		  
+		  </block>
+		  <block type="amb82_mini_blemouse_move_point">
+			<value name="delaytime">
+			  <block type="math_number">
+				<field name="NUM">100</field>
+			  </block>
+			</value>
+			<value name="pixels">
+			  <block type="math_number">
+				<field name="NUM">10</field>
+			  </block>
+			</value>			
+		  </block>
+		  <block type="amb82_mini_blemouse_move_xy">
+			<value name="x">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>
+			<value name="y">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>			
+		  </block>			  
+		</category>
+		<category id="france23" name="amb82_mini_Gtimer">				
+			  <block type="amb82_mini_gtimer_initial">
+			  		<value name="interval_">
+					  <block type="math_number">
+						<field name="NUM">1</field>
+					  </block>
+					</value>
+			  </block>	
+			  <block type="amb82_mini_gtimer_function">
+			  </block>			  
+		</category>	
+		<category id="france23" name="amb82_mini_DeepSleep">
+			  <block type="amb82_mini_deepsleep_initial">
+			  		<value name="days_">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+			  		<value name="hours_">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+			  		<value name="minutes_">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>					
+			  		<value name="seconds_">
+					  <block type="math_number">
+						<field name="NUM">10</field>
+					  </block>
+					</value>					
+			  </block>	
+			  <block type="amb82_mini_deepsleep_start">
+			  </block>
+		</category>
+		<category id="france23" name="amb82_mini_Interrupt">
+			<block type="amb82_mini_interrupt">
+				<value name="pin_">
+				  <block type="math_number">
+					<field name="NUM">21</field>
+				  </block>
+				</value>
+			</block>	
+		</category>	
+		<category id="france23" name="amb82_mini_RTC">
+			<block type="amb82_mini_rtc_initial">
+			  		<value name="year_">
+					  <block type="math_number">
+						<field name="NUM">2024</field>
+					  </block>
+					</value>
+			  		<value name="month_">
+					  <block type="math_number">
+						<field name="NUM">6</field>
+					  </block>
+					</value>					
+			  		<value name="day_">
+					  <block type="math_number">
+						<field name="NUM">18</field>
+					  </block>
+					</value>
+			  		<value name="hour_">
+					  <block type="math_number">
+						<field name="NUM">12</field>
+					  </block>
+					</value>
+			  		<value name="minute_">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>					
+			  		<value name="second_">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+			</block>
+			<block type="amb82_mini_rtc_enablealarm">
+			  		<value name="days_">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+			  		<value name="hours_">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>
+			  		<value name="minutes_">
+					  <block type="math_number">
+						<field name="NUM">0</field>
+					  </block>
+					</value>					
+			  		<value name="seconds_">
+					  <block type="math_number">
+						<field name="NUM">10</field>
+					  </block>
+					</value>
+			</block>
+			<block type="amb82_mini_rtc_disablealarm">
+			</block>	
+			<block type="amb82_mini_rtc_gettime">
+			</block>			
+		</category>			
+		<category id="france23" name="amb82_mini_FileSystem">
+		</category>	
 	</category>	
 
 	
