@@ -2087,7 +2087,7 @@ Blockly.Arduino['amb82_mini_googledrive'] = function(block) {
 											'  return encodedMsg;\n'+
 											'}';
 			
-  var code = 'SendStillToGoogleDrive("/macros/s/'+scriptid.replace(/"/g,'')+'/exec","&myFoldername='+foldername.replace(/"/g,'')+'","&myFilename='+filename.replace(/"/g,'')+'","&myFile=",'+linetoken+');\n';
+  var code = 'SendStillToGoogleDrive("/macros/s/"+'+scriptid.replace(/"/g,'')+'+"/exec","&myFoldername='+foldername.replace(/"/g,'')+'","&myFilename='+filename.replace(/"/g,'')+'","&myFile=",'+linetoken+');\n';
   return code;			
 }
 
