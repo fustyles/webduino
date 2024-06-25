@@ -91,11 +91,12 @@ Blockly.Arduino['amb82_mini_interrupt'] = function(block) {
 	var pin_ = Blockly.Arduino.valueToCode(block, 'pin_', Blockly.Arduino.ORDER_ATOMIC);
 	var mode_ = block.getFieldValue('mode_');
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+	var id = block.id.replace(/[^a-zA-Z0-9]/g, '');
 	
-	Blockly.Arduino.setups_['amb82_mini_interrupt_'+pin_] = 'pinMode('+pin_+', '+mode_+');\n  digitalSetIrqHandler('+pin_+', gpioInterrupt_'+block.id.replace(/[^a-zA-Z0-9]/g, '')+');\n';
+	Blockly.Arduino.setups_['amb82_mini_interrupt_'+id] = 'pinMode('+pin_+', '+mode_+');\n  digitalSetIrqHandler('+pin_+', gpioInterrupt_'+id+');\n';
 		
-	Blockly.Arduino.definitions_['amb82_mini_interrupt_'+pin_] = ''
-	+'void gpioInterrupt_'+block.id.replace(/[^a-zA-Z0-9]/g, '')+'(uint32_t id, uint32_t event) {\n'
+	Blockly.Arduino.definitions_['amb82_mini_interrupt_'+id] = ''
+	+'void gpioInterrupt_'+id+'(uint32_t id, uint32_t event) {\n'
 	+statement
 	+'}\n';	
 	var code = '';
