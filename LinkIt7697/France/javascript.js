@@ -21566,7 +21566,7 @@ Blockly.Arduino['faceapirecognize_recognitied'] = function(block) {
 function selectBoardType() {
 	var selectBoard = document.getElementById('board-selector');
 	if (selectBoard) {
-		var state = [0,0,0,0,0,0,0,0,0,0];
+		var state = [0,0,0,0,0,0,0,0,0,0,0,0];
 		for (var i=0;i<selectBoard.options.length;i++) {
 			if (selectBoard.options[i].value.indexOf("LinkIt")!=-1)
 				state[0]=1;
@@ -21587,7 +21587,11 @@ function selectBoardType() {
 			if (selectBoard.options[i].value.indexOf("Digispark")!=-1)
 				state[8]=1;	
 			if (selectBoard.options[i].value.indexOf("realtek")!=-1)
-				state[9]=1;	
+				state[9]=1;
+			if (selectBoard.options[i].value.indexOf("HUB-8735_ultra")!=-1)
+				state[10]=1;	
+			else if (selectBoard.options[i].value.indexOf("HUB-8735")!=-1)
+				state[11]=1;			
 			
 		}
 		if (state[0]==0)
@@ -21610,6 +21614,10 @@ function selectBoardType() {
 			selectBoard.options.add(new Option("Digispark (Default - 16.5mhz)","digistump:avr:digispark-tiny"));
 		if (state[9]==0) 
 			selectBoard.options.add(new Option("AMB82-MINI","realtek:AmebaPro2:Ameba_AMB82-MINI"));
+		if (state[10]==0) 
+			selectBoard.options.add(new Option("HUB-8735_ultra","ideasHatch:AmebaPro2:Ameba_HUB-8735_ultra"));
+		if (state[11]==0) 
+			selectBoard.options.add(new Option("HUB-8735","ideasHatch:AmebaPro2:Ameba_HUB-8735"));
 		
 		if (selectBoard.value.split(":")[2]=="bpi-bit")
 			return "BPI-BIT";
@@ -21618,7 +21626,11 @@ function selectBoardType() {
 		else if (selectBoard.value.split(":")[2]=="esp32s2")
 			return "esp32s2";
 		else if (selectBoard.value.split(":")[2]=="Ameba_AMB82-MINI")
-			return "AMB82-MINI";		
+			return "AMB82-MINI";
+		else if (selectBoard.value.split(":")[2]=="Ameba_HUB-8735_ultra")
+			return "HUB-8735_ultra";
+		else if (selectBoard.value.split(":")[2]=="Ameba_HUB-8735")
+			return "HUB-8735";		
 		else
 			return selectBoard.value.split(":")[0];
 	}
