@@ -36,9 +36,11 @@ Blockly.Msg["AMB82_MINI_FOLDER_ROOT"] = "根目錄";
 Blockly.Msg["AMB82_MINI_FOLDER_EXECUTE"] = "執行";
 Blockly.Msg["AMB82_MINI_FILE_OPEN"] = "開啟檔案名稱";
 Blockly.Msg["AMB82_MINI_FILE_EXECUTE"] = "執行";
-Blockly.Msg["AMB82_MINI_FILE_WRITE"] = "寫入資料";
-Blockly.Msg["AMB82_MINI_FILE_READ"] = "讀取資料";
+Blockly.Msg["AMB82_MINI_FILE_WRITE"] = "寫入字串";
+Blockly.Msg["AMB82_MINI_FILE_READ"] = "讀取字串";
 Blockly.Msg["AMB82_MINI_FILE_READ_SIZE"] = "長度";
+Blockly.Msg["AMB82_MINI_FILE_READ_CHAR"] = "列舉所有字元";
+Blockly.Msg["AMB82_MINI_FILE_READ_CHAR_GET"] = "取得一個字元";
 
 Blockly.Msg["AMB82_MINI_RTC_INITIAL"] = "RTC設定現在時間";
 Blockly.Msg["AMB82_MINI_RTC_YEAR"] = "年";

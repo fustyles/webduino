@@ -80,9 +80,31 @@ Blockly.Blocks['amb82_mini_file_read'] = {
   }
 };
 
+Blockly.Blocks['amb82_mini_file_read_char'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+		.appendField(Blockly.Msg["AMB82_MINI_FILE_READ_CHAR"]);
+    this.appendStatementInput("statement")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT);		
+	this.setInputsInline(true);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_29"]);		
+  }
+};
 
-
-
+Blockly.Blocks['amb82_mini_file_read_char_get'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+		.appendField(Blockly.Msg["AMB82_MINI_FILE_READ_CHAR_GET"]);	
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_29"]);	
+  }
+};
 
 
 

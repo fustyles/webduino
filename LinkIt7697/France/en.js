@@ -32,14 +32,15 @@ Blockly.Msg["HUE_30"] = 50;
 Blockly.Msg["AMB82_MINI_FOLDER"] = "Set folder as";
 Blockly.Msg["AMB82_MINI_FOLDER_OPEN"] = "Open";
 Blockly.Msg["AMB82_MINI_FOLDER_CREATE"] = "Create";
-Blockly.Msg["AMB82_MINI_FOLDER_ROOT"] = "Root Directory";
+Blockly.Msg["AMB82_MINI_FOLDER_ROOT"] = "Root directory";
 Blockly.Msg["AMB82_MINI_FOLDER_EXECUTE"] = "Execute";
-Blockly.Msg["AMB82_MINI_FILE_OPEN"] = "Open File Name";
+Blockly.Msg["AMB82_MINI_FILE_OPEN"] = "Open file name";
 Blockly.Msg["AMB82_MINI_FILE_EXECUTE"] = "Execute";
-Blockly.Msg["AMB82_MINI_FILE_WRITE"] = "Write Data";
-Blockly.Msg["AMB82_MINI_FILE_READ"] = "Read Data";
+Blockly.Msg["AMB82_MINI_FILE_WRITE"] = "Write string";
+Blockly.Msg["AMB82_MINI_FILE_READ"] = "Read string";
 Blockly.Msg["AMB82_MINI_FILE_READ_SIZE"] = "Length";
-
+Blockly.Msg["AMB82_MINI_FILE_READ_CHAR"] = "Enumerate all characters";
+Blockly.Msg["AMB82_MINI_FILE_READ_CHAR_GET"] = "Get a character";
 
 Blockly.Msg["AMB82_MINI_RTC_INITIAL"] = "RTC set current time";
 Blockly.Msg["AMB82_MINI_RTC_YEAR"] = "Year";

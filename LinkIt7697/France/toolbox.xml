@@ -3236,8 +3236,14 @@
 					<field name="NUM">128</field>
 				  </block>
 				</value>			
-			</block>		
-		</category>	
+			</block>
+			<block type="amb82_mini_file_read_char">			
+			</block>
+			<block type="amb82_mini_file_read_char_get">			
+			</block>			
+		</category>
+		<category id="france23" name="amb82_mini_udp">
+		</category>
 	</category>	
 
 	

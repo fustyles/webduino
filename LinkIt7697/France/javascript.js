@@ -1,16 +1,16 @@
 Blockly.Arduino['amb82_mini_folder'] = function(block) {
-	Blockly.Arduino.definitions_['amb82_mini_folder_initial'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\n';
+	Blockly.Arduino.definitions_['amb82_mini_folder_initial'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nString file_path = "";\n';
 	var type = block.getFieldValue('type');
 	var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC);
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
 	
 	var path = '';
 	if (type=="open")
-		path = 'String file_path = String(fs.getRootPath())+'+foldername+';\n';
+		path = 'file_path = String(fs.getRootPath())+'+foldername+';\n';
 	else if (type=="create")
-		path = 'String file_path = String(fs.getRootPath())+'+foldername+';\nfs.mkdir(file_path);\n';
+		path = 'file_path = String(fs.getRootPath())+'+foldername+';\nfs.mkdir(file_path);\n';
 	else if (type=="root")
-		path = 'String file_path = String(fs.getRootPath());\n';
+		path = 'file_path = String(fs.getRootPath());\n';
 	var code = 'fs.begin();\n'+path+statement+'fs.end();\n';
     return code;
 };
@@ -41,9 +41,16 @@ Blockly.Arduino['amb82_mini_file_read'] = function(block) {
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['amb82_mini_file_read_char'] = function(block) {
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+	var code = 'if (file) {\n  while (file.available()) {\n    char file_read_char = file.read();\n'+statement+'\n}\n}\n';
+    return code;
+};
 
-
-
+Blockly.Arduino['amb82_mini_file_read_char_get'] = function(block) {
+	var code = 'file_read_char';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
 
 
 
