@@ -30,7 +30,14 @@ Blockly.Arduino['amb82_mini_file_write'] = function(block) {
 
 Blockly.Arduino['amb82_mini_file_read'] = function(block) {
 	var buf = Blockly.Arduino.valueToCode(block, 'buf', Blockly.Arduino.ORDER_ATOMIC);
-	var code = '';
+	Blockly.Arduino.definitions_['amb82_mini_file_read'] =''
+		+'String amb82_mini_file_read(File file, size_t len) {\n'
+		+'  char buf[len];\n'
+		+'  memset(buf, 0, sizeof(buf));\n'
+		+'  file.read(buf, sizeof(buf));\n'
+		+'  return String(buf);\n'
+		+'}\n';	
+	var code = 'amb82_mini_file_read(file, '+buf+')';
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 

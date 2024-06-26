@@ -136,4 +136,5 @@
 <category><name>amb82_mini_DeepSleep</name><replace>Deep sleep</replace></category>
 <category><name>amb82_mini_RTC</name><replace>RTC</replace></category>
 <category><name>amb82_mini_FileSystem</name><replace>File system</replace></category>
+<category><name>amb82_mini_udp</name><replace>UDP</replace></category>
 </xml>
