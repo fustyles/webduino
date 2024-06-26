@@ -91,7 +91,7 @@ Blockly.Blocks['amb82_mini_file_read_char'] = {
 	this.setInputsInline(true);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(Blockly.Msg["HUE_29"]);		
+    this.setColour(Blockly.Msg["HUE_28"]);		
   }
 };
 
@@ -102,10 +102,61 @@ Blockly.Blocks['amb82_mini_file_read_char_get'] = {
 		.appendField(Blockly.Msg["AMB82_MINI_FILE_READ_CHAR_GET"]);	
 	this.setInputsInline(true);
 	this.setOutput(true, null);  
-	this.setColour(Blockly.Msg["HUE_29"]);	
+	this.setColour(Blockly.Msg["HUE_28"]);	
   }
 };
 
+Blockly.Blocks['amb82_mini_folder_list'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+		.appendField(Blockly.Msg["AMB82_MINI_FOLDER_LIST"]);		
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg["AMB82_MINI_FOLDER_OPEN"],"open"],		
+		  [Blockly.Msg["AMB82_MINI_FOLDER_ROOT"],"root"]
+		], this.validate), "type");
+	this.appendValueInput("foldername")
+		.setCheck("String");		
+    this.appendStatementInput("statement")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_LIST"]);		
+	this.setInputsInline(true);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_27"]);	
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="root") {
+			block.getInput("foldername").setVisible(false);		
+		} else {
+			block.getInput("foldername").setVisible(true);			
+		}
+  }
+};
+
+Blockly.Blocks['amb82_mini_folder_list_attribute'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+		.appendField(Blockly.Msg["AMB82_MINI_FOLDER_LIST"]);	
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_DIR"],"dir"],		
+		  [Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_FILE"],"file"],		
+		  [Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_NAME"],"filename"],		
+		  [Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_PATH"],"filepath"]
+		]), "type");
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_27"]);	
+  }
+};
 
 
 

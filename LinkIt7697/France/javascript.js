@@ -1,5 +1,5 @@
 Blockly.Arduino['amb82_mini_folder'] = function(block) {
-	Blockly.Arduino.definitions_['amb82_mini_folder_initial'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\n';
+	Blockly.Arduino.definitions_['amb82_mini_folder_initial'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\nchar *file_list;\n';
 	var type = block.getFieldValue('type');
 	var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC);
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
@@ -51,6 +51,52 @@ Blockly.Arduino['amb82_mini_file_read_char_get'] = function(block) {
 	var code = 'file_read_char';
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
+
+Blockly.Arduino['amb82_mini_folder_list'] = function(block) {
+	Blockly.Arduino.definitions_['amb82_mini_folder_initial'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\nchar obj_buf[512];\nchar obj_path[512];\nchar *obj_name;\n';
+	var type = block.getFieldValue('type');
+	var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC);
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+	
+	var path = 'char *dir_path = fs.getRootPath();\n';
+	if (type=="open")
+		path = 'String path = String(fs.getRootPath())+'+foldername+'+"/";\nchar *dir_path = String(path).c_str();\n';
+	else if (type=="root")
+		path = 'char *dir_path = fs.getRootPath();\n';
+
+	var code = 'fs.begin();\n'
+				+path	
+				+'fs.readDir(dir_path, obj_buf, sizeof(obj_buf));\n'
+				+'obj_name = obj_buf;\n'
+				+'while (strlen(obj_name) > 0) {\n'
+				+'  file_path = String(dir_path)+String(obj_name);\n'				
+				+'  sprintf(obj_path, "%s%s", dir_path, obj_name);\n'
+				+statement+'\n'
+				+'  obj_name += strlen(obj_name) + 1;\n'
+				+'}\n'
+				+'free(obj_name);\n'
+				+'free(dir_path);\n'				
+				+'fs.end();\n';				;	
+    return code;
+};
+
+Blockly.Arduino['amb82_mini_folder_list_attribute'] = function(block) {
+	var type = block.getFieldValue('type');	
+	if (type=="dir")
+		var code = 'fs.isDir(obj_path)';
+	else if (type=="file")
+		var code = 'fs.isFile(obj_path)';
+	else if (type=="filename") 
+		var code = 'String(obj_name)';	
+	else if (type=="filepath") 
+		var code = 'String(file_path)';	
+	else
+		var code = '';	
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+
+
 
 
 

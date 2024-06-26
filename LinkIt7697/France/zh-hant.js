@@ -30,7 +30,7 @@ Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
 Blockly.Msg["AMB82_MINI_FOLDER"] = "設定資料夾為";
-Blockly.Msg["AMB82_MINI_FOLDER_OPEN"] = "開啟";
+Blockly.Msg["AMB82_MINI_FOLDER_OPEN"] = "子目錄";
 Blockly.Msg["AMB82_MINI_FOLDER_CREATE"] = "建立";
 Blockly.Msg["AMB82_MINI_FOLDER_ROOT"] = "根目錄";
 Blockly.Msg["AMB82_MINI_FOLDER_EXECUTE"] = "執行";
@@ -41,6 +41,11 @@ Blockly.Msg["AMB82_MINI_FILE_READ"] = "讀取字串";
 Blockly.Msg["AMB82_MINI_FILE_READ_SIZE"] = "長度";
 Blockly.Msg["AMB82_MINI_FILE_READ_CHAR"] = "列舉所有字元";
 Blockly.Msg["AMB82_MINI_FILE_READ_CHAR_GET"] = "取得一個字元";
+Blockly.Msg["AMB82_MINI_FOLDER_LIST"] = "列舉資料夾物件屬性";
+Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_DIR"] = "為資料夾";
+Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_FILE"] = "為檔案";
+Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_NAME"] = "物件名稱";
+Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_PATH"] = "物件路徑";
 
 Blockly.Msg["AMB82_MINI_RTC_INITIAL"] = "RTC設定現在時間";
 Blockly.Msg["AMB82_MINI_RTC_YEAR"] = "年";
