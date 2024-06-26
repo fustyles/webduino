@@ -29,6 +29,17 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["AMB82_MINI_FOLDER"] = "資料夾";
+Blockly.Msg["AMB82_MINI_FOLDER_OPEN"] = "開啟";
+Blockly.Msg["AMB82_MINI_FOLDER_CREATE"] = "建立";
+Blockly.Msg["AMB82_MINI_FOLDER_ROOT"] = "根目錄";
+Blockly.Msg["AMB82_MINI_FOLDER_EXECUTE"] = "開啟後執行";
+Blockly.Msg["AMB82_MINI_FILE_OPEN"] = "開啟檔案名稱";
+Blockly.Msg["AMB82_MINI_FILE_EXECUTE"] = "開啟後執行";
+Blockly.Msg["AMB82_MINI_FILE_WRITE"] = "寫入資料";
+Blockly.Msg["AMB82_MINI_FILE_READ"] = "讀取資料";
+Blockly.Msg["AMB82_MINI_FILE_READ_SIZE"] = "長度";
+
 Blockly.Msg["AMB82_MINI_RTC_INITIAL"] = "RTC設定現在時間";
 Blockly.Msg["AMB82_MINI_RTC_YEAR"] = "年";
 Blockly.Msg["AMB82_MINI_RTC_MONTH"] = "月";

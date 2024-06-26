@@ -1,3 +1,82 @@
+Blockly.Blocks['amb82_mini_folder'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+		.appendField(Blockly.Msg["AMB82_MINI_FOLDER"]);		
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg["AMB82_MINI_FOLDER_OPEN"],"open"],		
+		  [Blockly.Msg["AMB82_MINI_FOLDER_CREATE"],"create"],		
+		  [Blockly.Msg["AMB82_MINI_FOLDER_ROOT"],"root"]
+		]), "type");
+	this.appendValueInput("foldername")
+		.setCheck("String");
+    this.appendStatementInput("statement")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["AMB82_MINI_FOLDER_EXECUTE"]);		
+	this.setInputsInline(true);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_18"]);	
+  }
+};
+
+Blockly.Blocks['amb82_mini_file_open'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"]);
+	this.appendValueInput("filename")
+		.setCheck("String")
+        .setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["AMB82_MINI_FILE_OPEN"]);	
+    this.appendStatementInput("statement")
+        .setCheck(null)
+		.appendField(Blockly.Msg["AMB82_MINI_FILE_EXECUTE"]);		
+	this.setInputsInline(true);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_18"]);	
+  }
+};
+
+Blockly.Blocks['amb82_mini_file_write'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"]);
+	this.appendValueInput("content")
+		.setCheck("String")
+        .setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["AMB82_MINI_FILE_WRITE"]);		
+	this.setInputsInline(true);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_18"]);	
+  }
+};
+
+Blockly.Blocks['amb82_mini_file_read'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+		.appendField(Blockly.Msg["AMB82_MINI_FILE_READ"]);
+    this.appendValueInput("buf")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_FILE_READ_SIZE"]);		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_18"]);	
+  }
+};
+
+
+
+
+
+
+
 Blockly.Blocks['amb82_mini_rtc_initial'] = {
   init: function() {
     this.appendDummyInput()

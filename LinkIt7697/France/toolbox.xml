@@ -3209,6 +3209,34 @@
 			</block>			
 		</category>			
 		<category id="france23" name="amb82_mini_FileSystem">
+			<block type="amb82_mini_folder">
+				<value name="foldername">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>			
+			</block>	
+			<block type="amb82_mini_file_open">
+				<value name="filename">
+				  <block type="text">
+					<field name="TEXT">test.txt</field>
+				  </block>
+				</value>			
+			</block>	
+			<block type="amb82_mini_file_write">
+				<value name="content">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>			
+			</block>	
+			<block type="amb82_mini_file_read">
+				<value name="buf">
+				  <block type="math_number">
+					<field name="NUM">128</field>
+				  </block>
+				</value>			
+			</block>				
 		</category>	
 	</category>	
 
