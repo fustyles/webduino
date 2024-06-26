@@ -9,7 +9,7 @@ Blockly.Blocks['amb82_mini_folder'] = {
 		  [Blockly.Msg["AMB82_MINI_FOLDER_OPEN"],"open"],		
 		  [Blockly.Msg["AMB82_MINI_FOLDER_CREATE"],"create"],		
 		  [Blockly.Msg["AMB82_MINI_FOLDER_ROOT"],"root"]
-		]), "type");
+		], this.validate), "type");
 	this.appendValueInput("foldername")
 		.setCheck("String");
     this.appendStatementInput("statement")
@@ -19,7 +19,16 @@ Blockly.Blocks['amb82_mini_folder'] = {
 	this.setInputsInline(true);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(Blockly.Msg["HUE_18"]);	
+    this.setColour(Blockly.Msg["HUE_29"]);	
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="root") {
+			block.getInput("foldername").setVisible(false);		
+		} else {
+			block.getInput("foldername").setVisible(true);			
+		}
   }
 };
 
@@ -37,7 +46,7 @@ Blockly.Blocks['amb82_mini_file_open'] = {
 	this.setInputsInline(true);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(Blockly.Msg["HUE_18"]);	
+    this.setColour(Blockly.Msg["HUE_29"]);	
   }
 };
 
@@ -52,7 +61,7 @@ Blockly.Blocks['amb82_mini_file_write'] = {
 	this.setInputsInline(true);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(Blockly.Msg["HUE_18"]);	
+    this.setColour(Blockly.Msg["HUE_29"]);	
   }
 };
 
@@ -67,7 +76,7 @@ Blockly.Blocks['amb82_mini_file_read'] = {
 		.appendField(Blockly.Msg["AMB82_MINI_FILE_READ_SIZE"]);		
 	this.setInputsInline(true);
 	this.setOutput(true, null);  
-	this.setColour(Blockly.Msg["HUE_18"]);	
+	this.setColour(Blockly.Msg["HUE_29"]);	
   }
 };
 
@@ -212,7 +221,7 @@ Blockly.Blocks['amb82_mini_interrupt'] = {
 		.appendField(new Blockly.FieldDropdown([
  				[Blockly.Msg["AMB82_MINI_INTERRUPT_HIGH"],"INPUT_IRQ_RISE"],		
  				[Blockly.Msg["AMB82_MINI_INTERRUPT_LOW"],"INPUT_IRQ_FALL"]
-		], this.validate), "mode_");		
+		]), "mode_");		
     this.appendStatementInput("statement")
         .setCheck(null)
 		.appendField(Blockly.Msg["AMB82_MINI_INTERRUPT_EXECUTE"]);

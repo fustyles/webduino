@@ -6,11 +6,11 @@ Blockly.Arduino['amb82_mini_folder'] = function(block) {
 	
 	var path = '';
 	if (type=="open")
-		path = 'String file_path = fs.getRootPath()+'+foldername+';\n';
+		path = 'String file_path = String(fs.getRootPath())+'+foldername+';\n';
 	else if (type=="create")
-		path = 'String file_path = fs.getRootPath()+'+foldername+';\nfs.mkdir(file_path);\n';
+		path = 'String file_path = String(fs.getRootPath())+'+foldername+';\nfs.mkdir(file_path);\n';
 	else if (type=="root")
-		path = 'String file_path = fs.getRootPath();\n';
+		path = 'String file_path = String(fs.getRootPath());\n';
 	var code = 'fs.begin();\n'+path+statement+'fs.end();\n';
     return code;
 };
@@ -24,7 +24,7 @@ Blockly.Arduino['amb82_mini_file_open'] = function(block) {
 
 Blockly.Arduino['amb82_mini_file_write'] = function(block) {
 	var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC);
-	var code = 'file.println('+content+');\n';
+	var code = 'file.println(String('+content+').c_str());\n';
     return code;
 };
 

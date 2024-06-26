@@ -3236,14 +3236,7 @@
 					<field name="NUM">128</field>
 				  </block>
 				</value>			
-			</block>
-			  <block type="amb82_mini_video_capture_sd">
-					<value name="filename">
-						<block type="text">
-							<field name="TEXT">1</field>
-						</block>
-					</value>			  
-			  </block>			
+			</block>		
 		</category>	
 	</category>	
 
