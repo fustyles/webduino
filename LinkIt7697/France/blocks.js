@@ -150,8 +150,8 @@ Blockly.Blocks['amb82_mini_folder_list_attribute'] = {
 		  [Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_DIR"],"dir"],		
 		  [Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_FILE"],"file"],		
 		  [Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_NAME"],"filename"],		
-		  [Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_DIRPATH"],"dirpath"],		
-		  [Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_FILEPATH"],"filepath"]
+		  [Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_FILEPATH"],"filepath"],		
+		  [Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_DIRPATH"],"dirpath"]
 		]), "type");
 	this.setInputsInline(true);
 	this.setOutput(true, null);  

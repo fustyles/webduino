@@ -45,8 +45,8 @@ Blockly.Msg["AMB82_MINI_FOLDER_LIST"] = "Enumerate folder attributes";
 Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_DIR"] = "is a directory";
 Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_FILE"] = "is a file";
 Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_NAME"] = "Object Name";
-Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_DIRPATH"] = "Directory Path";
 Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_FILEPATH"] = "Object Path";
+Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_DIRPATH"] = "Object directory Path";
 
 Blockly.Msg["AMB82_MINI_RTC_INITIAL"] = "RTC set current time";
 Blockly.Msg["AMB82_MINI_RTC_YEAR"] = "Year";
