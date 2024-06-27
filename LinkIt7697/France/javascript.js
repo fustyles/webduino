@@ -58,19 +58,19 @@ Blockly.Arduino['amb82_mini_folder_list'] = function(block) {
 	var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC);
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
 	
-	var path = 'char *dir_path = fs.getRootPath();\n';
+	var path = 'char *dir_path = fs.getRootPath();\nString dir_seq = "";\n';
 	if (type=="open")
-		path = 'String path = String(fs.getRootPath())+'+foldername+'+"/";\nchar *dir_path = String(path).c_str();\n';
+		path = 'String str = String(fs.getRootPath())+String('+foldername+');\nchar *dir_path = new char[str.length() + 1];\nstrcpy(dir_path, str.c_str());\nString dir_seq = "/";\n';
 	else if (type=="root")
-		path = 'char *dir_path = fs.getRootPath();\n';
+		path = 'char *dir_path = fs.getRootPath();\nString dir_seq = "";\n';
 
 	var code = 'fs.begin();\n'
 				+path	
 				+'fs.readDir(dir_path, obj_buf, sizeof(obj_buf));\n'
 				+'obj_name = obj_buf;\n'
 				+'while (strlen(obj_name) > 0) {\n'
-				+'  file_path = String(dir_path)+String(obj_name);\n'				
-				+'  sprintf(obj_path, "%s%s", dir_path, obj_name);\n'
+				+'  file_path = String(dir_path)+dir_seq+String(obj_name);\n'				
+				+'  sprintf(obj_path, "%s%s%s", dir_path, dir_seq.c_str(), obj_name);\n'
 				+statement+'\n'
 				+'  obj_name += strlen(obj_name) + 1;\n'
 				+'}\n'
@@ -88,8 +88,10 @@ Blockly.Arduino['amb82_mini_folder_list_attribute'] = function(block) {
 		var code = 'fs.isFile(obj_path)';
 	else if (type=="filename") 
 		var code = 'String(obj_name)';	
+	else if (type=="dirpath") 
+		var code = 'String(dir_path)';
 	else if (type=="filepath") 
-		var code = 'String(file_path)';	
+		var code = 'String(file_path)';		
 	else
 		var code = '';	
 	return [code, Blockly.Arduino.ORDER_NONE];
