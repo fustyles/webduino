@@ -31,7 +31,7 @@ Blockly.Msg["HUE_30"] = 50;
 
 Blockly.Msg["AMB82_MINI_FOLDER"] = "設定資料夾為";
 Blockly.Msg["AMB82_MINI_FOLDER_OPEN"] = "子目錄";
-Blockly.Msg["AMB82_MINI_FOLDER_CREATE"] = "建立";
+Blockly.Msg["AMB82_MINI_FOLDER_CREATE"] = "建立子目錄";
 Blockly.Msg["AMB82_MINI_FOLDER_ROOT"] = "根目錄";
 Blockly.Msg["AMB82_MINI_FOLDER_EXECUTE"] = "執行";
 Blockly.Msg["AMB82_MINI_FILE_OPEN"] = "開啟檔案名稱";

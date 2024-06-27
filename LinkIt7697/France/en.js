@@ -30,8 +30,8 @@ Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
 Blockly.Msg["AMB82_MINI_FOLDER"] = "Set folder as";
-Blockly.Msg["AMB82_MINI_FOLDER_OPEN"] = "Open";
-Blockly.Msg["AMB82_MINI_FOLDER_CREATE"] = "Create";
+Blockly.Msg["AMB82_MINI_FOLDER_OPEN"] = "Sub directory";
+Blockly.Msg["AMB82_MINI_FOLDER_CREATE"] = "Create sub directory";
 Blockly.Msg["AMB82_MINI_FOLDER_ROOT"] = "Root directory";
 Blockly.Msg["AMB82_MINI_FOLDER_EXECUTE"] = "Execute";
 Blockly.Msg["AMB82_MINI_FILE_OPEN"] = "Open file name";
