@@ -1,3 +1,28 @@
+Blockly.Blocks['amb82_mini_telegram'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+		.appendField(Blockly.Msg["AMB82_MINI_TELEGRAMBOT"]);	
+    this.appendValueInput("token")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_CAM_TOKEN_SHOW);
+    this.appendValueInput("chatid")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_CAM_CHATID_SHOW);			
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(Blockly.Msg["HUE_12"]);
+  }
+};
+
+
+
+
+
+
 Blockly.Blocks['amb82_mini_folder'] = {
   init: function() {
     this.appendDummyInput()
@@ -1425,10 +1450,9 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp'] = {
 			["HD (1280×720)","VIDEO_HD"],
 			["D1 (704×576)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×340)","VIDEO_WVGA"],
+			["WVGA (640×340)","VIDEO_WVGA"]
 			//["CIF (352×288)","VIDEO_CIF"],
-			//["QCIF (176×144)","VIDEO_QCIF"],
-			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"],"VIDEO_CUSTOM"]
+			//["QCIF (176×144)","VIDEO_QCIF"]
 		]), "framesize");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_AFTER"]);	  

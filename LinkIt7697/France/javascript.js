@@ -1,3 +1,84 @@
+Blockly.Arduino['amb82_mini_telegram'] = function(block) {
+    var token = Blockly.Arduino.valueToCode(block, 'token', Blockly.Arduino.ORDER_ATOMIC);
+    var chatid = Blockly.Arduino.valueToCode(block, 'chatid', Blockly.Arduino.ORDER_ATOMIC);
+	
+	Blockly.Arduino.definitions_['WiFiClientSecure'] ='WiFiSSLClient client_tcp;\n';
+	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
+	
+	Blockly.Arduino.definitions_.sendCapturedImage2Telegram = '\n'+
+	'String sendCapturedImage2Telegram(String token, String chat_id) {\n'+
+	'  const char* myDomain = "api.telegram.org";\n'+
+	'  String getAll="", getBody = "";\n'+
+	'  Serial.println("Connect to " + String(myDomain));\n'+
+	'  if (client_tcp.connect(myDomain, 443)) {\n'+
+	'    Serial.println("Connection successful");\n'+
+	'    Camera.getImage(0, &img_addr, &img_len);\n'+	
+	'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
+	'    size_t fbLen = img_len;\n'+ 	
+	'    String head = "--Taiwan\\r\\nContent-Disposition: form-data; name=\\"chat_id\\"; \\r\\n\\r\\n" + chat_id + "\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"photo\\"; filename=\\"esp32-cam.jpg\\"\\r\\nContent-Type: image/jpeg\\r\\n\\r\\n";\n'+
+	'    String tail = "\\r\\n--Taiwan--\\r\\n";\n'+
+	'    uint16_t imageLen = img_len;\n'+
+	'    uint16_t extraLen = head.length() + tail.length();\n'+
+	'    uint16_t totalLen = imageLen + extraLen;\n'+
+	'    client_tcp.println("POST /bot"+token+"/sendPhoto HTTP/1.1");\n'+
+	'    client_tcp.println("Host: " + String(myDomain));\n'+
+	'    client_tcp.println("Content-Length: " + String(totalLen));\n'+
+	'    client_tcp.println("Content-Type: multipart/form-data; boundary=Taiwan");\n'+
+	'    client_tcp.println();\n'+
+	'    client_tcp.print(head);\n'+
+	'    for (size_t n=0;n<fbLen;n=n+1024) {\n'+
+	'      if (n+1024<fbLen) {\n'+
+	'        client_tcp.write(fbBuf, 1024);\n'+
+	'        fbBuf += 1024;\n'+
+	'      } else if (fbLen%1024>0) {\n'+
+	'        size_t remainder = fbLen%1024;\n'+
+	'        client_tcp.write(fbBuf, remainder);\n'+
+	'      }\n'+
+	'    }\n'+
+	'    client_tcp.print(tail);\n'+
+	'    int waitTime = 10000;\n'+
+	'    long startTime = millis();\n'+
+	'    boolean state = false;\n'+
+	'    while ((startTime + waitTime) > millis()) {\n'+
+	'      Serial.print(".");\n'+
+	'      delay(100);\n'+
+	'      while (client_tcp.available()) {\n'+
+	'          char c = client_tcp.read();\n'+
+	'          if (state==true) getBody += String(c);\n'+
+	'          if (c == \'\\n\') {\n'+
+	'            if (getAll.length()==0) state=true;\n'+
+	'            getAll = "";\n'+
+	'          }\n'+
+	'          else if (c != \'\\r\')\n'+
+	'            getAll += String(c);\n'+
+	'          startTime = millis();\n'+
+	'       }\n'+
+	'       if (getBody.length()>0) break;\n'+
+	'    }\n'+
+	'    client_tcp.stop();\n'+
+	'    Serial.println();\n'+
+	'    //Serial.println(getBody);\n'+
+	'  } else {\n'+
+	'    getBody="Connected to api.telegram.org failed.";\n'+
+	'    Serial.println("Connected to api.telegram.org failed.");\n'+
+	'  }\n'+
+	'  return getBody;\n'+
+	'}\n';
+			
+	var code = 'sendCapturedImage2Telegram('+token+', '+chatid+');\n';
+	return code;			
+}
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Arduino['amb82_mini_folder'] = function(block) {
 	Blockly.Arduino.definitions_['amb82_mini_folder_initial'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\nchar *file_list;\n';
 	var type = block.getFieldValue('type');

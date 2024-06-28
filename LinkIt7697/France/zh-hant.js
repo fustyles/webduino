@@ -29,6 +29,8 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "截圖上傳Telegram Bot";
+
 Blockly.Msg["AMB82_MINI_MODE"] = "模式";
 Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP串流";
 Blockly.Msg["AMB82_MINI_STILL"] = "影像截取";

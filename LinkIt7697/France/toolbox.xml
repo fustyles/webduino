@@ -2442,6 +2442,18 @@
 					  </block>
 					</value>					
 			  </block>
+			  <block type="amb82_mini_telegram">
+				<value name="token">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="chatid">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>				
+			  </block>			  
 			  <block type="amb82_mini_googledrive">
 				<value name="scriptid">
 				  <block type="text">

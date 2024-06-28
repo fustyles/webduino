@@ -29,6 +29,8 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "Upload Screenshot to Telegram Bot";
+
 Blockly.Msg["AMB82_MINI_MODE"] = "Mode";
 Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP Streaming";
 Blockly.Msg["AMB82_MINI_STILL"] = "Image Capture";
