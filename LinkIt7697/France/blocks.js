@@ -584,7 +584,29 @@ Blockly.Blocks['amb82_mini_facedetectionrecognition_rtsp'] = {
 		.appendField(new Blockly.FieldDropdown([
 			["Y","Y"],
 			["N","N"]
-		]), "label");		
+		]), "label");
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_MODE"])
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_RTSP"],"rtsp"],
+			[Blockly.Msg["AMB82_MINI_STILL"],"still"]
+		], this.validate), "mode");
+	this.appendDummyInput("size")
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			//["2K (2560×1440)","VIDEO_2K"],
+			//["5M (2448×2050)","VIDEO_5M"], 
+			//["3M (2048×1536)","VIDEO_3M"],
+			["FHD (1920×1080)","VIDEO_FHD"],
+			["HD (1280×720)","VIDEO_HD"],
+			["D1 (704×576)","VIDEO_D1"],
+			["VGA (640×480)","VIDEO_VGA"],
+			["WVGA (640×340)","VIDEO_WVGA"]
+			//["CIF (352×288)","VIDEO_CIF"],
+			//["QCIF (176×144)","VIDEO_QCIF"]
+		]), "framesize");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_AFTER"]);	  
     this.appendStatementInput("statement")
@@ -597,6 +619,15 @@ Blockly.Blocks['amb82_mini_facedetectionrecognition_rtsp'] = {
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
     this.setColour(Blockly.Msg["HUE_23"]);
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="rtsp") {
+			block.getInput("size").setVisible(false);
+		} else {
+			block.getInput("size").setVisible(true);	
+		}
   }
 };
 
@@ -701,7 +732,29 @@ Blockly.Blocks['amb82_mini_facedetection_rtsp'] = {
 		.appendField(new Blockly.FieldDropdown([
 			["Y","Y"],
 			["N","N"]
-		]), "label");		
+		]), "label");
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_MODE"])
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_RTSP"],"rtsp"],
+			[Blockly.Msg["AMB82_MINI_STILL"],"still"]
+		], this.validate), "mode");
+	this.appendDummyInput("size")
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			//["2K (2560×1440)","VIDEO_2K"],
+			//["5M (2448×2050)","VIDEO_5M"], 
+			//["3M (2048×1536)","VIDEO_3M"],
+			["FHD (1920×1080)","VIDEO_FHD"],
+			["HD (1280×720)","VIDEO_HD"],
+			["D1 (704×576)","VIDEO_D1"],
+			["VGA (640×480)","VIDEO_VGA"],
+			["WVGA (640×340)","VIDEO_WVGA"]
+			//["CIF (352×288)","VIDEO_CIF"],
+			//["QCIF (176×144)","VIDEO_QCIF"]
+		]), "framesize");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTION_AFTER"]);	  
     this.appendStatementInput("statement")
@@ -714,6 +767,15 @@ Blockly.Blocks['amb82_mini_facedetection_rtsp'] = {
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
     this.setColour(Blockly.Msg["HUE_12"]);
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="rtsp") {
+			block.getInput("size").setVisible(false);
+		} else {
+			block.getInput("size").setVisible(true);	
+		}
   }
 };
 
@@ -1048,7 +1110,29 @@ Blockly.Blocks['amb82_mini_emotionclassification_rtsp'] = {
 			.appendField(new Blockly.FieldDropdown([
  				["IMGCLASS","DEFAULT_IMGCLASS"],
  				["IMGCLASS_SD","CUSTOMIZED_IMGCLASS"]
-		]), "model");		
+		]), "model");
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_MODE"])
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_RTSP"],"rtsp"],
+			[Blockly.Msg["AMB82_MINI_STILL"],"still"]
+		], this.validate), "mode");
+	this.appendDummyInput("size")
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			//["2K (2560×1440)","VIDEO_2K"],
+			//["5M (2448×2050)","VIDEO_5M"], 
+			//["3M (2048×1536)","VIDEO_3M"],
+			["FHD (1920×1080)","VIDEO_FHD"],
+			["HD (1280×720)","VIDEO_HD"],
+			["D1 (704×576)","VIDEO_D1"],
+			["VGA (640×480)","VIDEO_VGA"],
+			["WVGA (640×340)","VIDEO_WVGA"]
+			//["CIF (352×288)","VIDEO_CIF"],
+			//["QCIF (176×144)","VIDEO_QCIF"]
+		]), "framesize");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_AFTER"]);	  
     this.appendStatementInput("statement")
@@ -1061,6 +1145,15 @@ Blockly.Blocks['amb82_mini_emotionclassification_rtsp'] = {
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
     this.setColour(Blockly.Msg["HUE_22"]);
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="rtsp") {
+			block.getInput("size").setVisible(false);
+		} else {
+			block.getInput("size").setVisible(true);	
+		}
   }
 };
 
