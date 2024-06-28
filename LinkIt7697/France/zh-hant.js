@@ -29,6 +29,10 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["AMB82_MINI_MODE"] = "模式";
+Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP串流";
+Blockly.Msg["AMB82_MINI_STILL"] = "影像截取";
+
 Blockly.Msg["AMB82_MINI_FOLDER"] = "設定資料夾為";
 Blockly.Msg["AMB82_MINI_FOLDER_OPEN"] = "子目錄";
 Blockly.Msg["AMB82_MINI_FOLDER_CREATE"] = "建立子目錄";
@@ -203,7 +207,7 @@ Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"] = "自訂";
 Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"] = "擷取影像上傳Google雲端硬碟";
 Blockly.Msg["AMB82_MINI_STILL_URL"] = "張流網址";
 Blockly.Msg["AMB82_MINI_STREAM_URL"] = "串流網址";
-Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP初始化";
+Blockly.Msg["AMB82_MINI_RTSP_INITIAL"] = "RTSP初始化";
 Blockly.Msg["AMB82_MINI_VIDEOONLY"] = "單影像";
 Blockly.Msg["AMB82_MINI_DOUBLEVIDEO"] = "雙影像";
 Blockly.Msg["AMB82_MINI_SINGLEVIDEOWITHAUDIO"] = "單影音";
