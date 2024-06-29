@@ -2475,6 +2475,14 @@
 					<field name="TEXT">amb82</field>
 				  </block>
 				</value>				
+			  </block>
+			  <block type="fu_mqtt_sendimage">
+				<value name="topic">
+				  <block type="text">
+					<field name="TEXT">yourtopic/data</field>
+				  </block>
+				</value>
+				<field name="board">AMB82-MINI</field>
 			  </block>				  
 		</category>	
 		<category id="france23" name="amb82_mini_rtsp">
