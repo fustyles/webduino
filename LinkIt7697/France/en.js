@@ -31,9 +31,9 @@ Blockly.Msg["HUE_30"] = 50;
 
 Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "Upload Screenshot to Telegram Bot";
 
-Blockly.Msg["AMB82_MINI_MODE"] = "Mode";
-Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP Streaming";
-Blockly.Msg["AMB82_MINI_STILL"] = "Image Capture";
+Blockly.Msg["AMB82_MINI_MODE"] = "Format";
+Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP Streaming (Default)";
+Blockly.Msg["AMB82_MINI_STILL"] = "RTSP Streaming and Screenshot (Custom)";
 
 Blockly.Msg["AMB82_MINI_FOLDER"] = "Set folder as";
 Blockly.Msg["AMB82_MINI_FOLDER_OPEN"] = "Sub directory";

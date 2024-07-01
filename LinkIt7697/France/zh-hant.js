@@ -31,9 +31,9 @@ Blockly.Msg["HUE_30"] = 50;
 
 Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "截圖上傳Telegram Bot";
 
-Blockly.Msg["AMB82_MINI_MODE"] = "模式";
-Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP串流";
-Blockly.Msg["AMB82_MINI_STILL"] = "影像截取";
+Blockly.Msg["AMB82_MINI_MODE"] = "格式";
+Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP串流(預設)";
+Blockly.Msg["AMB82_MINI_STILL"] = "RTSP串流與截圖(自訂)";
 
 Blockly.Msg["AMB82_MINI_FOLDER"] = "設定資料夾為";
 Blockly.Msg["AMB82_MINI_FOLDER_OPEN"] = "子目錄";
