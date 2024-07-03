@@ -125,15 +125,6 @@ var catPageElements ='<xml>'+
 '    </shadow>'+
 '    </value>'+
 '    </block>'+
-'    <block type="window_confirm">'+
-'    <value name="message">'+
-'    <block type="text">'+
-'    <field name="TEXT"></field>'+
-'    </block>'+
-'    </value>'+
-'    </block>'+
-'		<block type="try_catch_finally">'+
-'		</block>'+
 '    <block type="window_prompt">'+
 '    <value name="title">'+
 '    <block type="text">'+
@@ -141,6 +132,15 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="window_confirm">'+
+'    <value name="message">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
+'	 <block type="try_catch_finally">'+
+'	 </block>'+
 '    <block type="document_exitFullscreen">'+
 '    </block>'+ 
 '    <block type="custom_comment">'+

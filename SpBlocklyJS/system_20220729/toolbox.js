@@ -88,6 +88,13 @@ var catWindow ='<xml>'+
 '    </shadow>'+
 '    </value>'+
 '    </block>'+
+'    <block type="window_prompt">'+
+'    <value name="title">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
 '    <block type="window_confirm">'+
 '    <value name="message">'+
 '    <block type="text">'+
@@ -95,8 +102,8 @@ var catWindow ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
-'		<block type="try_catch_finally">'+
-'		</block>'+
+'	 <block type="try_catch_finally">'+
+'	 </block>'+
 '    <block type="window_open">'+
 '    <value name="url_">'+
 '    <block type="text">'+
