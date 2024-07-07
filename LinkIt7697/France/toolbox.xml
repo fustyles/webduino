@@ -2991,7 +2991,9 @@
 			  <block type="amb82_mini_audioclassification_count">		  
 			  </block> 			  
 			  <block type="amb82_mini_audioclassification_get">		  
-			  </block>  
+			  </block>
+			  <block type="amb82_mini_audioclassification_object">		  
+			  </block> 			  
 		</category>	
 		<category id="france23" name="amb82_mini_ImageClassification">				
 			  <block type="amb82_mini_imageclassification">		  

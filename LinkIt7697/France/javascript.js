@@ -1013,6 +1013,12 @@ Blockly.Arduino['amb82_mini_audioclassification_get'] = function(block) {
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['amb82_mini_audioclassification_object'] = function(block) {
+    var audioclass = block.getFieldValue('audioclass');	
+	var code = '(String(audioNames[class_id].audioName)=="'+audioclass+'")';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['amb82_mini_facedetectionrecognition_rtsp'] = function(block) {
 	
 	Blockly.Arduino.definitions_.define_custom_command = "";
