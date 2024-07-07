@@ -2400,7 +2400,7 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 	Blockly.Arduino.setups_.write_peri_reg = "";
 	
 	if (type=="VideoOnly") {
-		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\nMP4Recording mp4;\nStreamIO videoStreamer(1, 1);uint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\nMP4Recording mp4;\nStreamIO videoStreamer(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
 		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
 											'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
@@ -2418,7 +2418,7 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 											'Camera.channelBegin(amb82_CHANNEL);\n  '+
 											'Camera.printInfo();\n';									
 	} else if (type=="SingleVideoWithAudio") {
-		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting configV(amb82_CHANNEL);\nAudioSetting configA('+audio+');\nAudio audio;\nAAC aac;\nMP4Recording mp4;\nStreamIO audioStreamer(1, 1);\nStreamIO avMixStreamer(2, 1);uint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting configV(amb82_CHANNEL);\nAudioSetting configA('+audio+');\nAudio audio;\nAAC aac;\nMP4Recording mp4;\nStreamIO audioStreamer(1, 1);\nStreamIO avMixStreamer(2, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
 		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
 											'Camera.configVideoChannel(amb82_CHANNEL, configV);\n  '+
@@ -2499,7 +2499,7 @@ Blockly.Arduino['amb82_mini_rtsp'] = function(block) {
 	Blockly.Arduino.setups_.write_peri_reg = "";
 	
 	if (type=="VideoOnly") {
-		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);uint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
 		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
 											'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
@@ -2519,7 +2519,7 @@ Blockly.Arduino['amb82_mini_rtsp'] = function(block) {
 											'Serial.print(":");\n  '+
 											'rtsp.printInfo();';
 	} else if (type=="DoubleVideo") {
-		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\nRTSP rtsp1;\nRTSP rtsp2;\nStreamIO videoStreamer(1, 2);uint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\nRTSP rtsp1;\nRTSP rtsp2;\nStreamIO videoStreamer(1, 2);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
 		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
 											'Camera.configVideoChannel(0, config);\n  '+
@@ -2546,7 +2546,7 @@ Blockly.Arduino['amb82_mini_rtsp'] = function(block) {
 											'Serial.print(":");\n  '+
 											'rtsp2.printInfo();';											
 	} else if (type=="SingleVideoWithAudio") {
-		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting configV(amb82_CHANNEL);\nAudioSetting configA('+audio+');\nAudio audio;\nAAC aac;\nRTSP rtsp;\nStreamIO audioStreamer(1, 1);\nStreamIO avMixStreamer(2, 1);uint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting configV(amb82_CHANNEL);\nAudioSetting configA('+audio+');\nAudio audio;\nAAC aac;\nRTSP rtsp;\nStreamIO audioStreamer(1, 1);\nStreamIO avMixStreamer(2, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
 		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
 											'Camera.configVideoChannel(amb82_CHANNEL, configV);\n  '+
@@ -2579,7 +2579,7 @@ Blockly.Arduino['amb82_mini_rtsp'] = function(block) {
 											'Serial.println("- Audio -");\n  '+
 											'audio.printInfo();';					
 	} else if (type=="DoubleVideoWithAudio") {
-		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "RTSP.h"\nVideoSetting configV1(VIDEO_FHD, CAM_FPS, VIDEO_H264, 0);\nVideoSetting configV2(VIDEO_HD, CAM_FPS, VIDEO_H264, 0);\nAudioSetting configA('+audio+');\nAudio audio;\nAAC aac;\nRTSP rtsp1;\nRTSP rtsp2;\nStreamIO audioStreamer(1, 1);\nStreamIO avMixStreamer(3, 2);uint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "RTSP.h"\nVideoSetting configV1(VIDEO_FHD, CAM_FPS, VIDEO_H264, 0);\nVideoSetting configV2(VIDEO_HD, CAM_FPS, VIDEO_H264, 0);\nAudioSetting configA('+audio+');\nAudio audio;\nAAC aac;\nRTSP rtsp1;\nRTSP rtsp2;\nStreamIO audioStreamer(1, 1);\nStreamIO avMixStreamer(3, 2);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
 		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
 											'Camera.configVideoChannel(0, configV1);\n  '+
@@ -2623,7 +2623,7 @@ Blockly.Arduino['amb82_mini_rtsp'] = function(block) {
 											'Serial.println("- Audio -");\n  '+
 											'audio.printInfo();';					
 	} else if (type=="V7RC") {
-		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(VIDEO_D1, CAM_FPS, VIDEO_H264, 0);\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);uint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(VIDEO_D1, CAM_FPS, VIDEO_H264, 0);\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
 		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
 											'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
@@ -2693,7 +2693,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 	
   if (framesize=="VIDEO_CUSTOM")
 	framesize = width +", "+height;
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\nchar ssid[] = '+ssid+';\nchar pass[] = '+pass+';\nchar ssid_ap[] = '+ssid_ap+';\nchar pass_ap[] = '+pass_ap+';\nchar channel_ap[] = "2";uint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\nchar ssid[] = '+ssid+';\nchar pass[] = '+pass+';\nchar ssid_ap[] = '+ssid_ap+';\nchar pass_ap[] = '+pass_ap+';\nchar channel_ap[] = "2";\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
   Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
   //Blockly.Arduino.definitions_.define_custom_command = "";
