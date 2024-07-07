@@ -976,7 +976,7 @@ Blockly.Arduino['amb82_mini_audioclassification'] = function(block) {
 	'            AudioClassificationResult audio_item = results[i];\n'+
 	'            int class_id = (int)audio_item.classID();\n'+
 	'            if (audioNames[class_id].filter) {\n'+
-	'                int prob = audio_item.score();\n'+
+	'                //int prob = audio_item.score();\n'+
 	'                //printf("%d class %d, score: %d, audio name: %s\\r\\n", i, class_id, prob, audioNames[class_id].audioName);\n'+ statement+
 	'            }\n'+
 	'        }\n'+
