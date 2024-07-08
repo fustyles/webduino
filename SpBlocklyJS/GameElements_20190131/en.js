@@ -559,7 +559,7 @@ Blockly.Msg.WINDOW_NAME_NEW = "new_window";
 Blockly.Msg.WINDOW_NAME_PARENT = "origin_window";
 Blockly.Msg.WINDOW_NAME_SELF = "previous_window";
 Blockly.Msg.WINDOW_NAME_TOP = "any_window";
-
+Blockly.Msg.WINDOW_STOP = "Window stop";
 Blockly.Msg["CATPAGEELEMENTS"] = "Page Elements";
 Blockly.Msg["CATPAGEELEMENTS_GENERAL"] = "general";
 Blockly.Msg["CATPAGEELEMENTS_SPAN"] = "span";
