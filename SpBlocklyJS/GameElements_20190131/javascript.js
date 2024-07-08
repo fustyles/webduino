@@ -2271,6 +2271,11 @@ Blockly.JavaScript['window_open'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['window_stop'] = function (block) {
+  var code = 'window.stop();\n';
+  return code;
+};
+
 Blockly.JavaScript['span_create'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
