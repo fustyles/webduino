@@ -77,6 +77,8 @@
 				</block>
 			</value>
 		</block>
+		<block type="window_stop">
+		</block>		
 		<block type="custom_comment">
 			<value name="text">
 				<block type="text">
