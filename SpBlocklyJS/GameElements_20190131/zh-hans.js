@@ -556,7 +556,7 @@ Blockly.Msg.WINDOW_NAME_NEW = "新视窗";
 Blockly.Msg.WINDOW_NAME_PARENT = "目前视窗";
 Blockly.Msg.WINDOW_NAME_SELF = "前一开启视窗";
 Blockly.Msg.WINDOW_NAME_TOP = "任何可被开启视窗";
-
+Blockly.Msg.WINDOW_STOP = "视窗停止连线";
 Blockly.Msg["CATPAGEELEMENTS"] = "网页元素";
 Blockly.Msg["CATPAGEELEMENTS_GENERAL"] = "一般";
 Blockly.Msg["CATPAGEELEMENTS_SPAN"] = "行内容器";
