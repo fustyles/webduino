@@ -6688,6 +6688,17 @@ Blockly.Blocks['window_open'] = {
   }
 };
 
+Blockly.Blocks['window_stop'] = {
+  init: function() { 	  
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.WINDOW_STOP);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(50);  
+  }
+};
+
 Blockly.Blocks['span_create'] = {
   init: function() {
   this.appendDummyInput()   
