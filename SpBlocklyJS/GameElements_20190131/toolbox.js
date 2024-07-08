@@ -118,6 +118,8 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="window_stop">'+
+'    </block>'+	
 '    <block type="window_messagebox">'+
 '    <value name="message">'+
 '    <shadow type="text">'+
