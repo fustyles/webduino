@@ -2055,6 +2055,7 @@ Blockly.Msg["WINDOW_NAME_NEW"] = "新視窗";
 Blockly.Msg["WINDOW_NAME_PARENT"] = "目前視窗";
 Blockly.Msg["WINDOW_NAME_SELF"] = "前一啟啟視窗";
 Blockly.Msg["WINDOW_NAME_TOP"] = "任何可被開啟視窗";
+Blockly.Msg["WINDOW_STOP"] = "視窗停止連線";
 
 Blockly.Msg["MQTT_FU_INITIAL"] = "初始化";
 Blockly.Msg["MQTT_FU_ADDRESS"] = "主機位址";

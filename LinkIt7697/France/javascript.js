@@ -2695,6 +2695,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
   var height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC)||480;
   var baudrate = block.getFieldValue('baudrate');  
   var framesize = block.getFieldValue('framesize');
+  var rotation = block.getFieldValue('rotation');  
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
 	
   if (framesize=="VIDEO_CUSTOM")
@@ -2798,6 +2799,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'      WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
 			'    }\n'+
 			'    Serial.println("");\n'+
+			'    config.setRotation('+rotation+');\n'+
 			'    Camera.configVideoChannel(0, config);\n'+
 			'    Camera.videoInit();\n'+
 			'    Camera.channelBegin(0);\n'+
@@ -16620,7 +16622,10 @@ Blockly.Arduino['window_open'] = function (block) {
   return code;
 };
 
-
+Blockly.Arduino['window_stop'] = function (block) {
+  var code = 'window.stop();\n';
+  return code;
+};
 
 
 Blockly.Arduino.esp32_button_pin = function(){

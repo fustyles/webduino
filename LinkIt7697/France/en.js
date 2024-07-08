@@ -2047,6 +2047,7 @@ Blockly.Msg["WINDOW_NAME_NEW"] = "new_window";
 Blockly.Msg["WINDOW_NAME_PARENT"] = "origin_window";
 Blockly.Msg["WINDOW_NAME_SELF"] = "previous_window";
 Blockly.Msg["WINDOW_NAME_TOP"] = "any_window";
+Blockly.Msg["WINDOW_STOP"] = "Window stop";
 
 Blockly.Msg["MQTT_FU_INITIAL"] = "Initial";
 Blockly.Msg["MQTT_FU_ADDRESS"] = "address";

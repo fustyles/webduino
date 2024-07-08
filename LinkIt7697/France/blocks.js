@@ -3242,11 +3242,22 @@ Blockly.Blocks['amb82_mini_myfirmata'] = {
 			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"],"VIDEO_CUSTOM"]
 		], this.validate), "framesize");
 	this.appendValueInput("width")
+		.setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("Number")
 		.appendField(Blockly.Msg["WIDTH"]);
 	this.appendValueInput("height")
-		.setCheck("Number")
-		.appendField(Blockly.Msg["HEIGHT"]);	
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.setCheck("Number")	
+		.appendField(Blockly.Msg["HEIGHT"]);
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"])
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["0", "0"],
+			["90", "1"],
+			["180", "3"],		
+			["270", "2"]
+		]), "rotation");		
     this.appendValueInput("mainpage")
         .setCheck(null)
 		.setAlign(Blockly.ALIGN_RIGHT)		
@@ -24935,6 +24946,17 @@ Blockly.Blocks['window_open'] = {
 		  [Blockly.Msg.WINDOW_NAME_SELF,"_self"],
 		  [Blockly.Msg.WINDOW_NAME_TOP,"_top"]
 	  ]),"name_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(Blockly.Msg["HUE_1"]);  
+  }
+};
+
+Blockly.Blocks['window_stop'] = {
+  init: function() { 	  
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.WINDOW_STOP);
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
