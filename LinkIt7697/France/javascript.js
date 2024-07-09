@@ -2945,6 +2945,131 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
     return '';
 };
 
+Blockly.Arduino['amb82_mini_stream'] = function(block) {
+	
+  var ssid = Blockly.Arduino.valueToCode(block, 'ssid', Blockly.Arduino.ORDER_ATOMIC);
+  var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
+  var ssid_ap = Blockly.Arduino.valueToCode(block, 'ssid_ap', Blockly.Arduino.ORDER_ATOMIC);
+  var pass_ap = Blockly.Arduino.valueToCode(block, 'password_ap', Blockly.Arduino.ORDER_ATOMIC);  
+  var width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC)||640;
+  var height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC)||480;
+  var baudrate = block.getFieldValue('baudrate');  
+  var framesize = block.getFieldValue('framesize');
+  var rotation = block.getFieldValue('rotation');  
+	
+  if (framesize=="VIDEO_CUSTOM")
+	framesize = width +", "+height;
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nchar ssid[] = '+ssid+';\nchar pass[] = '+pass+';\nchar ssid_ap[] = '+ssid_ap+';\nchar pass_ap[] = '+pass_ap+';\nchar channel_ap[] = "2";\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+
+  Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
+  //Blockly.Arduino.definitions_.define_custom_command = "";
+	
+  Blockly.Arduino.definitions_.ExecuteCommand = 'WiFiServer server(80);\n';
+	
+	Blockly.Arduino.setups_.write_peri_reg = "";
+	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
+	Blockly.Arduino.setups_.setup_cam_initial='initWiFi();\n';
+	
+	Blockly.Arduino.definitions_['Ip2String'] =''+
+	'String Ip2String(IPAddress ip) {\n'+
+	'  return String(ip[0])+String(".")+String(ip[1])+String(".")+String(ip[2])+String(".")+String(ip[3]);\n'+
+	'}\n';
+
+	Blockly.Arduino.definitions_.initWiFi = ''+
+			'  void initWiFi() {\n'+
+			'    for (int i=0;i<2;i++) {\n'+
+			'      if (String(ssid)=="") break;\n'+
+			'      WiFi.begin(ssid, pass);\n'+
+			'      \n'+
+			'      delay(1000);\n'+
+			'      Serial.println("");\n'+
+			'      Serial.print("Connecting to ");\n'+
+			'      Serial.println(ssid);\n'+
+			'      \n'+
+			'      long int StartTime=millis();\n'+
+			'      while (WiFi.status() != WL_CONNECTED) {\n'+
+			'          delay(500);\n'+
+			'          if ((StartTime+5000) < millis()) break;\n'+
+			'      }\n'+
+			'      \n'+
+			'      if (WiFi.status() == WL_CONNECTED) {\n'+    
+			'        Serial.println("");\n'+
+			'        Serial.print("Stream: http://");\n'+
+			'        Serial.print(WiFi.localIP());\n'+		
+			'        break;\n'+
+			'      }\n'+
+			'    }\n'+
+			'    if (String(ssid_ap)!=""&&WiFi.status()!=WL_CONNECTED) {\n'+
+			'      WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
+			'    }\n'+
+			'    Serial.println("");\n'+
+			'    config.setRotation('+rotation+');\n'+
+			'    Camera.configVideoChannel(0, config);\n'+
+			'    Camera.videoInit();\n'+
+			'    Camera.channelBegin(0);\n'+
+			'    server.begin();\n'+		
+			'  }\n';
+
+	Blockly.Arduino.definitions_.getRequest = ''+
+			'  void getRequest() {\n'+
+			'    WiFiClient client = server.available();\n'+
+			'    \n'+
+			'    if (client) {\n'+
+			'      String currentLine = "";\n'+
+			'  	   \n'+
+			'      while (client.connected()) {\n'+
+			'        if (client.available()) {\n'+
+			'          char c = client.read();\n'+             
+			'          \n'+
+			'          \n'+
+			'          if (c == \'\\n\') {\n'+
+			'            if (currentLine.length() == 0) {\n'+  
+			'   	        String head = "--Taiwan\\r\\nContent-Type: image/jpeg\\r\\n\\r\\n";\n'+ 
+			'   	        client.println("HTTP/1.1 200 OK");\n'+ 
+			'   	        client.println("Access-Control-Allow-Origin: *");\n'+ 
+			'   	        client.println("Content-Type: multipart/x-mixed-replace; boundary=Taiwan");\n'+ 
+			'   	        client.println();\n'+ 
+			'   	        while(client.connected()) {\n'+ 
+			'   	        	Camera.getImage(0, &img_addr, &img_len);\n'+ 
+			'   	        	uint8_t *fbBuf = (uint8_t*)img_addr;\n'+ 
+			'   	        	size_t fbLen = img_len;\n'+ 
+			'   	        	client.print(head);\n'+ 
+			'   	        	for (size_t n=0;n<fbLen;n=n+1024) {\n'+ 
+			'   	        	  	if (n+1024<fbLen) {\n'+ 
+			'   	        	   		client.write(fbBuf, 1024);\n'+ 
+			'   	        	   		fbBuf += 1024;\n'+ 
+			'   	        		}\n'+ 
+			'   	        		else if (fbLen%1024>0) {\n'+ 
+			'   	        			size_t remainder = fbLen%1024;\n'+ 
+			'   	        			client.write(fbBuf, remainder);\n'+ 
+			'   	        		}\n'+ 
+			'   	        	}\n'+ 
+			'   	        	client.print("\\r\\n");\n'+
+			'   	        }\n'+ 
+			'   	        break;\n'+
+			'            } else {\n'+
+			'              currentLine = "";\n'+
+			'            }\n'+
+			'          }\n'+ 
+			'          else if (c != \'\\r\') {\n'+
+			'            currentLine += c;\n'+
+			'          }\n'+
+			'  		   \n'+
+			'          if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP")!=-1)) {\n'+
+			'            currentLine="";\n'+
+			'          }\n'+
+			'        }\n'+
+			'      }\n'+
+			'      delay(1);\n'+
+			'      client.stop();\n'+
+			'    }\n'+
+			'  }\n';			
+
+	Blockly.Arduino.loops_.server_getrequest = "getRequest();\n";			
+			
+    return '';
+};
+
 Blockly.Arduino['TinyGPS_initial'] = function(block) { 
 	Blockly.Arduino.definitions_['TinyGPS_initial'] = '#include <TinyGPS.h>\nTinyGPS gps;\nbool gpsNewData = false;\n';	
 

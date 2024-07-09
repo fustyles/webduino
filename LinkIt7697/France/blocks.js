@@ -3284,6 +3284,99 @@ Blockly.Blocks['amb82_mini_myfirmata'] = {
   }
 };
 
+Blockly.Blocks['amb82_mini_stream'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])	
+        .appendField(Blockly.Msg["AMB82_MINI_INITIAL"])
+		.appendField(Blockly.Msg["ESP32_CAM_SERVERMODULE_STREAM_SHOW"]);		
+    this.appendValueInput("ssid")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_SSID_SHOW);
+    this.appendValueInput("password")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_PASSWORD_SHOW);
+    this.appendValueInput("ssid_ap")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_SSID_AP_SHOW);
+    this.appendValueInput("password_ap")
+        .setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.SERVERMODULE_PASSWORD_AP_SHOW);		
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["FU_SERIAL_BAUDRATE"])	
+		.appendField(new Blockly.FieldDropdown([
+			["300","300"],
+			["1200","1200"],
+			["2400","2400"],
+			["4800","4800"],
+			["9600","9600"],	    
+			["19200","19200"],
+			["38400","38400"],
+			["57600","57600"],
+			["74880","74880"],
+			["115200","115200"],	
+			["230400","230400"],
+			["250000","250000"],
+			["500000","500000"],
+			["1000000","1000000"],	
+			["2000000","2000000"]
+		]), "baudrate");	
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			//["2K (2560×1440)","VIDEO_2K"],
+			//["5M (2448×2050)","VIDEO_5M"], 
+			//["3M (2048×1536)","VIDEO_3M"],
+			["FHD (1920×1080)","VIDEO_FHD"],
+			["HD (1280×720)","VIDEO_HD"],
+			["D1 (704×576)","VIDEO_D1"],
+			["VGA (640×480)","VIDEO_VGA"],
+			["WVGA (640×340)","VIDEO_WVGA"],
+			//["CIF (352×288)","VIDEO_CIF"],
+			//["QCIF (176×144)","VIDEO_QCIF"],
+			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"],"VIDEO_CUSTOM"]
+		], this.validate), "framesize");
+	this.appendValueInput("width")
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.setCheck("Number")
+		.appendField(Blockly.Msg["WIDTH"]);
+	this.appendValueInput("height")
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.setCheck("Number")	
+		.appendField(Blockly.Msg["HEIGHT"]);
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"])
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["0", "0"],
+			["90", "1"],
+			["180", "3"],		
+			["270", "2"]
+		]), "rotation");		
+    this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="VIDEO_CUSTOM") {
+			block.getInput("width").setVisible(true);
+			block.getInput("height").setVisible(true);
+		} else {
+			block.getInput("width").setVisible(false);
+			block.getInput("height").setVisible(false);		
+		}
+  }
+};
+
 Blockly.Blocks.TinyGPS_initial={
 	init:function(){
 	  this.appendDummyInput()
