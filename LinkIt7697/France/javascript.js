@@ -2320,12 +2320,10 @@ Blockly.Arduino['amb82_mini_linenotify'] = function(block) {
     var linetoken = Blockly.Arduino.valueToCode(block, 'linetoken', Blockly.Arduino.ORDER_ATOMIC);
     var linemessage = Blockly.Arduino.valueToCode(block, 'linemessage', Blockly.Arduino.ORDER_ATOMIC);
 	
-	Blockly.Arduino.definitions_['WiFiClientSecure'] ='WiFiSSLClient client_tcp;\n';
-	
 	Blockly.Arduino.definitions_.SendCapturedImageToLineNotify = '\n'+
-			'String SendStillToLineNotify(String token, String message) {\n';
-
-	Blockly.Arduino.definitions_.SendCapturedImageToLineNotify +='  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
+			'String SendStillToLineNotify(String token, String message) {\n'+
+			'  WiFiSSLClient client_tcp;\n'+
+			'  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    Camera.getImage(0, &img_addr, &img_len);\n'+
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
