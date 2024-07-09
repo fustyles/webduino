@@ -1048,18 +1048,18 @@ Blockly.Arduino['amb82_mini_facedetectionrecognition_rtsp'] = function(block) {
 	'            int xmin = (int)(item.xMin() * im_w);\n'+
 	'            int xmax = (int)(item.xMax() * im_w);\n'+
 	'            int ymin = (int)(item.yMin() * im_h);\n'+
-	'            int ymax = (int)(item.yMax() * im_h);\n'+ statement;
+	'            int ymax = (int)(item.yMax() * im_h);\n';
 	
 	if (label=="Y") {
 		Blockly.Arduino.definitions_['define_amb82_mini_facedetectionrecognition_rtsp_list'] +=
 		'                //printf("Face %d name %s:\\t%d %d %d %d\\n\\r", i, item.name(), xmin, xmax, ymin, ymax);\n'+		
-		'                OSD.drawRect(amb82_CHANNEL, xmin, ymin, xmax, ymax, 3, osd_color);\n'+
+		'                OSD.drawRect(amb82_CHANNEL, xmin, ymin, xmax, ymax, 3, OSD_COLOR_WHITE);\n'+
 		'                char text_str[40];\n'+
 		'                snprintf(text_str, sizeof(text_str), "Face:%s", item.name());\n'+
-		'                OSD.drawText(amb82_CHANNEL, xmin, ymin - OSD.getTextHeight(amb82_CHANNEL), text_str, osd_color);\n';
+		'                OSD.drawText(amb82_CHANNEL, xmin, ymin - OSD.getTextHeight(amb82_CHANNEL), text_str, OSD_COLOR_CYAN);\n';
 	}
 	
-	Blockly.Arduino.definitions_['define_amb82_mini_facedetectionrecognition_rtsp_list'] +=
+	Blockly.Arduino.definitions_['define_amb82_mini_facedetectionrecognition_rtsp_list'] += statement +
 	'        }\n'+
 	'    }\n'+ statement_finish +
 	'    OSD.update(amb82_CHANNEL);\n'+ 
@@ -1176,7 +1176,7 @@ Blockly.Arduino['amb82_mini_facedetection_rtsp'] = function(block) {
 	'            int xmin = (int)(item.xMin() * im_w);\n'+
 	'            int xmax = (int)(item.xMax() * im_w);\n'+
 	'            int ymin = (int)(item.yMin() * im_h);\n'+
-	'            int ymax = (int)(item.yMax() * im_h);\n'+ statement;
+	'            int ymax = (int)(item.yMax() * im_h);\n';
 	
 	if (label=="Y") {
 		Blockly.Arduino.definitions_['define_amb82_mini_facedetection_rtsp_list'] +=
@@ -1187,7 +1187,7 @@ Blockly.Arduino['amb82_mini_facedetection_rtsp'] = function(block) {
 		'                OSD.drawText(amb82_CHANNEL, xmin, ymin - OSD.getTextHeight(amb82_CHANNEL), text_str, OSD_COLOR_CYAN);\n';
 	}
 	
-	Blockly.Arduino.definitions_['define_amb82_mini_facedetection_rtsp_list'] +=
+	Blockly.Arduino.definitions_['define_amb82_mini_facedetection_rtsp_list'] += statement +
 	'        }\n'+
 	'    }\n'+ statement_finish +
 	'    OSD.update(amb82_CHANNEL);\n'+ 
@@ -1825,7 +1825,7 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 	'                int xmin = (int)(item.xMin() * im_w);\n'+
 	'                int xmax = (int)(item.xMax() * im_w);\n'+
 	'                int ymin = (int)(item.yMin() * im_h);\n'+
-	'                int ymax = (int)(item.yMax() * im_h);\n'+ statement;
+	'                int ymax = (int)(item.yMax() * im_h);\n';
 	
 	if (label=="Y") {
 		Blockly.Arduino.definitions_['define_amb82_mini_objectdetection_rtsp_ObjectDetectionItem'] +=
@@ -1836,7 +1836,7 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 		'                OSD.drawText(amb82_CHANNEL, xmin, ymin - OSD.getTextHeight(amb82_CHANNEL), text_str, OSD_COLOR_CYAN);\n';
 	}
 	
-	Blockly.Arduino.definitions_['define_amb82_mini_objectdetection_rtsp_ObjectDetectionItem'] +=
+	Blockly.Arduino.definitions_['define_amb82_mini_objectdetection_rtsp_ObjectDetectionItem'] += statement +
 	'            }\n'+
 	'        }\n'+
 	'    }\n'+ statement_finish +
