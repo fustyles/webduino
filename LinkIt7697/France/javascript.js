@@ -1259,7 +1259,7 @@ Blockly.Arduino['amb82_mini_facedetection_rtsp_point'] = function(block) {
     var index = block.getFieldValue('index');
 	var property = block.getFieldValue('property');
 	if (property == "X")
-		var code = '(int)(item.xFeature('+index+') * im_w);';
+		var code = '(int)(item.xFeature('+index+') * im_w)';
 	else if (property == "Y")
 		var code = '(int)(item.yFeature('+index+') * im_h)';
 	return [code, Blockly.Arduino.ORDER_NONE];
