@@ -1850,6 +1850,20 @@ Blockly.Blocks['amb82_mini_xy_in_quadrilateral'] = {
   }
 };
 
+Blockly.Blocks['amb82_mini_draw_createBitmap'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_CREATEBITMAP"]);
+    this.appendStatementInput("statement")
+        .setCheck(null);		
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(Blockly.Msg["HUE_18"]);
+  }
+};
+
 Blockly.Blocks['amb82_mini_drawline'] = {
   init: function() {
 	this.appendDummyInput()
