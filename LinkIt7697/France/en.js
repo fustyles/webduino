@@ -87,12 +87,12 @@ Blockly.Msg["AMB82_MINI_GTIMER_INTERVAL1"] = "Interval";
 Blockly.Msg["AMB82_MINI_GTIMER_INTERVAL2"] = "seconds to execute once";
 Blockly.Msg["AMB82_MINI_GTIMER_FUNCTION"] = "Execute function";
 
-Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION"] = "Image classification";
-Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_AFTER"] = "Enumerate all categories";
-Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_FINISH"] = "After enumeration";
-Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_LIST"] = "Get category attributes";
-Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_NAME"] = "Category name";
-Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_SCORE"] = "Confidence score";
+Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION"] = "Image Classification";
+Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_AFTER"] = "Classify";
+Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_LIST"] = "Get Classification Attributes";
+Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_NAME"] = "Class Name";
+Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_SCORE"] = "Confidence Score";
+Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_CLASS"] = "Class Name is";
 
 Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION"] = "Audio Classification";
 Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_AFTER"] = "Enumerate all classifications";
@@ -653,7 +653,7 @@ Blockly.Msg["AMB82_MINI_FACEDETECTION_LABEL"] = "Label";
 Blockly.Msg["AMB82_MINI_FACEDETECTION_AFTER"] = "Enumerate All Faces";
 Blockly.Msg["AMB82_MINI_FACEDETECTION_FINISH"] = "After Enumeration";
 Blockly.Msg["AMB82_MINI_FACEDETECTION_COUNT"] = "Number of Faces";
-Blockly.Msg["AMB82_MINI_FACEDETECTION_LIST"] = "Get Face Attributes";
+Blockly.Msg["AMB82_MINI_FACEDETECTION_LIST"] = "Face Attributes";
 Blockly.Msg["AMB82_MINI_FACEDETECTION_NAME"] = "Face Name";
 Blockly.Msg["AMB82_MINI_FACEDETECTION_SCORE"] = "Confidence Score";
 Blockly.Msg["AMB82_MINI_FACEDETECTION_X_MIN"] = "X Top Left";

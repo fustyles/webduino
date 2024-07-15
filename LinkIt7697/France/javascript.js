@@ -360,7 +360,6 @@ Blockly.Arduino['amb82_mini_imageclassification'] = function(block) {
 	
 	var model = block.getFieldValue('model');
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
-	var statement_finish = Blockly.Arduino.statementToCode(block, 'statement_finish');
 
 	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "WiFi.h"\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNImageClassification.h"\n#include "VideoStreamOverlay.h"\n#define IMAGERGB 1\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  224\n#define NNHEIGHT 224\nVideoSetting config(VIDEO_FHD, 30, VIDEO_H264, 0);\nVideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNImageClassification imgclass;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 	
@@ -384,7 +383,7 @@ Blockly.Arduino['amb82_mini_imageclassification'] = function(block) {
 	'void ICPostProcess(void) {\n'+
 	'    int class_id = imgclass.classID();\n'+
 	'    if (imgclassItemList[class_id].filter) {\n'+ statement+
-	'    }\n'+ statement_finish +
+	'    }\n'+
 	'}';	
 
 	Blockly.Arduino.setups_.setup_amb82_mini_facedetection = ''+   
@@ -423,6 +422,12 @@ Blockly.Arduino['amb82_mini_imageclassification_get'] = function(block) {
 		var code = 'String(imgclassItemList[class_id].imgclassName)';	
 	else if (property == "SCORE")
 		var code = 'imgclass.score()';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['amb82_mini_imageclassification_class_name'] = function(block) {
+    var property = Blockly.Arduino.valueToCode(block, 'property', Blockly.Arduino.ORDER_ATOMIC);
+	var code = 'String(imgclassItemList[class_id].imgclassName)==' +property;
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -1019,6 +1024,12 @@ Blockly.Arduino['amb82_mini_audioclassification_object'] = function(block) {
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['amb82_mini_audioclassification_object_name'] = function(block) {
+    var audioclass = Blockly.Arduino.valueToCode(block, 'audioclass', Blockly.Arduino.ORDER_ATOMIC);
+	var code = '(String(audioNames[class_id].audioName)=='+audioclass+')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['amb82_mini_facedetectionrecognition_rtsp'] = function(block) {
 	
 	Blockly.Arduino.definitions_.define_custom_command = "";
@@ -1607,6 +1618,12 @@ Blockly.Arduino['amb82_mini_emotionclassification_rtsp_emotion'] = function(bloc
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['amb82_mini_emotionclassification_rtsp_emotion_name'] = function(block) {
+    var emption = Blockly.Arduino.valueToCode(block, 'emption', Blockly.Arduino.ORDER_ATOMIC);
+	var code = '(String(imgclassItemList[class_id].imgclassName)=='+emption+')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['amb82_mini_xy_in_triangle'] = function(block) {
 	Blockly.Arduino.definitions_['define_xy_in_triangle'] =''+
 	'boolean xy_in_triangle(int x,int y,int x1,int y1,int x2,int y2,int x3,int y3) {\n'+
@@ -1916,12 +1933,6 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp_rect'] = function(block) {
 Blockly.Arduino['amb82_mini_objectdetection_rtsp_object'] = function(block) {
     var objclass = block.getFieldValue('objclass');	
 	var code = '(String(itemList[obj_type].objectName)=="'+objclass+'")';
-	return [code, Blockly.Arduino.ORDER_NONE];
-};
-
-Blockly.Arduino['amb82_mini_objectdetection_rtsp_object_list'] = function(block) {
-    var objclass = block.getFieldValue('objclass');	
-	var code = '"'+objclass+'"';
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
