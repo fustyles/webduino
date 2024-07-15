@@ -18,11 +18,6 @@ Blockly.Blocks['amb82_mini_telegram'] = {
   }
 };
 
-
-
-
-
-
 Blockly.Blocks['amb82_mini_folder'] = {
   init: function() {
     this.appendDummyInput()
@@ -2307,6 +2302,111 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp_objectname'] = {
 	this.setInputsInline(true);
 	this.setOutput(true, null);  
 	this.setColour(Blockly.Msg["HUE_22"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_objectdetection_rtsp_object_custom'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+	    .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CLASS_CUSTOM"]);				
+	this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(330);	
+	this.setMutator(new Blockly.Mutator(["amb82_mini_objectdetection_rtsp_object_custom_class"]));
+  }
+	,itemCount_:0
+	,className_:[]	
+	,suppressPrefixSuffix:!0
+	,mutationWorkspace:null
+	,mutationToDom:function(){
+		if(!this.itemCount_&&!this.topCount_)return null;
+		var a=Blockly.utils.xml.createElement("mutation");
+		this.itemCount_&&a.setAttribute("items",this.itemCount_);
+		return a
+	}
+	,domToMutation:function(a){
+		this.itemCount_=parseInt(a.getAttribute("items"),10)||0;
+		this.initialShape_()
+	}
+	,decompose:function(a){
+		mutationWorkspace = a;
+		var b=a.newBlock("amb82_mini_objectdetection_rtsp_object_custom_default");
+		b.initSvg();
+		for(var c=b.nextConnection,d=1;d<=this.itemCount_;d++){
+			var e=a.newBlock("amb82_mini_objectdetection_rtsp_object_custom_class");
+			e.initSvg();
+			if (this.getFieldValue("CLASS"+d))
+				e.setFieldValue(this.getFieldValue("CLASS"+d), 'classname');			
+			c.connect(e.previousConnection);
+			c=e.nextConnection
+		}
+		return b
+	}
+	,compose:function(a){
+		a=a.nextConnection.targetBlock();
+		this.itemCount_=0;
+		this.className_=[];
+		for(var i;a&&!a.isInsertionMarker();){
+			switch(a.type){
+				case "amb82_mini_objectdetection_rtsp_object_custom_class":
+					this.itemCount_++;
+					this.className_.push(a.getFieldValue("classname"));					
+					break;
+				default:throw TypeError("Unknown block type: "+a.type);
+			}
+			a=a.nextConnection&&a.nextConnection.targetBlock()
+		}		
+		this.updateShape_();
+	}
+	,initialShape_:function(){	
+		for(var a=1;a<=this.itemCount_;a++) {
+			this.appendDummyInput("CLASS"+a)
+				.appendField(new Blockly.FieldLabelSerializable(""),"CLASS"+a)
+				.setAlign(Blockly.ALIGN_RIGHT);
+		}
+	}	
+	,updateShape_:function(){
+		for(var a=1;this.getInput("CLASS"+a);)
+			this.removeInput("CLASS"+a),a++;
+		a=1;
+		var blockDB = mutationWorkspace.blockDB_;
+		if (blockDB) {
+			for (var blockid in blockDB) {
+				var block = mutationWorkspace.getBlockById(blockid);
+				if (block.type!="amb82_mini_objectdetection_rtsp_object_custom_default") {
+					this.appendDummyInput("CLASS"+a)
+						.appendField(new Blockly.FieldLabelSerializable(this.className_[a-1]),"CLASS"+a)
+						.setAlign(Blockly.ALIGN_RIGHT);
+					a++;
+				}
+			}
+		}
+	}
+};
+
+Blockly.Blocks['amb82_mini_objectdetection_rtsp_object_custom_default'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CLASS_LIST"]);			
+	this.setInputsInline(true);
+	this.setNextStatement(!0);
+	this.setColour(330);
+  }
+};
+
+Blockly.Blocks['amb82_mini_objectdetection_rtsp_object_custom_class'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CLASS_NAME"]);	
+    this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldTextInput(""), "classname");	
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(330);
   }
 };
 
