@@ -2667,12 +2667,21 @@
 		<category id="france23" name="amb82_mini_ObjectDetection_RTPS">				
 			  <block type="amb82_mini_objectdetection_rtsp">		  
 			  </block>
-			  <block type="amb82_mini_objectdetection_rtsp_object">		  
-			  </block> 
 			  <block type="amb82_mini_objectdetection_rtsp_rect">		  
 			  </block> 
-			  <block type="amb82_mini_objectdetection_rtsp_count">		  
+			  <block type="amb82_mini_objectdetection_rtsp_objectname">
+				<value name="objclass">
+					<block type="text">
+						<field name="TEXT"></field>
+					</block>
+				</value>			  
 			  </block> 			  
+			  <block type="amb82_mini_objectdetection_rtsp_count">		  
+			  </block>
+			  <block type="amb82_mini_objectdetection_rtsp_object">		  
+			  </block>
+			  <block type="amb82_mini_objectdetection_rtsp_object_list">			  
+			  </block>  			  
 			  <block type="amb82_mini_xy_in_triangle">
 					<value name="x">
 					  <block type="math_number">

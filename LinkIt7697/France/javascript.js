@@ -1919,6 +1919,18 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp_object'] = function(block) {
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['amb82_mini_objectdetection_rtsp_object_list'] = function(block) {
+    var objclass = block.getFieldValue('objclass');	
+	var code = '"'+objclass+'"';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['amb82_mini_objectdetection_rtsp_objectname'] = function(block) {
+	var objclass = Blockly.Arduino.valueToCode(block, 'objclass', Blockly.Arduino.ORDER_ATOMIC);
+	var code = '(String(itemList[obj_type].objectName)=='+objclass+')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['amb82_mini_blemouse'] = function(block) {
     var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
 	Blockly.Arduino.definitions_.define_esp32_blemouse_include = '#include "BLEHIDDevice.h"\n#include "BLEHIDMouse.h"\n#include "BLEDevice.h"\nBLEHIDMouse mouseDev;\nBLEAdvertData advdata;';

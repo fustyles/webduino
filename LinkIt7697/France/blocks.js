@@ -2063,10 +2063,10 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp'] = {
 			.appendField(new Blockly.FieldDropdown([
  				["YOLOv7","DEFAULT_YOLOV7TINY"],			
  				["YOLOv4","DEFAULT_YOLOV4TINY"],
- 				["YOLOv3","DEFAULT_YOLOV3TINY"],
+ 				["YOLOv3_unusable","DEFAULT_YOLOV3TINY"],
  				["YOLOv7_SD", "CUSTOMIZED_YOLOV7TINY"],				
  				["YOLOv4_SD", "CUSTOMIZED_YOLOV4TINY"],
- 				["YOLOv3_SD", "CUSTOMIZED_YOLOV3TINY"]
+ 				["YOLOv3_SD_unusable", "CUSTOMIZED_YOLOV3TINY"]
 		]), "model");
     this.appendDummyInput()	 
 		.setAlign(Blockly.ALIGN_RIGHT)
@@ -2248,6 +2248,113 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp_object'] = {
 				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HAIRDRYER"], "hair dryer"],
 				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TOOTHBRUSH"], "toothbrush"]
 		]), "objclass");		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_22"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_objectdetection_rtsp_object_list'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_OBJECT"])
+		.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_PERSON"], "person"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BICYCLE"], "bicycle"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CAR"], "car"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_MOTORBIKE"], "motorbike"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_AEROPLANE"], "aeroplane"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BUS"], "bus"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TRAIN"], "train"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TRUCK"], "truck"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BOAT"], "boat"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TRAFFICLIGHT"], "traffic light"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_FIREHYDRANT"], "fire hydrant"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_STOPSIGN"], "stop sign"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_PARKINGMETER"], "parking meter"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BENCH"], "bench"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BIRD"], "bird"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CAT"], "cat"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_DOG"], "dog"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HORSE"], "horse"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SHEEP"], "sheep"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_COW"], "cow"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_ELEPHANT"], "elephant"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BEAR"], "bear"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_ZEBRA"], "zebra"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_GIRAFFE"], "giraffe"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BACKPACK"], "backpack"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_UMBRELLA"], "umbrella"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HANDBAG"], "handbag"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TIE"], "tie"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SUITCASE"], "suitcase"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_FRISBEE"], "frisbee"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SKIS"], "skis"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SNOWBOARD"], "snowboard"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SPORTSBALL"], "sportsball"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_KITE"], "kite"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BASEBALLBAT"], "baseball bat"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BASEBALLGLOVE"], "baseball glove"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SKATEBOARD"], "skateboard"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SURFBOARD"], "surfboard"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TENNISRACKET"], "tennis racket"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BOTTLE"], "bottle"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_WINEGLASS"], "wine glass"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CUP"], "cup"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_FORK"], "fork"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_KNIFE"], "knife"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SPOON"], "spoon"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BOWL"], "bowl"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BANANA"], "banana"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_APPLE"], "apple"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SANDWICH"], "sandwich"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_ORANGE"], "orange"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BROCCOLI"], "broccoli"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CARROT"], "carrot"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HOTDOG"], "hot dog"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_PIZZA"], "pizza"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_DONUT"], "donut"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CAKE"], "cake"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CHAIR"], "chair"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SOFA"], "sofa"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_POTTEDPLANT"], "pottedplant"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BED"], "bed"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_DININGTABLE"], "diningtable"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TOILET"], "toilet"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TVMONITOR"], "tvmonitor"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_LAPTOP"], "laptop"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_MOUSE"], "mouse"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_REMOTE"], "remote"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_KEYBOARD"], "keyboard"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CELLPHONE"], "cell phone"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_MICROWAVE"], "microwave"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_OVEN"], "oven"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TOASTER"], "toaster"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SINK"], "sink"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_REFRIGERATOR"], "refrigerator"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BOOK"], "book"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_CLOCK"], "clock"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_VASE"], "vase"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_SCISSORS"], "scissors"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TEDDYBEAR"], "teddy bear"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HAIRDRYER"], "hair dryer"],
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TOOTHBRUSH"], "toothbrush"]
+		]), "objclass");		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_22"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_objectdetection_rtsp_objectname'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION"])
+        .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_ITEMOBJECT"]);
+    this.appendValueInput("objclass")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT);		
 	this.setInputsInline(true);
 	this.setOutput(true, null);  
 	this.setColour(Blockly.Msg["HUE_22"]);
