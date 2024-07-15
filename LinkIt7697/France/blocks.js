@@ -3092,6 +3092,69 @@ Blockly.Blocks['amb82_mini_video_capture_sd'] = {
   }
 };
 
+Blockly.Blocks['amb82_mini_spreadsheet'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_SPREADSHEET"]);
+	this.appendValueInput("spreadsheeturl")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)	  
+		.appendField(Blockly.Msg.VIDEO_BASE64_SPREADSHEETURL);
+	this.appendValueInput("spreadsheetname")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)	  
+		.appendField(Blockly.Msg.VIDEO_BASE64_SPREADSHEETNAME);
+	this.appendDummyInput()  
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["CONTROLS_SPREADSHEET_INSERT"])
+		.appendField(new Blockly.FieldDropdown([
+			["　",""],		
+			["A("+Blockly.Msg["CONTROLS_SPREADSHEET_DATE"]+"),B("+Blockly.Msg["CONTROLS_SPREADSHEET_TIME"]+")","gmt_datetime"],
+			["A("+Blockly.Msg["CONTROLS_SPREADSHEET_DATE"]+")","gmt_date"],
+			["A("+Blockly.Msg["CONTROLS_SPREADSHEET_TIME"]+")","gmt_time"]	
+		]), "datetime");
+	this.appendDummyInput() 
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg.ESP32_CAM_SPREADSHEET_ROW_SHOW)
+		.appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW,"custom"],
+		[Blockly.Msg.ESP32_CAM_SPREADSHEET_FIRSTROW_SHOW,"first"],
+		[Blockly.Msg.ESP32_CAM_SPREADSHEET_SECONDROW_SHOW,"second"],
+		[Blockly.Msg.ESP32_CAM_SPREADSHEET_INSERTFIRSTROW_SHOW,"insertfirst"],
+		[Blockly.Msg.ESP32_CAM_SPREADSHEET_LASTROW_SHOW,"last"],
+		[Blockly.Msg.ESP32_CAM_SPREADSHEET_INSERTLASTROW_SHOW,"insertlast"]	
+	], this.validate), "position");		
+	this.appendValueInput("row")
+		.setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)	  
+		.appendField(Blockly.Msg.VIDEO_BASE64_ROW);		
+	this.appendValueInput("column")
+		.setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)	  
+		.appendField(Blockly.Msg.VIDEO_BASE64_COLUMN);		
+	this.appendValueInput("spreadsheet_script")
+		.setCheck("String")	  
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);
+	this.getInput("spreadsheet_script").setVisible(false);		
+	this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(Blockly.Msg["HUE_12"]);
+	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToSpreadsheet_base64_doPost.gs");
+  },
+  validate: function(newValue) {
+	 const block = this.sourceBlock_;
+	 if (newValue=="custom") {
+		 block.getInput("row").setVisible(true);
+	 }
+	 else {
+		 block.getInput("row").setVisible(false);	 
+	 }	 
+  }
+};
+
 Blockly.Blocks['amb82_mini_googledrive'] = {
   init: function() {
     this.appendDummyInput()

@@ -733,6 +733,7 @@ Blockly.Msg["AMB82_MINI_LINENOTIFY"] = "Get still and send to Line";
 Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_DEFAULT"] = "Default";
 Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"] = "Custom";
 Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"] = "Upload Still to Google drive";
+Blockly.Msg["AMB82_MINI_SPREADSHEET"] = "Upload Still to Google spreadsheet";
 Blockly.Msg["AMB82_MINI_STILL_URL"] = "Still url";
 Blockly.Msg["AMB82_MINI_STREAM_URL"] = "stream url";
 Blockly.Msg["AMB82_MINI_RTSP_INITIAL"] = "RTSP Initial";

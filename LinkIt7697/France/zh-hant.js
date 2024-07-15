@@ -730,6 +730,7 @@ Blockly.Msg["AMB82_MINI_LINENOTIFY"] = "影像擷取上傳Line通知";
 Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_DEFAULT"] = "預設";
 Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"] = "自訂";
 Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"] = "影像擷取上傳Google雲端硬碟";
+Blockly.Msg["AMB82_MINI_SPREADSHEET"] = "影像擷取上傳Google試算表";
 Blockly.Msg["AMB82_MINI_STILL_URL"] = "張流網址";
 Blockly.Msg["AMB82_MINI_STREAM_URL"] = "串流網址";
 Blockly.Msg["AMB82_MINI_RTSP_INITIAL"] = "RTSP初始化";
