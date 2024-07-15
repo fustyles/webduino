@@ -14076,6 +14076,11 @@ Blockly.Arduino['esp32_pinread'] = function (block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['esp32_ledbuiltin'] = function (block) {
+  var code = 'LED_BUILTIN';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['MLX90614'] = function(block) {
   var sensor = block.getFieldValue('sensor');
   var kind = block.getFieldValue('kind');

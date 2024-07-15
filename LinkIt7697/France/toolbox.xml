@@ -62,6 +62,8 @@
 		  </block>
 		</value>
 	  </block>
+	  <block type="esp32_ledbuiltin">
+	  </block>	  
 	</category>
 	<category id="category_fu_serial" name="SERIAL">
 		<block type="fu_serial_begin_select">

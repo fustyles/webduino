@@ -19593,6 +19593,16 @@ Blockly.Blocks['esp32_pinread'] = {
   }
 };
 
+Blockly.Blocks['esp32_ledbuiltin'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.SERVERMODULE_PIN_BUILTIN_SHOW);
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
+    this.setColour(20);
+  }
+};
+
 Blockly.Blocks['MLX90614'] = {
   init: function() {
 	this.appendDummyInput()
