@@ -27862,7 +27862,7 @@ Blockly.Blocks['fu_mqtt_sendimage'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
 			["ESP32-CAM","ESP32-CAM"],
-			["Ameba","AMB82-MINI"]
+			["AmebaPro2","AMB82-MINI"]
 		]), "board");		
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
