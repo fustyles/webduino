@@ -3477,6 +3477,8 @@
 			<block type="amb82_mini_folder_list_attribute">			
 			</block>			
 		</category>
+		<category id="france23" name="amb82_mini_ntp">
+		</category>		
 		<category id="france23" name="amb82_mini_udp">
 		</category>
 	</category>	

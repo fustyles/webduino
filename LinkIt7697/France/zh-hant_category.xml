@@ -139,5 +139,6 @@
 <category><name>amb82_mini_DeepSleep</name><replace>深度睡眠</replace></category>
 <category><name>amb82_mini_RTC</name><replace>RTC</replace></category>
 <category><name>amb82_mini_FileSystem</name><replace>檔案系統</replace></category>
+<category><name>amb82_mini_ntp</name><replace>NTP</replace></category>
 <category><name>amb82_mini_udp</name><replace>UDP</replace></category>
 </xml>
