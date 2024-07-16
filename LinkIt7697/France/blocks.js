@@ -3419,8 +3419,8 @@ Blockly.Blocks['amb82_mini_myfirmata'] = {
     this.appendDummyInput()	 
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg.ESP32_CAM_SERVERMODULE_STILL_SHOW,"80"],
-			[Blockly.Msg.ESP32_CAM_SERVERMODULE_STREAM_SHOW,"81"]
+			[Blockly.Msg.ESP32_CAM_SERVERMODULE_STILL_SHOW,"still"],
+			[Blockly.Msg.ESP32_CAM_SERVERMODULE_STREAM_SHOW,"stream"]
 		]), "type");		
     this.appendValueInput("ssid")
         .setCheck(null)

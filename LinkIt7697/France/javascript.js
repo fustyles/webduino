@@ -2852,7 +2852,11 @@ Blockly.Arduino['amb82_mini_stream_url'] = function (block) {
 
 Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 	
-  var port = block.getFieldValue('type');
+  var type = block.getFieldValue('type');
+  if (type=="still")
+	  var port = 80;
+  else
+	  var port = 81;
   var mainpage = Blockly.Arduino.valueToCode(block, 'mainpage', Blockly.Arduino.ORDER_ATOMIC);
   var ssid = Blockly.Arduino.valueToCode(block, 'ssid', Blockly.Arduino.ORDER_ATOMIC);
   var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
