@@ -6,7 +6,7 @@ Blockly.Arduino['amb82_mini_ntpserver_initial'] = function(block) {
 												  'String currentTime[3] = {"","",""};';
   Blockly.Arduino.setups_.NTPClient_begin = 'timeClient.begin();\n';
   Blockly.Arduino.definitions_.define_getLocalTime = '\n'+
-			'void getLocalTime(String type) {\n'+
+			'void getLocalTime() {\n'+
 			'  currentTimeValue[0] = timeClient.getYear();\n'+
 			'  currentTimeValue[1] = timeClient.getMonth();\n'+
 			'  currentTimeValue[2] = timeClient.getMonthDay();\n'+
