@@ -3478,6 +3478,17 @@
 			</block>			
 		</category>
 		<category id="france23" name="amb82_mini_ntp">
+		  <block type="amb82_mini_ntpserver_initial">
+			<value name="gmtOffset">
+			  <block type="math_number">
+				<field name="NUM">8</field>
+			  </block>
+			</value> 
+		  </block>
+		  <block type="amb82_mini_ntpserver_getlocaltime">		
+		  </block>
+		  <block type="amb82_mini_ntpserver_get">
+		  </block>		
 		</category>		
 		<category id="france23" name="amb82_mini_udp">
 		</category>

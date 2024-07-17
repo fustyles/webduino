@@ -1,3 +1,65 @@
+Blockly.Arduino['amb82_mini_ntpserver_initial'] = function(block) {
+  var gmtOffset = Blockly.Arduino.valueToCode(block, 'gmtOffset', Blockly.Arduino.ORDER_ATOMIC);  
+
+  Blockly.Arduino.definitions_.NTPClient_h='#include <NTPClient.h>\nWiFiUDP ntpUDP;\nNTPClient timeClient(ntpUDP, "europe.pool.ntp.org", ' + Number(gmtOffset)*3600 + ', 0);\n';
+  Blockly.Arduino.definitions_.NTPClient_variant ='int currentTimeValue[6] = {0,0,0,0,0,0};\n'+
+												  'String currentTime[3] = {"","",""};';
+  Blockly.Arduino.setups_.NTPClient_begin = 'timeClient.begin();\n';
+  Blockly.Arduino.definitions_.define_getLocalTime = '\n'+
+			'void getLocalTime(String type) {\n'+
+			'  currentTimeValue[0] = timeClient.getYear();\n'+
+			'  currentTimeValue[1] = timeClient.getMonth();\n'+
+			'  currentTimeValue[2] = timeClient.getMonthDay();\n'+
+			'  currentTimeValue[3] = timeClient.getHours();\n'+
+			'  currentTimeValue[4] = timeClient.getMinutes();\n'+
+			'  currentTimeValue[5] = timeClient.getSeconds();\n'+
+			'  currentTime[0] = timeClient.getFormattedDate();\n'+
+			'  currentTime[1] = timeClient.getFormattedTime();\n'+
+			'  currentTime[2] = currentTime[0] + " "+ currentTime[1];\n'+
+			'}\n';
+  var code = '';
+  return code;
+};
+
+Blockly.Arduino['amb82_mini_ntpserver_getlocaltime'] = function(block) {
+  var gmtOffset = Blockly.Arduino.valueToCode(block, 'gmtOffset', Blockly.Arduino.ORDER_ATOMIC);  
+  var code = 'timeClient.update();\ngetLocalTime();\n';
+  return code;
+};
+
+Blockly.Arduino['amb82_mini_ntpserver_get'] = function(block) {
+  var option = block.getFieldValue('option');
+  var code ="";
+  if (option=="year")
+	code = 'currentTimeValue[0]';
+  else if (option=="month")
+	code = 'currentTimeValue[1]';
+  else if (option=="day")
+	code = 'currentTimeValue[2]';
+  else if (option=="hour")
+	code = 'currentTimeValue[3]';
+  else if (option=="minute")
+	code = 'currentTimeValue[4]';
+  else if (option=="second")
+	code = 'currentTimeValue[5]';
+  else if (option=="date")
+	code = 'currentTime[0]';
+  else if (option=="time")
+	code = 'currentTime[1]';
+  else if (option=="full")
+	code = 'currentTime[2]';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+
+
+
+
+
+
+
+
+
 Blockly.Arduino['amb82_mini_telegram'] = function(block) {
     var token = Blockly.Arduino.valueToCode(block, 'token', Blockly.Arduino.ORDER_ATOMIC);
     var chatid = Blockly.Arduino.valueToCode(block, 'chatid', Blockly.Arduino.ORDER_ATOMIC);
