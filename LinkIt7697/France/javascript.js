@@ -9711,8 +9711,6 @@ Blockly.Arduino['uart_getdata'] = function(block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
-
-
 Blockly.Arduino['fu_ntpserver_initial'] = function(block) {
   var gmtOffset = Blockly.Arduino.valueToCode(block, 'gmtOffset', Blockly.Arduino.ORDER_ATOMIC);  
 
@@ -9723,7 +9721,7 @@ Blockly.Arduino['fu_ntpserver_initial'] = function(block) {
 												  'struct tm timeinfo;\n'+
 												  'int currentTimeValue[6] = {0,0,0,0,0,0};\n'+
 												  'String currentTime[3] = {"","",""};';
-
+  Blockly.Arduino.setups_.configTime="configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);\n";
   Blockly.Arduino.definitions_.define_getLocalTime = '\n'+
 			'void getLocalTime() {\n'+
 			'  if(!getLocalTime(&timeinfo)){\n'+
@@ -9739,8 +9737,6 @@ Blockly.Arduino['fu_ntpserver_initial'] = function(block) {
 			'  currentTime[1] = (timeinfo.tm_hour<10?"0":"")+String(timeinfo.tm_hour)+":"+(timeinfo.tm_min<10?"0":"")+String(timeinfo.tm_min)+":"+(timeinfo.tm_sec<10?"0":"")+String(timeinfo.tm_sec);\n'+
 			'  currentTime[2] = currentTime[0] + " "+ currentTime[1];\n'+
 			'}\n';
-			
-  Blockly.Arduino.setups_.configTime="configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);\n";			
   var code = '';
   return code;
 };
