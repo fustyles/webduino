@@ -437,10 +437,12 @@ Blockly.Arduino['amb82_mini_audioclassification'] = function(block) {
 	Blockly.Arduino.setups_.write_peri_reg = "";
 	
 	var model = block.getFieldValue('model');
+	var audio = block.getFieldValue('audio');
+	
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
 	var statement_finish = Blockly.Arduino.statementToCode(block, 'statement_finish');
 
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "WiFi.h"\n#include "StreamIO.h"\n#include "NNAudioClassification.h"\nAudioSetting configA(16000, 1, USE_AUDIO_AMIC);\nAudio audio;\nNNAudioClassification audioNN;\nStreamIO audioStreamerNN(1, 1);\n';
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "WiFi.h"\n#include "StreamIO.h"\n#include "NNAudioClassification.h"\nAudioSetting configA(16000, 1, '+audio+');\nAudio audio;\nNNAudioClassification audioNN;\nStreamIO audioStreamerNN(1, 1);\n';
 	
 	Blockly.Arduino.definitions_['define_amb82_mini_facedetectionrecognition_list'] =''+
 	'#ifndef __AUDIOCLASSLIST_H__\n'+

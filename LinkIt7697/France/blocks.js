@@ -526,7 +526,14 @@ Blockly.Blocks['amb82_mini_audioclassification'] = {
 			.appendField(new Blockly.FieldDropdown([
  				["YAMNET","DEFAULT_YAMNET"],
  				["YAMNET_SD","CUSTOMIZED_YAMNET"]
-		]), "model");		
+		]), "model");
+    this.appendDummyInput("aud")
+        .appendField(Blockly.Msg["AMB82_MINI_AUDIO"])	
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_ANALOG_MIC"],"USE_AUDIO_AMIC"],
+			[Blockly.Msg["AMB82_MINI_DIGITAL_PDM_MIC"],"USE_AUDIO_LEFT_DMIC"]
+		]), "audio");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_AFTER"]);	  
     this.appendStatementInput("statement")
@@ -3270,17 +3277,17 @@ Blockly.Blocks['amb82_mini_mp4_initial'] = {
         .appendField(Blockly.Msg["AMB82_MINI_CHANNEL"])	
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
-			["1920 x 1080 30FPS H264 0","0"],		
-			["1280 x 720  30FPS H264 1","1"]
+			["1920 x 1080 30FPS H264","0"],		
+			["1280 x 720  30FPS H264","1"]
 		]), "channel");	
     this.appendDummyInput("aud")
         .appendField(Blockly.Msg["AMB82_MINI_AUDIO"])	
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
-			["8kHz Mono Analog Mic 0","0"],		
-			["16kHz Mono Analog Mic 1","1"],
-			["8kHz Mono Digital PDM Mic 2","2"],
-			["16kHz Mono Digital PDM Mic 3","3"]
+			[Blockly.Msg["AMB82_MINI_8KHZ_MONO_ANALOG_MIC"],"0"],		
+			[Blockly.Msg["AMB82_MINI_16KHZ_MONO_ANALOG_MIC"],"1"],
+			[Blockly.Msg["AMB82_MINI_8KHZ_MONO_DIGITAL_PDM_MIC"],"2"],
+			[Blockly.Msg["AMB82_MINI_16KHZ_MONO_DIGITAL_PDM_MIC"],"3"]
 		]), "audio");
     this.appendValueInput("filename")
         .appendField(Blockly.Msg["AMB82_MINI_FILENAME"])	
@@ -3361,18 +3368,18 @@ Blockly.Blocks['amb82_mini_rtsp'] = {
         .appendField(Blockly.Msg["AMB82_MINI_CHANNEL"])	
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
-			["1920 x 1080 30FPS H264 0","0"],		
-			["1280 x 720  30FPS H264 1","1"],
-			["1280 x 720  30FPS MJPEG 2","2"]
+			["1920 x 1080 30FPS H264","0"],		
+			["1280 x 720  30FPS H264","1"],
+			["1280 x 720  30FPS MJPEG","2"]
 		]), "channel");	
     this.appendDummyInput("aud")
         .appendField(Blockly.Msg["AMB82_MINI_AUDIO"])	
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
-			["8kHz Mono Analog Mic 0","0"],		
-			["16kHz Mono Analog Mic 1","1"],
-			["8kHz Mono Digital PDM Mic 2","2"],
-			["16kHz Mono Digital PDM Mic 3","3"]
+			[Blockly.Msg["AMB82_MINI_8KHZ_MONO_ANALOG_MIC"],"0"],		
+			[Blockly.Msg["AMB82_MINI_16KHZ_MONO_ANALOG_MIC"],"1"],
+			[Blockly.Msg["AMB82_MINI_8KHZ_MONO_DIGITAL_PDM_MIC"],"2"],
+			[Blockly.Msg["AMB82_MINI_16KHZ_MONO_DIGITAL_PDM_MIC"],"3"]
 		]), "audio");		
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
