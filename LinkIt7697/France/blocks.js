@@ -3277,8 +3277,8 @@ Blockly.Blocks['amb82_mini_mp4_initial'] = {
         .appendField(Blockly.Msg["AMB82_MINI_CHANNEL"])	
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
-			["1920 x 1080 30FPS H264","0"],		
-			["1280 x 720  30FPS H264","1"]
+			[Blockly.Msg["AMB82_MINI_1920X1080_30FPS_H264"],"0"],		
+			[Blockly.Msg["AMB82_MINI_1280X720_30FPS_H264"],"1"]
 		]), "channel");	
     this.appendDummyInput("aud")
         .appendField(Blockly.Msg["AMB82_MINI_AUDIO"])	
@@ -3368,9 +3368,9 @@ Blockly.Blocks['amb82_mini_rtsp'] = {
         .appendField(Blockly.Msg["AMB82_MINI_CHANNEL"])	
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
-			["1920 x 1080 30FPS H264","0"],		
-			["1280 x 720  30FPS H264","1"],
-			["1280 x 720  30FPS MJPEG","2"]
+			[Blockly.Msg["AMB82_MINI_1920X1080_30FPS_H264"],"0"],		
+			[Blockly.Msg["AMB82_MINI_1280X720_30FPS_H264"],"1"],
+			[Blockly.Msg["AMB82_MINI_1280X720_30FPS_MJPEG"],"2"]
 		]), "channel");	
     this.appendDummyInput("aud")
         .appendField(Blockly.Msg["AMB82_MINI_AUDIO"])	
