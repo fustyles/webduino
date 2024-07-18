@@ -9787,7 +9787,7 @@ Blockly.Arduino['fu_ntpserver_initial'] = function(block) {
 												  'String currentTime[3] = {"","",""};';
   Blockly.Arduino.setups_.configTime="configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);\n";
   Blockly.Arduino.definitions_.define_getLocalTime = '\n'+
-			'void getLocalTime() {\n'+
+			'void getNtpTime() {\n'+
 			'  if(!getLocalTime(&timeinfo)){\n'+
 			'    return;\n'+
 			'  }\n'+
@@ -9807,7 +9807,7 @@ Blockly.Arduino['fu_ntpserver_initial'] = function(block) {
 
 Blockly.Arduino['fu_ntpserver_getlocaltime'] = function(block) {
   var gmtOffset = Blockly.Arduino.valueToCode(block, 'gmtOffset', Blockly.Arduino.ORDER_ATOMIC);  
-  var code = 'getLocalTime();\n';
+  var code = 'getNtpTime();\n';
   return code;
 };
 
