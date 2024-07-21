@@ -7431,12 +7431,12 @@ Blockly.Arduino['variable_urldecode'] = function (block) {
 
 
 Blockly.Arduino['loop_asynchronous'] = function(block) {
-	var id = "count_"+this.id.replace(/[^a-z]/gmi, "").replace(/\s+/g, "");
-	Blockly.Arduino.definitions_[id] = 'long ' +id+" = 0;";
+	var variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.VARIABLE_CATEGORY_NAME);
+	Blockly.Arduino.definitions_[variable] = 'long ' +variable+" = 0;";
 	
 	var count = Blockly.Arduino.valueToCode(block, 'count', Blockly.Arduino.ORDER_ATOMIC);
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');	
-	var code = id +'++;\nif ('+id+'%'+count+'==0) {\n'+id+'=0;\n'+statement+'\n}';
+	var code = variable +'++;\nif ('+variable+'%'+count+'==0) {\n  '+variable+'=0;\n'+statement+'\n}\n';
 	return code;
 };
 

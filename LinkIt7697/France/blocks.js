@@ -11444,7 +11444,11 @@ Blockly.Blocks['variable_urldecode'] = {
 };
 
 Blockly.Blocks['loop_asynchronous'] = {
-  init: function() {	
+  init: function() {
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["LOOP_VARIABLE_SHOW"]);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable("counter"), "variable");		
 	this.appendValueInput("count")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)	  
