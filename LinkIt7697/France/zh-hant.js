@@ -2751,7 +2751,7 @@ Blockly.Msg["SPREADSHEET_SPREADSHEET_RANGE_SHOW"] = "儲存格範圍";
 
 Blockly.Msg["LOOP_VARIABLE_SHOW"] = "計數器";
 Blockly.Msg["LOOP_ASYNCHRONOUS_SHOW"] = "非同步";		
-Blockly.Msg["LOOP_COUNT_SHOW"] = "計數值累加1達";
+Blockly.Msg["LOOP_COUNT_SHOW"] = "計數值每執行累加1達";
 Blockly.Msg["LOOP_EXECUTE_SHOW"] = "後重新計數並執行";
 
 Blockly.Msg["TASKHANDLE_SHOW"] = "雙核心任務";
