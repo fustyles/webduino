@@ -621,11 +621,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());
 				code = js_beautify("const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{\n"+code+"};main();");
 				var iframe_code="\<!DOCTYPE html\>\<html\>\<head\>\<meta charset='utf-8'\>\<meta http-equiv='Access-Control-Allow-Origin' content='*'\>\<meta http-equiv='Access-Control-Allow-Credentials' content='true'\>\<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'\>\<\/script\>";
-				
 				iframe_code += getScriptRemote(); 
-				  
-				iframe_code += "\<\/head\>\<body\>\n\<script\>\n"+code+"\n\<\/script\>\n\<\/body\>\<\/html\>";
-
+				iframe_code += "\<\/head\>\<body\>\n\<script\>\n"+js_beautify(code)+"\n\<\/script\>\n\<\/body\>\<\/html\>";
 				var link = document.createElement('a');
 				link.download="project.html";
 				link.href="data:application/octet-stream;utf-8," + encodeURIComponent(iframe_code);	  
