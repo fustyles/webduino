@@ -2482,8 +2482,8 @@ Blockly.Blocks['amb82_mini_objectdetection_state'] = {
     this.appendDummyInput()	 
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BEGIN"],"1"],
-			[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_END"],"0"]
+			[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_RESUME"],"1"],
+			[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_PAUSE"],"0"]
 		]), "state");		
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);

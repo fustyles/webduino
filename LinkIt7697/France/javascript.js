@@ -2043,9 +2043,9 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp_object_custom'] = function(bloc
 Blockly.Arduino['amb82_mini_objectdetection_state'] = function(block) {
     var state = block.getFieldValue('state');	
 	if (state==1)
-		var code = "ObjDet.begin();\n";
+		var code = "ObjDet.pause(0);\n";
 	else
-		var code = "ObjDet.end();\n";
+		var code = "ObjDet.pause(1);\n";
 	return code;
 };
 
