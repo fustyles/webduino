@@ -2474,6 +2474,24 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp_object_custom_class'] = {
   }
 };
 
+Blockly.Blocks['amb82_mini_objectdetection_state'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_BEGIN"],"1"],
+			[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_END"],"0"]
+		]), "state");		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_22"]);
+  }
+};
+
 Blockly.Blocks['amb82_mini_blemouse'] = {
   init: function() {
     this.appendDummyInput()
