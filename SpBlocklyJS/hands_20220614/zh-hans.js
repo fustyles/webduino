@@ -11,6 +11,7 @@ Blockly.Msg.HANDS_SKELETON_SHOW = "骨架";
 Blockly.Msg.HANDS_OPACITY_SHOW = "透明度";
 Blockly.Msg.HANDS_DISTANCE_SHOW = "距离";
 Blockly.Msg.HANDS_ANGLE_SHOW = "角度";
+Blockly.Msg.HANDS_ANGLE_3POINTS_SHOW = "夹角";
 Blockly.Msg.HANDS_VIDEO_SHOW = "视讯";
 Blockly.Msg.HANDS_DATA_SHOW= "属性";
 Blockly.Msg.HANDS_STATE_SHOW = "侦测状态";

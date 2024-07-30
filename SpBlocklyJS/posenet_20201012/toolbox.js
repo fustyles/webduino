@@ -96,6 +96,38 @@ var catPosenet = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
+'      <block type="posenet_angle_3points">'+
+'        <value name="x0_">'+
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="y0_">'+
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="x1_">'+
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="y1_">'+
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="x2_">'+
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="y2_">'+
+'          <block type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </block>'+
+'        </value>'+
+'      </block>'+
 '  <block type="posenet_canvas_get">'+
 '  </block>'+
 '</category>'+

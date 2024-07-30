@@ -58,6 +58,17 @@
       return angle;
   }
   
+	function posenet_angle_3points(x1, y1, x2, y2, x3, y3){
+		var Ax = x1 - x2;
+		var Ay = y1 - y2;
+		var Bx = x3 - x2;
+		var By = y3 - y2;
+		var AB = Ax*Bx + Ay*By;
+		var AL = Math.sqrt(Math.pow(Ax, 2) + Math.pow(Ay, 2));
+		var BL = Math.sqrt(Math.pow(Bx, 2) + Math.pow(By, 2));
+		return (Math.acos(AB/(AL*BL))/ Math.PI) * 180;
+	}   
+  
   function posenet_state(input_state){
     document.getElementById('posenetState').innerHTML = input_state;
   }	
@@ -164,7 +175,8 @@
 	window.posenet_list = posenet_list;
 	window.posenet_person = posenet_person;
 	window.posenet_distance = posenet_distance;
-	window.posenet_angle = posenet_angle;	
+	window.posenet_angle = posenet_angle;
+	window.posenet_angle_3points = posenet_angle_3points;	
 	window.posenet_video_position = posenet_video_position;
 	window.posenet_state = posenet_state;
 	window.posenet_persons = posenet_persons;

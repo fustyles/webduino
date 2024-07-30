@@ -11,6 +11,7 @@ Blockly.Msg.HOLISTIC_SKELETON_SHOW = "骨架";
 Blockly.Msg.HOLISTIC_OPACITY_SHOW = "透明度";
 Blockly.Msg.HOLISTIC_DISTANCE_SHOW = "距離";
 Blockly.Msg.HOLISTIC_ANGLE_SHOW = "角度";
+Blockly.Msg.HOLISTIC_ANGLE_3POINTS_SHOW = "夾角";
 Blockly.Msg.HOLISTIC_VIDEO_SHOW = "視訊";
 Blockly.Msg.HOLISTIC_DATA_SHOW= "屬性";
 Blockly.Msg.HOLISTIC_STATE_SHOW = "偵測狀態";

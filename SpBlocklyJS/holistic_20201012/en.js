@@ -11,6 +11,7 @@ Blockly.Msg.HOLISTIC_SKELETON_SHOW = "Skeleton";
 Blockly.Msg.HOLISTIC_OPACITY_SHOW = "Opacity";
 Blockly.Msg.HOLISTIC_DISTANCE_SHOW = "Distance";
 Blockly.Msg.HOLISTIC_ANGLE_SHOW = "Angle";
+Blockly.Msg.HOLISTIC_ANGLE_3POINTS_SHOW = "Included Angle";
 Blockly.Msg.HOLISTIC_VIDEO_SHOW = "Video";
 Blockly.Msg.HOLISTIC_DATA_SHOW= "Data";
 Blockly.Msg.HOLISTIC_STATE_SHOW = "Detect State";

@@ -84,6 +84,17 @@ Blockly.JavaScript['holistic_angle'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['holistic_angle_3points'] = function (block) {
+  var value_x0_ = Blockly.JavaScript.valueToCode(block, 'x0_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_y0_ = Blockly.JavaScript.valueToCode(block, 'y0_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_x1_ = Blockly.JavaScript.valueToCode(block, 'x1_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_y1_ = Blockly.JavaScript.valueToCode(block, 'y1_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_x2_ = Blockly.JavaScript.valueToCode(block, 'x2_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_y2_ = Blockly.JavaScript.valueToCode(block, 'y2_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var code = 'holistic_angle_3points(' + value_x0_ + ',' + value_y0_ + ','+ value_x1_ + ',' + value_y1_ + ','+ value_x2_ + ',' + value_y2_ + ')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['holistic_state'] = function(block) {
   var value_state_ = block.getFieldValue('state_');
   var code = 'holistic_state(' + value_state_ + ');\n';
