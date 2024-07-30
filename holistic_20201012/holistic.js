@@ -23,7 +23,18 @@
       if (angle<0) angle = 180 + angle;
       if (input_y0<input_y1) angle = 180 + angle;
       return angle;
-  } 
+  }
+
+  function holistic_angle_3points(x1, y1, x2, y2, x3, y3){
+      var Ax = x1 - x2;
+      var Ay = y1 - y2;
+      var Bx = x3 - x2;
+      var By = y3 - y2;
+      var AB = Ax*Bx + Ay*By;
+      var AL = Math.sqrt(Math.pow(Ax, 2) + Math.pow(Ay, 2));
+      var BL = Math.sqrt(Math.pow(Bx, 2) + Math.pow(By, 2));
+      return (Math.acos(AB/(AL*BL))/ Math.PI) * 180;
+  } 	
   
   function holistic_state(input_state){
     	document.getElementById('holisticState').innerHTML = input_state;
@@ -489,6 +500,7 @@
 	window.holistic_all_position = holistic_all_position;	
 	window.holistic_distance = holistic_distance;
 	window.holistic_angle = holistic_angle;
+  	window.holistic_angle_3points = holistic_angle_3points;	
 	window.holistic_part_angle =  holistic_part_angle;	
 	window.holistic_video_position = holistic_video_position;
 	window.holistic_state = holistic_state;
