@@ -206,7 +206,7 @@ Blockly.JavaScript['holistic_clip_element'] = function(block) {
   drawpath = drawpath.replace("['","[").replace("']","]").replace(/','/g,"], [").replace(/', '/g,"], [");
   drawpath = "["+drawpath.replace('["',"[").replace('"]',"]").replace(/","/g,"], [").replace(/", "/g,"], [")+"]";
   
-  var code = 'holistic_clip_video("gamecanvas_"+'+canvasid+', "gamecanvas_canvasElement", '+alpha+', '+drawpath+');\n';
+  var code = 'holistic_clip_video("gamecanvas_"+'+canvasid+', "gamecanvas_holistic", '+alpha+', '+drawpath+');\n';
   return code;
 };
 
@@ -218,7 +218,7 @@ Blockly.JavaScript['holistic_clip_color'] = function(block) {
   drawpath = drawpath.replace("['","[").replace("']","]").replace(/','/g,"], [").replace(/', '/g,"], [");
   drawpath = "["+drawpath.replace('["',"[").replace('"]',"]").replace(/","/g,"], [").replace(/", "/g,"], [")+"]";
   
-  var code = 'holistic_clip_color("gamecanvas_"+'+canvasid+', "gamecanvas_canvasElement", '+drawcolor+', '+drawpath+');\n';
+  var code = 'holistic_clip_color("gamecanvas_"+'+canvasid+', "gamecanvas_holistic", '+drawcolor+', '+drawpath+');\n';
   return code;
 };
 
