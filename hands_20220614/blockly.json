@@ -1,5 +1,5 @@
 {
-  "types": ["hands_video", "hands_position", "hands_angle", "hands_hand_angle",  "hands_state", "hands_video_position", "hands_startvideo_media", "hands_startvideo_stream", "hands_canvas_get", "hands_hands", "hands_pause", "hands_recognitied"],
+  "types": ["hands_video", "hands_position", "hands_angle", "hands_hand_angle", "hands_angle_3points",  "hands_state", "hands_video_position", "hands_startvideo_media", "hands_startvideo_stream", "hands_canvas_get", "hands_hands", "hands_pause", "hands_recognitied"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
