@@ -12,6 +12,7 @@ Blockly.Msg.POSENET_SKELETON_SHOW = "骨架";
 Blockly.Msg.POSENET_OPACITY_SHOW = "透明度";
 Blockly.Msg.POSENET_DISTANCE_SHOW = "距離";
 Blockly.Msg.POSENET_ANGLE_SHOW = "角度";
+Blockly.Msg.POSENET_ANGLE_3POINTS_SHOW = "夾角";
 Blockly.Msg.POSENET_VIDEO_SHOW = "視訊";
 Blockly.Msg.POSENET_LIST_SHOW= "結果";
 Blockly.Msg.POSENET_DATA_SHOW= "屬性";
