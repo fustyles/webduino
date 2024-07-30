@@ -10,6 +10,7 @@ Blockly.Msg.HANDS_SKELETON_SHOW = "Skeleton";
 Blockly.Msg.HANDS_OPACITY_SHOW = "Opacity";
 Blockly.Msg.HANDS_DISTANCE_SHOW = "Distance";
 Blockly.Msg.HANDS_ANGLE_SHOW = "Angle";
+Blockly.Msg.HANDS_ANGLE_3POINTS_SHOW = "Included Angle";
 Blockly.Msg.HANDS_VIDEO_SHOW = "Video";
 Blockly.Msg.HANDS_DATA_SHOW= "Data";
 Blockly.Msg.HANDS_STATE_SHOW = "Detect State";
