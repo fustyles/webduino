@@ -21,7 +21,18 @@
       if (input_y0<input_y1) angle = 180 + angle;
       return angle;
   } 
-  
+
+	function hands_angle_3points(x1, y1, x2, y2, x3, y3){
+		var Ax = x1 - x2;
+		var Ay = y1 - y2;
+		var Bx = x3 - x2;
+		var By = y3 - y2;
+		var AB = Ax*Bx + Ay*By;
+		var AL = Math.sqrt(Math.pow(Ax, 2) + Math.pow(Ay, 2));
+		var BL = Math.sqrt(Math.pow(Bx, 2) + Math.pow(By, 2));
+		return (Math.acos(AB/(AL*BL))/ Math.PI) * 180;
+	}
+	
   function hands_state(input_state){
     document.getElementById('handsState').innerHTML = input_state;
   }	
@@ -188,6 +199,7 @@
 	window.hands_number = hands_number;	
 	window.hands_distance = hands_distance;
 	window.hands_angle = hands_angle;
+	window.hands_angle_3points = hands_angle_3points;	
 	window.hands_part_angle =  hands_part_angle;	
 	window.hands_video_position = hands_video_position;
 	window.hands_state = hands_state;
