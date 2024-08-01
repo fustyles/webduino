@@ -2712,10 +2712,8 @@
 			  <block type="amb82_mini_objectdetection_rtsp_object_custom">
 				<mutation items="0"></mutation>		  
 			  </block>
-			  <!--
 			  <block type="amb82_mini_objectdetection_state">	  
-			  </block>
-			  -->			  
+			  </block>	  
 			  <block type="amb82_mini_xy_in_triangle">
 					<value name="x">
 					  <block type="math_number">
