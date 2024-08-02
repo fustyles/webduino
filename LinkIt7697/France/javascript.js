@@ -10635,6 +10635,122 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'    JsonObject obj;\n';
 			
 	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+		Blockly.Arduino.definitions_['opendataAirQuality'] +='    DynamicJsonDocument doc(1024);\n';
+	else if ((selectBoardType()=="LinkIt"))
+		Blockly.Arduino.definitions_['opendataAirQuality'] +='    DynamicJsonDocument doc(352);\n';
+	else
+		Blockly.Arduino.definitions_['opendataAirQuality'] +='    DynamicJsonDocument doc(128);\n';
+			
+Blockly.Arduino.definitions_['opendataAirQuality'] +='    deserializeJson(doc, Feedback);\n'+
+			'    obj = doc.as<JsonObject>();\n'+
+			'    airSite = Site;\n'+
+			'    airAQI = obj["aqi"].as<String>().toInt();\n'+
+			'    airPM25 = obj["pm2.5"].as<String>().toInt();\n'+
+			'    airStatus = obj["status"].as<String>();\n'+			
+			'    airTime = obj["publishtime"].as<String>();\n'+
+			'  }\n'+
+			'}';
+			
+	Blockly.Arduino.definitions_['getAQI'] = '' +			
+			'String getAQI(int index) {\n'+
+			'  if (index==0) {\n'+
+			'    return airSite;\n'+
+			'  } else if (index==1) {\n'+
+			'    return airAQI;\n'+
+			'  } else if (index==2) {\n'+
+			'    return airPM25;\n'+
+			'  } else if (index==3) {\n'+
+			'    return airStatus;\n'+
+			'  } else if (index==4) {\n'+
+			'    return airTime;\n'+
+			'  }\n'+			
+			'  return "";\n'+
+			'}';
+						
+	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
+											'  const char *msg = str.c_str();\n'+
+											'  const char *hex = "0123456789ABCDEF";\n'+
+											'  String encodedMsg = "";\n'+
+											'  while (*msg != \'\\0\') {\n'+
+											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
+											'      encodedMsg += *msg;\n'+
+											'    } else {\n'+
+											'      encodedMsg += \'%\';\n'+
+											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
+											'      encodedMsg += hex[*msg & 0xf];\n'+
+											'    }\n'+
+											'    msg++;\n'+
+											'  }\n'+
+											'  return encodedMsg;\n'+
+											'}';
+											
+	var code = 'opendataAirQuality("'+dropdown_sitename+'",'+value_Authorization+');\n';
+	return code;
+};
+
+Blockly.Arduino['fu_taiwan_aqi_bk'] = function(block) {
+	var dropdown_sitename = block.getFieldValue('sitename');
+	var value_Authorization = Blockly.Arduino.valueToCode(block, 'Authorization', Blockly.Arduino.ORDER_ATOMIC);
+	
+	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
+	Blockly.Arduino.definitions_['airSite'] = 'String airSite = "";';	
+	Blockly.Arduino.definitions_['airAQI'] = 'String airAQI = "";';	
+	Blockly.Arduino.definitions_['airPM25'] = 'String airPM25 = "";';
+	Blockly.Arduino.definitions_['airStatus'] = 'String airStatus = "";';
+	Blockly.Arduino.definitions_['airTime'] = 'String airTime = "";';	
+	Blockly.Arduino.definitions_['opendataAirQuality'] = '\n' +
+			'void opendataAirQuality(String Site, String Authorization) {\n'+
+			'  String request = "/api/v2/aqx_p_432?api_key="+Authorization+"&format=json&limit=5&filters=SiteName,EQ,"+urlencode(Site);\n';
+			
+	if (selectBoardType()=="LinkIt")
+		Blockly.Arduino.definitions_['opendataAirQuality'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="AMB82-MINI")
+		Blockly.Arduino.definitions_['opendataAirQuality'] += '  WiFiSSLClient client_tcp;\n';
+	else {
+		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
+		Blockly.Arduino.definitions_['opendataAirQuality'] += '  WiFiClientSecure client_tcp;\n';
+		if (arduinoCore_ESP32)
+			Blockly.Arduino.definitions_['opendataAirQuality'] += '  client_tcp.setInsecure();\n';	
+	}
+	
+	Blockly.Arduino.definitions_['opendataAirQuality'] +='  if (client_tcp.connect("data.epa.gov.tw", 443)) {\n'+
+			'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
+			'    client_tcp.println("Host: data.epa.gov.tw");\n'+
+			'    client_tcp.println("Connection: close");\n'+
+			'    client_tcp.println();\n'+
+			'    String getResponse="",Feedback="";\n'+
+			'    boolean state = false;\n'+
+			'    boolean cutstate = false;\n'+
+			'    int waitTime = 10000;\n'+
+			'    long startTime = millis();\n'+
+			'    while ((startTime + waitTime) > millis()) {\n'+
+			'      while (client_tcp.available()) {\n'+
+			'        char c = client_tcp.read();\n'+
+			'        if (state==true) {\n'+
+			'          if (cutstate == false||(cutstate == true&&String(c)!="]")) {\n'+
+			'            Feedback += String(c);\n'+
+			'          }\n'+
+			'          if (cutstate == true&&String(c)=="]")\n'+
+			'            state=false;\n'+
+			'          if (Feedback.indexOf("\\"records\\": [")!=-1) {\n'+
+			'            Feedback="";\n'+
+			'            cutstate = true;\n'+
+			'          }\n'+
+			'        }\n'+
+			"        if (c == '\\n') {\n"+
+			'          if (getResponse.length()==0) state=true;\n'+
+			'          getResponse = "";\n'+
+			'        }\n'+
+			"        else if (c != '\\r')\n"+
+			'          getResponse += String(c);\n'+      
+			'        startTime = millis();\n'+
+			'      }\n'+
+			'      if (Feedback.length()!= 0) break;\n'+
+			'    }\n'+
+			'    client_tcp.stop();\n'+
+			'    JsonObject obj;\n';
+			
+	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI")
 		Blockly.Arduino.definitions_['opendataAirQuality'] +='  DynamicJsonDocument doc(1024);\n';
 	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_['opendataAirQuality'] +='  DynamicJsonDocument doc(352);\n';

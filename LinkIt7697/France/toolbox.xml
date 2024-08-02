@@ -3160,23 +3160,8 @@
 					</value>
 			  </block> 
 		</category>
-		<category id="france23" name="amb82_mini_EmotionClassification">				
-			  <block type="amb82_mini_emotionclassification_rtsp">		  
-			  </block>
-			  <block type="amb82_mini_emotionclassification_rtsp_get">		  
-			  </block>			  
-			  <block type="amb82_mini_emotionclassification_rtsp_emotion_name">
-				<value name="emption">
-				  <block type="text">
-					<field name="TEXT"></field>
-				  </block>
-				</value>			  
-			  </block> 			  
-			  <block type="amb82_mini_emotionclassification_rtsp_count">		  
-			  </block>			  
-			  <block type="amb82_mini_emotionclassification_rtsp_emotion">		  
-			  </block>			  
-		</category>	
+		<category id="france23" name="amb82_mini_MotionDetection">						  
+		</category>		
 		<category id="france23" name="amb82_mini_AudioClassification">				
 			  <block type="amb82_mini_audioclassification">		  
 			  </block>
@@ -3206,7 +3191,24 @@
 				  </block>
 				</value>			  
 			  </block>			  
-		</category>			
+		</category>	
+		<category id="france23" name="amb82_mini_EmotionClassification">				
+			  <block type="amb82_mini_emotionclassification_rtsp">		  
+			  </block>
+			  <block type="amb82_mini_emotionclassification_rtsp_get">		  
+			  </block>			  
+			  <block type="amb82_mini_emotionclassification_rtsp_emotion_name">
+				<value name="emption">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>			  
+			  </block> 			  
+			  <block type="amb82_mini_emotionclassification_rtsp_count">		  
+			  </block>			  
+			  <block type="amb82_mini_emotionclassification_rtsp_emotion">		  
+			  </block>			  
+		</category>	
 		<sep id="category_sep"></sep>		
 		<category id="france23" name="amb82_mini_ble_keyboard">				
 		  <block type="amb82_mini_blekeyboard">
