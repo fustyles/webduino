@@ -10566,6 +10566,7 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 	Blockly.Arduino.definitions_['opendataAirQuality'] +='  if (client_tcp.connect("data.epa.gov.tw", 443)) {\n'+
 			'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
 			'    client_tcp.println("Host: data.epa.gov.tw");\n'+
+			'    client_tcp.println("origin: x-requested-with");\n'+
 			'    client_tcp.println("Connection: close");\n'+
 			'    client_tcp.println();\n'+
 			'    String getResponse="",Feedback="";\n'+
