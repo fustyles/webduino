@@ -10611,12 +10611,11 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'        char c = client_tcp.read();\n'+
 			'        if (state==true) {\n'+
 			'          if (cutstate == false||(cutstate == true&&String(c)!="]")) {\n'+
-			'            if (c != \' \')\n'+
-			'              Feedback += String(c);\n'+
+			'            Feedback += String(c);\n'+
 			'          }\n'+
 			'          if (cutstate == true&&String(c)=="]")\n'+
 			'            state=false;\n'+
-			'          if (Feedback.indexOf("\\"records\\":[")!=-1) {\n'+
+			'          if (Feedback.indexOf("\\"records\\": [")!=-1) {\n'+
 			'            Feedback="";\n'+
 			'            cutstate = true;\n'+
 			'          }\n'+
