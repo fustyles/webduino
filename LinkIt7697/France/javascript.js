@@ -10567,6 +10567,7 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
 			'    client_tcp.println("Host: data.epa.gov.tw");\n'+
 			'    client_tcp.println("origin: x-requested-with");\n'+
+			'    client_tcp.println("X-Requested-With: XMLHttprequest");\n'+
 			'    client_tcp.println("Connection: close");\n'+
 			'    client_tcp.println();\n'+
 			'    String getResponse="",Feedback="";\n'+
