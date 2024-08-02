@@ -10550,7 +10550,7 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 	Blockly.Arduino.definitions_['airTime'] = 'String airTime = "";';	
 	Blockly.Arduino.definitions_['opendataAirQuality'] = '\n' +
 			'void opendataAirQuality(String Site, String Authorization) {\n'+
-			'  String request = "/api/v2/aqx_p_432?format=json&limit=5&api_key="+Authorization+"&filters=SiteName,EQ,"+urlencode(Site);\n';
+			'  String request = "/macros/s/AKfycbyd2HGXCxMp48fPQah4zxbmYC4qJkeL_a5sg18Jv4ubKg5aX8MO58p72ZdOBhyuHTXn/exec?key="+Authorization+"&site="+urlencode(Site);\n';
 			
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['opendataAirQuality'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
@@ -10563,28 +10563,60 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			Blockly.Arduino.definitions_['opendataAirQuality'] += '  client_tcp.setInsecure();\n';	
 	}
 	
-	Blockly.Arduino.definitions_['opendataAirQuality'] +='  if (client_tcp.connect("data.epa.gov.tw", 443)) {\n'+
+	Blockly.Arduino.definitions_['opendataAirQuality'] += '  String getResponse="",Feedback="";\n'+
+			'  boolean state = false;\n'+
+			'  boolean cutstate = false;\n'+
+			'  int waitTime = 10000;\n'+
+			'  long startTime = millis();\n'+
+			'  if (client_tcp.connect("script.google.com", 443)) {\n'+
 			'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
-			'    client_tcp.println("Host: data.epa.gov.tw");\n'+
-			'    client_tcp.println("origin: x-requested-with");\n'+
-			'    client_tcp.println("X-Requested-With: XMLHttprequest");\n'+
+			'    client_tcp.println("Host: script.google.com");\n'+
 			'    client_tcp.println("Connection: close");\n'+
 			'    client_tcp.println();\n'+
-			'    String getResponse="",Feedback="";\n'+
-			'    boolean state = false;\n'+
-			'    boolean cutstate = false;\n'+
-			'    int waitTime = 10000;\n'+
-			'    long startTime = millis();\n'+
+			'    while ((startTime + waitTime) > millis()) {\n'+
+			'      while (client_tcp.available()) {\n'+
+			'    	 char c = client_tcp.read();\n'+
+			'        getResponse += String(c);\n'+	
+			'        if (state==true&&(c == \'\\r\'||c == \'\\n\'))\n'+
+			'            break;\n'+				
+			'        if (c != \'\\r\'&&c != \'\\n\') {\n'+
+			'          if (getResponse.indexOf("script.googleusercontent.com")!=-1) {\n'+
+			'            state=true;\n'+
+			'            getResponse = "";\n'+
+			'          }\n'+			
+			'          else if (state==true) {\n'+
+			'            Feedback += String(c);\n'+
+			'          }\n'+	
+			'        }\n'+			
+			'        startTime = millis();\n'+
+			'      }\n'+
+			'      if (Feedback.length()!= 0) break;\n'+
+			'    }\n'+
+			'    client_tcp.stop();\n'+		
+			'    //Serial.println(Feedback);\n'+
+			'  }\n'+
+			'  if (client_tcp.connect("script.googleusercontent.com", 443)) {\n'+
+			'    client_tcp.println("GET " + Feedback + " HTTP/1.1");\n'+
+			'    client_tcp.println("Host: script.googleusercontent.com");\n'+
+			'    client_tcp.println("Connection: close");\n'+
+			'    client_tcp.println();\n'+
+			'    getResponse="";\n'+
+			'    Feedback="";\n'+
+			'    state = false;\n'+
+			'    cutstate = false;\n'+
+			'    waitTime = 10000;\n'+
+			'    startTime = millis();\n'+
 			'    while ((startTime + waitTime) > millis()) {\n'+
 			'      while (client_tcp.available()) {\n'+
 			'        char c = client_tcp.read();\n'+
 			'        if (state==true) {\n'+
 			'          if (cutstate == false||(cutstate == true&&String(c)!="]")) {\n'+
-			'            Feedback += String(c);\n'+
+			'            if (c != \' \')\n'+
+			'              Feedback += String(c);\n'+
 			'          }\n'+
 			'          if (cutstate == true&&String(c)=="]")\n'+
 			'            state=false;\n'+
-			'          if (Feedback.indexOf("\\"records\\": [")!=-1) {\n'+
+			'          if (Feedback.indexOf("\\"records\\":[")!=-1) {\n'+
 			'            Feedback="";\n'+
 			'            cutstate = true;\n'+
 			'          }\n'+
@@ -10600,6 +10632,7 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'      if (Feedback.length()!= 0) break;\n'+
 			'    }\n'+
 			'    client_tcp.stop();\n'+
+			'    //Serial.println(Feedback);\n'+
 			'    JsonObject obj;\n';
 			
 	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
