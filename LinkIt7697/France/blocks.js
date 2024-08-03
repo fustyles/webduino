@@ -1,3 +1,113 @@
+Blockly.Blocks['amb82_mini_motiondetection_rtsp'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_MOTIONDETECTION"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_MOTIONDETECTION_LABEL"])
+		.appendField(new Blockly.FieldDropdown([
+			["Y","Y"],
+			["N","N"]
+		]), "label");
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_MODE"])
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_RTSP"],"rtsp"],
+			[Blockly.Msg["AMB82_MINI_STILL"],"still"]
+		], this.validate), "mode");
+	this.appendDummyInput("size")
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			//["2K (2560×1440)","VIDEO_2K"],
+			//["5M (2448×2050)","VIDEO_5M"], 
+			//["3M (2048×1536)","VIDEO_3M"],
+			["FHD (1920×1080)","VIDEO_FHD"],
+			["HD (1280×720)","VIDEO_HD"],
+			["D1 (704×576)","VIDEO_D1"],
+			["VGA (640×480)","VIDEO_VGA"],
+			["WVGA (640×340)","VIDEO_WVGA"]
+			//["CIF (352×288)","VIDEO_CIF"],
+			//["QCIF (176×144)","VIDEO_QCIF"]
+		]), "framesize");		
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_MOTIONDETECTION_AFTER"]);	  
+    this.appendStatementInput("statement")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_MOTIONDETECTION_FINISH"]);	  
+    this.appendStatementInput("statement_finish")
+        .setCheck(null);		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_19"]);
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="rtsp") {
+			block.getInput("size").setVisible(false);
+		} else {
+			block.getInput("size").setVisible(true);	
+		}
+  }
+};
+
+Blockly.Blocks['amb82_mini_motiondetection_rtsp_count'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_MOTIONDETECTION"])
+        .appendField(Blockly.Msg["AMB82_MINI_MOTIONDETECTION_COUNT"]);		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_19"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_motiondetection_rtsp_rect'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_MOTIONDETECTION"])
+        .appendField(Blockly.Msg["AMB82_MINI_MOTIONDETECTION_ITEMLIST"]);
+    this.appendDummyInput()	 
+			.setAlign(Blockly.ALIGN_RIGHT)	
+			.appendField(new Blockly.FieldDropdown([			
+				[Blockly.Msg["AMB82_MINI_MOTIONDETECTION_X_MIN"],"X"],
+				[Blockly.Msg["AMB82_MINI_MOTIONDETECTION_Y_MIN"],"Y"],
+				[Blockly.Msg["AMB82_MINI_MOTIONDETECTION_X_MIDDLE"],"XM"],
+				[Blockly.Msg["AMB82_MINI_MOTIONDETECTION_Y_MIDDLE"],"YM"],				
+				[Blockly.Msg["AMB82_MINI_MOTIONDETECTION_X_MAX"],"X1"],
+				[Blockly.Msg["AMB82_MINI_MOTIONDETECTION_Y_MAX"],"Y1"],				
+				[Blockly.Msg["AMB82_MINI_MOTIONDETECTION_WIDTH"],"WIDTH"],
+				[Blockly.Msg["AMB82_MINI_MOTIONDETECTION_HIGHT"],"HEIGHT"]
+		]), "property");		
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_19"]);
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Blocks['amb82_mini_ntpserver_initial'] = {
   init: function() {
     this.appendDummyInput()

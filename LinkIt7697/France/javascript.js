@@ -1,3 +1,116 @@
+Blockly.Arduino['amb82_mini_motiondetection_rtsp'] = function(block) {
+	
+	//Blockly.Arduino.definitions_.define_custom_command = "";
+	Blockly.Arduino.setups_.write_peri_reg = "";
+	
+	var label = block.getFieldValue('label');
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+	var statement_finish = Blockly.Arduino.statementToCode(block, 'statement_finish');
+
+	var mode = block.getFieldValue('mode');
+	var framesize = block.getFieldValue('framesize');
+	if (mode=="rtsp")
+		mode = "VideoSetting config(VIDEO_D1, CAM_FPS, VIDEO_H264_JPEG, 1);\n";
+	else
+		mode = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";
+	
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "WiFi.h"\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "MotionDetection.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELMD 3\n'+mode+'VideoSetting configMD(VIDEO_VGA, 10, VIDEO_RGB, 0);RTSP rtsp;\nMotionDetection MD;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerMD(1, 1);\nbool flag_motion = false;\nint rtsp_portnum;\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+
+	Blockly.Arduino.definitions_['define_amb82_mini_motiondetection_rtsp'] =''+	
+	'void mdPostProcess(std::vector<MotionDetectionResult> md_results) {\n'+
+	'    OSD.createBitmap(amb82_CHANNEL);\n'+
+	'    if (MD.getResultCount() > 0) {\n'+
+	'        for (int i = 0; i < MD.getResultCount(); i++) {\n'+
+	'            MotionDetectionResult result = md_results[i];\n'+
+	'            int xmin = (int)(result.xMin() * config.width());\n'+
+	'            int xmax = (int)(result.xMax() * config.width());\n'+
+	'            int ymin = (int)(result.yMin() * config.height());\n'+
+	'            int ymax = (int)(result.yMax() * config.height());\n';
+	
+	if (label=="Y") {
+		Blockly.Arduino.definitions_['define_amb82_mini_motiondetection_rtsp'] +='                OSD.drawRect(amb82_CHANNEL, xmin, ymin, xmax, ymax, 3, COLOR_GREEN);\n';
+	}
+	
+	Blockly.Arduino.definitions_['define_amb82_mini_motiondetection_rtsp'] += statement +
+	'        }\n'+
+	'        flag_motion = true;\n'+
+	'    } else {\n'+
+	'        flag_motion = false;\n'+
+	'    }\n'+ statement_finish +
+	'    OSD.update(amb82_CHANNEL);\n'+
+	'    delay(100);\n'+
+	'}';	
+	
+
+	Blockly.Arduino.setups_.setup_amb82_mini_motiondetection = ''+   
+										'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
+										'Camera.configVideoChannel(CHANNELMD, configMD);\n  '+
+										'Camera.videoInit();\n  '+
+										'rtsp.configVideo(config);\n  '+
+										'rtsp.begin();\n  '+
+										'rtsp_portnum = rtsp.getPort();\n  '+
+										'MD.configVideo(configMD);\n  '+
+										'MD.setResultCallback(mdPostProcess);\n  '+
+										'MD.begin();\n  '+
+										'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
+										'videoStreamer.registerOutput(rtsp);\n  '+
+										'if (videoStreamer.begin() != 0) {\n  '+
+										'    Serial.println("StreamIO link start failed");\n  '+
+										'}\n  '+
+										'Camera.channelBegin(amb82_CHANNEL);\n  '+
+										'videoStreamerMD.registerInput(Camera.getStream(CHANNELMD));\n  '+
+										'videoStreamerMD.setStackSize();\n  '+
+										'videoStreamerMD.registerOutput(MD);\n  '+
+										'if (videoStreamerMD.begin() != 0) {\n  '+
+										'    Serial.println("StreamIO link start failed");\n  '+
+										'}\n  '+
+										'Camera.channelBegin(CHANNELMD);\n  '+
+										'OSD.configVideo(amb82_CHANNEL, config);\n  '+
+										'OSD.begin();\n';
+
+  return "";
+};
+
+Blockly.Arduino['amb82_mini_motiondetection_rtsp_count'] = function(block) {	
+	var code = 'MD.getResultCount()';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['amb82_mini_motiondetection_rtsp_rect'] = function(block) {
+    var property = block.getFieldValue('property');
+	if (property == "X")
+		var code = 'xmin';
+	else if (property == "Y")
+		var code = 'ymin';
+	else if (property == "XM")
+		var code = 'int((xmin+xmax)/2)';
+	else if (property == "YM")
+		var code = 'int((ymin+ymax)/2)';
+	else if (property == "X1")
+		var code = 'xmax';
+	else if (property == "Y1")
+		var code = 'ymax';	
+	else if (property == "WIDTH")
+		var code = '(xmax-xmin)';
+	else if (property == "HEIGHT")
+		var code = '(ymax-ymin)';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Arduino['amb82_mini_ntpserver_initial'] = function(block) {
   var gmtOffset = Blockly.Arduino.valueToCode(block, 'gmtOffset', Blockly.Arduino.ORDER_ATOMIC);  
 

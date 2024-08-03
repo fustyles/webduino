@@ -901,6 +901,21 @@ Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TEDDYBEAR"] = "TEDDY BEAR";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HAIRDRYER"] = "HAIR DRYER";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TOOTHBRUSH"] = "TOOTHBRUSH";
 
+Blockly.Msg["AMB82_MINI_MOTIONDETECTION"] = "Motion Detection";
+Blockly.Msg["AMB82_MINI_MOTIONDETECTION_LABEL"] = "Label";
+Blockly.Msg["AMB82_MINI_MOTIONDETECTION_AFTER"] = "List all blocks";
+Blockly.Msg["AMB82_MINI_MOTIONDETECTION_FINISH"] = "After listing is finished";
+Blockly.Msg["AMB82_MINI_MOTIONDETECTION_COUNT"] = "Number of blocks";
+Blockly.Msg["AMB82_MINI_MOTIONDETECTION_ITEMLIST"] = "List block attributes";
+Blockly.Msg["AMB82_MINI_MOTIONDETECTION_X_MIN"] = "X top left";
+Blockly.Msg["AMB82_MINI_MOTIONDETECTION_Y_MIN"] = "Y top left";
+Blockly.Msg["AMB82_MINI_MOTIONDETECTION_X_MIDDLE"] = "X middle";
+Blockly.Msg["AMB82_MINI_MOTIONDETECTION_Y_MIDDLE"] = "Y middle";            
+Blockly.Msg["AMB82_MINI_MOTIONDETECTION_X_MAX"] = "X bottom right";
+Blockly.Msg["AMB82_MINI_MOTIONDETECTION_Y_MAX"] = "Y bottom right";
+Blockly.Msg["AMB82_MINI_MOTIONDETECTION_WIDTH"] = "Width";
+Blockly.Msg["AMB82_MINI_MOTIONDETECTION_HIGHT"] = "Height";
+
 Blockly.Msg["AMB82_MINI_CREATEBITMAP"] = "Create Bitmap";
 Blockly.Msg["AMB82_MINI_DRAWLINE"] = "Draw Line";
 Blockly.Msg["AMB82_MINI_LINEWIDTH"] = "Line Width";
