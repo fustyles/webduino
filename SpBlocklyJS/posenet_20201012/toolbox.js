@@ -54,36 +54,78 @@ var catPosenet = '<xml>'+
 '  </block>'+
 '  <block type="posenet_distance">'+
 '    <value name="x0_">'+
+'          <shadow type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </shadow>'+  
 '    </value>'+
 '    <value name="y0_">'+
+'          <shadow type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </shadow>'+  
 '    </value>'+
 '    <value name="x1_">'+
+'          <shadow type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </shadow>'+  
 '    </value>'+
 '    <value name="y1_">'+
+'          <shadow type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </shadow>'+  
 '    </value>'+
 '  </block>'+
 '  <block type="posenet_angle">'+
 '    <value name="x0_">'+
+'          <shadow type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </shadow>'+  
 '    </value>'+
 '    <value name="y0_">'+
+'          <shadow type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </shadow>'+  
 '    </value>'+
 '    <value name="x1_">'+
+'          <shadow type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </shadow>'+  
 '    </value>'+
 '    <value name="y1_">'+
+'          <shadow type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </shadow>'+  
 '    </value>'+
 '  </block>'+
 '      <block type="posenet_angle_3points">'+
 '        <value name="x0_">'+
+'          <shadow type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </shadow>'+  
 '        </value>'+
 '        <value name="y0_">'+
+'          <shadow type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </shadow>'+  
 '        </value>'+
 '        <value name="x1_">'+
+'          <shadow type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </shadow>'+  
 '        </value>'+
 '        <value name="y1_">'+
+'          <shadow type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </shadow>'+  
 '        </value>'+
 '        <value name="x2_">'+
+'          <shadow type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </shadow>'+  
 '        </value>'+
 '        <value name="y2_">'+
+'          <shadow type="math_number">'+
+'            <field name="NUM">0</field>'+
+'          </shadow>'+  
 '        </value>'+
 '      </block>'+
 '  <block type="posenet_canvas_get">'+
