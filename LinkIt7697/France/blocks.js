@@ -6101,6 +6101,42 @@ Blockly.Blocks['posenet_angle'] = {
   }
 };
 
+Blockly.Blocks['posenet_angle_3points'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.POSENET_SHOW);		  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.POSENET_ANGLE_3POINTS_SHOW);
+  this.appendValueInput("x0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField("X0");
+  this.appendValueInput("y0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Y0"); 
+  this.appendValueInput("x1_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField("X1");
+  this.appendValueInput("y1_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Y1");
+  this.appendValueInput("x2_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField("X2");
+  this.appendValueInput("y2_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Y2"); 	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(Blockly.Msg["HUE_10"]);
+  }
+};
+
 Blockly.Blocks['posenet_state'] = {
   init: function() {
   this.appendDummyInput()  
@@ -12086,6 +12122,42 @@ Blockly.Blocks['hands_angle'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Y1");     
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(Blockly.Msg["HUE_10"]);
+  }
+};
+
+Blockly.Blocks['hands_angle_3points'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDS_SHOW);		  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HANDS_ANGLE_3POINTS_SHOW);
+  this.appendValueInput("x0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField("X0");
+  this.appendValueInput("y0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Y0"); 
+  this.appendValueInput("x1_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField("X1");
+  this.appendValueInput("y1_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Y1");
+  this.appendValueInput("x2_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField("X2");
+  this.appendValueInput("y2_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Y2"); 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(Blockly.Msg["HUE_10"]);
@@ -29218,6 +29290,42 @@ Blockly.Blocks['holistic_angle'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Y1");     
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(Blockly.Msg["HUE_7"]);
+  }
+};
+
+Blockly.Blocks['holistic_angle_3points'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);		  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.HOLISTIC_ANGLE_3POINTS_SHOW);
+  this.appendValueInput("x0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField("X0");
+  this.appendValueInput("y0_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Y0"); 
+  this.appendValueInput("x1_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField("X1");
+  this.appendValueInput("y1_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Y1");
+  this.appendValueInput("x2_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)    
+      .appendField("X2");
+  this.appendValueInput("y2_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField("Y2"); 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(Blockly.Msg["HUE_7"]);

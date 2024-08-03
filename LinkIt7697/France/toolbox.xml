@@ -3551,48 +3551,38 @@
 			  </block>   
 			  <block type="holistic_distance">
 				<value name="x0_">
-				  <block type="math_number">
-					<field name="NUM">0</field>
-				  </block>
 				</value>
 				<value name="y0_">
-				  <block type="math_number">
-					<field name="NUM">0</field>
-				  </block>
 				</value>    
 				<value name="x1_">
-				  <block type="math_number">
-					<field name="NUM">0</field>
-				  </block>
 				</value>
 				<value name="y1_">
-				  <block type="math_number">
-					<field name="NUM">0</field>
-				  </block>
 				</value>     
 			  </block>
 			  <block type="holistic_angle">
 				<value name="x0_">
-				  <block type="math_number">
-					<field name="NUM">0</field>
-				  </block>
 				</value>
 				<value name="y0_">
-				  <block type="math_number">
-					<field name="NUM">0</field>
-				  </block>
 				</value>    
 				<value name="x1_">
-				  <block type="math_number">
-					<field name="NUM">0</field>
-				  </block>
 				</value>
 				<value name="y1_">
-				  <block type="math_number">
-					<field name="NUM">0</field>
-				  </block>
 				</value>     
 			  </block> 
+			<block type="holistic_angle_3points">
+				<value name="x0_">
+				</value>
+				<value name="y0_">
+				</value>    
+				<value name="x1_">
+				</value>
+				<value name="y1_">
+				</value>
+				<value name="x2_">
+				</value>
+				<value name="y2_">
+				</value>	
+			  </block>			  
 			  <block type="holistic_face_angle">
 				<field name="axis_">x</field>   
 				<value name="part1_">
@@ -3762,48 +3752,38 @@
 		  </block>   
 		  <block type="hands_distance">
 			<value name="x0_">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
 			</value>
 			<value name="y0_">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
 			</value>    
 			<value name="x1_">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
 			</value>
 			<value name="y1_">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
 			</value>     
 		  </block>
 		  <block type="hands_angle">
 			<value name="x0_">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
 			</value>
 			<value name="y0_">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
 			</value>    
 			<value name="x1_">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
 			</value>
 			<value name="y1_">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
 			</value>     
 		  </block> 
+		<block type="hands_angle_3points">
+			<value name="x0_">
+			</value>
+			<value name="y0_">
+			</value>    
+			<value name="x1_">
+			</value>
+			<value name="y1_">
+			</value>
+			<value name="x2_">
+			</value>
+			<value name="y2_">
+			</value>	
+		  </block>  		  
 		  <block type="hands_part_angle">
 			<value name="hand_">
 			  <block type="math_number">
@@ -3933,48 +3913,38 @@
 		  </block>
 		  <block type="posenet_distance">
 			<value name="x0_">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
 			</value>
 			<value name="y0_">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
 			</value>
 			<value name="x1_">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
 			</value>
 			<value name="y1_">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
 			</value>
 		  </block>
 		  <block type="posenet_angle">
 			<value name="x0_">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
 			</value>
 			<value name="y0_">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
 			</value>
 			<value name="x1_">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
 			</value>
 			<value name="y1_">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
 			</value>
 		  </block>
+		  <block type="posenet_angle_3points">
+			<value name="x0_">
+			</value>
+			<value name="y0_">
+			</value>    
+			<value name="x1_">
+			</value>
+			<value name="y1_">
+			</value>
+			<value name="x2_">
+			</value>
+			<value name="y2_">
+			</value>	
+		  </block> 		  
 		</category>
 
 		<category id="france2˙" name="faceapidetect">
