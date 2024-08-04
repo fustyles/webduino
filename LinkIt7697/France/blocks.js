@@ -5,7 +5,8 @@ Blockly.Blocks['udp_initial'] = {
         .appendField(Blockly.Msg["UDP_INITIAL"]);
     this.appendValueInput("port")
         .setCheck("Number")
-		.appendField(Blockly.Msg["UDP_PORT"])
+		.appendField(Blockly.Msg["UDP_PORT"]);
+    this.appendDummyInput()		
 		.appendField(Blockly.Msg["UDP_EXECUTE"]);
     this.appendStatementInput("statement")
         .setCheck(null);	
