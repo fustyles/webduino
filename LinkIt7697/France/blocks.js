@@ -1,3 +1,71 @@
+Blockly.Blocks['udp_initial'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["UDP"])	
+        .appendField(Blockly.Msg["UDP_INITIAL"]);
+    this.appendValueInput("port")
+        .setCheck("Number")
+		.appendField(Blockly.Msg["UDP_PORT"])
+		.appendField(Blockly.Msg["UDP_EXECUTE"]);
+    this.appendStatementInput("statement")
+        .setCheck(null);	
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_11"]);
+  }
+};
+
+
+Blockly.Blocks['udp_get'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["UDP"])
+        .appendField(Blockly.Msg["UDP_GET"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["UDP_IP"],"ip"],
+			[Blockly.Msg["UDP_PORT"],"port"],
+			[Blockly.Msg["UDP_DATA"],"data"]
+		]), "property");
+	this.setInputsInline(true);
+	this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_11"]);
+  }
+};
+
+Blockly.Blocks['udp_write'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["UDP"])
+        .appendField(Blockly.Msg["UDP_WRITE"]);
+    this.appendValueInput("ip")
+        .setCheck("String")
+		.appendField(Blockly.Msg["UDP_IP"]);		
+    this.appendValueInput("port")
+        .setCheck("Number")
+		.appendField(Blockly.Msg["UDP_PORT"]);		
+    this.appendValueInput("data")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["UDP_DATA"]);		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_11"]);
+  }
+};
+
+
+
+
+
+
+
+
+
+
 Blockly.Blocks['amb82_mini_motiondetection_rtsp'] = {
   init: function() {
     this.appendDummyInput()
@@ -91,22 +159,6 @@ Blockly.Blocks['amb82_mini_motiondetection_rtsp_rect'] = {
 	this.setColour(Blockly.Msg["HUE_19"]);
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Blockly.Blocks['amb82_mini_ntpserver_initial'] = {
   init: function() {
@@ -10289,7 +10341,8 @@ Blockly.Blocks['tft_initial'] = {
 			[Blockly.Msg["TFT_GENERAL"],""],
 			["Pixel:Bit","Pixel:Bit"], 
 			["TTGO T-Display","TTGO T-Display"], 
-			["EasyCam","EasyCam"]			
+			["EasyCam","EasyCam"], 
+			["AmebaPro2","AmebaPro2"]		
 		]), "board");
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
@@ -18789,6 +18842,22 @@ Blockly.Blocks['esp32_wifi_localip'] = {
   init:function(){
 	this.appendDummyInput()
 		.appendField(Blockly.Msg.GET_WIFI_LOCALIP);
+	this.setOutput(true, null);  
+	this.setColour(20);
+  }
+};
+
+Blockly.Blocks['ip_format'] = {
+  init:function(){
+    this.appendValueInput("ip")
+        .setCheck("String")
+	    .setAlign(Blockly.ALIGN_RIGHT);
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["IP_2IP"],"String2Ip"],
+			[Blockly.Msg["IP_2STRING"],"Ip2String"]
+		]), "type"); 
+	this.setInputsInline(true);		
 	this.setOutput(true, null);  
 	this.setColour(20);
   }

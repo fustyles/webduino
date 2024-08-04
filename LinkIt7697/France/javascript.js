@@ -1,3 +1,125 @@
+Blockly.Arduino['udp_initial'] = function(block) {
+	
+	var port = Blockly.Arduino.valueToCode(block, 'port', Blockly.Arduino.ORDER_ATOMIC);
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');	
+
+	Blockly.Arduino.definitions_['define_udp'] ='#include <WiFiUdp.h>\nunsigned int localPort = '+port+';\nchar packetBuffer[255];\nIPAddress remoteIp;\nuint16_t remotePort;\nIPAddress writeIp;\nWiFiUDP Udp;\n';
+	
+	Blockly.Arduino.definitions_['Ip2String'] =''+
+	'String Ip2String(IPAddress ip) {\n'+
+	'  return String(ip[0])+String(".")+String(ip[1])+String(".")+String(ip[2])+String(".")+String(ip[3]);\n'+
+	'}\n';	
+	
+	Blockly.Arduino.definitions_['String2Ip'] =''+
+	'IPAddress String2Ip(String IP) {\n'+
+	'  const char* ipString = IP.c_str();\n'+
+	'  byte ip[4];\n'+
+	'  int i = 0;\n'+
+	'  const char* start = ipString;\n'+
+	'  while (*start) {\n'+
+	'    ip[i++] = atoi(start);\n'+
+	'    start = strchr(start, \'.\');\n'+
+	'    if (start == NULL) {\n'+
+	'      break;\n'+
+	'    }\n'+
+	'    start++;\n'+
+	'  }\n'+
+	'  IPAddress ipAddress(ip[0], ip[1], ip[2], ip[3]);\n'+
+	'  return ipAddress;\n'+
+	'}\n';		
+
+	Blockly.Arduino.definitions_['define_udp_listen'] =''
+	+ 'void udp_listen() {\n'
+	+ '  int packetSize = Udp.parsePacket();\n'
+	+ '  if (packetSize) {\n'
+	+ '    remoteIp = Udp.remoteIP();\n'
+	+ '    remotePort = Udp.remotePort();\n'
+	+ '    int len = Udp.read(packetBuffer, 255);\n'
+	+ '    if (len > 0) {\n'	
+	+ '          packetBuffer[len] = 0;\n'
+	+ '    }\n'
+	+ statement
+	+ '  }\n'
+	+ '}\n';
+	
+	
+	Blockly.Arduino.setups_['setup_udp'] = 'Udp.begin(localPort);\n';	
+
+  return "udp_listen();";
+};
+
+Blockly.Arduino['udp_get'] = function(block) {
+	var property = block.getFieldValue('property');
+	if (property == "ip")
+		var code = 'Ip2String(remoteIp)';
+	else if (property == "port")
+		var code = '(int)remotePort';
+	else if (property == "data")
+		var code = 'String(packetBuffer)';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['udp_write'] = function(block) {
+	var ip = Blockly.Arduino.valueToCode(block, 'ip', Blockly.Arduino.ORDER_ATOMIC);
+	var port = Blockly.Arduino.valueToCode(block, 'port', Blockly.Arduino.ORDER_ATOMIC);
+	var data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC);
+	var code = ''
+	+ 'Udp.beginPacket(String2Ip('+ip+'), (uint16_t)'+port+');\n'
+	+ 'char ReplyBuffer[255];\n'
+	+ 'snprintf(ReplyBuffer, sizeof(ReplyBuffer), "%s", String('+data+').c_str());\n'
+	+ 'Udp.write(ReplyBuffer);\n'
+	+ 'Udp.endPacket();\n';
+	return code;
+};
+
+Blockly.Arduino['ip_format'] = function(block) {
+	
+	var ip = Blockly.Arduino.valueToCode(block, 'ip', Blockly.Arduino.ORDER_ATOMIC);	
+	var type = block.getFieldValue('type');
+	
+	Blockly.Arduino.definitions_['Ip2String'] =''+
+	'String Ip2String(IPAddress ip) {\n'+
+	'  return String(ip[0])+String(".")+String(ip[1])+String(".")+String(ip[2])+String(".")+String(ip[3]);\n'+
+	'}\n';	
+	
+	Blockly.Arduino.definitions_['String2Ip'] =''+
+	'IPAddress String2Ip(String IP) {\n'+
+	'  const char* ipString = IP.c_str();\n'+
+	'  byte ip[4];\n'+
+	'  int i = 0;\n'+
+	'  const char* start = ipString;\n'+
+	'  while (*start) {\n'+
+	'    ip[i++] = atoi(start);\n'+
+	'    start = strchr(start, \'.\');\n'+
+	'    if (start == NULL) {\n'+
+	'      break;\n'+
+	'    }\n'+
+	'    start++;\n'+
+	'  }\n'+
+	'  IPAddress ipAddress(ip[0], ip[1], ip[2], ip[3]);\n'+
+	'  return ipAddress;\n'+
+	'}\n';	
+	
+	if (type == "Ip2String")
+		var code = 'Ip2String('+ip+')';
+	else
+		var code = 'String2Ip('+ip+')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Arduino['amb82_mini_motiondetection_rtsp'] = function(block) {
 	
 	//Blockly.Arduino.definitions_.define_custom_command = "";
@@ -96,20 +218,6 @@ Blockly.Arduino['amb82_mini_motiondetection_rtsp_rect'] = function(block) {
 		var code = '(ymax-ymin)';
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Blockly.Arduino['amb82_mini_ntpserver_initial'] = function(block) {
   var gmtOffset = Blockly.Arduino.valueToCode(block, 'gmtOffset', Blockly.Arduino.ORDER_ATOMIC);  
@@ -6485,21 +6593,21 @@ Blockly.Arduino['tft_initial'] = function(block) {
 	var board = block.getFieldValue('board');
 	
 	if (board=="Pixel:Bit")
-		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_PIXELBIT.h>\n';
+		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_PIXELBIT.h>\n#include <U8g2_for_TFT_eSPI.h>\n#include <TJpg_Decoder.h>\n';
 	else if (board=="TTGO T1")
-		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_TTGO.h>\n';
+		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_TTGO.h>\n#include <U8g2_for_TFT_eSPI.h>\n#include <TJpg_Decoder.h>\n';
 	else if (board=="EasyCam")
-		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_EC.h>\n';	
+		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_EC.h>\n#include <U8g2_for_TFT_eSPI.h>\n#include <TJpg_Decoder.h>\n';
+	else if (board=="AmebaPro2")
+		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_amb82.h>\n#include <U8g2_for_TFT_eSPI_amb82.h>\n#include <TJpg_Decoder_amb82_france.h>\n';		
 	else
-		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI.h>\n';
+		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI.h>\n#include <U8g2_for_TFT_eSPI.h>\n#include <TJpg_Decoder.h>\n';
 	
-	Blockly.Arduino.definitions_.tftinitial +=  '#include <U8g2_for_TFT_eSPI.h>\n'+
-												'TFT_eSPI tft = TFT_eSPI();\n'+
+	Blockly.Arduino.definitions_.tftinitial +=  'TFT_eSPI tft = TFT_eSPI();\n'+
 												'U8g2_for_TFT_eSPI u8g2;\n'+
 												'byte tftTextSize=1;\n'+
 												'byte tftTextFont=1;\n'+
 												'int pinCS=SS;\n'+
-												'#include <TJpg_Decoder.h>\n'+
 												'uint16_t dmaBuffer1[16 * 16];\n'+
 												'uint16_t dmaBuffer2[16 * 16];\n'+
 												'uint16_t *dmaBufferPtr = dmaBuffer1;\n'+
@@ -6528,11 +6636,11 @@ Blockly.Arduino['tft_initial'] = function(block) {
 	else if (board=="EasyCam")
 		Blockly.Arduino.setups_.tftsetup += '  tft.setRotation(1);\n';
 	
-	Blockly.Arduino.setups_.tftsetup +=  'tft.setTextFont(1);\n'+
-										 'tft.setTextSize(1);\n'+
-										 'tft.setTextColor(TFT_WHITE, TFT_BLACK ,0);\n'+
-										 'u8g2.begin(tft);\n'+	
-										 'u8g2.setForegroundColor(TFT_WHITE);\n';
+	Blockly.Arduino.setups_.tftsetup +=  '  tft.setTextFont(1);\n'+
+										 '  tft.setTextSize(1);\n'+
+										 '  tft.setTextColor(TFT_WHITE, TFT_BLACK ,0);\n'+
+										 '  u8g2.begin(tft);\n'+	
+										 '  u8g2.setForegroundColor(TFT_WHITE);\n';
 	
 	var code = '';
     return code;

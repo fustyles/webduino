@@ -29,6 +29,16 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["UDP"] = "UDP通訊";
+Blockly.Msg["UDP_INITIAL"] = "初始化";
+Blockly.Msg["UDP_PORT"] = "埠號";
+Blockly.Msg["UDP_EXECUTE"] = "監聽一次取得資料後執行";
+Blockly.Msg["UDP_GET"] = "取得";
+Blockly.Msg["UDP_DATA"] = "資料";
+Blockly.Msg["UDP_IP"] = "IP位址";
+Blockly.Msg["UDP_PORT"] = "埠號";
+Blockly.Msg["UDP_WRITE"] = "寫入";
+
 Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "截圖上傳Telegram Bot";
 
 Blockly.Msg["AMB82_MINI_MODE"] = "格式";
@@ -1092,6 +1102,8 @@ Blockly.Msg.GET_WIFI_STATUS = "Wi-Fi 狀態為";
 Blockly.Msg.GET_WIFI_STATUS_Y = "連線";
 Blockly.Msg.GET_WIFI_STATUS_N = "斷線";
 Blockly.Msg.GET_WIFI_LOCALIP = "取得 Wi-Fi IP位址";
+Blockly.Msg.IP_2STRING = "IP位址轉換IP字串";
+Blockly.Msg.IP_2IP = "IP字串轉換IP位址";
 Blockly.Msg.FRANCE7_SHOWCODE_SHOW = "監看程式碼(主控台) 即時";
 Blockly.Msg.ESP32_ANALOGWRITE_SHOW = "類比輸出(ESP32)";
 Blockly.Msg.ARDUINO_ANALOGWRITE_SHOW = "類比輸出";

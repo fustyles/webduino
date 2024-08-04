@@ -3,6 +3,9 @@
 <category><name>customcode</name><replace>自訂程式碼</replace></category>
 <category><name>line</name><replace>Line通知</replace></category>
 <category><name>client</name><replace>Client模組</replace></category>
+<category><name>wifi</name><replace>WiFi連線</replace></category>
+<category><name>udp</name><replace>UDP通訊</replace></category>
+<category><name>tcp</name><replace>TCP請求</replace></category>
 <category><name>thingspeak</name><replace>Thingspeak</replace></category>
 <category><name>others</name><replace>其他</replace></category>
 <category><name>servermodule</name><replace>Server模組</replace></category>

@@ -304,82 +304,123 @@
 	
 	<sep id="category_sep"></sep>	
 	<category id="france6" name="client">
-	  <block type="esp32_wifi_wait_until_ready">
-		<value name="SSID">
-		  <block type="text">
-			<field name="TEXT">teacher</field>
+		<category id="france23" name="wifi">	
+		  <block type="esp32_wifi_wait_until_ready">
+			<value name="SSID">
+			  <block type="text">
+				<field name="TEXT">teacher</field>
+			  </block>
+			</value>
+			<value name="PASSWORD">
+			  <block type="text">
+				<field name="TEXT">12345678</field>
+			  </block>
+			</value> 		
 		  </block>
-		</value>
-		<value name="PASSWORD">
-		  <block type="text">
-			<field name="TEXT">12345678</field>
+		  <block type="esp32_wifi_settings">
+			<value name="SSID">
+			  <block type="text">
+				<field name="TEXT">teacher</field>
+			  </block>
+			</value>
+			<value name="PASSWORD">
+			  <block type="text">
+				<field name="TEXT">12345678</field>
+			  </block>
+			</value> 		
+		  </block>	  
+		  <block type="esp32_wifi_disconnect">		
+		  </block>	 
+		  <block type="esp32_wifi_reconnect">		
 		  </block>
-		</value> 		
-	  </block>
-	  <block type="esp32_wifi_settings">
-		<value name="SSID">
-		  <block type="text">
-			<field name="TEXT">teacher</field>
+		  <block type="esp32_wifi_status">	
+		  </block>		  
+		  <block type="esp32_wifi_localip">	
 		  </block>
-		</value>
-		<value name="PASSWORD">
-		  <block type="text">
-			<field name="TEXT">12345678</field>
+		  <block type="ip_format">
+			<value name="ip">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value> 		  
+		  </block>			  
+		</category>
+
+		<category id="france23" name="udp">
+		  <block type="udp_initial">
+			<value name="port">
+			  <block type="math_number">
+				<field name="NUM">2390</field>
+			  </block>
+			</value>		  
 		  </block>
-		</value> 		
-	  </block>	  
-	  <block type="esp32_wifi_disconnect">		
-	  </block>	 
-	  <block type="esp32_wifi_reconnect">		
-	  </block>
-	  <block type="esp32_wifi_status">	
-	  </block>		  
-	  <block type="esp32_wifi_localip">	
-	  </block>	  
-	  <block type="tcp_https_esp32">
-		<value name="domain">
-		  <block type="text">
-			<field name="TEXT">www.google.com</field>
+		  <block type="udp_get">		
 		  </block>
-		</value> 
-		<value name="port">
-		  <block type="math_number">
-			<field name="NUM">443</field>
+		  <block type="udp_write">
+			<value name="ip">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>		  
+			<value name="port">
+			  <block type="math_number">
+				<field name="NUM">2390</field>
+			  </block>
+			</value>
+			<value name="data">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>			
+		  </block>		  
+		</category>
+
+		<category id="france23" name="tcp">
+		  <block type="tcp_https_esp32">
+			<value name="domain">
+			  <block type="text">
+				<field name="TEXT">www.google.com</field>
+			  </block>
+			</value> 
+			<value name="port">
+			  <block type="math_number">
+				<field name="NUM">443</field>
+			  </block>
+			</value> 
+			<value name="request">
+			  <block type="text">
+				<field name="TEXT">/xxx</field>
+			  </block>
+			</value> 
+			<value name="timeout">
+			  <block type="math_number">
+				<field name="NUM">3000</field>
+			  </block>
+			</value> 		
 		  </block>
-		</value> 
-		<value name="request">
-		  <block type="text">
-			<field name="TEXT">/xxx</field>
+		  <block type="tcp_http_esp32">
+			<value name="domain">
+			  <block type="text">
+				<field name="TEXT">www.google.com</field>
+			  </block>
+			</value> 
+			<value name="port">
+			  <block type="math_number">
+				<field name="NUM">80</field>
+			  </block>
+			</value> 
+			<value name="request">
+			  <block type="text">
+				<field name="TEXT">/xxx</field>
+			  </block>
+			</value> 
+			<value name="timeout">
+			  <block type="math_number">
+				<field name="NUM">3000</field>
+			  </block>
+			</value>  
 		  </block>
-		</value> 
-		<value name="timeout">
-		  <block type="math_number">
-			<field name="NUM">3000</field>
-		  </block>
-		</value> 		
-	  </block>
-	  <block type="tcp_http_esp32">
-		<value name="domain">
-		  <block type="text">
-			<field name="TEXT">www.google.com</field>
-		  </block>
-		</value> 
-		<value name="port">
-		  <block type="math_number">
-			<field name="NUM">80</field>
-		  </block>
-		</value> 
-		<value name="request">
-		  <block type="text">
-			<field name="TEXT">/xxx</field>
-		  </block>
-		</value> 
-		<value name="timeout">
-		  <block type="math_number">
-			<field name="NUM">3000</field>
-		  </block>
-		</value>  
-	  </block>
+		</category>	  
     </category>
 	
 	<category id="france7" name="servermodule"> 
@@ -3496,7 +3537,7 @@
 			<block type="amb82_mini_rtc_initial">
 			  		<value name="year_">
 					  <block type="math_number">
-						<field name="NUM">2024</field>
+						<field name="NUM">2020</field>
 					  </block>
 					</value>
 			  		<value name="month_">
@@ -3609,6 +3650,32 @@
 		  </block>		
 		</category>		
 		<category id="france23" name="amb82_mini_udp">
+		  <block type="udp_initial">
+			<value name="port">
+			  <block type="math_number">
+				<field name="NUM">2390</field>
+			  </block>
+			</value>		  
+		  </block>
+		  <block type="udp_get">		
+		  </block>
+		  <block type="udp_write">
+			<value name="ip">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>		  
+			<value name="port">
+			  <block type="math_number">
+				<field name="NUM">2390</field>
+			  </block>
+			</value>
+			<value name="data">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>			
+		  </block>		  
 		</category>
 	</category>	
 

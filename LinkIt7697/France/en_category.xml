@@ -3,6 +3,9 @@
 <category><name>customcode</name><replace>Custom Code</replace></category>
 <category><name>line</name><replace>Line Notify</replace></category>
 <category><name>client</name><replace>Client</replace></category>
+<category><name>wifi</name><replace>WiFi connection</replace></category>
+<category><name>udp</name><replace>UDP communication</replace></category>
+<category><name>tcp</name><replace>TCP request</replace></category>
 <category><name>thingspeak</name><replace>Thingspeak</replace></category>
 <category><name>others</name><replace>Others</replace></category>
 <category><name>servermodule</name><replace>Server Module</replace></category>

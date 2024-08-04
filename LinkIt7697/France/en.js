@@ -29,6 +29,16 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["UDP"] = "UDP Communication";
+Blockly.Msg["UDP_INITIAL"] = "Initialize";
+Blockly.Msg["UDP_PORT"] = "Port Number";
+Blockly.Msg["UDP_EXECUTE"] = "Listen Once and Execute After Receiving Data";
+Blockly.Msg["UDP_GET"] = "Get";
+Blockly.Msg["UDP_DATA"] = "Data";
+Blockly.Msg["UDP_IP"] = "IP Address";
+Blockly.Msg["UDP_PORT"] = "Port Number";
+Blockly.Msg["UDP_WRITE"] = "Write";
+
 Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "Upload Screenshot to Telegram Bot";
 
 Blockly.Msg["AMB82_MINI_MODE"] = "Format";
@@ -1094,6 +1104,8 @@ Blockly.Msg.GET_WIFI_STATUS = "Wi-Fi connection status is";
 Blockly.Msg.GET_WIFI_STATUS_Y = "connect";
 Blockly.Msg.GET_WIFI_STATUS_N = "disconnect";
 Blockly.Msg.GET_WIFI_LOCALIP = "Get Wi-Fi local IP";
+Blockly.Msg.IP_2STRING = "Convert IP address to IP string";
+Blockly.Msg.IP_2IP = "Convert IP string to IP address";
 Blockly.Msg.FRANCE7_SHOWCODE_SHOW = "Monitor Code(Console)  Continued";
 Blockly.Msg.ESP32_ANALOGWRITE_SHOW = "analogWrite (ESP32)";
 Blockly.Msg.ARDUINO_ANALOGWRITE_SHOW = "analogWrite";
