@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/13 23:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/10 15:00
 https://www.facebook.com/francefu
 
 JavaScript
@@ -71,17 +71,17 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 	
 	<!-- 工具箱自訂積木產出程式碼內容(javascript.js) -->
 
-	Blockly.JavaScript['test1'] = function(block) {
-		var message = Blockly.JavaScript.valueToCode(block, 'message', Blockly.JavaScript.ORDER_ATOMIC);
+	javascript.javascriptGenerator.forBlock['test1'] = function(block, generator) {
+		var message = generator.valueToCode(block, 'message', javascript.Order.ATOMIC);
 		var code = 'alert(' + message + ');\n';
 		return code;
 	};
 	
-	Blockly.JavaScript['test2'] = function(block) {
-		Blockly.JavaScript.definitions_['messagebox'] = 'var message = "World Peace";\n';
+	javascript.javascriptGenerator.forBlock['test2'] = function(block, generator) {
+		javascript.javascriptGenerator.forBlock.definitions_['messagebox'] = 'var message = "World Peace";\n';
 		
 		var code = "message";
-		return [code, Blockly.JavaScript.ORDER_NONE];
+		return [code, javascript.Order.ORDER_NONE];
 	};	
 	
 </script>
