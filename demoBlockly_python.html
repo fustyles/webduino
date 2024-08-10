@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/9/28 22:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/10 15:30
 https://www.facebook.com/francefu
 
 Python
@@ -71,18 +71,20 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 	
 	<!-- 工具箱自訂積木產出程式碼內容(Python.js) -->
 
-	Blockly.Python['test1'] = function(block) {
-		Blockly.Python.definitions_['messagebox'] =	'import tkinter as tk\n'
+	python.pythonGenerator.forBlock['test1'] = function(block, generator) {
+	console.log(python.pythonGenerator.forBlock);
+		python.pythonGenerator.definitions_['messagebox'] =	'import tkinter as tk\n'
 								+'from tkinter import messagebox\n'
 								+'root = tk.Tk()\nroot.withdraw()';
-		var message = Blockly.Python.valueToCode(block, 'message', Blockly.Python.ORDER_ATOMIC);
+								
+		var message = generator.valueToCode(block, 'message', python.Order.ATOMIC);
 		var code = "messagebox.showwarning('Message Box'," + message + ")\n";
 		return code;
 	};
 	
-	Blockly.Python['test2'] = function(block) {
+	python.pythonGenerator.forBlock['test2'] = function(block, generator) {
 		var code = "'World Peace'";
-		return [code, Blockly.Python.ORDER_NONE];
+		return [code, python.Order.NONE];
 	};	
 	
 </script>
