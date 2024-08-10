@@ -174,7 +174,8 @@ Blockly.Blocks['openai_chat_initial'] = {
 			["gpt-4","gpt-4"],	      
 			["gpt-4-0613","gpt-4-0613"],
 			["gpt-4-turbo","gpt-4-turbo"],
-			["gpt-4o","gpt-4o"]	  
+			["gpt-4o","gpt-4o"],
+			["gpt-4o-mini","gpt-4o-mini"]	
 	  ]), "model"); 	  
   this.setInputsInline(false);	  
   this.setPreviousStatement(true);

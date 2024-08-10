@@ -53,7 +53,7 @@ Blockly.Blocks['holistic_video'] = {
 		["0.1","0.1"],	
 		["0","0"]	   
   ]), "opacity_"); 	  
-  this.setInputsInline(true);	  
+  this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -919,7 +919,7 @@ Blockly.Blocks['holistic_clip_element'] = {
   this.appendValueInput("drawpath")
       .setCheck(null)
       .appendField(Blockly.Msg.HOLISTIC_CLIP_PATH_SHOW); 	  
-  this.setInputsInline(true);
+  this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -942,7 +942,7 @@ Blockly.Blocks['holistic_clip_color'] = {
   this.appendValueInput("drawpath")
       .setCheck(null)
       .appendField(Blockly.Msg.HOLISTIC_CLIP_PATH_SHOW); 	  
-  this.setInputsInline(true);
+  this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
@@ -969,7 +969,7 @@ Blockly.Blocks['holistic_clip_image'] = {
   this.appendValueInput("drawpath")
       .setCheck(null)
       .appendField(Blockly.Msg.HOLISTIC_CLIP_PATH_SHOW); 	  
-  this.setInputsInline(true);
+  this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
