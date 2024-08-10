@@ -2,14 +2,14 @@ Blockly.Msg["CATCHART"] = "儀表板";
 Blockly.Msg["CATCHARTDOUGHNUT"] = "甜甜圈圖";
 Blockly.Msg["CATCHARTGAUGE"] = "溫度圖";
 Blockly.Msg["CATCHARTWATERBUBBLE"] = "水位圖";
-
 Blockly.Msg["CHART_DOUGHNUT_CREATE"] = "甜甜圈 建立";
 Blockly.Msg["CHART_DOUGHNUT_SET"] = "甜甜圈 設定數值";
 Blockly.Msg["CHART_GAUGE_CREATE"] = "溫度圖 建立";
 Blockly.Msg["CHART_GAUGE_SET"] = "溫度圖 設定數值";
 Blockly.Msg["CHART_WATERBUBBLE_CREATE"] = "水位圖 建立";
 Blockly.Msg["CHART_WATERBUBBLE_SET"] = "水位圖 設定數值";
-Blockly.Msg["CHART_ID"] = "ID";
+
+Blockly.Msg["CHART_ID"] = "代碼";
 Blockly.Msg["CHART_NAME"] = "名稱";
 Blockly.Msg["CHART_WIDTH"] = "寬度"; 
 Blockly.Msg["CHART_HEIGHT"] = "高度";	

@@ -1,2 +1,2 @@
-Blockly.Msg["CATCOMMAND"] = "Custom Command";
-Blockly.Msg["COMMAND_PARAMETER"] = "Custom Command";
+Blockly.Msg["CATCOMMAND"] = "Module Command Parameters";
+Blockly.Msg["COMMAND_PARAMETER"] = "Command String";
