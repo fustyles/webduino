@@ -70,7 +70,7 @@ Blockly.Blocks['posenet_video'] = {
 		["0.1","0.1"],	
 		["0","0"]	   
   ]), "opacity_"); 	  
-  this.setInputsInline(true);	  
+  this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
