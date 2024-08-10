@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/10 15:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/10 15:30
 https://www.facebook.com/francefu
 
 JavaScript
@@ -47,7 +47,7 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 		this.appendDummyInput()
 		    .appendField(Blockly.Msg["HELLOWORLD_MSG"]);
 		this.appendValueInput("message")
-		    .setCheck("String");
+		    .setCheck(null);
 		this.setInputsInline(!0);
 		this.setPreviousStatement(!0);
 		this.setNextStatement(!0);		  
@@ -78,10 +78,10 @@ https://fustyles.github.io/webduino/SPduino_tool/index.html
 	};
 	
 	javascript.javascriptGenerator.forBlock['test2'] = function(block, generator) {
-		javascript.javascriptGenerator.forBlock.definitions_['messagebox'] = 'var message = "World Peace";\n';
+		javascript.javascriptGenerator.definitions_['messagebox'] = 'var message = "World Peace";\n';
 		
 		var code = "message";
-		return [code, javascript.Order.ORDER_NONE];
+		return [code, javascript.Order.NONE];
 	};	
 	
 </script>
