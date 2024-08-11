@@ -18,7 +18,7 @@ let openAI_api_KEY = "";
 
 // 試算表基本人員資料 (編號, 姓名, 暱稱, 權杖)
 let spreadsheet_ID = "";  // 試算表ID
-let spreadsheet_NAME = "";  // 試算表NAME
+let spreadsheet_NAME = "";  // 工作表NAME
 
 // openAI設定
 let openAI_model = "gpt-4o-mini";   // gpt-4, gpt-4o-mini (限已升級plus帳號或已有刷卡儲值帳號)
