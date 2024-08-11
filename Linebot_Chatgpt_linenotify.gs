@@ -121,7 +121,7 @@ function doPost(e) {
           let dataArray = eval(response);
           for (let i = 1; i < dataArray.length; i++) {
             let row = dataArray[i];
-            line_response += row[1]+'：'+row[4]+'\n';
+            line_response += i+'. '+row[1]+'：'+row[4]+'\n';
           }
           line_response += '\n\n請輸入[確定]，或輸入[取消]';
         } catch(error) {
