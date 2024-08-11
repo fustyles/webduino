@@ -124,7 +124,7 @@ function doPost(e) {
           }
           line_response += '\n請輸入[確定]，或輸入[取消]';
         } catch(error) {
-          line_response = response;
+          line_response = 'ERROR\n\n'+response;
         }        
     }
     let replyMessage = [{
