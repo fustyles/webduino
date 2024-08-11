@@ -90,7 +90,7 @@ function doPost(e) {
     } else {
         spreadsheet_list = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:D", "select *", 1);
 
-        openAI_assistant_behavior = openAI_assistant_behavior+spreadsheet_list;
+        openAI_assistant_behavior = openAI_assistant_behavior + spreadsheet_list;
         openAI_messages = [{"role": "system", "content": openAI_assistant_behavior}];
 
         let chat_message = {};
