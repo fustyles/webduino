@@ -39,7 +39,7 @@ let replyToken = "";
 let line_response = "";
 let openAI_messages;
 let replyMessage;
-let spreadsheet_list;  // 試算表清單
+let spreadsheet_list;
   
 function doPost(e) {
   let scriptProperties = PropertiesService.getScriptProperties();
