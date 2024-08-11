@@ -71,7 +71,7 @@ function doPost(e) {
                 },
                 'method': 'post',
                 'payload': {
-                    'message': row[4]
+                    'message': '\n'+row[4]
                 }
               });
               if (JSON.parse(response).message=="ok")
