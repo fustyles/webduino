@@ -123,7 +123,7 @@ function doPost(e) {
             let row = dataArray[i];
             line_response += row[1]+'：'+row[4]+'\n';
           }
-          line_response += '\n請輸入[確定]傳送，或輸入[取消]';
+          line_response += '\n\n請輸入[確定]，或輸入[取消]';
         } catch(error) {
           line_response = response;
         }        
