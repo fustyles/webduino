@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/11 19:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/11 19:30
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API
 
@@ -14,7 +14,7 @@ Line Bot Webhook & Google Apps script & ChatGTP API
 let channel_access_TOKEN = "";  
 
 // chatGPT
-let openAI_api_KEY = "";  // openAI
+let openAI_api_KEY = "";
 
 // 試算表基本人員資料 (編號, 姓名, 暱稱, 權杖)
 let spreadsheet_ID = "";  // 試算表ID
@@ -28,6 +28,9 @@ let command_help = ["help", "list", "清單", "名單"];
 let command_sure = ["sure", "yes", "確定"];
 let command_cancel = ["cancel", "no", "取消"];
 
+let columnName_arr_1 = '["編號","姓名","暱稱","權杖","訊息"]';
+let columnName_arr_0 = '編號,姓名,暱稱';
+
 // 系統變數
 let userMessage = "";
 let userId = "";
@@ -36,7 +39,7 @@ let replyToken = "";
 let line_response = "";
 let openAI_messages;
 let replyMessage;
-let spreadsheet_list;
+let spreadsheet_list;  // 試算表清單
   
 function doPost(e) {
   let scriptProperties = PropertiesService.getScriptProperties();
@@ -180,10 +183,10 @@ function getSheetsQueryResult(fileId, sheetName, rangeA1, sqlText, arr)
 
   var mark;
   if (arr==1) {
-    result.push('["編號","姓名","暱稱","權杖","訊息"]');
+    result.push(columnName_arr_1);
     mark = '"';
   } else {
-    result.push('編號,姓名,暱稱');
+    result.push(columnName_arr_0);
     mark = '';
   }
 
@@ -216,7 +219,8 @@ function getSheetsQueryResult(fileId, sheetName, rangeA1, sqlText, arr)
     return result.join("\n");
 }
 
-function sendImagetoLineNotify(imageData, token, boundary){
+function sendImagetoLineNotify(imageData, token, boundary)
+{
   var options = {
     "method" : "post",
     "contentType" : "multipart/form-data; boundary=" + boundary,
