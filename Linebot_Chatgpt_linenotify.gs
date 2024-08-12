@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/13 00:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/13 01:00
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API
 
@@ -16,7 +16,7 @@ Line Bot Webhook & Google Apps script & ChatGTP API
 let channel_access_TOKEN = "";
 
 // chatGPT
-let openAI_api_KEY = ""; // openAI
+let openAI_api_KEY = "";
 
 // 試算表基本人員資料 (編號, 姓名, 暱稱, 權杖)
 let spreadsheet_ID = ""; // 試算表ID
@@ -37,7 +37,7 @@ let command_sure = ["sure", "yes", "確定"];
 let command_cancel = ["cancel", "no", "取消"];
 
 let columnName_array = '["編號","姓名","暱稱","權杖","訊息"]';
-let columnName_string = '編號,姓名,暱稱';
+let columnName_string = '編號, 姓名, 暱稱';
 
 let Msg = {
   "success_send": "傳送完成",
@@ -188,19 +188,17 @@ function sendMessageToChatGPT(system_behavior, user_message){
 }
 
 //https://stackoverflow.com/questions/22330542/can-i-use-google-visualization-api-to-query-a-spreadsheet-in-apps-script
-function getSheetsQueryResult(fileId, sheetName, range, sqlText, formatAarry) {
+function getSheetsQueryResult(fileId, sheetName, range, sqlText, formatArray) {
     var file = SpreadsheetApp.openById(fileId);
     var sheetId = file.getSheetByName(sheetName).getSheetId();
 
     var request = 'https://docs.google.com/spreadsheets/d/' + fileId + '/gviz/tq?gid=' + sheetId + '&range=' + range + '&tq=' + encodeURIComponent(sqlText);
     var result = UrlFetchApp.fetch(request).getContentText();
-    // get json object
     var from = result.indexOf("{");
     var to = result.lastIndexOf("}") + 1;
     var jsonText = result.slice(from, to);
     var parsedText = JSON.parse(jsonText);
 
-    // get types
     var types = [];
     var addType_ = function(col) {
         types.push(col.type);
@@ -208,7 +206,6 @@ function getSheetsQueryResult(fileId, sheetName, range, sqlText, formatAarry) {
     var cols = parsedText.table.cols;
     cols.forEach(addType_);
 
-    // loop rows
     var rows = parsedText.table.rows;
     var result = [];
     var rowQuery = [];
@@ -217,38 +214,43 @@ function getSheetsQueryResult(fileId, sheetName, range, sqlText, formatAarry) {
     var nRows = rows[0].c.length;
     var type = '';
 
-    var mark;
-    if (formatAarry == 1) {
-        result.push(columnName_array);
-        mark = '"';
-    } else {
-        result.push(columnName_string);
-        mark = '';
-    }
-
     for (var i = 0, l = rows.length; i < l; i++) {
         rowQuery = rows[i].c;
-        row = [];
-        // loop values   
+        row = []; 
         for (var k = 0; k < nRows; k++) {
             eltQuery = rowQuery[k];
             type = types[k];
             if (type === 'number') {
-                row.push(mark + parseInt(eltQuery.v) + mark);
+                row.push(parseInt(eltQuery.v));
             } else if (type === 'boolean' || type === 'string') {
-                row.push(mark + String(eltQuery.v) + mark);
+                row.push(String(eltQuery.v));
             } else {
-                row.push(mark + String(eltQuery.f) + mark);
+                row.push(String(eltQuery.f));
             }
         }
-        if (formatAarry == 1) {
-            row.push('""');
-            result.push("[" + row.join(",") + "]");
-        } else
-            result.push(row.join(","));
+        result.push(row);
     }
-    if (formatAarry == 1)
-        return "[" + result.join(",") + "]";
+    
+    if (formatArray)
+        return resultToArrayString(result);
     else
-        return result.join("\n");
+        return resultToListString(result);
+}
+
+function resultToArrayString(result) {
+    var output = '[' +columnName_array + ",";
+    for (var i = 0; i < result.length; i++) {
+        output += `["${result[i][0]}", "${result[i][1]}", "${result[i][2]}", "${result[i][3]}", ""]`;
+        output += (i!=result.length-1)?",":"";
+    }
+    output += ']';
+    return output;
+}
+
+function resultToListString(result) {
+    var output = columnName_string + '\n';
+    for (var i = 0; i < result.length; i++) {
+        output += result[i].slice(0, 3).join(', ') + '\n';
+    }
+    return output;
 }
