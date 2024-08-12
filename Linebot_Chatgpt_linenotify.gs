@@ -9,6 +9,7 @@ Line Bot Webhook & Google Apps script & ChatGTP API
 3. 不明原因，可能太久無人使用自動停用，重新佈署或重建Apps script專案並開放存取權限。
 4. Apps script程式碼有bug。
 5. Google試算表設定不正確。
+6. 重新再傳訊一次。
 */
 
 // Line bot
