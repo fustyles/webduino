@@ -27,8 +27,8 @@ let command_help = ["help", "list", "清單", "名單"];
 let command_sure = ["sure", "yes", "確定"];
 let command_cancel = ["cancel", "no", "取消"];
 
-let columnName_arr_1 = '["編號","姓名","暱稱","權杖","訊息"]';
-let columnName_arr_0 = '編號,姓名,暱稱';
+let columnName_array = '["編號","姓名","暱稱","權杖","訊息"]';
+let columnName_string = '編號,姓名,暱稱';
 
 let Msg = {
   "success_send": "傳送完成",
@@ -204,10 +204,10 @@ function getSheetsQueryResult(fileId, sheetName, rangeA1, sqlText, formatAarry) 
 
     var mark;
     if (formatAarry == 1) {
-        result.push(columnName_arr_1);
+        result.push(columnName_array);
         mark = '"';
     } else {
-        result.push(columnName_arr_0);
+        result.push(columnName_string);
         mark = '';
     }
 
