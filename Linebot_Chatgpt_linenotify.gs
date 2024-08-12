@@ -221,15 +221,3 @@ function getSheetsQueryResult(fileId, sheetName, rangeA1, sqlText, arr) {
     else
         return result.join("\n");
 }
-
-function sendImagetoLineNotify(imageData, token, boundary) {
-    var options = {
-        "method": "post",
-        "contentType": "multipart/form-data; boundary=" + boundary,
-        "payload": imageData,
-        "headers": {
-            "Authorization": "Bearer " + token
-        }
-    };
-    UrlFetchApp.fetch("https://notify-api.line.me/api/notify", options);
-}
