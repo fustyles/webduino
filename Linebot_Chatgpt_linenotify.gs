@@ -48,7 +48,7 @@ let Msg = {
   "query": "請輸入[確定]，或輸入[取消]"
 }
 
-// 系統變數
+// Line bot參數
 let userMessage = "";
 let userId = "";
 let eventType = "";
