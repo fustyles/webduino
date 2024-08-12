@@ -157,10 +157,10 @@ function sendMessageToLineBot(accessToken, replyToken, message) {
     });
 }
 
-function sendMessageToChatGPT(system_behavior, user_message){
+function sendMessageToChatGPT(assistant_behavior, user_message){
     let openAI_messages = [{
         "role": "system",
-        "content": system_behavior
+        "content": assistant_behavior
     }];
 
     let chat_message = {};
