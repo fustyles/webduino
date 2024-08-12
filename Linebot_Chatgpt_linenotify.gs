@@ -66,12 +66,12 @@ function doPost(e) {
             line_response = Msg.cancel;            
         } else if (command_sure.includes(userMessage.toLowerCase())) {
             line_response = scriptProperties.getProperty(userId);
-            let dataArray = eval(line_response);
             let response;
             let send_ok = 0;
             let send_error = 0;
             let row;
             try {
+                let dataArray = eval(line_response);
                 for (let i = 1; i < dataArray.length; i++) {
                     row = dataArray[i];
                     if (row[4] != '') {
