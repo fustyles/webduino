@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/12 13:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/13 00:00
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API
 
@@ -16,7 +16,7 @@ Line Bot Webhook & Google Apps script & ChatGTP API
 let channel_access_TOKEN = "";
 
 // chatGPT
-let openAI_api_KEY = "";
+let openAI_api_KEY = ""; // openAI
 
 // 試算表基本人員資料 (編號, 姓名, 暱稱, 權杖)
 let spreadsheet_ID = ""; // 試算表ID
@@ -73,19 +73,22 @@ function doPost(e) {
         } else if (command_sure.includes(userMessage.toLowerCase())) {
             line_response = scriptProperties.getProperty(userId);
             let count_ok = 0;
-            let count_error = 0;
+            let row;
+            let err = '';
             try {
                 let dataArray = eval(line_response);
                 for (let i = 1; i < dataArray.length; i++) {
-                    let row = dataArray[i];
+                    row = dataArray[i];
                     if (row[4] != '') {
                         if (sendMessageToLineNotify(row[3], '\n' + row[4]))
                             count_ok++;
-                        else
-                            count_error++;
+                        else {
+                            err = `\n\nUnexpected token\n\n${row}`;
+                            break;
+                        }
                     }
                 }
-                line_response = `${Msg.success_send}\n${Msg.success}${count_ok}\n${Msg.failure}${count_error}`;
+                line_response = `${Msg.success_send}\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}${err}`;
             } catch (error) {
                 line_response = `${Msg.failure_send}\n\n${row}\n\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}\n\n${error}`;
             }
@@ -113,20 +116,24 @@ function doPost(e) {
 }
 
 function sendMessageToLineNotify(replyToken, replyMessage) {
-    url = 'https://notify-api.line.me/api/notify';   
-    let response = UrlFetchApp.fetch(url, {
-        'headers': {
-            'Authorization': 'Bearer ' + replyToken,
-        },
-        'method': 'post',
-        'payload': {
-            'message': replyMessage
-        }
-    });
-    if (JSON.parse(response).message == "ok")
-        return true;
-    else
+    try {
+        url = 'https://notify-api.line.me/api/notify';   
+        let response = UrlFetchApp.fetch(url, {
+            'headers': {
+                'Authorization': 'Bearer ' + replyToken,
+            },
+            'method': 'post',
+            'payload': {
+                'message': replyMessage
+            }
+        });
+        if (JSON.parse(response).message == "ok")
+            return true;
+        else
+            return false;
+    } catch (error) {
         return false;
+    }  
 }
 
 function sendMessageToLineBot(accessToken, replyToken, message) {
@@ -229,9 +236,9 @@ function getSheetsQueryResult(fileId, sheetName, range, sqlText, formatAarry) {
             if (type === 'number') {
                 row.push(mark + parseInt(eltQuery.v) + mark);
             } else if (type === 'boolean' || type === 'string') {
-                row.push(mark + eltQuery.v + mark);
+                row.push(mark + String(eltQuery.v) + mark);
             } else {
-                row.push(mark + eltQuery.f + mark);
+                row.push(mark + String(eltQuery.f) + mark);
             }
         }
         if (formatAarry == 1) {
