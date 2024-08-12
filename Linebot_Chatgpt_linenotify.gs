@@ -32,6 +32,8 @@ let openAI_assistant_behavior = "請符合以下規範："
 +"- 若無關任何傳送對象請回傳'請輸入要傳送的訊息與對象，或者重試一次！'，不須參照回傳陣列格式資料。"
 +"- 只回覆陣列格式資料不要多作解釋。陣列格式資料如下：";
 
+// 陣列資料格式範本：  [["編號","姓名","暱稱","權杖","訊息"],["1", "林志玲", "老婆", "Line token1", ""],["2", "周子瑜", "妹妹", "Line token2", ""]]
+
 let command_help = ["help", "list", "清單", "名單"];
 let command_sure = ["sure", "yes", "確定"];
 let command_cancel = ["cancel", "no", "取消"];
