@@ -66,24 +66,22 @@ function doPost(e) {
             line_response = Msg.cancel;            
         } else if (command_sure.includes(userMessage.toLowerCase())) {
             line_response = scriptProperties.getProperty(userId);
-            let response;
-            let send_ok = 0;
-            let send_error = 0;
-            let row;
+            let count_ok = 0;
+            let count_error = 0;
             try {
                 let dataArray = eval(line_response);
                 for (let i = 1; i < dataArray.length; i++) {
-                    row = dataArray[i];
+                    let row = dataArray[i];
                     if (row[4] != '') {
                         if (sendMessageToLineNotify(row[3], '\n' + row[4]))
-                            send_ok++;
+                            count_ok++;
                         else
-                            send_error++;
+                            count_error++;
                     }
                 }
-                line_response = `${Msg.success_send}\n${Msg.success}${send_ok}\n${Msg.failure}${send_error}`;
+                line_response = `${Msg.success_send}\n${Msg.success}${count_ok}\n${Msg.failure}${count_error}`;
             } catch (error) {
-                line_response = `${Msg.failure_send}\n\n${row}\n\n${Msg.success}${send_ok}\n${Msg.failure}${dataArray.length - send_ok - 1}\n\n${error}`;
+                line_response = `${Msg.failure_send}\n\n${row}\n\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}\n\n${error}`;
             }
             scriptProperties.setProperty(userId, '');
         } else {
