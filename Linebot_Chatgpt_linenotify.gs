@@ -38,7 +38,7 @@ let command_help = ["help", "list", "清單", "名單"];
 let command_sure = ["sure", "yes", "確定"];
 let command_cancel = ["cancel", "no", "取消"];
 
-let columnName_array = '["編號","姓名","暱稱","權杖","訊息"]';
+let columnName_array = '["編號", "姓名", "暱稱", "權杖", "訊息"]';
 let columnName_string = '編號, 姓名, 暱稱';
 
 let Msg = {
