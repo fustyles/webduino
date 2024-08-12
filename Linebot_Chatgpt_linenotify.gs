@@ -252,7 +252,8 @@ function resultToArrayString(result) {
 function resultToListString(result) {
     var output = columnName_string + '\n';
     for (var i = 0; i < result.length; i++) {
-        output += result[i].slice(0, 3).join(', ') + '\n';
+        output += result[i].slice(0, 3).join(', ');
+        output += (i!=result.length-1)?"\n":"";
     }
     return output;
 }
