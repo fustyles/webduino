@@ -173,11 +173,11 @@ function sendMessageToLineBot(accessToken, replyToken, reply_message) {
 }
 
 //https://stackoverflow.com/questions/22330542/can-i-use-google-visualization-api-to-query-a-spreadsheet-in-apps-script
-function getSheetsQueryResult(fileId, sheetName, rangeA1, sqlText, formatAarry) {
+function getSheetsQueryResult(fileId, sheetName, range, sqlText, formatAarry) {
     var file = SpreadsheetApp.openById(fileId);
     var sheetId = file.getSheetByName(sheetName).getSheetId();
 
-    var request = 'https://docs.google.com/spreadsheets/d/' + fileId + '/gviz/tq?gid=' + sheetId + '&range=' + rangeA1 + '&tq=' + encodeURIComponent(sqlText);
+    var request = 'https://docs.google.com/spreadsheets/d/' + fileId + '/gviz/tq?gid=' + sheetId + '&range=' + range + '&tq=' + encodeURIComponent(sqlText);
     var result = UrlFetchApp.fetch(request).getContentText();
     // get json object
     var from = result.indexOf("{");
