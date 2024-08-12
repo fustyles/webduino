@@ -105,7 +105,7 @@ function doPost(e) {
                 let dataArray = eval(response);
                 for (let i = 1; i < dataArray.length; i++) {
                     let row = dataArray[i];
-                    line_response += i + '. ' + row[1] + '：' + row[4] + '\n';
+                    line_response += row[0] + '. ' + row[1] + '：' + row[4] + '\n';
                 }
                 line_response += '\n' + Msg.query;
             } catch (error) {
