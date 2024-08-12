@@ -21,7 +21,7 @@ let spreadsheet_NAME = "";  // 工作表NAME
 
 // openAI設定
 let openAI_model = "gpt-4o-mini"; // gpt-4, gpt-4o-mini (限已升級plus帳號或已有刷卡儲值帳號)
-let openAI_assistant_behavior = "請分析使用者訊息，判別要傳送的Line訊息與傳送的對象(編號、姓名、暱稱任一相同或所有人)，依照提供的資料格式字串將要傳送對象的訊息填入欄位[訊息]的值，若非傳送對象不列出。若無任何對象或訊息請回傳'請輸入要傳送的訊息與對象！'，不須參照資料格式字串。只回覆資料格式字串不要多作解釋。資料格式字串如下：";
+let openAI_assistant_behavior = "請分析使用者訊息，判別要傳送的Line訊息與傳送的對象(編號、姓名、暱稱任一相同或所有人)，依照提供的資料格式字串將要傳送對象的訊息填入欄位[訊息]的值，若非傳送對象或傳送資料空白則不列入回傳資料格式字串裡。若無任何對象或訊息請回傳'請輸入要傳送的訊息與對象！'，不須參照資料格式字串。只回覆資料格式字串不要多作解釋。資料格式字串如下：";
 
 let command_help = ["help", "list", "清單", "名單"];
 let command_sure = ["sure", "yes", "確定"];
@@ -29,6 +29,15 @@ let command_cancel = ["cancel", "no", "取消"];
 
 let columnName_arr_1 = '["編號","姓名","暱稱","權杖","訊息"]';
 let columnName_arr_0 = '編號,姓名,暱稱';
+
+let Msg = {
+  "success_send": "傳送完成",
+  "success": "成功：",
+  "failure_send": "傳送錯誤",
+  "failure": "失敗：",
+  "cancel": "傳送取消",
+  "query": "請輸入[確定]，或輸入[取消]"
+}
 
 // 系統變數
 let userMessage = "";
@@ -63,30 +72,20 @@ function doPost(e) {
                 for (let i = 1; i < dataArray.length; i++) {
                     row = dataArray[i];
                     if (row[4] != '') {
-                        url = 'https://notify-api.line.me/api/notify';
-                        response = UrlFetchApp.fetch(url, {
-                            'headers': {
-                                'Authorization': 'Bearer ' + row[3],
-                            },
-                            'method': 'post',
-                            'payload': {
-                                'message': '\n' + row[4] // 'message': '\n'+row[4]+'\n\n['+userId+']'
-                            }
-                        });
-                        if (JSON.parse(response).message == "ok")
+                        if (sendMessageToLineNotify(row[3], '\n' + row[4]))
                             send_ok++;
                         else
                             send_error++;
                     }
                 }
-                line_response = '傳送完成\n成功：' + send_ok + '人\n失敗：' + send_error + '人';
+                line_response = `${Msg.success_send}\n${Msg.success}${send_ok}\n${Msg.failure}${send_error}`;
             } catch (error) {
-                line_response = '傳送失敗\n\n' + row + '\n\n成功：' + send_ok + '人\n失敗：' + (dataArray.length - send_ok - 1) + '人\n\n' + error;
+                line_response = `${Msg.failure_send}\n\n${row}\n\n${Msg.success}${send_ok}\n${Msg.failure}${dataArray.length - send_ok - 1}\n\n${error}`;
             }
             scriptProperties.setProperty(userId, '');
         } else if (command_cancel.includes(userMessage.toLowerCase())) {
             scriptProperties.setProperty(userId, '');
-            line_response = '傳送取消';
+            line_response = Msg.cancel;
         } else {
             spreadsheet_list = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:D", "select *", 1);
 
@@ -127,7 +126,7 @@ function doPost(e) {
                     let row = dataArray[i];
                     line_response += i + '. ' + row[1] + '：' + row[4] + '\n';
                 }
-                line_response += '\n請輸入[確定]，或輸入[取消]';
+                line_response += '\n' + Msg.query;
             } catch (error) {
                 line_response = response + '\n\n' + error;
             }
@@ -139,6 +138,23 @@ function doPost(e) {
         sendMessageToLineBot(channel_access_TOKEN, replyToken, replyMessage);
     }
     return ContentService.createTextOutput("Return = Finish");
+}
+
+function sendMessageToLineNotify(token, message) {
+    url = 'https://notify-api.line.me/api/notify';
+    response = UrlFetchApp.fetch(url, {
+        'headers': {
+            'Authorization': 'Bearer ' + token,
+        },
+        'method': 'post',
+        'payload': {
+            'message': message
+        }
+    });
+    if (JSON.parse(response).message == "ok")
+        return true;
+    else
+        return false;
 }
 
 function sendMessageToLineBot(accessToken, replyToken, reply_message) {
@@ -157,7 +173,7 @@ function sendMessageToLineBot(accessToken, replyToken, reply_message) {
 }
 
 //https://stackoverflow.com/questions/22330542/can-i-use-google-visualization-api-to-query-a-spreadsheet-in-apps-script
-function getSheetsQueryResult(fileId, sheetName, rangeA1, sqlText, arr) {
+function getSheetsQueryResult(fileId, sheetName, rangeA1, sqlText, formatAarry) {
     var file = SpreadsheetApp.openById(fileId);
     var sheetId = file.getSheetByName(sheetName).getSheetId();
 
@@ -187,7 +203,7 @@ function getSheetsQueryResult(fileId, sheetName, rangeA1, sqlText, arr) {
     var type = '';
 
     var mark;
-    if (arr == 1) {
+    if (formatAarry == 1) {
         result.push(columnName_arr_1);
         mark = '"';
     } else {
@@ -210,13 +226,13 @@ function getSheetsQueryResult(fileId, sheetName, rangeA1, sqlText, arr) {
                 row.push(mark + eltQuery.f + mark);
             }
         }
-        if (arr == 1) {
+        if (formatAarry == 1) {
             row.push('""');
             result.push("[" + row.join(",") + "]");
         } else
             result.push(row.join(","));
     }
-    if (arr == 1)
+    if (formatAarry == 1)
         return "[" + result.join(",") + "]";
     else
         return result.join("\n");
