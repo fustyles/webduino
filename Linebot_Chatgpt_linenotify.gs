@@ -100,24 +100,20 @@ function doPost(e) {
                 line_response = response + '\n\n' + error;
             }
         }
-        let replyMessage = [{
-            "type": "text",
-            "text": line_response
-        }]
-        sendMessageToLineBot(channel_access_TOKEN, replyToken, replyMessage);
+        sendMessageToLineBot(channel_access_TOKEN, replyToken, line_response);
     }
     return ContentService.createTextOutput("Return = Finish");
 }
 
-function sendMessageToLineNotify(token, message) {
-    url = 'https://notify-api.line.me/api/notify';
-    response = UrlFetchApp.fetch(url, {
+function sendMessageToLineNotify(replyToken, replyMessage) {
+    url = 'https://notify-api.line.me/api/notify';   
+    let response = UrlFetchApp.fetch(url, {
         'headers': {
-            'Authorization': 'Bearer ' + token,
+            'Authorization': 'Bearer ' + replyToken,
         },
         'method': 'post',
         'payload': {
-            'message': message
+            'message': replyMessage
         }
     });
     if (JSON.parse(response).message == "ok")
@@ -126,8 +122,12 @@ function sendMessageToLineNotify(token, message) {
         return false;
 }
 
-function sendMessageToLineBot(accessToken, replyToken, reply_message) {
+function sendMessageToLineBot(accessToken, replyToken, message) {
     let url = 'https://api.line.me/v2/bot/message/reply';
+    let replyMessage = [{
+        "type": "text",
+        "text": message
+    }]       
     UrlFetchApp.fetch(url, {
         'headers': {
             'Content-Type': 'application/json; charset=UTF-8',
@@ -136,7 +136,7 @@ function sendMessageToLineBot(accessToken, replyToken, reply_message) {
         'method': 'post',
         'payload': JSON.stringify({
             'replyToken': replyToken,
-            'messages': reply_message
+            'messages': replyMessage
         }),
     });
 }
