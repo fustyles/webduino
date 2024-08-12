@@ -61,6 +61,9 @@ function doPost(e) {
 
         if (command_help.includes(userMessage.toLowerCase())) {
             line_response = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:C", "select *", 0);
+        } else if (command_cancel.includes(userMessage.toLowerCase())) {
+            scriptProperties.setProperty(userId, '');
+            line_response = Msg.cancel;
         } else if (command_sure.includes(userMessage.toLowerCase())) {
             line_response = scriptProperties.getProperty(userId);
             let dataArray = eval(line_response);
@@ -83,9 +86,6 @@ function doPost(e) {
                 line_response = `${Msg.failure_send}\n\n${row}\n\n${Msg.success}${send_ok}\n${Msg.failure}${dataArray.length - send_ok - 1}\n\n${error}`;
             }
             scriptProperties.setProperty(userId, '');
-        } else if (command_cancel.includes(userMessage.toLowerCase())) {
-            scriptProperties.setProperty(userId, '');
-            line_response = Msg.cancel;
         } else {
             spreadsheet_list = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:D", "select *", 1);
 
