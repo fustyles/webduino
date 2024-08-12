@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/12 00:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/12 13:00
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API
 
@@ -10,14 +10,14 @@ Line Bot Webhook & Google Apps script & ChatGTP API
 */
 
 // Line bot
-let channel_access_TOKEN = "";  
+let channel_access_TOKEN = "";
 
 // chatGPT
 let openAI_api_KEY = "";
 
 // 試算表基本人員資料 (編號, 姓名, 暱稱, 權杖)
-let spreadsheet_ID = "";  // 試算表ID
-let spreadsheet_NAME = "";  // 工作表NAME
+let spreadsheet_ID = ""; // 試算表ID
+let spreadsheet_NAME = ""; // 工作表NAME
 
 // openAI設定
 let openAI_model = "gpt-4o-mini"; // gpt-4, gpt-4o-mini (限已升級plus帳號或已有刷卡儲值帳號)
@@ -44,13 +44,10 @@ let userMessage = "";
 let userId = "";
 let eventType = "";
 let replyToken = "";
-let line_response = "";
-let openAI_messages;
-let replyMessage;
-let spreadsheet_list;
 
 function doPost(e) {
     let scriptProperties = PropertiesService.getScriptProperties();
+    let line_response = "";
 
     if (e.postData) {
         let msg = JSON.parse(e.postData.contents);
@@ -63,7 +60,7 @@ function doPost(e) {
             line_response = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:C", "select *", 0);
         } else if (command_cancel.includes(userMessage.toLowerCase())) {
             scriptProperties.setProperty(userId, '');
-            line_response = Msg.cancel;
+            line_response = Msg.cancel;            
         } else if (command_sure.includes(userMessage.toLowerCase())) {
             line_response = scriptProperties.getProperty(userId);
             let dataArray = eval(line_response);
@@ -87,38 +84,10 @@ function doPost(e) {
             }
             scriptProperties.setProperty(userId, '');
         } else {
-            spreadsheet_list = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:D", "select *", 1);
-
+            let spreadsheet_list = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:D", "select *", 1);
             openAI_assistant_behavior = openAI_assistant_behavior + spreadsheet_list;
-            openAI_messages = [{
-                "role": "system",
-                "content": openAI_assistant_behavior
-            }];
 
-            let chat_message = {};
-            chat_message.role = "user";
-            chat_message.content = userMessage;
-            openAI_messages.push(chat_message);
-
-            let url = "https://api.openAI.com/v1/chat/completions";
-            let data = {
-                "model": openAI_model,
-                "messages": openAI_messages
-            };
-
-            const authHeader = "Bearer " + openAI_api_KEY;
-            const options = {
-                headers: {
-                    Authorization: authHeader
-                },
-                method: 'POST',
-                contentType: 'application/json',
-                payload: JSON.stringify(data)
-            }
-
-            let response = UrlFetchApp.fetch(url, options);
-            let json = JSON.parse(response.getContentText());
-            response = json["choices"][0]["message"]["content"];
+            response = sendMessageToChatGPT(openAI_assistant_behavior, userMessage);
             scriptProperties.setProperty(userId, response);
             try {
                 let dataArray = eval(response);
@@ -170,6 +139,38 @@ function sendMessageToLineBot(accessToken, replyToken, reply_message) {
             'messages': reply_message
         }),
     });
+}
+
+function sendMessageToChatGPT(system_behavior, user_message){
+    let openAI_messages = [{
+        "role": "system",
+        "content": system_behavior
+    }];
+
+    let chat_message = {};
+    chat_message.role = "user";
+    chat_message.content = user_message;
+    openAI_messages.push(chat_message);
+
+    let url = "https://api.openAI.com/v1/chat/completions";
+    let data = {
+        "model": openAI_model,
+        "messages": openAI_messages
+    };
+
+    const authHeader = "Bearer " + openAI_api_KEY;
+    const options = {
+        headers: {
+            Authorization: authHeader
+        },
+        method: 'POST',
+        contentType: 'application/json',
+        payload: JSON.stringify(data)
+    }
+
+    let response = UrlFetchApp.fetch(url, options);
+    let json = JSON.parse(response.getContentText());
+    return json["choices"][0]["message"]["content"];
 }
 
 //https://stackoverflow.com/questions/22330542/can-i-use-google-visualization-api-to-query-a-spreadsheet-in-apps-script
