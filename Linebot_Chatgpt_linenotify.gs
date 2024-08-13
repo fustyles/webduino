@@ -41,7 +41,8 @@ let Command = {
     "help" : ["help", "list", "清單", "名單"],
     "sure" : ["sure", "yes", "確定"],
     "cancel" : ["cancel", "no", "取消"],
-    "search" : "查詢"
+    "search" : "查詢",
+    "sql" : "sql"
 }
 
 let Msg = {
@@ -109,7 +110,15 @@ function doPost(e) {
                 line_response = resultToListString(sqlDataArray);      
             } catch (error) {
                 line_response = error;
-            }                
+            }
+        } else if (userMessage.toLowerCase().indexOf(Command.sql)!=-1) {
+            try {
+                let sqlText = userMessage.toLowerCase().substring(userMessage.toLowerCase().indexOf(Command.sql) + Command.sql.length).trim();
+                let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:C",sqlText );
+                line_response = resultToListString(sqlDataArray);      
+            } catch (error) {
+                line_response = error;
+            }                             
         } else {
             let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:D", "select *");
             let spreadsheet_list = resultToArrayString(sqlDataArray);           
