@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/13 15:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/13 15:30
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API
 
@@ -23,7 +23,7 @@ let spreadsheet_ID = ""; // 試算表ID
 let spreadsheet_NAME = ""; // 工作表NAME
 
 // openAI設定
-let openAI_model = "gpt-4o"; // gpt-4, gpt-4o-mini (限已升級plus帳號或已有刷卡儲值帳號)
+let openAI_model = "gpt-4o"; // 限已升級plus帳號或已有刷卡儲值帳號
 let openAI_assistant_behavior = "請回覆陣列格式資料符合以下規範："
 + "- 請分析使用者對話內容，區分要傳送的訊息內容與傳送對象(陣列格式資料中與欄位「編號」、「姓名」、「暱稱」任一相同或相關聯)"
 + "- 若對話內容中提及「所有人」，則所有對象都應該收到該訊息。"
@@ -32,6 +32,7 @@ let openAI_assistant_behavior = "請回覆陣列格式資料符合以下規範�
 + "- 將傳送的訊息內容填入提供的陣列格式資料欄位[訊息]的值，傳送訊息內容數要與生成的筆數一致，保留欄位名稱首列。"
 + "- 若非傳送對象或傳送訊息內容為空白則不列入回傳陣列資料裡。"
 + "- 若無關任何傳送對象請回傳'請輸入要傳送的訊息與對象，或者重試一次！'，不須參照回傳陣列格式資料。"
++ "- 回傳的陣列資料需根據編號進行排序。"
 + "- 只回覆陣列格式資料，不要多作解釋。"
 + "- 陣列格式資料如下：";
 
