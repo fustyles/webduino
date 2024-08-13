@@ -24,7 +24,8 @@ let spreadsheet_NAME = ""; // 工作表NAME
 
 // openAI設定
 let openAI_model = "gpt-4o"; // 限已升級plus帳號或已有刷卡儲值帳號
-let openAI_assistant_behavior = "請回覆陣列格式資料符合以下規範："
+let openAI_assistant_behavior = ""+
++ "請回覆陣列格式資料符合以下規範："
 + "(1)請分析使用者對話內容，區分要傳送的訊息內容與傳送對象(陣列格式資料中與欄位「編號」、「姓名」、「暱稱」任一相同或相關聯，或所有對象皆傳送)"
 + "(2)對話內容中提及對象與欄位「編號」、「姓名」、「暱稱」任一相同或相關連，視為同一對象。"
 + "(3)若同一對象的訊息內容有多項，多項訊息各自生成一列陣列資料。"
@@ -41,7 +42,7 @@ let Command = {
     "help" : ["help", "list", "清單", "名單"],
     "sure" : ["sure", "yes", "確定"],
     "cancel" : ["cancel", "no", "取消"],
-    "search" : "查詢",
+    "search" : ["search", "查詢"],
     "sql" : "sql"
 }
 
@@ -102,16 +103,16 @@ function doPost(e) {
                 line_response = `${Msg.failure_send}\n\n${row}\n\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}\n\n${error}`;
             }
             scriptProperties.setProperty(userId, '');
-        } else if (userMessage.toLowerCase().indexOf(Command.search)!=-1) {
+        } else if (checkContainSearch(userMessage, Command.search)!="") {
             try {
-                let keyword = userMessage.toLowerCase().substring(userMessage.toLowerCase().indexOf(Command.search) + Command.search.length).trim();
+                let keyword = checkContainSearch(userMessage, Command.search);
                 let sqlText = "select * where A contains '" + keyword + "' or B contains '" + keyword + "' or C contains '" + keyword + "'";
                 let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:C",sqlText );
                 line_response = resultToListString(sqlDataArray);      
             } catch (error) {
                 line_response = error;
             }
-        } else if (userMessage.toLowerCase().indexOf(Command.sql)!=-1) {
+        } else if (userMessage.toLowerCase().indexOf(Command.sql)==0) {
             try {
                 let sqlText = userMessage.toLowerCase().substring(userMessage.toLowerCase().indexOf(Command.sql) + Command.sql.length).trim();
                 let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:C",sqlText );
@@ -140,6 +141,16 @@ function doPost(e) {
         sendMessageToLineBot(channel_access_TOKEN, replyToken, line_response);
     }
     return ContentService.createTextOutput("Return = Finish");
+}
+
+function checkContainSearch(message, search) {
+    for (var i = 0; i < search.length; i++) {
+        if (message.toLowerCase().indexOf(search[i].toLowerCase())!=-1) {
+            return message.substring(message.toLowerCase().indexOf(search[i].toLowerCase()) + search[i].length).trim();
+            break;
+        }
+    }
+    return "";
 }
 
 function sendMessageToLineNotify(replyToken, replyMessage) {
