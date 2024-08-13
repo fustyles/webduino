@@ -34,12 +34,11 @@ let openAI_assistant_behavior = "請符合以下規範："
 
 // 陣列資料格式範本：  [["編號","姓名","暱稱","權杖","訊息"],["1", "林志玲", "老婆", "Line token1", ""],["2", "周子瑜", "妹妹", "Line token2", ""]]
 
-let command_help = ["help", "list", "清單", "名單"];
-let command_sure = ["sure", "yes", "確定"];
-let command_cancel = ["cancel", "no", "取消"];
-
-let columnName_array = '["編號", "姓名", "暱稱", "權杖", "訊息"]';
-let columnName_string = '編號, 姓名, 暱稱';
+let Command = {
+    "help" : ["help", "list", "清單", "名單"],
+    "sure" : ["sure", "yes", "確定"],
+    "cancel" : ["cancel", "no", "取消"]
+}
 
 let Msg = {
   "success_send": "傳送完成",
@@ -47,7 +46,9 @@ let Msg = {
   "failure_send": "傳送錯誤",
   "failure": "失敗：",
   "cancel": "傳送取消",
-  "query": "請輸入[確定]，或輸入[取消]"
+  "query": "請輸入[確定]，或輸入[取消]",
+  "columnName_array": '["編號", "姓名", "暱稱", "權杖", "訊息"]',
+  "columnName_string": '編號, 姓名, 暱稱'
 }
 
 // Line bot參數
@@ -67,12 +68,12 @@ function doPost(e) {
         eventType = msg.events[0].source.type;
         replyToken = msg.events[0].replyToken;
 
-        if (command_help.includes(userMessage.toLowerCase())) {
+        if (Command.help.includes(userMessage.toLowerCase())) {
             line_response = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:C", "select *", 0);
-        } else if (command_cancel.includes(userMessage.toLowerCase())) {
+        } else if (Command.cancel.includes(userMessage.toLowerCase())) {
             scriptProperties.setProperty(userId, '');
             line_response = Msg.cancel;            
-        } else if (command_sure.includes(userMessage.toLowerCase())) {
+        } else if (Command.sure.includes(userMessage.toLowerCase())) {
             line_response = scriptProperties.getProperty(userId);
             let count_ok = 0;
             let row;
@@ -240,7 +241,7 @@ function getSheetsQueryResult(fileId, sheetName, range, sqlText, formatArray) {
 }
 
 function resultToArrayString(result) {
-    var output = '[' +columnName_array + ",";
+    var output = '[' + Msg.columnName_array + ",";
     for (var i = 0; i < result.length; i++) {
         output += `["${result[i][0]}", "${result[i][1]}", "${result[i][2]}", "${result[i][3]}", ""]`;
         output += (i!=result.length-1)?",":"";
@@ -250,7 +251,7 @@ function resultToArrayString(result) {
 }
 
 function resultToListString(result) {
-    var output = columnName_string + '\n';
+    var output = Msg.columnName_string + '\n';
     for (var i = 0; i < result.length; i++) {
         output += result[i].slice(0, 3).join(', ');
         output += (i!=result.length-1)?"\n":"";
