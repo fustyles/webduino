@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/13 15:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/13 16:30
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API
 
@@ -40,7 +40,8 @@ let openAI_assistant_behavior = "請回覆陣列格式資料符合以下規範�
 let Command = {
     "help" : ["help", "list", "清單", "名單"],
     "sure" : ["sure", "yes", "確定"],
-    "cancel" : ["cancel", "no", "取消"]
+    "cancel" : ["cancel", "no", "取消"],
+    "search" : "查詢",
 }
 
 let Msg = {
@@ -73,7 +74,7 @@ function doPost(e) {
 
         if (Command.help.includes(userMessage.toLowerCase())) {
             let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:C", "select *");
-            line_response = resultToListString(sqlDataArray);
+            line_response = resultToListString(sqlDataArray);           
         } else if (Command.cancel.includes(userMessage.toLowerCase())) {
             scriptProperties.setProperty(userId, '');
             line_response = Msg.cancel;            
@@ -100,6 +101,15 @@ function doPost(e) {
                 line_response = `${Msg.failure_send}\n\n${row}\n\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}\n\n${error}`;
             }
             scriptProperties.setProperty(userId, '');
+        } else if (userMessage.toLowerCase().indexOf(Command.search)!=-1) {
+            try {
+                let keyword = userMessage.toLowerCase().substring(userMessage.toLowerCase().indexOf(Command.search) + Command.search.length).trim();
+                let sqlText = "select * where A contains '" + keyword + "' or B contains '" + keyword + "' or C contains '" + keyword + "'";
+                let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:C",sqlText );
+                line_response = resultToListString(sqlDataArray);      
+            } catch (error) {
+                line_response = error;
+            }                
         } else {
             let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:D", "select *");
             let spreadsheet_list = resultToArrayString(sqlDataArray);           
