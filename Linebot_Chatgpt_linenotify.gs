@@ -41,7 +41,7 @@ let Command = {
     "help" : ["help", "list", "清單", "名單"],
     "sure" : ["sure", "yes", "確定"],
     "cancel" : ["cancel", "no", "取消"],
-    "search" : "查詢",
+    "search" : "查詢"
 }
 
 let Msg = {
