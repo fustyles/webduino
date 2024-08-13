@@ -25,10 +25,10 @@ let spreadsheet_NAME = ""; // 工作表NAME
 // openAI設定
 let openAI_model = "gpt-4o-mini"; // gpt-4, gpt-4o-mini (限已升級plus帳號或已有刷卡儲值帳號)
 let openAI_assistant_behavior = "請回覆陣列格式資料符合以下規範："
-+ "- 請分析使用者對話內容，區分要傳送的訊息內容與傳送對象(陣列格式資料中與欄位[編號]、[姓名]、[暱稱]任一相同、相關聯、或所有對象皆傳送)"
-+ "- 陣列格式資料中與欄位[編號]、[姓名]、[暱稱]任一相同任一相同視為同一對象。"
++ "- 請分析使用者對話內容，區分要傳送的訊息內容與傳送對象(陣列格式資料中與欄位[編號]、[姓名]、[暱稱]任一相同或相關聯、或所有對象皆傳送)"
++ "- 對話內容中提及對象與欄位[編號]、[姓名]、[暱稱]任一相同或相關連，視為同一對象。"
 + "- 若同一對象的訊息內容有多項，多項訊息各自生成一列陣列資料。"
-+ "- 將傳送的訊息內容填入提供的陣列格式資料欄位[訊息]的值，傳送訊息內容數要與生成的筆數一致。"
++ "- 將傳送的訊息內容填入提供的陣列格式資料欄位[訊息]的值，傳送訊息內容數要與生成的筆數一致，保留欄位名稱首列。"
 + "- 若非傳送對象或傳送訊息內容為空白則不列入回傳陣列資料裡。"
 + "- 若無關任何傳送對象請回傳'請輸入要傳送的訊息與對象，或者重試一次！'，不須參照回傳陣列格式資料。"
 + "- 只回覆陣列格式資料，不要多作解釋。"
@@ -71,7 +71,8 @@ function doPost(e) {
         replyToken = msg.events[0].replyToken;
 
         if (Command.help.includes(userMessage.toLowerCase())) {
-            line_response = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:C", "select *", 0);
+            let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:C", "select *");
+            line_response = resultToListString(sqlDataArray);
         } else if (Command.cancel.includes(userMessage.toLowerCase())) {
             scriptProperties.setProperty(userId, '');
             line_response = Msg.cancel;            
@@ -99,7 +100,8 @@ function doPost(e) {
             }
             scriptProperties.setProperty(userId, '');
         } else {
-            let spreadsheet_list = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:D", "select *", 1);
+            let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:D", "select *");
+            let spreadsheet_list = resultToArrayString(sqlDataArray);           
             openAI_assistant_behavior = openAI_assistant_behavior + spreadsheet_list;
 
             response = sendMessageToChatGPT(openAI_assistant_behavior, userMessage);
@@ -193,7 +195,7 @@ function sendMessageToChatGPT(assistant_behavior, user_message){
 }
 
 //https://stackoverflow.com/questions/22330542/can-i-use-google-visualization-api-to-query-a-spreadsheet-in-apps-script
-function getSheetsQueryResult(fileId, sheetName, range, sqlText, formatArray) {
+function getSheetsQueryResult(fileId, sheetName, range, sqlText) {
     var file = SpreadsheetApp.openById(fileId);
     var sheetId = file.getSheetByName(sheetName).getSheetId();
 
@@ -235,11 +237,7 @@ function getSheetsQueryResult(fileId, sheetName, range, sqlText, formatArray) {
         }
         result.push(row);
     }
-    
-    if (formatArray)
-        return resultToArrayString(result);
-    else
-        return resultToListString(result);
+    return result;
 }
 
 function resultToArrayString(result) {
