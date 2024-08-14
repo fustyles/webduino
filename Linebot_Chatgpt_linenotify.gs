@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/14 01:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 00:00
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API
 
@@ -18,25 +18,25 @@ let channel_access_TOKEN = "";
 // chatGPT
 let openAI_api_KEY = "";
 
-// 試算表基本人員資料 (編號, 姓名, 暱稱, 權杖)
+// 試算表基本人員資料 (編號, 姓名, 處室, 職稱, 權杖)
 let spreadsheet_ID = ""; // 試算表ID
 let spreadsheet_NAME = ""; // 工作表NAME
 
 // openAI設定
-let openAI_model = "gpt-4o"; // 限已升級plus帳號或已有刷卡儲值帳號
+let openAI_model = "gpt-4o"; // 限已升級plus帳號或已有刷卡儲值帳號，不可使用gpt-4o-mini或gpt-3.5
 let openAI_assistant_behavior = "" +
 + "請回覆陣列格式資料符合以下規範："
-+ "(1)請分析使用者對話內容，區分要傳送的訊息內容與傳送對象(陣列格式資料中與欄位「編號」、「姓名」、「暱稱」任一相同或相關聯，或所有對象皆傳送)"
-+ "(2)對話內容中提及對象與欄位「編號」、「姓名」、「暱稱」任一相同或相關連，視為同一對象。"
-+ "(3)若同一對象的訊息內容有多項，多項訊息各自生成一列陣列資料。"
-+ "(4)將傳送的訊息內容填入提供的陣列格式資料「訊息」欄位的值，傳送訊息內容數要與生成的筆數一致，保留欄位名稱首列。"
++ "(1)請分析使用者對話內容，區分要傳送的訊息內容與傳送對象(陣列格式資料中與欄位「編號」、「姓名」、「處室」、「職稱」任一相同或相關聯，或所有對象皆傳送)"
++ "(2)對話內容中提及對象與欄位「編號」、「姓名」、「處室」、「職稱」任一相同或相關連，視為同一對象。"
++ "(3)若同一對象的訊息內容有多則，多則訊息合併生成一則訊息，以流水編號區分同一對象不同則訊息。若同一對象只有一則訊息則移除流水號。"
++ "(4)將傳送的訊息內容填入提供的陣列格式資料「訊息」欄位的值，保留欄位名稱首列。"
 + "(5)若非傳送對象或傳送訊息內容為空白則不列入回傳陣列資料裡。"
 + "(6)若無關任何傳送對象請回傳'請輸入要傳送的訊息與對象，或者重試一次！'，不須參照回傳陣列格式資料。"
 + "(7)回覆對話的陣列資料列需根據「編號」欄位排序。"
 + "(8)只回覆陣列格式資料，不要多作解釋。"
 + "(9)陣列格式資料範本：";
 
-// 陣列資料格式範本：  [["編號","姓名","暱稱","權杖","訊息"],["1", "林志玲", "老婆", "Line token1", ""],["2", "周子瑜", "妹妹", "Line token2", ""]]
+// 陣列資料格式範本：  [["編號","姓名","處室","職稱","權杖","訊息"],["1", "林志玲", "校長室", "校長", "Line token1", ""],["2", "法蘭斯", "警衛室", "警衛", "Line token2", ""]]
 
 let Command = {
     "help" : ["help", "list", "清單", "名單"],
@@ -53,8 +53,8 @@ let Msg = {
   "failure": "失敗：",
   "cancel": "傳送取消",
   "query": "請輸入[確定]，或輸入[取消]",
-  "columnName_array": '["編號", "姓名", "暱稱", "權杖", "訊息"]',
-  "columnName_string": '編號, 姓名, 暱稱'
+  "columnName_array": '["編號", "姓名", "處室", "職稱", "權杖", "訊息"]',
+  "columnName_string": '編號, 姓名, 處室, 職稱'
 }
 
 // Line bot參數
@@ -75,7 +75,7 @@ function doPost(e) {
         replyToken = msg.events[0].replyToken;
 
         if (Command.help.includes(userMessage.toLowerCase())) {
-            let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:C", "select *");
+            let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:D", "select *");
             line_response = resultToListString(sqlDataArray);           
         } else if (Command.cancel.includes(userMessage.toLowerCase())) {
             scriptProperties.setProperty(userId, '');
@@ -89,8 +89,8 @@ function doPost(e) {
                 let dataArray = eval(line_response);
                 for (let i = 1; i < dataArray.length; i++) {
                     row = dataArray[i];
-                    if (row[4] != '') {
-                        if (sendMessageToLineNotify(row[3], '\n' + row[4]))
+                    if (row[5] != '') {
+                        if (sendMessageToLineNotify(row[4], '\n' + row[5]))
                             count_ok++;
                         else {
                             err = `\n\nUnexpected token\n\n${row}`;
@@ -103,11 +103,11 @@ function doPost(e) {
                 line_response = `${Msg.failure_send}\n\n${row}\n\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}\n\n${error}`;
             }
             scriptProperties.setProperty(userId, '');
-        } else if (checkContainSearch(userMessage, Command.search)!="") {
+        } else if (checkStartWithSearch(userMessage, Command.search)!="") {
             try {
-                let keyword = checkContainSearch(userMessage, Command.search);
-                let sqlText = "select * where A contains '" + keyword + "' or B contains '" + keyword + "' or C contains '" + keyword + "'";
-                let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:C",sqlText );
+                let keyword = checkStartWithSearch(userMessage, Command.search);
+                let sqlText = "select * where A contains '" + keyword + "' or B contains '" + keyword + "' or C contains '" + keyword + "' or D contains '" + keyword + "'";
+                let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:D",sqlText );
                 line_response = resultToListString(sqlDataArray);      
             } catch (error) {
                 line_response = error;
@@ -115,13 +115,13 @@ function doPost(e) {
         } else if (userMessage.toLowerCase().indexOf(Command.sql)==0) {
             try {
                 let sqlText = userMessage.toLowerCase().substring(userMessage.toLowerCase().indexOf(Command.sql) + Command.sql.length).trim();
-                let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:C",sqlText );
+                let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:D",sqlText );
                 line_response = resultToListString(sqlDataArray);      
             } catch (error) {
                 line_response = error;
             }                             
         } else {
-            let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:D", "select *");
+            let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:E", "select *");
             let spreadsheet_list = resultToArrayString(sqlDataArray);           
             openAI_assistant_behavior = openAI_assistant_behavior + spreadsheet_list;
 
@@ -131,7 +131,7 @@ function doPost(e) {
                 let dataArray = eval(response);
                 for (let i = 1; i < dataArray.length; i++) {
                     let row = dataArray[i];
-                    line_response += row[0] + '. ' + row[1] + '：' + row[4] + '\n';
+                    line_response += row[0] + '. ' + row[3] + '-' + row[1] + '：' + row[5] + '\n';
                 }
                 line_response += '\n' + Msg.query;
             } catch (error) {
@@ -143,9 +143,9 @@ function doPost(e) {
     return ContentService.createTextOutput("Return = Finish");
 }
 
-function checkContainSearch(message, search) {
+function checkStartWithSearch(message, search) {
     for (var i = 0; i < search.length; i++) {
-        if (message.toLowerCase().indexOf(search[i].toLowerCase())!=-1) {
+        if (message.toLowerCase().indexOf(search[i].toLowerCase())==0) {
             return message.substring(message.toLowerCase().indexOf(search[i].toLowerCase()) + search[i].length).trim();
             break;
         }
@@ -274,7 +274,7 @@ function getSheetsQueryResult(fileId, sheetName, range, sqlText) {
 function resultToArrayString(result) {
     var output = '[' + Msg.columnName_array + ",";
     for (var i = 0; i < result.length; i++) {
-        output += `["${result[i][0]}", "${result[i][1]}", "${result[i][2]}", "${result[i][3]}", ""]`;
+        output += `["${result[i][0]}", "${result[i][1]}", "${result[i][2]}", "${result[i][3]}", "${result[i][4]}", "(1)message 1 (2)message 2 (3)..."]`;
         output += (i!=result.length-1)?",":"";
     }
     output += ']';
@@ -284,7 +284,7 @@ function resultToArrayString(result) {
 function resultToListString(result) {
     var output = Msg.columnName_string + '\n';
     for (var i = 0; i < result.length; i++) {
-        output += result[i].slice(0, 3).join(', ');
+        output += result[i].slice(0, 4).join(', ');
         output += (i!=result.length-1)?"\n":"";
     }
     return output;
