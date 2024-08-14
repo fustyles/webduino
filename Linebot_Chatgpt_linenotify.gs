@@ -49,7 +49,7 @@ let Command = {
 let Msg = {
   "success_send": "傳送完成",
   "success": "成功：",
-  "failure_send": "傳送錯誤",
+  "failure_send": "傳送失敗",
   "failure": "失敗：",
   "cancel": "傳送取消",
   "query": "請輸入[確定]，或輸入[取消]",
