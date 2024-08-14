@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 01:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 02:00
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API
 
@@ -18,7 +18,7 @@ let channel_access_TOKEN = "";
 // chatGPT
 let openAI_api_KEY = "";
 
-// 試算表基本人員資料 (編號, 姓名, 處室, 職稱, 權杖)
+// 試算表基本人員資料 (編號, 姓名, 處室, 職稱, 權杖, 訊息)
 let spreadsheet_ID = ""; // 試算表ID
 let spreadsheet_NAME = ""; // 工作表NAME
 
@@ -53,6 +53,7 @@ let Msg = {
   "failure": "失敗：",
   "cancel": "傳送取消",
   "query": "請輸入[確定]，或輸入[取消]",
+  "warn": "請先輸入要傳送的訊息與對象！",
   "message_template": '(1)message 1 (2)message 2 (3)...'
 }
 
@@ -81,27 +82,31 @@ function doPost(e) {
             line_response = Msg.cancel;            
         } else if (Command.sure.includes(userMessage.toLowerCase())) {
             line_response = scriptProperties.getProperty(userId);
-            let count_ok = 0;
-            let row;
-            let err = '';
-            try {
-                let dataArray = eval(line_response);
-                for (let i = 1; i < dataArray.length; i++) {
-                    row = dataArray[i];
-                    if (row[5] != '') {
-                        if (sendMessageToLineNotify(row[4], '\n' + row[5]))
-                            count_ok++;
-                        else {
-                            err = `\n\nUnexpected token\n\n${row}`;
-                            break;
+            if (!line_response)
+                line_response = Msg.warn;
+            else {
+                let count_ok = 0;
+                let row;
+                let err = '';
+                try {
+                    let dataArray = eval(line_response);
+                    for (let i = 1; i < dataArray.length; i++) {
+                        row = dataArray[i];
+                        if (row[5] != '') {
+                            if (sendMessageToLineNotify(row[4], '\n' + row[5]))
+                                count_ok++;
+                            else {
+                                err = `\n\nUnexpected token\n\n${row}`;
+                                break;
+                            }
                         }
                     }
+                    line_response = `${Msg.success_send}\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}${err}`;
+                } catch (error) {
+                    line_response = `${Msg.failure_send}\n\n${row}\n\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}\n\n${error}`;
                 }
-                line_response = `${Msg.success_send}\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}${err}`;
-            } catch (error) {
-                line_response = `${Msg.failure_send}\n\n${row}\n\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}\n\n${error}`;
+                scriptProperties.setProperty(userId, '');
             }
-            scriptProperties.setProperty(userId, '');
         } else if (checkStartWithSearch(userMessage, Command.search)!="") {
             try {
                 let keyword = checkStartWithSearch(userMessage, Command.search);
@@ -229,7 +234,7 @@ function getSheetsQueryResult(fileId, sheetName, range, sqlText) {
     let sheetId = file.getSheetByName(sheetName).getSheetId();
     let request = 'https://docs.google.com/spreadsheets/d/' + fileId + '/gviz/tq?gid=' + sheetId + '&range=' + range + '&tq=' + encodeURIComponent(sqlText);
     let result = UrlFetchApp.fetch(request).getContentText();
-    let jsonData = result.match(/\(.*?\)/)[0].replace(/[()]/g, '');
+    let jsonData = result.match(/\(.*?\)/)[0].replace(/[()]/g, ''); 
     jsonData = JSON.parse(jsonData);
     let table_rows = jsonData.table.rows;
     let labels = jsonData.table.cols.map(item => item.label);
@@ -241,12 +246,10 @@ function getSheetsQueryResult(fileId, sheetName, range, sqlText) {
         let items = [];
         for (let j = 0; j < row.length; j++) {
             let type = types[j];
-            if (type === 'number') {
-                items.push(parseInt(row[j].v));
-            } else if (type === 'boolean' || type === 'string') {
-                items.push(String(row[j].v));
+            if (type === 'number'||type === 'boolean') {
+                items.push(row[j].f);
             } else {
-                items.push(String(row[j].f));
+                items.push(String(row[j].v));
             }
         }
         result.push(items);
