@@ -18,7 +18,7 @@ let channel_access_TOKEN = "";
 // chatGPT
 let openAI_api_KEY = "";
 
-// 試算表基本人員資料 (編號, 姓名, 處室, 職稱, 權杖, 訊息)
+// 試算表基本人員資料 [編號, 姓名, 處室, 職稱, 權杖, 訊息]
 let spreadsheet_ID = ""; // 試算表ID
 let spreadsheet_NAME = ""; // 工作表NAME
 
