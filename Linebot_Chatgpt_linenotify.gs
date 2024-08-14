@@ -54,7 +54,8 @@ let Msg = {
   "cancel": "傳送取消",
   "query": "請輸入[確定]，或輸入[取消]",
   "columnName_array": '["編號", "姓名", "處室", "職稱", "權杖", "訊息"]',
-  "columnName_string": '編號, 姓名, 處室, 職稱'
+  "columnName_string": '編號, 姓名, 處室, 職稱',
+  "message_template": '(1)message 1 (2)message 2 (3)...'
 }
 
 // Line bot參數
@@ -274,7 +275,7 @@ function getSheetsQueryResult(fileId, sheetName, range, sqlText) {
 function resultToArrayString(result) {
     var output = '[' + Msg.columnName_array + ",";
     for (var i = 0; i < result.length; i++) {
-        output += `["${result[i][0]}", "${result[i][1]}", "${result[i][2]}", "${result[i][3]}", "${result[i][4]}", "(1)message 1 (2)message 2 (3)..."]`;
+        output += `["${result[i][0]}", "${result[i][1]}", "${result[i][2]}", "${result[i][3]}", "${result[i][4]}", "${Msg.message_template}"]`;
         output += (i!=result.length-1)?",":"";
     }
     output += ']';
