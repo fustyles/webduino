@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 00:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 01:30
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API
 
@@ -53,8 +53,6 @@ let Msg = {
   "failure": "失敗：",
   "cancel": "傳送取消",
   "query": "請輸入[確定]，或輸入[取消]",
-  "columnName_array": '["編號", "姓名", "處室", "職稱", "權杖", "訊息"]',
-  "columnName_string": '編號, 姓名, 處室, 職稱',
   "message_template": '(1)message 1 (2)message 2 (3)...'
 }
 
@@ -226,54 +224,38 @@ function sendMessageToChatGPT(assistant_behavior, user_message){
     return json["choices"][0]["message"]["content"];
 }
 
-//https://stackoverflow.com/questions/22330542/can-i-use-google-visualization-api-to-query-a-spreadsheet-in-apps-script
 function getSheetsQueryResult(fileId, sheetName, range, sqlText) {
-    var file = SpreadsheetApp.openById(fileId);
-    var sheetId = file.getSheetByName(sheetName).getSheetId();
-
-    var request = 'https://docs.google.com/spreadsheets/d/' + fileId + '/gviz/tq?gid=' + sheetId + '&range=' + range + '&tq=' + encodeURIComponent(sqlText);
-    var result = UrlFetchApp.fetch(request).getContentText();
-    var from = result.indexOf("{");
-    var to = result.lastIndexOf("}") + 1;
-    var jsonText = result.slice(from, to);
-    var parsedText = JSON.parse(jsonText);
-
-    var types = [];
-    var addType_ = function(col) {
-        types.push(col.type);
-    }
-    var cols = parsedText.table.cols;
-    cols.forEach(addType_);
-
-    var rows = parsedText.table.rows;
-    var result = [];
-    var rowQuery = [];
-    var eltQuery = {};
-    var row = [];
-    var nRows = rows[0].c.length;
-    var type = '';
-
-    for (var i = 0, l = rows.length; i < l; i++) {
-        rowQuery = rows[i].c;
-        row = []; 
-        for (var k = 0; k < nRows; k++) {
-            eltQuery = rowQuery[k];
-            type = types[k];
+    let file = SpreadsheetApp.openById(fileId);
+    let sheetId = file.getSheetByName(sheetName).getSheetId();
+    let request = 'https://docs.google.com/spreadsheets/d/' + fileId + '/gviz/tq?gid=' + sheetId + '&range=' + range + '&tq=' + encodeURIComponent(sqlText);
+    let result = UrlFetchApp.fetch(request).getContentText();
+    let jsonData = result.match(/\(.*?\)/)[0].replace(/[()]/g, '');
+    jsonData = JSON.parse(jsonData);
+    let table_rows = jsonData.table.rows;
+    let labels = jsonData.table.cols.map(item => item.label);
+    let types = jsonData.table.cols.map(item => item.type);
+    result = [];
+    result.push(labels);
+    for (let i = 0, l = table_rows.length; i < l; i++) {
+        let row = table_rows[i].c;
+        let items = [];
+        for (let j = 0; j < row.length; j++) {
+            let type = types[j];
             if (type === 'number') {
-                row.push(parseInt(eltQuery.v));
+                items.push(parseInt(row[j].v));
             } else if (type === 'boolean' || type === 'string') {
-                row.push(String(eltQuery.v));
+                items.push(String(row[j].v));
             } else {
-                row.push(String(eltQuery.f));
+                items.push(String(row[j].f));
             }
         }
-        result.push(row);
+        result.push(items);
     }
     return result;
 }
 
 function resultToArrayString(result) {
-    var output = '[' + Msg.columnName_array + ",";
+    var output = '[';
     for (var i = 0; i < result.length; i++) {
         output += `["${result[i][0]}", "${result[i][1]}", "${result[i][2]}", "${result[i][3]}", "${result[i][4]}", "${Msg.message_template}"]`;
         output += (i!=result.length-1)?",":"";
@@ -283,7 +265,7 @@ function resultToArrayString(result) {
 }
 
 function resultToListString(result) {
-    var output = Msg.columnName_string + '\n';
+    var output = '';
     for (var i = 0; i < result.length; i++) {
         output += result[i].slice(0, 4).join(', ');
         output += (i!=result.length-1)?"\n":"";
