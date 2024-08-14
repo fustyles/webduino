@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 02:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 02:30
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API
 
@@ -18,7 +18,7 @@ let channel_access_TOKEN = "";
 // chatGPT
 let openAI_api_KEY = "";
 
-// 試算表基本人員資料 [編號, 姓名, 處室, 職稱, 權杖, 訊息]
+// 試算表基本人員資料 (編號, 姓名, 處室, 職稱, 權杖, 訊息)
 let spreadsheet_ID = ""; // 試算表ID
 let spreadsheet_NAME = ""; // 工作表NAME
 
@@ -234,7 +234,7 @@ function getSheetsQueryResult(fileId, sheetName, range, sqlText) {
     let sheetId = file.getSheetByName(sheetName).getSheetId();
     let request = 'https://docs.google.com/spreadsheets/d/' + fileId + '/gviz/tq?gid=' + sheetId + '&range=' + range + '&tq=' + encodeURIComponent(sqlText);
     let result = UrlFetchApp.fetch(request).getContentText();
-    let jsonData = result.match(/\(.*?\)/)[0].replace(/[()]/g, ''); 
+    let jsonData = result.match(/\(.*?\)/)[0].replace(/[()]/g, '');
     jsonData = JSON.parse(jsonData);
     let table_rows = jsonData.table.rows;
     let labels = jsonData.table.cols.map(item => item.label);
@@ -247,9 +247,9 @@ function getSheetsQueryResult(fileId, sheetName, range, sqlText) {
         for (let j = 0; j < row.length; j++) {
             let type = types[j];
             if (type === 'number'||type === 'boolean') {
-                items.push(row[j].f);
+                items.push(row[j]==null?null:row[j].f);
             } else {
-                items.push(String(row[j].v));
+                items.push(row[j]==null?null:row[j].v);
             }
         }
         result.push(items);
