@@ -31,7 +31,7 @@ let openAI_assistant_behavior = "" +
 + "(3)若同一對象的訊息內容有多則，多則訊息合併生成一則訊息，以流水編號區分同一對象不同則訊息。"
 + "(4)將傳送的訊息內容填入提供的陣列格式資料「訊息」欄位的值，保留欄位名稱首列。"
 + "(5)若非傳送對象或傳送訊息內容為空白則不列入回傳陣列資料裡。"
-+ "(6)若無關任何傳送對象請回傳'請輸入要傳送的訊息與對象，或者重試一次！'，不須參照回傳陣列格式資料。"
++ "(6)若無關任何傳送對象請回傳'請輸入要傳送的對象與訊息或者重試一次！'，不須參照回傳陣列格式資料。"
 + "(7)回覆對話的陣列資料列需根據「編號」欄位排序。"
 + "(8)只回覆陣列格式資料，不要多作解釋。"
 + "(9)陣列格式資料範本：";
@@ -53,7 +53,7 @@ let Msg = {
   "failure": "失敗：",
   "cancel": "傳送取消",
   "query": "請輸入[確定]，或輸入[取消]",
-  "warn": "請先輸入要傳送的訊息與對象！",
+  "warn": "請先輸入要傳送的對象與訊息！",
   "message_template": '(1)message 1 (2)message 2 (3)...'
 }
 
@@ -232,8 +232,8 @@ function sendMessageToChatGPT(assistant_behavior, user_message){
 function getSheetsQueryResult(fileId, sheetName, range, sqlText) {
     let file = SpreadsheetApp.openById(fileId);
     let sheetId = file.getSheetByName(sheetName).getSheetId();
-    let request = 'https://docs.google.com/spreadsheets/d/' + fileId + '/gviz/tq?gid=' + sheetId + '&range=' + range + '&tq=' + encodeURIComponent(sqlText);
-    let result = UrlFetchApp.fetch(request).getContentText();
+    let sqlURL = 'https://docs.google.com/spreadsheets/d/' + fileId + '/gviz/tq?gid=' + sheetId + '&range=' + range + '&tq=' + encodeURIComponent(sqlText);
+    let result = UrlFetchApp.fetch(sqlURL).getContentText();
     let jsonData = result.match(/\(.*?\)/)[0].replace(/[()]/g, '');
     jsonData = JSON.parse(jsonData);
     let table_rows = jsonData.table.rows;
