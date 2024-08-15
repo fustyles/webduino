@@ -15,7 +15,7 @@ Line Bot Webhook & Google Apps script & ChatGTP API
 // Line bot
 let channel_access_TOKEN = "";
 
-// chatGPT
+// ChatGPT
 let openAI_api_KEY = "";
 
 // 試算表基本人員資料 (編號, 姓名, 處室, 職稱, 權杖, 訊息)
