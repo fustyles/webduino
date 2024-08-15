@@ -144,7 +144,7 @@ function doPost(e) {
         }
         sendMessageToLineBot(channel_access_TOKEN, replyToken, line_response);
     }
-    return ContentService.createTextOutput("Return = Finish");
+    return ContentService.createTextOutput("ok");
 }
 
 function checkStartWithSearch(message, search) {
