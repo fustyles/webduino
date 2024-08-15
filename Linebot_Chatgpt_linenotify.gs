@@ -24,7 +24,7 @@ let spreadsheet_Name_list = ""; // 工作表名稱 ( 行政人員名單：["編�
 let spreadsheet_Name_record = ""; // 工作表名稱 ( 訊息歷史紀錄：["日期","時間","userId","訊息","狀態"] )
 
 // openAI設定
-let openAI_model = "gpt-4o"; // 限已升級plus帳號或已有刷卡儲值帳號，勿使用gpt-4o-mini或gpt-3.5
+let openAI_model = "gpt-4o"; // 限已升級plus帳號或已有刷卡儲值帳號，勿使用gpt-4o-mini或gpt-3.5錯誤率高
 let openAI_assistant_behavior = `
 請回覆陣列格式資料符合以下規範：
 (1)請分析使用者對話內容，區分要傳送的訊息內容與傳送對象(陣列格式資料中與欄位「編號」、「姓名」、「處室」、「職稱」任一相同或相關聯，或所有對象皆傳送)
