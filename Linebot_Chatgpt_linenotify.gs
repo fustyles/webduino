@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 11:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 13:00
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API
 
@@ -18,9 +18,10 @@ let channel_access_TOKEN = "";
 // ChatGPT
 let openAI_api_KEY = "";
 
-// 試算表基本人員資料 (編號, 姓名, 處室, 職稱, 權杖, 訊息)
+// Google試算表
 let spreadsheet_ID = ""; // 試算表ID
-let spreadsheet_NAME = ""; // 工作表NAME
+let spreadsheet_Name_list = ""; // 工作表名稱 ( 行政人員名單：["編號","姓名","處室","職稱","權杖","訊息"] )
+let spreadsheet_Name_record = ""; // 工作表名稱 ( 訊息歷史紀錄：["日期","時間","userId","訊息"] )
 
 // openAI設定
 let openAI_model = "gpt-4o"; // 限已升級plus帳號或已有刷卡儲值帳號，勿使用gpt-4o-mini或gpt-3.5
@@ -76,7 +77,7 @@ function doPost(e) {
         replyToken = msg.events[0].replyToken;
 
         if (Command.help.includes(userMessage.toLowerCase())) {
-            let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:D", "select *");
+            let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_Name_list, "A:D", "select *");
             line_response = resultToListString(sqlDataArray);           
         } else if (Command.cancel.includes(userMessage.toLowerCase())) {
             scriptProperties.setProperty(userId, '');
@@ -90,6 +91,7 @@ function doPost(e) {
                 let row;
                 let err = '';
                 try {
+                    recordMessageToSpreadsheet(line_response);
                     let dataArray = eval(line_response);
                     for (let i = 1; i < dataArray.length; i++) {
                         row = dataArray[i];
@@ -112,7 +114,7 @@ function doPost(e) {
             try {
                 let keyword = checkStartWithSearch(userMessage, Command.search);
                 let sqlText = `select * where A contains '${keyword}' or B contains '${keyword}' or C contains '${keyword}' or D contains '${keyword}'`;
-                let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:D",sqlText );
+                let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_Name_list, "A:D",sqlText );
                 line_response = resultToListString(sqlDataArray);      
             } catch (error) {
                 line_response = error;
@@ -120,13 +122,13 @@ function doPost(e) {
         } else if (userMessage.toLowerCase().indexOf(Command.sql)==0) {
             try {
                 let sqlText = userMessage.toLowerCase().substring(userMessage.toLowerCase().indexOf(Command.sql) + Command.sql.length).trim();
-                let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:D",sqlText );
+                let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_Name_list, "A:D",sqlText );
                 line_response = resultToListString(sqlDataArray);      
             } catch (error) {
                 line_response = error;
             }                             
         } else {
-            let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:E", "select *");
+            let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_Name_list, "A:E", "select *");
             let spreadsheet_list = resultToArrayString(sqlDataArray);           
             openAI_assistant_behavior = openAI_assistant_behavior + spreadsheet_list;
 
@@ -156,6 +158,18 @@ function checkStartWithSearch(message, search) {
         }
     }
     return "";
+}
+
+function recordMessageToSpreadsheet(message) {
+  var dataDate = Utilities.formatDate(new Date(), "GMT+8", "yyyy-MM-dd");
+  var dataTime = Utilities.formatDate(new Date(), "GMT+8", "HH:mm:ss");
+  var data = [dataDate, dataTime, userId, message];
+  
+  var spreadsheet = SpreadsheetApp.openById(spreadsheet_ID);
+  var sheet = spreadsheet.getSheetByName(spreadsheet_Name_record);
+  
+  sheet.insertRowAfter(1);
+  sheet.getRange(2, 1, 1, data.length).setValues([data]);
 }
 
 function sendMessageToLineNotify(replyToken, replyMessage) {
@@ -237,25 +251,30 @@ function getSheetsQueryResult(fileId, sheetName, range, sqlText) {
     let result = UrlFetchApp.fetch(sqlURL).getContentText();
     let jsonData = result.match(/\(.*?\)/)[0].replace(/[()]/g, '');
     jsonData = JSON.parse(jsonData);
-    let table_rows = jsonData.table.rows;
-    let labels = jsonData.table.cols.map(item => item.label);
-    let types = jsonData.table.cols.map(item => item.type);
-    let resultArray = [];
-    resultArray.push(labels);
-    for (let i = 0, l = table_rows.length; i < l; i++) {
-        let row = table_rows[i].c;
-        let items = [];
-        for (let j = 0; j < row.length; j++) {
-            let type = types[j];
-            if (type === 'number'||type === 'boolean') {
-                items.push(row[j]==null?null:row[j].f);
-            } else {
-                items.push(row[j]==null?null:row[j].v);
-            }
-        }
-        resultArray.push(items);
+    if ('errors' in jsonData) {
+        let errorMessage = jsonData.errors[0].detailed_message;
+        return [[errorMessage]];
+    } else {
+      let table_rows = jsonData.table.rows;
+      let labels = jsonData.table.cols.map(item => item.label);
+      let types = jsonData.table.cols.map(item => item.type);
+      let resultArray = [];
+      resultArray.push(labels);
+      for (let i = 0, l = table_rows.length; i < l; i++) {
+          let row = table_rows[i].c;
+          let items = [];
+          for (let j = 0; j < row.length; j++) {
+              let type = types[j];
+              if (type === 'number'||type === 'boolean') {
+                  items.push(row[j]==null?null:row[j].f);
+              } else {
+                  items.push(row[j]==null?null:row[j].v);
+              }
+          }
+          resultArray.push(items);
+      }
+      return resultArray;
     }
-    return resultArray;
 }
 
 function resultToArrayString(result) {
