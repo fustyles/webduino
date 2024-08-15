@@ -42,7 +42,7 @@ let openAI_assistant_behavior = `
 
 let Command = {
     "help" : ["help", "list", "清單", "名單"],
-    "sure" : ["sure", "yes", "確定"],
+    "confirm" : ["confirm", "yes", "確定"],
     "cancel" : ["cancel", "no", "取消"],
     "search" : ["search", "查詢", "關鍵字"],  // search 林志玲、查詢 林志玲、關鍵字 林志玲
     "sql" : "sql"  // sql select * limit 2
@@ -82,7 +82,7 @@ function doPost(e) {
         } else if (Command.cancel.includes(userMessage.toLowerCase())) {
             scriptProperties.setProperty(userId, '');
             line_response = Msg.cancel;            
-        } else if (Command.sure.includes(userMessage.toLowerCase())) {
+        } else if (Command.confirm.includes(userMessage.toLowerCase())) {
             line_response = scriptProperties.getProperty(userId);
             if (!line_response)
                 line_response = Msg.warn;
