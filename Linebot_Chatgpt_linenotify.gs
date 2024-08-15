@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 13:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 13:30
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API
 
@@ -60,10 +60,12 @@ let Msg = {
 }
 
 // Line bot參數
-let userMessage = "";
-let userId = "";
-let eventType = "";
-let replyToken = "";
+let getLinebotData = {
+  "userMessage": "",
+  "userId": "",
+  "eventType": "",
+  "replyToken": ""
+}
 
 function doPost(e) {
     let scriptProperties = PropertiesService.getScriptProperties();
@@ -71,19 +73,19 @@ function doPost(e) {
 
     if (e.postData) {
         let msg = JSON.parse(e.postData.contents);
-        userMessage = msg.events[0].message.text.trim();
-        userId = msg.events[0].source.userId;
-        eventType = msg.events[0].source.type;
-        replyToken = msg.events[0].replyToken;
+        getLinebotData.userMessage = msg.events[0].message.text.trim();
+        getLinebotData.userId = msg.events[0].source.userId;
+        getLinebotData.eventType = msg.events[0].source.type;
+        getLinebotData.replyToken = msg.events[0].replyToken;
 
-        if (Command.help.includes(userMessage.toLowerCase())) {
+        if (Command.help.includes(getLinebotData.userMessage.toLowerCase())) {
             let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_Name_list, "A:D", "select *");
             line_response = resultToListString(sqlDataArray);           
-        } else if (Command.cancel.includes(userMessage.toLowerCase())) {
-            scriptProperties.setProperty(userId, '');
+        } else if (Command.cancel.includes(getLinebotData.userMessage.toLowerCase())) {
+            scriptProperties.setProperty(getLinebotData.userId, '');
             line_response = Msg.cancel;            
-        } else if (Command.confirm.includes(userMessage.toLowerCase())) {
-            line_response = scriptProperties.getProperty(userId);
+        } else if (Command.confirm.includes(getLinebotData.userMessage.toLowerCase())) {
+            line_response = scriptProperties.getProperty(getLinebotData.userId);
             if (!line_response)
                 line_response = Msg.warn;
             else {
@@ -109,20 +111,20 @@ function doPost(e) {
                     recordMessageToSpreadsheet(line_response, "error");
                     line_response = `${Msg.failure_send}\n\n${row}\n\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}\n\n${error}`;
                 }
-                scriptProperties.setProperty(userId, '');
+                scriptProperties.setProperty(getLinebotData.userId, '');
             }
-        } else if (checkStartWithSearch(userMessage, Command.search)!="") {
+        } else if (checkStartWithSearch(getLinebotData.userMessage, Command.search)!="") {
             try {
-                let keyword = checkStartWithSearch(userMessage, Command.search);
+                let keyword = checkStartWithSearch(getLinebotData.userMessage, Command.search);
                 let sqlText = `select * where A contains '${keyword}' or B contains '${keyword}' or C contains '${keyword}' or D contains '${keyword}'`;
                 let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_Name_list, "A:D",sqlText );
                 line_response = resultToListString(sqlDataArray);      
             } catch (error) {
                 line_response = error;
             }
-        } else if (userMessage.toLowerCase().indexOf(Command.sql)==0) {
+        } else if (getLinebotData.userMessage.toLowerCase().indexOf(Command.sql)==0) {
             try {
-                let sqlText = userMessage.toLowerCase().substring(userMessage.toLowerCase().indexOf(Command.sql) + Command.sql.length).trim();
+                let sqlText = getLinebotData.userMessage.toLowerCase().substring(getLinebotData.userMessage.toLowerCase().indexOf(Command.sql) + Command.sql.length).trim();
                 let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_Name_list, "A:D",sqlText );
                 line_response = resultToListString(sqlDataArray);      
             } catch (error) {
@@ -133,8 +135,8 @@ function doPost(e) {
             let spreadsheet_list = resultToArrayString(sqlDataArray);           
             openAI_assistant_behavior = openAI_assistant_behavior + spreadsheet_list;
 
-            response = sendMessageToChatGPT(openAI_assistant_behavior, userMessage);
-            scriptProperties.setProperty(userId, response);
+            response = sendMessageToChatGPT(openAI_assistant_behavior, getLinebotData.userMessage);
+            scriptProperties.setProperty(getLinebotData.userId, response);
             try {
                 let dataArray = eval(response);
                 for (let i = 1; i < dataArray.length; i++) {
@@ -146,7 +148,7 @@ function doPost(e) {
                 line_response = `${response}\n\n${error}`;
             }
         }
-        sendMessageToLineBot(channel_access_TOKEN, replyToken, line_response);
+        sendMessageToLineBot(channel_access_TOKEN, getLinebotData.replyToken, line_response);
     }
     return ContentService.createTextOutput("ok");
 }
@@ -164,7 +166,7 @@ function checkStartWithSearch(message, search) {
 function recordMessageToSpreadsheet(message, status) {
   var dataDate = Utilities.formatDate(new Date(), "GMT+8", "yyyy-MM-dd");
   var dataTime = Utilities.formatDate(new Date(), "GMT+8", "HH:mm:ss");
-  var data = [dataDate, dataTime, userId, message, status];
+  var data = [dataDate, dataTime, getLinebotData.userId, message, status];
   
   var spreadsheet = SpreadsheetApp.openById(spreadsheet_ID);
   var sheet = spreadsheet.getSheetByName(spreadsheet_Name_record);
