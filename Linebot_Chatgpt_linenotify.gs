@@ -23,7 +23,7 @@ let spreadsheet_ID = ""; // 試算表ID
 let spreadsheet_NAME = ""; // 工作表NAME
 
 // openAI設定
-let openAI_model = "gpt-4o"; // 限已升級plus帳號或已有刷卡儲值帳號，不可使用gpt-4o-mini或gpt-3.5
+let openAI_model = "gpt-4o"; // 限已升級plus帳號或已有刷卡儲值帳號，勿使用gpt-4o-mini或gpt-3.5
 let openAI_assistant_behavior = `
 請回覆陣列格式資料符合以下規範：
 (1)請分析使用者對話內容，區分要傳送的訊息內容與傳送對象(陣列格式資料中與欄位「編號」、「姓名」、「處室」、「職稱」任一相同或相關聯，或所有對象皆傳送)
