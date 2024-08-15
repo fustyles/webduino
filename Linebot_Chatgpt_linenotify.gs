@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 13:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 14:00
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API
 
@@ -69,7 +69,7 @@ let getLinebotData = {
 
 function doPost(e) {
     let scriptProperties = PropertiesService.getScriptProperties();
-    let line_response = "";
+    let linebot_response = "";
 
     if (e.postData) {
         let msg = JSON.parse(e.postData.contents);
@@ -80,20 +80,20 @@ function doPost(e) {
 
         if (Command.help.includes(getLinebotData.userMessage.toLowerCase())) {
             let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_Name_list, "A:D", "select *");
-            line_response = resultToListString(sqlDataArray);           
+            linebot_response = resultToListString(sqlDataArray);           
         } else if (Command.cancel.includes(getLinebotData.userMessage.toLowerCase())) {
             scriptProperties.setProperty(getLinebotData.userId, '');
-            line_response = Msg.cancel;            
+            linebot_response = Msg.cancel;            
         } else if (Command.confirm.includes(getLinebotData.userMessage.toLowerCase())) {
-            line_response = scriptProperties.getProperty(getLinebotData.userId);
-            if (!line_response)
-                line_response = Msg.warn;
+            linebot_response = scriptProperties.getProperty(getLinebotData.userId);
+            if (!linebot_response)
+                linebot_response = Msg.warn;
             else {
                 let count_ok = 0;
                 let row;
                 let err = '';
                 try {
-                    let dataArray = eval(line_response);
+                    let dataArray = eval(linebot_response);
                     for (let i = 1; i < dataArray.length; i++) {
                         row = dataArray[i];
                         if (row[5] != '') {
@@ -105,11 +105,11 @@ function doPost(e) {
                             }
                         }
                     }
-                    recordMessageToSpreadsheet(line_response, (dataArray.length - 1 == count_ok)?"ok":err);
-                    line_response = `${Msg.success_send}\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}${err}`;
+                    recordMessageToSpreadsheet(linebot_response, (dataArray.length - 1 == count_ok)?"ok":err);
+                    linebot_response = `${Msg.success_send}\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}${err}`;
                 } catch (error) {
-                    recordMessageToSpreadsheet(line_response, "error");
-                    line_response = `${Msg.failure_send}\n\n${row}\n\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}\n\n${error}`;
+                    recordMessageToSpreadsheet(linebot_response, "error");
+                    linebot_response = `${Msg.failure_send}\n\n${row}\n\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}\n\n${error}`;
                 }
                 scriptProperties.setProperty(getLinebotData.userId, '');
             }
@@ -118,17 +118,17 @@ function doPost(e) {
                 let keyword = checkStartWithSearch(getLinebotData.userMessage, Command.search);
                 let sqlText = `select * where A contains '${keyword}' or B contains '${keyword}' or C contains '${keyword}' or D contains '${keyword}'`;
                 let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_Name_list, "A:D",sqlText );
-                line_response = resultToListString(sqlDataArray);      
+                linebot_response = resultToListString(sqlDataArray);      
             } catch (error) {
-                line_response = error;
+                linebot_response = error;
             }
         } else if (getLinebotData.userMessage.toLowerCase().indexOf(Command.sql)==0) {
             try {
                 let sqlText = getLinebotData.userMessage.toLowerCase().substring(getLinebotData.userMessage.toLowerCase().indexOf(Command.sql) + Command.sql.length).trim();
                 let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_Name_list, "A:D",sqlText );
-                line_response = resultToListString(sqlDataArray);      
+                linebot_response = resultToListString(sqlDataArray);      
             } catch (error) {
-                line_response = error;
+                linebot_response = error;
             }                             
         } else {
             let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_Name_list, "A:E", "select *");
@@ -141,14 +141,14 @@ function doPost(e) {
                 let dataArray = eval(response);
                 for (let i = 1; i < dataArray.length; i++) {
                     let row = dataArray[i];
-                    line_response += `${row[0]}. ${row[3]}-${row[1]}：${row[5]}\n`;
+                    linebot_response += `${row[0]}. ${row[3]}-${row[1]}：${row[5]}\n`;
                 }
-                line_response += `\n${Msg.query}`;
+                linebot_response += `\n${Msg.query}`;
             } catch (error) {
-                line_response = `${response}\n\n${error}`;
+                linebot_response = `${response}\n\n${error}`;
             }
         }
-        sendMessageToLineBot(channel_access_TOKEN, getLinebotData.replyToken, line_response);
+        sendMessageToLineBot(channel_access_TOKEN, getLinebotData.replyToken, linebot_response);
     }
     return ContentService.createTextOutput("ok");
 }
