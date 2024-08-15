@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 14:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 16:00
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API & Line Notify
 
@@ -141,7 +141,7 @@ function doPost(e) {
                 let dataArray = eval(response);
                 for (let i = 1; i < dataArray.length; i++) {
                     let row = dataArray[i];
-                    linebot_response += `${row[0]}. ${row[3]}-${row[1]}：${row[5]}\n`;
+                    linebot_response += `${row[0]} ${row[3]}-${row[1]}：${row[5]}\n`;
                 }
                 linebot_response += `\n${Msg.query}`;
             } catch (error) {
@@ -216,35 +216,39 @@ function sendMessageToLineBot(accessToken, replyToken, message) {
 }
 
 function sendMessageToChatGPT(assistant_behavior, user_message){
-    let openAI_messages = [{
-        "role": "system",
-        "content": assistant_behavior
-    }];
+    try {
+        let openAI_messages = [{
+            "role": "system",
+            "content": assistant_behavior
+        }];
 
-    let chat_message = {};
-    chat_message.role = "user";
-    chat_message.content = user_message;
-    openAI_messages.push(chat_message);
+        let chat_message = {};
+        chat_message.role = "user";
+        chat_message.content = user_message;
+        openAI_messages.push(chat_message);
 
-    let url = "https://api.openAI.com/v1/chat/completions";
-    let data = {
-        "model": openAI_model,
-        "messages": openAI_messages
-    };
+        let url = "https://api.openAI.com/v1/chat/completions";
+        let data = {
+            "model": openAI_model,
+            "messages": openAI_messages
+        };
 
-    const authHeader = "Bearer " + openAI_api_KEY;
-    const options = {
-        headers: {
-            Authorization: authHeader
-        },
-        method: 'POST',
-        contentType: 'application/json',
-        payload: JSON.stringify(data)
-    }
+        const authHeader = "Bearer " + openAI_api_KEY;
+        const options = {
+            headers: {
+                Authorization: authHeader
+            },
+            method: 'POST',
+            contentType: 'application/json',
+            payload: JSON.stringify(data)
+        }
 
-    let response = UrlFetchApp.fetch(url, options);
-    let json = JSON.parse(response.getContentText());
-    return json["choices"][0]["message"]["content"];
+        let response = UrlFetchApp.fetch(url, options);
+        let json = JSON.parse(response.getContentText());
+        return json["choices"][0]["message"]["content"];
+    } catch (error) {
+        return '[["", "", "", "", "", ""], ["", "Message", "", "Error", "", "Incorrect API key provided."]]';
+    }          
 }
 
 function getSheetsQueryResult(fileId, sheetName, range, sqlText) {
