@@ -43,7 +43,7 @@ let Command = {
     "help" : ["help", "list", "清單", "名單"],
     "sure" : ["sure", "yes", "確定"],
     "cancel" : ["cancel", "no", "取消"],
-    "search" : ["search", "查詢"],  // search 林志玲、查詢 林志玲
+    "search" : ["search", "查詢", "關鍵字"],  // search 林志玲、查詢 林志玲、關鍵字 林志玲
     "sql" : "sql"  // sql select * limit 2
 }
 
