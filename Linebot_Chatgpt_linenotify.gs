@@ -21,7 +21,7 @@ let openAI_api_KEY = "";
 // Google試算表
 let spreadsheet_ID = ""; // 試算表ID
 let spreadsheet_Name_list = ""; // 工作表名稱 ( 行政人員名單：["編號","姓名","處室","職稱","權杖","訊息"] )
-let spreadsheet_Name_record = ""; // 工作表名稱 ( 訊息歷史紀錄：["日期","時間","userId","訊息"] )
+let spreadsheet_Name_record = ""; // 工作表名稱 ( 訊息歷史紀錄：["日期","時間","userId","訊息","狀態"] )
 
 // openAI設定
 let openAI_model = "gpt-4o"; // 限已升級plus帳號或已有刷卡儲值帳號，勿使用gpt-4o-mini或gpt-3.5
@@ -91,7 +91,6 @@ function doPost(e) {
                 let row;
                 let err = '';
                 try {
-                    recordMessageToSpreadsheet(line_response);
                     let dataArray = eval(line_response);
                     for (let i = 1; i < dataArray.length; i++) {
                         row = dataArray[i];
@@ -104,8 +103,10 @@ function doPost(e) {
                             }
                         }
                     }
+                    recordMessageToSpreadsheet(line_response, (dataArray.length - 1 == count_ok)?"ok":err);
                     line_response = `${Msg.success_send}\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}${err}`;
                 } catch (error) {
+                    recordMessageToSpreadsheet(line_response, "error");
                     line_response = `${Msg.failure_send}\n\n${row}\n\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}\n\n${error}`;
                 }
                 scriptProperties.setProperty(userId, '');
@@ -160,10 +161,10 @@ function checkStartWithSearch(message, search) {
     return "";
 }
 
-function recordMessageToSpreadsheet(message) {
+function recordMessageToSpreadsheet(message, status) {
   var dataDate = Utilities.formatDate(new Date(), "GMT+8", "yyyy-MM-dd");
   var dataTime = Utilities.formatDate(new Date(), "GMT+8", "HH:mm:ss");
-  var data = [dataDate, dataTime, userId, message];
+  var data = [dataDate, dataTime, userId, message, status];
   
   var spreadsheet = SpreadsheetApp.openById(spreadsheet_ID);
   var sheet = spreadsheet.getSheetByName(spreadsheet_Name_record);
