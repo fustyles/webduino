@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 10:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 11:30
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API
 
@@ -233,7 +233,7 @@ function sendMessageToChatGPT(assistant_behavior, user_message){
 function getSheetsQueryResult(fileId, sheetName, range, sqlText) {
     let file = SpreadsheetApp.openById(fileId);
     let sheetId = file.getSheetByName(sheetName).getSheetId();
-    let sqlURL = 'https://docs.google.com/spreadsheets/d/' + fileId + '/gviz/tq?gid=' + sheetId + '&range=' + range + '&tq=' + encodeURIComponent(sqlText);
+    let sqlURL = `https://docs.google.com/spreadsheets/d/${fileId}/gviz/tq?gid=${sheetId}&range=${range}&tq=${encodeURIComponent(sqlText)}`;
     let result = UrlFetchApp.fetch(sqlURL).getContentText();
     let jsonData = result.match(/\(.*?\)/)[0].replace(/[()]/g, '');
     jsonData = JSON.parse(jsonData);
