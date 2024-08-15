@@ -1,7 +1,7 @@
 /*
 Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 14:00
 https://www.facebook.com/francefu
-Line Bot Webhook & Google Apps script & ChatGTP API
+Line Bot Webhook & Google Apps script & ChatGTP API & Line Notify
 
 若傳訊無回應：
 1. openAI api額度已用盡或Key已失效。
