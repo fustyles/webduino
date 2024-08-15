@@ -138,9 +138,9 @@ function doPost(e) {
                     let row = dataArray[i];
                     line_response += `${row[0]}. ${row[3]}-${row[1]}：${row[5]}\n`;
                 }
-                line_response += '\n' + Msg.query;
+                line_response += `\n${Msg.query}`;
             } catch (error) {
-                line_response = response + '\n\n' + error;
+                line_response = `${response}\n\n${error}`;
             }
         }
         sendMessageToLineBot(channel_access_TOKEN, replyToken, line_response);
