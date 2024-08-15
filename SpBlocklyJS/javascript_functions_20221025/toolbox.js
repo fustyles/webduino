@@ -23,5 +23,29 @@ var catJavaScript ='<xml>'+
 '			  </block>'+
 '			</value>'+
 '		</block>'+
+'		<block type="javascript_function_general">'+
+'			<value name="p1">'+
+'			  <shadow type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </shadow>'+
+'			</value>'+
+'			<value name="p2">'+
+'			  <shadow type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </shadow>'+
+'			</value>'+
+'		</block>'+
+'		<block type="javascript_function_general_get">'+
+'			<value name="p1">'+
+'			  <shadow type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </shadow>'+
+'			</value>'+
+'			<value name="p2">'+
+'			  <shadow type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </shadow>'+
+'			</value>'+
+'		</block>'+
 '    </category>'+
 '</xml>';	

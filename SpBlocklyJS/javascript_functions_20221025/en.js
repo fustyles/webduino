@@ -45,3 +45,4 @@ Blockly.Msg["JAVASCRIPT_FUNCTIONS_MATH_TANH"] = "TANH (Hyperbolic Tangent)";
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_MATH_TRUNC"] = "TRUNC (Remove Any Decimal Digits and Return the Integer Part)";
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_STRING_SPLIT"] = "String to Array";
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_STRING_DELIMITER"] = "Delimiter";
+Blockly.Msg["JAVASCRIPT_FUNCTIONS_EVAL"] = "Execution code string";

@@ -45,3 +45,4 @@ Blockly.Msg["JAVASCRIPT_FUNCTIONS_MATH_TANH"] = "TANH 雙曲正切值";
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_MATH_TRUNC"] = "TRUNC 刪除任何小數位返回數字的整數部分";
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_STRING_SPLIT"] = "字串轉換陣列";
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_STRING_DELIMITER"] = "分隔符號";
+Blockly.Msg["JAVASCRIPT_FUNCTIONS_EVAL"] = "執行代碼字串";
