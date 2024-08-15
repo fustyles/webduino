@@ -239,8 +239,8 @@ function getSheetsQueryResult(fileId, sheetName, range, sqlText) {
     let table_rows = jsonData.table.rows;
     let labels = jsonData.table.cols.map(item => item.label);
     let types = jsonData.table.cols.map(item => item.type);
-    result = [];
-    result.push(labels);
+    let dataArray = [];
+    dataArray.push(labels);
     for (let i = 0, l = table_rows.length; i < l; i++) {
         let row = table_rows[i].c;
         let items = [];
@@ -252,9 +252,9 @@ function getSheetsQueryResult(fileId, sheetName, range, sqlText) {
                 items.push(row[j]==null?null:row[j].v);
             }
         }
-        result.push(items);
+        dataArray.push(items);
     }
-    return result;
+    return dataArray;
 }
 
 function resultToArrayString(result) {
