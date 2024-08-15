@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 02:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 10:00
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API
 
@@ -93,7 +93,7 @@ function doPost(e) {
                     for (let i = 1; i < dataArray.length; i++) {
                         row = dataArray[i];
                         if (row[5] != '') {
-                            if (sendMessageToLineNotify(row[4], '\n' + row[5]))
+                            if (sendMessageToLineNotify(row[4], `\n${row[5]}`))
                                 count_ok++;
                             else {
                                 err = `\n\nUnexpected token\n\n${row}`;
@@ -110,7 +110,7 @@ function doPost(e) {
         } else if (checkStartWithSearch(userMessage, Command.search)!="") {
             try {
                 let keyword = checkStartWithSearch(userMessage, Command.search);
-                let sqlText = "select * where A contains '" + keyword + "' or B contains '" + keyword + "' or C contains '" + keyword + "' or D contains '" + keyword + "'";
+                let sqlText = `select * where A contains '${keyword}' or B contains '${keyword}' or C contains '${keyword}' or D contains '${keyword}'`;
                 let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_NAME, "A:D",sqlText );
                 line_response = resultToListString(sqlDataArray);      
             } catch (error) {
@@ -135,7 +135,7 @@ function doPost(e) {
                 let dataArray = eval(response);
                 for (let i = 1; i < dataArray.length; i++) {
                     let row = dataArray[i];
-                    line_response += row[0] + '. ' + row[3] + '-' + row[1] + '：' + row[5] + '\n';
+                    line_response += `${row[0]}. ${row[3]}-${row[1]}：${row[5]}\n`;
                 }
                 line_response += '\n' + Msg.query;
             } catch (error) {
