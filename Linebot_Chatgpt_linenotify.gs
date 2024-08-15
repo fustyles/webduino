@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 16:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/15 18:00
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & ChatGTP API & Line Notify
 
@@ -67,8 +67,9 @@ let getLinebotData = {
   "replyToken": ""
 }
 
+let scriptProperties = PropertiesService.getScriptProperties();
+
 function doPost(e) {
-    let scriptProperties = PropertiesService.getScriptProperties();
     let linebot_response = "";
 
     if (e.postData) {
@@ -89,29 +90,8 @@ function doPost(e) {
             if (!linebot_response)
                 linebot_response = Msg.warn;
             else {
-                let count_ok = 0;
-                let row;
-                let err = '';
-                try {
-                    let dataArray = eval(linebot_response);
-                    for (let i = 1; i < dataArray.length; i++) {
-                        row = dataArray[i];
-                        if (row[5] != '') {
-                            if (sendMessageToLineNotify(row[4], `\n${row[5]}`))
-                                count_ok++;
-                            else {
-                                err = `\n\nUnexpected token\n\n${row}`;
-                                break;
-                            }
-                        }
-                    }
-                    recordMessageToSpreadsheet(linebot_response, (dataArray.length - 1 == count_ok)?"ok":err);
-                    linebot_response = `${Msg.success_send}\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}${err}`;
-                } catch (error) {
-                    recordMessageToSpreadsheet(linebot_response, "error");
-                    linebot_response = `${Msg.failure_send}\n\n${row}\n\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}\n\n${error}`;
-                }
                 scriptProperties.setProperty(getLinebotData.userId, '');
+                linebot_response = confirmSendMessage(linebot_response);
             }
         } else if (checkStartWithSearch(getLinebotData.userMessage, Command.search)!="") {
             try {
@@ -134,19 +114,7 @@ function doPost(e) {
             let sqlDataArray = getSheetsQueryResult(spreadsheet_ID, spreadsheet_Name_list, "A:E", "select *");
             let spreadsheet_list = resultToArrayString(sqlDataArray);           
             openAI_assistant_behavior = openAI_assistant_behavior + spreadsheet_list;
-
-            response = sendMessageToChatGPT(openAI_assistant_behavior, getLinebotData.userMessage);
-            scriptProperties.setProperty(getLinebotData.userId, response);
-            try {
-                let dataArray = eval(response);
-                for (let i = 1; i < dataArray.length; i++) {
-                    let row = dataArray[i];
-                    linebot_response += `${row[0]} ${row[3]}-${row[1]}：${row[5]}\n`;
-                }
-                linebot_response += `\n${Msg.query}`;
-            } catch (error) {
-                linebot_response = `${response}\n\n${error}`;
-            }
+            linebot_response = getSendMessageList();
         }
         sendMessageToLineBot(channel_access_TOKEN, getLinebotData.replyToken, linebot_response);
     }
@@ -161,6 +129,48 @@ function checkStartWithSearch(message, search) {
         }
     }
     return "";
+}
+
+function getSendMessageList() {
+    let response = sendMessageToChatGPT(openAI_assistant_behavior, getLinebotData.userMessage);
+    scriptProperties.setProperty(getLinebotData.userId, response);            
+    let dataString = "";
+    try {
+        let dataArray = eval(response);
+        for (let i = 1; i < dataArray.length; i++) {
+            let row = dataArray[i];
+            dataString += `${row[0]} ${row[3]}-${row[1]}：${row[5]}\n`;
+        }
+        dataString += `\n${Msg.query}`;
+    } catch (error) {
+        dataString = `${response}\n\n${error}`;
+    }
+    return dataString;
+}
+
+function confirmSendMessage(response) {
+    let count_ok = 0;
+    let row;
+    let err = '';
+    try {
+        let dataArray = eval(response);
+        for (let i = 1; i < dataArray.length; i++) {
+            row = dataArray[i];
+            if (row[5] != '') {
+                if (sendMessageToLineNotify(row[4], `\n${row[5]}`))
+                    count_ok++;
+                else {
+                    err = `\n\nUnexpected token\n\n${row}`;
+                    break;
+                }
+            }
+        }
+        recordMessageToSpreadsheet(response, (dataArray.length - 1 == count_ok)?"ok":err);
+        return `${Msg.success_send}\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}${err}`;
+    } catch (error) {
+        recordMessageToSpreadsheet(response, "error");
+        return `${Msg.failure_send}\n\n${row}\n\n${Msg.success}${count_ok}\n${Msg.failure}${dataArray.length - count_ok - 1}\n\n${error}`;
+    }
 }
 
 function recordMessageToSpreadsheet(message, status) {
