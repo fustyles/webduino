@@ -28,4 +28,4 @@ Blockly.Msg["OPENAI_CHAT_CONTENT_FILE_SAVE_SHOW"] = "汇出档案";
 Blockly.Msg["OPENAI_CHAT_CONTENT_FILE_REMOTE_SHOW"] = "聊天纪录汇入";
 Blockly.Msg["OPENAI_CHAT_CONTENT_FILE_REMOTE_URL_SHOW"] = "网址(.chat)";
 Blockly.Msg["OPENAI_CHAT_CONTENT_FILE_REMOTE_URL_INSERT_SHOW"] = "网址(.txt)";
-Blockly.Msg["OPENAI_CHAT_IMAGE_URL_SHOW"] = "网址";
+Blockly.Msg["OPENAI_CHAT_IMAGE_URL_SHOW"] = "图片网址";
