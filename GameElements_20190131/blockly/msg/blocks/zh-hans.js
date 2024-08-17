@@ -634,3 +634,5 @@ Blockly.Msg["JSON_VARIABLE_LENGTH"] = "长度";
 Blockly.Msg["TRY_CATCH_SUCCESS"] = "程式执行(Try)";
 Blockly.Msg["TRY_CATCH_FAIL"] = "发生错误时执行(Catch)";
 Blockly.Msg["TRY_CATCH_FINALLY"] = "最后执行(Finally)";
+
+Blockly.Msg["JAVASCRIPT_FUNCTIONS_EVAL"] = "执行代码字串";
