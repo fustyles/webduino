@@ -81,16 +81,16 @@
 		</block>
 		<block type="javascript_function_general">
 			<value name="p1">
-			  <shadow type="text">
+			  <block type="text">
 				<field name="TEXT"></field>
-			  </shadow>
+			  </block>
 			</value>
 		</block>
 		<block type="javascript_function_general_get">
 			<value name="p1">
-			  <shadow type="text">
+			  <block type="text">
 				<field name="TEXT"></field>
-			  </shadow>
+			  </block>
 			</value>
 		</block>		
 		<block type="custom_comment">
