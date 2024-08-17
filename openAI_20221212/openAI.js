@@ -346,3 +346,64 @@ function openai_chat_content_file_remote_insert(url) {
   		}
 	});
 }
+
+function openai_chat_image_request(input_text, input_url) {
+  var url = "https://api.openai.com/v1/chat/completions";
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", url);
+
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.setRequestHeader("Authorization", "Bearer " + openai_response_chat_key);
+
+  xhr.onreadystatechange = function () {
+	 if (xhr.readyState === 4) {
+		//console.log(xhr.status);
+		//console.log(xhr.responseText);
+		let json = eval("(" + xhr.responseText + ")");
+		if (json["error"]) {
+			openai_response_chat = json["error"]["message"];
+			openai_response_chat_br = json["error"]["message"];
+			openai_response_chat_n = json["error"]["message"];
+			if (typeof openai_chat_response === 'function') openai_chat_response();
+		}	
+		else if (json["choices"][0]["message"]["content"]) {
+			openai_response_chat = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/\n/g,"");
+			openai_response_chat_br = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");
+			openai_response_chat_n = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"");
+			if (openai_response_chat_br.indexOf("<br><br>")==0)
+				openai_response_chat_br = openai_response_chat_br.replace("<br><br>","");
+			if (openai_response_chat_n.indexOf("\n\n")==0)
+				openai_response_chat_n = openai_response_chat_br.replace("\n\n","");
+			
+			var char_message = {};
+			char_message.role = "assistant";
+			char_message.content = json["choices"][0]["message"]["content"];
+			openai_response_chat_message.push(char_message);
+			
+			if (typeof openai_chat_response === 'function') openai_chat_response();
+		}
+		else {
+			openai_response_chat = "";
+			openai_response_chat_br = "";
+			openai_response_chat_n = "";
+		}
+	 }};		
+
+	var char_message = {};
+	char_message.role = "user";
+	char_message.content = [];
+	var user_text = {"type":"text", "text":input_text};
+	char_message.content.push(user_text);
+	var user_url = {"type":"image_url", "image_url":{"url":input_url}};
+	char_message.content.push(user_url);	
+	openai_response_chat_message.push(char_message);	
+  
+	var data;
+	data = {
+	  "model": openai_response_chat_model,
+	  "messages": openai_response_chat_message	  
+	};
+
+	xhr.send(JSON.stringify(data));
+}
