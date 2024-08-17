@@ -635,3 +635,5 @@ Blockly.Msg["JSON_VARIABLE_LENGTH"] = "Length";
 Blockly.Msg["TRY_CATCH_SUCCESS"] = "Try";
 Blockly.Msg["TRY_CATCH_FAIL"] = "Catch";
 Blockly.Msg["TRY_CATCH_FINALLY"] = "Finally";
+
+Blockly.Msg["JAVASCRIPT_FUNCTIONS_EVAL"] = "Execution code string";
