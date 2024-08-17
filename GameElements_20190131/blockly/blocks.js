@@ -4,14 +4,10 @@ Blockly.Blocks['javascript_function_general'] = {
         .setAlign(Blockly.ALIGN_RIGHT) 
         .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["JAVASCRIPT_FUNCTIONS_EVAL"],"eval(%1)"]			
-		], this.validate), "function");		
+		]), "function");		
     this.appendDummyInput()
 		.appendField("(");		
 	this.appendValueInput("p1")
-		.setCheck(null);
-    this.appendDummyInput("comma")
-		.appendField(", ");		
-	this.appendValueInput("p2")
 		.setCheck(null);
     this.appendDummyInput()
 		.appendField(")");			
@@ -19,26 +15,6 @@ Blockly.Blocks['javascript_function_general'] = {
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
     this.setColour(190);
-  },
-	validate: function(newValue) {
-		const block = this.sourceBlock_;
-		if (!block) return;
-		if (newValue.indexOf("%1")!=-1)
-		 	block.getInput("p1").setVisible(true);
-		else {
-			block.getInput("p1").setVisible(false);
-			block.getInput("comma").setVisible(false);
-			block.getInput("p2").setVisible(false);			
-		}
-		if (newValue.indexOf("%2")!=-1) {
-		 	block.getInput("p1").setVisible(true);
-			block.getInput("comma").setVisible(true);		
-		 	block.getInput("p2").setVisible(true);
-		}
-		else {
-			block.getInput("comma").setVisible(false);			
-			block.getInput("p2").setVisible(false);
-		}
   }
 };
 
@@ -48,40 +24,16 @@ Blockly.Blocks['javascript_function_general_get'] = {
         .setAlign(Blockly.ALIGN_RIGHT) 
         .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["JAVASCRIPT_FUNCTIONS_EVAL"],"eval(%1)"]			
-		], this.validate), "function");		
+		]), "function");		
     this.appendDummyInput()
 		.appendField("(");		
 	this.appendValueInput("p1")
-		.setCheck(null);
-    this.appendDummyInput("comma")
-		.appendField(", ");		
-	this.appendValueInput("p2")
 		.setCheck(null);
     this.appendDummyInput()
 		.appendField(")");			
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
     this.setColour(190);
-  },
-	validate: function(newValue) {
-		const block = this.sourceBlock_;
-		if (!block) return;
-		if (newValue.indexOf("%1")!=-1)
-		 	block.getInput("p1").setVisible(true);
-		else {
-			block.getInput("p1").setVisible(false);
-			block.getInput("comma").setVisible(false);
-			block.getInput("p2").setVisible(false);			
-		}
-		if (newValue.indexOf("%2")!=-1) {
-		 	block.getInput("p1").setVisible(true);
-			block.getInput("comma").setVisible(true);		
-		 	block.getInput("p2").setVisible(true);
-		}
-		else {
-			block.getInput("comma").setVisible(false);			
-			block.getInput("p2").setVisible(false);
-		}
   }
 };
 
