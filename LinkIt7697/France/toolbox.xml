@@ -4649,7 +4649,7 @@
 					<field name="TEXT"></field>
 				</block>
 			</value>
-		</block>
+		</block>		
 		<block type="try_catch_finally">
 		</block>			
 		<block type="time_delay">
@@ -9240,6 +9240,30 @@
 				<field name="TEXT">,</field>
 			  </block>
 			</value>		
+		</block>
+		<block type="javascript_function_general">
+			<value name="p1">
+			  <shadow type="text">
+				<field name="TEXT"></field>
+			  </shadow>
+			</value>
+			<value name="p2">
+			  <shadow type="text">
+				<field name="TEXT"></field>
+			  </shadow>
+			</value>
+		</block>
+		<block type="javascript_function_general_get">
+			<value name="p1">
+			  <shadow type="text">
+				<field name="TEXT"></field>
+			  </shadow>
+			</value>
+			<value name="p2">
+			  <shadow type="text">
+				<field name="TEXT"></field>
+			  </shadow>
+			</value>
 		</block>		
     </category>
 	

@@ -3144,6 +3144,8 @@ Blockly.Msg["WINDOW_CONFIRM_NO"] = "If choiced [No]";
 Blockly.Msg["WINDOW_MESSAGEBOX"] = "Alert box message";
 Blockly.Msg["WINDOW_PROMPT"] = "Set to the Inputbox text.  Propmt";
 
+Blockly.Msg["JAVASCRIPT_FUNCTIONS_EVAL"] = "Execution code string";
+
 Blockly.Msg["TRY_CATCH_SUCCESS"] = "Try";
 Blockly.Msg["TRY_CATCH_FAIL"] = "Catch";
 Blockly.Msg["TRY_CATCH_FINALLY"] = "Finally";
