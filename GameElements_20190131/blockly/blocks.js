@@ -5,12 +5,8 @@ Blockly.Blocks['javascript_function_general'] = {
         .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["JAVASCRIPT_FUNCTIONS_EVAL"],"eval(%1)"]			
 		]), "function");		
-    this.appendDummyInput()
-		.appendField("(");		
 	this.appendValueInput("p1")
-		.setCheck(null);
-    this.appendDummyInput()
-		.appendField(")");			
+		.setCheck(null);			
 	this.setInputsInline(true);	  
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -25,12 +21,8 @@ Blockly.Blocks['javascript_function_general_get'] = {
         .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["JAVASCRIPT_FUNCTIONS_EVAL"],"eval(%1)"]			
 		]), "function");		
-    this.appendDummyInput()
-		.appendField("(");		
 	this.appendValueInput("p1")
-		.setCheck(null);
-    this.appendDummyInput()
-		.appendField(")");			
+		.setCheck(null);			
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
     this.setColour(190);
