@@ -5392,7 +5392,7 @@ Blockly.Arduino['openai_chat_initial'] = function (block) {
 		+'            getResponse = getResponse.substring(0,getResponse.length()-3);'
 		+'          } else if (getResponse.indexOf("\\"")!=-1&&c == \'\\n\'&&state==true) {'
 		+'            state=false;'
-		+'            getResponse = getResponse.substring(0,getResponse.length()-2);'
+		+'            getResponse = getResponse.substring(0,getResponse.length()-3);'
 		+'          }'
 		+'       }\n'
 		+'       if (getResponse.length()>0) {\n'
