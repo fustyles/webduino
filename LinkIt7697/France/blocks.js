@@ -3478,6 +3478,26 @@ Blockly.Blocks['amb82_mini_googledrive'] = {
   }
 };
 
+Blockly.Blocks['amb82_mini_openai_vision'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_OPENAI_VISION"]);
+    this.appendValueInput("key")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_OPENAI_KEY"]);		
+    this.appendValueInput("message")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_OPENAI_MESSAGE"]);			
+	this.setInputsInline(false);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(Blockly.Msg["HUE_12"]);
+  }
+};
+
 Blockly.Blocks['amb82_mini_linenotify'] = {
   init: function() {
     this.appendDummyInput()

@@ -911,6 +911,10 @@ Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TEDDYBEAR"] = "TEDDY BEAR";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HAIRDRYER"] = "HAIR DRYER";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TOOTHBRUSH"] = "TOOTHBRUSH";
 
+Blockly.Msg["AMB82_MINI_OPENAI_VISION"] = "Image capture visual analysis";
+Blockly.Msg["AMB82_MINI_OPENAI_KEY"] = "openAI Key";
+Blockly.Msg["AMB82_MINI_OPENAI_MESSAGE"] = "Conversation Message";
+
 Blockly.Msg["AMB82_MINI_MOTIONDETECTION"] = "Motion Detection";
 Blockly.Msg["AMB82_MINI_MOTIONDETECTION_LABEL"] = "Label";
 Blockly.Msg["AMB82_MINI_MOTIONDETECTION_AFTER"] = "List all blocks";

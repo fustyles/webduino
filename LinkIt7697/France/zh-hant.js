@@ -795,6 +795,10 @@ Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"] = "旋轉角度";
 Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_BITRATE"] = "比特率";
 Blockly.Msg["AMB82_MINI_RTP_AUDIO"] = "RTP音訊串流";
 
+Blockly.Msg["AMB82_MINI_OPENAI_VISION"] = "影像擷取視覺分析";
+Blockly.Msg["AMB82_MINI_OPENAI_KEY"] = "openAI Key";		
+Blockly.Msg["AMB82_MINI_OPENAI_MESSAGE"] = "對話訊息";
+
 Blockly.Msg["AMB82_MINI_BLEKEYBOARD_SHOW"] = "藍芽鍵盤";
 Blockly.Msg["AMB82_MINI_BLEKEYBOARD_PRESS_CONSUMER_SHOW"] = "按壓 特殊鍵碼";
 Blockly.Msg["AMB82_MINI_BLEKEYBOARD_RELEASE_CONSUMER_SHOW"] = "釋放 特殊鍵碼";
