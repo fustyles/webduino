@@ -2690,8 +2690,7 @@ Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
 	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive = '\n'+
 			'String SendStillToOpenaiVision(String key, String message) {\n'+
 			'  const char* myDomain = "api.openai.com";\n'+
-			'  String getAll="", getBody = "";\n'+
-			'  \n'+
+			'  String getResponse="",Feedback="";\n'+			
 			'  Serial.println("Connect to " + String(myDomain));\n'+
 			'  if (client_tcp.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
@@ -2725,39 +2724,50 @@ Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
 			'    int waitTime = 10000;\n'+
 			'    long startTime = millis();\n'+
 			'    boolean state = false;\n'+
-			'    \n'+
-			'    while ((startTime + waitTime) > millis())\n'+
-			'    {\n'+
-			'      Serial.print(".");\n'+
+			'    while ((startTime + waitTime) > millis()) {\n'+
+			'      //Serial.print(".");\n'+
 			'      delay(100);\n'+
-			'      while (client_tcp.available())\n'+
-			'      {\n'+
+			'      while (client_tcp.available()) {\n'+
 			'          char c = client_tcp.read();\n'+
-			'          if (state==true) getBody += String(c);\n'+        
+			'          if (state==true)\n'+
+			'            getResponse += String(c);\n'+
 			'          if (c == \'\\n\')\n'+
-			'          {\n'+
-			'            if (getAll.length()==0) state=true;\n'+
-			'            getAll = "";\n'+
-			'          }\n'+
+			'            Feedback = "";\n'+
 			'          else if (c != \'\\r\')\n'+
-			'            getAll += String(c);\n'+
+			'            Feedback += String(c);\n'+
+			'          if (Feedback.indexOf("\\",\\"content\\":\\"")!=-1)\n'+
+			'            state=true;\n'+
+			'          if (Feedback.indexOf("\\"},")!=-1)\n'+
+			'            state=false;\n'+
 			'          startTime = millis();\n'+
+			'          if (Feedback.indexOf("\\",\\"content\\":\\"")!=-1||Feedback.indexOf("\\"content\\": \\"")!=-1)\n'+
+			'            state=true;\n'+
+			'          if (getResponse.indexOf("\\"},")!=-1&&state==true) {\n'+
+			'            state=false;\n'+
+			'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'+
+			'          } else if (getResponse.indexOf("\\"")!=-1&&c == \'\\n\'&&state==true) {\n'+
+			'            state=false;\n'+
+			'            getResponse = getResponse.substring(0,getResponse.length()-2);\n'+
+			'          }\n'+
 			'       }\n'+
-			'       if (getBody.length()>0) break;\n'+
+			'       if (getResponse.length()>0) {\n'+
+			'          client_tcp.stop();\n'+
+			'          return getResponse;\n'+
+			'       }\n'+
 			'    }\n'+
 			'    client_tcp.stop();\n'+
-			'    Serial.println(getBody);\n'+
+			'    getResponse = "error";\n'+
 			'  }\n'+
 			'  else {\n'+
-			'    getBody="Connected to " + String(myDomain) + " failed.";\n'+
+			'    getResponse = "Connected to " + String(myDomain) + " failed.";\n'+
 			'    Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
 			'  }\n'+
 			'  \n'+
-			'  return getBody;\n'+
+			'  return getResponse;\n'+
 			'}\n';			
 			
-	var code = 'SendStillToOpenaiVision('+key+', '+message+');\n';
-	return code;			
+	var code = 'SendStillToOpenaiVision('+key+', '+message+')';
+	return [code, Blockly.Arduino.ORDER_NONE];			
 }
 
 Blockly.Arduino['amb82_mini_spreadsheet'] = function(block) {

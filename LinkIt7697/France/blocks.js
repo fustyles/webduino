@@ -3492,8 +3492,8 @@ Blockly.Blocks['amb82_mini_openai_vision'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["AMB82_MINI_OPENAI_MESSAGE"]);			
 	this.setInputsInline(false);
-	this.setPreviousStatement(!0);
-	this.setNextStatement(!0);
+	this.setInputsInline(true);
+    this.setOutput(true, null);  
 	this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
