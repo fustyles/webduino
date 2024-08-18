@@ -1927,6 +1927,10 @@ Blockly.Msg["ESP32_CAM_LINETOKEN_SHOW"] = "Line權杖";
 Blockly.Msg["ESP32_CAM_FOLDERNAME_SHOW"] = "資料夾名";	
 Blockly.Msg["ESP32_CAM_FILENAME_SHOW"] = "儲存檔案名";
 
+Blockly.Msg["ESP32_CAM_OPENAI_VISION"] = "ESP32-CAM 截圖上傳視覺分析";
+Blockly.Msg["ESP32_CAM_OPENAI_KEY"] = "openAI Key";
+Blockly.Msg["ESP32_CAM_OPENAI_MESSAGE"] = "對話訊息";	
+
 Blockly.Msg["ESP32_CAM_SPREADSHEET_ROW_SHOW"] = "行數";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW"] = "自訂列數";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_FIRSTROW_SHOW"] = "第一列";

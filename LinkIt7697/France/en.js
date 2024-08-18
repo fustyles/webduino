@@ -1928,6 +1928,10 @@ Blockly.Msg["ESP32_CAM_LINETOKEN_SHOW"] = "Token";
 Blockly.Msg["ESP32_CAM_FOLDERNAME_SHOW"] = "Folder Name";	
 Blockly.Msg["ESP32_CAM_FILENAME_SHOW"] = "File Name";
 
+Blockly.Msg["ESP32_CAM_OPENAI_VISION"] = "ESP32-CAM Image capture visual analysis";
+Blockly.Msg["ESP32_CAM_OPENAI_KEY"] = "openAI Key";
+Blockly.Msg["ESP32_CAM_OPENAI_MESSAGE"] = "Conversation Message";
+
 Blockly.Msg["ESP32_CAM_SPREADSHEET_ROW_SHOW"] = "row";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW"] = "Custom row";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_FIRSTROW_SHOW"] = "First row";
