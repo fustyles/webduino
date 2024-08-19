@@ -1,15 +1,13 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/19 17:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/20 00:30
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & openAI Vision
 
 若傳訊無回應：
 1. openAI api額度已用盡或Key已失效。
-2. 指令碼屬性數超過上限，新增的Line bot使用者將無法正常運作，可付費升級為Google付費會員。
-3. 不明原因，可能太久無人使用自動停用，重新佈署或重建Apps script專案並開放存取權限。
-4. Apps script程式碼有bug。
-5. Google試算表設定不正確。
-6. 重新再傳訊一次。
+2. 不明原因，可能太久無人使用自動停用，重新佈署或重建Apps script專案並開放存取權限。
+3. Apps script程式碼有bug。
+4. 重新再傳訊一次。
 */
 
 // Line bot
@@ -30,7 +28,7 @@ let getLinebotData = {
 
 function doPost(e) {
     if (e.postData) {
-        let linebot_response = "請上傳影像！";
+        let linebot_response = "請先上傳圖片或輸入圖片網址，再引用圖片或輸入網址回覆並輸入對話內容！";
         let chat_message = "請分析圖片中的場景與情境，若有文字資料請將內容進行重點摘要。";
 
         let msg = JSON.parse(e.postData.contents);
@@ -41,20 +39,23 @@ function doPost(e) {
 
         if (getLinebotData.userType=="text") {
           getLinebotData.userMessage = msg.events[0].message.text.trim();
-          if (msg.events[0].message.quotedMessageId) {
-            chat_message = getLinebotData.userMessage;
-            imageId = msg.events[0].message.quotedMessageId;
-            getLinebotData.userImage = getImageBase64(channel_access_TOKEN, imageId);
+          if (getLinebotData.userMessage.toLowerCase().trim().indexOf("https://")==0) {
+              let urlData = getLinebotData.userMessage.split("\n");
+              getLinebotData.userImage = urlData[0].trim();
+              if (urlData.length>1)
+                  chat_message = getLinebotData.userMessage.replace(urlData[0], "").trim();
+          } else if (msg.events[0].message.quotedMessageId) {
+              chat_message = getLinebotData.userMessage;
+              imageId = msg.events[0].message.quotedMessageId;
+              getLinebotData.userImage = getImageBase64(channel_access_TOKEN, imageId);
           }
-          else
-            getLinebotData.userImage = getLinebotData.userMessage;
         }
         else if (getLinebotData.userType=="image") {
-          let imageId = msg.events[0].message.id;
-          getLinebotData.userImage = getImageBase64(channel_access_TOKEN, imageId);
+            let imageId = msg.events[0].message.id;
+            getLinebotData.userImage = getImageBase64(channel_access_TOKEN, imageId);
         }
 
-        if (getLinebotData.userImage!="")
+        if (getLinebotData.userImage)
             linebot_response = sendImageToOpenaiVision(openAI_api_KEY, chat_message, getLinebotData.userImage);
 
         sendMessageToLineBot(channel_access_TOKEN, getLinebotData.replyToken, linebot_response);
@@ -63,17 +64,21 @@ function doPost(e) {
 }
 
 function getImageBase64(accessToken, imageId) {
-    const url = `https://api-data.line.me/v2/bot/message/${imageId}/content`;
+  try {
+      const url = `https://api-data.line.me/v2/bot/message/${imageId}/content`;
 
-    let response = UrlFetchApp.fetch(url, {
-        headers: {
-            'Authorization': `Bearer ${accessToken}`
-        }
-    });
+      let response = UrlFetchApp.fetch(url, {
+          headers: {
+              'Authorization': `Bearer ${accessToken}`
+          }
+      });
 
-    let blob = response.getBlob();
-    let base64Image = Utilities.base64Encode(blob.getBytes());
-    return "data:image/jpeg;base64," + base64Image;
+      let blob = response.getBlob();
+      let base64Image = Utilities.base64Encode(blob.getBytes());
+      return "data:image/jpeg;base64," + base64Image;
+  } catch (error) {
+      return "";
+  }
 }
 
 function sendMessageToLineBot(accessToken, replyToken, message) {
