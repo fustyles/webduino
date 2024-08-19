@@ -3375,7 +3375,7 @@ Blockly.Msg["DS18B20_REQUEST"] = "DS18B20DS18B20 water temperature sensor get da
 Blockly.Msg["DS18B20_GET"] = "DS18B20DS18B20 water temperature sensor get temperature";
 Blockly.Msg["DS18B20_UNIT"] = "unit";
 
-Blockly.Msg["PMS7003M_READ"] = "PMS7003M after reading data";
+Blockly.Msg["PMS7003M_READ"] = "PMS7003M after reading data (Serial2)";
 Blockly.Msg["PMS7003M_GET"] = "PMS7003M get";
 Blockly.Msg["PMS7003M_PM25"] = "PM2.5";
 Blockly.Msg["PMS7003M_PM1"] = "PM1.0";
