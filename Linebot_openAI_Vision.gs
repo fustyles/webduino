@@ -1,20 +1,22 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/19 16:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/19 17:00
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & openAI Vision
 
 若傳訊無回應：
 1. openAI api額度已用盡或Key已失效。
-2. 不明原因，可能太久無人使用自動停用，重新佈署或重建Apps script專案並開放存取權限。
-3. Apps script程式碼有bug。
-4. openAI無回應，重新再傳訊一次。
+2. 指令碼屬性數超過上限，新增的Line bot使用者將無法正常運作，可付費升級為Google付費會員。
+3. 不明原因，可能太久無人使用自動停用，重新佈署或重建Apps script專案並開放存取權限。
+4. Apps script程式碼有bug。
+5. Google試算表設定不正確。
+6. 重新再傳訊一次。
 */
 
 // Line bot
 let channel_access_TOKEN = "";
 
 // openAI設定
-let openAI_api_KEY = "";
+let openAI_api_KEY = "sk-proj-xxx-xxx-xxx";
 
 // Line bot參數
 let getLinebotData = {
@@ -39,7 +41,13 @@ function doPost(e) {
 
         if (getLinebotData.userType=="text") {
           getLinebotData.userMessage = msg.events[0].message.text.trim();
-          getLinebotData.userImage = getLinebotData.userMessage;
+          if (msg.events[0].message.quotedMessageId) {
+            chat_message = getLinebotData.userMessage;
+            imageId = msg.events[0].message.quotedMessageId;
+            getLinebotData.userImage = getImageBase64(channel_access_TOKEN, imageId);
+          }
+          else
+            getLinebotData.userImage = getLinebotData.userMessage;
         }
         else if (getLinebotData.userType=="image") {
           let imageId = msg.events[0].message.id;
@@ -48,7 +56,7 @@ function doPost(e) {
 
         if (getLinebotData.userImage!="")
             linebot_response = sendImageToOpenaiVision(openAI_api_KEY, chat_message, getLinebotData.userImage);
-         
+
         sendMessageToLineBot(channel_access_TOKEN, getLinebotData.replyToken, linebot_response);
     }
     return ContentService.createTextOutput("OK");
