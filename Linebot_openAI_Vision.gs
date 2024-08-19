@@ -5,11 +5,9 @@ Line Bot Webhook & Google Apps script & openAI Vision
 
 若傳訊無回應：
 1. openAI api額度已用盡或Key已失效。
-2. 指令碼屬性數超過上限，新增的Line bot使用者將無法正常運作，可付費升級為Google付費會員。
-3. 不明原因，可能太久無人使用自動停用，重新佈署或重建Apps script專案並開放存取權限。
-4. Apps script程式碼有bug。
-5. Google試算表設定不正確。
-6. 重新再傳訊一次。
+2. 不明原因，可能太久無人使用自動停用，重新佈署或重建Apps script專案並開放存取權限。
+3. Apps script程式碼有bug。
+4. openAI無回應，重新再傳訊一次。
 */
 
 // Line bot
