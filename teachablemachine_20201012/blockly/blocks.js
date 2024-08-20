@@ -43,8 +43,9 @@ Blockly.Blocks['teachablemachine_model'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TEACHABLEMACHINE_PROJECT_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["image","image"],
-		["pose","pose"]	  
+		[Blockly.Msg.TEACHABLEMACHINE_MODEL_IMAGE_SHOW,"image"],
+		[Blockly.Msg.TEACHABLEMACHINE_MODEL_POSE_SHOW,"pose"],
+		[Blockly.Msg.TEACHABLEMACHINE_MODEL_VOICE_SHOW,"voice"]	 
   ]), "project_"); 	  
   this.appendValueInput("model_")
       .setCheck("String")
