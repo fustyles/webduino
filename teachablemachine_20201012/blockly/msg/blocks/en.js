@@ -1,4 +1,7 @@
 Blockly.Msg.TEACHABLEMACHINE_SHOW = "Teachable Machine (google)";
+Blockly.Msg.TEACHABLEMACHINE_MODEL_IMAGE_SHOW = "Image Classification";
+Blockly.Msg.TEACHABLEMACHINE_MODEL_POSE_SHOW = "Posture Classification";
+Blockly.Msg.TEACHABLEMACHINE_MODEL_VOICE_SHOW = "Voice Classification";
 Blockly.Msg.TEACHABLEMACHINE_WIDTH_SHOW = "Width";
 Blockly.Msg.TEACHABLEMACHINE_HEIGHT_SHOW = "Height";
 Blockly.Msg.TEACHABLEMACHINE_RESULT_SHOW = "Result";
