@@ -13,6 +13,11 @@
 	function teachablemachine_model(input_project, input_model){
 		document.getElementById('project_teachablemachine').innerHTML = input_project;
 		document.getElementById("modelPath_teachablemachine").value = input_model;
+		if (input_project=="voice") {
+			document.getElementById('gamevideo_teachablemachine').parentNode.removeChild(document.getElementById('gamevideo_teachablemachine'));
+			document.getElementById('gamecanvas_teachablemachine').parentNode.removeChild(document.getElementById('gamecanvas_teachablemachine'));
+			document.getElementById("sourceId_teachablemachine").innerHTML = "voice";
+		}
 	}
 
 	function teachablemachine_result(input_proportion) {

@@ -1,5 +1,8 @@
 Blockly.Msg["CATTEACHABLEMACHINE"] = "機器學習(TM)";
 Blockly.Msg["TEACHABLEMACHINE_SHOW"] = "機器學習(Teachable Machine)";
+Blockly.Msg["TEACHABLEMACHINE_MODEL_IMAGE_SHOW"] = "影像分類";
+Blockly.Msg["TEACHABLEMACHINE_MODEL_POSE_SHOW"] = "姿態分類";
+Blockly.Msg["TEACHABLEMACHINE_MODEL_VOICE_SHOW"] = "音訊分類";
 Blockly.Msg["TEACHABLEMACHINE_WIDTH_SHOW"] = "寬度";
 Blockly.Msg["TEACHABLEMACHINE_HEIGHT_SHOW"] = "高度";
 Blockly.Msg["TEACHABLEMACHINE_RESULT_SHOW"] = "結果";

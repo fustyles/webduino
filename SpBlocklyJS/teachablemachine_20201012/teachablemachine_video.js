@@ -1,15 +1,22 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>');
-document.write('<div id="region_teachablemachine" style="z-index:999"><video id="gamevideo_teachablemachine" width="320" height="240" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_teachablemachine" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_teachablemachine"></canvas><br><select id="mirrorimage_teachablemachine" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><input type="text" id="modelPath_teachablemachine" value="" style="position:absolute;visibility:hidden;"><br><div id="gamediv_teachablemachine" style="color:red"></div></div>');
 document.write('<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>');
+document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands@0.5.4/dist/speech-commands.min.js"></script>');
+document.write('<div id="region_teachablemachine" style="z-index:999"><video id="gamevideo_teachablemachine" width="320" height="240" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_teachablemachine" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_teachablemachine"></canvas><br><select id="mirrorimage_teachablemachine" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><input type="text" id="modelPath_teachablemachine" value="" style="position:absolute;visibility:hidden;"><br><div id="gamediv_teachablemachine" style="color:red"></div></div>');
 document.write('<div id="teachablemachineState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="sourceId_teachablemachine" style="position:absolute;display:none;"></div>');
 document.write('<div id="project_teachablemachine" style="position:absolute;display:none;"></div>');
 
 window.onload = function () {
-	var video = document.getElementById('gamevideo_teachablemachine');
-	var canvas = document.getElementById('gamecanvas_teachablemachine');
-	var context = canvas.getContext('2d');
+	try {
+		var video = document.getElementById('gamevideo_teachablemachine');
+		var canvas = document.getElementById('gamecanvas_teachablemachine');
+		var context = canvas.getContext('2d');
+	} catch (error) {
+	  // Only runs when there is an error/exception
+	} finally {
+	  // Code here always runs. Doesn't matter if there was an error or not.
+	}		
 	var mirrorimage = document.getElementById("mirrorimage_teachablemachine");
 	var teachablemachineState = document.getElementById('teachablemachineState');
 	var result = document.getElementById('gamediv_teachablemachine');
@@ -19,7 +26,8 @@ window.onload = function () {
 	let Model;
 	var maxPredictions;
 	var sourceTimer;
-	
+
+
 	setTimeout(function(){loadModel();}, 5000);
 	async function loadModel() {
 		if (modelPath.value=="") {
@@ -31,18 +39,32 @@ window.onload = function () {
 		const metadataURL = URL + "metadata.json";
 		if (project.innerHTML=="image") {
 			Model = await tmImage.load(modelURL, metadataURL);
+			maxPredictions = Model.getTotalClasses();
 		}
 		else if (project.innerHTML=="pose") {
 			Model = await tmPose.load(modelURL, metadataURL);
-		}			
-		maxPredictions = Model.getTotalClasses();
+			maxPredictions = Model.getTotalClasses();
+		}
+		else if (project.innerHTML=="voice") {
+			Model = speechCommands.create(
+				"BROWSER_FFT",
+				undefined,
+				modelURL,
+				metadataURL);
+			Model.ensureModelLoaded().then(res => {
+				maxPredictions = Model.wordLabels();
+			});
+		}
 
 		result.innerHTML = "";
 		sourceTimer = setInterval(
 			function(){
 				if (source.innerHTML!="") {
 					clearInterval(sourceTimer);
-					setTimeout(function(){DetectVideo(document.getElementById(source.innerHTML))}, 3000);
+					if (project.innerHTML=="image"||project.innerHTML=="pose")
+						setTimeout(function(){DetectVideo(document.getElementById(source.innerHTML))}, 3000);
+					else if (project.innerHTML=="voice")
+						setTimeout(function(){DetectVoice();}, 3000);						
 				}				
 			}
 		, 100);	  
@@ -97,4 +119,27 @@ window.onload = function () {
 
 		setTimeout(function(){DetectVideo(obj);}, 200);
 	}
+	
+	async function DetectVoice() {
+        Model.listen(res => {
+            const scores = res.scores;
+			var data = "";
+            for (let i = 0; i < maxPredictions.length; i++) {
+                data += maxPredictions[i] + "," + res.scores[i].toFixed(2) + "<br>";
+            }
+			result.innerHTML = data;
+			if (result.innerHTML!="")
+				result.innerHTML = result.innerHTML.substr(0,result.innerHTML.length-4);
+
+			if (typeof teachablemachine_recognitionFinish === 'function') teachablemachine_recognitionFinish();
+
+			//setTimeout(function(){Model.stopListening();DetectVoice();}, 5000);
+		
+        }, {
+            includeSpectrogram: true,
+            probabilityThreshold: 0.75,
+            invokeCallbackOnNoiseAndUnknown: true,
+            overlapFactor: 0.50
+        });
+	}	
 }
