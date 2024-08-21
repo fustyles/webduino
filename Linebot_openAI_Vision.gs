@@ -75,7 +75,7 @@ function doPost(e) {
 function saveHistoricalURL(userId, messageId, messageURL) {
     let list = scriptProperties.getProperty(userId)||"[]";
     list = JSON.parse(list);
-    if (list.length>=10)
+    if (list.length>=20)
         list.splice(0, 1);
     message = {};
     message.messageId = messageId;
