@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/20 00:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/21 19:30
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & openAI Vision
 
@@ -23,31 +23,40 @@ let getLinebotData = {
   "replyToken": "",
   "userType": "",
   "userMessage": "",
-  "userImage": ""   
+  "userImage": "",
+  "userMessageId": "",
+  "quotedMessageId": ""
 }
+
+let scriptProperties = PropertiesService.getScriptProperties();
 
 function doPost(e) {
     if (e.postData) {
-        let linebot_response = "請先上傳圖片或輸入圖片網址，若是圖片引用回覆並輸入對話內容！";
+        let linebot_response = "請先上傳圖片或輸入圖片網址，再引用圖片或輸入網址回覆並輸入對話內容！";
         let chat_message = "請分析圖片中的場景與情境，若有文字資料請將內容進行重點摘要。";
 
         let msg = JSON.parse(e.postData.contents);
         getLinebotData.userId = msg.events[0].source.userId;
         getLinebotData.eventType = msg.events[0].source.type;
         getLinebotData.replyToken = msg.events[0].replyToken;
-        getLinebotData.userType = msg.events[0].message.type;        
+        getLinebotData.userType = msg.events[0].message.type;
+        getLinebotData.userMessageId = msg.events[0].message.id;     
 
         if (getLinebotData.userType=="text") {
           getLinebotData.userMessage = msg.events[0].message.text.trim();
+          getLinebotData.quotedMessageId = msg.events[0].message.quotedMessageId;
+
           if (getLinebotData.userMessage.toLowerCase().trim().indexOf("https://")==0) {
               let urlData = getLinebotData.userMessage.split("\n");
               getLinebotData.userImage = urlData[0].trim();
               if (urlData.length>1)
                   chat_message = getLinebotData.userMessage.replace(urlData[0], "").trim();
-          } else if (msg.events[0].message.quotedMessageId) {
+              saveHistoricURL(getLinebotData.userId, getLinebotData.userMessageId, urlData[0].trim());
+          } else if (getLinebotData.quotedMessageId) {
               chat_message = getLinebotData.userMessage;
-              imageId = msg.events[0].message.quotedMessageId;
-              getLinebotData.userImage = getImageBase64(channel_access_TOKEN, imageId);
+              getLinebotData.userImage = getHistoricURL(getLinebotData.userId, getLinebotData.quotedMessageId);
+              if (!getLinebotData.userImage)
+                  getLinebotData.userImage = getImageBase64(channel_access_TOKEN, getLinebotData.quotedMessageId);
           }
         }
         else if (getLinebotData.userType=="image") {
@@ -61,6 +70,30 @@ function doPost(e) {
         sendMessageToLineBot(channel_access_TOKEN, getLinebotData.replyToken, linebot_response);
     }
     return ContentService.createTextOutput("OK");
+}
+
+function saveHistoricURL(userId, messageId, messageURL) {
+    let list = scriptProperties.getProperty(userId)||"[]";
+    list = JSON.parse(list);
+    if (list.length>=3)
+        list.splice(0, 1);
+    message = {};
+    message.messageId = messageId;
+    message.messageURL = messageURL;
+    list.push(message);
+    scriptProperties.setProperty(userId, JSON.stringify(list));
+}
+
+function getHistoricURL(userId, messageId) {      
+    let list = scriptProperties.getProperty(userId);
+    if (list) {
+      list = JSON.parse(list);
+      for (let i=0;i<list.length;i++) {
+        if (list[i].messageId==messageId)
+            return list[i].messageURL;
+      }
+    }
+    return "";
 }
 
 function getImageBase64(accessToken, imageId) {
