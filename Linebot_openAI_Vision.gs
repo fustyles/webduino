@@ -51,10 +51,10 @@ function doPost(e) {
               getLinebotData.userImage = urlData[0].trim();
               if (urlData.length>1)
                   chat_message = getLinebotData.userMessage.replace(urlData[0], "").trim();
-              saveHistoricURL(getLinebotData.userId, getLinebotData.userMessageId, urlData[0].trim());
+              saveHistoricalURL(getLinebotData.userId, getLinebotData.userMessageId, urlData[0].trim());
           } else if (getLinebotData.quotedMessageId) {
               chat_message = getLinebotData.userMessage;
-              getLinebotData.userImage = getHistoricURL(getLinebotData.userId, getLinebotData.quotedMessageId);
+              getLinebotData.userImage = getHistoricalURL(getLinebotData.userId, getLinebotData.quotedMessageId);
               if (!getLinebotData.userImage)
                   getLinebotData.userImage = getImageBase64(channel_access_TOKEN, getLinebotData.quotedMessageId);
           }
@@ -72,7 +72,7 @@ function doPost(e) {
     return ContentService.createTextOutput("OK");
 }
 
-function saveHistoricURL(userId, messageId, messageURL) {
+function saveHistoricalURL(userId, messageId, messageURL) {
     let list = scriptProperties.getProperty(userId)||"[]";
     list = JSON.parse(list);
     if (list.length>=3)
@@ -84,7 +84,7 @@ function saveHistoricURL(userId, messageId, messageURL) {
     scriptProperties.setProperty(userId, JSON.stringify(list));
 }
 
-function getHistoricURL(userId, messageId) {      
+function getHistoricalURL(userId, messageId) {      
     let list = scriptProperties.getProperty(userId);
     if (list) {
       list = JSON.parse(list);
