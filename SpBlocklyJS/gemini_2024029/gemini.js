@@ -22,6 +22,7 @@ function gemini_chat_initial(input_key, input_model, input_tokens) {
 		'	const chat = model.startChat({});\n'+
 		'	await chat.sendMessageStream(prompt).then(function(result) {\n'+
 		'		const response = result.response;\n'+
+			'console.log(response);'
 		'		const text = response.text();\n'+
 		'		gemini_chat_insert(prompt, text);\n'+
 		'		if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(text);\n'+
