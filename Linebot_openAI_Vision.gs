@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/21 22:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/23 00:00
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & openAI Vision
 
@@ -14,7 +14,7 @@ Line Bot Webhook & Google Apps script & openAI Vision
 let channel_access_TOKEN = "";
 
 // openAI設定
-let openAI_api_KEY = "sk-proj-xxx-xxx-xxx";
+let openAI_api_key = "sk-proj-xxx-xxx-xxx";
 
 // Line bot參數
 let getLinebotData = {
@@ -59,13 +59,14 @@ function doPost(e) {
               getLinebotData.userImage = getHistoricalURL(getLinebotData.userId, getLinebotData.quotedMessageId);
               if (!getLinebotData.userImage)
                   getLinebotData.userImage = getImageBase64(channel_access_TOKEN, getLinebotData.quotedMessageId);
-          }
+          } else
+              linebot_response = sendMessageToOpenaiChat(openAI_api_key, getLinebotData.userMessage);
         }
         else if (getLinebotData.userType=="image")
             getLinebotData.userImage = getImageBase64(channel_access_TOKEN, getLinebotData.userMessageId);
 
         if (getLinebotData.userImage)
-            linebot_response = sendImageToOpenaiVision(openAI_api_KEY, chat_message, getLinebotData.userImage);
+            linebot_response = sendImageToOpenaiVision(openAI_api_key, chat_message, getLinebotData.userImage);
 
         sendMessageToLineBot(channel_access_TOKEN, getLinebotData.replyToken, linebot_response, linebot_imageURL);
     }
@@ -146,6 +147,46 @@ function sendMessageToLineBot(accessToken, replyToken, message, imageURL) {
             'messages': replyMessage
         }),
     });
+}
+
+function sendMessageToOpenaiChat(key, message) {
+    try {
+        let url = "https://api.openAI.com/v1/chat/completions";
+        let data = {
+          "model": "gpt-4o-mini",
+          "messages": [
+            {
+              "role": "user",
+              "content": [
+                {
+                  "type":"text",
+                  "text": message
+                }            
+              ]
+            }
+          ]
+        };     
+
+        const authHeader = "Bearer " + key;
+        const options = {
+            headers: {
+                Authorization: authHeader
+            },
+            method: 'POST',
+            contentType: 'application/json',
+            payload: JSON.stringify(data)
+        }
+
+        let response = UrlFetchApp.fetch(url, options);
+        let json = JSON.parse(response.getContentText());
+        response = json["choices"][0]["message"]["content"];
+        if (response == "null")
+          response = json["error"]["message"];
+
+        return response;
+    } catch (error) {
+        return error;
+    }  
 }
 
 function sendImageToOpenaiVision(key, message, imageFile){
