@@ -61,10 +61,8 @@ function doPost(e) {
                   getLinebotData.userImage = getImageBase64(channel_access_TOKEN, getLinebotData.quotedMessageId);
           }
         }
-        else if (getLinebotData.userType=="image") {
-            let imageId = msg.events[0].message.id;
-            getLinebotData.userImage = getImageBase64(channel_access_TOKEN, imageId);
-        }
+        else if (getLinebotData.userType=="image")
+            getLinebotData.userImage = getImageBase64(channel_access_TOKEN, getLinebotData.userMessageId);
 
         if (getLinebotData.userImage)
             linebot_response = sendImageToOpenaiVision(openAI_api_KEY, chat_message, getLinebotData.userImage);
