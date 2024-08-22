@@ -15,6 +15,13 @@ Blockly.JavaScript['gemini_chat_request'] = function (block) {
   return code; 
 };
 
+Blockly.JavaScript['gemini_chat_image_request'] = function (block) {
+  var words = Blockly.JavaScript.valueToCode(block, 'words', Blockly.JavaScript.ORDER_ATOMIC)||"";	
+  var url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var code = 'await gemini_chat_image_request('+words+', '+url+');\n';
+  return code; 
+};
+
 Blockly.JavaScript['gemini_chat_response'] = function (block) {
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do'); 
   
