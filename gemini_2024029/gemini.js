@@ -1,6 +1,8 @@
 'use strict';
+let Gemini_api_key = "";
 
 function gemini_chat_initial(input_key, input_model, input_tokens) {
+		Gemini_api_key = input_key;	
 		const gemini_importMap = {
 			"imports": {
 			  "@google/generative-ai": "https://esm.run/@google/generative-ai"
@@ -153,4 +155,65 @@ function gemini_chat_content_file_remote_insert(url) {
       			//console.log(errorThrown);
   		}
 	});
+}
+
+async function gemini_chat_image_request(message, imageURL) {
+    try {
+	let imageBase64;	    
+	if (imageURL.toLowerCase().trim().indexOf("http")==0)
+            imageBase64 = await getImageBase64(imageURL, 0);
+	else if (imageURL.toLowerCase().trim().indexOf("data:")==0)
+            imageBase64 = imageURL.split(",")[1];
+	else
+            imageBase64 = imageURL;
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
+        const data = {
+            contents: [
+                {
+                    parts: [
+                        {
+                            text: message
+                        },
+                        {
+                            inline_data: {
+                                mime_type: "image/jpeg",
+                                data: imageBase64
+                            }
+                        }
+                    ]
+                }
+            ]
+        };
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+
+        const response = await fetch(url, options);
+        const json = await response.json();
+        let result = json.candidates[0].content.parts[0].text;
+        if (result === "null") {
+            result = json.error.message;
+        }
+	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(result);
+    } catch (error) {
+	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(JSON.stringify(error));
+    }
+}
+
+async function getImageBase64(imageURL, mimitype) {
+    const response = await fetch(imageURL);
+    const blob = await response.blob();
+    const arrayBuffer = await blob.arrayBuffer();
+    const bytes = new Uint8Array(arrayBuffer);
+    const binaryString = String.fromCharCode(...bytes);
+    const base64String = btoa(binaryString);
+    if (mimitype)
+    	return "data:image/jpeg;base64," + base64String;
+    else
+    	return base64String;	    
 }
