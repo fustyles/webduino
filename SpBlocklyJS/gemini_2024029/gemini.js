@@ -160,12 +160,13 @@ function gemini_chat_content_file_remote_insert(url) {
 
 async function gemini_chat_image_request(message, imageURL) {
     try {
+	let imageBase64;	    
 	if (imageURL.toLowerCase().trim().indexOf("http")==0)
-            let imageBase64 = await getImageBase64(imageURL, 0);
+            imageBase64 = await getImageBase64(imageURL, 0);
 	else if (imageURL.toLowerCase().trim().indexOf("data:")==0)
-            let imageBase64 = imageURL.split(",")[1];
+            imageBase64 = imageURL.split(",")[1];
 	else
-            let imageBase64 = imageURL;
+            imageBase64 = imageURL;
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
         const data = {
             contents: [
