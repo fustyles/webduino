@@ -167,6 +167,8 @@ async function gemini_chat_image_request(message, imageURL) {
             imageBase64 = imageURL.split(",")[1];
 	else
             imageBase64 = imageURL;
+	imageBase64 = decodeURIComponent(imageBase64);	
+	    
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
         const data = {
             contents: [
