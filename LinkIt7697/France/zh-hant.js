@@ -795,9 +795,13 @@ Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"] = "旋轉角度";
 Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_BITRATE"] = "比特率";
 Blockly.Msg["AMB82_MINI_RTP_AUDIO"] = "RTP音訊串流";
 
-Blockly.Msg["AMB82_MINI_OPENAI_VISION"] = "影像擷取視覺分析";
+Blockly.Msg["AMB82_MINI_OPENAI_VISION"] = "影像擷取上傳openAI視覺分析";
 Blockly.Msg["AMB82_MINI_OPENAI_KEY"] = "openAI Key";		
 Blockly.Msg["AMB82_MINI_OPENAI_MESSAGE"] = "對話訊息";
+
+Blockly.Msg["AMB82_MINI_GEMINI_VISION"] = "影像擷取上傳Gemini視覺分析";
+Blockly.Msg["AMB82_MINI_GEMINI_KEY"] = "Gemini Key";		
+Blockly.Msg["AMB82_MINI_GEMINI_MESSAGE"] = "對話訊息";
 
 Blockly.Msg["AMB82_MINI_BLEKEYBOARD_SHOW"] = "藍芽鍵盤";
 Blockly.Msg["AMB82_MINI_BLEKEYBOARD_PRESS_CONSUMER_SHOW"] = "按壓 特殊鍵碼";
@@ -1927,9 +1931,13 @@ Blockly.Msg["ESP32_CAM_LINETOKEN_SHOW"] = "Line權杖";
 Blockly.Msg["ESP32_CAM_FOLDERNAME_SHOW"] = "資料夾名";	
 Blockly.Msg["ESP32_CAM_FILENAME_SHOW"] = "儲存檔案名";
 
-Blockly.Msg["ESP32_CAM_OPENAI_VISION"] = "ESP32-CAM 截圖上傳視覺分析";
+Blockly.Msg["ESP32_CAM_OPENAI_VISION"] = "ESP32-CAM 截圖上傳openAI視覺分析";
 Blockly.Msg["ESP32_CAM_OPENAI_KEY"] = "openAI Key";
 Blockly.Msg["ESP32_CAM_OPENAI_MESSAGE"] = "對話訊息";	
+
+Blockly.Msg["ESP32_CAM_GEMINI_VISION"] = "ESP32-CAM 截圖上傳Gemini視覺分析";
+Blockly.Msg["ESP32_CAM_GEMINI_KEY"] = "Gemini Key";
+Blockly.Msg["ESP32_CAM_GEMINI_MESSAGE"] = "對話訊息";	
 
 Blockly.Msg["ESP32_CAM_SPREADSHEET_ROW_SHOW"] = "行數";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW"] = "自訂列數";

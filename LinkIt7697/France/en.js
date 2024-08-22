@@ -911,9 +911,13 @@ Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TEDDYBEAR"] = "TEDDY BEAR";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HAIRDRYER"] = "HAIR DRYER";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TOOTHBRUSH"] = "TOOTHBRUSH";
 
-Blockly.Msg["AMB82_MINI_OPENAI_VISION"] = "Image capture visual analysis";
+Blockly.Msg["AMB82_MINI_OPENAI_VISION"] = "Image capture openAI visual analysis";
 Blockly.Msg["AMB82_MINI_OPENAI_KEY"] = "openAI Key";
 Blockly.Msg["AMB82_MINI_OPENAI_MESSAGE"] = "Conversation Message";
+
+Blockly.Msg["AMB82_MINI_GEMINI_VISION"] = "Image capture Gemini visual analysis";
+Blockly.Msg["AMB82_MINI_GEMINI_KEY"] = "Gemini Key";
+Blockly.Msg["AMB82_MINI_GEMINI_MESSAGE"] = "Conversation Message";
 
 Blockly.Msg["AMB82_MINI_MOTIONDETECTION"] = "Motion Detection";
 Blockly.Msg["AMB82_MINI_MOTIONDETECTION_LABEL"] = "Label";
@@ -1928,9 +1932,13 @@ Blockly.Msg["ESP32_CAM_LINETOKEN_SHOW"] = "Token";
 Blockly.Msg["ESP32_CAM_FOLDERNAME_SHOW"] = "Folder Name";	
 Blockly.Msg["ESP32_CAM_FILENAME_SHOW"] = "File Name";
 
-Blockly.Msg["ESP32_CAM_OPENAI_VISION"] = "ESP32-CAM Image capture visual analysis";
+Blockly.Msg["ESP32_CAM_OPENAI_VISION"] = "ESP32-CAM Image capture openAI visual analysis";
 Blockly.Msg["ESP32_CAM_OPENAI_KEY"] = "openAI Key";
 Blockly.Msg["ESP32_CAM_OPENAI_MESSAGE"] = "Conversation Message";
+
+Blockly.Msg["ESP32_CAM_GEMINI_VISION"] = "ESP32-CAM Image capture Gemini visual analysis";
+Blockly.Msg["ESP32_CAM_GEMINI_KEY"] = "Gemini Key";
+Blockly.Msg["ESP32_CAM_GEMINI_MESSAGE"] = "Conversation Message";
 
 Blockly.Msg["ESP32_CAM_SPREADSHEET_ROW_SHOW"] = "row";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW"] = "Custom row";

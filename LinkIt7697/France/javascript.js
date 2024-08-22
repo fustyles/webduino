@@ -2709,7 +2709,7 @@ Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
 			'    \n'+
 			'    client_tcp.println("POST /v1/chat/completions HTTP/1.1");\n'+
 			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println("Host: api.openai.com");\n'+
+			'    client_tcp.println("Host: "+String(myDomain));\n'+
 			'    client_tcp.println("Authorization: Bearer " + key);\n'+
 			'    client_tcp.println("Content-Type: application/json; charset=utf-8");\n'+
 			'    client_tcp.println("Content-Length: " + String(Data.length()));\n'+
@@ -2767,6 +2767,91 @@ Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
 			'}\n';			
 			
 	var code = 'SendStillToOpenaiVision('+key+', '+message+')';
+	return [code, Blockly.Arduino.ORDER_NONE];			
+}
+
+Blockly.Arduino['amb82_mini_gemini_vision'] = function(block) {
+    var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
+    var message = Blockly.Arduino.valueToCode(block, 'message', Blockly.Arduino.ORDER_ATOMIC);
+	
+	Blockly.Arduino.definitions_['WiFiClientSecure'] ='WiFiSSLClient client_tcp;';
+	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"\n#include <ArduinoJson.h>';
+
+	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive = '\n'+
+			'String SendStillToGeminiVision(String key, String message) {\n'+
+			'  const char* myDomain = "generativelanguage.googleapis.com";\n'+
+			'  String getResponse="",Feedback="";\n'+			
+			'  Serial.println("Connect to " + String(myDomain));\n'+
+			'  if (client_tcp.connect(myDomain, 443)) {\n'+
+			'    Serial.println("Connection successful");\n'+
+			'    Camera.getImage(0, &img_addr, &img_len);\n'+
+			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
+            '    size_t fbLen = img_len;\n'+			
+			'    \n'+
+			'    char *input = (char *)fbBuf;\n'+
+			'    char output[base64_enc_len(3)];\n'+
+ 			'    String imageFile = "";\n'+
+			'    for (int i=0;i<fbLen;i++) {\n'+
+			'      base64_encode(output, (input++), 3);\n'+
+			'      if (i%3==0) imageFile += String(output);\n'+
+			'    }\n'+
+			'    String Data = "{\\"contents\\": [{\\"parts\\": [{\\"text\\": \\""+message+"\\"}, {\\"inline_data\\": {\\"mime_type\\":\\"image/jpeg\\",\\"data\\":\\""+imageFile+"\\"}}]}]}";\n'+
+			'    \n'+
+			'    client_tcp.println("POST /v1beta/models/gemini-1.5-flash-latest:generateContent?key="+key+" HTTP/1.1");\n'+
+			'    client_tcp.println("Connection: close");\n'+
+			'    client_tcp.println("Host: "+String(myDomain));\n'+
+			'    client_tcp.println("Content-Type: application/json; charset=utf-8");\n'+
+			'    client_tcp.println("Content-Length: " + String(Data.length()));\n'+
+			'    client_tcp.println("Connection: close");\n'+
+			'    client_tcp.println();\n'+
+			'    \n'+
+			'    int Index;\n'+
+			'    for (Index = 0; Index < Data.length(); Index = Index+1024) {\n'+
+			'      client_tcp.print(Data.substring(Index, Index+1024));\n'+
+			'    }\n'+
+			'    \n'+
+			'    int waitTime = 10000;\n'+
+			'    long startTime = millis();\n'+
+			'    boolean state = false;\n'+
+			'    boolean markState = false;\n'+
+			'    while ((startTime + waitTime) > millis()) {\n'+
+			'      Serial.print(".");\n'+
+			'      delay(100);\n'+
+			'      while (client_tcp.available())  {\n'+
+			'          char c = client_tcp.read();\n'+
+			'          if (String(c)=="{") markState=true;\n'+
+			'          if (state==true&&markState==true) Feedback += String(c);\n'+
+			'          if (c == \'\\n\') {\n'+
+			'            if (getResponse.length()==0) state=true;\n'+
+			'            getResponse = "";\n'+
+			'         }\n'+
+			'          else if (c != \'\\r\')\n'+
+			'            getResponse += String(c);\n'+
+			'          startTime = millis();\n'+
+			'       }\n'+
+			'       if (Feedback.length()>0) break;\n'+
+			'    }\n'+
+			'    client_tcp.stop();\n'+
+			'    Serial.println("");\n'+
+			'    //Serial.println(Feedback);\n'+
+			'    \n'+
+			'    JsonObject obj;\n'+
+			'    DynamicJsonDocument doc(1024);\n'+
+			'    deserializeJson(doc, Feedback);\n'+
+			'    obj = doc.as<JsonObject>();\n'+
+			'    getResponse = obj["candidates"][0]["content"]["parts"][0]["text"].as<String>();\n'+
+			'    if (getResponse == "null")\n'+
+			'      getResponse = obj["error"]["message"].as<String>();\n'+
+			'    }\n'+
+			'    else {\n'+
+			'      getResponse = "Connected to " + String(myDomain) + " failed.";\n'+
+			'      Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
+			'    }\n'+
+			'    \n'+
+			'    return getResponse;\n'+
+			'}';			
+			
+	var code = 'SendStillToGeminiVision('+key+', '+message+')';
 	return [code, Blockly.Arduino.ORDER_NONE];			
 }
 
@@ -22245,7 +22330,7 @@ Blockly.Arduino['esp32_cam_openai_vision'] = function(block) {
 			'    \n'+
 			'    client_tcp.println("POST /v1/chat/completions HTTP/1.1");\n'+
 			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println("Host: api.openai.com");\n'+
+			'    client_tcp.println("Host: "+String(myDomain));\n'+
 			'    client_tcp.println("Authorization: Bearer " + key);\n'+
 			'    client_tcp.println("Content-Type: application/json; charset=utf-8");\n'+
 			'    client_tcp.println("Content-Length: " + String(Data.length()));\n'+
@@ -22303,6 +22388,103 @@ Blockly.Arduino['esp32_cam_openai_vision'] = function(block) {
 			'}\n';			
 			
 	var code = 'SendStillToOpenaiVision('+key+', '+message+')';
+	return [code, Blockly.Arduino.ORDER_NONE];			
+}
+
+Blockly.Arduino['esp32_cam_gemini_vision'] = function(block) {
+    var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
+    var message = Blockly.Arduino.valueToCode(block, 'message', Blockly.Arduino.ORDER_ATOMIC);
+	
+	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>\n#include <ArduinoJson.h>';
+
+	if (selectBoardType().indexOf("esp")!=-1)
+	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
+	else
+	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
+
+	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive = '\n'+
+			'String SendStillToGeminiVision(String key, String message) {\n'+
+			'  const char* myDomain = "generativelanguage.googleapis.com";\n'+
+			'  String getResponse="",Feedback="";\n'+			
+			'  Serial.println("Connect to " + String(myDomain));\n'+
+			'  WiFiClientSecure client_tcp;\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive += '  client_tcp.setInsecure();\n';
+	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive +='  if (client_tcp.connect(myDomain, 443)) {\n'+
+			'    Serial.println("Connection successful");\n'+
+			'    camera_fb_t * fb = NULL;\n'+
+			'    fb = esp_camera_fb_get();\n'+
+			'    if(!fb) {\n'+
+			'      Serial.println("Camera capture failed");\n'+
+			'      delay(1000);\n'+
+			'      ESP.restart();\n'+
+			'      return "Camera capture failed";\n'+
+			'    }\n'+
+			'    char *input = (char *)fb->buf;\n'+
+			'    char output[base64_enc_len(3)];\n'+
+ 			'    String imageFile = "";\n'+
+			'    for (int i=0;i<fb->len;i++) {\n'+
+			'      base64_encode(output, (input++), 3);\n'+
+			'      if (i%3==0) imageFile += String(output);\n'+
+			'    }\n'+
+			'    String Data = "{\\"contents\\": [{\\"parts\\": [{\\"text\\": \\""+message+"\\"}, {\\"inline_data\\": {\\"mime_type\\":\\"image/jpeg\\",\\"data\\":\\""+imageFile+"\\"}}]}]}";\n'+
+
+			'    \n'+
+			'    client_tcp.println("POST /v1beta/models/gemini-1.5-flash-latest:generateContent?key="+key+" HTTP/1.1");\n'+
+			'    client_tcp.println("Connection: close");\n'+
+			'    client_tcp.println("Host: "+String(myDomain));\n'+
+			'    client_tcp.println("Content-Type: application/json; charset=utf-8");\n'+
+			'    client_tcp.println("Content-Length: " + String(Data.length()));\n'+
+			'    client_tcp.println("Connection: close");\n'+
+			'    client_tcp.println();\n'+
+			'    \n'+
+			'    int Index;\n'+
+			'    for (Index = 0; Index < Data.length(); Index = Index+1024) {\n'+
+			'      client_tcp.print(Data.substring(Index, Index+1024));\n'+
+			'    }\n'+
+			'    \n'+
+			'    int waitTime = 10000;\n'+
+			'    long startTime = millis();\n'+
+			'    boolean state = false;\n'+
+			'    boolean markState = false;\n'+
+			'    while ((startTime + waitTime) > millis()) {\n'+
+			'      Serial.print(".");\n'+
+			'      delay(100);\n'+
+			'      while (client_tcp.available())  {\n'+
+			'          char c = client_tcp.read();\n'+
+			'          if (String(c)=="{") markState=true;\n'+
+			'          if (state==true&&markState==true) Feedback += String(c);\n'+
+			'          if (c == \'\\n\') {\n'+
+			'            if (getResponse.length()==0) state=true;\n'+
+			'            getResponse = "";\n'+
+			'         }\n'+
+			'          else if (c != \'\\r\')\n'+
+			'            getResponse += String(c);\n'+
+			'          startTime = millis();\n'+
+			'       }\n'+
+			'       if (Feedback.length()>0) break;\n'+
+			'    }\n'+
+			'    client_tcp.stop();\n'+
+			'    Serial.println("");\n'+
+			'    //Serial.println(Feedback);\n'+
+			'    \n'+
+			'    JsonObject obj;\n'+
+			'    DynamicJsonDocument doc(1024);\n'+
+			'    deserializeJson(doc, Feedback);\n'+
+			'    obj = doc.as<JsonObject>();\n'+
+			'    getResponse = obj["candidates"][0]["content"]["parts"][0]["text"].as<String>();\n'+
+			'    if (getResponse == "null")\n'+
+			'      getResponse = obj["error"]["message"].as<String>();\n'+
+			'    }\n'+
+			'    else {\n'+
+			'      getResponse = "Connected to " + String(myDomain) + " failed.";\n'+
+			'      Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
+			'    }\n'+
+			'    \n'+
+			'    return getResponse;\n'+
+			'}';			
+			
+	var code = 'SendStillToGeminiVision('+key+', '+message+')';
 	return [code, Blockly.Arduino.ORDER_NONE];			
 }
 

@@ -1243,6 +1243,18 @@
 					<field name="TEXT"></field>
 				  </block>
 				</value>				
+			  </block>
+			  <block type="esp32_cam_gemini_vision">
+				<value name="key">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="message">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>				
 			  </block>			  
 			<block type="esp32_cam_spreadsheet"> 
 				<value name="spreadsheeturl">
@@ -2676,6 +2688,18 @@
 				</value>				
 			  </block>
 			  <block type="amb82_mini_openai_vision">
+				<value name="key">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="message">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>				
+			  </block>
+			  <block type="amb82_mini_gemini_vision">
 				<value name="key">
 				  <block type="text">
 					<field name="TEXT"></field>

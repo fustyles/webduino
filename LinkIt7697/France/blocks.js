@@ -3497,6 +3497,25 @@ Blockly.Blocks['amb82_mini_openai_vision'] = {
   }
 };
 
+Blockly.Blocks['amb82_mini_gemini_vision'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_GEMINI_VISION"]);
+    this.appendValueInput("key")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_GEMINI_KEY"]);		
+    this.appendValueInput("message")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_GEMINI_MESSAGE"]);			
+	this.setInputsInline(false);
+    this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_12"]);
+  }
+};
+
 Blockly.Blocks['amb82_mini_linenotify'] = {
   init: function() {
     this.appendDummyInput()
@@ -30175,6 +30194,24 @@ Blockly.Blocks['esp32_cam_openai_vision'] = {
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["ESP32_CAM_OPENAI_MESSAGE"]);			
+	this.setInputsInline(false);
+    this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_12"]);
+  }
+};
+
+Blockly.Blocks['esp32_cam_gemini_vision'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["ESP32_CAM_GEMINI_VISION"]);
+    this.appendValueInput("key")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["ESP32_CAM_GEMINI_KEY"]);		
+    this.appendValueInput("message")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["ESP32_CAM_GEMINI_MESSAGE"]);			
 	this.setInputsInline(false);
     this.setOutput(true, null);  
 	this.setColour(Blockly.Msg["HUE_12"]);
