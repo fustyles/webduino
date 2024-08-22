@@ -1,6 +1,9 @@
 'use strict';
 
+let Gemini_api_key = "";
+
 function gemini_chat_initial(input_key, input_model, input_tokens) {
+		Gemini_api_key = input_key;
 		const gemini_importMap = {
 			"imports": {
 			  "@google/generative-ai": "https://esm.run/@google/generative-ai"
@@ -153,4 +156,57 @@ function gemini_chat_content_file_remote_insert(url) {
       			//console.log(errorThrown);
   		}
 	});
+}
+
+async function gemini_chat_image_request(message, imageURL) {
+    try {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
+        const data = {
+            contents: [
+                {
+                    parts: [
+                        {
+                            text: message
+                        },
+                        {
+                            inline_data: {
+                                mime_type: "image/jpeg",
+                                data: await getImageBase64(imageURL)
+                            }
+                        }
+                    ]
+                }
+            ]
+        };
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify(data)
+        };
+
+        const response = await fetch(url, options);
+        const json = await response.json();
+        let result = json.candidates[0].content.parts[0].text;
+        if (result === "null") {
+            result = json.error.message;
+        }
+
+        return result;
+    } catch (error) {
+        return JSON.stringify(error);
+    }
+}
+
+async function getImageBase64(imageURL) {
+    const response = await fetch(imageURL);
+    const blob = await response.blob();
+    const arrayBuffer = await blob.arrayBuffer();
+    const bytes = new Uint8Array(arrayBuffer);
+    const binaryString = String.fromCharCode(...bytes);
+    const base64String = btoa(binaryString);
+	console.log(base64String);
+    return base64String;
 }
