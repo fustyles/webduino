@@ -19,7 +19,7 @@ function gemini_chat_initial(input_key, input_model, input_tokens) {
 		'var chatHistory = {history: [],generationConfig: {maxOutputTokens: '+input_tokens+',},};\n'+
 		'async function gemini_chat_run(prompt) {\n'+
 		'	const model = await genAI.getGenerativeModel({ model: "'+input_model+'"});\n'+
-		'	const chat = model.startChat({});\n'+
+		'	const chat = model.startChat(chatHistory);\n'+
 		'	await chat.sendMessage(prompt).then(function(result) {\n'+
 		'		const response = result.response;\n'+
 			'console.log(response);\n'+
