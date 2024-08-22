@@ -185,7 +185,7 @@ async function gemini_chat_image_request(message, imageURL) {
         const options = {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json; charset=utf-8'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         };
