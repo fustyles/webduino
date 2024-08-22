@@ -22,7 +22,6 @@ function gemini_chat_initial(input_key, input_model, input_tokens) {
 		'	const chat = model.startChat(chatHistory);\n'+
 		'	await chat.sendMessage(prompt).then(function(result) {\n'+
 		'		const response = result.response;\n'+
-			'console.log(response);\n'+
 		'		const text = response.text();\n'+
 		'		gemini_chat_insert(prompt, text);\n'+
 		'		if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(text);\n'+
@@ -43,7 +42,7 @@ function gemini_chat_initial(input_key, input_model, input_tokens) {
 		'	char_response_text.text = response;\n'+
 		'	char_response.parts.push(char_request_text);\n'+
 		'	chatHistory["history"].push(char_response);\n'+
-		'	console.log(chatHistory);\n'+
+		'	//console.log(chatHistory);\n'+
 		'}\n'+
 		'async function gemini_chat_clear(){\n'+
 		'	chatHistory["history"] = [];\n'+
