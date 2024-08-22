@@ -160,7 +160,7 @@ function gemini_chat_content_file_remote_insert(url) {
 
 async function gemini_chat_image_request(message, imageURL) {
     try {    
-        let imageBase64 = await getImageBase64(imageURL);
+        let imageBase64 = await getImageBase64(imageURL, 0);
 	console.log(imageBase64);	    
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
         const data = {
@@ -202,12 +202,15 @@ async function gemini_chat_image_request(message, imageURL) {
     }
 }
 
-async function getImageBase64(imageURL) {
+async function getImageBase64(imageURL, mimitype) {
     const response = await fetch(imageURL);
     const blob = await response.blob();
     const arrayBuffer = await blob.arrayBuffer();
     const bytes = new Uint8Array(arrayBuffer);
     const binaryString = String.fromCharCode(...bytes);
     const base64String = btoa(binaryString);
-    return base64String;
+    if (mimitype)
+    	return "data:image/jpeg;base64," + base64String;
+    else
+    	return base64String;	    
 }
