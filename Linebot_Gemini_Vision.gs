@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/22 21:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/22 22:00
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & Gemini Vision
 
@@ -28,9 +28,12 @@ let getLinebotData = {
   "quotedMessageId": ""
 }
 
+let scriptProperties = PropertiesService.getScriptProperties();
+
 function doPost(e) {
     if (e.postData) {
-        let linebot_response = "請先上傳圖片，再引用圖片回覆並輸入對話內容！";
+        let linebot_response = "請先上傳圖片或輸入圖片網址，再引用圖片或輸入網址回覆並輸入對話內容！";
+        let linebot_imageURL = "";
         let chat_message = "請分析圖片中的場景與情境，若有文字資料請將內容進行重點摘要。";
 
         let msg = JSON.parse(e.postData.contents);
@@ -44,19 +47,65 @@ function doPost(e) {
           getLinebotData.userMessage = msg.events[0].message.text.trim();
           getLinebotData.quotedMessageId = msg.events[0].message.quotedMessageId;
 
-          if (getLinebotData.quotedMessageId) {
+          if (getLinebotData.userMessage.toLowerCase().trim().indexOf("https://")==0) {
+              let urlData = getLinebotData.userMessage.split("\n");
+              getLinebotData.userImage = getImageUrlBase64(urlData[0].trim());
+              if (urlData.length>1)
+                  chat_message = getLinebotData.userMessage.replace(urlData[0], "").trim();
+              linebot_imageURL = urlData[0].trim();
+              saveHistoricalURL(getLinebotData.userId, getLinebotData.userMessageId, urlData[0].trim());
+          } else if (getLinebotData.quotedMessageId) {
               chat_message = getLinebotData.userMessage;
-              getLinebotData.userImage = getImageBase64(channel_access_TOKEN, getLinebotData.quotedMessageId);
+              let imageURL = getHistoricalURL(getLinebotData.userId, getLinebotData.quotedMessageId);
+              getLinebotData.userImage = getImageUrlBase64(imageURL);
+              if (!getLinebotData.userImage)
+                  getLinebotData.userImage = getImageBase64(channel_access_TOKEN, getLinebotData.quotedMessageId);
           }
-        } else if (getLinebotData.userType=="image")
+        }
+        else if (getLinebotData.userType=="image")
             getLinebotData.userImage = getImageBase64(channel_access_TOKEN, getLinebotData.userMessageId);
 
         if (getLinebotData.userImage)
             linebot_response = sendImageToGeminiVision(Gemini_api_key, chat_message, getLinebotData.userImage);
 
-        sendMessageToLineBot(channel_access_TOKEN, getLinebotData.replyToken, linebot_response);
+        sendMessageToLineBot(channel_access_TOKEN, getLinebotData.replyToken, linebot_response, linebot_imageURL);
     }
     return ContentService.createTextOutput("OK");
+}
+
+function saveHistoricalURL(userId, messageId, messageURL) {
+    let list = scriptProperties.getProperty(userId)||"[]";
+    list = JSON.parse(list);
+    if (list.length>=20)
+        list.splice(0, 1);
+    message = {};
+    message.messageId = messageId;
+    message.messageURL = messageURL;
+    list.push(message);
+    scriptProperties.setProperty(userId, JSON.stringify(list));
+}
+
+function getHistoricalURL(userId, messageId) {      
+    let list = scriptProperties.getProperty(userId);
+    if (list) {
+      list = JSON.parse(list);
+      for (let i=0;i<list.length;i++) {
+        if (list[i].messageId==messageId)
+            return list[i].messageURL;
+      }
+    }
+    return "";
+}
+
+function getImageUrlBase64(imageURL) {
+  try {
+      let response = UrlFetchApp.fetch(imageURL);
+      let blob = response.getBlob();
+      let base64Image = Utilities.base64Encode(blob.getBytes());
+      return String(base64Image);
+  } catch (error) {
+      return "";
+  }
 }
 
 function getImageBase64(accessToken, imageId) {
@@ -77,14 +126,27 @@ function getImageBase64(accessToken, imageId) {
   }
 }
 
-function sendMessageToLineBot(accessToken, replyToken, message) {
+function sendMessageToLineBot(accessToken, replyToken, message, imageURL) {
     let url = 'https://api.line.me/v2/bot/message/reply';
 
     let replyMessage;
-    replyMessage = [{
-        "type": "text",
-        "text": message
-    }];  
+    if (imageURL) {
+        replyMessage = [
+        {
+            "type": "image",
+            "originalContentUrl": imageURL,
+            "previewImageUrl": imageURL
+        },
+        {
+            "type": "text",
+            "text": message
+        }];
+    } else {
+        replyMessage = [{
+            "type": "text",
+            "text": message
+        }];
+    }     
     UrlFetchApp.fetch(url, {
         'headers': {
             'Content-Type': 'application/json; charset=UTF-8',
