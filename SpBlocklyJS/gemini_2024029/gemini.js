@@ -160,6 +160,7 @@ function gemini_chat_content_file_remote_insert(url) {
 
 async function gemini_chat_image_request(message, imageURL) {
     try {
+	console.log(Gemini_api_key);	    
         let imageBase64 = await getImageBase64(imageURL);
 	console.log(imageBase64);	    
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
