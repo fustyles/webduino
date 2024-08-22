@@ -208,5 +208,5 @@ async function getImageBase64(imageURL) {
     const binaryString = String.fromCharCode(...bytes);
     const base64String = btoa(binaryString);
 	console.log(base64String);
-    return base64String;
+    return "data:image/jpeg;base64," + base64String;
 }
