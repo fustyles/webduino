@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/22 22:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/8/23 00:00
 https://www.facebook.com/francefu
 Line Bot Webhook & Google Apps script & Gemini Vision
 
@@ -60,7 +60,8 @@ function doPost(e) {
               getLinebotData.userImage = getImageUrlBase64(imageURL);
               if (!getLinebotData.userImage)
                   getLinebotData.userImage = getImageBase64(channel_access_TOKEN, getLinebotData.quotedMessageId);
-          }
+          } else
+              linebot_response = sendMessageToGeminiChat(Gemini_api_key, getLinebotData.userMessage);
         }
         else if (getLinebotData.userType=="image")
             getLinebotData.userImage = getImageBase64(channel_access_TOKEN, getLinebotData.userMessageId);
@@ -158,6 +159,39 @@ function sendMessageToLineBot(accessToken, replyToken, message, imageURL) {
             'messages': replyMessage
         }),
     });
+}
+
+function sendMessageToGeminiChat(key, message){
+    try {
+        let url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${key}`;
+        let data = {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": message
+                }            
+              ]
+            }
+          ]
+        };     
+
+        const options = {
+            method: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            payload: JSON.stringify(data)
+        }
+
+        let response = UrlFetchApp.fetch(url, options);       
+        let json = JSON.parse(response.getContentText());
+        response = json["candidates"][0]["content"]["parts"][0]["text"];
+        if (response == "null")
+          response = json["error"]["message"];
+
+        return response;
+    } catch (error) {
+        return JSON.stringify(error);
+    }          
 }
 
 function sendImageToGeminiVision(key, message, imageFile){
