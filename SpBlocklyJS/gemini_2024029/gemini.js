@@ -196,10 +196,9 @@ async function gemini_chat_image_request(message, imageURL) {
         if (result === "null") {
             result = json.error.message;
         }
-
-        return result;
+	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(result);
     } catch (error) {
-        return JSON.stringify(error);
+	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(JSON.stringify(error));
     }
 }
 
