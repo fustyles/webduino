@@ -29,4 +29,4 @@ Blockly.Msg["OPENAI_CHAT_CONTENT_FILE_REMOTE_SHOW"] = "Import Chat History";
 Blockly.Msg["OPENAI_CHAT_CONTENT_FILE_REMOTE_URL_SHOW"] = "URL (.chat)";
 Blockly.Msg["OPENAI_CHAT_CONTENT_FILE_REMOTE_URL_INSERT_SHOW"] = "URL (.txt)";
 Blockly.Msg["OPENAI_CHAT_IMAGE_URL_SHOW"] = "Image URL";
-Blockly.Msg["OPENAI_CHAT_VISION_SHOW"] = "vision";
+Blockly.Msg["OPENAI_CHAT_VISION_SHOW"] = "Vision";
