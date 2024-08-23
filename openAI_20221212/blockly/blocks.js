@@ -95,7 +95,8 @@ Blockly.Blocks['openai_image_initial'] = {
 Blockly.Blocks['openai_image_request'] = {
   init: function() {
   this.appendDummyInput()
-	  .appendField(Blockly.Msg.OPENAI_IMAGE_SHOW);
+	  .appendField(Blockly.Msg.OPENAI_IMAGE_SHOW)	  
+	  .appendField(Blockly.Msg.OPENAI_CHAT_VISION_SHOW);
   this.appendValueInput("words")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
