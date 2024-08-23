@@ -18,3 +18,4 @@ Blockly.Msg["GEMINI_CHAT_CONTENT_FILE_REMOTE_SHOW"] = "聊天紀錄匯入";
 Blockly.Msg["GEMINI_CHAT_CONTENT_FILE_REMOTE_URL_SHOW"] = "網址(.chat)";
 Blockly.Msg["GEMINI_CHAT_CONTENT_FILE_REMOTE_URL_INSERT_SHOW"] = "網址(.txt)";
 Blockly.Msg["GEMINI_CHAT_IMAGE_URL_SHOW"] = "圖片網址";
+Blockly.Msg["GEMINI_CHAT_VISION_SHOW"] = "視覺分析";
