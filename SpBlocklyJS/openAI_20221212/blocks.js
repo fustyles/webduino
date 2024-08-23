@@ -203,7 +203,8 @@ Blockly.Blocks['openai_chat_request'] = {
 Blockly.Blocks['openai_chat_image_request'] = {
 	  init: function() {
   this.appendDummyInput()
-	  .appendField(Blockly.Msg.OPENAI_CHAT_SHOW);
+	  .appendField(Blockly.Msg.OPENAI_CHAT_SHOW)	  
+	  .appendField(Blockly.Msg.OPENAI_CHAT_VISION_SHOW);
   this.appendValueInput("words")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
