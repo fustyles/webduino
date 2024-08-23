@@ -18,3 +18,4 @@ Blockly.Msg["GEMINI_CHAT_CONTENT_FILE_REMOTE_SHOW"] = "Import Chat History";
 Blockly.Msg["GEMINI_CHAT_CONTENT_FILE_REMOTE_URL_SHOW"] = "URL (.chat)";
 Blockly.Msg["GEMINI_CHAT_CONTENT_FILE_REMOTE_URL_INSERT_SHOW"] = "URL (.txt)";
 Blockly.Msg["GEMINI_CHAT_IMAGE_URL_SHOW"] = "Image URL";
+Blockly.Msg["GEMINI_CHAT_VISION_SHOW"] = "Vision";
