@@ -3246,14 +3246,14 @@ Blockly.Blocks['amb82_mini_video_initial'] = {
 		.setCheck("Number")
 		.appendField(Blockly.Msg["HEIGHT"]);
     this.appendDummyInput()
-	.appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"])
-	.setAlign(Blockly.ALIGN_RIGHT)
-	.appendField(new Blockly.FieldDropdown([
-		["0", "0"],
-		["90", "1"],
-		["180", "3"],		
-		["270", "2"]
-	]), "rotation");	  
+		.appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"])
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["0", "0"],
+			["90", "1"],
+			["180", "3"],		
+			["270", "2"]
+		]), "rotation");	  
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -3548,7 +3548,7 @@ Blockly.Blocks['amb82_mini_mp4_initial'] = {
 			[Blockly.Msg["AMB82_MINI_VIDEOONLY"],"VideoOnly"],
 			[Blockly.Msg["AMB82_MINI_SINGLEVIDEOWITHAUDIO"],"SingleVideoWithAudio"],
 			[Blockly.Msg["AMB82_MINI_AUDIO"],"AudioOnly"]
-		], this.validate), "type");
+		], this.validate), "type");		
     this.appendDummyInput("cha")
         .appendField(Blockly.Msg["AMB82_MINI_CHANNEL"])	
 		.setAlign(Blockly.ALIGN_RIGHT)
@@ -3565,6 +3565,15 @@ Blockly.Blocks['amb82_mini_mp4_initial'] = {
 			[Blockly.Msg["AMB82_MINI_8KHZ_MONO_DIGITAL_PDM_MIC"],"2"],
 			[Blockly.Msg["AMB82_MINI_16KHZ_MONO_DIGITAL_PDM_MIC"],"3"]
 		]), "audio");
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"])
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["0", "0"],
+			["90", "1"],
+			["180", "3"],		
+			["270", "2"]
+		]), "rotation");
     this.appendValueInput("filename")
         .appendField(Blockly.Msg["AMB82_MINI_FILENAME"])	
 		.setAlign(Blockly.ALIGN_RIGHT);	
@@ -3639,7 +3648,7 @@ Blockly.Blocks['amb82_mini_rtsp'] = {
 			[Blockly.Msg["AMB82_MINI_DOUBLEVIDEOWITHAUDIO"],"DoubleVideoWithAudio"],
 			[Blockly.Msg["AMB82_MINI_V7RC"],"V7RC"],
 			[Blockly.Msg["AMB82_MINI_AUDIO"],"AudioOnly"]
-		], this.validate), "type");
+		], this.validate), "type");		
     this.appendDummyInput("cha")
         .appendField(Blockly.Msg["AMB82_MINI_CHANNEL"])	
 		.setAlign(Blockly.ALIGN_RIGHT)
@@ -3656,7 +3665,16 @@ Blockly.Blocks['amb82_mini_rtsp'] = {
 			[Blockly.Msg["AMB82_MINI_16KHZ_MONO_ANALOG_MIC"],"1"],
 			[Blockly.Msg["AMB82_MINI_8KHZ_MONO_DIGITAL_PDM_MIC"],"2"],
 			[Blockly.Msg["AMB82_MINI_16KHZ_MONO_DIGITAL_PDM_MIC"],"3"]
-		]), "audio");		
+		]), "audio");
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"])
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["0", "0"],
+			["90", "1"],
+			["180", "3"],		
+			["270", "2"]
+		]), "rotation");
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);

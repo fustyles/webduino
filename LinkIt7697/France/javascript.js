@@ -285,7 +285,6 @@ Blockly.Arduino['amb82_mini_telegram'] = function(block) {
     var token = Blockly.Arduino.valueToCode(block, 'token', Blockly.Arduino.ORDER_ATOMIC);
     var chatid = Blockly.Arduino.valueToCode(block, 'chatid', Blockly.Arduino.ORDER_ATOMIC);
 	
-	Blockly.Arduino.definitions_['WiFiClientSecure'] ='WiFiSSLClient client_tcp;\n';
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 	
 	Blockly.Arduino.definitions_.sendCapturedImage2Telegram = '\n'+
@@ -293,7 +292,7 @@ Blockly.Arduino['amb82_mini_telegram'] = function(block) {
 	'  const char* myDomain = "api.telegram.org";\n'+
 	'  String getAll="", getBody = "";\n'+
 	'  Serial.println("Connect to " + String(myDomain));\n'+
-	'  if (client_tcp.connect(myDomain, 443)) {\n'+
+	'  if (client.connect(myDomain, 443)) {\n'+
 	'    Serial.println("Connection successful");\n'+
 	'    Camera.getImage(0, &img_addr, &img_len);\n'+	
 	'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
@@ -303,30 +302,30 @@ Blockly.Arduino['amb82_mini_telegram'] = function(block) {
 	'    uint16_t imageLen = img_len;\n'+
 	'    uint16_t extraLen = head.length() + tail.length();\n'+
 	'    uint16_t totalLen = imageLen + extraLen;\n'+
-	'    client_tcp.println("POST /bot"+token+"/sendPhoto HTTP/1.1");\n'+
-	'    client_tcp.println("Host: " + String(myDomain));\n'+
-	'    client_tcp.println("Content-Length: " + String(totalLen));\n'+
-	'    client_tcp.println("Content-Type: multipart/form-data; boundary=Taiwan");\n'+
-	'    client_tcp.println();\n'+
-	'    client_tcp.print(head);\n'+
+	'    client.println("POST /bot"+token+"/sendPhoto HTTP/1.1");\n'+
+	'    client.println("Host: " + String(myDomain));\n'+
+	'    client.println("Content-Length: " + String(totalLen));\n'+
+	'    client.println("Content-Type: multipart/form-data; boundary=Taiwan");\n'+
+	'    client.println();\n'+
+	'    client.print(head);\n'+
 	'    for (size_t n=0;n<fbLen;n=n+1024) {\n'+
 	'      if (n+1024<fbLen) {\n'+
-	'        client_tcp.write(fbBuf, 1024);\n'+
+	'        client.write(fbBuf, 1024);\n'+
 	'        fbBuf += 1024;\n'+
 	'      } else if (fbLen%1024>0) {\n'+
 	'        size_t remainder = fbLen%1024;\n'+
-	'        client_tcp.write(fbBuf, remainder);\n'+
+	'        client.write(fbBuf, remainder);\n'+
 	'      }\n'+
 	'    }\n'+
-	'    client_tcp.print(tail);\n'+
+	'    client.print(tail);\n'+
 	'    int waitTime = 10000;\n'+
 	'    long startTime = millis();\n'+
 	'    boolean state = false;\n'+
 	'    while ((startTime + waitTime) > millis()) {\n'+
 	'      Serial.print(".");\n'+
 	'      delay(100);\n'+
-	'      while (client_tcp.available()) {\n'+
-	'          char c = client_tcp.read();\n'+
+	'      while (client.available()) {\n'+
+	'          char c = client.read();\n'+
 	'          if (state==true) getBody += String(c);\n'+
 	'          if (c == \'\\n\') {\n'+
 	'            if (getAll.length()==0) state=true;\n'+
@@ -338,7 +337,7 @@ Blockly.Arduino['amb82_mini_telegram'] = function(block) {
 	'       }\n'+
 	'       if (getBody.length()>0) break;\n'+
 	'    }\n'+
-	'    client_tcp.stop();\n'+
+	'    client.stop();\n'+
 	'    Serial.println();\n'+
 	'    //Serial.println(getBody);\n'+
 	'  } else {\n'+
@@ -2469,7 +2468,7 @@ Blockly.Arduino['amb82_mini_rtp_audio'] = function(block) {
 	Blockly.Arduino.setups_.write_peri_reg = "";
 	
 
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "AudioStream.h"\n#include "AudioDecoder.h"\n#include "RTP.h"\nAAD decoder;\n#define amb82_CHANNEL 0\nAudioSetting configA(amb82_CHANNEL);\nAudio audio;\nRTP rtp;\nStreamIO audioStreamer1(1, 1);\nStreamIO audioStreamer2(1, 1);\n';
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "AudioStream.h"\n#include "AudioDecoder.h"\n#include "RTP.h"\nAAD decoder;\n#define amb82_CHANNEL 0\nAudioSetting configA(amb82_CHANNEL);\nAudio audio;\nRTP rtp;\nStreamIO audioStreamer1(1, 1);\nStreamIO audioStreamer2(1, 1);\n';
 
 	Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
 										'audio.configAudio(configA);\n  '+
@@ -2588,7 +2587,6 @@ Blockly.Arduino['amb82_mini_googledrive'] = function(block) {
     var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC);
     var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
 	
-	Blockly.Arduino.definitions_['WiFiClientSecure'] ='WiFiSSLClient client_tcp;\n';
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 
 	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive = '\n'+
@@ -2597,7 +2595,7 @@ Blockly.Arduino['amb82_mini_googledrive'] = function(block) {
 			'  String getAll="", getBody = "";\n'+
 			'  \n'+
 			'  Serial.println("Connect to " + String(myDomain));\n'+
-			'  if (client_tcp.connect(myDomain, 443)) {\n'+
+			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    Camera.getImage(0, &img_addr, &img_len);\n'+
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
@@ -2612,17 +2610,17 @@ Blockly.Arduino['amb82_mini_googledrive'] = function(block) {
 			'    }\n'+
 			'    String Data = "myToken="+myLineNotifyToken+myFoldername+myFilename+myImage;\n'+
 			'    \n'+
-			'    client_tcp.println("POST " + myScript + " HTTP/1.1");\n'+
-			'    client_tcp.println("Host: " + String(myDomain));\n'+
-			'    client_tcp.println("Content-Length: " + String(Data.length()+imageFile.length()));\n'+
-			'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println();\n'+
+			'    client.println("POST " + myScript + " HTTP/1.1");\n'+
+			'    client.println("Host: " + String(myDomain));\n'+
+			'    client.println("Content-Length: " + String(Data.length()+imageFile.length()));\n'+
+			'    client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
 			'    \n'+
-			'    client_tcp.print(Data);\n'+
+			'    client.print(Data);\n'+
 			'    int Index;\n'+
 			'    for (Index = 0; Index < imageFile.length(); Index = Index+1024) {\n'+
-			'      client_tcp.print(imageFile.substring(Index, Index+1024));\n'+
+			'      client.print(imageFile.substring(Index, Index+1024));\n'+
 			'    }\n'+
 			'    \n'+
 			'    int waitTime = 10000;\n'+
@@ -2633,9 +2631,9 @@ Blockly.Arduino['amb82_mini_googledrive'] = function(block) {
 			'    {\n'+
 			'      Serial.print(".");\n'+
 			'      delay(100);\n'+
-			'      while (client_tcp.available())\n'+
+			'      while (client.available())\n'+
 			'      {\n'+
-			'          char c = client_tcp.read();\n'+
+			'          char c = client.read();\n'+
 			'          if (state==true) getBody += String(c);\n'+        
 			'          if (c == \'\\n\')\n'+
 			'          {\n'+
@@ -2648,7 +2646,7 @@ Blockly.Arduino['amb82_mini_googledrive'] = function(block) {
 			'       }\n'+
 			'       if (getBody.length()>0) break;\n'+
 			'    }\n'+
-			'    client_tcp.stop();\n'+
+			'    client.stop();\n'+
 			'    Serial.println(getBody);\n'+
 			'  }\n'+
 			'  else {\n'+
@@ -2676,7 +2674,7 @@ Blockly.Arduino['amb82_mini_googledrive'] = function(block) {
 											'  return encodedMsg;\n'+
 											'}';							
 			
-  var code = 'SendStillToGoogleDrive("/macros/s/"+'+scriptid.replace(/"/g,'')+'+"/exec","&myFoldername='+foldername.replace(/"/g,'')+'","&myFilename='+filename.replace(/"/g,'')+'","&myFile=",'+linetoken+');\n';
+  var code = 'SendStillToGoogleDrive(String("/macros/s/")+'+scriptid+'+String("/exec"), String("&myFoldername=")+'+foldername+', String("&myFilename=")+'+filename+', "&myFile=",'+linetoken+');\n';
   return code;			
 }
 
@@ -2684,15 +2682,14 @@ Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
     var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
     var message = Blockly.Arduino.valueToCode(block, 'message', Blockly.Arduino.ORDER_ATOMIC);
 	
-	Blockly.Arduino.definitions_['WiFiClientSecure'] ='WiFiSSLClient client_tcp;\n';
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 
-	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive = '\n'+
+	Blockly.Arduino.definitions_.SendStillToOpenaiVision = '\n'+
 			'String SendStillToOpenaiVision(String key, String message) {\n'+
 			'  const char* myDomain = "api.openai.com";\n'+
 			'  String getResponse="",Feedback="";\n'+			
 			'  Serial.println("Connect to " + String(myDomain));\n'+
-			'  if (client_tcp.connect(myDomain, 443)) {\n'+
+			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    Camera.getImage(0, &img_addr, &img_len);\n'+
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
@@ -2707,18 +2704,18 @@ Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
 			'    }\n'+
 			'    String Data = "{\\"model\\": \\"gpt-4o-mini\\", \\"messages\\": [{\\"role\\": \\"user\\",\\"content\\": [{ \\"type\\": \\"text\\", \\"text\\": \\""+message+"\\"},{\\"type\\": \\"image_url\\", \\"image_url\\": {\\"url\\": \\""+imageFile+"\\"}}]}]}";\n'+				
 			'    \n'+
-			'    client_tcp.println("POST /v1/chat/completions HTTP/1.1");\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println("Host: "+String(myDomain));\n'+
-			'    client_tcp.println("Authorization: Bearer " + key);\n'+
-			'    client_tcp.println("Content-Type: application/json; charset=utf-8");\n'+
-			'    client_tcp.println("Content-Length: " + String(Data.length()));\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println();\n'+
+			'    client.println("POST /v1/chat/completions HTTP/1.1");\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println("Host: "+String(myDomain));\n'+
+			'    client.println("Authorization: Bearer " + key);\n'+
+			'    client.println("Content-Type: application/json; charset=utf-8");\n'+
+			'    client.println("Content-Length: " + String(Data.length()));\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
 			'    \n'+
 			'    int Index;\n'+
 			'    for (Index = 0; Index < Data.length(); Index = Index+1024) {\n'+
-			'      client_tcp.print(Data.substring(Index, Index+1024));\n'+
+			'      client.print(Data.substring(Index, Index+1024));\n'+
 			'    }\n'+
 			'    \n'+
 			'    int waitTime = 10000;\n'+
@@ -2727,8 +2724,8 @@ Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
 			'    while ((startTime + waitTime) > millis()) {\n'+
 			'      Serial.print(".");\n'+
 			'      delay(100);\n'+
-			'      while (client_tcp.available()) {\n'+
-			'          char c = client_tcp.read();\n'+
+			'      while (client.available()) {\n'+
+			'          char c = client.read();\n'+
 			'          if (state==true)\n'+
 			'            getResponse += String(c);\n'+
 			'          if (c == \'\\n\')\n'+
@@ -2751,11 +2748,11 @@ Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
 			'          }\n'+
 			'       }\n'+
 			'       if (getResponse.length()>0) {\n'+
-			'          client_tcp.stop();\n'+
+			'          client.stop();\n'+
 			'          return getResponse;\n'+
 			'       }\n'+
 			'    }\n'+
-			'    client_tcp.stop();\n'+
+			'    client.stop();\n'+
 			'    getResponse = "error";\n'+
 			'  }\n'+
 			'  else {\n'+
@@ -2774,15 +2771,14 @@ Blockly.Arduino['amb82_mini_gemini_vision'] = function(block) {
     var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
     var message = Blockly.Arduino.valueToCode(block, 'message', Blockly.Arduino.ORDER_ATOMIC);
 	
-	Blockly.Arduino.definitions_['WiFiClientSecure'] ='WiFiSSLClient client_tcp;';
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"\n#include <ArduinoJson.h>';
 
-	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive = '\n'+
+	Blockly.Arduino.definitions_.SendStillToGeminiVision = '\n'+
 			'String SendStillToGeminiVision(String key, String message) {\n'+
 			'  const char* myDomain = "generativelanguage.googleapis.com";\n'+
 			'  String getResponse="",Feedback="";\n'+			
 			'  Serial.println("Connect to " + String(myDomain));\n'+
-			'  if (client_tcp.connect(myDomain, 443)) {\n'+
+			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    Camera.getImage(0, &img_addr, &img_len);\n'+
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
@@ -2797,17 +2793,17 @@ Blockly.Arduino['amb82_mini_gemini_vision'] = function(block) {
 			'    }\n'+
 			'    String Data = "{\\"contents\\": [{\\"parts\\": [{\\"text\\": \\""+message+"\\"}, {\\"inline_data\\": {\\"mime_type\\":\\"image/jpeg\\",\\"data\\":\\""+imageFile+"\\"}}]}]}";\n'+
 			'    \n'+
-			'    client_tcp.println("POST /v1beta/models/gemini-1.5-flash-latest:generateContent?key="+key+" HTTP/1.1");\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println("Host: "+String(myDomain));\n'+
-			'    client_tcp.println("Content-Type: application/json; charset=utf-8");\n'+
-			'    client_tcp.println("Content-Length: " + String(Data.length()));\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println();\n'+
+			'    client.println("POST /v1beta/models/gemini-1.5-flash-latest:generateContent?key="+key+" HTTP/1.1");\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println("Host: "+String(myDomain));\n'+
+			'    client.println("Content-Type: application/json; charset=utf-8");\n'+
+			'    client.println("Content-Length: " + String(Data.length()));\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
 			'    \n'+
 			'    int Index;\n'+
 			'    for (Index = 0; Index < Data.length(); Index = Index+1024) {\n'+
-			'      client_tcp.print(Data.substring(Index, Index+1024));\n'+
+			'      client.print(Data.substring(Index, Index+1024));\n'+
 			'    }\n'+
 			'    \n'+
 			'    int waitTime = 10000;\n'+
@@ -2817,8 +2813,8 @@ Blockly.Arduino['amb82_mini_gemini_vision'] = function(block) {
 			'    while ((startTime + waitTime) > millis()) {\n'+
 			'      Serial.print(".");\n'+
 			'      delay(100);\n'+
-			'      while (client_tcp.available())  {\n'+
-			'          char c = client_tcp.read();\n'+
+			'      while (client.available())  {\n'+
+			'          char c = client.read();\n'+
 			'          if (String(c)=="{") markState=true;\n'+
 			'          if (state==true&&markState==true) Feedback += String(c);\n'+
 			'          if (c == \'\\n\') {\n'+
@@ -2831,7 +2827,7 @@ Blockly.Arduino['amb82_mini_gemini_vision'] = function(block) {
 			'       }\n'+
 			'       if (Feedback.length()>0) break;\n'+
 			'    }\n'+
-			'    client_tcp.stop();\n'+
+			'    client.stop();\n'+
 			'    Serial.println("");\n'+
 			'    //Serial.println(Feedback);\n'+
 			'    \n'+
@@ -2864,7 +2860,6 @@ Blockly.Arduino['amb82_mini_spreadsheet'] = function(block) {
   var value_row = Blockly.Arduino.valueToCode(block, 'row', Blockly.Arduino.ORDER_ATOMIC);
   var value_spreadsheet_script = Blockly.Arduino.valueToCode(block, 'spreadsheet_script', Blockly.Arduino.ORDER_ATOMIC);
   
-	Blockly.Arduino.definitions_['WiFiClientSecure'] ='WiFiSSLClient client_tcp;\n';
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 	
 	Blockly.Arduino.definitions_.SendStillToSpreadsheet = '\n'+
@@ -2873,7 +2868,7 @@ Blockly.Arduino['amb82_mini_spreadsheet'] = function(block) {
 			'  String getAll="", getBody = "";\n'+
 			'  \n'+
 			'  Serial.println("Connect to " + String(myDomain));\n'+
-			'  if (client_tcp.connect(myDomain, 443)) {\n'+
+			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    Camera.getImage(0, &img_addr, &img_len);\n'+
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
@@ -2886,17 +2881,17 @@ Blockly.Arduino['amb82_mini_spreadsheet'] = function(block) {
 			'      base64_encode(output, (input++), 3);\n'+
 			'      if (i%3==0) imageFile += urlencode(String(output));\n'+
 			'    }\n'+
-			'    client_tcp.println("POST " + myScript + " HTTP/1.1");\n'+
-			'    client_tcp.println("Host: " + String(myDomain));\n'+
-			'    client_tcp.println("Content-Length: " + String(Data.length()+imageFile.length()));\n'+
-			'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println();\n'+
+			'    client.println("POST " + myScript + " HTTP/1.1");\n'+
+			'    client.println("Host: " + String(myDomain));\n'+
+			'    client.println("Content-Length: " + String(Data.length()+imageFile.length()));\n'+
+			'    client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
 			'    \n'+
-			'    client_tcp.print(Data);\n'+
+			'    client.print(Data);\n'+
 			'    int Index;\n'+
 			'    for (Index = 0; Index < imageFile.length(); Index = Index+1024) {\n'+
-			'      client_tcp.print(imageFile.substring(Index, Index+1024));\n'+
+			'      client.print(imageFile.substring(Index, Index+1024));\n'+
 			'    }\n'+
 			'    \n'+
 			'    int waitTime = 10000;\n'+
@@ -2907,9 +2902,9 @@ Blockly.Arduino['amb82_mini_spreadsheet'] = function(block) {
 			'    {\n'+
 			'      Serial.print(".");\n'+
 			'      delay(100);\n'+
-			'      while (client_tcp.available())\n'+
+			'      while (client.available())\n'+
 			'      {\n'+
-			'          char c = client_tcp.read();\n'+
+			'          char c = client.read();\n'+
 			'          if (state==true) getBody += String(c);\n'+        
 			'          if (c == \'\\n\')\n'+
 			'          {\n'+
@@ -2922,7 +2917,7 @@ Blockly.Arduino['amb82_mini_spreadsheet'] = function(block) {
 			'       }\n'+
 			'       if (getBody.length()>0) break;\n'+
 			'    }\n'+
-			'    client_tcp.stop();\n'+
+			'    client.stop();\n'+
 			'    Serial.println(getBody);\n'+
 			'  }\n'+
 			'  else {\n'+
@@ -2960,8 +2955,7 @@ Blockly.Arduino['amb82_mini_linenotify'] = function(block) {
 	
 	Blockly.Arduino.definitions_.SendCapturedImageToLineNotify = '\n'+
 			'String SendStillToLineNotify(String token, String message) {\n'+
-			'  WiFiSSLClient client_tcp;\n'+
-			'  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
+			'  if (client.connect("notify-api.line.me", 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    Camera.getImage(0, &img_addr, &img_len);\n'+
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
@@ -2974,27 +2968,27 @@ Blockly.Arduino['amb82_mini_linenotify'] = function(block) {
 			'    uint16_t extraLen = head.length() + tail.length();\n'+
 			'    uint16_t totalLen = imageLen + extraLen;\n'+
 			'    \n'+
-			'    client_tcp.println("POST \/api\/notify HTTP\/1.1");\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println("Host: notify-api.line.me");\n'+
-			'    client_tcp.println("Authorization: Bearer " + token);\n'+
-			'    client_tcp.println("Content-Length: " + String(totalLen));\n'+
-			'    client_tcp.println("Content-Type: multipart\/form-data; boundary=Taiwan");\n'+
-			'    client_tcp.println();\n'+
-			'    client_tcp.print(head);\n'+
+			'    client.println("POST \/api\/notify HTTP\/1.1");\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println("Host: notify-api.line.me");\n'+
+			'    client.println("Authorization: Bearer " + token);\n'+
+			'    client.println("Content-Length: " + String(totalLen));\n'+
+			'    client.println("Content-Type: multipart\/form-data; boundary=Taiwan");\n'+
+			'    client.println();\n'+
+			'    client.print(head);\n'+
 			'    \n'+
 			'    for (size_t n=0;n<fbLen;n=n+1024) {\n'+
 			'      if (n+1024<fbLen) {\n'+
-			'        client_tcp.write(fbBuf, 1024);\n'+
+			'        client.write(fbBuf, 1024);\n'+
 			'        fbBuf += 1024;\n'+
 			'      }\n'+
 			'      else if (fbLen%1024>0) {\n'+
 			'        size_t remainder = fbLen%1024;\n'+
-			'        client_tcp.write(fbBuf, remainder);\n'+
+			'        client.write(fbBuf, remainder);\n'+
 			'      }\n'+
 			'    }\n'+
 			'    \n'+
-			'    client_tcp.print(tail);\n'+
+			'    client.print(tail);\n'+
 			'    \n'+
 			'    String getResponse="",Feedback="";\n'+
 			'    int waitTime = 10000;\n'+
@@ -3004,8 +2998,8 @@ Blockly.Arduino['amb82_mini_linenotify'] = function(block) {
 			'    while ((startTime + waitTime) > millis()) {\n'+
 			'      Serial.print(".");\n'+
 			'      delay(100);\n'+
-			'      while (client_tcp.available())  {\n'+
-			'          char c = client_tcp.read();\n'+
+			'      while (client.available())  {\n'+
+			'          char c = client.read();\n'+
 			'          if (state==true) Feedback += String(c);\n'+
 			'          if (c == \'\\n\') {\n'+
 			'            if (getResponse.length()==0) state=true;\n'+
@@ -3017,7 +3011,7 @@ Blockly.Arduino['amb82_mini_linenotify'] = function(block) {
 			'       }\n'+
 			'       if (Feedback.length()>0) break;\n'+
 			'    }\n'+
-			'    client_tcp.stop();\n'+
+			'    client.stop();\n'+
 			'    Serial.println(Feedback);\n'+			
 			'    return Feedback;\n'+
 			'  }\n'+
@@ -3035,6 +3029,7 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 	var type = block.getFieldValue('type');
 	var channel = block.getFieldValue('channel');
 	var audio = block.getFieldValue('audio');
+	var rotation = block.getFieldValue('rotation');	
 	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
 	var fileduration = Blockly.Arduino.valueToCode(block, 'fileduration', Blockly.Arduino.ORDER_ATOMIC);
 	var filecount = Blockly.Arduino.valueToCode(block, 'filecount', Blockly.Arduino.ORDER_ATOMIC);
@@ -3042,9 +3037,9 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 	Blockly.Arduino.setups_.write_peri_reg = "";
 	
 	if (type=="VideoOnly") {
-		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\nMP4Recording mp4;\nStreamIO videoStreamer(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+		Blockly.Arduino.definitions_['amb82_mini_video_initial'] = '#include "StreamIO.h"\n#include "VideoStream.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\nMP4Recording mp4;\nStreamIO videoStreamer(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
-		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
+		Blockly.Arduino.setups_.setup_amb82_mini_rtsp='config.setRotation('+rotation+');\n  '+   
 											'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
 											'Camera.videoInit();\n  '+
 											'mp4.configVideo(config);\n  '+
@@ -3060,7 +3055,7 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 											'Camera.channelBegin(amb82_CHANNEL);\n  '+
 											'Camera.printInfo();\n';									
 	} else if (type=="SingleVideoWithAudio") {
-		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting configV(amb82_CHANNEL);\nAudioSetting configA('+audio+');\nAudio audio;\nAAC aac;\nMP4Recording mp4;\nStreamIO audioStreamer(1, 1);\nStreamIO avMixStreamer(2, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+		Blockly.Arduino.definitions_['amb82_mini_video_initial'] = '#include "StreamIO.h"\n#include "VideoStream.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting configV(amb82_CHANNEL);\nAudioSetting configA('+audio+');\nAudio audio;\nAAC aac;\nMP4Recording mp4;\nStreamIO audioStreamer(1, 1);\nStreamIO avMixStreamer(2, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
 		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
 											'Camera.configVideoChannel(amb82_CHANNEL, configV);\n  '+
@@ -3088,7 +3083,7 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 											'Camera.channelBegin(amb82_CHANNEL);\n  '+
 											'Camera.printInfo();\n';								
 	} else if (type=="AudioOnly") {
-		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "MP4Recording.h"\nAudioSetting configA('+audio+');\nAudio audio;\nAAC aac;\nMP4Recording mp4;\nStreamIO audioStreamer1(1, 1);\nStreamIO audioStreamer2(1, 1);';
+		Blockly.Arduino.definitions_['amb82_mini_video_initial'] = '#include "StreamIO.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "MP4Recording.h"\nAudioSetting configA('+audio+');\nAudio audio;\nAAC aac;\nMP4Recording mp4;\nStreamIO audioStreamer1(1, 1);\nStreamIO audioStreamer2(1, 1);';
 
 		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
 											'audio.configAudio(configA);\n  '+
@@ -3137,13 +3132,14 @@ Blockly.Arduino['amb82_mini_rtsp'] = function(block) {
 	var type = block.getFieldValue('type');
 	var channel = block.getFieldValue('channel');
 	var audio = block.getFieldValue('audio');
+	var rotation = block.getFieldValue('rotation');
 	//Blockly.Arduino.definitions_.define_custom_command = "";
 	Blockly.Arduino.setups_.write_peri_reg = "";
 	
 	if (type=="VideoOnly") {
-		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "VideoStreamOverlay.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+		Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#include "StreamIO.h"\n#include "VideoStream.h"\n#include "VideoStreamOverlay.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
-		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
+		Blockly.Arduino.setups_.setup_amb82_mini_rtsp='config.setRotation('+rotation+');\n  '+  
 											'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
 											'Camera.videoInit();\n  '+
 											'rtsp.configVideo(config);\n  '+
@@ -3163,9 +3159,9 @@ Blockly.Arduino['amb82_mini_rtsp'] = function(block) {
 											'Serial.print(":");\n  '+
 											'rtsp.printInfo();';
 	} else if (type=="DoubleVideo") {
-		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\nRTSP rtsp1;\nRTSP rtsp2;\nStreamIO videoStreamer(1, 2);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+		Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\nRTSP rtsp1;\nRTSP rtsp2;\nStreamIO videoStreamer(1, 2);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
-		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
+		Blockly.Arduino.setups_.setup_amb82_mini_rtsp='config.setRotation('+rotation+');\n  '+  
 											'Camera.configVideoChannel(0, config);\n  '+
 											'Camera.videoInit();\n  '+				
 											'rtsp1.configVideo(config);\n  '+
@@ -3190,9 +3186,9 @@ Blockly.Arduino['amb82_mini_rtsp'] = function(block) {
 											'Serial.print(":");\n  '+
 											'rtsp2.printInfo();';											
 	} else if (type=="SingleVideoWithAudio") {
-		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "VideoStreamOverlay.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting configV(amb82_CHANNEL);\nAudioSetting configA('+audio+');\nAudio audio;\nAAC aac;\nRTSP rtsp;\nStreamIO audioStreamer(1, 1);\nStreamIO avMixStreamer(2, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+		Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#include "StreamIO.h"\n#include "VideoStream.h"\n#include "VideoStreamOverlay.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting configV(amb82_CHANNEL);\nAudioSetting configA('+audio+');\nAudio audio;\nAAC aac;\nRTSP rtsp;\nStreamIO audioStreamer(1, 1);\nStreamIO avMixStreamer(2, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
-		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
+		Blockly.Arduino.setups_.setup_amb82_mini_rtsp='configV.setRotation('+rotation+');\n  '+  
 											'Camera.configVideoChannel(amb82_CHANNEL, configV);\n  '+
 											'Camera.videoInit();\n  '+
 											'audio.configAudio(configA);\n  '+
@@ -3225,9 +3221,10 @@ Blockly.Arduino['amb82_mini_rtsp'] = function(block) {
 											'Serial.println("- Audio -");\n  '+
 											'audio.printInfo();';					
 	} else if (type=="DoubleVideoWithAudio") {
-		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "RTSP.h"\nVideoSetting configV1(VIDEO_FHD, CAM_FPS, VIDEO_H264, 0);\nVideoSetting configV2(VIDEO_HD, CAM_FPS, VIDEO_H264, 0);\nAudioSetting configA('+audio+');\nAudio audio;\nAAC aac;\nRTSP rtsp1;\nRTSP rtsp2;\nStreamIO audioStreamer(1, 1);\nStreamIO avMixStreamer(3, 2);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+		Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#include "StreamIO.h"\n#include "VideoStream.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "RTSP.h"\nVideoSetting configV1(VIDEO_FHD, CAM_FPS, VIDEO_H264, 0);\nVideoSetting configV2(VIDEO_HD, CAM_FPS, VIDEO_H264, 0);\nAudioSetting configA('+audio+');\nAudio audio;\nAAC aac;\nRTSP rtsp1;\nRTSP rtsp2;\nStreamIO audioStreamer(1, 1);\nStreamIO avMixStreamer(3, 2);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
-		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
+		Blockly.Arduino.setups_.setup_amb82_mini_rtsp='configV1.setRotation('+rotation+');\n  '+
+											'configV2.setRotation('+rotation+');\n  '+  
 											'Camera.configVideoChannel(0, configV1);\n  '+
 											'Camera.configVideoChannel(1, configV2);\n  '+
 											'Camera.videoInit();\n  '+
@@ -3269,9 +3266,9 @@ Blockly.Arduino['amb82_mini_rtsp'] = function(block) {
 											'Serial.println("- Audio -");\n  '+
 											'audio.printInfo();';					
 	} else if (type=="V7RC") {
-		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "VideoStreamOverlay.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(VIDEO_D1, CAM_FPS, VIDEO_H264, 0);\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+		Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#include "StreamIO.h"\n#include "VideoStream.h"\n#include "VideoStreamOverlay.h"\n#include "RTSP.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(VIDEO_D1, CAM_FPS, VIDEO_H264, 0);\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
-		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
+		Blockly.Arduino.setups_.setup_amb82_mini_rtsp='config.setRotation('+rotation+');\n  '+ 
 											'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
 											'Camera.videoInit();\n  '+
 											'rtsp.configVideo(config);\n  '+
@@ -3291,9 +3288,9 @@ Blockly.Arduino['amb82_mini_rtsp'] = function(block) {
 											'Serial.print(":");\n  '+
 											'rtsp.printInfo();';
 	} else if (type=="AudioOnly") {
-		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "StreamIO.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "RTSP.h"\nAAC encoder;\nAudioSetting configA('+audio+');\nAudio audio;\nRTSP rtsp;\nStreamIO audioStreamer1(1, 1);\nStreamIO audioStreamer2(1, 1);';
+		Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#include "StreamIO.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "RTSP.h"\nAAC encoder;\nAudioSetting configA('+audio+');\nAudio audio;\nRTSP rtsp;\nStreamIO audioStreamer1(1, 1);\nStreamIO audioStreamer2(1, 1);';
 
-		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
+		Blockly.Arduino.setups_.setup_amb82_mini_rtsp='config.setRotation('+rotation+');\n  '+
 											'audio.configAudio(configA);\n  '+
 											'audio.begin();\n  '+
 											'encoder.configAudio(configA);\n  '+
@@ -3346,7 +3343,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 	
   if (framesize=="VIDEO_CUSTOM")
 	framesize = width +", "+height;
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nchar ssid[] = '+ssid+';\nchar pass[] = '+pass+';\nchar ssid_ap[] = '+ssid_ap+';\nchar pass_ap[] = '+pass_ap+';\nchar channel_ap[] = "2";\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nchar ssid[] = '+ssid+';\nchar pass[] = '+pass+';\nchar ssid_ap[] = '+ssid_ap+';\nchar pass_ap[] = '+pass_ap+';\nchar channel_ap[] = "2";\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
   Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
   //Blockly.Arduino.definitions_.define_custom_command = "";
@@ -3607,7 +3604,7 @@ Blockly.Arduino['amb82_mini_stream'] = function(block) {
 	
   if (framesize=="VIDEO_CUSTOM")
 	framesize = width +", "+height;
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nchar ssid[] = '+ssid+';\nchar pass[] = '+pass+';\nchar ssid_ap[] = '+ssid_ap+';\nchar pass_ap[] = '+pass_ap+';\nchar channel_ap[] = "2";\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nchar ssid[] = '+ssid+';\nchar pass[] = '+pass+';\nchar ssid_ap[] = '+ssid_ap+';\nchar pass_ap[] = '+pass_ap+';\nchar channel_ap[] = "2";\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
   Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
   //Blockly.Arduino.definitions_.define_custom_command = "";
@@ -5425,30 +5422,24 @@ Blockly.Arduino['openai_chat_initial'] = function (block) {
   Blockly.Arduino.definitions_['openai_chat_request'] = 'String openAI_chat_request(String message) {\n';
   
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
-	else {
-		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiClientSecure client_tcp;\n';
-		if (arduinoCore_ESP32)
-			Blockly.Arduino.definitions_['openai_chat_request'] += '  client_tcp.setInsecure();\n';	
-	}	
+		Blockly.Arduino.definitions_['openai_chat_request'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_['openai_chat_request'] += '  client.setInsecure();\n';		
 
   Blockly.Arduino.definitions_['openai_chat_request'] += ''
 		+'  String user_content = "{\\"role\\": \\"user\\", \\"content\\":\\""+ message+"\\"}";\n'
 		+'  historical_messages += ", "+user_content;\n'
 		+'  String request = "{\\"model\\":\\""+model+"\\",\\"messages\\":[" + historical_messages + "]}";\n'
-		+'  if (client_tcp.connect("api.openai.com", 443)) {\n'
-		+'    client_tcp.println("POST /v1/chat/completions HTTP/1.1");\n'
-		+'    client_tcp.println("Connection: close");\n'
-		+'    client_tcp.println("Host: api.openai.com");\n'
-		+'    client_tcp.println("Authorization: Bearer " + openaiKey);\n'
-		+'    client_tcp.println("Content-Type: application/json; charset=utf-8");\n'
-		+'    client_tcp.println("Content-Length: " + String(request.length()));\n'
-		+'    client_tcp.println();\n'
+		+'  if (client.connect("api.openai.com", 443)) {\n'
+		+'    client.println("POST /v1/chat/completions HTTP/1.1");\n'
+		+'    client.println("Connection: close");\n'
+		+'    client.println("Host: api.openai.com");\n'
+		+'    client.println("Authorization: Bearer " + openaiKey);\n'
+		+'    client.println("Content-Type: application/json; charset=utf-8");\n'
+		+'    client.println("Content-Length: " + String(request.length()));\n'
+		+'    client.println();\n'
 		+'    for (int i = 0; i < request.length(); i += 1024) {\n'
-		+'      client_tcp.print(request.substring(i, i+1024));\n'
+		+'      client.print(request.substring(i, i+1024));\n'
 		+'    }\n'
 		+'    String getResponse="",Feedback="";\n'
 		+'    boolean state = false;\n'
@@ -5457,8 +5448,8 @@ Blockly.Arduino['openai_chat_initial'] = function (block) {
 		+'    while ((startTime + waitTime) > millis()) {\n'
 		+'      //Serial.print(".");\n'
 		+'      delay(100);\n'
-		+'      while (client_tcp.available()) {\n'
-		+'          char c = client_tcp.read();\n'
+		+'      while (client.available()) {\n'
+		+'          char c = client.read();\n'
 		+'          if (state==true)\n'
 		+'            getResponse += String(c);\n'
 		+'          if (c == \'\\n\')\n'
@@ -5481,14 +5472,14 @@ Blockly.Arduino['openai_chat_initial'] = function (block) {
 		+'          }'
 		+'       }\n'
 		+'       if (getResponse.length()>0) {\n'
-		+'          client_tcp.stop();\n'
+		+'          client.stop();\n'
 		+'          String assistant_content = "{\\"role\\": \\"assistant\\", \\"content\\":\\""+ getResponse+"\\"}";\n'
 		+'          historical_messages += ", "+assistant_content;\n'
 		+'          Serial.println("");\n'
 		+'          return getResponse;\n'
 		+'       }\n'
 		+'    }\n'
-		+'    client_tcp.stop();\n'
+		+'    client.stop();\n'
 		+'    //Serial.println(Feedback);\n'
 		+'    return "error";\n'
 		+'  }\n'
@@ -5525,26 +5516,20 @@ Blockly.Arduino['openai_text_request'] = function (block) {
 														+'String openAI_text(String token, int max_tokens, String words) {\n';
 														
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_['openai_chat_request'] += '  WiFiSSLClient client_tcp;\n';
-	else {
-		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-		Blockly.Arduino.definitions_['openai_text_request'] += '  WiFiClientSecure client_tcp;\n';
-		if (arduinoCore_ESP32)
-			Blockly.Arduino.definitions_['openai_text_request'] += '  client_tcp.setInsecure();\n';	
-	}	
+		Blockly.Arduino.definitions_['openai_chat_request'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_['openai_text_request'] += '  client.setInsecure();\n';		
 	
   Blockly.Arduino.definitions_['openai_text_request'] += '  words = "{\\"model\\":\\"text-davinci-003\\",\\"prompt\\":\\"" + words + "\\",\\"temperature\\":0,\\"max_tokens\\":" + String(max_tokens) + ",\\"frequency_penalty\\":0,\\"presence_penalty\\":0.6,\\"top_p\\":1.0,\\"n\\":1}";\n'
-														+'  if (client_tcp.connect("api.openai.com", 443)) {\n'
-														+'    client_tcp.println("POST /v1/completions HTTP/1.1");\n'
-														+'    client_tcp.println("Connection: close");\n'
-														+'    client_tcp.println("Host: api.openai.com");\n'
-														+'    client_tcp.println("Authorization: Bearer " + token);\n'
-														+'    client_tcp.println("Content-Type: application/json; charset=utf-8");\n'
-														+'    client_tcp.println("Content-Length: " + String(words.length()));\n'
-														+'    client_tcp.println();\n'
-														+'    client_tcp.println(words);\n'
+														+'  if (client.connect("api.openai.com", 443)) {\n'
+														+'    client.println("POST /v1/completions HTTP/1.1");\n'
+														+'    client.println("Connection: close");\n'
+														+'    client.println("Host: api.openai.com");\n'
+														+'    client.println("Authorization: Bearer " + token);\n'
+														+'    client.println("Content-Type: application/json; charset=utf-8");\n'
+														+'    client.println("Content-Length: " + String(words.length()));\n'
+														+'    client.println();\n'
+														+'    client.println(words);\n'
 														+'    String getResponse="",Feedback="";\n'
 														+'    boolean state = false;\n'
 														+'    int waitTime = 60000;\n'
@@ -5552,8 +5537,8 @@ Blockly.Arduino['openai_text_request'] = function (block) {
 														+'    while ((startTime + waitTime) > millis()) {\n'
 														+'      Serial.print(".");\n'
 														+'      delay(100);\n'
-														+'      while (client_tcp.available()) {\n'
-														+'          char c = client_tcp.read();\n'
+														+'      while (client.available()) {\n'
+														+'          char c = client.read();\n'
 														+'          if (state==true) {\n'
 														+'            Feedback += String(c);\n'
 														+'            if (Feedback.indexOf("\\"text\\":\\"\\\\n\\\\n\")!=-1)\n'
@@ -5561,12 +5546,12 @@ Blockly.Arduino['openai_text_request'] = function (block) {
 														+'            if (Feedback.indexOf("\\"text\\":\\"?\\\\n\\\\n\")!=-1)\n'
 														+'               Feedback = "";\n'
 														+'            if (Feedback.indexOf("\\",\\"index\\"")!=-1) {\n'
-														+'              client_tcp.stop();\n'
+														+'              client.stop();\n'
 														+'              Serial.println();\n'
 														+'              return Feedback.substring(0,Feedback.length()-9);\n'        
 														+'            }\n'
 														+'            if (Feedback.indexOf("\\"}}")!=-1) {\n'
-														+'              client_tcp.stop();\n'
+														+'              client.stop();\n'
 														+'              Serial.println();\n'
 														+'              return Feedback.substring(0,Feedback.length()-3);\n'        
 														+'            }\n'														
@@ -5581,7 +5566,7 @@ Blockly.Arduino['openai_text_request'] = function (block) {
 														+'       }\n'
 														+'       if (getResponse.length()>0) break;\n'
 														+'    }\n'
-														+'    client_tcp.stop();\n'
+														+'    client.stop();\n'
 														+'    //Serial.println(Feedback);\n'
 														+'    return "error";\n'
 														+'  }\n'
@@ -7896,35 +7881,29 @@ Blockly.Arduino.definitions_.telegrambot_getUpdates +='  String result;\n'+
 			'  String text;\n';
 			
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_.telegrambot_getUpdates += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_.telegrambot_getUpdates += '  WiFiSSLClient client_tcp;\n';
-	else {
-		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-		Blockly.Arduino.definitions_.telegrambot_getUpdates += '  WiFiClientSecure client_tcp;\n';
-		if (arduinoCore_ESP32)
-			Blockly.Arduino.definitions_.telegrambot_getUpdates += '  client_tcp.setInsecure();\n';	
-	}
+		Blockly.Arduino.definitions_.telegrambot_getUpdates += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_.telegrambot_getUpdates += '  client.setInsecure();\n';	
 	
-	Blockly.Arduino.definitions_.telegrambot_getUpdates += '  if (client_tcp.connect(myDomain, 443)) {\n'+
-			'    while (client_tcp.connected()) {\n'+
+	Blockly.Arduino.definitions_.telegrambot_getUpdates += '  if (client.connect(myDomain, 443)) {\n'+
+			'    while (client.connected()) {\n'+
 			'      getAll = "";\n'+
 			'      getBody = "";\n'+
 			'      String request = "limit=1&offset=-1&allowed_updates=message";\n'+
-			'      client_tcp.println("POST /bot"+token+"/getUpdates HTTP/1.1");\n'+
-			'      client_tcp.println("Host: " + String(myDomain));\n'+
-			'      client_tcp.println("Content-Length: " + String(request.length()));\n'+
-			'      client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-			'      client_tcp.println("Connection: close");\n'+
-			'      client_tcp.println();\n'+
-			'      client_tcp.print(request);\n'+
+			'      client.println("POST /bot"+token+"/getUpdates HTTP/1.1");\n'+
+			'      client.println("Host: " + String(myDomain));\n'+
+			'      client.println("Content-Length: " + String(request.length()));\n'+
+			'      client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+			'      client.println("Connection: close");\n'+
+			'      client.println();\n'+
+			'      client.print(request);\n'+
 			'      int waitTime = 5000;\n'+
 			'      long startTime = millis();\n'+
 			'      boolean state = false;\n'+
 			'      while ((startTime + waitTime) > millis()){\n'+
 			'        delay(100);\n'+
-			'        while (client_tcp.available()){\n'+
-			'            char c = client_tcp.read();\n'+
+			'        while (client.available()){\n'+
+			'            char c = client.read();\n'+
 			'            if (c == \'\\n\') {\n'+
 			'              if (getAll.length()==0) state=true;\n'+
 			'              getAll = "";\n'+
@@ -7972,31 +7951,24 @@ Blockly.Arduino['esp32_telegrambot_spreadsheet_sendcell'] = function(block){
 			'  Serial.println("Connect to " + String(myDomain));\n';
 			
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_.telegram_Spreadsheet_send += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_.telegram_Spreadsheet_send += '  WiFiSSLClient client_tcp;\n';
-	else {
-		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-		Blockly.Arduino.definitions_.telegram_Spreadsheet_send += '  WiFiClientSecure client_tcp;\n';
-		if (arduinoCore_ESP32)
-			Blockly.Arduino.definitions_.telegram_Spreadsheet_send += '  client_tcp.setInsecure();\n';
-	}
+		Blockly.Arduino.definitions_.telegram_Spreadsheet_send += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_.telegram_Spreadsheet_send += '  client.setInsecure();\n';
 	
-	
-	Blockly.Arduino.definitions_.telegram_Spreadsheet_send +='  if (client_tcp.connect(myDomain, 443)) {\n'+
+	Blockly.Arduino.definitions_.telegram_Spreadsheet_send +='  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    String Data = "&myToken="+token+"&myChatID="+chat_id;\n'+
 			'    Data += "&spreadsheeturl="+mySpreadsheeturl+"&spreadsheetname="+mySpreadsheetname;\n'+			
 			'    Data += "&row="+String(row)+"&col="+String(col)+"&type="+type;\n'+			
-			'    client_tcp.println("POST " + myScript + " HTTP/1.1");\n'+
-			'    client_tcp.println("Host: " + String(myDomain));\n'+
-			'    client_tcp.println("Content-Length: " + String(Data.length()));\n'+
-			'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println();\n'+
+			'    client.println("POST " + myScript + " HTTP/1.1");\n'+
+			'    client.println("Host: " + String(myDomain));\n'+
+			'    client.println("Content-Length: " + String(Data.length()));\n'+
+			'    client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
 			'    int Index;\n'+
 			'    for (Index = 0; Index < Data.length(); Index = Index+1024) {\n'+
-			'      client_tcp.print(Data.substring(Index, Index+1024));\n'+
+			'      client.print(Data.substring(Index, Index+1024));\n'+
 			'    }\n'+
 			'    int waitTime = 10000;\n'+
 			'    long startTime = millis();\n'+
@@ -8006,9 +7978,9 @@ Blockly.Arduino['esp32_telegrambot_spreadsheet_sendcell'] = function(block){
 			'    {\n'+
 			'      Serial.print(".");\n'+
 			'      delay(100);\n'+
-			'      while (client_tcp.available())\n'+
+			'      while (client.available())\n'+
 			'      {\n'+
-			'          char c = client_tcp.read();\n'+
+			'          char c = client.read();\n'+
 			'          if (state==true) getBody += String(c);\n'+        
 			'          if (c == \'\\n\')\n'+
 			'          {\n'+
@@ -8021,7 +7993,7 @@ Blockly.Arduino['esp32_telegrambot_spreadsheet_sendcell'] = function(block){
 			'       }\n'+
 			'       if (getBody.length()>0) break;\n'+
 			'    }\n'+
-			'    client_tcp.stop();\n'+
+			'    client.stop();\n'+
 			'    Serial.println(getBody);\n'+	
 			'  }\n'+
 			'  else {\n'+
@@ -8078,30 +8050,23 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 			'  Serial.println("Connect to " + String(myDomain));\n';
 			
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_.Spreadsheet_insert += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_.Spreadsheet_insert += '  WiFiSSLClient client_tcp;\n';
-	else {
-		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-		Blockly.Arduino.definitions_.Spreadsheet_insert += '  WiFiClientSecure client_tcp;\n';
-		if (arduinoCore_ESP32)
-			Blockly.Arduino.definitions_.Spreadsheet_insert += '  client_tcp.setInsecure();\n';	
-	}
+		Blockly.Arduino.definitions_.Spreadsheet_insert += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_.Spreadsheet_insert += '  client.setInsecure();\n';	
 	
-	
-	Blockly.Arduino.definitions_.Spreadsheet_insert +='  if (client_tcp.connect(myDomain, 443)) {\n'+
+	Blockly.Arduino.definitions_.Spreadsheet_insert +='  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    String Data = "&func="+func+"&data="+data+"&spreadsheeturl="+mySpreadsheeturl+"&spreadsheetname="+mySpreadsheetname;\n'+
 			'    Data += "&row="+String(row)+"&col="+String(col)+"&text="+text;\n'+			
-			'    client_tcp.println("POST " + myScript + " HTTP/1.1");\n'+
-			'    client_tcp.println("Host: " + String(myDomain));\n'+
-			'    client_tcp.println("Content-Length: " + String(Data.length()));\n'+
-			'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println();\n'+
+			'    client.println("POST " + myScript + " HTTP/1.1");\n'+
+			'    client.println("Host: " + String(myDomain));\n'+
+			'    client.println("Content-Length: " + String(Data.length()));\n'+
+			'    client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
 			'    int Index;\n'+
 			'    for (Index = 0; Index < Data.length(); Index = Index+1024) {\n'+
-			'      client_tcp.print(Data.substring(Index, Index+1024));\n'+
+			'      client.print(Data.substring(Index, Index+1024));\n'+
 			'    }\n'+
 			'    int waitTime = 10000;\n'+
 			'    long startTime = millis();\n'+
@@ -8111,9 +8076,9 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 			'    {\n'+
 			'      Serial.print(".");\n'+
 			'      delay(100);\n'+
-			'      while (client_tcp.available())\n'+
+			'      while (client.available())\n'+
 			'      {\n'+
-			'          char c = client_tcp.read();\n'+
+			'          char c = client.read();\n'+
 			'          if (state==true) getBody += String(c);\n'+        
 			'          if (c == \'\\n\')\n'+
 			'          {\n'+
@@ -8126,7 +8091,7 @@ Blockly.Arduino['controls_spreadsheet'] = function(block){
 			'       }\n'+
 			'       if (getBody.length()>0) break;\n'+
 			'    }\n'+
-			'    client_tcp.stop();\n'+
+			'    client.stop();\n'+
 			'  }\n'+
 			'  else {\n'+
 			'    Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
@@ -8181,30 +8146,23 @@ Blockly.Arduino['controls_spreadsheet_function'] = function(block){
 			'  Serial.println("Connect to " + String(myDomain));\n';
 			
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_.Spreadsheet_insert += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_.Spreadsheet_insert += '  WiFiSSLClient client_tcp;\n';
-	else {
-		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-		Blockly.Arduino.definitions_.Spreadsheet_insert += '  WiFiClientSecure client_tcp;\n';
-		if (arduinoCore_ESP32)
-			Blockly.Arduino.definitions_.Spreadsheet_insert += '  client_tcp.setInsecure();\n';
-	}
+		Blockly.Arduino.definitions_.Spreadsheet_insert += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_.Spreadsheet_insert += '  client.setInsecure();\n';
 	
-	
-	Blockly.Arduino.definitions_.Spreadsheet_insert +='  if (client_tcp.connect(myDomain, 443)) {\n'+
+	Blockly.Arduino.definitions_.Spreadsheet_insert +='  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    String Data = "&func="+func+"&data="+data+"&spreadsheeturl="+mySpreadsheeturl+"&spreadsheetname="+mySpreadsheetname;\n'+
 			'    Data += "&row="+String(row)+"&col="+String(col)+"&text="+text;\n'+			
-			'    client_tcp.println("POST " + myScript + " HTTP/1.1");\n'+
-			'    client_tcp.println("Host: " + String(myDomain));\n'+
-			'    client_tcp.println("Content-Length: " + String(Data.length()));\n'+
-			'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println();\n'+
+			'    client.println("POST " + myScript + " HTTP/1.1");\n'+
+			'    client.println("Host: " + String(myDomain));\n'+
+			'    client.println("Content-Length: " + String(Data.length()));\n'+
+			'    client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
 			'    int Index;\n'+
 			'    for (Index = 0; Index < Data.length(); Index = Index+1024) {\n'+
-			'      client_tcp.print(Data.substring(Index, Index+1024));\n'+
+			'      client.print(Data.substring(Index, Index+1024));\n'+
 			'    }\n'+
 			'    int waitTime = 10000;\n'+
 			'    long startTime = millis();\n'+
@@ -8214,9 +8172,9 @@ Blockly.Arduino['controls_spreadsheet_function'] = function(block){
 			'    {\n'+
 			'      Serial.print(".");\n'+
 			'      delay(100);\n'+
-			'      while (client_tcp.available())\n'+
+			'      while (client.available())\n'+
 			'      {\n'+
-			'          char c = client_tcp.read();\n'+
+			'          char c = client.read();\n'+
 			'          if (state==true) getBody += String(c);\n'+        
 			'          if (c == \'\\n\')\n'+
 			'          {\n'+
@@ -8229,7 +8187,7 @@ Blockly.Arduino['controls_spreadsheet_function'] = function(block){
 			'       }\n'+
 			'       if (getBody.length()>0) break;\n'+
 			'    }\n'+
-			'    client_tcp.stop();\n'+
+			'    client.stop();\n'+
 			'    Serial.println("");\n'+	
 			'  }\n'+
 			'  else {\n'+
@@ -8276,23 +8234,17 @@ Blockly.Arduino['controls_spreadsheet_get'] = function(block){
 			'  Serial.println("Connect to " + String(myDomain));\n';
 			
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_.Spreadsheet_get += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_.Spreadsheet_get += '  WiFiSSLClient client_tcp;\n';
-	else {
-		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-		Blockly.Arduino.definitions_.Spreadsheet_get += '  WiFiClientSecure client_tcp;\n';
-		if (arduinoCore_ESP32)
-			Blockly.Arduino.definitions_.Spreadsheet_get += '  client_tcp.setInsecure();\n';	
-	}
+		Blockly.Arduino.definitions_.Spreadsheet_get += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_.Spreadsheet_get += '  client.setInsecure();\n';	
 	
-	Blockly.Arduino.definitions_.Spreadsheet_get +='  if (client_tcp.connect(myDomain, 443)) {\n'+
+	Blockly.Arduino.definitions_.Spreadsheet_get +='  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    if (apikey=="") apikey="AIzaSyBDp5oSNkjqJYTJkdL1veFEyLPtSm7Bbm4";\n'+
-			'    client_tcp.println("GET https://sheets.googleapis.com/v4/spreadsheets/"+mySpreadsheetid+"/values/"+mySpreadsheetname+"!"+String(cell)+"?alt=json&key="+apikey+" HTTP/1.1");\n'+
-			'    client_tcp.println("Host: " + String(myDomain));\n'+
-			'    client_tcp.println("Content-Type: application/json");\n'+
-			'    client_tcp.println();\n'+
+			'    client.println("GET https://sheets.googleapis.com/v4/spreadsheets/"+mySpreadsheetid+"/values/"+mySpreadsheetname+"!"+String(cell)+"?alt=json&key="+apikey+" HTTP/1.1");\n'+
+			'    client.println("Host: " + String(myDomain));\n'+
+			'    client.println("Content-Type: application/json");\n'+
+			'    client.println();\n'+
 			'    int waitTime = 10000;\n'+
 			'    long startTime = millis();\n'+
 			'    boolean state = false;\n'+
@@ -8302,9 +8254,9 @@ Blockly.Arduino['controls_spreadsheet_get'] = function(block){
 			'    {\n'+
 			'      Serial.print(".");\n'+
 			'      delay(100);\n'+
-			'      while (client_tcp.available())\n'+
+			'      while (client.available())\n'+
 			'      {\n'+
-			'          char c = client_tcp.read();\n'+
+			'          char c = client.read();\n'+
 			'          if (String(c)=="{") start = true;\n'+			
 			'          if (state==true&&start==true&&c!=\'\\n\'&&c!=\'\\r\') getBody += String(c);\n'+ 
 			'          if (String(c)=="}") start = false;\n'+			
@@ -8419,23 +8371,17 @@ Blockly.Arduino['controls_spreadsheet_query'] = function(block){
 			'  Serial.println("Connect to " + String(myDomain));\n';
 			
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_.Spreadsheet_get += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_.Spreadsheet_get += '  WiFiSSLClient client_tcp;\n';
-	else {
-		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-		Blockly.Arduino.definitions_.Spreadsheet_get += '  WiFiClientSecure client_tcp;\n';
-		if (arduinoCore_ESP32)
-			Blockly.Arduino.definitions_.Spreadsheet_get += '  client_tcp.setInsecure();\n'; 
-	}
+		Blockly.Arduino.definitions_.Spreadsheet_get += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_.Spreadsheet_get += '  client.setInsecure();\n'; 
 	
-	Blockly.Arduino.definitions_.Spreadsheet_get +='  if (client_tcp.connect(myDomain, 443)) {\n'+
+	Blockly.Arduino.definitions_.Spreadsheet_get +='  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    String url = "https://docs.google.com/spreadsheets/d/"+mySpreadsheetid+"/gviz/tq?tqx=out:json&sheet="+mySpreadsheetname+"&tq="+sql;\n'+	
-			'    client_tcp.println("GET "+url+" HTTP/1.1");\n'+
-			'    client_tcp.println("Host: " + String(myDomain));\n'+
-			'    client_tcp.println("Content-Type: application/json");\n'+
-			'    client_tcp.println();\n'+
+			'    client.println("GET "+url+" HTTP/1.1");\n'+
+			'    client.println("Host: " + String(myDomain));\n'+
+			'    client.println("Content-Type: application/json");\n'+
+			'    client.println();\n'+
 			'    int waitTime = 10000;\n'+
 			'    long startTime = millis();\n'+
 			'    boolean state = false;\n'+	
@@ -8445,9 +8391,9 @@ Blockly.Arduino['controls_spreadsheet_query'] = function(block){
 			'    {\n'+
 			'      Serial.print(".");\n'+
 			'      delay(100);\n'+
-			'      while (client_tcp.available())\n'+
+			'      while (client.available())\n'+
 			'      {\n'+
-			'          char c = client_tcp.read();\n'+
+			'          char c = client.read();\n'+
 			'          if (getBody.indexOf("\\"rows\\":[")!=-1) start = true;\n'+	
 			'          if (getData.indexOf("],")!=-1) start = false;\n'+				
 			'          if (state==true&&c!=\'\\n\'&&c!=\'\\r\') getBody += String(c);\n'+ 
@@ -8802,7 +8748,7 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
   var framesize = block.getFieldValue('framesize');
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
 	
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n';
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;';
   Blockly.Arduino.definitions_.define_esp_http_server_h_include ='#include "esp_camera.h"\n#include "esp_http_server.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\ntypedef struct {httpd_req_t *req;size_t len;} jpg_chunking_t;\n#define PART_BOUNDARY "123456789000000000000987654321"\nstatic const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;\nstatic const char* _STREAM_BOUNDARY = "\\r\\n--" PART_BOUNDARY "\\r\\n";\nstatic const char* _STREAM_PART = "Content-Type: image/jpeg\\r\\nContent-Length: %u\\r\\n\\r\\n";\nhttpd_handle_t stream_httpd = NULL;\nhttpd_handle_t camera_httpd = NULL;\nString Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
   
   if (selectBoardType()=="esp32")
@@ -9573,7 +9519,7 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
   var request = block.getFieldValue('request') === 'TRUE';  
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');	
 	
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\n#include "esp_camera.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\nWiFiServer server(80);\nString Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n\n'+
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\nWiFiServer server(80);\nString Feedback="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n\n'+
 																'#define PWDN_GPIO_NUM     -1\n'+
 																'#define RESET_GPIO_NUM    -1\n'+
 																'#define XCLK_GPIO_NUM      0\n'+
@@ -10291,7 +10237,7 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
   var statements_loop = Blockly.Arduino.statementToCode(block, 'loop');  
 
-  Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>\n#include <WiFi.h>\n#include <WiFiClientSecure.h>\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nWiFiClientSecure client_tcp;\nlong message_id_last = 0;\nboolean sendHelp = false;';
+  Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\n#include <ArduinoJson.h>\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nlong message_id_last = 0;\nboolean sendHelp = false;\n';
 
 	Blockly.Arduino.definitions_.sendMessageToTelegram = ''+
 		'void sendMessageToTelegram(String token, String chatid, String text, String keyboard) {\n'+
@@ -10299,20 +10245,20 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 		'  String getAll="", getBody = "";\n'+
 		'  String request = "parse_mode=HTML&chat_id="+chatid+"&text="+text;\n'+
 		'  if (keyboard!="") request += "&reply_markup="+keyboard;\n'+
-		'  client_tcp.println("POST /bot"+token+"/sendMessage HTTP/1.1");\n'+
-		'  client_tcp.println("Host: " + String(myDomain));\n'+
-		'  client_tcp.println("Content-Length: " + String(request.length()));\n'+
-		'  client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-		'  client_tcp.println("Connection: close");\n'+
-		'  client_tcp.println();\n'+
-		'  client_tcp.print(request);\n'+
+		'  client.println("POST /bot"+token+"/sendMessage HTTP/1.1");\n'+
+		'  client.println("Host: " + String(myDomain));\n'+
+		'  client.println("Content-Length: " + String(request.length()));\n'+
+		'  client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+		'  client.println("Connection: close");\n'+
+		'  client.println();\n'+
+		'  client.print(request);\n'+
 		'  int waitTime = 5000;\n'+
 		'  long startTime = millis();\n'+
 		'  boolean state = false;\n'+
 		'  while ((startTime + waitTime) > millis()) {\n'+
 		'    delay(100);\n'+
-		'    while (client_tcp.available())  {\n'+
-		'        char c = client_tcp.read();\n'+
+		'    while (client.available())  {\n'+
+		'        char c = client.read();\n'+
 		'        if (state==true) getBody += String(c);\n'+ 
 		'        if (c == \'\\n\')  {\n'+
 		'          if (getAll.length()==0) state=true;\n'+
@@ -10339,7 +10285,7 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 			'    ESP.restart();\n'+
 			'  }\n'+
 			'  else if (cmd=="null") {\n'+
-			'    client_tcp.stop();\n'+
+			'    client.stop();\n'+
 			'    getTelegramMessage();\n'+
 			'  }\n'+
 			'  else {\n'+
@@ -10347,7 +10293,8 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 			'  }\n'+ 
 			'}\n';
 
-	Blockly.Arduino.setups_.write_peri_reg="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.setups_.write_peri_reg="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
 	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
 	Blockly.Arduino.setups_.setup_wifi='initWiFi();\n';
 
@@ -10411,28 +10358,32 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 			'  long message_id;\n'+
 			'  String text;\n'+
 			'  if (message_id_last == 0) Serial.println("Connect to " + String(myDomain));\n';
-	if (arduinoCore_ESP32)
-		Blockly.Arduino.definitions_.getTelegramMessage += '  client_tcp.setInsecure();\n';
-	Blockly.Arduino.definitions_.getTelegramMessage += '  if (client_tcp.connect(myDomain, 443)) {\n'+
+			
+	if (selectBoardType()=="LinkIt")
+		Blockly.Arduino.definitions_.getTelegramMessage += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_.getTelegramMessage += '  client.setInsecure();\n';	
+	
+	Blockly.Arduino.definitions_.getTelegramMessage += '  if (client.connect(myDomain, 443)) {\n'+
 			'    if (message_id_last == 0) Serial.println("Connection successful");\n'+
-			'    while (client_tcp.connected()) {\n'+
+			'    while (client.connected()) {\n'+
 			'      getAll = "";\n'+
 			'      getBody = "";\n'+
 			'      String request = "limit=1&offset=-1&allowed_updates=message";\n'+
-			'      client_tcp.println("POST /bot"+token+"/getUpdates HTTP/1.1");\n'+
-			'      client_tcp.println("Host: " + String(myDomain));\n'+
-			'      client_tcp.println("Content-Length: " + String(request.length()));\n'+
-			'      client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-			'      client_tcp.println("Connection: close");\n'+
-			'      client_tcp.println();\n'+
-			'      client_tcp.print(request);\n'+
+			'      client.println("POST /bot"+token+"/getUpdates HTTP/1.1");\n'+
+			'      client.println("Host: " + String(myDomain));\n'+
+			'      client.println("Content-Length: " + String(request.length()));\n'+
+			'      client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+			'      client.println("Connection: close");\n'+
+			'      client.println();\n'+
+			'      client.print(request);\n'+
 			'      int waitTime = 5000;\n'+
 			'      long startTime = millis();\n'+
 			'      boolean state = false;\n'+
 			'      while ((startTime + waitTime) > millis()){\n'+
 			'        delay(100);\n'+
-			'        while (client_tcp.available()){\n'+
-			'            char c = client_tcp.read();\n'+
+			'        while (client.available()){\n'+
+			'            char c = client.read();\n'+
 			'            if (c == \'\\n\') {\n'+
 			'              if (getAll.length()==0) state=true;\n'+
 			'              getAll = "";\n'+
@@ -10501,7 +10452,7 @@ Blockly.Arduino['esp32cam_telegrambot'] = function(block) {
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
   var statements_loop = Blockly.Arduino.statementToCode(block, 'loop');
   
-  Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>\n#include <WiFi.h>\n#include <WiFiClientSecure.h>\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\n#include "Base64_tool.h"\n#include "Base64.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nWiFiClientSecure client_tcp;\nlong message_id_last = 0;\nboolean sendHelp = false;\n'+
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] = '#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include <ArduinoJson.h>\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\n#include "Base64_tool.h"\n#include "Base64.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nlong message_id_last = 0;\nboolean sendHelp = false;\n'+
 																'#define PWDN_GPIO_NUM     32\n'+
 																'#define RESET_GPIO_NUM    -1\n'+
 																'#define XCLK_GPIO_NUM      0\n'+
@@ -10526,20 +10477,20 @@ Blockly.Arduino['esp32cam_telegrambot'] = function(block) {
 		'  String getAll="", getBody = "";\n'+
 		'  String request = "parse_mode=HTML&chat_id="+chatid+"&text="+text;\n'+
 		'  if (keyboard!="") request += "&reply_markup="+keyboard;\n'+
-		'  client_tcp.println("POST /bot"+token+"/sendMessage HTTP/1.1");\n'+
-		'  client_tcp.println("Host: " + String(myDomain));\n'+
-		'  client_tcp.println("Content-Length: " + String(request.length()));\n'+
-		'  client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-		'  client_tcp.println("Connection: close");\n'+
-		'  client_tcp.println();\n'+
-		'  client_tcp.print(request);\n'+
+		'  client.println("POST /bot"+token+"/sendMessage HTTP/1.1");\n'+
+		'  client.println("Host: " + String(myDomain));\n'+
+		'  client.println("Content-Length: " + String(request.length()));\n'+
+		'  client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+		'  client.println("Connection: close");\n'+
+		'  client.println();\n'+
+		'  client.print(request);\n'+
 		'  int waitTime = 5000;\n'+
 		'  long startTime = millis();\n'+
 		'  boolean state = false;\n'+
 		'  while ((startTime + waitTime) > millis()) {\n'+
 		'    delay(100);\n'+
-		'    while (client_tcp.available())  {\n'+
-		'        char c = client_tcp.read();\n'+
+		'    while (client.available())  {\n'+
+		'        char c = client.read();\n'+
 		'        if (state==true) getBody += String(c);\n'+ 
 		'        if (c == \'\\n\')  {\n'+
 		'          if (getAll.length()==0) state=true;\n'+
@@ -10566,7 +10517,7 @@ Blockly.Arduino['esp32cam_telegrambot'] = function(block) {
 			'    ESP.restart();\n'+
 			'  }\n'+
 			'  else if (cmd=="null") {\n'+
-			'    client_tcp.stop();\n'+
+			'    client.stop();\n'+
 			'    getTelegramMessage();\n'+
 			'  }\n'+
 			'  else {\n'+
@@ -10669,28 +10620,32 @@ Blockly.Arduino['esp32cam_telegrambot'] = function(block) {
 			'  long message_id;\n'+
 			'  String text;\n'+
 			'  if (message_id_last == 0) Serial.println("Connect to " + String(myDomain));\n';
-	if (arduinoCore_ESP32)
-		Blockly.Arduino.definitions_.getTelegramMessage += '  client_tcp.setInsecure();\n';
-	Blockly.Arduino.definitions_.getTelegramMessage +='  if (client_tcp.connect(myDomain, 443)) {\n'+
+			
+	if (selectBoardType()=="LinkIt")
+		Blockly.Arduino.definitions_.getTelegramMessage += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_.getTelegramMessage += '  client.setInsecure();\n';	
+	
+	Blockly.Arduino.definitions_.getTelegramMessage +='  if (client.connect(myDomain, 443)) {\n'+
 			'    if (message_id_last == 0) Serial.println("Connection successful");\n'+
-			'    while (client_tcp.connected()) {\n'+
+			'    while (client.connected()) {\n'+
 			'      getAll = "";\n'+
 			'      getBody = "";\n'+
 			'      String request = "limit=1&offset=-1&allowed_updates=message";\n'+
-			'      client_tcp.println("POST /bot"+token+"/getUpdates HTTP/1.1");\n'+
-			'      client_tcp.println("Host: " + String(myDomain));\n'+
-			'      client_tcp.println("Content-Length: " + String(request.length()));\n'+
-			'      client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-			'      client_tcp.println("Connection: close");\n'+
-			'      client_tcp.println();\n'+
-			'      client_tcp.print(request);\n'+
+			'      client.println("POST /bot"+token+"/getUpdates HTTP/1.1");\n'+
+			'      client.println("Host: " + String(myDomain));\n'+
+			'      client.println("Content-Length: " + String(request.length()));\n'+
+			'      client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+			'      client.println("Connection: close");\n'+
+			'      client.println();\n'+
+			'      client.print(request);\n'+
 			'      int waitTime = 5000;\n'+
 			'      long startTime = millis();\n'+
 			'      boolean state = false;\n'+
 			'      while ((startTime + waitTime) > millis()){\n'+
 			'        delay(100);\n'+
-			'        while (client_tcp.available()){\n'+
-			'            char c = client_tcp.read();\n'+
+			'        while (client.available()){\n'+
+			'            char c = client.read();\n'+
 			'            if (c == \'\\n\') {\n'+
 			'              if (getAll.length()==0) state=true;\n'+
 			'              getAll = "";\n'+
@@ -10752,20 +10707,20 @@ Blockly.Arduino['esp32_telegrambot_sendmessage'] = function(block) {
 		'  String getAll="", getBody = "";\n'+
 		'  String request = "parse_mode=HTML&chat_id="+chatid+"&text="+text;\n'+
 		'  if (keyboard!="") request += "&reply_markup="+keyboard;\n'+
-		'  client_tcp.println("POST /bot"+token+"/sendMessage HTTP/1.1");\n'+
-		'  client_tcp.println("Host: " + String(myDomain));\n'+
-		'  client_tcp.println("Content-Length: " + String(request.length()));\n'+
-		'  client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-		'  client_tcp.println("Connection: close");\n'+
-		'  client_tcp.println();\n'+
-		'  client_tcp.print(request);\n'+
+		'  client.println("POST /bot"+token+"/sendMessage HTTP/1.1");\n'+
+		'  client.println("Host: " + String(myDomain));\n'+
+		'  client.println("Content-Length: " + String(request.length()));\n'+
+		'  client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+		'  client.println("Connection: close");\n'+
+		'  client.println();\n'+
+		'  client.print(request);\n'+
 		'  int waitTime = 5000;\n'+
 		'  long startTime = millis();\n'+
 		'  boolean state = false;\n'+
 		'  while ((startTime + waitTime) > millis()) {\n'+
 		'    delay(100);\n'+
-		'    while (client_tcp.available())  {\n'+
-		'        char c = client_tcp.read();\n'+
+		'    while (client.available())  {\n'+
+		'        char c = client.read();\n'+
 		'        if (state==true) getBody += String(c);\n'+ 
 		'        if (c == \'\\n\')  {\n'+
 		'          if (getAll.length()==0) state=true;\n'+
@@ -10797,31 +10752,25 @@ Blockly.Arduino['esp32_telegrambot_sendmessage_custom'] = function(block) {
 		'  Serial.println("Connect to " + String(myDomain));\n';
 		
 		if (selectBoardType()=="LinkIt")
-			Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-		else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-			Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  WiFiSSLClient client_tcp;\n';
-		else {
-			Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-			Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  WiFiClientSecure client_tcp;\n';
-			if (arduinoCore_ESP32)
-				Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  client_tcp.setInsecure();\n';
-		}			
+			Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+		else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+				Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  client.setInsecure();\n';			
 		
-		Blockly.Arduino.definitions_.sendMessageToTelegram_custom +='  if (client_tcp.connect(myDomain, 443)) {\n'+		
-		'    client_tcp.println("POST /bot"+token+"/sendMessage HTTP/1.1");\n'+
-		'    client_tcp.println("Host: " + String(myDomain));\n'+
-		'    client_tcp.println("Content-Length: " + String(request.length()));\n'+
-		'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-		'    client_tcp.println("Connection: close");\n'+
-		'    client_tcp.println();\n'+
-		'    client_tcp.print(request);\n'+
+		Blockly.Arduino.definitions_.sendMessageToTelegram_custom +='  if (client.connect(myDomain, 443)) {\n'+		
+		'    client.println("POST /bot"+token+"/sendMessage HTTP/1.1");\n'+
+		'    client.println("Host: " + String(myDomain));\n'+
+		'    client.println("Content-Length: " + String(request.length()));\n'+
+		'    client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+		'    client.println("Connection: close");\n'+
+		'    client.println();\n'+
+		'    client.print(request);\n'+
 		'    int waitTime = 5000;\n'+
 		'    long startTime = millis();\n'+
 		'    boolean state = false;\n'+
 		'    while ((startTime + waitTime) > millis()) {\n'+
 		'      delay(100);\n'+
-		'      while (client_tcp.available())  {\n'+
-		'          char c = client_tcp.read();\n'+
+		'      while (client.available())  {\n'+
+		'          char c = client.read();\n'+
 		'          if (state==true) getBody += String(c);\n'+ 
 		'          if (c == \'\\n\')  {\n'+
 		'            if (getAll.length()==0) state=true;\n'+
@@ -10850,20 +10799,20 @@ Blockly.Arduino['esp32_telegrambot_sendlink'] = function(block) {
 		'  String getAll="", getBody = "";\n'+
 		'  String request = "chat_id="+chatid+"&photo="+link;\n'+
 		'  if (keyboard!="") request += "&reply_markup="+keyboard;\n'+
-		'  client_tcp.println("POST /bot"+token+"/sendPhoto HTTP/1.1");\n'+
-		'  client_tcp.println("Host: " + String(myDomain));\n'+
-		'  client_tcp.println("Content-Length: " + String(request.length()));\n'+
-		'  client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-		'  client_tcp.println("Connection: close");\n'+
-		'  client_tcp.println();\n'+
-		'  client_tcp.print(request);\n'+
+		'  client.println("POST /bot"+token+"/sendPhoto HTTP/1.1");\n'+
+		'  client.println("Host: " + String(myDomain));\n'+
+		'  client.println("Content-Length: " + String(request.length()));\n'+
+		'  client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+		'  client.println("Connection: close");\n'+
+		'  client.println();\n'+
+		'  client.print(request);\n'+
 		'  int waitTime = 5000;\n'+
 		'  long startTime = millis();\n'+
 		'  boolean state = false;\n'+
 		'  while ((startTime + waitTime) > millis()) {\n'+
 		'    delay(100);\n'+
-		'    while (client_tcp.available())  {\n'+
-		'        char c = client_tcp.read();\n'+
+		'    while (client.available())  {\n'+
+		'        char c = client.read();\n'+
 		'        if (state==true) getBody += String(c);\n'+ 
 		'        if (c == \'\\n\')  {\n'+
 		'          if (getAll.length()==0) state=true;\n'+
@@ -10895,32 +10844,25 @@ Blockly.Arduino['esp32_telegrambot_sendlink_custom'] = function(block) {
 		'  Serial.println("Connect to " + String(myDomain));\n';
 		
 		if (selectBoardType()=="LinkIt")
-			Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-		else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-			Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  WiFiSSLClient client_tcp;\n';
-		else {
-			Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-			Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  WiFiClientSecure client_tcp;\n';
-			if (arduinoCore_ESP32)
-				Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  client_tcp.setInsecure();\n';
-		}
+			Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+		else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+				Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  client.setInsecure();\n';
 		
-		
-		Blockly.Arduino.definitions_.sendLinkToTelegram_custom +='  if (client_tcp.connect(myDomain, 443)) {\n'+			
-		'    client_tcp.println("POST /bot"+token+"/sendPhoto HTTP/1.1");\n'+
-		'    client_tcp.println("Host: " + String(myDomain));\n'+
-		'    client_tcp.println("Content-Length: " + String(request.length()));\n'+
-		'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-		'    client_tcp.println("Connection: close");\n'+
-		'    client_tcp.println();\n'+
-		'    client_tcp.print(request);\n'+
+		Blockly.Arduino.definitions_.sendLinkToTelegram_custom +='  if (client.connect(myDomain, 443)) {\n'+			
+		'    client.println("POST /bot"+token+"/sendPhoto HTTP/1.1");\n'+
+		'    client.println("Host: " + String(myDomain));\n'+
+		'    client.println("Content-Length: " + String(request.length()));\n'+
+		'    client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+		'    client.println("Connection: close");\n'+
+		'    client.println();\n'+
+		'    client.print(request);\n'+
 		'    int waitTime = 5000;\n'+
 		'    long startTime = millis();\n'+
 		'    boolean state = false;\n'+
 		'    while ((startTime + waitTime) > millis()) {\n'+
 		'      delay(100);\n'+
-		'      while (client_tcp.available())  {\n'+
-		'          char c = client_tcp.read();\n'+
+		'      while (client.available())  {\n'+
+		'          char c = client.read();\n'+
 		'          if (state==true) getBody += String(c);\n'+ 
 		'          if (c == \'\\n\')  {\n'+
 		'            if (getAll.length()==0) state=true;\n'+
@@ -10985,29 +10927,23 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'  String request = "/macros/s/AKfycbyd2HGXCxMp48fPQah4zxbmYC4qJkeL_a5sg18Jv4ubKg5aX8MO58p72ZdOBhyuHTXn/exec?key="+Authorization+"&site="+urlencode(Site);\n';
 			
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['opendataAirQuality'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_['opendataAirQuality'] += '  WiFiSSLClient client_tcp;\n';
-	else {
-		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-		Blockly.Arduino.definitions_['opendataAirQuality'] += '  WiFiClientSecure client_tcp;\n';
-		if (arduinoCore_ESP32)
-			Blockly.Arduino.definitions_['opendataAirQuality'] += '  client_tcp.setInsecure();\n';	
-	}
+		Blockly.Arduino.definitions_['opendataAirQuality'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_['opendataAirQuality'] += '  client.setInsecure();\n';	
 	
 	Blockly.Arduino.definitions_['opendataAirQuality'] += '  String getResponse="",Feedback="";\n'+
 			'  boolean state = false;\n'+
 			'  boolean cutstate = false;\n'+
 			'  int waitTime = 10000;\n'+
 			'  long startTime = millis();\n'+
-			'  if (client_tcp.connect("script.google.com", 443)) {\n'+
-			'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
-			'    client_tcp.println("Host: script.google.com");\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println();\n'+
+			'  if (client.connect("script.google.com", 443)) {\n'+
+			'    client.println("GET " + request + " HTTP/1.1");\n'+
+			'    client.println("Host: script.google.com");\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
 			'    while ((startTime + waitTime) > millis()) {\n'+
-			'      while (client_tcp.available()) {\n'+
-			'    	 char c = client_tcp.read();\n'+
+			'      while (client.available()) {\n'+
+			'    	 char c = client.read();\n'+
 			'        getResponse += String(c);\n'+	
 			'        if (state==true&&(c == \'\\r\'||c == \'\\n\'))\n'+
 			'            break;\n'+				
@@ -11024,14 +10960,14 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'      }\n'+
 			'      if (Feedback.length()!= 0) break;\n'+
 			'    }\n'+
-			'    client_tcp.stop();\n'+		
+			'    client.stop();\n'+		
 			'    //Serial.println(Feedback);\n'+
 			'  }\n'+
-			'  if (client_tcp.connect("script.googleusercontent.com", 443)) {\n'+
-			'    client_tcp.println("GET " + Feedback + " HTTP/1.1");\n'+
-			'    client_tcp.println("Host: script.googleusercontent.com");\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println();\n'+
+			'  if (client.connect("script.googleusercontent.com", 443)) {\n'+
+			'    client.println("GET " + Feedback + " HTTP/1.1");\n'+
+			'    client.println("Host: script.googleusercontent.com");\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
 			'    getResponse="";\n'+
 			'    Feedback="";\n'+
 			'    state = false;\n'+
@@ -11039,8 +10975,8 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'    waitTime = 10000;\n'+
 			'    startTime = millis();\n'+
 			'    while ((startTime + waitTime) > millis()) {\n'+
-			'      while (client_tcp.available()) {\n'+
-			'        char c = client_tcp.read();\n'+
+			'      while (client.available()) {\n'+
+			'        char c = client.read();\n'+
 			'        if (state==true) {\n'+
 			'          if (cutstate == false||(cutstate == true&&String(c)!="]")) {\n'+
 			'            Feedback += String(c);\n'+
@@ -11062,7 +10998,7 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'      }\n'+
 			'      if (Feedback.length()!= 0) break;\n'+
 			'    }\n'+
-			'    client_tcp.stop();\n'+
+			'    client.stop();\n'+
 			'    //Serial.println(Feedback);\n'+
 			'    JsonObject obj;\n';
 			
@@ -11135,29 +11071,23 @@ Blockly.Arduino['fu_taiwan_aqi_bk'] = function(block) {
 			'  String request = "/api/v2/aqx_p_432?api_key="+Authorization+"&format=json&limit=5&filters=SiteName,EQ,"+urlencode(Site);\n';
 			
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['opendataAirQuality'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="AMB82-MINI")
-		Blockly.Arduino.definitions_['opendataAirQuality'] += '  WiFiSSLClient client_tcp;\n';
-	else {
-		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-		Blockly.Arduino.definitions_['opendataAirQuality'] += '  WiFiClientSecure client_tcp;\n';
-		if (arduinoCore_ESP32)
-			Blockly.Arduino.definitions_['opendataAirQuality'] += '  client_tcp.setInsecure();\n';	
-	}
+		Blockly.Arduino.definitions_['opendataAirQuality'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_['opendataAirQuality'] += '  client.setInsecure();\n';	
 	
-	Blockly.Arduino.definitions_['opendataAirQuality'] +='  if (client_tcp.connect("data.epa.gov.tw", 443)) {\n'+
-			'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
-			'    client_tcp.println("Host: data.epa.gov.tw");\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println();\n'+
+	Blockly.Arduino.definitions_['opendataAirQuality'] +='  if (client.connect("data.epa.gov.tw", 443)) {\n'+
+			'    client.println("GET " + request + " HTTP/1.1");\n'+
+			'    client.println("Host: data.epa.gov.tw");\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
 			'    String getResponse="",Feedback="";\n'+
 			'    boolean state = false;\n'+
 			'    boolean cutstate = false;\n'+
 			'    int waitTime = 10000;\n'+
 			'    long startTime = millis();\n'+
 			'    while ((startTime + waitTime) > millis()) {\n'+
-			'      while (client_tcp.available()) {\n'+
-			'        char c = client_tcp.read();\n'+
+			'      while (client.available()) {\n'+
+			'        char c = client.read();\n'+
 			'        if (state==true) {\n'+
 			'          if (cutstate == false||(cutstate == true&&String(c)!="]")) {\n'+
 			'            Feedback += String(c);\n'+
@@ -11179,7 +11109,7 @@ Blockly.Arduino['fu_taiwan_aqi_bk'] = function(block) {
 			'      }\n'+
 			'      if (Feedback.length()!= 0) break;\n'+
 			'    }\n'+
-			'    client_tcp.stop();\n'+
+			'    client.stop();\n'+
 			'    JsonObject obj;\n';
 			
 	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI")
@@ -11256,22 +11186,16 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 			'void opendataWeather(String location, String Authorization) {\n';
 			
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['opendataWeather'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_['opendataWeather'] += '  WiFiSSLClient client_tcp;\n';
-	else {
-		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-		Blockly.Arduino.definitions_['opendataWeather'] += '  WiFiClientSecure client_tcp;\n';
-		if (arduinoCore_ESP32)
-			Blockly.Arduino.definitions_['opendataWeather'] += '  client_tcp.setInsecure();\n';	
-	}
+		Blockly.Arduino.definitions_['opendataWeather'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_['opendataWeather'] += '  client.setInsecure();\n';	
 	
-	Blockly.Arduino.definitions_['opendataWeather'] +='  if (client_tcp.connect("opendata.cwb.gov.tw", 443)) {\n'+
+	Blockly.Arduino.definitions_['opendataWeather'] +='  if (client.connect("opendata.cwb.gov.tw", 443)) {\n'+
 			'    String request = "/api/v1/rest/datastore/F-C0032-001?Authorization="+Authorization+"&locationName="+urlencode(location);\n'+	
-			'    client_tcp.println("GET " + request + " HTTP/1.1");\n'+
-			'    client_tcp.println("Host: opendata.cwb.gov.tw");\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println();\n'+
+			'    client.println("GET " + request + " HTTP/1.1");\n'+
+			'    client.println("Host: opendata.cwb.gov.tw");\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
 			'    String getResponse="",Feedback="";\n'+
 			'    boolean state = false;\n'+
 			'    int waitTime = 10000;\n'+
@@ -11280,16 +11204,16 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 			'    String temp = "";\n'+
 			'    int i = 0;\n'+
 			'    while ((startTime + waitTime) > millis()) {\n'+
-			'      while (client_tcp.available()) {\n'+
+			'      while (client.available()) {\n'+
 			'        if (state==true) {\n'+
-			'          temp = client_tcp.readStringUntil(\'\\r\');\n'+
+			'          temp = client.readStringUntil(\'\\r\');\n'+
 			'          i++;\n'+
 			'          if (i%2==0) {\n'+
 			'            Feedback += temp;\n'+
 			'          }\n'+
 			'        }\n'+
 			'        else\n'+
-			'          c = client_tcp.read();\n'+
+			'          c = client.read();\n'+
 			'        if (c == \'\\n\') {\n'+
 			'          if (getResponse.length()==0) state=true;\n'+
 			'          getResponse = "";\n'+
@@ -11300,7 +11224,7 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 			'      }\n'+
 			'      if (Feedback.length()!= 0) break;\n'+
 			'    }\n'+
-			'    client_tcp.stop();\n'+
+			'    client.stop();\n'+
 			'    temp = "";\n'+
 			'    for (i=0;i<Feedback.length();i++) {\n'+
 			'      c = Feedback[i];\n'+
@@ -13134,29 +13058,22 @@ Blockly.Arduino['tcp_https_esp32'] = function(block) {
 											
 											
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['tcp_https_esp32'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_['tcp_https_esp32'] += '  WiFiSSLClient client_tcp;\n';
-	else {
-		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-		Blockly.Arduino.definitions_['tcp_https_esp32'] += '  WiFiClientSecure client_tcp;\n';
-		if (arduinoCore_ESP32)
-			Blockly.Arduino.definitions_['tcp_https_esp32'] += '  client_tcp.setInsecure();\n';	
-	}		
+		Blockly.Arduino.definitions_['tcp_https_esp32'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_['tcp_https_esp32'] += '  client.setInsecure();\n';		
 											
-
-	Blockly.Arduino.definitions_['tcp_https_esp32'] +='  if (client_tcp.connect(domain.c_str(), port)) {\n'+
+	Blockly.Arduino.definitions_['tcp_https_esp32'] +='  if (client.connect(domain.c_str(), port)) {\n'+
 											'    //Serial.println("Connected to "+domain+" successfully.");\n'+
-											'    client_tcp.println(type + " " + request + " HTTP/1.1");\n'+
-											'    client_tcp.println("Host: " + domain);\n'+
-											'    client_tcp.println("Connection: close");\n'+
-											'    client_tcp.println("Content-Length: 0");\n'+
-											'    client_tcp.println();\n'+
+											'    client.println(type + " " + request + " HTTP/1.1");\n'+
+											'    client.println("Host: " + domain);\n'+
+											'    client.println("Connection: close");\n'+
+											'    client.println("Content-Length: 0");\n'+
+											'    client.println();\n'+
 											'    boolean state = false;\n'+
 											'    long startTime = millis();\n'+
 											'    while ((startTime + waittime) > millis()) {\n'+
-											'      while (client_tcp.available()) {\n'+
-											'        char c = client_tcp.read();\n'+
+											'      while (client.available()) {\n'+
+											'        char c = client.read();\n'+
 											'        if (c == \'\\n\') {\n'+
 											'          if (getAll.length()==0) state=true;\n'+
 											'           getAll = "";\n'+
@@ -13168,7 +13085,7 @@ Blockly.Arduino['tcp_https_esp32'] = function(block) {
 											'        }\n'+
 											'        if (getBody.length()!= 0) break;\n'+
 											'      }\n'+
-											'      client_tcp.stop();\n'+
+											'      client.stop();\n'+
 											'  }\n'+
 											'  else {\n'+
 											'    getBody="Connected to "+domain+" failed.";\n'+
@@ -13187,23 +13104,22 @@ Blockly.Arduino['tcp_https_esp32'] = function(block) {
 
 Blockly.Arduino['tcp_http_esp32'] = function(block) {
   var type = block.getFieldValue('type');
-  Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['tcp_http_esp32'] ='\n'+
 											'String tcp_http_esp32(String type,String domain,String request,int port,int waittime) {\n'+
 											'  String getAll="", getBody="";\n'+
-											'  WiFiClient client_tcp;\n'+
-											'  if (client_tcp.connect(domain.c_str(), port)) {\n'+
+											'  WiFiClient client;\n'+
+											'  if (client.connect(domain.c_str(), port)) {\n'+
 											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
-											'	client_tcp.println(type + " " + request + " HTTP/1.1");\n'+
-											'	client_tcp.println("Host: " + domain);\n'+
-											'	client_tcp.println("Connection: close");\n'+
-											'   client_tcp.println("Content-Length: 0");\n'+
-											'	client_tcp.println();\n'+
+											'	client.println(type + " " + request + " HTTP/1.1");\n'+
+											'	client.println("Host: " + domain);\n'+
+											'	client.println("Connection: close");\n'+
+											'   client.println("Content-Length: 0");\n'+
+											'	client.println();\n'+
 											'	boolean state = false;\n'+
 											'	long startTime = millis();\n'+
 											'	while ((startTime + waittime) > millis()) {\n'+
-											'	  while (client_tcp.available()) {\n'+
-											'		char c = client_tcp.read();\n'+
+											'	  while (client.available()) {\n'+
+											'		char c = client.read();\n'+
 											'		if (c == \'\\n\') {\n'+
 											'		  if (getAll.length()==0) state=true; \n'+
 											'		  getAll = "";\n'+
@@ -13215,7 +13131,7 @@ Blockly.Arduino['tcp_http_esp32'] = function(block) {
 											'	  }\n'+
 											'	  if (getBody.length()!= 0) break;\n'+
 											'	}\n'+
-											'	client_tcp.stop();\n'+
+											'	client.stop();\n'+
 											'  }\n'+
 											'  else {\n'+
 											'	getBody="Connected to "+domain+" failed.";\n'+
@@ -13233,7 +13149,6 @@ Blockly.Arduino['tcp_http_esp32'] = function(block) {
 };
 
 Blockly.Arduino['linenotify_esp32'] = function (block) {
-  Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['linenotify_esp32'] ='\n'+
 											'String LineNotify_esp32(String token, String request) {\n'+
 											'  String getAll="", getBody="";\n'+
@@ -13246,26 +13161,29 @@ Blockly.Arduino['linenotify_esp32'] = function (block) {
 											'  request.replace("%20stickerPackageId","&stickerPackageId");\n'+
 											'  request.replace("%20stickerId","&stickerId");\n'+
 											'  request.replace("%20imageFullsize","&imageFullsize");\n'+
-											'  request.replace("%20imageThumbnail","&imageThumbnail");\n'+ 
-											'  WiFiClientSecure client_tcp;\n';
-	if (arduinoCore_ESP32)
-		Blockly.Arduino.definitions_['linenotify_esp32'] += '  client_tcp.setInsecure();\n';
-	Blockly.Arduino.definitions_['linenotify_esp32'] +='  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
-											'    client_tcp.println("POST /api/notify HTTP/1.1");\n'+
-											'    client_tcp.println("Connection: close");\n'+
-											'    client_tcp.println("Host: notify-api.line.me");\n'+
-											'    client_tcp.println("User-Agent: ESp8266/1.0");\n'+
-											'    client_tcp.println("Authorization: Bearer " + token);\n'+
-											'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-											'    client_tcp.println("Content-Length: " + String(request.length()));\n'+
-											'    client_tcp.println();\n'+
-											'    client_tcp.println(request);\n'+
-											'    client_tcp.println();\n'+
+											'  request.replace("%20imageThumbnail","&imageThumbnail");\n';
+											
+	if (selectBoardType()=="LinkIt")
+		Blockly.Arduino.definitions_['linenotify_esp32'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_['linenotify_esp32'] += '  client.setInsecure();\n';	
+	
+	Blockly.Arduino.definitions_['linenotify_esp32'] +='  if (client.connect("notify-api.line.me", 443)) {\n'+
+											'    client.println("POST /api/notify HTTP/1.1");\n'+
+											'    client.println("Connection: close");\n'+
+											'    client.println("Host: notify-api.line.me");\n'+
+											'    client.println("User-Agent: ESp8266/1.0");\n'+
+											'    client.println("Authorization: Bearer " + token);\n'+
+											'    client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+											'    client.println("Content-Length: " + String(request.length()));\n'+
+											'    client.println();\n'+
+											'    client.println(request);\n'+
+											'    client.println();\n'+
 											'    boolean state = false;\n'+
 											'    long startTime = millis();\n'+
 											'    while ((startTime + 3000) > millis()) {\n'+
-											'      while (client_tcp.available()) {\n'+
-											'        char c = client_tcp.read();\n'+
+											'      while (client.available()) {\n'+
+											'        char c = client.read();\n'+
 											'        if (c == \'\\n\') {\n'+
 											'          if (getAll.length()==0) state=true;\n'+
 											'           getAll = "";\n'+
@@ -13277,7 +13195,7 @@ Blockly.Arduino['linenotify_esp32'] = function (block) {
 											'        }\n'+
 											'        if (getBody.length()!= 0) break;\n'+
 											'      }\n'+
-											'      client_tcp.stop();\n'+
+											'      client.stop();\n'+
 											'      Serial.println(getBody);\n'+
 											'  }\n'+
 											'  else {\n'+
@@ -13300,7 +13218,6 @@ Blockly.Arduino['linenotify_esp32'] = function (block) {
 };
 
 Blockly.Arduino['linenotify_esp32_no'] = function (block) {
-  Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
   Blockly.Arduino.definitions_['linenotify_esp32'] ='\n'+
 											'String LineNotify_esp32(String token, String request) {\n'+
 											'  String getAll="", getBody="";\n'+
@@ -13313,26 +13230,29 @@ Blockly.Arduino['linenotify_esp32_no'] = function (block) {
 											'  request.replace("%20stickerPackageId","&stickerPackageId");\n'+
 											'  request.replace("%20stickerId","&stickerId");\n'+
 											'  request.replace("%20imageFullsize","&imageFullsize");\n'+
-											'  request.replace("%20imageThumbnail","&imageThumbnail");\n'+ 
-											'  WiFiClientSecure client_tcp;\n';
-	if (arduinoCore_ESP32)
-		Blockly.Arduino.definitions_['linenotify_esp32'] += '  client_tcp.setInsecure();\n';
-	Blockly.Arduino.definitions_['linenotify_esp32'] +='  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
-											'    client_tcp.println("POST /api/notify HTTP/1.1");\n'+
-											'    client_tcp.println("Connection: close");\n'+
-											'    client_tcp.println("Host: notify-api.line.me");\n'+
-											'    client_tcp.println("User-Agent: ESp8266/1.0");\n'+
-											'    client_tcp.println("Authorization: Bearer " + token);\n'+
-											'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-											'    client_tcp.println("Content-Length: " + String(request.length()));\n'+
-											'    client_tcp.println();\n'+
-											'    client_tcp.println(request);\n'+
-											'    client_tcp.println();\n'+
+											'  request.replace("%20imageThumbnail","&imageThumbnail");\n';
+											
+	if (selectBoardType()=="LinkIt")
+		Blockly.Arduino.definitions_['linenotify_esp32'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_['linenotify_esp32'] += '  client.setInsecure();\n';	
+	
+	Blockly.Arduino.definitions_['linenotify_esp32'] +='  if (client.connect("notify-api.line.me", 443)) {\n'+
+											'    client.println("POST /api/notify HTTP/1.1");\n'+
+											'    client.println("Connection: close");\n'+
+											'    client.println("Host: notify-api.line.me");\n'+
+											'    client.println("User-Agent: ESp8266/1.0");\n'+
+											'    client.println("Authorization: Bearer " + token);\n'+
+											'    client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+											'    client.println("Content-Length: " + String(request.length()));\n'+
+											'    client.println();\n'+
+											'    client.println(request);\n'+
+											'    client.println();\n'+
 											'    boolean state = false;\n'+
 											'    long startTime = millis();\n'+
 											'    while ((startTime + 3000) > millis()) {\n'+
-											'      while (client_tcp.available()) {\n'+
-											'        char c = client_tcp.read();\n'+
+											'      while (client.available()) {\n'+
+											'        char c = client.read();\n'+
 											'        if (c == \'\\n\') {\n'+
 											'          if (getAll.length()==0) state=true;\n'+
 											'           getAll = "";\n'+
@@ -13344,7 +13264,7 @@ Blockly.Arduino['linenotify_esp32_no'] = function (block) {
 											'        }\n'+
 											'        if (getBody.length()!= 0) break;\n'+
 											'      }\n'+
-											'      client_tcp.stop();\n'+
+											'      client.stop();\n'+
 											'      Serial.println(getBody);\n'+
 											'  }\n'+
 											'  else {\n'+
@@ -13422,32 +13342,26 @@ Blockly.Arduino['linenotify_all'] = function(block) {
 											'  request.replace("%20imageThumbnail","&imageThumbnail");\n';
 											
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['linenotify'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_['linenotify'] += '  WiFiSSLClient client_tcp;\n';
-	else {
-		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-		Blockly.Arduino.definitions_['linenotify'] += '  WiFiClientSecure client_tcp;\n';
-		if (arduinoCore_ESP32)
-			Blockly.Arduino.definitions_['linenotify'] += '  client_tcp.setInsecure();\n';	
-	}		
+		Blockly.Arduino.definitions_['linenotify'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_['linenotify'] += '  client.setInsecure();\n';			
 	
-	Blockly.Arduino.definitions_['linenotify'] +='  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
-											'    client_tcp.println("POST /api/notify HTTP/1.1");\n'+
-											'    client_tcp.println("Connection: close");\n'+
-											'    client_tcp.println("Host: notify-api.line.me");\n'+
-											'    client_tcp.println("User-Agent: ESp8266/1.0");\n'+
-											'    client_tcp.println("Authorization: Bearer " + token);\n'+
-											'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-											'    client_tcp.println("Content-Length: " + String(request.length()));\n'+
-											'    client_tcp.println();\n'+
-											'    client_tcp.println(request);\n'+
-											'    client_tcp.println();\n'+
+	Blockly.Arduino.definitions_['linenotify'] +='  if (client.connect("notify-api.line.me", 443)) {\n'+
+											'    client.println("POST /api/notify HTTP/1.1");\n'+
+											'    client.println("Connection: close");\n'+
+											'    client.println("Host: notify-api.line.me");\n'+
+											'    client.println("User-Agent: ESp8266/1.0");\n'+
+											'    client.println("Authorization: Bearer " + token);\n'+
+											'    client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+											'    client.println("Content-Length: " + String(request.length()));\n'+
+											'    client.println();\n'+
+											'    client.println(request);\n'+
+											'    client.println();\n'+
 											'    boolean state = false;\n'+
 											'    long startTime = millis();\n'+
 											'    while ((startTime + 3000) > millis()) {\n'+
-											'      while (client_tcp.available()) {\n'+
-											'        char c = client_tcp.read();\n'+
+											'      while (client.available()) {\n'+
+											'        char c = client.read();\n'+
 											'        if (c == \'\\n\') {\n'+
 											'          if (getAll.length()==0) state=true;\n'+
 											'           getAll = "";\n'+
@@ -13459,7 +13373,7 @@ Blockly.Arduino['linenotify_all'] = function(block) {
 											'        }\n'+
 											'        if (getBody.length()!= 0) break;\n'+
 											'      }\n'+
-											'      client_tcp.stop();\n'+
+											'      client.stop();\n'+
 											'      Serial.println(getBody);\n'+
 											'  }\n'+
 											'  else {\n'+
@@ -13502,31 +13416,25 @@ Blockly.Arduino['linebot_all'] = function(block) {
 											'  String getAll="", getBody="";\n';
 											
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['linebot'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_['linebot'] += '  WiFiSSLClient client_tcp;\n';
-	else {
-		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-		Blockly.Arduino.definitions_['linebot'] += '  WiFiClientSecure client_tcp;\n';
-		if (arduinoCore_ESP32)
-			Blockly.Arduino.definitions_['linebot'] += '  client_tcp.setInsecure();\n';	
-	}		
+		Blockly.Arduino.definitions_['linebot'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_['linebot'] += '  client.setInsecure();\n';			
 	
-	Blockly.Arduino.definitions_['linebot'] +='  if (client_tcp.connect("api.line.me", 443)) {\n'+
-											'    client_tcp.println("POST /v2/bot/message/push HTTP/1.1");\n'+
-											'    client_tcp.println("Connection: close");\n'+
-											'    client_tcp.println("Host: api.line.me");\n'+
-											'    client_tcp.println("Authorization: Bearer " + token);\n'+
-											'    client_tcp.println("Content-Type: application/json; charset=utf-8");\n'+
-											'    client_tcp.println("Content-Length: " + String(request.length()));\n'+
-											'    client_tcp.println();\n'+
-											'    client_tcp.println(request);\n'+
-											'    client_tcp.println();\n'+
+	Blockly.Arduino.definitions_['linebot'] +='  if (client.connect("api.line.me", 443)) {\n'+
+											'    client.println("POST /v2/bot/message/push HTTP/1.1");\n'+
+											'    client.println("Connection: close");\n'+
+											'    client.println("Host: api.line.me");\n'+
+											'    client.println("Authorization: Bearer " + token);\n'+
+											'    client.println("Content-Type: application/json; charset=utf-8");\n'+
+											'    client.println("Content-Length: " + String(request.length()));\n'+
+											'    client.println();\n'+
+											'    client.println(request);\n'+
+											'    client.println();\n'+
 											'    boolean state = false;\n'+
 											'    long startTime = millis();\n'+
 											'    while ((startTime + 3000) > millis()) {\n'+
-											'      while (client_tcp.available()) {\n'+
-											'        char c = client_tcp.read();\n'+
+											'      while (client.available()) {\n'+
+											'        char c = client.read();\n'+
 											'        if (c == \'\\n\') {\n'+
 											'          if (getAll.length()==0) state=true;\n'+
 											'           getAll = "";\n'+
@@ -13538,7 +13446,7 @@ Blockly.Arduino['linebot_all'] = function(block) {
 											'        }\n'+
 											'        if (getBody.length()!= 0) break;\n'+
 											'      }\n'+
-											'      client_tcp.stop();\n'+
+											'      client.stop();\n'+
 											'      Serial.println(getBody);\n'+
 											'  }\n'+
 											'  else {\n'+
@@ -13576,7 +13484,6 @@ Blockly.Arduino['linebot_all'] = function(block) {
 };
 
 Blockly.Arduino['linenotify_http'] = function (block) {
-  Blockly.Arduino.definitions_['define_httpclient'] ='WiFiClient client;\n';
   Blockly.Arduino.definitions_['linenotify_http'] ='\n'+
 													'void LineNotify_http_get(String token, String message) {\n'+
 													'  String getAll="", getBody="";\n'+
@@ -13586,6 +13493,7 @@ Blockly.Arduino['linenotify_http'] = function (block) {
 													'  message.replace("#","%23");\n'+
 													'  message.replace("\\"","%22");\n'+
 													'  message.replace("\\n","%0D%0A");\n'+
+													'  WiFiClient client;\n'+													
 													'  if (client.connect("linenotify.com", 80)) {\n'+
 													'      client.println("GET /notify.php?token="+token+"&message="+message+" HTTP/1.0");\n'+
 													'      client.println("Host: linenotify.com");\n'+
@@ -13621,9 +13529,7 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
   pass = pass.replace(/"/g,"");
   
   if (selectBoardType()=="LinkIt") {
-	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <LWiFi.h>\n\n";
-	
-	Blockly.Arduino.definitions_.define_linkit_wifi_include+=''
+	Blockly.Arduino.definitions_.define_linkit_wifi_include = '#include <LWiFi.h>\nTLSClient client;\n\n'
 	+'static const char rootCA[] = "-----BEGIN CERTIFICATE-----\\r\\n"\n'
 	+'"MIIGYjCCBUqgAwIBAgIQCKNjEl2C+05Z7F44E4EjmzANBgkqhkiG9w0BAQsFADBG\\r\\n"\n'
 	+'"MQswCQYDVQQGEwJVUzEPMA0GA1UEChMGQW1hem9uMRUwEwYDVQQLEwxTZXJ2ZXIg\\r\\n"\n'
@@ -13663,9 +13569,13 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
 	+'"-----END CERTIFICATE-----\\r\\n";';
   }
   else if (selectBoardType()=="esp8266")
-	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <ESP8266WiFi.h>";
-  else 
-	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>";
+	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <ESP8266WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;";
+  else if (selectBoardType()=="esp32") 
+	Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;';
+  else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+	Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\nWiFiSSLClient client;';
+  else
+	Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;';
 
   Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = "'+ssid+'";';
   Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = "'+pass+'";';
@@ -13777,27 +13687,21 @@ Blockly.Arduino['thingspeak_update_noreturn'] = function (block) {
 											'  String getAll="", getBody="";\n';
 											
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiSSLClient client_tcp;\n';
-	else {
-		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiClientSecure client_tcp;\n';
-		if (arduinoCore_ESP32)
-			Blockly.Arduino.definitions_['tcp_https'] += '  client_tcp.setInsecure();\n';										
-	}
+		Blockly.Arduino.definitions_['tcp_https'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_['tcp_https'] += '  client.setInsecure();\n';										
 	
-	Blockly.Arduino.definitions_['tcp_https'] +='  if (client_tcp.connect(domain.c_str(), 443)) {\n'+
+	Blockly.Arduino.definitions_['tcp_https'] +='  if (client.connect(domain.c_str(), 443)) {\n'+
 											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
-											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
-											'	client_tcp.println("Host: " + domain);\n'+
-											'	client_tcp.println("Connection: close");\n'+
-											'	client_tcp.println();\n'+
+											'	client.println("GET " + request + " HTTP/1.1");\n'+
+											'	client.println("Host: " + domain);\n'+
+											'	client.println("Connection: close");\n'+
+											'	client.println();\n'+
 											'	boolean state = false;\n'+
 											'	long startTime = millis();\n'+
 											'	while ((startTime + waittime) > millis()) {\n'+
-											'	  while (client_tcp.available()) {\n'+
-											'		char c = client_tcp.read();\n'+
+											'	  while (client.available()) {\n'+
+											'		char c = client.read();\n'+
 											'		if (c == \'\\n\') {\n'+
 											'		  if (getAll.length()==0) state=true; \n'+
 											'		  getAll = "";\n'+
@@ -13809,7 +13713,7 @@ Blockly.Arduino['thingspeak_update_noreturn'] = function (block) {
 											'	  }\n'+
 											'	  if (getBody.length()!= 0) break;\n'+
 											'	}\n'+
-											'	client_tcp.stop();\n'+
+											'	client.stop();\n'+
 											'  }\n'+
 											'  else {\n'+
 											'	getBody="Connected to "+domain+" failed.";\n'+
@@ -13848,29 +13752,22 @@ Blockly.Arduino['thingspeak_update'] = function (block) {
 											'String tcp_https(String domain,String request,int waittime) {\n'+
 											'  String getAll="", getBody="";\n';
 											
-											'  WiFiClientSecure client_tcp;\n';
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiSSLClient client_tcp;\n';
-	else {
-		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiClientSecure client_tcp;\n';
-		if (arduinoCore_ESP32)
-			Blockly.Arduino.definitions_['tcp_https'] += '  client_tcp.setInsecure();\n';		
-	}
+		Blockly.Arduino.definitions_['tcp_https'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_['tcp_https'] += '  client.setInsecure();\n';		
 	
-	Blockly.Arduino.definitions_['tcp_https'] +='  if (client_tcp.connect(domain.c_str(), 443)) {\n'+
+	Blockly.Arduino.definitions_['tcp_https'] +='  if (client.connect(domain.c_str(), 443)) {\n'+
 											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
-											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
-											'	client_tcp.println("Host: " + domain);\n'+
-											'	client_tcp.println("Connection: close");\n'+
-											'	client_tcp.println();\n'+
+											'	client.println("GET " + request + " HTTP/1.1");\n'+
+											'	client.println("Host: " + domain);\n'+
+											'	client.println("Connection: close");\n'+
+											'	client.println();\n'+
 											'	boolean state = false;\n'+
 											'	long startTime = millis();\n'+
 											'	while ((startTime + waittime) > millis()) {\n'+
-											'	  while (client_tcp.available()) {\n'+
-											'		char c = client_tcp.read();\n'+
+											'	  while (client.available()) {\n'+
+											'		char c = client.read();\n'+
 											'		if (c == \'\\n\') {\n'+
 											'		  if (getAll.length()==0) state=true; \n'+
 											'		  getAll = "";\n'+
@@ -13882,7 +13779,7 @@ Blockly.Arduino['thingspeak_update'] = function (block) {
 											'	  }\n'+
 											'	  if (getBody.length()!= 0) break;\n'+
 											'	}\n'+
-											'	client_tcp.stop();\n'+
+											'	client.stop();\n'+
 											'  }\n'+
 											'  else {\n'+
 											'	getBody="Connected to "+domain+" failed.";\n'+
@@ -13922,27 +13819,21 @@ Blockly.Arduino['thingspeak_read1'] = function (block) {
 											'  String getAll="", getBody="";\n';
 											
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiSSLClient client_tcp;\n';
-	else {
-		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiClientSecure client_tcp;\n';
-		if (arduinoCore_ESP32)
-			Blockly.Arduino.definitions_['tcp_https'] += '  client_tcp.setInsecure();\n';
-	}
+		Blockly.Arduino.definitions_['tcp_https'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_['tcp_https'] += '  client.setInsecure();\n';
 	
-	Blockly.Arduino.definitions_['tcp_https'] +='  if (client_tcp.connect(domain.c_str(), 443)) {\n'+
+	Blockly.Arduino.definitions_['tcp_https'] +='  if (client.connect(domain.c_str(), 443)) {\n'+
 											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
-											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
-											'	client_tcp.println("Host: " + domain);\n'+
-											'	client_tcp.println("Connection: close");\n'+
-											'	client_tcp.println();\n'+
+											'	client.println("GET " + request + " HTTP/1.1");\n'+
+											'	client.println("Host: " + domain);\n'+
+											'	client.println("Connection: close");\n'+
+											'	client.println();\n'+
 											'	boolean state = false;\n'+
 											'	long startTime = millis();\n'+
 											'	while ((startTime + waittime) > millis()) {\n'+
-											'	  while (client_tcp.available()) {\n'+
-											'		char c = client_tcp.read();\n'+
+											'	  while (client.available()) {\n'+
+											'		char c = client.read();\n'+
 											'		if (c == \'\\n\') {\n'+
 											'		  if (getAll.length()==0) state=true; \n'+
 											'		  getAll = "";\n'+
@@ -13954,7 +13845,7 @@ Blockly.Arduino['thingspeak_read1'] = function (block) {
 											'	  }\n'+
 											'	  if (getBody.length()!= 0) break;\n'+
 											'	}\n'+
-											'	client_tcp.stop();\n'+
+											'	client.stop();\n'+
 											'  }\n'+
 											'  else {\n'+
 											'	getBody="Connected to "+domain+" failed.";\n'+
@@ -13977,27 +13868,21 @@ Blockly.Arduino['thingspeak_read2'] = function (block) {
 											'  String getAll="", getBody="";\n';
 											
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiSSLClient client_tcp;\n';
-	else {
-		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiClientSecure client_tcp;\n';
-		if (arduinoCore_ESP32)
-			Blockly.Arduino.definitions_['tcp_https'] += '  client_tcp.setInsecure();\n';
-	}
+		Blockly.Arduino.definitions_['tcp_https'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_['tcp_https'] += '  client.setInsecure();\n';
 											
-	Blockly.Arduino.definitions_['tcp_https'] += '  if (client_tcp.connect(domain.c_str(), 443)) {\n'+
+	Blockly.Arduino.definitions_['tcp_https'] += '  if (client.connect(domain.c_str(), 443)) {\n'+
 											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
-											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
-											'	client_tcp.println("Host: " + domain);\n'+
-											'	client_tcp.println("Connection: close");\n'+
-											'	client_tcp.println();\n'+
+											'	client.println("GET " + request + " HTTP/1.1");\n'+
+											'	client.println("Host: " + domain);\n'+
+											'	client.println("Connection: close");\n'+
+											'	client.println();\n'+
 											'	boolean state = false;\n'+
 											'	long startTime = millis();\n'+
 											'	while ((startTime + waittime) > millis()) {\n'+
-											'	  while (client_tcp.available()) {\n'+
-											'		char c = client_tcp.read();\n'+
+											'	  while (client.available()) {\n'+
+											'		char c = client.read();\n'+
 											'		if (c == \'\\n\') {\n'+
 											'		  if (getAll.length()==0) state=true; \n'+
 											'		  getAll = "";\n'+
@@ -14009,7 +13894,7 @@ Blockly.Arduino['thingspeak_read2'] = function (block) {
 											'	  }\n'+
 											'	  if (getBody.length()!= 0) break;\n'+
 											'	}\n'+
-											'	client_tcp.stop();\n'+
+											'	client.stop();\n'+
 											'  }\n'+
 											'  else {\n'+
 											'	getBody="Connected to "+domain+" failed.";\n'+
@@ -14031,30 +13916,23 @@ Blockly.Arduino['thingspeak_read3'] = function (block) {
   Blockly.Arduino.definitions_['tcp_https'] ='\n'+
 											'String tcp_https(String domain,String request,int waittime) {\n'+
 											'  String getAll="", getBody="";\n';
-											'  WiFiClientSecure client_tcp;\n';
 											
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['tcp_https'] += '  TLSClient client_tcp;\n  client_tcp.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiSSLClient client_tcp;\n';
-	else {
-		Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';		
-		Blockly.Arduino.definitions_['tcp_https'] += '  WiFiClientSecure client_tcp;\n';
-		if (arduinoCore_ESP32)
-			Blockly.Arduino.definitions_['tcp_https'] += '  client_tcp.setInsecure();\n';
-	}
+		Blockly.Arduino.definitions_['tcp_https'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_['tcp_https'] += '  client.setInsecure();\n';
 	
-	Blockly.Arduino.definitions_['tcp_https'] +='  if (client_tcp.connect(domain.c_str(), 443)) {\n'+
+	Blockly.Arduino.definitions_['tcp_https'] +='  if (client.connect(domain.c_str(), 443)) {\n'+
 											'	//Serial.println("Connected to "+domain+" successfully.");\n'+
-											'	client_tcp.println("GET " + request + " HTTP/1.1");\n'+
-											'	client_tcp.println("Host: " + domain);\n'+
-											'	client_tcp.println("Connection: close");\n'+
-											'	client_tcp.println();\n'+
+											'	client.println("GET " + request + " HTTP/1.1");\n'+
+											'	client.println("Host: " + domain);\n'+
+											'	client.println("Connection: close");\n'+
+											'	client.println();\n'+
 											'	boolean state = false;\n'+
 											'	long startTime = millis();\n'+
 											'	while ((startTime + waittime) > millis()) {\n'+
-											'	  while (client_tcp.available()) {\n'+
-											'		char c = client_tcp.read();\n'+
+											'	  while (client.available()) {\n'+
+											'		char c = client.read();\n'+
 											'		if (c == \'\\n\') {\n'+
 											'		  if (getAll.length()==0) state=true; \n'+
 											'		  getAll = "";\n'+
@@ -14066,7 +13944,7 @@ Blockly.Arduino['thingspeak_read3'] = function (block) {
 											'	  }\n'+
 											'	  if (getBody.length()!= 0) break;\n'+
 											'	}\n'+
-											'	client_tcp.stop();\n'+
+											'	client.stop();\n'+
 											'  }\n'+
 											'  else {\n'+
 											'	getBody="Connected to "+domain+" failed.";\n'+
@@ -14176,16 +14054,14 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
   
   if (selectBoardType()=="esp8266")
-	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <ESP8266WiFi.h>";
+	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <ESP8266WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;";
   else if (selectBoardType()=="esp32") {
-	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>";
+	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;";
 	Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
 	Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';
   }
   else 
-	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>";
-
-  Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';	
+	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;";	
 
   Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = '+ssid+';';
   Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = '+pass+';';
@@ -14979,7 +14855,7 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
   var baudrate = block.getFieldValue('baudrate');
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand'); 
   
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <LWiFi.h>\n\n'
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] = '#include <LWiFi.h>\nTLSClient client;\n\n'
 	+'static const char rootCA[] = "-----BEGIN CERTIFICATE-----\\r\\n"\n'
 	+'"MIIDBjCCAe6gAwIBAgIBATANBgkqhkiG9w0BAQsFADA8MRYwFAYDVQQDDA1teWVz\\r\\n"\n'
 	+'"cDMyLmxvY2FsMRUwEwYDVQQKDAxGYW5jeUNvbXBhbnkxCzAJBgNVBAYTAkRFMB4X\\r\\n"\n'
@@ -20399,7 +20275,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 	  Blockly.Arduino.definitions_['flash'] = "//Flash mode";
 	
   if (type=="still") {
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\nWiFiServer server(80);\n\n'+
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\nWiFiServer server(80);\n\n'+
 																'#define PWDN_GPIO_NUM     32\n'+
 																'#define RESET_GPIO_NUM    -1\n'+
 																'#define XCLK_GPIO_NUM      0\n'+
@@ -20417,7 +20293,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 																'#define HREF_GPIO_NUM     23\n'+
 																'#define PCLK_GPIO_NUM     22\n';
   } else {
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\n\n'+
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\n\n'+
 																'#define PWDN_GPIO_NUM     32\n'+
 																'#define RESET_GPIO_NUM    -1\n'+
 																'#define XCLK_GPIO_NUM      0\n'+
@@ -20930,7 +20806,7 @@ Blockly.Arduino['esp32_cam_stream_only_myfirmata'] = function(block) {
   if (flash=="Y")
 	  Blockly.Arduino.definitions_['flash'] = "//Flash mode";
 
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\n\n'+
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\n\n'+
 																'#define PWDN_GPIO_NUM     32\n'+
 																'#define RESET_GPIO_NUM    -1\n'+
 																'#define XCLK_GPIO_NUM      0\n'+
@@ -22184,8 +22060,6 @@ Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
     var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC);
     var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
 	
-	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
-
 	if (selectBoardType().indexOf("esp")!=-1)
 	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
 	else
@@ -22205,11 +22079,10 @@ Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
 			'    return "Camera capture failed";\n'+
 			'  }\n'+
 			'  \n'+
-			'  Serial.println("Connect to " + String(myDomain));\n'+
-			'  WiFiClientSecure client_tcp;\n';
+			'  Serial.println("Connect to " + String(myDomain));\n';
 	if (arduinoCore_ESP32)
-		Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive += '  client_tcp.setInsecure();\n';
-	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive +='  if (client_tcp.connect(myDomain, 443)) {\n'+
+		Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive += '  client.setInsecure();\n';
+	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive +='  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    \n'+
 			'    char *input = (char *)fb->buf;\n'+
@@ -22221,17 +22094,17 @@ Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
 			'    }\n'+
 			'    String Data = "myToken="+myLineNotifyToken+myFoldername+myFilename+myImage;\n'+
 			'    \n'+
-			'    client_tcp.println("POST " + myScript + " HTTP/1.1");\n'+
-			'    client_tcp.println("Host: " + String(myDomain));\n'+
-			'    client_tcp.println("Content-Length: " + String(Data.length()+imageFile.length()));\n'+
-			'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println();\n'+
+			'    client.println("POST " + myScript + " HTTP/1.1");\n'+
+			'    client.println("Host: " + String(myDomain));\n'+
+			'    client.println("Content-Length: " + String(Data.length()+imageFile.length()));\n'+
+			'    client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
 			'    \n'+
-			'    client_tcp.print(Data);\n'+
+			'    client.print(Data);\n'+
 			'    int Index;\n'+
 			'    for (Index = 0; Index < imageFile.length(); Index = Index+1024) {\n'+
-			'      client_tcp.print(imageFile.substring(Index, Index+1024));\n'+
+			'      client.print(imageFile.substring(Index, Index+1024));\n'+
 			'    }\n'+
 			'    esp_camera_fb_return(fb);\n'+
 			'    \n'+
@@ -22243,9 +22116,9 @@ Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
 			'    {\n'+
 			'      Serial.print(".");\n'+
 			'      delay(100);\n'+
-			'      while (client_tcp.available())\n'+
+			'      while (client.available())\n'+
 			'      {\n'+
-			'          char c = client_tcp.read();\n'+
+			'          char c = client.read();\n'+
 			'          if (state==true) getBody += String(c);\n'+        
 			'          if (c == \'\\n\')\n'+
 			'          {\n'+
@@ -22258,7 +22131,7 @@ Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
 			'       }\n'+
 			'       if (getBody.length()>0) break;\n'+
 			'    }\n'+
-			'    client_tcp.stop();\n'+
+			'    client.stop();\n'+
 			'    Serial.println(getBody);\n'+
 			'  }\n'+
 			'  else {\n'+
@@ -22286,8 +22159,8 @@ Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
 											'  return encodedMsg;\n'+
 											'}';
 			
-  var code = 'SendStillToGoogleDrive("/macros/s/'+scriptid.replace(/"/g,'')+'/exec","&myFoldername='+foldername.replace(/"/g,'')+'","&myFilename='+filename.replace(/"/g,'')+'","&myFile=",'+linetoken+');\n';
-  return code;			
+    var code = 'SendStillToGoogleDrive(String("/macros/s/")+'+scriptid+'+String("/exec"), String("&myFoldername=")+'+foldername+', String("&myFilename=")+'+filename+', "&myFile=",'+linetoken+');\n';
+    return code;				
 }
 
 Blockly.Arduino['esp32_cam_openai_vision'] = function(block) {
@@ -22299,15 +22172,14 @@ Blockly.Arduino['esp32_cam_openai_vision'] = function(block) {
 	else
 	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 
-	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive = '\n'+
+	Blockly.Arduino.definitions_.SendStillToOpenaiVision = '\n'+
 			'String SendStillToOpenaiVision(String key, String message) {\n'+
 			'  const char* myDomain = "api.openai.com";\n'+
 			'  String getResponse="",Feedback="";\n'+			
-			'  Serial.println("Connect to " + String(myDomain));\n'+
-			'  WiFiClientSecure client_tcp;\n';
+			'  Serial.println("Connect to " + String(myDomain));\n';
 	if (arduinoCore_ESP32)
-		Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive += '  client_tcp.setInsecure();\n';
-	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive +='  if (client_tcp.connect(myDomain, 443)) {\n'+
+		Blockly.Arduino.definitions_.SendStillToOpenaiVision += '  client.setInsecure();\n';
+	Blockly.Arduino.definitions_.SendStillToOpenaiVision +='  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    camera_fb_t * fb = NULL;\n'+
 			'    fb = esp_camera_fb_get();\n'+
@@ -22326,18 +22198,18 @@ Blockly.Arduino['esp32_cam_openai_vision'] = function(block) {
 			'    }\n'+
 			'    String Data = "{\\"model\\": \\"gpt-4o-mini\\", \\"messages\\": [{\\"role\\": \\"user\\",\\"content\\": [{ \\"type\\": \\"text\\", \\"text\\": \\""+message+"\\"},{\\"type\\": \\"image_url\\", \\"image_url\\": {\\"url\\": \\""+imageFile+"\\"}}]}]}";\n'+				
 			'    \n'+
-			'    client_tcp.println("POST /v1/chat/completions HTTP/1.1");\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println("Host: "+String(myDomain));\n'+
-			'    client_tcp.println("Authorization: Bearer " + key);\n'+
-			'    client_tcp.println("Content-Type: application/json; charset=utf-8");\n'+
-			'    client_tcp.println("Content-Length: " + String(Data.length()));\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println();\n'+
+			'    client.println("POST /v1/chat/completions HTTP/1.1");\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println("Host: "+String(myDomain));\n'+
+			'    client.println("Authorization: Bearer " + key);\n'+
+			'    client.println("Content-Type: application/json; charset=utf-8");\n'+
+			'    client.println("Content-Length: " + String(Data.length()));\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
 			'    \n'+
 			'    int Index;\n'+
 			'    for (Index = 0; Index < Data.length(); Index = Index+1024) {\n'+
-			'      client_tcp.print(Data.substring(Index, Index+1024));\n'+
+			'      client.print(Data.substring(Index, Index+1024));\n'+
 			'    }\n'+
 			'    \n'+
 			'    int waitTime = 10000;\n'+
@@ -22346,8 +22218,8 @@ Blockly.Arduino['esp32_cam_openai_vision'] = function(block) {
 			'    while ((startTime + waitTime) > millis()) {\n'+
 			'      Serial.print(".");\n'+
 			'      delay(100);\n'+
-			'      while (client_tcp.available()) {\n'+
-			'          char c = client_tcp.read();\n'+
+			'      while (client.available()) {\n'+
+			'          char c = client.read();\n'+
 			'          if (state==true)\n'+
 			'            getResponse += String(c);\n'+
 			'          if (c == \'\\n\')\n'+
@@ -22370,11 +22242,11 @@ Blockly.Arduino['esp32_cam_openai_vision'] = function(block) {
 			'          }\n'+
 			'       }\n'+
 			'       if (getResponse.length()>0) {\n'+
-			'          client_tcp.stop();\n'+
+			'          client.stop();\n'+
 			'          return getResponse;\n'+
 			'       }\n'+
 			'    }\n'+
-			'    client_tcp.stop();\n'+
+			'    client.stop();\n'+
 			'    getResponse = "error";\n'+
 			'  }\n'+
 			'  else {\n'+
@@ -22398,15 +22270,14 @@ Blockly.Arduino['esp32_cam_gemini_vision'] = function(block) {
 	else
 	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"\n#include <ArduinoJson.h>';
 
-	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive = '\n'+
+	Blockly.Arduino.definitions_.SendStillToGeminiVision = '\n'+
 			'String SendStillToGeminiVision(String key, String message) {\n'+
 			'  const char* myDomain = "generativelanguage.googleapis.com";\n'+
 			'  String getResponse="",Feedback="";\n'+			
-			'  Serial.println("Connect to " + String(myDomain));\n'+
-			'  WiFiClientSecure client_tcp;\n';
+			'  Serial.println("Connect to " + String(myDomain));\n';
 	if (arduinoCore_ESP32)
-		Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive += '  client_tcp.setInsecure();\n';
-	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive +='  if (client_tcp.connect(myDomain, 443)) {\n'+
+		Blockly.Arduino.definitions_.SendStillToGeminiVision += '  client.setInsecure();\n';
+	Blockly.Arduino.definitions_.SendStillToGeminiVision +='  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    camera_fb_t * fb = NULL;\n'+
 			'    fb = esp_camera_fb_get();\n'+
@@ -22426,17 +22297,17 @@ Blockly.Arduino['esp32_cam_gemini_vision'] = function(block) {
 			'    String Data = "{\\"contents\\": [{\\"parts\\": [{\\"text\\": \\""+message+"\\"}, {\\"inline_data\\": {\\"mime_type\\":\\"image/jpeg\\",\\"data\\":\\""+imageFile+"\\"}}]}]}";\n'+
 
 			'    \n'+
-			'    client_tcp.println("POST /v1beta/models/gemini-1.5-flash-latest:generateContent?key="+key+" HTTP/1.1");\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println("Host: "+String(myDomain));\n'+
-			'    client_tcp.println("Content-Type: application/json; charset=utf-8");\n'+
-			'    client_tcp.println("Content-Length: " + String(Data.length()));\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println();\n'+
+			'    client.println("POST /v1beta/models/gemini-1.5-flash-latest:generateContent?key="+key+" HTTP/1.1");\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println("Host: "+String(myDomain));\n'+
+			'    client.println("Content-Type: application/json; charset=utf-8");\n'+
+			'    client.println("Content-Length: " + String(Data.length()));\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
 			'    \n'+
 			'    int Index;\n'+
 			'    for (Index = 0; Index < Data.length(); Index = Index+1024) {\n'+
-			'      client_tcp.print(Data.substring(Index, Index+1024));\n'+
+			'      client.print(Data.substring(Index, Index+1024));\n'+
 			'    }\n'+
 			'    \n'+
 			'    int waitTime = 10000;\n'+
@@ -22446,8 +22317,8 @@ Blockly.Arduino['esp32_cam_gemini_vision'] = function(block) {
 			'    while ((startTime + waitTime) > millis()) {\n'+
 			'      Serial.print(".");\n'+
 			'      delay(100);\n'+
-			'      while (client_tcp.available())  {\n'+
-			'          char c = client_tcp.read();\n'+
+			'      while (client.available())  {\n'+
+			'          char c = client.read();\n'+
 			'          if (String(c)=="{") markState=true;\n'+
 			'          if (state==true&&markState==true) Feedback += String(c);\n'+
 			'          if (c == \'\\n\') {\n'+
@@ -22460,7 +22331,7 @@ Blockly.Arduino['esp32_cam_gemini_vision'] = function(block) {
 			'       }\n'+
 			'       if (Feedback.length()>0) break;\n'+
 			'    }\n'+
-			'    client_tcp.stop();\n'+
+			'    client.stop();\n'+
 			'    Serial.println("");\n'+
 			'    //Serial.println(Feedback);\n'+
 			'    \n'+
@@ -22492,8 +22363,6 @@ Blockly.Arduino['esp32_cam_spreadsheet'] = function(block) {
   var value_column = Blockly.Arduino.valueToCode(block, 'column', Blockly.Arduino.ORDER_ATOMIC);
   var value_row = Blockly.Arduino.valueToCode(block, 'row', Blockly.Arduino.ORDER_ATOMIC);
   var value_spreadsheet_script = Blockly.Arduino.valueToCode(block, 'spreadsheet_script', Blockly.Arduino.ORDER_ATOMIC);
-  
-	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';	
 
 	if (selectBoardType().indexOf("esp")!=-1)
 	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
@@ -22514,11 +22383,10 @@ Blockly.Arduino['esp32_cam_spreadsheet'] = function(block) {
 			'    return "Camera capture failed";\n'+
 			'  }\n'+
 			'  \n'+
-			'  Serial.println("Connect to " + String(myDomain));\n'+
-			'  WiFiClientSecure client_tcp;\n';
+			'  Serial.println("Connect to " + String(myDomain));\n';
 	if (arduinoCore_ESP32)
-		Blockly.Arduino.definitions_.SendStillToSpreadsheet += '  client_tcp.setInsecure();\n';
-	Blockly.Arduino.definitions_.SendStillToSpreadsheet +='  if (client_tcp.connect(myDomain, 443)) {\n'+
+		Blockly.Arduino.definitions_.SendStillToSpreadsheet += '  client.setInsecure();\n';
+	Blockly.Arduino.definitions_.SendStillToSpreadsheet +='  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    \n'+
 			'    char *input = (char *)fb->buf;\n'+
@@ -22528,17 +22396,17 @@ Blockly.Arduino['esp32_cam_spreadsheet'] = function(block) {
 			'      base64_encode(output, (input++), 3);\n'+
 			'      if (i%3==0) imageFile += urlencode(String(output));\n'+
 			'    }\n'+
-			'    client_tcp.println("POST " + myScript + " HTTP/1.1");\n'+
-			'    client_tcp.println("Host: " + String(myDomain));\n'+
-			'    client_tcp.println("Content-Length: " + String(Data.length()+imageFile.length()));\n'+
-			'    client_tcp.println("Content-Type: application/x-www-form-urlencoded");\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println();\n'+
+			'    client.println("POST " + myScript + " HTTP/1.1");\n'+
+			'    client.println("Host: " + String(myDomain));\n'+
+			'    client.println("Content-Length: " + String(Data.length()+imageFile.length()));\n'+
+			'    client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
 			'    \n'+
-			'    client_tcp.print(Data);\n'+
+			'    client.print(Data);\n'+
 			'    int Index;\n'+
 			'    for (Index = 0; Index < imageFile.length(); Index = Index+1024) {\n'+
-			'      client_tcp.print(imageFile.substring(Index, Index+1024));\n'+
+			'      client.print(imageFile.substring(Index, Index+1024));\n'+
 			'    }\n'+
 			'    esp_camera_fb_return(fb);\n'+
 			'    \n'+
@@ -22550,9 +22418,9 @@ Blockly.Arduino['esp32_cam_spreadsheet'] = function(block) {
 			'    {\n'+
 			'      Serial.print(".");\n'+
 			'      delay(100);\n'+
-			'      while (client_tcp.available())\n'+
+			'      while (client.available())\n'+
 			'      {\n'+
-			'          char c = client_tcp.read();\n'+
+			'          char c = client.read();\n'+
 			'          if (state==true) getBody += String(c);\n'+        
 			'          if (c == \'\\n\')\n'+
 			'          {\n'+
@@ -22565,7 +22433,7 @@ Blockly.Arduino['esp32_cam_spreadsheet'] = function(block) {
 			'       }\n'+
 			'       if (getBody.length()>0) break;\n'+
 			'    }\n'+
-			'    client_tcp.stop();\n'+
+			'    client.stop();\n'+
 			'    Serial.println(getBody);\n'+
 			'  }\n'+
 			'  else {\n'+
@@ -22601,8 +22469,6 @@ Blockly.Arduino['esp32_cam_linenotify'] = function(block) {
     var linetoken = Blockly.Arduino.valueToCode(block, 'linetoken', Blockly.Arduino.ORDER_ATOMIC);
     var linemessage = Blockly.Arduino.valueToCode(block, 'linemessage', Blockly.Arduino.ORDER_ATOMIC);
 	
-	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
-	
 	Blockly.Arduino.definitions_.SendCapturedImageToLineNotify = '\n'+
 			'String SendStillToLineNotify(String token, String message) {\n'+
 			'  camera_fb_t * fb = NULL;\n'+
@@ -22613,11 +22479,10 @@ Blockly.Arduino['esp32_cam_linenotify'] = function(block) {
 			'    ESP.restart();\n'+
 			'    return "Camera capture failed";\n'+
 			'  }\n'+
-			'  \n'+
-			'  WiFiClientSecure client_tcp;\n';
+			'  \n';
 	if (arduinoCore_ESP32)
-		Blockly.Arduino.definitions_.SendCapturedImageToLineNotify += '  client_tcp.setInsecure();\n';
-	Blockly.Arduino.definitions_.SendCapturedImageToLineNotify +='  if (client_tcp.connect("notify-api.line.me", 443)) {\n'+
+		Blockly.Arduino.definitions_.SendCapturedImageToLineNotify += '  client.setInsecure();\n';
+	Blockly.Arduino.definitions_.SendCapturedImageToLineNotify +='  if (client.connect("notify-api.line.me", 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    \n'+
 			'    if (message=="") message = "ESP32-CAM";\n'+
@@ -22628,29 +22493,29 @@ Blockly.Arduino['esp32_cam_linenotify'] = function(block) {
 			'    uint16_t extraLen = head.length() + tail.length();\n'+
 			'    uint16_t totalLen = imageLen + extraLen;\n'+
 			'    \n'+
-			'    client_tcp.println("POST \/api\/notify HTTP\/1.1");\n'+
-			'    client_tcp.println("Connection: close");\n'+
-			'    client_tcp.println("Host: notify-api.line.me");\n'+
-			'    client_tcp.println("Authorization: Bearer " + token);\n'+
-			'    client_tcp.println("Content-Length: " + String(totalLen));\n'+
-			'    client_tcp.println("Content-Type: multipart\/form-data; boundary=Taiwan");\n'+
-			'    client_tcp.println();\n'+
-			'    client_tcp.print(head);\n'+
+			'    client.println("POST \/api\/notify HTTP\/1.1");\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println("Host: notify-api.line.me");\n'+
+			'    client.println("Authorization: Bearer " + token);\n'+
+			'    client.println("Content-Length: " + String(totalLen));\n'+
+			'    client.println("Content-Type: multipart\/form-data; boundary=Taiwan");\n'+
+			'    client.println();\n'+
+			'    client.print(head);\n'+
 			'    \n'+
 			'    uint8_t *fbBuf = fb->buf;\n'+
 			'    size_t fbLen = fb->len;\n'+
 			'    for (size_t n=0;n<fbLen;n=n+1024) {\n'+
 			'      if (n+1024<fbLen) {\n'+
-			'        client_tcp.write(fbBuf, 1024);\n'+
+			'        client.write(fbBuf, 1024);\n'+
 			'        fbBuf += 1024;\n'+
 			'      }\n'+
 			'      else if (fbLen%1024>0) {\n'+
 			'        size_t remainder = fbLen%1024;\n'+
-			'        client_tcp.write(fbBuf, remainder);\n'+
+			'        client.write(fbBuf, remainder);\n'+
 			'      }\n'+
 			'    }\n'+
 			'    \n'+
-			'    client_tcp.print(tail);\n'+
+			'    client.print(tail);\n'+
 			'    esp_camera_fb_return(fb);\n'+
 			'    \n'+
 			'    String getResponse="",Feedback="";\n'+
@@ -22661,8 +22526,8 @@ Blockly.Arduino['esp32_cam_linenotify'] = function(block) {
 			'    while ((startTime + waitTime) > millis()) {\n'+
 			'      //Serial.print(".");\n'+
 			'      delay(100);\n'+
-			'      while (client_tcp.available())  {\n'+
-			'          char c = client_tcp.read();\n'+
+			'      while (client.available())  {\n'+
+			'          char c = client.read();\n'+
 			'          if (state==true) Feedback += String(c);\n'+
 			'          if (c == \'\\n\') {\n'+
 			'            if (getResponse.length()==0) state=true;\n'+
@@ -22675,7 +22540,7 @@ Blockly.Arduino['esp32_cam_linenotify'] = function(block) {
 			'       if (Feedback.length()>0) break;\n'+
 			'    }\n'+
 			'    //Serial.println();\n'+
-			'    client_tcp.stop();\n'+
+			'    client.stop();\n'+
 			'    return Feedback;\n'+
 			'  }\n'+
 			'  else {\n'+
@@ -22691,8 +22556,6 @@ Blockly.Arduino['esp32_cam_telegrambot'] = function(block) {
     var token = Blockly.Arduino.valueToCode(block, 'token', Blockly.Arduino.ORDER_ATOMIC);
     var chatid = Blockly.Arduino.valueToCode(block, 'chatid', Blockly.Arduino.ORDER_ATOMIC);
 	
-	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
-	
 	Blockly.Arduino.definitions_.sendCapturedImage2Telegram = '\n'+
 	'String sendCapturedImage2Telegram(String token, String chat_id) {\n'+
 	'  const char* myDomain = "api.telegram.org";\n'+
@@ -22704,35 +22567,34 @@ Blockly.Arduino['esp32_cam_telegrambot'] = function(block) {
 	'    delay(1000);\n'+
 	'    return "Camera capture failed";\n'+
 	'  }\n'+  
-	'  Serial.println("Connect to " + String(myDomain));\n'+
-	'  WiFiClientSecure client_tcp;\n';
+	'  Serial.println("Connect to " + String(myDomain));\n';
 	if (arduinoCore_ESP32)
-		Blockly.Arduino.definitions_.sendCapturedImage2Telegram += '  client_tcp.setInsecure();\n';
-	Blockly.Arduino.definitions_.sendCapturedImage2Telegram +='  if (client_tcp.connect(myDomain, 443)) {\n'+
+		Blockly.Arduino.definitions_.sendCapturedImage2Telegram += '  client.setInsecure();\n';
+	Blockly.Arduino.definitions_.sendCapturedImage2Telegram +='  if (client.connect(myDomain, 443)) {\n'+
 	'    Serial.println("Connection successful");\n'+
 	'    String head = "--Taiwan\\r\\nContent-Disposition: form-data; name=\\"chat_id\\"; \\r\\n\\r\\n" + chat_id + "\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"photo\\"; filename=\\"esp32-cam.jpg\\"\\r\\nContent-Type: image/jpeg\\r\\n\\r\\n";\n'+
 	'    String tail = "\\r\\n--Taiwan--\\r\\n";\n'+
 	'    uint16_t imageLen = fb->len;\n'+
 	'    uint16_t extraLen = head.length() + tail.length();\n'+
 	'    uint16_t totalLen = imageLen + extraLen;\n'+
-	'    client_tcp.println("POST /bot"+token+"/sendPhoto HTTP/1.1");\n'+
-	'    client_tcp.println("Host: " + String(myDomain));\n'+
-	'    client_tcp.println("Content-Length: " + String(totalLen));\n'+
-	'    client_tcp.println("Content-Type: multipart/form-data; boundary=Taiwan");\n'+
-	'    client_tcp.println();\n'+
-	'    client_tcp.print(head);\n'+
+	'    client.println("POST /bot"+token+"/sendPhoto HTTP/1.1");\n'+
+	'    client.println("Host: " + String(myDomain));\n'+
+	'    client.println("Content-Length: " + String(totalLen));\n'+
+	'    client.println("Content-Type: multipart/form-data; boundary=Taiwan");\n'+
+	'    client.println();\n'+
+	'    client.print(head);\n'+
 	'    uint8_t *fbBuf = fb->buf;\n'+
 	'    size_t fbLen = fb->len;\n'+
 	'    for (size_t n=0;n<fbLen;n=n+1024) {\n'+
 	'      if (n+1024<fbLen) {\n'+
-	'        client_tcp.write(fbBuf, 1024);\n'+
+	'        client.write(fbBuf, 1024);\n'+
 	'        fbBuf += 1024;\n'+
 	'      } else if (fbLen%1024>0) {\n'+
 	'        size_t remainder = fbLen%1024;\n'+
-	'        client_tcp.write(fbBuf, remainder);\n'+
+	'        client.write(fbBuf, remainder);\n'+
 	'      }\n'+
 	'    }\n'+
-	'    client_tcp.print(tail);\n'+
+	'    client.print(tail);\n'+
 	'    esp_camera_fb_return(fb);\n'+
 	'    int waitTime = 10000;\n'+
 	'    long startTime = millis();\n'+
@@ -22740,8 +22602,8 @@ Blockly.Arduino['esp32_cam_telegrambot'] = function(block) {
 	'    while ((startTime + waitTime) > millis()) {\n'+
 	'      Serial.print(".");\n'+
 	'      delay(100);\n'+
-	'      while (client_tcp.available()) {\n'+
-	'          char c = client_tcp.read();\n'+
+	'      while (client.available()) {\n'+
+	'          char c = client.read();\n'+
 	'          if (state==true) getBody += String(c);\n'+
 	'          if (c == \'\\n\') {\n'+
 	'            if (getAll.length()==0) state=true;\n'+
@@ -22753,7 +22615,7 @@ Blockly.Arduino['esp32_cam_telegrambot'] = function(block) {
 	'       }\n'+
 	'       if (getBody.length()>0) break;\n'+
 	'    }\n'+
-	'    client_tcp.stop();\n'+
+	'    client.stop();\n'+
 	'    Serial.println();\n'+
 	'    Serial.println(getBody);\n'+
 	'  } else {\n'+
@@ -23032,7 +22894,6 @@ function selectBoardType() {
 			return selectBoard.value.split(":")[0];
 	}
 	else {
-		arduinoCore_ESP32 = null;
 		return "";
 	}
 }
