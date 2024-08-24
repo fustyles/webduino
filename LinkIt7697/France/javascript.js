@@ -2753,7 +2753,7 @@ Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
 			'       }\n'+
 			'    }\n'+
 			'    client.stop();\n'+
-			'    getResponse = "error";\n'+
+			'    getResponse = "Please confirm that your image source is functioning properly or reduce the image resolution and try again.";\n'+
 			'  }\n'+
 			'  else {\n'+
 			'    getResponse = "Connected to " + String(myDomain) + " failed.";\n'+
@@ -22247,7 +22247,7 @@ Blockly.Arduino['esp32_cam_openai_vision'] = function(block) {
 			'       }\n'+
 			'    }\n'+
 			'    client.stop();\n'+
-			'    getResponse = "error";\n'+
+			'    getResponse = "Please confirm that your image source is functioning properly or reduce the image resolution and try again.";\n'+
 			'  }\n'+
 			'  else {\n'+
 			'    getResponse = "Connected to " + String(myDomain) + " failed.";\n'+
