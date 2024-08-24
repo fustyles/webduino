@@ -22394,13 +22394,11 @@ Blockly.Arduino['esp32_cam_openai_vision'] = function(block) {
 Blockly.Arduino['esp32_cam_gemini_vision'] = function(block) {
     var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
     var message = Blockly.Arduino.valueToCode(block, 'message', Blockly.Arduino.ORDER_ATOMIC);
-	
-	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>\n#include <ArduinoJson.h>';
 
 	if (selectBoardType().indexOf("esp")!=-1)
-	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
+	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"\n#include <ArduinoJson.h>';
 	else
-	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
+	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"\n#include <ArduinoJson.h>';
 
 	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive = '\n'+
 			'String SendStillToGeminiVision(String key, String message) {\n'+
