@@ -22293,8 +22293,6 @@ Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
 Blockly.Arduino['esp32_cam_openai_vision'] = function(block) {
     var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
     var message = Blockly.Arduino.valueToCode(block, 'message', Blockly.Arduino.ORDER_ATOMIC);
-	
-	Blockly.Arduino.definitions_['WiFiClientSecure'] ='#include <WiFiClientSecure.h>';
 
 	if (selectBoardType().indexOf("esp")!=-1)
 	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
