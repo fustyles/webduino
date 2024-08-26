@@ -2771,7 +2771,8 @@ Blockly.Arduino['amb82_mini_gemini_vision'] = function(block) {
     var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
     var message = Blockly.Arduino.valueToCode(block, 'message', Blockly.Arduino.ORDER_ATOMIC);
 	
-	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"\n#include <ArduinoJson.h>';
+	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
+	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
 
 	Blockly.Arduino.definitions_.SendStillToGeminiVision = '\n'+
 			'String SendStillToGeminiVision(String key, String message) {\n'+
@@ -8358,7 +8359,6 @@ Blockly.Arduino['controls_spreadsheet_query'] = function(block){
 	var cole = Blockly.Arduino.valueToCode(block,"cole",Blockly.Arduino.ORDER_NONE);
 	var rowe = Blockly.Arduino.valueToCode(block,"rowe",Blockly.Arduino.ORDER_NONE);
 	
-	
 	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
 	Blockly.Arduino.definitions_['spreadsheetQueryData'] = 'String spreadsheetQueryData = "{\\"values\\":[]}";';		
 
@@ -10237,7 +10237,9 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
   var statements_loop = Blockly.Arduino.statementToCode(block, 'loop');  
 
-  Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\n#include <ArduinoJson.h>\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nlong message_id_last = 0;\nboolean sendHelp = false;\n';
+  Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
+	
+  Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nlong message_id_last = 0;\nboolean sendHelp = false;\n';
 
 	Blockly.Arduino.definitions_.sendMessageToTelegram = ''+
 		'void sendMessageToTelegram(String token, String chatid, String text, String keyboard) {\n'+
@@ -10451,8 +10453,10 @@ Blockly.Arduino['esp32cam_telegrambot'] = function(block) {
     keyboard = keyboard.substring(1,keyboard.length-1);
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
   var statements_loop = Blockly.Arduino.statementToCode(block, 'loop');
+
+  Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';  
   
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] = '#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include <ArduinoJson.h>\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\n#include "Base64_tool.h"\n#include "Base64.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nlong message_id_last = 0;\nboolean sendHelp = false;\n'+
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] = '#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\n#include "Base64_tool.h"\n#include "Base64.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nlong message_id_last = 0;\nboolean sendHelp = false;\n'+
 																'#define PWDN_GPIO_NUM     32\n'+
 																'#define RESET_GPIO_NUM    -1\n'+
 																'#define XCLK_GPIO_NUM      0\n'+
@@ -11177,7 +11181,6 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 	var value_Authorization = Blockly.Arduino.valueToCode(block, 'Authorization', Blockly.Arduino.ORDER_ATOMIC);
 	
 	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
-
 	Blockly.Arduino.definitions_['Weather0012'] = 'String Weather0012[8] = {"","","","","","","",""};';
 	Blockly.Arduino.definitions_['Weather1224'] = 'String Weather1224[8] = {"","","","","","","",""};';
 	Blockly.Arduino.definitions_['Weather2436'] = 'String Weather2436[8] = {"","","","","","","",""};';
@@ -13978,7 +13981,8 @@ Blockly.Arduino['thingspeak_format'] = function(block) {
 };
 
 Blockly.Arduino['thingspeak_field'] = function(block) { 
-  Blockly.Arduino.definitions_['ThingspeakJson_library'] ='#include <ArduinoJson.h>';
+  Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
+  
   Blockly.Arduino.definitions_['ThingspeakJson_field'] ='\n'+
 											'String getThingspeakField(String json, int recordNumber, String fieldName) {\n'+
 											'  String getRecord ="";\n'+
@@ -22265,10 +22269,12 @@ Blockly.Arduino['esp32_cam_gemini_vision'] = function(block) {
     var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
     var message = Blockly.Arduino.valueToCode(block, 'message', Blockly.Arduino.ORDER_ATOMIC);
 
+	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
+	
 	if (selectBoardType().indexOf("esp")!=-1)
-	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"\n#include <ArduinoJson.h>';
+	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
 	else
-	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"\n#include <ArduinoJson.h>';
+	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 
 	Blockly.Arduino.definitions_.SendStillToGeminiVision = '\n'+
 			'String SendStillToGeminiVision(String key, String message) {\n'+
