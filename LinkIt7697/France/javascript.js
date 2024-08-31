@@ -1,3 +1,21 @@
+Blockly.Arduino['amb82_mini_usb_uvcd'] = function(block) {
+	Blockly.Arduino.definitions_['define_usb_uvcd'] ='#include "StreamIO.h"\n#include "VideoStream.h"\n#include "UVCD.h"\n#define STREAM_CHANNEL 0\nVideoSetting stream_config(USB_UVCD_STREAM_PRESET);\nVideo camera_uvcd;\nUVCD usb_uvcd;\nStreamIO videoStreamer(1, 1);\n';
+	Blockly.Arduino.setups_['setup_usb_uvcd'] =''
+	+'camera_uvcd.configVideoChannel(STREAM_CHANNEL, stream_config);\n'
+	+'  camera_uvcd.videoInit(STREAM_CHANNEL);\n'
+	+'  usb_uvcd.configVideo(stream_config);\n'
+	+'  videoStreamer.registerInput(camera_uvcd.getStream(STREAM_CHANNEL));\n'
+	+'  videoStreamer.registerOutput(usb_uvcd);\n'
+	+'  if (videoStreamer.begin() != 0) {\n'	
+	+'      Serial.println("StreamIO link start failed");\n'
+	+'  }\n'
+	+'  camera_uvcd.channelBegin(STREAM_CHANNEL);\n'
+	+'  usb_uvcd.begin(camera_uvcd.getStream(STREAM_CHANNEL), videoStreamer.linker, STREAM_CHANNEL);\n';
+	
+	var code = "";
+	return code;
+};
+
 Blockly.Arduino['amb82_mini_flashmemory_write'] = function(block) {
 	var address = Blockly.Arduino.valueToCode(block, 'address', Blockly.Arduino.ORDER_ATOMIC);
 	var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);

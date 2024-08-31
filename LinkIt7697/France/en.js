@@ -29,11 +29,13 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
-Blockly.Msg["FLASHMEMORY"] = "Memory";
-Blockly.Msg["FLASHMEMORY_WRITE"] = "Write";
-Blockly.Msg["FLASHMEMORY_ADDRESS"] = "Address";
-Blockly.Msg["FLASHMEMORY_VALUE"] = "Positive integer value";
-Blockly.Msg["FLASHMEMORY_READ"] = "Read";
+Blockly.Msg["AMB82_MINI_USB_UVCD"] = "USB Camera";
+
+Blockly.Msg["AMB82_MINI_FLASHMEMORY"] = "Memory";
+Blockly.Msg["AMB82_MINI_FLASHMEMORY_WRITE"] = "Write";
+Blockly.Msg["AMB82_MINI_FLASHMEMORY_ADDRESS"] = "Address";
+Blockly.Msg["AMB82_MINI_FLASHMEMORY_VALUE"] = "Positive integer value";
+Blockly.Msg["AMB82_MINI_FLASHMEMORY_READ"] = "Read";
 
 Blockly.Msg["UDP"] = "UDP Communication";
 Blockly.Msg["UDP_INITIAL"] = "Initialize";

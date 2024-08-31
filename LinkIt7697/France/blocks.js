@@ -87,19 +87,31 @@ Blockly.Blocks['amb82_mini_webbluetooth_get'] = {
   }  
 };
 
+Blockly.Blocks['amb82_mini_usb_uvcd'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_USB_UVCD"]);
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_14"]);
+  }
+};
+
 Blockly.Blocks['amb82_mini_flashmemory_write'] = {
   init: function() {
     this.appendDummyInput()
 	    .appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg["FLASHMEMORY"])	
-        .appendField(Blockly.Msg["FLASHMEMORY_WRITE"]);
+        .appendField(Blockly.Msg["AMB82_MINI_FLASHMEMORY"])	
+        .appendField(Blockly.Msg["AMB82_MINI_FLASHMEMORY_WRITE"]);
     this.appendValueInput("address")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg["FLASHMEMORY_ADDRESS"]);		
+		.appendField(Blockly.Msg["AMB82_MINI_FLASHMEMORY_ADDRESS"]);		
     this.appendValueInput("val")
         .setCheck("Number")
-		.appendField(Blockly.Msg["FLASHMEMORY_VALUE"]);	
+		.appendField(Blockly.Msg["AMB82_MINI_FLASHMEMORY_VALUE"]);	
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -111,12 +123,12 @@ Blockly.Blocks['amb82_mini_flashmemory_read'] = {
   init: function() {
     this.appendDummyInput()
 	    .appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg["FLASHMEMORY"])	
-        .appendField(Blockly.Msg["FLASHMEMORY_READ"]);
+        .appendField(Blockly.Msg["AMB82_MINI_FLASHMEMORY"])	
+        .appendField(Blockly.Msg["AMB82_MINI_FLASHMEMORY_READ"]);
     this.appendValueInput("address")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg["FLASHMEMORY_ADDRESS"]);		
+		.appendField(Blockly.Msg["AMB82_MINI_FLASHMEMORY_ADDRESS"]);		
 	this.setInputsInline(true);
 	this.setOutput(true, null);
     this.setColour(Blockly.Msg["HUE_17"]);

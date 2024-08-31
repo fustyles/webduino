@@ -29,11 +29,13 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
-Blockly.Msg["FLASHMEMORY"] = "快閃記憶體";
-Blockly.Msg["FLASHMEMORY_WRITE"] = "寫入";
-Blockly.Msg["FLASHMEMORY_ADDRESS"] = "位址";
-Blockly.Msg["FLASHMEMORY_VALUE"] = "正整數值";
-Blockly.Msg["FLASHMEMORY_READ"] = "讀取";
+Blockly.Msg["AMB82_MINI_USB_UVCD"] = "USB視訊鏡頭";
+
+Blockly.Msg["AMB82_MINI_FLASHMEMORY"] = "快閃記憶體";
+Blockly.Msg["AMB82_MINI_FLASHMEMORY_WRITE"] = "寫入";
+Blockly.Msg["AMB82_MINI_FLASHMEMORY_ADDRESS"] = "位址";
+Blockly.Msg["AMB82_MINI_FLASHMEMORY_VALUE"] = "正整數值";
+Blockly.Msg["AMB82_MINI_FLASHMEMORY_READ"] = "讀取";
 
 Blockly.Msg["UDP"] = "UDP通訊";
 Blockly.Msg["UDP_INITIAL"] = "初始化";

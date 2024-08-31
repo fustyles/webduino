@@ -2527,6 +2527,8 @@
 							<field name="TEXT">2 * 1024 * 1024</field>
 						</block>
 					</value>			  
+			  </block>
+			  <block type="amb82_mini_usb_uvcd">			  
 			  </block>			  
 			  <block type="amb82_mini_draw_createBitmap">			  
 			  </block>			  
