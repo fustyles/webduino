@@ -1075,6 +1075,7 @@ Blockly.Msg["KEYBOARD_KEYDOWN"] = "KEY DOWN";
 Blockly.Msg["KEYBOARD_KEYUP"] = "KEY UP";
 Blockly.Msg["KEYBOARD_KEYPRESS"] = "KEY PRESS";
 
+Blockly.Msg.WEBBLUETOOTH_SHOW = "Web Bluetooth";
 Blockly.Msg.WEBBLUETOOTH_ESP32_SHOW = "Web Bluetooth(ESP32)";
 Blockly.Msg.WEBBLUETOOTH_LINKIT7697_SHOW = "Web Bluetooth(LinkIt7697)";
 Blockly.Msg.WEBBLUETOOTH_BLENAME_SHOW = "Name";

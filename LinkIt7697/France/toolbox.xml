@@ -3730,7 +3730,7 @@
 		  </block>		  
 		</category>
 		<category name="amb82_mini_Flashmemory">				
-		  <block type="flashmemory_write">
+		  <block type="amb82_mini_flashmemory_write">
 			<value name="address">
 			  <block type="text">
 				<field name="TEXT">0x1E00</field>
@@ -3742,7 +3742,7 @@
 			  </block>
 			</value>			
 		  </block>
-		  <block type="flashmemory_read">
+		  <block type="amb82_mini_flashmemory_read">
 			<value name="address">
 			  <block type="text">
 				<field name="TEXT">0x1E00</field>

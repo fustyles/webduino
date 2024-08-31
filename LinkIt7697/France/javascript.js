@@ -1,4 +1,4 @@
-Blockly.Arduino['flashmemory_write'] = function(block) {
+Blockly.Arduino['amb82_mini_flashmemory_write'] = function(block) {
 	var address = Blockly.Arduino.valueToCode(block, 'address', Blockly.Arduino.ORDER_ATOMIC);
 	var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
 
@@ -10,7 +10,7 @@ Blockly.Arduino['flashmemory_write'] = function(block) {
 	return code;
 };
 
-Blockly.Arduino['flashmemory_read'] = function(block) {
+Blockly.Arduino['amb82_mini_flashmemory_read'] = function(block) {
 	var address = Blockly.Arduino.valueToCode(block, 'address', Blockly.Arduino.ORDER_ATOMIC);
 	
 	Blockly.Arduino.definitions_['define_flashmemory'] ='#include <FlashMemory.h>\n#define RESET_THRESHOLD 5\n';

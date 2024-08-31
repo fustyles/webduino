@@ -1073,6 +1073,7 @@ Blockly.Msg["KEYBOARD_KEYDOWN"] = "按下";
 Blockly.Msg["KEYBOARD_KEYUP"] = "放開";
 Blockly.Msg["KEYBOARD_KEYPRESS"] = "按壓";
 
+Blockly.Msg.WEBBLUETOOTH_SHOW = "網頁藍芽";
 Blockly.Msg.WEBBLUETOOTH_ESP32_SHOW = "網頁藍芽(ESP32)";
 Blockly.Msg.WEBBLUETOOTH_LINKIT7697_SHOW = "網頁藍芽(LinkIt7697)";
 Blockly.Msg.WEBBLUETOOTH_BLENAME_SHOW = "名稱";
