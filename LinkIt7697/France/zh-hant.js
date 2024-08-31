@@ -29,6 +29,12 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["FLASHMEMORY"] = "快閃記憶體";
+Blockly.Msg["FLASHMEMORY_WRITE"] = "寫入";
+Blockly.Msg["FLASHMEMORY_ADDRESS"] = "位址";
+Blockly.Msg["FLASHMEMORY_VALUE"] = "正整數值";
+Blockly.Msg["FLASHMEMORY_READ"] = "讀取";
+
 Blockly.Msg["UDP"] = "UDP通訊";
 Blockly.Msg["UDP_INITIAL"] = "初始化";
 Blockly.Msg["UDP_PORT"] = "埠號";
@@ -38,6 +44,12 @@ Blockly.Msg["UDP_DATA"] = "資料";
 Blockly.Msg["UDP_IP"] = "IP位址";
 Blockly.Msg["UDP_PORT"] = "埠號";
 Blockly.Msg["UDP_WRITE"] = "寫入";
+
+Blockly.Msg["AMB82_MINI_BOARD_PIN"] = "腳位";
+Blockly.Msg["AMB82_MINI_BOARD_PIN_GREEN"] = "綠燈";
+Blockly.Msg["AMB82_MINI_BOARD_PIN_BLUE"] = "藍燈";
+Blockly.Msg["AMB82_MINI_BOARD_PIN_LED"] = "補光燈";
+Blockly.Msg["AMB82_MINI_BOARD_PIN_BUTTON"] = "功能鍵";
 
 Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "截圖上傳Telegram Bot";
 

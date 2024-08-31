@@ -29,6 +29,12 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["FLASHMEMORY"] = "Memory";
+Blockly.Msg["FLASHMEMORY_WRITE"] = "Write";
+Blockly.Msg["FLASHMEMORY_ADDRESS"] = "Address";
+Blockly.Msg["FLASHMEMORY_VALUE"] = "Positive integer value";
+Blockly.Msg["FLASHMEMORY_READ"] = "Read";
+
 Blockly.Msg["UDP"] = "UDP Communication";
 Blockly.Msg["UDP_INITIAL"] = "Initialize";
 Blockly.Msg["UDP_PORT"] = "Port Number";
@@ -38,6 +44,12 @@ Blockly.Msg["UDP_DATA"] = "Data";
 Blockly.Msg["UDP_IP"] = "IP Address";
 Blockly.Msg["UDP_PORT"] = "Port Number";
 Blockly.Msg["UDP_WRITE"] = "Write";
+
+Blockly.Msg["AMB82_MINI_BOARD_PIN"] = "PIN";
+Blockly.Msg["AMB82_MINI_BOARD_PIN_GREEN"] = "Green light";
+Blockly.Msg["AMB82_MINI_BOARD_PIN_BLUE"] = "Blue light";
+Blockly.Msg["AMB82_MINI_BOARD_PIN_LED"] = "Fill light";
+Blockly.Msg["AMB82_MINI_BOARD_PIN_BUTTON"] = "Function keys";
 
 Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "Upload Screenshot to Telegram Bot";
 

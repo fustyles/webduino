@@ -1,5 +1,5 @@
 <category id="FRANCEFU" name="FRANCEFU" colour="290">
-	<category id="france11" name="io">
+	<category name="io">
 	  <block type="esp32_digitalwrite">
 		<value name="pin">
 		  <block type="math_number">
@@ -153,7 +153,7 @@
 		</block>		
 	</category>
 
-	<category id="france20" name="uartmodule"> 
+	<category name="uartmodule"> 
 	  <block type="uart_initial">
 		<value name="rx">
 		  <block type="math_number">
@@ -190,7 +190,7 @@
 		</block>	  
 	</category> 
 	
-	<category id="france20" name="taskhandle">
+	<category name="taskhandle">
 	  <block type="taskhandle_statement_pico">	
 	  </block>
 	  <block type="taskhandle_initial">
@@ -251,7 +251,7 @@
 	  </block>	  
 	</category>
 	
-	<category id="france21" name="preferences">
+	<category name="preferences">
 	  <block type="preferences_write">
 		<value name="namespace">
 		  <block type="text">
@@ -303,8 +303,8 @@
 	</category>
 	
 	<sep id="category_sep"></sep>	
-	<category id="france6" name="client">
-		<category id="france23" name="wifi">	
+	<category name="client">
+		<category name="wifi">	
 		  <block type="esp32_wifi_wait_until_ready">
 			<value name="SSID">
 			  <block type="text">
@@ -346,7 +346,7 @@
 		  </block>			  
 		</category>
 
-		<category id="france23" name="udp">
+		<category name="udp">
 		  <block type="udp_initial">
 			<value name="port">
 			  <block type="math_number">
@@ -375,7 +375,7 @@
 		  </block>		  
 		</category>
 
-		<category id="france23" name="tcp">
+		<category name="tcp">
 		  <block type="tcp_https_esp32">
 			<value name="domain">
 			  <block type="text">
@@ -423,8 +423,8 @@
 		</category>	  
     </category>
 	
-	<category id="france7" name="servermodule"> 
-		<category id="france23" name="servercommand">
+	<category name="servermodule"> 
+		<category name="servercommand">
 			  <block type="servermodule_parameter_get">
 			  </block>
 			  <block type="servermodule_cmd">
@@ -677,7 +677,7 @@
 		</category>		
 
 		
-		<category id="france20" name="serverUart"> 
+		<category name="serverUart"> 
 			<block type="uart_server_initial">
 				<field name="serial">Serial</field>
 				<field name="baudrate">9600</field>
@@ -717,7 +717,7 @@
 			</block>			  
 		</category>
 
-		<category id="france20" name="webusb"> 
+		<category name="webusb"> 
 			<block type="webusb_server_initial">
 				<field name="baudrate">9600</field>
 				<statement name="statement">
@@ -747,7 +747,7 @@
 		</category> 
 		
 		
-		<category id="france20" name="serveresp32"> 
+		<category name="serveresp32"> 
 			  <block type="esp32_myfirmata">
 				<value name="ssid">
 				  <block type="text">
@@ -909,7 +909,7 @@
 			  </block>			  
 		</category> 
 
-		<category id="france21" name="serveresp32cam">
+		<category name="serveresp32cam">
 			  <block type="esp32_cam_initial">
 				<field name="framesize">QVGA</field>
 			  </block>
@@ -1287,7 +1287,7 @@
 			</block>			  
 		</category>		
 		
-		<category id="france26" name="pixelbit">		
+		<category name="pixelbit">		
 			  <block type="esp32_pixelbit_stream_myfirmata">
 				<value name="ssid">
 				  <block type="text" id="100">
@@ -1616,7 +1616,7 @@
 			  </block>				  
 		</category>	
 
-		<category id="france22" name="serverlinkit7697"> 	  
+		<category name="serverlinkit7697"> 	  
 			  <block type="linkit7697_myfirmata">
 				<value name="ssid">
 				  <block type="text" id="100">
@@ -1768,7 +1768,7 @@
 			  </block>			  
 		</category>
 				
-		<category id="france20" name="telegrambot"> 
+		<category name="telegrambot"> 
 		  <block type="esp32_telegrambot">
 			<field name="baudrate">115200</field>
 			<value name="ssid">
@@ -2107,8 +2107,8 @@
     </category>
 
 	
-	<category id="france21" name="amb82_mini">
-		<category id="france7" name="servermodule"> 
+	<category name="amb82_mini">
+		<category name="servermodule"> 
 			  <block type="amb82_mini_myfirmata">
 				<field name="baudrate">115200</field>
 				<field name="framesize">VIDEO_VGA</field>
@@ -2274,7 +2274,7 @@
 			  <block type="amb82_mini_stream_url">							
 			  </block>			  		  
 		</category>		
-		<category id="france23" name="servercommand">
+		<category name="servercommand">
 			  <block type="servermodule_parameter_get">
 			  </block>
 			  <block type="servermodule_cmd">
@@ -2496,8 +2496,12 @@
 			  </block>	
 			  -->
 		</category>
-		<sep id="category_sep"></sep>		
-		<category id="france23" name="amb82_mini_video">				
+		<sep id="category_sep"></sep>
+		<category name="amb82_mini_Pins">
+			  <block type="amb82_mini_board_pins">			  
+			  </block>
+		</category>			  
+		<category name="amb82_mini_video">				
 			  <block type="amb82_mini_video_initial">
 					<value name="width">
 					  <block type="math_number">
@@ -2523,7 +2527,7 @@
 							<field name="TEXT">2 * 1024 * 1024</field>
 						</block>
 					</value>			  
-			  </block>
+			  </block>			  
 			  <block type="amb82_mini_draw_createBitmap">			  
 			  </block>			  
 			  <block type="amb82_mini_drawline">
@@ -2747,15 +2751,15 @@
 				<field name="board">AMB82-MINI</field>
 			  </block>				  
 		</category>	
-		<category id="france23" name="amb82_mini_rtsp">
+		<category name="amb82_mini_rtsp">
 			  <block type="amb82_mini_rtsp">
 			  </block>
 		</category>
-		<category id="france23" name="amb82_mini_rtp">				
+		<category name="amb82_mini_rtp">				
 			  <block type="amb82_mini_rtp_audio">
 			  </block>
 		</category>		
-		<category id="france23" name="amb82_mini_mp4">				
+		<category name="amb82_mini_mp4">				
 			  <block type="amb82_mini_mp4_initial">
 					<value name="fileduration">
 					  <block type="math_number">
@@ -2778,11 +2782,11 @@
 			  <block type="amb82_mini_mp4_getstate">		  
 			  </block>				  
 		</category>	
-		<category id="france23" name="amb82_mini_video_qrcode">				
+		<category name="amb82_mini_video_qrcode">				
 			  <block type="amb82_mini_video_qrcode">		  
 			  </block>				  
 		</category>		
-		<category id="france23" name="amb82_mini_ObjectDetection_RTPS">				
+		<category name="amb82_mini_ObjectDetection_RTPS">				
 			  <block type="amb82_mini_objectdetection_rtsp">		  
 			  </block>
 			  <block type="amb82_mini_objectdetection_rtsp_rect">		  
@@ -3006,7 +3010,7 @@
 					</value>
 			  </block>			  
 		</category>
-		<category id="france23" name="amb82_mini_FaceDetection">				
+		<category name="amb82_mini_FaceDetection">				
 			  <block type="amb82_mini_facedetection_rtsp">		  
 			  </block>
 			  <block type="amb82_mini_facedetection_rtsp_rect">		  
@@ -3124,7 +3128,7 @@
 					</value>
 			  </block>	
 		</category>
-		<category id="france23" name="amb82_mini_FaceRecognition">				
+		<category name="amb82_mini_FaceRecognition">				
 			  <block type="amb82_mini_facedetectionrecognition_rtsp">		  
 			  </block>
 			  <block type="amb82_mini_facedetectionrecognition_rtsp_rect">		  
@@ -3249,7 +3253,7 @@
 					</value>
 			  </block> 
 		</category>
-		<category id="france23" name="amb82_mini_MotionDetection">
+		<category name="amb82_mini_MotionDetection">
 			  <block type="amb82_mini_motiondetection_rtsp">		  
 			  </block>
 			  <block type="amb82_mini_motiondetection_rtsp_rect">		  
@@ -3365,7 +3369,7 @@
 					</value>
 			  </block> 			  
 		</category>		
-		<category id="france23" name="amb82_mini_AudioClassification">				
+		<category name="amb82_mini_AudioClassification">				
 			  <block type="amb82_mini_audioclassification">		  
 			  </block>
 			  <block type="amb82_mini_audioclassification_get">		  
@@ -3382,7 +3386,7 @@
 			  <block type="amb82_mini_audioclassification_object">		  
 			  </block>  			  
 		</category>	
-		<category id="france23" name="amb82_mini_ImageClassification">				
+		<category name="amb82_mini_ImageClassification">				
 			  <block type="amb82_mini_imageclassification">		  
 			  </block>		  
 			  <block type="amb82_mini_imageclassification_get">		  
@@ -3395,7 +3399,7 @@
 				</value>			  
 			  </block>			  
 		</category>	
-		<category id="france23" name="amb82_mini_EmotionClassification">				
+		<category name="amb82_mini_EmotionClassification">				
 			  <block type="amb82_mini_emotionclassification_rtsp">		  
 			  </block>
 			  <block type="amb82_mini_emotionclassification_rtsp_get">		  
@@ -3413,7 +3417,7 @@
 			  </block>			  
 		</category>	
 		<sep id="category_sep"></sep>		
-		<category id="france23" name="amb82_mini_ble_keyboard">				
+		<category name="amb82_mini_ble_keyboard">				
 		  <block type="amb82_mini_blekeyboard">
 			<value name="blename">
 			  <block type="text">
@@ -3491,7 +3495,7 @@
 		  <block type="amb82_mini_blekeyboard_keycode_consumer">			
 		  </block>		  
 		</category>
-		<category id="france23" name="amb82_mini_ble_mouse">				
+		<category name="amb82_mini_ble_mouse">				
 		  <block type="amb82_mini_blemouse">
 			<value name="blename">
 			  <block type="text" id="100">
@@ -3535,7 +3539,7 @@
 			</value>			
 		  </block>			  
 		</category>
-		<category id="france23" name="amb82_mini_Gtimer">				
+		<category name="amb82_mini_Gtimer">				
 			  <block type="amb82_mini_gtimer_initial">
 			  		<value name="interval_">
 					  <block type="math_number">
@@ -3546,7 +3550,7 @@
 			  <block type="amb82_mini_gtimer_function">
 			  </block>			  
 		</category>	
-		<category id="france23" name="amb82_mini_DeepSleep">
+		<category name="amb82_mini_DeepSleep">
 			  <block type="amb82_mini_deepsleep_initial">
 			  		<value name="days_">
 					  <block type="math_number">
@@ -3572,7 +3576,7 @@
 			  <block type="amb82_mini_deepsleep_start">
 			  </block>
 		</category>
-		<category id="france23" name="amb82_mini_Interrupt">
+		<category name="amb82_mini_Interrupt">
 			<block type="amb82_mini_interrupt">
 				<value name="pin_">
 				  <block type="math_number">
@@ -3581,7 +3585,7 @@
 				</value>
 			</block>	
 		</category>	
-		<category id="france23" name="amb82_mini_RTC">
+		<category name="amb82_mini_RTC">
 			<block type="amb82_mini_rtc_initial">
 			  		<value name="year_">
 					  <block type="math_number">
@@ -3641,7 +3645,7 @@
 			<block type="amb82_mini_rtc_gettime">
 			</block>			
 		</category>			
-		<category id="france23" name="amb82_mini_FileSystem">
+		<category name="amb82_mini_FileSystem">
 			<block type="amb82_mini_folder">
 				<value name="foldername">
 				  <block type="text">
@@ -3684,7 +3688,7 @@
 			<block type="amb82_mini_folder_list_attribute">			
 			</block>			
 		</category>
-		<category id="france23" name="amb82_mini_ntp">
+		<category name="amb82_mini_ntp">
 		  <block type="amb82_mini_ntpserver_initial">
 			<value name="gmtOffset">
 			  <block type="math_number">
@@ -3697,7 +3701,7 @@
 		  <block type="amb82_mini_ntpserver_get">
 		  </block>		
 		</category>		
-		<category id="france23" name="amb82_mini_udp">
+		<category name="amb82_mini_udp">
 		  <block type="udp_initial">
 			<value name="port">
 			  <block type="math_number">
@@ -3725,8 +3729,28 @@
 			</value>			
 		  </block>		  
 		</category>
+		<category name="amb82_mini_Flashmemory">				
+		  <block type="flashmemory_write">
+			<value name="address">
+			  <block type="text">
+				<field name="TEXT">0x1E00</field>
+			  </block>
+			</value>		  
+			<value name="val">
+			  <block type="math_number">
+				<field name="NUM"></field>
+			  </block>
+			</value>			
+		  </block>
+		  <block type="flashmemory_read">
+			<value name="address">
+			  <block type="text">
+				<field name="TEXT">0x1E00</field>
+			  </block>
+			</value>			
+		  </block>			  
+		</category>	
 	</category>	
-
 	
 		
 	<sep id="category_sep"></sep>
@@ -3943,7 +3967,7 @@
 				</value> 			  
 			  </block>    			  
 		</category>		
-		<category id="france26" name="objectreconginition">
+		<category name="objectreconginition">
 			  <block type="cocossd_esp32cam">
 			  </block>
 			  <block type="cocossd_video">    
@@ -4451,7 +4475,7 @@
 		  <block type="faceapirecognize_canvas_get">
 		  </block>		  
 		</category>		
-		<category id="france26" name="trackingcolor">
+		<category name="trackingcolor">
 			  <block type="trackingcolor_esp32cam">
 			  </block>
 			  <block type="trackingcolor_set">
@@ -9338,8 +9362,8 @@
 	
 	<sep id="category_sep"></sep>
 	
-	<category id="france7" name="blemodule">
-		<category id="france7" name="bluetoothmodule">
+	<category name="blemodule">
+		<category name="bluetoothmodule">
 		 
 		  <block type="esp32_bluetooth_initial" id="4" inline="true">
 			<field name="baudrate">9600</field>
@@ -9496,7 +9520,7 @@
 			</block>			
 		</category>
 		
-		<category id="france7" name="blekeyboardmodule">
+		<category name="blekeyboardmodule">
 		  <block type="esp32_blekeyboard">
 			<value name="blename">
 			  <block type="text">
@@ -9571,7 +9595,7 @@
 		  </block>		  
 		</category>
 	
-		<category id="france7" name="blemousemodule">
+		<category name="blemousemodule">
 		  <block type="esp32_blemouse">
 			<value name="blename">
 			  <block type="text" id="100">
@@ -11817,7 +11841,7 @@
 		  </block>			  
 	</category>
 	
-	<category id="france9" name="buzzer">
+	<category name="buzzer">
 		<block type="esp32_buzzer">
 			<value name="pin">
 				<block type="math_number">
@@ -11924,7 +11948,7 @@
 				</value>
 			</block>					
 	</category>
-	<category id="france9" name="DHT11">
+	<category name="DHT11">
 	  <block type="dht11_pin">
 		<value name="pin">
 		  <block type="math_number">
@@ -11937,7 +11961,7 @@
 	  <block type="dht11_get">
 	  </block>	 
 	</category>	
-	<category id="france9" name="servoesp">
+	<category name="servoesp">
 		<block type="fu_servo_initial">
 			<value name="pin">
 			  <block type="math_number">
@@ -11968,7 +11992,7 @@
 			</value>			
 		</block>
 	</category>
-	<category id="france9" name="ws2812">
+	<category name="ws2812">
 		<block type="BitMatrixLed_matrix_pin">
 			<value name="pin">
 				<block type="math_number">
@@ -12193,7 +12217,7 @@
 		<block type="BitMatrixLed_color_random">		
 		</block>
 	</category>		
-	<category id="france10" name="LCD1602">
+	<category name="LCD1602">
 	  <block type="lcd1602_initial">
 		<value name="sda">
 		  <block type="math_number">
@@ -12218,7 +12242,7 @@
 	  <block type="lcd1602_clear">
 	  </block>		  	 
     </category>
-	<category id="france12" name="motordriveric">
+	<category name="motordriveric">
 	  <block type="motordriver_pin">
 		<field name="index1">0</field>
 		<field name="index2">1</field>
@@ -12289,7 +12313,7 @@
 		<block type="webbit_mooncar_stop_car">		
 		</block>	
 	</category>
-	<category id="france12" name="ultrasonicsensor">
+	<category name="ultrasonicsensor">
 		<block type="webbit_mooncar_sonar_pin">
 			<value name="TRIG">
 				<block type="math_number">
@@ -12304,7 +12328,7 @@
 		</block>	
 		<block type="webbit_mooncar_sonar"></block>
 	</category>
-	<category id="france12" name="fudfplayer">
+	<category name="fudfplayer">
 	  <block type="fu_dfplayer_initial">
 		<value name="rx">
 		  <block type="math_number">
@@ -12341,7 +12365,7 @@
 	  <block type="fu_dfplayer_command3">			
 	  </block>
 	</category>	
-	<category id="france9" name="mpu9250">
+	<category name="mpu9250">
 		<block type="esp32_mpu9250_pin">
 			<value name="sda">
 				<block type="math_number">
@@ -12356,7 +12380,7 @@
 		</block>	
 		<block type="esp32_mpu9250"></block>
 	</category>	
-	<category id="france9" name="mpu6050">
+	<category name="mpu6050">
 				<block type="esp32_mpu6050_pin">
 				<value name="sda">
 					<block type="math_number">
@@ -12372,7 +12396,7 @@
 			<block type="esp32_mpu6050_read"></block>			
 			<block type="esp32_mpu6050_get"></block>
 	</category>
-	<category id="france12" name="colorsensor">
+	<category name="colorsensor">
 		<block type="webbit_mooncar_tcs_init"></block>
 		<block type="webbit_mooncar_tcs_read"></block>
 		<block type="webbit_mooncar_tcs_set">
@@ -12401,7 +12425,7 @@
 		</block>	
 		<block type="webbit_mooncar_tcs_detect"></block>
 	</category>
-	<category id="france12" name="irread">
+	<category name="irread">
 		<block type="webbit_mooncar_ir_remote_read_pin">
 			<value name="pin">
 				<block type="math_number">
@@ -12413,7 +12437,7 @@
 		<block type="webbit_mooncar_ir_remote_read_value"></block>
 		<block type="webbit_mooncar_ir_remote_read_type"></block>
 	</category>
-	<category id="france12" name="irsend">
+	<category name="irsend">
 		<block type="webbit_mooncar_ir_remote_send_pin">
 		</block>
 		<block type="webbit_mooncar_ir_remote_send">
@@ -12424,7 +12448,7 @@
 			</value> 
 		</block>
 	</category>
-	<category id="france12" name="HX710B">
+	<category name="HX710B">
 		<block type="HX710B_initial">
 			<value name="dout">
 				<block type="math_number">
@@ -12439,7 +12463,7 @@
 		</block>
 		<block type="HX710B_get"></block>
 	</category>
-	<category id="france12" name="MAX6675">
+	<category name="MAX6675">
 		<block type="MAX6675_initial">
 			<value name="dout">
 				<block type="math_number">
@@ -12459,7 +12483,7 @@
 		</block>
 		<block type="MAX6675_get"></block>
 	</category>		
-	<category id="france12" name="mlx90614">
+	<category name="mlx90614">
 	  <block type="MLX90614">
 		<value name="sda">
 		  <block type="math_number">
@@ -12478,7 +12502,7 @@
 		</value>			
 	  </block>	  
 	</category>
-	<category id="france12" name="DS18B20">
+	<category name="DS18B20">
 		<block type="DS18B20_initial">
 			<value name="pin">
 				<block type="math_number">
@@ -12489,7 +12513,7 @@
 		<block type="DS18B20_request"></block>		
 		<block type="DS18B20_get"></block>
 	</category>	
-	<category id="france12" name="PN532">
+	<category name="PN532">
 	  <block type="PN532_initial">
 		<value name="keya">
 		  <block type="text">
@@ -12549,7 +12573,7 @@
 	  </block>
 	</category>	
 	
-	<category id="france12" name="RC522">
+	<category name="RC522">
 	  <block type="RC522_initial">	
 		<value name="sda">
 		  <block type="math_number">
@@ -12593,19 +12617,19 @@
 	  </block>
 	</category>		
 	
-	<category id="france12" name="adxl345">
+	<category name="adxl345">
 	  <block type="adxl345_getdata">			
 	  </block> 	
 	  <block type="adxl345_get">			
 	  </block>   	  
 	</category>	
 	
-	<category id="france12" name="gy30">
+	<category name="gy30">
 	  <block type="gy30_getdata">			
 	  </block> 	  
 	</category>
 
-	<category id="france12" name="joystick">
+	<category name="joystick">
 		<block type="fu_joystick_initial">
 			<value name="digitalread">
 			  <block type="math_number">
@@ -12638,7 +12662,7 @@
 		</block>		
 	</category>	
 	
-	<category id="france12" name="PS2">
+	<category name="PS2">
 		<block type="ps2_initial">
 			<value name="CLK">
 			  <block type="math_number">
@@ -12695,7 +12719,7 @@
 		<block type="ps2_initial_func"></block>		
 	</category>
 
-	<category id="france12" name="Emakefun">
+	<category name="Emakefun">
 		<block type="emakefun_dcmotor">
 			<value name="pwm">
 			  <block type="math_number">
@@ -12894,14 +12918,14 @@
 		</block>		
 	</category>
 	
-	<category id="france12" name="pms7003m">
+	<category name="pms7003m">
 		<block type="pms7003m_read">			
 		</block>
 		<block type="pms7003m_get">			
 		</block>		
 	</category>
 
-	<category id="france12" name="wire">
+	<category name="wire">
 		<block type="wire_initial">
 			<value name="address">
 			  <block type="text">
@@ -12950,7 +12974,7 @@
 		<block type="wire_get">
 		</block>		
 	</category>	
-	<category id="france12" name="TinyGPS">
+	<category name="TinyGPS">
 		<block type="TinyGPS_initial">				
 		</block>
 		<block type="TinyGPS_readchar">			
@@ -13001,7 +13025,7 @@
 
 	 <sep id="category_sep"></sep>	
 	 
-    <category id="france3" name="spreadsheet">
+    <category name="spreadsheet">
 		<block type="controls_spreadsheet">
 			<value name="spreadsheeturl">
 			  <block type="text">
@@ -13131,7 +13155,7 @@
 		<block type="controls_spreadsheet_getcell_number">			
 		</block>				
 	</category>
-    <category id="france3" name="line">	
+    <category name="line">	
 	  <block type="linenotify_all">
 		<value name="token_">
 		  <block type="text">
@@ -13204,7 +13228,7 @@
 	  <block type="linenotify_esp32_br">
 	  </block>	  
     </category>	
-    <category id="france8" name="thingspeak">
+    <category name="thingspeak">
 	  <block type="thingspeak_update_noreturn">  
 		<value name="key">
 		  <block type="text">
@@ -13385,7 +13409,7 @@
 		</value>
 	  </block>
 	</category>
-	<category id="france25" name="fu_mqtt">
+	<category name="fu_mqtt">
 	  <block type="fu_mqtt_setup">
 		<value name="server">
 		  <block type="text">
@@ -13466,7 +13490,7 @@
 		</value>		
 	  </block>		  
     </category>
-	<category id="france11" name="ntpserver">
+	<category name="ntpserver">
 	  <block type="fu_ntpserver_initial">
 		<value name="gmtOffset">
 		  <block type="math_number">
@@ -13479,7 +13503,7 @@
 	  <block type="fu_ntpserver_get">
 	  </block>
 	</category>
-	<category id="france24" name="airquality">
+	<category name="airquality">
 	  <block type="fu_taiwan_aqi">
 		<value name="Authorization">
 		  <block type="text">
@@ -13490,7 +13514,7 @@
 	  <block type="fu_taiwan_aqi_get">
 	  </block>	  
     </category>
-	<category id="france24" name="weather">
+	<category name="weather">
 	  <block type="fu_taiwan_weather">
 		<value name="Authorization">
 		  <block type="text">
@@ -13501,7 +13525,7 @@
 	  <block type="fu_taiwan_weather_get">
 	  </block>  	  
     </category>
-	<category id="france24" name="openai_chat">
+	<category name="openai_chat">
 	  <block type="openai_chat_initial">
 		<value name="apikey">
 		  <block type="text">
@@ -13525,7 +13549,7 @@
 	  </block>  	  
     </category>	
 	<sep id="category_sep"></sep>
-	<category id="france7" name="others">
+	<category name="others">
 	  <block type="loop_asynchronous">
 		<value name="count">
 		  <block type="math_number">
@@ -13558,7 +13582,7 @@
 	  <block type="linenotify_esp32_br">
 	  </block>		
 	</category>	
-	<category id="france1" name="customcode">
+	<category name="customcode">
 	  <block type="customcode_instruction5">
 		<value name="instruction">
 		  <block type="text">

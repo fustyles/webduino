@@ -1,3 +1,48 @@
+Blockly.Arduino['flashmemory_write'] = function(block) {
+	var address = Blockly.Arduino.valueToCode(block, 'address', Blockly.Arduino.ORDER_ATOMIC);
+	var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
+
+	Blockly.Arduino.definitions_['define_flashmemory'] ='#include <FlashMemory.h>\n#define RESET_THRESHOLD 5\n';
+	Blockly.Arduino.setups_['setup_flashmemory'] ='FlashMemory.begin(FLASH_MEMORY_APP_BASE, 0x1000);\n';
+	
+	address = address.replace(/"/g,"").replace(/'/g,"");
+	var code = "FlashMemory.writeWord("+address+", "+val+");\n";
+	return code;
+};
+
+Blockly.Arduino['flashmemory_read'] = function(block) {
+	var address = Blockly.Arduino.valueToCode(block, 'address', Blockly.Arduino.ORDER_ATOMIC);
+	
+	Blockly.Arduino.definitions_['define_flashmemory'] ='#include <FlashMemory.h>\n#define RESET_THRESHOLD 5\n';
+	Blockly.Arduino.setups_['setup_flashmemory'] ='FlashMemory.begin(FLASH_MEMORY_APP_BASE, 0x1000);\n';
+	
+	address = address.replace(/"/g,"").replace(/'/g,"");
+	var code = "FlashMemory.readWord("+address+")";
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['amb82_mini_board_pins'] = function(block) {
+	var board = block.getFieldValue('board');
+	var func_amb82 = block.getFieldValue('func_amb82');
+	var func_hub8735 = block.getFieldValue('func_hub8735');
+	
+	if (board == "amb82")
+		var code = func_amb82;
+	else
+		var code = func_hub8735;
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Arduino['udp_initial'] = function(block) {
 	
 	var port = Blockly.Arduino.valueToCode(block, 'port', Blockly.Arduino.ORDER_ATOMIC);
@@ -106,19 +151,6 @@ Blockly.Arduino['ip_format'] = function(block) {
 		var code = 'String2Ip('+ip+')';
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Blockly.Arduino['amb82_mini_motiondetection_rtsp'] = function(block) {
 	

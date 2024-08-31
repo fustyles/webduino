@@ -142,4 +142,6 @@
 <category><name>amb82_mini_ntp</name><replace>NTP</replace></category>
 <category><name>amb82_mini_udp</name><replace>UDP</replace></category>
 <category><name>amb82_mini_MotionDetection</name><replace>Motion Detection</replace></category>
+<category><name>amb82_mini_Pins</name><replace>Pins</replace></category>
+<category><name>amb82_mini_Flashmemory</name><replace>Flash memory RW</replace></category>
 </xml>

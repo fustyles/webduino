@@ -1,3 +1,87 @@
+Blockly.Blocks['flashmemory_write'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["FLASHMEMORY"])	
+        .appendField(Blockly.Msg["FLASHMEMORY_WRITE"]);
+    this.appendValueInput("address")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["FLASHMEMORY_ADDRESS"]);		
+    this.appendValueInput("val")
+        .setCheck("Number")
+		.appendField(Blockly.Msg["FLASHMEMORY_VALUE"]);	
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_17"]);
+  }
+};
+
+Blockly.Blocks['flashmemory_read'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["FLASHMEMORY"])	
+        .appendField(Blockly.Msg["FLASHMEMORY_READ"]);
+    this.appendValueInput("address")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["FLASHMEMORY_ADDRESS"]);		
+	this.setInputsInline(true);
+	this.setOutput(true, null);
+    this.setColour(Blockly.Msg["HUE_17"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_board_pins'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI_BOARD_PIN"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["Amb82-mini","amb82"],
+			["Hub 8735 ultra","hub8735"]
+		], this.validate), "board");		
+    this.appendDummyInput("amb82")	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_BOARD_PIN_GREEN"],"24"],
+			[Blockly.Msg["AMB82_MINI_BOARD_PIN_BLUE"],"23"]
+		]), "func_amb82");
+    this.appendDummyInput("hub8735")	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_BOARD_PIN_GREEN"],"25"],
+			[Blockly.Msg["AMB82_MINI_BOARD_PIN_BLUE"],"26"],
+			[Blockly.Msg["AMB82_MINI_BOARD_PIN_LED"],"13"],
+			[Blockly.Msg["AMB82_MINI_BOARD_PIN_BUTTON"],"12"]
+		]), "func_hub8735");
+	this.getInput("hub8735").setVisible(false);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(Blockly.Msg["HUE_8"]);
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="amb82") {
+			block.getInput("amb82").setVisible(true);
+			block.getInput("hub8735").setVisible(false);
+		} else {
+			block.getInput("amb82").setVisible(false);
+			block.getInput("hub8735").setVisible(true);			
+		}
+  }
+};
+
+
+
+
+
+
+
+
+
 Blockly.Blocks['udp_initial'] = {
   init: function() {
     this.appendDummyInput()
@@ -57,15 +141,6 @@ Blockly.Blocks['udp_write'] = {
     this.setColour(Blockly.Msg["HUE_11"]);
   }
 };
-
-
-
-
-
-
-
-
-
 
 Blockly.Blocks['amb82_mini_motiondetection_rtsp'] = {
   init: function() {
