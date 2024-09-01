@@ -169,6 +169,37 @@ Blockly.Arduino['amb82_mini_webbluetooth_get'] = function(block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['amb82_mini_webbluetooth_v7rc'] = function(block) {
+	var type = block.getFieldValue('type');
+	
+	Blockly.Arduino.definitions_['bleDataToV7RC'] =''+
+	'void bleDataToV7RC() {\n'+
+	'  if (bleData.length()<3) return;\n'+
+	'  String prefix = bleData.substring(0, 3);\n'+
+	'  int len[9] = '+type+';\n'+
+	'  int lenSize = sizeof(len) / sizeof(len[0]);\n'+
+	'  String bleData_v7rc = "?";\n'+
+	'  int start = 1;\n'+
+	'  for (int i = 0; i < lenSize; i++) {\n'+
+	'    bleData_v7rc += bleData.substring(start - 1, (start + len[i]) - 1);\n'+
+	'    start += len[i];\n'+
+	'    if (i == 0) {\n'+
+	'        bleData_v7rc += "=";\n'+
+	'    } else {\n'+
+	'        bleData_v7rc += ";";\n'+
+	'    }\n'+
+	'  }\n'+
+	'  Feedback="",Command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'+
+	'  receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'+
+	'  for (int j=0;j<bleData_v7rc.length();j++) {\n'+
+	'  	getCommand(bleData_v7rc[j]);\n'+
+	'  }\n'+
+	'}\n';	
+	
+	var code = 'bleDataToV7RC();\n';
+  return code;
+};
+
 Blockly.Arduino['amb82_mini_usb_uvcd'] = function(block) {
 	Blockly.Arduino.definitions_['define_usb_uvcd'] ='#include "StreamIO.h"\n#include "VideoStream.h"\n#include "UVCD.h"\n#define STREAM_CHANNEL 0\nVideoSetting stream_config(USB_UVCD_STREAM_PRESET);\nVideo camera_uvcd;\nUVCD usb_uvcd;\nStreamIO videoStreamer(1, 1);\n';
 	Blockly.Arduino.setups_['setup_usb_uvcd'] =''

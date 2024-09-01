@@ -2546,6 +2546,8 @@
 					</block>
 				</value>
 			</block>
+			<block type="amb82_mini_webbluetooth_v7rc">
+			</block>			
 		</category>		
 		<category name="amb82_mini_video">				
 			  <block type="amb82_mini_video_initial">
