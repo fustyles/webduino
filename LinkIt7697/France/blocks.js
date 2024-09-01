@@ -92,17 +92,7 @@ Blockly.Blocks['amb82_mini_webbluetooth_v7rc'] = {
     this.appendDummyInput()
 	    .appendField(Blockly.Msg["AMB82_MINI"])
         .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW)
-		.appendField(Blockly.Msg["WEBBLUETOOTH_V7RC"]);
-    this.appendDummyInput()	 
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(new Blockly.FieldDropdown([
-			["SRV","{3,4,4,4,4,0,0,0,0}"],
-			["SR2","{3,4,4,4,4,0,0,0,0 }"],
-			["SS8","{3,2,2,2,2,2,2,2,2}"],
-			["SSD","{3,4,4,4,4,1,1,1,1}"],
-			["SRT","{3,4,4,4,4,0,0,0,0  }"],
-			["SST","{3,4,4,4,4,1,1,1,1 }"]
-		]), "type");		
+		.appendField(Blockly.Msg["WEBBLUETOOTH_V7RC"]);		
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);

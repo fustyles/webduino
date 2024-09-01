@@ -170,13 +170,31 @@ Blockly.Arduino['amb82_mini_webbluetooth_get'] = function(block) {
 };
 
 Blockly.Arduino['amb82_mini_webbluetooth_v7rc'] = function(block) {
-	var type = block.getFieldValue('type');
-	
 	Blockly.Arduino.definitions_['bleDataToV7RC'] =''+
+	'struct CommandPattern {\n'+
+	'    String prefix;\n'+
+	'    int lengths[9];\n'+
+	'};\n'+
+	'CommandPattern commandPatterns[] = {\n'+
+	'    {"SRV", {3, 4, 4, 4, 4, 0, 0, 0, 0}},\n'+
+	'    {"SR2", {3, 4, 4, 4, 4, 0, 0, 0, 0}},\n'+
+	'    {"SS8", {3, 2, 2, 2, 2, 2, 2, 2, 2}},\n'+
+	'    {"SSD", {3, 4, 4, 4, 4, 1, 1, 1, 1}},\n'+
+	'    {"SRT", {3, 4, 4, 4, 4, 0, 0, 0, 0}},\n'+
+	'    {"SST", {3, 4, 4, 4, 4, 1, 1, 1, 1}}\n'+
+	'};\n'+
+	'const int numPatterns = sizeof(commandPatterns) / sizeof(commandPatterns[0]);\n'+
+	'\n'+	
 	'void bleDataToV7RC() {\n'+
 	'  if (bleData.length()<3) return;\n'+
 	'  String prefix = bleData.substring(0, 3);\n'+
-	'  int len[9] = '+type+';\n'+
+	'  int len[9] = {0};\n'+
+	'  for (int i = 0; i < numPatterns; i++) {\n'+
+	'      if (commandPatterns[i].prefix == prefix) {\n'+
+	'          memcpy(len, commandPatterns[i].lengths, sizeof(len));\n'+
+	'          break;\n'+
+	'      }\n'+
+	'  }\n'+
 	'  int lenSize = sizeof(len) / sizeof(len[0]);\n'+
 	'  String bleData_v7rc = "?";\n'+
 	'  int start = 1;\n'+
@@ -197,7 +215,7 @@ Blockly.Arduino['amb82_mini_webbluetooth_v7rc'] = function(block) {
 	'}\n';	
 	
 	var code = 'bleDataToV7RC();\n';
-  return code;
+    return code;
 };
 
 Blockly.Arduino['amb82_mini_usb_uvcd'] = function(block) {
