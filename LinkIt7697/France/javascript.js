@@ -92,7 +92,7 @@ Blockly.Arduino['amb82_mini_webbluetooth_uuid'] = function(block) {
 												 +'}\n'	
 												 +'void writeCB(BLECharacteristic* chr, uint8_t connID)\n'	
 												 +'{\n'	
-												 +'    printf("Characteristic %s write by connection %d :\\n", chr->getUUID().str(), connID);\n'	
+												 +'    //printf("Characteristic %s write by connection %d :\\n", chr->getUUID().str(), connID);\n'	
 												 +'	   bleData = "";\n'	
 												 +'    if (chr->getDataLen() > 0) {\n'		
 												 +'		   bleData = chr->readString();\n'
