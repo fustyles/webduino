@@ -181,7 +181,9 @@ Blockly.Arduino['amb82_mini_webbluetooth_v7rc'] = function(block) {
 	'    {"SS8", {3, 2, 2, 2, 2, 2, 2, 2, 2}},\n'+
 	'    {"SSD", {3, 4, 4, 4, 4, 1, 1, 1, 1}},\n'+
 	'    {"SRT", {3, 4, 4, 4, 4, 0, 0, 0, 0}},\n'+
-	'    {"SST", {3, 4, 4, 4, 4, 1, 1, 1, 1}}\n'+
+	'    {"SST", {3, 4, 4, 4, 4, 1, 1, 1, 1}},\n'+
+	'    {"LED", {3, 4, 4, 4, 4, 0, 0, 0, 0}},\n'+
+	'    {"LE2", {3, 4, 4, 4, 4, 0, 0, 0, 0}}\n'+
 	'};\n'+
 	'const int numPatterns = sizeof(commandPatterns) / sizeof(commandPatterns[0]);\n'+
 	'\n'+	
