@@ -19,7 +19,7 @@ Blockly.Blocks['amb82_mini_webbluetooth_uuid'] = {
 	this.appendValueInput("tx")
       .setAlign(Blockly.ALIGN_RIGHT)	
 		.appendField(Blockly.Msg.WEBBLUETOOTH_TX_SHOW)
-		.setCheck("String");  	
+		.setCheck("String");
     this.appendDummyInput()
         .appendField(Blockly.Msg.WEBBLUETOOTH_GETDATA_SHOW);
     this.appendStatementInput("do_");		
@@ -29,22 +29,6 @@ Blockly.Blocks['amb82_mini_webbluetooth_uuid'] = {
 	this.setColour(140);
 	this.setHelpUrl("https://www.uuidgenerator.net/");
   }
-};
-
-Blockly.Blocks['amb82_mini_webbluetooth_sendtext'] = {
-  init: function() {
-    this.appendDummyInput()
-	    .appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW);	  
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.WEBBLUETOOTH_SENDTEXT_SHOW);
-	this.appendValueInput("cmd_")
-		.setCheck("String");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(140);
-  }  
 };
 
 Blockly.Blocks['amb82_mini_webbluetooth_getstate'] = {
@@ -64,9 +48,25 @@ Blockly.Blocks['amb82_mini_webbluetooth_wait'] = {
   init: function() {
     this.appendDummyInput()
 	    .appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW);	  
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW);  
     this.appendDummyInput()
         .appendField(Blockly.Msg.WEBBLUETOOTH_WAIT_SHOW);   
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(140);
+  }  
+};
+
+Blockly.Blocks['amb82_mini_webbluetooth_sendtext'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW);	  
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SENDTEXT_SHOW);
+	this.appendValueInput("cmd_")
+		.setCheck("String");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -150,7 +150,31 @@ Blockly.Blocks['amb82_mini_board_pins'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["AMB82_MINI_BOARD_PIN_GREEN"],"24"],
-			[Blockly.Msg["AMB82_MINI_BOARD_PIN_BLUE"],"23"]
+			[Blockly.Msg["AMB82_MINI_BOARD_PIN_BLUE"],"23"],
+			["SERIAL1_RX","22"],
+			["SERIAL1_TX","21"],
+			["SERIAL2_RX","18"],
+			["SERIAL2_TX","19"],
+			["SERIAL3_RX","14"],
+			["SERIAL3_TX","15"],
+			["I2C_SDA","12"],
+			["I2C_SCL","13"],
+			["I2C1_SDA","9"],
+			["I2C1_SCL","10"],
+			["I2C2_SDA","27"],
+			["I2C2_SCL","28"],
+			["SPI_SS","12"],
+			["SPI_MOSI","13"],
+			["SPI_MISO","14"],
+			["SPI_SCLK","15"],
+			["SPI1_SS","3"],
+			["SPI1_MOSI","2"],			
+			["SPI1_MISO","0"],			
+			["SPI1_SCLK","1"],
+			["SWD_CLK","27"],
+			["SWD_DATA","28"],
+			["LOG_RX","26"],
+			["LOG_TX","25"]
 		]), "func_amb82");
     this.appendDummyInput("hub8735")	 
 		.setAlign(Blockly.ALIGN_RIGHT)
@@ -158,7 +182,27 @@ Blockly.Blocks['amb82_mini_board_pins'] = {
 			[Blockly.Msg["AMB82_MINI_BOARD_PIN_GREEN"],"25"],
 			[Blockly.Msg["AMB82_MINI_BOARD_PIN_BLUE"],"26"],
 			[Blockly.Msg["AMB82_MINI_BOARD_PIN_LED"],"13"],
-			[Blockly.Msg["AMB82_MINI_BOARD_PIN_BUTTON"],"12"]
+			[Blockly.Msg["AMB82_MINI_BOARD_PIN_BUTTON"],"12"],
+			["SERIAL0_RX","10"],
+			["SERIAL0_TX","9"],
+			["SERIAL1_RX","15"],
+			["SERIAL1_TX","8"],
+			["SERIAL2_RX","5"],
+			["SERIAL2_TX","6"],
+			["I2C_SDA","0"],
+			["I2C_SCL","1"],
+			["I2C1_SDA","3"],
+			["I2C1_SCL","4"],
+			["SPI_SS","3"],
+			["SPI_MOSI","4"],
+			["SPI_MISO","5"],
+			["SPI_SCLK","6"],
+			["SPI1_SS","21"],
+			["SPI1_MOSI","20"],			
+			["SPI1_MISO","18"],			
+			["SPI1_SCLK","19"],
+			["LOG_RX","16"],
+			["LOG_TX","17"]
 		]), "func_hub8735");
 	this.getInput("hub8735").setVisible(false);
 	this.setInputsInline(true);

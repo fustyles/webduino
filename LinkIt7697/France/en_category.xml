@@ -92,8 +92,8 @@
 <category><name>catchartswitch</name><replace>Slide switch</replace></category>
 <category><name>serverUart</name><replace>Server UART</replace></category>
 <category><name>tft</name><replace>TFT LCD</replace></category>
-<category><name>esp32_webbluetooth</name><replace>ESP32 Web Bluetooth</replace></category>
-<category><name>linkit7697_webbluetooth</name><replace>LinkIt7697 Web Bluetooth</replace></category>
+<category><name>esp32_webbluetooth</name><replace>ESP32 Bluetooth UART</replace></category>
+<category><name>linkit7697_webbluetooth</name><replace>LinkIt7697 Bluetooth UART</replace></category>
 <category><name>javascript_function</name><replace>JavaScript functions</replace></category>
 <category><name>preferences</name><replace>Preferences</replace></category>
 <category><name>PN532</name><replace>PN532 NFC</replace></category>
@@ -144,4 +144,5 @@
 <category><name>amb82_mini_MotionDetection</name><replace>Motion Detection</replace></category>
 <category><name>amb82_mini_Pins</name><replace>Pins</replace></category>
 <category><name>amb82_mini_Flashmemory</name><replace>Flash memory RW</replace></category>
+<category><name>amb82_mini_BluetoothUart</name><replace>Bluetooth UART</replace></category>
 </xml>
