@@ -20094,7 +20094,8 @@ Blockly.Blocks['servermodule_parameter_variable'] = {
 		[Blockly.Msg.SERVERMODULE_TOUPPERCASE_SHOW,"toUpperCase()"],
 		[Blockly.Msg.SERVERMODULE_TRIM_SHOW,"trim()"],	
 		[Blockly.Msg.SERVERMODULE_C_STR_SHOW,"c_str()"],
-		[Blockly.Msg.SERVERMODULE_LENGTH_SHOW,"length()"]		  
+		[Blockly.Msg.SERVERMODULE_LENGTH_SHOW,"length()"],
+		[Blockly.Msg.SERVERMODULE_HEXTOINT_SHOW,"hextoint"]		  
 	]), "type");     
 	this.setInputsInline(true);
     this.setOutput(true, null);  

@@ -1236,6 +1236,7 @@ Blockly.Msg.SERVERMODULE_TOUPPERCASE_SHOW = "toUpperCase()";
 Blockly.Msg.SERVERMODULE_TRIM_SHOW = "trim()";
 Blockly.Msg.SERVERMODULE_C_STR_SHOW = "c_str()";
 Blockly.Msg.SERVERMODULE_LENGTH_SHOW = "length()";
+Blockly.Msg.SERVERMODULE_HEXTOINT_SHOW = "HEX to INT";
 Blockly.Msg.TABLE = "Table";
 Blockly.Msg.TABLE_ID = "ID";
 Blockly.Msg.TABLE_CREATE = "Table Create";

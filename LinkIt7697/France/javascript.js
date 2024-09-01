@@ -14780,7 +14780,10 @@ Blockly.Arduino['servermodule_parameter'] = function (block) {
 Blockly.Arduino['servermodule_parameter_variable'] = function (block) {
   var parameter = block.getFieldValue('parameter'); 
   var type = block.getFieldValue('type');
-  var code = parameter + "." + type;
+  if (type=="hextoint")
+	var code = "(int) strtol("+parameter+".c_str(), 0, 16)";
+  else
+	var code = parameter + "." + type;
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
