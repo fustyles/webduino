@@ -31,7 +31,7 @@ Blockly.Msg["HUE_30"] = 50;
 
 Blockly.Msg["WEBBLUETOOTH_V7RC"] = "取得資料為V7RC指令轉換為模組指令參數";
 
-Blockly.Msg["AMB82_MINI_USB_UVCD"] = "USB視訊鏡頭";
+Blockly.Msg["AMB82_MINI_USB_UVCD"] = "USB-UVC 視訊傳輸";
 
 Blockly.Msg["AMB82_MINI_FLASHMEMORY"] = "快閃記憶體";
 Blockly.Msg["AMB82_MINI_FLASHMEMORY_WRITE"] = "寫入";
