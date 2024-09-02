@@ -29,7 +29,7 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
-Blockly.Msg["WEBBLUETOOTH_V7RC"] = "V7RC指令轉換為模組指令參數";
+Blockly.Msg["WEBBLUETOOTH_V7RC"] = "取得資料為V7RC指令轉換為模組指令參數";
 
 Blockly.Msg["AMB82_MINI_USB_UVCD"] = "USB視訊鏡頭";
 
