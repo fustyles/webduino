@@ -2091,6 +2091,11 @@
 
 	
 	<category name="amb82_mini">
+		<category name="amb82_mini_Pins">
+			  <block type="amb82_mini_board_pins">			  
+			  </block>
+		</category>
+		<sep id="category_sep"></sep>		
 		<category name="servermodule"> 
 			  <block type="amb82_mini_myfirmata">
 				<field name="baudrate">115200</field>
@@ -2479,11 +2484,48 @@
 			  </block>	
 			  -->
 		</category>
-		<sep id="category_sep"></sep>
-		<category name="amb82_mini_Pins">
-			  <block type="amb82_mini_board_pins">			  
+		<category name="amb82_mini_ntp">
+		  <block type="amb82_mini_ntpserver_initial">
+			<value name="gmtOffset">
+			  <block type="math_number">
+				<field name="NUM">8</field>
 			  </block>
-		</category>	
+			</value> 
+		  </block>
+		  <block type="amb82_mini_ntpserver_getlocaltime">		
+		  </block>
+		  <block type="amb82_mini_ntpserver_get">
+		  </block>		
+		</category>		
+		<category name="amb82_mini_udp">
+		  <block type="udp_initial">
+			<value name="port">
+			  <block type="math_number">
+				<field name="NUM">2390</field>
+			  </block>
+			</value>		  
+		  </block>
+		  <block type="udp_get">		
+		  </block>
+		  <block type="udp_write">
+			<value name="ip">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>		  
+			<value name="port">
+			  <block type="math_number">
+				<field name="NUM">2390</field>
+			  </block>
+			</value>
+			<value name="data">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>			
+		  </block>		  
+		</category>		
+		<sep id="category_sep"></sep>	
 		<category name="amb82_mini_video">				
 			  <block type="amb82_mini_video_initial">
 					<value name="width">
@@ -2766,7 +2808,8 @@
 			  </block>	
 			  <block type="amb82_mini_mp4_getstate">		  
 			  </block>				  
-		</category>	
+		</category>
+		<sep id="category_sep"></sep>		
 		<category name="amb82_mini_video_qrcode">				
 			  <block type="amb82_mini_video_qrcode">		  
 			  </block>				  
@@ -3572,6 +3615,7 @@
 			</value>			
 		  </block>			  
 		</category>
+		<sep id="category_sep"></sep>			
 		<category name="amb82_mini_Gtimer">				
 			  <block type="amb82_mini_gtimer_initial">
 			  		<value name="interval_">
@@ -3720,47 +3764,6 @@
 			</block>
 			<block type="amb82_mini_folder_list_attribute">			
 			</block>			
-		</category>
-		<category name="amb82_mini_ntp">
-		  <block type="amb82_mini_ntpserver_initial">
-			<value name="gmtOffset">
-			  <block type="math_number">
-				<field name="NUM">8</field>
-			  </block>
-			</value> 
-		  </block>
-		  <block type="amb82_mini_ntpserver_getlocaltime">		
-		  </block>
-		  <block type="amb82_mini_ntpserver_get">
-		  </block>		
-		</category>		
-		<category name="amb82_mini_udp">
-		  <block type="udp_initial">
-			<value name="port">
-			  <block type="math_number">
-				<field name="NUM">2390</field>
-			  </block>
-			</value>		  
-		  </block>
-		  <block type="udp_get">		
-		  </block>
-		  <block type="udp_write">
-			<value name="ip">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>		  
-			<value name="port">
-			  <block type="math_number">
-				<field name="NUM">2390</field>
-			  </block>
-			</value>
-			<value name="data">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>			
-		  </block>		  
 		</category>
 		<category name="amb82_mini_Flashmemory">				
 		  <block type="amb82_mini_flashmemory_write">
