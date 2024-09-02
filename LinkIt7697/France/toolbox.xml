@@ -9567,6 +9567,8 @@
 				</value>
 			</block>
 			<block type="esp32_webbluetooth_get"> 
+			</block>
+			<block type="amb82_mini_webbluetooth_v7rc">
 			</block>			
 		</category>
 		
@@ -9723,6 +9725,8 @@
 			<block type="linkit7697_webbluetooth_get"> 
 			</block>
 			<block type="linkit7697_webbluetooth_getmac"> 
+			</block>
+			<block type="amb82_mini_webbluetooth_v7rc">
 			</block>			
 		</category>				
 						

@@ -90,7 +90,6 @@ Blockly.Blocks['amb82_mini_webbluetooth_get'] = {
 Blockly.Blocks['amb82_mini_webbluetooth_v7rc'] = {
   init: function() {
     this.appendDummyInput()
-	    .appendField(Blockly.Msg["AMB82_MINI"])
         .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW)
 		.appendField(Blockly.Msg["WEBBLUETOOTH_V7RC"]);		
     this.setInputsInline(true);

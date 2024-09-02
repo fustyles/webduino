@@ -29,7 +29,7 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
-Blockly.Msg["WEBBLUETOOTH_V7RC"] = "V7RC command transfer into module format";
+Blockly.Msg["WEBBLUETOOTH_V7RC"] = "V7RC command convert to module command";
 
 Blockly.Msg["AMB82_MINI_USB_UVCD"] = "USB Camera";
 
