@@ -93,7 +93,7 @@ Blockly.Blocks['amb82_mini_webbluetooth_v7rc'] = {
 		.appendField(Blockly.Msg["WEBBLUETOOTH_V7RC"]); 
 	this.appendValueInput("data")
 		.setCheck("String")
-		.appendField(Blockly.Msg.WEBBLUETOOTH_DATA_SHOW);		
+		.appendField(Blockly.Msg.WEBBLUETOOTH_V7RC_DATA_SHOW);		
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
