@@ -698,6 +698,13 @@
 				</value>		
 			  </block>	
 			  -->
+			  <block type="amb82_mini_webbluetooth_v7rc">
+				<value name="data">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>	  
+			  </block>			  
 		</category>		
 
 		<category name="webusb"> 
@@ -3489,8 +3496,6 @@
 						<field name="TEXT"></field>
 					</block>
 				</value>
-			</block>
-			<block type="amb82_mini_webbluetooth_v7rc">
 			</block>			
 		</category>			
 		<category name="amb82_mini_ble_keyboard">				
@@ -9553,9 +9558,7 @@
 				</value>
 			</block>
 			<block type="esp32_webbluetooth_get"> 
-			</block>
-			<block type="amb82_mini_webbluetooth_v7rc">
-			</block>			
+			</block>		
 		</category>
 		
 		<category name="blekeyboardmodule">
@@ -9711,8 +9714,6 @@
 			<block type="linkit7697_webbluetooth_get"> 
 			</block>
 			<block type="linkit7697_webbluetooth_getmac"> 
-			</block>
-			<block type="amb82_mini_webbluetooth_v7rc">
 			</block>			
 		</category>				
 						
@@ -13620,7 +13621,7 @@
 		</value>  
 	  </block>
 	  <block type="linenotify_esp32_br">
-	  </block>		
+	  </block>	  
 	</category>	
 	<category name="customcode">
 	  <block type="customcode_instruction5">
