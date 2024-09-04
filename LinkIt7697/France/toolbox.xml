@@ -2490,6 +2490,13 @@
 				</value>		
 			  </block>	
 			  -->
+			  <block type="amb82_mini_webbluetooth_v7rc">
+				<value name="data">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>	  
+			  </block>			  			  
 		</category>
 		<category name="amb82_mini_ntp">
 		  <block type="amb82_mini_ntpserver_initial">
