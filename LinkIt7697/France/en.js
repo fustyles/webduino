@@ -1959,13 +1959,11 @@ Blockly.Msg["ESP32_CAM_GEMINI_VISION"] = "ESP32-CAM Image capture Gemini visual 
 Blockly.Msg["ESP32_CAM_GEMINI_KEY"] = "Gemini Key";
 Blockly.Msg["ESP32_CAM_GEMINI_MESSAGE"] = "Conversation Message";
 
-Blockly.Msg["ESP32_CAM_SPREADSHEET_ROW_SHOW"] = "row";
-Blockly.Msg["ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW"] = "Custom row";
-Blockly.Msg["ESP32_CAM_SPREADSHEET_FIRSTROW_SHOW"] = "First row";
-Blockly.Msg["ESP32_CAM_SPREADSHEET_SECONDROW_SHOW"] = "Second row";
-Blockly.Msg["ESP32_CAM_SPREADSHEET_INSERTFIRSTROW_SHOW"] = "Insert before first row";
-Blockly.Msg["ESP32_CAM_SPREADSHEET_LASTROW_SHOW"] = "Last row";
-Blockly.Msg["ESP32_CAM_SPREADSHEET_INSERTLASTROW_SHOW"] = "Insert after last row";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_ROW_SHOW"] = "Number of rows";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW"] = "Customized column number";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_INSERTFIRSTROW_SHOW"] = "Insert the first column";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_INSERTSECONDROW_SHOW"] = "Insert second column";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_INSERTLASTROW_SHOW"] = "Insert the last column";
 
 Blockly.Msg["EZ_SET"] = "set";
 Blockly.Msg["EZ_SIZE"] = "size";

@@ -3649,12 +3649,10 @@ Blockly.Blocks['amb82_mini_spreadsheet'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg.ESP32_CAM_SPREADSHEET_ROW_SHOW)
 		.appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg.ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW,"custom"],
-		[Blockly.Msg.ESP32_CAM_SPREADSHEET_FIRSTROW_SHOW,"first"],
-		[Blockly.Msg.ESP32_CAM_SPREADSHEET_SECONDROW_SHOW,"second"],
-		[Blockly.Msg.ESP32_CAM_SPREADSHEET_LASTROW_SHOW,"last"],
-		[Blockly.Msg.ESP32_CAM_SPREADSHEET_INSERTFIRSTROW_SHOW,"insertfirst"],		
-		[Blockly.Msg.ESP32_CAM_SPREADSHEET_INSERTLASTROW_SHOW,"insertlast"]	
+			[Blockly.Msg.ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW,"custom"],
+			[Blockly.Msg.ESP32_CAM_SPREADSHEET_INSERTFIRSTROW_SHOW,"insertfirst"],
+			[Blockly.Msg.ESP32_CAM_SPREADSHEET_INSERTSECONDROW_SHOW,"insertsecond"],
+			[Blockly.Msg.ESP32_CAM_SPREADSHEET_INSERTLASTROW_SHOW,"insertlast"]	
 	], this.validate), "position");		
 	this.appendValueInput("row")
 		.setCheck("Number")
@@ -30497,13 +30495,11 @@ Blockly.Blocks['esp32_cam_spreadsheet'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg.ESP32_CAM_SPREADSHEET_ROW_SHOW)
 		.appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg.ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW,"custom"],
-		[Blockly.Msg.ESP32_CAM_SPREADSHEET_FIRSTROW_SHOW,"first"],
-		[Blockly.Msg.ESP32_CAM_SPREADSHEET_SECONDROW_SHOW,"second"],
-		[Blockly.Msg.ESP32_CAM_SPREADSHEET_LASTROW_SHOW,"last"],
-		[Blockly.Msg.ESP32_CAM_SPREADSHEET_INSERTFIRSTROW_SHOW,"insertfirst"],		
-		[Blockly.Msg.ESP32_CAM_SPREADSHEET_INSERTLASTROW_SHOW,"insertlast"]	
-	], this.validate), "position");		
+			[Blockly.Msg.ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW,"custom"],
+			[Blockly.Msg.ESP32_CAM_SPREADSHEET_INSERTFIRSTROW_SHOW,"insertfirst"],
+			[Blockly.Msg.ESP32_CAM_SPREADSHEET_INSERTSECONDROW_SHOW,"insertsecond"],
+			[Blockly.Msg.ESP32_CAM_SPREADSHEET_INSERTLASTROW_SHOW,"insertlast"]	
+		], this.validate), "position");		
 	this.appendValueInput("row")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)	  
