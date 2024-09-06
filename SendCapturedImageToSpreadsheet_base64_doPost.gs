@@ -6,7 +6,7 @@
 var cellWidth = 320;
 var cellHeight = 240;
 var myFoldername = "spreadsheet_images";
-var lineToken = "";  //可不填
+var lineToken = "";   //可不填
 
 function doPost(e) {
   var myFile = e.parameter.file;
@@ -78,13 +78,14 @@ function doPost(e) {
     }
     var file = folder.createFile(blob);
     var imageUrl = file.getUrl();
-    var imageID = imageUrl.substring(imageUrl.indexOf("/d/")+3,imageUrl.indexOf("view")-1);       
-    imageUrl = "https://drive.google.com/thumbnail?id="+imageID;
+    var imageID = imageUrl.substring(imageUrl.indexOf("/d/")+3,imageUrl.indexOf("view")-1);
+    imageUrl = "https://drive.google.com/file/d/"+imageID+"/view?usp=sharing";       
+    var imageThumbnailUrl = "https://drive.google.com/thumbnail?id="+imageID;
     sheet.setRowHeight(myRow, cellHeight);    
     sheet.setColumnWidth(myColumn, cellWidth);          
-    var formula = '=IMAGE("' + imageUrl + '", 1)';
-    sheet.getRange(myRow, myColumn).setFormula(formula);
-    lineNotify(imageUrl);
+    var formula = 'IMAGE("' + imageThumbnailUrl + '", 1)';
+    sheet.getRange(myRow, myColumn).setFormula('=HYPERLINK("' + imageUrl + '", '+formula+')');
+    lineNotify(imageUrl);    
   } 
 
     return  ContentService.createTextOutput("OK");
