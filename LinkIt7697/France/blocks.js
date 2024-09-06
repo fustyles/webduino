@@ -3666,9 +3666,9 @@ Blockly.Blocks['amb82_mini_spreadsheet'] = {
 		.appendField(Blockly.Msg.VIDEO_BASE64_FORMAT)
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
-			["base64","base64"], 
-			["link","link"], 
-			["jpg","jpg"]
+			[Blockly.Msg["ESP32_CAM_SPREADSHEET_BASE64_SHOW"],"base64"], 
+			[Blockly.Msg["ESP32_CAM_SPREADSHEET_LINK_SHOW"],"link"], 
+			[Blockly.Msg["ESP32_CAM_SPREADSHEET_IMAGE_SHOW"],"jpg"]
 		]), "format");		
 	this.appendValueInput("spreadsheet_script")
 		.setCheck("String")	  
@@ -30512,9 +30512,9 @@ Blockly.Blocks['esp32_cam_spreadsheet'] = {
 		.appendField(Blockly.Msg.VIDEO_BASE64_FORMAT)
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
-			["base64","base64"], 
-			["link","link"], 
-			["jpg","jpg"]
+			[Blockly.Msg["ESP32_CAM_SPREADSHEET_BASE64_SHOW"],"base64"], 
+			[Blockly.Msg["ESP32_CAM_SPREADSHEET_LINK_SHOW"],"link"], 
+			[Blockly.Msg["ESP32_CAM_SPREADSHEET_IMAGE_SHOW"],"jpg"]
 		]), "format");		
 	this.appendValueInput("spreadsheet_script")
 		.setCheck("String")	  

@@ -1963,6 +1963,9 @@ Blockly.Msg["ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW"] = "自訂列數";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_INSERTFIRSTROW_SHOW"] = "插入第一列";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_INSERTSECONDROW_SHOW"] = "插入第二列";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_INSERTLASTROW_SHOW"] = "插入最後一列";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_BASE64_SHOW"] = "Base64字串";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_LINK_SHOW"] = "圖檔連結";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_IMAGE_SHOW"] = "圖檔縮圖";
 
 Blockly.Msg["EZ_SET"] = "設定為";
 Blockly.Msg["EZ_SIZE"] = "大小";

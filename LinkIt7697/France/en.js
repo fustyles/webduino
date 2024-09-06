@@ -1964,6 +1964,9 @@ Blockly.Msg["ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW"] = "Customized column number"
 Blockly.Msg["ESP32_CAM_SPREADSHEET_INSERTFIRSTROW_SHOW"] = "Insert the first column";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_INSERTSECONDROW_SHOW"] = "Insert second column";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_INSERTLASTROW_SHOW"] = "Insert the last column";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_BASE64_SHOW"] = "Base64字串";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_LINK_SHOW"] = "超连结";
+Blockly.Msg["ESP32_CAM_SPREADSHEET_IMAGE_SHOW"] = "图档缩图";
 
 Blockly.Msg["EZ_SET"] = "set";
 Blockly.Msg["EZ_SIZE"] = "size";
