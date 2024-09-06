@@ -1,7 +1,8 @@
 Blockly.Blocks['holistic_video'] = {
     init: function() {
         this.appendDummyInput()
-            .appendField(Blockly.Msg.HOLISTIC_SHOW)
+            .appendField(Blockly.Msg.HOLISTIC_SHOW);
+        this.appendDummyInput()				
             .appendField(Blockly.Msg.HOLISTIC_VIDEO_SHOW)
             .appendField(new Blockly.FieldDropdown([
                 ["Y", "block"],
