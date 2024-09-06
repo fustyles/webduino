@@ -59,12 +59,14 @@ function doPost(e) {
     } else {
       folder = DriveApp.createFolder(myFoldername);
     }
+
     var file = folder.createFile(blob);
     var imageUrl = file.getUrl();
     var imageID = imageUrl.substring(imageUrl.indexOf("/d/")+3,imageUrl.indexOf("view")-1);       
     imageUrl = "https://drive.google.com/file/d/"+imageID+"/view?usp=sharing";     
     var formula = '=HYPERLINK("' + imageUrl + '","'+ myDate+" "+myTime +'")';
     sheet.getRange(myRow, myColumn).setFormula(formula);
+
     lineNotify(imageUrl); 
   }  else if (myFormat=="jpg") {
     var folder, folders = DriveApp.getFoldersByName(myFoldername);
@@ -73,6 +75,7 @@ function doPost(e) {
     } else {
       folder = DriveApp.createFolder(myFoldername);
     }
+
     var file = folder.createFile(blob);
     var imageUrl = file.getUrl();
     var imageID = imageUrl.substring(imageUrl.indexOf("/d/")+3,imageUrl.indexOf("view")-1);
@@ -82,6 +85,7 @@ function doPost(e) {
     sheet.setColumnWidth(myColumn, cellWidth);          
     var formula = 'IMAGE("' + imageThumbnailUrl + '", 1)';
     sheet.getRange(myRow, myColumn).setFormula('=HYPERLINK("' + imageUrl + '", '+formula+')');
+
     lineNotify(imageUrl);    
   } 
   return  ContentService.createTextOutput("OK");
