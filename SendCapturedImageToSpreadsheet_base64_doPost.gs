@@ -12,6 +12,7 @@ var myDate;
 var myTime;
 var mySpreadsheeturl;
 var mySpreadsheetname;
+var myFoldername = "spreadsheet_images";
 
 function doPost(e) {
   myFile = e.parameter.file;
@@ -73,11 +74,11 @@ function insertImage(insertSheet, insertRow, insertColumn) {
   if (myFormat=="base64")
     insertSheet.getRange(insertRow, insertColumn).setValue(myFile);  
   else if (myFormat=="link") {
-    var folder, folders = DriveApp.getFoldersByName(mySpreadsheetname+"_images");
+    var folder, folders = DriveApp.getFoldersByName(myFoldername);
     if (folders.hasNext()) {
       folder = folders.next();
     } else {
-      folder = DriveApp.createFolder(mySpreadsheetname+"_images");
+      folder = DriveApp.createFolder(myFoldername);
     }
     var file = folder.createFile(blob);
     var imageUrl = file.getUrl();
@@ -87,11 +88,11 @@ function insertImage(insertSheet, insertRow, insertColumn) {
     insertSheet.getRange(insertRow, insertColumn).setFormula(formula); 
   } 
   else if (myFormat=="jpg") {
-    var folder, folders = DriveApp.getFoldersByName(mySpreadsheetname+"_images");
+    var folder, folders = DriveApp.getFoldersByName(myFoldername);
     if (folders.hasNext()) {
       folder = folders.next();
     } else {
-      folder = DriveApp.createFolder(mySpreadsheetname+"_images");
+      folder = DriveApp.createFolder(myFoldername);
     }
     var file = folder.createFile(blob);
     var imageUrl = file.getUrl();
