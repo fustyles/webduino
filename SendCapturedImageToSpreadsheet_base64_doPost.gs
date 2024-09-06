@@ -1,5 +1,5 @@
 /*
-  Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/9/6 22:00
+  Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/9/7 00:00
   https://www.facebook.com/francefu
 */
 
@@ -19,7 +19,6 @@ function doPost(e) {
   var myFormat = e.parameter.format||"base64";
   var myDate = Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd");
   var myTime = Utilities.formatDate(new Date(), "GMT+8", "HH:mm:ss");
-  var myDatetimeRow = 1; 
 
   var contentType = myFile.substring(myFile.indexOf(":")+1, myFile.indexOf(";"));
   var data = myFile.substring(myFile.indexOf(",")+1);
@@ -39,15 +38,14 @@ function doPost(e) {
   } else if (myPosition=="insertlast") { 
     myRow = lastRow+1;   
   }
-  myDatetimeRow = myRow;
 
   if (myDatetime=="gmt_datetime") {
-    sheet.getRange(myDatetimeRow, 1).setValue(myDate);
-    sheet.getRange(myDatetimeRow, 2).setValue(myTime);  
+    sheet.getRange(myRow, 1).setValue(myDate);
+    sheet.getRange(myRow, 2).setValue(myTime);  
   } else if (myDatetime=="gmt_date") {
-    sheet.getRange(myDatetimeRow, 1).setValue(myDate); 
+    sheet.getRange(myRow, 1).setValue(myDate); 
   } else if (myDatetime=="gmt_time") {
-    sheet.getRange(myDatetimeRow, 1).setValue(myTime);  
+    sheet.getRange(myRow, 1).setValue(myTime);  
   }   
 
   if (myFormat=="base64") {
