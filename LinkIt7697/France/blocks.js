@@ -6369,82 +6369,76 @@ Blockly.Blocks['posenet_esp32cam'] = {
 };
 
 Blockly.Blocks['posenet_video'] = {
-  init: function() {
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.POSENET_SHOW);
-  this.appendDummyInput()
-      .appendField(Blockly.Msg.POSENET_MODELNAME_SHOW)  
-      .appendField(new Blockly.FieldDropdown([
-		["MobileNetV1","MobileNetV1"],
-		["ResNet50","ResNet50"]	  
-  ]), "modelname_");	  
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.POSENET_VIDEO_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["Y","block"],
-		["N","none"]	  
-  ]), "video_");	
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.POSENET_SKELETON_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["Y","block"],	  
-		["N","none"]
-  ]), "skeleton_");	
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.POSENET_PERSONS_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["1","1"],
-		["2","2"],
-		["3","3"],
-		["4","4"],
-		["5","5"]  
-  ]), "persons_"); 
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.POSENET_SCORELIMIT_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["0","0"],
-		["0.1","0.1"],
-		["0.2","0.2"],
-		["0.3","0.3"],
-		["0.4","0.4"],	  
-		["0.5","0.5"],
-		["0.6","0.6"],
-		["0.7","0.7"],
-		["0.8","0.8"],
-		["0.9","0.9"]	  
-  ]), "scorelimit_"); 	 
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.POSENET_RESULT_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["Y","block"],
-		["N","none"]	  
-  ]), "result_");   
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.POSENET_MIRRORIMAGE_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["Y","1"],
-		["N","0"]	  
-  ]), "mirrorimage_"); 
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.POSENET_OPACITY_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["1","1"],
-		["0.9","0.9"],
-		["0.8","0.8"],
-		["0.7","0.7"],
-		["0.6","0.6"],	  
-		["0.5","0.5"],
-		["0.4","0.4"],
-		["0.3","0.3"],
-		["0.2","0.2"],
-		["0.1","0.1"],	
-		["0","0"]	   
-  ]), "opacity_"); 	  
-  this.setInputsInline(true);	  
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(Blockly.Msg["HUE_10"]);
-  }
+    init: function() {
+        this.appendDummyInput()
+            .appendField(Blockly.Msg.POSENET_SHOW)
+			.appendField(Blockly.Msg.POSENET_MODELNAME_SHOW)
+            .appendField(new Blockly.FieldDropdown([
+                ["MobileNetV1", "MobileNetV1"],
+                ["ResNet50", "ResNet50"]
+            ]), "modelname_");
+        this.appendDummyInput()			
+            .appendField(Blockly.Msg.POSENET_VIDEO_SHOW)
+            .appendField(new Blockly.FieldDropdown([
+                ["Y", "block"],
+                ["N", "none"]
+            ]), "video_")
+            .appendField(Blockly.Msg.POSENET_RESULT_SHOW)
+            .appendField(new Blockly.FieldDropdown([
+                ["Y", "block"],
+                ["N", "none"]
+            ]), "result_")
+            .appendField(Blockly.Msg.POSENET_MIRRORIMAGE_SHOW)
+            .appendField(new Blockly.FieldDropdown([
+                ["Y", "1"],
+                ["N", "0"]
+            ]), "mirrorimage_")
+            .appendField(Blockly.Msg.POSENET_OPACITY_SHOW)
+            .appendField(new Blockly.FieldDropdown([
+                ["1", "1"],
+                ["0.9", "0.9"],
+                ["0.8", "0.8"],
+                ["0.7", "0.7"],
+                ["0.6", "0.6"],
+                ["0.5", "0.5"],
+                ["0.4", "0.4"],
+                ["0.3", "0.3"],
+                ["0.2", "0.2"],
+                ["0.1", "0.1"],
+                ["0", "0"]
+            ]), "opacity_");
+        this.appendDummyInput()
+            .appendField(Blockly.Msg.POSENET_SKELETON_SHOW)
+            .appendField(new Blockly.FieldDropdown([
+                ["Y", "block"],
+                ["N", "none"]
+            ]), "skeleton_")
+            .appendField(Blockly.Msg.POSENET_PERSONS_SHOW)
+            .appendField(new Blockly.FieldDropdown([
+                ["1", "1"],
+                ["2", "2"],
+                ["3", "3"],
+                ["4", "4"],
+                ["5", "5"]
+            ]), "persons_")
+            .appendField(Blockly.Msg.POSENET_SCORELIMIT_SHOW)
+            .appendField(new Blockly.FieldDropdown([
+                ["0", "0"],
+                ["0.1", "0.1"],
+                ["0.2", "0.2"],
+                ["0.3", "0.3"],
+                ["0.4", "0.4"],
+                ["0.5", "0.5"],
+                ["0.6", "0.6"],
+                ["0.7", "0.7"],
+                ["0.8", "0.8"],
+                ["0.9", "0.9"]
+            ]), "scorelimit_");
+        this.setInputsInline(false);
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+        this.setColour(Blockly.Msg["HUE_10"]);
+    }
 };
 
 Blockly.Blocks['posenet_list'] = {
@@ -29386,66 +29380,62 @@ Blockly.Blocks['holistic_esp32cam'] = {
 };
 
 Blockly.Blocks['holistic_video'] = {
-  init: function() {
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.HOLISTIC_SHOW);	  
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.HOLISTIC_VIDEO_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["Y","block"],
-		["N","none"]	  
-  ]), "video_");	
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.HOLISTIC_FACE_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["Y","1"],
-		["N","0"]	
-  ]), "face_");	
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.HOLISTIC_POSE_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["Y","1"],
-		["N","0"]	
-  ]), "pose_");
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.HOLISTIC_LEFTHAND_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["Y","1"],
-		["N","0"]	
-  ]), "lefthand_");
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.HOLISTIC_RIGHTHAND_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["Y","1"],
-		["N","0"]	
-  ]), "righthand_");  	  
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.HOLISTIC_MIRRORIMAGE_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["Y","1"],
-		["N","0"]	  
-  ]), "mirrorimage_"); 
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.HOLISTIC_OPACITY_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		["1","1"],
-		["0.9","0.9"],
-		["0.8","0.8"],
-		["0.7","0.7"],
-		["0.6","0.6"],	  
-		["0.5","0.5"],
-		["0.4","0.4"],
-		["0.3","0.3"],
-		["0.2","0.2"],
-		["0.1","0.1"],	
-		["0","0"]	   
-  ]), "opacity_"); 	  
-  this.setInputsInline(true);	  
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(Blockly.Msg["HUE_7"]);
-  this.setHelpUrl("https://google.github.io/mediapipe/solutions/holistic.html");   
-  }
+    init: function() {
+        this.appendDummyInput()
+            .appendField(Blockly.Msg.HOLISTIC_SHOW);
+        this.appendDummyInput()				
+            .appendField(Blockly.Msg.HOLISTIC_VIDEO_SHOW)
+            .appendField(new Blockly.FieldDropdown([
+                ["Y", "block"],
+                ["N", "none"]
+            ]), "video_")
+            .appendField(Blockly.Msg.HOLISTIC_MIRRORIMAGE_SHOW)
+            .appendField(new Blockly.FieldDropdown([
+                ["Y", "1"],
+                ["N", "0"]
+            ]), "mirrorimage_")
+            .appendField(Blockly.Msg.HOLISTIC_OPACITY_SHOW)
+            .appendField(new Blockly.FieldDropdown([
+                ["1", "1"],
+                ["0.9", "0.9"],
+                ["0.8", "0.8"],
+                ["0.7", "0.7"],
+                ["0.6", "0.6"],
+                ["0.5", "0.5"],
+                ["0.4", "0.4"],
+                ["0.3", "0.3"],
+                ["0.2", "0.2"],
+                ["0.1", "0.1"],
+                ["0", "0"]
+            ]), "opacity_");
+        this.appendDummyInput()
+            .appendField(Blockly.Msg["HOLISTIC_SKELETON_SHOW"])
+            .appendField(Blockly.Msg.HOLISTIC_FACE_SHOW)
+            .appendField(new Blockly.FieldDropdown([
+                ["Y", "1"],
+                ["N", "0"]
+            ]), "face_")
+            .appendField(Blockly.Msg.HOLISTIC_POSE_SHOW)
+            .appendField(new Blockly.FieldDropdown([
+                ["Y", "1"],
+                ["N", "0"]
+            ]), "pose_")
+            .appendField(Blockly.Msg.HOLISTIC_LEFTHAND_SHOW)
+            .appendField(new Blockly.FieldDropdown([
+                ["Y", "1"],
+                ["N", "0"]
+            ]), "lefthand_")
+            .appendField(Blockly.Msg.HOLISTIC_RIGHTHAND_SHOW)
+            .appendField(new Blockly.FieldDropdown([
+                ["Y", "1"],
+                ["N", "0"]
+            ]), "righthand_");
+        this.setInputsInline(false);
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+        this.setColour(Blockly.Msg["HUE_7"]);
+        this.setHelpUrl("https://google.github.io/mediapipe/solutions/holistic.html");
+    }
 };
 
 Blockly.Blocks['holistic_recognitied'] = {
