@@ -1,19 +1,33 @@
 /*
-  Author : ChungYi Fu (Kaohsiung, Taiwan)   2022/7/3 20:00
+  Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/9/6 19:00
   https://www.facebook.com/francefu
 */
 
+var myFile;
+var myFormat;
+var blob;
+var myDate;
+var myTime;
+var mySpreadsheeturl;
+var mySpreadsheetname;
+
 function doPost(e) {
-  var myFile = e.parameter.file;
-  var mySpreadsheeturl = e.parameter.spreadsheeturl;
-  var mySpreadsheetname = e.parameter.spreadsheetname;
+  myFile = e.parameter.file;
+  mySpreadsheeturl = decodeURIComponent(e.parameter.spreadsheeturl);
+  mySpreadsheetname = decodeURIComponent(e.parameter.spreadsheetname);
   var myDatetime = e.parameter.datetime;  
   var myPosition = e.parameter.position;  
   var myColumn = e.parameter.column;
   var myRow = e.parameter.row;
-  var myDate = Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd");
-  var myTime = Utilities.formatDate(new Date(), "GMT+8", "HH:mm:ss");
-  var myDatetimeRow = 1;   
+  myFormat = e.parameter.format||"base64";
+  myDate = Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd");
+  myTime = Utilities.formatDate(new Date(), "GMT+8", "HH:mm:ss");
+  var myDatetimeRow = 1; 
+
+  var contentType = myFile.substring(myFile.indexOf(":")+1, myFile.indexOf(";"));
+  var data = myFile.substring(myFile.indexOf(",")+1);
+  data = Utilities.base64Decode(data);
+  blob = Utilities.newBlob(data, contentType, myDate+" "+myTime+".jpg");
   
   var ss = SpreadsheetApp.openByUrl(mySpreadsheeturl)
   var sheet = ss.getSheetByName(mySpreadsheetname);
@@ -21,23 +35,23 @@ function doPost(e) {
 
   if (myPosition=="custom") {
     myDatetimeRow = myRow;     
-    sheet.getRange(myRow, myColumn).setValue(myFile);
+    insertImage(sheet, myRow, myColumn);
   } else if (myPosition=="first") {
     myDatetimeRow = 1;    
-    sheet.getRange(1, myColumn).setValue(myFile);
+    insertImage(sheet, 1, myColumn);
   } else if (myPosition=="second") {
     myDatetimeRow = 2;     
-    sheet.getRange(2, myColumn).setValue(myFile); 
+    insertImage(sheet, 2, myColumn); 
   } else if (myPosition=="insertfirst") {
     sheet.insertRowsBefore(1, 1);
     myDatetimeRow = 1;      
-    sheet.getRange(1, myColumn).setValue(myFile);
+    insertImage(sheet, 1, myColumn);
   } else if (myPosition=="last") {
     myDatetimeRow = lastRow;     
-    sheet.getRange(lastRow, myColumn).setValue(myFile);
+    insertImage(sheet, lastRow, myColumn);
   } else if (myPosition=="insertlast") { 
     myDatetimeRow = lastRow+1;   
-    sheet.getRange(lastRow+1, myColumn).setValue(myFile);
+    insertImage(sheet, lastRow+1, myColumn);
   }
 
   if (myDatetime=="gmt_datetime") {
@@ -51,4 +65,37 @@ function doPost(e) {
     sheet.getRange(myDatetimeRow, 1).setValue(myTime);  
   }   
   return  ContentService.createTextOutput("ok");
+}
+
+function insertImage(insertSheet, insertRow, insertColumn) {
+  if (myFormat=="base64")
+    insertSheet.getRange(insertRow, insertColumn).setValue(myFile);  
+  else if (myFormat=="link") {
+    var folder, folders = DriveApp.getFoldersByName(mySpreadsheetname+"_images");
+    if (folders.hasNext()) {
+      folder = folders.next();
+    } else {
+      folder = DriveApp.createFolder(mySpreadsheetname+"_images");
+    }
+    var file = folder.createFile(blob);
+    var imageUrl = file.getUrl();
+    var imageID = imageUrl.substring(imageUrl.indexOf("/d/")+3,imageUrl.indexOf("view")-1);       
+    imageUrl = "https://drive.google.com/file/d/"+imageID+"/view?usp=sharing";     
+    var formula = '=HYPERLINK("' + imageUrl + '","'+ myDate+" "+myTime +'")';
+    insertSheet.getRange(insertRow, insertColumn).setFormula(formula); 
+  } 
+  else if (myFormat=="jpg") {
+    var folder, folders = DriveApp.getFoldersByName(mySpreadsheetname+"_images");
+    if (folders.hasNext()) {
+      folder = folders.next();
+    } else {
+      folder = DriveApp.createFolder(mySpreadsheetname+"_images");
+    }
+    var file = folder.createFile(blob);
+    var imageUrl = file.getUrl();
+    var imageID = imageUrl.substring(imageUrl.indexOf("/d/")+3,imageUrl.indexOf("view")-1);       
+    imageUrl = "https://drive.google.com/thumbnail?id="+imageID;     
+    var formula = '=IMAGE("' + imageUrl + '", 2)';
+    insertSheet.getRange(insertRow, insertColumn).setFormula(formula);
+  }  
 }
