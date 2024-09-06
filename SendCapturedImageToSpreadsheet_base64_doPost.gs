@@ -1,61 +1,45 @@
 /*
-  Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/9/6 19:00
+  Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/9/6 22:00
   https://www.facebook.com/francefu
 */
 
-var myFile;
-var myFileWidth = 320;
-var myFileHeight = 240;
-var myFormat;
-var blob;
-var myDate;
-var myTime;
-var mySpreadsheeturl;
-var mySpreadsheetname;
+var cellWidth = 320;
+var cellHeight = 240;
 var myFoldername = "spreadsheet_images";
+var lineToken = "";
 
 function doPost(e) {
-  myFile = e.parameter.file;
-  mySpreadsheeturl = decodeURIComponent(e.parameter.spreadsheeturl);
-  mySpreadsheetname = decodeURIComponent(e.parameter.spreadsheetname);
+  var myFile = e.parameter.file;
+  var mySpreadsheeturl = decodeURIComponent(e.parameter.spreadsheeturl);
+  var mySpreadsheetname = decodeURIComponent(e.parameter.spreadsheetname);
   var myDatetime = e.parameter.datetime;  
   var myPosition = e.parameter.position;  
   var myColumn = e.parameter.column;
   var myRow = e.parameter.row;
-  myFormat = e.parameter.format||"base64";
-  myDate = Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd");
-  myTime = Utilities.formatDate(new Date(), "GMT+8", "HH:mm:ss");
+  var myFormat = e.parameter.format||"base64";
+  var myDate = Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd");
+  var myTime = Utilities.formatDate(new Date(), "GMT+8", "HH:mm:ss");
   var myDatetimeRow = 1; 
 
   var contentType = myFile.substring(myFile.indexOf(":")+1, myFile.indexOf(";"));
   var data = myFile.substring(myFile.indexOf(",")+1);
   data = Utilities.base64Decode(data);
-  blob = Utilities.newBlob(data, contentType, myDate+" "+myTime+".jpg");
+  var blob = Utilities.newBlob(data, contentType, myDate+" "+myTime+".jpg");
   
   var ss = SpreadsheetApp.openByUrl(mySpreadsheeturl)
   var sheet = ss.getSheetByName(mySpreadsheetname);
   var lastRow = sheet.getLastRow();
 
-  if (myPosition=="custom") {
-    myDatetimeRow = myRow;     
-    insertImage(sheet, myRow, myColumn);
-  } else if (myPosition=="first") {
-    myDatetimeRow = 1;    
-    insertImage(sheet, 1, myColumn);
-  } else if (myPosition=="second") {
-    myDatetimeRow = 2;     
-    insertImage(sheet, 2, myColumn); 
-  } else if (myPosition=="insertfirst") {
-    sheet.insertRowsBefore(1, 1);
-    myDatetimeRow = 1;      
-    insertImage(sheet, 1, myColumn);
-  } else if (myPosition=="last") {
-    myDatetimeRow = lastRow;     
-    insertImage(sheet, lastRow, myColumn);
+  if (myPosition=="insertfirst") {
+    sheet.insertRowsBefore(1, 1);     
+    myRow = 1;
+  } else if (myPosition=="insertsecond") {
+    sheet.insertRowsBefore(2, 1);        
+    myRow = 2;     
   } else if (myPosition=="insertlast") { 
-    myDatetimeRow = lastRow+1;   
-    insertImage(sheet, lastRow+1, myColumn);
+    myRow = lastRow+1;   
   }
+  myDatetimeRow = myRow;
 
   if (myDatetime=="gmt_datetime") {
     sheet.getRange(myDatetimeRow, 1).setValue(myDate);
@@ -67,12 +51,9 @@ function doPost(e) {
   else if (myDatetime=="gmt_time") {
     sheet.getRange(myDatetimeRow, 1).setValue(myTime);  
   }   
-  return  ContentService.createTextOutput("ok");
-}
 
-function insertImage(insertSheet, insertRow, insertColumn) {
   if (myFormat=="base64")
-    insertSheet.getRange(insertRow, insertColumn).setValue(myFile);  
+    sheet.getRange(myRow, myColumn).setValue(myFile);  
   else if (myFormat=="link") {
     var folder, folders = DriveApp.getFoldersByName(myFoldername);
     if (folders.hasNext()) {
@@ -85,7 +66,8 @@ function insertImage(insertSheet, insertRow, insertColumn) {
     var imageID = imageUrl.substring(imageUrl.indexOf("/d/")+3,imageUrl.indexOf("view")-1);       
     imageUrl = "https://drive.google.com/file/d/"+imageID+"/view?usp=sharing";     
     var formula = '=HYPERLINK("' + imageUrl + '","'+ myDate+" "+myTime +'")';
-    insertSheet.getRange(insertRow, insertColumn).setFormula(formula); 
+    sheet.getRange(myRow, myColumn).setFormula(formula);
+    lineNotify(imageUrl); 
   } 
   else if (myFormat=="jpg") {
     var folder, folders = DriveApp.getFoldersByName(myFoldername);
@@ -98,9 +80,32 @@ function insertImage(insertSheet, insertRow, insertColumn) {
     var imageUrl = file.getUrl();
     var imageID = imageUrl.substring(imageUrl.indexOf("/d/")+3,imageUrl.indexOf("view")-1);       
     imageUrl = "https://drive.google.com/thumbnail?id="+imageID;
-    insertSheet.setRowHeight(insertRow, myFileHeight);    
-    insertSheet.setColumnWidth(insertColumn, myFileWidth);          
+    sheet.setRowHeight(myRow, cellHeight);    
+    sheet.setColumnWidth(myColumn, cellWidth);          
     var formula = '=IMAGE("' + imageUrl + '", 1)';
-    insertSheet.getRange(insertRow, insertColumn).setFormula(formula);
-  }  
+    sheet.getRange(myRow, myColumn).setFormula(formula);
+    lineNotify(imageUrl);
+  } 
+
+    return  ContentService.createTextOutput("OK");
+}
+
+function lineNotify(message) {
+  var res = "Line Notify: ";
+  try {
+    var url = 'https://notify-api.line.me/api/notify';
+    var response = UrlFetchApp.fetch(url, {
+      'headers': {
+        'Authorization': 'Bearer ' + lineToken,
+      },
+      'method': 'post',
+      'payload': {
+          'message': message         
+      }
+    });
+    res += response.getContentText();
+  } catch(error) {
+    res += error;
+  } 
+  return res;
 }
