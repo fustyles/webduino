@@ -6,7 +6,7 @@
 var cellWidth = 320;
 var cellHeight = 240;
 var myFoldername = "spreadsheet_images";
-var lineToken = "";
+var lineToken = "";  //可不填
 
 function doPost(e) {
   var myFile = e.parameter.file;
