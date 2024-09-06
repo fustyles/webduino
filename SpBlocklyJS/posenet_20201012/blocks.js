@@ -1,13 +1,13 @@
 Blockly.Blocks['posenet_video'] = {
     init: function() {
         this.appendDummyInput()
-            .appendField(Blockly.Msg.POSENET_SHOW);
-        this.appendDummyInput()
-            .appendField(Blockly.Msg.POSENET_MODELNAME_SHOW)
+            .appendField(Blockly.Msg.POSENET_SHOW)
+	    .appendField(Blockly.Msg.POSENET_MODELNAME_SHOW)
             .appendField(new Blockly.FieldDropdown([
                 ["MobileNetV1", "MobileNetV1"],
                 ["ResNet50", "ResNet50"]
-            ]), "modelname_")
+            ]), "modelname_");
+        this.appendDummyInput()		    
             .appendField(Blockly.Msg.POSENET_VIDEO_SHOW)
             .appendField(new Blockly.FieldDropdown([
                 ["Y", "block"],
