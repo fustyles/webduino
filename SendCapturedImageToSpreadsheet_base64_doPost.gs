@@ -4,6 +4,8 @@
 */
 
 var myFile;
+var myFileWidth = 320;
+var myFileHeight = 240;
 var myFormat;
 var blob;
 var myDate;
@@ -94,8 +96,10 @@ function insertImage(insertSheet, insertRow, insertColumn) {
     var file = folder.createFile(blob);
     var imageUrl = file.getUrl();
     var imageID = imageUrl.substring(imageUrl.indexOf("/d/")+3,imageUrl.indexOf("view")-1);       
-    imageUrl = "https://drive.google.com/thumbnail?id="+imageID;     
-    var formula = '=IMAGE("' + imageUrl + '", 2)';
+    imageUrl = "https://drive.google.com/thumbnail?id="+imageID;
+    insertSheet.setRowHeight(insertRow, myFileHeight);    
+    insertSheet.setColumnWidth(insertColumn, myFileWidth);          
+    var formula = '=IMAGE("' + imageUrl + '", 1)';
     insertSheet.getRange(insertRow, insertColumn).setFormula(formula);
   }  
 }
