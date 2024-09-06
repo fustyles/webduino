@@ -53,7 +53,7 @@ Blockly.Blocks['holistic_video'] = {
 		["0.1","0.1"],	
 		["0","0"]	   
   ]), "opacity_"); 	  
-  this.setInputsInline(false);	  
+  this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(60);
