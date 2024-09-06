@@ -84,8 +84,7 @@ function doPost(e) {
     sheet.getRange(myRow, myColumn).setFormula('=HYPERLINK("' + imageUrl + '", '+formula+')');
     lineNotify(imageUrl);    
   } 
-
-    return  ContentService.createTextOutput("OK");
+  return  ContentService.createTextOutput("OK");
 }
 
 function lineNotify(message) {
