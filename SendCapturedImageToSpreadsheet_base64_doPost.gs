@@ -88,7 +88,7 @@ function doPost(e) {
 }
 
 function lineNotify(message) {
-  var res = "Line Notify: ";
+  var res = "";
   try {
     var url = 'https://notify-api.line.me/api/notify';
     var response = UrlFetchApp.fetch(url, {
