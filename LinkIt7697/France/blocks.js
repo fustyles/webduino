@@ -3663,12 +3663,20 @@ Blockly.Blocks['amb82_mini_spreadsheet'] = {
 	this.appendValueInput("column")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)	  
-		.appendField(Blockly.Msg.VIDEO_BASE64_COLUMN);		
+		.appendField(Blockly.Msg.VIDEO_BASE64_COLUMN);
+	this.appendDummyInput()  
+		.appendField(Blockly.Msg.VIDEO_BASE64_FORMAT)
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["base64","base64"], 
+			["link","link"], 
+			["jpg","jpg"]
+		]), "format");		
 	this.appendValueInput("spreadsheet_script")
 		.setCheck("String")	  
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);
-	this.getInput("spreadsheet_script").setVisible(false);		
+	//this.getInput("spreadsheet_script").setVisible(false);		
 	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -30503,12 +30511,20 @@ Blockly.Blocks['esp32_cam_spreadsheet'] = {
 	this.appendValueInput("column")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)	  
-		.appendField(Blockly.Msg.VIDEO_BASE64_COLUMN);		
+		.appendField(Blockly.Msg.VIDEO_BASE64_COLUMN);
+	this.appendDummyInput()  
+		.appendField(Blockly.Msg.VIDEO_BASE64_FORMAT)
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["base64","base64"], 
+			["link","link"], 
+			["jpg","jpg"]
+		]), "format");		
 	this.appendValueInput("spreadsheet_script")
 		.setCheck("String")	  
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);
-	this.getInput("spreadsheet_script").setVisible(false);		
+	//this.getInput("spreadsheet_script").setVisible(false);		
 	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);

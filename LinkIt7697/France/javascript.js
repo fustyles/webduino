@@ -3111,6 +3111,7 @@ Blockly.Arduino['amb82_mini_spreadsheet'] = function(block) {
   var value_position = block.getFieldValue('position');  
   var value_column = Blockly.Arduino.valueToCode(block, 'column', Blockly.Arduino.ORDER_ATOMIC);
   var value_row = Blockly.Arduino.valueToCode(block, 'row', Blockly.Arduino.ORDER_ATOMIC);
+  var value_format = block.getFieldValue('format');
   var value_spreadsheet_script = Blockly.Arduino.valueToCode(block, 'spreadsheet_script', Blockly.Arduino.ORDER_ATOMIC);
   
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
@@ -3198,7 +3199,7 @@ Blockly.Arduino['amb82_mini_spreadsheet'] = function(block) {
 											'  return encodedMsg;\n'+
 											'}';
 			
-	var code = 'SendStillToSpreadsheet("&spreadsheeturl="+String('+value_spreadsheeturl+')+"&spreadsheetname="+String(urlencode('+value_spreadsheetname+'))+"&datetime='+value_datetime+'&position='+value_position+'&column="+String('+value_column+')+"&row="+String('+value_row+')+"&file=",'+value_spreadsheet_script+');\n';
+	var code = 'SendStillToSpreadsheet("&spreadsheeturl="+String('+value_spreadsheeturl+')+"&spreadsheetname="+String(urlencode('+value_spreadsheetname+'))+"&datetime='+value_datetime+'&position='+value_position+'&column="+String('+value_column+')+"&row="+String('+value_row+')+"&format='+value_format+'&file=",'+value_spreadsheet_script+');\n';
   	return code;		
 }
 
@@ -22458,6 +22459,7 @@ Blockly.Arduino['esp32_cam_spreadsheet'] = function(block) {
   var value_position = block.getFieldValue('position');  
   var value_column = Blockly.Arduino.valueToCode(block, 'column', Blockly.Arduino.ORDER_ATOMIC);
   var value_row = Blockly.Arduino.valueToCode(block, 'row', Blockly.Arduino.ORDER_ATOMIC);
+  var value_format = block.getFieldValue('format');
   var value_spreadsheet_script = Blockly.Arduino.valueToCode(block, 'spreadsheet_script', Blockly.Arduino.ORDER_ATOMIC);
 
 	if (selectBoardType().indexOf("esp")!=-1)
@@ -22557,7 +22559,7 @@ Blockly.Arduino['esp32_cam_spreadsheet'] = function(block) {
 											'  return encodedMsg;\n'+
 											'}';
 			
-	var code = 'SendStillToSpreadsheet("&spreadsheeturl="+String('+value_spreadsheeturl+')+"&spreadsheetname="+String(urlencode('+value_spreadsheetname+'))+"&datetime='+value_datetime+'&position='+value_position+'&column="+String('+value_column+')+"&row="+String('+value_row+')+"&file=",'+value_spreadsheet_script+');\n';
+	var code = 'SendStillToSpreadsheet("&spreadsheeturl="+String('+value_spreadsheeturl+')+"&spreadsheetname="+String(urlencode('+value_spreadsheetname+'))+"&datetime='+value_datetime+'&position='+value_position+'&column="+String('+value_column+')+"&row="+String('+value_row+')+"&format='+value_format+'&file=",'+value_spreadsheet_script+');\n';
   	return code;		
 }
 
