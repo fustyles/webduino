@@ -5,7 +5,7 @@
 
 var cellWidth = 320;   //插入影像儲存格寬度
 var cellHeight = 240;   //插入影像儲存格高度
-var myFoldername = "spreadsheet_images";   //Google雲端硬碟資料夾，設定知道連結者有檢視權限。
+var myFoldername = "spreadsheet_images";   //Google雲端硬碟資料夾名稱，設定知道連結者有檢視權限。
 var lineToken = "";   //可不填
 
 function doPost(e) {
