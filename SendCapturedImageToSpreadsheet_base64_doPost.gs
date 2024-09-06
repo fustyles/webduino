@@ -44,17 +44,15 @@ function doPost(e) {
   if (myDatetime=="gmt_datetime") {
     sheet.getRange(myDatetimeRow, 1).setValue(myDate);
     sheet.getRange(myDatetimeRow, 2).setValue(myTime);  
-  }
-  else if (myDatetime=="gmt_date") {
+  } else if (myDatetime=="gmt_date") {
     sheet.getRange(myDatetimeRow, 1).setValue(myDate); 
-  }
-  else if (myDatetime=="gmt_time") {
+  } else if (myDatetime=="gmt_time") {
     sheet.getRange(myDatetimeRow, 1).setValue(myTime);  
   }   
 
-  if (myFormat=="base64")
+  if (myFormat=="base64") {
     sheet.getRange(myRow, myColumn).setValue(myFile);  
-  else if (myFormat=="link") {
+  } else if (myFormat=="link") {
     var folder, folders = DriveApp.getFoldersByName(myFoldername);
     if (folders.hasNext()) {
       folder = folders.next();
@@ -68,8 +66,7 @@ function doPost(e) {
     var formula = '=HYPERLINK("' + imageUrl + '","'+ myDate+" "+myTime +'")';
     sheet.getRange(myRow, myColumn).setFormula(formula);
     lineNotify(imageUrl); 
-  } 
-  else if (myFormat=="jpg") {
+  }  else if (myFormat=="jpg") {
     var folder, folders = DriveApp.getFoldersByName(myFoldername);
     if (folders.hasNext()) {
       folder = folders.next();
