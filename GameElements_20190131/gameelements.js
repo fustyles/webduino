@@ -4359,9 +4359,9 @@ function HextoRgb(color) {
 	}
   }
   
-  function video_base64_spreadsheet(source_id, value_spreadsheetUrl, value_spreadsheetName, value_datetime, value_position, value_column, value_row, value_format, value_script) {
-    if (document.getElementById(source_id)) {	
-		var obj = document.getElementById(source_id);
+  function video_base64_spreadsheet(input_id, value_spreadsheetUrl, value_spreadsheetName, value_datetime, value_position, value_column, value_row, value_format, value_script) {
+    if (document.getElementById(input_id)) {	
+		var obj = document.getElementById(input_id);
 		var canvas = document.createElement('canvas');
 		canvas.id = 'tmp';
 		canvas.style.position = "absolute";
@@ -4370,6 +4370,7 @@ function HextoRgb(color) {
 		canvas.setAttribute("width", obj.width);
 		canvas.setAttribute("height", obj.height);
 		var context = canvas.getContext("2d");
+	    
 		try {
 			context.drawImage(obj,0,0,obj.width,obj.height);
 			var myFile = canvas.toDataURL('image/jpeg');
