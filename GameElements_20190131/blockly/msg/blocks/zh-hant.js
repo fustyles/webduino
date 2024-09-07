@@ -638,3 +638,14 @@ Blockly.Msg["TRY_CATCH_FAIL"] = "發生錯誤時執行(Catch)";
 Blockly.Msg["TRY_CATCH_FINALLY"] = "最後執行(Finally)";
 
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_EVAL"] = "執行代碼字串";
+
+Blockly.Msg["SPREADSHEET_INSERT"] = "插入";
+Blockly.Msg["SPREADSHEET_DATE"] = "日期";
+Blockly.Msg["SPREADSHEET_TIME"] = "時間";
+Blockly.Msg["SPREADSHEET_CUSTOMROW_SHOW"] = "自訂";
+Blockly.Msg["SPREADSHEET_INSERTFIRSTROW_SHOW"] = "插入第一列";
+Blockly.Msg["SPREADSHEET_INSERTSECONDROW_SHOW"] = "插入第二列";
+Blockly.Msg["SPREADSHEET_INSERTLASTROW_SHOW"] = "插入最後一列";
+Blockly.Msg["SPREADSHEET_BASE64_SHOW"] = "Base64字串";
+Blockly.Msg["SPREADSHEET_LINK_SHOW"] = "圖檔連結";
+Blockly.Msg["SPREADSHEET_IMAGE_SHOW"] = "圖檔縮圖";
