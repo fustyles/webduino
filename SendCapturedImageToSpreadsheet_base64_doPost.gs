@@ -19,6 +19,8 @@ function doPost(e) {
   var myFormat = e.parameter.format||"base64";
   var myDate = Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd");
   var myTime = Utilities.formatDate(new Date(), "GMT+8", "HH:mm:ss");
+  cellWidth = e.parameter.cellwidth||cellWidth;
+  cellHeight = e.parameter.cellheight||cellHeight; 
   myFoldername = e.parameter.foldername||myFoldername;
   lineToken = e.parameter.linetoken||lineToken;
 
