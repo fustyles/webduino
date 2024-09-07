@@ -648,3 +648,14 @@ Blockly.Msg["JSON_VARIABLE_LENGTH"] = "长度";
 Blockly.Msg["TRY_CATCH_SUCCESS"] = "程式执行(Try)";
 Blockly.Msg["TRY_CATCH_FAIL"] = "发生错误时执行(Catch)";
 Blockly.Msg["TRY_CATCH_FINALLY"] = "最后执行(Finally)";
+
+Blockly.Msg["SPREADSHEET_INSERT"] = "插入";
+Blockly.Msg["SPREADSHEET_DATE"] = "日期";
+Blockly.Msg["SPREADSHEET_TIME"] = "时间";
+Blockly.Msg["SPREADSHEET_CUSTOMROW_SHOW"] = "自订";
+Blockly.Msg["SPREADSHEET_INSERTFIRSTROW_SHOW"] = "插入第一列";
+Blockly.Msg["SPREADSHEET_INSERTSECONDROW_SHOW"] = "插入第二列";
+Blockly.Msg["SPREADSHEET_INSERTLASTROW_SHOW"] = "插入最后一列";
+Blockly.Msg["SPREADSHEET_BASE64_SHOW"] = "Base64字串";
+Blockly.Msg["SPREADSHEET_LINK_SHOW"] = "图档连结";
+Blockly.Msg["SPREADSHEET_IMAGE_SHOW"] = "图档缩图";

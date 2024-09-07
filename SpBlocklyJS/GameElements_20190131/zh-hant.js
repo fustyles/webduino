@@ -511,8 +511,6 @@ Blockly.Msg["VIDEO_FACING"] = "鏡頭";
 Blockly.Msg["VIDEO_FACING_FRONT"] = "前置";
 Blockly.Msg["VIDEO_FACING_BACK"] = "後置";
 
-
-
 Blockly.Msg["VIDEO_INDEX"] = "索引";
 Blockly.Msg["VEDIO_OUTPUT_JPG"] = "視訊媒體畫面截圖另存jpg檔";
 Blockly.Msg["CANVAS_CAPTUREVIDEO"] = "畫布 捕捉視訊畫面";
@@ -657,3 +655,14 @@ Blockly.Msg["JSON_VARIABLE_LENGTH"] = "長度";
 Blockly.Msg["TRY_CATCH_SUCCESS"] = "程式執行(Try)";
 Blockly.Msg["TRY_CATCH_FAIL"] = "發生錯誤時執行(Catch)";
 Blockly.Msg["TRY_CATCH_FINALLY"] = "最後執行(Finally)";
+
+Blockly.Msg["SPREADSHEET_INSERT"] = "插入";
+Blockly.Msg["SPREADSHEET_DATE"] = "日期";
+Blockly.Msg["SPREADSHEET_TIME"] = "時間";
+Blockly.Msg["SPREADSHEET_CUSTOMROW_SHOW"] = "自訂";
+Blockly.Msg["SPREADSHEET_INSERTFIRSTROW_SHOW"] = "插入第一列";
+Blockly.Msg["SPREADSHEET_INSERTSECONDROW_SHOW"] = "插入第二列";
+Blockly.Msg["SPREADSHEET_INSERTLASTROW_SHOW"] = "插入最後一列";
+Blockly.Msg["SPREADSHEET_BASE64_SHOW"] = "Base64字串";
+Blockly.Msg["SPREADSHEET_LINK_SHOW"] = "圖檔連結";
+Blockly.Msg["SPREADSHEET_IMAGE_SHOW"] = "圖檔縮圖";

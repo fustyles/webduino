@@ -377,36 +377,31 @@ var catPageElements ='<xml>'+
 '    <field name="TEXT"></field>'+
 '    </block>'+
 '    </value>'+
-'    <value name="spreadsheeturl_">'+
+'    <value name="spreadsheeturl">'+
 '    <block type="text">'+
 '    <field name="TEXT"></field>'+
 '    </block>'+
 '    </value>'+
-'    <value name="spreadsheetname_">'+
+'    <value name="spreadsheetname">'+
 '    <block type="text">'+
 '    <field name="TEXT">工作表1</field>'+
 '    </block>'+
 '    </value>'+
-'    <value name="column_">'+
+'    <value name="column">'+
 '    <block type="math_number">'+
 '    <field name="NUM">1</field>'+
 '    </block>'+
 '    </value>'+
-'    <value name="row_">'+
+'    <value name="row">'+
 '    <block type="math_number">'+
 '    <field name="NUM">1</field>'+
 '    </block>'+
 '    </value>'+
-'    <value name="height_">'+
-'    <block type="math_number">'+
-'    <field name="NUM">20</field>'+
-'    </block>'+
-'    </value>'+
-'    <value name="spreadsheet_script_">'+
+'    <value name="spreadsheet_script">'+
 '    <block type="text">'+
-'    <field name="TEXT">https:\/\/script.google.com\/macros\/s\/AKfycbyJYudkmWPcFj6b7zluKkA8roI993hgLcq3AukQRmoLlmJFexJgcCGTPbNeTT7AXTDH\/exec</field>'+
+'    <field name="TEXT"></field>'+			  
 '    </block>'+
-'    </value>'+
+'    </value> '+
 '    </block>'+
 '    <block type="video_base64_drive">'+
 '    <value name="id_">'+

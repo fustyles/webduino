@@ -2032,7 +2032,6 @@ Blockly.JavaScript['video_base64'] = function (block) {
 
 Blockly.JavaScript['video_base64_spreadsheet'] = function (block) {
   var value_source_ = block.getFieldValue('source_');
-  var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
 	
   if ((value_id_.indexOf("(")==0)&&(value_id_.lastIndexOf(")")==value_id_.length-1))
@@ -2050,14 +2049,16 @@ Blockly.JavaScript['video_base64_spreadsheet'] = function (block) {
   else if (value_source_=="image")
 	source_id = 'gameimage_'+value_id_;
 	
-  var value_spreadsheeturl_ = Blockly.JavaScript.valueToCode(block, 'spreadsheeturl_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_spreadsheetname_ = Blockly.JavaScript.valueToCode(block, 'spreadsheetname_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_column_ = Blockly.JavaScript.valueToCode(block, 'column_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_row_ = Blockly.JavaScript.valueToCode(block, 'row_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_spreadsheet_script_ = Blockly.JavaScript.valueToCode(block, 'spreadsheet_script_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_format_ = block.getFieldValue('format_');
+  var value_spreadsheetUrl = Blockly.JavaScript.valueToCode(block, 'spreadsheeturl', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_spreadsheetName = Blockly.JavaScript.valueToCode(block, 'spreadsheetname', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_datetime = block.getFieldValue('datetime');    
+  var value_position = block.getFieldValue('position');  
+  var value_column = Blockly.JavaScript.valueToCode(block, 'column', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_row = Blockly.JavaScript.valueToCode(block, 'row', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_format = block.getFieldValue('format');
+  var value_script = Blockly.JavaScript.valueToCode(block, 'spreadsheet_script', Blockly.JavaScript.ORDER_ATOMIC);
   
-  var code = 'video_base64_spreadsheet("' + source_id + '",'+value_spreadsheeturl_+','+value_spreadsheetname_+','+value_column_+','+value_row_+','+value_height_+',"'+value_format_+'",'+value_spreadsheet_script_+');\n';
+  var code = 'video_base64_spreadsheet("' + source_id + '",' + value_spreadsheetUrl + ',' + value_spreadsheetName + ',"' + value_datetime + '","' + value_position + '",' + value_column + ',' + value_row + ',"' + value_format + '",' + value_script + ');\n';
   return code;
 };
 

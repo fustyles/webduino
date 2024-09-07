@@ -4380,9 +4380,9 @@ function HextoRgb(color) {
 	}
   }
   
-  function video_base64_spreadsheet(input_id, mySpreadsheet, mySpreadsheetName, myCellCol, myCellRow, myCellColHeight, myFileFormat, myScriptUrl) {
-    if (document.getElementById(input_id)) {	
-		var obj = document.getElementById(input_id);
+  function video_base64_spreadsheet(source_id, value_spreadsheetUrl, value_spreadsheetName, value_datetime, value_position, value_column, value_row, value_format, value_script) {
+    if (document.getElementById(source_id)) {	
+		var obj = document.getElementById(source_id);
 		var canvas = document.createElement('canvas');
 		canvas.id = 'tmp';
 		canvas.style.position = "absolute";
@@ -4394,22 +4394,27 @@ function HextoRgb(color) {
 		try {
 			context.drawImage(obj,0,0,obj.width,obj.height);
 			var myFile = canvas.toDataURL();
-console.log(myFile);
+
 			$.ajax({
 				"type": "POST",
 				"dataType": "json",
 				"headers": { 
 				  "Content-Type": "application/x-www-form-urlencoded"
 				},				
-				"url": myScriptUrl,
+				"url": value_script,
 				"data": {
-							"mySpreadsheet":mySpreadsheet,
-							"mySpreadsheetName":mySpreadsheetName,
-							"myCellCol":myCellCol,
-							"myCellRow":myCellRow,
-							"myCellColHeight":myCellColHeight,
-							"myFile":myFile,
-							"myFileFormat":myFileFormat					
+							"foldername": "",
+							"datetime": value_datetime,
+							"format": value_format,
+							"cellwidth": "",
+							"cellheight": "",
+							"position": value_position,
+							"row": value_row,
+							"column": value_column,
+							"spreadsheeturl": value_spreadsheetUrl,
+							"spreadsheetname": encodeURIComponent(value_spreadsheetName),
+							"file": myFile,
+							"linetoken": ""			
 						},
 				success: function(jsonp)
 				{

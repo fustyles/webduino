@@ -614,8 +614,6 @@ Blockly.Msg["INCLUDE_CSS"] = ".css";
 Blockly.Msg["INCLUDE_POSITION"] = "Position";
 Blockly.Msg["INCLUDE_HEADER"] = "Header Block";
 
-
-
 Blockly.Msg["INCLUDE_HERE"] = "Current Location";
 Blockly.Msg["INCLUDE_URL"] = "URL";
 Blockly.Msg["SYSTEM_DATETIME"] = "System Time";
@@ -657,3 +655,14 @@ Blockly.Msg["JSON_VARIABLE_LENGTH"] = "Length";
 Blockly.Msg["TRY_CATCH_SUCCESS"] = "Execute Program (Try)";
 Blockly.Msg["TRY_CATCH_FAIL"] = "Execute on Error (Catch)";
 Blockly.Msg["TRY_CATCH_FINALLY"] = "Always Execute (Finally)";
+
+Blockly.Msg["SPREADSHEET_INSERT"] = "Insert";
+Blockly.Msg["SPREADSHEET_DATE"] = "Date";
+Blockly.Msg["SPREADSHEET_TIME"] = "Time";
+Blockly.Msg["SPREADSHEET_CUSTOMROW_SHOW"] = "Customize";
+Blockly.Msg["SPREADSHEET_INSERTFIRSTROW_SHOW"] = "Insert the first column";
+Blockly.Msg["SPREADSHEET_INSERTSECONDROW_SHOW"] = "Insert second column";
+Blockly.Msg["SPREADSHEET_INSERTLASTROW_SHOW"] = "Insert the last column";
+Blockly.Msg["SPREADSHEET_BASE64_SHOW"] = "Base64 string";
+Blockly.Msg["SPREADSHEET_LINK_SHOW"] = "Image link";
+Blockly.Msg["SPREADSHEET_IMAGE_SHOW"] = "Image thumbnail";
