@@ -4406,7 +4406,7 @@ function HextoRgb(color) {
 				},
 				error: function(jqXHR, textStatus, errorThrown)
 				{
-				  //console.log(errorThrown);
+				  console.log(errorThrown);
 				}
 			 });
 		}
