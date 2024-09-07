@@ -4420,7 +4420,7 @@ function HextoRgb(color) {
 							"row": value_row,
 							"column": value_column,
 							"spreadsheeturl": value_spreadsheetUrl,
-							"spreadsheetname": encodeURIComponent(value_spreadsheetName),
+							"spreadsheetname": value_spreadsheetName,
 							"file": myFile,
 							"linetoken": ""			
 						},
