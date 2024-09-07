@@ -4372,8 +4372,8 @@ function HextoRgb(color) {
 		var context = canvas.getContext("2d");
 		try {
 			context.drawImage(obj,0,0,obj.width,obj.height);
-			var myFile = canvas.toDataURL();
-
+			var myFile = canvas.toDataURL('image/jpeg');
+			
 			$.ajax({
 				"type": "POST",
 				"dataType": "json",
