@@ -3,9 +3,9 @@
   https://www.facebook.com/francefu
 */
 
-var cellWidth = 320;   //插入影像儲存格寬度
-var cellHeight = 240;   //插入影像儲存格高度
-var myFoldername = "spreadsheet_images";   //Google雲端硬碟建立資料夾名稱自訂，須設定知道連結者有檢視權限才能在試算表連結顯示影像。
+var cellWidth = 320;   //預設插入影像儲存格寬度
+var cellHeight = 240;   //預設插入影像儲存格高度
+var myFoldername = "spreadsheet_images";   //預設Google雲端硬碟建立資料夾名稱自訂，須設定"知道連結者有檢視權限"才能在試算表連結顯示影像。
 var lineToken = "";   //可不填
 
 function doPost(e) {
