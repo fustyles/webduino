@@ -4373,7 +4373,7 @@ function HextoRgb(color) {
 	    
 		try {
 			context.drawImage(obj,0,0,obj.width,obj.height);
-			var myFile = canvas.toDataURL('image/jpeg');			
+			var myFile = canvas.toDataURL();			
 			
 			$.ajax({
 				"type": "POST",
