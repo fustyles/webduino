@@ -6417,69 +6417,48 @@ Blockly.Blocks['video_base64'] = {
 
 Blockly.Blocks['video_base64_spreadsheet'] = {
   init: function () {
-	this.appendDummyInput()
-		.setAlign(Blockly.ALIGN_RIGHT)		  
-		.appendField(new Blockly.FieldDropdown([
-		  [Blockly.Msg.VIDEO,"video"], 
-		  [Blockly.Msg.CANVAS,"canvas"], 
-		  [Blockly.Msg.IMAGE,"image"]
-		]), "source_");
-	this.appendValueInput("id_")
-		.setCheck(null)
-		.setAlign(Blockly.ALIGN_RIGHT)	  
-		.appendField(Blockly.Msg.ID);  
-	this.appendValueInput("spreadsheeturl")
-		.setCheck("String")
-		.setAlign(Blockly.ALIGN_RIGHT)	  
-		.appendField(Blockly.Msg.VIDEO_BASE64_SPREADSHEETURL);
-	this.appendValueInput("spreadsheetname")
-		.setCheck("String")
-		.setAlign(Blockly.ALIGN_RIGHT)	  
-		.appendField(Blockly.Msg.VIDEO_BASE64_SPREADSHEETNAME);
-	this.appendDummyInput()  
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg["SPREADSHEET_INSERT"])
-		.appendField(new Blockly.FieldDropdown([
-			["　",""],		
-			["A("+Blockly.Msg["SPREADSHEET_DATE"]+"),B("+Blockly.Msg["SPREADSHEET_TIME"]+")","gmt_datetime"],
-			["A("+Blockly.Msg["SPREADSHEET_DATE"]+")","gmt_date"],
-			["A("+Blockly.Msg["SPREADSHEET_TIME"]+")","gmt_time"]	
-		]), "datetime");
-	this.appendDummyInput() 
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg.ESP32_CAM_SPREADSHEET_ROW_SHOW)
-		.appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["SPREADSHEET_CUSTOMROW_SHOW"],"custom"],
-			[Blockly.Msg["SPREADSHEET_INSERTFIRSTROW_SHOW"],"insertfirst"],
-			[Blockly.Msg["SPREADSHEET_INSERTSECONDROW_SHOW"],"insertsecond"],
-			[Blockly.Msg["SPREADSHEET_INSERTLASTROW_SHOW"],"insertlast"]	
-	]), "position");		
-	this.appendValueInput("row")
-		.setCheck("Number")
-		.setAlign(Blockly.ALIGN_RIGHT)	  
-		.appendField(Blockly.Msg.VIDEO_BASE64_ROW);		
-	this.appendValueInput("column")
-		.setCheck("Number")
-		.setAlign(Blockly.ALIGN_RIGHT)	  
-		.appendField(Blockly.Msg.VIDEO_BASE64_COLUMN);
-	this.appendDummyInput()  
-		.appendField(Blockly.Msg.VIDEO_BASE64_FORMAT)
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["SPREADSHEET_BASE64_SHOW"],"base64"], 
-			[Blockly.Msg["SPREADSHEET_LINK_SHOW"],"link"], 
-			[Blockly.Msg["SPREADSHEET_IMAGE_SHOW"],"jpg"]
-		]), "format");		
-	this.appendValueInput("spreadsheet_script")
-		.setCheck("String")	  
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);
-	//this.getInput("spreadsheet_script").setVisible(false);		
-	this.setInputsInline(false);
-	this.setPreviousStatement(!0);
-	this.setNextStatement(!0);
-	this.setColour(60);
-	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToSpreadsheet_base64_doPost.gs");
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)		  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.VIDEO,"video"], [Blockly.Msg.CANVAS,"canvas"], [Blockly.Msg.IMAGE,"image"]]), "source_");
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.ID);  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.VIDEO_BASE64_SPREADSHEET);
+  this.appendValueInput("spreadsheeturl_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.VIDEO_BASE64_SPREADSHEETURL);
+  this.appendValueInput("spreadsheetname_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.VIDEO_BASE64_SPREADSHEETNAME);
+  this.appendValueInput("column_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.VIDEO_BASE64_COLUMN);
+  this.appendValueInput("row_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.VIDEO_BASE64_ROW);
+  this.appendValueInput("height_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.TABLE_TD_HEIGHT);	  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.VIDEO_BASE64_FORMAT)
+	  .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(new Blockly.FieldDropdown([["image","image"], ["base64","string"]]), "format_");	  
+  this.appendValueInput("spreadsheet_script_")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);
+  this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/WebduinoSpreadsheet.gs");	  
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
   }
 };
 
