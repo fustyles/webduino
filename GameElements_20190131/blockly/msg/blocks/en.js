@@ -637,3 +637,14 @@ Blockly.Msg["TRY_CATCH_FAIL"] = "Catch";
 Blockly.Msg["TRY_CATCH_FINALLY"] = "Finally";
 
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_EVAL"] = "Execution code string";
+
+Blockly.Msg["SPREADSHEET_INSERT"] = "Insert";
+Blockly.Msg["SPREADSHEET_DATE"] = "Date";
+Blockly.Msg["SPREADSHEET_TIME"] = "Time";
+Blockly.Msg["SPREADSHEET_CUSTOMROW_SHOW"] = "Customize";
+Blockly.Msg["SPREADSHEET_INSERTFIRSTROW_SHOW"] = "Insert the first column";
+Blockly.Msg["SPREADSHEET_INSERTSECONDROW_SHOW"] = "Insert second column";
+Blockly.Msg["SPREADSHEET_INSERTLASTROW_SHOW"] = "Insert the last column";
+Blockly.Msg["SPREADSHEET_BASE64_SHOW"] = "Base64 string";
+Blockly.Msg["SPREADSHEET_LINK_SHOW"] = "Image link";
+Blockly.Msg["SPREADSHEET_IMAGE_SHOW"] = "Image thumbnail";
