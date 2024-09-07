@@ -10,7 +10,7 @@ var lineToken = "";                        //可不填
 
 function doPost(e) {
   var myFile = e.parameter.file;
-  var mySpreadsheeturl = decodeURIComponent(e.parameter.spreadsheeturl);
+  var mySpreadsheeturl = e.parameter.spreadsheeturl;
   var mySpreadsheetname = decodeURIComponent(e.parameter.spreadsheetname);
   var myDatetime = e.parameter.datetime;  
   var myPosition = e.parameter.position;  
