@@ -19,6 +19,7 @@ function doPost(e) {
   var myFormat = e.parameter.format||"base64";
   var myDate = Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd");
   var myTime = Utilities.formatDate(new Date(), "GMT+8", "HH:mm:ss");
+  myFoldername = e.parameter.foldername||myFoldername;
   lineToken = e.parameter.linetoken||lineToken;
 
   var contentType = myFile.substring(myFile.indexOf(":")+1, myFile.indexOf(";"));
