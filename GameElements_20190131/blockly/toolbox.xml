@@ -214,8 +214,7 @@
 			</value>	  
 			<value name="spreadsheet_script">
 			  <block type="text">
-				<field name="TEXT"></field>
-				<!-- https://script.google.com/macros/s/AKfycbysXORTz1fwTtjKKDakgjo1NKztyRam2B2NNvx72iq2FWWdGssa3ihhxGk1ZkQmy4ao-A/exec -->					  
+				<field name="TEXT"></field>					  
 			  </block>
 			</value> 
 		</block> 
