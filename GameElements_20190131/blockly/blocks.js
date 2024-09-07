@@ -6477,7 +6477,7 @@ Blockly.Blocks['video_base64_spreadsheet'] = {
 	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(290);
+	this.setColour(60);
 	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToSpreadsheet_base64_doPost.gs");
   }
 };
