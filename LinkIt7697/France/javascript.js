@@ -7044,51 +7044,6 @@ Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
     return code;
 };
 
-
-Blockly.Arduino['esp32_pixelbit_initial'] = function(block) {
-	Blockly.Arduino.definitions_.tftinitial = ''+
-												'#include <TFT_eSPI_PIXELBIT.h>\n'+
-												'#include <U8g2_for_TFT_eSPI.h>\n'+
-												'TFT_eSPI tft = TFT_eSPI();\n'+
-												'U8g2_for_TFT_eSPI u8g2;\n'+
-												'byte tftTextSize=1;\n'+
-												'byte tftTextFont=1;\n'+
-												'int pinCS=SS;\n'+
-												'#include <TJpg_Decoder.h>\n'+
-												'uint16_t dmaBuffer1[16 * 16];\n'+
-												'uint16_t dmaBuffer2[16 * 16];\n'+
-												'uint16_t *dmaBufferPtr = dmaBuffer1;\n'+
-												'bool dmaBufferSel = 0;\n'+
-												'bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t *bitmap) {\n'+
-												'  if (y >= tft.height())\n'+
-												'	return false;\n'+
-												'  if (dmaBufferSel)\n'+
-												'	dmaBufferPtr = dmaBuffer2;\n'+
-												'  else\n'+
-												'	dmaBufferPtr = dmaBuffer1;\n'+
-												'  dmaBufferSel = !dmaBufferSel;\n'+
-												'  tft.pushImageDMA(x, y, w, h, bitmap, dmaBufferPtr);\n'+
-												'  return 1;\n'+
-												'}\n';
-												
-	Blockly.Arduino.setups_.tftsetup=''+
-									  'tft.begin();\n'+
-									  'tft.fillScreen(TFT_BLACK);\n'+
-									  'tft.initDMA();\n'+
-									  'TJpgDec.setJpgScale(1);\n'+
-									  'tft.setSwapBytes(true);\n'+
-									  'TJpgDec.setCallback(tft_output);\n'+
-									  'tft.setRotation(3);\n'+
-									  'tft.setTextFont(1);\n'+
-									  'tft.setTextSize(1);\n'+
-									  'tft.setTextColor(TFT_WHITE, TFT_BLACK ,0);\n'+
-									  'u8g2.begin(tft);\n'+	
-									  'u8g2.setForegroundColor(TFT_WHITE);\n';
-
-	var code = '';
-    return code;
-};
-
 Blockly.Arduino['esp32_cam_camera_property'] = function(block) {
 	var property = block.getFieldValue('property');
 	var value = Blockly.Arduino.valueToCode(block, 'value', Blockly.Arduino.ORDER_ATOMIC);  	
