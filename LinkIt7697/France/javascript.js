@@ -228,11 +228,10 @@ Blockly.Arduino['amb82_mini_webbluetooth_uuid'] = function(block) {
 												 +'}\n';												 
 												 
 	Blockly.Arduino.setups_['webbluetooth_setups'] = ''
-										 +'  advdata.addFlags(GAP_ADTYPE_FLAGS_LIMITED | GAP_ADTYPE_FLAGS_BREDR_NOT_SUPPORTED);\n'
+										 +'advdata.addFlags(GAP_ADTYPE_FLAGS_LIMITED | GAP_ADTYPE_FLAGS_BREDR_NOT_SUPPORTED);\n'
 										 +'  advdata.addCompleteName('+blename+');\n'
 										 +'  scndata.addCompleteServices(BLEUUID(UART_SERVICE_UUID));\n'
-										 +'  Rx.setWriteProperty(true);\n'										 
-										 +'  Rx.setWriteNRProperty(true);\n'
+										 +'  Rx.setWriteProperty(true);\n'
 										 +'  Rx.setWritePermissions(GATT_PERM_WRITE);\n'
 										 +'  Rx.setWriteCallback(writeCB);\n'
 										 +'  Rx.setBufferLen(STRING_BUF_SIZE);\n'
