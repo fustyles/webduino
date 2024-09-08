@@ -1077,10 +1077,12 @@ Blockly.Msg["KEYBOARD_KEYDOWN"] = "按下";
 Blockly.Msg["KEYBOARD_KEYUP"] = "放開";
 Blockly.Msg["KEYBOARD_KEYPRESS"] = "按壓";
 
-Blockly.Msg.WEBBLUETOOTH_SHOW = "藍芽UART伺服端";
+Blockly.Msg.WEBBLUETOOTH_SERVER_SHOW = "藍芽UART伺服端";
+Blockly.Msg.WEBBLUETOOTH_CLIENT_SHOW = "藍芽UART客戶端";
 Blockly.Msg.WEBBLUETOOTH_ESP32_SHOW = "藍芽UART伺服端(ESP32)";
 Blockly.Msg.WEBBLUETOOTH_LINKIT7697_SHOW = "藍芽UART伺服端(LinkIt7697)";
 Blockly.Msg.WEBBLUETOOTH_BLENAME_SHOW = "名稱";
+Blockly.Msg.WEBBLUETOOTH_BLENAME_SCAN_SHOW = "伺服端名稱";
 Blockly.Msg.WEBBLUETOOTH_SHOW_SHOW = "顯示";
 Blockly.Msg.WEBBLUETOOTH_STATE_SHOW = "開發板連線狀態";
 Blockly.Msg.WEBBLUETOOTH_GET_SHOW = "取得資料";

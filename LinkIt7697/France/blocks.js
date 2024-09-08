@@ -1,8 +1,108 @@
+Blockly.Blocks['amb82_mini_webbluetooth_client_uuid'] = {
+  init: function() {	  
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg.WEBBLUETOOTH_CLIENT_SHOW)
+		.appendField(Blockly.Msg.WEBBLUETOOTH_UUID_SHOW);
+	this.appendValueInput("service")
+      .setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.WEBBLUETOOTH_SERVICE_SHOW)
+		.setCheck("String");
+	this.appendValueInput("rx")
+      .setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.WEBBLUETOOTH_RX_SHOW)
+		.setCheck("String");  
+	this.appendValueInput("tx")
+      .setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.WEBBLUETOOTH_TX_SHOW)
+		.setCheck("String");
+	this.appendValueInput("blename")
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.WEBBLUETOOTH_BLENAME_SCAN_SHOW)
+		.setCheck("String");		
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_GETDATA_SHOW);
+    this.appendStatementInput("do_");		
+	this.setInputsInline(false);	  
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(80);
+	this.setHelpUrl("https://www.uuidgenerator.net/");
+  }
+};
+
+Blockly.Blocks['amb82_mini_webbluetooth_client_getstate'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg.WEBBLUETOOTH_CLIENT_SHOW);	  
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_GETSTATE_SHOW);
+    this.setInputsInline(true);	 	  
+    this.setOutput(true, null);  
+    this.setColour(80);
+  }  
+};
+
+Blockly.Blocks['amb82_mini_webbluetooth_client_wait'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg.WEBBLUETOOTH_CLIENT_SHOW);  
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_WAIT_SHOW);   
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(80);
+  }  
+};
+
+Blockly.Blocks['amb82_mini_webbluetooth_client_sendtext'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg.WEBBLUETOOTH_CLIENT_SHOW);	  
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SENDTEXT_SHOW);
+	this.appendValueInput("cmd_")
+		.setCheck("String");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(80);
+  }  
+};
+
+Blockly.Blocks['amb82_mini_webbluetooth_client_get'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg.WEBBLUETOOTH_CLIENT_SHOW);	  
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.WEBBLUETOOTH_GET_SHOW);
+    this.setInputsInline(true);	 	  
+    this.setOutput(true, null);  
+    this.setColour(80);
+  }  
+};
+
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Blocks['amb82_mini_webbluetooth_uuid'] = {
   init: function() {	  
     this.appendDummyInput()
 	    .appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW)
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SERVER_SHOW)
 		.appendField(Blockly.Msg.WEBBLUETOOTH_UUID_SHOW);
 	this.appendValueInput("blename")
 		.setAlign(Blockly.ALIGN_RIGHT)	
@@ -35,7 +135,7 @@ Blockly.Blocks['amb82_mini_webbluetooth_getstate'] = {
   init: function() {
     this.appendDummyInput()
 	    .appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW);	  
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SERVER_SHOW);	  
     this.appendDummyInput()
         .appendField(Blockly.Msg.WEBBLUETOOTH_GETSTATE_SHOW);
     this.setInputsInline(true);	 	  
@@ -48,7 +148,7 @@ Blockly.Blocks['amb82_mini_webbluetooth_wait'] = {
   init: function() {
     this.appendDummyInput()
 	    .appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW);  
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SERVER_SHOW);  
     this.appendDummyInput()
         .appendField(Blockly.Msg.WEBBLUETOOTH_WAIT_SHOW);   
     this.setInputsInline(true);
@@ -62,7 +162,7 @@ Blockly.Blocks['amb82_mini_webbluetooth_sendtext'] = {
   init: function() {
     this.appendDummyInput()
 	    .appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW);	  
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SERVER_SHOW);	  
     this.appendDummyInput()
         .appendField(Blockly.Msg.WEBBLUETOOTH_SENDTEXT_SHOW);
 	this.appendValueInput("cmd_")
@@ -78,7 +178,7 @@ Blockly.Blocks['amb82_mini_webbluetooth_get'] = {
   init: function() {
     this.appendDummyInput()
 	    .appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg.WEBBLUETOOTH_SHOW);	  
+        .appendField(Blockly.Msg.WEBBLUETOOTH_SERVER_SHOW);	  
     this.appendDummyInput()
         .appendField(Blockly.Msg.WEBBLUETOOTH_GET_SHOW);
     this.setInputsInline(true);	 	  

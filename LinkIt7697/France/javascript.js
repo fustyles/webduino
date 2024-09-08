@@ -1,3 +1,152 @@
+Blockly.Arduino['amb82_mini_webbluetooth_client_uuid'] = function(block) { 
+	var service = Blockly.Arduino.valueToCode(block, 'service', Blockly.Arduino.ORDER_ATOMIC);
+	var tx = Blockly.Arduino.valueToCode(block, 'tx', Blockly.Arduino.ORDER_ATOMIC);
+	var rx = Blockly.Arduino.valueToCode(block, 'rx', Blockly.Arduino.ORDER_ATOMIC);
+	var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);	
+	var statements_do = Blockly.Arduino.statementToCode(block, 'do_')||"";
+
+
+	
+	Blockly.Arduino.definitions_['BLEDevice'] = '#include "BLEDevice.h"\n'
+												 +'#define UART_SERVICE_UUID      '+service+'\n'
+												 +'#define CHARACTERISTIC_UUID_RX ' + rx + '\n'
+												 +'#define CHARACTERISTIC_UUID_TX ' + tx + '\n'
+												 +'#define STRING_BUF_SIZE 100\n'
+												 +'BLEAdvertData foundDevice;\n'
+												 +'BLEAdvertData targetDevice;\n'
+												 +'BLEClient* bleClient;\n'
+												 +'BLERemoteService* UartService;\n'
+												 +'BLERemoteCharacteristic* Rx;\n'
+												 +'BLERemoteCharacteristic* Tx;\n'
+												 +'int8_t connID;\n';
+	
+	Blockly.Arduino.variables_['getCommand'] = 'String Feedback="",bleData="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
+												 
+	Blockly.Arduino.definitions_['getCommand'] =''
+												 +'void getCommand(char c) {\n'
+												 +'  if (c==\'?\') receiveState=1;\n'
+												 +'  if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) receiveState=0;\n'
+												 +'  if (receiveState==1) {\n'
+												 +'    Command=Command+String(c);\n'
+												 +'    if (c==\'=\') cmdState=0;\n'
+												 +'    if (c==\';\') pState++;\n'
+												 +'    if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==2)&&(c!=\';\')) p2=p2+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==3)&&(c!=\';\')) p3=p3+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==4)&&(c!=\';\')) p4=p4+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==5)&&(c!=\';\')) p5=p5+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==6)&&(c!=\';\')) p6=p6+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==7)&&(c!=\';\')) p7=p7+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState==8)&&(c!=\';\')) p8=p8+String(c);\n'
+												 +'    if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) p9=p9+String(c);\n'
+												 +'    if (c==\'?\') questionState=1;\n'
+												 +'    if (c==\'=\') equalState=1;\n'
+												 +'    if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'
+												 +'  }\n'
+												 +'}\n'												 
+												 +'void scanCB(T_LE_CB_DATA* p_data)\n'	
+												 +'{\n'	
+												 +'    foundDevice.parseScanInfo(p_data);\n'	
+												 +'    if (foundDevice.hasName()) {\n'	
+												 +'        if (foundDevice.getName() == String('+blename+')) {\n'	
+												 +'            Serial.print("Found Ameba BLE Device at address ");\n'	
+												 +'            Serial.println(foundDevice.getAddr().str());\n'	
+												 +'            targetDevice = foundDevice;\n'	
+												 +'        }\n'	
+												 +'    }\n'	
+												 +'}\n'	
+												 +'void notificationCB(BLERemoteCharacteristic* chr, uint8_t* data, uint16_t len)\n'	
+												 +'{\n'	
+												 +'    char msg[len + 1] = {0};\n'	
+												 +'    memcpy(msg, data, len);\n'	
+												 +'    //Serial.print("Notification received for chr UUID: ");\n'	
+												 +'    //Serial.println(chr->getUUID().str());\n'	
+												 +'    //Serial.print("Received string: ");\n'	
+												 +'    //Serial.println(String(msg));\n'
+												 +'bleData = String(msg);\n'											 
+												 +'Feedback="",Command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'
+												 +'receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'	  
+												 +'for (int i=0;i<bleData.length();i++) {\n'
+												 +'  getCommand(bleData[i]);\n'
+												 +'}\n'
+												 +'customCommand();\n'
+												 +'}\n';
+												 
+	Blockly.Arduino.definitions_['webbluetooth_comand_custom'] = ''	
+												 +'void customCommand() {\n'
+												 +  statements_do
+												 +'}\n';												 
+												 
+	Blockly.Arduino.setups_['webbluetooth_setups'] = ''
+										 +'  BLE.init();\n'
+										 +'  BLE.setScanCallback(scanCB);\n'
+										 +'  BLE.beginCentral(1);\n'
+										 +'  BLE.configScan()->startScan(2000);\n'
+										 +'  BLE.configConnection()->connect(targetDevice, 2000);\n'
+										 +'  delay(2000);\n'
+										 +'  connID = BLE.configConnection()->getConnId(targetDevice);\n'
+										 +'  if (!BLE.connected(connID)) {\n'
+										 +'      Serial.println("BLE not connected");\n'
+										 +'  } else {\n'
+										 +'      BLE.configClient();\n'
+										 +'      bleClient = BLE.addClient(connID);\n'
+										 +'      bleClient->discoverServices();\n'
+										 +'      Serial.print("Discovering services of connected device");\n'
+										 +'      do {\n'
+										 +'          Serial.print(".");\n'
+										 +'          delay(1000);\n'
+										 +'      } while (!(bleClient->discoveryDone()));\n'
+										 +'  	 Serial.println();\n'
+										 +'  	 UartService = bleClient->getService(UART_SERVICE_UUID);\n'
+										 +'      if (UartService != nullptr) {\n'
+										 +'          Tx = UartService->getCharacteristic(CHARACTERISTIC_UUID_TX);\n'
+										 +'          if (Tx != nullptr) {\n'
+										 +'              Serial.println("TX characteristic found");\n'
+										 +'              Tx->setBufferLen(STRING_BUF_SIZE);\n'
+										 +'              Tx->setNotifyCallback(notificationCB);\n'
+										 +'              Tx->enableNotifyIndicate();\n'
+										 +'          }\n'
+										 +'          Rx = UartService->getCharacteristic(CHARACTERISTIC_UUID_RX);\n'
+										 +'          if (Rx != nullptr) {\n'
+										 +'              Serial.println("RX characteristic found");\n'
+										 +'              Rx->setBufferLen(STRING_BUF_SIZE);\n'
+										 +'          }\n'
+										 +'      }\n'
+										 +'  }\n';
+
+	var code = '';
+	return code;
+};
+
+Blockly.Arduino['amb82_mini_webbluetooth_client_getstate'] = function(block) {
+  var code = 'BLE.connected(connID)';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['amb82_mini_webbluetooth_client_wait'] = function(block) {
+  var value_baudrate = block.getFieldValue('baudrate_');
+  var code = 'while (!BLE.connected(connID)) {\n  Serial.print(".");\n  delay(1000);\n}\n';
+  return code;
+};
+
+Blockly.Arduino['amb82_mini_webbluetooth_client_sendtext'] = function(block) {
+  var value_cmd = Blockly.Arduino.valueToCode(block, 'cmd_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'Rx->writeString(String('+value_cmd+'));\n'
+  return code;
+};
+
+Blockly.Arduino['amb82_mini_webbluetooth_client_get'] = function(block) {
+  var code = 'bleData';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+
+
+
+
+
+
 Blockly.Arduino['amb82_mini_webbluetooth_uuid'] = function(block) { 
 	var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
 	var service = Blockly.Arduino.valueToCode(block, 'service', Blockly.Arduino.ORDER_ATOMIC);
@@ -112,7 +261,7 @@ Blockly.Arduino['amb82_mini_webbluetooth_getstate'] = function(block) {
 
 Blockly.Arduino['amb82_mini_webbluetooth_wait'] = function(block) {
   var value_baudrate = block.getFieldValue('baudrate_');
-  var code = 'while (!BLE.connected(0)) {\n  delay(1000);\n}\n';
+  var code = 'while (!BLE.connected(0)) {\n  Serial.print(".");\n  delay(1000);\n}\n';
   return code;
 };
 

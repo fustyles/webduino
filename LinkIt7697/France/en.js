@@ -1079,10 +1079,12 @@ Blockly.Msg["KEYBOARD_KEYDOWN"] = "KEY DOWN";
 Blockly.Msg["KEYBOARD_KEYUP"] = "KEY UP";
 Blockly.Msg["KEYBOARD_KEYPRESS"] = "KEY PRESS";
 
-Blockly.Msg.WEBBLUETOOTH_SHOW = "Bluetooth UART Server";
+Blockly.Msg.WEBBLUETOOTH_SERVER_SHOW = "BLE UART Server";
+Blockly.Msg.WEBBLUETOOTH_CLIENT_SHOW = "BLE UART Client";
 Blockly.Msg.WEBBLUETOOTH_ESP32_SHOW = "Bluetooth UART Server(ESP32)";
 Blockly.Msg.WEBBLUETOOTH_LINKIT7697_SHOW = "Bluetooth UART Server(LinkIt7697)";
 Blockly.Msg.WEBBLUETOOTH_BLENAME_SHOW = "Name";
+Blockly.Msg.WEBBLUETOOTH_BLENAME_SCAN_SHOW = "Server name";
 Blockly.Msg.WEBBLUETOOTH_SHOW_SHOW = "Show";
 Blockly.Msg.WEBBLUETOOTH_STATE_SHOW = "connection state";
 Blockly.Msg.WEBBLUETOOTH_GET_SHOW = "get data";
