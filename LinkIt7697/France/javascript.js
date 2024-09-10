@@ -3149,11 +3149,15 @@ Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
 			'          }\n'+
 			'       }\n'+
 			'       if (getResponse.length()>0) {\n'+
-			'          client.stop();\n'+
+			'          client.stop();\n'+		
+			'    	   fbBuf = NULL;\n'+			
+			'    	   input = NULL;\n'+
 			'          return getResponse;\n'+
 			'       }\n'+
 			'    }\n'+
-			'    client.stop();\n'+
+			'    client.stop();\n'+		
+			'    fbBuf = NULL;\n'+			
+			'    input = NULL;\n'+		
 			'    getResponse = "Please confirm that your key or image source is functioning properly or reduce the image resolution and try again.";\n'+
 			'  }\n'+
 			'  else {\n'+
@@ -3245,7 +3249,9 @@ Blockly.Arduino['amb82_mini_gemini_vision'] = function(block) {
 			'      getResponse = "Connected to " + String(myDomain) + " failed.";\n'+
 			'      Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
 			'    }\n'+
-			'    \n'+
+			'    \n'+		
+			'    fbBuf = NULL;\n'+			
+			'    input = NULL;\n'+			
 			'    return getResponse;\n'+
 			'}';			
 			
