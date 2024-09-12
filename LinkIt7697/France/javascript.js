@@ -546,7 +546,7 @@ Blockly.Arduino['amb82_mini_motiondetection_rtsp'] = function(block) {
 	else
 		mode = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";
 	
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "WiFi.h"\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "MotionDetection.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELMD 3\n'+mode+'VideoSetting configMD(VIDEO_VGA, 10, VIDEO_RGB, 0);RTSP rtsp;\nMotionDetection MD;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerMD(1, 1);\nbool flag_motion = false;\nint rtsp_portnum;\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "MotionDetection.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELMD 3\n'+mode+'VideoSetting configMD(VIDEO_VGA, 10, VIDEO_RGB, 0);RTSP rtsp;\nMotionDetection MD;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerMD(1, 1);\nbool flag_motion = false;\nint rtsp_portnum;\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
 	Blockly.Arduino.definitions_['define_amb82_mini_motiondetection_rtsp'] =''+	
 	'void mdPostProcess(std::vector<MotionDetectionResult> md_results) {\n'+
@@ -1052,7 +1052,7 @@ Blockly.Arduino['amb82_mini_imageclassification'] = function(block) {
 	var model = block.getFieldValue('model');
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
 
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "WiFi.h"\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNImageClassification.h"\n#include "VideoStreamOverlay.h"\n#define IMAGERGB 1\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  224\n#define NNHEIGHT 224\nVideoSetting config(VIDEO_FHD, 30, VIDEO_H264, 0);\nVideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNImageClassification imgclass;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNImageClassification.h"\n#include "VideoStreamOverlay.h"\n#define IMAGERGB 1\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  224\n#define NNHEIGHT 224\nVideoSetting config(VIDEO_FHD, 30, VIDEO_H264, 0);\nVideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNImageClassification imgclass;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 	
 	Blockly.Arduino.definitions_['define_amb82_mini_facedetectionrecognition_list'] =''+
 	'#ifndef __CLASSIFICATIONCLASSLIST_H__\n'+
@@ -1132,7 +1132,7 @@ Blockly.Arduino['amb82_mini_audioclassification'] = function(block) {
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
 	var statement_finish = Blockly.Arduino.statementToCode(block, 'statement_finish');
 
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "WiFi.h"\n#include "StreamIO.h"\n#include "NNAudioClassification.h"\nAudioSetting configA(16000, 1, '+audio+');\nAudio audio;\nNNAudioClassification audioNN;\nStreamIO audioStreamerNN(1, 1);\n';
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "NNAudioClassification.h"\nAudioSetting configA(16000, 1, '+audio+');\nAudio audio;\nNNAudioClassification audioNN;\nStreamIO audioStreamerNN(1, 1);\n';
 	
 	Blockly.Arduino.definitions_['define_amb82_mini_facedetectionrecognition_list'] =''+
 	'#ifndef __AUDIOCLASSLIST_H__\n'+
@@ -1738,7 +1738,7 @@ Blockly.Arduino['amb82_mini_facedetectionrecognition_rtsp'] = function(block) {
 	else
 		mode = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";	
 
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "WiFi.h"\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNFaceDetectionRecognition.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\n'+mode+'VideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNFaceDetectionRecognition facerecog;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerFDFR(1, 1);\nStreamIO videoStreamerRGBFD(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNFaceDetectionRecognition.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\n'+mode+'VideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNFaceDetectionRecognition facerecog;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerFDFR(1, 1);\nStreamIO videoStreamerRGBFD(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 	Blockly.Arduino.definitions_['define_amb82_mini_facedetectionrecognition_rtsp_list'] =''+	
 	'void FRPostProcess(std::vector<FaceRecognitionResult> results) {\n'+
 	'    uint16_t im_h = config.height();\n'+
@@ -1865,7 +1865,7 @@ Blockly.Arduino['amb82_mini_facedetection_rtsp'] = function(block) {
 	else
 		mode = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";		
 
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "WiFi.h"\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNFaceDetection.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\n'+mode+'VideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNFaceDetection facedet;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNFaceDetection.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\n'+mode+'VideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNFaceDetection facedet;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 	Blockly.Arduino.definitions_['define_amb82_mini_facedetection_rtsp_list'] =''+	
 	'void FDPostProcess(std::vector<FaceDetectionResult> results) {\n'+
 	'    uint16_t im_h = config.height();\n'+
@@ -2198,7 +2198,7 @@ Blockly.Arduino['amb82_mini_emotionclassification_rtsp'] = function(block) {
 	else
 		mode = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";		
 
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "WiFi.h"\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNImageClassification.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\n'+mode+'VideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNImageClassification imgclass;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nint rtsp_portnum;\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNImageClassification.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\n'+mode+'VideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNImageClassification imgclass;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nint rtsp_portnum;\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 	Blockly.Arduino.definitions_['define_amb82_mini_emotionclassification_rtsp'] =''+	
 	'#ifndef __EMOTIONCLASSLIST_H__\n'+
 	'#define __EMOTIONCLASSLIST_H__\n'+
@@ -2433,7 +2433,7 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 	else
 		mode = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";
 	
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "WiFi.h"\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNObjectDetection.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\n'+mode+'VideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNObjectDetection ObjDet;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nint rtsp_portnum;\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNObjectDetection.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\n'+mode+'VideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNObjectDetection ObjDet;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nint rtsp_portnum;\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 	
 	if (!Blockly.Arduino.definitions_['define_amb82_mini_objectdetection_rtsp_ObjectDetectionItem']) {
 		Blockly.Arduino.definitions_['define_amb82_mini_objectdetection_rtsp_ObjectDetectionItem'] =''+	
