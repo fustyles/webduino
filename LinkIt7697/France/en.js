@@ -29,6 +29,17 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg["THINGSPEAK_PAGE_SHOW"] = "Page ThingSpeak";	  	  
+Blockly.Msg["THINGSPEAK_KEY_SHOW"] = "Key";
+Blockly.Msg["THINGSPEAK_VALUE1_SHOW"] = "Field 1";
+Blockly.Msg["THINGSPEAK_VALUE2_SHOW"] = "Field 2";
+Blockly.Msg["THINGSPEAK_VALUE3_SHOW"] = "Field 3";
+Blockly.Msg["THINGSPEAK_VALUE4_SHOW"] = "Field 4";
+Blockly.Msg["THINGSPEAK_VALUE5_SHOW"] = "Field 5";
+Blockly.Msg["THINGSPEAK_VALUE6_SHOW"] = "Field 6";
+Blockly.Msg["THINGSPEAK_VALUE7_SHOW"] = "Field 7";
+Blockly.Msg["THINGSPEAK_VALUE8_SHOW"] = "Field 8";
+
 Blockly.Msg["WEBBLUETOOTH_V7RC"] = "V7RC command convert to module command";
 
 Blockly.Msg["AMB82_MINI_USB_UVCD"] = "USB-UVC Camera";
@@ -2776,7 +2787,7 @@ Blockly.Msg.ESP32_CAM_HANDS_SHOW = "Hand Recognition (mediapipe)";
 Blockly.Msg.ESP32_CAM_HANDS_INITIAL_SHOW = "Initial";
 Blockly.Msg.ESP32_CAM_HANDS_RECOGNITION_SHOW = "After recognizing";
 
-Blockly.Msg["CONTROLS_SPREADSHEET"] = "Google spreadsheet";
+Blockly.Msg["CONTROLS_SPREADSHEET"] = "Page Google spreadsheet";
 Blockly.Msg["CONTROLS_SPREADSHEET_VALUE"] = "Value";
 Blockly.Msg["CONTROLS_SPREADSHEET_INSERT"] = "Insert";
 Blockly.Msg["CONTROLS_SPREADSHEET_DATETIME"] = "Datetime";

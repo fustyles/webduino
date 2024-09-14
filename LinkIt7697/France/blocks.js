@@ -1,3 +1,50 @@
+Blockly.Blocks['page_thingspeak'] = {
+  init: function() {
+	this.appendDummyInput() 
+		.appendField(Blockly.Msg.THINGSPEAK_PAGE_SHOW);	  	  
+    this.appendValueInput("key")
+        .setCheck("String")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.THINGSPEAK_KEY_SHOW);
+    this.appendValueInput("field1")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.THINGSPEAK_VALUE1_SHOW);
+    this.appendValueInput("field2")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.THINGSPEAK_VALUE2_SHOW);
+    this.appendValueInput("field3")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.THINGSPEAK_VALUE3_SHOW);
+    this.appendValueInput("field4")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.THINGSPEAK_VALUE4_SHOW);
+    this.appendValueInput("field5")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.THINGSPEAK_VALUE5_SHOW);
+    this.appendValueInput("field6")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.THINGSPEAK_VALUE6_SHOW);
+	this.appendValueInput("field7")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.THINGSPEAK_VALUE7_SHOW);
+    this.appendValueInput("field8")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.THINGSPEAK_VALUE8_SHOW);
+	this.setInputsInline(false);	  
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(290);
+  } 
+};
+
 Blockly.Blocks['amb82_mini_webbluetooth_client_uuid'] = {
   init: function() {	  
     this.appendDummyInput()
@@ -12022,7 +12069,7 @@ Blockly.Blocks['page_spreadsheet_function'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(Blockly.Msg["HUE_1"]);
+  this.setColour(Blockly.Msg["HUE_6"]);
   },
   validate: function(newValue) {
 	const block = this.sourceBlock_;
@@ -12112,7 +12159,7 @@ Blockly.Blocks['video_base64_spreadsheet_new'] = {
 	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(Blockly.Msg["HUE_1"]);
+	this.setColour(Blockly.Msg["HUE_6"]);
 	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToSpreadsheet_base64_doPost.gs");	
   },
   validate: function(newValue) {
@@ -25652,7 +25699,7 @@ Blockly.Blocks['video_base64_spreadsheet'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(Blockly.Msg["HUE_1"]);
+  this.setColour(Blockly.Msg["HUE_6"]);
   },
   validate: function(newValue) {
 	const block = this.sourceBlock_;
@@ -25719,12 +25766,12 @@ Blockly.Blocks['video_base64_email'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	
       .appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);
-  this.getInput("email_script_").setVisible(false);	  
+  //this.getInput("email_script_").setVisible(false);	  
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/SendCapturedImageByGmail_doPost.gs");
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(Blockly.Msg["HUE_1"]);
+  this.setColour(Blockly.Msg["HUE_10"]);
   }
 };
 

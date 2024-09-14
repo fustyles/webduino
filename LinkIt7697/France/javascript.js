@@ -1,3 +1,19 @@
+Blockly.Arduino['page_thingspeak'] = function(block) {
+  var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
+  var value1 = Blockly.Arduino.valueToCode(block, 'field1', Blockly.Arduino.ORDER_ATOMIC);
+  var value2 = Blockly.Arduino.valueToCode(block, 'field2', Blockly.Arduino.ORDER_ATOMIC);
+  var value3 = Blockly.Arduino.valueToCode(block, 'field3', Blockly.Arduino.ORDER_ATOMIC); 
+  var value4 = Blockly.Arduino.valueToCode(block, 'field4', Blockly.Arduino.ORDER_ATOMIC);
+  var value5 = Blockly.Arduino.valueToCode(block, 'field5', Blockly.Arduino.ORDER_ATOMIC);
+  var value6 = Blockly.Arduino.valueToCode(block, 'field6', Blockly.Arduino.ORDER_ATOMIC);
+  var value7 = Blockly.Arduino.valueToCode(block, 'field7', Blockly.Arduino.ORDER_ATOMIC);
+  var value8 = Blockly.Arduino.valueToCode(block, 'field8', Blockly.Arduino.ORDER_ATOMIC);
+  
+  var data = '"&field1="+'+value1+'+"&field2="+'+value2+'+"&field3="+'+value3+'+"&field4="+'+value4+'+"&field5="+'+value5+'+"&field6="+'+value6+'+"&field7="+'+value7+'+"&field8="+'+value8;
+  var code = 'thingspeak_push('+key+','+data+');\n';
+  return code;
+};
+
 Blockly.Arduino['amb82_mini_webbluetooth_client_uuid'] = function(block) { 
 	var service = Blockly.Arduino.valueToCode(block, 'service', Blockly.Arduino.ORDER_ATOMIC);
 	var tx = Blockly.Arduino.valueToCode(block, 'tx', Blockly.Arduino.ORDER_ATOMIC);
