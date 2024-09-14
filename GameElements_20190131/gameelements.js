@@ -4896,6 +4896,22 @@ function HextoRgb(color) {
 
   function getGoogleMapEmbedHTML(key, query, mapWidth, mapHeight) {
 	return '<iframe width="'+mapWidth+'" height="'+mapHeight+'" style="border:0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key='+key+'&q='+query+'"> </iframe>';
+  }
+
+  function thingspeak_push(key, data) {
+	var input_url = "https://api.thingspeak.com/update?api_key="+key+data;
+	var data = $.ajax({
+		"type": "GET",
+		"url": input_url,
+		success: function(json)
+		{
+		  console.log(json);
+		},
+		error: function(jqXHR, textStatus, errorThrown)
+		{
+		  //console.log(errorThrown);
+		}
+	 });
   }	
 	
   window.table_create = table_create;
@@ -5079,5 +5095,6 @@ function HextoRgb(color) {
   window.getGoogleMapUrl = getGoogleMapUrl;
   window.getGoogleMapEmbedHTML = getGoogleMapEmbedHTML;
   window.div_add = div_add;
+  window.thingspeak_push = thingspeak_push;
 	
 }(window, window.document));
