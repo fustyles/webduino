@@ -2787,7 +2787,8 @@ Blockly.Msg.ESP32_CAM_HANDS_SHOW = "Hand Recognition (mediapipe)";
 Blockly.Msg.ESP32_CAM_HANDS_INITIAL_SHOW = "Initial";
 Blockly.Msg.ESP32_CAM_HANDS_RECOGNITION_SHOW = "After recognizing";
 
-Blockly.Msg["CONTROLS_SPREADSHEET"] = "Page Google spreadsheet";
+Blockly.Msg["CONTROLS_SPREADSHEET"] = "Google spreadsheet";
+Blockly.Msg["CONTROLS_SPREADSHEET_PAGE"] = "Page Google spreadsheet";
 Blockly.Msg["CONTROLS_SPREADSHEET_VALUE"] = "Value";
 Blockly.Msg["CONTROLS_SPREADSHEET_INSERT"] = "Insert";
 Blockly.Msg["CONTROLS_SPREADSHEET_DATETIME"] = "Datetime";

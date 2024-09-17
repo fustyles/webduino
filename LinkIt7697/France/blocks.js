@@ -12030,7 +12030,7 @@ Blockly.Blocks['taskhandle_disabledog'] = {
 Blockly.Blocks['page_spreadsheet_function'] = {
   init: function () {
   this.appendDummyInput()  
-      .appendField(Blockly.Msg["CONTROLS_SPREADSHEET"]);	  
+      .appendField(Blockly.Msg["CONTROLS_SPREADSHEET_PAGE"]);	  
   this.appendValueInput("spreadsheeturl")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	  

@@ -2796,7 +2796,8 @@ Blockly.Msg.ESP32_CAM_HANDS_SHOW = "手勢偵測 (mediapipe)";
 Blockly.Msg.ESP32_CAM_HANDS_INITIAL_SHOW = "初始設定";
 Blockly.Msg.ESP32_CAM_HANDS_RECOGNITION_SHOW = "偵測完成後執行";
 
-Blockly.Msg["CONTROLS_SPREADSHEET"] = "網頁 Google試算表";
+Blockly.Msg["CONTROLS_SPREADSHEET"] = "Google試算表";
+Blockly.Msg["CONTROLS_SPREADSHEET_PAGE"] = "網頁 Google試算表";
 Blockly.Msg["CONTROLS_SPREADSHEET_VALUE"] = "值";
 Blockly.Msg["CONTROLS_SPREADSHEET_INSERT"] = "插入";
 Blockly.Msg["CONTROLS_SPREADSHEET_DATETIME"] = "完整時間";
