@@ -344,6 +344,7 @@ Blockly.Blocks['amb82_mini_board_pins'] = {
 			[Blockly.Msg["AMB82_MINI_BOARD_PIN_BLUE"]+" (26)","26"],
 			[Blockly.Msg["AMB82_MINI_BOARD_PIN_LED"]+" (13)","13"],
 			[Blockly.Msg["AMB82_MINI_BOARD_PIN_BUTTON"]+" (12)","12"],
+			["Flash mode (14)","14"],			
 			["SERIAL0_RX (10)","10"],
 			["SERIAL0_TX (9)","9"],
 			["SERIAL1_RX (15)","15"],
