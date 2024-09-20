@@ -8137,9 +8137,11 @@ Blockly.Arduino['esp32_telegrambot_getupdates'] = function(block) {
 			'  String getAll="", getBody = "";\n'+
 			'  JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_.telegrambot_getUpdates +='  DynamicJsonDocument doc(1024);\n';
-	else if ((selectBoardType()=="LinkIt"))
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.definitions_.telegrambot_getUpdates +='  DynamicJsonDocument doc(4096);\n';
+	else if (selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+		Blockly.Arduino.definitions_.telegrambot_getUpdates +='  DynamicJsonDocument doc(1024);\n';	
+	else if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_.telegrambot_getUpdates +='  DynamicJsonDocument doc(352);\n';
 	else
 		Blockly.Arduino.definitions_.telegrambot_getUpdates +='  DynamicJsonDocument doc(128);\n';
@@ -8565,13 +8567,14 @@ Blockly.Arduino['controls_spreadsheet_getcell'] = function(block){
 			'    if (spreadsheetData!="") {\n'+
 			'    	JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735") {
-		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(1024);\n';
-	} else if ((selectBoardType()=="LinkIt")) {
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(4096);\n';
+	else if (selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(1024);\n';		
+	else if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(352);\n';										
-	} else {
+	else
 		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(128);\n';										
-	}
 	
 	Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	deserializeJson(doc, spreadsheetData);\n'+
 			'    	obj = doc.as<JsonObject>();\n'+
@@ -8595,9 +8598,11 @@ Blockly.Arduino['controls_spreadsheet_getcell_number'] = function(block){
 			'    if (spreadsheetData!="") {\n'+
 			'    	JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_.Spreadsheet_getcell_number +='  DynamicJsonDocument doc(1024);\n';
-	else if ((selectBoardType()=="LinkIt"))
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.definitions_.Spreadsheet_getcell_number +='  DynamicJsonDocument doc(4096);\n';
+	else if (selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+		Blockly.Arduino.definitions_.Spreadsheet_getcell_number +='  DynamicJsonDocument doc(1024);\n';	
+	else if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_.Spreadsheet_getcell_number +='  DynamicJsonDocument doc(352);\n';
 	else
 		Blockly.Arduino.definitions_.Spreadsheet_getcell_number +='  DynamicJsonDocument doc(128);\n';
@@ -8735,9 +8740,11 @@ Blockly.Arduino['controls_spreadsheet_getcell_query'] = function(block){
 			'    if (spreadsheetQueryData!="") {\n'+
 			'    	JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(1024);\n';
-	else if ((selectBoardType()=="LinkIt"))
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(4096);\n';
+	else if (selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(1024);\n';	
+	else if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(352);\n';
 	else
 		Blockly.Arduino.definitions_.Spreadsheet_getcell +='    	DynamicJsonDocument doc(128);\n';
@@ -8764,9 +8771,11 @@ Blockly.Arduino['controls_spreadsheet_getcell_query_number'] = function(block){
 			'    if (spreadsheetQueryData!="") {\n'+
 			'    	JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_.Spreadsheet_getcell_query_number +='  DynamicJsonDocument doc(1024);\n';
-	else if ((selectBoardType()=="LinkIt"))
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.definitions_.Spreadsheet_getcell_query_number +='  DynamicJsonDocument doc(4096);\n';
+	else if (selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+		Blockly.Arduino.definitions_.Spreadsheet_getcell_query_number +='  DynamicJsonDocument doc(1024);\n';	
+	else if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_.Spreadsheet_getcell_query_number +='  DynamicJsonDocument doc(256);\n';
 	else
 		Blockly.Arduino.definitions_.Spreadsheet_getcell_query_number +='  DynamicJsonDocument doc(128);\n';
@@ -10615,9 +10624,11 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 			'  String getAll="", getBody = "";\n'+
 			'  JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(1024);\n';
-	else if ((selectBoardType()=="LinkIt"))
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(4096);\n';
+	else if (selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(1024);\n';	
+	else if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(352);\n';
 	else
 		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(128);\n';
@@ -10879,8 +10890,10 @@ Blockly.Arduino['esp32cam_telegrambot'] = function(block) {
 			'  String getAll="", getBody = "";\n'+
 			'  JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(1024);\n';
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(4096);\n';
+	else if (selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(1024);\n';	
 	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_.getTelegramMessage +='  DynamicJsonDocument doc(352);\n';
 	else
@@ -11274,9 +11287,11 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 			'    //Serial.println(Feedback);\n'+
 			'    JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_['opendataAirQuality'] +='    DynamicJsonDocument doc(1024);\n';
-	else if ((selectBoardType()=="LinkIt"))
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.definitions_['opendataAirQuality'] +='    DynamicJsonDocument doc(4096);\n';
+	else if (selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+		Blockly.Arduino.definitions_['opendataAirQuality'] +='    DynamicJsonDocument doc(1024);\n';	
+	else if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['opendataAirQuality'] +='    DynamicJsonDocument doc(352);\n';
 	else
 		Blockly.Arduino.definitions_['opendataAirQuality'] +='    DynamicJsonDocument doc(128);\n';
@@ -11384,7 +11399,9 @@ Blockly.Arduino['fu_taiwan_aqi_bk'] = function(block) {
 			'    client.stop();\n'+
 			'    JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI")
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.definitions_['opendataAirQuality'] +='  DynamicJsonDocument doc(4096);\n';
+	else if (selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
 		Blockly.Arduino.definitions_['opendataAirQuality'] +='  DynamicJsonDocument doc(1024);\n';
 	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_['opendataAirQuality'] +='  DynamicJsonDocument doc(352);\n';
@@ -11508,8 +11525,10 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 			'    Weather2436[0] = location;\n'+
 			'    JsonObject obj;\n';
 			
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_['opendataWeather'] +='  DynamicJsonDocument doc(1024);\n';
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.definitions_['opendataWeather'] +='  DynamicJsonDocument doc(4096);\n';
+	else if (selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+		Blockly.Arduino.definitions_['opendataWeather'] +='  DynamicJsonDocument doc(1024);\n';	
 	else if ((selectBoardType()=="LinkIt"))
 		Blockly.Arduino.definitions_['opendataWeather'] +='  DynamicJsonDocument doc(352);\n';
 	else
@@ -14269,8 +14288,10 @@ Blockly.Arduino['thingspeak_field'] = function(block) {
  											'      fr = e+1;\n'+
  											'  }\n';
 											
-	if (selectBoardType()=="esp32"||selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_['ThingspeakJson_field'] +='  DynamicJsonDocument doc(1024);\n';
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.definitions_['ThingspeakJson_field'] +='  DynamicJsonDocument doc(4096);\n';
+	else if (selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+		Blockly.Arduino.definitions_['ThingspeakJson_field'] +='  DynamicJsonDocument doc(1024);\n';	
 	else if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['ThingspeakJson_field'] +='  DynamicJsonDocument doc(352);\n';
 	else
