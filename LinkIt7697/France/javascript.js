@@ -708,19 +708,21 @@ Blockly.Arduino['amb82_mini_ntpserver_get'] = function(block) {
 
 
 Blockly.Arduino['amb82_mini_telegram'] = function(block) {
+	var source = block.getFieldValue('source');
     var token = Blockly.Arduino.valueToCode(block, 'token', Blockly.Arduino.ORDER_ATOMIC);
     var chatid = Blockly.Arduino.valueToCode(block, 'chatid', Blockly.Arduino.ORDER_ATOMIC);
 	
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 	
 	Blockly.Arduino.definitions_.sendCapturedImage2Telegram = '\n'+
-	'String sendCapturedImage2Telegram(String token, String chat_id) {\n'+
+	'String sendCapturedImage2Telegram(String token, String chat_id, bool capture) {\n'+
 	'  const char* myDomain = "api.telegram.org";\n'+
 	'  String getAll="", getBody = "";\n'+
 	'  Serial.println("Connect to " + String(myDomain));\n'+
 	'  if (client.connect(myDomain, 443)) {\n'+
 	'    Serial.println("Connection successful");\n'+
-	'    Camera.getImage(0, &img_addr, &img_len);\n'+	
+	'    if (capture)\n'+
+	'      Camera.getImage(0, &img_addr, &img_len);\n'+	
 	'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
 	'    size_t fbLen = img_len;\n'+ 	
 	'    String head = "--Taiwan\\r\\nContent-Disposition: form-data; name=\\"chat_id\\"; \\r\\n\\r\\n" + chat_id + "\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"photo\\"; filename=\\"esp32-cam.jpg\\"\\r\\nContent-Type: image/jpeg\\r\\n\\r\\n";\n'+
@@ -773,7 +775,7 @@ Blockly.Arduino['amb82_mini_telegram'] = function(block) {
 	'  return getBody;\n'+
 	'}\n';
 			
-	var code = 'sendCapturedImage2Telegram('+token+', '+chatid+');\n';
+	var code = 'sendCapturedImage2Telegram('+token+', '+chatid+', '+source+');\n';
 	return code;			
 }
 
@@ -2979,26 +2981,32 @@ Blockly.Arduino['amb82_mini_video_settings_bitrate'] = function(block) {
 	return 'config.setBitrate('+val.replace(/"/g,'').replace(/'/g,"")+');\n';
 };
 
+Blockly.Arduino['amb82_mini_video_getstill'] = function(block) {
+	return 'Camera.getImage(0, &img_addr, &img_len);\n';
+};
+
 Blockly.Arduino['amb82_mini_video_capture_sd'] = function(block) {
-	
+	var origin = block.getFieldValue('origin');
 	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
 
 	Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS'] ='#include "AmebaFatFS.h"\nAmebaFatFS fs;';
 	
 	Blockly.Arduino.definitions_['amb82_mini_video_capture_sd'] = ''+
-		'void amb82_mini_video_capture_sd(int channel, String filename) {\n'+
+		'void amb82_mini_video_capture_sd(int channel, String filename, bool capture) {\n'+
 		'  fs.begin();\n'+
 		'  File file = fs.open(String(fs.getRootPath()) + filename);\n'+
 		'  delay(1000);\n'+
-		'  Camera.getImage(channel, &img_addr, &img_len);\n'+
+		'  if (capture)\n'+
+		'    Camera.getImage(0, &img_addr, &img_len);\n'+
 		'  file.write((uint8_t *)img_addr, img_len);\n'+
 		'  file.close();\n'+
 		'  fs.end();\n'+
 		'}';			
-	return 'amb82_mini_video_capture_sd(amb82_CHANNEL, String('+filename+')+String(".jpg"));\n';
+	return 'amb82_mini_video_capture_sd(amb82_CHANNEL, String('+filename+')+String(".jpg"), '+origin+');\n';
 };
 
 Blockly.Arduino['amb82_mini_googledrive'] = function(block) {
+	var source = block.getFieldValue('source');
     var scriptid = Blockly.Arduino.valueToCode(block, 'scriptid', Blockly.Arduino.ORDER_ATOMIC);
     var linetoken = Blockly.Arduino.valueToCode(block, 'linetoken', Blockly.Arduino.ORDER_ATOMIC);
     var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC);
@@ -3007,14 +3015,15 @@ Blockly.Arduino['amb82_mini_googledrive'] = function(block) {
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 
 	Blockly.Arduino.definitions_.SendCapturedImageToGoogleDrive = '\n'+
-			'String SendStillToGoogleDrive(String myScript, String myFoldername, String myFilename, String myImage, String myLineNotifyToken) {\n'+
+			'String SendStillToGoogleDrive(String myScript, String myFoldername, String myFilename, String myImage, String myLineNotifyToken, bool capture) {\n'+
 			'  const char* myDomain = "script.google.com";\n'+
 			'  String getAll="", getBody = "";\n'+
 			'  \n'+
 			'  Serial.println("Connect to " + String(myDomain));\n'+
 			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
-			'    Camera.getImage(0, &img_addr, &img_len);\n'+
+			'    if (capture)\n'+
+			'      Camera.getImage(0, &img_addr, &img_len);\n'+
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
             '    size_t fbLen = img_len;\n'+			
 			'    \n'+
@@ -3091,24 +3100,26 @@ Blockly.Arduino['amb82_mini_googledrive'] = function(block) {
 											'  return encodedMsg;\n'+
 											'}';							
 			
-  var code = 'SendStillToGoogleDrive(String("/macros/s/")+'+scriptid+'+String("/exec"), String("&myFoldername=")+'+foldername+', String("&myFilename=")+'+filename+', "&myFile=",'+linetoken+');\n';
+  var code = 'SendStillToGoogleDrive(String("/macros/s/")+'+scriptid+'+String("/exec"), String("&myFoldername=")+'+foldername+', String("&myFilename=")+'+filename+', "&myFile=",'+linetoken+', '+source+');\n';
   return code;			
 }
 
 Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
+	var source = block.getFieldValue('source');
     var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
     var message = Blockly.Arduino.valueToCode(block, 'message', Blockly.Arduino.ORDER_ATOMIC);
 	
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 
 	Blockly.Arduino.definitions_.SendStillToOpenaiVision = '\n'+
-			'String SendStillToOpenaiVision(String key, String message) {\n'+
+			'String SendStillToOpenaiVision(String key, String message, bool capture) {\n'+
 			'  const char* myDomain = "api.openai.com";\n'+
 			'  String getResponse="",Feedback="";\n'+			
 			'  Serial.println("Connect to " + String(myDomain));\n'+
 			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
-			'    Camera.getImage(0, &img_addr, &img_len);\n'+
+			'    if (capture)\n'+
+			'      Camera.getImage(0, &img_addr, &img_len);\n'+
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
             '    size_t fbLen = img_len;\n'+			
 			'    \n'+
@@ -3184,11 +3195,12 @@ Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
 			'  return getResponse;\n'+
 			'}\n';			
 			
-	var code = 'SendStillToOpenaiVision('+key+', '+message+')';
+	var code = 'SendStillToOpenaiVision('+key+', '+message+', '+source+')';
 	return [code, Blockly.Arduino.ORDER_NONE];			
 }
 
 Blockly.Arduino['amb82_mini_gemini_vision'] = function(block) {
+	var source = block.getFieldValue('source');
     var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
     var message = Blockly.Arduino.valueToCode(block, 'message', Blockly.Arduino.ORDER_ATOMIC);
 	
@@ -3196,13 +3208,14 @@ Blockly.Arduino['amb82_mini_gemini_vision'] = function(block) {
 	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
 
 	Blockly.Arduino.definitions_.SendStillToGeminiVision = '\n'+
-			'String SendStillToGeminiVision(String key, String message) {\n'+
+			'String SendStillToGeminiVision(String key, String message, bool capture) {\n'+
 			'  const char* myDomain = "generativelanguage.googleapis.com";\n'+
 			'  String getResponse="",Feedback="";\n'+			
 			'  Serial.println("Connect to " + String(myDomain));\n'+
 			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
-			'    Camera.getImage(0, &img_addr, &img_len);\n'+
+			'    if (capture)\n'+
+			'      Camera.getImage(0, &img_addr, &img_len);\n'+
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
             '    size_t fbLen = img_len;\n'+			
 			'    \n'+
@@ -3271,31 +3284,33 @@ Blockly.Arduino['amb82_mini_gemini_vision'] = function(block) {
 			'    return getResponse;\n'+
 			'}';			
 			
-	var code = 'SendStillToGeminiVision('+key+', '+message+')';
+	var code = 'SendStillToGeminiVision('+key+', '+message+', '+source+')';
 	return [code, Blockly.Arduino.ORDER_NONE];			
 }
 
 Blockly.Arduino['amb82_mini_spreadsheet'] = function(block) {
-  var value_spreadsheeturl = Blockly.Arduino.valueToCode(block, 'spreadsheeturl', Blockly.Arduino.ORDER_ATOMIC);
-  var value_spreadsheetname = Blockly.Arduino.valueToCode(block, 'spreadsheetname', Blockly.Arduino.ORDER_ATOMIC);
-  var value_datetime = block.getFieldValue('datetime');    
-  var value_position = block.getFieldValue('position');  
-  var value_column = Blockly.Arduino.valueToCode(block, 'column', Blockly.Arduino.ORDER_ATOMIC);
-  var value_row = Blockly.Arduino.valueToCode(block, 'row', Blockly.Arduino.ORDER_ATOMIC);
-  var value_format = block.getFieldValue('format');
-  var value_spreadsheet_script = Blockly.Arduino.valueToCode(block, 'spreadsheet_script', Blockly.Arduino.ORDER_ATOMIC);
+	var source = block.getFieldValue('source');
+	var value_spreadsheeturl = Blockly.Arduino.valueToCode(block, 'spreadsheeturl', Blockly.Arduino.ORDER_ATOMIC);
+	var value_spreadsheetname = Blockly.Arduino.valueToCode(block, 'spreadsheetname', Blockly.Arduino.ORDER_ATOMIC);
+	var value_datetime = block.getFieldValue('datetime');    
+	var value_position = block.getFieldValue('position');  
+	var value_column = Blockly.Arduino.valueToCode(block, 'column', Blockly.Arduino.ORDER_ATOMIC);
+	var value_row = Blockly.Arduino.valueToCode(block, 'row', Blockly.Arduino.ORDER_ATOMIC);
+	var value_format = block.getFieldValue('format');
+	var value_spreadsheet_script = Blockly.Arduino.valueToCode(block, 'spreadsheet_script', Blockly.Arduino.ORDER_ATOMIC);
   
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 	
 	Blockly.Arduino.definitions_.SendStillToSpreadsheet = '\n'+
-			'String SendStillToSpreadsheet(String Data, String myScript) {\n'+
+			'String SendStillToSpreadsheet(String Data, String myScript, bool capture) {\n'+
 			'  const char* myDomain = "script.google.com";\n'+
 			'  String getAll="", getBody = "";\n'+
 			'  \n'+
 			'  Serial.println("Connect to " + String(myDomain));\n'+
 			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
-			'    Camera.getImage(0, &img_addr, &img_len);\n'+
+			'    if (capture)\n'+
+			'      Camera.getImage(0, &img_addr, &img_len);\n'+
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
             '    size_t fbLen = img_len;\n'+			
 			'    \n'+
@@ -3370,19 +3385,21 @@ Blockly.Arduino['amb82_mini_spreadsheet'] = function(block) {
 											'  return encodedMsg;\n'+
 											'}';
 			
-	var code = 'SendStillToSpreadsheet("&spreadsheeturl="+String('+value_spreadsheeturl+')+"&spreadsheetname="+String(urlencode('+value_spreadsheetname+'))+"&datetime='+value_datetime+'&position='+value_position+'&column="+String('+value_column+')+"&row="+String('+value_row+')+"&format='+value_format+'&file=",'+value_spreadsheet_script+');\n';
+	var code = 'SendStillToSpreadsheet("&spreadsheeturl="+String('+value_spreadsheeturl+')+"&spreadsheetname="+String(urlencode('+value_spreadsheetname+'))+"&datetime='+value_datetime+'&position='+value_position+'&column="+String('+value_column+')+"&row="+String('+value_row+')+"&format='+value_format+'&file=",'+value_spreadsheet_script+', '+source+');\n';
   	return code;		
 }
 
 Blockly.Arduino['amb82_mini_linenotify'] = function(block) {
+	var source = block.getFieldValue('source');
     var linetoken = Blockly.Arduino.valueToCode(block, 'linetoken', Blockly.Arduino.ORDER_ATOMIC);
     var linemessage = Blockly.Arduino.valueToCode(block, 'linemessage', Blockly.Arduino.ORDER_ATOMIC);
 	
 	Blockly.Arduino.definitions_.SendCapturedImageToLineNotify = '\n'+
-			'String SendStillToLineNotify(String token, String message) {\n'+
+			'String SendStillToLineNotify(String token, String message, bool capture) {\n'+
 			'  if (client.connect("notify-api.line.me", 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
-			'    Camera.getImage(0, &img_addr, &img_len);\n'+
+			'    if (capture)\n'+
+			'      Camera.getImage(0, &img_addr, &img_len);\n'+
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
             '    size_t fbLen = img_len;\n'+
 			'    if (message=="") message = "Ameba";\n'+
@@ -3445,7 +3462,7 @@ Blockly.Arduino['amb82_mini_linenotify'] = function(block) {
 			'  }\n'+
 			'};\n';
 			
-  var code = 'SendStillToLineNotify('+linetoken+', '+linemessage+');\n';
+  var code = 'SendStillToLineNotify('+linetoken+', '+linemessage+', '+source+');\n';
   return code;			
 }
 
@@ -20368,10 +20385,12 @@ Blockly.Arduino['fu_mqtt_getdata'] = function(block) {
 };
 
 Blockly.Arduino['fu_mqtt_sendimage'] = function(block) {
-  var topic = Blockly.Arduino.valueToCode(block, 'topic', Blockly.Arduino.ORDER_ATOMIC);
-  var board = block.getFieldValue('board');
-  if (board=="ESP32-CAM") {
-	Blockly.Arduino.definitions_.define_mqtt_sendimage =  'void mqtt_sendImage(String topic) {\n'+
+	var source = block.getFieldValue('source');
+	var topic = Blockly.Arduino.valueToCode(block, 'topic', Blockly.Arduino.ORDER_ATOMIC);
+	var board = block.getFieldValue('board');
+	
+	if (board=="ESP32-CAM") {
+		Blockly.Arduino.definitions_.define_mqtt_sendimage =  'void mqtt_sendImage(String topic) {\n'+
 															'    String clientId = "ESP32-"+String(random(0xffff), HEX);\n'+
 															'    if (mqtt_client.connect(clientId.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n'+	
 															'      camera_fb_t * fb = NULL;\n'+
@@ -20395,11 +20414,13 @@ Blockly.Arduino['fu_mqtt_sendimage'] = function(block) {
 															'      esp_camera_fb_return(fb);\n'+
 															'    }\n'+														
 															'}\n';
-  } else if (board=="AMB82-MINI") {
-	Blockly.Arduino.definitions_.define_mqtt_sendimage =  'void mqtt_sendImage(String topic) {\n'+
+		var code = 'mqtt_sendImage('+topic+');\n';
+	} else if (board=="AMB82-MINI") {
+		Blockly.Arduino.definitions_.define_mqtt_sendimage =  'void mqtt_sendImage(String topic, bool capture) {\n'+
 															'    String clientId = "AMB82-"+String(random(0xffff), HEX);\n'+
 															'    if (mqtt_client.connect(clientId.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n'+	
-															'      Camera.getImage(0, &img_addr, &img_len);\n'+ 
+															'      if (capture)\n'+
+															'        Camera.getImage(0, &img_addr, &img_len);\n'+
 															'      int imgSize = img_len;\n'+
 															'      int ps = MQTT_MAX_PACKET_SIZE;\n'+
 															'      mqtt_client.beginPublish(topic.c_str(), imgSize, false);\n'+
@@ -20414,10 +20435,10 @@ Blockly.Arduino['fu_mqtt_sendimage'] = function(block) {
 															'        Serial.println("Publishing Photo to MQTT Failed");\n'+
 															'    }\n'+														
 															'}\n';
-  }
+		var code = 'mqtt_sendImage('+topic+', '+source+');\n';
+	}
 														
-  code = 'mqtt_sendImage('+topic+');\n';
-  return code;
+	return code;
 };
 
 Blockly.Arduino['esp32_cam_initial'] = function(block) {

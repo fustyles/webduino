@@ -2569,6 +2569,8 @@
 						</block>
 					</value>			  
 			  </block>
+			  <block type="amb82_mini_video_getstill">			  
+			  </block>			  
 			  <block type="amb82_mini_usb_uvcd">			  
 			  </block>			  
 			  <block type="amb82_mini_draw_createBitmap">			  

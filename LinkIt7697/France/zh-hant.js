@@ -66,11 +66,13 @@ Blockly.Msg["AMB82_MINI_BOARD_PIN_BLUE"] = "藍燈";
 Blockly.Msg["AMB82_MINI_BOARD_PIN_LED"] = "補光燈";
 Blockly.Msg["AMB82_MINI_BOARD_PIN_BUTTON"] = "功能鍵";
 
-Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "截圖上傳Telegram Bot";
+Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "影像擷取上傳Telegram Bot";
 
 Blockly.Msg["AMB82_MINI_MODE"] = "格式";
 Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP串流(預設)";
 Blockly.Msg["AMB82_MINI_STILL"] = "RTSP串流與截圖(自訂)";
+Blockly.Msg["AMB82_MINI_STILL_NEW"] = "即時";
+Blockly.Msg["AMB82_MINI_STILL_OLD"] = "暫存";
 
 Blockly.Msg["AMB82_MINI_FOLDER"] = "設定資料夾為";
 Blockly.Msg["AMB82_MINI_FOLDER_OPEN"] = "子目錄";
@@ -820,6 +822,7 @@ Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_VALUE"] = "值";
 Blockly.Msg["AMB82_MINI_VIDEO_QRCODE"] = "掃描QR Code";
 Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"] = "旋轉角度";
 Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_BITRATE"] = "比特率";
+Blockly.Msg["AMB82_MINI_VIDEO_GETSTILL"] = "影像截取暫存";
 Blockly.Msg["AMB82_MINI_RTP_AUDIO"] = "RTP音訊串流";
 
 Blockly.Msg["AMB82_MINI_OPENAI_VISION"] = "影像擷取上傳openAI視覺分析";
@@ -1746,6 +1749,7 @@ Blockly.Msg.VIDEO_BASE64_COLUMN = "縱行";
 Blockly.Msg.VIDEO_BASE64_ROW = "橫列";
 Blockly.Msg.VIDEO_BASE64_SCRIPTURL = "Apps Script網址";
 Blockly.Msg.VIDEO_BASE64_FORMAT = "影像格式";
+Blockly.Msg.VIDEO_BASE64_ORIGIN = "影像來源";
 Blockly.Msg.VARIABLE_BOARD = "函式代入官方開發板board變數";
 Blockly.Msg.CANVAS_GETIMAGEDATA = "取得像素資料";
 Blockly.Msg.CANVAS_SETIMAGEDATA = "設定像素資料";
