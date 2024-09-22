@@ -3758,7 +3758,7 @@ Blockly.Blocks['amb82_mini_video_getstill'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-    this.setColour(Blockly.Msg["HUE_19"]);	
+    this.setColour(Blockly.Msg["HUE_7"]);	
   }
 };
 
