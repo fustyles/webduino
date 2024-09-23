@@ -3176,9 +3176,7 @@ Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
 			'          }\n'+
 			'       }\n'+
 			'       if (getResponse.length()>0) {\n'+
-			'          client.stop();\n'+		
-			'    	   //fbBuf = NULL;\n'+			
-			'    	   //input = NULL;\n'+
+			'          client.stop();\n'+
 			'          return getResponse;\n'+
 			'       }\n'+
 			'    }\n'+
