@@ -22474,6 +22474,7 @@ Blockly.Arduino['esp32_cam_openai_vision'] = function(block) {
 			'    for (Index = 0; Index < Data.length(); Index = Index+1024) {\n'+
 			'      client.print(Data.substring(Index, Index+1024));\n'+
 			'    }\n'+
+			'    esp_camera_fb_return(fb);\n'+
 			'    \n'+
 			'    int waitTime = 10000;\n'+
 			'    long startTime = millis();\n'+
@@ -22574,6 +22575,7 @@ Blockly.Arduino['esp32_cam_gemini_vision'] = function(block) {
 			'    for (Index = 0; Index < Data.length(); Index = Index+1024) {\n'+
 			'      client.print(Data.substring(Index, Index+1024));\n'+
 			'    }\n'+
+			'    esp_camera_fb_return(fb);\n'+
 			'    \n'+
 			'    int waitTime = 10000;\n'+
 			'    long startTime = millis();\n'+
