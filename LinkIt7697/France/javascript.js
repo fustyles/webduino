@@ -3133,7 +3133,6 @@ Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
 			'    String Data = "{\\"model\\": \\"gpt-4o-mini\\", \\"messages\\": [{\\"role\\": \\"user\\",\\"content\\": [{ \\"type\\": \\"text\\", \\"text\\": \\""+message+"\\"},{\\"type\\": \\"image_url\\", \\"image_url\\": {\\"url\\": \\""+imageFile+"\\"}}]}]}";\n'+				
 			'    \n'+
 			'    client.println("POST /v1/chat/completions HTTP/1.1");\n'+
-			'    client.println("Connection: close");\n'+
 			'    client.println("Host: "+String(myDomain));\n'+
 			'    client.println("Authorization: Bearer " + key);\n'+
 			'    client.println("Content-Type: application/json; charset=utf-8");\n'+
@@ -3225,7 +3224,6 @@ Blockly.Arduino['amb82_mini_gemini_vision'] = function(block) {
 			'    String Data = "{\\"contents\\": [{\\"parts\\": [{\\"text\\": \\""+message+"\\"}, {\\"inline_data\\": {\\"mime_type\\":\\"image/jpeg\\",\\"data\\":\\""+imageFile+"\\"}}]}]}";\n'+
 			'    \n'+
 			'    client.println("POST /v1beta/models/gemini-1.5-flash-latest:generateContent?key="+key+" HTTP/1.1");\n'+
-			'    client.println("Connection: close");\n'+
 			'    client.println("Host: "+String(myDomain));\n'+
 			'    client.println("Content-Type: application/json; charset=utf-8");\n'+
 			'    client.println("Content-Length: " + String(Data.length()));\n'+
@@ -22456,7 +22454,6 @@ Blockly.Arduino['esp32_cam_openai_vision'] = function(block) {
 			'    String Data = "{\\"model\\": \\"gpt-4o-mini\\", \\"messages\\": [{\\"role\\": \\"user\\",\\"content\\": [{ \\"type\\": \\"text\\", \\"text\\": \\""+message+"\\"},{\\"type\\": \\"image_url\\", \\"image_url\\": {\\"url\\": \\""+imageFile+"\\"}}]}]}";\n'+				
 			'    \n'+
 			'    client.println("POST /v1/chat/completions HTTP/1.1");\n'+
-			'    client.println("Connection: close");\n'+
 			'    client.println("Host: "+String(myDomain));\n'+
 			'    client.println("Authorization: Bearer " + key);\n'+
 			'    client.println("Content-Type: application/json; charset=utf-8");\n'+
@@ -22558,7 +22555,6 @@ Blockly.Arduino['esp32_cam_gemini_vision'] = function(block) {
 
 			'    \n'+
 			'    client.println("POST /v1beta/models/gemini-1.5-flash-latest:generateContent?key="+key+" HTTP/1.1");\n'+
-			'    client.println("Connection: close");\n'+
 			'    client.println("Host: "+String(myDomain));\n'+
 			'    client.println("Content-Type: application/json; charset=utf-8");\n'+
 			'    client.println("Content-Length: " + String(Data.length()));\n'+
