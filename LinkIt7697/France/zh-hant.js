@@ -66,7 +66,7 @@ Blockly.Msg["AMB82_MINI_BOARD_PIN_BLUE"] = "藍燈";
 Blockly.Msg["AMB82_MINI_BOARD_PIN_LED"] = "補光燈";
 Blockly.Msg["AMB82_MINI_BOARD_PIN_BUTTON"] = "功能鍵";
 
-Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "影像擷取上傳Telegram Bot";
+Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "影像上傳Telegram Bot";
 
 Blockly.Msg["AMB82_MINI_MODE"] = "格式";
 Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP串流(預設)";
@@ -765,11 +765,11 @@ Blockly.Msg["WIRE_CLOCK"] = "匯流排計時器頻率";
 
 Blockly.Msg["AMB82_MINI"] = "AmebaPro2";
 Blockly.Msg["AMB82_MINI_INITIAL"] = "初始化";
-Blockly.Msg["AMB82_MINI_LINENOTIFY"] = "影像擷取上傳Line通知";
+Blockly.Msg["AMB82_MINI_LINENOTIFY"] = "影像上傳Line通知";
 Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_DEFAULT"] = "預設";
 Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"] = "自訂";
-Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"] = "影像擷取上傳Google雲端硬碟";
-Blockly.Msg["AMB82_MINI_SPREADSHEET"] = "影像擷取上傳Google試算表";
+Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"] = "影像上傳Google雲端硬碟";
+Blockly.Msg["AMB82_MINI_SPREADSHEET"] = "影像上傳Google試算表";
 Blockly.Msg["AMB82_MINI_STILL_URL"] = "張流網址";
 Blockly.Msg["AMB82_MINI_STREAM_URL"] = "串流網址";
 Blockly.Msg["AMB82_MINI_RTSP_INITIAL"] = "RTSP初始化";
@@ -800,7 +800,7 @@ Blockly.Msg["AMB82_MINI_FILECOUNT"] = "數目";
 Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS"] = "視訊參數";
 Blockly.Msg["AMB82_MINI_VIDEO_INITIAL"] = "視訊初始化";
 Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION"] = "解析度";
-Blockly.Msg["AMB82_MINI_VIDEO_CAPTURE_SD"] = "影像擷取保存SD";
+Blockly.Msg["AMB82_MINI_VIDEO_CAPTURE_SD"] = "影像保存SD";
 Blockly.Msg["AMB82_MINI_VIDEO_SETBRIGHTNESS"] = "亮度(-64~64)";
 Blockly.Msg["AMB82_MINI_VIDEO_SETCONTRAST"] = "對比度(0~100)";
 Blockly.Msg["AMB82_MINI_VIDEO_SETSATURATION"] = "飽和度(0~100)";
@@ -825,11 +825,11 @@ Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_BITRATE"] = "比特率";
 Blockly.Msg["AMB82_MINI_VIDEO_GETSTILL"] = "影像截取暫存";
 Blockly.Msg["AMB82_MINI_RTP_AUDIO"] = "RTP音訊串流";
 
-Blockly.Msg["AMB82_MINI_OPENAI_VISION"] = "影像擷取上傳openAI視覺分析";
+Blockly.Msg["AMB82_MINI_OPENAI_VISION"] = "影像上傳openAI視覺分析";
 Blockly.Msg["AMB82_MINI_OPENAI_KEY"] = "openAI Key";		
 Blockly.Msg["AMB82_MINI_OPENAI_MESSAGE"] = "對話訊息";
 
-Blockly.Msg["AMB82_MINI_GEMINI_VISION"] = "影像擷取上傳Gemini視覺分析";
+Blockly.Msg["AMB82_MINI_GEMINI_VISION"] = "影像上傳Gemini視覺分析";
 Blockly.Msg["AMB82_MINI_GEMINI_KEY"] = "Gemini Key";		
 Blockly.Msg["AMB82_MINI_GEMINI_MESSAGE"] = "對話訊息";
 
