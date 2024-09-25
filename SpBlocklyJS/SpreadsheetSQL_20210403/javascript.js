@@ -85,9 +85,10 @@ Blockly.JavaScript['spreadsheetsql_clearData'] = function (block) {
 Blockly.JavaScript['spreadsheetsql_getdatafinish'] = function(block) {
   var task_id = block.getFieldValue('task_id');
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
-  Blockly.JavaScript.definitions_['spreadsheetsql_task_'+task_id] = 'function spreadsheetsql_QueryResponse_'+task_id+'(res) {\n  spreadsheetsql_QueryResponse(res, "'+task_id+'");\n}\nwindow.spreadsheetsql_QueryResponse_'+task_id+' = spreadsheetsql_QueryResponse_'+task_id+';';
+  Blockly.JavaScript.definitions_['spreadsheetsql_QueryResponse_'+task_id] = 'function spreadsheetsql_QueryResponse_'+task_id+'(res) {\n  spreadsheetsql_QueryResponse(res, "'+task_id+'");\n}\nwindow.spreadsheetsql_QueryResponse_'+task_id+' = spreadsheetsql_QueryResponse_'+task_id+';';
+  Blockly.JavaScript.definitions_['spreadsheetsql_getDataFinish_'+task_id] = 'async function spreadsheetsql_getDataFinish_' + task_id + '(head_response, response) {\n' + statements_do + '\n};\nwindow.spreadsheetsql_getDataFinish_'+task_id+' = spreadsheetsql_getDataFinish_'+task_id+';';
   
-  var code = 'spreadsheetsql_getDataFinish_'+task_id+' = function(head_response, response) {\n' + statements_do + '\n};\n';
+  var code = '';
   return code;
 };
 
