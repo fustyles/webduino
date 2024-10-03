@@ -5324,14 +5324,15 @@ Blockly.FieldVariable.prototype.onItemSelected_=function(a,b){
 			this.sourceBlock_.workspace.deleteVariableById(this.variable_.getId());
 			return
 		}
-		if(a==Blockly.ADD_VARIABLE_ID){
-			Blockly.Variables.createVariableButtonHandler(this.sourceBlock_.workspace);
-			var v=this.sourceBlock_.workspace.getVariablesOfType("");
-			v.sort(Blockly.VariableModel.compareByName);
-			if(v.length>0)
-				this.setValue(v[v.length-1].id_);
-			return
-		}
+	        if(a==Blockly.ADD_VARIABLE_ID){
+	            this.setNewValue = function (name) {
+			var ws = this.sourceBlock_.workspace;
+			if (name&&ws.getVariable(name)) 
+			    this.setValue(ws.getVariable(name).getId());
+	            }			
+	            Blockly.Variables.createVariableButtonHandler(this.sourceBlock_.workspace, name => {this.setNewValue(name);}, "");
+	            return
+	        }
 	}
 	this.setValue(a);
 }
