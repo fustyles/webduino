@@ -21061,6 +21061,7 @@ Blockly.Arduino['esp32_cam_stream_only_myfirmata'] = function(block) {
   var baudrate = block.getFieldValue('baudrate');  
   var framesize = block.getFieldValue('framesize');
   var flash = block.getFieldValue('flash');
+  var port = block.getFieldValue('port');
 
   if (flash=="Y")
 	  Blockly.Arduino.definitions_['flash'] = "//Flash mode";
@@ -21085,7 +21086,7 @@ Blockly.Arduino['esp32_cam_stream_only_myfirmata'] = function(block) {
 
   Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
 	
-  Blockly.Arduino.definitions_.server81 = 'boolean cameraState = false;\nWiFiServer server81(81);\n';
+  Blockly.Arduino.definitions_.server81 = 'boolean cameraState = false;\nWiFiServer server81('+port+');\n';
 	
 	Blockly.Arduino.setups_.write_peri_reg="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
 	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";

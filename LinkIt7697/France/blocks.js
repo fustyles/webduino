@@ -19943,7 +19943,14 @@ Blockly.Blocks['esp32_cam_stream_only_myfirmata'] = {
 		.appendField(new Blockly.FieldDropdown([
 			["Y","Y"],
 			["N","N"]	
-		]), "flash");		
+		]), "flash");
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg.FRANCE2_PORT_SHOW)	
+		.appendField(new Blockly.FieldDropdown([
+			["81","81"],
+			["80","80"]	
+		]), "port");		
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
