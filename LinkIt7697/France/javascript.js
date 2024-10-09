@@ -5202,7 +5202,7 @@ Blockly.Arduino['posenet_recognitied'] = function(block) {
 };
 
 Blockly.Arduino['pms7003m_read'] = function(block) { 
-  Blockly.Arduino.definitions_['pms7003m_initial'] = "#include \"PMS.h\"\nPMS pms(Serial2);\nPMS::DATA pms_data;";
+  Blockly.Arduino.definitions_['pms7003m_initial'] = "#include \"PMS.h\"\nPMS pms(Serial2);\nPMS::DATA_PMS pms_data;";
   Blockly.Arduino.setups_['pms7003m_setup'] = "Serial2.begin(9600);";
   var statement = Blockly.Arduino.statementToCode(block, 'statement');
 
