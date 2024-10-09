@@ -5325,11 +5325,13 @@ Blockly.FieldVariable.prototype.onItemSelected_=function(a,b){
 			return
 		}
 	        if(a==Blockly.ADD_VARIABLE_ID){
-	            this.setNewValue = function (name) {
-			var ws = this.sourceBlock_.workspace;
-			if (name&&ws.getVariable(name)) 
-			    this.setValue(ws.getVariable(name).getId());
-	            }			
+            	    if (!('setNewValue' in this)) {
+            		this.setNewValue = function (name) {
+            	    	var ws = this.sourceBlock_.workspace;
+            	    	if (name&&ws.getVariable(name)) 
+            		 	this.setValue(ws.getVariable(name).getId());
+            	        }
+            	    }			
 	            Blockly.Variables.createVariableButtonHandler(this.sourceBlock_.workspace, name => {this.setNewValue(name);}, "");
 	            return
 	        }
