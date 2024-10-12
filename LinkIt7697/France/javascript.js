@@ -7098,48 +7098,94 @@ Blockly.Arduino['tft_initial'] = function(block) {
 	else if (board=="EasyCam")
 		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_EC.h>\n#include <U8g2_for_TFT_eSPI.h>\n#include <TJpg_Decoder.h>\n';
 	else if (board=="AmebaPro2")
-		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_amb82.h>\n#include <U8g2_for_TFT_eSPI_amb82.h>\n#include <TJpg_Decoder_amb82_france.h>\n';		
+		Blockly.Arduino.definitions_.tftinitial = '#include "SPI.h"\n#include <TJpg_Decoder_amb82_france.h>\n#include <U8g2_for_TFT_eSPI_amb82.h>\n#include "AmebaILI9341.h"\n';		
 	else
 		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI.h>\n#include <U8g2_for_TFT_eSPI.h>\n#include <TJpg_Decoder.h>\n';
 	
-	Blockly.Arduino.definitions_.tftinitial +=  'TFT_eSPI tft = TFT_eSPI();\n'+
-												'U8g2_for_TFT_eSPI u8g2;\n'+
-												'byte tftTextSize=1;\n'+
-												'byte tftTextFont=1;\n'+
-												'int pinCS=SS;\n'+
-												'uint16_t dmaBuffer1[16 * 16];\n'+
-												'uint16_t dmaBuffer2[16 * 16];\n'+
-												'uint16_t *dmaBufferPtr = dmaBuffer1;\n'+
-												'bool dmaBufferSel = 0;\n'+
-												'bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t *bitmap) {\n'+
-												'  if (y >= tft.height())\n'+
-												'	return false;\n'+
-												'  if (dmaBufferSel)\n'+
-												'	dmaBufferPtr = dmaBuffer2;\n'+
-												'  else\n'+
-												'	dmaBufferPtr = dmaBuffer1;\n'+
-												'  dmaBufferSel = !dmaBufferSel;\n'+
-												'  tft.pushImageDMA(x, y, w, h, bitmap, dmaBufferPtr);\n'+
-												'  return 1;\n'+
-												'}\n';
-												
-	Blockly.Arduino.setups_.tftsetup ='tft.begin();\n'+
-									  '  tft.fillScreen(TFT_BLACK);\n';
-	if (board!="EasyCam")
-		Blockly.Arduino.setups_.tftsetup += '  tft.initDMA();\n';
-	Blockly.Arduino.setups_.tftsetup += '  TJpgDec.setJpgScale(1);\n'+
-										  '  tft.setSwapBytes(true);\n'+
-										  '  TJpgDec.setCallback(tft_output);\n';
-	if (board=="Pixel:Bit")
-		Blockly.Arduino.setups_.tftsetup += '  tft.setRotation(3);\n';
-	else if (board=="EasyCam")
-		Blockly.Arduino.setups_.tftsetup += '  tft.setRotation(1);\n';
-	
-	Blockly.Arduino.setups_.tftsetup +=  '  tft.setTextFont(1);\n'+
-										 '  tft.setTextSize(1);\n'+
-										 '  tft.setTextColor(TFT_WHITE, TFT_BLACK ,0);\n'+
-										 '  u8g2.begin(tft);\n'+	
-										 '  u8g2.setForegroundColor(TFT_WHITE);\n';
+	if (board=="AmebaPro2") {
+
+		Blockly.Arduino.definitions_.tftinitial +=  '#include "AmebaFatFS.h"\n'+
+													'#include "AmebaFatFSFile.h"\n'+
+													'#define TFT_RESET 5\n'+
+													'#define TFT_DC    4\n'+
+													'#define TFT_CS    SPI_SS\n'+											
+													'AmebaILI9341 tft = AmebaILI9341(TFT_CS, TFT_DC, TFT_RESET);\n'+
+													'#define ILI9341_SPI_FREQUENCY 20000000\n'+
+													'U8g2_for_TFT_eSPI u8g2;\n\n'+
+													'void drawXBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, uint16_t color)\n'+
+													'{\n'+
+													'  int32_t i, j, byteWidth = (w + 7) / 8;\n'+
+													'  for (j = 0; j < h; j++) {\n'+
+													'    for (i = 0; i < w; i++ ) {\n'+
+													'      if (pgm_read_byte(bitmap + j * byteWidth + i / 8) & (1 << (i & 7))) {\n'+
+													'        tft.drawPixel(x + i, y + j, color);\n'+
+													'      }\n'+
+													'    }\n'+
+													'  }\n'+
+													'}\n\n'+
+													'bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t* bitmap)\n'+
+													'{\n'+
+													'  if (y>=tft.getHeight())\n'+
+													'    return 0;\n'+
+													'  else {\n'+
+													'    tft.drawBitmap(x, y, w, h, bitmap);\n'+
+													'    return 1;\n'+
+													'  }\n'+
+													'}\n';
+
+		Blockly.Arduino.setups_.tftsetup = ''+
+										   'SPI.setDefaultFrequency(ILI9341_SPI_FREQUENCY);\n'+
+										   '  tft.begin();\n'+
+										   '  tft.fillScreen(ILI9341_BLACK);\n'+
+										   '  tft.clr();\n'+
+										   '  tft.setCursor(0, 0);\n'+
+										   '  tft.setFontSize(5);\n'+
+										   '  tft.setForeground(ILI9341_WHITE);\n'+
+										   '  u8g2.begin(tft);\n'+
+										   '  u8g2.setForegroundColor(ILI9341_WHITE);\n'+
+										   '  TJpgDec.setJpgScale(1);\n'+
+										   '  TJpgDec.setCallback(tft_output);\n';
+
+	} else {
+		Blockly.Arduino.definitions_.tftinitial +=  'TFT_eSPI tft = TFT_eSPI();\n'+
+													'U8g2_for_TFT_eSPI u8g2;\n'+
+													'byte tftTextSize=1;\n'+
+													'byte tftTextFont=1;\n'+
+													'int pinCS=SS;\n'+
+													'uint16_t dmaBuffer1[16 * 16];\n'+
+													'uint16_t dmaBuffer2[16 * 16];\n'+
+													'uint16_t *dmaBufferPtr = dmaBuffer1;\n'+
+													'bool dmaBufferSel = 0;\n'+
+													'bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t *bitmap) {\n'+
+													'  if (y >= tft.height())\n'+
+													'	return false;\n'+
+													'  if (dmaBufferSel)\n'+
+													'	dmaBufferPtr = dmaBuffer2;\n'+
+													'  else\n'+
+													'	dmaBufferPtr = dmaBuffer1;\n'+
+													'  dmaBufferSel = !dmaBufferSel;\n'+
+													'  tft.pushImageDMA(x, y, w, h, bitmap, dmaBufferPtr);\n'+
+													'  return 1;\n'+
+													'}\n';
+													
+		Blockly.Arduino.setups_.tftsetup ='tft.begin();\n'+
+										  '  tft.fillScreen(TFT_BLACK);\n';
+		if (board!="EasyCam")
+			Blockly.Arduino.setups_.tftsetup += '  tft.initDMA();\n';
+		Blockly.Arduino.setups_.tftsetup += '  TJpgDec.setJpgScale(1);\n'+
+											  '  tft.setSwapBytes(true);\n'+
+											  '  TJpgDec.setCallback(tft_output);\n';
+		if (board=="Pixel:Bit")
+			Blockly.Arduino.setups_.tftsetup += '  tft.setRotation(3);\n';
+		else if (board=="EasyCam")
+			Blockly.Arduino.setups_.tftsetup += '  tft.setRotation(1);\n';
+		
+		Blockly.Arduino.setups_.tftsetup +=  '  tft.setTextFont(1);\n'+
+											 '  tft.setTextSize(1);\n'+
+											 '  tft.setTextColor(TFT_WHITE, TFT_BLACK ,0);\n'+
+											 '  u8g2.begin(tft);\n'+	
+											 '  u8g2.setForegroundColor(TFT_WHITE);\n';
+	}
 	
 	var code = '';
     return code;
@@ -7150,77 +7196,130 @@ Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
 	var board = block.getFieldValue('board');
 	
 	if (board=="Pixel:Bit")
-		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_PIXELBIT.h>\n';
+		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_PIXELBIT.h>\n#include <U8g2_for_TFT_eSPI.h>\n#include <TJpg_Decoder.h>\n';
+	else if (board=="TTGO T1")
+		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_TTGO.h>\n#include <U8g2_for_TFT_eSPI.h>\n#include <TJpg_Decoder.h>\n';
 	else if (board=="EasyCam")
-		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_EC.h>\n';	
+		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_EC.h>\n#include <U8g2_for_TFT_eSPI.h>\n#include <TJpg_Decoder.h>\n';
+	else if (board=="AmebaPro2")
+		Blockly.Arduino.definitions_.tftinitial = '#include "SPI.h"\n#include <TJpg_Decoder_amb82_france.h>\n#include <U8g2_for_TFT_eSPI_amb82.h>\n#include "AmebaILI9341.h"\n';		
 	else
-		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI.h>\n';
+		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI.h>\n#include <U8g2_for_TFT_eSPI.h>\n#include <TJpg_Decoder.h>\n';
 	
-	Blockly.Arduino.definitions_.tftinitial +=  '#include <U8g2_for_TFT_eSPI.h>\n'+
-												'TFT_eSPI tft = TFT_eSPI();\n'+
-												'U8g2_for_TFT_eSPI u8g2;\n'+
-												'byte tftTextSize=1;\n'+
-												'byte tftTextFont=1;\n'+
-												'int pinCS=SS;\n'+
-												'#include <TJpg_Decoder.h>\n'+
-												'uint16_t dmaBuffer1[16 * 16];\n'+
-												'uint16_t dmaBuffer2[16 * 16];\n'+
-												'uint16_t *dmaBufferPtr = dmaBuffer1;\n'+
-												'bool dmaBufferSel = 0;\n'+
-												'bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t *bitmap) {\n'+
-												'  if (y >= tft.height())\n'+
-												'	return false;\n'+
-												'  if (dmaBufferSel)\n'+
-												'	dmaBufferPtr = dmaBuffer2;\n'+
-												'  else\n'+
-												'	dmaBufferPtr = dmaBuffer1;\n'+
-												'  dmaBufferSel = !dmaBufferSel;\n'+
-												'  tft.pushImageDMA(x, y, w, h, bitmap, dmaBufferPtr);\n'+
-												'  return 1;\n'+
-												'}\n';
-												
-	Blockly.Arduino.setups_.tftsetup=''+
-									  'sensor_t *sg = esp_camera_sensor_get();\n'+
-									  'sg->set_brightness(sg, -1);\n'+
-									  'sg->set_contrast(sg, 1);\n'+
-									  'sg->set_saturation(sg, 1);\n'+	
-									  'tft.begin();\n'+
-									  'tft.fillScreen(TFT_BLACK);\n'+
-									  'tft.initDMA();\n'+								  
-									  'TJpgDec.setJpgScale(1);\n'+
-									  'tft.setSwapBytes(true);\n'+
-									  'TJpgDec.setCallback(tft_output);\n';
-	if (board=="Pixel:Bit")
-		Blockly.Arduino.setups_.tftsetup += '  tft.setRotation(3);\n';
-	else if (board=="EasyCam")
-		Blockly.Arduino.setups_.tftsetup += '  tft.setRotation(1);\n';
-	Blockly.Arduino.setups_.tftsetup += 'tft.setTextFont(1);\n'+
-										  'tft.setTextSize(1);\n'+
-										  'tft.setTextColor(TFT_WHITE, TFT_BLACK ,0);\n'+
-										  'u8g2.begin(tft);\n'+	
-										  'u8g2.setForegroundColor(TFT_WHITE);\n';
-										  
-	Blockly.Arduino.definitions_.tftshowcamera = ''+												
-												'void TFTShowCamera() {\n'+
-												'  camera_fb_t *fb = NULL;\n'+
-												'  fb = esp_camera_fb_get();\n'+
-												'  if (!fb) {\n'+
-												'	Serial.println("Camera capture failed");\n'+
-												'	esp_camera_fb_return(fb);\n'+
-												'	return;\n'+
-												'  }\n'+
-												'  if (fb->format != PIXFORMAT_JPEG) {\n'+
-												'	Serial.println("Non-JPEG data not implemented");\n'+
-												'	return;\n'+
-												'  }\n'+
-												'  TJpgDec.setJpgScale(1);\n'+
-												'  tft.startWrite();\n'+
-												'  TJpgDec.drawJpg(0,0, fb->buf, fb->len);\n'+
-												'  tft.endWrite();\n'+
-												'  esp_camera_fb_return(fb);\n'+
-												'}\n';
+	if (board=="AmebaPro2") {
 
-	var code = 'TFTShowCamera();\n';
+		Blockly.Arduino.definitions_.tftinitial +=  '#include "AmebaFatFS.h"\n'+
+													'#include "AmebaFatFSFile.h"\n'+
+													'#define TFT_RESET 5\n'+
+													'#define TFT_DC    4\n'+
+													'#define TFT_CS    SPI_SS\n'+											
+													'AmebaILI9341 tft = AmebaILI9341(TFT_CS, TFT_DC, TFT_RESET);\n'+
+													'#define ILI9341_SPI_FREQUENCY 20000000\n'+
+													'U8g2_for_TFT_eSPI u8g2;\n\n'+
+													'void drawXBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, uint16_t color)\n'+
+													'{\n'+
+													'  int32_t i, j, byteWidth = (w + 7) / 8;\n'+
+													'  for (j = 0; j < h; j++) {\n'+
+													'    for (i = 0; i < w; i++ ) {\n'+
+													'      if (pgm_read_byte(bitmap + j * byteWidth + i / 8) & (1 << (i & 7))) {\n'+
+													'        tft.drawPixel(x + i, y + j, color);\n'+
+													'      }\n'+
+													'    }\n'+
+													'  }\n'+
+													'}\n\n'+
+													'bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t* bitmap)\n'+
+													'{\n'+
+													'  if (y>=tft.getHeight())\n'+
+													'    return 0;\n'+
+													'  else {\n'+
+													'    tft.drawBitmap(x, y, w, h, bitmap);\n'+
+													'    return 1;\n'+
+													'  }\n'+
+													'}\n';
+
+		Blockly.Arduino.setups_.tftsetup = ''+
+										   'SPI.setDefaultFrequency(ILI9341_SPI_FREQUENCY);\n'+
+										   '  tft.begin();\n'+
+										   '  tft.fillScreen(ILI9341_BLACK);\n'+
+										   '  tft.clr();\n'+
+										   '  tft.setCursor(0, 0);\n'+
+										   '  tft.setFontSize(5);\n'+
+										   '  tft.setForeground(ILI9341_WHITE);\n'+
+										   '  u8g2.begin(tft);\n'+
+										   '  u8g2.setForegroundColor(ILI9341_WHITE);\n'+
+										   '  TJpgDec.setJpgScale(1);\n'+
+										   '  TJpgDec.setCallback(tft_output);\n';
+
+		var code = 'Camera.getImage(amb82_CHANNEL, &img_addr, &img_len);\nTJpgDec.drawJpg(0, 0, (const uint8_t*)img_addr, img_len);\n';										   
+
+	} else {
+		
+		Blockly.Arduino.definitions_.tftinitial +=  'TFT_eSPI tft = TFT_eSPI();\n'+
+													'U8g2_for_TFT_eSPI u8g2;\n'+
+													'byte tftTextSize=1;\n'+
+													'byte tftTextFont=1;\n'+
+													'int pinCS=SS;\n'+
+													'#include <TJpg_Decoder.h>\n'+
+													'uint16_t dmaBuffer1[16 * 16];\n'+
+													'uint16_t dmaBuffer2[16 * 16];\n'+
+													'uint16_t *dmaBufferPtr = dmaBuffer1;\n'+
+													'bool dmaBufferSel = 0;\n'+
+													'bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t *bitmap) {\n'+
+													'  if (y >= tft.height())\n'+
+													'	return false;\n'+
+													'  if (dmaBufferSel)\n'+
+													'	dmaBufferPtr = dmaBuffer2;\n'+
+													'  else\n'+
+													'	dmaBufferPtr = dmaBuffer1;\n'+
+													'  dmaBufferSel = !dmaBufferSel;\n'+
+													'  tft.pushImageDMA(x, y, w, h, bitmap, dmaBufferPtr);\n'+
+													'  return 1;\n'+
+													'}\n';
+													
+		Blockly.Arduino.setups_.tftsetup=''+
+										  'sensor_t *sg = esp_camera_sensor_get();\n'+
+										  'sg->set_brightness(sg, -1);\n'+
+										  'sg->set_contrast(sg, 1);\n'+
+										  'sg->set_saturation(sg, 1);\n'+	
+										  'tft.begin();\n'+
+										  'tft.fillScreen(TFT_BLACK);\n'+
+										  'tft.initDMA();\n'+								  
+										  'TJpgDec.setJpgScale(1);\n'+
+										  'tft.setSwapBytes(true);\n'+
+										  'TJpgDec.setCallback(tft_output);\n';
+		if (board=="Pixel:Bit")
+			Blockly.Arduino.setups_.tftsetup += '  tft.setRotation(3);\n';
+		else if (board=="EasyCam")
+			Blockly.Arduino.setups_.tftsetup += '  tft.setRotation(1);\n';
+		Blockly.Arduino.setups_.tftsetup += 'tft.setTextFont(1);\n'+
+											  'tft.setTextSize(1);\n'+
+											  'tft.setTextColor(TFT_WHITE, TFT_BLACK ,0);\n'+
+											  'u8g2.begin(tft);\n'+	
+											  'u8g2.setForegroundColor(TFT_WHITE);\n';
+											  
+		Blockly.Arduino.definitions_.tftshowcamera = ''+												
+													'void TFTShowCamera() {\n'+
+													'  camera_fb_t *fb = NULL;\n'+
+													'  fb = esp_camera_fb_get();\n'+
+													'  if (!fb) {\n'+
+													'	Serial.println("Camera capture failed");\n'+
+													'	esp_camera_fb_return(fb);\n'+
+													'	return;\n'+
+													'  }\n'+
+													'  if (fb->format != PIXFORMAT_JPEG) {\n'+
+													'	Serial.println("Non-JPEG data not implemented");\n'+
+													'	return;\n'+
+													'  }\n'+
+													'  TJpgDec.setJpgScale(1);\n'+
+													'  tft.startWrite();\n'+
+													'  TJpgDec.drawJpg(0,0, fb->buf, fb->len);\n'+
+													'  tft.endWrite();\n'+
+													'  esp_camera_fb_return(fb);\n'+
+													'}\n';
+
+		var code = 'TFTShowCamera();\n';											  		
+	}
+
     return code;
 };
 

@@ -10935,7 +10935,8 @@ Blockly.Blocks['esp32_pixelbit_tftshowcamera'] = {
         .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["TFT_GENERAL"],""],
 			["Pixel:Bit","Pixel:Bit"],
-			["EasyCam","EasyCam"]			
+			["EasyCam","EasyCam"],
+			["AmebaPro2","AmebaPro2"]			
 		]), "board");		
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
