@@ -6701,8 +6701,11 @@ Blockly.Arduino['tft_drawXBMP_PROGMEM'] = function(block) {
   var value_height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC);
   var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
   var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.VARIABLE_CATEGORY_NAME);
-  
-  var code = 'tft.drawXBitmap('+value_x+', '+value_y+', '+variable_variable+', '+value_width+', '+value_height+', '+color+');\n';
+
+  if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+	var code = 'drawXBitmap('+value_x+', '+value_y+', '+variable_variable+', '+value_width+', '+value_height+', '+color+');\n'; 
+  else
+	var code = 'tft.drawXBitmap('+value_x+', '+value_y+', '+variable_variable+', '+value_width+', '+value_height+', '+color+');\n';
   return code;
 };
 
@@ -6735,7 +6738,10 @@ Blockly.Arduino['tft_drawXBMP_PROGMEM_array'] = function(block) {
   var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
   var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.VARIABLE_CATEGORY_NAME);
   
-  var code = 'tft.drawXBitmap('+value_x+', '+value_y+', '+variable_variable+'['+value_index +'], '+value_width+', '+value_height+', '+color+');\n';
+  if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+	var code = 'drawXBitmap('+value_x+', '+value_y+', '+variable_variable+'['+value_index +'], '+value_width+', '+value_height+', '+color+');\n';
+  else
+	var code = 'tft.drawXBitmap('+value_x+', '+value_y+', '+variable_variable+'['+value_index +'], '+value_width+', '+value_height+', '+color+');\n';
   return code;
 };	
 
