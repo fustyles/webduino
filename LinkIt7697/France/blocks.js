@@ -469,9 +469,9 @@ Blockly.Blocks['amb82_mini_motiondetection_rtsp'] = {
 			//["3M (2048×1536)","VIDEO_3M"],
 			["FHD (1920×1080)","VIDEO_FHD"],
 			["HD (1280×720)","VIDEO_HD"],
-			["D1 (704×576)","VIDEO_D1"],
+			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×340)","VIDEO_WVGA"]
+			["WVGA (640×360)","VIDEO_WVGA"]
 			//["CIF (352×288)","VIDEO_CIF"],
 			//["QCIF (176×144)","VIDEO_QCIF"]
 		]), "framesize");		
@@ -1766,9 +1766,9 @@ Blockly.Blocks['amb82_mini_facedetectionrecognition_rtsp'] = {
 			//["3M (2048×1536)","VIDEO_3M"],
 			["FHD (1920×1080)","VIDEO_FHD"],
 			["HD (1280×720)","VIDEO_HD"],
-			["D1 (704×576)","VIDEO_D1"],
+			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×340)","VIDEO_WVGA"]
+			["WVGA (640×360)","VIDEO_WVGA"]
 			//["CIF (352×288)","VIDEO_CIF"],
 			//["QCIF (176×144)","VIDEO_QCIF"]
 		]), "framesize");		
@@ -1909,16 +1909,8 @@ Blockly.Blocks['amb82_mini_facedetection_rtsp'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.appendField(Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW)	
 		.appendField(new Blockly.FieldDropdown([
-			//["2K (2560×1440)","VIDEO_2K"],
-			//["5M (2448×2050)","VIDEO_5M"], 
-			//["3M (2048×1536)","VIDEO_3M"],
 			["FHD (1920×1080)","VIDEO_FHD"],
-			["HD (1280×720)","VIDEO_HD"],
-			["D1 (704×576)","VIDEO_D1"],
-			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×340)","VIDEO_WVGA"]
-			//["CIF (352×288)","VIDEO_CIF"],
-			//["QCIF (176×144)","VIDEO_QCIF"]
+			["HD (1280×720)","VIDEO_HD"]
 		]), "framesize");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTION_AFTER"]);	  
@@ -2292,9 +2284,9 @@ Blockly.Blocks['amb82_mini_emotionclassification_rtsp'] = {
 			//["3M (2048×1536)","VIDEO_3M"],
 			["FHD (1920×1080)","VIDEO_FHD"],
 			["HD (1280×720)","VIDEO_HD"],
-			["D1 (704×576)","VIDEO_D1"],
+			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×340)","VIDEO_WVGA"]
+			["WVGA (640×360)","VIDEO_WVGA"]
 			//["CIF (352×288)","VIDEO_CIF"],
 			//["QCIF (176×144)","VIDEO_QCIF"]
 		]), "framesize");		
@@ -2735,9 +2727,9 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp'] = {
 			//["3M (2048×1536)","VIDEO_3M"],
 			["FHD (1920×1080)","VIDEO_FHD"],
 			["HD (1280×720)","VIDEO_HD"],
-			["D1 (704×576)","VIDEO_D1"],
+			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×340)","VIDEO_WVGA"]
+			["WVGA (640×360)","VIDEO_WVGA"]
 			//["CIF (352×288)","VIDEO_CIF"],
 			//["QCIF (176×144)","VIDEO_QCIF"]
 		]), "framesize");		
@@ -3613,9 +3605,9 @@ Blockly.Blocks['amb82_mini_video_initial'] = {
 			//["3M (2048×1536)","VIDEO_3M"],
 			["FHD (1920×1080)","VIDEO_FHD"],
 			["HD (1280×720)","VIDEO_HD"],
-			["D1 (704×576)","VIDEO_D1"],
+			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×340)","VIDEO_WVGA"],
+			["WVGA (640×360)","VIDEO_WVGA"],
 			//["CIF (352×288)","VIDEO_CIF"],
 			//["QCIF (176×144)","VIDEO_QCIF"],
 			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"],"VIDEO_CUSTOM"]
@@ -4209,9 +4201,9 @@ Blockly.Blocks['amb82_mini_myfirmata'] = {
 			//["3M (2048×1536)","VIDEO_3M"],
 			["FHD (1920×1080)","VIDEO_FHD"],
 			["HD (1280×720)","VIDEO_HD"],
-			["D1 (704×576)","VIDEO_D1"],
+			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×340)","VIDEO_WVGA"],
+			["WVGA (640×360)","VIDEO_WVGA"],
 			//["CIF (352×288)","VIDEO_CIF"],
 			//["QCIF (176×144)","VIDEO_QCIF"],
 			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"],"VIDEO_CUSTOM"]
@@ -4310,9 +4302,9 @@ Blockly.Blocks['amb82_mini_stream'] = {
 			//["3M (2048×1536)","VIDEO_3M"],
 			["FHD (1920×1080)","VIDEO_FHD"],
 			["HD (1280×720)","VIDEO_HD"],
-			["D1 (704×576)","VIDEO_D1"],
+			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×340)","VIDEO_WVGA"],
+			["WVGA (640×360)","VIDEO_WVGA"],
 			//["CIF (352×288)","VIDEO_CIF"],
 			//["QCIF (176×144)","VIDEO_QCIF"],
 			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"],"VIDEO_CUSTOM"]
