@@ -8677,7 +8677,13 @@ Blockly.Blocks['tft_sd_drawjpg'] = {
         .appendField("x");
     this.appendValueInput("y")
         .setCheck("Number")
-        .appendField("y");		
+        .appendField("y");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["TFT_BOARD"])
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["TFT_GENERAL"],""]			
+		]), "board");		
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);

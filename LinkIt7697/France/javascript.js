@@ -7111,11 +7111,18 @@ Blockly.Arduino['tft_initial'] = function(block) {
 	if (board=="AmebaPro2") {
 
 		Blockly.Arduino.definitions_.tftinitial +=  '#include "AmebaFatFS.h"\n'+
-													'#include "AmebaFatFSFile.h"\n'+
-													'#define TFT_RESET 5\n'+
-													'#define TFT_DC    4\n'+
-													'#define TFT_CS    SPI_SS\n'+											
-													'AmebaILI9341 tft = AmebaILI9341(TFT_CS, TFT_DC, TFT_RESET);\n'+
+													'#include "AmebaFatFSFile.h"\n';
+													
+		if (selectBoardType()=="AMB82-MINI")											
+			Blockly.Arduino.definitions_.tftinitial +=  '#define TFT_RESET 5\n'+
+														'#define TFT_DC    4\n'+
+														'#define TFT_CS    SPI_SS\n';
+		else
+			Blockly.Arduino.definitions_.tftinitial +=  '#define TFT_RESET 7\n'+
+														'#define TFT_DC    11\n'+
+														'#define TFT_CS    SPI_SS\n';
+													
+		Blockly.Arduino.definitions_.tftinitial +=  'AmebaILI9341 tft = AmebaILI9341(TFT_CS, TFT_DC, TFT_RESET);\n'+
 													'#define ILI9341_SPI_FREQUENCY 20000000\n'+
 													'U8g2_for_TFT_eSPI u8g2;\n\n'+
 													'void drawXBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, uint16_t color)\n'+
