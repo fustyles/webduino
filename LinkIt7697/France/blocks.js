@@ -471,9 +471,9 @@ Blockly.Blocks['amb82_mini_motiondetection_rtsp'] = {
 			["HD (1280×720)","VIDEO_HD"],
 			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×360)","VIDEO_WVGA"]
-			//["CIF (352×288)","VIDEO_CIF"],
-			//["QCIF (176×144)","VIDEO_QCIF"]
+			["WVGA (640×360)","VIDEO_WVGA"],
+			["QVGA (320×240)","VIDEO_QVGA"],
+			["QCIF (176×144)","VIDEO_QCIF"]
 		]), "framesize");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI_MOTIONDETECTION_AFTER"]);	  
@@ -1768,9 +1768,9 @@ Blockly.Blocks['amb82_mini_facedetectionrecognition_rtsp'] = {
 			["HD (1280×720)","VIDEO_HD"],
 			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×360)","VIDEO_WVGA"]
-			//["CIF (352×288)","VIDEO_CIF"],
-			//["QCIF (176×144)","VIDEO_QCIF"]
+			["WVGA (640×360)","VIDEO_WVGA"],
+			["QVGA (320×240)","VIDEO_QVGA"],
+			["QCIF (176×144)","VIDEO_QCIF"]
 		]), "framesize");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_AFTER"]);	  
@@ -2286,9 +2286,9 @@ Blockly.Blocks['amb82_mini_emotionclassification_rtsp'] = {
 			["HD (1280×720)","VIDEO_HD"],
 			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×360)","VIDEO_WVGA"]
-			//["CIF (352×288)","VIDEO_CIF"],
-			//["QCIF (176×144)","VIDEO_QCIF"]
+			["WVGA (640×360)","VIDEO_WVGA"],
+			["QVGA (320×240)","VIDEO_QVGA"],
+			["QCIF (176×144)","VIDEO_QCIF"]
 		]), "framesize");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_AFTER"]);	  
@@ -2729,9 +2729,9 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp'] = {
 			["HD (1280×720)","VIDEO_HD"],
 			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×360)","VIDEO_WVGA"]
-			//["CIF (352×288)","VIDEO_CIF"],
-			//["QCIF (176×144)","VIDEO_QCIF"]
+			["WVGA (640×360)","VIDEO_WVGA"],
+			["QVGA (320×240)","VIDEO_QVGA"],
+			["QCIF (176×144)","VIDEO_QCIF"]
 		]), "framesize");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_AFTER"]);	  
@@ -3608,8 +3608,8 @@ Blockly.Blocks['amb82_mini_video_initial'] = {
 			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
 			["WVGA (640×360)","VIDEO_WVGA"],
-			//["CIF (352×288)","VIDEO_CIF"],
-			//["QCIF (176×144)","VIDEO_QCIF"],
+			["QVGA (320×240)","VIDEO_QVGA"],
+			["QCIF (176×144)","VIDEO_QCIF"],
 			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"],"VIDEO_CUSTOM"]
 		], this.validate), "resolution");
 	this.appendValueInput("width")
@@ -4204,8 +4204,8 @@ Blockly.Blocks['amb82_mini_myfirmata'] = {
 			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
 			["WVGA (640×360)","VIDEO_WVGA"],
-			//["CIF (352×288)","VIDEO_CIF"],
-			//["QCIF (176×144)","VIDEO_QCIF"],
+			["QVGA (320×240)","VIDEO_QVGA"],
+			["QCIF (176×144)","VIDEO_QCIF"],
 			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"],"VIDEO_CUSTOM"]
 		], this.validate), "framesize");
 	this.appendValueInput("width")
@@ -4305,8 +4305,8 @@ Blockly.Blocks['amb82_mini_stream'] = {
 			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
 			["WVGA (640×360)","VIDEO_WVGA"],
-			//["CIF (352×288)","VIDEO_CIF"],
-			//["QCIF (176×144)","VIDEO_QCIF"],
+			["QVGA (320×240)","VIDEO_QVGA"],
+			["QCIF (176×144)","VIDEO_QCIF"],
 			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"],"VIDEO_CUSTOM"]
 		], this.validate), "framesize");
 	this.appendValueInput("width")
