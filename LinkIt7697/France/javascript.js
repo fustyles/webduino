@@ -6746,10 +6746,20 @@ Blockly.Arduino['tft_drawXBMP_PROGMEM_array'] = function(block) {
 };	
 
 Blockly.Arduino['tft_getView'] = function(block) {
-  var property = block.getFieldValue('property');
+	var property = block.getFieldValue('property');
 
-  var code = 'tft.'+property+'()';
-  return [code, Blockly.Arduino.ORDER_NONE];
+	if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735") {
+		if (property=="getViewportWidth")
+			var code = 'tft.getWidth()';
+		else if (property=="getViewportHeight")
+			var code = 'tft.getHeight()';
+	} else {
+		if (property=="getViewportWidth")
+			var code = 'tft.getViewportWidth()';
+		else if (property=="getViewportHeight")
+			var code = 'tft.getViewportHeight()';
+	}
+	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['tft_getCursor'] = function(block) {
@@ -6768,7 +6778,7 @@ Blockly.Arduino['tft_drawChar'] = function(block) {
   if ((value_str.indexOf('"')==0)&&(value_str.lastIndexOf('"')==value_str.length-1))
     value_str = value_str.substring(1,value_str.length-1);
 
-  var code = 'tft.tft_drawChar('+value_str+', '+value_x+', '+value_y+');\n';
+  var code = 'tft.drawChar('+value_str+', '+value_x+', '+value_y+');\n';
   return code;
 }; 
 
@@ -6788,15 +6798,21 @@ Blockly.Arduino['tft_drawCharFont'] = function(block) {
 
 Blockly.Arduino['tft_invertDisplay'] = function(block) {
   var invert = block.getFieldValue('invert');
-
-  var code = 'tft.invertDisplay('+invert+');\n';
+  
+  if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+	var code = '';
+  else  
+	var code = 'tft.invertDisplay('+invert+');\n';
   return code;
 };
 
 Blockly.Arduino['tft_setTextFont'] = function(block) {
   var value_font = block.getFieldValue('font');
   
-  var code = 'tft.setTextFont('+value_font+');\n';
+  if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+	var code = '';
+  else  
+	var code = 'tft.setTextFont('+value_font+');\n';
   return code;
 };
 
@@ -6833,7 +6849,10 @@ Blockly.Arduino['tft_drawPixel'] = function(block) {
 Blockly.Arduino['tft_setTextDatum'] = function(block) {
   var type = Blockly.Arduino.valueToCode(block, 'type', Blockly.Arduino.ORDER_ATOMIC);
   
-  var code = 'tft.setTextDatum('+type+');\n';  
+  if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+	var code = '';
+  else  
+	var code = 'tft.setTextDatum('+type+');\n';  
   return code;
 };
 
@@ -7019,29 +7038,38 @@ Blockly.Arduino['tft_setCursor'] = function(block) {
 };
 
 Blockly.Arduino['tft_setTextSize'] = function(block) {
-	var size = Blockly.Arduino.valueToCode(block, 'size', Blockly.Arduino.ORDER_ATOMIC);
+  var size = Blockly.Arduino.valueToCode(block, 'size', Blockly.Arduino.ORDER_ATOMIC);
+	
+  if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+	var code = 'tft.setFontSize('+size+');\n';
+  else 	
 	var code = 'tft.setTextSize('+size+');\n';
-    return code;
+  return code;
 };
 
 Blockly.Arduino['tft_setTextColor'] = function(block) {
 	var color_font = Blockly.Arduino.valueToCode(block, 'color_font', Blockly.Arduino.ORDER_ATOMIC);
 	var color_back = Blockly.Arduino.valueToCode(block, 'color_back', Blockly.Arduino.ORDER_ATOMIC);
 	var fill = block.getFieldValue('fill');
-	
-	var code = 'tft.setTextColor('+color_font+' ,'+color_back+' ,'+fill+');\n';
+
+	if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+		var code = 'tft.setForeground('+color_font+');\ntft.setBackground('+color_font+');\n';
+	else
+		var code = 'tft.setTextColor('+color_font+' ,'+color_back+' ,'+fill+');\n';
     return code;
 };
 
 Blockly.Arduino['tft_setTextFontColor'] = function(block) {
 	var color_font = Blockly.Arduino.valueToCode(block, 'color_font', Blockly.Arduino.ORDER_ATOMIC);
-	
-	var code = 'tft.setTextColor('+color_font+');\n';
+	if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+		var code = 'tft.setForeground('+color_font+');\n';
+	else
+		var code = 'tft.setTextColor('+color_font+');\n';
     return code;
 };
 
 Blockly.Arduino['tft_setFreeFont'] = function(block) {
-	Blockly.Arduino.definitions_.setFreeFont = ''+	
+  Blockly.Arduino.definitions_.setFreeFont = ''+	
 												'#define GFXFF 1\n'+
 												'#define GLCD  0\n'+
 												'#define FONT2 2\n'+
@@ -7049,10 +7077,13 @@ Blockly.Arduino['tft_setFreeFont'] = function(block) {
 												'#define FONT6 6\n'+
 												'#define FONT7 7\n'+
 												'#define FONT8 8\n';
+  var font = block.getFieldValue('font');
 	
-	var font = block.getFieldValue('font');
+  if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+	var code = '';
+  else  
 	var code = 'tft.setFreeFont('+font+');\n';
-    return code;
+  return code;
 };
 
 Blockly.Arduino['tft_fillScreen'] = function(block) {
@@ -7089,8 +7120,11 @@ Blockly.Arduino['tft_clear'] = function(block) {
 	TFT_ORANGE      0xFDA0
 	TFT_GREENYELLOW 0xB7E0
 	TFT_PINK        0xFC9F
-	*/	
-	var code = 'tft.fillScreen(TFT_BLACK);\ntft.setTextFont(1);\ntft.setTextSize(1);\ntft.setTextColor(TFT_WHITE, TFT_BLACK ,0);\n';
+	*/
+	if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+		var code = 'tft.fillScreen(TFT_BLACK);\ntft.setFontSize(1);\ntft.setForeground(TFT_WHITE);\ntft.setBackground(TFT_BLACK);\n';
+	else
+		var code = 'tft.fillScreen(TFT_BLACK);\ntft.setTextFont(1);\ntft.setTextSize(1);\ntft.setTextColor(TFT_WHITE, TFT_BLACK ,0);\n';
     return code;
 };
 
