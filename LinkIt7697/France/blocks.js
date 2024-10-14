@@ -527,7 +527,8 @@ Blockly.Blocks['amb82_mini_motiondetection_rtsp_rect'] = {
 				[Blockly.Msg["AMB82_MINI_MOTIONDETECTION_X_MAX"],"X1"],
 				[Blockly.Msg["AMB82_MINI_MOTIONDETECTION_Y_MAX"],"Y1"],				
 				[Blockly.Msg["AMB82_MINI_MOTIONDETECTION_WIDTH"],"WIDTH"],
-				[Blockly.Msg["AMB82_MINI_MOTIONDETECTION_HIGHT"],"HEIGHT"]
+				[Blockly.Msg["AMB82_MINI_MOTIONDETECTION_HIGHT"],"HEIGHT"],
+				[Blockly.Msg.PROPERTY_INDEX,"INDEX"]
 		]), "property");		
 	this.setInputsInline(true);
 	this.setOutput(true, null);  
@@ -1825,7 +1826,8 @@ Blockly.Blocks['amb82_mini_facedetectionrecognition_rtsp_rect'] = {
 				[Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_X_MAX"],"X1"],
 				[Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_Y_MAX"],"Y1"],				
 				[Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_WIDTH"],"WIDTH"],
-				[Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_HIGHT"],"HEIGHT"]			
+				[Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_HIGHT"],"HEIGHT"],
+				[Blockly.Msg.PROPERTY_INDEX,"INDEX"]			
 		]), "property");		
 	this.setInputsInline(true);
 	this.setOutput(true, null);  
@@ -1966,7 +1968,8 @@ Blockly.Blocks['amb82_mini_facedetection_rtsp_rect'] = {
 				[Blockly.Msg["AMB82_MINI_FACEDETECTION_X_MAX"],"X1"],
 				[Blockly.Msg["AMB82_MINI_FACEDETECTION_Y_MAX"],"Y1"],				
 				[Blockly.Msg["AMB82_MINI_FACEDETECTION_WIDTH"],"WIDTH"],
-				[Blockly.Msg["AMB82_MINI_FACEDETECTION_HIGHT"],"HEIGHT"]			
+				[Blockly.Msg["AMB82_MINI_FACEDETECTION_HIGHT"],"HEIGHT"],
+				[Blockly.Msg.PROPERTY_INDEX,"INDEX"]
 		]), "property");		
 	this.setInputsInline(true);
 	this.setOutput(true, null);  
@@ -2787,7 +2790,8 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp_rect'] = {
 				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_X_MAX"],"X1"],
 				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_Y_MAX"],"Y1"],				
 				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_WIDTH"],"WIDTH"],
-				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HIGHT"],"HEIGHT"]
+				[Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HIGHT"],"HEIGHT"],
+				[Blockly.Msg.PROPERTY_INDEX,"INDEX"]
 		]), "property");		
 	this.setInputsInline(true);
 	this.setOutput(true, null);  

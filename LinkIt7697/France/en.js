@@ -1650,6 +1650,7 @@ Blockly.Msg.PROPERTY_CLIENTX = "ClientX";
 Blockly.Msg.PROPERTY_CLIENTY = "ClientY";
 Blockly.Msg.PROPERTY_SCREENX = "ScreenX";
 Blockly.Msg.PROPERTY_SCREENY = "ScreenY";
+Blockly.Msg.PROPERTY_INDEX = "Index";
 Blockly.Msg.TEXTAREA_ID = "Textarea ID";
 Blockly.Msg.TEXTAREA_CREATE = "Textarea Create";
 Blockly.Msg.TEXTAREA_SET = "Set";

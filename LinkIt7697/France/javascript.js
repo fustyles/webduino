@@ -642,6 +642,8 @@ Blockly.Arduino['amb82_mini_motiondetection_rtsp_rect'] = function(block) {
 		var code = '(xmax-xmin)';
 	else if (property == "HEIGHT")
 		var code = '(ymax-ymin)';
+	else if (property == "INDEX")
+		var code = 'i';		
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -721,8 +723,11 @@ Blockly.Arduino['amb82_mini_telegram'] = function(block) {
 	'  Serial.println("Connect to " + String(myDomain));\n'+
 	'  if (client.connect(myDomain, 443)) {\n'+
 	'    Serial.println("Connection successful");\n'+
-	'    if (capture)\n'+
-	'      Camera.getImage(0, &img_addr, &img_len);\n'+	
+	'    if (capture) {\n'+
+	'      Camera.getImage(0, &img_addr, &img_len);\n'+
+	'      Camera.channelEnd(0);\n'+
+	'      Camera.channelBegin(0);\n'+	
+	'    }\n'+	
 	'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
 	'    size_t fbLen = img_len;\n'+ 	
 	'    String head = "--Taiwan\\r\\nContent-Disposition: form-data; name=\\"chat_id\\"; \\r\\n\\r\\n" + chat_id + "\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"photo\\"; filename=\\"esp32-cam.jpg\\"\\r\\nContent-Type: image/jpeg\\r\\n\\r\\n";\n'+
@@ -1842,6 +1847,8 @@ Blockly.Arduino['amb82_mini_facedetectionrecognition_rtsp_rect'] = function(bloc
 		var code = '(xmax-xmin)';
 	else if (property == "HEIGHT")
 		var code = '(ymax-ymin)';
+	else if (property == "INDEX")
+		var code = 'i';		
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -1971,6 +1978,8 @@ Blockly.Arduino['amb82_mini_facedetection_rtsp_rect'] = function(block) {
 		var code = '(xmax-xmin)';
 	else if (property == "HEIGHT")
 		var code = '(ymax-ymin)';
+	else if (property == "INDEX")
+		var code = 'i';		
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -2638,6 +2647,8 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp_rect'] = function(block) {
 		var code = '(xmax-xmin)';
 	else if (property == "HEIGHT")
 		var code = '(ymax-ymin)';
+	else if (property == "INDEX")
+		var code = 'i';	
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -2982,7 +2993,7 @@ Blockly.Arduino['amb82_mini_video_settings_bitrate'] = function(block) {
 };
 
 Blockly.Arduino['amb82_mini_video_getstill'] = function(block) {
-	return 'Camera.getImage(0, &img_addr, &img_len);\n';
+	return 'Camera.getImage(0, &img_addr, &img_len);\nCamera.channelEnd(0);\nCamera.channelBegin(0);\n';
 };
 
 Blockly.Arduino['amb82_mini_video_capture_sd'] = function(block) {
@@ -2996,8 +3007,11 @@ Blockly.Arduino['amb82_mini_video_capture_sd'] = function(block) {
 		'  fs.begin();\n'+
 		'  File file = fs.open(String(fs.getRootPath()) + filename);\n'+
 		'  delay(1000);\n'+
-		'  if (capture)\n'+
+		'  if (capture) {\n'+
 		'    Camera.getImage(0, &img_addr, &img_len);\n'+
+		'    Camera.channelEnd(0);\n'+
+		'    Camera.channelBegin(0);\n'+	
+		'  }\n'+		
 		'  file.write((uint8_t *)img_addr, img_len);\n'+
 		'  file.close();\n'+
 		'  fs.end();\n'+
@@ -3022,8 +3036,11 @@ Blockly.Arduino['amb82_mini_googledrive'] = function(block) {
 			'  Serial.println("Connect to " + String(myDomain));\n'+
 			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
-			'    if (capture)\n'+
+			'    if (capture) {\n'+
 			'      Camera.getImage(0, &img_addr, &img_len);\n'+
+			'      Camera.channelEnd(0);\n'+
+			'      Camera.channelBegin(0);\n'+	
+			'    }\n'+			
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
             '    size_t fbLen = img_len;\n'+			
 			'    \n'+
@@ -3118,8 +3135,11 @@ Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
 			'  Serial.println("Connect to " + String(myDomain));\n'+
 			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
-			'    if (capture)\n'+
+			'    if (capture) {\n'+
 			'      Camera.getImage(0, &img_addr, &img_len);\n'+
+			'      Camera.channelEnd(0);\n'+
+			'      Camera.channelBegin(0);\n'+	
+			'    }\n'+			
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
             '    size_t fbLen = img_len;\n'+			
 			'    \n'+
@@ -3209,8 +3229,11 @@ Blockly.Arduino['amb82_mini_gemini_vision'] = function(block) {
 			'  Serial.println("Connect to " + String(myDomain));\n'+
 			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
-			'    if (capture)\n'+
+			'    if (capture) {\n'+
 			'      Camera.getImage(0, &img_addr, &img_len);\n'+
+			'      Camera.channelEnd(0);\n'+
+			'      Camera.channelBegin(0);\n'+	
+			'    }\n'+			
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
             '    size_t fbLen = img_len;\n'+			
 			'    \n'+
@@ -3301,8 +3324,11 @@ Blockly.Arduino['amb82_mini_spreadsheet'] = function(block) {
 			'  Serial.println("Connect to " + String(myDomain));\n'+
 			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
-			'    if (capture)\n'+
+			'    if (capture) {\n'+
 			'      Camera.getImage(0, &img_addr, &img_len);\n'+
+			'      Camera.channelEnd(0);\n'+
+			'      Camera.channelBegin(0);\n'+	
+			'    }\n'+			
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
             '    size_t fbLen = img_len;\n'+			
 			'    \n'+
@@ -3390,8 +3416,11 @@ Blockly.Arduino['amb82_mini_linenotify'] = function(block) {
 			'String SendStillToLineNotify(String token, String message, bool capture) {\n'+
 			'  if (client.connect("notify-api.line.me", 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
-			'    if (capture)\n'+
+			'    if (capture) {\n'+
 			'      Camera.getImage(0, &img_addr, &img_len);\n'+
+			'      Camera.channelEnd(0);\n'+
+			'      Camera.channelBegin(0);\n'+	
+			'    }\n'+			
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
             '    size_t fbLen = img_len;\n'+
 			'    if (message=="") message = "Ameba";\n'+
@@ -7304,7 +7333,7 @@ Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
 										   '  TJpgDec.setJpgScale(1);\n'+
 										   '  TJpgDec.setCallback(tft_output);\n';
 
-		var code = 'Camera.getImage(amb82_CHANNEL, &img_addr, &img_len);\nTJpgDec.drawJpg(0, 0, (const uint8_t*)img_addr, img_len);\n';										   
+		var code = 'Camera.getImage(amb82_CHANNEL, &img_addr, &img_len);\nCamera.channelEnd(amb82_CHANNEL);\nCamera.channelBegin(amb82_CHANNEL);\nTJpgDec.drawJpg(0, 0, (const uint8_t*)img_addr, img_len);\n';										   
 
 	} else {
 		
@@ -20564,8 +20593,11 @@ Blockly.Arduino['fu_mqtt_sendimage'] = function(block) {
 		Blockly.Arduino.definitions_.define_mqtt_sendimage =  'void mqtt_sendImage(String topic, bool capture) {\n'+
 															'    String clientId = "AMB82-"+String(random(0xffff), HEX);\n'+
 															'    if (mqtt_client.connect(clientId.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n'+	
-															'      if (capture)\n'+
+															'      if (capture) {\n'+
 															'        Camera.getImage(0, &img_addr, &img_len);\n'+
+															'        Camera.channelEnd(0);\n'+
+															'        Camera.channelBegin(0);\n'+	
+															'      }\n'+															
 															'      int imgSize = img_len;\n'+
 															'      int ps = MQTT_MAX_PACKET_SIZE;\n'+
 															'      mqtt_client.beginPublish(topic.c_str(), imgSize, false);\n'+

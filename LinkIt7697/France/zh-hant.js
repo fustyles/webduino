@@ -1648,6 +1648,7 @@ Blockly.Msg.PROPERTY_CLIENTX = "頁面上可視區域的X值";
 Blockly.Msg.PROPERTY_CLIENTY = "頁面上可視區域的Y值";
 Blockly.Msg.PROPERTY_SCREENX = "螢幕上的X值";
 Blockly.Msg.PROPERTY_SCREENY = "螢幕上的Y值";
+Blockly.Msg.PROPERTY_INDEX = "索引值";
 Blockly.Msg.TEXTAREA_ID = "區塊字串欄位 代碼";
 Blockly.Msg.TEXTAREA_CREATE = "區塊字串欄位 建立";
 Blockly.Msg.TEXTAREA_SET = "設定";
