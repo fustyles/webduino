@@ -2082,6 +2082,7 @@ Blockly.JavaScript['video_delete'] = function (block) {
 Blockly.JavaScript['video_base64'] = function (block) {
   var value_source_ = block.getFieldValue('source_');
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_encode_ = block.getFieldValue('encode_');
   var source_id;
   if (value_source_=="video")
 	source_id = '"gamevideo_"+'+value_id_;
@@ -2089,7 +2090,7 @@ Blockly.JavaScript['video_base64'] = function (block) {
 	source_id = '"gamecanvas_"+'+value_id_;
   else if (value_source_=="image")
 	source_id = '"gameimage_"+'+value_id_;
-  var code = 'video_base64(' + source_id + ')';
+  var code = 'video_base64(' + source_id + ', ' + value_encode_ + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
