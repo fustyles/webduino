@@ -2090,7 +2090,7 @@ Blockly.JavaScript['video_base64'] = function (block) {
 	source_id = '"gamecanvas_"+'+value_id_;
   else if (value_source_=="image")
 	source_id = '"gameimage_"+'+value_id_;
-  var code = 'video_base64(' + source_id + ', ' + value_encode_ + ')';
+  var code = 'video_base64(' + source_id + ', ' + value_encode_.toLowerCase() + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
