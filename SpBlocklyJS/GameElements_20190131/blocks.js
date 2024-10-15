@@ -6322,7 +6322,9 @@ Blockly.Blocks['video_base64'] = {
       .setCheck(null)
       .appendField(Blockly.Msg.ID);  
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.VIDEO_BASE64);
+      .appendField(Blockly.Msg.VIDEO_BASE64)
+      .appendField(new Blockly.FieldCheckbox("TRUE"), "encode_")
+      .appendField(Blockly.Msg["ENCODEURI"]);	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(290);
