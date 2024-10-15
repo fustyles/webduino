@@ -4331,7 +4331,7 @@ function HextoRgb(color) {
       document.getElementById("gamevideo_"+input_id).parentNode.removeChild(document.getElementById("gamevideo_"+input_id));
   }
 
-  function video_base64(input_id) {
+  function video_base64(input_id, input_encode) {
     if (document.getElementById(input_id)) {	
 		var obj = document.getElementById(input_id);
 		var canvas = document.createElement('canvas');
@@ -4348,7 +4348,8 @@ function HextoRgb(color) {
 			base64 = canvas.toDataURL('image/jpeg');
 			var head = base64.substring(0, base64.indexOf(",")+1);
 			var data = base64.substring(base64.indexOf(",")+1);
-			//data = encodeURIComponent(data);
+			if (input_encode)
+			  data = encodeURIComponent(data);
 			base64 = head+data;
 		}
 		catch(e) {
