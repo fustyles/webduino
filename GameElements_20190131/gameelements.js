@@ -4348,7 +4348,7 @@ function HextoRgb(color) {
 			base64 = canvas.toDataURL('image/jpeg');
 			var head = base64.substring(0, base64.indexOf(",")+1);
 			var data = base64.substring(base64.indexOf(",")+1);
-			data = encodeURIComponent(data);
+			//data = encodeURIComponent(data);
 			base64 = head+data;
 		}
 		catch(e) {
