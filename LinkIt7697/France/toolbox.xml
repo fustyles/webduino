@@ -11495,7 +11495,7 @@
 				</block>
 			</value>
 			<value name="str">
-				<block type="text">
+				<block type="text_quotationmark">
 					<field name="TEXT"></field>
 				</block>
 			</value>	

@@ -6802,10 +6802,6 @@ Blockly.Arduino['tft_drawChar'] = function(block) {
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
   var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
   var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
-  if ((value_str.indexOf("'")==0)&&(value_str.lastIndexOf("'")==value_str.length-1))
-    value_str = value_str.substring(1,value_str.length-1);
-  if ((value_str.indexOf('"')==0)&&(value_str.lastIndexOf('"')==value_str.length-1))
-    value_str = value_str.substring(1,value_str.length-1);
 
   var code = 'tft.drawChar('+value_str+', '+value_x+', '+value_y+');\n';
   return code;
@@ -7081,10 +7077,7 @@ Blockly.Arduino['tft_setTextColor'] = function(block) {
 	var color_back = Blockly.Arduino.valueToCode(block, 'color_back', Blockly.Arduino.ORDER_ATOMIC);
 	var fill = block.getFieldValue('fill');
 
-	if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		var code = 'tft.setForeground('+color_font+');\ntft.setBackground('+color_font+');\n';
-	else
-		var code = 'tft.setTextColor('+color_font+' ,'+color_back+' ,'+fill+');\n';
+	var code = 'tft.setTextColor('+color_font+' ,'+color_back+' ,'+fill+');\n';
     return code;
 };
 
