@@ -1912,7 +1912,8 @@ Blockly.Blocks['amb82_mini_facedetection_rtsp'] = {
 		.appendField(Blockly.Msg.SERVERMODULE_FRAMESIZE_SHOW)	
 		.appendField(new Blockly.FieldDropdown([
 			["FHD (1920×1080)","VIDEO_FHD"],
-			["HD (1280×720)","VIDEO_HD"]
+			["HD (1280×720)","VIDEO_HD"],
+			["WVGA (640×360)","VIDEO_WVGA"]
 		]), "framesize");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTION_AFTER"]);	  
