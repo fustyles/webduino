@@ -15,6 +15,6 @@ Blockly.Msg["WEBSERIAL_SENDTEXT_SHOW"] = "網頁序列埠 傳送String字串";
 Blockly.Msg["WEBSERIAL_SENDUINT8_SHOW"] = "網頁序列埠 傳送Uint8陣列";
 Blockly.Msg["WEBSERIAL_GETID_SHOW"] = "網頁序列埠 取得按鈕ID";
 Blockly.Msg["WEBSERIAL_ELEMENT_ONCLICK_SHOW"] = "網頁序列埠 設定";
-Blockly.Msg["WEBSERIAL_ELEMENT_ID_SHOW"] = "為網頁元素代碼";
+Blockly.Msg["WEBSERIAL_ELEMENT_ID_SHOW"] = "為網頁元素原始代碼";
 Blockly.Msg["WEBSERIAL_WAIT_SHOW"] = "網頁序列埠 等待連線後向下執行";
 Blockly.Msg["WEBSERIAL_GETDATA_SHOW"] = "網頁序列埠 取得資料後執行";
