@@ -15,6 +15,6 @@ Blockly.Msg["WEBSERIAL_SENDTEXT_SHOW"] = "Web Serial Send String";
 Blockly.Msg["WEBSERIAL_SENDUINT8_SHOW"] = "Web Serial Send Uint8Array";
 Blockly.Msg["WEBSERIAL_GETID_SHOW"] = "Web Serial Get Button ID";
 Blockly.Msg["WEBSERIAL_ELEMENT_ONCLICK_SHOW"] = "Web Serial Set";
-Blockly.Msg["WEBSERIAL_ELEMENT_ID_SHOW"] = "Element Code for Web Page";
+Blockly.Msg["WEBSERIAL_ELEMENT_ID_SHOW"] = "Element original ID for Web Page";
 Blockly.Msg["WEBSERIAL_WAIT_SHOW"] = "Web Serial Wait for Connection Before Executing";
 Blockly.Msg["WEBSERIAL_GETDATA_SHOW"] = "Web Serial Execute After Getting Data";
