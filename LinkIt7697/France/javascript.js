@@ -3860,7 +3860,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'}\n';
 	
 	Blockly.Arduino.setups_.write_peri_reg = "";
-	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
+	Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
 	Blockly.Arduino.setups_.setup_cam_initial='initWiFi();\n';
 	
 	Blockly.Arduino.definitions_['Ip2String'] =''+
@@ -4072,7 +4072,7 @@ Blockly.Arduino['amb82_mini_stream'] = function(block) {
   Blockly.Arduino.definitions_.ExecuteCommand = 'WiFiServer server(80);\n';
 	
 	Blockly.Arduino.setups_.write_peri_reg = "";
-	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
+	Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
 	Blockly.Arduino.setups_.setup_cam_initial='initWiFi();\n';
 	
 	Blockly.Arduino.definitions_['Ip2String'] =''+
@@ -4523,7 +4523,7 @@ Blockly.Arduino.emakefun_steppermotor_initial=function(block){
   Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\n';
   Blockly.Arduino.definitions_['emakefun_motordriver_mMotorDriver'] = 'Emakefun_MotorDriver mMotorDriver = Emakefun_MotorDriver(0x60);\n';	
   Blockly.Arduino.definitions_['emakefun_motordriver_mMotorDriver_'+motor] ='Emakefun_StepperMotor *StepperMotor_'+motor+' = mMotorDriver.getStepper(STEPPER'+motor+', '+step+');';															
-  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'mMotorDriver.begin(1600);'; 
+  Blockly.Arduino.setupsTop_['emakefun_motordriver_setups'] = 'mMotorDriver.begin(1600);'; 
 
   var code = '';
   return code;
@@ -4570,11 +4570,11 @@ Blockly.Arduino.emakefun_io=function(block){
 	
   if (type=="dw") {
 	Blockly.Arduino.definitions_['emakefun_motordriver_gpio'] = 'Emakefun_MotorDriver gpio = Emakefun_MotorDriver(0x60);\n';	
-	Blockly.Arduino.setups_['emakefun_setups_gpio'] =  'gpio.begin(1000);';
+	Blockly.Arduino.setupsTop_['emakefun_setups_gpio'] =  'gpio.begin(1000);';
 	var code = 'gpio.setPin('+servo+', '+dw_val+');\n';	
   } else {
 	Blockly.Arduino.definitions_['emakefun_motordriver_pwm'] = 'Emakefun_MotorDriver pwm = Emakefun_MotorDriver(0x60);\n';	
-	Blockly.Arduino.setups_['emakefun_setups_pwm'] =  'pwm.begin(1500);'; 
+	Blockly.Arduino.setupsTop_['emakefun_setups_pwm'] =  'pwm.begin(1500);'; 
 	var code = 'pwm.setPWM('+servo+', '+aw_val+');\n';	
   }	  
 
@@ -4594,7 +4594,7 @@ Blockly.Arduino.emakefun_servo_set_angle=function(block){
   Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\n';
   Blockly.Arduino.definitions_['emakefun_motordriver_mMotorDriver'] = 'Emakefun_MotorDriver mMotorDriver = Emakefun_MotorDriver(0x60);\n';
   Blockly.Arduino.definitions_['emakefun_motordriver_servo_'+servo] =  'Emakefun_Servo *mServo'+servo+' = mMotorDriver.getServo('+servo+');';  
-  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'mMotorDriver.begin(50);\n'; 
+  Blockly.Arduino.setupsTop_['emakefun_motordriver_setups'] = 'mMotorDriver.begin(50);\n'; 
 	
   var code = 'mServo'+servo+'->writeServo('+angle+');\n';
   return code;
@@ -4607,7 +4607,7 @@ Blockly.Arduino.emakefun_servo_set_angle_360=function(block){
   Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\n';
   Blockly.Arduino.definitions_['emakefun_motordriver_mMotorDriver'] = 'Emakefun_MotorDriver mMotorDriver = Emakefun_MotorDriver(0x60);\n';
   Blockly.Arduino.definitions_['emakefun_motordriver_servo_'+servo] =  'Emakefun_Servo *mServo'+servo+' = mMotorDriver.getServo('+servo+');';  
-  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'mMotorDriver.begin(50);\n'; 
+  Blockly.Arduino.setupsTop_['emakefun_motordriver_setups'] = 'mMotorDriver.begin(50);\n'; 
 	
   var code = 'mServo'+servo+'->writeServo('+angle+');\n';
   return code;
@@ -4621,7 +4621,7 @@ Blockly.Arduino.emakefun_dcmotor=function(block){
   Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\n';
   Blockly.Arduino.definitions_['emakefun_motordriver_mMotorDriver'] = 'Emakefun_MotorDriver mMotorDriver = Emakefun_MotorDriver(0x60);\n';
   Blockly.Arduino.definitions_['emakefun_motordriver_motor_'+motor] ='Emakefun_DCMotor *DCMotor_'+motor+' = mMotorDriver.getMotor(M'+motor+');';															
-  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'mMotorDriver.begin(50);\n'; 
+  Blockly.Arduino.setupsTop_['emakefun_motordriver_setups'] = 'mMotorDriver.begin(50);\n'; 
 
   var code = 'DCMotor_'+motor+'->run('+direction+');\n';
   if (direction=="FORWARD"||direction=="BACKWARD")
@@ -4636,7 +4636,7 @@ Blockly.Arduino.emakefun_motordriver_set_speed=function(block){
   Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\n';
   Blockly.Arduino.definitions_['emakefun_motordriver_mMotorDriver'] = 'Emakefun_MotorDriver mMotorDriver = Emakefun_MotorDriver(0x60);\n';
   Blockly.Arduino.definitions_['emakefun_motordriver_motor_'+motor] ='Emakefun_DCMotor *DCMotor_'+motor+' = mMotorDriver.getMotor(M'+motor+');';															
-  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'mMotorDriver.begin(50);\n';  
+  Blockly.Arduino.setupsTop_['emakefun_motordriver_setups'] = 'mMotorDriver.begin(50);\n';  
 
   var code = 'DCMotor_'+motor+'->setSpeed('+pwm+');\n';
   return code;
@@ -4648,7 +4648,7 @@ Blockly.Arduino.emakefun_motordriver_get_speed=function(block){
   Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\n';
   Blockly.Arduino.definitions_['emakefun_motordriver_mMotorDriver'] = 'Emakefun_MotorDriver mMotorDriver = Emakefun_MotorDriver(0x60);\n';
   Blockly.Arduino.definitions_['emakefun_motordriver_motor_'+motor] ='Emakefun_DCMotor *DCMotor_'+motor+' = mMotorDriver.getMotor(M'+motor+');';															
-  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'mMotorDriver.begin(50);\n';  
+  Blockly.Arduino.setupsTop_['emakefun_motordriver_setups'] = 'mMotorDriver.begin(50);\n';  
 
   var code = 'DCMotor_'+motor+'->getSpeed()';
   return code;
@@ -4661,7 +4661,7 @@ Blockly.Arduino.emakefun_motordriver_set_direction=function(block){
   Blockly.Arduino.definitions_['emakefun_motordriver_include'] = '#include "Emakefun_MotorDriver.h"\n';
   Blockly.Arduino.definitions_['emakefun_motordriver_mMotorDriver'] = 'Emakefun_MotorDriver mMotorDriver = Emakefun_MotorDriver(0x60);\n';
   Blockly.Arduino.definitions_['emakefun_motordriver_motor_'+motor] ='Emakefun_DCMotor *DCMotor_'+motor+' = mMotorDriver.getMotor(M'+motor+');';															
-  Blockly.Arduino.setups_['emakefun_motordriver_setups'] = 'mMotorDriver.begin(50);\n'; 
+  Blockly.Arduino.setupsTop_['emakefun_motordriver_setups'] = 'mMotorDriver.begin(50);\n'; 
 
   var code = 'DCMotor_'+motor+'->run('+direction+');\n';
   return code;
@@ -4680,7 +4680,7 @@ Blockly.Arduino.emakefun_encodeMotor_set_speed=function(block){
 																			'  else\n'+
 																			'    EncodeMotor_'+motor+'->EncoderPulse--;\n'+
 																			'}';
-  Blockly.Arduino.setups_['emakefun_motordriver_setups_begin'] = 'mEMotorDriver.begin();\n';
+  Blockly.Arduino.setupsTop_['emakefun_motordriver_setups_begin'] = 'mEMotorDriver.begin();\n';
   Blockly.Arduino.setups_['emakefun_motordriver_setups_init_'+motor] = 'EncodeMotor_'+motor+'->init(encoder'+motor+');\n'; 
 
   var code = 'EncodeMotor_'+motor+'->setSpeed('+pwm+');\n';
@@ -4700,7 +4700,7 @@ Blockly.Arduino.emakefun_encodeMotor_set_direction=function(block){
 																			'  else\n'+
 																			'    EncodeMotor_'+motor+'->EncoderPulse--;\n'+
 																			'}';
-  Blockly.Arduino.setups_['emakefun_motordriver_setups_begin'] = 'mEMotorDriver.begin();\n';
+  Blockly.Arduino.setupsTop_['emakefun_motordriver_setups_begin'] = 'mEMotorDriver.begin();\n';
   Blockly.Arduino.setups_['emakefun_motordriver_setups_init_'+motor] = 'EncodeMotor_'+motor+'->init(encoder'+motor+');\n';   
 
   var code = 'EncodeMotor_'+motor+'->run('+direction+');\n';
@@ -4722,7 +4722,7 @@ Blockly.Arduino.emakefun_encodeMotor_set_direction_detail=function(block){
 																			'  else\n'+
 																			'    EncodeMotor_'+motor+'->EncoderPulse--;\n'+
 																			'}';
-  Blockly.Arduino.setups_['emakefun_motordriver_setups_begin'] = 'mEMotorDriver.begin();\n';
+  Blockly.Arduino.setupsTop_['emakefun_motordriver_setups_begin'] = 'mEMotorDriver.begin();\n';
   Blockly.Arduino.setups_['emakefun_motordriver_setups_init_'+motor] = 'EncodeMotor_'+motor+'->init(encoder'+motor+');\n';   
 
   var code = 'EncodeMotor_'+motor+'->run('+direction+', '+pwm+', '+pulse+');\n';
@@ -4741,7 +4741,7 @@ Blockly.Arduino.emakefun_encodeMotor_get_pulse=function(block){
 																			'  else\n'+
 																			'    EncodeMotor_'+motor+'->EncoderPulse--;\n'+
 																			'}';
-  Blockly.Arduino.setups_['emakefun_motordriver_setups_begin'] = 'mEMotorDriver.begin();\n';
+  Blockly.Arduino.setupsTop_['emakefun_motordriver_setups_begin'] = 'mEMotorDriver.begin();\n';
   Blockly.Arduino.setups_['emakefun_motordriver_setups_init_'+motor] = 'EncodeMotor_'+motor+'->init(encoder'+motor+');\n'; 
 
   var code = 'EncodeMotor_'+motor+'->EncoderPulse';
@@ -5817,7 +5817,7 @@ Blockly.Arduino['webusb_server_initial'] = function(block) {
 	+'#define Serial WebUSBSerial\n';
 	
 
-	Blockly.Arduino.setups_.setup_serial = 'while (!Serial) {}\nSerial.begin('+baudrate+');\n  delay(10);\n';
+	Blockly.Arduino.setupsTop_.setup_serial = 'while (!Serial) {}\nSerial.begin('+baudrate+');\n  delay(10);\n';
 	
 	Blockly.Arduino.variables_['getCommand'] = 'String Feedback="",bleData="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
 	
@@ -9237,7 +9237,7 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
 								'#define HREF_GPIO_NUM     26\n'+
 								'#define PCLK_GPIO_NUM     35\n';
 	
-	Blockly.Arduino.setups_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin("+baudrate+");\n  delay(10);";
+	Blockly.Arduino.setupsTop_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin("+baudrate+");\n  delay(10);";
 	
 	Blockly.Arduino.definitions_.initWiFi = ''+
 			'  void initWiFi() {\n'+	
@@ -10101,7 +10101,7 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 			'}\n';
 	
 	Blockly.Arduino.setups_.write_peri_reg="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
-	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
+	Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
 	Blockly.Arduino.setups_.setup_cam_initial=''+
 			'  tca5405.init(21);\n'+
 			'  tca5405.set_gpo(PIXELBIT_CAMERA_POWER, 0);\n'+
@@ -10758,7 +10758,7 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 
 	if (selectBoardType()=="esp32")
 		Blockly.Arduino.setups_.write_peri_reg="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
-	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
+	Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
 	Blockly.Arduino.setups_.setup_wifi='initWiFi();\n';
 
 	Blockly.Arduino.definitions_.initWiFi = ''+
@@ -10993,7 +10993,7 @@ Blockly.Arduino['esp32cam_telegrambot'] = function(block) {
 			'}\n';
 
 	Blockly.Arduino.setups_.write_peri_reg="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
-	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
+	Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
 	Blockly.Arduino.setups_.setup_cam_initial=''+
 			'  Serial.setDebugOutput(true);\n'+
 			'  Serial.println();\n'+
@@ -14657,7 +14657,7 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 	if (selectBoardType()=="esp32")
 		Blockly.Arduino.setups_.write_peri_reg="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
 	
-	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
+	Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
 	Blockly.Arduino.setups_.setup_wifi=''+
 			'//WiFi.config(IPAddress(192, 168, 201, 100), IPAddress(192, 168, 201, 2), IPAddress(255, 255, 255, 0));\n'+ 
 			'  initWiFi();\n\n';
@@ -14822,7 +14822,7 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
 
 	var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
 
-	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
+	Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
 	Blockly.Arduino.setups_.bt_serial='SerialBT.begin('+blename+');\n  delay(10);\n';	
 	
 	Blockly.Arduino.definitions_['webbluetooth_comand_custom'] = ''	
@@ -15258,7 +15258,7 @@ Blockly.Arduino['esp32_bluetooth_initial'] = function(block) {
 																	'#endif\n'+
 																	'BluetoothSerial SerialBT;\n';
 
-    Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
+    Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
     Blockly.Arduino.setups_.bt_serial='SerialBT.begin('+blename+');\n  delay(10);\n';																		
 
     var code = statements_setup +'\n';
@@ -15377,7 +15377,7 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 			'}\n'+ 
 			'}\n';
 
-	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+	Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
 	Blockly.Arduino.setups_.setup_wifi=''+
 			'  //WiFi.config(IPAddress(192, 168, 201, 100), IPAddress(192, 168, 201, 2), IPAddress(255, 255, 255, 0));\n'+ 
 			'  WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+ 
@@ -20882,7 +20882,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'}\n';
 	
 	Blockly.Arduino.setups_.write_peri_reg="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
-	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
+	Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
 	Blockly.Arduino.setups_.setup_cam_initial=''+
 			'  Serial.setDebugOutput(true);\n'+
 			'  Serial.println();\n'+
@@ -21267,7 +21267,7 @@ Blockly.Arduino['esp32_cam_stream_only_myfirmata'] = function(block) {
   Blockly.Arduino.definitions_.server81 = 'boolean cameraState = false;\nWiFiServer server81('+port+');\n';
 	
 	Blockly.Arduino.setups_.write_peri_reg="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
-	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
+	Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
 	Blockly.Arduino.setups_.setup_cam_initial=''+
 			'  Serial.setDebugOutput(true);\n'+
 			'  Serial.println();\n'+
@@ -21621,7 +21621,7 @@ Blockly.Arduino['esp32_cam_stream_myfirmata'] = function(block) {
 			'}\n';
 	
 	Blockly.Arduino.setups_.write_peri_reg="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
-	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
+	Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
 	Blockly.Arduino.setups_.setup_cam_initial = ''+
 			'  Serial.setDebugOutput(true);\n'+
 			'  Serial.println();\n'+
