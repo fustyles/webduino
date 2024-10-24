@@ -7509,7 +7509,8 @@ Blockly.Arduino['chart_switch_create'] = function(block) {
   var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
   var statements_do = Blockly.Arduino.statementToCode(block, 'do');
   
-  var code = 'function '+func+'() {\n  '+statements_do+'\n}\n';
+  var code = 'include_file("js", "header", "https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simpleswitch.js");\ninclude_file("css", "", "https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/simpleswitch.css");\nawait delay(3);\n';  
+  code += 'function '+func+'() {\n  '+statements_do+'\n}\n';
   code +=  'simpleSwitch({\n'+
 			'	id: '+id+',\n'+
 			'	width: '+width+',\n'+
@@ -7556,7 +7557,7 @@ Blockly.Arduino['chart_analoggauge_create'] = function(block) {
   var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
   color = color.replace("{","[").replace("}","]");
  
-  var code = "";
+  var code = 'include_file("js", "header", "https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js");\ninclude_file("js", "header", "https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simplegauge.js");\ninclude_file("css", "", "https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simplegauge.css");\nawait delay(3);\n';
   code +=  'simpleGauge({\n'+
 	'	id:  '+id+',\n'+
     '   value: '+val+',\n'+	
@@ -7682,7 +7683,7 @@ Blockly.Arduino['chart_doughnut_create'] = function(block) {
   var unit = Blockly.Arduino.valueToCode(block, 'unit', Blockly.Arduino.ORDER_ATOMIC);
   var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
   
-  var code = "";
+  var code = 'include_file("js", "header", "https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js");\ninclude_file("js", "header", "https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/pretty-doughtnut.js");\nawait delay(3);\n';
   code +=  'doughnutWidget.chartname['+name+'] = {\n'+
 			'	container: "'+id+'",\n'+
 			'	width: '+width+',\n'+
@@ -7727,7 +7728,7 @@ Blockly.Arduino['chart_gauge_create'] = function(block) {
   var unit = Blockly.Arduino.valueToCode(block, 'unit', Blockly.Arduino.ORDER_ATOMIC);
   var color = Blockly.Arduino.valueToCode(block, 'color', Blockly.Arduino.ORDER_ATOMIC);
   
-  var code = "";
+  var code = 'include_file("js", "header", "https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.tempgauge.js");\nawait delay(3);\n';
   code +=  'temperatureGauge({\n'+
 			'	id: '+id+',\n'+
 			'	name: '+name+',\n'+			
@@ -7769,7 +7770,7 @@ Blockly.Arduino['chart_waterbubble_create'] = function(block) {
   var watercolor = Blockly.Arduino.valueToCode(block, 'watercolor', Blockly.Arduino.ORDER_ATOMIC);
   var textcolor = Blockly.Arduino.valueToCode(block, 'textcolor', Blockly.Arduino.ORDER_ATOMIC);  
   
-  var code = "";
+  var code = 'include_file("js", "header", "https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/waterbubble.js");\nawait delay(3);\n';
   code +=  'waterbubble({\n'+
 			'	id: '+id+',\n'+
 			'	name: '+name+',\n'+			
@@ -7816,7 +7817,7 @@ Blockly.Arduino['chart_line_create'] = function(block) {
   else
 	dataset = "{}";
   
-  var code = "";
+  var code = 'include_file("js", "header", "https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js");\ninclude_file("js", "header", "https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/linechart.js");\nawait delay(3);\n';
   code += 'var config = {\n'+
 '	  id: '+id+',\n'+
 '	  type: "line",\n'+
@@ -7919,7 +7920,7 @@ Blockly.Arduino['chart_bar_create'] = function(block) {
   else
 	dataset = "{}";
   
-  var code = "";
+  var code = 'include_file("js", "header", "https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js");\ninclude_file("js", "header", "https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/barchart.js");\nawait delay(3);\n';
   code += 'var config = {\n'+
 '	  id: '+id+',\n'+
 '	  type: "bar",\n'+
@@ -17664,6 +17665,7 @@ Blockly.Arduino['servermodule_javascript'] = function(block) {
 	var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace, true);
 	xml = Blockly.Xml.domToPrettyText(xml);
 
+/*
 	if (xml.indexOf("chart_doughnut_")!=-1) {
 		code += '<script src=\'https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/Chart.min.js\'></script>';			
 		code += '<script src=\'https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/pretty-doughtnut.js\'></script>';
@@ -17697,7 +17699,8 @@ Blockly.Arduino['servermodule_javascript'] = function(block) {
 		code += '<script src=\'https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/jquery.simpleswitch.js\'></script>';
 		code += '<link href=\'https://fustyles.github.io/webduino/SpBlocklyJS/chart_20220723/simpleswitch.css\' type=\'text/css\' rel=\'stylesheet\'></script>';			
 	}	
-		
+*/
+	
   code += '</head><body><script>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{'+ statements_js.replace(/"/g,"'").replace(/\n/g,"").replace(/NULL/g,"null").replace(/int /g,"var ") +'};main();</script></body></html>"';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
