@@ -9238,7 +9238,7 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
 								'#define HREF_GPIO_NUM     26\n'+
 								'#define PCLK_GPIO_NUM     35\n';
 	
-	Blockly.Arduino.setupsTop_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin("+baudrate+");\n  delay(10);";
+	Blockly.Arduino.setups_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin("+baudrate+");\n  delay(10);";
 	
 	Blockly.Arduino.definitions_.initWiFi = ''+
 			'  void initWiFi() {\n'+	
@@ -10101,10 +10101,10 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 			'  }\n'+ 
 			'}\n';
 	
-	Blockly.Arduino.setups_.write_peri_reg="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
-	Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
+	Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n";
+	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
 	Blockly.Arduino.setups_.setup_cam_initial=''+
-			'  tca5405.init(21);\n'+
+			'tca5405.init(21);\n'+
 			'  tca5405.set_gpo(PIXELBIT_CAMERA_POWER, 0);\n'+
 			'  tca5405.transmit();\n'+
 			'  delay(100);\n'+
