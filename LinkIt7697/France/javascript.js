@@ -916,7 +916,11 @@ Blockly.Arduino['amb82_mini_rtc_initial'] = function(block) {
 	+'rtc.Init();\n'	
 	+'  long long initTime = rtc.SetEpoch('+YEAR+', '+MONTH+', '+DAY+', '+HOUR+', '+MIN+', '+SEC+');\n'	
 	+'  rtc.Write(initTime);\n';
-	Blockly.Arduino.loopsTop_['amb82_mini_rtc_initial'] = '  rtc.Wait(1);\n';
+	
+	if ('loopsTop_' in Blockly.Arduino)
+		Blockly.Arduino.loopsTop_['amb82_mini_rtc_initial'] = '  rtc.Wait(1);\n';
+	else if ('loops_' in Blockly.Arduino)
+		Blockly.Arduino.loops_['amb82_mini_rtc_initial'] = '  rtc.Wait(1);\n';
 	
 	var code = '';
     return code;
@@ -4049,8 +4053,12 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'    }\n'+
 			'  }\n';			
 
-	Blockly.Arduino.loops_.server_getrequest = "getRequest();\n";			
 			
+	if ('loopsTop_' in Blockly.Arduino)
+		Blockly.Arduino.loopsTop_.server_getrequest = "  getRequest();\n";	
+	else if ('loops_' in Blockly.Arduino)
+		Blockly.Arduino.loops_.server_getrequest = "  getRequest();\n";	
+	
     return '';
 };
 
@@ -4176,8 +4184,11 @@ Blockly.Arduino['amb82_mini_stream'] = function(block) {
 			'    }\n'+
 			'  }\n';			
 
-	Blockly.Arduino.loops_.server_getrequest = "getRequest();\n";			
-			
+	if ('loopsTop_' in Blockly.Arduino)
+		Blockly.Arduino.loopsTop_.server_getrequest = "  getRequest();\n";	
+	else if ('loops_' in Blockly.Arduino)
+		Blockly.Arduino.loops_.server_getrequest = "  getRequest();\n";	
+	
     return '';
 };
 
@@ -10388,8 +10399,11 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 			'    }\n'+
 			'  }\n';
 	
-	if (Blockly.Arduino.loops_&&request) {
-		Blockly.Arduino.loops_.server_getrequest = "getRequest();\n";
+	if (request) {
+		if ('loopsTop_' in Blockly.Arduino)
+			Blockly.Arduino.loopsTop_.server_getrequest = "  getRequest();\n";
+		else if ('loops_' in Blockly.Arduino)
+			Blockly.Arduino.loops_.server_getrequest = "  getRequest();\n";
 	}
 	
     return '';
@@ -14882,9 +14896,10 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'    }\n'+
 			'  }\n';		
 
-	if (Blockly.Arduino.loops_) {
-		Blockly.Arduino.loops_.server_getrequest = "getRequest();\n";
-	}
+	if ('loopsTop_' in Blockly.Arduino)
+		Blockly.Arduino.loopsTop_.server_getrequest = "  getRequest();\n";
+	else if ('loops_' in Blockly.Arduino)
+		Blockly.Arduino.loops_.server_getrequest = "  getRequest();\n";
 	
 	code = '';
 	return code;
@@ -15635,9 +15650,10 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 			'    }\n'+
 			'  }\n';
 			
-	if (Blockly.Arduino.loops_) {
-		Blockly.Arduino.loops_.server_getrequest = "getRequest();\n";
-	}
+	if ('loopsTop_' in Blockly.Arduino)
+		Blockly.Arduino.loopsTop_.server_getrequest = "  getRequest();\n";
+	else if ('loops_' in Blockly.Arduino)
+		Blockly.Arduino.loops_.server_getrequest = "  getRequest();\n";
 	
 	code = '';
 	return code;
@@ -21279,11 +21295,16 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'    }\n'+
 			'  }\n';			
 
-	if (Blockly.Arduino.loops_) {
+	if ('loopsTop_' in Blockly.Arduino) {
 		if (type=="still")
-			Blockly.Arduino.loops_.server_getrequest = "getRequest();\n";
+			Blockly.Arduino.loopsTop_.server_getrequest = "  getRequest();\n";
 		else
-			Blockly.Arduino.loops_.server_getrequest = "getRequest81();\n";
+			Blockly.Arduino.loopsTop_.server_getrequest = "  getRequest81();\n";	
+	} else if ('loops_' in Blockly.Arduino) {
+		if (type=="still")
+			Blockly.Arduino.loops_.server_getrequest = "  getRequest();\n";
+		else
+			Blockly.Arduino.loops_.server_getrequest = "  getRequest81();\n";
 	}			
 			
     return '';
@@ -23143,9 +23164,11 @@ Blockly.Arduino['esp32_cam_telegrambot'] = function(block) {
 
 Blockly.Arduino['server_getrequest'] = function(block) {
 	var type = block.getFieldValue('type');
-	if (Blockly.Arduino.loops_) {
-		Blockly.Arduino.loops_.server_getrequest = "";		
-	}
+	if ('loopsTop_' in Blockly.Arduino)
+		Blockly.Arduino.loopsTop_.server_getrequest = "";
+	else if ('loops_' in Blockly.Arduino)
+		Blockly.Arduino.loops_.server_getrequest = "";
+
 	if (type=="still")
 		var code = 'getRequest();\n';
 	else
