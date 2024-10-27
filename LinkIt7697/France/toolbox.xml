@@ -476,8 +476,6 @@
 			  </block>
 			  <block type="servermodule_parameter_variable">
 			  </block>
-			  <block type="servermodule_parameter_variable_urldecode">
-			  </block>
 			  <block type="variable_urldecode">
 				<value name="url">
 				  <block type="text">
@@ -13697,20 +13695,9 @@
     </category>	
 	<sep id="category_sep"></sep>
 	<category name="others">
-	  <block type="loop_asynchronous">
-		<value name="count">
-		  <block type="math_number">
-			<field name="NUM">1</field>
-		  </block>
-		</value> 
-	  </block> 	
-	  <block type="esp32_setuploop">
-		<statement name="setup">
-		</statement>
+	  <block type="linenotify_esp32_br">
 	  </block>
-	  <block type="board_restart">
-	  </block>	  
-	  <block type="close_powerdog">
+	  <block type="servermodule_parameter_variable_urldecode">
 	  </block>
 	  <block type="customcode_comment">
 		<value name="text">
@@ -13725,8 +13712,21 @@
 			<field name="TEXT">World Peace</field>
 		  </block>
 		</value>  
+	  </block>	
+	  <block type="loop_asynchronous">
+		<value name="count">
+		  <block type="math_number">
+			<field name="NUM">1</field>
+		  </block>
+		</value> 
+	  </block> 	
+	  <block type="esp32_setuploop">
+		<statement name="setup">
+		</statement>
 	  </block>
-	  <block type="linenotify_esp32_br">
+	  <block type="board_restart">
+	  </block>	  
+	  <block type="close_powerdog">
 	  </block>	  
 	</category>	
 	<category name="customcode">
