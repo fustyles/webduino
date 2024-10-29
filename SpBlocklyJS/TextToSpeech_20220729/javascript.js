@@ -11,7 +11,7 @@ Blockly.JavaScript['TextToSpeech_initial'] = function (block) {
 Blockly.JavaScript['TextToSpeech_run'] = function (block) {
   var value_voice = Blockly.JavaScript.valueToCode(block, 'voice_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_text = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'async ttsSpeak('+value_voice+', '+value_text+');\n';
+  var code = 'await ttsSpeak('+value_voice+', '+value_text+');\n';
   return code;
 };
 
