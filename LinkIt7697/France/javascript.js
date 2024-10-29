@@ -376,19 +376,51 @@ Blockly.Arduino['amb82_mini_webbluetooth_v7rc'] = function(block) {
 };
 
 Blockly.Arduino['amb82_mini_usb_uvcd'] = function(block) {
-	Blockly.Arduino.definitions_['define_usb_uvcd'] ='#include "StreamIO.h"\n#include "VideoStream.h"\n#include "UVCD.h"\n#define STREAM_CHANNEL 0\nVideoSetting stream_config(USB_UVCD_STREAM_PRESET);\nVideo camera_uvcd;\nUVCD usb_uvcd;\nStreamIO videoStreamer(1, 1);\n';
-	Blockly.Arduino.setups_['setup_usb_uvcd'] =''
-	+'camera_uvcd.configVideoChannel(STREAM_CHANNEL, stream_config);\n'
-	+'  camera_uvcd.videoInit(STREAM_CHANNEL);\n'
-	+'  usb_uvcd.configVideo(stream_config);\n'
-	+'  videoStreamer.registerInput(camera_uvcd.getStream(STREAM_CHANNEL));\n'
-	+'  videoStreamer.registerOutput(usb_uvcd);\n'
-	+'  if (videoStreamer.begin() != 0) {\n'	
-	+'      Serial.println("StreamIO link start failed");\n'
-	+'  }\n'
-	+'  camera_uvcd.channelBegin(STREAM_CHANNEL);\n'
-	+'  usb_uvcd.begin(camera_uvcd.getStream(STREAM_CHANNEL), videoStreamer.linker, STREAM_CHANNEL);\n';
+	var type = block.getFieldValue('type');
 	
+	if (type=="objectdetection") {
+		Blockly.Arduino.definitions_['define_usb_uvcd'] ='#include "UVCD.h"\n#define amb82_CHANNEL 0\nVideoSetting stream_config(USB_UVCD_STREAM_PRESET);\nVideo camera_uvcd;\nUVCD usb_uvcd;\n';
+		Blockly.Arduino.setups_['setup_usb_uvcd'] =''
+		+'camera_uvcd.configVideoChannel(amb82_CHANNEL, stream_config);\n'
+		+'  camera_uvcd.configVideoChannel(CHANNELNN, configNN);\n'	
+		+'  usb_uvcd.configVideo(stream_config);\n'		
+		+'  camera_uvcd.videoInit();\n'		
+		+'  videoStreamer.registerInput(camera_uvcd.getStream(amb82_CHANNEL));\n'
+		+'  videoStreamer.registerOutput(usb_uvcd);\n'
+		+'  if (videoStreamer.begin() != 0) {\n'	
+		+'      Serial.println("StreamIO link start failed");\n'
+		+'  }\n'
+		+'  camera_uvcd.channelBegin(amb82_CHANNEL);\n'
+		+'  ObjDet.configVideo(configNN);\n'
+		+'  ObjDet.setResultCallback(ODPostProcess);\n'
+		+'  ObjDet.modelSelect(OBJECT_DETECTION, DEFAULT_YOLOV7TINY, NA_MODEL, NA_MODEL);\n'
+		+'  ObjDet.begin();\n'
+		+'  videoStreamerNN.registerInput(camera_uvcd.getStream(CHANNELNN));\n'
+		+'  videoStreamerNN.setStackSize();\n'
+		+'  videoStreamerNN.setTaskPriority();\n'
+		+'  videoStreamerNN.registerOutput(ObjDet);\n'
+		+'  if (videoStreamerNN.begin() != 0) {\n'
+		+'      Serial.println("StreamIO link start failed");\n'
+		+'  }\n'
+		+'  camera_uvcd.channelBegin(CHANNELNN);\n'
+		+'  usb_uvcd.nnbegin(camera_uvcd.getStream(amb82_CHANNEL), videoStreamer.linker, amb82_CHANNEL, CHANNELNN, camera_uvcd.videostream_status(amb82_CHANNEL));\n'
+		+'  OSD.configVideo(amb82_CHANNEL, config);\n'
+		+'  OSD.begin();\n';
+	} else {
+		Blockly.Arduino.definitions_['define_usb_uvcd'] ='#include "StreamIO.h"\n#include "VideoStream.h"\n#include "UVCD.h"\n#define amb82_CHANNEL 0\nVideoSetting stream_config(USB_UVCD_STREAM_PRESET);\nVideo camera_uvcd;\nUVCD usb_uvcd;\nStreamIO videoStreamer(1, 1);\n';
+		Blockly.Arduino.setups_['setup_usb_uvcd'] =''
+		+'camera_uvcd.configVideoChannel(amb82_CHANNEL, stream_config);\n'
+		+'  camera_uvcd.videoInit(amb82_CHANNEL);\n'
+		+'  usb_uvcd.configVideo(stream_config);\n'
+		+'  videoStreamer.registerInput(camera_uvcd.getStream(amb82_CHANNEL));\n'
+		+'  videoStreamer.registerOutput(usb_uvcd);\n'
+		+'  if (videoStreamer.begin() != 0) {\n'	
+		+'      Serial.println("StreamIO link start failed");\n'
+		+'  }\n'
+		+'  camera_uvcd.channelBegin(amb82_CHANNEL);\n'
+		+'  usb_uvcd.begin(camera_uvcd.getStream(amb82_CHANNEL), videoStreamer.linker, amb82_CHANNEL);\n';
+	}
+		
 	var code = "";
 	return code;
 };
@@ -2620,6 +2652,12 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 										'Camera.channelBegin(CHANNELNN);\n  '+
 										'OSD.configVideo(amb82_CHANNEL, config);\n  '+
 										'OSD.begin();\n';
+										
+	if (Blockly.Arduino.setups_['setup_usb_uvcd']) {
+		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "StreamIO.h"\n#include "VideoStream.h"\n#include "NNObjectDetection.h"\n#include "VideoStreamOverlay.h"\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\nVideoSetting config(VIDEO_FHD, 30, VIDEO_H264, 0);\nVideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNObjectDetection ObjDet;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+
+		Blockly.Arduino.setups_.setup_amb82_mini_objectdetection = '';
+	}
 
   return "";
 };

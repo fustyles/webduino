@@ -43,6 +43,7 @@ Blockly.Msg["THINGSPEAK_VALUE8_SHOW"] = "值8";
 Blockly.Msg["WEBBLUETOOTH_V7RC"] = "V7RC指令字串轉換為模組指令參數";
 
 Blockly.Msg["AMB82_MINI_USB_UVCD"] = "USB-UVC 視訊傳輸";
+Blockly.Msg["AMB82_MINI_NEURALNETWORK"] = "類神經網路";
 
 Blockly.Msg["AMB82_MINI_FLASHMEMORY"] = "快閃記憶體";
 Blockly.Msg["AMB82_MINI_FLASHMEMORY_WRITE"] = "寫入";

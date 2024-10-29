@@ -242,6 +242,12 @@ Blockly.Blocks['amb82_mini_usb_uvcd'] = {
     this.appendDummyInput()
 	    .appendField(Blockly.Msg["AMB82_MINI"])
         .appendField(Blockly.Msg["AMB82_MINI_USB_UVCD"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["　",""],
+			[Blockly.Msg["AMB82_MINI_OBJECTDETECTION"],"objectdetection"]
+		], this.validate), "type");		
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -2703,10 +2709,10 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp'] = {
 			.appendField(new Blockly.FieldDropdown([
  				["YOLOv7","DEFAULT_YOLOV7TINY"],			
  				["YOLOv4","DEFAULT_YOLOV4TINY"],
- 				["YOLOv3_unusable","DEFAULT_YOLOV3TINY"],
+ 				["YOLOv3","DEFAULT_YOLOV3TINY"],
  				["YOLOv7_SD", "CUSTOMIZED_YOLOV7TINY"],				
  				["YOLOv4_SD", "CUSTOMIZED_YOLOV4TINY"],
- 				["YOLOv3_SD_unusable", "CUSTOMIZED_YOLOV3TINY"]
+ 				["YOLOv3_SD", "CUSTOMIZED_YOLOV3TINY"]
 		]), "model");
     this.appendDummyInput()	 
 		.setAlign(Blockly.ALIGN_RIGHT)
