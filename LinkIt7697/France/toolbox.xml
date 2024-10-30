@@ -12385,7 +12385,9 @@
 	  <block type="lcd1602_backlight">
 	  </block>	
 	  <block type="lcd1602_clear">
-	  </block>		  	 
+	  </block>
+	  <block type="lcd1602_reinitial">
+	  </block>	  
     </category>
 	<category name="motordriveric">
 	  <block type="motordriver_pin">

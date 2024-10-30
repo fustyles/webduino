@@ -20755,6 +20755,18 @@ Blockly.Blocks['lcd1602_clear'] = {
   }
 };
 
+Blockly.Blocks['lcd1602_reinitial'] = {
+  init: function() {  
+	this.appendDummyInput()
+	    .appendField(Blockly.Msg.ESP32_LCD1602_SHOW)
+	    .appendField(Blockly.Msg.ESP32_LCD1602_REINITIAL_SHOW);	
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(200);
+  }
+};
+
 Blockly.Blocks['lcd1602_print'] = {
   init: function() {  
 	this.appendDummyInput()

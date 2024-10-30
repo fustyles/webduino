@@ -15327,27 +15327,27 @@ Blockly.Arduino['lcd1602_initial'] = function(block) {
   var value_custom = block.getFieldValue('custom');
   
   	if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-	  Blockly.Arduino.definitions_['lcd1602_initial'] = "#include \<Wire.h\>\n#include \<LiquidCrystal_I2C_amb82.h\>\nLiquidCrystal_I2C lcd1602("+address+");";
+	  Blockly.Arduino.definitions_['lcd1602_initial'] = "#include \<Wire.h\>\n#include \<LiquidCrystal_I2C_amb82.h\>\nLiquidCrystal_I2C lcd1602("+address+");\n";
 	else
-	  Blockly.Arduino.definitions_['lcd1602_initial'] = "#include \<Wire.h\>\n#include \<LiquidCrystal_I2C.h\>\nLiquidCrystal_I2C lcd1602("+address+");";
+	  Blockly.Arduino.definitions_['lcd1602_initial'] = "#include \<Wire.h\>\n#include \<LiquidCrystal_I2C.h\>\nLiquidCrystal_I2C lcd1602("+address+");\n";
   
   	if (selectBoardType()=="rp2040")
-	  Blockly.Arduino.setups_.lcd1602 = ((value_custom!="")?'\n  Wire.setSDA('+sda+');\n  Wire.setSCL('+scl+');\n  Wire.begin();':'')+'\n  lcd1602.begin(16,2);';
+	  Blockly.Arduino.setups_.lcd1602 = ((value_custom!="")?'\n  Wire.setSDA('+sda+');\n  Wire.setSCL('+scl+');\n  Wire.begin();':'')+'\n  lcd1602.begin(16,2);\n';
   	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735") {
 		if (value_custom=="custom")
-			Blockly.Arduino.setups_.lcd1602 = 'Wire.begin('+sda+', '+scl+');\n  lcd1602.begin(16, 2, LCD_5x8DOTS, Wire);\n  lcd1602.on();';
+			Blockly.Arduino.setups_.lcd1602 = 'Wire.begin('+sda+', '+scl+');\n  lcd1602.begin(16, 2, LCD_5x8DOTS, Wire);\n  lcd1602.on();\n';
 		else if (value_custom=="Wire")
-			Blockly.Arduino.setups_.lcd1602 = 'lcd1602.begin(16, 2, LCD_5x8DOTS, Wire);\n  lcd1602.on();';	
+			Blockly.Arduino.setups_.lcd1602 = 'lcd1602.begin(16, 2, LCD_5x8DOTS, Wire);\n  lcd1602.on();\n';	
 		else if (value_custom=="Wire1")
-			Blockly.Arduino.setups_.lcd1602 = 'lcd1602.begin(16, 2, LCD_5x8DOTS, Wire1);\n  lcd1602.on();';
+			Blockly.Arduino.setups_.lcd1602 = 'lcd1602.begin(16, 2, LCD_5x8DOTS, Wire1);\n  lcd1602.on();\n';
 	}	  
 	else {
 		if (value_custom=="custom")
-			Blockly.Arduino.setups_.lcd1602 = 'Wire.begin('+sda+', '+scl+');\n  lcd1602.begin(16, 2);';
+			Blockly.Arduino.setups_.lcd1602 = 'Wire.begin('+sda+', '+scl+');\n  lcd1602.begin(16, 2);\n';
 		else if (value_custom=="Wire")
-			Blockly.Arduino.setups_.lcd1602 = 'lcd1602.begin(16, 2);';		
+			Blockly.Arduino.setups_.lcd1602 = 'lcd1602.begin(16, 2);\n';		
 		else if (value_custom=="Wire1")
-			Blockly.Arduino.setups_.lcd1602 = 'Wire1.begin();\n  lcd1602.begin(16, 2);';
+			Blockly.Arduino.setups_.lcd1602 = 'Wire1.begin();\n  lcd1602.begin(16, 2);\n';
 	}
   var code = '';
   return code;
@@ -15359,7 +15359,12 @@ Blockly.Arduino['lcd1602_backlight'] = function(block) {
 };
 
 Blockly.Arduino['lcd1602_clear'] = function(block) {
-  code = Blockly.Arduino.setups_.lcd1602 + '\nlcd1602.clear();\n';
+  code = 'lcd1602.clear();\n';
+  return code;
+};
+
+Blockly.Arduino['lcd1602_reinitial'] = function(block) {
+  code = Blockly.Arduino.setups_.lcd1602;
   return code;
 };
 
