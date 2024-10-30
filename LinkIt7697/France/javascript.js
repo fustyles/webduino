@@ -2492,11 +2492,70 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 	var mode = block.getFieldValue('mode');
 	var framesize = block.getFieldValue('framesize');
 	if (mode=="rtsp")
-		mode = "VideoSetting config(VIDEO_FHD, 30, VIDEO_H264, 0);\n";
+		var type = "VideoSetting config(VIDEO_FHD, 30, VIDEO_H264, 0);\n";
 	else
-		mode = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";
+		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";
 	
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNObjectDetection.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\n'+mode+'VideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNObjectDetection ObjDet;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nint rtsp_portnum;\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+	if (mode=="rtsp"||mode=="still") {
+		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNObjectDetection.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\n'+type+'VideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNObjectDetection ObjDet;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nint rtsp_portnum;\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+		Blockly.Arduino.setups_.setup_amb82_mini_objectdetection = ''+   
+									'config.setBitrate(2 * 1024 * 1024);\n  '+
+									'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
+									'Camera.configVideoChannel(CHANNELNN, configNN);\n  '+
+									'Camera.videoInit();\n  '+
+									'rtsp.configVideo(config);\n  '+
+									'rtsp.begin();\n  '+
+									'rtsp_portnum = rtsp.getPort();\n  '+
+									'ObjDet.configVideo(configNN);\n  '+
+									'ObjDet.setResultCallback(ODPostProcess);\n  '+
+									'ObjDet.modelSelect(OBJECT_DETECTION, '+model+', NA_MODEL, NA_MODEL);\n  '+
+									'ObjDet.begin();\n  '+
+									'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
+									'videoStreamer.registerOutput(rtsp);\n  '+
+									'if (videoStreamer.begin() != 0) {\n  '+
+									'    Serial.println("StreamIO link start failed");\n  '+
+									'}\n  '+
+									'Camera.channelBegin(amb82_CHANNEL);\n  '+
+									'videoStreamerNN.registerInput(Camera.getStream(CHANNELNN));\n  '+
+									'videoStreamerNN.setStackSize();\n  '+
+									'videoStreamerNN.setTaskPriority();\n  '+
+									'videoStreamerNN.registerOutput(ObjDet);\n  '+
+									'if (videoStreamerNN.begin() != 0) {\n  '+
+									'    Serial.println("StreamIO link start failed");\n  '+
+									'}\n  '+
+									'Camera.channelBegin(CHANNELNN);\n  '+
+									'OSD.configVideo(amb82_CHANNEL, config);\n  '+
+									'OSD.begin();\n';
+	} else {
+		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "NNObjectDetection.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\n'+type+'VideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNObjectDetection ObjDet;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+		Blockly.Arduino.setups_.setup_amb82_mini_objectdetection = ''+   
+									'config.setBitrate(2 * 1024 * 1024);\n  '+
+									'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
+									'Camera.configVideoChannel(CHANNELNN, configNN);\n  '+
+									'Camera.videoInit();\n  '+
+									'ObjDet.configVideo(configNN);\n  '+
+									'ObjDet.setResultCallback(ODPostProcess);\n  '+
+									'ObjDet.modelSelect(OBJECT_DETECTION, '+model+', NA_MODEL, NA_MODEL);\n  '+
+									'ObjDet.begin();\n  '+
+									'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
+									'if (videoStreamer.begin() != 0) {\n  '+
+									'    Serial.println("StreamIO link start failed");\n  '+
+									'}\n  '+
+									'Camera.channelBegin(amb82_CHANNEL);\n  '+
+									'videoStreamerNN.registerInput(Camera.getStream(CHANNELNN));\n  '+
+									'videoStreamerNN.setStackSize();\n  '+
+									'videoStreamerNN.setTaskPriority();\n  '+
+									'videoStreamerNN.registerOutput(ObjDet);\n  '+
+									'if (videoStreamerNN.begin() != 0) {\n  '+
+									'    Serial.println("StreamIO link start failed");\n  '+
+									'}\n  '+
+									'Camera.channelBegin(CHANNELNN);\n  '+
+									'OSD.configVideo(amb82_CHANNEL, config);\n  '+
+									'OSD.begin();\n';
+	}
+	
+	if (mode=="tcp")
+		amb82_mini_video_tcp();
 	
 	if (!Blockly.Arduino.definitions_['define_amb82_mini_objectdetection_rtsp_ObjectDetectionItem']) {
 		Blockly.Arduino.definitions_['define_amb82_mini_objectdetection_rtsp_ObjectDetectionItem'] =''+	
@@ -2622,36 +2681,6 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 	'    }\n'+ statement_finish +
 	'    OSD.update(amb82_CHANNEL);\n'+ 
 	'}';	
-	
-
-	Blockly.Arduino.setups_.setup_amb82_mini_objectdetection = ''+   
-										'config.setBitrate(2 * 1024 * 1024);\n  '+
-										'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
-										'Camera.configVideoChannel(CHANNELNN, configNN);\n  '+
-										'Camera.videoInit();\n  '+
-										'rtsp.configVideo(config);\n  '+
-										'rtsp.begin();\n  '+
-										'rtsp_portnum = rtsp.getPort();\n  '+
-										'ObjDet.configVideo(configNN);\n  '+
-										'ObjDet.setResultCallback(ODPostProcess);\n  '+
-										'ObjDet.modelSelect(OBJECT_DETECTION, '+model+', NA_MODEL, NA_MODEL);\n  '+
-										'ObjDet.begin();\n  '+
-										'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
-										'videoStreamer.registerOutput(rtsp);\n  '+
-										'if (videoStreamer.begin() != 0) {\n  '+
-										'    Serial.println("StreamIO link start failed");\n  '+
-										'}\n  '+
-										'Camera.channelBegin(amb82_CHANNEL);\n  '+
-										'videoStreamerNN.registerInput(Camera.getStream(CHANNELNN));\n  '+
-										'videoStreamerNN.setStackSize();\n  '+
-										'videoStreamerNN.setTaskPriority();\n  '+
-										'videoStreamerNN.registerOutput(ObjDet);\n  '+
-										'if (videoStreamerNN.begin() != 0) {\n  '+
-										'    Serial.println("StreamIO link start failed");\n  '+
-										'}\n  '+
-										'Camera.channelBegin(CHANNELNN);\n  '+
-										'OSD.configVideo(amb82_CHANNEL, config);\n  '+
-										'OSD.begin();\n';
 										
 	if (Blockly.Arduino.setups_['setup_usb_uvcd']) {
 		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "StreamIO.h"\n#include "VideoStream.h"\n#include "NNObjectDetection.h"\n#include "VideoStreamOverlay.h"\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\nVideoSetting config(VIDEO_FHD, 30, VIDEO_H264, 0);\nVideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNObjectDetection ObjDet;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
@@ -3035,7 +3064,79 @@ Blockly.Arduino['amb82_mini_video_settings_bitrate'] = function(block) {
 };
 
 Blockly.Arduino['amb82_mini_video_getstill'] = function(block) {
-	return 'Camera.getImage(0, &img_addr, &img_len);\nCamera.channelEnd(0);\nCamera.channelBegin(0);\n';
+	return 'Camera.getImage(0, &img_addr, &img_len);\n//Camera.channelEnd(0);\n//Camera.channelBegin(0);\n';
+};
+
+Blockly.Arduino['amb82_mini_video_tcp'] = function(block) {
+
+	Blockly.Arduino.definitions_.ExecuteCommand = 'WiFiServer server(80);\n';
+	Blockly.Arduino.setups_.write_peri_reg = "";
+
+	Blockly.Arduino.definitions_.getRequest = ''+
+			'void getRequest() {\n'+
+			'  WiFiClient client = server.available();\n'+
+			'  \n'+
+			'  if (client) {\n'+
+			'    String currentLine = "";\n'+
+			'	   \n'+
+			'    while (client.connected()) {\n'+
+			'      if (client.available()) {\n'+
+			'        char c = client.read();\n'+             
+			'        \n'+
+			'        \n'+
+			'        if (c == \'\\n\') {\n'+
+			'          if (currentLine.length() == 0) {\n'+  
+			' 	        String head = "--Taiwan\\r\\nContent-Type: image/jpeg\\r\\n\\r\\n";\n'+ 
+			' 	        client.println("HTTP/1.1 200 OK");\n'+ 
+			' 	        client.println("Access-Control-Allow-Origin: *");\n'+ 
+			' 	        client.println("Content-Type: multipart/x-mixed-replace; boundary=Taiwan");\n'+ 
+			' 	        client.println();\n'+ 
+			' 	        while(client.connected()) {\n'+ 
+			' 	        	Camera.getImage(0, &img_addr, &img_len);\n'+
+			' 	        	//Camera.channelEnd(0);\n'+
+			' 	        	//Camera.channelBegin(0);\n'+			
+			' 	        	uint8_t *fbBuf = (uint8_t*)img_addr;\n'+ 
+			' 	        	size_t fbLen = img_len;\n'+ 
+			' 	        	client.print(head);\n'+ 
+			' 	        	for (size_t n=0;n<fbLen;n=n+1024) {\n'+ 
+			' 	        	  	if (n+1024<fbLen) {\n'+ 
+			' 	        	   		client.write(fbBuf, 1024);\n'+ 
+			' 	        	   		fbBuf += 1024;\n'+ 
+			' 	        		}\n'+ 
+			' 	        		else if (fbLen%1024>0) {\n'+ 
+			' 	        			size_t remainder = fbLen%1024;\n'+ 
+			' 	        			client.write(fbBuf, remainder);\n'+ 
+			' 	        		}\n'+ 
+			' 	        	}\n'+ 
+			' 	        	client.print("\\r\\n");\n'+
+			' 	        }\n'+ 
+			' 	        break;\n'+
+			'          } else {\n'+
+			'            currentLine = "";\n'+
+			'          }\n'+
+			'        }\n'+ 
+			'        else if (c != \'\\r\') {\n'+
+			'          currentLine += c;\n'+
+			'        }\n'+
+			'		   \n'+
+			'        if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP")!=-1)) {\n'+
+			'          currentLine="";\n'+
+			'        }\n'+
+			'      }\n'+
+			'    }\n'+
+			'    delay(1);\n'+
+			'    client.stop();\n'+
+			'  }\n'+
+			'}\n';	
+
+	Blockly.Arduino.setups_.serverbegin = 'server.begin();\n';			
+
+	if ('loopsTop_' in Blockly.Arduino)
+		Blockly.Arduino.loopsTop_.server_getrequest = "  getRequest();\n";	
+	else if ('loops_' in Blockly.Arduino)
+		Blockly.Arduino.loops_.server_getrequest = "  getRequest();\n";	
+	
+    return '';
 };
 
 Blockly.Arduino['amb82_mini_video_capture_sd'] = function(block) {
@@ -23402,6 +23503,76 @@ Blockly.Arduino['faceapirecognize_recognitied'] = function(block) {
   else
 	  var code = 'if (faceapirecognize_number()==0) {\n  faceapirecognize_state(0);\n' + statements_do + '\n  faceapirecognize_state(1);\n};\n';
   return code;   
+};
+
+function amb82_mini_video_tcp() {
+
+	Blockly.Arduino.definitions_.ExecuteCommand = 'WiFiServer server(80);\n';
+	Blockly.Arduino.setups_.write_peri_reg = "";
+
+	Blockly.Arduino.definitions_.getRequest = ''+
+			'void getRequest() {\n'+
+			'  WiFiClient client = server.available();\n'+
+			'  \n'+
+			'  if (client) {\n'+
+			'    String currentLine = "";\n'+
+			'	   \n'+
+			'    while (client.connected()) {\n'+
+			'      if (client.available()) {\n'+
+			'        char c = client.read();\n'+             
+			'        \n'+
+			'        \n'+
+			'        if (c == \'\\n\') {\n'+
+			'          if (currentLine.length() == 0) {\n'+  
+			' 	        String head = "--Taiwan\\r\\nContent-Type: image/jpeg\\r\\n\\r\\n";\n'+ 
+			' 	        client.println("HTTP/1.1 200 OK");\n'+ 
+			' 	        client.println("Access-Control-Allow-Origin: *");\n'+ 
+			' 	        client.println("Content-Type: multipart/x-mixed-replace; boundary=Taiwan");\n'+ 
+			' 	        client.println();\n'+ 
+			' 	        while(client.connected()) {\n'+ 
+			' 	        	Camera.getImage(0, &img_addr, &img_len);\n'+
+			' 	        	//Camera.channelEnd(0);\n'+
+			' 	        	//Camera.channelBegin(0);\n'+			
+			' 	        	uint8_t *fbBuf = (uint8_t*)img_addr;\n'+ 
+			' 	        	size_t fbLen = img_len;\n'+ 
+			' 	        	client.print(head);\n'+ 
+			' 	        	for (size_t n=0;n<fbLen;n=n+1024) {\n'+ 
+			' 	        	  	if (n+1024<fbLen) {\n'+ 
+			' 	        	   		client.write(fbBuf, 1024);\n'+ 
+			' 	        	   		fbBuf += 1024;\n'+ 
+			' 	        		}\n'+ 
+			' 	        		else if (fbLen%1024>0) {\n'+ 
+			' 	        			size_t remainder = fbLen%1024;\n'+ 
+			' 	        			client.write(fbBuf, remainder);\n'+ 
+			' 	        		}\n'+ 
+			' 	        	}\n'+ 
+			' 	        	client.print("\\r\\n");\n'+
+			' 	        }\n'+ 
+			' 	        break;\n'+
+			'          } else {\n'+
+			'            currentLine = "";\n'+
+			'          }\n'+
+			'        }\n'+ 
+			'        else if (c != \'\\r\') {\n'+
+			'          currentLine += c;\n'+
+			'        }\n'+
+			'		   \n'+
+			'        if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP")!=-1)) {\n'+
+			'          currentLine="";\n'+
+			'        }\n'+
+			'      }\n'+
+			'    }\n'+
+			'    delay(1);\n'+
+			'    client.stop();\n'+
+			'  }\n'+
+			'}\n';	
+
+	Blockly.Arduino.setups_.serverbegin = 'server.begin();\n';			
+
+	if ('loopsTop_' in Blockly.Arduino)
+		Blockly.Arduino.loopsTop_.server_getrequest = "  getRequest();\n";	
+	else if ('loops_' in Blockly.Arduino)
+		Blockly.Arduino.loops_.server_getrequest = "  getRequest();\n";	
 };
 
 function servermodule_javascript_include() {

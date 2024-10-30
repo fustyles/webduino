@@ -2570,7 +2570,9 @@
 			  <block type="amb82_mini_video_getstill">			  
 			  </block>			  
 			  <block type="amb82_mini_usb_uvcd">			  
-			  </block>			  
+			  </block>
+			  <block type="amb82_mini_video_tcp">			  
+			  </block>				  
 			  <block type="amb82_mini_draw_createBitmap">			  
 			  </block>			  
 			  <block type="amb82_mini_drawline">

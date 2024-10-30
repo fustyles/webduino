@@ -2726,7 +2726,9 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp'] = {
 		.appendField(Blockly.Msg["AMB82_MINI_MODE"])
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["AMB82_MINI_RTSP"],"rtsp"],
-			[Blockly.Msg["AMB82_MINI_STILL"],"still"]
+			[Blockly.Msg["AMB82_MINI_RTSP_STILL"],"still"],
+			[Blockly.Msg["AMB82_MINI_STILL"],""],
+			[Blockly.Msg["AMB82_MINI_TCP"],"tcp"]
 		], this.validate), "mode");
 	this.appendDummyInput("size")
 		.setAlign(Blockly.ALIGN_RIGHT)	
@@ -3762,6 +3764,18 @@ Blockly.Blocks['amb82_mini_video_getstill'] = {
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
     this.setColour(Blockly.Msg["HUE_7"]);	
+  }
+};
+
+Blockly.Blocks['amb82_mini_video_tcp'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_TCPSTREAM"]);	
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_17"]);	
   }
 };
 
