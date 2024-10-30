@@ -241,13 +241,7 @@ Blockly.Blocks['amb82_mini_usb_uvcd'] = {
   init: function() {
     this.appendDummyInput()
 	    .appendField(Blockly.Msg["AMB82_MINI"])
-        .appendField(Blockly.Msg["AMB82_MINI_USB_UVCD"]);
-    this.appendDummyInput()	 
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(new Blockly.FieldDropdown([
-			["　",""],
-			[Blockly.Msg["AMB82_MINI_OBJECTDETECTION"],"objectdetection"]
-		], this.validate), "type");		
+        .appendField(Blockly.Msg["AMB82_MINI_USB_UVCD"]);	
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -2728,7 +2722,8 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp'] = {
 			[Blockly.Msg["AMB82_MINI_RTSP"],"rtsp"],
 			[Blockly.Msg["AMB82_MINI_RTSP_STILL"],"still"],
 			[Blockly.Msg["AMB82_MINI_STILL"],""],
-			[Blockly.Msg["AMB82_MINI_TCP"],"tcp"]
+			[Blockly.Msg["AMB82_MINI_TCP"],"tcp"],
+			[Blockly.Msg["AMB82_MINI_USB_UVCD"],"uvc"]
 		], this.validate), "mode");
 	this.appendDummyInput("size")
 		.setAlign(Blockly.ALIGN_RIGHT)	
@@ -2761,7 +2756,7 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp'] = {
 	validate: function(newValue) {
 		const block = this.sourceBlock_;
 		if (!block) return;
-		if (newValue=="rtsp") {
+		if (newValue=="rtsp"||newValue=="uvc") {
 			block.getInput("size").setVisible(false);
 		} else {
 			block.getInput("size").setVisible(true);	

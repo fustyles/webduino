@@ -376,50 +376,18 @@ Blockly.Arduino['amb82_mini_webbluetooth_v7rc'] = function(block) {
 };
 
 Blockly.Arduino['amb82_mini_usb_uvcd'] = function(block) {
-	var type = block.getFieldValue('type');
-	
-	if (type=="objectdetection") {
-		Blockly.Arduino.definitions_['define_usb_uvcd'] ='#include "UVCD.h"\n#define amb82_CHANNEL 0\nVideoSetting stream_config(USB_UVCD_STREAM_PRESET);\nVideo camera_uvcd;\nUVCD usb_uvcd;\n';
-		Blockly.Arduino.setups_['setup_usb_uvcd'] =''
-		+'camera_uvcd.configVideoChannel(amb82_CHANNEL, stream_config);\n'
-		+'  camera_uvcd.configVideoChannel(CHANNELNN, configNN);\n'	
-		+'  usb_uvcd.configVideo(stream_config);\n'		
-		+'  camera_uvcd.videoInit();\n'		
-		+'  videoStreamer.registerInput(camera_uvcd.getStream(amb82_CHANNEL));\n'
-		+'  videoStreamer.registerOutput(usb_uvcd);\n'
-		+'  if (videoStreamer.begin() != 0) {\n'	
-		+'      Serial.println("StreamIO link start failed");\n'
-		+'  }\n'
-		+'  camera_uvcd.channelBegin(amb82_CHANNEL);\n'
-		+'  ObjDet.configVideo(configNN);\n'
-		+'  ObjDet.setResultCallback(ODPostProcess);\n'
-		+'  ObjDet.modelSelect(OBJECT_DETECTION, DEFAULT_YOLOV7TINY, NA_MODEL, NA_MODEL);\n'
-		+'  ObjDet.begin();\n'
-		+'  videoStreamerNN.registerInput(camera_uvcd.getStream(CHANNELNN));\n'
-		+'  videoStreamerNN.setStackSize();\n'
-		+'  videoStreamerNN.setTaskPriority();\n'
-		+'  videoStreamerNN.registerOutput(ObjDet);\n'
-		+'  if (videoStreamerNN.begin() != 0) {\n'
-		+'      Serial.println("StreamIO link start failed");\n'
-		+'  }\n'
-		+'  camera_uvcd.channelBegin(CHANNELNN);\n'
-		+'  usb_uvcd.nnbegin(camera_uvcd.getStream(amb82_CHANNEL), videoStreamer.linker, amb82_CHANNEL, CHANNELNN, camera_uvcd.videostream_status(amb82_CHANNEL));\n'
-		+'  OSD.configVideo(amb82_CHANNEL, config);\n'
-		+'  OSD.begin();\n';
-	} else {
-		Blockly.Arduino.definitions_['define_usb_uvcd'] ='#include "StreamIO.h"\n#include "VideoStream.h"\n#include "UVCD.h"\n#define amb82_CHANNEL 0\nVideoSetting stream_config(USB_UVCD_STREAM_PRESET);\nVideo camera_uvcd;\nUVCD usb_uvcd;\nStreamIO videoStreamer(1, 1);\n';
-		Blockly.Arduino.setups_['setup_usb_uvcd'] =''
-		+'camera_uvcd.configVideoChannel(amb82_CHANNEL, stream_config);\n'
-		+'  camera_uvcd.videoInit(amb82_CHANNEL);\n'
-		+'  usb_uvcd.configVideo(stream_config);\n'
-		+'  videoStreamer.registerInput(camera_uvcd.getStream(amb82_CHANNEL));\n'
-		+'  videoStreamer.registerOutput(usb_uvcd);\n'
-		+'  if (videoStreamer.begin() != 0) {\n'	
-		+'      Serial.println("StreamIO link start failed");\n'
-		+'  }\n'
-		+'  camera_uvcd.channelBegin(amb82_CHANNEL);\n'
-		+'  usb_uvcd.begin(camera_uvcd.getStream(amb82_CHANNEL), videoStreamer.linker, amb82_CHANNEL);\n';
-	}
+	Blockly.Arduino.definitions_['define_usb_uvcd'] ='#include "StreamIO.h"\n#include "VideoStream.h"\n#include "UVCD.h"\n#define amb82_CHANNEL 0\nVideoSetting stream_config(USB_UVCD_STREAM_PRESET);\nVideo camera_uvcd;\nUVCD usb_uvcd;\nStreamIO videoStreamer(1, 1);\n';
+	Blockly.Arduino.setups_['setup_usb_uvcd'] =''
+	+'camera_uvcd.configVideoChannel(amb82_CHANNEL, stream_config);\n'
+	+'  camera_uvcd.videoInit(amb82_CHANNEL);\n'
+	+'  usb_uvcd.configVideo(stream_config);\n'
+	+'  videoStreamer.registerInput(camera_uvcd.getStream(amb82_CHANNEL));\n'
+	+'  videoStreamer.registerOutput(usb_uvcd);\n'
+	+'  if (videoStreamer.begin() != 0) {\n'	
+	+'      Serial.println("StreamIO link start failed");\n'
+	+'  }\n'
+	+'  camera_uvcd.channelBegin(amb82_CHANNEL);\n'
+	+'  usb_uvcd.begin(camera_uvcd.getStream(amb82_CHANNEL), videoStreamer.linker, amb82_CHANNEL);\n';
 		
 	var code = "";
 	return code;
@@ -2556,6 +2524,8 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 	
 	if (mode=="tcp")
 		amb82_mini_video_tcp();
+	else (mode=="uvc")
+		amb82_mini_usb_uvcd();
 	
 	if (!Blockly.Arduino.definitions_['define_amb82_mini_objectdetection_rtsp_ObjectDetectionItem']) {
 		Blockly.Arduino.definitions_['define_amb82_mini_objectdetection_rtsp_ObjectDetectionItem'] =''+	
@@ -23622,6 +23592,36 @@ function servermodule_javascript_include() {
 
 	return code;	
 }
+
+function amb82_mini_usb_uvcd() {
+	Blockly.Arduino.definitions_['define_usb_uvcd'] ='#include "UVCD.h"\n#define amb82_CHANNEL 0\nVideoSetting stream_config(USB_UVCD_STREAM_PRESET);\nVideo camera_uvcd;\nUVCD usb_uvcd;\n';
+	Blockly.Arduino.setups_['setup_usb_uvcd'] =''
+	+'camera_uvcd.configVideoChannel(amb82_CHANNEL, stream_config);\n'
+	+'  camera_uvcd.configVideoChannel(CHANNELNN, configNN);\n'	
+	+'  usb_uvcd.configVideo(stream_config);\n'		
+	+'  camera_uvcd.videoInit();\n'		
+	+'  videoStreamer.registerInput(camera_uvcd.getStream(amb82_CHANNEL));\n'
+	+'  videoStreamer.registerOutput(usb_uvcd);\n'
+	+'  if (videoStreamer.begin() != 0) {\n'	
+	+'      Serial.println("StreamIO link start failed");\n'
+	+'  }\n'
+	+'  camera_uvcd.channelBegin(amb82_CHANNEL);\n'
+	+'  ObjDet.configVideo(configNN);\n'
+	+'  ObjDet.setResultCallback(ODPostProcess);\n'
+	+'  ObjDet.modelSelect(OBJECT_DETECTION, DEFAULT_YOLOV7TINY, NA_MODEL, NA_MODEL);\n'
+	+'  ObjDet.begin();\n'
+	+'  videoStreamerNN.registerInput(camera_uvcd.getStream(CHANNELNN));\n'
+	+'  videoStreamerNN.setStackSize();\n'
+	+'  videoStreamerNN.setTaskPriority();\n'
+	+'  videoStreamerNN.registerOutput(ObjDet);\n'
+	+'  if (videoStreamerNN.begin() != 0) {\n'
+	+'      Serial.println("StreamIO link start failed");\n'
+	+'  }\n'
+	+'  camera_uvcd.channelBegin(CHANNELNN);\n'
+	+'  usb_uvcd.nnbegin(camera_uvcd.getStream(amb82_CHANNEL), videoStreamer.linker, amb82_CHANNEL, CHANNELNN, camera_uvcd.videostream_status(amb82_CHANNEL));\n'
+	+'  OSD.configVideo(amb82_CHANNEL, config);\n'
+	+'  OSD.begin();\n';
+};
 
 function selectBoardType() {
 	var selectBoard = document.getElementById('board-selector');
