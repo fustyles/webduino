@@ -15359,7 +15359,7 @@ Blockly.Arduino['lcd1602_backlight'] = function(block) {
 };
 
 Blockly.Arduino['lcd1602_clear'] = function(block) {
-  code = 'lcd1602.clear();\n';
+  code = Blockly.Arduino.setups_.lcd1602 + '\nlcd1602.clear();\n';
   return code;
 };
 
