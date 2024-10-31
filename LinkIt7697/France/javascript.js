@@ -2524,7 +2524,7 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 	
 	if (mode=="tcp")
 		amb82_mini_video_tcp();
-	else else (mode=="uvc")
+	else if (mode=="uvc")
 		amb82_mini_usb_uvcd();
 	
 	if (!Blockly.Arduino.definitions_['define_amb82_mini_objectdetection_rtsp_ObjectDetectionItem']) {
