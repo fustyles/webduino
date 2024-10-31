@@ -3240,6 +3240,7 @@ Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
     var message = Blockly.Arduino.valueToCode(block, 'message', Blockly.Arduino.ORDER_ATOMIC);
 	
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
+	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
 
 	Blockly.Arduino.definitions_.SendStillToOpenaiVision = '\n'+
 			'String SendStillToOpenaiVision(String key, String message, bool capture) {\n'+
@@ -3281,45 +3282,37 @@ Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
 			'    int waitTime = 10000;\n'+
 			'    long startTime = millis();\n'+
 			'    boolean state = false;\n'+
+			'    boolean markState = false;\n'+
 			'    while ((startTime + waitTime) > millis()) {\n'+
-			'      Serial.print(".");\n'+
-			'      delay(100);\n'+
-			'      while (client.available()) {\n'+
-			'          char c = client.read();\n'+
-			'          if (state==true)\n'+
-			'            getResponse += String(c);\n'+
-			'          if (c == \'\\n\')\n'+
-			'            Feedback = "";\n'+
-			'          else if (c != \'\\r\')\n'+
-			'            Feedback += String(c);\n'+
-			'          if (Feedback.indexOf("\\",\\"content\\":\\"")!=-1)\n'+
-			'            state=true;\n'+
-			'          if (Feedback.indexOf("\\"},")!=-1)\n'+
-			'            state=false;\n'+
-			'          startTime = millis();\n'+
-			'          if (Feedback.indexOf("\\",\\"content\\":\\"")!=-1||Feedback.indexOf("\\"content\\": \\"")!=-1)\n'+
-			'            state=true;\n'+
-			'          if (getResponse.indexOf("\\"},")!=-1&&state==true) {\n'+
-			'            state=false;\n'+
-			'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'+
-			'          } else if (getResponse.indexOf("\\"")!=-1&&c == \'\\n\'&&state==true) {\n'+
-			'            state=false;\n'+
-			'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'+
-			'          }\n'+
-			'       }\n'+
-			'       if (getResponse.length()>0) {\n'+
-			'          client.stop();\n'+
-			'          return getResponse;\n'+
-			'       }\n'+
+			'    Serial.print(".");\n'+
+			'    delay(100);\n'+
+			'    while (client.available())  {\n'+
+			'      char c = client.read();\n'+
+			'      if (String(c)=="{") markState=true;\n'+
+			'      if (state==true&&markState==true) Feedback += String(c);\n'+
+			'      if (c == \'\\n\') {\n'+
+			'        if (getResponse.length()==0)\n'+
+			'          state=true;\n'+
+			'        getResponse = "";\n'+
+			'      } else if (c != \'\\r\')\n'+
+			'        getResponse += String(c);\n'+
+			'      startTime = millis();\n'+
 			'    }\n'+
-			'    client.stop();\n'+		
-			'    getResponse = "null";\n'+
+			'    if (Feedback.length()>0) break;\n'+
 			'  }\n'+
-			'  else {\n'+
+			'  Serial.println();\n'+
+			'  client.stop();\n'+
+			'  JsonObject obj;\n'+
+			'  DynamicJsonDocument doc(4096);\n'+
+			'  deserializeJson(doc, Feedback);\n'+
+			'  obj = doc.as<JsonObject>();\n'+
+			'  getResponse = obj["choices"][0]["message"]["content"].as<String>();\n'+
+			'  if (getResponse == "null")\n'+
+			'    getResponse = obj["error"]["message"].as<String>();\n'+
+			'  } else {\n'+
 			'    getResponse = "Connected to " + String(myDomain) + " failed.";\n'+
 			'    Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
 			'  }\n'+
-			'  \n'+
 			'  return getResponse;\n'+
 			'}\n';			
 			
@@ -3397,7 +3390,7 @@ Blockly.Arduino['amb82_mini_gemini_vision'] = function(block) {
 			'    //Serial.println(Feedback);\n'+
 			'    \n'+
 			'    JsonObject obj;\n'+
-			'    DynamicJsonDocument doc(1024);\n'+
+			'    DynamicJsonDocument doc(4096);\n'+
 			'    deserializeJson(doc, Feedback);\n'+
 			'    obj = doc.as<JsonObject>();\n'+
 			'    getResponse = obj["candidates"][0]["content"]["parts"][0]["text"].as<String>();\n'+
