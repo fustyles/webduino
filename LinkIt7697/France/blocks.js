@@ -3890,10 +3890,6 @@ Blockly.Blocks['amb82_mini_googledrive'] = {
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg.ESP32_CAM_SCRIPTID_SHOW);		
-    this.appendValueInput("linetoken")
-        .setCheck("String")
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.ESP32_CAM_LINETOKEN_SHOW);	
     this.appendValueInput("foldername")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)
@@ -3901,12 +3897,43 @@ Blockly.Blocks['amb82_mini_googledrive'] = {
     this.appendValueInput("filename")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.ESP32_CAM_FILENAME_SHOW);			
+		.appendField(Blockly.Msg.ESP32_CAM_FILENAME_SHOW);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["　",""],		
+			["LineNotify","notify"],		
+			["LineBot","bot"]
+		], this.validate), "linetype");			
+    this.appendValueInput("linetoken")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_CAM_LINETOKEN_SHOW);
+	this.appendValueInput("lineuserid")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_LINE_USERID_SHOW);
+	this.getInput("linetoken").setVisible(false);
+	this.getInput("lineuserid").setVisible(false);		
 	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
 	this.setColour(Blockly.Msg["HUE_12"]);
 	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToGoogleDriveAndLinenotify_doPost.gs");
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="notify") {
+			block.getInput("linetoken").setVisible(true);
+			block.getInput("lineuserid").setVisible(false);			
+		} else if (newValue=="bot") {
+			block.getInput("linetoken").setVisible(true);
+			block.getInput("lineuserid").setVisible(true);				
+		} else {
+			block.getInput("linetoken").setVisible(false);
+			block.getInput("lineuserid").setVisible(false);	
+		}		
   }
 };
 
@@ -30687,10 +30714,6 @@ Blockly.Blocks['esp32_cam_googledrive'] = {
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg.ESP32_CAM_SCRIPTID_SHOW);		
-    this.appendValueInput("linetoken")
-        .setCheck("String")
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.ESP32_CAM_LINETOKEN_SHOW);	
     this.appendValueInput("foldername")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)
@@ -30698,12 +30721,41 @@ Blockly.Blocks['esp32_cam_googledrive'] = {
     this.appendValueInput("filename")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.ESP32_CAM_FILENAME_SHOW);			
+		.appendField(Blockly.Msg.ESP32_CAM_FILENAME_SHOW);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["　",""],		
+			["LineNotify","notify"],		
+			["LineBot","bot"]
+		], this.validate), "linetype");			
+    this.appendValueInput("linetoken")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_CAM_LINETOKEN_SHOW);
+	this.appendValueInput("lineuserid")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.ESP32_LINE_USERID_SHOW);		
 	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
 	this.setColour(Blockly.Msg["HUE_12"]);
 	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToGoogleDriveAndLinenotify_doPost.gs");
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="notify") {
+			block.getInput("linetoken").setVisible(true);
+			block.getInput("lineuserid").setVisible(false);			
+		} else if (newValue=="bot") {
+			block.getInput("linetoken").setVisible(true);
+			block.getInput("lineuserid").setVisible(true);				
+		} else {
+			block.getInput("linetoken").setVisible(false);
+			block.getInput("lineuserid").setVisible(false);	
+		}		
   }
 };
 
