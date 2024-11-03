@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/11/3 23:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/11/4 00:00
 https://www.facebook.com/francefu
 */
 
@@ -7,6 +7,7 @@ function doPost(e) {
   var myFoldername = decodeURIComponent(e.parameter.myFoldername);
   //var myFilename = e.parameter.myFilename;
   var myFilename = decodeURIComponent(e.parameter.myFilename) + "_" + Utilities.formatDate(new Date(), "GMT", "yyyyMMddHHmmss");
+  var currentTime = Utilities.formatDate(new Date(), "GMT", "yyyy/MM/dd HH:mm:ss");  
   var myFile = e.parameter.myFile;  
   var myLineType = e.parameter.myLineType||"";
   var myToken = e.parameter.myToken||"";
@@ -32,9 +33,9 @@ function doPost(e) {
   var imageThumbnailUrl = "https://drive.google.com/thumbnail?id="+imageID;
     
   if (myLineType=="notify")
-    LineNotifyMessage(myToken, imageUrl, imageThumbnailUrl, imageUrl);
+    LineNotifyMessage(myToken, currentTime+'\n'+imageUrl, imageThumbnailUrl, imageUrl);
   else if (myLineType=="bot")
-    LineBotMessage(myToken, myUserID, imageUrl, imageThumbnailUrl, imageUrl);
+    LineBotMessage(myToken, myUserID, currentTime+'\n'+imageUrl, imageThumbnailUrl, imageUrl);
 
   return  ContentService.createTextOutput(imageUrl);
 }
