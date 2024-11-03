@@ -1,14 +1,16 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/11/3 17:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/11/3 23:00
 https://www.facebook.com/francefu
 */
 
 function doPost(e) {
   var myFoldername = decodeURIComponent(e.parameter.myFoldername);
-  var myFile = e.parameter.myFile;
   //var myFilename = e.parameter.myFilename;
   var myFilename = decodeURIComponent(e.parameter.myFilename) + "_" + Utilities.formatDate(new Date(), "GMT", "yyyyMMddHHmmss");
-  var myToken = e.parameter.myToken;
+  var myFile = e.parameter.myFile;  
+  var myLineType = e.parameter.myLineType||"";
+  var myToken = e.parameter.myToken||"";
+  var myUserID = e.parameter.myUserID||"";
   
   var contentType = myFile.substring(myFile.indexOf(":")+1, myFile.indexOf(";"));
   var data = myFile.substring(myFile.indexOf(",")+1);
@@ -29,27 +31,66 @@ function doPost(e) {
   var imageUrl = "https://drive.google.com/uc?authuser=0&id="+imageID;
   var imageThumbnailUrl = "https://drive.google.com/thumbnail?id="+imageID;
     
-  // Send a link message to Line Notify.
+  if (myLineType=="notify")
+    LineNotifyMessage(myToken, imageUrl, imageThumbnailUrl, imageUrl);
+  else if (myLineType=="bot")
+    LineBotMessage(myToken, myUserID, imageUrl, imageThumbnailUrl, imageUrl);
+
+  return  ContentService.createTextOutput(imageUrl);
+}
+
+function LineNotifyMessage(token, message, imageThumbnail, imageFullsize) {
   var res = "Line Notify: ";
   try {
     var url = 'https://notify-api.line.me/api/notify';
     var response = UrlFetchApp.fetch(url, {
       'headers': {
-        'Authorization': 'Bearer ' + myToken,
+        'Authorization': 'Bearer ' + token,
       },
       'method': 'post',
       'payload': {
-        'message': imageUrl,
-        'imageThumbnail': imageThumbnailUrl,        
-        'imageFullsize': imageUrl
+        'message': message,
+        'imageThumbnail': imageThumbnail,        
+        'imageFullsize': imageFullsize
       }
     });
     res += response.getContentText();
   } catch(error) {
     res += error;
+  }
+  return res;   
+}
+
+function LineBotMessage(token, userID, message, imageThumbnail, imageFullsize) {
+  var res = "Line Bot: ";
+  try {
+    var url = 'https://api.line.me/v2/bot/message/push';
+    var response = UrlFetchApp.fetch(url, {
+      'headers': {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer ' + token,
+      },
+      'method': 'post',
+      'payload': JSON.stringify({
+        'to':  userID,
+        'messages': [
+          {
+            type:'text',
+            text: message
+          },
+          {
+            type:'image',
+            originalContentUrl: imageFullsize,
+            previewImageUrl: imageThumbnail
+          }
+        ]
+      })
+    });
+    res += response.getContentText();      
+  } catch(error) {
+    res = error;
   } 
-    
-  return  ContentService.createTextOutput(imageUrl);
+  return res;
 }
 
 
