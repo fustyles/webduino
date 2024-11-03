@@ -1,13 +1,13 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2019/9/7 09:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/11/3 17:00
 https://www.facebook.com/francefu
 */
 
 function doPost(e) {
-  var myFoldername = e.parameter.myFoldername;
+  var myFoldername = decodeURIComponent(e.parameter.myFoldername);
   var myFile = e.parameter.myFile;
   //var myFilename = e.parameter.myFilename;
-  var myFilename = Utilities.formatDate(new Date(), "GMT", "yyyyMMddHHmmss")+"-"+e.parameter.myFilename;
+  var myFilename = decodeURIComponent(e.parameter.myFilename) + "_" + Utilities.formatDate(new Date(), "GMT", "yyyyMMddHHmmss");
   var myToken = e.parameter.myToken;
   
   var contentType = myFile.substring(myFile.indexOf(":")+1, myFile.indexOf(";"));
@@ -27,6 +27,7 @@ function doPost(e) {
   
   var imageID = file.getUrl().substring(file.getUrl().indexOf("/d/")+3,file.getUrl().indexOf("view")-1);
   var imageUrl = "https://drive.google.com/uc?authuser=0&id="+imageID;
+  var imageThumbnailUrl = "https://drive.google.com/thumbnail?id="+imageID;
     
   // Send a link message to Line Notify.
   var res = "Line Notify: ";
@@ -38,7 +39,9 @@ function doPost(e) {
       },
       'method': 'post',
       'payload': {
-          'message': imageUrl
+        'message': imageUrl,
+        'imageThumbnail': imageThumbnailUrl,        
+        'imageFullsize': imageUrl
       }
     });
     res += response.getContentText();
@@ -46,7 +49,7 @@ function doPost(e) {
     res += error;
   } 
     
-  return  ContentService.createTextOutput(myFoldername+"/"+myFilename+"\n"+imageUrl+"\n"+res);
+  return  ContentService.createTextOutput(imageUrl);
 }
 
 
