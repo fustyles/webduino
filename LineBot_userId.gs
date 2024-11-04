@@ -1,4 +1,4 @@
-// Channel_access_TOKEN
+// Line Bot TOKEN
 let channel_access_TOKEN = "";
 
 let getLinebotData = {
