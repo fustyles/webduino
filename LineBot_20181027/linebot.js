@@ -20,7 +20,7 @@ https://github.com/fustyles/webduino/blob/gs/linenotify_push_message.gs
     bot_msg["end"]="1325439000";
     bot_msg["prefix"]="alert";
     
-    var input_url="https://script.google.com/macros/s/AKfycbwNu63z3ZFHo38wp9LBAwDGyG8tI46-5d-TpFLYFiOHDVOvmgN0/exec";
+    var input_url="https://script.google.com/macros/s/AKfycbx7fPo4QFwPUB__LzFqx1-fkNbPTuxv2_cVce_p6M9McZLiprS2LS1mG4dgkl9CGBQJ/exec";
     var data = $.ajax({
         "type": "POST",
         "dataType": "jsonp",
