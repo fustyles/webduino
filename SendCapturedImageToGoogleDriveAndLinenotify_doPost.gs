@@ -5,7 +5,6 @@ https://www.facebook.com/francefu
 
 function doPost(e) {
   var myFoldername = decodeURIComponent(e.parameter.myFoldername);
-  //var myFilename = e.parameter.myFilename;
   var myFilename = decodeURIComponent(e.parameter.myFilename) + "_" + Utilities.formatDate(new Date(), "GMT", "yyyyMMddHHmmss");       //Taiwan: "GMT+8"
   var myFile = e.parameter.myFile;  
   var myLineType = e.parameter.myLineType||"";
