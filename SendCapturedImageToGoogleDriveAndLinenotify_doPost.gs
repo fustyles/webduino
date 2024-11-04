@@ -33,7 +33,7 @@ function doPost(e) {
   var message = currentTime+'\n'+imageUrl;
 
   if (myLineType=="bot")
-    LineBotMessage(myToken, myUserID, message, imageThumbnailUrl, imageUrl);
+    LineBotMessageImage(myToken, myUserID, message, imageThumbnailUrl, imageUrl);
   else if (myLineType=="notify"||myToken)
     LineNotifyMessage(myToken, message, imageThumbnailUrl, imageUrl);
 
@@ -62,7 +62,7 @@ function LineNotifyMessage(token, message, imageThumbnail, imageFullsize) {
   return res;   
 }
 
-function LineBotMessage(token, userID, message, imageThumbnail, imageFullsize) {
+function LineBotMessageImage(token, userID, message, imageThumbnail, imageFullsize) {
   var res = "Line Bot: ";
   try {
     var url = 'https://api.line.me/v2/bot/message/push';
