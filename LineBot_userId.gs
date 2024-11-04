@@ -5,6 +5,7 @@ let channel_access_TOKEN = "填入你的Channel access token";
 let getLinebotData = {
   "userMessage": "",
   "userId": "",
+  "groupId": "",
   "eventType": "",
   "replyToken": ""
 }
@@ -15,12 +16,14 @@ function doPost(e) {
         let msg = JSON.parse(e.postData.contents);
         getLinebotData.userMessage = msg.events[0].message.text.trim();
         getLinebotData.userId = msg.events[0].source.userId;
+        getLinebotData.groupId = msg.events[0].source.groupId;
         getLinebotData.eventType = msg.events[0].source.type;
         getLinebotData.replyToken = msg.events[0].replyToken;
+
         if (getLinebotData.userMessage=="id") {
             linebot_response = getLinebotData.userId; 
         } else if (getLinebotData.userMessage=="gid") {
-            linebot_response = msg.events[0].source.groupId; 
+            linebot_response = getLinebotData.groupId; 
         }
         sendMessageToLineBot(channel_access_TOKEN, getLinebotData.replyToken, linebot_response);
     }
