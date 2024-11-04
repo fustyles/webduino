@@ -35,12 +35,12 @@ function doPost(e) {
   if (myLineType=="bot")
     LineBotMessageImage(myToken, myUserID, message, imageThumbnailUrl, imageUrl);
   else if (myLineType=="notify"||myToken)
-    LineNotifyMessage(myToken, message, imageThumbnailUrl, imageUrl);
+    LineNotifyMessageImage(myToken, message, imageThumbnailUrl, imageUrl);
 
   return  ContentService.createTextOutput(imageUrl);
 }
 
-function LineNotifyMessage(token, message, imageThumbnail, imageFullsize) {
+function LineNotifyMessageImage(token, message, imageThumbnail, imageFullsize) {
   var res = "Line Notify: ";
   try {
     var url = 'https://notify-api.line.me/api/notify';
