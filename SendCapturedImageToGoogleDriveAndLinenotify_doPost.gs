@@ -4,7 +4,7 @@ https://www.facebook.com/francefu
 */
 
 function doPost(e) {
-  //Taiwan is in the GMT+8 time zone -> "GMT+8"
+  //Taiwan is in the GMT+8 time zone, you need to modify the parameter value "GMT" to "GMT+8". 
   var currentTime = Utilities.formatDate(new Date(), "GMT", "yyyy/MM/dd HH:mm:ss");
   var myFoldername = decodeURIComponent(e.parameter.myFoldername)||Utilities.formatDate(new Date(), "GMT", "yyyyMMdd");
   var myFilename = decodeURIComponent(e.parameter.myFilename) + "_" + Utilities.formatDate(new Date(), "GMT", "yyyyMMddHHmmss");
