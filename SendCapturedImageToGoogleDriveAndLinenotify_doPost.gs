@@ -30,11 +30,12 @@ function doPost(e) {
   var imageID = file.getUrl().substring(file.getUrl().indexOf("/d/")+3,file.getUrl().indexOf("view")-1);
   var imageUrl = "https://drive.google.com/uc?authuser=0&id="+imageID;
   var imageThumbnailUrl = "https://drive.google.com/thumbnail?id="+imageID;
+  var message = currentTime+'\n'+imageUrl;
 
   if (myLineType=="bot")
-    LineBotMessage(myToken, myUserID, currentTime+'\n'+imageUrl, imageThumbnailUrl, imageUrl);
+    LineBotMessage(myToken, myUserID, message, imageThumbnailUrl, imageUrl);
   else if (myLineType=="notify"||myToken)
-    LineNotifyMessage(myToken, currentTime+'\n'+imageUrl, imageThumbnailUrl, imageUrl);
+    LineNotifyMessage(myToken, message, imageThumbnailUrl, imageUrl);
 
   return  ContentService.createTextOutput(imageUrl);
 }
