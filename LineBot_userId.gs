@@ -1,7 +1,6 @@
 // Channel_access_TOKEN
-let channel_access_TOKEN = "填入你的Channel access token";
+let channel_access_TOKEN = "";
 
-// Line bot參數
 let getLinebotData = {
   "userMessage": "",
   "userId": "",
