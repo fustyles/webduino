@@ -18,7 +18,6 @@ function doPost(e) {
   data = Utilities.base64Decode(data);
   var blob = Utilities.newBlob(data, contentType, myFilename);
   
-  // Save a captured image to Google Drive.
   var folder, folders = DriveApp.getFoldersByName(myFoldername);
   if (folders.hasNext()) {
     folder = folders.next();
@@ -90,7 +89,7 @@ function LineBotMessage(token, userID, message, imageThumbnail, imageFullsize) {
     });
     res += response.getContentText();      
   } catch(error) {
-    res = error;
+    res += error;
   } 
   return res;
 }
