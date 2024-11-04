@@ -9,9 +9,9 @@ function doPost(e) {
   var myFoldername = decodeURIComponent(e.parameter.myFoldername)||Utilities.formatDate(new Date(), "GMT", "yyyyMMdd");
   var myFilename = decodeURIComponent(e.parameter.myFilename) + "_" + Utilities.formatDate(new Date(), "GMT", "yyyyMMddHHmmss");
   var myFile = e.parameter.myFile;  
-  var myLineType = e.parameter.myLineType||"";
-  var myToken = e.parameter.myToken||"";
-  var myUserID = e.parameter.myUserID||"";
+  var myLineType = e.parameter.myLineType;
+  var myToken = e.parameter.myToken;
+  var myUserID = e.parameter.myUserID;
   
   var contentType = myFile.substring(myFile.indexOf(":")+1, myFile.indexOf(";"));
   var data = myFile.substring(myFile.indexOf(",")+1);
