@@ -31,11 +31,11 @@ function doPost(e) {
   var imageUrl = "https://drive.google.com/uc?authuser=0&id="+imageID;
   var imageThumbnailUrl = "https://drive.google.com/thumbnail?id="+imageID;
   var message = currentTime+'\n'+imageUrl;
-    
-  if (myLineType=="notify")
-    LineNotifyMessage(myToken, message, imageThumbnailUrl, imageUrl);
-  else if (myLineType=="bot")
+
+  if (myLineType=="bot")
     LineBotMessage(myToken, myUserID, message, imageThumbnailUrl, imageUrl);
+  else if (myLineType=="notify"||myToken)
+    LineNotifyMessage(myToken, message, imageThumbnailUrl, imageUrl);
 
   return  ContentService.createTextOutput(imageUrl);
 }
