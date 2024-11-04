@@ -5,12 +5,12 @@ https://www.facebook.com/francefu
 
 function doPost(e) {
   var myFoldername = decodeURIComponent(e.parameter.myFoldername);
-  var myFilename = decodeURIComponent(e.parameter.myFilename) + "_" + Utilities.formatDate(new Date(), "GMT", "yyyyMMddHHmmss");       //Taiwan: "GMT+8"
+  var myFilename = decodeURIComponent(e.parameter.myFilename) + "_" + Utilities.formatDate(new Date(), "GMT", "yyyyMMddHHmmss");       //Taiwan is in the GMT+8 time zone -> "GMT+8"
   var myFile = e.parameter.myFile;  
   var myLineType = e.parameter.myLineType||"";
   var myToken = e.parameter.myToken||"";
   var myUserID = e.parameter.myUserID||"";
-  var currentTime = Utilities.formatDate(new Date(), "GMT", "yyyy/MM/dd HH:mm:ss");       //Taiwan: "GMT+8"
+  var currentTime = Utilities.formatDate(new Date(), "GMT", "yyyy/MM/dd HH:mm:ss");       //Taiwan is in the GMT+8 time zone -> "GMT+8"
   
   var contentType = myFile.substring(myFile.indexOf(":")+1, myFile.indexOf(";"));
   var data = myFile.substring(myFile.indexOf(",")+1);
