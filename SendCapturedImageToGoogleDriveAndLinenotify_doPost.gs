@@ -30,7 +30,7 @@ function doPost(e) {
   var imageID = file.getUrl().substring(file.getUrl().indexOf("/d/")+3,file.getUrl().indexOf("view")-1);
   var imageUrl = "https://drive.google.com/uc?authuser=0&id="+imageID;
   var imageThumbnailUrl = "https://drive.google.com/thumbnail?id="+imageID;
-  var msg = currentTime+'\n'+imageUrl;
+  var msg = currentTime+'\\n'+imageUrl;
 
   if (myLineType=="bot")
     LineBotMessage(myToken, myUserID, msg, imageThumbnailUrl, imageUrl);
