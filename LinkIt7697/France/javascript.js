@@ -3134,12 +3134,12 @@ Blockly.Arduino['amb82_mini_video_capture_sd'] = function(block) {
 
 Blockly.Arduino['amb82_mini_googledrive'] = function(block) {
 	var source = block.getFieldValue('source');
-    var scriptid = Blockly.Arduino.valueToCode(block, 'scriptid', Blockly.Arduino.ORDER_ATOMIC);
-    var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC);
-    var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
-	var linetype = block.getFieldValue('linetype')||"";
-    var linetoken = Blockly.Arduino.valueToCode(block, 'linetoken', Blockly.Arduino.ORDER_ATOMIC)||"";
-	var lineuserid = Blockly.Arduino.valueToCode(block, 'lineuserid', Blockly.Arduino.ORDER_ATOMIC)||"";
+    var scriptid = Blockly.Arduino.valueToCode(block, 'scriptid', Blockly.Arduino.ORDER_ATOMIC)||'""';
+    var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC)||'""';
+    var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC)||'""';
+	var linetype = block.getFieldValue('linetype');
+    var linetoken = Blockly.Arduino.valueToCode(block, 'linetoken', Blockly.Arduino.ORDER_ATOMIC)||'""';
+	var lineuserid = Blockly.Arduino.valueToCode(block, 'lineuserid', Blockly.Arduino.ORDER_ATOMIC)||'""';
 	
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 
@@ -22694,12 +22694,12 @@ Blockly.Arduino['teachablemachine_pause'] = function(block) {
 };
 
 Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
-    var scriptid = Blockly.Arduino.valueToCode(block, 'scriptid', Blockly.Arduino.ORDER_ATOMIC);
-    var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC);
-    var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
-	var linetype = block.getFieldValue('linetype')||"";
-    var linetoken = Blockly.Arduino.valueToCode(block, 'linetoken', Blockly.Arduino.ORDER_ATOMIC)||"";
-	var lineuserid = Blockly.Arduino.valueToCode(block, 'lineuserid', Blockly.Arduino.ORDER_ATOMIC)||"";
+    var scriptid = Blockly.Arduino.valueToCode(block, 'scriptid', Blockly.Arduino.ORDER_ATOMIC)||'""';
+    var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC)||'""';
+    var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC)||'""';
+	var linetype = block.getFieldValue('linetype');
+    var linetoken = Blockly.Arduino.valueToCode(block, 'linetoken', Blockly.Arduino.ORDER_ATOMIC)||'""';
+	var lineuserid = Blockly.Arduino.valueToCode(block, 'lineuserid', Blockly.Arduino.ORDER_ATOMIC)||'""';
 	
 	if (selectBoardType().indexOf("esp")!=-1)
 	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
