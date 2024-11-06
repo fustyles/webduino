@@ -24,12 +24,12 @@ function doPost(e) {
         } else if (getLinebotData.userMessage=="gid") {
             linebot_response = getLinebotData.groupId; 
         }
-        sendMessageToLineBot(channel_access_TOKEN, getLinebotData.replyToken, linebot_response);
+        replyMessageToLineBot(channel_access_TOKEN, getLinebotData.replyToken, linebot_response);
     }
     return ContentService.createTextOutput("ok");
 }
 
-function sendMessageToLineBot(accessToken, replyToken, message) {
+function replyMessageToLineBot(accessToken, replyToken, message) {
     let url = 'https://api.line.me/v2/bot/message/reply';
     let replyMessage = [{
         "type": "text",
