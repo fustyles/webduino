@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/11/4 21:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/11/10 22:30
 https://www.facebook.com/francefu
 */
 
@@ -10,7 +10,7 @@ function doPost(e) {
   var myFilename = decodeURIComponent(e.parameter.myFilename) + "_" + Utilities.formatDate(new Date(), "GMT", "yyyyMMddHHmmss");
   var myFile = e.parameter.myFile;  
   var myLineType = e.parameter.myLineType||"";
-  var myToken = e.parameter.myToken||"";
+  var myToken = decodeURIComponent(e.parameter.myToken)||"";
   var myUserID = e.parameter.myUserID||"";
   
   var contentType = myFile.substring(myFile.indexOf(":")+1, myFile.indexOf(";"));
