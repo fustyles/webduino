@@ -11,7 +11,7 @@ function doPost(e) {
   var myFile = e.parameter.myFile;  
   var myLineType = e.parameter.myLineType||"";
   var myToken = decodeURIComponent(e.parameter.myToken)||"";
-  var myUserID = e.parameter.myUserID||"";
+  var myUserID = decodeURIComponent(e.parameter.myUserID)||"";
   
   var contentType = myFile.substring(myFile.indexOf(":")+1, myFile.indexOf(";"));
   var data = myFile.substring(myFile.indexOf(",")+1);
