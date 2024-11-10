@@ -5,6 +5,7 @@ let getLinebotData = {
   "userMessage": "",
   "userId": "",
   "groupId": "",
+  "roomId": "",
   "eventType": "",
   "replyToken": ""
 }
@@ -16,6 +17,7 @@ function doPost(e) {
         getLinebotData.userMessage = msg.events[0].message.text.trim();
         getLinebotData.userId = msg.events[0].source.userId;
         getLinebotData.groupId = msg.events[0].source.groupId;
+        getLinebotData.roomId = msg.events[0].source.roomId;
         getLinebotData.eventType = msg.events[0].source.type;
         getLinebotData.replyToken = msg.events[0].replyToken;
 
@@ -23,6 +25,8 @@ function doPost(e) {
             linebot_response = getLinebotData.userId; 
         } else if (getLinebotData.userMessage=="gid") {
             linebot_response = getLinebotData.groupId; 
+        } else if (getLinebotData.userMessage=="rid") {
+            linebot_response = getLinebotData.roomId; 
         }
         replyMessageToLineBot(channel_access_TOKEN, getLinebotData.replyToken, linebot_response);
     }
