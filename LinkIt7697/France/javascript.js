@@ -724,9 +724,7 @@ Blockly.Arduino['amb82_mini_telegram'] = function(block) {
 	'  if (client.connect(myDomain, 443)) {\n'+
 	'    Serial.println("Connection successful");\n'+
 	'    if (capture) {\n'+
-	'      Camera.getImage(0, &img_addr, &img_len);\n'+
-	'      //Camera.channelEnd(0);\n'+
-	'      //Camera.channelBegin(0);\n'+	
+	'      Camera.getImage(0, &img_addr, &img_len);\n'+	
 	'    }\n'+	
 	'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
 	'    size_t fbLen = img_len;\n'+ 	
@@ -3034,7 +3032,7 @@ Blockly.Arduino['amb82_mini_video_settings_bitrate'] = function(block) {
 };
 
 Blockly.Arduino['amb82_mini_video_getstill'] = function(block) {
-	return 'Camera.getImage(0, &img_addr, &img_len);\n//Camera.channelEnd(0);\n//Camera.channelBegin(0);\n';
+	return 'Camera.getImage(0, &img_addr, &img_len);\n';
 };
 
 Blockly.Arduino['amb82_mini_video_tcp'] = function(block) {
@@ -3062,9 +3060,7 @@ Blockly.Arduino['amb82_mini_video_tcp'] = function(block) {
 			' 	        client.println("Content-Type: multipart/x-mixed-replace; boundary=Taiwan");\n'+ 
 			' 	        client.println();\n'+ 
 			' 	        while(client.connected()) {\n'+ 
-			' 	        	Camera.getImage(0, &img_addr, &img_len);\n'+
-			' 	        	//Camera.channelEnd(0);\n'+
-			' 	        	//Camera.channelBegin(0);\n'+			
+			' 	        	Camera.getImage(0, &img_addr, &img_len);\n'+		
 			' 	        	uint8_t *fbBuf = (uint8_t*)img_addr;\n'+ 
 			' 	        	size_t fbLen = img_len;\n'+ 
 			' 	        	client.print(head);\n'+ 
@@ -3122,8 +3118,6 @@ Blockly.Arduino['amb82_mini_video_capture_sd'] = function(block) {
 		'  delay(1000);\n'+
 		'  if (capture) {\n'+
 		'    Camera.getImage(0, &img_addr, &img_len);\n'+
-		'    //Camera.channelEnd(0);\n'+
-		'    //Camera.channelBegin(0);\n'+	
 		'  }\n'+		
 		'  file.write((uint8_t *)img_addr, img_len);\n'+
 		'  file.close();\n'+
@@ -3152,9 +3146,7 @@ Blockly.Arduino['amb82_mini_googledrive'] = function(block) {
 			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    if (capture) {\n'+
-			'      Camera.getImage(0, &img_addr, &img_len);\n'+
-			'      //Camera.channelEnd(0);\n'+
-			'      //Camera.channelBegin(0);\n'+	
+			'      Camera.getImage(0, &img_addr, &img_len);\n'+	
 			'    }\n'+			
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
             '    size_t fbLen = img_len;\n'+			
@@ -3232,7 +3224,7 @@ Blockly.Arduino['amb82_mini_googledrive'] = function(block) {
 											'  return encodedMsg;\n'+
 											'}';							
 			
-  var code = 'SendStillToGoogleDrive(String("/macros/s/")+'+scriptid+'+String("/exec"), String("&myFoldername=")+urlencode('+foldername+'), String("&myFilename=")+urlencode('+filename+'), String("&myLineType=")+"'+linetype+'", String("&myToken=")+'+linetoken+', String("&myUserID=")+'+lineuserid+', "&myFile=", '+source+');\n';
+  var code = 'SendStillToGoogleDrive(String("/macros/s/")+'+scriptid+'+String("/exec"), String("&myFoldername=")+urlencode('+foldername+'), String("&myFilename=")+urlencode('+filename+'), String("&myLineType=")+"'+linetype+'", String("&myToken=")+urlencode('+linetoken+'), String("&myUserID=")+urlencode('+lineuserid+'), "&myFile=", '+source+');\n';
   return code;			
 }
 
@@ -3252,9 +3244,7 @@ Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
 			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    if (capture) {\n'+
-			'      Camera.getImage(0, &img_addr, &img_len);\n'+
-			'      //Camera.channelEnd(0);\n'+
-			'      //Camera.channelBegin(0);\n'+	
+			'      Camera.getImage(0, &img_addr, &img_len);\n'+	
 			'    }\n'+			
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
             '    size_t fbLen = img_len;\n'+			
@@ -3339,8 +3329,6 @@ Blockly.Arduino['amb82_mini_gemini_vision'] = function(block) {
 			'    Serial.println("Connection successful");\n'+
 			'    if (capture) {\n'+
 			'      Camera.getImage(0, &img_addr, &img_len);\n'+
-			'      //Camera.channelEnd(0);\n'+
-			'      //Camera.channelBegin(0);\n'+	
 			'    }\n'+			
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
             '    size_t fbLen = img_len;\n'+			
@@ -3434,8 +3422,6 @@ Blockly.Arduino['amb82_mini_spreadsheet'] = function(block) {
 			'    Serial.println("Connection successful");\n'+
 			'    if (capture) {\n'+
 			'      Camera.getImage(0, &img_addr, &img_len);\n'+
-			'      //Camera.channelEnd(0);\n'+
-			'      //Camera.channelBegin(0);\n'+	
 			'    }\n'+			
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
             '    size_t fbLen = img_len;\n'+			
@@ -3526,8 +3512,6 @@ Blockly.Arduino['amb82_mini_linenotify'] = function(block) {
 			'    Serial.println("Connection successful");\n'+
 			'    if (capture) {\n'+
 			'      Camera.getImage(0, &img_addr, &img_len);\n'+
-			'      //Camera.channelEnd(0);\n'+
-			'      //Camera.channelBegin(0);\n'+	
 			'    }\n'+			
 			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
             '    size_t fbLen = img_len;\n'+
@@ -20768,8 +20752,6 @@ Blockly.Arduino['fu_mqtt_sendimage'] = function(block) {
 															'    if (mqtt_client.connect(clientId.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n'+	
 															'      if (capture) {\n'+
 															'        Camera.getImage(0, &img_addr, &img_len);\n'+
-															'        //Camera.channelEnd(0);\n'+
-															'        //Camera.channelBegin(0);\n'+	
 															'      }\n'+															
 															'      int imgSize = img_len;\n'+
 															'      int ps = MQTT_MAX_PACKET_SIZE;\n'+
@@ -22800,7 +22782,7 @@ Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
 											'  return encodedMsg;\n'+
 											'}';
 			
-  var code = 'SendStillToGoogleDrive(String("/macros/s/")+'+scriptid+'+String("/exec"), String("&myFoldername=")+urlencode('+foldername+'), String("&myFilename=")+urlencode('+filename+'), String("&myLineType=")+"'+linetype+'", String("&myToken=")+'+linetoken+', String("&myUserID=")+'+lineuserid+', "&myFile=");\n';
+  var code = 'SendStillToGoogleDrive(String("/macros/s/")+'+scriptid+'+String("/exec"), String("&myFoldername=")+urlencode('+foldername+'), String("&myFilename=")+urlencode('+filename+'), String("&myLineType=")+"'+linetype+'", String("&myToken=")+urlencode('+linetoken+'), String("&myUserID=")+urlencode('+lineuserid+'), "&myFile=");\n';
   return code;				
 }
 
@@ -23497,9 +23479,7 @@ function amb82_mini_video_tcp() {
 			' 	        client.println("Content-Type: multipart/x-mixed-replace; boundary=Taiwan");\n'+ 
 			' 	        client.println();\n'+ 
 			' 	        while(client.connected()) {\n'+ 
-			' 	        	Camera.getImage(0, &img_addr, &img_len);\n'+
-			' 	        	//Camera.channelEnd(0);\n'+
-			' 	        	//Camera.channelBegin(0);\n'+			
+			' 	        	Camera.getImage(0, &img_addr, &img_len);\n'+		
 			' 	        	uint8_t *fbBuf = (uint8_t*)img_addr;\n'+ 
 			' 	        	size_t fbLen = img_len;\n'+ 
 			' 	        	client.print(head);\n'+ 
