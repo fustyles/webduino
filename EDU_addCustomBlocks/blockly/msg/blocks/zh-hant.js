@@ -36,3 +36,4 @@ Blockly.Msg.ADDCUSTOMBLOCKS_OPENAI_TEXT_SHOW = "[取得連結] openAI";
 Blockly.Msg.ADDCUSTOMBLOCKS_GEMINI_TEXT_SHOW = "[取得連結] Gemini";
 Blockly.Msg.ADDCUSTOMBLOCKS_SPEECHRECOGNITION_SHOW = "[取得連結] 語音辨識";
 Blockly.Msg.ADDCUSTOMBLOCKS_TEXTTOSPEECH_SHOW = "[取得連結] 語音朗讀";
+Blockly.Msg.ADDCUSTOMBLOCKS_DVCBOT_SHOW = "[取得連結] 達哥助手";
