@@ -13697,7 +13697,28 @@
 	  </block> 
 	  <block type="openai_chat_reset">
 	  </block>  	  
-    </category>	
+    </category>
+	<category name="catDvcbot">
+	  <block type="dvcbot_initial">
+		<value name="apiKey">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="assistantId">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>		
+	  </block>
+	  <block type="dvcbot_result">
+		<value name="userMessage">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block>   	  
+    </category>		
 	<sep id="category_sep"></sep>
 	<category name="others">
 	  <block type="linenotify_esp32_br">

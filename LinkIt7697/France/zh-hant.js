@@ -29,6 +29,16 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg.DVCBOT_SHOW = "達哥助手";
+Blockly.Msg.DVCBOT_INITIAL_SHOW = "初始化";
+Blockly.Msg.DVCBOT_PRIVATE_SHOW = "私人金鑰";
+Blockly.Msg.DVCBOT_FREE_SHOW = "免費金鑰";
+Blockly.Msg.DVCBOT_APIKEY_SHOW = "API金鑰";
+Blockly.Msg.DVCBOT_ASSISTANTID_SHOW = "助手代碼";
+Blockly.Msg.DVCBOT_RESPONSE_SHOW = "取得程式回傳值";
+Blockly.Msg.DVCBOT_RESULT_SHOW = "取得回應";
+Blockly.Msg.DVCBOT_USERMESSAGE_SHOW = "對話訊息";
+
 Blockly.Msg["THINGSPEAK_PAGE_SHOW"] = "網頁 ThingSpeak"; 
 Blockly.Msg["THINGSPEAK_KEY_SHOW"] = "金鑰";
 Blockly.Msg["THINGSPEAK_VALUE1_SHOW"] = "值1";

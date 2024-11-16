@@ -1,3 +1,17 @@
+Blockly.Arduino['dvcbot_initial'] = function (block) {
+  var apiKey = Blockly.Arduino.valueToCode(block, 'apiKey', Blockly.Arduino.ORDER_ATOMIC); 
+  var assistantId = Blockly.Arduino.valueToCode(block, 'assistantId', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = '';
+  return code; 
+};
+
+Blockly.Arduino['dvcbot_result'] = function (block) {
+  var userMessage = Blockly.Arduino.valueToCode(block, 'userMessage', Blockly.Arduino.ORDER_ATOMIC); 
+  var code = '';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['page_thingspeak'] = function(block) {
   var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
   var value1 = Blockly.Arduino.valueToCode(block, 'field1', Blockly.Arduino.ORDER_ATOMIC);

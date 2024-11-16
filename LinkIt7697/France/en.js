@@ -29,6 +29,16 @@ Blockly.Msg["HUE_28"] = 290;
 Blockly.Msg["HUE_29"] = 340;
 Blockly.Msg["HUE_30"] = 50;
 
+Blockly.Msg.DVCBOT_SHOW = "DaVinci Assistant";
+Blockly.Msg.DVCBOT_INITIAL_SHOW = "Initialize";
+Blockly.Msg.DVCBOT_PRIVATE_SHOW = "Private Key";
+Blockly.Msg.DVCBOT_FREE_SHOW = "Free Key";
+Blockly.Msg.DVCBOT_APIKEY_SHOW = "API Key";
+Blockly.Msg.DVCBOT_ASSISTANTID_SHOW = "Assistant ID";
+Blockly.Msg.DVCBOT_RESPONSE_SHOW = "Get Program Return Value";
+Blockly.Msg.DVCBOT_RESULT_SHOW = "Get Response";
+Blockly.Msg.DVCBOT_USERMESSAGE_SHOW = "Conversation Message";
+
 Blockly.Msg["THINGSPEAK_PAGE_SHOW"] = "Page ThingSpeak";	  	  
 Blockly.Msg["THINGSPEAK_KEY_SHOW"] = "Key";
 Blockly.Msg["THINGSPEAK_VALUE1_SHOW"] = "Field 1";

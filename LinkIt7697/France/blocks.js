@@ -1,3 +1,53 @@
+Blockly.Blocks['dvcbot_initial'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.DVCBOT_SHOW)  
+	  .appendField(Blockly.Msg.DVCBOT_INITIAL_SHOW);
+  this.appendDummyInput()	 
+	  .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.DVCBOT_PRIVATE_SHOW,"private"],
+			[Blockly.Msg.DVCBOT_FREE_SHOW,"free"]
+		], this.validate), "board");	  
+  this.appendValueInput("apiKey")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.DVCBOT_APIKEY_SHOW);  
+  this.appendValueInput("assistantId")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.DVCBOT_ASSISTANTID_SHOW); 
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(190);
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="private") {
+			block.getInput("apiKey").setVisible(true);
+		} else {
+			block.getInput("apiKey").setVisible(false);		
+		}
+  }
+};
+
+Blockly.Blocks['dvcbot_result'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.DVCBOT_SHOW)   
+	  .appendField(Blockly.Msg.DVCBOT_RESULT_SHOW);
+  this.appendValueInput("userMessage")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.DVCBOT_USERMESSAGE_SHOW); 	   
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(190);
+  }
+};
+
 Blockly.Blocks['page_thingspeak'] = {
   init: function() {
 	this.appendDummyInput() 
