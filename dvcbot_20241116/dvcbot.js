@@ -230,13 +230,13 @@
 			const runUrl = `${BASE_URL}/threads/${threadId}/runs`;
 			await getRunResult(threadId, runUrl, runId);
 			const responseMsg = await listMessage(threadId);
-			resolve(responseMsg); // 確保 Promise 被 resolve
+			resolve(responseMsg);
 		  } else {
 			reject("Thread state is not completed");
 		  }
 		} catch (error) {
 		  console.error("Error:", error);
-		  reject(error); // 確保 Promise 被 reject
+		  reject(error);
 		}
 	  });
 	}
