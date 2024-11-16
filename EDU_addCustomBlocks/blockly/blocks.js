@@ -20,7 +20,8 @@ Blockly.Blocks['addMyBlocks'] = {
         [Blockly.Msg.ADDCUSTOMBLOCKS_MQTT_SHOW,"MQTT_20220324"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_GAMEELEMENTS_SHOW,"GameElements_20190131"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_OPENAI_TEXT_SHOW,"openAI_20221212"],
-        [Blockly.Msg.ADDCUSTOMBLOCKS_GEMINI_TEXT_SHOW,"gemini_2024029"],	      
+        [Blockly.Msg.ADDCUSTOMBLOCKS_GEMINI_TEXT_SHOW,"gemini_2024029"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_DVCBOT_SHOW,"dvcbot_20241116"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_HOLISTIC_SHOW,"holistic_20201012"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_HANDS_SHOW,"hands_20220614"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_COCO_SSD_SHOW,"coco_ssd_20201012"],
@@ -179,6 +180,7 @@ Blockly.Blocks['addMyBlocks'] = {
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/WebBluetooth_20220924/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/openAI_20221212/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/gemini_2024029/blockly.json');
+		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/dvcbot_20241116/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/SpeechRecognition_20220729/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/TextToSpeech_20220729/blockly.json');
 		    
@@ -229,6 +231,7 @@ Blockly.Blocks['addMyBlocks'] = {
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/WebBluetooth_20220924/blockly.json');
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/openAI_20221212/blockly.json');
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/gemini_2024029/blockly.json');
+		  Code.customTab.$__add__('https://fustyles.github.io/webduino/dvcbot_20241116/blockly.json');		    
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/SpeechRecognition_20220729/blockly.json');
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/TextToSpeech_20220729/blockly.json');
 	    }
@@ -264,6 +267,7 @@ Blockly.Blocks['addMyBlocks'] = {
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/WebBluetooth_20220924/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/openAI_20221212/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/gemini_2024029/blockly.json');
+		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/dvcbot_20241116/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/SpeechRecognition_20220729/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/TextToSpeech_20220729/blockly.json');
 	    }
@@ -372,6 +376,10 @@ Blockly.Blocks['addMyBlocks'] = {
 	    else if (this.getFieldValue('func')=='TextToSpeech_20220729') {
 				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/TextToSpeech_20220729/blockly.json", "TEXT");
 			  }
+	    else if (this.getFieldValue('func')=='dvcbot_20241116') {
+				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/dvcbot_20241116/blockly.json", "TEXT");
+			  }
+		  
 		  
 	    this.getField('func').setValue("");
 	}
