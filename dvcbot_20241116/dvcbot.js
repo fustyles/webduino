@@ -224,8 +224,8 @@
 		  dvcbot_response = "";
 		  
 		  const threadId = await createThread();
-		  const state = await addMessageToThread(threadId, inputMsg);
-		  if (state == "completed") {
+		  const status = await addMessageToThread(threadId, inputMsg);
+		  if (status == "completed") {
 			const runId = await runAssistant(threadId, dvcbot_assistantId);
 			const runUrl = `${BASE_URL}/threads/${threadId}/runs`;
 			await getRunResult(threadId, runUrl, runId);
