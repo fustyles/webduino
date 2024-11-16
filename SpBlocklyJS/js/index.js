@@ -187,6 +187,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='gemini_2024029/gemini.js'></script>";
 		}
 		
+		if (xml.indexOf("dvcbot_")!=-1) {
+			script += "<script src='dvcbot_20241116/dvcbot.js'></script>";
+		}		
+		
 		return script;
 	}	
 	
@@ -359,8 +363,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		if (xml.indexOf("gemini_chat_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/gemini_2024029/gemini.js'></script>";
+		}
+
+		if (xml.indexOf("dvcbot_")!=-1) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/dvcbot_20241116/dvcbot.js'></script>";
 		}		
-		
+
 		return script;
 	}		
 	
@@ -393,7 +401,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		catTelegram,
 		"<sep></sep>",
 		catOpenAI,
-		catGEMINI,		
+		catGEMINI,
+		catDvcbot,		
 		catHolistic,	
 		catTeachablemachine,
 		catKNNclassifier,		
