@@ -8,7 +8,7 @@ Blockly.Blocks['dvcbot_initial'] = {
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg.DVCBOT_PRIVATE_SHOW,"private"],
 			[Blockly.Msg.DVCBOT_FREE_SHOW,"free"]
-		], this.validate), "board");	  
+		], this.validate), "type");	  
   this.appendValueInput("apiKey")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)

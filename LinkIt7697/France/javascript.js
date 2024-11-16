@@ -1,14 +1,100 @@
 Blockly.Arduino['dvcbot_initial'] = function (block) {
-  var apiKey = Blockly.Arduino.valueToCode(block, 'apiKey', Blockly.Arduino.ORDER_ATOMIC); 
+  var type = block.getFieldValue('type');
+  if (type=="private")
+	var apiKey = Blockly.Arduino.valueToCode(block, 'apiKey', Blockly.Arduino.ORDER_ATOMIC); 
+  else
+	var apiKey = "";
   var assistantId = Blockly.Arduino.valueToCode(block, 'assistantId', Blockly.Arduino.ORDER_ATOMIC);
-
-  var code = '';
+  
+  Blockly.Arduino.definitions_.dvcbot_initial = 'String dvcbot_apiKey = "";\nString dvcbot_assistantId = "";\n';
+  
+  var code = 'dvcbot_apiKey = '+apiKey+';\ndvcbot_assistantId = '+assistantId+';\n';
   return code; 
 };
 
 Blockly.Arduino['dvcbot_result'] = function (block) {
   var userMessage = Blockly.Arduino.valueToCode(block, 'userMessage', Blockly.Arduino.ORDER_ATOMIC); 
-  var code = '';
+
+	Blockly.Arduino.definitions_.dvcbot_result = '\n'+
+			'String SendMessageToDvcBOT(String userMessage) {\n'+
+			'  const char* myDomain = "script.google.com";\n'+
+			'  String getAll="", getBody = "";\n'+
+			'  Serial.println("Connect to " + String(myDomain));\n';
+			
+	if (selectBoardType()=="LinkIt")
+		Blockly.Arduino.definitions_.dvcbot_result += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+		Blockly.Arduino.definitions_.dvcbot_result += '  client.setInsecure();\n';		
+
+	Blockly.Arduino.definitions_.dvcbot_result += '\n'+
+			'  if (client.connect(myDomain, 443)) {\n'+
+			'    Serial.println("Connection successful");\n'+
+			'    String Data = "&dvcbot_apiKey="+urlencode(dvcbot_apiKey)+"&dvcbot_assistantId="+urlencode(dvcbot_assistantId)+"&dvcbot_inputMsg="+urlencode(userMessage);\n'+
+			'    client.println("POST /macros/s/AKfycbzz7FWeP9DYgZX2LdRqzAoBZRcHdyHn3t9soKlwr1sytWdVsz_kSoqVLdF9jY6d2JkG4A/exec HTTP/1.1");\n'+
+			'    client.println("Host: " + String(myDomain));\n'+
+			'    client.println("Content-Length: " + String(Data.length()));\n'+
+			'    client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
+			'    \n'+
+			'    int Index;\n'+
+			'    for (Index = 0; Index < Data.length(); Index = Index+1024) {\n'+
+			'      client.print(Data.substring(Index, Index+1024));\n'+
+			'    }\n'+
+			'    \n'+
+			'    int waitTime = 20000;\n'+
+			'    long startTime = millis();\n'+
+			'    boolean state = false;\n'+
+			'    \n'+
+			'    while ((startTime + waitTime) > millis())\n'+
+			'    {\n'+
+			'      Serial.print(".");\n'+
+			'      delay(100);\n'+
+			'      while (client.available())\n'+
+			'      {\n'+
+			'          char c = client.read();\n'+
+			'      	   Serial.print(String(c));\n'+			
+			'          if (state==true) getBody += String(c);\n'+        
+			'          if (c == \'\\n\')\n'+
+			'          {\n'+
+			'            if (getAll.length()==0) state=true;\n'+
+			'            getAll = "";\n'+
+			'          }\n'+
+			'          else if (c != \'\\r\')\n'+
+			'            getAll += String(c);\n'+
+			'          startTime = millis();\n'+
+			'       }\n'+
+			'       if (getBody.length()>0) break;\n'+
+			'    }\n'+
+			'    client.stop();\n'+
+			'    //Serial.println(getBody);\n'+
+			'  }\n'+
+			'  else {\n'+
+			'    getBody="Connected to " + String(myDomain) + " failed.";\n'+
+			'    Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
+			'  }\n'+
+			'  \n'+
+			'  return getBody;\n'+
+			'}\n';
+
+	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
+											'  const char *msg = str.c_str();\n'+
+											'  const char *hex = "0123456789ABCDEF";\n'+
+											'  String encodedMsg = "";\n'+
+											'  while (*msg != \'\\0\') {\n'+
+											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
+											'      encodedMsg += *msg;\n'+
+											'    } else {\n'+
+											'      encodedMsg += \'%\';\n'+
+											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
+											'      encodedMsg += hex[*msg & 0xf];\n'+
+											'    }\n'+
+											'    msg++;\n'+
+											'  }\n'+
+											'  return encodedMsg;\n'+
+											'}';							
+			
+  var code = 'SendMessageToDvcBOT('+userMessage+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
