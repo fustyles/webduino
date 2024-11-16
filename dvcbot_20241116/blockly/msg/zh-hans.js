@@ -1,0 +1,1 @@
+MSG.catDVCBOT = "达哥助手";
