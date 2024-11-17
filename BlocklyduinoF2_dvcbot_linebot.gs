@@ -1,5 +1,5 @@
 /*
-  Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/11/17 18:30
+  Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/11/17 22:30
   https://www.facebook.com/francefu
 */
 
@@ -25,9 +25,9 @@ let getLinebotData = {
 }
 
 function doPost(e) {
+    let response = "OK";
     if (e.postData) {
       let msg = JSON.parse(e.postData.contents);  
-
       if (msg && msg.events && msg.events.length > 0) {
         for (var i = 0; i < msg.events.length; i++) {
           getLinebotData.userMessage = msg.events[i].message.text.trim();
@@ -48,13 +48,14 @@ function doPost(e) {
               })
 
             res.then((promisedata) => {
+                response = promisedata;
                 replyMessageToLineBot(channel_access_TOKEN, getLinebotData.replyToken, promisedata);
               })
           }
         }
       }
     }
-    return ContentService.createTextOutput("ok");        
+    return ContentService.createTextOutput(response);        
 }
 
 function replyMessageToLineBot(accessToken, replyToken, message) {
