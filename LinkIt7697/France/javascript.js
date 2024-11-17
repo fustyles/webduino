@@ -18,7 +18,7 @@ Blockly.Arduino['dvcbot_result'] = function (block) {
 	Blockly.Arduino.definitions_.dvcbot_result = '\n'+
 			'String SendMessageToDvcBOT(String userMessage) {\n'+
 			'  const char* myDomain = "script.google.com";\n'+
-			'  String getAll="", getBody = "";\n'+
+			'  String getAll="", getLocation = "";\n'+
 			'  Serial.println("Connect to " + String(myDomain));\n';
 			
 	if (selectBoardType()=="LinkIt")
@@ -42,7 +42,7 @@ Blockly.Arduino['dvcbot_result'] = function (block) {
 			'      client.print(Data.substring(Index, Index+1024));\n'+
 			'    }\n'+
 			'    \n'+
-			'    int waitTime = 20000;\n'+
+			'    int waitTime = 30000;\n'+
 			'    long startTime = millis();\n'+
 			'    boolean state = false;\n'+
 			'    \n'+
@@ -53,7 +53,63 @@ Blockly.Arduino['dvcbot_result'] = function (block) {
 			'      while (client.available())\n'+
 			'      {\n'+
 			'          char c = client.read();\n'+
-			'      	   Serial.print(String(c));\n'+			
+			'          if (state&&c == \'\\n\')\n'+
+			'            break;\n'+			
+			'          if (state)\n'+
+			'            getLocation += String(c);\n'+
+			'          if (c != \'\\r\')\n'+
+			'            getAll += String(c);\n'+
+			'          if (getAll.indexOf("script.googleusercontent.com")!=-1)\n'+
+			'            state = true;\n'+			
+			'          startTime = millis();\n'+
+			'       }\n'+
+			'       if (getLocation.length()>0) break;\n'+
+			'    }\n'+
+			'    client.stop();\n'+			
+			'    Serial.println(getLocation);\n'+
+			'  }\n'+
+			'  else {\n'+
+			'    getLocation="";\n'+
+			'    Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
+			'  }\n'+
+			'  \n'+
+			'  //Serial.println(getAll);\n'+			
+			'  //Serial.println("https://script.googleusercontent.com" +getLocation);\n'+			
+			'  return getAppsScriptResponse(getLocation);\n'+
+			'}\n';
+			
+	Blockly.Arduino.definitions_.getAppsScriptResponse = '\n'+
+			'String getAppsScriptResponse(String gsPath) {\n'+
+			'  if (!gsPath) return "error";\n'+
+			'  const char* myDomain = "script.googleusercontent.com";\n'+
+			'  String getAll="", getBody = "";\n'+
+			'  \n'+
+			'  Serial.println("Connect to " + String(myDomain));\n';
+			
+	if (selectBoardType()=="LinkIt")
+		Blockly.Arduino.definitions_.getAppsScriptResponse += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+		Blockly.Arduino.definitions_.getAppsScriptResponse += '  client.setInsecure();\n';	
+
+	Blockly.Arduino.definitions_.getAppsScriptResponse += '\n'+
+			'  if (client.connect(myDomain, 443)) {\n'+	
+			'    Serial.println("Connection successful");\n'+
+			'    client.println("GET " + gsPath + " HTTP/1.1");\n'+
+			'    client.println("Host: " + String(myDomain));\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
+			'    \n'+
+			'    int waitTime = 10000;\n'+
+			'    long startTime = millis();\n'+
+			'    boolean state = false;\n'+
+			'    \n'+
+			'    while ((startTime + waitTime) > millis())\n'+
+			'    {\n'+
+			'      Serial.print(".");\n'+
+			'      delay(100);\n'+
+			'      while (client.available())\n'+
+			'      {\n'+
+			'          char c = client.read();\n'+
 			'          if (state==true) getBody += String(c);\n'+        
 			'          if (c == \'\\n\')\n'+
 			'          {\n'+
@@ -67,7 +123,7 @@ Blockly.Arduino['dvcbot_result'] = function (block) {
 			'       if (getBody.length()>0) break;\n'+
 			'    }\n'+
 			'    client.stop();\n'+
-			'    //Serial.println(getBody);\n'+
+			'    Serial.println(getBody);\n'+
 			'  }\n'+
 			'  else {\n'+
 			'    getBody="Connected to " + String(myDomain) + " failed.";\n'+
@@ -75,7 +131,7 @@ Blockly.Arduino['dvcbot_result'] = function (block) {
 			'  }\n'+
 			'  \n'+
 			'  return getBody;\n'+
-			'}\n';
+			'}\n';			
 
 	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
 											'  const char *msg = str.c_str();\n'+
