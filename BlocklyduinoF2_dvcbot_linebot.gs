@@ -7,7 +7,7 @@
 let channel_access_TOKEN = "xxxxx";
 
 // DvcBot
-let dvcbot_apiKey = "xxxx";
+let dvcbot_apiKey = "xxxxx";
 let dvcbot_assistantId = "xxxxx";
 
 let getLinebotData = {
