@@ -10,6 +10,10 @@ let channel_access_TOKEN = "xxxxx";
 let dvcbot_apiKey = "xxxxx";
 let dvcbot_assistantId = "xxxxx";
 
+let BASE_URL = "https://prod.dvcbot.net/api/assts/v1";
+let THREAD_URL = "https://prod.dvcbot.net/api/assts/v1/threads";
+let dvcbot_response = "";
+
 let getLinebotData = {
   "type": "",    
   "userMessage": "",
@@ -19,11 +23,6 @@ let getLinebotData = {
   "eventType": "",
   "replyToken": ""
 }
-
-let dvcbot_inputMsg = "";
-let dvcbot_response = "";
-let BASE_URL = "https://prod.dvcbot.net/api/assts/v1";
-let THREAD_URL = "https://prod.dvcbot.net/api/assts/v1/threads";
 
 function doPost(e) {
     if (e.postData) {
