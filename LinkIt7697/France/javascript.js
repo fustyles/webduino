@@ -129,8 +129,11 @@ Blockly.Arduino['dvcbot_result'] = function (block) {
 			'    Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
 			'  }\n'+
 			'  \n'+
-			'  getBody = getBody.substring(getBody.indexOf(\'\\n\'), getBody.lastIndexOf("0")-2);\n'+
-			'  getBody.trim();\n'+			
+			'  if (getBody.lastIndexOf(\'\\r\')>2) {\n'+
+			'    getBody = getBody.substring(getBody.indexOf(\'\\r\'), getBody.lastIndexOf(\'\\r\', getBody.lastIndexOf(\'\\r\')-1)-1);\n'+
+			'  }\n'+
+			'  getBody.trim();\n'+
+			'  Serial.println();\n'+			
 			'  return getBody;\n'+
 			'}\n';			
 
