@@ -21,10 +21,7 @@
 
 	async function dvcbot_result(userMessage, newline) {
 	  try {
-		//console.log("Request: ", userMessage);
 		const result = await sendMessageToDvcbot(userMessage);
-		//console.log(dvcbot_response);
-		//console.log(result);
 		if (newline=="br")
 			return result.replace(/\n/g,"<br>");
 		else if (newline=="n")
@@ -32,7 +29,6 @@
 		else
 			return result.replace(/\n/g,"");	
 	  } catch (error) {
-		//console.log(error);
 		return "error";
 	  }
 	}
