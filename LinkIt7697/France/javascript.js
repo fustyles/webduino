@@ -66,7 +66,6 @@ Blockly.Arduino['dvcbot_result'] = function (block) {
 			'       if (getLocation.length()>0) break;\n'+
 			'    }\n'+
 			'    client.stop();\n'+			
-			'    Serial.println(getLocation);\n'+
 			'  }\n'+
 			'  else {\n'+
 			'    getLocation="";\n'+
