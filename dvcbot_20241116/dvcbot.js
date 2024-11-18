@@ -218,7 +218,7 @@
 	async function sendMessageToDvcbot(inputMsg) {
 	  return new Promise(async (resolve, reject) => {
 		try {
-		  dvcbot_response = "";
+		  dvcbot_plugin_response = [];
 		  
 		  const threadId = await createThread();
 		  const status = await addMessageToThread(threadId, inputMsg);
