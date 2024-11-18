@@ -25,7 +25,6 @@ let getLinebotData = {
 }
 
 function doPost(e) {
-    let response = "OK";
     if (e.postData) {
       let msg = JSON.parse(e.postData.contents);  
       if (msg && msg.events && msg.events.length > 0) {
@@ -48,15 +47,13 @@ function doPost(e) {
               })
 
             res.then((promisedata) => {
-                response = promisedata;
                 replyMessageToLineBot(channel_access_TOKEN, getLinebotData.replyToken, promisedata);
               })
           }
         }
       }
     }
-    
-    return ContentService.createTextOutput(response);        
+    return ContentService.createTextOutput("OK");        
 }
 
 function replyMessageToLineBot(accessToken, replyToken, message) {
