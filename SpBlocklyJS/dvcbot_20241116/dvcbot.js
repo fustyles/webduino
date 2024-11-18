@@ -1,6 +1,6 @@
 let dvcbot_apiKey = "";
 let dvcbot_assistantId = "";
-let dvcbot_response = "";
+let dvcbot_plugin_response = [];
 const BASE_URL = "https://prod.dvcbot.net/api/assts/v1";
 const THREAD_URL = "https://prod.dvcbot.net/api/assts/v1/threads";
 
@@ -10,11 +10,12 @@ function dvcbot_initial(apiKey, assistantId) {
 }
 
 function dvcbot_result_response() {
-  return dvcbot_response;
+  return dvcbot_plugin_response;
 }
 
 async function dvcbot_result(userMessage, newline) {
   try {
+    dvcbot_plugin_response = [];
     const result = await sendMessageToDvcbot(userMessage);
 	if (newline=="br")
 		return result.replace(/\n/g,"<br>");
@@ -145,7 +146,7 @@ async function getRunResult(threadId, runUrl, runId) {
 
                 const output = JSON.parse(toolXhr.responseText);
                 const callId = toolCalls[i].id;
-                //dvcbot_response = JSON.stringify(JSON.parse(output.text));
+                //dvcbot_plugin_response.push(JSON.stringify(JSON.parse(output.text)));
                 toolOutputs.push({
                   tool_call_id: callId,
                   output: output.text
