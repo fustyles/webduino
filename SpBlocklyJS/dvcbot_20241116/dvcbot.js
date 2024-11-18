@@ -149,7 +149,7 @@ async function getRunResult(threadId, runUrl, runId) {
 		try {
                     dvcbot_plugin_response.push(JSON.stringify(JSON.parse(output.text)));
 		} catch (error) {
-                  console.log(error);
+                    console.log(error);
 		}
                 toolOutputs.push({
                   tool_call_id: callId,
