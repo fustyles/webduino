@@ -7,7 +7,6 @@
 let dvcbot_apiKey = "";
 let dvcbot_assistantId = "";
 let dvcbot_inputMsg = "";
-let dvcbot_plugin_response = [];
 let BASE_URL = "https://prod.dvcbot.net/api/assts/v1";
 let THREAD_URL = "https://prod.dvcbot.net/api/assts/v1/threads";
 
@@ -34,8 +33,6 @@ function doPost(e) {
 
 async function sendMessageToDvcbot(inputMsg) {
   return new Promise(async (resolve, reject) => {
-    dvcbot_plugin_response = [];
-    
     const threadId = await createThread();
     const status = await addMessageToThread(threadId, inputMsg);
     if (status == "completed") {
@@ -148,10 +145,7 @@ async function getRunResult(threadId, runUrl, runId) {
 
             const output = JSON.parse(toolRes.getContentText());
             const callId = toolCalls[i].id;
-            /*
-            if (output.text)
-               dvcbot_response.push(JSON.stringify(JSON.parse(output.text)));
-            */
+
             toolOutputs.push({
               tool_call_id: callId,
               output: output.text
