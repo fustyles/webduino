@@ -1,6 +1,7 @@
 /*
   Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/11/17 22:30
   https://www.facebook.com/francefu
+  Using Apps Script to Create a Line Bot Webhook
 */
 
 // Line Bot TOKEN
