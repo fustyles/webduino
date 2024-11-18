@@ -145,7 +145,7 @@ async function getRunResult(threadId, runUrl, runId) {
 
                 const output = JSON.parse(toolXhr.responseText);
                 const callId = toolCalls[i].id;
-				dvcbot_response = JSON.stringify(JSON.parse(output.text));
+                //dvcbot_response = JSON.stringify(JSON.parse(output.text));
                 toolOutputs.push({
                   tool_call_id: callId,
                   output: output.text
