@@ -1,5 +1,5 @@
 /*
-  Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/11/18 19:30
+  Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/11/18 20:00
   https://www.facebook.com/francefu
   Using Apps Script to create a Line Bot Webhook for integrating with the DvcBot Assistant API.
 */
@@ -25,6 +25,7 @@ let getLinebotData = {
 }
 
 function doPost(e) {
+    let response = "OK";
     if (e.postData) {
       let msg = JSON.parse(e.postData.contents);  
       if (msg && msg.events && msg.events.length > 0) {
@@ -47,13 +48,15 @@ function doPost(e) {
               })
 
             res.then((promisedata) => {
+                response = promisedata;
                 replyMessageToLineBot(channel_access_TOKEN, getLinebotData.replyToken, promisedata);
               })
           }
         }
       }
     }
-    return ContentService.createTextOutput("OK");        
+    
+    return ContentService.createTextOutput(response);        
 }
 
 function replyMessageToLineBot(accessToken, replyToken, message) {
@@ -77,16 +80,20 @@ function replyMessageToLineBot(accessToken, replyToken, message) {
 
 async function sendMessageToDvcbot(inputMsg) {
   return new Promise(async (resolve, reject) => {
-    const threadId = await createThread();
-    const status = await addMessageToThread(threadId, inputMsg);
-    if (status == "completed") {
-      const runId = await runAssistant(threadId, dvcbot_assistantId);
-      const runUrl = `${BASE_URL}/threads/${threadId}/runs`;
-      await getRunResult(threadId, runUrl, runId);
-      const responseMsg = await listMessage(threadId);
-      resolve(responseMsg);
-    } else {
-      reject("Thread state is not completed");
+    try {
+      const threadId = await createThread();
+      const status = await addMessageToThread(threadId, inputMsg);
+      if (status == "completed") {
+        const runId = await runAssistant(threadId, dvcbot_assistantId);
+        const runUrl = `${BASE_URL}/threads/${threadId}/runs`;
+        await getRunResult(threadId, runUrl, runId);
+        const responseMsg = await listMessage(threadId);
+        resolve(responseMsg);
+      } else {
+        reject("Thread state is not completed");
+      }
+    } catch (error) {
+      reject("The state is not completed");
     }
   });
 }
@@ -189,7 +196,7 @@ async function getRunResult(threadId, runUrl, runId) {
 
             const output = JSON.parse(toolRes.getContentText());
             const callId = toolCalls[i].id;
-
+       
             toolOutputs.push({
               tool_call_id: callId,
               output: output.text
