@@ -34,6 +34,29 @@
 	  }
 	}
 
+	async function sendMessageToDvcbot(inputMsg) {
+	  return new Promise(async (resolve, reject) => {
+		try {
+		  dvcbot_plugin_response = [];
+		  
+		  const threadId = await createThread();
+		  const status = await addMessageToThread(threadId, inputMsg);
+		  if (status == "completed") {
+			const runId = await runAssistant(threadId, dvcbot_assistantId);
+			const runUrl = `${BASE_URL}/threads/${threadId}/runs`;
+			await getRunResult(threadId, runUrl, runId);
+			const responseMsg = await listMessage(threadId);
+			resolve(responseMsg);
+		  } else {
+			reject("Thread state is not completed");
+		  }
+		} catch (error) {
+		  console.error("Error:", error);
+		  reject(error);
+		}
+	  });
+	}	
+
 	async function createThread() {
 	  return new Promise((resolve, reject) => {
 		var xhr = new XMLHttpRequest();
@@ -212,29 +235,6 @@
 		};
 
 		xhr.send();
-	  });
-	}
-
-	async function sendMessageToDvcbot(inputMsg) {
-	  return new Promise(async (resolve, reject) => {
-		try {
-		  dvcbot_plugin_response = [];
-		  
-		  const threadId = await createThread();
-		  const status = await addMessageToThread(threadId, inputMsg);
-		  if (status == "completed") {
-			const runId = await runAssistant(threadId, dvcbot_assistantId);
-			const runUrl = `${BASE_URL}/threads/${threadId}/runs`;
-			await getRunResult(threadId, runUrl, runId);
-			const responseMsg = await listMessage(threadId);
-			resolve(responseMsg);
-		  } else {
-			reject("Thread state is not completed");
-		  }
-		} catch (error) {
-		  console.error("Error:", error);
-		  reject(error);
-		}
 	  });
 	}
 	
