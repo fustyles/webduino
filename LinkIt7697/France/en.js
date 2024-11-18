@@ -38,6 +38,7 @@ Blockly.Msg.DVCBOT_ASSISTANTID_SHOW = "Assistant ID";
 Blockly.Msg.DVCBOT_RESPONSE_SHOW = "Get Program Return Value";
 Blockly.Msg.DVCBOT_RESULT_SHOW = "Get Response";
 Blockly.Msg.DVCBOT_USERMESSAGE_SHOW = "Conversation Message";
+Blockly.Msg.DVCBOT_SCRIPTID_SHOW = "Apps Script ID";
 
 Blockly.Msg["THINGSPEAK_PAGE_SHOW"] = "Page ThingSpeak";	  	  
 Blockly.Msg["THINGSPEAK_KEY_SHOW"] = "Key";

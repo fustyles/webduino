@@ -38,6 +38,7 @@ Blockly.Msg.DVCBOT_ASSISTANTID_SHOW = "助理代碼";
 Blockly.Msg.DVCBOT_RESPONSE_SHOW = "取得Plugin回傳值";
 Blockly.Msg.DVCBOT_RESULT_SHOW = "取得回應";
 Blockly.Msg.DVCBOT_USERMESSAGE_SHOW = "對話訊息";
+Blockly.Msg.DVCBOT_SCRIPTID_SHOW = "Apps Script ID";
 
 Blockly.Msg["THINGSPEAK_PAGE_SHOW"] = "網頁 ThingSpeak"; 
 Blockly.Msg["THINGSPEAK_KEY_SHOW"] = "金鑰";

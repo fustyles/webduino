@@ -8,15 +8,16 @@ Blockly.Arduino['dvcbot_initial'] = function (block) {
   
   Blockly.Arduino.definitions_.dvcbot_initial = 'String dvcbot_apiKey = "";\nString dvcbot_assistantId = "";\n';
   
-  var code = 'dvcbot_apiKey = '+apiKey+';\ndvcbot_assistantId = '+assistantId+';\n';
+  var code = 'dvcbot_apiKey = '+apiKey+';\ndvcbot_assistantId = '+assistantId+';\ndvcbot_assistantId = '+assistantId+';\n';
   return code; 
 };
 
 Blockly.Arduino['dvcbot_result'] = function (block) {
   var userMessage = Blockly.Arduino.valueToCode(block, 'userMessage', Blockly.Arduino.ORDER_ATOMIC); 
-
+  var scriptid = Blockly.Arduino.valueToCode(block, 'scriptid', Blockly.Arduino.ORDER_ATOMIC)||'"AKfycbzz7FWeP9DYgZX2LdRqzAoBZRcHdyHn3t9soKlwr1sytWdVsz_kSoqVLdF9jY6d2JkG4A"';
+  
 	Blockly.Arduino.definitions_.dvcbot_result = '\n'+
-			'String SendMessageToDvcBOT(String userMessage) {\n'+
+			'String SendMessageToDvcBOT(String userMessage, String scriptId) {\n'+
 			'  const char* myDomain = "script.google.com";\n'+
 			'  String getAll="", getLocation = "";\n'+
 			'  Serial.println("Connect to " + String(myDomain));\n';
@@ -30,7 +31,7 @@ Blockly.Arduino['dvcbot_result'] = function (block) {
 			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    String Data = "&dvcbot_apiKey="+urlencode(dvcbot_apiKey)+"&dvcbot_assistantId="+urlencode(dvcbot_assistantId)+"&dvcbot_inputMsg="+urlencode(userMessage);\n'+
-			'    client.println("POST /macros/s/AKfycbzz7FWeP9DYgZX2LdRqzAoBZRcHdyHn3t9soKlwr1sytWdVsz_kSoqVLdF9jY6d2JkG4A/exec HTTP/1.1");\n'+
+			'    client.println("POST /macros/s/"+scriptId+"/exec HTTP/1.1");\n'+
 			'    client.println("Host: " + String(myDomain));\n'+
 			'    client.println("Content-Length: " + String(Data.length()));\n'+
 			'    client.println("Content-Type: application/x-www-form-urlencoded");\n'+
@@ -154,7 +155,7 @@ Blockly.Arduino['dvcbot_result'] = function (block) {
 											'  return encodedMsg;\n'+
 											'}';							
 			
-  var code = 'SendMessageToDvcBOT('+userMessage+')';
+  var code = 'SendMessageToDvcBOT('+userMessage+', '+scriptid+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
