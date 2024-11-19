@@ -20732,10 +20732,7 @@ Blockly.Arduino['fu_mqtt_setup'] = function(block) {
   var clientid = Blockly.Arduino.valueToCode(block, 'clientid', Blockly.Arduino.ORDER_ATOMIC)||"";  
   var topic_subscribe = Blockly.Arduino.statementToCode(block, 'topic_subscribe');
   
-  if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735"||selectBoardType()=="HUB-8735_ultra")
-	Blockly.Arduino.definitions_.define_mqtt_library ='#include <PubSubClient_amb82.h>';
-  else
-	Blockly.Arduino.definitions_.define_mqtt_library ='#include <PubSubClient.h>';
+  Blockly.Arduino.definitions_.define_mqtt_library ='#include <PubSubClient.h>';
   Blockly.Arduino.definitions_.define_mqtt_server='const char* mqtt_server = '+server+';';
   Blockly.Arduino.definitions_.define_mqtt_port='const unsigned int mqtt_port = '+port+';';  
   Blockly.Arduino.definitions_.define_mqtt_user='#define MQTT_USER '+user;
