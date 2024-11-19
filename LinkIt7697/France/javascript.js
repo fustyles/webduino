@@ -20737,26 +20737,19 @@ Blockly.Arduino['fu_mqtt_setup'] = function(block) {
   Blockly.Arduino.definitions_.define_mqtt_port='const unsigned int mqtt_port = '+port+';';  
   Blockly.Arduino.definitions_.define_mqtt_user='#define MQTT_USER '+user;
   Blockly.Arduino.definitions_.define_mqtt_pass='#define MQTT_PASSWORD '+pass;
-
+  Blockly.Arduino.definitions_.define_mqtt_clientid='String MQTT_CLIENTID = '+clientid+';'; 
+  
   Blockly.Arduino.definitions_.define_mqtt_client = 'WiFiClient espClient;\nPubSubClient mqtt_client(espClient);\nString mqtt_data = "";\n';
 														
   Blockly.Arduino.definitions_.define_mqtt_sendtext = 'void mqtt_sendText(String topic, String text) {\n';
-  if (clientid!="")
-	    Blockly.Arduino.definitions_.define_mqtt_sendtext += '    String clientId = '+clientid+';\n';
-  else
-	    Blockly.Arduino.definitions_.define_mqtt_sendtext += '    String clientId = "ESP32-"+String(random(0xffff), HEX);\n';
-  Blockly.Arduino.definitions_.define_mqtt_sendtext += '    if (mqtt_client.connect(clientId.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n'+
+  Blockly.Arduino.definitions_.define_mqtt_sendtext += '    if (mqtt_client.connect(MQTT_CLIENTID.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n'+
 														'      mqtt_client.publish(topic.c_str(), text.c_str());\n'+
 														'    }\n'+
 														'}\n';
 														
   Blockly.Arduino.definitions_.define_mqtt_reconnect = 'void reconnect() {\n'+
 														'  while (!mqtt_client.connected()) {\n';
-  if (clientid!="")
-	    Blockly.Arduino.definitions_.define_mqtt_reconnect += '    String mqtt_clientId = '+clientid+';\n';
-  else
-	    Blockly.Arduino.definitions_.define_mqtt_reconnect += '    String mqtt_clientId = "ESP32-"+String(random(0xffff), HEX);\n';
-  Blockly.Arduino.definitions_.define_mqtt_reconnect += '    if (mqtt_client.connect(mqtt_clientId.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n    '+topic_subscribe+
+  Blockly.Arduino.definitions_.define_mqtt_reconnect += '    if (mqtt_client.connect(MQTT_CLIENTID.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n    '+topic_subscribe+
 														'    } else {\n'+
 														'      delay(5000);\n'+
 														'    }\n'+
@@ -20881,8 +20874,7 @@ Blockly.Arduino['fu_mqtt_sendimage'] = function(block) {
 	
 	if (board=="ESP32-CAM") {
 		Blockly.Arduino.definitions_.define_mqtt_sendimage =  'void mqtt_sendImage(String topic) {\n'+
-															'    String clientId = "ESP32-"+String(random(0xffff), HEX);\n'+
-															'    if (mqtt_client.connect(clientId.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n'+	
+															'    if (mqtt_client.connect(MQTT_CLIENTID.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n'+	
 															'      camera_fb_t * fb = NULL;\n'+
 															'      fb = esp_camera_fb_get();\n'+
 															'      if (!fb) {\n'+
@@ -20902,13 +20894,14 @@ Blockly.Arduino['fu_mqtt_sendimage'] = function(block) {
 															'      else\n'+
 															'        Serial.println("Publishing Photo to MQTT Failed");\n'+
 															'      esp_camera_fb_return(fb);\n'+
-															'    }\n'+														
+															'    } else {\n'+	
+															'        Serial.println("Connect to MQTT Server Failed");\n'+
+															'    }\n'+													
 															'}\n';
 		var code = 'mqtt_sendImage('+topic+');\n';
 	} else if (board=="AMB82-MINI") {
 		Blockly.Arduino.definitions_.define_mqtt_sendimage =  'void mqtt_sendImage(String topic, bool capture) {\n'+
-															'    String clientId = "AMB82-"+String(random(0xffff), HEX);\n'+
-															'    if (mqtt_client.connect(clientId.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n'+	
+															'    if (mqtt_client.connect(MQTT_CLIENTID.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n'+	
 															'      if (capture) {\n'+
 															'        Camera.getImage(0, &img_addr, &img_len);\n'+
 															'      }\n'+															
@@ -20924,7 +20917,9 @@ Blockly.Arduino['fu_mqtt_sendimage'] = function(block) {
 															'        Serial.println("Publishing Photo to MQTT Successfully");\n'+
 															'      else\n'+
 															'        Serial.println("Publishing Photo to MQTT Failed");\n'+
-															'    }\n'+														
+															'    } else {\n'+	
+															'        Serial.println("Connect to MQTT Server Failed");\n'+
+															'    }\n'+													
 															'}\n';
 		var code = 'mqtt_sendImage('+topic+', '+source+');\n';
 	}
