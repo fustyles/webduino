@@ -1,5 +1,5 @@
 /*
-  Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/11/18 20:00
+  Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/11/20 20:00
   https://www.facebook.com/francefu
   Using Apps Script to create a Line Bot Webhook for integrating with the DvcBot Assistant API.
 */
