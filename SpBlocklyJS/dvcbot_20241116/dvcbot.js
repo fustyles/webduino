@@ -144,14 +144,17 @@ async function getRunResult(threadId, runUrl, runId) {
                 toolXhr.setRequestHeader("Authorization", "Bearer " + dvcbot_apiKey);
                 toolXhr.send(JSON.stringify(JSON.parse(args)));
 
-                const output = JSON.parse(toolXhr.responseText);
-                const callId = toolCalls[i].id;
-                if (output.text)
-                  dvcbot_plugin_response.push(JSON.stringify(JSON.parse(output.text)));
-                toolOutputs.push({
-                  tool_call_id: callId,
-                  output: toolXhr.responseText
-                });
+		const output = toolXhr.responseText.substring(0, 8000).replace(/"/g, '\\"');
+		const callId = toolCalls[i].id;
+
+		const pluginResponse = JSON.parse(toolXhr.responseText);
+		if (pluginResponse.text)
+		    dvcbot_plugin_response.push(JSON.stringify(JSON.parse(pluginResponse.text)));
+	
+		toolOutputs.push({
+		    tool_call_id: callId,
+		    output: output
+		});
               }
 
               const submitToolOutputRunUrl = `${BASE_URL}/threads/${threadId}/runs/${runId}/submit_tool_outputs`;
