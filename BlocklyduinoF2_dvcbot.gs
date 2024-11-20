@@ -143,12 +143,12 @@ async function getRunResult(threadId, runUrl, runId) {
               'payload': JSON.stringify(JSON.parse(args))
             });
 
-            const output = JSON.parse(toolRes.getContentText());
+            const output = toolRes.getContentText().substring(0, 8000).replace(/"/g, '\\"');
             const callId = toolCalls[i].id;
-
+       
             toolOutputs.push({
               tool_call_id: callId,
-              output: toolRes.getContentText()
+              output: output
             });
           }
 
