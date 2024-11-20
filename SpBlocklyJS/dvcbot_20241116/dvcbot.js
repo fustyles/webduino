@@ -152,7 +152,7 @@ async function getRunResult(threadId, runUrl, runId) {
 		    if (pluginResponse.text)
 		        dvcbot_plugin_response.push(JSON.stringify(JSON.parse(pluginResponse.text)));
 		} catch (error) {
-		    dvcbot_plugin_response.push(output);
+		    dvcbot_plugin_response.push(toolXhr.responseText);
 		}
 	
 		toolOutputs.push({
