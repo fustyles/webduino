@@ -147,13 +147,12 @@ async function getRunResult(threadId, runUrl, runId) {
 		const output = toolXhr.responseText.substring(0, 8000).replace(/"/g, '\\"');
 		const callId = toolCalls[i].id;
 
-		const pluginResponse = JSON.parse(toolXhr.responseText);
-		if (pluginResponse.text) {
-		    try {
+		try {
+		    const pluginResponse = JSON.parse(toolXhr.responseText);
+		    if (pluginResponse.text)
 		        dvcbot_plugin_response.push(JSON.stringify(JSON.parse(pluginResponse.text)));
-		    } catch (error) {
-		        dvcbot_plugin_response.push(pluginResponse.text);
-		    }
+		} catch (error) {
+		    dvcbot_plugin_response.push(output);
 		}
 	
 		toolOutputs.push({
