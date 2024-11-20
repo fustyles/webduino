@@ -175,11 +175,8 @@
 
 					const output = JSON.parse(toolXhr.responseText);
 					const callId = toolCalls[i].id;
-					try {
-					    dvcbot_plugin_response.push(JSON.stringify(JSON.parse(output.text)));
-					} catch (error) {
-					    console.log(error);
-					}
+					if (output.text)
+					  dvcbot_plugin_response.push(JSON.stringify(JSON.parse(output.text)));
 					toolOutputs.push({
 					  tool_call_id: callId,
 					  output: toolXhr.responseText
