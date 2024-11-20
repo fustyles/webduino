@@ -2558,10 +2558,8 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
         obj.style.opacity = input_value;    
       else if (input_property=="innerHTML")
         obj.innerHTML = input_value;
-      else if (input_property=="innerHTML_markdown") {
-		  console.log(input_value);
-        obj.innerHTML = marked.parse(input_value);  
-	  }		
+      else if (input_property=="innerHTML_markdown")
+		obj.innerHTML = marked.parse(input_value);  	
       else if (input_property=="zindex")
         obj.style.zIndex = input_value;
       else if (input_property=="display"){ 
