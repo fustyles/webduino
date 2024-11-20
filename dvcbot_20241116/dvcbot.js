@@ -180,8 +180,7 @@
 					if (pluginResponse.text) {
 					    try {
 					        dvcbot_plugin_response.push(JSON.stringify(JSON.parse(pluginResponse.text)));
-					    } 
-					    catch (error) {
+					    } catch (error) {
 					        dvcbot_plugin_response.push(pluginResponse.text);
 					    }
 					}
