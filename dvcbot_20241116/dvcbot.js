@@ -182,7 +182,7 @@
 					}
 					toolOutputs.push({
 					  tool_call_id: callId,
-					  output: output.text
+					  output: toolXhr.responseText
 					});
 				  }
 
