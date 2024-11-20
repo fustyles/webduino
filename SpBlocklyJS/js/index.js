@@ -17,7 +17,8 @@ var categoryExpand = [];
 document.addEventListener('DOMContentLoaded', function() {
 	
 	function getScript() {
-		var script = "<script src='GameElements_20190131/gameelements.js'></script>";
+		var script = "<script src='GameElements_20190131/marked.min.js'></script>";
+		script += "<script src='GameElements_20190131/gameelements.js'></script>";		
 		script += "<link rel='stylesheet' href='css/icon.css' />";
 	
 		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace(), true);
@@ -195,7 +196,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	}	
 	
 	function getScriptRemote() {
-		var script = "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script>";
+		var script = "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/marked.min.js'></script>";
+		script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script>";		
 		script += "<link rel='stylesheet' href='https://fustyles.github.io/webduino/SpBlocklyJS/css/icon_custom.css' />";
 		
 		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace(), true);
@@ -527,7 +529,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			myTimer = setTimeout(function(){
 				if (showCode) {
 					var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());			
-					editor.setValue(code);
+					editor.setValue(js_beautify(code));
 				}
 				
 				if (mqttState ==true&&mqttLock==false&&mqtt_client) {
@@ -542,7 +544,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			myTimer1 = setTimeout(function(){
 				if (showCode) {
 					var code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());			
-					editor.setValue(code);
+					editor.setValue(js_beautify(code));
 				}		
 			}, 2000);		
 			//workspace.removeChangeListener(onBlocksChange);
@@ -654,7 +656,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	  
 	  iframe_code += getScript();
 		
-	  iframe_code += "\<\/head\>\<body\>\<div onclick='parent.document.exitFullscreen();' style='z-index:99999 !important;cursor: nw-resize;position:absolute;opacity:0.1;left:calc(100vw - 20px);'\>X\</div>\<script\>const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();\<\/script\>\<\/body\>\<\/html\>";
+	  iframe_code += "\<\/head\>\<body\>\<div onclick='parent.document.exitFullscreen();' style='z-index:99999 !important;cursor: nw-resize;position:absolute;opacity:0.1;left:calc(100vw - 20px);'\>X\</div>\<script\>"+js_beautify("const delay=(seconds)=>{return new Promise((resolve)=>{setTimeout(resolve,seconds*1000);});};const main=async()=>{"+code+"};main();")+"\<\/script\>\<\/body\>\<\/html\>";
 	  
 	  //console.log(iframe_code);
 	  try {

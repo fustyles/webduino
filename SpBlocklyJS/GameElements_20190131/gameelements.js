@@ -2543,11 +2543,11 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
       else if (input_property=="bordercolor")
         obj.style.borderColor = input_value; 
       else if (input_property=="borderradius") {
-	if (input_value.toString().toLowerCase().indexOf("px")==-1)
-          obj.style.borderRadius = input_value + "px";
-	else
-	  obj.style.borderRadius = input_value;
-      }	    
+		if (input_value.toString().toLowerCase().indexOf("px")==-1)
+			  obj.style.borderRadius = input_value + "px";
+		else
+		  obj.style.borderRadius = input_value;
+		}	    
       else if (input_property=="background")
         obj.style.background = input_value;
       else if (input_property=="color")
@@ -2557,7 +2557,11 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
       else if (input_property=="opacity")
         obj.style.opacity = input_value;    
       else if (input_property=="innerHTML")
-        obj.innerHTML = input_value;      
+        obj.innerHTML = input_value;
+      else if (input_property=="innerHTML_markdown") {
+		  console.log(input_value);
+        obj.innerHTML = marked.parse(input_value);  
+	  }		
       else if (input_property=="zindex")
         obj.style.zIndex = input_value;
       else if (input_property=="display"){ 
