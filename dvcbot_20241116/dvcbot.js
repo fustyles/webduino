@@ -173,13 +173,16 @@
 					toolXhr.setRequestHeader("Authorization", "Bearer " + dvcbot_apiKey);
 					toolXhr.send(JSON.stringify(JSON.parse(args)));
 
-					const output = JSON.parse(toolXhr.responseText);
+					const output = toolXhr.responseText.substring(0, 8000).replace(/"/g, '\\"');
 					const callId = toolCalls[i].id;
-					if (output.text)
-					  dvcbot_plugin_response.push(JSON.stringify(JSON.parse(output.text)));
+
+					const pluginResponse = JSON.parse(toolXhr.responseText);
+					if (pluginResponse.text)
+					    dvcbot_plugin_response.push(JSON.stringify(JSON.parse(pluginResponse.text)));
+				
 					toolOutputs.push({
-					  tool_call_id: callId,
-					  output: toolXhr.responseText
+					    tool_call_id: callId,
+					    output: output
 					});
 				  }
 
