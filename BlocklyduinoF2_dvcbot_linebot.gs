@@ -196,7 +196,7 @@ async function getRunResult(threadId, runUrl, runId) {
        
             toolOutputs.push({
               tool_call_id: callId,
-              output: output.text
+              output: toolRes.getContentText()
             });
           }
 
