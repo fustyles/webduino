@@ -191,7 +191,7 @@ async function getRunResult(threadId, runUrl, runId) {
               'payload': args
             });
 
-            const output = toolRes.getContentText().substring(0, 8000).replace(/"/g, '\\"');
+            let output = toolRes.getContentText().substring(0, 8000).replace(/"/g, '\\"');
             try {
               output = JSON.stringify(JSON.parse(output));
             } catch (error) {
