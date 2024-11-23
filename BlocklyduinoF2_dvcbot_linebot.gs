@@ -1,5 +1,5 @@
 /*
-  Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/11/21 00:00
+  Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/11/23 13:00
   https://www.facebook.com/francefu
   Using Apps Script to create a Line Bot Webhook for integrating with the DvcBot Assistant API.
 */
@@ -188,10 +188,14 @@ async function getRunResult(threadId, runUrl, runId) {
                 'Authorization': `Bearer ${dvcbot_apiKey}`
               },
               'method': 'post',
-              'payload': JSON.stringify(JSON.parse(args))
+              'payload': args
             });
 
             const output = toolRes.getContentText().substring(0, 8000).replace(/"/g, '\\"');
+            try {
+              output = JSON.stringify(JSON.parse(output));
+            } catch (error) {
+            }
             const callId = toolCalls[i].id;
        
             toolOutputs.push({
