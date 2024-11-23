@@ -171,7 +171,7 @@
 					toolXhr.setRequestHeader("OpenAI-Beta", "assistants=v2");
 					toolXhr.setRequestHeader("Content-Type", "application/json");
 					toolXhr.setRequestHeader("Authorization", "Bearer " + dvcbot_apiKey);
-					toolXhr.send(JSON.stringify(JSON.parse(args)));
+					toolXhr.send(args);
 
 					const output = toolXhr.responseText.substring(0, 8000).replace(/"/g, '\\"');
 					const callId = toolCalls[i].id;
