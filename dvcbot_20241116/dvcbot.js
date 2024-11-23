@@ -173,7 +173,7 @@
 					toolXhr.setRequestHeader("Authorization", "Bearer " + dvcbot_apiKey);
 					toolXhr.send(args);
 
-					const output = toolXhr.responseText.substring(0, 8000).replace(/"/g, '\\"');
+					const output = toolXhr.responseText.replace(/"/g, '\\"');
 					const callId = toolCalls[i].id;
 
 					try {
