@@ -13252,6 +13252,16 @@
 			  <block type="math_number">
 				<field name="NUM">1</field>
 			  </block>
+			</value>
+			<value name="comparision">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>		
+			</value>
+			<value name="like">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>		
 			</value>			
 		</block>
 		<block type="controls_spreadsheet_getcell_query">

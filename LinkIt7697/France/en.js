@@ -2843,6 +2843,10 @@ Blockly.Msg["SPREADSHEET_SPREADSHEET_ROWE_SHOW"] = "Row end";
 Blockly.Msg["SPREADSHEET_SPREADSHEET_COLE_SHOW"] = "Col end";
 Blockly.Msg["SPREADSHEET_SPREADSHEET_SQL_SHOW"] = "SQL";
 Blockly.Msg["SPREADSHEET_SPREADSHEET_RANGE_SHOW"] = "Range";
+Blockly.Msg["SPREADSHEET_SPREADSHEET_COLUMN_COMPARISON_SHOW"] = "Column value comparison";
+Blockly.Msg["SPREADSHEET_SPREADSHEET_COLUMN_LIKE_SHOW"] = "Column value contains a certain string";
+Blockly.Msg["SPREADSHEET_SPREADSHEET_COLUMN_VALUE_SHOW"] = "Column value";
+Blockly.Msg["SPREADSHEET_SPREADSHEET_COLUMN_LIKE_STRING_SHOW"] = "Column value contains";
 
 Blockly.Msg["LOOP_VARIABLE_SHOW"] = "Counter";
 Blockly.Msg["LOOP_ASYNCHRONOUS_SHOW"] = "Asynchronous";		

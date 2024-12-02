@@ -9135,6 +9135,9 @@ Blockly.Arduino['controls_spreadsheet_query'] = function(block){
 	var rows = Blockly.Arduino.valueToCode(block,"rows",Blockly.Arduino.ORDER_NONE);
 	var cole = Blockly.Arduino.valueToCode(block,"cole",Blockly.Arduino.ORDER_NONE);
 	var rowe = Blockly.Arduino.valueToCode(block,"rowe",Blockly.Arduino.ORDER_NONE);
+	var comparision = Blockly.Arduino.valueToCode(block,"comparision",Blockly.Arduino.ORDER_NONE);
+	var operator = block.getFieldValue('operator');
+	var like = Blockly.Arduino.valueToCode(block,"like",Blockly.Arduino.ORDER_NONE);
 	
 	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
 	Blockly.Arduino.definitions_['spreadsheetQueryData'] = 'String spreadsheetQueryData = "{\\"values\\":[]}";';		
@@ -9231,6 +9234,10 @@ Blockly.Arduino['controls_spreadsheet_query'] = function(block){
 			
 		var code = 'spreadsheetQueryData = Spreadsheet_query("select " + colsToList(' + cols + ', ' + cole + ') + " limit " + String(' + rowe + '-' + rows + '+1)+ " offset "+ String('+rows+'-1), String(' + spreadsheetid + '), String(' + spreadsheetname + '));\n';
 	}
+	else if (option=="comparision")
+		var code = 'spreadsheetQueryData = Spreadsheet_query("select * where '+String.fromCharCode(65 + (cols - 1))+' '+operator+' ' + comparision.replace(/"/g,"'") + '", String(' + spreadsheetid + '), String(' + spreadsheetname + '));\n';	
+	else if (option=="like")
+		var code = 'spreadsheetQueryData = Spreadsheet_query("select * where '+String.fromCharCode(65 + (cols - 1))+' contains \'' + like.replace(/"/g,"") + '\'", String(' + spreadsheetid + '), String(' + spreadsheetname + '));\n';	
 	return code;
 };
 

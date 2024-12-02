@@ -12724,7 +12724,9 @@ Blockly.Blocks['controls_spreadsheet_query'] = {
       .setAlign(Blockly.ALIGN_RIGHT) 
       .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["SPREADSHEET_SPREADSHEET_SQL_SHOW"],"sql"], 
-			[Blockly.Msg["SPREADSHEET_SPREADSHEET_RANGE_SHOW"],"range"]  
+			[Blockly.Msg["SPREADSHEET_SPREADSHEET_RANGE_SHOW"],"range"], 
+			[Blockly.Msg["SPREADSHEET_SPREADSHEET_COLUMN_COMPARISON_SHOW"],"comparision"], 
+			[Blockly.Msg["SPREADSHEET_SPREADSHEET_COLUMN_LIKE_SHOW"],"like"]
 		], this.validate), "option");	  
   this.appendValueInput("sql","sql")
       .setCheck("String")
@@ -12745,11 +12747,32 @@ Blockly.Blocks['controls_spreadsheet_query'] = {
   this.appendValueInput("rowe","rowe")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROWE_SHOW"]);	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_ROWE_SHOW"]);
+  this.appendDummyInput("op")
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .appendField(new Blockly.FieldDropdown([
+		["=","="],
+		[">",">"],
+		[">=",">="],
+		["<","<"],
+		["<=","<="],
+		["!=","!="]
+  ]), "operator");		  
+  this.appendValueInput("comparision","comparision")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_COLUMN_VALUE_SHOW"]);  
+  this.appendValueInput("like","like")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEET_SPREADSHEET_COLUMN_LIKE_STRING_SHOW"]);	  
   this.getInput("rows").setVisible(false);
   this.getInput("cols").setVisible(false);
   this.getInput("rowe").setVisible(false);
-  this.getInput("cole").setVisible(false);		  
+  this.getInput("cole").setVisible(false);
+  this.getInput("comparision").setVisible(false);
+  this.getInput("op").setVisible(false);
+  this.getInput("like").setVisible(false);	  
   this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -12763,7 +12786,10 @@ Blockly.Blocks['controls_spreadsheet_query'] = {
 		block.getInput("cols").setVisible(false);
 		block.getInput("rows").setVisible(false);		
 		block.getInput("cole").setVisible(false);
-		block.getInput("rowe").setVisible(false);		
+		block.getInput("rowe").setVisible(false);
+		block.getInput("comparision").setVisible(false);
+		block.getInput("op").setVisible(false);
+		block.getInput("like").setVisible(false);		
 	}
 	else if (newValue=="range") {
 		block.getInput("sql").setVisible(false);
@@ -12771,6 +12797,29 @@ Blockly.Blocks['controls_spreadsheet_query'] = {
 		block.getInput("rows").setVisible(true);
 		block.getInput("cole").setVisible(true);
 		block.getInput("rowe").setVisible(true);
+		block.getInput("comparision").setVisible(false);
+		block.getInput("op").setVisible(false);
+		block.getInput("like").setVisible(false);		
+	}
+	else if (newValue=="comparision") {
+		block.getInput("sql").setVisible(false);
+		block.getInput("cols").setVisible(true);
+		block.getInput("rows").setVisible(false);
+		block.getInput("cole").setVisible(false);
+		block.getInput("rowe").setVisible(false);
+		block.getInput("comparision").setVisible(true);
+		block.getInput("op").setVisible(true);
+		block.getInput("like").setVisible(false);		
+	}
+	else if (newValue=="like") {
+		block.getInput("sql").setVisible(false);
+		block.getInput("cols").setVisible(true);
+		block.getInput("rows").setVisible(false);
+		block.getInput("cole").setVisible(false);
+		block.getInput("rowe").setVisible(false);
+		block.getInput("comparision").setVisible(false);
+		block.getInput("op").setVisible(false);
+		block.getInput("like").setVisible(true);		
 	}	
   }
 };
