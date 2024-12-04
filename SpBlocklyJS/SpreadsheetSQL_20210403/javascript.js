@@ -27,6 +27,29 @@ Blockly.JavaScript['spreadsheetsql_executeSql'] = function (block) {
   return code; 
 };
 
+Blockly.JavaScript['spreadsheetsql_executeSql1'] = function(block){
+	var option = block.getFieldValue('option');		
+	var sql = Blockly.JavaScript.valueToCode(block,"sql",Blockly.JavaScript.ORDER_NONE);
+	var cols = Blockly.JavaScript.valueToCode(block,"cols",Blockly.JavaScript.ORDER_NONE);
+	var rows = Blockly.JavaScript.valueToCode(block,"rows",Blockly.JavaScript.ORDER_NONE);
+	var cole = Blockly.JavaScript.valueToCode(block,"cole",Blockly.JavaScript.ORDER_NONE);
+	var rowe = Blockly.JavaScript.valueToCode(block,"rowe",Blockly.JavaScript.ORDER_NONE);
+	var comparision = Blockly.JavaScript.valueToCode(block,"comparision",Blockly.JavaScript.ORDER_NONE);
+	var operator = block.getFieldValue('operator');
+	var like = Blockly.JavaScript.valueToCode(block,"like",Blockly.JavaScript.ORDER_NONE);
+    var task_id = block.getFieldValue('task_id');
+  
+	if (option=="sql")
+		var code = 'spreadsheetsql_executeSql('+sql+', "'+task_id+'");\n';
+	else if (option=="range")
+		var code = 'spreadsheetsql_executeSql("select "+spreadsheet_colsToList(' + cols + ', ' + cole + ')+" limit '+(rowe-rows+1)+ ' offset '+ (rows-1)+'", "'+task_id+'");\n';
+	else if (option=="comparision")
+		var code = 'spreadsheetsql_executeSql("select * where '+String.fromCharCode(65 + (cols - 1))+' '+operator+' ' + comparision.replace(/"/g,"'") + '", "'+task_id+'");\n';
+	else if (option=="like")
+		var code = 'spreadsheetsql_executeSql("select * where '+String.fromCharCode(65 + (cols - 1))+' contains ' + like.replace(/"/g,"'") + '", "'+task_id+'");\n';
+	return code;
+};
+
 Blockly.JavaScript['spreadsheetsql_getCellSQL'] = function (block) {
   var col = block.getFieldValue('col'); 
   var row = Blockly.JavaScript.valueToCode(block, 'row', Blockly.JavaScript.ORDER_ATOMIC);

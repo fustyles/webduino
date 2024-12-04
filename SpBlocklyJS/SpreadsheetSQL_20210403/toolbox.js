@@ -39,12 +39,42 @@ var catSpreadsheetsql = '<xml>'+
 '          </block>'+
 '        </value>'+
 '      </block>'+
-'      <block type="spreadsheetsql_executeSql">'+
-'        <value name="spreadsheet_sql">'+
-'          <block type="text">'+
-'            <field name="TEXT">select A limit 1 offset 0</field>'+
-'          </block>'+
-'        </value>'+
+'      <block type="spreadsheetsql_executeSql1">'+
+'      <value name="sql">'+
+'      <block type="text">'+
+'      <field name="TEXT">select *</field>'+
+'      </block>'+
+'      </value>'+
+'      <value name="cols">'+
+'      <block type="math_number">'+
+'      <field name="NUM">1</field>'+
+'      </block>'+
+'      </value>'+
+'      <value name="rows">'+
+'      <block type="math_number">'+
+'      <field name="NUM">1</field>'+
+'      </block>'+
+'      </value>'+
+'      <value name="cole">'+
+'      <block type="math_number">'+
+'      <field name="NUM">1</field>'+
+'      </block>'+
+'      </value>'+
+'      <value name="rowe">'+
+'      <block type="math_number">'+
+'      <field name="NUM">1</field>'+
+'      </block>'+
+'      </value>'+
+'      <value name="comparision">'+
+'      <block type="text">'+
+'      <field name="TEXT"></field>'+
+'      </block>'+
+'      </value>'+
+'      <value name="like">'+
+'      <block type="text">'+
+'      <field name="TEXT"></field>'+
+'      </block>'+
+'      </value>'+
 '        <value name="task_id">'+
 '          <block type="text">'+
 '            <field name="TEXT"></field>'+
