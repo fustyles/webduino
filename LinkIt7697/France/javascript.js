@@ -23855,4 +23855,5 @@ setTimeout(function () {
 		Blockly.Arduino['board_initializes_setup'] = Blockly.Arduino['initializes_setup'];
 		checkInit();
 	}
+	Blockly.Arduino['linkit_wifi_wait_until_ready'] = Blockly.Arduino['esp32_wifi_wait_until_ready'];
 }, 5000);
