@@ -1,36 +1,36 @@
 Blockly.Blocks['controls_spreadsheet_function'] = {
   init: function () {
   this.appendDummyInput()  
-      .appendField(Blockly.Msg["CONTROLS_SPREADSHEET"]);
+      .appendField(Blockly.Msg["SPREADSHEETSQL_SPREADSHEET"]);
   this.appendValueInput("spreadsheeturl")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_URL_SHOW"]);
+      .appendField(Blockly.Msg["SPREADSHEETSQL_URL_SHOW"]);
   this.appendValueInput("spreadsheetname")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_NAME_SHOW"]);
+      .appendField(Blockly.Msg["SPREADSHEETSQL_NAME_SHOW"]);
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg["SPREADSHEET_SET_CELL_SHOW"],"setcell"],
-		[Blockly.Msg["SPREADSHEET_CLEAR_CELL_SHOW"],"clearcell"],
-		[Blockly.Msg["SPREADSHEET_CLEAR_ROW_SHOW"],"clearrow"],
-		[Blockly.Msg["SPREADSHEET_CLEAR_COL_SHOW"],"clearcol"],		
-		[Blockly.Msg["SPREADSHEET_CLEAR_AFTERROW2_SHOW"],"clearafterrow2"],		
-		[Blockly.Msg["SPREADSHEET_CLEAR_SHEET_SHOW"],"clearsheet"]	  
+		[Blockly.Msg["SPREADSHEETSQL_SET_CELL_SHOW"],"setcell"],
+		[Blockly.Msg["SPREADSHEETSQL_CLEAR_CELL_SHOW"],"clearcell"],
+		[Blockly.Msg["SPREADSHEETSQL_CLEAR_ROW_SHOW"],"clearrow"],
+		[Blockly.Msg["SPREADSHEETSQL_CLEAR_COL_SHOW"],"clearcol"],		
+		[Blockly.Msg["SPREADSHEETSQL_CLEAR_AFTERROW2_SHOW"],"clearafterrow2"],		
+		[Blockly.Msg["SPREADSHEETSQL_CLEAR_SHEET_SHOW"],"clearsheet"]	  
 		],this.validate), "func");
   this.appendValueInput("col")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_COL_SHOW"]);		
+      .appendField(Blockly.Msg["SPREADSHEETSQL_COL_SHOW"]);		
   this.appendValueInput("row")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_ROW_SHOW"]);
+      .appendField(Blockly.Msg["SPREADSHEETSQL_ROW_SHOW"]);
   this.appendValueInput("text")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg["SPREADSHEET_TEXT_SHOW"]);
+      .appendField(Blockly.Msg["SPREADSHEETSQL_TEXT_SHOW"]);
   this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/Spreadsheet_function.gs");	  
   this.setInputsInline(false);
   this.setPreviousStatement(true);
@@ -39,6 +39,7 @@ Blockly.Blocks['controls_spreadsheet_function'] = {
   },
   validate: function(newValue) {
 	const block = this.sourceBlock_;
+	if (!block) return;
 	if (newValue=="setcell") {
 		block.getInput("row").setVisible(true);
 		block.getInput("col").setVisible(true);
@@ -86,8 +87,9 @@ Blockly.Blocks['spreadsheetsql_queryData'] = {
       .appendField(Blockly.Msg.SPREADSHEETSQL_NAME_SHOW);
   this.appendDummyInput()
 	  .setAlign(Blockly.ALIGN_RIGHT)
-	  .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
-      .appendField(new Blockly.FieldTextInput(""), "task_id");   	  
+	  .appendField(Blockly.Msg.SPREADSHEETSQL_TASK_SHOW)
+      .appendField(new Blockly.FieldTextInput(""), "task_id");
+  this.setInputsInline(false);   	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(65);
@@ -103,7 +105,7 @@ Blockly.Blocks['spreadsheetsql_executeSql'] = {
       .setCheck("String");
   this.appendDummyInput()
 	  .setAlign(Blockly.ALIGN_RIGHT)
-	  .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
+	  .appendField(Blockly.Msg.SPREADSHEETSQL_TASK_SHOW)
       .appendField(new Blockly.FieldTextInput(""), "task_id");   
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
@@ -113,10 +115,122 @@ Blockly.Blocks['spreadsheetsql_executeSql'] = {
   }
 };
 
+Blockly.Blocks['spreadsheetsql_executeSql1'] = {
+  init: function() {
+  this.appendDummyInput()  
+	  .appendField(Blockly.Msg["SPREADSHEETSQL_EXECUTESQL_SHOW"]);  
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT) 
+      .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["SPREADSHEETSQL_SQL_SHOW"],"sql"], 
+			[Blockly.Msg["SPREADSHEETSQL_RANGE_SHOW"],"range"], 
+			[Blockly.Msg["SPREADSHEETSQL_COLUMN_COMPARISON_SHOW"],"comparision"], 
+			[Blockly.Msg["SPREADSHEETSQL_COLUMN_LIKE_SHOW"],"like"]
+		], this.validate), "option");	  
+  this.appendValueInput("sql","sql")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField("SQL");	  
+  this.appendValueInput("cols","cols")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEETSQL_COLS_SHOW"]);
+  this.appendValueInput("rows","rows")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEETSQL_ROWS_SHOW"]);		  
+  this.appendValueInput("cole","cole")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEETSQL_COLE_SHOW"]);
+  this.appendValueInput("rowe","rowe")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEETSQL_ROWE_SHOW"]);
+  this.appendDummyInput("op")
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .appendField(new Blockly.FieldDropdown([
+		["=","="],
+		[">",">"],
+		[">=",">="],
+		["<","<"],
+		["<=","<="],
+		["!=","!="]
+  ]), "operator");		  
+  this.appendValueInput("comparision","comparision")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEETSQL_COLUMN_VALUE_SHOW"]);  
+  this.appendValueInput("like","like")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["SPREADSHEETSQL_COLUMN_LIKE_STRING_SHOW"]);
+  this.appendDummyInput()
+	  .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField(Blockly.Msg["SPREADSHEETSQL_TASK_SHOW"])
+      .appendField(new Blockly.FieldTextInput(""), "task_id");	  
+  this.getInput("rows").setVisible(false);
+  this.getInput("cols").setVisible(false);
+  this.getInput("rowe").setVisible(false);
+  this.getInput("cole").setVisible(false);
+  this.getInput("comparision").setVisible(false);
+  this.getInput("op").setVisible(false);
+  this.getInput("like").setVisible(false);	  
+  this.setInputsInline(false);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(65);
+  this.setHelpUrl("https://developers.google.com/chart/interactive/docs/querylanguage");
+  },
+  validate: function(newValue) {
+	const block = this.sourceBlock_;
+	if (newValue=="sql") {
+		block.getInput("sql").setVisible(true);
+		block.getInput("cols").setVisible(false);
+		block.getInput("rows").setVisible(false);		
+		block.getInput("cole").setVisible(false);
+		block.getInput("rowe").setVisible(false);
+		block.getInput("comparision").setVisible(false);
+		block.getInput("op").setVisible(false);
+		block.getInput("like").setVisible(false);		
+	}
+	else if (newValue=="range") {
+		block.getInput("sql").setVisible(false);
+		block.getInput("cols").setVisible(true);
+		block.getInput("rows").setVisible(true);
+		block.getInput("cole").setVisible(true);
+		block.getInput("rowe").setVisible(true);
+		block.getInput("comparision").setVisible(false);
+		block.getInput("op").setVisible(false);
+		block.getInput("like").setVisible(false);		
+	}
+	else if (newValue=="comparision") {
+		block.getInput("sql").setVisible(false);
+		block.getInput("cols").setVisible(true);
+		block.getInput("rows").setVisible(false);
+		block.getInput("cole").setVisible(false);
+		block.getInput("rowe").setVisible(false);
+		block.getInput("comparision").setVisible(true);
+		block.getInput("op").setVisible(true);
+		block.getInput("like").setVisible(false);		
+	}
+	else if (newValue=="like") {
+		block.getInput("sql").setVisible(false);
+		block.getInput("cols").setVisible(true);
+		block.getInput("rows").setVisible(false);
+		block.getInput("cole").setVisible(false);
+		block.getInput("rowe").setVisible(false);
+		block.getInput("comparision").setVisible(false);
+		block.getInput("op").setVisible(false);
+		block.getInput("like").setVisible(true);		
+	}	
+  }
+};
+
 Blockly.Blocks['spreadsheetsql_getCellSQL'] = {
   init: function() {
 	this.appendDummyInput()
-		.appendField(Blockly.Msg.SPREADSHEETSQL_SQL_SHOW);		  
+		.appendField("SQL");		  
 	this.appendDummyInput()
 		.appendField(Blockly.Msg.SPREADSHEETSQL_COLUMN_SHOW)
 		.appendField(new Blockly.FieldDropdown([
@@ -163,7 +277,7 @@ Blockly.Blocks['spreadsheetsql_getData'] = {
       .appendField(Blockly.Msg.SPREADSHEETSQL_GETDATA_SHOW);
   this.appendDummyInput()
 	  .setAlign(Blockly.ALIGN_RIGHT)
-	  .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
+	  .appendField(Blockly.Msg.SPREADSHEETSQL_TASK_SHOW)
       .appendField(new Blockly.FieldTextInput(""), "task_id");  	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
@@ -184,9 +298,9 @@ Blockly.Blocks['spreadsheetsql_getCell'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.setCheck("Number")  
 		.appendField(Blockly.Msg.SPREADSHEETSQL_COL_SHOW);
-    this.appendDummyInput()
+	this.appendDummyInput()
 	    .setAlign(Blockly.ALIGN_RIGHT)
-	    .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
+	    .appendField(Blockly.Msg.SPREADSHEETSQL_TASK_SHOW)
         .appendField(new Blockly.FieldTextInput(""), "task_id"); 		
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
@@ -200,7 +314,6 @@ Blockly.Blocks['spreadsheetsql_getDataTable'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.SPREADSHEETSQL_EXECUTESQL_SHOW);	  
     this.appendDummyInput()
-		.setAlign(Blockly.ALIGN_RIGHT)	
         .appendField(Blockly.Msg.SPREADSHEETSQL_GETDATATABLE_SHOW);
 	this.appendValueInput("id")
 		.setAlign(Blockly.ALIGN_RIGHT)	
@@ -228,7 +341,7 @@ Blockly.Blocks['spreadsheetsql_getDataTable'] = {
         .appendField(Blockly.Msg.SPREADSHEETSQL_COLUMNNAME_SHOW);
     this.appendDummyInput()
 	    .setAlign(Blockly.ALIGN_RIGHT)
-	    .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
+	    .appendField(Blockly.Msg.SPREADSHEETSQL_TASK_SHOW)
         .appendField(new Blockly.FieldTextInput(""), "task_id"); 		
 	this.setInputsInline(false);	  
 	this.setPreviousStatement(true);
@@ -265,7 +378,7 @@ Blockly.Blocks['spreadsheetsql_getDataCount'] = {
         ]), "count");
     this.appendDummyInput()
 	    .setAlign(Blockly.ALIGN_RIGHT)
-	    .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
+	    .appendField(Blockly.Msg.SPREADSHEETSQL_TASK_SHOW)
         .appendField(new Blockly.FieldTextInput(""), "task_id"); 		
   this.setInputsInline(true);
   this.setOutput(true, null); 
@@ -279,7 +392,7 @@ Blockly.Blocks['spreadsheetsql_clearData'] = {
       .appendField(Blockly.Msg.SPREADSHEETSQL_CLEARDATA_SHOW);
     this.appendDummyInput()
 	    .setAlign(Blockly.ALIGN_RIGHT)
-	    .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
+	    .appendField(Blockly.Msg.SPREADSHEETSQL_TASK_SHOW)
         .appendField(new Blockly.FieldTextInput(""), "task_id"); 
     this.setInputsInline(true);		
     this.setPreviousStatement(true);
@@ -294,7 +407,7 @@ Blockly.Blocks['spreadsheetsql_getdatafinish'] = {
       .appendField(Blockly.Msg.SPREADSHEETSQL_GETDATAFINISH_SHOW);
     this.appendDummyInput()
 	    .setAlign(Blockly.ALIGN_RIGHT)
-	    .appendField(Blockly.Msg.SPREADSHEET_RANGE_SHOW)
+	    .appendField(Blockly.Msg.SPREADSHEETSQL_TASK_SHOW)
         .appendField(new Blockly.FieldTextInput(""), "task_id");  	  
   this.appendStatementInput("do_");
   this.setInputsInline(true);
@@ -307,22 +420,22 @@ Blockly.Blocks['spreadsheetsql_getdatafinish'] = {
 Blockly.Blocks['controls_spreadsheet'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.CONTROLS_SPREADSHEET); 
+        .appendField(Blockly.Msg.SPREADSHEETSQL_SPREADSHEET); 
     this.appendDummyInput()
-        .appendField(Blockly.Msg.SPREADSHEET_INSERT_SHOW); 		
+        .appendField(Blockly.Msg.SPREADSHEETSQL_INSERT_SHOW); 		
     this.appendValueInput('spreadsheeturl')
-        .appendField(Blockly.Msg.SPREADSHEET_URL_SHOW);
+        .appendField(Blockly.Msg.SPREADSHEETSQL_URL_SHOW);
     this.appendValueInput('spreadsheetname')
-        .appendField(Blockly.Msg.SPREADSHEET_NAME_SHOW);
+        .appendField(Blockly.Msg.SPREADSHEETSQL_NAME_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
-          [Blockly.Msg.SPREADSHEET_INSERTFIRSTROW_SHOW,"insertfirst"],		
-          [Blockly.Msg.SPREADSHEET_ROW2_SHOW,"insertrow2"],
-          [Blockly.Msg.SPREADSHEET_INSERTLASTROW_SHOW,"insertlast"]		  
+          [Blockly.Msg.SPREADSHEETSQL_INSERTFIRSTROW_SHOW,"insertfirst"],		
+          [Blockly.Msg.SPREADSHEETSQL_ROW2_SHOW,"insertrow2"],
+          [Blockly.Msg.SPREADSHEETSQL_INSERTLASTROW_SHOW,"insertlast"]		  
         ]), "func");
     this.appendValueInput('VALUE')
         .setAlign(Blockly.ALIGN_RIGHT)	    
-        .appendField(Blockly.Msg.SPREADSHEET_COLUMN_SHOW+'A');
+        .appendField(Blockly.Msg.SPREADSHEETSQL_COLUMN_SHOW+'A');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(220);
@@ -392,7 +505,7 @@ Blockly.Blocks['controls_spreadsheet'] = {
 		for(a=1;a<=this.allCount_;a++)
 			this.appendValueInput(String.fromCharCode(a+65))
 			.setCheck(null)
-			.appendField(Blockly.Msg["SPREADSHEET_COLUMN_SHOW"]+String.fromCharCode(a+65))
+			.appendField(Blockly.Msg["SPREADSHEETSQL_COLUMN_SHOW"]+String.fromCharCode(a+65))
 			.setAlign(Blockly.ALIGN_RIGHT)
 	}
 	,reconnectChildBlocks_:function(a,b){	
@@ -404,34 +517,34 @@ Blockly.Blocks['controls_spreadsheet'] = {
 Blockly.Blocks['controls_spreadsheet_main'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.SPREADSHEET_COLUMN_SHOW);
+        .appendField(Blockly.Msg.SPREADSHEETSQL_COLUMN_SHOW);
     this.setPreviousStatement(false);	  
     this.setNextStatement(true);	  
     this.contextMenu = false;
-	this.setColour(220);
+    this.setColour(220);
   }
 };
 
 Blockly.Blocks['controls_spreadsheet_value'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.SPREADSHEET_COLUMN_SHOW);
+        .appendField(Blockly.Msg.SPREADSHEETSQL_COLUMN_SHOW);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.contextMenu = false;
-	this.setColour(220);
+    this.setColour(220);
   }
 };
 
 Blockly.Blocks['controls_spreadsheet_datetime'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.SPREADSHEET_SPREADSHEET_TEXT_SHOW);
+        .appendField(Blockly.Msg.SPREADSHEETSQL_TEXT_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
-          [Blockly.Msg.CONTROLS_SPREADSHEET_DATETIME,"gmt_datetime"],		
-          [Blockly.Msg.CONTROLS_SPREADSHEET_DATE,"gmt_date"],
-          [Blockly.Msg.CONTROLS_SPREADSHEET_TIME,"gmt_time"]		  
+          [Blockly.Msg.SPREADSHEETSQL_DATETIME,"gmt_datetime"],		
+          [Blockly.Msg.SPREADSHEETSQL_DATE,"gmt_date"],
+          [Blockly.Msg.SPREADSHEETSQL_TIME,"gmt_time"]		  
         ]), "datetime");		
 	this.setInputsInline(true);
 	this.setOutput(true, null);
