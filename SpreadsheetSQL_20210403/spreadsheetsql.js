@@ -165,7 +165,16 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
       		console.log(thrownError);
       	}
       });
-  }	  
+  }
+
+  function spreadsheet_colsToList(cols, cole) {
+	  var colList = "";
+	  for (var i=cols;i<=cole;i++){
+		colList += String.fromCharCode(65 + (i-1))+",";
+	  }
+	  colList = colList.substring(0, colList.length-1);
+	  return colList;
+  }	
   
   window.spreadsheetsql_settings = spreadsheetsql_settings;
   window.spreadsheetsql_executeSql = spreadsheetsql_executeSql;
@@ -177,5 +186,6 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
   window.spreadsheetsql_getDataCount = spreadsheetsql_getDataCount;
   window.spreadsheetsql_clearData = spreadsheetsql_clearData;
   window.spreadsheet_insert = spreadsheet_insert;
+  window.spreadsheet_colsToList = spreadsheet_colsToList;
   
 }(window, window.document));
