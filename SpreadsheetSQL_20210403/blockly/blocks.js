@@ -169,6 +169,13 @@ Blockly.Blocks['spreadsheetsql_executeSql1'] = {
 	  .setAlign(Blockly.ALIGN_RIGHT)
 	  .appendField(Blockly.Msg["SPREADSHEETSQL_TASK_SHOW"])
       .appendField(new Blockly.FieldTextInput(""), "task_id");
+  this.getInput("rows").setVisible(false);
+  this.getInput("cols").setVisible(false);
+  this.getInput("rowe").setVisible(false);
+  this.getInput("cole").setVisible(false);
+  this.getInput("comparision").setVisible(false);
+  this.getInput("op").setVisible(false);
+  this.getInput("like").setVisible(false);	  
   this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
