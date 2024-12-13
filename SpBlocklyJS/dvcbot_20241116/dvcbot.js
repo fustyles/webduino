@@ -10,10 +10,6 @@ function dvcbot_initial(apiKey, assistantId) {
 	dvcbot_assistantId = assistantId;
 }
 
-function dvcbot_result_response() {
-  return dvcbot_plugin_response;
-}
-
 async function dvcbot_result(userMessage, newline) {
   try {
     dvcbot_plugin_response = [];
@@ -239,4 +235,8 @@ async function sendMessageToDvcbot(inputMsg) {
       reject(error);
     }
   });
+}
+
+function dvcbot_result_response() {
+  return dvcbot_plugin_response;
 }
