@@ -7,7 +7,7 @@ Blockly.JavaScript['dvcbot_initial'] = function (block) {
 };
 
 Blockly.JavaScript['dvcbot_response'] = function (block) {
-  var code = 'dvcbot_result_response()';
+  var code = 'dvcbot_result_plugin()';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
