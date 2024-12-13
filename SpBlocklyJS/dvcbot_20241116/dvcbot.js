@@ -1,9 +1,11 @@
+//let result = await dvcbot_result("請自我介紹", "");
+
 let dvcbot_apiKey = "";
 let dvcbot_assistantId = "";
 
-let dvcbot_plugin_response = [];
 const BASE_URL = "https://prod.dvcbot.net/api/assts/v1";
 const THREAD_URL = "https://prod.dvcbot.net/api/assts/v1/threads";
+let dvcbot_plugin_response = [];
 
 function dvcbot_initial(apiKey, assistantId) {
 	dvcbot_apiKey = apiKey;
@@ -16,10 +18,10 @@ async function dvcbot_result(userMessage, newline) {
     const result = await sendMessageToDvcbot(userMessage);
 	if (newline=="br")
 		return result.replace(/\n/g,"<br>");
-	else if (newline=="n")
-		return result;	
+	else if (newline=="no")
+		return result.replace(/\n/g,"");
 	else
-		return result.replace(/\n/g,"");	
+		return result;	
   } catch (error) {
     return "error";
   }
