@@ -41,9 +41,9 @@ Blockly.Blocks['dvcbot_result'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.DVCBOT_RESULT_GET_BR_SHOW)
       .appendField(new Blockly.FieldDropdown([
-			["N",""],
+			["N","no"],
 			["Y \<br\>","br"],
-			["Y \\n","n"]		  
+			["Y \\n",""]		  
 	  ]), "br");  
   this.setInputsInline(true);
   this.setOutput(true, null); 
