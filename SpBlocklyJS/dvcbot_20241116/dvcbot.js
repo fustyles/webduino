@@ -1,4 +1,10 @@
-//let result = await dvcbot_result("請自我介紹", "");
+/*
+
+let dvcbot_apiKey = "xxxxx";
+let dvcbot_assistantId = "xxxxx";
+let result = await dvcbot_result("請自我介紹", "");
+
+*/
 
 let dvcbot_apiKey = "";
 let dvcbot_assistantId = "";
