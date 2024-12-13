@@ -1,5 +1,6 @@
 let dvcbot_apiKey = "";
 let dvcbot_assistantId = "";
+
 let dvcbot_plugin_response = [];
 const BASE_URL = "https://prod.dvcbot.net/api/assts/v1";
 const THREAD_URL = "https://prod.dvcbot.net/api/assts/v1/threads";
