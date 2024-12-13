@@ -1,7 +1,6 @@
 /*
 
-let dvcbot_apiKey = "xxxxx";
-let dvcbot_assistantId = "xxxxx";
+dvcbot_initial(yourApiKey, yourAssistantId);
 let result = await dvcbot_result("請自我介紹", "");
 
 */
