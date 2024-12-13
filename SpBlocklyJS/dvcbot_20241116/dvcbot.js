@@ -244,6 +244,6 @@ async function sendMessageToDvcbot(inputMsg) {
   });
 }
 
-function dvcbot_result_response() {
+function dvcbot_result_plugin() {
   return dvcbot_plugin_response;
 }
