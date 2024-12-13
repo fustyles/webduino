@@ -3,12 +3,12 @@
   https://www.facebook.com/francefu
 */
 
-
 let dvcbot_apiKey = "";
 let dvcbot_assistantId = "";
-let dvcbot_inputMsg = "";
+
 let BASE_URL = "https://prod.dvcbot.net/api/assts/v1";
 let THREAD_URL = "https://prod.dvcbot.net/api/assts/v1/threads";
+let dvcbot_inputMsg = "";
 
 function doPost(e) {
   dvcbot_apiKey = decodeURIComponent(e.parameter.dvcbot_apiKey) || "";
