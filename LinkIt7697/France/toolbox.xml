@@ -13708,6 +13708,29 @@
 	  <block type="openai_chat_reset">
 	  </block>  	  
     </category>
+	<category name="gemini_chat">
+	  <block type="gemini_chat_initial">
+		<value name="apikey">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="role">
+		  <block type="text">
+			<field name="TEXT">You are a useful assistant.</field>
+		  </block>
+		</value>		
+	  </block>
+	  <block type="gemini_chat_request">
+		<value name="content">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block> 
+	  <block type="gemini_chat_reset">
+	  </block>  	  
+    </category>	
 	<category name="catDvcbot">
 	  <block type="dvcbot_initial">
 		<value name="apiKey">

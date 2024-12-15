@@ -100,6 +100,7 @@
 <category><name>RC522</name><replace>RC522 RFID</replace></category>
 <category><name>adxl345</name><replace>ADXL345 3-axis accelerometer</replace></category>
 <category><name>openai_chat</name><replace>openAI chat</replace></category>
+<category><name>gemini_chat</name><replace>Gemini chat</replace></category>
 <category><name>gy30</name><replace>GY-30 Light intensity sensor</replace></category>
 <category><name>blekeyboardmodule</name><replace>ESP32 Keyboard</replace></category>
 <category><name>webusb</name><replace>WebUSB Module</replace></category>

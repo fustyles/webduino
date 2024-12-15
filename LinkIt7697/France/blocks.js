@@ -1,3 +1,61 @@
+Blockly.Blocks['gemini_chat_initial'] = {
+  init: function() {
+	this.appendDummyInput()
+	  .appendField(Blockly.Msg.GEMINI_CHAT_INITIAL_SHOW);
+	this.appendValueInput("apikey")
+	  .setCheck("String")
+	  .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField(Blockly.Msg.GEMINI_CHAT_KEY_SHOW); 	  
+	this.appendValueInput("role")
+	  .setCheck("String")
+	  .setAlign(Blockly.ALIGN_RIGHT)
+	  .appendField(Blockly.Msg.GEMINI_CHAT_ROLE_SHOW); 
+	this.appendDummyInput()  
+      .appendField(Blockly.Msg.GEMINI_CHAT_MODEL_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+			["gemini-1.5-flash","gemini-1.5-flash"],	  
+			["gemini-pro","gemini-pro"]	  
+	  ]), "model"); 	  
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(110);
+  }
+};
+
+Blockly.Blocks['gemini_chat_request'] = {
+  init: function() {
+	this.appendDummyInput()
+	  .appendField(Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW);
+	this.appendValueInput("content")
+	  .setCheck("String")
+	  .setAlign(Blockly.ALIGN_RIGHT);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(110);
+  }
+};
+
+Blockly.Blocks['gemini_chat_reset'] = {
+  init: function() {
+	this.appendDummyInput()
+	  .appendField(Blockly.Msg.GEMINI_CHAT_RESET_SHOW); 
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(110);
+  }
+};
+
+
+
+
+
+
+
+
+
+
 Blockly.Blocks['dvcbot_initial'] = {
   init: function() {
   this.appendDummyInput()
@@ -7992,7 +8050,7 @@ Blockly.Blocks['openai_chat_initial'] = {
 			["gpt-4o","gpt-4o"],
 			["gpt-4o-mini","gpt-4o-mini"]	  
 	  ]), "model"); 	  
-    this.setInputsInline(true);
+    this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(310);
