@@ -3350,18 +3350,18 @@ Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_SHOW = "回應內容";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_BR_SHOW = "自動換行";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_CLEAR_SHOW = "清除回應內容";
 
-Blockly.Msg.OPENAI_CHAT_INITIAL_SHOW = "openAI 初始化";
-Blockly.Msg.OPENAI_CHAT_KEY_SHOW = "Key"; 	  
+Blockly.Msg.OPENAI_CHAT_INITIAL_SHOW = "openAI聊天 初始化";
+Blockly.Msg.OPENAI_CHAT_KEY_SHOW = "API Key"; 	  
 Blockly.Msg.OPENAI_CHAT_ROLE_SHOW = "助手行為";  
-Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW = "openAI 發送對話";
-Blockly.Msg.OPENAI_CHAT_RESET_SHOW = "openAI 重設對話";
+Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW = "openAI聊天 發送對話";
+Blockly.Msg.OPENAI_CHAT_RESET_SHOW = "openAI聊天 重設對話";
 Blockly.Msg.OPENAI_CHAT_MODEL_SHOW = "模型";
 
-Blockly.Msg.GEMINI_CHAT_INITIAL_SHOW = "Gemini 初始化";
-Blockly.Msg.GEMINI_CHAT_KEY_SHOW = "Key"; 	  
+Blockly.Msg.GEMINI_CHAT_INITIAL_SHOW = "Gemini聊天 初始化";
+Blockly.Msg.GEMINI_CHAT_KEY_SHOW = "API Key"; 	  
 Blockly.Msg.GEMINI_CHAT_ROLE_SHOW = "助手行為";  
-Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW = "Gemini 發送對話";
-Blockly.Msg.GEMINI_CHAT_RESET_SHOW = "Gemini 重設對話";
+Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW = "Gemini聊天 發送對話";
+Blockly.Msg.GEMINI_CHAT_RESET_SHOW = "Gemini聊天 重設對話";
 Blockly.Msg.GEMINI_CHAT_MODEL_SHOW = "模型";
 
 Blockly.Msg["GY30_GETDATA_SHOW"] = "GY-30光照度 讀取感測器值(lx)";
