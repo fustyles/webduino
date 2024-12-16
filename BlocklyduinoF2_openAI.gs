@@ -24,7 +24,7 @@ function doPost(e) {
 }
 
 function sendMessageToOpenaiChat(key, model, role, message){
-    //try {
+    try {
         let messages = [
           {"role": "system", "content": role},
           {"role": "user", "content": message}
@@ -47,7 +47,7 @@ function sendMessageToOpenaiChat(key, model, role, message){
         let response = UrlFetchApp.fetch(url, options);
         let json = JSON.parse(response.getContentText());
         return json["choices"][0]["message"]["content"];
-    //} catch (error) {
-    //    return JSON.stringify(error);
-    //}          
+    } catch (error) {
+        return JSON.stringify(error);
+    }          
 }
