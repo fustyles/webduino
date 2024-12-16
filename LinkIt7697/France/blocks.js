@@ -48,7 +48,7 @@ Blockly.Blocks['gemini_chat_gs_request'] = {
 	this.setInputsInline(false);
 	this.setOutput(true, null); 
 	this.setColour(110);
-	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/BlocklyduinoF2_gemini");
+	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/BlocklyduinoF2_gemini.gs");
   }
 };
 
