@@ -13727,7 +13727,19 @@
 			<field name="TEXT"></field>
 		  </block>
 		</value>
-	  </block> 
+	  </block>
+	  <block type="gemini_chat_gs_request">
+		<value name="content">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="scriptid">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>		
+	  </block>	  
 	  <block type="gemini_chat_reset">
 	  </block>  	  
     </category>	

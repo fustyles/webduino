@@ -3350,7 +3350,8 @@ Blockly.Msg.OPENAI_CHAT_MODEL_SHOW = "Model";
 
 Blockly.Msg.GEMINI_CHAT_INITIAL_SHOW = "Gemini chat Initial";
 Blockly.Msg.GEMINI_CHAT_KEY_SHOW = "API Key"; 	  
-Blockly.Msg.GEMINI_CHAT_ROLE_SHOW = "Assistant behavior";  
+Blockly.Msg.GEMINI_CHAT_ROLE_SHOW = "Assistant behavior";
+Blockly.Msg.GEMINI_SCRIPTID_SHOW = "Apps Script ID"; 
 Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW = "Gemini chat Send content";
 Blockly.Msg.GEMINI_CHAT_RESET_SHOW = "Gemini chat Reset messages";
 Blockly.Msg.GEMINI_CHAT_MODEL_SHOW = "Model";

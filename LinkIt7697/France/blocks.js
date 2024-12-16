@@ -13,7 +13,7 @@ Blockly.Blocks['gemini_chat_initial'] = {
 	this.appendDummyInput()  
       .appendField(Blockly.Msg.GEMINI_CHAT_MODEL_SHOW)
       .appendField(new Blockly.FieldDropdown([
-			["gemini-1.5-flash","gemini-1.5-flash"],	  
+			["gemini-1.5-flash","gemini-1.5-flash-latest"],	  
 			["gemini-pro","gemini-pro"]	  
 	  ]), "model"); 	  
     this.setInputsInline(false);
@@ -25,12 +25,27 @@ Blockly.Blocks['gemini_chat_initial'] = {
 
 Blockly.Blocks['gemini_chat_request'] = {
   init: function() {
-	this.appendDummyInput()
-	  .appendField(Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW);
 	this.appendValueInput("content")
-	  .setCheck("String")
-	  .setAlign(Blockly.ALIGN_RIGHT);
+		.appendField(Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW)
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT);
 	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(110);
+  }
+};
+
+Blockly.Blocks['gemini_chat_gs_request'] = {
+  init: function() {
+	this.appendValueInput("content")
+		.appendField(Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW)
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT);
+    this.appendValueInput("scriptid")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.GEMINI_SCRIPTID_SHOW);	  
+	this.setInputsInline(false);
 	this.setOutput(true, null); 
 	this.setColour(110);
   }

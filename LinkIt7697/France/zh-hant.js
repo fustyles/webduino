@@ -3359,7 +3359,8 @@ Blockly.Msg.OPENAI_CHAT_MODEL_SHOW = "模型";
 
 Blockly.Msg.GEMINI_CHAT_INITIAL_SHOW = "Gemini聊天 初始化";
 Blockly.Msg.GEMINI_CHAT_KEY_SHOW = "API Key"; 	  
-Blockly.Msg.GEMINI_CHAT_ROLE_SHOW = "助手行為";  
+Blockly.Msg.GEMINI_CHAT_ROLE_SHOW = "助手行為";
+Blockly.Msg.GEMINI_SCRIPTID_SHOW = "Apps Script ID";
 Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW = "Gemini聊天 發送對話";
 Blockly.Msg.GEMINI_CHAT_RESET_SHOW = "Gemini聊天 重設對話";
 Blockly.Msg.GEMINI_CHAT_MODEL_SHOW = "模型";
