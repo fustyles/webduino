@@ -388,7 +388,7 @@ Blockly.Arduino['dvcbot_result'] = function (block) {
 			'  }\n'+
 			'  \n'+
 			'  if (getBody.lastIndexOf(\'\\r\')>2) {\n'+
-			'    getBody = getBody.substring(getBody.indexOf(\'\\r\'), getBody.lastIndexOf(\'\\r\', getBody.lastIndexOf(\'\\r\')-1)-1);\n'+
+			'    getBody = getBody.substring(getBody.indexOf(\'\\r\'), getBody.lastIndexOf(\'\\r\')-1);\n'+
 			'  }\n'+
 			'  getBody.trim();\n'+
 			'  Serial.println();\n'+			
@@ -6450,10 +6450,14 @@ Blockly.Arduino['gy30_getdata'] = function(block) {
 Blockly.Arduino['openai_chat_initial'] = function (block) {
   var apikey = Blockly.Arduino.valueToCode(block, 'apikey', Blockly.Arduino.ORDER_ATOMIC)||"";	
   var role = Blockly.Arduino.valueToCode(block, 'role', Blockly.Arduino.ORDER_ATOMIC)||"";
-  role = role.replace(/"/g,"\\\"");
   var model = block.getFieldValue('model');
 
-  Blockly.Arduino.definitions_['openai_chat_initial'] = 'String openaiKey = '+apikey+';\nString model = "'+model+'";\nString system_content = "{\\"role\\": \\"system\\", \\"content\\":'+ role +'}";\nString historical_messages = system_content;\n';  
+  Blockly.Arduino.definitions_['openai_chat_initial'] = ''+
+									  'String openai_apikey = '+apikey+';\n'+
+									  'String openai_model = "'+model+'";\n'+
+									  'String openai_role = '+role+';\n'+									  
+									  'String system_content = "{\\"role\\": \\"system\\", \\"content\\":\\""+ openai_role+"\\"}";\n'+
+									  'String historical_messages = system_content;\n';  
 	
   Blockly.Arduino.definitions_['openai_chat_request'] = 'String openAI_chat_request(String message) {\n';
   
@@ -6465,12 +6469,12 @@ Blockly.Arduino['openai_chat_initial'] = function (block) {
   Blockly.Arduino.definitions_['openai_chat_request'] += ''
 		+'  String user_content = "{\\"role\\": \\"user\\", \\"content\\":\\""+ message+"\\"}";\n'
 		+'  historical_messages += ", "+user_content;\n'
-		+'  String request = "{\\"model\\":\\""+model+"\\",\\"messages\\":[" + historical_messages + "]}";\n'
+		+'  String request = "{\\"model\\":\\""+openai_model+"\\",\\"messages\\":[" + historical_messages + "]}";\n'
 		+'  if (client.connect("api.openai.com", 443)) {\n'
 		+'    client.println("POST /v1/chat/completions HTTP/1.1");\n'
 		+'    client.println("Connection: close");\n'
 		+'    client.println("Host: api.openai.com");\n'
-		+'    client.println("Authorization: Bearer " + openaiKey);\n'
+		+'    client.println("Authorization: Bearer " + openai_apikey);\n'
 		+'    client.println("Content-Type: application/json; charset=utf-8");\n'
 		+'    client.println("Content-Length: " + String(request.length()));\n'
 		+'    client.println();\n'
@@ -6531,6 +6535,152 @@ Blockly.Arduino['openai_chat_request'] = function (block) {
   var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||"Hi";
   
   var code = 'openAI_chat_request('+content+')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['openai_chat_gs_request'] = function (block) {
+  var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||"Hi";
+  var scriptId = Blockly.Arduino.valueToCode(block, 'scriptid', Blockly.Arduino.ORDER_ATOMIC)||"Hi";
+  
+  Blockly.Arduino.definitions_['openai_chat_gs_request'] = 'String openai_chat_gs_request(String message, String scriptId) {\n'+
+			'  const char* myDomain = "script.google.com";\n'+
+			'  String getAll="", getLocation = "";\n'+
+			'  //Serial.println("Connect to " + String(myDomain));\n';
+			
+	if (selectBoardType()=="LinkIt")
+		Blockly.Arduino.definitions_['openai_chat_gs_request'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_['openai_chat_gs_request'] += '  client.setInsecure();\n';		
+
+  Blockly.Arduino.definitions_['openai_chat_gs_request'] += '\n'+
+			'  if (client.connect(myDomain, 443)) {\n'+
+			'  	 //Serial.println("Connection successful");\n'+
+			'    String Data = "&key="+urlencode(openai_apikey)+"&model="+urlencode(openai_model)+"&role="+urlencode(openai_role)+"&message="+urlencode(message);\n'+
+			'    client.println("POST /macros/s/"+scriptId+"/exec HTTP/1.1");\n'+
+			'    client.println("Host: " + String(myDomain));\n'+
+			'    client.println("Content-Length: " + String(Data.length()));\n'+
+			'    client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
+			'    \n'+
+			'    int Index;\n'+
+			'    for (Index = 0; Index < Data.length(); Index = Index+1024) {\n'+
+			'      client.print(Data.substring(Index, Index+1024));\n'+
+			'    }\n'+
+			'    \n'+
+			'    int waitTime = 30000;\n'+
+			'    long startTime = millis();\n'+
+			'    boolean state = false;\n'+
+			'    \n'+
+			'    while ((startTime + waitTime) > millis())\n'+
+			'    {\n'+
+			'      //Serial.print(".");\n'+
+			'      delay(100);\n'+
+			'      while (client.available())\n'+
+			'      {\n'+
+			'          char c = client.read();\n'+
+			'          if (state&&c == \'\\n\')\n'+
+			'            break;\n'+			
+			'          if (state)\n'+
+			'            getLocation += String(c);\n'+
+			'          if (c != \'\\r\')\n'+
+			'            getAll += String(c);\n'+
+			'          if (getAll.indexOf("script.googleusercontent.com")!=-1)\n'+
+			'            state = true;\n'+			
+			'          startTime = millis();\n'+
+			'       }\n'+
+			'       if (getLocation.length()>0) break;\n'+
+			'    }\n'+
+			'    client.stop();\n'+			
+			'  }\n'+
+			'  else {\n'+
+			'    getLocation="";\n'+
+			'    Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
+			'  }\n'+
+			'  \n'+
+			'  //Serial.println(getAll);\n'+			
+			'  //Serial.println("https://script.googleusercontent.com" +getLocation);\n'+			
+			'  return getAppsScriptResponse(getLocation);\n'+
+			'}\n';
+			
+  Blockly.Arduino.definitions_['openai_chat_gs_request'] += '\n'+
+			'String getAppsScriptResponse(String gsPath) {\n'+
+			'  if (!gsPath) return "error";\n'+
+			'  const char* myDomain = "script.googleusercontent.com";\n'+
+			'  String getAll="", getBody = "";\n'+
+			'  \n'+
+			'  //Serial.println("Connect to " + String(myDomain));\n';
+			
+	if (selectBoardType()=="LinkIt")
+		Blockly.Arduino.definitions_['openai_chat_gs_request'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+		Blockly.Arduino.definitions_['openai_chat_gs_request'] += '  client.setInsecure();\n';	
+
+	Blockly.Arduino.definitions_['openai_chat_gs_request'] += '\n'+
+			'  if (client.connect(myDomain, 443)) {\n'+	
+			'    //Serial.println("Connection successful");\n'+
+			'    client.println("GET " + gsPath + " HTTP/1.1");\n'+
+			'    client.println("Host: " + String(myDomain));\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
+			'    \n'+
+			'    int waitTime = 10000;\n'+
+			'    long startTime = millis();\n'+
+			'    boolean state = false;\n'+
+			'    \n'+
+			'    while ((startTime + waitTime) > millis())\n'+
+			'    {\n'+
+			'      //Serial.print(".");\n'+
+			'      delay(100);\n'+
+			'      while (client.available())\n'+
+			'      {\n'+
+			'          char c = client.read();\n'+
+			'          if (state==true) getBody += String(c);\n'+        
+			'          if (c == \'\\n\')\n'+
+			'          {\n'+
+			'            if (getAll.length()==0) state=true;\n'+
+			'            getAll = "";\n'+
+			'          }\n'+
+			'          else if (c != \'\\r\')\n'+
+			'            getAll += String(c);\n'+
+			'          startTime = millis();\n'+
+			'       }\n'+
+			'       if (getBody.length()>0) break;\n'+
+			'    }\n'+
+			'    client.stop();\n'+
+			'    //Serial.println(getBody);\n'+
+			'  }\n'+
+			'  else {\n'+
+			'    getBody="Connected to " + String(myDomain) + " failed.";\n'+
+			'    Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
+			'  }\n'+
+			'  \n'+
+			'  if (getBody.lastIndexOf(\'\\r\')>2) {\n'+
+			'    getBody = getBody.substring(getBody.indexOf(\'\\r\'), getBody.lastIndexOf(\'\\r\', getBody.lastIndexOf(\'\\r\')-1)-1);\n'+
+			'  }\n'+
+			'  getBody.trim();\n'+
+			'  //Serial.println();\n'+
+			'  return getBody;\n'+
+			'}\n';			
+
+	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
+											'  const char *msg = str.c_str();\n'+
+											'  const char *hex = "0123456789ABCDEF";\n'+
+											'  String encodedMsg = "";\n'+
+											'  while (*msg != \'\\0\') {\n'+
+											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
+											'      encodedMsg += *msg;\n'+
+											'    } else {\n'+
+											'      encodedMsg += \'%\';\n'+
+											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
+											'      encodedMsg += hex[*msg & 0xf];\n'+
+											'    }\n'+
+											'    msg++;\n'+
+											'  }\n'+
+											'  return encodedMsg;\n'+
+											'}';				
+		
+  var code = 'openai_chat_gs_request('+content+', '+scriptId+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 

@@ -3343,7 +3343,8 @@ Blockly.Msg.OPENAI_TEXT_RESPONSE_CLEAR_SHOW = "Clear response";
 
 Blockly.Msg.OPENAI_CHAT_INITIAL_SHOW = "openAI chat Initial";
 Blockly.Msg.OPENAI_CHAT_KEY_SHOW = "API Key"; 	  
-Blockly.Msg.OPENAI_CHAT_ROLE_SHOW = "Assistant behavior";  
+Blockly.Msg.OPENAI_CHAT_ROLE_SHOW = "Assistant behavior";
+Blockly.Msg.OPENAI_SCRIPTID_SHOW = "Apps Script ID";   
 Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW = "openAI chat Send content";
 Blockly.Msg.OPENAI_CHAT_RESET_SHOW = "openAI chat Reset messages";
 Blockly.Msg.OPENAI_CHAT_MODEL_SHOW = "Model";

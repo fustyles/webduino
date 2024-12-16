@@ -8075,14 +8075,30 @@ Blockly.Blocks['openai_chat_initial'] = {
 
 Blockly.Blocks['openai_chat_request'] = {
   init: function() {
-	this.appendDummyInput()
-	  .appendField(Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW);
 	this.appendValueInput("content")
+		.appendField(Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW)
 	  .setCheck("String")
 	  .setAlign(Blockly.ALIGN_RIGHT);
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
 	this.setColour(310);
+  }
+};
+
+Blockly.Blocks['openai_chat_gs_request'] = {
+  init: function() {
+	this.appendValueInput("content")
+		.appendField(Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW)
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT);
+    this.appendValueInput("scriptid")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.OPENAI_SCRIPTID_SHOW);	  
+	this.setInputsInline(false);
+	this.setOutput(true, null); 
+	this.setColour(310);
+	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/BlocklyduinoF2_openAI.gs");
   }
 };
 

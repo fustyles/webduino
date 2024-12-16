@@ -13685,6 +13685,7 @@
 	  <block type="fu_taiwan_weather_get">
 	  </block>  	  
     </category>
+	<sep id="category_sep"></sep>	
 	<category name="openai_chat">
 	  <block type="openai_chat_initial">
 		<value name="apikey">
@@ -13704,7 +13705,19 @@
 			<field name="TEXT"></field>
 		  </block>
 		</value>
-	  </block> 
+	  </block>
+	  <block type="openai_chat_gs_request">
+		<value name="content">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="scriptid">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>		
+	  </block>	  
 	  <block type="openai_chat_reset">
 	  </block>  	  
     </category>

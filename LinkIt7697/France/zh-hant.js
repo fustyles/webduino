@@ -3352,7 +3352,8 @@ Blockly.Msg.OPENAI_TEXT_RESPONSE_CLEAR_SHOW = "清除回應內容";
 
 Blockly.Msg.OPENAI_CHAT_INITIAL_SHOW = "openAI聊天 初始化";
 Blockly.Msg.OPENAI_CHAT_KEY_SHOW = "API Key"; 	  
-Blockly.Msg.OPENAI_CHAT_ROLE_SHOW = "助手行為";  
+Blockly.Msg.OPENAI_CHAT_ROLE_SHOW = "助手行為";
+Blockly.Msg.OPENAI_SCRIPTID_SHOW = "Apps Script ID";  
 Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW = "openAI聊天 發送對話";
 Blockly.Msg.OPENAI_CHAT_RESET_SHOW = "openAI聊天 重設對話";
 Blockly.Msg.OPENAI_CHAT_MODEL_SHOW = "模型";
