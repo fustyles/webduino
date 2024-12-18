@@ -23517,9 +23517,11 @@ Blockly.Arduino['esp32_cam_openai_vision'] = function(block) {
 			'          if (getResponse.indexOf("\\"},")!=-1&&state==true) {\n'+
 			'            state=false;\n'+
 			'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'+
+			'            break;\n'+				
 			'          } else if (getResponse.indexOf("\\"")!=-1&&c == \'\\n\'&&state==true) {\n'+
 			'            state=false;\n'+
 			'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'+
+			'            break;\n'+				
 			'          }\n'+
 			'       }\n'+
 			'       if (getResponse.length()>0) {\n'+
