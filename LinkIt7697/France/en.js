@@ -2001,6 +2001,13 @@ Blockly.Msg["ESP32_CAM_GEMINI_VISION"] = "ESP32-CAM Image capture Gemini visual 
 Blockly.Msg["ESP32_CAM_GEMINI_KEY"] = "Gemini Key";
 Blockly.Msg["ESP32_CAM_GEMINI_MESSAGE"] = "Conversation Message";
 
+Blockly.Msg["ESP32_CAM_CUSTOM_VISION"] = "ESP32-CAM Image capture Custom visual analysis";
+Blockly.Msg["ESP32_CAM_CUSTOM_DOMAIN"] = "Domain";
+Blockly.Msg["ESP32_CAM_CUSTOM_PATH"] = "Path";
+Blockly.Msg["ESP32_CAM_CUSTOM_MODEL"] = "Model";
+Blockly.Msg["ESP32_CAM_CUSTOM_KEY"] = "Key";		
+Blockly.Msg["ESP32_CAM_CUSTOM_MESSAGE"] = "Conversation Message";
+
 Blockly.Msg["ESP32_CAM_SPREADSHEET_ROW_SHOW"] = "Number of rows";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW"] = "Customized column number";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_INSERTFIRSTROW_SHOW"] = "Insert the first column";

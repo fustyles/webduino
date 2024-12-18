@@ -23638,6 +23638,109 @@ Blockly.Arduino['esp32_cam_gemini_vision'] = function(block) {
 	return [code, Blockly.Arduino.ORDER_NONE];			
 }
 
+Blockly.Arduino['esp32_cam_custom_vision'] = function(block) {
+    var domain = Blockly.Arduino.valueToCode(block, 'domain', Blockly.Arduino.ORDER_ATOMIC);
+    var model = Blockly.Arduino.valueToCode(block, 'model', Blockly.Arduino.ORDER_ATOMIC);
+	var path = Blockly.Arduino.valueToCode(block, 'path', Blockly.Arduino.ORDER_ATOMIC);
+    var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
+    var message = Blockly.Arduino.valueToCode(block, 'message', Blockly.Arduino.ORDER_ATOMIC);
+
+	if (selectBoardType().indexOf("esp")!=-1)
+	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
+	else
+	  Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
+
+	Blockly.Arduino.definitions_.SendStillToOpenaiVision = '\n'+
+			'String SendStillToCustomVision(String domain, String path, String model, String key, String message) {\n'+
+			'  const char* myDomain = domain.c_str();\n'+
+			'  String getResponse="",Feedback="";\n'+			
+			'  Serial.println("Connect to " + String(myDomain));\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_.SendStillToOpenaiVision += '  client.setInsecure();\n';
+	Blockly.Arduino.definitions_.SendStillToOpenaiVision +='  if (client.connect(myDomain, 443)) {\n'+
+			'    Serial.println("Connection successful");\n'+
+			'    camera_fb_t * fb = NULL;\n'+
+			'    fb = esp_camera_fb_get();\n'+
+			'    if(!fb) {\n'+
+			'      Serial.println("Camera capture failed");\n'+
+			'      delay(1000);\n'+
+			'      ESP.restart();\n'+
+			'      return "Camera capture failed";\n'+
+			'    }\n'+
+			'    char *input = (char *)fb->buf;\n'+
+			'    char output[base64_enc_len(3)];\n'+
+ 			'    String imageFile = "data:image/jpeg;base64,";\n'+
+			'    for (int i=0;i<fb->len;i++) {\n'+
+			'      base64_encode(output, (input++), 3);\n'+
+			'      if (i%3==0) imageFile += String(output);\n'+
+			'    }\n'+
+			'    String Data = "{\\"model\\": \\""+model+"\\", \\"messages\\": [{\\"role\\": \\"user\\",\\"content\\": [{ \\"type\\": \\"text\\", \\"text\\": \\""+message+"\\"},{\\"type\\": \\"image_url\\", \\"image_url\\": {\\"url\\": \\""+imageFile+"\\"}}]}]}";\n'+				
+			'    \n'+
+			'    client.println("POST "+path+" HTTP/1.1");\n'+
+			'    client.println("Host: "+String(myDomain));\n'+
+			'    client.println("Authorization: Bearer " + key);\n'+
+			'    client.println("Content-Type: application/json; charset=utf-8");\n'+
+			'    client.println("Content-Length: " + String(Data.length()));\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
+			'    \n'+
+			'    int Index;\n'+
+			'    for (Index = 0; Index < Data.length(); Index = Index+1024) {\n'+
+			'      client.print(Data.substring(Index, Index+1024));\n'+
+			'    }\n'+
+			'    esp_camera_fb_return(fb);\n'+
+			'    \n'+
+			'    int waitTime = 10000;\n'+
+			'    long startTime = millis();\n'+
+			'    boolean state = false;\n'+
+			'    while ((startTime + waitTime) > millis()) {\n'+
+			'      Serial.print(".");\n'+
+			'      delay(100);\n'+
+			'      while (client.available()) {\n'+
+			'          char c = client.read();\n'+
+			'          if (state==true)\n'+
+			'            getResponse += String(c);\n'+
+			'          if (c == \'\\n\')\n'+
+			'            Feedback = "";\n'+
+			'          else if (c != \'\\r\')\n'+
+			'            Feedback += String(c);\n'+
+			'          if (Feedback.indexOf("\\",\\"content\\":\\"")!=-1)\n'+
+			'            state=true;\n'+
+			'          if (Feedback.indexOf("\\"},")!=-1||Feedback.indexOf("\\",")!=-1)\n'+
+			'            state=false;\n'+
+			'          startTime = millis();\n'+
+			'          if (Feedback.indexOf("\\",\\"content\\":\\"")!=-1||Feedback.indexOf("\\"content\\": \\"")!=-1)\n'+
+			'            state=true;\n'+
+			'          if (getResponse.indexOf("\\"},")!=-1&&state==true) {\n'+
+			'            state=false;\n'+
+			'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'+
+			'            break;\n'+
+			'          } else if (getResponse.indexOf("\\"")!=-1&&c == \'\\n\'&&state==true) {\n'+
+			'            state=false;\n'+
+			'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'+
+			'            break;\n'+			
+			'          }\n'+
+			'       }\n'+
+			'       if (getResponse.length()>0) {\n'+
+			'          client.stop();\n'+
+			'          return getResponse;\n'+
+			'       }\n'+
+			'    }\n'+
+			'    client.stop();\n'+
+			'    getResponse = "null";\n'+
+			'  }\n'+
+			'  else {\n'+
+			'    getResponse = "Connected to " + String(myDomain) + " failed.";\n'+
+			'    Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
+			'  }\n'+
+			'  \n'+
+			'  return getResponse;\n'+
+			'}\n';			
+			
+	var code = 'SendStillToCustomVision('+domain+', '+path+', '+model+', '+key+', '+message+')';
+	return [code, Blockly.Arduino.ORDER_NONE];			
+}
+
 Blockly.Arduino['esp32_cam_spreadsheet'] = function(block) {
   var value_spreadsheeturl = Blockly.Arduino.valueToCode(block, 'spreadsheeturl', Blockly.Arduino.ORDER_ATOMIC);
   var value_spreadsheetname = Blockly.Arduino.valueToCode(block, 'spreadsheetname', Blockly.Arduino.ORDER_ATOMIC);

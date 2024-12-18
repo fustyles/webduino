@@ -2000,6 +2000,13 @@ Blockly.Msg["ESP32_CAM_GEMINI_VISION"] = "ESP32-CAM 截圖上傳Gemini視覺分�
 Blockly.Msg["ESP32_CAM_GEMINI_KEY"] = "Gemini Key";
 Blockly.Msg["ESP32_CAM_GEMINI_MESSAGE"] = "對話訊息";	
 
+Blockly.Msg["ESP32_CAM_CUSTOM_VISION"] = "ESP32-CAM 截圖上傳自訂伺服器視覺分析";
+Blockly.Msg["ESP32_CAM_CUSTOM_DOMAIN"] = "主機";
+Blockly.Msg["ESP32_CAM_CUSTOM_PATH"] = "路徑";
+Blockly.Msg["ESP32_CAM_CUSTOM_MODEL"] = "模型";
+Blockly.Msg["ESP32_CAM_CUSTOM_KEY"] = "Key";		
+Blockly.Msg["ESP32_CAM_CUSTOM_MESSAGE"] = "對話訊息";
+
 Blockly.Msg["ESP32_CAM_SPREADSHEET_ROW_SHOW"] = "行數";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_CUSTOMROW_SHOW"] = "自訂列數";
 Blockly.Msg["ESP32_CAM_SPREADSHEET_INSERTFIRSTROW_SHOW"] = "插入第一列";

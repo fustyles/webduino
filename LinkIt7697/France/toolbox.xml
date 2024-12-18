@@ -1243,6 +1243,33 @@
 					<field name="TEXT"></field>
 				  </block>
 				</value>				
+			  </block>
+			  <block type="esp32_cam_custom_vision">
+				<value name="domain">
+				  <block type="text">
+					<field name="TEXT">api.groq.com</field>
+				  </block>
+				</value>
+				<value name="path">
+				  <block type="text">
+					<field name="TEXT">/openai/v1/chat/completions</field>
+				  </block>
+				</value>				
+				<value name="model">
+				  <block type="text">
+					<field name="TEXT">llama-3.2-90b-vision-preview</field>
+				  </block>
+				</value>			  
+				<value name="key">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="message">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>				
 			  </block>			  
 			<block type="esp32_cam_spreadsheet"> 
 				<value name="spreadsheeturl">

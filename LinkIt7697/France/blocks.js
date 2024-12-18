@@ -31008,6 +31008,7 @@ Blockly.Blocks['esp32_cam_openai_vision'] = {
 	this.setInputsInline(false);
     this.setOutput(true, null);  
 	this.setColour(Blockly.Msg["HUE_12"]);
+	this.setHelpUrl("https://platform.openai.com/docs/guides/vision");	
   }
 };
 
@@ -31026,6 +31027,38 @@ Blockly.Blocks['esp32_cam_gemini_vision'] = {
 	this.setInputsInline(false);
     this.setOutput(true, null);  
 	this.setColour(Blockly.Msg["HUE_12"]);
+	this.setHelpUrl("https://ai.google.dev/gemini-api/docs/vision");	
+  }
+};
+
+Blockly.Blocks['esp32_cam_custom_vision'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["ESP32_CAM_CUSTOM_VISION"]);
+    this.appendValueInput("domain")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["ESP32_CAM_CUSTOM_DOMAIN"]);
+    this.appendValueInput("path")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["ESP32_CAM_CUSTOM_PATH"]);		
+    this.appendValueInput("model")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["ESP32_CAM_CUSTOM_MODEL"]);		
+    this.appendValueInput("key")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["ESP32_CAM_CUSTOM_KEY"]);		
+    this.appendValueInput("message")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["ESP32_CAM_CUSTOM_MESSAGE"]);			
+	this.setInputsInline(false);
+    this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_12"]);
+	this.setHelpUrl("https://console.groq.com/docs/overview");	
   }
 };
 
