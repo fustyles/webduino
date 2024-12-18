@@ -3817,6 +3817,93 @@ Blockly.Arduino['amb82_mini_gemini_vision'] = function(block) {
 	return [code, Blockly.Arduino.ORDER_NONE];			
 }
 
+Blockly.Arduino['amb82_mini_custom_vision'] = function(block) {
+	var source = block.getFieldValue('source');
+    var domain = Blockly.Arduino.valueToCode(block, 'domain', Blockly.Arduino.ORDER_ATOMIC);
+    var model = Blockly.Arduino.valueToCode(block, 'model', Blockly.Arduino.ORDER_ATOMIC);
+	var path = Blockly.Arduino.valueToCode(block, 'path', Blockly.Arduino.ORDER_ATOMIC);
+    var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC);
+    var message = Blockly.Arduino.valueToCode(block, 'message', Blockly.Arduino.ORDER_ATOMIC);
+	
+	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
+	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
+
+	Blockly.Arduino.definitions_.SendStillToOpenaiVision = '\n'+
+			'String SendStillToCustomVision(String domain, String path, String model, String key, String message, bool capture) {\n'+
+			'  const char* myDomain = domain.c_str();\n'+
+			'  String getResponse="",Feedback="";\n'+			
+			'  Serial.println("Connect to " + String(myDomain));\n'+
+			'  if (client.connect(myDomain, 443)) {\n'+
+			'    Serial.println("Connection successful");\n'+
+			'    if (capture) {\n'+
+			'      Camera.getImage(0, &img_addr, &img_len);\n'+	
+			'    }\n'+			
+			'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
+            '    size_t fbLen = img_len;\n'+			
+			'    \n'+
+			'    char *input = (char *)fbBuf;\n'+
+			'    char output[base64_enc_len(3)];\n'+
+ 			'    String imageFile = "data:image/jpeg;base64,";\n'+
+			'    for (int i=0;i<fbLen;i++) {\n'+
+			'      base64_encode(output, (input++), 3);\n'+
+			'      if (i%3==0) imageFile += String(output);\n'+
+			'    }\n'+
+			'    String Data = "{\\"model\\": \\""+model+"\\", \\"messages\\": [{\\"role\\": \\"user\\",\\"content\\": [{ \\"type\\": \\"text\\", \\"text\\": \\""+message+"\\"},{\\"type\\": \\"image_url\\", \\"image_url\\": {\\"url\\": \\""+imageFile+"\\"}}]}]}";\n'+				
+			'    \n'+
+			'    client.println("POST "+path+" HTTP/1.1");\n'+
+			'    client.println("Host: "+String(myDomain));\n'+
+			'    client.println("Authorization: Bearer " + key);\n'+
+			'    client.println("Content-Type: application/json; charset=utf-8");\n'+
+			'    client.println("Content-Length: " + String(Data.length()));\n'+
+			'    client.println("Connection: close");\n'+
+			'    client.println();\n'+
+			'    \n'+
+			'    int Index;\n'+
+			'    for (Index = 0; Index < Data.length(); Index = Index+1024) {\n'+
+			'      client.print(Data.substring(Index, Index+1024));\n'+
+			'    }\n'+
+			'    \n'+
+			'    int waitTime = 10000;\n'+
+			'    long startTime = millis();\n'+
+			'    boolean state = false;\n'+
+			'    boolean markState = false;\n'+
+			'    while ((startTime + waitTime) > millis()) {\n'+
+			'    Serial.print(".");\n'+
+			'    delay(100);\n'+
+			'    while (client.available())  {\n'+
+			'      char c = client.read();\n'+
+			'      if (String(c)=="{") markState=true;\n'+
+			'      if (state==true&&markState==true) Feedback += String(c);\n'+
+			'      if (c == \'\\n\') {\n'+
+			'        if (getResponse.length()==0)\n'+
+			'          state=true;\n'+
+			'        getResponse = "";\n'+
+			'      } else if (c != \'\\r\')\n'+
+			'        getResponse += String(c);\n'+
+			'      startTime = millis();\n'+
+			'    }\n'+
+			'    if (Feedback.length()>0) break;\n'+
+			'  }\n'+
+			'  Serial.println();\n'+
+			'  client.stop();\n'+
+			'  JsonObject obj;\n'+
+			'  DynamicJsonDocument doc(4096);\n'+
+			'  deserializeJson(doc, Feedback);\n'+
+			'  obj = doc.as<JsonObject>();\n'+
+			'  getResponse = obj["choices"][0]["message"]["content"].as<String>();\n'+
+			'  if (getResponse == "null")\n'+
+			'    getResponse = obj["error"]["message"].as<String>();\n'+
+			'  } else {\n'+
+			'    getResponse = "Connected to " + String(myDomain) + " failed.";\n'+
+			'    Serial.println("Connected to " + String(myDomain) + " failed.");\n'+
+			'  }\n'+
+			'  return getResponse;\n'+
+			'}\n';			
+			
+	var code = 'SendStillToCustomVision('+domain+', '+path+', '+model+', '+key+', '+message+', '+source+')';
+	return [code, Blockly.Arduino.ORDER_NONE];			
+}
+
 Blockly.Arduino['amb82_mini_spreadsheet'] = function(block) {
 	var source = block.getFieldValue('source');
 	var value_spreadsheeturl = Blockly.Arduino.valueToCode(block, 'spreadsheeturl', Blockly.Arduino.ORDER_ATOMIC);

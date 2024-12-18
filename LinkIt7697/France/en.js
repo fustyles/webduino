@@ -965,6 +965,13 @@ Blockly.Msg["AMB82_MINI_GEMINI_VISION"] = "Image capture Gemini visual analysis"
 Blockly.Msg["AMB82_MINI_GEMINI_KEY"] = "Gemini Key";
 Blockly.Msg["AMB82_MINI_GEMINI_MESSAGE"] = "Conversation Message";
 
+Blockly.Msg["AMB82_MINI_CUSTOM_VISION"] = "Image capture Custom visual analysis";
+Blockly.Msg["AMB82_MINI_CUSTOM_DOMAIN"] = "Domain";
+Blockly.Msg["AMB82_MINI_CUSTOM_PATH"] = "Path";
+Blockly.Msg["AMB82_MINI_CUSTOM_MODEL"] = "Model";
+Blockly.Msg["AMB82_MINI_CUSTOM_KEY"] = "Key";		
+Blockly.Msg["AMB82_MINI_CUSTOM_MESSAGE"] = "Conversation Message";
+
 Blockly.Msg["AMB82_MINI_MOTIONDETECTION"] = "Motion Detection";
 Blockly.Msg["AMB82_MINI_MOTIONDETECTION_LABEL"] = "Label";
 Blockly.Msg["AMB82_MINI_MOTIONDETECTION_AFTER"] = "List all blocks";

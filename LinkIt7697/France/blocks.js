@@ -4088,6 +4088,7 @@ Blockly.Blocks['amb82_mini_openai_vision'] = {
 	this.setInputsInline(false);
     this.setOutput(true, null);  
 	this.setColour(Blockly.Msg["HUE_12"]);
+	this.setHelpUrl("https://platform.openai.com/docs/guides/vision");	
   }
 };
 
@@ -4114,6 +4115,46 @@ Blockly.Blocks['amb82_mini_gemini_vision'] = {
 	this.setInputsInline(false);
     this.setOutput(true, null);  
 	this.setColour(Blockly.Msg["HUE_12"]);
+	this.setHelpUrl("https://ai.google.dev/gemini-api/docs/vision");	
+  }
+};
+
+Blockly.Blocks['amb82_mini_custom_vision'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_CUSTOM_VISION"]);
+    this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["VIDEO_BASE64_ORIGIN"])		
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_STILL_NEW"],"1"],		
+			[Blockly.Msg["AMB82_MINI_STILL_OLD"],"0"]
+		]), "source");
+    this.appendValueInput("domain")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_CUSTOM_DOMAIN"]);
+    this.appendValueInput("path")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_CUSTOM_PATH"]);		
+    this.appendValueInput("model")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_CUSTOM_MODEL"]);		
+    this.appendValueInput("key")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_CUSTOM_KEY"]);		
+    this.appendValueInput("message")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_CUSTOM_MESSAGE"]);			
+	this.setInputsInline(false);
+    this.setOutput(true, null);  
+	this.setColour(Blockly.Msg["HUE_12"]);
+	this.setHelpUrl("https://console.groq.com/docs/overview");
   }
 };
 
