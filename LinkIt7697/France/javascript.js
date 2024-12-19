@@ -101,7 +101,7 @@ Blockly.Arduino['custom_chat_gs_request'] = function (block) {
   var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||"Hi";
   var scriptId = Blockly.Arduino.valueToCode(block, 'scriptid', Blockly.Arduino.ORDER_ATOMIC)||"Hi";
   
-  Blockly.Arduino.definitions_['custom_chat_gs_request'] = 'String custom_chat_gs_request(String message, String scriptId) {\n'+
+  Blockly.Arduino.definitions_['custom_chat_gs_request'] = 'String custom_chat_gs_request(String domain, String path, String model, String key, String message, String scriptId) {\n'+
 			'  const char* myDomain = domain.c_str();\n'+
 			'  String getAll="", getLocation = "";\n'+
 			'  //Serial.println("Connect to " + String(myDomain));\n';
@@ -239,7 +239,7 @@ Blockly.Arduino['custom_chat_gs_request'] = function (block) {
 											'  return encodedMsg;\n'+
 											'}';				
 		
-  var code = 'custom_chat_gs_request('+content+', '+scriptId+')';
+  var code = 'custom_chat_gs_request(custom_domain, custom_path, custom_model, custom_key, '+content+', '+scriptId+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
