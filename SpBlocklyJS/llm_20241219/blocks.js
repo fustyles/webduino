@@ -25,7 +25,7 @@ Blockly.Blocks['llm_chat_initial'] = {
 	this.setInputsInline(false);	  
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
-	this.setColour(150);
+	this.setColour(230);
   }
 };
 
@@ -40,7 +40,7 @@ Blockly.Blocks['llm_chat_request'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(150);
+  this.setColour(230);
   }
 };
 
@@ -60,7 +60,7 @@ Blockly.Blocks['llm_chat_image_request'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(150);
+  this.setColour(230);
   }
 };
 
@@ -75,7 +75,7 @@ Blockly.Blocks['llm_chat_insert'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(150);
+  this.setColour(230);
   }
 };
 
@@ -88,7 +88,7 @@ Blockly.Blocks['llm_chat_response'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(150);
+  this.setColour(230);
   }
 };
 
@@ -106,7 +106,7 @@ Blockly.Blocks['llm_chat_response_get'] = {
 	  ]), "br");  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(150);
+  this.setColour(230);
   }
 };
 
@@ -118,7 +118,7 @@ Blockly.Blocks['llm_chat_response_clear'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true); 
-  this.setColour(150);
+  this.setColour(230);
   }
 };
 
@@ -130,7 +130,7 @@ Blockly.Blocks['llm_chat_content_clear'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true); 
-  this.setColour(150);
+  this.setColour(230);
   }
 };
 
@@ -147,7 +147,7 @@ Blockly.Blocks['llm_chat_content_file'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true); 
-  this.setColour(150);
+  this.setColour(230);
   }
 };
 
@@ -163,7 +163,7 @@ Blockly.Blocks['llm_chat_content_file_remote'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true); 
-  this.setColour(150);
+  this.setColour(230);
   }
 };
 
@@ -179,6 +179,6 @@ Blockly.Blocks['llm_chat_content_file_remote_insert'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true); 
-  this.setColour(150);
+  this.setColour(230);
   }
 };
