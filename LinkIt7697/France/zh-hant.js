@@ -849,7 +849,7 @@ Blockly.Msg["AMB82_MINI_GEMINI_VISION"] = "影像上傳Gemini視覺分析";
 Blockly.Msg["AMB82_MINI_GEMINI_KEY"] = "Gemini Key";		
 Blockly.Msg["AMB82_MINI_GEMINI_MESSAGE"] = "對話訊息";
 
-Blockly.Msg["AMB82_MINI_CUSTOM_VISION"] = "影像上傳自訂網域視覺分析";
+Blockly.Msg["AMB82_MINI_CUSTOM_VISION"] = "影像上傳VLM視覺分析";
 Blockly.Msg["AMB82_MINI_CUSTOM_DOMAIN"] = "網域";
 Blockly.Msg["AMB82_MINI_CUSTOM_PATH"] = "路徑";
 Blockly.Msg["AMB82_MINI_CUSTOM_MODEL"] = "模型";
@@ -2000,7 +2000,7 @@ Blockly.Msg["ESP32_CAM_GEMINI_VISION"] = "ESP32-CAM 截圖上傳Gemini視覺分�
 Blockly.Msg["ESP32_CAM_GEMINI_KEY"] = "Gemini Key";
 Blockly.Msg["ESP32_CAM_GEMINI_MESSAGE"] = "對話訊息";	
 
-Blockly.Msg["ESP32_CAM_CUSTOM_VISION"] = "ESP32-CAM 截圖上傳自訂網域視覺分析";
+Blockly.Msg["ESP32_CAM_CUSTOM_VISION"] = "ESP32-CAM 截圖上傳VLM視覺分析";
 Blockly.Msg["ESP32_CAM_CUSTOM_DOMAIN"] = "網域";
 Blockly.Msg["ESP32_CAM_CUSTOM_PATH"] = "路徑";
 Blockly.Msg["ESP32_CAM_CUSTOM_MODEL"] = "模型";
@@ -3380,7 +3380,7 @@ Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW = "Gemini 聊天 發送對話";
 Blockly.Msg.GEMINI_CHAT_RESET_SHOW = "Gemini 聊天 重設對話";
 Blockly.Msg.GEMINI_CHAT_MODEL_SHOW = "模型";
 
-Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW = "自訂網域 聊天 初始化";
+Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW = "LLM 聊天 初始化";
 Blockly.Msg.CUSTOM_CHAT_DOMAIN_SHOW = "網域";
 Blockly.Msg.CUSTOM_CHAT_PATH_SHOW = "路徑";
 Blockly.Msg.CUSTOM_CHAT_MODEL_SHOW = "模型";

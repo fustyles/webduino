@@ -965,7 +965,7 @@ Blockly.Msg["AMB82_MINI_GEMINI_VISION"] = "Gemini Image capture and visual analy
 Blockly.Msg["AMB82_MINI_GEMINI_KEY"] = "API Key";
 Blockly.Msg["AMB82_MINI_GEMINI_MESSAGE"] = "Conversation Message";
 
-Blockly.Msg["AMB82_MINI_CUSTOM_VISION"] = "Custom Domain Image capture and visual analysis";
+Blockly.Msg["AMB82_MINI_CUSTOM_VISION"] = "VLM Image capture and visual analysis";
 Blockly.Msg["AMB82_MINI_CUSTOM_DOMAIN"] = "Domain";
 Blockly.Msg["AMB82_MINI_CUSTOM_PATH"] = "Path";
 Blockly.Msg["AMB82_MINI_CUSTOM_MODEL"] = "Model";
@@ -2001,7 +2001,7 @@ Blockly.Msg["ESP32_CAM_GEMINI_VISION"] = "ESP32-CAM Gemini Image capture and vis
 Blockly.Msg["ESP32_CAM_GEMINI_KEY"] = "API Key";
 Blockly.Msg["ESP32_CAM_GEMINI_MESSAGE"] = "Conversation Message";
 
-Blockly.Msg["ESP32_CAM_CUSTOM_VISION"] = "ESP32-CAM Custom domain Image capture and visual analysis";
+Blockly.Msg["ESP32_CAM_CUSTOM_VISION"] = "ESP32-CAM VLM Image capture and visual analysis";
 Blockly.Msg["ESP32_CAM_CUSTOM_DOMAIN"] = "Domain";
 Blockly.Msg["ESP32_CAM_CUSTOM_PATH"] = "Path";
 Blockly.Msg["ESP32_CAM_CUSTOM_MODEL"] = "Model";
@@ -3371,7 +3371,7 @@ Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW = "Gemini chat Send content";
 Blockly.Msg.GEMINI_CHAT_RESET_SHOW = "Gemini chat Reset messages";
 Blockly.Msg.GEMINI_CHAT_MODEL_SHOW = "Model";
 
-Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW = "Custom Domain chat Initial";
+Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW = "LLM chat Initial";
 Blockly.Msg.CUSTOM_CHAT_DOMAIN_SHOW = "Domain";
 Blockly.Msg.CUSTOM_CHAT__PATH_SHOW = "Path";
 Blockly.Msg.CUSTOM_CHAT__MODEL_SHOW = "Model";
