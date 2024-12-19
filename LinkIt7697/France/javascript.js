@@ -262,16 +262,22 @@ Blockly.Arduino['custom_chat_reset'] = function (block) {
 Blockly.Arduino['gemini_chat_initial'] = function (block) {
   var apikey = Blockly.Arduino.valueToCode(block, 'apikey', Blockly.Arduino.ORDER_ATOMIC)||"";	
   var role = Blockly.Arduino.valueToCode(block, 'role', Blockly.Arduino.ORDER_ATOMIC)||"";
-  role = role.replace(/"/g,"\\\"");
   var model = block.getFieldValue('model');
 
   Blockly.Arduino.definitions_['gemini_chat_initial'] = ''+
 							  'String Gemini_apikey = '+apikey+';\n'+
 							  'String Gemini_model = "'+model+'";\n'+
-							  'String Gemini_role = "'+role+'";\n'+							  
-							  'String system_content = "{\\"role\\": \\"model\\", \\"parts\\":[{ \\"text\\": Gemini_role }]}";\n'+
-							  'String historical_messages = system_content;\n';  
-	
+							  'String Gemini_role = '+role+';\n'+							  
+							  'String system_content = "{\\"role\\": \\"model\\", \\"parts\\":[{ \\"text\\": \\""+ Gemini_role+"\\ }]}";\n'+
+							  'String historical_messages = system_content;\n';  																						
+
+  var code = '';
+  return code; 
+};
+
+Blockly.Arduino['gemini_chat_request'] = function (block) {
+  var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||"Hi";
+  
   Blockly.Arduino.definitions_['gemini_chat_request'] = 'String Gemini_chat_request(String message) {\n';
   
 	if (selectBoardType()=="LinkIt")
@@ -339,15 +345,8 @@ Blockly.Arduino['gemini_chat_initial'] = function (block) {
 		+'  }\n'
 		+'  else\n'
 		+'    return "Connection failed";\n'
-		+'  }\n';																						
-
-  var code = '';
-  return code; 
-};
-
-Blockly.Arduino['gemini_chat_request'] = function (block) {
-  var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||"Hi";
-  
+		+'  }\n';
+		
   var code = 'Gemini_chat_request('+content+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
@@ -6808,7 +6807,14 @@ Blockly.Arduino['openai_chat_initial'] = function (block) {
 									  'String openai_role = '+role+';\n'+									  
 									  'String system_content = "{\\"role\\": \\"system\\", \\"content\\":\\""+ openai_role+"\\"}";\n'+
 									  'String historical_messages = system_content;\n';  
-	
+
+  var code = '';
+  return code; 
+};
+
+Blockly.Arduino['openai_chat_request'] = function (block) {
+  var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||"Hi";
+
   Blockly.Arduino.definitions_['openai_chat_request'] = 'String openAI_chat_request(String message) {\n';
   
 	if (selectBoardType()=="LinkIt")
@@ -6877,15 +6883,8 @@ Blockly.Arduino['openai_chat_initial'] = function (block) {
 		+'  }\n'
 		+'  else\n'
 		+'    return "Connection failed";\n'
-		+'  }\n';																						
-
-  var code = '';
-  return code; 
-};
-
-Blockly.Arduino['openai_chat_request'] = function (block) {
-  var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||"Hi";
-  
+		+'  }\n';
+		
   var code = 'openAI_chat_request('+content+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
