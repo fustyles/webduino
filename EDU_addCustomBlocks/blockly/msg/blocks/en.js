@@ -37,3 +37,4 @@ Blockly.Msg.ADDCUSTOMBLOCKS_GEMINI_TEXT_SHOW = "[link] Gemini";
 Blockly.Msg.ADDCUSTOMBLOCKS_SPEECHRECOGNITION_SHOW = "[link] Speech recognition";
 Blockly.Msg.ADDCUSTOMBLOCKS_TEXTTOSPEECH_SHOW = "[link] Speech synthesis";
 Blockly.Msg.ADDCUSTOMBLOCKS_DVCBOT_SHOW = "[link] DaVinci Assistant";
+Blockly.Msg.ADDCUSTOMBLOCKS_LLM_TEXT_SHOW = "[link] LLM";
