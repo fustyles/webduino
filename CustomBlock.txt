@@ -30,7 +30,7 @@ https://fustyles.github.io/webduino/SpeechRecognition_20220729/blockly.json
 
 
 Gemini 聊天
-https://fustyles.github.io/webduino/gemini_2024029/blockly.json
+https://fustyles.github.io/webduino/gemini_20240209/blockly.json
 
 
 openAI 聊天
