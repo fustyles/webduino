@@ -17,6 +17,10 @@ Code.customTab.$__add__('https://fustyles.github.io/webduino/EDU_addCustomBlocks
 Chrome瀏覽器console指令：移除自訂積木
 Code.customTab.$__remove__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
 
+LLM 聊天
+https://fustyles.github.io/webduino/llm_20241219/blockly.json
+
+
 達哥助手
 https://fustyles.github.io/webduino/dvcbot_20241116/blockly.json
 
@@ -30,7 +34,7 @@ https://fustyles.github.io/webduino/SpeechRecognition_20220729/blockly.json
 
 
 Gemini 聊天
-https://fustyles.github.io/webduino/gemini_20240209/blockly.json
+https://fustyles.github.io/webduino/gemini_2024029/blockly.json
 
 
 openAI 聊天
