@@ -268,7 +268,7 @@ Blockly.Arduino['gemini_chat_initial'] = function (block) {
 							  'String Gemini_apikey = '+apikey+';\n'+
 							  'String Gemini_model = "'+model+'";\n'+
 							  'String Gemini_role = '+role+';\n'+							  
-							  'String system_content = "{\\"role\\": \\"model\\", \\"parts\\":[{ \\"text\\":\\""+ custom_role+"\\"}]}";\n'+
+							  'String system_content = "{\\"role\\": \\"model\\", \\"parts\\":[{ \\"text\\":\\""+ Gemini_role+"\\"}]}";\n'+
 							  'String historical_messages = system_content;\n';  																						
 
   var code = '';
