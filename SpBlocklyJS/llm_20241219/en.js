@@ -16,3 +16,7 @@ Blockly.Msg["LLM_CHAT_PATH_SHOW"] = "Path";
 Blockly.Msg["LLM_CHAT_MODEL_SHOW"] = "Model";
 Blockly.Msg["LLM_CHAT_KEY_SHOW"] = "API Key";
 Blockly.Msg["LLM_CHAT_ROLE_SHOW"] = "Assistant Behavior";
+Blockly.Msg["LLM_CHAT_RESPONSE_SHOW"] = "Execute after getting response text";
+Blockly.Msg["LLM_CHAT_RESPONSE_GET_SHOW"] = "Response Text";
+Blockly.Msg["LLM_CHAT_RESPONSE_GET_BR_SHOW"] = "Auto Line Break";
+Blockly.Msg["LLM_CHAT_RESPONSE_CLEAR_SHOW"] = "Clear Response Text";

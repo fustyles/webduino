@@ -16,3 +16,7 @@ Blockly.Msg["LLM_CHAT_PATH_SHOW"] = "路径";
 Blockly.Msg["LLM_CHAT_MODEL_SHOW"] = "模型";
 Blockly.Msg["LLM_CHAT_KEY_SHOW"] = "API Key";
 Blockly.Msg["LLM_CHAT_ROLE_SHOW"] = "助手行为";
+Blockly.Msg["LLM_CHAT_RESPONSE_SHOW"] = "取得回应文字后执行";
+Blockly.Msg["LLM_CHAT_RESPONSE_GET_SHOW"] = "回应文字";
+Blockly.Msg["LLM_CHAT_RESPONSE_GET_BR_SHOW"] = "自动换行";
+Blockly.Msg["LLM_CHAT_RESPONSE_CLEAR_SHOW"] = "清除回应文字";
