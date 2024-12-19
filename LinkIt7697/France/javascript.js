@@ -12,9 +12,16 @@ Blockly.Arduino['custom_chat_initial'] = function (block) {
 									  'String custom_key = '+apikey+';\n'+
 									  'String custom_role = '+role+';\n'+									  
 									  'String system_content = "{\\"role\\": \\"system\\", \\"content\\":\\""+ custom_role+"\\"}";\n'+
-									  'String historical_messages = system_content;\n';  
-	
-  Blockly.Arduino.definitions_['custom_chat_request'] = 'String custom_chat_request(String domain, String path, String model, String key, String message) {\n';
+									  'String historical_messages = system_content;\n';  																			
+
+  var code = '';
+  return code; 
+};
+
+Blockly.Arduino['custom_chat_request'] = function (block) {
+  var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||"Hi";
+  
+Blockly.Arduino.definitions_['custom_chat_request'] = 'String custom_chat_request(String domain, String path, String model, String key, String message) {\n';
   
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['custom_chat_request'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
@@ -84,14 +91,7 @@ Blockly.Arduino['custom_chat_initial'] = function (block) {
 		+'  }\n'
 		+'  else\n'
 		+'    return "Connection failed";\n'
-		+'  }\n';																						
-
-  var code = '';
-  return code; 
-};
-
-Blockly.Arduino['custom_chat_request'] = function (block) {
-  var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||"Hi";
+		+'  }\n';  
   
   var code = 'custom_chat_request(custom_domain, custom_path, custom_model, custom_key, '+content+')';
   return [code, Blockly.Arduino.ORDER_NONE];
@@ -102,7 +102,7 @@ Blockly.Arduino['custom_chat_gs_request'] = function (block) {
   var scriptId = Blockly.Arduino.valueToCode(block, 'scriptid', Blockly.Arduino.ORDER_ATOMIC)||"Hi";
   
   Blockly.Arduino.definitions_['custom_chat_gs_request'] = 'String custom_chat_gs_request(String domain, String path, String model, String key, String message, String scriptId) {\n'+
-			'  const char* myDomain = domain.c_str();\n'+
+			'  const char* myDomain = "script.google.com";\n'+
 			'  String getAll="", getLocation = "";\n'+
 			'  //Serial.println("Connect to " + String(myDomain));\n';
 			
