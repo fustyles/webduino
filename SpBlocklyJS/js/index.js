@@ -185,9 +185,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js'></script>";
 		}		
 		if (xml.indexOf("gemini_chat_")!=-1) {
-			script += "<script src='gemini_2024029/gemini.js'></script>";
+			script += "<script src='gemini_20240209/gemini.js'></script>";
 		}
-		
+		if (xml.indexOf("llm_chat_")!=-1) {
+			script += "<script src='llm_20241219/llm.js'></script>";
+		}
 		if (xml.indexOf("dvcbot_")!=-1) {
 			script += "<script src='dvcbot_20241116/dvcbot.js'></script>";
 		}		
@@ -364,9 +366,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js'></script>";
 		}
 		if (xml.indexOf("gemini_chat_")!=-1) {
-			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/gemini_2024029/gemini.js'></script>";
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/gemini_20240209/gemini.js'></script>";
 		}
-
+		if (xml.indexOf("llm_chat_")!=-1) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/llm_20241219/llm.js'></script>";
+		}
 		if (xml.indexOf("dvcbot_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/dvcbot_20241116/dvcbot.js'></script>";
 		}		
@@ -404,7 +408,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		"<sep></sep>",
 		catOpenAI,
 		catGEMINI,
-		catDvcbot,		
+		catLLM,		
+		catDvcbot,
+		"<sep></sep>"		
 		catHolistic,	
 		catTeachablemachine,
 		catKNNclassifier,		
