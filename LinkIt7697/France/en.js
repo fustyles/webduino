@@ -957,19 +957,19 @@ Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TEDDYBEAR"] = "TEDDY BEAR";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_HAIRDRYER"] = "HAIR DRYER";
 Blockly.Msg["AMB82_MINI_OBJECTDETECTION_TOOTHBRUSH"] = "TOOTHBRUSH";
 
-Blockly.Msg["AMB82_MINI_OPENAI_VISION"] = "Image capture openAI visual analysis";
-Blockly.Msg["AMB82_MINI_OPENAI_KEY"] = "openAI Key";
+Blockly.Msg["AMB82_MINI_OPENAI_VISION"] = "openAI Image capture and visual analysis";
+Blockly.Msg["AMB82_MINI_OPENAI_KEY"] = "API Key";
 Blockly.Msg["AMB82_MINI_OPENAI_MESSAGE"] = "Conversation Message";
 
-Blockly.Msg["AMB82_MINI_GEMINI_VISION"] = "Image capture Gemini visual analysis";
-Blockly.Msg["AMB82_MINI_GEMINI_KEY"] = "Gemini Key";
+Blockly.Msg["AMB82_MINI_GEMINI_VISION"] = "Gemini Image capture and visual analysis";
+Blockly.Msg["AMB82_MINI_GEMINI_KEY"] = "API Key";
 Blockly.Msg["AMB82_MINI_GEMINI_MESSAGE"] = "Conversation Message";
 
-Blockly.Msg["AMB82_MINI_CUSTOM_VISION"] = "Image capture Custom visual analysis";
+Blockly.Msg["AMB82_MINI_CUSTOM_VISION"] = "Custom Domain Image capture and visual analysis";
 Blockly.Msg["AMB82_MINI_CUSTOM_DOMAIN"] = "Domain";
 Blockly.Msg["AMB82_MINI_CUSTOM_PATH"] = "Path";
 Blockly.Msg["AMB82_MINI_CUSTOM_MODEL"] = "Model";
-Blockly.Msg["AMB82_MINI_CUSTOM_KEY"] = "Key";		
+Blockly.Msg["AMB82_MINI_CUSTOM_KEY"] = "API Key";		
 Blockly.Msg["AMB82_MINI_CUSTOM_MESSAGE"] = "Conversation Message";
 
 Blockly.Msg["AMB82_MINI_MOTIONDETECTION"] = "Motion Detection";
@@ -1993,19 +1993,19 @@ Blockly.Msg["ESP32_CAM_LINETOKEN_SHOW"] = "Token";
 Blockly.Msg["ESP32_CAM_FOLDERNAME_SHOW"] = "Folder Name";	
 Blockly.Msg["ESP32_CAM_FILENAME_SHOW"] = "File Name";
 
-Blockly.Msg["ESP32_CAM_OPENAI_VISION"] = "ESP32-CAM Image capture openAI visual analysis";
-Blockly.Msg["ESP32_CAM_OPENAI_KEY"] = "openAI Key";
+Blockly.Msg["ESP32_CAM_OPENAI_VISION"] = "ESP32-CAM openAI Image capture and visual analysis";
+Blockly.Msg["ESP32_CAM_OPENAI_KEY"] = "API Key";
 Blockly.Msg["ESP32_CAM_OPENAI_MESSAGE"] = "Conversation Message";
 
-Blockly.Msg["ESP32_CAM_GEMINI_VISION"] = "ESP32-CAM Image capture Gemini visual analysis";
-Blockly.Msg["ESP32_CAM_GEMINI_KEY"] = "Gemini Key";
+Blockly.Msg["ESP32_CAM_GEMINI_VISION"] = "ESP32-CAM Gemini Image capture and visual analysis";
+Blockly.Msg["ESP32_CAM_GEMINI_KEY"] = "API Key";
 Blockly.Msg["ESP32_CAM_GEMINI_MESSAGE"] = "Conversation Message";
 
-Blockly.Msg["ESP32_CAM_CUSTOM_VISION"] = "ESP32-CAM Image capture Custom visual analysis";
+Blockly.Msg["ESP32_CAM_CUSTOM_VISION"] = "ESP32-CAM Custom domain Image capture and visual analysis";
 Blockly.Msg["ESP32_CAM_CUSTOM_DOMAIN"] = "Domain";
 Blockly.Msg["ESP32_CAM_CUSTOM_PATH"] = "Path";
 Blockly.Msg["ESP32_CAM_CUSTOM_MODEL"] = "Model";
-Blockly.Msg["ESP32_CAM_CUSTOM_KEY"] = "Key";		
+Blockly.Msg["ESP32_CAM_CUSTOM_KEY"] = "API Key";		
 Blockly.Msg["ESP32_CAM_CUSTOM_MESSAGE"] = "Conversation Message";
 
 Blockly.Msg["ESP32_CAM_SPREADSHEET_ROW_SHOW"] = "Number of rows";
@@ -3370,6 +3370,16 @@ Blockly.Msg.GEMINI_SCRIPTID_SHOW = "Apps Script ID";
 Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW = "Gemini chat Send content";
 Blockly.Msg.GEMINI_CHAT_RESET_SHOW = "Gemini chat Reset messages";
 Blockly.Msg.GEMINI_CHAT_MODEL_SHOW = "Model";
+
+Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW = "Custom Domain chat Initial";
+Blockly.Msg.CUSTOM_CHAT_DOMAIN_SHOW = "Domain";
+Blockly.Msg.CUSTOM_CHAT__PATH_SHOW = "Path";
+Blockly.Msg.CUSTOM_CHAT__MODEL_SHOW = "Model";
+Blockly.Msg.CUSTOM_CHAT_KEY_SHOW = "API Key"; 	  
+Blockly.Msg.CUSTOM_CHAT_ROLE_SHOW = "Assistant behavior";
+Blockly.Msg.CUSTOM_SCRIPTID_SHOW = "Apps Script ID";  
+Blockly.Msg.CUSTOM_CHAT_REQUEST_SHOW = "Custom Domain chat Send content";
+Blockly.Msg.CUSTOM_CHAT_RESET_SHOW = "Custom Domain chat Reset messages";
 
 Blockly.Msg["GY30_GETDATA_SHOW"] = "GY-30 Light intensity sensor read data(lx)";
 

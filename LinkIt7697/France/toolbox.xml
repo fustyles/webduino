@@ -13809,6 +13809,56 @@
 	  </block>	  
 	  <block type="gemini_chat_reset">
 	  </block>  	  
+    </category>
+	<category name="custom_chat">
+	  <block type="custom_chat_initial">
+		<value name="domain">
+		  <block type="text">
+			<field name="TEXT">api.groq.com</field>
+		  </block>
+		</value>
+		<value name="path">
+		  <block type="text">
+			<field name="TEXT">/openai/v1/chat/completions</field>
+		  </block>
+		</value>
+		<value name="model">
+		  <block type="text">
+			<field name="TEXT">llama-3.2-90b-vision-preview</field>
+		  </block>
+		</value>		
+		<value name="apikey">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="role">
+		  <block type="text">
+			<field name="TEXT">You are a useful assistant.</field>
+		  </block>
+		</value>		
+	  </block>
+	  <block type="custom_chat_request">
+		<value name="content">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="custom_chat_gs_request">
+		<value name="content">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="scriptid">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>		
+	  </block>	  
+	  <block type="custom_chat_reset">
+	  </block>  	  
     </category>	
 	<category name="catDvcbot">
 	  <block type="dvcbot_initial">

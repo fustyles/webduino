@@ -103,6 +103,8 @@
 <category><name>adxl345</name><replace>ADXL345加速度計</replace></category>
 <category><name>openai_chat</name><replace>openAI 聊天</replace></category>
 <category><name>gemini_chat</name><replace>Gemini 聊天</replace></category>
+<category><name>custom_chat</name><replace>自訂網域 聊天</replace></category>
+<category><name>catDvcbot</name><replace>達哥助手</replace></category>
 <category><name>gy30</name><replace>GY-30光照度</replace></category>
 <category><name>blekeyboardmodule</name><replace>ESP32藍芽鍵盤</replace></category>
 <category><name>webusb</name><replace>Web USB模組</replace></category>
@@ -150,5 +152,4 @@
 <category><name>amb82_mini_Pins</name><replace>腳位</replace></category>
 <category><name>amb82_mini_Flashmemory</name><replace>記憶體存取</replace></category>
 <category><name>amb82_mini_BluetoothUart</name><replace>藍芽UART</replace></category>
-<category><name>catDvcbot</name><replace>達哥助手</replace></category>
 </xml>

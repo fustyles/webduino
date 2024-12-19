@@ -1,3 +1,78 @@
+Blockly.Blocks['custom_chat_initial'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW);
+    this.appendValueInput("domain")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.CUSTOM_CHAT_DOMAIN_SHOW);
+    this.appendValueInput("path")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.CUSTOM_CHAT_PATH_SHOW);
+    this.appendValueInput("model")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.CUSTOM_CHAT_MODEL_SHOW);
+	this.appendValueInput("apikey")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.CUSTOM_CHAT_KEY_SHOW); 	  
+	this.appendValueInput("role")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.CUSTOM_CHAT_ROLE_SHOW); 	  
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(110);
+	this.setHelpUrl("https://console.groq.com/docs/overview");	
+  }
+};
+
+Blockly.Blocks['custom_chat_request'] = {
+  init: function() {
+	this.appendValueInput("content")
+		.appendField(Blockly.Msg.CUSTOM_CHAT_REQUEST_SHOW)
+	  .setCheck("String")
+	  .setAlign(Blockly.ALIGN_RIGHT);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(110);
+  }
+};
+
+Blockly.Blocks['custom_chat_gs_request'] = {
+  init: function() {
+	this.appendValueInput("content")
+		.appendField(Blockly.Msg.CUSTOM_CHAT_REQUEST_SHOW)
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT);
+    this.appendValueInput("scriptid")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.CUSTOM_SCRIPTID_SHOW);	  
+	this.setInputsInline(false);
+	this.setOutput(true, null); 
+	this.setColour(110);
+	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/BlocklyduinoF2_openAI.gs");
+  }
+};
+
+Blockly.Blocks['custom_chat_reset'] = {
+  init: function() {
+	this.appendDummyInput()
+	  .appendField(Blockly.Msg.CUSTOM_CHAT_RESET_SHOW); 
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(110);
+  }
+};
+
+
+
+
 Blockly.Blocks['gemini_chat_initial'] = {
   init: function() {
 	this.appendDummyInput()

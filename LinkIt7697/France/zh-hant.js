@@ -849,8 +849,8 @@ Blockly.Msg["AMB82_MINI_GEMINI_VISION"] = "影像上傳Gemini視覺分析";
 Blockly.Msg["AMB82_MINI_GEMINI_KEY"] = "Gemini Key";		
 Blockly.Msg["AMB82_MINI_GEMINI_MESSAGE"] = "對話訊息";
 
-Blockly.Msg["AMB82_MINI_CUSTOM_VISION"] = "影像上傳自訂伺服器視覺分析";
-Blockly.Msg["AMB82_MINI_CUSTOM_DOMAIN"] = "主機";
+Blockly.Msg["AMB82_MINI_CUSTOM_VISION"] = "影像上傳自訂網域視覺分析";
+Blockly.Msg["AMB82_MINI_CUSTOM_DOMAIN"] = "網域";
 Blockly.Msg["AMB82_MINI_CUSTOM_PATH"] = "路徑";
 Blockly.Msg["AMB82_MINI_CUSTOM_MODEL"] = "模型";
 Blockly.Msg["AMB82_MINI_CUSTOM_KEY"] = "Key";		
@@ -2000,8 +2000,8 @@ Blockly.Msg["ESP32_CAM_GEMINI_VISION"] = "ESP32-CAM 截圖上傳Gemini視覺分�
 Blockly.Msg["ESP32_CAM_GEMINI_KEY"] = "Gemini Key";
 Blockly.Msg["ESP32_CAM_GEMINI_MESSAGE"] = "對話訊息";	
 
-Blockly.Msg["ESP32_CAM_CUSTOM_VISION"] = "ESP32-CAM 截圖上傳自訂伺服器視覺分析";
-Blockly.Msg["ESP32_CAM_CUSTOM_DOMAIN"] = "主機";
+Blockly.Msg["ESP32_CAM_CUSTOM_VISION"] = "ESP32-CAM 截圖上傳自訂網域視覺分析";
+Blockly.Msg["ESP32_CAM_CUSTOM_DOMAIN"] = "網域";
 Blockly.Msg["ESP32_CAM_CUSTOM_PATH"] = "路徑";
 Blockly.Msg["ESP32_CAM_CUSTOM_MODEL"] = "模型";
 Blockly.Msg["ESP32_CAM_CUSTOM_KEY"] = "Key";		
@@ -3364,21 +3364,31 @@ Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_SHOW = "回應內容";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_BR_SHOW = "自動換行";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_CLEAR_SHOW = "清除回應內容";
 
-Blockly.Msg.OPENAI_CHAT_INITIAL_SHOW = "openAI聊天 初始化";
+Blockly.Msg.OPENAI_CHAT_INITIAL_SHOW = "openAI 聊天 初始化";
 Blockly.Msg.OPENAI_CHAT_KEY_SHOW = "API Key"; 	  
 Blockly.Msg.OPENAI_CHAT_ROLE_SHOW = "助手行為";
 Blockly.Msg.OPENAI_SCRIPTID_SHOW = "Apps Script ID";  
-Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW = "openAI聊天 發送對話";
-Blockly.Msg.OPENAI_CHAT_RESET_SHOW = "openAI聊天 重設對話";
+Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW = "openAI 聊天 發送對話";
+Blockly.Msg.OPENAI_CHAT_RESET_SHOW = "openAI 聊天 重設對話";
 Blockly.Msg.OPENAI_CHAT_MODEL_SHOW = "模型";
 
-Blockly.Msg.GEMINI_CHAT_INITIAL_SHOW = "Gemini聊天 初始化";
+Blockly.Msg.GEMINI_CHAT_INITIAL_SHOW = "Gemini 聊天 初始化";
 Blockly.Msg.GEMINI_CHAT_KEY_SHOW = "API Key"; 	  
 Blockly.Msg.GEMINI_CHAT_ROLE_SHOW = "助手行為";
 Blockly.Msg.GEMINI_SCRIPTID_SHOW = "Apps Script ID";
-Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW = "Gemini聊天 發送對話";
-Blockly.Msg.GEMINI_CHAT_RESET_SHOW = "Gemini聊天 重設對話";
+Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW = "Gemini 聊天 發送對話";
+Blockly.Msg.GEMINI_CHAT_RESET_SHOW = "Gemini 聊天 重設對話";
 Blockly.Msg.GEMINI_CHAT_MODEL_SHOW = "模型";
+
+Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW = "自訂網域 聊天 初始化";
+Blockly.Msg.CUSTOM_CHAT_DOMAIN_SHOW = "網域";
+Blockly.Msg.CUSTOM_CHAT_PATH_SHOW = "路徑";
+Blockly.Msg.CUSTOM_CHAT_MODEL_SHOW = "模型";
+Blockly.Msg.CUSTOM_CHAT_KEY_SHOW = "API Key"; 	  
+Blockly.Msg.CUSTOM_CHAT_ROLE_SHOW = "助手行為";
+Blockly.Msg.CUSTOM_SCRIPTID_SHOW = "Apps Script ID";  
+Blockly.Msg.CUSTOM_CHAT_REQUEST_SHOW = "自訂網域 聊天 發送對話";
+Blockly.Msg.CUSTOM_CHAT_RESET_SHOW = "自訂網域 聊天 重設對話";
 
 Blockly.Msg["GY30_GETDATA_SHOW"] = "GY-30光照度 讀取感測器值(lx)";
 
