@@ -3387,8 +3387,8 @@ Blockly.Msg.CUSTOM_CHAT_MODEL_SHOW = "模型";
 Blockly.Msg.CUSTOM_CHAT_KEY_SHOW = "API Key"; 	  
 Blockly.Msg.CUSTOM_CHAT_ROLE_SHOW = "助手行為";
 Blockly.Msg.CUSTOM_SCRIPTID_SHOW = "Apps Script ID";  
-Blockly.Msg.CUSTOM_CHAT_REQUEST_SHOW = "自訂網域 聊天 發送對話";
-Blockly.Msg.CUSTOM_CHAT_RESET_SHOW = "自訂網域 聊天 重設對話";
+Blockly.Msg.CUSTOM_CHAT_REQUEST_SHOW = "LLM 聊天 發送對話";
+Blockly.Msg.CUSTOM_CHAT_RESET_SHOW = "LLM 聊天 重設對話";
 
 Blockly.Msg["GY30_GETDATA_SHOW"] = "GY-30光照度 讀取感測器值(lx)";
 
