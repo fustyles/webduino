@@ -410,7 +410,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		catGEMINI,
 		catLLM,		
 		catDvcbot,
-		"<sep></sep>"		
+		"<sep></sep>",		
 		catHolistic,	
 		catTeachablemachine,
 		catKNNclassifier,		
