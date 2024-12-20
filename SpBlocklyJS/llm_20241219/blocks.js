@@ -57,7 +57,7 @@ Blockly.Blocks['llm_chat_image_request'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.LLM_CHAT_IMAGE_URL_SHOW);	  
-  this.setInputsInline(true);	  
+  this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(230);
