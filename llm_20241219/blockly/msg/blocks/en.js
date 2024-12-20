@@ -1,5 +1,5 @@
 Blockly.Msg["LLM_CHAT_SHOW"] = "LLM Chat";
-Blockly.Msg["LLM_CHAT_REQUEST_SHOW"] = "Chat Content";
+Blockly.Msg["LLM_CHAT_REQUEST_SHOW"] = "Chat Content (Only applicable in the same format as openAI)";
 Blockly.Msg["LLM_CHAT_CONTENT_CLEAR_SHOW"] = "Clear Chat History";
 Blockly.Msg["LLM_CHAT_INSERT_SHOW"] = "Insert Data";
 Blockly.Msg["LLM_CHAT_CONTENT_FILE_SHOW"] = "Chat History";
@@ -9,7 +9,7 @@ Blockly.Msg["LLM_CHAT_CONTENT_FILE_REMOTE_SHOW"] = "Import Chat History";
 Blockly.Msg["LLM_CHAT_CONTENT_FILE_REMOTE_URL_SHOW"] = "URL (.chat)";
 Blockly.Msg["LLM_CHAT_CONTENT_FILE_REMOTE_URL_INSERT_SHOW"] = "URL (.txt)";
 Blockly.Msg["LLM_CHAT_IMAGE_URL_SHOW"] = "Image URL";
-Blockly.Msg["LLM_CHAT_VISION_SHOW"] = "Visual Analysis";
+Blockly.Msg["LLM_CHAT_VISION_SHOW"] = "Visual Analysis (Only applicable in the same format as openAI)";
 Blockly.Msg["LLM_CHAT_DOMAIN_SHOW"] = "Domain";
 Blockly.Msg["LLM_CHAT_PATH_SHOW"] = "Path";
 Blockly.Msg["LLM_CHAT_MODEL_SHOW"] = "Model";
