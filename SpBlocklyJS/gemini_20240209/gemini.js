@@ -214,13 +214,12 @@ async function gemini_chat_file_request(fileType, fileURL, message) {
 	fileBase64 = decodeURIComponent(fileBase64);
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
         const data = {
-            contents: [
-				{
-					'mime_type': fileType, 
-					'data': fileBase64
-				}, 
-				prompt
-			]
+            contents: [{
+				"parts":[
+				  {"inline_data": {"mime_type": fileType, "data": fileBase64}},
+				  {"text": message}
+				]
+			}]
         };
 
         const options = {
