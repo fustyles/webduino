@@ -1,152 +1,153 @@
 <xml>
-<category><name>FRANCEFU</name><replace>Fu Blocks</replace></category>
+<category><name>FRANCEFU</name><replace>France Blocks</replace></category>
 <category><name>customcode</name><replace>Custom Code</replace></category>
-<category><name>line</name><replace>Line Notify</replace></category>
-<category><name>client</name><replace>Client</replace></category>
-<category><name>wifi</name><replace>WiFi connection</replace></category>
-<category><name>udp</name><replace>UDP communication</replace></category>
-<category><name>tcp</name><replace>TCP request</replace></category>
+<category><name>line</name><replace>Line Notification</replace></category>
+<category><name>client</name><replace>Client Module</replace></category>
+<category><name>wifi</name><replace>WiFi Connection</replace></category>
+<category><name>udp</name><replace>UDP Communication</replace></category>
+<category><name>tcp</name><replace>TCP Request</replace></category>
 <category><name>thingspeak</name><replace>Thingspeak</replace></category>
 <category><name>others</name><replace>Others</replace></category>
 <category><name>servermodule</name><replace>Server Module</replace></category>
-<category><name>serveresp32</name><replace>ESP32、PICO AP Server</replace></category>
-<category><name>serveresp32cam</name><replace>ESP32-CAM AP Server</replace></category>
-<category><name>serverlinkit7697</name><replace>LinkIt7697 AP Server</replace></category>
-<category><name>servercommand</name><replace>Command Parameter</replace></category>
-<category><name>bluetoothmodule</name><replace>ESP32 Bluetooth Server</replace></category>
-<category><name>bluetooth</name><replace>Bluetooth Command</replace></category>
-<category><name>mlx90614</name><replace>MLX9061X Temperature sensor</replace></category>
-<category><name>DHT11</name><replace>DHT11</replace></category>
+<category><name>serveresp32</name><replace>ESP32, PICO Web Module</replace></category>
+<category><name>serveresp32cam</name><replace>ESP32-CAM Web Module</replace></category>
+<category><name>serverlinkit7697</name><replace>LinkIt7697 Web Module</replace></category>
+<category><name>servercommand</name><replace>Module Command Parameters</replace></category>
+<category><name>bluetoothmodule</name><replace>ESP32 Bluetooth</replace></category>
+<category><name>bluetooth</name><replace>Bluetooth Module Commands</replace></category>
+<category><name>mlx90614</name><replace>MLX9061X Temperature Sensor</replace></category>
+<category><name>DHT11</name><replace>Temperature and Humidity Sensor</replace></category>
 <category><name>buzzer</name><replace>Buzzer</replace></category>
-<category><name>photodetector</name><replace>Photodetector</replace></category>
-<category><name>temperature</name><replace>Temperature</replace></category>
+<category><name>temperature</name><replace>Temperature Sensor</replace></category>
+<category><name>photodetector</name><replace>Photo Detector</replace></category>
 <category><name>button</name><replace>Button</replace></category>
-<category><name>mpu9250</name><replace>MPU9250</replace></category>
-<category><name>ws2812</name><replace>WS2812</replace></category>
-<category><name>motordriveric</name><replace>Motor Driver IC</replace></category>
+<category><name>mpu9250</name><replace>MPU9250 Nine-Axis Sensor</replace></category>
+<category><name>ws2812</name><replace>WS2812 LED Strip</replace></category>
+<category><name>motordriveric</name><replace>Motor Driver Board</replace></category>
 <category><name>ultrasonicsensor</name><replace>Ultrasonic Sensor</replace></category>
 <category><name>colorsensor</name><replace>Color Sensor</replace></category>
-<category><name>irread</name><replace>IR Read</replace></category>
-<category><name>irsend</name><replace>IR Send</replace></category>
-<category><name>io</name><replace>I/O</replace></category>
-<category><name>SERIAL</name><replace>Serial</replace></category>
+<category><name>irread</name><replace>Infrared Receiver</replace></category>
+<category><name>irsend</name><replace>Infrared Transmitter</replace></category>
+<category><name>io</name><replace>I/O Pins</replace></category>
+<category><name>SERIAL</name><replace>Serial Port</replace></category>
 <category><name>catWebbit</name><replace>Webbit</replace></category>
-<category><name>catWebbitBoard</name><replace>Web:bit(Bpi:bit)</replace></category>
+<category><name>catWebbitBoard</name><replace>Web:bit (Bpi:bit)</replace></category>
 <category><name>catWebbitMoonCar</name><replace>Moon Car</replace></category>
-<category><name>catGameElements</name><replace>Page Elements</replace></category>
-<category><name>catGameElements_sub1</name><replace>General</replace></category>
-<category><name>catGameElements_sub2</name><replace>Image</replace></category>
-<category><name>catGameElements_sub3</name><replace>Button</replace></category>
-<category><name>catGameElements_sub4</name><replace>Color</replace></category>
-<category><name>catGameElements_sub5</name><replace>Select</replace></category>
+<category><name>catGameElements</name><replace>Web Elements</replace></category>
+<category><name>catGameElements_sub1</name><replace>General Functions</replace></category>
+<category><name>catGameElements_sub2</name><replace>Images</replace></category>
+<category><name>catGameElements_sub3</name><replace>Buttons</replace></category>
+<category><name>catGameElements_sub4</name><replace>Color Tools</replace></category>
+<category><name>catGameElements_sub5</name><replace>Dropdown Menu</replace></category>
 <category><name>catGameElements_sub6</name><replace>Range</replace></category>
-<category><name>catGameElements_sub7</name><replace>Text</replace></category>
-<category><name>catGameElements_sub8</name><replace>Table</replace></category>
+<category><name>catGameElements_sub7</name><replace>Text Fields</replace></category>
+<category><name>catGameElements_sub8</name><replace>Tables</replace></category>
 <category><name>catGameElements_sub9</name><replace>Canvas</replace></category>
-<category><name>catGameElements_sub10</name><replace>Div</replace></category>
-<category><name>catGameElements_sub11</name><replace>Iframe</replace></category>
-<category><name>catGameElements_sub12</name><replace>Link</replace></category>
-<category><name>catGameElements_sub13</name><replace>radio</replace></category>
-<category><name>catGameElements_sub14</name><replace>Checkbox</replace></category>
-<category><name>catGameElements_sub15</name><replace>Textarea</replace></category>
+<category><name>catGameElements_sub10</name><replace>Block Labels</replace></category>
+<category><name>catGameElements_sub11</name><replace>Inline Frames</replace></category>
+<category><name>catGameElements_sub12</name><replace>Links</replace></category>
+<category><name>catGameElements_sub13</name><replace>Radio Buttons</replace></category>
+<category><name>catGameElements_sub14</name><replace>Checkboxes</replace></category>
+<category><name>catGameElements_sub15</name><replace>Block Text Fields</replace></category>
 <category><name>catGameElements_sub16</name><replace>Ajax</replace></category>
-<category><name>catGameElements_sub17</name><replace>Number</replace></category>
-<category><name>catGameElements_sub18</name><replace>Date</replace></category>
-<category><name>catGameElements_sub19</name><replace>Time</replace></category>
-<category><name>catGameElements_sub20</name><replace>Date and Time</replace></category>
+<category><name>catGameElements_sub17</name><replace>Number Fields</replace></category>
+<category><name>catGameElements_sub18</name><replace>Date Fields</replace></category>
+<category><name>catGameElements_sub19</name><replace>Time Fields</replace></category>
+<category><name>catGameElements_sub20</name><replace>DateTime Fields</replace></category>
 <category><name>catGameElements_sub21</name><replace>Progress</replace></category>
-<category><name>catGameElements_sub22</name><replace>Password</replace></category>
-<category><name>catGameElements_sub23</name><replace>Form</replace></category>
-<category><name>catGameElements_sub24</name><replace>Video</replace></category>
-<category><name>catGameElements_sub25</name><replace>Font</replace></category>
-<category><name>catGameElements_sub26</name><replace>Span</replace></category>
+<category><name>catGameElements_sub22</name><replace>Password Fields</replace></category>
+<category><name>catGameElements_sub23</name><replace>Forms</replace></category>
+<category><name>catGameElements_sub24</name><replace>Video Media</replace></category>
+<category><name>catGameElements_sub25</name><replace>Fonts</replace></category>
+<category><name>catGameElements_sub26</name><replace>Inline Containers</replace></category>
 <category><name>catGameElements_sub27</name><replace>Fetch</replace></category>
 <category><name>catGameElements_sub28</name><replace>Json</replace></category>
-<category><name>oled</name><replace>OLED Screen</replace></category>
+<category><name>oled</name><replace>OLED Display</replace></category>
 <category><name>EZ+</name><replace>EZ Start Kit+</replace></category>
 <category><name>airquality</name><replace>Taiwan Air Quality</replace></category>
 <category><name>fu_mqtt</name><replace>MQTT</replace></category>
 <category><name>objectreconginition</name><replace>Object Recognition</replace></category>
 <category><name>holisticreconginition</name><replace>Holistic Recognition</replace></category>
-<category><name>teachablemachine</name><replace>Teachable Machine(google)</replace></category>
+<category><name>teachablemachine</name><replace>Teachable Machine (Google)</replace></category>
 <category><name>faceapidetect</name><replace>Face Detection (face-api)</replace></category>
 <category><name>faceapirecognize</name><replace>Face Recognition (face-api)</replace></category>
-<category><name>weather</name><replace>Weather prediction of Taiwan (36hr)</replace></category>
-<category><name>servoesp</name><replace>Servo</replace></category>
+<category><name>weather</name><replace>Taiwan Weather Forecast (36 hours)</replace></category>
+<category><name>servoesp</name><replace>Servo Motor</replace></category>
 <category><name>telegrambot</name><replace>Telegram Bot Module</replace></category>
-<category><name>ntpserver</name><replace>NTP Server</replace></category>
+<category><name>ntpserver</name><replace>Network Time</replace></category>
 <category><name>uartmodule</name><replace>UART</replace></category>
 <category><name>fudfplayer</name><replace>DFPlayer mini</replace></category>
-<category><name>pixelbit</name><replace>Pixel:Bit Server</replace></category>
-<category><name>hands</name><replace>Hand Recognition</replace></category>
-<category><name>spreadsheet</name><replace>Google spreadsheet</replace></category>
-<category><name>taskhandle</name><replace>Multi-core task</replace></category>
-<category><name>catpagemqtt</name><replace>Page MQTT</replace></category>
-<category><name>catdashboard</name><replace>Page Dashboard</replace></category>
-<category><name>catchartdoughnut</name><replace>Doughnut chart</replace></category>
-<category><name>catchartgauge</name><replace>Gauge chart</replace></category>
-<category><name>catchartwaterbubble</name><replace>Water Bubble chart</replace></category>
-<category><name>catlinechart</name><replace>Line chart</replace></category>
-<category><name>catbarchart</name><replace>Bar chart</replace></category>
-<category><name>catcanaloggauge</name><replace>Analog chart</replace></category>
-<category><name>catchartswitch</name><replace>Slide switch</replace></category>
-<category><name>serverUart</name><replace>Server UART</replace></category>
-<category><name>tft</name><replace>TFT LCD</replace></category>
+<category><name>pixelbit</name><replace>Pixel:Bit Web Module</replace></category>
+<category><name>hands</name><replace>Hand Gesture Recognition</replace></category>
+<category><name>spreadsheet</name><replace>Google Spreadsheet</replace></category>
+<category><name>taskhandle</name><replace>Dual Core Task</replace></category>
+<category><name>catpagemqtt</name><replace>Web MQTT</replace></category>
+<category><name>catdashboard</name><replace>Web Dashboard</replace></category>
+<category><name>catchartdoughnut</name><replace>Doughnut Chart</replace></category>
+<category><name>catchartgauge</name><replace>Temperature Chart</replace></category>
+<category><name>catchartwaterbubble</name><replace>Water Level Chart</replace></category>
+<category><name>catlinechart</name><replace>Line Chart</replace></category>
+<category><name>catbarchart</name><replace>Bar Chart</replace></category>
+<category><name>catcanaloggauge</name><replace>Analog Chart</replace></category>
+<category><name>catchartswitch</name><replace>Slide Switch</replace></category>
+<category><name>serverUart</name><replace>UART Module</replace></category>
+<category><name>tft</name><replace>TFT Full-Color Screen</replace></category>
 <category><name>esp32_webbluetooth</name><replace>ESP32 Bluetooth UART</replace></category>
 <category><name>linkit7697_webbluetooth</name><replace>LinkIt7697 Bluetooth UART</replace></category>
-<category><name>javascript_function</name><replace>JavaScript functions</replace></category>
+<category><name>javascript_function</name><replace>Web Functions</replace></category>
 <category><name>preferences</name><replace>Preferences</replace></category>
 <category><name>PN532</name><replace>PN532 NFC</replace></category>
 <category><name>RC522</name><replace>RC522 RFID</replace></category>
-<category><name>adxl345</name><replace>ADXL345 3-axis accelerometer</replace></category>
+<category><name>adxl345</name><replace>ADXL345 Accelerometer</replace></category>
 <category><name>openai_chat</name><replace>openAI Chat</replace></category>
 <category><name>gemini_chat</name><replace>Gemini Chat</replace></category>
-<category><name>custom_chat</name><replace>Custom domain Chat</replace></category>
+<category><name>custom_chat</name><replace>LLM Chat</replace></category>
 <category><name>catDvcbot</name><replace>DaVinci Assistant</replace></category>
-<category><name>gy30</name><replace>GY-30 Light intensity sensor</replace></category>
-<category><name>blekeyboardmodule</name><replace>ESP32 Keyboard</replace></category>
-<category><name>webusb</name><replace>WebUSB Module</replace></category>
+<category><name>gy30</name><replace>GY-30 Light Sensor</replace></category>
+<category><name>blekeyboardmodule</name><replace>ESP32 Bluetooth Keyboard</replace></category>
+<category><name>webusb</name><replace>Web USB Module</replace></category>
 <category><name>joystick</name><replace>Joystick</replace></category>
-<category><name>mpu6050</name><replace>MPU6050</replace></category>
-<category><name>HX710B</name><replace>HX710B pressure sensor</replace></category>
-<category><name>MAX6675</name><replace>MAX6675 temperature sensor</replace></category>
-<category><name>pms7003m</name><replace>PMS7003M sensor</replace></category>
-<category><name>trackingcolor</name><replace>Tracking color(Tracking)</replace></category>
-<category><name>posenet</name><replace>Pose Detection(posenet)</replace></category>
-<category><name>tesseract</name><replace>Tesseract (ocr)</replace></category>
-<category><name>knnclassifier</name><replace>Teachable Machine(knn)</replace></category>
-<category><name>Keyboard</name><replace>Page keyboard</replace></category>
+<category><name>mpu6050</name><replace>MPU6050 Six-Axis Sensor</replace></category>
+<category><name>HX710B</name><replace>HX710B Pressure Sensor</replace></category>
+<category><name>MAX6675</name><replace>MAX6675 Temperature Sensor</replace></category>
+<category><name>DS18B20</name><replace>DS18B20 Water Temperature Sensor</replace></category>
+<category><name>pms7003m</name><replace>PMS7003M Sensor</replace></category>
+<category><name>trackingcolor</name><replace>Color Tracking (Tracking)</replace></category>
+<category><name>posenet</name><replace>Pose Detection (posenet)</replace></category>
+<category><name>tesseract</name><replace>Text Recognition (OCR)</replace></category>
+<category><name>knnclassifier</name><replace>Machine Learning (KNN)</replace></category>
+<category><name>Keyboard</name><replace>Web Keyboard</replace></category>
 <category><name>PS2</name><replace>PS2 Controller</replace></category>
-<category><name>Emakefun</name><replace>Emakefun board</replace></category>
+<category><name>Emakefun</name><replace>Emakefun Expansion Board</replace></category>
 <category><name>amb82_mini</name><replace>AmebaPro2</replace></category>
-<category><name>wire</name><replace>Wire.h(I2C)</replace></category>
-<category><name>blemousemodule</name><replace>ESP32 Mouse</replace></category>
+<category><name>wire</name><replace>Wire.h (I2C)</replace></category>
+<category><name>blemousemodule</name><replace>ESP32 Bluetooth Mouse</replace></category>
 <category><name>TinyGPS</name><replace>TinyGPS</replace></category>
-<category><name>pagerecognition</name><replace>Page recognition</replace></category>
-<category><name>catpageupload</name><replace>Page upload</replace></category>
-<category><name>blemodule</name><replace>Bluetooth module</replace></category>
-<category><name>amb82_mini_rtsp</name><replace>RTSP stream</replace></category>
-<category><name>amb82_mini_rtp</name><replace>RTP stream</replace></category>
-<category><name>amb82_mini_ble_keyboard</name><replace>BLE Keyboard</replace></category>
-<category><name>amb82_mini_ble_mouse</name><replace>BLE Mouse</replace></category>
-<category><name>amb82_mini_mp4</name><replace>Record MP4</replace></category>
+<category><name>blemodule</name><replace>Bluetooth Module</replace></category>
+<category><name>pagerecognition</name><replace>Web Recognition</replace></category>
+<category><name>catpageupload</name><replace>Web Upload</replace></category>
+<category><name>amb82_mini_rtsp</name><replace>RTSP Streaming</replace></category>
+<category><name>amb82_mini_rtp</name><replace>RTP Streaming</replace></category>
+<category><name>amb82_mini_ble_keyboard</name><replace>Bluetooth Keyboard</replace></category>
+<category><name>amb82_mini_ble_mouse</name><replace>Bluetooth Mouse</replace></category>
+<category><name>amb82_mini_mp4</name><replace>MP4 Recording</replace></category>
 <category><name>amb82_mini_video</name><replace>Video</replace></category>
-<category><name>amb82_mini_video_qrcode</name><replace>QR code</replace></category>
+<category><name>amb82_mini_video_qrcode</name><replace>QR Code</replace></category>
 <category><name>amb82_mini_ObjectDetection_RTPS</name><replace>Object Detection</replace></category>
 <category><name>amb82_mini_FaceDetection</name><replace>Face Detection</replace></category>
 <category><name>amb82_mini_FaceRecognition</name><replace>Face Recognition</replace></category>
 <category><name>amb82_mini_EmotionClassification</name><replace>Emotion Classification</replace></category>
 <category><name>amb82_mini_AudioClassification</name><replace>Audio Classification</replace></category>
 <category><name>amb82_mini_ImageClassification</name><replace>Image Classification</replace></category>
-<category><name>amb82_mini_Gtimer</name><replace>hardware timers</replace></category>
-<category><name>amb82_mini_Interrupt</name><replace>GPIO interrupt</replace></category>
-<category><name>amb82_mini_DeepSleep</name><replace>Deep sleep</replace></category>
+<category><name>amb82_mini_Gtimer</name><replace>Hardware Timer</replace></category>
+<category><name>amb82_mini_Interrupt</name><replace>GPIO Interrupt</replace></category>
+<category><name>amb82_mini_DeepSleep</name><replace>Deep Sleep</replace></category>
 <category><name>amb82_mini_RTC</name><replace>RTC</replace></category>
-<category><name>amb82_mini_FileSystem</name><replace>File system</replace></category>
+<category><name>amb82_mini_FileSystem</name><replace>File System</replace></category>
 <category><name>amb82_mini_ntp</name><replace>NTP</replace></category>
 <category><name>amb82_mini_udp</name><replace>UDP</replace></category>
 <category><name>amb82_mini_MotionDetection</name><replace>Motion Detection</replace></category>
 <category><name>amb82_mini_Pins</name><replace>Pins</replace></category>
-<category><name>amb82_mini_Flashmemory</name><replace>Flash memory RW</replace></category>
+<category><name>amb82_mini_Flashmemory</name><replace>Flash Memory Access</replace></category>
 <category><name>amb82_mini_BluetoothUart</name><replace>Bluetooth UART</replace></category>
 </xml>

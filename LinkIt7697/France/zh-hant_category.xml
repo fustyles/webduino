@@ -50,8 +50,6 @@
 <category><name>catGameElements_sub14</name><replace>核取方塊</replace></category>
 <category><name>catGameElements_sub15</name><replace>區塊文字欄位</replace></category>
 <category><name>catGameElements_sub16</name><replace>Ajax</replace></category>
-<category><name>catGameElements_sub13</name><replace>選項按鈕</replace></category>
-<category><name>catGameElements_sub14</name><replace>核取方塊</replace></category>
 <category><name>catGameElements_sub17</name><replace>數字欄位</replace></category>
 <category><name>catGameElements_sub18</name><replace>日期欄位</replace></category>
 <category><name>catGameElements_sub19</name><replace>時間欄位</replace></category>
@@ -103,7 +101,7 @@
 <category><name>adxl345</name><replace>ADXL345加速度計</replace></category>
 <category><name>openai_chat</name><replace>openAI 聊天</replace></category>
 <category><name>gemini_chat</name><replace>Gemini 聊天</replace></category>
-<category><name>custom_chat</name><replace>自訂網域 聊天</replace></category>
+<category><name>custom_chat</name><replace>LLM 聊天</replace></category>
 <category><name>catDvcbot</name><replace>達哥助手</replace></category>
 <category><name>gy30</name><replace>GY-30光照度</replace></category>
 <category><name>blekeyboardmodule</name><replace>ESP32藍芽鍵盤</replace></category>
