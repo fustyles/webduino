@@ -3,7 +3,7 @@
 let Gemini_api_key = "";
 
 function gemini_chat_initial(input_key, input_model, input_tokens) {
-		Gemini_api_key = input_key;
+		Gemini_api_key = input_key;	
 		const gemini_importMap = {
 			"imports": {
 			  "@google/generative-ai": "https://esm.run/@google/generative-ai"
