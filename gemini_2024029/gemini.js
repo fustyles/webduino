@@ -161,7 +161,7 @@ async function gemini_chat_image_request(message, imageURL) {
     try {
 	let imageBase64;	    
 	if (imageURL.toLowerCase().trim().indexOf("http")==0)
-            imageBase64 = await getImageBase64(imageURL, 0);
+            imageBase64 = await getFileBase64(imageURL, 0);
 	else if (imageURL.toLowerCase().trim().indexOf("data:")==0)
             imageBase64 = imageURL.split(",")[1];
 	else
@@ -207,15 +207,50 @@ async function gemini_chat_image_request(message, imageURL) {
     }
 }
 
-async function getImageBase64(imageURL, mimitype) {
-    const response = await fetch(imageURL);
+async function gemini_chat_file_request(fileType, fileURL, message) {
+    try {
+	let fileBase64 = await getFileBase64(fileURL, 0);
+	fileBase64 = decodeURIComponent(fileBase64);
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
+        const data = {
+            contents: [{
+				"parts":[
+				  {"inline_data": {"mime_type": fileType, "data": fileBase64}},
+				  {"text": message}
+				]
+			}]
+        };
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+
+        const response = await fetch(url, options);
+        const json = await response.json();
+        let result = json.candidates[0].content.parts[0].text;
+        if (result === "null") {
+            result = json.error.message;
+        }
+	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(result);
+    } catch (error) {
+	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(JSON.stringify(error));
+    }
+}
+
+async function getFileBase64(fileURL, type) {
+    const response = await fetch(fileURL);
     const blob = await response.blob();
     const arrayBuffer = await blob.arrayBuffer();
     const bytes = new Uint8Array(arrayBuffer);
     const binaryString = String.fromCharCode(...bytes);
     const base64String = btoa(binaryString);
-    if (mimitype)
+    if (type)
     	return "data:image/jpeg;base64," + base64String;
     else
     	return base64String;	    
 }
+
