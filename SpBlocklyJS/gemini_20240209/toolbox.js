@@ -24,18 +24,6 @@ var catGEMINI = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+ 
-'  <block type="gemini_chat_image_request">'+
-'    <value name="words">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+
-'    </value>'+
-'    <value name="url">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+
-'    </value>'+
-'  </block>'+
 '  <block type="gemini_chat_response">'+
 '  </block>'+ 
 '  <block type="gemini_chat_response_data">'+
@@ -48,6 +36,30 @@ var catGEMINI = '<xml>'+
 '    </value>'+   
 '  </block>'+
 '  <block type="gemini_chat_content_file_remote_insert">'+
+'    <value name="url">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+
+'  <block type="gemini_chat_content_file_remote_read">'+
+'    <value name="words">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="url">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+ 
+'  <block type="gemini_chat_image_request">'+
+'    <value name="words">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
 '    <value name="url">'+
 '      <block type="text">'+
 '        <field name="TEXT"></field>'+

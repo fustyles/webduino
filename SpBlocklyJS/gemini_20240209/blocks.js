@@ -51,7 +51,7 @@ Blockly.Blocks['gemini_chat_image_request'] = {
   this.appendValueInput("words")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW);
+      .appendField(Blockly.Msg.GEMINI_CHAT_PROMPT_SHOW);
   this.appendValueInput("url")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -165,6 +165,41 @@ Blockly.Blocks['gemini_chat_content_file_remote_insert'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.GEMINI_CHAT_CONTENT_FILE_REMOTE_URL_INSERT_SHOW);	  
   this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true); 
+  this.setColour(40);
+  }
+};
+
+Blockly.Blocks['gemini_chat_content_file_remote_read'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.GEMINI_CHAT_SHOW)   
+	  .appendField(Blockly.Msg.GEMINI_CHAT_READ_SHOW);	  
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .appendField(new Blockly.FieldDropdown([
+			["PDF", "application/pdf"],
+			["JavaScript", "text/javascript"],
+			["x-JavaScript", "application/x-javascript"],			
+			["Python", "application/x-python, text/x-python"],
+			["TXT", "text/plain"],
+			["HTML", "text/html"],
+			["CSS", "text/css"],
+			["Markdown", "text/md"],
+			["CSV", "text/csv"],
+			["XML", "text/xml"],
+			["RTF", "text/rtf"]
+	  ]), "type"); 
+  this.appendValueInput("url")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.GEMINI_CHAT_CONTENT_FILE_REMOTE_URL_INSERT_SHOW);
+  this.appendValueInput("words")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.GEMINI_CHAT_PROMPT_SHOW);	  
+  this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true); 
   this.setColour(40);
