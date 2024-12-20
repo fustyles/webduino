@@ -159,7 +159,7 @@ function gemini_chat_content_file_remote_insert(url) {
 }
 
 async function gemini_chat_image_request(message, imageURL) {
-    try {
+    //try {
 	let imageBase64;	    
 	if (imageURL.toLowerCase().trim().indexOf("http")==0) {
             imageBase64 = await getFileBase64(imageURL, 0);
@@ -205,9 +205,9 @@ async function gemini_chat_image_request(message, imageURL) {
             result = json.error.message;
         }
 	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(result);
-    } catch (error) {
-	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(JSON.stringify(error));
-    }
+    //} catch (error) {
+	//if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(JSON.stringify(error));
+    //}
 }
 
 async function gemini_chat_file_request(fileType, fileURL, message) {
