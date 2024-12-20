@@ -1,5 +1,5 @@
 Blockly.Msg["LLM_CHAT_SHOW"] = "LLM 聊天";
-Blockly.Msg["LLM_CHAT_REQUEST_SHOW"] = "聊天內容";
+Blockly.Msg["LLM_CHAT_REQUEST_SHOW"] = "(僅適用與openAI相同格式) 聊天內容";
 Blockly.Msg["LLM_CHAT_CONTENT_CLEAR_SHOW"] = "清除聊天紀錄";
 Blockly.Msg["LLM_CHAT_INSERT_SHOW"] = "插入資料";
 Blockly.Msg["LLM_CHAT_CONTENT_FILE_SHOW"] = "聊天紀錄";
@@ -9,7 +9,7 @@ Blockly.Msg["LLM_CHAT_CONTENT_FILE_REMOTE_SHOW"] = "聊天紀錄匯入";
 Blockly.Msg["LLM_CHAT_CONTENT_FILE_REMOTE_URL_SHOW"] = "網址(.chat)";
 Blockly.Msg["LLM_CHAT_CONTENT_FILE_REMOTE_URL_INSERT_SHOW"] = "網址(.txt)";
 Blockly.Msg["LLM_CHAT_IMAGE_URL_SHOW"] = "圖片網址";
-Blockly.Msg["LLM_CHAT_VISION_SHOW"] = "視覺分析";
+Blockly.Msg["LLM_CHAT_VISION_SHOW"] = "(僅適用與openAI相同格式) 視覺分析";
 Blockly.Msg["LLM_CHAT_DOMAIN_SHOW"] = "網域";
 Blockly.Msg["LLM_CHAT_PATH_SHOW"] = "路徑";
 Blockly.Msg["LLM_CHAT_MODEL_SHOW"] = "模型";
