@@ -259,13 +259,14 @@ function llm_chat_image_request(input_text, input_url) {
 	var user_text = {"type":"text", "text":input_text};
 	char_message.content.push(user_text);
 	var user_url = {"type":"image_url", "image_url":{"url":input_url}};
-	char_message.content.push(user_url);	
-	llm_chat_message.push(char_message);	
+	char_message.content.push(user_url);
+	let llm_vision_message = [];	
+	llm_vision_message.push(char_message);	
   
 	var data;
 	data = {
 	  "model": llm_chat_model,
-	  "messages": llm_chat_message	  
+	  "messages": llm_vision_message
 	};
 
 	xhr.send(JSON.stringify(data));
