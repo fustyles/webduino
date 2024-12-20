@@ -163,7 +163,6 @@ async function gemini_chat_image_request(message, imageURL) {
 	let imageBase64;	    
 	if (imageURL.toLowerCase().trim().indexOf("http")==0) {
             imageBase64 = await getFileBase64(imageURL, 0);
-	    imageBase64 = imageBase64.split(",")[1];
 	}
 	else if (imageURL.toLowerCase().trim().indexOf("data:")==0)
             imageBase64 = imageURL.split(",")[1];
