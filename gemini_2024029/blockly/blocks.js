@@ -1,17 +1,16 @@
 Blockly.Blocks['gemini_chat_initial'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField(Blockly.Msg.GEMINI_CHAT_SHOW);
+	  .appendField(Blockly.Msg.GEMINI_CHAT_SHOW);
   this.appendValueInput("token")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.GEMINI_APIKEY_SHOW);  
-  this.appendDummyInput()
-      .setAlign(Blockly.ALIGN_RIGHT)	  
+  this.appendDummyInput()  
       .appendField(Blockly.Msg.GEMINI_MODEL_SHOW)
       .appendField(new Blockly.FieldDropdown([
 	        ["gemini-1.5-flash","gemini-1.5-flash"],
-		["gemini-pro","gemini-pro"] 
+		["gemini-pro","gemini-pro"]  
 	  ]), "model");
   this.appendValueInput("tokens")
       .setCheck("Number")
@@ -25,7 +24,7 @@ Blockly.Blocks['gemini_chat_initial'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(40);
-  this.setHelpUrl("https://aistudio.google.com/app/prompts/new_chat?utm_source=agd&utm_medium=referral&utm_campaign=core-cta&utm_content=");	  
+  this.setHelpUrl("https://aistudio.google.com/app/prompts/new_chat?utm_source=agd&utm_medium=referral&utm_campaign=core-cta&utm_content=");
   }
 };
 
@@ -52,12 +51,12 @@ Blockly.Blocks['gemini_chat_image_request'] = {
   this.appendValueInput("words")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW);
+      .appendField(Blockly.Msg.GEMINI_CHAT_PROMPT_SHOW);
   this.appendValueInput("url")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.GEMINI_CHAT_IMAGE_URL_SHOW);	  
-  this.setInputsInline(true);	  
+  this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(40);
@@ -166,6 +165,41 @@ Blockly.Blocks['gemini_chat_content_file_remote_insert'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.GEMINI_CHAT_CONTENT_FILE_REMOTE_URL_INSERT_SHOW);	  
   this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true); 
+  this.setColour(40);
+  }
+};
+
+Blockly.Blocks['gemini_chat_content_file_remote_read'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.GEMINI_CHAT_SHOW)   
+	  .appendField(Blockly.Msg.GEMINI_CHAT_READ_SHOW);	  
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .appendField(new Blockly.FieldDropdown([
+			["PDF", "application/pdf"],
+			["JavaScript", "text/javascript"],
+			["x-JavaScript", "application/x-javascript"],			
+			["Python", "application/x-python, text/x-python"],
+			["TXT", "text/plain"],
+			["HTML", "text/html"],
+			["CSS", "text/css"],
+			["Markdown", "text/md"],
+			["CSV", "text/csv"],
+			["XML", "text/xml"],
+			["RTF", "text/rtf"]
+	  ]), "type"); 
+  this.appendValueInput("url")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.GEMINI_CHAT_CONTENT_FILE_REMOTE_URL_INSERT_SHOW);
+  this.appendValueInput("words")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.GEMINI_CHAT_PROMPT_SHOW);	  
+  this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true); 
   this.setColour(40);
