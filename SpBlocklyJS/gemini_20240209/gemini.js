@@ -210,7 +210,7 @@ async function gemini_chat_image_request(message, imageURL) {
 
 async function gemini_chat_file_request(fileType, fileURL, message) {
     try {
-	let fileBase64 = await getFileBase64(fileURL, fileType);
+	let fileBase64 = await getFileBase64(fileURL, 0);
 	fileBase64 = decodeURIComponent(fileBase64);
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
         const data = {
