@@ -159,16 +159,14 @@ function gemini_chat_content_file_remote_insert(url) {
 }
 
 async function gemini_chat_image_request(message, imageURL) {
-    //try {
+    try {
 	let imageBase64;	    
-	if (imageURL.toLowerCase().trim().indexOf("http")==0) {
-            imageBase64 = await getFileBase64(imageURL, 0);
-	    console.log(imageBase64);
-	}
+	if (imageURL.toLowerCase().trim().indexOf("http")==0)
+			imageBase64 = await getFileBase64(imageURL, 0);
 	else if (imageURL.toLowerCase().trim().indexOf("data:")==0)
-            imageBase64 = imageURL.split(",")[1];
+			imageBase64 = imageURL.split(",")[1];
 	else
-            imageBase64 = imageURL;
+			imageBase64 = imageURL;
 	imageBase64 = decodeURIComponent(imageBase64);	
 	
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
@@ -204,10 +202,10 @@ async function gemini_chat_image_request(message, imageURL) {
         if (result === "null") {
             result = json.error.message;
         }
-	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(result);
-    //} catch (error) {
-	//if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(JSON.stringify(error));
-    //}
+		if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(result);
+    } catch (error) {
+		if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(JSON.stringify(error));
+    }
 }
 
 async function gemini_chat_file_request(fileType, fileURL, message) {
