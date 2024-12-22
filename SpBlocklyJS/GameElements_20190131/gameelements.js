@@ -4965,9 +4965,9 @@ function HextoRgb(color) {
 		if (response.ok) {
 		
 			fetch(response.url)
-				.then(function(response) {
-					console.log(response);
-					return response.text();
+				.then(function(audioData) {
+					console.log(audioData);
+					return audioData.text();
 				})
 				.then(function(data) {
 					console.log(data);
