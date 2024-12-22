@@ -4955,12 +4955,12 @@ function HextoRgb(color) {
       document.getElementById("gameaudio_"+input_id).parentNode.removeChild(document.getElementById("gameaudio_"+input_id));
   }
   
-  function audio_play_googleTTS_Base64Data(input_id, input_language, input_text) {
+  function audio_play_googleTTS_Base64Data(input_id, input_language, input_message) {
     if (document.getElementById("gameaudio_"+input_id)) {
 		var obj = document.getElementById("gameaudio_"+input_id);	
 
 		input_language = encodeURIComponent(input_language);
-		input_text = encodeURIComponent(input_text);
+		input_message = encodeURIComponent(input_message);
 		fetch('https://script.google.com/macros/s/AKfycbwPyGSC3LdlLvNBK6jleZWUYOl0JLUHAG3ZxlkqSmZI7yJF0RvBSn0uWUJco2SiksV2/exec', {
 			  method: 'POST',
 			  headers: {
@@ -4968,7 +4968,7 @@ function HextoRgb(color) {
 			  },
 			  body: JSON.stringify({
 				language: input_language,
-				text: input_text
+				message: input_message
 			  })
 			})
 			.then(function(response) {
