@@ -4963,6 +4963,7 @@ function HextoRgb(color) {
 		input_message = encodeURIComponent(input_message);
 		fetch('https://script.google.com/macros/s/AKfycbwPyGSC3LdlLvNBK6jleZWUYOl0JLUHAG3ZxlkqSmZI7yJF0RvBSn0uWUJco2SiksV2/exec?language='+input_language+'&message='+input_message)
 			.then(function(response) {
+				console.log(response);
 				return response.text();
 			})
 			.then(function(data) {
