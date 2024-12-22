@@ -4981,7 +4981,7 @@ async function audio_play_googleTTS_Base64Data(input_id, input_language, input_m
         obj.src = audioUrl;
 	setTimeout(() => {
 	  obj.play();
-	}, 1000);
+	}, 3000);
     }
 }		
   
