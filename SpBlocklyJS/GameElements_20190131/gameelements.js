@@ -4830,6 +4830,169 @@ function HextoRgb(color) {
   function getGoogleMapEmbedHTML(key, query, mapWidth, mapHeight) {
 	return '<iframe width="'+mapWidth+'" height="'+mapHeight+'" style="border:0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key='+key+'&q='+query+'"> </iframe>';
   }
+ 
+ function audio_create(input_id,input_src,input_left,input_top,input_zindex) {
+    if (document.getElementById("gameaudio_"+input_id)) 
+      document.getElementById("gameaudio_"+input_id).parentNode.removeChild(document.getElementById("gameaudio_"+input_id));
+    var obj = document.createElement('audio');
+    obj.id = "gameaudio_"+input_id;
+    obj.style.position = "absolute";
+    obj.style.left = input_left + 'px';
+    obj.style.top = input_top + 'px';
+    obj.style.zIndex = input_zindex;
+    obj.controls = true;
+    obj.type = 'audio/mpeg';	
+    obj.src = input_src;
+    obj.autoplay = false;	
+    obj.draggable="true";
+    obj.setAttribute("onclick", "javascript:onclickid_set(this);");
+    obj.setAttribute("ondragstart", "javascript:event.dataTransfer.setData('text/plain',event.target.id);");
+    document.body.appendChild(obj);
+  }
+
+  function audio_set(input_id,input_property,input_value) {
+    if (document.getElementById("gameaudio_"+input_id)) {
+	  var obj = document.getElementById("gameaudio_"+input_id);
+      if (input_property=="left")
+        obj.style.left = input_value + "px";
+      else if (input_property=="top")
+        obj.style.top = input_value + "px";	    
+      else if (input_property=="opacity")
+        obj.style.opacity = input_value;         
+      else if (input_property=="zindex")
+        obj.style.zIndex = input_value;
+      else if (input_property=="autoplay")
+        obj.autoplay = input_value;	
+      else if (input_property=="controls")
+        obj.controls = input_value;
+      else if (input_property=="loop")
+        obj.loop = input_value;
+      else if (input_property=="muted")
+        obj.muted = input_value;
+      else if (input_property=="src")
+        obj.src = input_value;
+      else if (input_property=="volume")
+        obj.volume = input_value;
+      else if (input_property=="currentTime")
+        obj.currentTime = input_value;	
+      else if (input_property=="display"){ 
+        if (input_value==1)
+          obj.style.display = "block";    
+        else if (input_value==0)
+          obj.style.display = "none";
+      }
+      else if (input_property=="position")
+        obj.style.position = input_value;
+      else if (input_property=="draggable")
+        obj.draggable = input_value;
+      else if (input_property=="style")
+        obj.style = input_value;
+	  else if (input_property=="class")
+        obj.className = input_value;
+    }
+  }
+
+  function audio_get(input_id,input_property){
+    if (document.getElementById("gameaudio_"+input_id)) {
+	  var obj = document.getElementById("gameaudio_"+input_id);
+      if (input_property=="left")
+        return Number(obj.style.left.replace(/px/ig,""));
+      else if (input_property=="top")
+        return Number(obj.style.top.replace(/px/ig,""));
+      else if (input_property=="currentSrc")
+        return obj.currentSrc;
+	  else if (input_property=="currentTime")
+		return obj.currentTime;
+      else if (input_property=="duration")
+        return obj.duration;
+	  else if (input_property=="ended")
+		return obj.ended;
+      else if (input_property=="muted")
+        return obj.muted;
+	  else if (input_property=="paused")
+		return obj.paused;
+      else if (input_property=="played")
+        return obj.played;
+	  else if (input_property=="src")
+		return obj.src;	
+	  else if (input_property=="volume")
+		return obj.volume;	
+      else if (input_property=="opacity")
+        return Number(obj.style.opacity);
+      else if (input_property=="zindex")
+        return obj.style.zIndex;
+      else if (input_property=="display")
+        return obj.style.display;
+      else if (input_property=="position")
+        return obj.style.position;		    
+      else if (input_property=="draggable")
+        return obj.draggable;
+      else if (input_property=='id')
+        return obj.id;
+      else if (input_property=='name')
+        return obj.name;
+      else if (input_property=='class')
+        return obj.className;
+    }
+    else
+      return "";
+  }
+  
+  function audio_control(input_id,input_cmd) {
+    if (document.getElementById("gameaudio_"+input_id)) {
+		var obj = document.getElementById("gameaudio_"+input_id);	  
+		if (input_cmd=="play")
+			obj.play();
+		else if (input_cmd=="pause")
+			obj.pause();
+		else if (input_cmd=="load")
+			obj.load();
+    }  
+  }  
+
+  function audio_delete(input_id) {
+    if (document.getElementById("gameaudio_"+input_id))
+      document.getElementById("gameaudio_"+input_id).parentNode.removeChild(document.getElementById("gameaudio_"+input_id));
+  }
+  
+  function audio_play_googleTTS_Base64Data(input_id, input_language, input_text) {
+    if (document.getElementById("gameaudio_"+input_id)) {
+		var obj = document.getElementById("gameaudio_"+input_id);	
+
+		input_language = encodeURIComponent(input_language);
+		input_text = encodeURIComponent(input_text);
+		fetch('https://script.google.com/macros/s/AKfycbwPyGSC3LdlLvNBK6jleZWUYOl0JLUHAG3ZxlkqSmZI7yJF0RvBSn0uWUJco2SiksV2/exec', {
+			  method: 'POST',
+			  headers: {
+				'Content-Type': 'application/json'
+			  },
+			  body: JSON.stringify({
+				language: input_language,
+				text: input_text
+			  })
+			})
+			.then(function(response) {
+				return response.json();
+			})
+			.then(function(data) {
+				console.log(data);
+				let base64Audio = data;
+				const audioData = Uint8Array.from(atob(base64Audio), c => c.charCodeAt(0));
+				const audioBlob = new Blob([audioData], {
+					type: 'audio/mpeg'
+				});
+				const audioUrl = URL.createObjectURL(audioBlob);
+				obj.src = audioUrl;
+				obj.play();
+			})
+			.catch(
+				(error) => {
+					console.log(`Error: ${error}`);
+				}
+			);
+    }  
+  }
+  
   window.table_create = table_create;
   window.table_set = table_set;
   window.table_get = table_get;
@@ -5009,5 +5172,12 @@ function HextoRgb(color) {
   window.getGoogleMapUrl = getGoogleMapUrl;
   window.getGoogleMapEmbedHTML = getGoogleMapEmbedHTML;
   window.div_add = div_add;
+  window.audio_create = audio_create;
+  window.audio_set = audio_set;
+  window.audio_get = audio_get;
+  window.audio_control = audio_control;
+  window.audio_create = audio_create;  
+  window.audio_delete = audio_delete;
+  window.audio_play_googleTTS_Base64Data = audio_play_googleTTS_Base64Data;  
 	
 }(window, window.document));

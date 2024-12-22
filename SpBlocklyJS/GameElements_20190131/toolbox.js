@@ -3707,6 +3707,80 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    </block>'+
 '    </category>'+
+'		  <category name="%{BKY_CATPAGEELEMENTS_AUDIO}" id="catPageElements_audio" colour="150">'+
+'		  <block type="audio_create">'+
+'			<value name="id_">'+
+'			  <block type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </block>'+
+'			</value>'+
+'			<value name="src_">'+
+'			  <block type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </block>'+
+'			</value>'+		
+'			<value name="left_">'+
+'			  <block type="math_number">'+
+'				<field name="NUM">0</field>'+
+'			  </block>'+
+'			</value>'+
+'			<value name="top_">'+
+'			  <block type="math_number">'+
+'				<field name="NUM">100</field>'+
+'			  </block>'+
+'			</value>'+
+'			<value name="zindex_">'+
+'			  <block type="math_number">'+
+'				<field name="NUM">999</field>'+
+'			  </block>'+
+'			</value>'+
+'		  </block>'+
+'		  <block type="audio_set">'+
+'			<value name="id_">'+
+'			  <block type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </block>'+
+'			</value>'+
+'			<value name="value_">'+
+'			  <block type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </block>'+
+'			</value>'+
+'		  </block>'+
+'		  <block type="audio_get">'+
+'			<value name="id_">'+
+'			  <block type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </block>'+
+'			</value>'+ 
+'		  </block>'+
+'		  <block type="audio_control">'+
+'			<value name="id_">'+
+'			  <block type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </block>'+
+'			</value>'+
+'		  </block>'+
+'		  <block type="audio_play_googleTTS">'+
+'			<value name="id_">'+
+'			  <block type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </block>'+
+'			</value>'+
+'			<value name="text_">'+
+'			  <block type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </block>'+
+'			</value>'+		
+'		  </block>'+
+'		  <block type="audio_delete">'+
+'			<value name="id_">'+
+'			  <block type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </block>'+
+'			</value>'+
+'		  </block>'+
+'	</category>'+
 '    <category name="%{BKY_CATPAGEELEMENTS_FONT}" id="catPageElements_font">'+
 '    <block type="font_text">'+
 '    <value name="size_">'+
