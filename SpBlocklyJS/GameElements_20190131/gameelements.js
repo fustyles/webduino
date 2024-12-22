@@ -4972,7 +4972,6 @@ async function audio_play_googleTTS_Base64Data(input_id, input_language, input_m
         });
 
         let data = await response.text();
-        console.log(data);
         let base64Audio = data;
         const audioData = Uint8Array.from(atob(base64Audio), c => c.charCodeAt(0));
         const audioBlob = new Blob([audioData], {
@@ -4980,7 +4979,9 @@ async function audio_play_googleTTS_Base64Data(input_id, input_language, input_m
         });
         const audioUrl = URL.createObjectURL(audioBlob);
         obj.src = audioUrl;
-        obj.play();
+	setTimeout(() => {
+	  obj.play();
+	}, 3000);
     }
 }		
   
