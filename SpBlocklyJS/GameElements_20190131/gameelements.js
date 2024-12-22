@@ -4962,7 +4962,7 @@ async function audio_play_googleTTS_Base64Data(input_id, input_language, input_m
 	input_language = encodeURIComponent(input_language);
 	input_message = encodeURIComponent(input_message);		
 	let response = await fetch('https://script.google.com/macros/s/AKfycbwPyGSC3LdlLvNBK6jleZWUYOl0JLUHAG3ZxlkqSmZI7yJF0RvBSn0uWUJco2SiksV2/exec?language='+input_language+'&message='+input_message);
-	let data = await response.json();
+	let data = await response.text();
 	console.log(JSON.stringify(response));
 	console.log(data);
 	let base64Audio = data;
