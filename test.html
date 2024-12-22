@@ -71,9 +71,10 @@ async function generateSpeech() {
 }
 
 async function handleGenerate(language, text) {
-  const encodedText = encodeURIComponent(text.replace(/,/g, '%2C'));
+  text = encodeURIComponent(text.replace(/,/g, '%2C'));
   const url = "https://www.google.com/async/translate_tts?&ttsp=tl:"+language+",txt:"+text+",spd:1&cs=0&async=_fmt:jspb";
-
+  url = encodeURIComponent(url.replace(/,/g, '%2C'));
+	
   try {
     const response = await fetch(url);
     const responseBody = await response.text();
