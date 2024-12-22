@@ -4985,7 +4985,6 @@ function HextoRgb(color) {
 						console.log(`Error: ${error}`);
 					}
 				);
-			}
 		}
     }  
   }		
