@@ -4955,14 +4955,17 @@ function HextoRgb(color) {
       document.getElementById("gameaudio_"+input_id).parentNode.removeChild(document.getElementById("gameaudio_"+input_id));
   }
   
-  function audio_play_googleTTS_Base64Data(input_id, input_language, input_message) {
+function audio_play_googleTTS_Base64Data(input_id, input_language, input_message) {
     if (document.getElementById("gameaudio_"+input_id)) {
 		var obj = document.getElementById("gameaudio_"+input_id);	
 
 		input_language = encodeURIComponent(input_language);
 		input_message = encodeURIComponent(input_message);		
 		let response = fetch('https://script.google.com/macros/s/AKfycbwPyGSC3LdlLvNBK6jleZWUYOl0JLUHAG3ZxlkqSmZI7yJF0RvBSn0uWUJco2SiksV2/exec?language='+input_language+'&message='+input_message);
-		if (response.ok) {
+		console.log(response);
+	        console.log(response.ok);
+	        console.log(response.url);
+	        if (response.ok) {
 		
 			fetch(response.url)
 				.then(function(audioData) {
