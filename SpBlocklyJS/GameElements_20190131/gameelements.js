@@ -4964,7 +4964,7 @@ async function audio_play_googleTTS_Base64Data(input_id, input_language, input_m
 	let response = await fetch('https://script.google.com/macros/s/AKfycbwPyGSC3LdlLvNBK6jleZWUYOl0JLUHAG3ZxlkqSmZI7yJF0RvBSn0uWUJco2SiksV2/exec?language='+input_language+'&message='+input_message);
 	console.log(response);
 	if (response.ok) {
-		let data = await response.text();
+		let data = await response.json();
 		console.log(data);
 		let base64Audio = data;
 		const audioData = Uint8Array.from(atob(base64Audio), c => c.charCodeAt(0));
