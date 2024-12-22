@@ -84,6 +84,7 @@ async function handleGenerate(language, text) {
     }
 
     const jsonResponse = JSON.parse(responseBody.replace(")]}'\n", ""));
+console.log(jsonResponse);	  
     const ttsData = jsonResponse.translate_tts[0];
 
     const audioData = Uint8Array.from(atob(ttsData), c => c.charCodeAt(0));
