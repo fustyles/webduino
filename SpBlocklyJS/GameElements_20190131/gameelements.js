@@ -4969,8 +4969,7 @@ async function audio_play_googleTTS_Base64Data(input_id, input_language, input_m
 		
 			fetch(response.url)
 				.then(function(audioData) {
-					console.log(audioData);
-					return audioData.text();
+					return audioData.json();
 				})
 				.then(function(data) {
 					console.log(data);
