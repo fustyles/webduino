@@ -4960,30 +4960,35 @@ function HextoRgb(color) {
 		var obj = document.getElementById("gameaudio_"+input_id);	
 
 		input_language = encodeURIComponent(input_language);
-		input_message = encodeURIComponent(input_message);
-		fetch('https://script.google.com/macros/s/AKfycbwPyGSC3LdlLvNBK6jleZWUYOl0JLUHAG3ZxlkqSmZI7yJF0RvBSn0uWUJco2SiksV2/exec?language='+input_language+'&message='+input_message)
-			.then(function(response) {
-				console.log(response);
-				return response.text();
-			})
-			.then(function(data) {
-				console.log(data);
-				let base64Audio = data;
-				const audioData = Uint8Array.from(atob(base64Audio), c => c.charCodeAt(0));
-				const audioBlob = new Blob([audioData], {
-					type: 'audio/mpeg'
-				});
-				const audioUrl = URL.createObjectURL(audioBlob);
-				obj.src = audioUrl;
-				obj.play();
-			})
-			.catch(
-				(error) => {
-					console.log(`Error: ${error}`);
-				}
-			);
+		input_message = encodeURIComponent(input_message);		
+		let response = fetch('https://script.google.com/macros/s/AKfycbwPyGSC3LdlLvNBK6jleZWUYOl0JLUHAG3ZxlkqSmZI7yJF0RvBSn0uWUJco2SiksV2/exec?language='+input_language+'&message='+input_message);
+		if (response.ok) {
+		
+			fetch(response.url)
+				.then(function(response) {
+					console.log(response);
+					return response.text();
+				})
+				.then(function(data) {
+					console.log(data);
+					let base64Audio = data;
+					const audioData = Uint8Array.from(atob(base64Audio), c => c.charCodeAt(0));
+					const audioBlob = new Blob([audioData], {
+						type: 'audio/mpeg'
+					});
+					const audioUrl = URL.createObjectURL(audioBlob);
+					obj.src = audioUrl;
+					obj.play();
+				})
+				.catch(
+					(error) => {
+						console.log(`Error: ${error}`);
+					}
+				);
+			}
+		}
     }  
-  }
+  }		
   
   window.table_create = table_create;
   window.table_set = table_set;
