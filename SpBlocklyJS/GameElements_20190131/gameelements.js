@@ -4963,19 +4963,16 @@ async function audio_play_googleTTS_Base64Data(input_id, input_language, input_m
 	input_message = encodeURIComponent(input_message);		
 	let response = await fetch('https://script.google.com/macros/s/AKfycbwPyGSC3LdlLvNBK6jleZWUYOl0JLUHAG3ZxlkqSmZI7yJF0RvBSn0uWUJco2SiksV2/exec?language='+input_language+'&message='+input_message);
 	console.log(response);
-	console.log(response.ok);
-	if (response.ok) {
-		let data = await response.text();
-		console.log(data);
-		let base64Audio = data;
-		const audioData = Uint8Array.from(atob(base64Audio), c => c.charCodeAt(0));
-		const audioBlob = new Blob([audioData], {
-			type: 'audio/mpeg'
-		});
-		const audioUrl = URL.createObjectURL(audioBlob);
-		obj.src = audioUrl;
-		obj.play();
-	}
+	let data = await response.text();
+	console.log(data);
+	let base64Audio = data;
+	const audioData = Uint8Array.from(atob(base64Audio), c => c.charCodeAt(0));
+	const audioBlob = new Blob([audioData], {
+		type: 'audio/mpeg'
+	});
+	const audioUrl = URL.createObjectURL(audioBlob);
+	obj.src = audioUrl;
+	obj.play();
     }  
   }		
   
