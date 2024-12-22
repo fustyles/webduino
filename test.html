@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Speech</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            max-width: 600px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+        select, button {
+            margin: 10px 0;
+        }
+        audio {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Text to Speech</h1>
+    <textarea id="text" placeholder="Enter text here">Hello</textarea>
+    <select id="language">
+        <option value="en">English</option>
+        <option value="zh-CN">Chinese</option>
+        <!-- Add more languages as needed -->
+    </select>
+    <button onclick="generateSpeech()">Generate Speech</button>
+    <audio id="audio" controls style="display: none;"></audio>
+
+</body>
+</html>
+
+<script>
+async function generateSpeech() {
+	const text = document.getElementById('text').value;
+	const language = document.getElementById('language').value;
+
+	if (!text) {
+		alert('Please enter some text.');
+		return;
+	}
+
+	const response = await handleGenerate(language, text);
+	if (response.ok) {
+		const audioBlob = await response.blob();
+		const audioUrl = URL.createObjectURL(audioBlob);
+		const audio = document.getElementById('audio');
+		audio.style.display = 'block';
+		audio.src = audioUrl;
+		audio.play();
+	} else {
+		alert('Failed to generate speech. Please try again.');
+	}
+}
+
+async function handleGenerate(language, text) {
+  const encodedText = encodeURIComponent(text.replace(/,/g, '%2C'));
+  const url = "https://www.google.com/async/translate_tts?&ttsp=tl:"+language+",txt:"+text+",spd:1&cs=0&async=_fmt:jspb";
+
+  const headers = {
+    'accept': '*/*',
+    'accept-language': 'en-US,en;q=0.9',
+    'priority': 'u=1, i',
+    'referer': 'https://www.google.com/',
+    'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
+    'sec-ch-ua-arch': '"x86"',
+    'sec-ch-ua-bitness': '"64"',
+    'sec-ch-ua-full-version': '"124.0.6367.208"',
+    'sec-ch-ua-full-version-list': '"Chromium";v="124.0.6367.208", "Google Chrome";v="124.0.6367.208", "Not-A.Brand";v="99.0.0.0"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-model': '""',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-ch-ua-platform-version': '"15.0.0"',
+    'sec-ch-ua-wow64': '?0',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+    'x-dos-behavior': 'Embed'
+  };
+
+  try {
+    const response = await fetch(url, { headers });
+    const responseBody = await response.text();
+	console.log(responseBody);
+
+    if (!response.ok) {
+      return new Response('Failed to fetch speech data', { status: response.status });
+    }
+
+    const jsonResponse = JSON.parse(responseBody.replace(")]}'\n", ""));
+    const ttsData = jsonResponse.translate_tts[0];
+
+    const audioData = Uint8Array.from(atob(ttsData), c => c.charCodeAt(0));
+
+    return new Response(audioData, {
+      headers: {
+        'Content-Type': 'audio/mpeg',
+        'Content-Disposition': 'attachment; filename="speech.mp3"'
+      }
+    });
+  } catch (error) {
+    return new Response('Error processing request', { status: 500 });
+  }
+}
+</script>
