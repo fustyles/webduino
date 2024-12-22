@@ -4956,26 +4956,33 @@ function HextoRgb(color) {
   }
   
 async function audio_play_googleTTS_Base64Data(input_id, input_language, input_message) {
-    if (document.getElementById("gameaudio_"+input_id)) {
-	var obj = document.getElementById("gameaudio_"+input_id);	
+    if (document.getElementById("gameaudio_" + input_id)) {
+        var obj = document.getElementById("gameaudio_" + input_id);
 
-	input_language = encodeURIComponent(input_language);
-	input_message = encodeURIComponent(input_message);
-	let url = 'https://script.google.com/macros/s/AKfycbwPyGSC3LdlLvNBK6jleZWUYOl0JLUHAG3ZxlkqSmZI7yJF0RvBSn0uWUJco2SiksV2/exec?language='+input_language+'&message='+input_message;
-	console.log(url);
-	let response = await fetch(url);
-	let data = await response.text();
-	console.log(data);
-	let base64Audio = data;
-	const audioData = Uint8Array.from(atob(base64Audio), c => c.charCodeAt(0));
-	const audioBlob = new Blob([audioData], {
-		type: 'audio/mpeg'
-	});
-	const audioUrl = URL.createObjectURL(audioBlob);
-	obj.src = audioUrl;
-	obj.play();
-    }  
-  }		
+        input_language = encodeURIComponent(input_language);
+        input_message = encodeURIComponent(input_message);
+        let url = 'https://script.google.com/macros/s/AKfycbwPyGSC3LdlLvNBK6jleZWUYOl0JLUHAG3ZxlkqSmZI7yJF0RvBSn0uWUJco2SiksV2/exec';
+        
+        let response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `language=${input_language}&message=${input_message}`
+        });
+
+        let data = await response.text();
+        console.log(data);
+        let base64Audio = data;
+        const audioData = Uint8Array.from(atob(base64Audio), c => c.charCodeAt(0));
+        const audioBlob = new Blob([audioData], {
+            type: 'audio/mpeg'
+        });
+        const audioUrl = URL.createObjectURL(audioBlob);
+        obj.src = audioUrl;
+        obj.play();
+    }
+}		
   
   window.table_create = table_create;
   window.table_set = table_set;
