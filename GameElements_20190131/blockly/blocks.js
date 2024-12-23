@@ -3144,9 +3144,34 @@ Blockly.Blocks['transform_async_function'] = {
 
 Blockly.Blocks['element_event'] = {
   init: function () {
-  this.appendDummyInput()  
+    this.appendDummyInput()  
       .appendField(Blockly.Msg.ELEMENT)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_WINDOW,"window"],[Blockly.Msg.ELEMENT_DOCUMENT,"document"],[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"],[Blockly.Msg.ELEMENT_BUTTON,"button"],[Blockly.Msg.ELEMENT_COLOR,"color"],[Blockly.Msg.ELEMENT_SELECT,"select"],[Blockly.Msg.ELEMENT_RANGE,"range"],[Blockly.Msg.ELEMENT_TEXT,"text"],[Blockly.Msg.ELEMENT_DIV,"div"],[Blockly.Msg.ELEMENT_IFRAME,"iframe"],[Blockly.Msg.ELEMENT_A,"a"],[Blockly.Msg.ELEMENT_RADIO,"radio"],[Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],[Blockly.Msg.ELEMENT_TEXTAREA,"textarea"],[Blockly.Msg.ELEMENT_NUMBER,"number"],[Blockly.Msg.ELEMENT_DATE,"date"],[Blockly.Msg.ELEMENT_TIME,"time"],[Blockly.Msg.ELEMENT_DATETIME,"datetime"],[Blockly.Msg.ELEMENT_PROGRESS,"progress"],[Blockly.Msg.ELEMENT_PASSWORD,"password"]]), "element");
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.ELEMENT_WINDOW,"window"],
+	  [Blockly.Msg.ELEMENT_DOCUMENT,"document"],
+	  [Blockly.Msg.ELEMENT_TABLE,"table"],
+	  [Blockly.Msg.ELEMENT_IMAGE,"image"],
+	  [Blockly.Msg.ELEMENT_CANVAS,"canvas"],
+	  [Blockly.Msg.ELEMENT_BUTTON,"button"],
+	  [Blockly.Msg.ELEMENT_COLOR,"color"],
+	  [Blockly.Msg.ELEMENT_SELECT,"select"],
+	  [Blockly.Msg.ELEMENT_RANGE,"range"],
+	  [Blockly.Msg.ELEMENT_TEXT,"text"],[
+	  Blockly.Msg.ELEMENT_DIV,"div"],
+	  [Blockly.Msg.ELEMENT_IFRAME,"iframe"],
+	  [Blockly.Msg.ELEMENT_A,"a"],
+	  [Blockly.Msg.ELEMENT_RADIO,"radio"],
+	  [Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],
+	  [Blockly.Msg.ELEMENT_TEXTAREA,"textarea"],
+	  [Blockly.Msg.ELEMENT_NUMBER,"number"],
+	  [Blockly.Msg.ELEMENT_DATE,"date"],
+	  [Blockly.Msg.ELEMENT_TIME,"time"],
+	  [Blockly.Msg.ELEMENT_DATETIME,"datetime"],
+	  [Blockly.Msg.ELEMENT_PROGRESS,"progress"],
+	  [Blockly.Msg.ELEMENT_PASSWORD,"password"],
+	  [Blockly.Msg.ELEMENT_VIDEO,"video"],
+	  [Blockly.Msg.ELEMENT_AUDIO,"audio"]
+	  ],this.validate), "element");
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.ID); 
@@ -3237,7 +3262,14 @@ Blockly.Blocks['element_event'] = {
 		["unload","unload"],
 		["volumechange","volumechange"],
 		["waiting","waiting"],
-		["wheel","wheel"]
+		["wheel","wheel"],
+		["loadstart","loadstart"],
+		["durationchange","durationchange"],
+		["loadedmetadata","loadedmetadata"],
+		["loadeddata","loadeddata"],
+		["progress","progress"],
+		["canplay","canplay"],
+		["canplaythrough","canplaythrough"]
 	  ]), "event");
   this.appendStatementInput("statement");
   this.setInputsInline(true);
@@ -3343,7 +3375,14 @@ Blockly.Blocks['element_event_stop'] = {
 		["unload","unload"],
 		["volumechange","volumechange"],
 		["waiting","waiting"],
-		["wheel","wheel"]
+		["wheel","wheel"],
+		["loadstart","loadstart"],
+		["durationchange","durationchange"],
+		["loadedmetadata","loadedmetadata"],
+		["loadeddata","loadeddata"],
+		["progress","progress"],
+		["canplay","canplay"],
+		["canplaythrough","canplaythrough"]
 	  ]), "event");
   this.setInputsInline(true);
   this.setPreviousStatement(true);
@@ -6387,6 +6426,25 @@ Blockly.Blocks['video_get'] = {
   }
 };
 
+Blockly.Blocks['video_control'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)	  
+      .appendField(Blockly.Msg.VIDEO_ID);  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.VIDEO_CONTROL)
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.VIDEO_PLAY,"play"], 
+	  [Blockly.Msg.VIDEO_PAUSE,"pause"], 
+	  [Blockly.Msg.VIDEO_LOAD,"load"]
+	  ]), "property_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  }
+};
+
 Blockly.Blocks['video_delete'] = {
   init: function () {
   this.appendValueInput("id_")
@@ -6771,7 +6829,7 @@ this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.VIDEO_ID);	  
   this.appendDummyInput()
-	  .appendField(Blockly.Msg.VEDIO_OUTPUT_JPG);
+	  .appendField(Blockly.Msg.VIDEO_OUTPUT_JPG);
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -7142,5 +7200,568 @@ Blockly.Blocks['hotkey'] = {
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
 	this.setColour(230);
+  }
+};
+
+Blockly.Blocks['audio_create'] = {
+  init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.AUDIO)  
+      .appendField(Blockly.Msg.AUDIO_CREATE);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ID);  
+  this.appendValueInput("src_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.AUDIO_SRC);	  
+  this.appendValueInput("left_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.LEFT);    
+  this.appendValueInput("top_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.TOP);
+  this.appendValueInput("zindex_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.ZINDEX);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(30);
+  }
+};
+
+Blockly.Blocks['audio_set'] = {
+  init: function() {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.AUDIO)	  
+      .appendField(Blockly.Msg.AUDIO_ID);      
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.AUDIO_SET) 
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.AUDIO_AUTOPLAY,"autoplay"], 
+	  [Blockly.Msg.AUDIO_CONTROLS,"controls"], 
+	  [Blockly.Msg.AUDIO_LOOP,"loop"], 
+	  [Blockly.Msg.AUDIO_MUTED,"muted"], 
+	  [Blockly.Msg.AUDIO_SRC,"src"], 
+	  [Blockly.Msg.AUDIO_VOLUME,"volume"], 
+	  [Blockly.Msg.AUDIO_CURRENTTIME,"currentTime"], 
+	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
+  this.appendValueInput("value_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null);    
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(30);
+  }
+};
+
+Blockly.Blocks['audio_get'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.AUDIO)	  
+      .appendField(Blockly.Msg.AUDIO_ID);  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.AUDIO_GET)
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.LEFT,"left"], 
+	  [Blockly.Msg.TOP,"top"], 
+	  [Blockly.Msg.AUDIO_CURRENTSRC,"currentSrc"], 
+	  [Blockly.Msg.AUDIO_CURRENTTIME,"currentTime"], 
+	  [Blockly.Msg.AUDIO_DURATION,"duration"], 
+	  [Blockly.Msg.AUDIO_ENDED,"ended"], 
+	  [Blockly.Msg.AUDIO_MUTED,"muted"], 
+	  [Blockly.Msg.AUDIO_PAUSED,"paused"], 
+	  [Blockly.Msg.AUDIO_PLAYED,"played"], 
+	  [Blockly.Msg.AUDIO_SRC,"src"], 
+	  [Blockly.Msg.AUDIO_VOLUME,"volume"], 	  
+	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
+	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
+	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
+	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
+	  [Blockly.Msg.ELEMENTID,"id"], 
+	  [Blockly.Msg.PROPERTY_CLASS,"class"]
+	  ]), "property_");
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(30);
+  }
+};
+
+Blockly.Blocks['audio_control'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.AUDIO)	  
+      .appendField(Blockly.Msg.AUDIO_ID);  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.AUDIO_CONTROL)
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.AUDIO_PLAY,"play"], 
+	  [Blockly.Msg.AUDIO_PAUSE,"pause"], 
+	  [Blockly.Msg.AUDIO_LOAD,"load"]
+	  ]), "property_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(30);
+  }
+};
+
+Blockly.Blocks['audio_play_googleTTS'] = {
+  init: function () {
+  this.appendDummyInput() 
+      .appendField(Blockly.Msg.AUDIO_SRC)	  
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.AUDIO_TTS)
+      .appendField(new Blockly.FieldDropdown([
+		["Abkhaz", "ab"],
+		["Acehnese", "ace"],
+		["Acholi", "ach"],
+		["Afrikaans", "af"],
+		["Albanian", "sq"],
+		["Alur", "alz"],
+		["Amharic", "am"],
+		["Arabic", "ar"],
+		["Armenian", "hy"],
+		["Assamese", "as"],
+		["Awadhi", "awa"],
+		["Aymara", "ay"],
+		["Azerbaijani", "az"],
+		["Balinese", "ban"],
+		["Bambara", "bm"],
+		["Bashkir", "ba"],
+		["Basque", "eu"],
+		["Batak Karo", "btx"],
+		["Batak Simalungun", "bts"],
+		["Batak Toba", "bbc"],
+		["Belarusian", "be"],
+		["Bemba", "bem"],
+		["Bengali", "bn"],
+		["Betawi", "bew"],
+		["Bhojpuri", "bho"],
+		["Bikol", "bik"],
+		["Bosnian", "bs"],
+		["Breton", "br"],
+		["Bulgarian", "bg"],
+		["Buryat", "bua"],
+		["Cantonese", "yue"],
+		["Catalan", "ca"],
+		["Cebuano", "ceb"],
+		["Chichewa (Nyanja)", "ny"],
+		["Chinese (Simplified)", "zh-CN"],
+		["Chinese (Traditional)", "zh-TW"],
+		["Chuvash", "cv"],
+		["Corsican", "co"],
+		["Crimean Tatar", "crh"],
+		["Croatian", "hr"],
+		["Czech", "cs"],
+		["Danish", "da"],
+		["Dinka", "din"],
+		["Divehi", "dv"],
+		["Dogri", "doi"],
+		["Dombe", "dov"],
+		["Dutch", "nl"],
+		["Dzongkha", "dz"],
+		["English", "en"],
+		["Esperanto", "eo"],
+		["Estonian", "et"],
+		["Ewe", "ee"],
+		["Fijian", "fj"],
+		["Filipino (Tagalog)", "fil"],
+		["Finnish", "fi"],
+		["French", "fr"],
+		["French (French)", "fr-FR"],
+		["French (Canadian)", "fr-CA"],
+		["Frisian", "fy"],
+		["Fulfulde", "ff"],
+		["Ga", "gaa"],
+		["Galician", "gl"],
+		["Ganda (Luganda)", "lg"],
+		["Georgian", "ka"],
+		["German", "de"],
+		["Greek", "el"],
+		["Guarani", "gn"],
+		["Gujarati", "gu"],
+		["Haitian Creole", "ht"],
+		["Hakha Chin", "cnh"],
+		["Hausa", "ha"],
+		["Hawaiian", "haw"],
+		["Hebrew", "iw or he"],
+		["Hiligaynon", "hil"],
+		["Hindi", "hi"],
+		["Hmong", "hmn"],
+		["Hungarian", "hu"],
+		["Hunsrik", "hrx"],
+		["Icelandic", "is"],
+		["Igbo", "ig"],
+		["Iloko", "ilo"],
+		["Indonesian", "id"],
+		["Irish", "ga"],
+		["Italian", "it"],
+		["Japanese", "ja"],
+		["Javanese", "jw"],
+		["Kannada", "kn"],
+		["Kapampangan", "pam"],
+		["Kazakh", "kk"],
+		["Khmer", "km"],
+		["Kiga", "cgg"],
+		["Kinyarwanda", "rw"],
+		["Kituba", "ktu"],
+		["Konkani", "gom"],
+		["Korean", "ko"],
+		["Krio", "kri"],
+		["Kurdish (Kurmanji)", "ku"],
+		["Kurdish (Sorani)", "ckb"],
+		["Kyrgyz", "ky"],
+		["Lao", "lo"],
+		["Latgalian", "ltg"],
+		["Latin", "la"],
+		["Latvian", "lv"],
+		["Ligurian", "lij"],
+		["Limburgan", "li"],
+		["Lingala", "ln"],
+		["Lithuanian", "lt"],
+		["Lombard", "lmo"],
+		["Luo", "luo"],
+		["Luxembourgish", "lb"],
+		["Macedonian", "mk"],
+		["Maithili", "mai"],
+		["Makassar", "mak"],
+		["Malagasy", "mg"],
+		["Malay", "ms"],
+		["Malay (Jawi)", "ms-Arab"],
+		["Malayalam", "ml"],
+		["Maltese", "mt"],
+		["Maori", "mi"],
+		["Marathi", "mr"],
+		["Meadow Mari", "chm"],
+		["Meiteilon (Manipuri)", "mni-Mtei"],
+		["Minang", "min"],
+		["Mizo", "lus"],
+		["Mongolian", "mn"],
+		["Myanmar (Burmese)", "my"],
+		["Ndebele (South)", "nr"],
+		["Nepalbhasa (Newari)", "new"],
+		["Nepali", "ne"],
+		["Northern Sotho (Sepedi)", "nso"],
+		["Norwegian", "no"],
+		["Nuer", "nus"],
+		["Occitan", "oc"],
+		["Odia (Oriya)", "or"],
+		["Oromo", "om"],
+		["Pangasinan", "pag"],
+		["Papiamento", "pap"],
+		["Pashto", "ps"],
+		["Persian", "fa"],
+		["Polish", "pl"],
+		["Portuguese", "pt"],
+		["Portuguese (Portugal)", "pt-PT"],
+		["Portuguese (Brazil)", "pt-BR"],
+		["Punjabi", "pa"],
+		["Punjabi (Shahmukhi)", "pa-Arab"],
+		["Quechua", "qu"],
+		["Romani", "rom"],
+		["Romanian", "ro"],
+		["Rundi", "rn"],
+		["Russian", "ru"],
+		["Samoan", "sm"],
+		["Sango", "sg"],
+		["Sanskrit", "sa"],
+		["Scots Gaelic", "gd"],
+		["Serbian", "sr"],
+		["Sesotho", "st"],
+		["Seychellois Creole", "crs"],
+		["Shan", "shn"],
+		["Shona", "sn"],
+		["Sicilian", "scn"],
+		["Silesian", "szl"],
+		["Sindhi", "sd"],
+		["Sinhala (Sinhalese)", "si"],
+		["Slovak", "sk"],
+		["Slovenian", "sl"],
+		["Somali", "so"],
+		["Spanish", "es"],
+		["Sundanese", "su"],
+		["Swahili", "sw"],
+		["Swati", "ss"],
+		["Swedish", "sv"],
+		["Tajik", "tg"],
+		["Tamil", "ta"],
+		["Tatar", "tt"],
+		["Telugu", "te"],
+		["Tetum", "tet"],
+		["Thai", "th"],
+		["Tigrinya", "ti"],
+		["Tsonga", "ts"],
+		["Tswana", "tn"],
+		["Turkish", "tr"],
+		["Turkmen", "tk"],
+		["Twi (Akan)", "ak"],
+		["Ukrainian", "uk"],
+		["Urdu", "ur"],
+		["Uyghur", "ug"],
+		["Uzbek", "uz"],
+		["Vietnamese", "vi"],
+		["Welsh", "cy"],
+		["Xhosa", "xh"],
+		["Yiddish", "yi"],
+		["Yoruba", "yo"],
+		["Yucatec Maya", "yua"],
+		["Zulu", "zu"]
+	  ]), "language_");
+  this.appendValueInput("text_")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .setCheck(null)
+      .appendField(Blockly.Msg.AUDIO_TEXT);	  
+  this.setInputsInline(false);
+  this.setOutput(true, null); 
+  this.setColour(30);
+  }
+};
+
+Blockly.Blocks['audio_save_googleTTS'] = {
+  init: function () {
+  this.appendDummyInput() 
+      .appendField(Blockly.Msg.AUDIO_SRC)	  
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.AUDIO_TTS)
+      .appendField(new Blockly.FieldDropdown([
+		["Abkhaz", "ab"],
+		["Acehnese", "ace"],
+		["Acholi", "ach"],
+		["Afrikaans", "af"],
+		["Albanian", "sq"],
+		["Alur", "alz"],
+		["Amharic", "am"],
+		["Arabic", "ar"],
+		["Armenian", "hy"],
+		["Assamese", "as"],
+		["Awadhi", "awa"],
+		["Aymara", "ay"],
+		["Azerbaijani", "az"],
+		["Balinese", "ban"],
+		["Bambara", "bm"],
+		["Bashkir", "ba"],
+		["Basque", "eu"],
+		["Batak Karo", "btx"],
+		["Batak Simalungun", "bts"],
+		["Batak Toba", "bbc"],
+		["Belarusian", "be"],
+		["Bemba", "bem"],
+		["Bengali", "bn"],
+		["Betawi", "bew"],
+		["Bhojpuri", "bho"],
+		["Bikol", "bik"],
+		["Bosnian", "bs"],
+		["Breton", "br"],
+		["Bulgarian", "bg"],
+		["Buryat", "bua"],
+		["Cantonese", "yue"],
+		["Catalan", "ca"],
+		["Cebuano", "ceb"],
+		["Chichewa (Nyanja)", "ny"],
+		["Chinese (Simplified)", "zh-CN"],
+		["Chinese (Traditional)", "zh-TW"],
+		["Chuvash", "cv"],
+		["Corsican", "co"],
+		["Crimean Tatar", "crh"],
+		["Croatian", "hr"],
+		["Czech", "cs"],
+		["Danish", "da"],
+		["Dinka", "din"],
+		["Divehi", "dv"],
+		["Dogri", "doi"],
+		["Dombe", "dov"],
+		["Dutch", "nl"],
+		["Dzongkha", "dz"],
+		["English", "en"],
+		["Esperanto", "eo"],
+		["Estonian", "et"],
+		["Ewe", "ee"],
+		["Fijian", "fj"],
+		["Filipino (Tagalog)", "fil"],
+		["Finnish", "fi"],
+		["French", "fr"],
+		["French (French)", "fr-FR"],
+		["French (Canadian)", "fr-CA"],
+		["Frisian", "fy"],
+		["Fulfulde", "ff"],
+		["Ga", "gaa"],
+		["Galician", "gl"],
+		["Ganda (Luganda)", "lg"],
+		["Georgian", "ka"],
+		["German", "de"],
+		["Greek", "el"],
+		["Guarani", "gn"],
+		["Gujarati", "gu"],
+		["Haitian Creole", "ht"],
+		["Hakha Chin", "cnh"],
+		["Hausa", "ha"],
+		["Hawaiian", "haw"],
+		["Hebrew", "iw or he"],
+		["Hiligaynon", "hil"],
+		["Hindi", "hi"],
+		["Hmong", "hmn"],
+		["Hungarian", "hu"],
+		["Hunsrik", "hrx"],
+		["Icelandic", "is"],
+		["Igbo", "ig"],
+		["Iloko", "ilo"],
+		["Indonesian", "id"],
+		["Irish", "ga"],
+		["Italian", "it"],
+		["Japanese", "ja"],
+		["Javanese", "jw"],
+		["Kannada", "kn"],
+		["Kapampangan", "pam"],
+		["Kazakh", "kk"],
+		["Khmer", "km"],
+		["Kiga", "cgg"],
+		["Kinyarwanda", "rw"],
+		["Kituba", "ktu"],
+		["Konkani", "gom"],
+		["Korean", "ko"],
+		["Krio", "kri"],
+		["Kurdish (Kurmanji)", "ku"],
+		["Kurdish (Sorani)", "ckb"],
+		["Kyrgyz", "ky"],
+		["Lao", "lo"],
+		["Latgalian", "ltg"],
+		["Latin", "la"],
+		["Latvian", "lv"],
+		["Ligurian", "lij"],
+		["Limburgan", "li"],
+		["Lingala", "ln"],
+		["Lithuanian", "lt"],
+		["Lombard", "lmo"],
+		["Luo", "luo"],
+		["Luxembourgish", "lb"],
+		["Macedonian", "mk"],
+		["Maithili", "mai"],
+		["Makassar", "mak"],
+		["Malagasy", "mg"],
+		["Malay", "ms"],
+		["Malay (Jawi)", "ms-Arab"],
+		["Malayalam", "ml"],
+		["Maltese", "mt"],
+		["Maori", "mi"],
+		["Marathi", "mr"],
+		["Meadow Mari", "chm"],
+		["Meiteilon (Manipuri)", "mni-Mtei"],
+		["Minang", "min"],
+		["Mizo", "lus"],
+		["Mongolian", "mn"],
+		["Myanmar (Burmese)", "my"],
+		["Ndebele (South)", "nr"],
+		["Nepalbhasa (Newari)", "new"],
+		["Nepali", "ne"],
+		["Northern Sotho (Sepedi)", "nso"],
+		["Norwegian", "no"],
+		["Nuer", "nus"],
+		["Occitan", "oc"],
+		["Odia (Oriya)", "or"],
+		["Oromo", "om"],
+		["Pangasinan", "pag"],
+		["Papiamento", "pap"],
+		["Pashto", "ps"],
+		["Persian", "fa"],
+		["Polish", "pl"],
+		["Portuguese", "pt"],
+		["Portuguese (Portugal)", "pt-PT"],
+		["Portuguese (Brazil)", "pt-BR"],
+		["Punjabi", "pa"],
+		["Punjabi (Shahmukhi)", "pa-Arab"],
+		["Quechua", "qu"],
+		["Romani", "rom"],
+		["Romanian", "ro"],
+		["Rundi", "rn"],
+		["Russian", "ru"],
+		["Samoan", "sm"],
+		["Sango", "sg"],
+		["Sanskrit", "sa"],
+		["Scots Gaelic", "gd"],
+		["Serbian", "sr"],
+		["Sesotho", "st"],
+		["Seychellois Creole", "crs"],
+		["Shan", "shn"],
+		["Shona", "sn"],
+		["Sicilian", "scn"],
+		["Silesian", "szl"],
+		["Sindhi", "sd"],
+		["Sinhala (Sinhalese)", "si"],
+		["Slovak", "sk"],
+		["Slovenian", "sl"],
+		["Somali", "so"],
+		["Spanish", "es"],
+		["Sundanese", "su"],
+		["Swahili", "sw"],
+		["Swati", "ss"],
+		["Swedish", "sv"],
+		["Tajik", "tg"],
+		["Tamil", "ta"],
+		["Tatar", "tt"],
+		["Telugu", "te"],
+		["Tetum", "tet"],
+		["Thai", "th"],
+		["Tigrinya", "ti"],
+		["Tsonga", "ts"],
+		["Tswana", "tn"],
+		["Turkish", "tr"],
+		["Turkmen", "tk"],
+		["Twi (Akan)", "ak"],
+		["Ukrainian", "uk"],
+		["Urdu", "ur"],
+		["Uyghur", "ug"],
+		["Uzbek", "uz"],
+		["Vietnamese", "vi"],
+		["Welsh", "cy"],
+		["Xhosa", "xh"],
+		["Yiddish", "yi"],
+		["Yoruba", "yo"],
+		["Yucatec Maya", "yua"],
+		["Zulu", "zu"]
+	  ]), "language_");
+  this.appendValueInput("text_")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .setCheck(null)
+      .appendField(Blockly.Msg.AUDIO_TEXT);	  
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(30);
+  }
+};
+
+Blockly.Blocks['audio_delete'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.AUDIO)	  
+      .appendField(Blockly.Msg.AUDIO_ID); 
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.AUDIO_DELETE);  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(30);
   }
 };
