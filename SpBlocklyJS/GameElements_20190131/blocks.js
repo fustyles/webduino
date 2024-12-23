@@ -7466,7 +7466,7 @@ Blockly.Blocks['audio_play_googleTTS'] = {
   this.appendValueInput("text_")
       .setCheck(null)
       .appendField(Blockly.Msg.AUDIO_TEXT);	  
-  this.setInputsInline(false);
+  this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(30);
   }
