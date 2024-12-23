@@ -4353,6 +4353,18 @@ function HextoRgb(color) {
       return "";
   }
 
+  function video_control(input_id,input_cmd) {
+    if (document.getElementById("gamevideo_"+input_id)) {
+		var obj = document.getElementById("gamevideo_"+input_id);	  
+		if (input_cmd=="play")
+			obj.play();
+		else if (input_cmd=="pause")
+			obj.pause();
+		else if (input_cmd=="load")
+			obj.load();
+    }  
+  } 	
+
   function video_delete(input_id) {
     if (document.getElementById("gamevideo_"+input_id))
       document.getElementById("gamevideo_"+input_id).parentNode.removeChild(document.getElementById("gamevideo_"+input_id));
@@ -5130,6 +5142,7 @@ async function audio_play_googleTTS_Base64Data(input_language, input_message) {
   window.video_create1 = video_create1;  
   window.video_set = video_set;
   window.video_get = video_get;
+  window.video_control = video_control;
   window.video_delete = video_delete;
   window.video_base64 = video_base64;
   window.ajax_getdata_json = ajax_getdata_json;
