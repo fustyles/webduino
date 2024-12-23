@@ -691,6 +691,7 @@ Blockly.Msg["AUDIO_ENDED"] = "Ended";
 Blockly.Msg["AUDIO_PAUSED"] = "Paused";
 Blockly.Msg["AUDIO_PLAYED"] = "Played";
 Blockly.Msg["AUDIO_TTS"] = "Text to Speech";
+Blockly.Msg["AUDIO_TTS_SAVE"] = "Text to MP3";
 Blockly.Msg["AUDIO_TEXT"] = "Text";
 Blockly.Msg["AUDIO_PLAY"] = "Play";
 Blockly.Msg["AUDIO_PAUSE"] = "Pause";

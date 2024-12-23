@@ -4967,32 +4967,69 @@ function HextoRgb(color) {
       document.getElementById("gameaudio_"+input_id).parentNode.removeChild(document.getElementById("gameaudio_"+input_id));
   }
   
-async function audio_play_googleTTS_Base64Data(input_language, input_message) {
-    if ( input_message) {
-        input_language = encodeURIComponent(input_language);
-        input_message = encodeURIComponent(input_message);
-        let url = 'https://script.google.com/macros/s/AKfycbwPyGSC3LdlLvNBK6jleZWUYOl0JLUHAG3ZxlkqSmZI7yJF0RvBSn0uWUJco2SiksV2/exec';
-        
-        let response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: `language=${input_language}&message=${input_message}`
-        });
+	async function audio_play_googleTTS_Base64Data(input_language, input_message) {
+		if ( input_message) {
+			input_language = encodeURIComponent(input_language);
+			input_message = encodeURIComponent(input_message);
+			let url = 'https://script.google.com/macros/s/AKfycbwPyGSC3LdlLvNBK6jleZWUYOl0JLUHAG3ZxlkqSmZI7yJF0RvBSn0uWUJco2SiksV2/exec';
+			
+			let response = await fetch(url, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: `language=${input_language}&message=${input_message}`
+			});
 
-        let data = await response.text();
-        let base64Audio = data;
-        const audioData = Uint8Array.from(atob(base64Audio), c => c.charCodeAt(0));
-        const audioBlob = new Blob([audioData], {
-            type: 'audio/mpeg'
-        });
-        return URL.createObjectURL(audioBlob);
-    }
-    return new Blob([], {
-            type: 'audio/mpeg'
-        });
-}		
+			let data = await response.text();
+			let base64Audio = data;
+			const audioData = Uint8Array.from(atob(base64Audio), c => c.charCodeAt(0));
+			const audioBlob = new Blob([audioData], {
+				type: 'audio/mpeg'
+			});
+			return URL.createObjectURL(audioBlob);
+		}
+		return new Blob([], {
+				type: 'audio/mpeg'
+			});
+	}
+
+	async function audio_save_googleTTS_Base64Data(input_language, input_message) {
+		if ( input_message) {
+			input_language = encodeURIComponent(input_language);
+			input_message = encodeURIComponent(input_message);
+			let url = 'https://script.google.com/macros/s/AKfycbwPyGSC3LdlLvNBK6jleZWUYOl0JLUHAG3ZxlkqSmZI7yJF0RvBSn0uWUJco2SiksV2/exec';
+			
+			let response = await fetch(url, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: `language=${input_language}&message=${input_message}`
+			});
+
+			let data = await response.text();
+			let base64Audio = data;
+			const audioData = Uint8Array.from(atob(base64Audio), c => c.charCodeAt(0));
+			const audioBlob = new Blob([audioData], {
+				type: 'audio/mpeg'
+			});
+            const audioURL = URL.createObjectURL(audioBlob);
+
+            const link = document.createElement('a');
+            link.href = audioURL;
+            link.download = 'audio.mp3'; // Set the desired file name
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            URL.revokeObjectURL(audioURL);
+		}
+		return new Blob([], {
+				type: 'audio/mpeg'
+			});
+	}		
+	
   
   window.table_create = table_create;
   window.table_set = table_set;
@@ -5181,5 +5218,5 @@ async function audio_play_googleTTS_Base64Data(input_language, input_message) {
   window.audio_create = audio_create;  
   window.audio_delete = audio_delete;
   window.audio_play_googleTTS_Base64Data = audio_play_googleTTS_Base64Data;  
-	
+  window.audio_save_googleTTS_Base64Data = audio_save_googleTTS_Base64Data; 	
 }(window, window.document));

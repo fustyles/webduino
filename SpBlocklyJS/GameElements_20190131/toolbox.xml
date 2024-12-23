@@ -3732,11 +3732,13 @@
 			</value>     
 		  </block>
 		  <block type="audio_play_googleTTS">
-			<value name="id_">
+			<value name="text_">
 			  <block type="text">
 				<field name="TEXT"></field>
 			  </block>
-			</value>
+			</value> 			
+		  </block>
+		  <block type="audio_save_googleTTS">
 			<value name="text_">
 			  <block type="text">
 				<field name="TEXT"></field>

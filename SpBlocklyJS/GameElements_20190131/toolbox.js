@@ -3776,6 +3776,14 @@ var catPageElements ='<xml>'+
 '			  </block>'+
 '			</value>'+		
 '		  </block>'+
+'		  <block type="audio_save_googleTTS">'+
+'			<field name="language_">en</field>'+	
+'			<value name="text_">'+
+'			  <block type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </block>'+
+'			</value>'+		
+'		  </block>'+
 '		  <block type="audio_delete">'+
 '			<value name="id_">'+
 '			  <block type="text">'+
