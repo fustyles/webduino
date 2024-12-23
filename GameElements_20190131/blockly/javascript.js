@@ -2073,6 +2073,13 @@ Blockly.JavaScript['video_get'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['video_control'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var code = 'video_control(' + value_id_ + ',"' + value_property_ + '");\n';
+  return code;
+};
+
 Blockly.JavaScript['video_delete'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var code = 'video_delete(' + value_id_ + ');\n';
@@ -2511,4 +2518,56 @@ Blockly.JavaScript['hotkey'] = function(block) {
   else if (keycode=="Alt")
     var code = 'event.altKey == true';  
   return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['audio_create'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_src_ = Blockly.JavaScript.valueToCode(block, 'src_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_left_ = Blockly.JavaScript.valueToCode(block, 'left_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_top_ = Blockly.JavaScript.valueToCode(block, 'top_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_zindex_ = Blockly.JavaScript.valueToCode(block, 'zindex_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var code = 'audio_create(' + value_id_ + ','+ value_src_ + ','+ value_left_ + ',' + value_top_ + ',' + value_zindex_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['audio_set'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var value_value_ = Blockly.JavaScript.valueToCode(block, 'value_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'audio_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['audio_get'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var code = 'audio_get(' + value_id_ + ',"' + value_property_ + '")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['audio_control'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var code = 'audio_control(' + value_id_ + ',"' + value_property_ + '");\n';
+  return code;
+};
+
+Blockly.JavaScript['audio_play_googleTTS'] = function (block) { 
+  var value_language_ = block.getFieldValue('language_');
+  var value_text_ = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'await audio_play_googleTTS_Base64Data("' + value_language_ + '",' + value_text_ + ')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['audio_save_googleTTS'] = function (block) { 
+  var value_language_ = block.getFieldValue('language_');
+  var value_text_ = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'await audio_save_googleTTS_Base64Data("' + value_language_ + '",' + value_text_ + ');\n';
+  return code;
+};
+
+Blockly.JavaScript['audio_delete'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var code = 'audio_delete(' + value_id_ + ');\n';
+  return code;
 };
