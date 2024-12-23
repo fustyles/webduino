@@ -7265,7 +7265,7 @@ Blockly.Blocks['audio_control'] = {
 Blockly.Blocks['audio_play_googleTTS'] = {
   init: function () {  
   this.appendDummyInput() 
-      .appendField(Blockly.Msg.AUDIO)	  
+      .appendField(Blockly.Msg.AUDIO_SRC)	  
       .appendField(Blockly.Msg.AUDIO_TTS)
       .appendField(new Blockly.FieldDropdown([
 		["Abkhaz", "ab"],
