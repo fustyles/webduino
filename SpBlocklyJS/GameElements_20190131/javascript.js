@@ -2486,7 +2486,7 @@ Blockly.JavaScript['audio_play_googleTTS'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var value_language_ = block.getFieldValue('language_');
   var value_text_ = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'await audio_play_googleTTS_Base64Data(' + value_id_ + ',"' + value_language_ + '",' + value_text_ + ')';
+  var code = 'await audio_play_googleTTS_Base64Data("' + value_language_ + '",' + value_text_ + ')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
