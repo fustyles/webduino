@@ -4955,7 +4955,7 @@ function HextoRgb(color) {
       document.getElementById("gameaudio_"+input_id).parentNode.removeChild(document.getElementById("gameaudio_"+input_id));
   }
   
-async function audio_play_googleTTS_Base64Data(input_id, input_language, input_message) {
+async function audio_play_googleTTS_Base64Data(input_language, input_message) {
     if ( input_message) {
         input_language = encodeURIComponent(input_language);
         input_message = encodeURIComponent(input_message);
