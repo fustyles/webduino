@@ -200,15 +200,7 @@ async function gemini_chat_image_request(message, imageURL) {
         let result = json.candidates[0].content.parts[0].text;
         if (result === "null") {
             result = json.error.message;
-        } else {
-            var char_request = {};
-            char_request.role = "user";
-            char_request.parts = [];
-            var char_request_text = {};
-            char_request_text.text = result;
-            char_request.parts.push(char_request_text);
-            chatHistory["history"].push(char_request);
-	}
+        }
 	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(result);
     } catch (error) {
 	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(JSON.stringify(error));
@@ -242,15 +234,7 @@ async function gemini_chat_file_request(fileType, fileURL, message) {
         let result = json.candidates[0].content.parts[0].text;
         if (result === "null") {
             result = json.error.message;
-        } else {
-            var char_request = {};
-            char_request.role = "user";
-            char_request.parts = [];
-            var char_request_text = {};
-            char_request_text.text = result;
-            char_request.parts.push(char_request_text);
-            chatHistory["history"].push(char_request);
-	}
+        }
 	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(result);
     } catch (error) {
 	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(JSON.stringify(error));
