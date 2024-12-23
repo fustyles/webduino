@@ -3692,7 +3692,13 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
-
+'    <block type="video_control">'+
+'    <value name="id_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
 '    <block type="video_delete">'+
 '    <value name="id_">'+
 '    <block type="text">'+

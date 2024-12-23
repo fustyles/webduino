@@ -1,14 +1,45 @@
+Blockly.Blocks['javascript_function_general'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["JAVASCRIPT_FUNCTIONS_EVAL"],"eval(%1)"]			
+		]), "function");		
+	this.appendValueInput("p1")
+		.setCheck(null);			
+	this.setInputsInline(true);	  
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(190);
+  }
+};
+
+Blockly.Blocks['javascript_function_general_get'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT) 
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["JAVASCRIPT_FUNCTIONS_EVAL"],"eval(%1)"]			
+		]), "function");		
+	this.appendValueInput("p1")
+		.setCheck(null);			
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(190);
+  }
+};
+
 Blockly.Blocks['try_catch_finally'] = {
   init: function () {
     this.appendDummyInput()
-		.appendField(Blockly.Msg["TRY_CATCH_SUCCESS"]);
+	.appendField(Blockly.Msg["TRY_CATCH_SUCCESS"]);
     this.appendStatementInput("statement_try");
     this.appendDummyInput()
-		.appendField(Blockly.Msg["TRY_CATCH_FAIL"])
-		.appendField(new Blockly.FieldVariable("e"), 'VAR');
+	.appendField(Blockly.Msg["TRY_CATCH_FAIL"])
+	.appendField(new Blockly.FieldVariable("e"), 'VAR');
     this.appendStatementInput("statement_catch");
     this.appendDummyInput()
-		.appendField(Blockly.Msg["TRY_CATCH_FINALLY"]);
+	.appendField(Blockly.Msg["TRY_CATCH_FINALLY"]);
     this.appendStatementInput("statement_finally");		
     this.setInputsInline(true);
     this.setPreviousStatement(true);
@@ -138,6 +169,32 @@ Blockly.Blocks['json_get_column_index_length'] = {
   }
 };
 
+Blockly.Blocks['googlemap_embed'] = {
+  init: function() {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg["GOOGLEMAP_EMBED"]);
+  this.appendValueInput("key")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg["GOOGLEMAP_EMBED_KEY"]);
+  this.appendValueInput("query")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg["GOOGLEMAP_EMBED_QUERY"]);	  
+  this.appendValueInput("width")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.WIDTH);
+  this.appendValueInput("height")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.HEIGHT);	  	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(170);
+  }
+};
+
 Blockly.Blocks['button_toolbox'] = {
   init: function() {
   this.appendDummyInput()   
@@ -165,7 +222,7 @@ Blockly.Blocks['button_toolbox'] = {
   this.appendValueInput("spacing_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.SPACING); 	  
+      .appendField(Blockly.Msg.SPACING); 		  
   this.appendValueInput("color_")
 	  .appendField(Blockly.Msg.BUTTON_FONTCOLOR)
       .setAlign(Blockly.ALIGN_RIGHT);
@@ -216,75 +273,49 @@ Blockly.Blocks['custom_googleicon'] = {
   }
 };
 
-Blockly.defineBlocksWithJsonArray([
-	{type:"table_insert_row"
-	,lastDummyAlign0:"RIGHT"
-	,message0:"%{BKY_TABLE} %{BKY_TABLE_ROW}"
-	,message1:"%{BKY_TABLE_ID} %1"	
-	,args1:[{type:"input_value",name:"id",check:null,align:"RIGHT"}]	
-	,message2:"%1"
-	,args2:[{type:"field_dropdown",name:"func",options:[["%{BKY_TABLE_INSERTFIRSTROW}","insertfirst"],["%{BKY_TABLE_INSERTONEROW}","insertone"],["%{BKY_TABLE_INSERTLASTROW}","insertlast"],["%{BKY_TABLE_ROW_UPDATE}","update"]],align:"RIGHT"}]
-	,message3:"%1 %2"	
-	,args3:[{type:"field_label_serializable",name:"row_label",text:"%{BKY_TABLE_ROW}"},{type:"input_value",name:"row",check:null,align:"RIGHT"}]	
-	,message4:"%{BKY_TABLE_COL}1 %1"	
-	,args4:[{type:"input_value",name:"VALUE",check:null,align:"RIGHT"}]	
-	,previousStatement:null
-	,nextStatement:null
-	,"extensions": ["dropdown_row"]
-	,colour:240
-	,inputsInline:0
-	,mutator:"table_insert_row_mutator"
-	}
-	,{type:"table_insert_row_main"
-	,message0:"%{BKY_TABLE_COL}"
-	,nextStatement:null
-	,enableContextMenu:!1
-	,style:"logic_blocks"
-	}	
-	,{type:"table_insert_row_value"
-	,message0:"%{BKY_TABLE_COL}"
-	,previousStatement:null
-	,nextStatement:null
-	,enableContextMenu:!1
-	,style:"logic_blocks"
-	}
-]);
-
-Blockly.Extensions.register('dropdown_row',
-  function init() {
-    this.onchange = function(event) {
-		if (event.type=="finished_loading") {
-			var func = this.getFieldValue("func");
-			if (func=="insertfirst"||func=="insertlast") {
-				this.getInput("row").setVisible(false);
-				this.getField("row_label").setVisible(false);
-			} else {
-				this.getInput("row").setVisible(true);
-				this.getField("row_label").setVisible(true);
-			}	
-			this.render();
-		}		
-		if (event.name) {
-			if (event.name=="func"&&event.type=="change") {
-				if (event.newValue=="insertfirst"||event.newValue=="insertlast") {
-					this.getInput("row").setVisible(false);
-					this.getField("row_label").setVisible(false);
-				} else {
-					this.getInput("row").setVisible(true);
-					this.getField("row_label").setVisible(true);
-				}
-				this.render();
-			}
+Blockly.Blocks['table_insert_row'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.TABLE)
+		.appendField(Blockly.Msg.TABLE_ROW); 
+    this.appendValueInput('id')
+        .setAlign(Blockly.ALIGN_RIGHT)	    
+        .appendField(Blockly.Msg.TABLE_ID);	
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([		
+			[Blockly.Msg.TABLE_INSERTFIRSTROW,"insertfirst"],
+			[Blockly.Msg.TABLE_INSERTONEROW,"insertone"],
+			[Blockly.Msg.TABLE_INSERTLASTROW,"insertlast"],
+			[Blockly.Msg.TABLE_ROW_UPDATE,"update"]
+		  ],this.validate), "func"); 
+    this.appendValueInput('row')
+        .setAlign(Blockly.ALIGN_RIGHT)	    
+        .appendField(Blockly.Msg.TABLE_ROW, "row_label"); 		
+    this.appendValueInput('VALUE')
+        .setAlign(Blockly.ALIGN_RIGHT)	    
+        .appendField(Blockly.Msg.TABLE_COL+'1');
+    this.setInputsInline(false);		
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(220);  
+    this.setMutator(new Blockly.Mutator(['table_insert_row_value']));
+    this.allCount_=0;
+  }  
+  ,validate:function(newValue) {
+		const block = this.sourceBlock_;	
+		if (!block) return;		
+		if (newValue=="insertfirst"||newValue=="insertlast") {
+			block.getInput("row").setVisible(false);
+			block.getField("row_label").setVisible(false);
+		} else {
+			block.getInput("row").setVisible(true);
+			block.getField("row_label").setVisible(true);
 		}
-	}
-  }
-)
-
-var module$contents$Blockly$blocks$TABLE_ROW_MUTATOR_MIXIN={
-	allCount_:0
+   }
+  
 	,mutationToDom:function(){		
 		if(!this.allCount_)return null;
-		var a=Blockly.utils.xml.createElement("mutation");
+		var a=document.createElement("mutation");
 		this.allCount_&&a.setAttribute("all",this.allCount_);
 		return a
 	}
@@ -307,7 +338,7 @@ var module$contents$Blockly$blocks$TABLE_ROW_MUTATOR_MIXIN={
 	,compose:function(a){
 		a=a.nextConnection.targetBlock();
 		this.allCount_=0;
-		for(var b=[null];a&&!a.isInsertionMarker();){
+		for(var b=[null];a;){
 			this.allCount_++;
 			b.push(a.valueConnection_);
 			a=a.nextConnection&&a.nextConnection.targetBlock()
@@ -344,85 +375,80 @@ var module$contents$Blockly$blocks$TABLE_ROW_MUTATOR_MIXIN={
 		for(a=1;a<=this.allCount_;a++)
 			this.appendValueInput(String.fromCharCode(a+65))
 			.setCheck(null)
-			.appendField(Blockly.Msg["TABLE_COL"]+(a+1))
+			.appendField(Blockly.Msg.TABLE_COL+(a+1))
 			.setAlign(Blockly.ALIGN_RIGHT)
 	}
 	,reconnectChildBlocks_:function(a,b){	
 		for(var d=1;d<=this.allCount_;d++)
-			Blockly.icons.MutatorIcon.reconnect(a[d],this,String.fromCharCode(d+65));
+			Blockly.Mutator.reconnect(a[d],this,String.fromCharCode(d+65));
 	}
 };
-Blockly.Extensions.registerMutator("table_insert_row_mutator",module$contents$Blockly$blocks$TABLE_ROW_MUTATOR_MIXIN,null,["table_insert_row_value"]);
 
-Blockly.defineBlocksWithJsonArray([
-	{type:"table_insert_col"
-	,lastDummyAlign0:"RIGHT"
-	,message0:"%{BKY_TABLE} %{BKY_TABLE_COL}"
-	,message1:"%{BKY_TABLE_ID} %1"	
-	,args1:[{type:"input_value",name:"id",check:null,align:"RIGHT"}]	
-	,message2:"%1"
-	,args2:[{type:"field_dropdown",name:"func",options:[["%{BKY_TABLE_INSERTFIRSTCOL}","insertfirst"],["%{BKY_TABLE_INSERTONECOL}","insertone"],["%{BKY_TABLE_INSERTLASTCOL}","insertlast"],["%{BKY_TABLE_COL_UPDATE}","update"]],align:"RIGHT"}]
-	,message3:"%1 %2"	
-	,args3:[{type:"field_label_serializable",name:"col_label",text:"%{BKY_TABLE_COL}"},{type:"input_value",name:"col",check:null,align:"RIGHT"}]	
-	,message4:"%{BKY_TABLE_ROW}1 %1"	
-	,args4:[{type:"input_value",name:"VALUE",check:null,align:"RIGHT"}]	
-	,previousStatement:null
-	,nextStatement:null
-	,"extensions": ["dropdown_col"]
-	,colour:240
-	,inputsInline:0
-	,mutator:"table_insert_col_mutator"
-	}
-	,{type:"table_insert_col_main"
-	,message0:"%{BKY_TABLE_ROW}"
-	,nextStatement:null
-	,enableContextMenu:!1
-	,style:"logic_blocks"
-	}	
-	,{type:"table_insert_col_value"
-	,message0:"%{BKY_TABLE_ROW}"
-	,previousStatement:null
-	,nextStatement:null
-	,enableContextMenu:!1
-	,style:"logic_blocks"
-	}
-]);
-
-Blockly.Extensions.register('dropdown_col',
-  function init() {		
-    this.onchange = function(event) {
-		if (event.type=="finished_loading") {
-			var func = this.getFieldValue("func");
-			if (func=="insertfirst"||func=="insertlast") {
-				this.getInput("col").setVisible(false);
-				this.getField("col_label").setVisible(false);
-			} else {
-				this.getInput("col").setVisible(true);
-				this.getField("col_label").setVisible(true);
-			}	
-			this.render();
-		}		
-		if (event.name) {
-			if (event.name=="func"&&event.type=="change") {
-				if (event.newValue=="insertfirst"||event.newValue=="insertlast") {
-					this.getInput("col").setVisible(false);
-					this.getField("col_label").setVisible(false);
-				} else {
-					this.getInput("col").setVisible(true);
-					this.getField("col_label").setVisible(true);
-				}
-				this.render();
-			}
-		}
-	}
+Blockly.Blocks['table_insert_row_main'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.TABLE_COL);
+    this.setPreviousStatement(false);	  
+    this.setNextStatement(true);	  
+    this.contextMenu = false;
+	this.setColour(220);
   }
-)
+};
 
-var module$contents$Blockly$blocks$TABLE_COL_MUTATOR_MIXIN={
-	allCount_:0
+Blockly.Blocks['table_insert_row_value'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.TABLE_COL);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.contextMenu = false;
+	this.setColour(220);
+  }
+};
+
+Blockly.Blocks['table_insert_col'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.TABLE)
+		.appendField(Blockly.Msg.TABLE_COL); 
+    this.appendValueInput('id')
+        .setAlign(Blockly.ALIGN_RIGHT)	    
+        .appendField(Blockly.Msg.TABLE_ID);	
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([		
+			[Blockly.Msg.TABLE_INSERTFIRSTCOL,"insertfirst"],
+			[Blockly.Msg.TABLE_INSERTONECOL,"insertone"],
+			[Blockly.Msg.TABLE_INSERTLASTCOL,"insertlast"],
+			[Blockly.Msg.TABLE_ROW_UPDATE,"update"]
+		  ],this.validate), "func"); 
+    this.appendValueInput('col')
+        .setAlign(Blockly.ALIGN_RIGHT)	    
+        .appendField(Blockly.Msg.TABLE_COL, "col_label"); 		
+    this.appendValueInput('VALUE')
+        .setAlign(Blockly.ALIGN_RIGHT)	    
+        .appendField(Blockly.Msg.TABLE_ROW+'1');
+    this.setInputsInline(false);		
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(220);  
+    this.setMutator(new Blockly.Mutator(['table_insert_col_value']));
+    this.allCount_=0;
+	
+  }
+  ,validate:function(newValue) {
+	  	const block = this.sourceBlock_;	
+		if (!block) return;	
+		if (newValue=="insertfirst"||newValue=="insertlast") {
+			block.getInput("col").setVisible(false);
+			block.getField("col_label").setVisible(false);
+		} else {
+			block.getInput("col").setVisible(true);
+			block.getField("col_label").setVisible(true);
+		}
+   }
 	,mutationToDom:function(){		
 		if(!this.allCount_)return null;
-		var a=Blockly.utils.xml.createElement("mutation");
+		var a=document.createElement("mutation");
 		this.allCount_&&a.setAttribute("all",this.allCount_);
 		return a
 	}
@@ -445,7 +471,7 @@ var module$contents$Blockly$blocks$TABLE_COL_MUTATOR_MIXIN={
 	,compose:function(a){
 		a=a.nextConnection.targetBlock();
 		this.allCount_=0;
-		for(var b=[null];a&&!a.isInsertionMarker();){
+		for(var b=[null];a;){
 			this.allCount_++;
 			b.push(a.valueConnection_);
 			a=a.nextConnection&&a.nextConnection.targetBlock()
@@ -482,15 +508,47 @@ var module$contents$Blockly$blocks$TABLE_COL_MUTATOR_MIXIN={
 		for(a=1;a<=this.allCount_;a++)
 			this.appendValueInput(String.fromCharCode(a+65))
 			.setCheck(null)
-			.appendField(Blockly.Msg["TABLE_ROW"]+(a+1))
+			.appendField(Blockly.Msg.TABLE_ROW+(a+1))
 			.setAlign(Blockly.ALIGN_RIGHT)
 	}
 	,reconnectChildBlocks_:function(a,b){	
 		for(var d=1;d<=this.allCount_;d++)
-			Blockly.icons.MutatorIcon.reconnect(a[d],this,String.fromCharCode(d+65));
+			Blockly.Mutator.reconnect(a[d],this,String.fromCharCode(d+65));
 	}
 };
-Blockly.Extensions.registerMutator("table_insert_col_mutator",module$contents$Blockly$blocks$TABLE_COL_MUTATOR_MIXIN,null,["table_insert_col_value"]);
+
+Blockly.Blocks['table_insert_col_main'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.TABLE_ROW);
+    this.setPreviousStatement(false);	  
+    this.setNextStatement(true);	  
+    this.contextMenu = false;
+	this.setColour(220);
+  }
+};
+
+Blockly.Blocks['table_insert_col_value'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.TABLE_ROW);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.contextMenu = false;
+	this.setColour(220);
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
 
 
 Blockly.Blocks['table_create'] = {
@@ -858,7 +916,7 @@ Blockly.Blocks['table_td_get'] = {
 	  [Blockly.Msg.PROPERTY_CHILDID,"childid"], 
 	  [Blockly.Msg.PROPERTY_TDID,"tdid"], 
 	  [Blockly.Msg.PROPERTY_CLASS,"class"]
-	  ]), "property_");  
+	  ]), "property_");    
   this.setInputsInline(true);
   this.setOutput(true, null); 
   this.setColour(240);
@@ -1151,9 +1209,9 @@ Blockly.Blocks['table_td_insert_element'] = {
       .appendField(new Blockly.FieldDropdown([
 		  [Blockly.Msg.TABLE_FIRSTROW_Y,"0"],
 		  [Blockly.Msg.TABLE_FIRSTROW_N,"1"]
-	  ]), "firstrow_");	  
+	  ]), "firstrow_");	 	  
   this.appendDummyInput()
-	  .setAlign(Blockly.ALIGN_RIGHT)
+      .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(new Blockly.FieldDropdown([
 		  [Blockly.Msg.ELEMENT_IMAGE,"image"],
 		  [Blockly.Msg.ELEMENT_CANVAS,"canvas"],
@@ -1172,7 +1230,7 @@ Blockly.Blocks['table_td_insert_element'] = {
 		  [Blockly.Msg.ELEMENT_DATETIME,"datetime"],
 		  [Blockly.Msg.ELEMENT_PROGRESS,"progress"],
 		  [Blockly.Msg.ELEMENT_PASSWORD,"password"]
-	  ]), "element_");	  
+	  ]), "element_");
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -1196,7 +1254,7 @@ Blockly.Blocks['table_td_insert_element'] = {
 		 block.getInput("y_").setVisible(true);
 		 block.getInput("first_").setVisible(false);		 
 	 }	 
-  }
+  } 
 };
 
 Blockly.Blocks['table_td_insert_element_function'] = {
@@ -1308,6 +1366,120 @@ Blockly.Blocks['table_delete'] = {
   }
 };
 
+Blockly.Blocks['urlcode'] = {
+  init: function () {	  
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["ENCODEURI"],"encodeURI"],
+		[Blockly.Msg["DECODEURI"],"decodeURI"]	
+	  ]), "command");
+  this.appendValueInput("url")
+      .setCheck(null);	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(80);
+  }
+};
+
+Blockly.Blocks['code_text'] = {
+  init: function () {
+  this.appendValueInput("code")
+      .appendField(Blockly.Msg["CODE_TEXT"])
+      .setCheck(null);	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  }
+};
+
+Blockly.Blocks['code_text_input'] = {
+  init: function () {
+  this.appendValueInput("code")
+      .appendField(Blockly.Msg["CODE_TEXT"])
+      .setCheck(null);	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  }
+};
+
+Blockly.Blocks['window_messagebox'] = {
+  init: function () {
+  this.appendValueInput("message")
+      .appendField(Blockly.Msg["WINDOW_MESSAGEBOX"])
+      .setCheck(null);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(250);
+  }
+};
+
+Blockly.Blocks['window_confirm'] = {
+  init: function () {
+  this.appendValueInput("message")
+	  .appendField(Blockly.Msg["WINDOW_CONFIRM"])
+      .setCheck("String");
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg["WINDOW_CONFIRM_YES"]); 
+  this.appendStatementInput("yes");
+  this.appendDummyInput()
+      .appendField(Blockly.Msg["WINDOW_CONFIRM_NO"]);   
+  this.appendStatementInput("no");
+  this.setInputsInline(false);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(250);
+  }
+};
+
+Blockly.Blocks['window_prompt'] = {
+  init: function () {
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldVariable(), 'inputText');	  
+  this.appendValueInput("promptTitle")
+	  .appendField(Blockly.Msg["WINDOW_PROMPT"])
+      .setCheck("String");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(250);
+  }
+};
+
+Blockly.Blocks['include_file'] = {
+  init: function() {
+  this.appendDummyInput() 
+      .appendField(Blockly.Msg.INCLUDE);      
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.INCLUDE_TYPE) 
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.INCLUDE_JS,"js"], [Blockly.Msg.INCLUDE_CSS,"css"]],this.validate), "type");
+  this.appendDummyInput("pos")  
+      .appendField(Blockly.Msg.INCLUDE_POSITION)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.INCLUDE_HEADER,"header"], [Blockly.Msg.INCLUDE_HERE,"here"]]), "position");	  
+  this.appendValueInput("value")
+      .appendField(Blockly.Msg.INCLUDE_URL)   
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null);    
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(60);
+  },
+  validate: function(newValue) {
+	const block = this.sourceBlock_;
+	if (!block) return;
+	if (newValue=="js") {
+		block.getInput("pos").setVisible(true);
+	}
+	else if (newValue=="css") {
+		block.getInput("pos").setVisible(false);
+	}
+  }
+};
+
+
 Blockly.Blocks['music_create'] = {
   init: function() {
   this.appendValueInput("url_")
@@ -1326,7 +1498,7 @@ Blockly.Blocks['music_create'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(350);
+  this.setColour(60);
   }
 };
 
@@ -1336,7 +1508,7 @@ Blockly.Blocks['music_delete'] = {
         .appendField(Blockly.Msg.MUSIC_DELETE);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(350);
+    this.setColour(60);
   }
 };
 
@@ -1370,7 +1542,7 @@ Blockly.Blocks['canvas_create'] = {
       .appendField(Blockly.Msg.ZINDEX);   
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(270);
+  this.setColour(60);
   }
 };
 
@@ -1404,7 +1576,7 @@ Blockly.Blocks['canvas_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(270);
+  this.setColour(60);
   }
 };
 
@@ -1432,7 +1604,7 @@ Blockly.Blocks['canvas_get'] = {
 	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(270);
+  this.setColour(200);
   }
 };
 
@@ -1478,7 +1650,7 @@ Blockly.Blocks['canvas_line'] = {
       .appendField(Blockly.Msg.OPACITY);      
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(270);
+  this.setColour(60);
   }
 };
 
@@ -1528,7 +1700,7 @@ Blockly.Blocks['canvas_rect'] = {
       .appendField(Blockly.Msg.OPACITY);     
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(270);
+  this.setColour(60);
   }
 };
 
@@ -1586,7 +1758,7 @@ Blockly.Blocks['canvas_arc'] = {
       .appendField(Blockly.Msg.OPACITY);     
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(270);
+  this.setColour(60);
   }
 };
 
@@ -1602,7 +1774,7 @@ Blockly.Blocks['canvas_img_url'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(270);
+  this.setColour(60);
   }
 };
 
@@ -1656,7 +1828,7 @@ Blockly.Blocks['canvas_img'] = {
       .appendField(Blockly.Msg.OPACITY);     
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(270);
+  this.setColour(60);
   }
 };
 
@@ -1714,7 +1886,7 @@ Blockly.Blocks['canvas_capturevideo'] = {
       .appendField(Blockly.Msg.OPACITY);     
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(270);
+  this.setColour(60);
   }
 };
 
@@ -1768,7 +1940,7 @@ Blockly.Blocks['canvas_text'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(270);
+  this.setColour(60);
   }
 };
 
@@ -1826,7 +1998,7 @@ Blockly.Blocks['canvas_quadraticcurve'] = {
       .appendField(Blockly.Msg.OPACITY);     
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(270);
+  this.setColour(60);
   }
 };
 
@@ -1892,7 +2064,7 @@ Blockly.Blocks['canvas_beziercurve'] = {
       .appendField(Blockly.Msg.OPACITY);     
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(270);
+  this.setColour(60);
   }
 };
 
@@ -1923,7 +2095,7 @@ Blockly.Blocks['canvas_clearrect'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(270);
+  this.setColour(60);
   }
 };
 
@@ -1938,7 +2110,7 @@ Blockly.Blocks['canvas_clear'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(270);
+  this.setColour(60);
   }
 };
 
@@ -1953,7 +2125,7 @@ Blockly.Blocks['canvas_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(270);
+  this.setColour(60);
   }
 };
 
@@ -1968,7 +2140,7 @@ Blockly.Blocks['canvas_onclick_do'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(270);
+  this.setColour(60);
   }
 };
 
@@ -1983,7 +2155,7 @@ Blockly.Blocks['canvas_onclick_dom'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(270);
+  this.setColour(220);
   }
 };
 
@@ -1996,7 +2168,7 @@ Blockly.Blocks['canvas_onclick_get'] = {
       .appendField(Blockly.Msg.ONCLICK);    
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(270);
+  this.setColour(200);
   }
 };
 
@@ -2018,7 +2190,7 @@ Blockly.Blocks['canvas_getcolor'] = {
       .appendField(Blockly.Msg.TOP);  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(270);
+  this.setColour(200);
   }
 };
 
@@ -2048,7 +2220,7 @@ Blockly.Blocks['canvas_getimagedata'] = {
       .appendField(Blockly.Msg.HEIGHT);	   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(270);
+  this.setColour(200);
   }
 };
 
@@ -2073,7 +2245,7 @@ Blockly.Blocks['canvas_setimagedata'] = {
       .appendField(Blockly.Msg.CANVAS_Y0);  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(270);
+  this.setColour(60);
   }
 };
 
@@ -2220,7 +2392,7 @@ Blockly.Blocks['image_get'] = {
 	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(60);
+  this.setColour(200);
   }
 };
 
@@ -2256,7 +2428,7 @@ Blockly.Blocks['elements_collision'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_ANY,"any"], [Blockly.Msg.PROPERTY_UP,"up"], [Blockly.Msg.PROPERTY_DOWN,"down"], [Blockly.Msg.PROPERTY_LEFT,"left"], [Blockly.Msg.PROPERTY_RIGHT,"right"]]), "position_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(350);
+  this.setColour(200);
   }
 };
 
@@ -2278,7 +2450,7 @@ Blockly.Blocks['elements_collision_color'] = {
       .appendField(Blockly.Msg.COLOR);
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(350);
+  this.setColour(200);
   }
 };
 
@@ -2340,7 +2512,7 @@ Blockly.Blocks['image_collision'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_ANY,"any"], [Blockly.Msg.PROPERTY_UP,"up"], [Blockly.Msg.PROPERTY_DOWN,"down"], [Blockly.Msg.PROPERTY_LEFT,"left"], [Blockly.Msg.PROPERTY_RIGHT,"right"]]), "position_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(60);
+  this.setColour(200);
   }
 };
 
@@ -2358,7 +2530,7 @@ Blockly.Blocks['image_boundary'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(350);
+  this.setColour(60);
   }
 };
 
@@ -2372,7 +2544,7 @@ Blockly.Blocks['image_boundary_collision'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_ANY,"any"], [Blockly.Msg.PROPERTY_UP,"up"], [Blockly.Msg.PROPERTY_DOWN,"down"], [Blockly.Msg.PROPERTY_LEFT,"left"], [Blockly.Msg.PROPERTY_RIGHT,"right"]]), "property_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(60);
+  this.setColour(200);
   }
 };
 
@@ -2399,7 +2571,7 @@ Blockly.Blocks['image_sys_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.WIDTH,"screen_width"], [Blockly.Msg.HEIGHT,"screen_height"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(350);
+  this.setColour(200);
   }
 };
 
@@ -2451,7 +2623,7 @@ Blockly.Blocks['image_onclick_dom'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(220);
   }
 };
 
@@ -2466,7 +2638,7 @@ Blockly.Blocks['image_onload_dom'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(60);
+  this.setColour(220);
   }
 };
 
@@ -2479,7 +2651,7 @@ Blockly.Blocks['image_onclick_get'] = {
       .appendField(Blockly.Msg.ONCLICK);    
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(60);
+  this.setColour(200);
   }
 };
 
@@ -2522,7 +2694,7 @@ Blockly.Blocks['mouse_coordinate_get_start'] = {
       .appendField(Blockly.Msg.MOUSE_COORDINATE_GET_START);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(290);
+  this.setColour(60);
   }
 };
 
@@ -2533,7 +2705,7 @@ Blockly.Blocks['mouse_coordinate_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_PAGEX,"pageX"], [Blockly.Msg.PROPERTY_PAGEY,"pageY"], [Blockly.Msg.PROPERTY_OFFSETX,"offsetX"], [Blockly.Msg.PROPERTY_OFFSETY,"offsetY"], [Blockly.Msg.PROPERTY_CLIENTX,"clientX"], [Blockly.Msg.PROPERTY_CLIENTY,"clientY"], [Blockly.Msg.PROPERTY_SCREENX,"screenX"], [Blockly.Msg.PROPERTY_SCREENY,"screenY"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(290);
+  this.setColour(200);
   this.setHelpUrl("https://www.w3schools.com/jsref/obj_mouseevent.asp");
   }
 };
@@ -2548,7 +2720,7 @@ Blockly.Blocks['document_timer_novar'] = {
     this.appendStatementInput("do_");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(110);
+    this.setColour(60);
   }
 };
 
@@ -2562,7 +2734,7 @@ Blockly.Blocks['document_timer_once_novar'] = {
     this.appendStatementInput("do_");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(110);
+    this.setColour(60);
   }
 };
 
@@ -2571,13 +2743,13 @@ Blockly.Blocks['document_timer'] = {
     this.appendValueInput("intervals_")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")
-        .appendField(new Blockly.FieldVariable(), 'myTimer_')
+        .appendField(new Blockly.FieldVariable('myTimer'), 'myTimer_')
         .appendField(Blockly.Msg.DOCUMENT_TIMER);  
     this.setInputsInline(true);    
     this.appendStatementInput("do_");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(110);
+    this.setColour(60);
   }
 };
 
@@ -2586,13 +2758,13 @@ Blockly.Blocks['document_timer_once'] = {
     this.appendValueInput("intervals_")
         .setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")
-        .appendField(new Blockly.FieldVariable(), 'myTimerOnce_')
+        .appendField(new Blockly.FieldVariable('myTimerOnce'), 'myTimerOnce_')
         .appendField(Blockly.Msg.DOCUMENT_TIMER_ONCE);   
     this.setInputsInline(true);    
     this.appendStatementInput("do_");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(110);
+    this.setColour(60);
   }
 };
 
@@ -2600,10 +2772,10 @@ Blockly.Blocks['document_timer_stop'] = {
   init: function () {
     this.appendDummyInput()
       .appendField(Blockly.Msg.DOCUMENT_TIMER_STOP)
-      .appendField(new Blockly.FieldVariable(), 'myTimer_');
+      .appendField(new Blockly.FieldVariable('myTimer'), 'myTimer_');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(110);
+    this.setColour(60);
   }
 };
 
@@ -2621,25 +2793,9 @@ Blockly.Blocks['text_to_number'] = {
 		]), "type");	  
     this.setInputsInline(true); 		
     this.setOutput(true);  
-    this.setColour(Blockly.Msg["TEXTS_HUE"]);
+    this.setColour(60);
   }  
 };
-
-Blockly.Blocks['text_keyword'] = {
-  init: function () {   
-  this.appendValueInput("myVar_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT);    
-  this.appendValueInput("keyword")
-      .setCheck("String")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.SPEECHRECOGNITION_KEYWORD_SHOW);    
-  this.setInputsInline(true);
-  this.setOutput(true, null); 
-  this.setColour(Blockly.Msg["TEXTS_HUE"]);
-  }
-};
-
 
 Blockly.Blocks['aes_encryption'] = {
   init: function() {
@@ -2655,7 +2811,7 @@ Blockly.Blocks['aes_encryption'] = {
 		.appendField(Blockly.Msg.AES_KEY);		
     this.setInputsInline(true); 		
     this.setOutput(true);  
-    this.setColour(Blockly.Msg["TEXTS_HUE"]);
+    this.setColour(60);
   }  
 };
 
@@ -2687,7 +2843,7 @@ Blockly.Blocks['function_return'] = {
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(Blockly.Msg["PROCEDURES_HUE"]);
+    this.setColour(60);
   }
 };
 
@@ -2790,7 +2946,7 @@ Blockly.Blocks['button_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID);
+      .appendField(Blockly.Msg.ID); 
   this.appendValueInput("value_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -2834,7 +2990,7 @@ Blockly.Blocks['button_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(90);
+  this.setColour(60);
   }
 };
 
@@ -2870,7 +3026,7 @@ Blockly.Blocks['button_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(90);
+  this.setColour(60);
   }
 };
 
@@ -2901,7 +3057,7 @@ Blockly.Blocks['button_get'] = {
 	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(90);
+  this.setColour(200);
   }
 };
 
@@ -2915,7 +3071,7 @@ Blockly.Blocks['button_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(90);
+  this.setColour(60);
   }
 };
 
@@ -2930,7 +3086,7 @@ Blockly.Blocks['button_onclick_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(90);
+  this.setColour(220);
   }
 };
 
@@ -2949,7 +3105,7 @@ Blockly.Blocks['async_function'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(Blockly.Msg["PROCEDURES_HUE"]);
+  this.setColour(60);
   }
 };
 
@@ -2967,18 +3123,21 @@ Blockly.Blocks['call_async_function'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(Blockly.Msg["PROCEDURES_HUE"]);
+  this.setColour(60);
   }
 };
 
 Blockly.Blocks['transform_async_function'] = {
   init: function () {
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.TRANSFORM_ASYNC_FUNCTION);    
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.TRANSFORM_ASYNC_FUNCTION,"ASYNC"],
+	  [Blockly.Msg.TRANSFORM_FUNCTION,""]
+	  ]), "type");	     
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(Blockly.Msg["PROCEDURES_HUE"]);
+  this.setColour(60);
   }
 };
 
@@ -2987,36 +3146,10 @@ Blockly.Blocks['element_event'] = {
   init: function () {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.ELEMENT)
-      .appendField(new Blockly.FieldDropdown([
-	  [Blockly.Msg.ELEMENT_WINDOW,"window"],
-	  [Blockly.Msg.ELEMENT_DOCUMENT,"document"],
-	  [Blockly.Msg.ELEMENT_TABLE,"table"],
-	  [Blockly.Msg.ELEMENT_IMAGE,"image"],
-	  [Blockly.Msg.ELEMENT_CANVAS,"canvas"],
-	  [Blockly.Msg.ELEMENT_BUTTON,"button"],
-	  [Blockly.Msg.ELEMENT_COLOR,"color"],
-	  [Blockly.Msg.ELEMENT_SELECT,"select"],
-	  [Blockly.Msg.ELEMENT_RANGE,"range"],
-	  [Blockly.Msg.ELEMENT_TEXT,"text"],[
-	  Blockly.Msg.ELEMENT_DIV,"div"],
-	  [Blockly.Msg.ELEMENT_IFRAME,"iframe"],
-	  [Blockly.Msg.ELEMENT_A,"a"],
-	  [Blockly.Msg.ELEMENT_RADIO,"radio"],
-	  [Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],
-	  [Blockly.Msg.ELEMENT_TEXTAREA,"textarea"],
-	  [Blockly.Msg.ELEMENT_NUMBER,"number"],
-	  [Blockly.Msg.ELEMENT_DATE,"date"],
-	  [Blockly.Msg.ELEMENT_TIME,"time"],
-	  [Blockly.Msg.ELEMENT_DATETIME,"datetime"],
-	  [Blockly.Msg.ELEMENT_PROGRESS,"progress"],
-	  [Blockly.Msg.ELEMENT_PASSWORD,"password"],
-	  [Blockly.Msg.ELEMENT_VIDEO,"video"],
-	  [Blockly.Msg.ELEMENT_AUDIO,"audio"]
-	  ],this.validate), "element");
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_WINDOW,"window"],[Blockly.Msg.ELEMENT_DOCUMENT,"document"],[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"],[Blockly.Msg.ELEMENT_BUTTON,"button"],[Blockly.Msg.ELEMENT_COLOR,"color"],[Blockly.Msg.ELEMENT_SELECT,"select"],[Blockly.Msg.ELEMENT_RANGE,"range"],[Blockly.Msg.ELEMENT_TEXT,"text"],[Blockly.Msg.ELEMENT_DIV,"div"],[Blockly.Msg.ELEMENT_IFRAME,"iframe"],[Blockly.Msg.ELEMENT_A,"a"],[Blockly.Msg.ELEMENT_RADIO,"radio"],[Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],[Blockly.Msg.ELEMENT_TEXTAREA,"textarea"],[Blockly.Msg.ELEMENT_NUMBER,"number"],[Blockly.Msg.ELEMENT_DATE,"date"],[Blockly.Msg.ELEMENT_TIME,"time"],[Blockly.Msg.ELEMENT_DATETIME,"datetime"],[Blockly.Msg.ELEMENT_PROGRESS,"progress"],[Blockly.Msg.ELEMENT_PASSWORD,"password"]]), "element");
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.ID); 
-  this.getInput("id_").setVisible(false);
   this.appendDummyInput()  
       .appendField(Blockly.Msg.ELEMENT_EVENT)
       .appendField(new Blockly.FieldDropdown([
@@ -3104,31 +3237,14 @@ Blockly.Blocks['element_event'] = {
 		["unload","unload"],
 		["volumechange","volumechange"],
 		["waiting","waiting"],
-		["wheel","wheel"],
-		["loadstart","loadstart"],
-		["durationchange","durationchange"],
-		["loadedmetadata","loadedmetadata"],
-		["loadeddata","loadeddata"],
-		["progress","progress"],
-		["canplay","canplay"],
-		["canplaythrough","canplaythrough"]	      
+		["wheel","wheel"]
 	  ]), "event");
   this.appendStatementInput("statement");
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(170);
+  this.setColour(60);
   this.setHelpUrl("https://fustyles.github.io/webduino/GameElements_20190131/HTML%20DOM%20EVENTS.txt");
-  },
-  validate: function(newValue) {
-	const block = this.sourceBlock_;
-	if (!block) return;
-	if (newValue=="window"||newValue=="document") {
-		block.getInput("id_").setVisible(false);
-	}
-	else {
-		block.getInput("id_").setVisible(true);
-	}
   }
 };
 
@@ -3136,34 +3252,10 @@ Blockly.Blocks['element_event_stop'] = {
   init: function () {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.ELEMENT)
-      .appendField(new Blockly.FieldDropdown([
-	  [Blockly.Msg.ELEMENT_WINDOW,"window"],
-	  [Blockly.Msg.ELEMENT_DOCUMENT,"document"],
-	  [Blockly.Msg.ELEMENT_TABLE,"table"],
-	  [Blockly.Msg.ELEMENT_IMAGE,"image"],
-	  [Blockly.Msg.ELEMENT_CANVAS,"canvas"],
-	  [Blockly.Msg.ELEMENT_BUTTON,"button"],
-	  [Blockly.Msg.ELEMENT_COLOR,"color"],
-	  [Blockly.Msg.ELEMENT_SELECT,"select"],
-	  [Blockly.Msg.ELEMENT_RANGE,"range"],
-	  [Blockly.Msg.ELEMENT_TEXT,"text"],
-	  [Blockly.Msg.ELEMENT_DIV,"div"],
-	  [Blockly.Msg.ELEMENT_IFRAME,"iframe"],
-	  [Blockly.Msg.ELEMENT_A,"a"],
-	  [Blockly.Msg.ELEMENT_RADIO,"radio"],
-	  [Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],
-	  [Blockly.Msg.ELEMENT_TEXTAREA,"textarea"],
-	  [Blockly.Msg.ELEMENT_NUMBER,"number"],
-	  [Blockly.Msg.ELEMENT_DATE,"date"],
-	  [Blockly.Msg.ELEMENT_TIME,"time"],
-	  [Blockly.Msg.ELEMENT_DATETIME,"datetime"],
-	  [Blockly.Msg.ELEMENT_PROGRESS,"progress"],
-	  [Blockly.Msg.ELEMENT_PASSWORD,"password"]
-	  ],this.validate), "element");
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_WINDOW,"window"],[Blockly.Msg.ELEMENT_DOCUMENT,"document"],[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"],[Blockly.Msg.ELEMENT_BUTTON,"button"],[Blockly.Msg.ELEMENT_COLOR,"color"],[Blockly.Msg.ELEMENT_SELECT,"select"],[Blockly.Msg.ELEMENT_RANGE,"range"],[Blockly.Msg.ELEMENT_TEXT,"text"],[Blockly.Msg.ELEMENT_DIV,"div"],[Blockly.Msg.ELEMENT_IFRAME,"iframe"],[Blockly.Msg.ELEMENT_A,"a"],[Blockly.Msg.ELEMENT_RADIO,"radio"],[Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],[Blockly.Msg.ELEMENT_TEXTAREA,"textarea"],[Blockly.Msg.ELEMENT_NUMBER,"number"],[Blockly.Msg.ELEMENT_DATE,"date"],[Blockly.Msg.ELEMENT_TIME,"time"],[Blockly.Msg.ELEMENT_DATETIME,"datetime"],[Blockly.Msg.ELEMENT_PROGRESS,"progress"],[Blockly.Msg.ELEMENT_PASSWORD,"password"]]), "element");
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.ID); 
-  this.getInput("id_").setVisible(false);	  
+      .appendField(Blockly.Msg.ID);    
   this.appendDummyInput()  
       .appendField(Blockly.Msg.ELEMENT_EVENT_STOP)
       .appendField(new Blockly.FieldDropdown([
@@ -3251,30 +3343,13 @@ Blockly.Blocks['element_event_stop'] = {
 		["unload","unload"],
 		["volumechange","volumechange"],
 		["waiting","waiting"],
-		["wheel","wheel"],
-		["loadstart","loadstart"],
-		["durationchange","durationchange"],
-		["loadedmetadata","loadedmetadata"],
-		["loadeddata","loadeddata"],
-		["progress","progress"],
-		["canplay","canplay"],
-		["canplaythrough","canplaythrough"]
+		["wheel","wheel"]
 	  ]), "event");
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(170);
+  this.setColour(60);
   this.setHelpUrl("https://fustyles.github.io/webduino/GameElements_20190131/HTML%20DOM%20EVENTS.txt");
-  },
-  validate: function(newValue) {
-	const block = this.sourceBlock_;
-	if (!block) return;
-	if (newValue=="window"||newValue=="document") {
-		block.getInput("id_").setVisible(false);
-	}
-	else {
-		block.getInput("id_").setVisible(true);
-	}
   }
 };
 
@@ -3285,7 +3360,7 @@ Blockly.Blocks['colorpicker_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID);
+      .appendField(Blockly.Msg.ID);  
   this.appendValueInput("value_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3321,7 +3396,7 @@ Blockly.Blocks['colorpicker_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(120);
+  this.setColour(60);
   }
 };
 
@@ -3353,7 +3428,7 @@ Blockly.Blocks['colorpicker_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(120);
+  this.setColour(60);
   }
 };
 
@@ -3381,7 +3456,7 @@ Blockly.Blocks['colorpicker_get'] = {
 	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(120);
+  this.setColour(200);
   }
 };
 
@@ -3395,7 +3470,7 @@ Blockly.Blocks['colorpicker_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(120);
+  this.setColour(60);
   }
 };
 
@@ -3410,7 +3485,7 @@ Blockly.Blocks['colorpicker_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(120);
+  this.setColour(220);
   }
 };
 
@@ -3425,15 +3500,15 @@ Blockly.Blocks['select_create'] = {
   this.appendValueInput("value_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.SELECT_VALUE);  
+      .appendField(Blockly.Msg.SELECT_VALUE); 	  
   this.appendValueInput("option_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.SELECT_OPTION); 
+      .appendField(Blockly.Msg.SELECT_OPTION);
   this.appendValueInput("fontsize_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck("Number")
-      .appendField(Blockly.Msg.FONTSIZE);
+      .appendField(Blockly.Msg.FONTSIZE);  	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3457,11 +3532,11 @@ Blockly.Blocks['select_create'] = {
   this.appendValueInput("color_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null)
-      .appendField(Blockly.Msg.FONTCOLOR);    
+      .appendField(Blockly.Msg.FONTCOLOR);   
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.OPACITY);     
+      .appendField(Blockly.Msg.OPACITY);
   this.appendValueInput("zindex_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3473,7 +3548,7 @@ Blockly.Blocks['select_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(150);
+  this.setColour(60);
   }
 };
 
@@ -3510,7 +3585,7 @@ Blockly.Blocks['select_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(150);
+  this.setColour(60);
   }
 };
 
@@ -3545,7 +3620,7 @@ Blockly.Blocks['select_get'] = {
 	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(150);
+  this.setColour(200);
   }
 };
 
@@ -3559,7 +3634,7 @@ Blockly.Blocks['select_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(150);
+  this.setColour(60);
   }
 };
 
@@ -3574,7 +3649,7 @@ Blockly.Blocks['select_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(150);
+  this.setColour(220);
   }
 };
 
@@ -3585,11 +3660,11 @@ Blockly.Blocks['range_create'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID); 
+      .appendField(Blockly.Msg.ID);
   this.appendValueInput("value_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.VALUE);
+      .appendField(Blockly.Msg.VALUE); 	  
   this.appendValueInput("min_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -3633,7 +3708,7 @@ Blockly.Blocks['range_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(180);
+  this.setColour(60);
   }
 };
 
@@ -3669,7 +3744,7 @@ Blockly.Blocks['range_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(180);
+  this.setColour(60);
   }
 };
 
@@ -3701,7 +3776,7 @@ Blockly.Blocks['range_get'] = {
 	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(180);
+  this.setColour(200);
   }
 };
 
@@ -3715,7 +3790,7 @@ Blockly.Blocks['range_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(180);
+  this.setColour(60);
   }
 };
 
@@ -3730,7 +3805,7 @@ Blockly.Blocks['range_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(180);
+  this.setColour(220);
   }
 };
 
@@ -3789,7 +3864,7 @@ Blockly.Blocks['text_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(210);
+  this.setColour(60);
   }
 };
 
@@ -3827,29 +3902,7 @@ Blockly.Blocks['text_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(210);
-  }
-};
-
-Blockly.Blocks['element_select'] = {
-  init: function() {
-  this.appendDummyInput()
-      .setAlign(Blockly.ALIGN_RIGHT)		  
-      .appendField(new Blockly.FieldDropdown([
-		  [Blockly.Msg.ELEMENT_TEXT,"text"], 
-		  [Blockly.Msg.ELEMENT_TEXTAREA,"textarea"]
-	  ]), "source_");
-  this.appendValueInput("id_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg.ID); 
-  this.appendDummyInput()
-      .setAlign(Blockly.ALIGN_RIGHT)		  
-      .appendField(Blockly.Msg.PROPERTY_SELECT);      
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(140);
+  this.setColour(60);
   }
 };
 
@@ -3883,7 +3936,7 @@ Blockly.Blocks['text_get'] = {
 	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(210);
+  this.setColour(200);
   }
 };
 
@@ -3899,7 +3952,7 @@ Blockly.Blocks['text_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(210);
+  this.setColour(60);
   }
 };
 
@@ -3916,7 +3969,7 @@ Blockly.Blocks['text_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(210);
+  this.setColour(220);
   }
 };
 
@@ -4015,7 +4068,7 @@ Blockly.Blocks['div_set'] = {
 	  [Blockly.Msg.PROPERTY_SCROLLLEFT,"scrollLeft"], 
 	  [Blockly.Msg.PROPERTY_SCROLLTOP,"scrollTop"], 
 	  [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"],
-	  [Blockly.Msg.PROPERTY_INNERHTML + " (markdown)","innerHTML_markdown"], 	  
+	  [Blockly.Msg.PROPERTY_INNERHTML + " (markdown)","innerHTML_markdown"], 	      
 	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
 	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
 	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
@@ -4136,7 +4189,7 @@ Blockly.Blocks['color_hextorgb'] = {
       .setCheck(null); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(120);
+  this.setColour(200);
   }
 };
 
@@ -4148,7 +4201,7 @@ Blockly.Blocks['time_delay'] = {
     this.setInputsInline(true);    
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(30);
+    this.setColour(60);
   }
 };
 
@@ -4172,7 +4225,7 @@ Blockly.Blocks['body_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(50);
+  this.setColour(60);
   }
 };  
 
@@ -4199,7 +4252,7 @@ Blockly.Blocks['position_distance'] = {
       .appendField(Blockly.Msg.Y1);     
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(350);
+  this.setColour(200);
   }
 };
 
@@ -4226,7 +4279,7 @@ Blockly.Blocks['position_angle'] = {
       .appendField(Blockly.Msg.Y1);     
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(350);
+  this.setColour(200);
   }
 };
 
@@ -4377,6 +4430,47 @@ Blockly.Blocks['iframe_delete'] = {
   }
 };
 
+Blockly.Blocks['fetch_get'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.FETCH);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.FETCH_ID); 
+  this.appendValueInput("url_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.FETCH_URL); 
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FETCH_DATATYPE)
+      .appendField(new Blockly.FieldDropdown([["json","json"],["text","text"], ["blob","blob"]]), "datatype_"); 
+  this.appendStatementInput("do")
+      .appendField(Blockly.Msg.FETCH_RESPONSE);	  
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(350);
+  }
+};
+
+Blockly.Blocks['fetch_getdata'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.FETCH);
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.FETCH_ID);
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.FETCH_GETDATA);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.FETCH_FORMAT)
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.FETCH_FORMAT_DEFAULT,""], [Blockly.Msg.FETCH_FORMAT_JSON,"JSON to String"], [Blockly.Msg.FETCH_FORMAT_BLOB,"BLOB to ObjectURL"]]), "format_"); 	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(350);
+  }
+};
+
 Blockly.Blocks['ajax_get'] = {
   init: function () {
   this.appendDummyInput()   
@@ -4398,11 +4492,11 @@ Blockly.Blocks['ajax_get'] = {
       .appendField(Blockly.Msg.AJAX_ASYNC)
       .appendField(new Blockly.FieldDropdown([["false","false"], ["true","true"]]), "async_"); 
   this.appendStatementInput("do")
-      .appendField(Blockly.Msg.AJAX_RESPONSE);	  
+      .appendField(Blockly.Msg.AJAX_RESPONSE);		  
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(350);
+  this.setColour(60);
   }
 };
 
@@ -4420,7 +4514,7 @@ Blockly.Blocks['ajax_getdata'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.AJAX_FORMAT_DEFAULT,""], [Blockly.Msg.AJAX_FORMAT_JSON,"JSON to String"], [Blockly.Msg.AJAX_FORMAT_XML,"XML to String"]]), "format_"); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(350);
+  this.setColour(200);
   }
 };
 
@@ -4439,7 +4533,7 @@ Blockly.Blocks['ajax_getdata_json'] = {
       .appendField(Blockly.Msg.AJAX_FIELDNAME);
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(350);
+  this.setColour(200);
   }
 };
 
@@ -4454,7 +4548,7 @@ Blockly.Blocks['ajax_getdata_json_count'] = {
       .appendField(Blockly.Msg.AJAX_DATA_COUNT);	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(350);
+  this.setColour(200);
   }
 };
 
@@ -4470,7 +4564,7 @@ Blockly.Blocks['ajax_cleardata'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(350);
+  this.setColour(60);
   }
 };
 
@@ -4489,11 +4583,15 @@ Blockly.Blocks['a_create'] = {
   this.appendValueInput("href_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.A_HREF);
+      .appendField(Blockly.Msg.A_HREF); 
+  this.appendValueInput("color_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null)
+      .appendField(Blockly.Msg.FONTCOLOR);
   this.appendValueInput("fontsize_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck("Number")
-      .appendField(Blockly.Msg.FONTSIZE); 	  
+      .appendField(Blockly.Msg.FONTSIZE);	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -4510,17 +4608,9 @@ Blockly.Blocks['a_create'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.HEIGHT);
-  this.appendValueInput("background_")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .setCheck(null)
-      .appendField(Blockly.Msg.BACKCOLOR);
-  this.appendValueInput("color_")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .setCheck(null)
-      .appendField(Blockly.Msg.FONTCOLOR);	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.TABLE_BORDERSTYLE)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_NONE,"none"], [Blockly.Msg.PROPERTY_SOLID,"solid"], [Blockly.Msg.PROPERTY_DASHED,"dashed"], [Blockly.Msg.PROPERTY_DOUBLE,"double"], [Blockly.Msg.PROPERTY_DOTTED,"dotted"], [Blockly.Msg.PROPERTY_GROOVE,"groove"], [Blockly.Msg.PROPERTY_RIDGE,"ridge"], [Blockly.Msg.PROPERTY_INSET,"inset"], [Blockly.Msg.PROPERTY_OUTSET,"outset"],   [Blockly.Msg.PROPERTY_HIDDEN,"hidden"]]), "borderstyle_");  
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_NONE,"none"], [Blockly.Msg.PROPERTY_SOLID,"solid"], [Blockly.Msg.PROPERTY_DASHED,"dashed"], [Blockly.Msg.PROPERTY_DOUBLE,"double"], [Blockly.Msg.PROPERTY_DOTTED,"dotted"], [Blockly.Msg.PROPERTY_GROOVE,"groove"], [Blockly.Msg.PROPERTY_RIDGE,"ridge"], [Blockly.Msg.PROPERTY_INSET,"inset"], [Blockly.Msg.PROPERTY_OUTSET,"outset"],  [Blockly.Msg.PROPERTY_HIDDEN,"hidden"]]), "borderstyle_");  
   this.appendValueInput("borderwidth_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -4529,10 +4619,14 @@ Blockly.Blocks['a_create'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TABLE_BORDERCOLOR);         
+  this.appendValueInput("background_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck(null)
+      .appendField(Blockly.Msg.BACKCOLOR);
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.OPACITY);
+      .appendField(Blockly.Msg.OPACITY);	  
   this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.A_TARGET)
@@ -4548,7 +4642,7 @@ Blockly.Blocks['a_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(360);
+  this.setColour(60);
   }
 };
 
@@ -4588,7 +4682,7 @@ Blockly.Blocks['a_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(360);
+  this.setColour(60);
   }
 };
 
@@ -4623,7 +4717,7 @@ Blockly.Blocks['a_get'] = {
 	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(360);
+  this.setColour(200);
   }
 };
 
@@ -4637,7 +4731,7 @@ Blockly.Blocks['a_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(360);
+  this.setColour(60);
   }
 };
 
@@ -4660,11 +4754,7 @@ Blockly.Blocks['radio_create'] = {
   this.appendValueInput("checked_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.PROPERTY_CHECKED);
-  this.appendValueInput("size_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.SIZE);	  
+      .appendField(Blockly.Msg.PROPERTY_CHECKED);	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -4673,6 +4763,10 @@ Blockly.Blocks['radio_create'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.TOP);
+  this.appendValueInput("size_")
+      .setCheck("Number")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.SIZE);
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -4688,7 +4782,7 @@ Blockly.Blocks['radio_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(390);
+  this.setColour(60);
   }
 };
 
@@ -4721,7 +4815,7 @@ Blockly.Blocks['radio_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(390);
+  this.setColour(60);
   }
 };
 
@@ -4750,7 +4844,7 @@ Blockly.Blocks['radio_get'] = {
 	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(390);
+  this.setColour(200);
   }
 };
 
@@ -4765,7 +4859,7 @@ Blockly.Blocks['radio_name_get'] = {
       .appendField(Blockly.Msg.VALUE); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(390);
+  this.setColour(200);
   }
 };
 
@@ -4780,7 +4874,7 @@ Blockly.Blocks['radio_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(390);
+  this.setColour(60);
   }
 };
 
@@ -4795,7 +4889,7 @@ Blockly.Blocks['radio_onclick_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(390);
+  this.setColour(220);
   }
 };
 
@@ -4843,7 +4937,7 @@ Blockly.Blocks['checkbox_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(420);
+  this.setColour(60);
   }
 };
 
@@ -4876,7 +4970,7 @@ Blockly.Blocks['checkbox_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(420);
+  this.setColour(60);
   }
 };
 
@@ -4905,7 +4999,7 @@ Blockly.Blocks['checkbox_get'] = {
 	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(420);
+  this.setColour(200);
   }
 };
 
@@ -4919,7 +5013,7 @@ Blockly.Blocks['checkbox_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(420);
+  this.setColour(60);
   }
 };
 
@@ -4934,7 +5028,7 @@ Blockly.Blocks['checkbox_onclick_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(420);
+  this.setColour(220);
   }
 };
 
@@ -4946,10 +5040,6 @@ Blockly.Blocks['textarea_create'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.ID);
-  this.appendValueInput("value_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.PROPERTY_INNERHTML);		  
   this.appendValueInput("cols_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -4958,6 +5048,10 @@ Blockly.Blocks['textarea_create'] = {
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.PROPERTY_ROWS);
+  this.appendValueInput("value_")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.PROPERTY_INNERHTML);	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -4981,7 +5075,7 @@ Blockly.Blocks['textarea_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(40);
+  this.setColour(60);
   }
 };
 
@@ -5016,7 +5110,7 @@ Blockly.Blocks['textarea_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(40);
+  this.setColour(60);
   }
 };
 
@@ -5047,7 +5141,7 @@ Blockly.Blocks['textarea_get'] = {
 	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(40);
+  this.setColour(200);
   }
 };
 
@@ -5061,7 +5155,7 @@ Blockly.Blocks['textarea_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(40);
+  this.setColour(60);
   }
 };
 
@@ -5076,7 +5170,7 @@ Blockly.Blocks['textarea_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(40);
+  this.setColour(220);
   }
 };
 
@@ -5091,7 +5185,11 @@ Blockly.Blocks['number_create'] = {
   this.appendValueInput("value_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.VALUE);
+      .appendField(Blockly.Msg.VALUE);  	  
+  this.appendValueInput("fontsize_")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .setCheck("Number")
+      .appendField(Blockly.Msg.FONTSIZE);
   this.appendValueInput("min_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -5120,10 +5218,6 @@ Blockly.Blocks['number_create'] = {
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.HEIGHT);
-  this.appendValueInput("fontsize_")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .setCheck("Number")
-      .appendField(Blockly.Msg.FONTSIZE);
   this.appendValueInput("opacity_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -5139,7 +5233,7 @@ Blockly.Blocks['number_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(70);
+  this.setColour(60);
   }
 };
 
@@ -5178,7 +5272,7 @@ Blockly.Blocks['number_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(70);
+  this.setColour(60);
   }
 };
 
@@ -5209,7 +5303,7 @@ Blockly.Blocks['number_get'] = {
 	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(70);
+  this.setColour(200);
   }
 };
 
@@ -5223,7 +5317,7 @@ Blockly.Blocks['number_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(70);
+  this.setColour(60);
   }
 };
 
@@ -5238,7 +5332,7 @@ Blockly.Blocks['number_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(70);
+  this.setColour(220);
   }
 };
 
@@ -5285,7 +5379,7 @@ Blockly.Blocks['date_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(110);
+  this.setColour(60);
   }
 };
 
@@ -5318,7 +5412,7 @@ Blockly.Blocks['date_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(110);
+  this.setColour(60);
   }
 };
 
@@ -5347,7 +5441,7 @@ Blockly.Blocks['date_get'] = {
 	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(110);
+  this.setColour(200);
   }
 };
 
@@ -5361,7 +5455,7 @@ Blockly.Blocks['date_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(110);
+  this.setColour(60);
   }
 };
 
@@ -5376,7 +5470,7 @@ Blockly.Blocks['date_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(110);
+  this.setColour(220);
   }
 };
 
@@ -5415,7 +5509,7 @@ Blockly.Blocks['time_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(140);
+  this.setColour(60);
   }
 };
 
@@ -5446,7 +5540,7 @@ Blockly.Blocks['time_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(140);
+  this.setColour(60);
   }
 };
 
@@ -5473,7 +5567,7 @@ Blockly.Blocks['time_get'] = {
 	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(140);
+  this.setColour(200);
   }
 };
 
@@ -5487,7 +5581,7 @@ Blockly.Blocks['time_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(140);
+  this.setColour(60);
   }
 };
 
@@ -5502,7 +5596,7 @@ Blockly.Blocks['time_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(140);
+  this.setColour(220);
   }
 };
 
@@ -5517,7 +5611,7 @@ Blockly.Blocks['datetime_create'] = {
   this.appendValueInput("value_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.VALUE+"(yyyy-mm-dd HH:mm)");  	  
+      .appendField(Blockly.Msg.VALUE+"(yyyy-mm-dd HH:mm)"); 	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -5541,7 +5635,7 @@ Blockly.Blocks['datetime_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(170);
+  this.setColour(60);
   }
 };
 
@@ -5572,7 +5666,7 @@ Blockly.Blocks['datetime_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(170);
+  this.setColour(60);
   }
 };
 
@@ -5599,7 +5693,7 @@ Blockly.Blocks['datetime_get'] = {
 	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(170);
+  this.setColour(200);
   }
 };
 
@@ -5613,7 +5707,7 @@ Blockly.Blocks['datetime_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(170);
+  this.setColour(60);
   }
 };
 
@@ -5628,7 +5722,7 @@ Blockly.Blocks['datetime_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(170);
+  this.setColour(220);
   }
 };
 
@@ -5643,11 +5737,11 @@ Blockly.Blocks['progress_create'] = {
   this.appendValueInput("value_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.VALUE);
+      .appendField(Blockly.Msg.VALUE); 
   this.appendValueInput("max_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.MAX);  	  
+      .appendField(Blockly.Msg.MAX); 	  
   this.appendValueInput("left_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -5671,7 +5765,7 @@ Blockly.Blocks['progress_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(60);
   }
 };
 
@@ -5703,7 +5797,7 @@ Blockly.Blocks['progress_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(60);
   }
 };
 
@@ -5745,7 +5839,7 @@ Blockly.Blocks['progress_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(200);
+  this.setColour(60);
   }
 };
 
@@ -5760,11 +5854,11 @@ Blockly.Blocks['password_create'] = {
   this.appendValueInput("value_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.VALUE); 
+      .appendField(Blockly.Msg.VALUE);
   this.appendValueInput("maxlength_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.MAXLENGTH);
+      .appendField(Blockly.Msg.MAXLENGTH); 
   this.appendValueInput("fontsize_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck("Number")
@@ -5808,7 +5902,7 @@ Blockly.Blocks['password_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(230);
+  this.setColour(60);
   }
 };
 
@@ -5847,7 +5941,7 @@ Blockly.Blocks['password_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(230);
+  this.setColour(60);
   }
 };
 
@@ -5882,7 +5976,7 @@ Blockly.Blocks['password_get'] = {
 	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(230);
+  this.setColour(200);
   }
 };
 
@@ -5898,7 +5992,7 @@ Blockly.Blocks['password_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(230);
+  this.setColour(60);
   }
 };
 
@@ -5930,7 +6024,7 @@ Blockly.Blocks['form_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(260);
+  this.setColour(60);
   }
 };
 
@@ -5941,18 +6035,14 @@ Blockly.Blocks['form_set'] = {
       .appendField(Blockly.Msg.FORM_ID);      
   this.appendDummyInput()  
       .appendField(Blockly.Msg.FORM_SET) 
-      .appendField(new Blockly.FieldDropdown([
-	  [Blockly.Msg.FORM_ACTION,"action"], 
-	  [Blockly.Msg.FORM_TARGET,"target"], 
-	  [Blockly.Msg.PROPERTY_CLASS,"class"]
-	  ]), "property_");
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.FORM_ACTION,"action"], [Blockly.Msg.FORM_TARGET,"target"], [Blockly.Msg.PROPERTY_CLASS,"class"]]), "property_");
   this.appendValueInput("value_")
       .setAlign(Blockly.ALIGN_RIGHT)
       .setCheck(null);    
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(260);
+  this.setColour(60);
   }
 };
 
@@ -5966,7 +6056,7 @@ Blockly.Blocks['form_get'] = {
       .appendField(new Blockly.FieldDropdown([[Blockly.Msg.FORM_ACTION,"action"], [Blockly.Msg.FORM_TARGET,"target"], [Blockly.Msg.ELEMENTID,"id"], [Blockly.Msg.PROPERTY_NAME,"name"], [Blockly.Msg.PROPERTY_CLASS,"class"]]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(260);
+  this.setColour(200);
   }
 };
 
@@ -5980,7 +6070,7 @@ Blockly.Blocks['form_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(260);
+  this.setColour(60);
   }
 };
 
@@ -6000,7 +6090,7 @@ Blockly.Blocks['form_insert'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(260);
+  this.setColour(60);
   }
 };
 
@@ -6014,7 +6104,7 @@ Blockly.Blocks['form_submit'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(260);
+  this.setColour(60);
   }
 };
 
@@ -6038,7 +6128,7 @@ Blockly.Blocks['head_add_viewport'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(50);
+  this.setColour(60);
   }
 };
 
@@ -6069,11 +6159,11 @@ Blockly.Blocks['video_create'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.PROPERTY_CAM)
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_YES,"true"], [Blockly.Msg.PROPERTY_NO,"false"]], this.validate), "cam_");
+      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.PROPERTY_YES,"true"], [Blockly.Msg.PROPERTY_NO,"false"]]), "cam_");
   this.appendValueInput("src_")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.PROPERTY_SRC); 	  
+      .appendField(Blockly.Msg.PROPERTY_SRC);	  
   this.appendDummyInput("v1")  
       .appendField(Blockly.Msg.PROPERTY_AUTOPLAY)
       .setAlign(Blockly.ALIGN_RIGHT)	  
@@ -6109,28 +6199,8 @@ Blockly.Blocks['video_create'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(290);
-  },
-  validate: function(newValue) {
-	 const block = this.sourceBlock_;
-	 if (!block) return;
-	 if (newValue=="true") {
-		 block.getInput("src_").setVisible(false);
-		 block.getInput("v1").setVisible(false);
-		 block.getInput("v2").setVisible(false);
-		 block.getInput("v3").setVisible(false);
-		 block.getInput("v4").setVisible(false);
-		 block.getInput("v5").setVisible(false);
-	 }
-	 else {
-		 block.getInput("src_").setVisible(true);
-		 block.getInput("v1").setVisible(true);
-		 block.getInput("v2").setVisible(true);
-		 block.getInput("v3").setVisible(true);
-		 block.getInput("v4").setVisible(true);
-		 block.getInput("v5").setVisible(true);		 
-	 }	 
-  } 
+  this.setColour(60);
+  }
 };
 
 Blockly.Blocks['video_create1'] = {
@@ -6211,7 +6281,7 @@ Blockly.Blocks['video_create1'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(290);
+  this.setColour(60);
   this.getInput("v1").setVisible(false);
   this.getInput("v2").setVisible(false);
   this.getInput("v3").setVisible(false);
@@ -6278,7 +6348,7 @@ Blockly.Blocks['video_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(290);
+  this.setColour(60);
   }
 };
 
@@ -6313,27 +6383,7 @@ Blockly.Blocks['video_get'] = {
 	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(290);
-  }
-};
-
-Blockly.Blocks['video_control'] = {
-  init: function () {
-  this.appendValueInput("id_")
-      .setCheck(null)
-      .appendField(Blockly.Msg.VIDEO)	  
-      .appendField(Blockly.Msg.VIDEO_ID);  
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.VIDEO_CONTROL)
-      .appendField(new Blockly.FieldDropdown([
-	  [Blockly.Msg.VIDEO_PLAY,"play"], 
-	  [Blockly.Msg.VIDEO_PAUSE,"pause"], 
-	  [Blockly.Msg.VIDEO_LOAD,"load"]
-	  ]), "property_");
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(290);
+  this.setColour(200);
   }
 };
 
@@ -6347,7 +6397,7 @@ Blockly.Blocks['video_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(290);
+  this.setColour(60);
   }
 };
 
@@ -6361,10 +6411,10 @@ Blockly.Blocks['video_base64'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.VIDEO_BASE64)
       .appendField(new Blockly.FieldCheckbox("TRUE"), "encode_")
-      .appendField(Blockly.Msg["ENCODEURI"]);	  
+      .appendField(Blockly.Msg["ENCODEURI"]);
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(290);
+  this.setColour(200);
   }
 };
 
@@ -6406,7 +6456,7 @@ Blockly.Blocks['video_base64_spreadsheet'] = {
 			[Blockly.Msg["SPREADSHEET_INSERTFIRSTROW_SHOW"],"insertfirst"],
 			[Blockly.Msg["SPREADSHEET_INSERTSECONDROW_SHOW"],"insertsecond"],
 			[Blockly.Msg["SPREADSHEET_INSERTLASTROW_SHOW"],"insertlast"]	
-	], this.validate), "position");		
+	]), "position");		
 	this.appendValueInput("row")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)	  
@@ -6426,22 +6476,12 @@ Blockly.Blocks['video_base64_spreadsheet'] = {
 	this.appendValueInput("spreadsheet_script")
 		.setCheck("String")	  
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);
-	//this.getInput("spreadsheet_script").setVisible(false);		
+		.appendField(Blockly.Msg.VIDEO_BASE64_SCRIPTURL);	
 	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(290);
+	this.setColour(60);
 	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/SendCapturedImageToSpreadsheet_base64_doPost.gs");
-  },
-  validate: function(newValue) {
-	 const block = this.sourceBlock_;
-	 if (newValue=="custom") {
-		 block.getInput("row").setVisible(true);
-	 }
-	 else {
-		 block.getInput("row").setVisible(false);	 
-	 }	 
   }
 };
 
@@ -6472,7 +6512,7 @@ Blockly.Blocks['video_base64_drive'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(290);
+  this.setColour(60);
   }
 };
 
@@ -6503,7 +6543,7 @@ Blockly.Blocks['video_base64_email'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(290);
+  this.setColour(60);
   }
 };
 
@@ -6514,7 +6554,8 @@ Blockly.Blocks['custom_comment'] = {
       .appendField(Blockly.Msg.CUSTOM_COMMENT_SHOW); 
   this.setInputsInline(true);
   this.setPreviousStatement(true);
-  this.setNextStatement(true); 
+  this.setNextStatement(true);
+  this.setColour(0);  
   }
 };
 
@@ -6550,7 +6591,7 @@ Blockly.Blocks['custom_style'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(50);   
+  this.setColour(110);   
   }
 };
 
@@ -6573,7 +6614,7 @@ Blockly.Blocks['font_text'] = {
 	  .appendField(Blockly.Msg.PROPERTY_TEXT_SHOW);	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(320); 
+  this.setColour(200); 
   }
 };
 
@@ -6585,7 +6626,7 @@ Blockly.Blocks['font_b'] = {
       .setCheck(null);	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(320);  
+  this.setColour(200);  
   }
 };
 
@@ -6597,7 +6638,7 @@ Blockly.Blocks['font_i'] = {
       .setCheck(null); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(320); 
+  this.setColour(200); 
   }
 };
 
@@ -6609,7 +6650,7 @@ Blockly.Blocks['font_u'] = {
       .setCheck(null); 
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(320);
+  this.setColour(200);
   }
 };
 
@@ -6621,7 +6662,7 @@ Blockly.Blocks['font_sup'] = {
       .setCheck(null);  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(320); 
+  this.setColour(200); 
   }
 };
 
@@ -6633,7 +6674,7 @@ Blockly.Blocks['font_sub'] = {
       .setCheck(null);  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(320);  
+  this.setColour(200);  
   }
 };
 
@@ -6645,7 +6686,7 @@ Blockly.Blocks['font_em'] = {
       .setCheck(null);  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(320);  
+  this.setColour(200);  
   }
 };
 
@@ -6657,7 +6698,7 @@ Blockly.Blocks['font_strong'] = {
       .setCheck(null);  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(320);  
+  this.setColour(200);  
   }
 };
 
@@ -6669,7 +6710,7 @@ Blockly.Blocks['font_code'] = {
       .setCheck(null);  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(320); 
+  this.setColour(200); 
   }
 };
 
@@ -6690,7 +6731,7 @@ Blockly.Blocks['location'] = {
         ]), "value_property");
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
-	this.setColour(50); 
+	this.setColour(200); 
     this.setHelpUrl("https://developer.mozilla.org/zh-TW/docs/Web/API/Window/location");
   }  
 };
@@ -6704,7 +6745,7 @@ Blockly.Blocks['console_log'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(50);  
+  this.setColour(110);  
   }
 };
 
@@ -6720,7 +6761,7 @@ Blockly.Blocks['button_ouput_file_text'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(90);  
+  this.setColour(110);  
   }
 };
 
@@ -6730,11 +6771,11 @@ this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.VIDEO_ID);	  
   this.appendDummyInput()
-	  .appendField(Blockly.Msg.VIDEO_OUTPUT_JPG);
+	  .appendField(Blockly.Msg.VEDIO_OUTPUT_JPG);
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(290);  
+  this.setColour(110);  
   }
 };
 
@@ -6754,7 +6795,7 @@ Blockly.Blocks['window_open'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(50);  
+  this.setColour(110);  
   }
 };
 
@@ -6766,6 +6807,17 @@ Blockly.Blocks['window_stop'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(50);  
+  }
+};
+
+Blockly.Blocks['image_binarytobase64'] = {
+  init: function() {
+  this.appendValueInput("array_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.IMAGE_BINARY_TO_BASE64);
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(200);   
   }
 };
 
@@ -6800,7 +6852,7 @@ Blockly.Blocks['span_create'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(30);
+  this.setColour(60);
   }
 };
 
@@ -6836,7 +6888,7 @@ Blockly.Blocks['span_set'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(30);
+  this.setColour(60);
   }
 };
 
@@ -6867,7 +6919,7 @@ Blockly.Blocks['span_get'] = {
 	  ]), "property_");
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(30);
+  this.setColour(200);
   }
 };
 
@@ -6881,185 +6933,14 @@ Blockly.Blocks['span_delete'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(30);
-  }
-};
-
-Blockly.Blocks['image_binarytobase64'] = {
-  init: function() {
-  this.appendValueInput("array_")
-      .setCheck(null)
-      .appendField(Blockly.Msg.IMAGE_BINARY_TO_BASE64);
-  this.setInputsInline(true);
-  this.setOutput(true, null); 
-  this.setColour(60);   
-  }
-};
-
-Blockly.Blocks['fetch_get'] = {
-  init: function () {
-  this.appendDummyInput()   
-      .appendField(Blockly.Msg.FETCH);
-  this.appendValueInput("id_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.FETCH_ID); 
-  this.appendValueInput("url_")
-      .setCheck(null)
-      .appendField(Blockly.Msg.FETCH_URL); 
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.FETCH_DATATYPE)
-      .appendField(new Blockly.FieldDropdown([["json","json"],["text","text"], ["blob","blob"]]), "datatype_"); 
-  this.appendStatementInput("do")
-      .appendField(Blockly.Msg.FETCH_RESPONSE);	  
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(350);
-  }
-};
-
-Blockly.Blocks['fetch_getdata'] = {
-  init: function () {
-  this.appendDummyInput()   
-      .appendField(Blockly.Msg.FETCH);
-  this.appendValueInput("id_")
-      .setCheck(null)
-      .appendField(Blockly.Msg.FETCH_ID);
-  this.appendDummyInput()   
-      .appendField(Blockly.Msg.FETCH_GETDATA);
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.FETCH_FORMAT)
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.FETCH_FORMAT_DEFAULT,""], [Blockly.Msg.FETCH_FORMAT_JSON,"JSON to String"], [Blockly.Msg.FETCH_FORMAT_BLOB,"BLOB to ObjectURL"]]), "format_"); 	  
-  this.setInputsInline(true);
-  this.setOutput(true, null); 
-  this.setColour(350);
-  }
-};
-
-Blockly.Blocks['text_br'] = {
-  init: function() {	
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["MSG_NEWLINE"]);
-  this.appendDummyInput()
-      .appendField(new Blockly.FieldDropdown([
-	  ["<br>","<br>"]
-	  ,["\\n","\\n"]
-	  ,["\\\\n","\\\\n"]
-	  ]), "newline"); 		
-  this.setInputsInline(true);
-  this.setOutput(true, null);
-  this.setColour(160);  
-  }
-};
-
-Blockly.Blocks['procedures_return'] = {
-  init: function () {
-    this.appendValueInput("value_")
-        .setCheck(null)
-        .appendField(Blockly.Msg["PROCEDURES_DEFRETURN_RETURN"]);   
-    this.setInputsInline(true);    
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(Blockly.Msg["PROCEDURES_HUE"]);
-  }
-};
-
-Blockly.Blocks['urlcode'] = {
-  init: function () {	  
-  this.appendDummyInput()
-      .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg["ENCODEURI"],"encodeURI"],
-		[Blockly.Msg["DECODEURI"],"decodeURI"]	
-	  ]), "command");
-  this.appendValueInput("url")
-      .setCheck(null);	  
-  this.setInputsInline(true);
-  this.setOutput(true, null); 
-  this.setColour(80);
-  }
-};
-
-Blockly.Blocks['code_text'] = {
-  init: function () {
-  this.appendValueInput("code")
-      .appendField(Blockly.Msg["CODE_TEXT"])
-      .setCheck(null);	  
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  }
-};
-
-Blockly.Blocks['code_text_input'] = {
-  init: function () {
-  this.appendValueInput("code")
-      .appendField(Blockly.Msg["CODE_TEXT"])
-      .setCheck(null);	  
-  this.setInputsInline(true);
-  this.setOutput(true, null); 
-  }
-};
-
-Blockly.Blocks['document_exitFullscreen'] = {
-  init: function () {
-  this.appendDummyInput()
-	  .appendField(Blockly.Msg["DOCUMENT_EXITFULLSCREEN"]);
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(180);
-  }
-};
-
-Blockly.Blocks['window_messagebox'] = {
-  init: function () {
-  this.appendValueInput("message")
-	  .appendField(Blockly.Msg["WINDOW_MESSAGEBOX"])
-      .setCheck(null);
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(250);
-  }
-};
-
-Blockly.Blocks['window_confirm'] = {
-  init: function () {
-  this.appendValueInput("message")
-	  .appendField(Blockly.Msg["WINDOW_CONFIRM"])
-      .setCheck("String");
-  this.appendDummyInput()
-	  .appendField(Blockly.Msg["WINDOW_CONFIRM_YES"]); 
-  this.appendStatementInput("yes");
-  this.appendDummyInput()
-      .appendField(Blockly.Msg["WINDOW_CONFIRM_NO"]);   
-  this.appendStatementInput("no");
-  this.setInputsInline(false);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(250);
-  }
-};
-
-Blockly.Blocks['window_prompt'] = {
-  init: function () {
-  this.appendDummyInput()
-      .appendField(new Blockly.FieldVariable(), 'inputText');	  
-  this.appendValueInput("title")
-	  .appendField(Blockly.Msg["WINDOW_PROMPT"])
-      .setCheck("String");
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(250);
+  this.setColour(60);
   }
 };
 
 Blockly.Blocks['system_datetime_get'] = {
   init: function () {
   this.appendDummyInput()
-      .appendField(new Blockly.FieldVariable(), 'newdate');	  
+      .appendField(new Blockly.FieldVariable('newdate'), 'newdate');	  
   this.appendDummyInput()
       .appendField(Blockly.Msg.GET);
   this.appendDummyInput()
@@ -7086,7 +6967,7 @@ Blockly.Blocks['system_datetime_set'] = {
   this.appendDummyInput()
       .appendField(Blockly.Msg.SET);	  
   this.appendDummyInput()
-	  .appendField(new Blockly.FieldVariable(), 'newdate')
+	  .appendField(new Blockly.FieldVariable('newdate'), 'newdate')
       .appendField(Blockly.Msg["SYSTEM_DATETIME"]); 
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
@@ -7144,384 +7025,122 @@ Blockly.Blocks['system_datetime_set'] = {
   }
 };
 
-Blockly.Blocks['include_file'] = {
-  init: function() {
-  this.appendDummyInput() 
-      .appendField(Blockly.Msg.INCLUDE);      
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.INCLUDE_TYPE) 
-      .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.INCLUDE_JS,"js"], [Blockly.Msg.INCLUDE_CSS,"css"]],this.validate), "type");
-  this.appendDummyInput("pos")  
-      .appendField(Blockly.Msg.INCLUDE_POSITION)
-      .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.INCLUDE_HEADER,"header"], [Blockly.Msg.INCLUDE_HERE,"here"]]), "position");	  
-  this.appendValueInput("value")
-      .appendField(Blockly.Msg.INCLUDE_URL)   
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .setCheck(null);    
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(50);
-  },
-  validate: function(newValue) {
-	const block = this.sourceBlock_;
-	if (!block) return;
-	if (newValue=="js") {
-		block.getInput("pos").setVisible(true);
-	}
-	else if (newValue=="css") {
-		block.getInput("pos").setVisible(false);
-	}
-  }
-};
-
-Blockly.Blocks['audio_create'] = {
+Blockly.Blocks['element_select'] = {
   init: function() {
   this.appendDummyInput()
-      .appendField(Blockly.Msg.AUDIO)  
-      .appendField(Blockly.Msg.AUDIO_CREATE);
-  this.appendValueInput("id_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ID);  
-  this.appendValueInput("src_")
-      .setCheck(null)
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.AUDIO_SRC);	  
-  this.appendValueInput("left_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.LEFT);    
-  this.appendValueInput("top_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.TOP);
-  this.appendValueInput("zindex_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.ZINDEX);
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(30);
-  }
-};
-
-Blockly.Blocks['audio_set'] = {
-  init: function() {
-  this.appendValueInput("id_")
-      .setCheck(null)
-      .appendField(Blockly.Msg.AUDIO)	  
-      .appendField(Blockly.Msg.AUDIO_ID);      
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.AUDIO_SET) 
+      .setAlign(Blockly.ALIGN_RIGHT)		  
       .appendField(new Blockly.FieldDropdown([
-	  [Blockly.Msg.LEFT,"left"], 
-	  [Blockly.Msg.TOP,"top"], 
-	  [Blockly.Msg.AUDIO_AUTOPLAY,"autoplay"], 
-	  [Blockly.Msg.AUDIO_CONTROLS,"controls"], 
-	  [Blockly.Msg.AUDIO_LOOP,"loop"], 
-	  [Blockly.Msg.AUDIO_MUTED,"muted"], 
-	  [Blockly.Msg.AUDIO_SRC,"src"], 
-	  [Blockly.Msg.AUDIO_VOLUME,"volume"], 
-	  [Blockly.Msg.AUDIO_CURRENTTIME,"currentTime"], 
-	  [Blockly.Msg.PROPERTY_OPACITY,"opacity"], 
-	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
-	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
-	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
-	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
-	  [Blockly.Msg.PROPERTY_STYLE,"style"], 
-	  [Blockly.Msg.PROPERTY_CLASS,"class"]
-	  ]), "property_");
-  this.appendValueInput("value_")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .setCheck(null);    
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(30);
-  }
-};
-
-Blockly.Blocks['audio_get'] = {
-  init: function () {
+		  [Blockly.Msg.ELEMENT_TEXT,"text"], 
+		  [Blockly.Msg.ELEMENT_TEXTAREA,"textarea"]
+	  ]), "source_");
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.AUDIO)	  
-      .appendField(Blockly.Msg.AUDIO_ID);  
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.AUDIO_GET)
-      .appendField(new Blockly.FieldDropdown([
-	  [Blockly.Msg.LEFT,"left"], 
-	  [Blockly.Msg.TOP,"top"], 
-	  [Blockly.Msg.AUDIO_CURRENTSRC,"currentSrc"], 
-	  [Blockly.Msg.AUDIO_CURRENTTIME,"currentTime"], 
-	  [Blockly.Msg.AUDIO_DURATION,"duration"], 
-	  [Blockly.Msg.AUDIO_ENDED,"ended"], 
-	  [Blockly.Msg.AUDIO_MUTED,"muted"], 
-	  [Blockly.Msg.AUDIO_PAUSED,"paused"], 
-	  [Blockly.Msg.AUDIO_PLAYED,"played"], 
-	  [Blockly.Msg.AUDIO_SRC,"src"], 
-	  [Blockly.Msg.AUDIO_VOLUME,"volume"], 	  
-	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
-	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
-	  [Blockly.Msg.PROPERTY_POSITION,"position"], 
-	  [Blockly.Msg.PROPERTY_DRAGGABLE,"draggable"], 
-	  [Blockly.Msg.ELEMENTID,"id"], 
-	  [Blockly.Msg.PROPERTY_CLASS,"class"]
-	  ]), "property_");
-  this.setInputsInline(true);
-  this.setOutput(true, null); 
-  this.setColour(30);
-  }
-};
-
-Blockly.Blocks['audio_control'] = {
-  init: function () {
-  this.appendValueInput("id_")
-      .setCheck(null)
-      .appendField(Blockly.Msg.AUDIO)	  
-      .appendField(Blockly.Msg.AUDIO_ID);  
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.AUDIO_CONTROL)
-      .appendField(new Blockly.FieldDropdown([
-	  [Blockly.Msg.AUDIO_PLAY,"play"], 
-	  [Blockly.Msg.AUDIO_PAUSE,"pause"], 
-	  [Blockly.Msg.AUDIO_LOAD,"load"]
-	  ]), "property_");
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(30);
-  }
-};
-
-Blockly.Blocks['audio_play_googleTTS'] = {
-  init: function () {
-  this.appendDummyInput() 
-      .appendField(Blockly.Msg.AUDIO_SRC)	  
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.ID); 
   this.appendDummyInput()
-      .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg.AUDIO_TTS)
-      .appendField(new Blockly.FieldDropdown([
-		["Abkhaz", "ab"],
-		["Acehnese", "ace"],
-		["Acholi", "ach"],
-		["Afrikaans", "af"],
-		["Albanian", "sq"],
-		["Alur", "alz"],
-		["Amharic", "am"],
-		["Arabic", "ar"],
-		["Armenian", "hy"],
-		["Assamese", "as"],
-		["Awadhi", "awa"],
-		["Aymara", "ay"],
-		["Azerbaijani", "az"],
-		["Balinese", "ban"],
-		["Bambara", "bm"],
-		["Bashkir", "ba"],
-		["Basque", "eu"],
-		["Batak Karo", "btx"],
-		["Batak Simalungun", "bts"],
-		["Batak Toba", "bbc"],
-		["Belarusian", "be"],
-		["Bemba", "bem"],
-		["Bengali", "bn"],
-		["Betawi", "bew"],
-		["Bhojpuri", "bho"],
-		["Bikol", "bik"],
-		["Bosnian", "bs"],
-		["Breton", "br"],
-		["Bulgarian", "bg"],
-		["Buryat", "bua"],
-		["Cantonese", "yue"],
-		["Catalan", "ca"],
-		["Cebuano", "ceb"],
-		["Chichewa (Nyanja)", "ny"],
-		["Chinese (Simplified)", "zh-CN"],
-		["Chinese (Traditional)", "zh-TW"],
-		["Chuvash", "cv"],
-		["Corsican", "co"],
-		["Crimean Tatar", "crh"],
-		["Croatian", "hr"],
-		["Czech", "cs"],
-		["Danish", "da"],
-		["Dinka", "din"],
-		["Divehi", "dv"],
-		["Dogri", "doi"],
-		["Dombe", "dov"],
-		["Dutch", "nl"],
-		["Dzongkha", "dz"],
-		["English", "en"],
-		["Esperanto", "eo"],
-		["Estonian", "et"],
-		["Ewe", "ee"],
-		["Fijian", "fj"],
-		["Filipino (Tagalog)", "fil"],
-		["Finnish", "fi"],
-		["French", "fr"],
-		["French (French)", "fr-FR"],
-		["French (Canadian)", "fr-CA"],
-		["Frisian", "fy"],
-		["Fulfulde", "ff"],
-		["Ga", "gaa"],
-		["Galician", "gl"],
-		["Ganda (Luganda)", "lg"],
-		["Georgian", "ka"],
-		["German", "de"],
-		["Greek", "el"],
-		["Guarani", "gn"],
-		["Gujarati", "gu"],
-		["Haitian Creole", "ht"],
-		["Hakha Chin", "cnh"],
-		["Hausa", "ha"],
-		["Hawaiian", "haw"],
-		["Hebrew", "iw or he"],
-		["Hiligaynon", "hil"],
-		["Hindi", "hi"],
-		["Hmong", "hmn"],
-		["Hungarian", "hu"],
-		["Hunsrik", "hrx"],
-		["Icelandic", "is"],
-		["Igbo", "ig"],
-		["Iloko", "ilo"],
-		["Indonesian", "id"],
-		["Irish", "ga"],
-		["Italian", "it"],
-		["Japanese", "ja"],
-		["Javanese", "jw"],
-		["Kannada", "kn"],
-		["Kapampangan", "pam"],
-		["Kazakh", "kk"],
-		["Khmer", "km"],
-		["Kiga", "cgg"],
-		["Kinyarwanda", "rw"],
-		["Kituba", "ktu"],
-		["Konkani", "gom"],
-		["Korean", "ko"],
-		["Krio", "kri"],
-		["Kurdish (Kurmanji)", "ku"],
-		["Kurdish (Sorani)", "ckb"],
-		["Kyrgyz", "ky"],
-		["Lao", "lo"],
-		["Latgalian", "ltg"],
-		["Latin", "la"],
-		["Latvian", "lv"],
-		["Ligurian", "lij"],
-		["Limburgan", "li"],
-		["Lingala", "ln"],
-		["Lithuanian", "lt"],
-		["Lombard", "lmo"],
-		["Luo", "luo"],
-		["Luxembourgish", "lb"],
-		["Macedonian", "mk"],
-		["Maithili", "mai"],
-		["Makassar", "mak"],
-		["Malagasy", "mg"],
-		["Malay", "ms"],
-		["Malay (Jawi)", "ms-Arab"],
-		["Malayalam", "ml"],
-		["Maltese", "mt"],
-		["Maori", "mi"],
-		["Marathi", "mr"],
-		["Meadow Mari", "chm"],
-		["Meiteilon (Manipuri)", "mni-Mtei"],
-		["Minang", "min"],
-		["Mizo", "lus"],
-		["Mongolian", "mn"],
-		["Myanmar (Burmese)", "my"],
-		["Ndebele (South)", "nr"],
-		["Nepalbhasa (Newari)", "new"],
-		["Nepali", "ne"],
-		["Northern Sotho (Sepedi)", "nso"],
-		["Norwegian", "no"],
-		["Nuer", "nus"],
-		["Occitan", "oc"],
-		["Odia (Oriya)", "or"],
-		["Oromo", "om"],
-		["Pangasinan", "pag"],
-		["Papiamento", "pap"],
-		["Pashto", "ps"],
-		["Persian", "fa"],
-		["Polish", "pl"],
-		["Portuguese", "pt"],
-		["Portuguese (Portugal)", "pt-PT"],
-		["Portuguese (Brazil)", "pt-BR"],
-		["Punjabi", "pa"],
-		["Punjabi (Shahmukhi)", "pa-Arab"],
-		["Quechua", "qu"],
-		["Romani", "rom"],
-		["Romanian", "ro"],
-		["Rundi", "rn"],
-		["Russian", "ru"],
-		["Samoan", "sm"],
-		["Sango", "sg"],
-		["Sanskrit", "sa"],
-		["Scots Gaelic", "gd"],
-		["Serbian", "sr"],
-		["Sesotho", "st"],
-		["Seychellois Creole", "crs"],
-		["Shan", "shn"],
-		["Shona", "sn"],
-		["Sicilian", "scn"],
-		["Silesian", "szl"],
-		["Sindhi", "sd"],
-		["Sinhala (Sinhalese)", "si"],
-		["Slovak", "sk"],
-		["Slovenian", "sl"],
-		["Somali", "so"],
-		["Spanish", "es"],
-		["Sundanese", "su"],
-		["Swahili", "sw"],
-		["Swati", "ss"],
-		["Swedish", "sv"],
-		["Tajik", "tg"],
-		["Tamil", "ta"],
-		["Tatar", "tt"],
-		["Telugu", "te"],
-		["Tetum", "tet"],
-		["Thai", "th"],
-		["Tigrinya", "ti"],
-		["Tsonga", "ts"],
-		["Tswana", "tn"],
-		["Turkish", "tr"],
-		["Turkmen", "tk"],
-		["Twi (Akan)", "ak"],
-		["Ukrainian", "uk"],
-		["Urdu", "ur"],
-		["Uyghur", "ug"],
-		["Uzbek", "uz"],
-		["Vietnamese", "vi"],
-		["Welsh", "cy"],
-		["Xhosa", "xh"],
-		["Yiddish", "yi"],
-		["Yoruba", "yo"],
-		["Yucatec Maya", "yua"],
-		["Zulu", "zu"]
-	  ]), "language_");
-  this.appendValueInput("text_")
-      .setAlign(Blockly.ALIGN_RIGHT)	  
-      .setCheck(null)
-      .appendField(Blockly.Msg.AUDIO_TEXT);	  
-  this.setInputsInline(false);
-  this.setOutput(true, null); 
-  this.setColour(30);
-  }
-};
-
-Blockly.Blocks['audio_delete'] = {
-  init: function () {
-  this.appendValueInput("id_")
-      .setCheck(null)
-      .appendField(Blockly.Msg.AUDIO)	  
-      .appendField(Blockly.Msg.AUDIO_ID); 
-  this.appendDummyInput()   
-      .appendField(Blockly.Msg.AUDIO_DELETE);  
+      .setAlign(Blockly.ALIGN_RIGHT)		  
+      .appendField(Blockly.Msg.PROPERTY_SELECT);      
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(30);
+  this.setColour(140);
+  }
+};
+
+Blockly.Blocks['get_keycode'] = {
+	init: function() {
+    	this.appendDummyInput()
+	    .appendField(Blockly.Msg.GET_KEYCODE_SHOW);
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(230);
+  }
+};
+
+Blockly.Blocks['keyboard_keycode'] = {
+	init: function() {
+    	this.appendDummyInput()
+		.appendField(Blockly.Msg.KEYCODE_SHOW)
+		.appendField(new Blockly.FieldDropdown([
+			["BackSpace","8"],
+			["Tab","9"],
+			["Clear","12"],
+			["Enter","13"],
+			["Shift_L","16"],
+			["Control_L","17"],
+			["Alt_L","18"],
+			["Pause","19"],
+			["Caps_Lock","20"],
+			["Escape","27"],
+			["Space","32"],
+			["Prior","33"],
+			["Next","34"],
+			["End","35"],
+			["Home","36"],
+			["Left","37"],
+			["Up","38"],
+			["Right","39"],
+			["Down","40"],
+			["Select","41"],
+			["Print","42"],
+			["Execute","43"],
+			["Insert","45"],
+			["Delete","46"],
+			["Help","47"],
+			["0","48"],
+			["1","49"],
+			["2","50"],
+			["3","51"],
+			["4","52"],
+			["5","53"],
+			["6","54"],
+			["7","55"],
+			["8","56"],
+			["9","57"],
+			["A(a)","65"],
+			["B(b)","66"],
+			["C(c)","67"],
+			["D(d)","68"],
+			["E(e)","69"],
+			["F(f)","70"],
+			["G(g)","71"],
+			["H(h)","72"],
+			["I(i)","73"],
+			["J(j)","74"],
+			["K(k)","75"],
+			["L(l)","76"],
+			["M(m)","77"],
+			["N(n)","78"],
+			["O(o)","79"],
+			["P(p)","80"],
+			["Q(q)","81"],
+			["R(r)","82"],
+			["S(s)","83"],
+			["T(t)","84"],
+			["U(u)","85"],
+			["V(v)","86"],
+			["W(w)","87"],
+			["X(x)","88"],
+			["Y(y)","89"],
+			["Z(z)","90"]
+			]), "keycode");
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(230);
+  }
+};
+
+Blockly.Blocks['hotkey'] = {
+	init: function() {
+    	this.appendDummyInput()
+	    .appendField(Blockly.Msg.HOTKEY_SHOW)
+	    .appendField(new Blockly.FieldDropdown([
+	      ["Ctrl","Ctrl"],
+	      ["Shift","Shift"],
+	      ["Alt","Alt"]
+	      ]), "keycode");
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(230);
   }
 };
