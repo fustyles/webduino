@@ -347,7 +347,7 @@ function openai_chat_content_file_remote_insert(url) {
 	});
 }
 
-await function openai_chat_image_request(input_text, input_url) {
+async function openai_chat_image_request(input_text, input_url) {
   var url = "https://api.openai.com/v1/chat/completions";
 
   var xhr = new XMLHttpRequest();
