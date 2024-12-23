@@ -6321,7 +6321,6 @@ Blockly.Blocks['video_control'] = {
   init: function () {
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.VIDEO)	  
       .appendField(Blockly.Msg.VIDEO_ID);  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.VIDEO_CONTROL)
