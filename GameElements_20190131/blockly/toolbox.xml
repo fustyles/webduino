@@ -3829,6 +3829,7 @@
 			</value>     
 		  </block>
 		  <block type="audio_play_googleTTS">
+			<field name="language_">en</field>
 			<value name="text_">
 			  <block type="text">
 				<field name="TEXT"></field>
@@ -3836,6 +3837,7 @@
 			</value> 			
 		  </block>
 		  <block type="audio_save_googleTTS">
+			<field name="language_">en</field>
 			<value name="text_">
 			  <block type="text">
 				<field name="TEXT"></field>
