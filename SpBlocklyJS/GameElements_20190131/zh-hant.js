@@ -514,6 +514,9 @@ Blockly.Msg["VIDEO_FACING_BACK"] = "後置";
 
 Blockly.Msg["VIDEO_INDEX"] = "索引";
 Blockly.Msg["VEDIO_OUTPUT_JPG"] = "視訊媒體畫面截圖另存jpg檔";
+Blockly.Msg["VEDIO_PLAY"] = "播放";
+Blockly.Msg["VEDIO_PAUSE"] = "暫停";
+Blockly.Msg["VEDIO_LOAD"] = "重新載入";
 Blockly.Msg["CANVAS_CAPTUREVIDEO"] = "畫布 捕捉視訊畫面";
 Blockly.Msg["STREAMURL"] = "串流網址";
 Blockly.Msg["CUSTOM_COMMENT_SHOW"] = "註解";
