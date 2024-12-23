@@ -3707,7 +3707,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    </block>'+
 '    </category>'+
-'		  <category name="%{BKY_CATPAGEELEMENTS_AUDIO}" id="catPageElements_audio" colour="150">'+
+'		  <category name="%{BKY_CATPAGEELEMENTS_AUDIO}" id="catPageElements_audio">'+
 '		  <block type="audio_create">'+
 '			<value name="id_">'+
 '			  <block type="text">'+
