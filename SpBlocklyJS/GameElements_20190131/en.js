@@ -425,6 +425,7 @@ Blockly.Msg["ELEMENT_PROGRESS"] = "Progress";
 Blockly.Msg["ELEMENT_PASSWORD"] = "Password Field";
 Blockly.Msg["ELEMENT_FORM"] = "Form";
 Blockly.Msg["ELEMENT_VIDEO"] = "Video Media";
+Blockly.Msg["ELEMENT_AUDIO"] = "Audio";
 Blockly.Msg["ELEMENT_SPAN"] = "Inline Container";
 Blockly.Msg["RADIO_ID"] = "Radio Button ID";
 Blockly.Msg["RADIO_CREATE"] = "Create Radio Button";
