@@ -7540,7 +7540,7 @@ Blockly.Blocks['audio_play_googleTTS'] = {
 Blockly.Blocks['audio_save_googleTTS'] = {
   init: function () {
   this.appendDummyInput() 
-      .appendField(Blockly.Msg.AUDIO_SRC)	  
+      .appendField(Blockly.Msg.AUDIO)	  
   this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg.AUDIO_TTS_SAVE)
