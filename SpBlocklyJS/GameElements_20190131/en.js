@@ -511,11 +511,11 @@ Blockly.Msg["VIDEO_BASE64"] = "Convert Screenshot to Base64 String";
 Blockly.Msg["VIDEO_FACING"] = "Camera";
 Blockly.Msg["VIDEO_FACING_FRONT"] = "Front";
 Blockly.Msg["VIDEO_FACING_BACK"] = "Back";
-
-
-
 Blockly.Msg["VIDEO_INDEX"] = "Index";
 Blockly.Msg["VEDIO_OUTPUT_JPG"] = "Save Video Frame as JPG";
+Blockly.Msg["VEDIO_PLAY"] = "Play";
+Blockly.Msg["VEDIO_PAUSE"] = "Pause";
+Blockly.Msg["VEDIO_LOAD"] = "Load";
 Blockly.Msg["CANVAS_CAPTUREVIDEO"] = "Canvas Capture Video Frame";
 Blockly.Msg["STREAMURL"] = "Stream URL";
 Blockly.Msg["CUSTOM_COMMENT_SHOW"] = "Comment";
