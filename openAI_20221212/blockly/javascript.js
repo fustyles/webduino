@@ -41,7 +41,7 @@ Blockly.JavaScript['openai_image_request'] = function (block) {
   var words = Blockly.JavaScript.valueToCode(block, 'words', Blockly.JavaScript.ORDER_ATOMIC)||"";	
   var size = block.getFieldValue('size');
   
-  var code = 'openai_image_request('+words+',"'+size+'");\n';
+  var code = 'await openai_image_request('+words+',"'+size+'");\n';
   return code; 
 };
 
