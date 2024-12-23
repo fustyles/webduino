@@ -513,6 +513,7 @@ Blockly.Msg["VIDEO_FACING_FRONT"] = "Front";
 Blockly.Msg["VIDEO_FACING_BACK"] = "Back";
 Blockly.Msg["VIDEO_INDEX"] = "Index";
 Blockly.Msg["VEDIO_OUTPUT_JPG"] = "Save Video Frame as JPG";
+Blockly.Msg["VEDIO_CONTROL"] = "Control";
 Blockly.Msg["VEDIO_PLAY"] = "Play";
 Blockly.Msg["VEDIO_PAUSE"] = "Pause";
 Blockly.Msg["VEDIO_LOAD"] = "Load";
