@@ -2010,6 +2010,13 @@ Blockly.JavaScript['video_get'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['video_control'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var code = 'video_control(' + value_id_ + ',"' + value_property_ + '");\n';
+  return code;
+};
+
 Blockly.JavaScript['video_delete'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);  
   var code = 'video_delete(' + value_id_ + ');\n';
