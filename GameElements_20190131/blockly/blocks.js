@@ -7543,7 +7543,7 @@ Blockly.Blocks['audio_save_googleTTS'] = {
       .appendField(Blockly.Msg.AUDIO_SRC)	  
   this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg.AUDIO_TTS)
+      .appendField(Blockly.Msg.AUDIO_TTS_SAVE)
       .appendField(new Blockly.FieldDropdown([
 		["Abkhaz", "ab"],
 		["Acehnese", "ace"],
