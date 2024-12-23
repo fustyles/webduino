@@ -501,6 +501,7 @@ Blockly.Msg.VIDEO_FACING_FRONT = "前置";
 Blockly.Msg.VIDEO_FACING_BACK = "后置";
 Blockly.Msg.VIDEO_INDEX = "索引";
 Blockly.Msg.VEDIO_OUTPUT_JPG = "视讯媒体画面截图另存jpg档";
+Blockly.Msg.VEDIO_CONTROL = "控制";
 Blockly.Msg.VEDIO_PLAY = "播放";
 Blockly.Msg.VEDIO_PAUSE = "暂停";
 Blockly.Msg.VEDIO_LOAD = "重新加载";
