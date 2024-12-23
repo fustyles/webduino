@@ -3009,7 +3009,9 @@ Blockly.Blocks['element_event'] = {
 	  [Blockly.Msg.ELEMENT_TIME,"time"],
 	  [Blockly.Msg.ELEMENT_DATETIME,"datetime"],
 	  [Blockly.Msg.ELEMENT_PROGRESS,"progress"],
-	  [Blockly.Msg.ELEMENT_PASSWORD,"password"]
+	  [Blockly.Msg.ELEMENT_PASSWORD,"password"],
+	  [Blockly.Msg.ELEMENT_VIDEO,"video"],
+	  [Blockly.Msg.ELEMENT_AUDIO,"audio"]
 	  ],this.validate), "element");
   this.appendValueInput("id_")
       .setCheck(null)
@@ -3102,7 +3104,14 @@ Blockly.Blocks['element_event'] = {
 		["unload","unload"],
 		["volumechange","volumechange"],
 		["waiting","waiting"],
-		["wheel","wheel"]
+		["wheel","wheel"],
+		["loadstart","loadstart"],
+		["durationchange","durationchange"],
+		["loadedmetadata","loadedmetadata"],
+		["loadeddata","loadeddata"],
+		["progress","progress"],
+		["canplay","canplay"],
+		["canplaythrough","canplaythrough"]	      
 	  ]), "event");
   this.appendStatementInput("statement");
   this.setInputsInline(true);
@@ -3242,7 +3251,14 @@ Blockly.Blocks['element_event_stop'] = {
 		["unload","unload"],
 		["volumechange","volumechange"],
 		["waiting","waiting"],
-		["wheel","wheel"]
+		["wheel","wheel"],
+		["loadstart","loadstart"],
+		["durationchange","durationchange"],
+		["loadedmetadata","loadedmetadata"],
+		["loadeddata","loadeddata"],
+		["progress","progress"],
+		["canplay","canplay"],
+		["canplaythrough","canplaythrough"]
 	  ]), "event");
   this.setInputsInline(true);
   this.setPreviousStatement(true);
