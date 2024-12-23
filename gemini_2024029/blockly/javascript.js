@@ -11,7 +11,7 @@ Blockly.JavaScript['gemini_chat_initial'] = function (block) {
 Blockly.JavaScript['gemini_chat_request'] = function (block) {
   var words = Blockly.JavaScript.valueToCode(block, 'words', Blockly.JavaScript.ORDER_ATOMIC)||"";	
   
-  var code = 'gemini_chat_run('+words+');\n';
+  var code = 'await gemini_chat_run('+words+');\n';
   return code; 
 };
 
