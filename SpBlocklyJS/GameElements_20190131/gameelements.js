@@ -4956,9 +4956,7 @@ function HextoRgb(color) {
   }
   
 async function audio_play_googleTTS_Base64Data(input_id, input_language, input_message) {
-    if (document.getElementById("gameaudio_" + input_id)) {
-        var obj = document.getElementById("gameaudio_" + input_id);
-
+    if ( input_message) {
         input_language = encodeURIComponent(input_language);
         input_message = encodeURIComponent(input_message);
         let url = 'https://script.google.com/macros/s/AKfycbwPyGSC3LdlLvNBK6jleZWUYOl0JLUHAG3ZxlkqSmZI7yJF0RvBSn0uWUJco2SiksV2/exec';
@@ -4977,12 +4975,11 @@ async function audio_play_googleTTS_Base64Data(input_id, input_language, input_m
         const audioBlob = new Blob([audioData], {
             type: 'audio/mpeg'
         });
-        const audioUrl = URL.createObjectURL(audioBlob);
-        obj.src = audioUrl;
-	setTimeout(() => {
-	  obj.play();
-	}, 3000);
+        return URL.createObjectURL(audioBlob);
     }
+    return new Blob([], {
+            type: 'audio/mpeg'
+        });
 }		
   
   window.table_create = table_create;
