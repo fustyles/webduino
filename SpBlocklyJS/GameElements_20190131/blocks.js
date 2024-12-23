@@ -6317,6 +6317,26 @@ Blockly.Blocks['video_get'] = {
   }
 };
 
+Blockly.Blocks['video_control'] = {
+  init: function () {
+  this.appendValueInput("id_")
+      .setCheck(null)
+      .appendField(Blockly.Msg.VIDEO)	  
+      .appendField(Blockly.Msg.VIDEO_ID);  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.VIDEO_CONTROL)
+      .appendField(new Blockly.FieldDropdown([
+	  [Blockly.Msg.VIDEO_PLAY,"play"], 
+	  [Blockly.Msg.VIDEO_PAUSE,"pause"], 
+	  [Blockly.Msg.VIDEO_LOAD,"load"]
+	  ]), "property_");
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(30);
+  }
+};
+
 Blockly.Blocks['video_delete'] = {
   init: function () {
   this.appendValueInput("id_")
