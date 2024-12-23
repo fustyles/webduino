@@ -161,7 +161,7 @@ function openai_chat_initial(input_token, input_role, input_model) {
 	openai_response_chat_message = [{"role": "system", "content": input_role}];
 }  
 
-function openai_chat_request(input_text) {
+async function openai_chat_request(input_text) {
   var url = "https://api.openai.com/v1/chat/completions";
 
   var xhr = new XMLHttpRequest();
