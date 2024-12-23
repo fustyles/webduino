@@ -396,13 +396,14 @@ async function openai_chat_image_request(input_text, input_url) {
 	var user_text = {"type":"text", "text":input_text};
 	char_message.content.push(user_text);
 	var user_url = {"type":"image_url", "image_url":{"url":input_url}};
-	char_message.content.push(user_url);	
-	openai_response_chat_message.push(char_message);	
+	char_message.content.push(user_url);
+	let openai_chat_message = [];
+	openai_chat_message.push(char_message);	
   
 	var data;
 	data = {
 	  "model": openai_response_chat_model,
-	  "messages": openai_response_chat_message	  
+	  "messages": openai_chat_message	  
 	};
 
 	xhr.send(JSON.stringify(data));
