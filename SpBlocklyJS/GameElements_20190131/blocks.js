@@ -7263,9 +7263,11 @@ Blockly.Blocks['audio_control'] = {
 };
 
 Blockly.Blocks['audio_play_googleTTS'] = {
-  init: function () {  
+  init: function () {
   this.appendDummyInput() 
       .appendField(Blockly.Msg.AUDIO_SRC)	  
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg.AUDIO_TTS)
       .appendField(new Blockly.FieldDropdown([
 		["Abkhaz", "ab"],
@@ -7464,9 +7466,10 @@ Blockly.Blocks['audio_play_googleTTS'] = {
 		["Zulu", "zu"]
 	  ]), "language_");
   this.appendValueInput("text_")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
       .setCheck(null)
       .appendField(Blockly.Msg.AUDIO_TEXT);	  
-  this.setInputsInline(true);
+  this.setInputsInline(false);
   this.setOutput(true, null); 
   this.setColour(30);
   }
