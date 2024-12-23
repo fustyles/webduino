@@ -109,7 +109,7 @@ function openai_image_initial(input_token) {
 	openai_response_image_key = input_token;
 }    
 
-function openai_image_request(input_text, input_size) {
+async function openai_image_request(input_text, input_size) {
   var url = "https://api.openai.com/v1/images/generations";
 
   var xhr = new XMLHttpRequest();
