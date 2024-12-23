@@ -80,7 +80,7 @@ Blockly.JavaScript['openai_chat_request'] = function (block) {
 Blockly.JavaScript['openai_chat_image_request'] = function (block) {
   var words = Blockly.JavaScript.valueToCode(block, 'words', Blockly.JavaScript.ORDER_ATOMIC)||"";	
   var url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  var code = 'openai_chat_image_request('+words+', '+url+');\n';
+  var code = 'await openai_chat_image_request('+words+', '+url+');\n';
   return code; 
 };
 
