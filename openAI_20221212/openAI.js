@@ -160,6 +160,7 @@ function openai_chat_initial(input_token, input_role, input_model) {
 	openai_response_chat_model = input_model;
 	openai_response_role = input_role;
 	openai_response_chat_message = [{"role": "system", "content": input_role}];
+	openai_vision_chat_message = [];
 }  
 
 async function openai_chat_request(input_text) {
