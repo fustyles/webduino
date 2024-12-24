@@ -24,6 +24,7 @@ let openai_response_chat = "";
 let openai_response_chat_br = "";
 let openai_response_chat_n = "";
 let openai_response_chat_message = [{"role": "system", "content": openai_response_role}];	
+let openai_vision_chat_message = [];
 
 function openai_text_initial(input_token, input_max_tokens) {
 	openai_response_text_key = input_token;
@@ -159,6 +160,7 @@ function openai_chat_initial(input_token, input_role, input_model) {
 	openai_response_chat_model = input_model;
 	openai_response_role = input_role;
 	openai_response_chat_message = [{"role": "system", "content": input_role}];
+	openai_vision_chat_message = [];
 }  
 
 function openai_chat_request(input_text) {
@@ -194,6 +196,7 @@ function openai_chat_request(input_text) {
 			char_message.role = "assistant";
 			char_message.content = json["choices"][0]["message"]["content"];
 			openai_response_chat_message.push(char_message);
+			openai_vision_chat_message.push(char_message);
 			
 			if (typeof openai_chat_response === 'function') openai_chat_response();
 		}
@@ -218,6 +221,7 @@ function openai_chat_request(input_text) {
 	char_message.role = "user";
 	char_message.content = input_text;
 	openai_response_chat_message.push(char_message);
+	openai_vision_chat_message.push(char_message);
   
 	var data;
 	data = {
@@ -380,6 +384,7 @@ function openai_chat_image_request(input_text, input_url) {
 			char_message.role = "assistant";
 			char_message.content = json["choices"][0]["message"]["content"];
 			openai_response_chat_message.push(char_message);
+			openai_vision_chat_message.push(char_message);
 			
 			if (typeof openai_chat_response === 'function') openai_chat_response();
 		}
@@ -397,12 +402,13 @@ function openai_chat_image_request(input_text, input_url) {
 	char_message.content.push(user_text);
 	var user_url = {"type":"image_url", "image_url":{"url":input_url}};
 	char_message.content.push(user_url);	
-	openai_response_chat_message.push(char_message);	
+	openai_response_chat_message.push(char_message);
+	openai_vision_chat_message.push(char_message);
   
 	var data;
 	data = {
 	  "model": openai_response_chat_model,
-	  "messages": openai_response_chat_message	  
+	  "messages": openai_vision_chat_message	  
 	};
 
 	xhr.send(JSON.stringify(data));
