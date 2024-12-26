@@ -3,7 +3,7 @@ var catGoogleMap = '<xml>'+
 '  <block type="googlemap_initial">'+
 '    <value name="key">'+
 '      <block type="text">'+
-'        <field name="TEXT">AIzaSyCjnmJJqKsk6wqcfKRXuovtuJKBWlo4OIU123</field>'+
+'        <field name="TEXT">AIzaSyCjnmJJqKsk6wqcfKRXuovtuJKBWlo4OIU</field>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
