@@ -193,6 +193,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (xml.indexOf("dvcbot_")!=-1) {
 			script += "<script src='dvcbot_20241116/dvcbot.js'></script>";
 		}		
+		if (xml.indexOf("googlemap_")!=-1) {
+			script += "<script src='googlemap_20241226/googlemap.js'></script>";
+		}	
 		
 		return script;
 	}	
@@ -374,7 +377,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (xml.indexOf("dvcbot_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/dvcbot_20241116/dvcbot.js'></script>";
 		}		
-
+		if (xml.indexOf("googlemap_")!=-1) {
+			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/googlemap_20241226/googlemap.js'></script>";
+		}	
+		
 		return script;
 	}		
 	
@@ -401,6 +407,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		catChart,
 		"<sep></sep>",
 		catSpreadsheetsql,
+		catGoogleMap,		
 		catTHINGSPEAK,
 		catIFTTT,
 		catLineNotify,

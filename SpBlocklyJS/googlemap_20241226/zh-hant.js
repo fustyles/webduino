@@ -1,0 +1,14 @@
+Blockly.Msg["CATGOOGLEMAP"] = "Google地圖";
+Blockly.Msg["GOOGLEMAP"] = "Google地圖";
+Blockly.Msg["GOOGLEMAP_INITIAL"] = "初始化";
+Blockly.Msg["GOOGLEMAP_APIKEY"] = "金鑰";
+Blockly.Msg["GOOGLEMAP_ADDMAP"] = "新增地圖";
+Blockly.Msg["GOOGLEMAP_LATITUDE_CENTER"] = "中心緯度";
+Blockly.Msg["GOOGLEMAP_LONGITUDE_CENTER"] = "中心經度";
+Blockly.Msg["GOOGLEMAP_ZOOM"] = "範圍縮放值";
+Blockly.Msg["GOOGLEMAP_DIVID"] = "區塊標籤代碼";
+Blockly.Msg["GOOGLEMAP_ADDPOINT"] = "新增位置標記";
+Blockly.Msg["GOOGLEMAP_LATITUDE"] = "緯度";
+Blockly.Msg["GOOGLEMAP_LONGITUDE"] = "經度";
+Blockly.Msg["GOOGLEMAP_TITLE"] = "名稱";
+Blockly.Msg["GOOGLEMAP_CONTENT"] = "內容";

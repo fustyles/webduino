@@ -1,0 +1,14 @@
+Blockly.Msg["CATGOOGLEMAP"] = "Google Map";
+Blockly.Msg["GOOGLEMAP"] = "Google Map";
+Blockly.Msg["GOOGLEMAP_INITIAL"] = "Initialize";
+Blockly.Msg["GOOGLEMAP_APIKEY"] = "API Key";
+Blockly.Msg["GOOGLEMAP_ADDMAP"] = "Add Map";
+Blockly.Msg["GOOGLEMAP_LATITUDE_CENTER"] = "Center Latitude";
+Blockly.Msg["GOOGLEMAP_LONGITUDE_CENTER"] = "Center Longitude";
+Blockly.Msg["GOOGLEMAP_ZOOM"] = "Zoom Level";
+Blockly.Msg["GOOGLEMAP_DIVID"] = "Div ID";
+Blockly.Msg["GOOGLEMAP_ADDPOINT"] = "Add Marker";
+Blockly.Msg["GOOGLEMAP_LATITUDE"] = "Latitude";
+Blockly.Msg["GOOGLEMAP_LONGITUDE"] = "Longitude";
+Blockly.Msg["GOOGLEMAP_TITLE"] = "Title";
+Blockly.Msg["GOOGLEMAP_CONTENT"] = "Content";
