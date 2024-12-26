@@ -25,7 +25,7 @@ var catGoogleMap = '<xml>'+
 '    </value>'+
 '    <value name="divid">'+
 '      <block type="text">'+
-'        <field name="TEXT">1</field>'+
+'        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+ 
