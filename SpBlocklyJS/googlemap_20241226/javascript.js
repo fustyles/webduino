@@ -40,7 +40,7 @@ Blockly.JavaScript['googlemap_addpoint'] = function (block) {
   var content = Blockly.JavaScript.valueToCode(block, 'content', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var mapid = divid.replace(/"/g,"").replace(/'/g,"");
   
-  var code = 'addMapPoint("map_'+mapid+'", '+latitude+', '+longitude+', '+title+', '+content+');\n';
+  var code = 'addMapPoint(map_'+mapid+', '+latitude+', '+longitude+', '+title+', '+content+');\n';
   
   return code;
 };
