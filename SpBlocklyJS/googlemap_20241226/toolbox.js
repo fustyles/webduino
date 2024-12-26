@@ -63,7 +63,7 @@ var catGoogleMap = '<xml>'+
 '  <block type="googlemap_addpoint">'+
 '    <value name="divid">'+
 '      <block type="text">'+
-'        <field name="TEXT">1</field>'+
+'        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+
 '    <value name="latitude">'+
