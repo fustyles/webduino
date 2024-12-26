@@ -27,6 +27,6 @@ function clearMapPoint(pID) {
 
 }
 
-function clearMapPoints(pMap) {
+function clearMap(pMap) {
 
 }
