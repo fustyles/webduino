@@ -2,7 +2,7 @@
 
 let mapMarkers = [];
 
-function addMapPoint(pMap, pLat, pLng, pTitle, pContent) {
+function addMapPoint(pID, pMap, pLat, pLng, pTitle, pContent) {
   let markerData = {
 	  position: { lat: pLat, lng: pLng },
 	  title: pTitle,
@@ -20,5 +20,13 @@ function addMapPoint(pMap, pLat, pLng, pTitle, pContent) {
 	  infoWindow.open(pMap, marker);
 	});
 
-	mapMarkers.push([pMap, marker]);
+	mapMarkers.push([pID, pMap, marker]);
+}
+
+function clearMapPoint(pID) {
+
+}
+
+function clearMapPoints(pMap) {
+
 }
