@@ -19,9 +19,9 @@ Blockly.Blocks['googlemap_initial'] = {
 };
 
 Blockly.Blocks['googlemap_addmap'] = {
-  init: function () {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["GOOGLEMAP"]) 
+  init: function () {	  
+        this.appendDummyInput()
+                .appendField(Blockly.Msg["GOOGLEMAP"]) 
 		.appendField(Blockly.Msg["GOOGLEMAP_ADDMAP"]);
 	this.appendValueInput("latitude")
 		.setCheck("Number")
@@ -52,6 +52,10 @@ Blockly.Blocks['googlemap_addpoint'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg["GOOGLEMAP"]) 
 		.appendField(Blockly.Msg["GOOGLEMAP_ADDPOINT"]);
+	this.appendValueInput("pointid")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.setCheck("String")
+		.appendField(Blockly.Msg["GOOGLEMAP_POINTID"]);	  
 	this.appendValueInput("divid")
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("String")
