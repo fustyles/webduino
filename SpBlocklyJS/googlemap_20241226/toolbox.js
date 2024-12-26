@@ -6,6 +6,37 @@ var catGoogleMap = '<xml>'+
 '        <field name="TEXT">AIzaSyCjnmJJqKsk6wqcfKRXuovtuJKBWlo4OIU</field>'+
 '      </block>'+
 '    </value>'+
+'    <statement name="statement">'+
+'      <block type="googlemap_addmap">'+
+'        <value name="latitude">'+
+'          <block type="math_number">'+
+'            <field name="NUM">23.801079</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="longitude">'+
+'          <block type="math_number">'+
+'            <field name="NUM">120.933835</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="zoom">'+
+'          <block type="math_number">'+
+'            <field name="NUM">8</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="divid">'+
+'          <block type="text">'+
+'            <field name="TEXT"></field>'+
+'          </block>'+
+'        </value>'+
+'      </block>'+
+'    </statement>'+
+'  </block>'+
+'  <block type="googlemap_initial">'+
+'    <value name="key">'+
+'      <block type="text">'+
+'        <field name="TEXT">AIzaSyCjnmJJqKsk6wqcfKRXuovtuJKBWlo4OIU</field>'+
+'      </block>'+
+'    </value>'+
 '  </block>'+
 '  <block type="googlemap_addmap">'+
 '    <value name="latitude">'+
