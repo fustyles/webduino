@@ -19,7 +19,11 @@ Blockly.Blocks['googlemap_initial'] = {
 };
 
 Blockly.Blocks['googlemap_addmap'] = {
-  init: function () {	  
+  init: function () {
+	this.appendValueInput("divid")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.setCheck("String")
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);	  
         this.appendDummyInput()
                 .appendField(Blockly.Msg["GOOGLEMAP"]) 
 		.appendField(Blockly.Msg["GOOGLEMAP_ADDMAP"]);
@@ -35,10 +39,6 @@ Blockly.Blocks['googlemap_addmap'] = {
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["GOOGLEMAP_ZOOM"]);			  
-	this.appendValueInput("divid")
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);
     this.setInputsInline(false);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
