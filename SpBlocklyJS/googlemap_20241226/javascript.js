@@ -20,8 +20,8 @@ Blockly.JavaScript['googlemap_addmap'] = function (block) {;
   var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var mapid = divid.replace(/"/g,"").replace(/'/g,"");
   
+  Blockly.JavaScript.definitions_['googlemap_'+mapid] = 'let map_'+mapid+';\n';  
   var code = ''+
-	'let map_'+mapid+';\n'+
 	'let position_map_'+mapid+' = {lat: '+latitude+', lng: '+longitude+'};\n'+
 	'map_'+mapid+' = new google.maps.Map(document.getElementById("gamediv_'+mapid+'"), {\n'+
 	'  zoom: '+zoom+',\n'+
