@@ -12,3 +12,4 @@ Blockly.Msg["GOOGLEMAP_LATITUDE"] = "緯度";
 Blockly.Msg["GOOGLEMAP_LONGITUDE"] = "經度";
 Blockly.Msg["GOOGLEMAP_TITLE"] = "名稱";
 Blockly.Msg["GOOGLEMAP_CONTENT"] = "內容";
+Blockly.Msg["GOOGLEMAP_POINTID"] = "標記代碼";
