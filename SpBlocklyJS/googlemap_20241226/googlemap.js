@@ -1,5 +1,7 @@
 'use strict';
 
+let mapMarkers = [];
+
 function addMapPoint(pMap, pLat, pLng, pTitle, pContent) {
   let markerData = {
 	  position: { lat: pLat, lng: pLng },
@@ -17,4 +19,6 @@ function addMapPoint(pMap, pLat, pLng, pTitle, pContent) {
 	marker.addListener('click', () => {
 	  infoWindow.open(pMap, marker);
 	});
+
+	mapMarkers.push([pMap, marker]);
 }
