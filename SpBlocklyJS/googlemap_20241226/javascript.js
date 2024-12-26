@@ -5,12 +5,11 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
   
   var code = 'var url = "https://maps.googleapis.com/maps/api/js?key='+key+'&callback=initMap&v=weekly&libraries=marker";\n'+
              'var s = document.createElement("script");\n'+
-             's.type = "text/javascript";\n'+
              's.async = true;\n'+
              's.defer = true;\n'+
              's.src = url;\n'+
              'document.body.append(s);\n'+
-             'function initMap() {\n'+statement+'\n}\n';
+             'function initMap() {\n'+statement+'\n}\nwindow.initMap = initMap;';
   return code;
 };
 
