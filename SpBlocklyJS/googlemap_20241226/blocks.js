@@ -7,26 +7,24 @@ Blockly.Blocks['googlemap_initial'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("String")
 		.appendField(Blockly.Msg["GOOGLEMAP_APIKEY"]);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["GOOGLEMAP_ADDMAP"]);	  
-  this.appendStatementInput("statement");
-  this.setInputsInline(true);
-  this.setPreviousStatement(true);
-  this.setNextStatement(true);
-  this.setColour(210);
-  this.setHelpUrl("https://developers.google.com/maps/documentation/javascript?hl=zh-tw");
+	this.appendStatementInput("statement")
+		.appendField(Blockly.Msg["GOOGLEMAP_ADDMAP"]);
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(210);
+	this.setHelpUrl("https://developers.google.com/maps/documentation/javascript?hl=zh-tw");
   }
 };
 
 Blockly.Blocks['googlemap_addmap'] = {
   init: function () {
-    	this.appendDummyInput()
-        	.appendField(Blockly.Msg["GOOGLEMAP"]) 
-		.appendField(Blockly.Msg["GOOGLEMAP_ADDMAP"]);	  
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["GOOGLEMAP"]);	  
 	this.appendValueInput("divid")
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);	  
 	this.appendValueInput("latitude")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
@@ -45,7 +43,6 @@ Blockly.Blocks['googlemap_addmap'] = {
     this.setColour(210);
   }
 };
-
 
 Blockly.Blocks['googlemap_addpoint'] = {
   init: function () {
