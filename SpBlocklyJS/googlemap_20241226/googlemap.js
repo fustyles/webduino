@@ -23,10 +23,24 @@ function addMapPoint(pID, pMapId, pLat, pLng, pTitle, pContent) {
 	mapMarkers.push([pID, pMapId, marker]);
 }
 
-function clearMapPoint(pID) {
+function clearMarker(pID) {
 	for (var i=0;i<mapMarkers.length;i++) {
 		if ("point_"+pID==mapMarkers[i][0]) {
 			mapMarkers[i][2].setMap(null);
+			mapMarkers.splice(i, 1);
+			break;
+		}
+	}
+}
+
+function updateMarkerContent(pID, newContent) {
+	for (var i=0;i<mapMarkers.length;i++) {
+		if ("point_"+pID==mapMarkers[i][0]) {
+			const infoWindow = new google.maps.InfoWindow({
+			  content: newContent
+			});
+			infoWindow.open(mapMarkers[i][1], mapMarkers[i][2]);
+			break;
 		}
 	}
 }
@@ -35,6 +49,8 @@ function clearMap(pMap) {
 	for (var i=0;i<mapMarkers.length;i++) {
 		if (pMap==mapMarkers[i][1]) {
 			mapMarkers[i][2].setMap(null);
+			mapMarkers.splice(i, 1);
+			i--;
 		}
 	}
 }
