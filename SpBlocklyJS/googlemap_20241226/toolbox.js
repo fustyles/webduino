@@ -34,7 +34,7 @@ var catGoogleMap = '<xml>'+
 '  <block type="googlemap_addpoint">'+
 '    <value name="pointid">'+
 '      <block type="text">'+
-'        <field name="TEXT">1</field>'+
+'        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+  
 '    <value name="divid">'+

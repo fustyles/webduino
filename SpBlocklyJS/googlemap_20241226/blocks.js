@@ -44,6 +44,7 @@ Blockly.Blocks['googlemap_addmap'] = {
   }
 };
 
+
 Blockly.Blocks['googlemap_addpoint'] = {
   init: function () {
     this.appendDummyInput()

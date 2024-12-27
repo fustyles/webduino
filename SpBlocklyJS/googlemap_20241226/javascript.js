@@ -28,22 +28,22 @@ Blockly.JavaScript['googlemap_addmap'] = function (block) {;
 	'map_'+mapid+' = new google.maps.Map(document.getElementById("gamediv_"+'+divid+'), {\n'+
 	'  zoom: '+zoom+',\n'+
 	'  center: position_map_'+mapid+',\n'+
-	'  mapId: "mapid_'+mapid+'",\n'+
+	'  mapId: "mapid_"+'+divid+',\n'+
 	'});\n';
 
   return code; 
 };
 
 Blockly.JavaScript['googlemap_addpoint'] = function (block) {
+  var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";		
   var pointid = Blockly.JavaScript.valueToCode(block, 'pointid', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";	
   var latitude = Blockly.JavaScript.valueToCode(block, 'latitude', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var longitude = Blockly.JavaScript.valueToCode(block, 'longitude', Blockly.JavaScript.ORDER_ATOMIC)||"";	
   var title = Blockly.JavaScript.valueToCode(block, 'title', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var content = Blockly.JavaScript.valueToCode(block, 'content', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var mapid = divid.replace(/"/g,"").replace(/'/g,"");
   
-  var code = 'addMapPoint('+pointid+', map_'+mapid+', '+latitude+', '+longitude+', '+title+', '+content+');\n';
+  var code = 'addMapPoint("point_"+'+pointid+', map_'+mapid+', '+latitude+', '+longitude+', '+title+', '+content+');\n';
   
   return code;
 };
