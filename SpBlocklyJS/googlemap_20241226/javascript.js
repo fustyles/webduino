@@ -9,7 +9,7 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
              's.defer = true;\n'+
              's.src = url;\n'+
              'document.body.append(s);\n'+
-             'function initMap() {\n'+statement+'\n}\nwindow.initMap = initMap;';
+             'function initMap() {\n'+statement+'\n}\nwindow.initMap = initMap;\nawait delay(3);';
   return code;
 };
 
