@@ -9,7 +9,9 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
              's.defer = true;\n'+
              's.src = url;\n'+
              'document.body.append(s);\n'+
-             'function initMap() {\n'+statement+'\n}\nwindow.initMap = initMap;\nawait delay(3);';
+			 'function initMap() {\n'+statement+'\n}\n'+
+			 'window.initMap = initMap;\n'+
+			 'await delay(3);\n';
   return code;
 };
 
@@ -20,10 +22,10 @@ Blockly.JavaScript['googlemap_addmap'] = function (block) {;
   var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var mapid = divid.replace(/"/g,"").replace(/'/g,"");
   
-  Blockly.JavaScript.definitions_['googlemap_'+mapid] = 'let map_'+mapid+';\n';  
+  Blockly.JavaScript.definitions_['googlemap_'+divid] = 'let map_'+mapid+';\n';  
   var code = ''+
 	'let position_map_'+mapid+' = {lat: '+latitude+', lng: '+longitude+'};\n'+
-	'map_'+mapid+' = new google.maps.Map(document.getElementById("gamediv_'+mapid+'"), {\n'+
+	'map_'+mapid+' = new google.maps.Map(document.getElementById("gamediv_"+'+divid+'), {\n'+
 	'  zoom: '+zoom+',\n'+
 	'  center: position_map_'+mapid+',\n'+
 	'  mapId: "mapid_'+mapid+'",\n'+
