@@ -20,13 +20,13 @@ Blockly.Blocks['googlemap_initial'] = {
 
 Blockly.Blocks['googlemap_addmap'] = {
   init: function () {
+    	this.appendDummyInput()
+        	.appendField(Blockly.Msg["GOOGLEMAP"]) 
+		.appendField(Blockly.Msg["GOOGLEMAP_ADDMAP"]);	  
 	this.appendValueInput("divid")
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);	  
-        this.appendDummyInput()
-                .appendField(Blockly.Msg["GOOGLEMAP"]) 
-		.appendField(Blockly.Msg["GOOGLEMAP_ADDMAP"]);
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);
 	this.appendValueInput("latitude")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
