@@ -97,11 +97,16 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'		}\n'+
 			'	}\n'+
 			'}\n'+
+			'function centerMap(pMapId, lat, lng) {\n'+
+			'	const newCenter = new google.maps.LatLng(lat, lng);\n'+
+			'	pMapId.setCenter(newCenter);\n'+
+			'}\n'+
 			'window.addMapPoint = addMapPoint;\n'+
 			'window.clearMarker = clearMarker;\n'+
 			'window.updateMarkerContent = updateMarkerContent;\n'+
 			'window.openMarkerContent = openMarkerContent;\n'+
 			'window.closeMarkerContent = closeMarkerContent;\n'+
+			'window.centerMap = centerMap;\n'+				
 			'window.clearMap = clearMap;\n'+
 	  		'loadedMap();\n'+
 	     '}\n'+
@@ -172,6 +177,17 @@ Blockly.JavaScript['googlemap_point_function'] = function (block) {
     var code = 'clearMarker('+pointid+');\n';
   else
     var code = '';
+  
+  return code;
+};
+
+Blockly.JavaScript['googlemap_map_center'] = function (block) {
+  var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var latitude = Blockly.JavaScript.valueToCode(block, 'latitude', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var longitude = Blockly.JavaScript.valueToCode(block, 'longitude', Blockly.JavaScript.ORDER_ATOMIC)||"";	
+  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+  
+  var code = 'centerMap(map_'+mapid+', '+latitude+', '+longitude+');\n';
   
   return code;
 };
