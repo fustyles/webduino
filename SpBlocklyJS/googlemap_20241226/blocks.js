@@ -17,6 +17,19 @@ Blockly.Blocks['googlemap_initial'] = {
   }
 };
 
+Blockly.Blocks['googlemap_loaded'] = {
+  init: function () {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["GOOGLEMAP"])  
+        .appendField(Blockly.Msg["GOOGLEMAP_LOADED"]);
+	this.appendStatementInput("statement");
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(210);
+  }
+};
+
 Blockly.Blocks['googlemap_addmap'] = {
   init: function () {
     this.appendDummyInput()
