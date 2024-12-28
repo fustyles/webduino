@@ -19,7 +19,7 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 	     's.async = true;\n'+
 	     's.defer = true;\n'+
 	     's.src = url;\n'+
-	     'document.getElementsByTagName("head")[0].append(s);\n'+
+	     'document.body.append(s);\n'+
 	     'function initMap() {\n'+statement+'\n}\n'+
 	     'window.initMap = initMap;\n'+	  
 	     'await delay(3);\n'+
