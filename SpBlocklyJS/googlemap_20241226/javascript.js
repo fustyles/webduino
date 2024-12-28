@@ -53,9 +53,17 @@ Blockly.JavaScript['googlemap_point_function'] = function (block) {
   var func = block.getFieldValue('func');
   var content = Blockly.JavaScript.valueToCode(block, 'content', Blockly.JavaScript.ORDER_ATOMIC)||"";
   if (func=="update_content")
-    var code = 'updateMarkerContent('+pointid+', '+content+');\n';
+    var code = 'updateMarkerContent('+pointid+', '+content+', "content");\n';
+  else if (func=="update_latitude")
+    var code = 'updateMarkerContent('+pointid+', '+content+', "latitude");\n';
+  else if (func=="update_longitude")
+    var code = 'updateMarkerContent('+pointid+', '+content+', "longitude");\n';
+  else if (func=="update_title")
+    var code = 'updateMarkerContent('+pointid+', '+content+', "title");\n';
   else if (func=="open_content")
-    var code = 'openMarkerContent('+pointid+', '+content+');\n';
+    var code = 'openMarkerContent('+pointid+');\n';
+  else if (func=="close_content")
+    var code = 'closeMarkerContent('+pointid+');\n';
   else if (func=="clear")
     var code = 'clearMarker('+pointid+');\n';
   else

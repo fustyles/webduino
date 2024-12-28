@@ -94,12 +94,16 @@ Blockly.Blocks['googlemap_point_function'] = {
 	this.appendDummyInput()
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_CONTENT"],"update_content"],
+			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_LATITUDE"],"update_latitude"],
+			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_LONGITUDE"],"update_longitude"],
+			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_TITLE"],"update_title"],			
 			[Blockly.Msg["GOOGLEMAP_POINT_OPEN_CONTENT"],"open_content"],
+			[Blockly.Msg["GOOGLEMAP_POINT_CLOSE_CONTENT"],"close_content"],			
 			[Blockly.Msg["GOOGLEMAP_POINT_CLEAR"],"clear"]	
 		], this.validate), "func");	
 	this.appendValueInput("content")
 		.setAlign(Blockly.ALIGN_RIGHT)	
-		.setCheck("String")
+		.setCheck(null)
 		.appendField(Blockly.Msg["GOOGLEMAP_CONTENT"]);			  
     this.setInputsInline(true);
     this.setPreviousStatement(true);
@@ -109,7 +113,7 @@ Blockly.Blocks['googlemap_point_function'] = {
   validate: function(newValue) {
 	 const block = this.sourceBlock_;
 	 if (!block) return;
-	 if (newValue=="update_content")
+	 if (newValue=="update_content"||newValue=="update_latitude"||newValue=="update_longitude"||newValue=="update_title")
 		 block.getInput("content").setVisible(true);
 	 else
 		 block.getInput("content").setVisible(false);
