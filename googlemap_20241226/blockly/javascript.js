@@ -16,8 +16,6 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 	     '}\n'+
 	     'var url1 = "https://fustyles.github.io/webduino/googlemap_20241226/googlemap.js";\n'+
              'var s1 = document.createElement("script");\n'+
-             's1.async = true;\n'+
-             's1.defer = true;\n'+
              's1.src = url1;\n'+
              'document.getElementsByTagName("head")[0].append(s1);\n'+
              'await delay(3);\n';	  
