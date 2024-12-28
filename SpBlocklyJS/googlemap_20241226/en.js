@@ -13,3 +13,5 @@ Blockly.Msg["GOOGLEMAP_LONGITUDE"] = "Longitude";
 Blockly.Msg["GOOGLEMAP_TITLE"] = "Title";
 Blockly.Msg["GOOGLEMAP_CONTENT"] = "Content";
 Blockly.Msg["GOOGLEMAP_POINTID"] = "Point ID";
+Blockly.Msg["GOOGLEMAP_POINT_UPDATE_CONTENT"] = "Update content";
+Blockly.Msg["GOOGLEMAP_POINT_CLEAR"] = "Clear";

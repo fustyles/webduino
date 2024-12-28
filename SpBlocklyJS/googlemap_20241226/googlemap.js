@@ -17,7 +17,7 @@ function addMapPoint(pID, pMapId, pLat, pLng, pTitle, pContent) {
 	});
 
 	marker.addListener('click', () => {
-	  infoWindow.open(pMap, marker);
+	  infoWindow.open(pMapId, marker);
 	});
 
 	mapMarkers.push([pID, pMapId, marker]);
@@ -45,9 +45,9 @@ function updateMarkerContent(pID, newContent) {
 	}
 }
 
-function clearMap(pMap) {
+function clearMap(pID) {
 	for (var i=0;i<mapMarkers.length;i++) {
-		if (pMap==mapMarkers[i][1]) {
+		if ("point_"+pID==mapMarkers[i][0]) {
 			mapMarkers[i][2].setMap(null);
 			mapMarkers.splice(i, 1);
 			i--;

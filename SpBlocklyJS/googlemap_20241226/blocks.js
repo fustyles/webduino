@@ -83,6 +83,38 @@ Blockly.Blocks['googlemap_addpoint'] = {
   }
 };
 
+Blockly.Blocks['googlemap_point_function'] = {
+  init: function () {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["GOOGLEMAP"]);	  
+	this.appendValueInput("pointid")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.setCheck("String")
+		.appendField(Blockly.Msg["GOOGLEMAP_POINTID"]);	 	  
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_CONTENT"],"update_content"],
+			[Blockly.Msg["GOOGLEMAP_POINT_CLEAR"],"clear"]	
+		], this.validate), "func");	
+	this.appendValueInput("content")
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.setCheck("String")
+		.appendField(Blockly.Msg["GOOGLEMAP_CONTENT"]);			  
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(210);
+  },
+  validate: function(newValue) {
+	 const block = this.sourceBlock_;
+	 if (!block) return;
+	 if (newValue=="update_content")
+		 block.getInput("content").setVisible(true);
+	 else
+		 block.getInput("content").setVisible(false);
+  }
+};
+
 
 
 

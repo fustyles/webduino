@@ -63,5 +63,17 @@ var catGoogleMap = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+  
+'  <block type="googlemap_point_function">'+
+'    <value name="pointid">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+  
+'    <value name="content">'+
+'      <block type="text">'+
+'        <field name="TEXT">台灣是一個美麗的寶島</field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+  
 '</category>'+
 '</xml>';

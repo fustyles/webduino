@@ -13,3 +13,5 @@ Blockly.Msg["GOOGLEMAP_LONGITUDE"] = "經度";
 Blockly.Msg["GOOGLEMAP_TITLE"] = "名稱";
 Blockly.Msg["GOOGLEMAP_CONTENT"] = "內容";
 Blockly.Msg["GOOGLEMAP_POINTID"] = "標記代碼";
+Blockly.Msg["GOOGLEMAP_POINT_UPDATE_CONTENT"] = "更新內容";
+Blockly.Msg["GOOGLEMAP_POINT_CLEAR"] = "清除";
