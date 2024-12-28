@@ -22,13 +22,13 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
              'document.body.append(s);\n'+
              'function initMap() {\n'+statement+'\n}\n'+
              'window.initMap = initMap;\n'+
-             'await delay(3);\n'+
 	     'url = "https://fustyles.github.io/webduino/googlemap_20241226/googlemap.js";\n'+
              'var s = document.createElement("script");\n'+
              's.async = true;\n'+
              's.defer = true;\n'+
              's.src = url;\n'+
-             'document.body.append(s);\n';	  
+             'document.body.append(s);\n'+
+             'await delay(3);\n';	  
   return code;
 };
 
