@@ -76,7 +76,24 @@ var catGoogleMap = '<xml>'+
 '        <field name="TEXT">新年快樂</field>'+
 '      </block>'+
 '    </value>'+
-'  </block>'+  
+'  </block>'+
+'  <block type="googlemap_map_center">'+  
+'    <value name="divid">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="latitude">'+
+'      <block type="math_number">'+
+'        <field name="NUM">23.801079</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="longitude">'+
+'      <block type="math_number">'+
+'        <field name="NUM">120.933835</field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+    
 '  <block type="googlemap_map_function">'+
 '    <value name="divid">'+
 '      <block type="text">'+
