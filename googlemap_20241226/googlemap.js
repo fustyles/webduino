@@ -1,90 +1,273 @@
 'use strict';
 
-let mapMarkers = [];
+let Gemini_api_key = "";
 
-function addMapPoint(pID, pMapId, pLat, pLng, pTitle, pContent) {
-	let markerData = {
-	  position: { lat: pLat, lng: pLng },
-	  title: pTitle,
-	};
-	let marker = new google.maps.marker.AdvancedMarkerElement({
-	  position: markerData.position,
-	  map: pMapId,
-	  title: markerData.title,
-	});
-	let infoWindow = new google.maps.InfoWindow({
-	  content: pContent,
-	});
-
-	marker.addListener('click', () => {
-	  infoWindow.open(pMapId, marker);
-	});
-
-	mapMarkers.push(["point_"+pID, pMapId, marker, infoWindow, markerData.position]);
-}
-
-function clearMarker(pID) {
-	for (var i=0;i<mapMarkers.length;i++) {
-		if ("point_"+pID==mapMarkers[i][0]) {
-			mapMarkers[i][2].setMap(null);
-			mapMarkers.splice(i, 1);
-			break;
-		}
-	}
-}
-
-function updateMarkerContent(pID, newContent, type) {
-	for (var i=0;i<mapMarkers.length;i++) {
-		if ("point_"+pID==mapMarkers[i][0]) {
-			if (type=="content") {
-				mapMarkers[i][3].setContent(newContent);
-			} 
-			else if (type === "latitude") {
-				mapMarkers[i][4].lat = newContent;
-				mapMarkers[i][2].position = mapMarkers[i][4];					
-			} 
-			else if (type === "longitude") {
-				mapMarkers[i][4].lng = newContent;
-				mapMarkers[i][2].position = mapMarkers[i][4];					
+function gemini_chat_initial(input_key, input_model, input_tokens) {
+		Gemini_api_key = input_key;
+		const gemini_importMap = {
+			"imports": {
+			  "@google/generative-ai": "https://esm.run/@google/generative-ai"
 			}
-			else if (type === "position") {
-				newContent = newContent.split(",");
-				mapMarkers[i][4].lat = Number(newContent[0]);
-				mapMarkers[i][4].lng = Number(newContent[1]);
-				mapMarkers[i][2].position = mapMarkers[i][4];					
-			}				
-			else if (type=="title") {
-				mapMarkers[i][2].title = newContent;
-			}  			
-			break;
+		};
+		var gemini_map = document.createElement("script");
+		gemini_map.type = "importmap";
+		gemini_map.textContent = JSON.stringify(gemini_importMap);
+		document.getElementsByTagName('head')[0].append(gemini_map);
+	
+		var gemini_mod = document.createElement("script");
+		gemini_mod.type = "module";
+		gemini_mod.textContent = ''+
+		'import { GoogleGenerativeAI } from "@google/generative-ai";\n'+
+		'const genAI = new GoogleGenerativeAI("'+input_key+'");\n'+
+		'var chatHistory = {history: [],generationConfig: {maxOutputTokens: '+input_tokens+',},};\n'+
+		'window.chatHistory = chatHistory;\n'+			
+		'async function gemini_chat_run(prompt) {\n'+
+		'	const model = await genAI.getGenerativeModel({ model: "'+input_model+'"});\n'+
+		'	const chat = model.startChat(chatHistory);\n'+
+		'	await chat.sendMessage(prompt).then(function(result) {\n'+
+		'		const response = result.response;\n'+
+		'		const text = response.text();\n'+
+		'		gemini_chat_insert(prompt, text);\n'+
+		'		if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(text);\n'+
+		'	});\n'+
+		'}\n'+
+		'async function gemini_chat_insert(request, response) {\n'+
+		'	var char_request = {};\n'+
+		'	char_request.role = "user";\n'+
+		'	char_request.parts = [];\n'+
+		'	var char_request_text = {};\n'+
+		'	char_request_text.text = request;\n'+
+		'	char_request.parts.push(char_request_text);\n'+
+		'	chatHistory["history"].push(char_request);\n'+
+		'	var char_response = {};\n'+
+		'	char_response.role = "model";\n'+
+		'	char_response.parts = [];\n'+
+		'	var char_response_text = {};\n'+
+		'	char_response_text.text = response;\n'+
+		'	char_response.parts.push(char_request_text);\n'+
+		'	chatHistory["history"].push(char_response);\n'+
+		'	//console.log(chatHistory);\n'+
+		'}\n'+
+		'async function gemini_chat_clear(){\n'+
+		'	chatHistory["history"] = [];\n'+
+		'}\n'+
+		'window.gemini_chat_run = gemini_chat_run;\n'+
+		'window.gemini_chat_insert = gemini_chat_insert;\n'+
+		'window.gemini_chat_clear = gemini_chat_clear;\n'+
+		'window.gemini_chat_history = chatHistory;\n';
+		
+		//console.log(gemini_mod.textContent);
+		document.body.appendChild(gemini_mod);
+} 
+
+function gemini_chat_respsonse_br(data, newline) {
+	if (newline=="br")
+		return data.replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");
+	else if (newline=="n")
+		return data;	
+	else
+		return data.replace(/\n/g,"");
+}
+
+function gemini_chat_content_file(func) {
+	if (func=="open") {
+		var e = document.getElementById("importFile");
+		if (e) {
+			e.parentElement.removeChild(e);
 		}
+		
+		var input=document.createElement('input');
+		input.type="file";
+		input.id="importFile";
+		input.style.display = "none";
+		input.accept=".chat";
+		input.onchange = function(element) {
+			try {	
+				var file = this.files[0];
+				if (file) {
+					var fr = new FileReader();           
+					fr.onload = function (event) {
+						gemini_chat_history["history"] = JSON.parse(event.target.result);
+					};
+					fr.readAsText(file);
+				}
+			} catch (e) {
+				alert(e);
+			}	  
+		}
+
+		document.body.appendChild(input);
+		setTimeout(function(){
+			input.click();
+		},500);
+	}
+	else if (func=="save") {
+		
+		var e = document.getElementById("outputFile");
+		if (e) {
+			e.parentElement.removeChild(e);
+		}
+		
+		var link = document.createElement('a');
+		link.id="outputFile";
+		link.style.display = "none";
+		link.download="gemini.chat";
+		link.target="_blank";
+		link.href="data:application/octet-stream;utf-8," + encodeURIComponent(JSON.stringify(gemini_chat_history["history"]));	  
+		document.body.appendChild(link);
+		setTimeout(function(){
+			link.click();
+		},500);	
+		
+		//window.location.href="data:application/octet-stream;utf-8," + encodeURIComponent(JSON.stringify(gemini_chat_history["history"]));
 	}
 }
 
-function openMarkerContent(pID) {
-	for (var i=0;i<mapMarkers.length;i++) {
-		if ("point_"+pID==mapMarkers[i][0]) {
-			mapMarkers[i][3].open(mapMarkers[i][1], mapMarkers[i][2]);
-			break;
-		}
-	}
+function gemini_chat_content_file_remote(url) {
+	$.ajax({
+		url: url,
+		async: false,
+		success: function (data){
+			if (data!="")
+				gemini_chat_history["history"] = JSON.parse(data);
+			else
+				gemini_chat_clear();			
+		},
+  		error: function(jqXHR, textStatus, errorThrown){
+      			//console.log(jqXHR);
+			alert(jqXHR.statusText);
+      			//console.log(textStatus);
+      			//console.log(errorThrown);
+  		}
+	});
 }
 
-function closeMarkerContent(pID) {
-	for (var i=0;i<mapMarkers.length;i++) {
-		if ("point_"+pID==mapMarkers[i][0]) {
-			mapMarkers[i][3].close();
-			break;
-		}
-	}
+function gemini_chat_content_file_remote_insert(url) {
+	$.ajax({
+		url: url,
+		async: false,
+		success: function (data){
+			if (data!="")
+				gemini_chat_insert(data, "");			
+		},
+  		error: function(jqXHR, textStatus, errorThrown){
+      			//console.log(jqXHR);
+			alert(jqXHR.statusText);
+      			//console.log(textStatus);
+      			//console.log(errorThrown);
+  		}
+	});
 }
 
-function clearMap(pMapId) {
-	for (var i=0;i<mapMarkers.length;i++) {
-		if (pMapId==mapMarkers[i][1]) {
-			mapMarkers[i][2].setMap(null);
-			mapMarkers.splice(i, 1);
-			i--;
-		}
+async function gemini_chat_image_request(message, imageURL) {
+    try {
+	let imageBase64;	    
+	if (imageURL.toLowerCase().trim().indexOf("http")==0)
+			imageBase64 = await getFileBase64(imageURL, 0);
+	else if (imageURL.toLowerCase().trim().indexOf("data:")==0)
+			imageBase64 = imageURL.split(",")[1];
+	else
+			imageBase64 = imageURL;
+	imageBase64 = decodeURIComponent(imageBase64);	
+	
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
+        const data = {
+            contents: [
+                {
+                    parts: [
+                        {
+                            text: message
+                        },
+                        {
+                            inline_data: {
+                                mime_type: "image/jpeg",
+                                data: imageBase64
+                            }
+                        }
+                    ]
+                }
+            ]
+        };
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+
+        const response = await fetch(url, options);
+        const json = await response.json();
+        let result = json.candidates[0].content.parts[0].text;
+        if (result === "null") {
+            result = json.error.message;
+        } else {
+            var char_request = {};
+            char_request.role = "model";
+            char_request.parts = [];
+            var char_request_text = {};
+            char_request_text.text = result;
+            char_request.parts.push(char_request_text);
+            chatHistory["history"].push(char_request);
 	}
+	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(result);
+    } catch (error) {
+	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(JSON.stringify(error));
+    }
+}
+
+async function gemini_chat_file_request(fileType, fileURL, message) {
+    try {
+	let fileBase64 = await getFileBase64(fileURL, 0);
+	fileBase64 = decodeURIComponent(fileBase64);
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
+        const data = {
+            contents: [{
+				"parts":[
+				  {"inline_data": {"mime_type": fileType, "data": fileBase64}},
+				  {"text": message}
+				]
+			}]
+        };
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+
+        const response = await fetch(url, options);
+        const json = await response.json();
+        let result = json.candidates[0].content.parts[0].text;
+        if (result === "null") {
+            result = json.error.message;
+        } else {
+            var char_request = {};
+            char_request.role = "model";
+            char_request.parts = [];
+            var char_request_text = {};
+            char_request_text.text = result;
+            char_request.parts.push(char_request_text);
+            chatHistory["history"].push(char_request);
+	}
+	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(result);
+    } catch (error) {
+	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(JSON.stringify(error));
+    }
+}
+
+async function getFileBase64(fileURL, type) {
+    const response = await fetch(fileURL);
+    const blob = await response.blob();
+    const arrayBuffer = await blob.arrayBuffer();
+    const bytes = new Uint8Array(arrayBuffer);
+    const binaryString = String.fromCharCode(...bytes);
+    const base64String = btoa(binaryString);
+    if (type)
+    	return "data:image/jpeg;base64," + base64String;
+    else
+    	return base64String;	    
 }
