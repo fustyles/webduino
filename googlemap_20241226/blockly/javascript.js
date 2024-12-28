@@ -3,6 +3,8 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
   var statement = Blockly.JavaScript.statementToCode(block, 'statement');
   key = key.replace(/"/g,"").replace(/'/g,"");
 
+  Blockly.JavaScript.definitions_['googlemap_mapMarkers'] = 'let mapMarkers = [];\n';
+
   var code = 'const styleSheets = document.styleSheets;\n'+
 	     'for (let i = 0; i < styleSheets.length; i++) {\n'+
 	     '    const styleSheet = styleSheets[i];\n'+
@@ -108,8 +110,7 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'window.clearMap = clearMap;\n'+	
 	     '}\n'+
 	     'window.initMap = initMap;\n'+	  
-	     'await delay(3);\n'+
-	     'let mapMarkers = [];\n';
+	     'await delay(3);\n';
 
   	  
   return code;
