@@ -18,7 +18,7 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 	     '}\n'+  
 	     'var url = "https://maps.googleapis.com/maps/api/js?key='+key+'&callback=initMap&v=weekly&libraries=marker";\n'+
 	     'var s = document.createElement("script");\n'+
-	     's.async = true;\n'+
+	     '//s.async = true;\n'+
 	     's.defer = true;\n'+
 	     's.src = url;\n'+
 	     'document.body.append(s);\n'+
