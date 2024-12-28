@@ -73,7 +73,7 @@ var catGoogleMap = '<xml>'+
 '    </value>'+  
 '    <value name="content">'+
 '      <block type="text">'+
-'        <field name="TEXT">台灣是一個美麗的寶島</field>'+
+'        <field name="TEXT">新年快樂</field>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+  
