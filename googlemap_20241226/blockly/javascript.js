@@ -5,17 +5,12 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 
   Blockly.JavaScript.definitions_['googlemap_mapMarkers'] = 'let mapMarkers = [];\n';
 
-  var code = 'const styleSheets = document.styleSheets;\n'+
-	     'for (let i = 0; i < styleSheets.length; i++) {\n'+
-	     '    const styleSheet = styleSheets[i];\n'+
-	     '		const rules = styleSheet.cssRules || styleSheet.rules;\n'+
-	     '		for (let j = 0; j < rules.length; j++) {\n'+
-	     '			const rule = rules[j];\n'+
-	     '			if (rule.selectorText === "body div") {\n'+
-	     '				rule.style.overflow = "";\n'+
-	     '			}\n'+
-	     '		}\n'+
-	     '}\n'+  
+  var code = 'const links = document.getElementsByTagName('link');\n'+
+	     'for (let i = 0; i < links.length; i++) {\n'+
+	     '  if (links[i].getAttribute('href') && links[i].getAttribute('href').includes('main.css')) {\n'+
+	     '    links[i].parentNode.removeChild(links[i]);\n'+
+	     '  }\n'+
+	     '}\n'+
 	     'var url = "https://maps.googleapis.com/maps/api/js?key='+key+'&callback=initMap&v=weekly&libraries=marker";\n'+
 	     'var s = document.createElement("script");\n'+
 	     '//s.async = true;\n'+
