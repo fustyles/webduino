@@ -1,6 +1,7 @@
 Blockly.Msg["CATGOOGLEMAP"] = "Google地图";
 Blockly.Msg["GOOGLEMAP"] = "Google地图";
 Blockly.Msg["GOOGLEMAP_INITIAL"] = "初始化";
+Blockly.Msg["GOOGLEMAP_LOADED"] = "初始化完成后执行";
 Blockly.Msg["GOOGLEMAP_APIKEY"] = "密钥";
 Blockly.Msg["GOOGLEMAP_ADDMAP"] = "新增地图";
 Blockly.Msg["GOOGLEMAP_LATITUDE_CENTER"] = "中心纬度";
