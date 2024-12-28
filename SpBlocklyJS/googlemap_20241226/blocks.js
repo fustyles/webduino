@@ -169,8 +169,13 @@ Blockly.Blocks['googlemap_map_function'] = {
 		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);		 	  
 	this.appendDummyInput()
 		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["GOOGLEMAP_MAP_UPDATE_ZOOM"],"zoom"],
 			[Blockly.Msg["GOOGLEMAP_POINT_CLEAR"],"clear"]	
-		]), "func");		  
+		]), "func");
+    this.appendValueInput("zoom")
+	.setCheck("Number")
+	.setAlign(Blockly.ALIGN_RIGHT)
+	.appendField(Blockly.Msg["GOOGLEMAP_ZOOM"]);	  
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
