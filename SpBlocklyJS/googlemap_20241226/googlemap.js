@@ -79,7 +79,7 @@ function closeMarkerContent(pID) {
 	}
 }
 
-function roomMap(pMapId, zoom) {
+function zoomMap(pMapId, zoom) {
 	pMapId.setZoom(zoom);	
 }
 
