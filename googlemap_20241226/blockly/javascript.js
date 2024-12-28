@@ -2,28 +2,30 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
   var key = Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var statement = Blockly.JavaScript.statementToCode(block, 'statement');
   key = key.replace(/"/g,"").replace(/'/g,"");
+
+  Blockly.JavaScript.definitions_['googlemap_initial'] = 'const styleSheets = document.styleSheets;\n'+
+							     'for (let i = 0; i < styleSheets.length; i++) {\n'+
+							     '    const styleSheet = styleSheets[i];\n'+
+							     '		const rules = styleSheet.cssRules || styleSheet.rules;\n'+
+							     '		for (let j = 0; j < rules.length; j++) {\n'+
+							     '			const rule = rules[j];\n'+
+							     '			if (rule.selectorText === "body div") {\n'+
+							     '				rule.style.overflow = "";\n'+
+							     '			}\n'+
+							     '		}\n'+
+							     '}\n'+
+							     'await delay(3);\n'+	  
+							     'var url = "https://maps.googleapis.com/maps/api/js?key='+key+'&callback=initMap&v=weekly&libraries=marker";\n'+
+							     'var s = document.createElement("script");\n'+
+							     's.async = true;\n'+
+							     's.defer = true;\n'+
+							     's.src = url;\n'+
+							     'document.getElementsByTagName("head")[0].append(s);\n'+
+							     'function initMap() {\n'+statement+'\n}\n'+
+							     'window.initMap = initMap;\n'+	  
+							     'await delay(3);\n';	  
   
-  var code = 'const styleSheets = document.styleSheets;\n'+
-	     'for (let i = 0; i < styleSheets.length; i++) {\n'+
-	     '    const styleSheet = styleSheets[i];\n'+
-	     '		const rules = styleSheet.cssRules || styleSheet.rules;\n'+
-	     '		for (let j = 0; j < rules.length; j++) {\n'+
-	     '			const rule = rules[j];\n'+
-	     '			if (rule.selectorText === "body div") {\n'+
-	     '				rule.style.overflow = "";\n'+
-	     '			}\n'+
-	     '		}\n'+
-	     '}\n'+
-             'await delay(3);\n'+	  
-	     'var url = "https://maps.googleapis.com/maps/api/js?key='+key+'&callback=initMap&v=weekly&libraries=marker";\n'+
-             'var s = document.createElement("script");\n'+
-             's.async = true;\n'+
-             's.defer = true;\n'+
-             's.src = url;\n'+
-             'document.getElementsByTagName("head")[0].append(s);\n'+
-             'function initMap() {\n'+statement+'\n}\n'+
-             'window.initMap = initMap;\n'+	  
-             'await delay(3);\n';	  
+  var code = '';	  
   return code;
 };
 
