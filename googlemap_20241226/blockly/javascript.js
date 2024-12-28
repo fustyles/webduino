@@ -20,89 +20,97 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 	     's.defer = true;\n'+
 	     's.src = url;\n'+
 	     'document.body.append(s);\n'+
-	     'function initMap() {\n'+statement+'\n}\n'+
+	     'function initMap() {\n'+statement+'\n'+
+			'function addMapPoint(pID, pMapId, pLat, pLng, pTitle, pContent) {\n'+
+			'	let markerData = {\n'+
+			'	  position: { lat: pLat, lng: pLng },\n'+
+			'	  title: pTitle,\n'+
+			'	};\n'+
+			'	let marker = new google.maps.marker.AdvancedMarkerElement({\n'+
+			'	  position: markerData.position,\n'+
+			'	  map: pMapId,\n'+
+			'	  title: markerData.title,\n'+
+			'	});\n'+
+			'	let infoWindow = new google.maps.InfoWindow({\n'+
+			'	  content: pContent,\n'+
+			'	});\n'+
+			'	marker.addListener("click", () => {\n'+
+			'	  infoWindow.open(pMapId, marker);\n'+
+			'	});\n'+
+			'	mapMarkers.push(["point_"+pID, pMapId, marker, infoWindow, markerData.position]);\n'+
+			'}\n'+
+			'function clearMarker(pID) {\n'+
+			'	for (var i=0;i<mapMarkers.length;i++) {\n'+
+			'		if ("point_"+pID==mapMarkers[i][0]) {\n'+
+			'			mapMarkers[i][2].setMap(null);\n'+
+			'			mapMarkers.splice(i, 1);\n'+
+			'			break;\n'+
+			'		}\n'+
+			'	}\n'+
+			'}\n'+
+			'function updateMarkerContent(pID, newContent, type) {\n'+
+			'	for (var i=0;i<mapMarkers.length;i++) {\n'+
+			'		if ("point_"+pID==mapMarkers[i][0]) {\n'+
+			'			if (type=="content") {\n'+
+			'				mapMarkers[i][3].setContent(newContent);\n'+
+			'			}\n'+
+			'			else if (type === "latitude") {\n'+
+			'				mapMarkers[i][4].lat = newContent;\n'+
+			'				mapMarkers[i][2].position = mapMarkers[i][4];\n'+			
+			'			}\n'+
+			'			else if (type === "longitude") {\n'+
+			'				mapMarkers[i][4].lng = newContent;\n'+
+			'				mapMarkers[i][2].position = mapMarkers[i][4];\n'+			
+			'			}\n'+
+			'			else if (type === "position") {\n'+
+			'				newContent = newContent.split(",");\n'+
+			'				mapMarkers[i][4].lat = Number(newContent[0]);\n'+
+			'				mapMarkers[i][4].lng = Number(newContent[1]);\n'+
+			'				mapMarkers[i][2].position = mapMarkers[i][4];\n'+			
+			'			}\n'+
+			'			else if (type=="title") {\n'+
+			'				mapMarkers[i][2].title = newContent;\n'+
+			'			}\n'+
+			'			break;\n'+
+			'		}\n'+
+			'	}\n'+
+			'}\n'+
+			'function openMarkerContent(pID) {\n'+
+			'	for (var i=0;i<mapMarkers.length;i++) {\n'+
+			'		if ("point_"+pID==mapMarkers[i][0]) {\n'+
+			'			mapMarkers[i][3].open(mapMarkers[i][1], mapMarkers[i][2]);\n'+
+			'			break;\n'+
+			'		}\n'+
+			'	}\n'+
+			'}\n'+
+			'function closeMarkerContent(pID) {\n'+
+			'	for (var i=0;i<mapMarkers.length;i++) {\n'+
+			'		if ("point_"+pID==mapMarkers[i][0]) {\n'+
+			'			mapMarkers[i][3].close();\n'+
+			'			break;\n'+
+			'		}\n'+
+			'	}\n'+
+			'}\n'+
+			'function clearMap(pMapId) {\n'+
+			'	for (var i=0;i<mapMarkers.length;i++) {\n'+
+			'		if (pMapId==mapMarkers[i][1]) {\n'+
+			'			mapMarkers[i][2].setMap(null);\n'+
+			'			mapMarkers.splice(i, 1);\n'+
+			'			i--;\n'+
+			'		}\n'+
+			'	}\n'+
+			'}\n';
+			'window.addMapPoint = addMapPoint;\n';
+			'window.clearMarker = clearMarker;\n';
+			'window.updateMarkerContent = updateMarkerContent;\n';
+			'window.openMarkerContent = openMarkerContent;\n';
+			'window.closeMarkerContent = closeMarkerContent;\n';
+			'window.clearMap = clearMap;\n';	
+	     '}\n'+
 	     'window.initMap = initMap;\n'+	  
 	     'await delay(3);\n'+
-		'let mapMarkers = [];\n'+
-		'function addMapPoint(pID, pMapId, pLat, pLng, pTitle, pContent) {\n'+
-		'	let markerData = {\n'+
-		'	  position: { lat: pLat, lng: pLng },\n'+
-		'	  title: pTitle,\n'+
-		'	};\n'+
-		'	let marker = new google.maps.marker.AdvancedMarkerElement({\n'+
-		'	  position: markerData.position,\n'+
-		'	  map: pMapId,\n'+
-		'	  title: markerData.title,\n'+
-		'	});\n'+
-		'	let infoWindow = new google.maps.InfoWindow({\n'+
-		'	  content: pContent,\n'+
-		'	});\n'+
-		'	marker.addListener("click", () => {\n'+
-		'	  infoWindow.open(pMapId, marker);\n'+
-		'	});\n'+
-		'	mapMarkers.push(["point_"+pID, pMapId, marker, infoWindow, markerData.position]);\n'+
-		'}\n'+
-		'function clearMarker(pID) {\n'+
-		'	for (var i=0;i<mapMarkers.length;i++) {\n'+
-		'		if ("point_"+pID==mapMarkers[i][0]) {\n'+
-		'			mapMarkers[i][2].setMap(null);\n'+
-		'			mapMarkers.splice(i, 1);\n'+
-		'			break;\n'+
-		'		}\n'+
-		'	}\n'+
-		'}\n'+
-		'function updateMarkerContent(pID, newContent, type) {\n'+
-		'	for (var i=0;i<mapMarkers.length;i++) {\n'+
-		'		if ("point_"+pID==mapMarkers[i][0]) {\n'+
-		'			if (type=="content") {\n'+
-		'				mapMarkers[i][3].setContent(newContent);\n'+
-		'			}\n'+
-		'			else if (type === "latitude") {\n'+
-		'				mapMarkers[i][4].lat = newContent;\n'+
-		'				mapMarkers[i][2].position = mapMarkers[i][4];\n'+			
-		'			}\n'+
-		'			else if (type === "longitude") {\n'+
-		'				mapMarkers[i][4].lng = newContent;\n'+
-		'				mapMarkers[i][2].position = mapMarkers[i][4];\n'+			
-		'			}\n'+
-		'			else if (type === "position") {\n'+
-		'				newContent = newContent.split(",");\n'+
-		'				mapMarkers[i][4].lat = Number(newContent[0]);\n'+
-		'				mapMarkers[i][4].lng = Number(newContent[1]);\n'+
-		'				mapMarkers[i][2].position = mapMarkers[i][4];\n'+			
-		'			}\n'+
-		'			else if (type=="title") {\n'+
-		'				mapMarkers[i][2].title = newContent;\n'+
-		'			}\n'+
-		'			break;\n'+
-		'		}\n'+
-		'	}\n'+
-		'}\n'+
-		'function openMarkerContent(pID) {\n'+
-		'	for (var i=0;i<mapMarkers.length;i++) {\n'+
-		'		if ("point_"+pID==mapMarkers[i][0]) {\n'+
-		'			mapMarkers[i][3].open(mapMarkers[i][1], mapMarkers[i][2]);\n'+
-		'			break;\n'+
-		'		}\n'+
-		'	}\n'+
-		'}\n'+
-		'function closeMarkerContent(pID) {\n'+
-		'	for (var i=0;i<mapMarkers.length;i++) {\n'+
-		'		if ("point_"+pID==mapMarkers[i][0]) {\n'+
-		'			mapMarkers[i][3].close();\n'+
-		'			break;\n'+
-		'		}\n'+
-		'	}\n'+
-		'}\n'+
-		'function clearMap(pMapId) {\n'+
-		'	for (var i=0;i<mapMarkers.length;i++) {\n'+
-		'		if (pMapId==mapMarkers[i][1]) {\n'+
-		'			mapMarkers[i][2].setMap(null);\n'+
-		'			mapMarkers.splice(i, 1);\n'+
-		'			i--;\n'+
-		'		}\n'+
-		'	}\n'+
-		'}\n';	  
+	     'let mapMarkers = [];\n';
+
   	  
   return code;
 };
