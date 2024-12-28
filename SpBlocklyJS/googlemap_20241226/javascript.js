@@ -58,6 +58,8 @@ Blockly.JavaScript['googlemap_point_function'] = function (block) {
     var code = 'updateMarkerContent('+pointid+', '+content+', "latitude");\n';
   else if (func=="update_longitude")
     var code = 'updateMarkerContent('+pointid+', '+content+', "longitude");\n';
+  else if (func=="update_position")
+    var code = 'updateMarkerContent('+pointid+', '+content+', "position");\n';
   else if (func=="update_title")
     var code = 'updateMarkerContent('+pointid+', '+content+', "title");\n';
   else if (func=="open_content")

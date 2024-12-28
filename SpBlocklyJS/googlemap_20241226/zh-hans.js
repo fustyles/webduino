@@ -16,6 +16,7 @@ Blockly.Msg["GOOGLEMAP_POINTID"] = "标记代码";
 Blockly.Msg["GOOGLEMAP_POINT_UPDATE_CONTENT"] = "更新内容";
 Blockly.Msg["GOOGLEMAP_POINT_UPDATE_LATITUDE"] = "更新纬度";
 Blockly.Msg["GOOGLEMAP_POINT_UPDATE_LONGITUDE"] = "更新经度";
+Blockly.Msg["GOOGLEMAP_POINT_UPDATE_POSITION"] = "更新纬度,经度";
 Blockly.Msg["GOOGLEMAP_POINT_UPDATE_TITLE"] = "更新名称";
 Blockly.Msg["GOOGLEMAP_POINT_OPEN_CONTENT"] = "开启内容";
 Blockly.Msg["GOOGLEMAP_POINT_CLOSE_CONTENT"] = "关闭内容";
