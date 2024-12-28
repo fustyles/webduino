@@ -112,7 +112,6 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 	     'window.initMap = initMap;\n'+	  
 	     'await delay(3);\n';
 
-  	  
   return code;
 };
 
