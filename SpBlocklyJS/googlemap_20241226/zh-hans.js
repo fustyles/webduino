@@ -21,4 +21,4 @@ Blockly.Msg["GOOGLEMAP_POINT_UPDATE_POSITION"] = "更新纬度,经度";
 Blockly.Msg["GOOGLEMAP_POINT_UPDATE_TITLE"] = "更新名称";
 Blockly.Msg["GOOGLEMAP_POINT_OPEN_CONTENT"] = "开启内容";
 Blockly.Msg["GOOGLEMAP_POINT_CLOSE_CONTENT"] = "关闭内容";
-Blockly.Msg["GOOGLEMAP_POINT_CLEAR"] = "清除";
+Blockly.Msg["GOOGLEMAP_POINT_CLEAR"] = "清除所有位置标记";
