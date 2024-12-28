@@ -13,16 +13,22 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 	     '				rule.style.overflow = "";\n'+
 	     '			}\n'+
 	     '		}\n'+
-	     '}\n'+
+	     '}\n'+	  
 	     'var url = "https://maps.googleapis.com/maps/api/js?key='+key+'&callback=initMap&v=weekly&libraries=marker";\n'+
              'var s = document.createElement("script");\n'+
              's.async = true;\n'+
              's.defer = true;\n'+
              's.src = url;\n'+
              'document.body.append(s);\n'+
-			 'function initMap() {\n'+statement+'\n}\n'+
-			 'window.initMap = initMap;\n'+
-			 'await delay(3);\n';
+             'function initMap() {\n'+statement+'\n}\n'+
+             'window.initMap = initMap;\n'+
+             'await delay(3);\n'+
+	     'url = "https://fustyles.github.io/webduino/googlemap_20241226/googlemap.js";\n'+
+             'var s = document.createElement("script");\n'+
+             's.async = true;\n'+
+             's.defer = true;\n'+
+             's.src = url;\n'+
+             'document.body.append(s);\n';	  
   return code;
 };
 
