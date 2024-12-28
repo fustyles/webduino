@@ -6,7 +6,8 @@
     "blockly/javascript.js"
   ],
   "dependencies": [ 
-    "googlemap.js"
+    "googlemap.js",
+    "https://maps.googleapis.com/maps/api/js"
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
