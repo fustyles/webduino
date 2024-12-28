@@ -97,6 +97,9 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'		}\n'+
 			'	}\n'+
 			'}\n'+
+			'function roomMap(pMapId, zoom) {\n'+
+			'	pMapId.setZoom(zoom);\n'+
+			'}\n'+
 			'function centerMap(pMapId, lat, lng) {\n'+
 			'	const newCenter = new google.maps.LatLng(lat, lng);\n'+
 			'	pMapId.setCenter(newCenter);\n'+
@@ -106,7 +109,8 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'window.updateMarkerContent = updateMarkerContent;\n'+
 			'window.openMarkerContent = openMarkerContent;\n'+
 			'window.closeMarkerContent = closeMarkerContent;\n'+
-			'window.centerMap = centerMap;\n'+				
+			'window.centerMap = centerMap;\n'+
+			'window.roomMap = roomMap;\n'+	  
 			'window.clearMap = clearMap;\n'+
 	  		'loadedMap();\n'+
 	     '}\n'+
