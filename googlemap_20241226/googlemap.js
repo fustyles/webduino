@@ -84,7 +84,7 @@ function centerMap(pMapId, lat, lng) {
 	pMapId.setCenter(newCenter);	
 }
 
-function roomMap(pMapId, zoom) {
+function zoomMap(pMapId, zoom) {
 	pMapId.setZoom(zoom);	
 }
 
