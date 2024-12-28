@@ -32,8 +32,6 @@ var catGoogleMap = '<xml>'+
 '    </statement>'+
 '  </block>'+
 '  <block type="googlemap_loaded">'+
-'    <statement name="statement">'+
-'    </statement>'+
 '  </block>'+  
 '  <block type="googlemap_addpoint">'+
 '    <value name="pointid">'+
