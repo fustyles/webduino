@@ -86,7 +86,7 @@ Blockly.JavaScript['googlemap_map_center'] = function (block) {
   var longitude = Blockly.JavaScript.valueToCode(block, 'longitude', Blockly.JavaScript.ORDER_ATOMIC)||"";	
   var mapid = divid.replace(/"/g,"").replace(/'/g,"");
   
-  var code = 'centerMap(map_'+mapid+', '+latitude+', '+longitude+', '+title+');\n';
+  var code = 'centerMap(map_'+mapid+', '+latitude+', '+longitude+');\n';
   
   return code;
 };
