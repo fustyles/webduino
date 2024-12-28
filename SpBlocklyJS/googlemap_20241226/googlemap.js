@@ -45,9 +45,9 @@ function updateMarkerContent(pID, newContent) {
 	}
 }
 
-function clearMap(pID) {
+function clearMap(pMapId) {
 	for (var i=0;i<mapMarkers.length;i++) {
-		if ("point_"+pID==mapMarkers[i][0]) {
+		if (pMapId==mapMarkers[i][1]) {
 			mapMarkers[i][2].setMap(null);
 			mapMarkers.splice(i, 1);
 			i--;
