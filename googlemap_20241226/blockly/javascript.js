@@ -105,7 +105,7 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'window.clearMap = clearMap;\n'+	
 	     '}\n'+
 	     'window.initMap = initMap;\n'+	  
-	     'while (typeof google === "undefined") {await delay(1);}\n';
+	     'await delay(8);\n';
 
   return code;
 };
