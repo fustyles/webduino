@@ -1,5 +1,4 @@
-+(function (window, document) {
-	
+
 	'use strict';
 
 	let mapMarkers = [];
@@ -90,12 +89,3 @@
 			}
 		}
 	}
-	
-	window.addMapPoint = addMapPoint;
-	window.clearMarker = clearMarker;
-	window.updateMarkerContent = updateMarkerContent;  
-	window.openMarkerContent = openMarkerContent;
-	window.closeMarkerContent = closeMarkerContent;  
-	window.clearMap = clearMap; 	
-	
-}(window, window.document));
