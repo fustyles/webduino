@@ -7,8 +7,7 @@ async function addMapPoint(pID, pMapId, pLat, pLng, pTitle, pContent) {
 	  position: { lat: pLat, lng: pLng },
 	  title: pTitle,
 	};
-	const {AdvancedMarkerElement} = await google.maps.importLibrary("marker");
-	let marker = new AdvancedMarkerElement({
+	let marker = new google.maps.marker.AdvancedMarkerElement({
 	  position: markerData.position,
 	  map: pMapId,
 	  title: markerData.title,
