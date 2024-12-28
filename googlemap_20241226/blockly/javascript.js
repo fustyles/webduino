@@ -3,8 +3,7 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
   var statement = Blockly.JavaScript.statementToCode(block, 'statement');
   key = key.replace(/"/g,"").replace(/'/g,"");
   
-  var code = 'document.body.style.overflow = "";\n'+
-	     'var url = "https://maps.googleapis.com/maps/api/js?key='+key+'&callback=initMap&v=weekly&libraries=marker";\n'+
+  var code = 'var url = "https://maps.googleapis.com/maps/api/js?key='+key+'&callback=initMap&v=weekly&libraries=marker";\n'+
              'var s = document.createElement("script");\n'+
              's.async = true;\n'+
              's.defer = true;\n'+
