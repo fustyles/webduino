@@ -10,7 +10,7 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 	     '		for (let j = 0; j < rules.length; j++) {\n'+
 	     '			const rule = rules[j];\n'+
 	     '			if (rule.selectorText === "body div") {\n'+
-	     '				rule.style.overflow = '';\n'+
+	     '				rule.style.overflow = "";\n'+
 	     '			}\n'+
 	     '		}\n'+
 	     '}\n'+
