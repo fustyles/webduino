@@ -103,7 +103,7 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'window.openMarkerContent = openMarkerContent;\n'+
 			'window.closeMarkerContent = closeMarkerContent;\n'+
 			'window.clearMap = clearMap;\n'+
-	  		'loadedMap();\n'+
+	  		'await loadedMap();\n'+
 	     '}\n'+
 	     'window.initMap = initMap;\n';
 
@@ -112,7 +112,7 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 
 Blockly.JavaScript['googlemap_loaded'] = function (block) {
   var statement = Blockly.JavaScript.statementToCode(block, 'statement');
-  var code = 'function loadedMap() {\n'+statement+'\n}\n'+
+  var code = 'async function loadedMap() {\n'+statement+'\n}\n'+
 	     'window.loadedMap = loadedMap;\n';
   return code;
 };
