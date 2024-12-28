@@ -103,7 +103,7 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'window.openMarkerContent = openMarkerContent;\n'+
 			'window.closeMarkerContent = closeMarkerContent;\n'+
 			'window.clearMap = clearMap;\n'+
-	  		'await loadedMap();\n'+
+	  		'loadedMap();\n'+
 	     '}\n'+
 	     'window.initMap = initMap;\n';
 
