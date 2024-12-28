@@ -9,9 +9,15 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
              's.defer = true;\n'+
              's.src = url;\n'+
              'document.body.append(s);\n'+
-			 'function initMap() {\n'+statement+'\n}\n'+
-			 'window.initMap = initMap;\n'+
-			 'await delay(3);\n';
+			 'function initMap() {\n'+statement+'\nloadedMap();\n}\n'+
+			 'window.initMap = initMap;\n';
+  return code;
+};
+
+Blockly.JavaScript['googlemap_loaded'] = function (block) {
+  var statement = Blockly.JavaScript.statementToCode(block, 'statement');
+  var code = 'function loadedMap() {\n'+statement+'\n}\n'+
+	     'window.loadedMap = loadedMap;\n';
   return code;
 };
 
