@@ -1,6 +1,7 @@
 Blockly.Msg["CATGOOGLEMAP"] = "Google Map";
 Blockly.Msg["GOOGLEMAP"] = "Google Map";
 Blockly.Msg["GOOGLEMAP_INITIAL"] = "Initialize";
+Blockly.Msg["GOOGLEMAP_LOADED"] = "Loaded";
 Blockly.Msg["GOOGLEMAP_APIKEY"] = "API Key";
 Blockly.Msg["GOOGLEMAP_ADDMAP"] = "Add Map";
 Blockly.Msg["GOOGLEMAP_LATITUDE_CENTER"] = "Center Latitude";
