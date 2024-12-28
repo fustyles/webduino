@@ -99,7 +99,12 @@ var catGoogleMap = '<xml>'+
 '      <block type="text">'+
 '        <field name="TEXT"></field>'+
 '      </block>'+
-'    </value>'+ 
+'    </value>'+
+'    <value name="zoom">'+
+'      <block type="math_number">'+
+'        <field name="NUM">8</field>'+
+'      </block>'+
+'    </value>'+
 '  </block>'+  
 '</category>'+
 '</xml>';
