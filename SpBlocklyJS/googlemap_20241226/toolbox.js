@@ -75,5 +75,12 @@ var catGoogleMap = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+  
+'  <block type="googlemap_map_function">'+
+'    <value name="divid">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+ 
+'  </block>'+  
 '</category>'+
 '</xml>';

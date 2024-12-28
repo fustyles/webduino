@@ -116,6 +116,25 @@ Blockly.Blocks['googlemap_point_function'] = {
   }
 };
 
+Blockly.Blocks['googlemap_map_function'] = {
+  init: function () {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["GOOGLEMAP"]);	  
+	this.appendValueInput("divid")
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.setCheck("String")
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);		 	  
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["GOOGLEMAP_POINT_CLEAR"],"clear"]	
+		]), "func");		  
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(210);
+  }
+};
+
 
 
 

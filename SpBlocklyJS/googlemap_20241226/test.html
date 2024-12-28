@@ -32,12 +32,15 @@ const main = async () => {
     }
     window.initMap = initMap;
     await delay(3);
-    addMapPoint('', map_, 23.801079, 120.933835, '台灣', '台灣是一個美麗的寶島');
-    openMarkerContent('', '測試');
+    addMapPoint('1', map_, 23.801079, 121.933835, '台灣1', 'Hello');
+    addMapPoint('2', map_, 24.001079, 120.933835, '台灣2', 'World');
+    openMarkerContent('1', '測試');
+    openMarkerContent('2', '測試');
     await delay(5);
-    updateMarkerContent('', '測試');
+    updateMarkerContent('1', '測試1');
+    updateMarkerContent('2', '測試2');
     await delay(3);
-    clearMarker('');
+    clearMap(map_);
 };
 main();
 </script>

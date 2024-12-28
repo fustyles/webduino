@@ -63,3 +63,14 @@ Blockly.JavaScript['googlemap_point_function'] = function (block) {
   
   return code;
 };
+
+Blockly.JavaScript['googlemap_map_function'] = function (block) {		
+  var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+  var func = block.getFieldValue('func');
+  if (func=="clear")
+    var code = 'clearMap(map_'+mapid+');\n';
+  else
+    var code = '';
+  return code;
+};
