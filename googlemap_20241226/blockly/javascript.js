@@ -99,13 +99,13 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'			i--;\n'+
 			'		}\n'+
 			'	}\n'+
-			'}\n';
-			'window.addMapPoint = addMapPoint;\n';
-			'window.clearMarker = clearMarker;\n';
-			'window.updateMarkerContent = updateMarkerContent;\n';
-			'window.openMarkerContent = openMarkerContent;\n';
-			'window.closeMarkerContent = closeMarkerContent;\n';
-			'window.clearMap = clearMap;\n';	
+			'}\n'+
+			'window.addMapPoint = addMapPoint;\n'+
+			'window.clearMarker = clearMarker;\n'+
+			'window.updateMarkerContent = updateMarkerContent;\n'+
+			'window.openMarkerContent = openMarkerContent;\n'+
+			'window.closeMarkerContent = closeMarkerContent;\n'+
+			'window.clearMap = clearMap;\n'+	
 	     '}\n'+
 	     'window.initMap = initMap;\n'+	  
 	     'await delay(3);\n'+
