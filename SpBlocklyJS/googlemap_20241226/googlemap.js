@@ -22,7 +22,7 @@
 		  infoWindow.open(pMapId, marker);
 		});
 
-		mapMarkers.push(["point_"+pID, pMapId, marker, infoWindow]);
+		mapMarkers.push(["point_"+pID, pMapId, marker, infoWindow, markerData.position]);
 	}
 
 	function clearMarker(pID) {
@@ -42,12 +42,12 @@
 					mapMarkers[i][3].setContent(newContent);
 				} 
 				else if (type === "latitude") {
-					//const newPosition = new google.maps.LatLng(newContent, mapMarkers[i][2].position.Hg);
-					//mapMarkers[i][2].setPosition(newPosition);
+					mapMarkers[i][4].lat = newContent;
+					mapMarkers[i][2].position = mapMarkers[i][4];					
 				} 
 				else if (type === "longitude") {
-					//const newPosition = new google.maps.LatLng(mapMarkers[i][2].position.Fg, newContent);
-					//mapMarkers[i][2].setPosition(newPosition);
+					mapMarkers[i][4].lng = newContent;
+					mapMarkers[i][2].position = mapMarkers[i][4];					
 				}
 				else if (type=="title") {
 					mapMarkers[i][2].title = newContent;
