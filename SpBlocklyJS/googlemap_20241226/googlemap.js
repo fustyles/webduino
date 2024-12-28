@@ -79,9 +79,8 @@ function closeMarkerContent(pID) {
 	}
 }
 
-function centerMap(pMapId, lat, lng) {
-	const newCenter = new google.maps.LatLng(lat, lng);
-	pMapId.setCenter(newCenter);	
+function roomMap(pMapId, zoom) {
+	pMapId.setZoom(zoom);	
 }
 
 function clearMap(pMapId) {
