@@ -1,5 +1,5 @@
 {
-  "types": ["googlemap_initial","googlemap_loaded","googlemap_addmap","googlemap_addpoint","googlemap_point_function","googlemap_map_function"],
+  "types": ["googlemap_initial","googlemap_loaded","googlemap_addmap","googlemap_addpoint","googlemap_point_function","googlemap_map_center","googlemap_map_function"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
