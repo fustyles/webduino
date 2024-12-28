@@ -94,6 +94,7 @@ Blockly.Blocks['googlemap_point_function'] = {
 	this.appendDummyInput()
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_CONTENT"],"update_content"],
+			[Blockly.Msg["GOOGLEMAP_POINT_OPEN_CONTENT"],"open_content"],
 			[Blockly.Msg["GOOGLEMAP_POINT_CLEAR"],"clear"]	
 		], this.validate), "func");	
 	this.appendValueInput("content")

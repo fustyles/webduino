@@ -1,0 +1,44 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Headers' content='Origin, X-Requested-With, Content-Type, Accept'><meta http-equiv='Access-Control-Allow-Methods' content='GET,POST,PUT,DELETE,OPTIONS'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/marked.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><link rel='stylesheet' href='https://fustyles.github.io/webduino/SpBlocklyJS/css/icon_custom.css' /><script src='googlemap.js'></script></head><body>
+<script>
+const delay = (seconds) => {
+    return new Promise((resolve) => {
+        setTimeout(resolve, seconds * 1000);
+    });
+};
+const main = async () => {
+    let map_;
+
+
+
+    div_create('', 400, 400, 0, 0, "none", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
+    var url = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCjnmJJqKsk6wqcfKRXuovtuJKBWlo4OIU&callback=initMap&v=weekly&libraries=marker";
+    var s = document.createElement("script");
+    s.async = true;
+    s.defer = true;
+    s.src = url;
+    document.body.append(s);
+
+    function initMap() {
+        let position_map_ = {
+            lat: 23.801079,
+            lng: 120.933835
+        };
+        map_ = new google.maps.Map(document.getElementById("gamediv_" + ''), {
+            zoom: 8,
+            center: position_map_,
+            mapId: "mapid_" + '',
+        });
+
+    }
+    window.initMap = initMap;
+    await delay(3);
+    addMapPoint('', map_, 23.801079, 120.933835, '台灣', '台灣是一個美麗的寶島');
+    openMarkerContent('', '測試');
+    await delay(5);
+    updateMarkerContent('', '測試');
+    await delay(3);
+    clearMarker('');
+};
+main();
+</script>
+</body></html>

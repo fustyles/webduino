@@ -43,7 +43,7 @@ Blockly.JavaScript['googlemap_addpoint'] = function (block) {
   var content = Blockly.JavaScript.valueToCode(block, 'content', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var mapid = divid.replace(/"/g,"").replace(/'/g,"");
   
-  var code = 'addMapPoint("point_"+'+pointid+', map_'+mapid+', '+latitude+', '+longitude+', '+title+', '+content+');\n';
+  var code = 'addMapPoint('+pointid+', map_'+mapid+', '+latitude+', '+longitude+', '+title+', '+content+');\n';
   
   return code;
 };
@@ -54,6 +54,8 @@ Blockly.JavaScript['googlemap_point_function'] = function (block) {
   var content = Blockly.JavaScript.valueToCode(block, 'content', Blockly.JavaScript.ORDER_ATOMIC)||"";
   if (func=="update_content")
     var code = 'updateMarkerContent('+pointid+', '+content+');\n';
+  else if (func=="open_content")
+    var code = 'openMarkerContent('+pointid+', '+content+');\n';
   else if (func=="clear")
     var code = 'clearMarker('+pointid+');\n';
   else

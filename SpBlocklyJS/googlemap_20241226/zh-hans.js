@@ -14,4 +14,5 @@ Blockly.Msg["GOOGLEMAP_TITLE"] = "名称";
 Blockly.Msg["GOOGLEMAP_CONTENT"] = "内容";
 Blockly.Msg["GOOGLEMAP_POINTID"] = "标记代码";
 Blockly.Msg["GOOGLEMAP_POINT_UPDATE_CONTENT"] = "更新内容";
+Blockly.Msg["GOOGLEMAP_POINT_OPEN_CONTENT"] = "开启内容";
 Blockly.Msg["GOOGLEMAP_POINT_CLEAR"] = "清除";
