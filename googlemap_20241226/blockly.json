@@ -1,0 +1,14 @@
+{
+  "types": ["googlemap_initial","googlemap_addmap","googlemap_addpoint","googlemap_point_function","googlemap_map_function"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "googlemap.js"    
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
