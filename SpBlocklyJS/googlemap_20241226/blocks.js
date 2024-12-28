@@ -147,11 +147,11 @@ Blockly.Blocks['googlemap_map_center'] = {
     this.appendValueInput("latitude")
 	.setCheck("Number")
 	.setAlign(Blockly.ALIGN_RIGHT)
-	.appendField(Blockly.Msg["GOOGLEMAP_LATITUDE_CENTER"]);
+	.appendField(Blockly.Msg["GOOGLEMAP_LATITUDE"]);
     this.appendValueInput("longitude")
 	.setCheck("Number")
 	.setAlign(Blockly.ALIGN_RIGHT)
-	.appendField(Blockly.Msg["GOOGLEMAP_LONGITUDE_CENTER"]);  
+	.appendField(Blockly.Msg["GOOGLEMAP_LONGITUDE"]);  
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
