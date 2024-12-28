@@ -13,7 +13,7 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 	     '}\n'+
 	     'var url = "https://maps.googleapis.com/maps/api/js?key='+key+'&callback=initMap&v=weekly&libraries=marker";\n'+
 	     'var s = document.createElement("script");\n'+
-	     '//s.async = true;\n'+
+	     's.async = true;\n'+
 	     's.defer = true;\n'+
 	     's.src = url;\n'+
 	     'document.body.append(s);\n'+
@@ -105,7 +105,7 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'window.clearMap = clearMap;\n'+	
 	     '}\n'+
 	     'window.initMap = initMap;\n'+	  
-	     'await delay(8);\n';
+	     'while (typeof google === 'undefined') {await delay(1);}\n';
 
   return code;
 };
