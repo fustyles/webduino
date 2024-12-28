@@ -152,7 +152,7 @@ Blockly.Blocks['googlemap_map_center'] = {
 	.setCheck("Number")
 	.setAlign(Blockly.ALIGN_RIGHT)
 	.appendField(Blockly.Msg["GOOGLEMAP_LONGITUDE"]);  
-    this.setInputsInline(true);
+    this.setInputsInline(false);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(210);
