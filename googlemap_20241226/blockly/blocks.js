@@ -96,6 +96,7 @@ Blockly.Blocks['googlemap_point_function'] = {
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_CONTENT"],"update_content"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_LATITUDE"],"update_latitude"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_LONGITUDE"],"update_longitude"],
+			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_POSITION"],"update_position"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_TITLE"],"update_title"],			
 			[Blockly.Msg["GOOGLEMAP_POINT_OPEN_CONTENT"],"open_content"],
 			[Blockly.Msg["GOOGLEMAP_POINT_CLOSE_CONTENT"],"close_content"],			
@@ -113,7 +114,7 @@ Blockly.Blocks['googlemap_point_function'] = {
   validate: function(newValue) {
 	 const block = this.sourceBlock_;
 	 if (!block) return;
-	 if (newValue=="update_content"||newValue=="update_latitude"||newValue=="update_longitude"||newValue=="update_title")
+	 if (newValue=="update_content"||newValue=="update_latitude"||newValue=="update_longitude"||newValue=="update_position"||newValue=="update_title")
 		 block.getInput("content").setVisible(true);
 	 else
 		 block.getInput("content").setVisible(false);
