@@ -49,6 +49,12 @@
 					mapMarkers[i][4].lng = newContent;
 					mapMarkers[i][2].position = mapMarkers[i][4];					
 				}
+				else if (type === "position") {
+					newContent = newContent.split(",");
+					mapMarkers[i][4].lat = Number(newContent[0]);
+					mapMarkers[i][4].lng = Number(newContent[1]);
+					mapMarkers[i][2].position = mapMarkers[i][4];					
+				}				
 				else if (type=="title") {
 					mapMarkers[i][2].title = newContent;
 				}  			
