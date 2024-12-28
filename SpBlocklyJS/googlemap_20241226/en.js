@@ -22,3 +22,4 @@ Blockly.Msg["GOOGLEMAP_POINT_UPDATE_TITLE"] = "Update Title";
 Blockly.Msg["GOOGLEMAP_POINT_OPEN_CONTENT"] = "Open content";
 Blockly.Msg["GOOGLEMAP_POINT_CLOSE_CONTENT"] = "Close content";
 Blockly.Msg["GOOGLEMAP_POINT_CLEAR"] = "Clear all Markers";
+Blockly.Msg["GOOGLEMAP_CENTERMAP"] = "Set map center position";
