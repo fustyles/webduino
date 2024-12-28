@@ -14,18 +14,18 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 	     '			}\n'+
 	     '		}\n'+
 	     '}\n'+
-	     'var url = "https://fustyles.github.io/webduino/googlemap_20241226/googlemap.js";\n'+
-             'var s = document.createElement("script");\n'+
-             's.async = true;\n'+
-             's.defer = true;\n'+
-             's.src = url;\n'+
-             'document.getElementsByTagName("head")[0].append(s);\n'+	  
-	     'url = "https://maps.googleapis.com/maps/api/js?key='+key+'&callback=initMap&v=weekly&libraries=marker";\n'+
-             'var s = document.createElement("script");\n'+
-             's.async = true;\n'+
-             's.defer = true;\n'+
-             's.src = url;\n'+
-             'document.body.append(s);\n'+
+	     'var url1 = "https://fustyles.github.io/webduino/googlemap_20241226/googlemap.js";\n'+
+             'var s1 = document.createElement("script");\n'+
+             's1.async = true;\n'+
+             's1.defer = true;\n'+
+             's1.src = url1;\n'+
+             'document.getElementsByTagName("head")[0].append(s1);\n'+	  
+	     'var url2 = "https://maps.googleapis.com/maps/api/js?key='+key+'&callback=initMap&v=weekly&libraries=marker";\n'+
+             'var s2 = document.createElement("script");\n'+
+             's2.async = true;\n'+
+             's2.defer = true;\n'+
+             's2.src = url2;\n'+
+             'document.getElementsByTagName("head")[0].append(s2);\n'+
              'function initMap() {\n'+statement+'\n}\n'+
              'window.initMap = initMap;\n'+
              'await delay(3);\n';	  
