@@ -1,0 +1,85 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Headers' content='Origin, X-Requested-With, Content-Type, Accept'><meta http-equiv='Access-Control-Allow-Methods' content='GET,POST,PUT,DELETE,OPTIONS'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/marked.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><link rel='stylesheet' href='https://fustyles.github.io/webduino/SpBlocklyJS/css/icon_custom.css' /><script src='googlemap.js'></script></head><body>
+<script>
+const delay = (seconds) => {
+    return new Promise((resolve) => {
+        setTimeout(resolve, seconds * 1000);
+    });
+};
+const main = async () => {
+    var p, q, i;
+
+    let map_1;
+
+
+    let map_2;
+
+
+    function mathRandomInt(a, b) {
+        if (a > b) {
+            // Swap a and b to ensure a is smaller.
+            var c = a;
+            a = b;
+            b = c;
+        }
+        return Math.floor(Math.random() * (b - a + 1) + a);
+    }
+
+
+    div_create('1', 400, 600, 0, 0, "none", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
+    div_create('2', 400, 600, 420, 0, "none", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
+    var url = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCjnmJJqKsk6wqcfKRXuovtuJKBWlo4OIU&callback=initMap&v=weekly&libraries=marker";
+    var s = document.createElement("script");
+    s.async = true;
+    s.defer = true;
+    s.src = url;
+    document.body.append(s);
+
+    function initMap() {
+        let position_map_1 = {
+            lat: 23.801079,
+            lng: 120.933835
+        };
+        map_1 = new google.maps.Map(document.getElementById("gamediv_" + '1'), {
+            zoom: 7,
+            center: position_map_1,
+            mapId: "mapid_" + '1',
+        });
+        let position_map_2 = {
+            lat: 23.801079,
+            lng: 120.933835
+        };
+        map_2 = new google.maps.Map(document.getElementById("gamediv_" + '2'), {
+            zoom: 7,
+            center: position_map_2,
+            mapId: "mapid_" + '2',
+        });
+
+    }
+    window.initMap = initMap;
+    await delay(3);
+    addMapPoint('1', map_1, 22.62827, 120.30092, '高雄市', '');
+    openMarkerContent('1');
+    addMapPoint('2', map_1, 25.03343, 121.56394, '台北市', '');
+    openMarkerContent('2');
+    addMapPoint('3', map_2, 22.62827, 120.30092, '高雄市', '');
+    addMapPoint('4', map_2, 25.03343, 121.56394, '台北市', '');
+    addMapPoint('5', map_2, 25.03343, 121.56394, '我的位置', '');
+    await delay(3);
+    closeMarkerContent('1');
+    updateMarkerContent('1', 'Hello', "title");
+    p = 22.62827;
+    q = 120.30092;
+    i = setInterval(async function() {
+        p = p + 0.2;
+        q = q + 0.2;
+        updateMarkerContent('1', p, "latitude");
+        updateMarkerContent('1', q, "longitude");
+        updateMarkerContent('1', (['溫度：', mathRandomInt(16, 24), '<br>', '溼度：', mathRandomInt(0, 100)].join('')), "content");
+        updateMarkerContent('2', (['溫度：', mathRandomInt(16, 24), '<br>', '溼度：', mathRandomInt(0, 100)].join('')), "content");
+        updateMarkerContent('3', ('亮度：' + String(mathRandomInt(0, 100))), "content");
+        updateMarkerContent('4', ('亮度：' + String(mathRandomInt(0, 100))), "content");
+    }, 1000);
+};
+main();
+</script>
+</body></html>
