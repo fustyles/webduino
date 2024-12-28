@@ -2,7 +2,7 @@
 
 let mapMarkers = [];
 
-async function addMapPoint(pID, pMapId, pLat, pLng, pTitle, pContent) {
+function addMapPoint(pID, pMapId, pLat, pLng, pTitle, pContent) {
 	let markerData = {
 	  position: { lat: pLat, lng: pLng },
 	  title: pTitle,
