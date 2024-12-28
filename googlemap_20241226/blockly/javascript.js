@@ -5,9 +5,9 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 
   Blockly.JavaScript.definitions_['googlemap_mapMarkers'] = 'let mapMarkers = [];\n';
 
-  var code = 'const links = document.getElementsByTagName('link');\n'+
+  var code = 'const links = document.getElementsByTagName("link");\n'+
 	     'for (let i = 0; i < links.length; i++) {\n'+
-	     '  if (links[i].getAttribute('href') && links[i].getAttribute('href').includes('main.css')) {\n'+
+	     '  if (links[i].getAttribute('href') && links[i].getAttribute("href").includes("main.css")) {\n'+
 	     '    links[i].parentNode.removeChild(links[i]);\n'+
 	     '  }\n'+
 	     '}\n'+
