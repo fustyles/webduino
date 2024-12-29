@@ -5,11 +5,24 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 
   Blockly.JavaScript.definitions_['googlemap_mapMarkers'] = 'let mapMarkers = [];\n';
 
-  var code = 'const links = document.getElementsByTagName("link");\n'+
-	     'for (let i = 0; i < links.length; i++) {\n'+
-	     '  if (links[i].getAttribute("href") && links[i].getAttribute("href").includes("main.css")) {\n'+
-	     '    links[i].parentNode.removeChild(links[i]);\n'+
-	     '  }\n'+
+  var code = ''+
+	     'const styleSheets = document.styleSheets;\n'+
+	     'const selectorsToRemove = ["body, html", "body *", "body div"];\n'+
+	     'for (let i = 0; i < styleSheets.length; i++) {\n'+
+	     '	const styleSheet = styleSheets[i];\n'+
+	     '	if (styleSheet.href && styleSheet.href.includes("https://ap10.egame.kh.edu.tw/webbit/dist/css/main.css")) {\n'+
+	     '		try {\n'+
+	     '			const rules = styleSheet.cssRules || styleSheet.rules;\n'+
+	     '			for (let j = rules.length - 1; j >= 0; j--) {\n'+
+	     '				const rule = rules[j];\n'+
+	     '				if (selectorsToRemove.includes(rule.selectorText)) {\n'+
+	     '					styleSheet.deleteRule(j);\n'+
+	     '				}\n'+
+	     '			}\n'+
+	     '		} catch (e) {\n'+
+	     '			console.error("Error accessing stylesheet rules: ", e);\n'+
+	     '		}\n'+
+	     '	}\n'+
 	     '}\n'+
 	     'var url = "https://maps.googleapis.com/maps/api/js?key='+key+'&callback=initMap&v=weekly&libraries=marker";\n'+
 	     'var s = document.createElement("script");\n'+
