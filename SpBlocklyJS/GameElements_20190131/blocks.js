@@ -6559,7 +6559,7 @@ Blockly.Blocks['custom_style'] = {
 		  [Blockly.Msg.ELEMENT_PASSWORD,"password"],
 		  [Blockly.Msg.ELEMENT_VIDEO,"video"],
 		  [Blockly.Msg.ELEMENT_AUDIO,"audio"]
-	  ]), "element");
+	  ],this.validate), "element");
 	this.appendValueInput("id")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)	  
@@ -6577,9 +6577,18 @@ Blockly.Blocks['custom_style'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(50);   
+  },
+  validate: function(newValue) {
+	const block = this.sourceBlock_;
+	if (!block) return;
+	if (newValue=="window"||newValue=="document") {
+		block.getInput("id_").setVisible(false);
+	}
+	else {
+		block.getInput("id_").setVisible(true);
+	}
   }
 };
-
 Blockly.Blocks['font_text'] = {
   init: function() {	
   this.appendDummyInput()
