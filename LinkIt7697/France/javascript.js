@@ -1,3 +1,61 @@
+Blockly.Arduino['audio_create'] = function (block) {
+  var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC); 
+  var value_src_ = Blockly.Arduino.valueToCode(block, 'src_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_left_ = Blockly.Arduino.valueToCode(block, 'left_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_top_ = Blockly.Arduino.valueToCode(block, 'top_', Blockly.Arduino.ORDER_ATOMIC);
+  var value_zindex_ = Blockly.Arduino.valueToCode(block, 'zindex_', Blockly.Arduino.ORDER_ATOMIC); 
+  var code = 'audio_create(' + value_id_ + ','+ value_src_ + ','+ value_left_ + ',' + value_top_ + ',' + value_zindex_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['audio_set'] = function (block) {
+  var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var value_value_ = Blockly.Arduino.valueToCode(block, 'value_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'audio_set(' + value_id_ + ',"' + value_property_ + '",' + value_value_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['audio_get'] = function (block) {
+  var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var code = 'audio_get(' + value_id_ + ',"' + value_property_ + '")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['audio_control'] = function (block) {
+  var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);  
+  var value_property_ = block.getFieldValue('property_');
+  var code = 'audio_control(' + value_id_ + ',"' + value_property_ + '");\n';
+  return code;
+};
+
+Blockly.Arduino['audio_play_googleTTS'] = function (block) { 
+  var value_language_ = block.getFieldValue('language_');
+  var value_text_ = Blockly.Arduino.valueToCode(block, 'text_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'await audio_play_googleTTS_Base64Data("' + value_language_ + '",' + value_text_ + ')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['audio_save_googleTTS'] = function (block) { 
+  var value_language_ = block.getFieldValue('language_');
+  var value_text_ = Blockly.Arduino.valueToCode(block, 'text_', Blockly.Arduino.ORDER_ATOMIC);
+  var code = 'await audio_save_googleTTS_Base64Data("' + value_language_ + '",' + value_text_ + ');\n';
+  return code;
+};
+
+Blockly.Arduino['audio_delete'] = function (block) {
+  var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);  
+  var code = 'audio_delete(' + value_id_ + ');\n';
+  return code;
+};
+
+
+
+
+
+
+
 Blockly.Arduino['page_googlemap_initial'] = function (block) {
   var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC)||"";
   var statement = Blockly.Arduino.statementToCode(block, 'statement');

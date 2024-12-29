@@ -62,6 +62,7 @@
 <category><name>catGameElements_sub26</name><replace>Inline Containers</replace></category>
 <category><name>catGameElements_sub27</name><replace>Fetch</replace></category>
 <category><name>catGameElements_sub28</name><replace>Json</replace></category>
+<category><name>catGameElements_sub29</name><replace>Audio</replace></category>
 <category><name>oled</name><replace>OLED Display</replace></category>
 <category><name>EZ+</name><replace>EZ Start Kit+</replace></category>
 <category><name>airquality</name><replace>Taiwan Air Quality</replace></category>
