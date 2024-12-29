@@ -6678,7 +6678,7 @@ Blockly.Blocks['custom_style'] = {
   init: function() {	
   this.appendDummyInput()
 	  .appendField(Blockly.Msg.CUSTOM_STYLE_SHOW);
-      this.appendDummyInput()  
+    this.appendDummyInput()  
       .appendField(new Blockly.FieldDropdown([
 		  [Blockly.Msg.ELEMENT_WINDOW,"window"],
 		  [Blockly.Msg.ELEMENT_DOCUMENT,"document"],
@@ -6704,8 +6704,8 @@ Blockly.Blocks['custom_style'] = {
 		  [Blockly.Msg.ELEMENT_PASSWORD,"password"],
 		  [Blockly.Msg.ELEMENT_VIDEO,"video"],
 		  [Blockly.Msg.ELEMENT_AUDIO,"audio"]
-	  ]), "element");
-  this.appendValueInput("id")
+	  ],this.validate), "element");
+	this.appendValueInput("id")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg.ID);   
@@ -6721,10 +6721,19 @@ Blockly.Blocks['custom_style'] = {
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(110);   
+  this.setColour(50);   
+  },
+  validate: function(newValue) {
+	const block = this.sourceBlock_;
+	if (!block) return;
+	if (newValue=="window"||newValue=="document") {
+		block.getInput("id_").setVisible(false);
+	}
+	else {
+		block.getInput("id_").setVisible(true);
+	}
   }
 };
-
 Blockly.Blocks['font_text'] = {
   init: function() {	
   this.appendDummyInput()
