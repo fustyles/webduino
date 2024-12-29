@@ -3175,7 +3175,6 @@ Blockly.Blocks['element_event'] = {
   this.appendValueInput("id_")
       .setCheck(null)
       .appendField(Blockly.Msg.ID); 
-  this.getInput("id_").setVisible(false);
   this.appendDummyInput()  
       .appendField(Blockly.Msg.ELEMENT_EVENT)
       .appendField(new Blockly.FieldDropdown([
@@ -3323,8 +3322,7 @@ Blockly.Blocks['element_event_stop'] = {
 	  ],this.validate), "element");
   this.appendValueInput("id_")
       .setCheck(null)
-      .appendField(Blockly.Msg.ID); 
-  this.getInput("id_").setVisible(false);	  
+      .appendField(Blockly.Msg.ID); 	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.ELEMENT_EVENT_STOP)
       .appendField(new Blockly.FieldDropdown([
