@@ -6582,10 +6582,10 @@ Blockly.Blocks['custom_style'] = {
 	const block = this.sourceBlock_;
 	if (!block) return;
 	if (newValue=="window"||newValue=="document") {
-		block.getInput("id_").setVisible(false);
+		block.getInput("id").setVisible(false);
 	}
 	else {
-		block.getInput("id_").setVisible(true);
+		block.getInput("id").setVisible(true);
 	}
   }
 };
