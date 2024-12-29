@@ -57,7 +57,7 @@ function updateMarkerContent(pID, newContent, type) {
 				mapMarkers[i][2].title = newContent;
 			}
 			else if (type=="icon") {
-				mapMarkers[i][2].customIcon= newContent;
+				mapMarkers[i][2].icon= newContent;
 			} 			
 			break;
 		}
