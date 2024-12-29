@@ -2161,7 +2161,7 @@ Blockly.JavaScript['custom_style'] = function (block) {
   if (style=="")
 	cmd = cmd+"."+property+" = "+val+";\n";
   else
-	cmd = cmd+".style."+property+" = "+val+";\n";
+	cmd = cmd+".style"+(property?"."+property:"")+" = "+val+";\n";
   var code = cmd;
   return code;
 };
