@@ -10,7 +10,7 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 	     'const selectorsToRemove = ["body, html", "body *", "body div"];\n'+
 	     'for (let i = 0; i < styleSheets.length; i++) {\n'+
 	     '	const styleSheet = styleSheets[i];\n'+
-	     '	if (styleSheet.href && styleSheet.href.includes("https://ap10.egame.kh.edu.tw/webbit/dist/css/main.css")) {\n'+
+	     '	if (styleSheet.href && styleSheet.href.includes("main.css")) {\n'+
 	     '		try {\n'+
 	     '			const rules = styleSheet.cssRules || styleSheet.rules;\n'+
 	     '			for (let j = rules.length - 1; j >= 0; j--) {\n'+
