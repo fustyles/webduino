@@ -18979,15 +18979,6 @@ Blockly.Arduino['custom_style'] = function (block) {
   var style = block.getFieldValue('style');
   var property = Blockly.Arduino.valueToCode(block, 'property', Blockly.Arduino.ORDER_ATOMIC);
   var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC);
-  if ((id.indexOf("'")==0)&&(id.lastIndexOf("'")==id.length-1))
-    id = id.substring(1,id.length-1);
-  if ((id.indexOf('"')==0)&&(id.lastIndexOf('"')==id.length-1))
-    id = id.substring(1,id.length-1);
-  var el = element;
-  if ((element.indexOf("'")==0)&&(element.lastIndexOf("'")==element.length-1))
-    el = element.substring(1,element.length-1);
-  if ((element.indexOf('"')==0)&&(element.lastIndexOf('"')==element.length-1))
-    el = element.substring(1,element.length-1); 
   if ((property.indexOf("'")==0)&&(property.lastIndexOf("'")==property.length-1))
     property = property.substring(1,property.length-1);
   if ((property.indexOf('"')==0)&&(property.lastIndexOf('"')==property.length-1))
@@ -18999,12 +18990,12 @@ Blockly.Arduino['custom_style'] = function (block) {
   else if (element=="document")
     cmd="document";
   else
-    cmd="document.getElementById('game"+el+"_"+id+"')";
+    cmd="document.getElementById('game'+'"+element+"'+'_'+"+id+")";
 
   if (style=="")
-	cmd = cmd+"."+property+" = "+val+";";
+	cmd = cmd+"."+property+" = "+val+";\n";
   else
-	cmd = cmd+".style."+property+" = "+val+";";
+	cmd = cmd+".style"+(property?"."+property:"")+" = "+val+";\n";
   var code = cmd;
   return code;
 };
