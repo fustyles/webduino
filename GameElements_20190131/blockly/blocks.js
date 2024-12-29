@@ -6680,8 +6680,6 @@ Blockly.Blocks['custom_style'] = {
 	  .appendField(Blockly.Msg.CUSTOM_STYLE_SHOW);
     this.appendDummyInput()  
       .appendField(new Blockly.FieldDropdown([
-		  [Blockly.Msg.ELEMENT_WINDOW,"window"],
-		  [Blockly.Msg.ELEMENT_DOCUMENT,"document"],
 		  [Blockly.Msg.ELEMENT_TABLE,"table"],
 		  [Blockly.Msg.ELEMENT_IMAGE,"image"],
 		  [Blockly.Msg.ELEMENT_CANVAS,"canvas"],
@@ -6703,7 +6701,9 @@ Blockly.Blocks['custom_style'] = {
 		  [Blockly.Msg.ELEMENT_PROGRESS,"progress"],
 		  [Blockly.Msg.ELEMENT_PASSWORD,"password"],
 		  [Blockly.Msg.ELEMENT_VIDEO,"video"],
-		  [Blockly.Msg.ELEMENT_AUDIO,"audio"]
+		  [Blockly.Msg.ELEMENT_AUDIO,"audio"],
+		  [Blockly.Msg.ELEMENT_WINDOW,"window"],
+		  [Blockly.Msg.ELEMENT_DOCUMENT,"document"]	      
 	  ],this.validate), "element");
 	this.appendValueInput("id")
       .setCheck(null)
