@@ -80,6 +80,7 @@
 <category><name>pixelbit</name><replace>Pixel:Bit Web Module</replace></category>
 <category><name>hands</name><replace>Hand Gesture Recognition</replace></category>
 <category><name>spreadsheet</name><replace>Google Spreadsheet</replace></category>
+<category><name>googlemap</name><replace>Page Map</replace></category>
 <category><name>taskhandle</name><replace>Dual Core Task</replace></category>
 <category><name>catpagemqtt</name><replace>Web MQTT</replace></category>
 <category><name>catdashboard</name><replace>Web Dashboard</replace></category>

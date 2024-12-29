@@ -1,3 +1,112 @@
+Blockly.Arduino['page_googlemap_initial'] = function (block) {
+  var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var statement = Blockly.Arduino.statementToCode(block, 'statement');
+  key = key.replace(/"/g,"").replace(/'/g,"");
+  
+  const matches = statement.match(/let position_map_.*? /g);
+  var code = matches.join(";").replace(/position_/g, "")+";";
+  code += 'let url = "https:\/\/maps.googleapis.com/maps/api/js?key='+key+'&callback=initMap&v=weekly&libraries=marker";\n'+
+		 'let s = document.createElement("script");\n'+
+		 's.async = true;\n'+
+		 's.defer = true;\n'+
+		 's.src = url;\n'+
+		 'document.body.append(s);\n'+
+		 'function initMap() {\n'+statement+'\nloadedMap();\n}\n'+
+		 'window.initMap = initMap;\n';
+  return code;
+};
+
+Blockly.Arduino['page_googlemap_loaded'] = function (block) {
+  var statement = Blockly.Arduino.statementToCode(block, 'statement');
+  var code = 'async function loadedMap() {\n'+statement+'\n}\n'+
+			 'window.loadedMap = loadedMap;\n';
+  return code;
+};
+
+Blockly.Arduino['page_googlemap_addmap'] = function (block) {;
+  var latitude = Blockly.Arduino.valueToCode(block, 'latitude', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var longitude = Blockly.Arduino.valueToCode(block, 'longitude', Blockly.Arduino.ORDER_ATOMIC)||"";	
+  var zoom = Blockly.Arduino.valueToCode(block, 'zoom', Blockly.Arduino.ORDER_ATOMIC)||"";	
+  var divid = Blockly.Arduino.valueToCode(block, 'divid', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+   
+  var code = 'let position_map_'+mapid+' = {lat: '+latitude+', lng: '+longitude+'};\n'+
+			'map_'+mapid+' = new google.maps.Map(document.getElementById("gamediv_"+'+divid+'), {\n'+
+			'  zoom: '+zoom+',\n'+
+			'  center: position_map_'+mapid+',\n'+
+			'  mapId: "mapid_"+'+divid+',\n'+
+			'});\n';
+
+  return code; 
+};
+
+Blockly.Arduino['page_googlemap_addpoint'] = function (block) {
+  var divid = Blockly.Arduino.valueToCode(block, 'divid', Blockly.Arduino.ORDER_ATOMIC)||"";		
+  var pointid = Blockly.Arduino.valueToCode(block, 'pointid', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var latitude = Blockly.Arduino.valueToCode(block, 'latitude', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var longitude = Blockly.Arduino.valueToCode(block, 'longitude', Blockly.Arduino.ORDER_ATOMIC)||"";	
+  var title = Blockly.Arduino.valueToCode(block, 'title', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+  
+  var code = 'addMapPoint('+pointid+', map_'+mapid+', '+latitude+', '+longitude+', '+title+', '+content+');\n';
+  
+  return code;
+};
+
+Blockly.Arduino['page_googlemap_point_function'] = function (block) {		
+  var pointid = Blockly.Arduino.valueToCode(block, 'pointid', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var func = block.getFieldValue('func');
+  var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||"";
+  if (func=="update_content")
+    var code = 'updateMarkerContent('+pointid+', '+content+', "content");\n';
+  else if (func=="update_latitude")
+    var code = 'updateMarkerContent('+pointid+', '+content+', "latitude");\n';
+  else if (func=="update_longitude")
+    var code = 'updateMarkerContent('+pointid+', '+content+', "longitude");\n';
+  else if (func=="update_position")
+    var code = 'updateMarkerContent('+pointid+', '+content+', "position");\n';
+  else if (func=="update_title")
+    var code = 'updateMarkerContent('+pointid+', '+content+', "title");\n';
+  else if (func=="update_icon")
+    var code = 'updateMarkerContent('+pointid+', '+content+', "icon");\n';	  
+  else if (func=="open_content")
+    var code = 'openMarkerContent('+pointid+');\n';
+  else if (func=="close_content")
+    var code = 'closeMarkerContent('+pointid+');\n';
+  else if (func=="clear")
+    var code = 'clearMarker('+pointid+');\n';
+  else
+    var code = '';
+  
+  return code;
+};
+
+Blockly.Arduino['page_googlemap_map_center'] = function (block) {
+  var divid = Blockly.Arduino.valueToCode(block, 'divid', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var latitude = Blockly.Arduino.valueToCode(block, 'latitude', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var longitude = Blockly.Arduino.valueToCode(block, 'longitude', Blockly.Arduino.ORDER_ATOMIC)||"";	
+  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+  
+  var code = 'centerMap(map_'+mapid+', '+latitude+', '+longitude+');\n';
+  
+  return code;
+};
+
+Blockly.Arduino['page_googlemap_map_function'] = function (block) {		
+  var divid = Blockly.Arduino.valueToCode(block, 'divid', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var zoom = Blockly.Arduino.valueToCode(block, 'zoom', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+  var func = block.getFieldValue('func');
+  if (func=="zoom")
+    var code = 'zoomMap(map_'+mapid+', '+zoom+');\n';	
+  else if (func=="clear")
+    var code = 'clearMap(map_'+mapid+');\n';
+  else
+    var code = '';
+  return code;
+};
+
 Blockly.Arduino['custom_chat_initial'] = function (block) {
   var domain = Blockly.Arduino.valueToCode(block, 'domain', Blockly.Arduino.ORDER_ATOMIC);
   var model = Blockly.Arduino.valueToCode(block, 'model', Blockly.Arduino.ORDER_ATOMIC);
@@ -24622,7 +24731,9 @@ function servermodule_javascript_include() {
 	if (xml.indexOf("page_mqtt_")!=-1) {
 		code += '<script src=\'https://unpkg.com/mqtt/dist/mqtt.min.js\'></script>';			
 	}
-	
+	if (xml.indexOf("page_googlemap_")!=-1) {
+		code += '<script src=\'https://fustyles.github.io/webduino/SpBlocklyJS/googlemap_20241226/googlemap.js\'></script>';			
+	}
 
 	return code;	
 }
