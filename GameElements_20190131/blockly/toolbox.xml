@@ -101,7 +101,6 @@
 			</value>
 		</block>
 		<block type="custom_style">
-			<field name="element">table</field>
 			<value name="id">
 				<block type="text">
 					<field name="TEXT"></field>
