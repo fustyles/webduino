@@ -3158,7 +3158,9 @@ Blockly.Blocks['element_event_stop'] = {
 	  [Blockly.Msg.ELEMENT_TIME,"time"],
 	  [Blockly.Msg.ELEMENT_DATETIME,"datetime"],
 	  [Blockly.Msg.ELEMENT_PROGRESS,"progress"],
-	  [Blockly.Msg.ELEMENT_PASSWORD,"password"]
+	  [Blockly.Msg.ELEMENT_PASSWORD,"password"],
+	  [Blockly.Msg.ELEMENT_VIDEO,"video"],
+	  [Blockly.Msg.ELEMENT_AUDIO,"audio"]
 	  ],this.validate), "element");
   this.appendValueInput("id_")
       .setCheck(null)
@@ -3258,7 +3260,7 @@ Blockly.Blocks['element_event_stop'] = {
 		["loadeddata","loadeddata"],
 		["progress","progress"],
 		["canplay","canplay"],
-		["canplaythrough","canplaythrough"]
+		["canplaythrough","canplaythrough"]	 
 	  ]), "event");
   this.setInputsInline(true);
   this.setPreviousStatement(true);
@@ -6531,9 +6533,34 @@ Blockly.Blocks['custom_style'] = {
   init: function() {	
   this.appendDummyInput()
 	  .appendField(Blockly.Msg.CUSTOM_STYLE_SHOW);
-  this.appendDummyInput()  
-      .appendField(new Blockly.FieldDropdown([[Blockly.Msg.ELEMENT_WINDOW,"window"],[Blockly.Msg.ELEMENT_DOCUMENT,"document"],[Blockly.Msg.ELEMENT_TABLE,"table"],[Blockly.Msg.ELEMENT_IMAGE,"image"],[Blockly.Msg.ELEMENT_CANVAS,"canvas"],[Blockly.Msg.ELEMENT_BUTTON,"button"],[Blockly.Msg.ELEMENT_COLOR,"color"],[Blockly.Msg.ELEMENT_SELECT,"select"],[Blockly.Msg.ELEMENT_RANGE,"range"],[Blockly.Msg.ELEMENT_TEXT,"text"],[Blockly.Msg.ELEMENT_DIV,"div"],[Blockly.Msg.ELEMENT_IFRAME,"iframe"],[Blockly.Msg.ELEMENT_A,"a"],[Blockly.Msg.ELEMENT_RADIO,"radio"],[Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],[Blockly.Msg.ELEMENT_TEXTAREA,"textarea"],[Blockly.Msg.ELEMENT_NUMBER,"number"],[Blockly.Msg.ELEMENT_DATE,"date"],[Blockly.Msg.ELEMENT_TIME,"time"],[Blockly.Msg.ELEMENT_DATETIME,"datetime"],[Blockly.Msg.ELEMENT_PROGRESS,"progress"],[Blockly.Msg.ELEMENT_PASSWORD,"password"]]), "element");
-  this.appendValueInput("id")
+    this.appendDummyInput()  
+      .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.ELEMENT_WINDOW,"window"],
+		  [Blockly.Msg.ELEMENT_DOCUMENT,"document"],
+		  [Blockly.Msg.ELEMENT_TABLE,"table"],
+		  [Blockly.Msg.ELEMENT_IMAGE,"image"],
+		  [Blockly.Msg.ELEMENT_CANVAS,"canvas"],
+		  [Blockly.Msg.ELEMENT_BUTTON,"button"],
+		  [Blockly.Msg.ELEMENT_COLOR,"color"],
+		  [Blockly.Msg.ELEMENT_SELECT,"select"],
+		  [Blockly.Msg.ELEMENT_RANGE,"range"],
+		  [Blockly.Msg.ELEMENT_TEXT,"text"],
+		  [Blockly.Msg.ELEMENT_DIV,"div"],
+		  [Blockly.Msg.ELEMENT_IFRAME,"iframe"],
+		  [Blockly.Msg.ELEMENT_A,"a"],
+		  [Blockly.Msg.ELEMENT_RADIO,"radio"],
+		  [Blockly.Msg.ELEMENT_CHECKBOX,"checkbox"],
+		  [Blockly.Msg.ELEMENT_TEXTAREA,"textarea"],
+		  [Blockly.Msg.ELEMENT_NUMBER,"number"],
+		  [Blockly.Msg.ELEMENT_DATE,"date"],
+		  [Blockly.Msg.ELEMENT_TIME,"time"],
+		  [Blockly.Msg.ELEMENT_DATETIME,"datetime"],
+		  [Blockly.Msg.ELEMENT_PROGRESS,"progress"],
+		  [Blockly.Msg.ELEMENT_PASSWORD,"password"],
+		  [Blockly.Msg.ELEMENT_VIDEO,"video"],
+		  [Blockly.Msg.ELEMENT_AUDIO,"audio"]
+	  ]), "element");
+	this.appendValueInput("id")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg.ID);   
