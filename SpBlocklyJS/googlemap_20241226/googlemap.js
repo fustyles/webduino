@@ -57,7 +57,9 @@ function updateMarkerContent(pID, newContent, type) {
 				mapMarkers[i][2].title = newContent;
 			}
 			else if (type=="icon") {
-				mapMarkers[i][2].icon= newContent;
+				const flagImg = document.createElement("img");
+				flagImg.src = newContent;
+				mapMarkers[i][2].content= flagImg;
 			} 			
 			break;
 		}
