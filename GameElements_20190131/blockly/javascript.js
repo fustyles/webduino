@@ -2230,7 +2230,7 @@ Blockly.JavaScript['custom_style'] = function (block) {
   else if (element=="document")
     cmd="document";
   else
-    cmd="document.getElementById('game"+el+"_"+id+"')";
+    cmd="document.getElementById('game"+el+"_'+"+id+")";
 
   if (style=="")
 	cmd = cmd+"."+property+" = "+val+";\n";
