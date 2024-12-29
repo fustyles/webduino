@@ -55,7 +55,10 @@ function updateMarkerContent(pID, newContent, type) {
 			}				
 			else if (type=="title") {
 				mapMarkers[i][2].title = newContent;
-			}  			
+			}
+			else if (type=="icon") {
+				mapMarkers[i][2].setIcon(newContent);
+			} 			
 			break;
 		}
 	}
