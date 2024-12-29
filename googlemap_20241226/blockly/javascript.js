@@ -68,6 +68,11 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'			else if (type=="title") {\n'+
 			'				mapMarkers[i][2].title = newContent;\n'+
 			'			}\n'+
+			'			else if (type=="icon") {\n'+
+			'				const flagImg = document.createElement("img");\n'+
+			'				flagImg.src = newContent;\n'+
+			'				mapMarkers[i][2].content= flagImg;\n'+
+			'			}\n'+	  
 			'			break;\n'+
 			'		}\n'+
 			'	}\n'+
@@ -173,6 +178,8 @@ Blockly.JavaScript['googlemap_point_function'] = function (block) {
     var code = 'updateMarkerContent('+pointid+', '+content+', "position");\n';
   else if (func=="update_title")
     var code = 'updateMarkerContent('+pointid+', '+content+', "title");\n';
+  else if (func=="update_icon")
+    var code = 'updateMarkerContent('+pointid+', '+content+', "icon");\n';	  
   else if (func=="open_content")
     var code = 'openMarkerContent('+pointid+');\n';
   else if (func=="close_content")
