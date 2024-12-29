@@ -65,11 +65,11 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'				mapMarkers[i][3].setContent(newContent);\n'+
 			'			}\n'+
 			'			else if (type === "latitude") {\n'+
-			'				mapMarkers[i][4].lat = newContent;\n'+
+			'				mapMarkers[i][4].lat = Number(newContent);\n'+
 			'				mapMarkers[i][2].position = mapMarkers[i][4];\n'+			
 			'			}\n'+
 			'			else if (type === "longitude") {\n'+
-			'				mapMarkers[i][4].lng = newContent;\n'+
+			'				mapMarkers[i][4].lng = Number(newContent);\n'+
 			'				mapMarkers[i][2].position = mapMarkers[i][4];\n'+			
 			'			}\n'+
 			'			else if (type === "position") {\n'+
@@ -116,10 +116,10 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'	}\n'+
 			'}\n'+
 			'function zoomMap(pMapId, zoom) {\n'+
-			'	pMapId.setZoom(zoom);\n'+
+			'	pMapId.setZoom(Number(zoom));\n'+
 			'}\n'+
 			'function centerMap(pMapId, lat, lng) {\n'+
-			'	const newCenter = new google.maps.LatLng(lat, lng);\n'+
+			'	const newCenter = new google.maps.LatLng(Number(lat), Number(lng));\n'+
 			'	pMapId.setCenter(newCenter);\n'+
 			'}\n'+
 			'window.addMapPoint = addMapPoint;\n'+
