@@ -40,11 +40,11 @@ function updateMarkerContent(pID, newContent, type) {
 				mapMarkers[i][3].setContent(newContent);
 			} 
 			else if (type === "latitude") {
-				mapMarkers[i][4].lat = newContent;
+				mapMarkers[i][4].lat = Number(newContent);
 				mapMarkers[i][2].position = mapMarkers[i][4];					
 			} 
 			else if (type === "longitude") {
-				mapMarkers[i][4].lng = newContent;
+				mapMarkers[i][4].lng = Number(newContent);
 				mapMarkers[i][2].position = mapMarkers[i][4];					
 			}
 			else if (type === "position") {
