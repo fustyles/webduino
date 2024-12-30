@@ -123,20 +123,12 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'	pMapId.setZoom(Number(val));\n'+	
 			'}\n'+
 			'function headingMap(pMapId, val) {\n'+
-			'	  pMapId.setPov(\n'+
-			'	    {\n'+
-			'	      heading: Number(val),\n'+
-			'	      pitch: pMapId.getPov().pitch,\n'+
-			'	    }\n'+
-			'	  );\n'+
+	  		'	  let pov: { heading: Number(val), pitch: pMapId.getPov().pitch },\n'+
+			'	  pMapId.setPov(pov);\n'+
 			'}\n'+
 			'function pitchMap(pMapId, val) {\n'+
-			'	  pMapId.setPov(\n'+
-			'	    {\n'+
-			'	      heading: pMapId.getPov().heading,\n'+
-			'	      pitch: Number(val),\n'+
-			'	    }\n'+
-			'	  );\n'+
+	  		'	  let pov: { heading: pMapId.getPov().heading, pitch: Number(val) },\n'+
+			'	  pMapId.setPov(pov);\n'+
 			'}\n'+
 			'function clearMap(pMapId) {\n'+
 			'	for (var i=0;i<mapMarkers.length;i++) {\n'+
