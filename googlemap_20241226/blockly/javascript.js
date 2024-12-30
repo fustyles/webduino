@@ -127,7 +127,7 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'	    {\n'+
 			'	      heading: Number(val),\n'+
 			'	      pitch: pMapId.getPov().pitch,\n'+
-			'	    },\n'+
+			'	    }\n'+
 			'	  );\n'+
 			'}\n'+
 			'function pitchMap(pMapId, val) {\n'+
@@ -135,7 +135,7 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'	    {\n'+
 			'	      heading: pMapId.getPov().heading,\n'+
 			'	      pitch: Number(val),\n'+
-			'	    },\n'+
+			'	    }\n'+
 			'	  );\n'+
 			'}\n'+
 			'function clearMap(pMapId) {\n'+
