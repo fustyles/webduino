@@ -100,8 +100,16 @@ function positionMap(pMapId, lat, lng) {
 	pMapId.setPosition(newCenter);	
 }
 
-function zoomMap(pMapId, zoom) {
-	pMapId.setZoom(Number(zoom));	
+function zoomMap(pMapId, val) {
+	pMapId.setZoom(Number(val));	
+}
+
+function heapingMap(pMapId, val) {
+	pMapId.setHeaping(Number(val));	
+}
+
+function pitchMap(pMapId, val) {
+	pMapId.setPitch(Number(val));	
 }
 
 function clearMap(pMapId) {
