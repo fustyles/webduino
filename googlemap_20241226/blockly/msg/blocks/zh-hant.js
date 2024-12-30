@@ -1,5 +1,10 @@
 Blockly.Msg["CATGOOGLEMAP"] = "Google地圖";
 Blockly.Msg["GOOGLEMAP"] = "Google地圖";
+Blockly.Msg["GOOGLEMAP_MAP_TYPE"] = "類型";
+Blockly.Msg["GOOGLEMAP_MAP_ROADMAP"] = "道路檢視";
+Blockly.Msg["GOOGLEMAP_MAP_SATELLITE"] = "衛星影像";
+Blockly.Msg["GOOGLEMAP_MAP_HYBRID"] = "混合畫面";
+Blockly.Msg["GOOGLEMAP_MAP_TERRAIN"] = "實際地圖";
 Blockly.Msg["GOOGLEMAP_INITIAL"] = "初始化";
 Blockly.Msg["GOOGLEMAP_LOADED"] = "初始化完成後執行";
 Blockly.Msg["GOOGLEMAP_APIKEY"] = "金鑰";
