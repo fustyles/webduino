@@ -129,13 +129,17 @@ Blockly.JavaScript['googlemap_map_center'] = function (block) {
 
 Blockly.JavaScript['googlemap_map_function'] = function (block) {		
   var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  var zoom = Blockly.JavaScript.valueToCode(block, 'zoom', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var val = Blockly.JavaScript.valueToCode(block, 'val', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var mapid = divid.replace(/"/g,"").replace(/'/g,"");
   var func = block.getFieldValue('func');
   if (func=="zoom")
-    var code = 'zoomMap(map_'+mapid+', '+zoom+');\n';	
+    var code = 'zoomMap(map_'+mapid+', '+val+');\n';	
   else if (func=="clear")
     var code = 'clearMap(map_'+mapid+');\n';
+  else if (func=="heaping")
+    var code = 'zoomMap(map_'+mapid+', '+val+');\n';	
+  else if (func=="pitch")
+    var code = 'zoomMap(map_'+mapid+', '+val+');\n';	
   else
     var code = '';
   return code;
