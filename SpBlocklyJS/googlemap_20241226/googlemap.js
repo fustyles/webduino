@@ -56,6 +56,9 @@ function updateMarkerContent(pID, newContent, type) {
 			else if (type=="title") {
 				mapMarkers[i][2].title = newContent;
 			}
+			else if (type=="zindex") {
+				mapMarkers[i][2].zIndex = Number(newContent);
+			}				
 			else if (type=="icon") {
 				const flagImg = document.createElement("img");
 				flagImg.src = newContent;
