@@ -104,8 +104,8 @@ function zoomMap(pMapId, val) {
 	pMapId.setZoom(Number(val));	
 }
 
-function heapingMap(pMapId, val) {
-	pMapId.setHeaping(Number(val));	
+function headingMap(pMapId, val) {
+	pMapId.setHeading(Number(val));	
 }
 
 function pitchMap(pMapId, val) {
