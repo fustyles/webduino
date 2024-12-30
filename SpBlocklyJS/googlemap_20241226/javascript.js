@@ -137,7 +137,7 @@ Blockly.JavaScript['googlemap_map_function'] = function (block) {
   else if (func=="clear")
     var code = 'clearMap(map_'+mapid+');\n';
   else if (func=="heaping")
-    var code = 'heapingMap(map_'+mapid+', '+val+');\n';	
+    var code = 'headingMap(map_'+mapid+', '+val+');\n';	
   else if (func=="pitch")
     var code = 'pitchMap(map_'+mapid+', '+val+');\n';	
   else
