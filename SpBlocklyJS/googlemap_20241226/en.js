@@ -15,6 +15,7 @@ Blockly.Msg["GOOGLEMAP_TITLE"] = "Title";
 Blockly.Msg["GOOGLEMAP_CONTENT"] = "Content";
 Blockly.Msg["GOOGLEMAP_POINTID"] = "Point ID";
 Blockly.Msg["GOOGLEMAP_POINT_UPDATE_CONTENT"] = "Update content";
+Blockly.Msg["GOOGLEMAP_POINT_UPDATE_CONTENT_HEADER"] = "Update Header Content";
 Blockly.Msg["GOOGLEMAP_POINT_UPDATE_LATITUDE"] = "Update Latitude";
 Blockly.Msg["GOOGLEMAP_POINT_UPDATE_LONGITUDE"] = "Update Longitude";
 Blockly.Msg["GOOGLEMAP_POINT_UPDATE_POSITION"] = "Update Latitude,Longitude";
