@@ -186,7 +186,12 @@ Blockly.Blocks['googlemap_map_center'] = {
     this.appendValueInput("divid")
 	.setAlign(Blockly.ALIGN_RIGHT)	
 	.setCheck("String")
-	.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);		 	  
+	.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);
+    this.appendDummyInput()
+	.appendField(new Blockly.FieldDropdown([			
+		[Blockly.Msg["GOOGLEMAP_MAP_CENTER"],"center"],
+		[Blockly.Msg["GOOGLEMAP_MAP_POSITION"],"position"]	
+	]), "type");	  
     this.appendValueInput("latitude")
 	.setCheck("Number")
 	.setAlign(Blockly.ALIGN_RIGHT)
@@ -211,7 +216,7 @@ Blockly.Blocks['googlemap_map_function'] = {
 		.setCheck("String")
 		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);		 	  
 	this.appendDummyInput()
-		.appendField(new Blockly.FieldDropdown([
+		.appendField(new Blockly.FieldDropdown([			
 			[Blockly.Msg["GOOGLEMAP_MAP_UPDATE_ZOOM"],"zoom"],
 			[Blockly.Msg["GOOGLEMAP_POINT_CLEAR"],"clear"]	
 		], this.validate), "func");
