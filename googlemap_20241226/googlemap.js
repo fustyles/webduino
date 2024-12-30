@@ -95,8 +95,31 @@ function centerMap(pMapId, lat, lng) {
 	pMapId.setCenter(newCenter);	
 }
 
-function zoomMap(pMapId, zoom) {
-	pMapId.setZoom(Number(zoom));	
+function positionMap(pMapId, lat, lng) {
+	const newCenter = new google.maps.LatLng(Number(lat), Number(lng));
+	pMapId.setPosition(newCenter);	
+}
+
+function zoomMap(pMapId, val) {
+	pMapId.setZoom(Number(val));	
+}
+
+function headingMap(pMapId, val) {
+	  pMapId.setPov(
+	    {
+	      heading: Number(val),
+	      pitch: pMapId.getPov().pitch,
+	    },
+	  );	
+}
+
+function pitchMap(pMapId, val) {
+	  pMapId.setPov(
+	    {
+	      heading: pMapId.getPov().heading,
+	      pitch: Number(val),
+	    },
+	  );	
 }
 
 function clearMap(pMapId) {
