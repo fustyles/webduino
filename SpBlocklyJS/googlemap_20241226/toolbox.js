@@ -136,7 +136,7 @@ var catGoogleMap = '<xml>'+
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+
-'    <value name="zoom">'+
+'    <value name="val">'+
 '      <block type="math_number">'+
 '        <field name="NUM">8</field>'+
 '      </block>'+
