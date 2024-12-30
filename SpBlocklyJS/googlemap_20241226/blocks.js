@@ -223,10 +223,9 @@ Blockly.Blocks['googlemap_map_function'] = {
 			[Blockly.Msg["GOOGLEMAP_MAP_UPDATE_HEADING"],"heading"],			
 			[Blockly.Msg["GOOGLEMAP_MAP_UPDATE_PITCH"],"pitch"]			
 		], this.validate), "func");
-    this.appendValueInput("zoom")
+    this.appendValueInput("val")
 	.setCheck("Number")
-	.setAlign(Blockly.ALIGN_RIGHT)
-	.appendField(Blockly.Msg["GOOGLEMAP_ZOOM"]);	  
+	.setAlign(Blockly.ALIGN_RIGHT);	  
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -235,10 +234,10 @@ Blockly.Blocks['googlemap_map_function'] = {
   validate: function(newValue) {
 	 const block = this.sourceBlock_;
 	 if (!block) return;
-	 if (newValue=="zoom")
-		 block.getInput("zoom").setVisible(true);
+	 if (newValue=="zoom"||newValue=="heading"||newValue=="pitch")
+		 block.getInput("val").setVisible(true);
 	 else
-		 block.getInput("zoom").setVisible(false);
+		 block.getInput("val").setVisible(false);
   }
 };
 
