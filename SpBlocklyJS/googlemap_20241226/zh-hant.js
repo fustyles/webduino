@@ -19,6 +19,7 @@ Blockly.Msg["GOOGLEMAP_POINT_UPDATE_LATITUDE"] = "更新緯度";
 Blockly.Msg["GOOGLEMAP_POINT_UPDATE_LONGITUDE"] = "更新經度";
 Blockly.Msg["GOOGLEMAP_POINT_UPDATE_POSITION"] = "更新緯度,經度";
 Blockly.Msg["GOOGLEMAP_POINT_UPDATE_TITLE"] = "更新名稱";
+Blockly.Msg["GOOGLEMAP_POINT_UPDATE_ZINDEX"] = "更新層疊索引";
 Blockly.Msg["GOOGLEMAP_POINT_UPDATE_ICON"] = "更新圖示";
 Blockly.Msg["GOOGLEMAP_MAP_UPDATE_ZOOM"] = "更新範圍縮放值";
 Blockly.Msg["GOOGLEMAP_POINT_OPEN_CONTENT"] = "開啟內容";
