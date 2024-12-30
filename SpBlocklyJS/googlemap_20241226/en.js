@@ -1,5 +1,9 @@
 Blockly.Msg["CATGOOGLEMAP"] = "Google Map";
 Blockly.Msg["GOOGLEMAP"] = "Google Map";
+Blockly.Msg["GOOGLEMAP_MAP_ROADMAP"] = "Roadmap view";
+Blockly.Msg["GOOGLEMAP_MAP_SATELLITE"] = "Satellite view";
+Blockly.Msg["GOOGLEMAP_MAP_HYBRID"] = "Hybrid view";
+Blockly.Msg["GOOGLEMAP_MAP_TERRAIN"] = "Terrain view";
 Blockly.Msg["GOOGLEMAP_INITIAL"] = "Initialize";
 Blockly.Msg["GOOGLEMAP_LOADED"] = "Loaded";
 Blockly.Msg["GOOGLEMAP_APIKEY"] = "API Key";
