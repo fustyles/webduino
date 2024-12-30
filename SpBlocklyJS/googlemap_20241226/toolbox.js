@@ -68,6 +68,35 @@ var catGoogleMap = '<xml>'+
 '    </statement>'+
 '  </block>'+  
 '  <block type="googlemap_loaded">'+
+'  </block>'+
+'  <block type="googlemap_map_center">'+  
+'    <value name="divid">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="latitude">'+
+'      <block type="math_number">'+
+'        <field name="NUM">23.801079</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="longitude">'+
+'      <block type="math_number">'+
+'        <field name="NUM">120.933835</field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+    
+'  <block type="googlemap_map_function">'+
+'    <value name="divid">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="val">'+
+'      <block type="math_number">'+
+'        <field name="NUM">8</field>'+
+'      </block>'+
+'    </value>'+
 '  </block>'+  
 '  <block type="googlemap_addpoint">'+
 '    <value name="pointid">'+
@@ -113,34 +142,5 @@ var catGoogleMap = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
-'  <block type="googlemap_map_center">'+  
-'    <value name="divid">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+
-'    </value>'+
-'    <value name="latitude">'+
-'      <block type="math_number">'+
-'        <field name="NUM">23.801079</field>'+
-'      </block>'+
-'    </value>'+
-'    <value name="longitude">'+
-'      <block type="math_number">'+
-'        <field name="NUM">120.933835</field>'+
-'      </block>'+
-'    </value>'+
-'  </block>'+    
-'  <block type="googlemap_map_function">'+
-'    <value name="divid">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+
-'    </value>'+
-'    <value name="val">'+
-'      <block type="math_number">'+
-'        <field name="NUM">8</field>'+
-'      </block>'+
-'    </value>'+
-'  </block>'+  
 '</category>'+
 '</xml>';
