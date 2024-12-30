@@ -1,5 +1,6 @@
 Blockly.Msg["CATGOOGLEMAP"] = "Google地图";
 Blockly.Msg["GOOGLEMAP"] = "Google地图";
+Blockly.Msg["GOOGLEMAP_MAP_TYPE"] = "类型";
 Blockly.Msg["GOOGLEMAP_MAP_ROADMAP"] = "道路视图";
 Blockly.Msg["GOOGLEMAP_MAP_SATELLITE"] = "卫星影像";
 Blockly.Msg["GOOGLEMAP_MAP_HYBRID"] = "混合画面";
