@@ -54,7 +54,7 @@ Blockly.JavaScript['googlemap_addstreetview'] = function (block) {
   var code = ''+
 	'let position_map_'+mapid+' = {lat: '+latitude+', lng: '+longitude+'};\n'+
 	'map_'+mapid+' = new google.maps.StreetViewPanorama(document.getElementById("gamediv_"+'+divid+'), {\n'+
-	'  center: position_map_'+mapid+',\n'+
+	'  position: position_map_'+mapid+',\n'+
 	'  mapId: "mapid_"+'+divid+',\n'+
 	'  pov: {\n'+
 	'       heading: '+Number(heading)+',\n'+
