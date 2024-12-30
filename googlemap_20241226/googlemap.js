@@ -38,7 +38,10 @@ function updateMarkerContent(pID, newContent, type) {
 		if ("point_"+pID==mapMarkers[i][0]) {
 			if (type=="content") {
 				mapMarkers[i][3].setContent(newContent);
-			} 
+			}
+			else if (type=="headercontent") {
+				mapMarkers[i][3].setHeaderContent(newContent);
+			}				
 			else if (type === "latitude") {
 				mapMarkers[i][4].lat = Number(newContent);
 				mapMarkers[i][2].position = mapMarkers[i][4];					
