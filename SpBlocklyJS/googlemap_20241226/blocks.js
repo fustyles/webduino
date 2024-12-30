@@ -6,7 +6,7 @@ Blockly.Blocks['googlemap_initial'] = {
 	this.appendValueInput("key")
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_APIKEY"]);
+		.appendField(Blockly.Msg["GOOGLEMAP_APIKEY"]);	  
 	this.appendStatementInput("statement")
 		.appendField(Blockly.Msg["GOOGLEMAP_ADDMAP"]);
 	this.setInputsInline(true);
@@ -38,7 +38,14 @@ Blockly.Blocks['googlemap_addmap'] = {
 	this.appendValueInput("divid")
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);	  
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["GOOGLEMAP_MAP_ROADMAP"],"roadmap"],
+			[Blockly.Msg["GOOGLEMAP_MAP_SATELLITE"],"satellite"],
+			[Blockly.Msg["GOOGLEMAP_MAP_HYBRID"],"hybrid"],
+			[Blockly.Msg["GOOGLEMAP_MAP_TERRAIN"],"terrain"]
+		]), "type");	  
 	this.appendValueInput("latitude")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
@@ -154,7 +161,7 @@ Blockly.Blocks['googlemap_map_center'] = {
     this.appendValueInput("longitude")
 	.setCheck("Number")
 	.setAlign(Blockly.ALIGN_RIGHT)
-	.appendField(Blockly.Msg["GOOGLEMAP_LONGITUDE"]);  
+	.appendField(Blockly.Msg["GOOGLEMAP_LONGITUDE"]);	  
     this.setInputsInline(false);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
