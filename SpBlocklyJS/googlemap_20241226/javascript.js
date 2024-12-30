@@ -42,6 +42,29 @@ Blockly.JavaScript['googlemap_addmap'] = function (block) {
   return code; 
 };
 
+Blockly.JavaScript['googlemap_addstreetview'] = function (block) {
+  var latitude = Blockly.JavaScript.valueToCode(block, 'latitude', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var longitude = Blockly.JavaScript.valueToCode(block, 'longitude', Blockly.JavaScript.ORDER_ATOMIC)||"";	
+  var heading = Blockly.JavaScript.valueToCode(block, 'heading', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var pitch = Blockly.JavaScript.valueToCode(block, 'pitch', Blockly.JavaScript.ORDER_ATOMIC)||"";	
+  var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+  
+  Blockly.JavaScript.definitions_['googlemap_'+divid] = 'let map_'+mapid+';\n';  
+  var code = ''+
+	'let position_map_'+mapid+' = {lat: '+latitude+', lng: '+longitude+'};\n'+
+	'map_'+mapid+' = new google.maps.StreetViewPanorama(document.getElementById("gamediv_"+'+divid+'), {\n'+
+	'  center: position_map_'+mapid+',\n'+
+	'  mapId: "mapid_"+'+divid+',\n'+
+	'  pov: {\n'+
+	'       heading: '+Number(heading)+',\n'+
+	'       pitch: '+Number(pitch)+',\n'+
+	'  },  
+	'});\n';
+
+  return code; 
+};
+
 Blockly.JavaScript['googlemap_addpoint'] = function (block) {
   var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";		
   var pointid = Blockly.JavaScript.valueToCode(block, 'pointid', Blockly.JavaScript.ORDER_ATOMIC)||"";
