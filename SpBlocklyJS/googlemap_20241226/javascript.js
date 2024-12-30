@@ -36,7 +36,7 @@ Blockly.JavaScript['googlemap_addmap'] = function (block) {
 	'  zoom: '+zoom+',\n'+
 	'  center: position_map_'+mapid+',\n'+
 	'  mapId: "mapid_"+'+divid+',\n'+
-	'  mapTypeId: "'+type+"",\n'+	  
+	'  mapTypeId: "'+type+'",\n'+	  
 	'});\n';
 
   return code; 
