@@ -1,7 +1,6 @@
 Blockly.JavaScript['googlemap_initial'] = function (block) {
   var key = Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var statement = Blockly.JavaScript.statementToCode(block, 'statement');
-  key = key.replace(/"/g,"").replace(/'/g,"");
 
   Blockly.JavaScript.definitions_['googlemap_mapMarkers'] = 'let mapMarkers = [];\n';
 
@@ -24,7 +23,7 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 	     '		}\n'+
 	     '	}\n'+
 	     '}\n'+
-	     'var url = "https://maps.googleapis.com/maps/api/js?key='+key+'&callback=initMap&v=weekly&libraries=marker";\n'+
+	     'var url = "https://maps.googleapis.com/maps/api/js?key="+'+key+'+"&callback=initMap&v=weekly&libraries=marker";\n'+
 	     'var s = document.createElement("script");\n'+
 	     's.async = true;\n'+
 	     's.defer = true;\n'+
