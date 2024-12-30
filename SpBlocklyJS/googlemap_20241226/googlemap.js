@@ -95,6 +95,11 @@ function centerMap(pMapId, lat, lng) {
 	pMapId.setCenter(newCenter);	
 }
 
+function positionMap(pMapId, lat, lng) {
+	const newCenter = new google.maps.LatLng(Number(lat), Number(lng));
+	pMapId.setPosition(newCenter);	
+}
+
 function zoomMap(pMapId, zoom) {
 	pMapId.setZoom(Number(zoom));	
 }
