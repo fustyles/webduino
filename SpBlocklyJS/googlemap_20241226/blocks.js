@@ -40,6 +40,8 @@ Blockly.Blocks['googlemap_addmap'] = {
 		.setCheck("String")
 		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);
 	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+        	.appendField(Blockly.Msg["GOOGLEMAP_MAP_TYPE"])			
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["GOOGLEMAP_MAP_ROADMAP"],"roadmap"],
 			[Blockly.Msg["GOOGLEMAP_MAP_SATELLITE"],"satellite"],
