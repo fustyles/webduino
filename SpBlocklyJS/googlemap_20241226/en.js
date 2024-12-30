@@ -9,6 +9,7 @@ Blockly.Msg["GOOGLEMAP_INITIAL"] = "Initialize";
 Blockly.Msg["GOOGLEMAP_LOADED"] = "Loaded";
 Blockly.Msg["GOOGLEMAP_APIKEY"] = "API Key";
 Blockly.Msg["GOOGLEMAP_ADDMAP"] = "Add Map";
+Blockly.Msg["GOOGLEMAP_ADDSTREETVIEW"] = "Add Street View";
 Blockly.Msg["GOOGLEMAP_LATITUDE_CENTER"] = "Center Latitude";
 Blockly.Msg["GOOGLEMAP_LONGITUDE_CENTER"] = "Center Longitude";
 Blockly.Msg["GOOGLEMAP_ZOOM"] = "Zoom Level";
