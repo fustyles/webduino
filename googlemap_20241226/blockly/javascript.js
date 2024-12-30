@@ -63,9 +63,9 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'			if (type=="content") {\n'+
 			'				mapMarkers[i][3].setContent(newContent);\n'+
 			'			}\n'+
-			'else if (type=="headercontent") {\n'+
-			'	mapMarkers[i][3].setHeaderContent(newContent);\n'+
-			'}\n'+
+			'                       else if (type=="headercontent") {\n'+
+			'	                        mapMarkers[i][3].setHeaderContent(newContent);\n'+
+			'                       }\n'+
 			'			else if (type === "latitude") {\n'+
 			'				mapMarkers[i][4].lat = Number(newContent);\n'+
 			'				mapMarkers[i][2].position = mapMarkers[i][4];\n'+			
@@ -111,6 +111,33 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'		}\n'+
 			'	}\n'+
 			'}\n'+
+			'function centerMap(pMapId, lat, lng) {\n'+
+			'	const newCenter = new google.maps.LatLng(Number(lat), Number(lng));\n'+
+			'	pMapId.setCenter(newCenter);\n'+
+			'}\n'+
+			'function positionMap(pMapId, lat, lng) {\n'+
+			'	const newCenter = new google.maps.LatLng(Number(lat), Number(lng));\n'+
+			'	pMapId.setPosition(newCenter);\n'+
+			'}\n'+
+			'function zoomMap(pMapId, val) {\n'+
+			'	pMapId.setZoom(Number(val));\n'+	
+			'}\n'+
+			'function headingMap(pMapId, val) {\n'+
+			'	  pMapId.setPov(\n'+
+			'	    {\n'+
+			'	      heading: Number(val),\n'+
+			'	      pitch: pMapId.getPov().pitch,\n'+
+			'	    },\n'+
+			'	  );\n'+
+			'}\n'+
+			'function pitchMap(pMapId, val) {\n'+
+			'	  pMapId.setPov(\n'+
+			'	    {\n'+
+			'	      heading: pMapId.getPov().heading,\n'+
+			'	      pitch: Number(val),\n'+
+			'	    },\n'+
+			'	  );\n'+
+			'}\n'+
 			'function clearMap(pMapId) {\n'+
 			'	for (var i=0;i<mapMarkers.length;i++) {\n'+
 			'		if (pMapId==mapMarkers[i][1]) {\n'+
@@ -119,21 +146,16 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'			i--;\n'+
 			'		}\n'+
 			'	}\n'+
-			'}\n'+
-			'function zoomMap(pMapId, zoom) {\n'+
-			'	pMapId.setZoom(Number(zoom));\n'+
-			'}\n'+
-			'function centerMap(pMapId, lat, lng) {\n'+
-			'	const newCenter = new google.maps.LatLng(Number(lat), Number(lng));\n'+
-			'	pMapId.setCenter(newCenter);\n'+
-			'}\n'+
+			'}\n'+  
 			'window.addMapPoint = addMapPoint;\n'+
 			'window.clearMarker = clearMarker;\n'+
 			'window.updateMarkerContent = updateMarkerContent;\n'+
 			'window.openMarkerContent = openMarkerContent;\n'+
 			'window.closeMarkerContent = closeMarkerContent;\n'+
 			'window.centerMap = centerMap;\n'+
-			'window.zoomMap = zoomMap;\n'+	  
+			'window.zoomMap = zoomMap;\n'+	
+			'window.headingMap = headingMap;\n'+
+			'window.pitchMap = pitchMap;\n'+				
 			'window.clearMap = clearMap;\n'+
 	  		'if (typeof loadedMap === "function") loadedMap();\n'+
 	     '}\n'+
@@ -142,15 +164,8 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
   return code;
 };
 
-Blockly.JavaScript['googlemap_loaded'] = function (block) {
-  var statement = Blockly.JavaScript.statementToCode(block, 'statement');
-  var code = 'async function loadedMap() {\n'+statement+'\n}\n'+
-	     'window.loadedMap = loadedMap;\n';
-  return code;
-};
-
 Blockly.JavaScript['googlemap_addmap'] = function (block) {
-  var type = block.getFieldValue('type');	
+  var type = block.getFieldValue('type');
   var latitude = Blockly.JavaScript.valueToCode(block, 'latitude', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var longitude = Blockly.JavaScript.valueToCode(block, 'longitude', Blockly.JavaScript.ORDER_ATOMIC)||"";	
   var zoom = Blockly.JavaScript.valueToCode(block, 'zoom', Blockly.JavaScript.ORDER_ATOMIC)||"";	
@@ -164,7 +179,30 @@ Blockly.JavaScript['googlemap_addmap'] = function (block) {
 	'  zoom: '+zoom+',\n'+
 	'  center: position_map_'+mapid+',\n'+
 	'  mapId: "mapid_"+'+divid+',\n'+
-	'  mapTypeId: "'+type+'",\n'+		  
+	'  mapTypeId: "'+type+'",\n'+	  
+	'});\n';
+
+  return code; 
+};
+
+Blockly.JavaScript['googlemap_addstreetview'] = function (block) {
+  var latitude = Blockly.JavaScript.valueToCode(block, 'latitude', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var longitude = Blockly.JavaScript.valueToCode(block, 'longitude', Blockly.JavaScript.ORDER_ATOMIC)||"";	
+  var heading = Blockly.JavaScript.valueToCode(block, 'heading', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var pitch = Blockly.JavaScript.valueToCode(block, 'pitch', Blockly.JavaScript.ORDER_ATOMIC)||"";	
+  var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+  
+  Blockly.JavaScript.definitions_['googlemap_'+divid] = 'let map_'+mapid+';\n';  
+  var code = ''+
+	'let position_map_'+mapid+' = {lat: '+latitude+', lng: '+longitude+'};\n'+
+	'map_'+mapid+' = new google.maps.StreetViewPanorama(document.getElementById("gamediv_"+'+divid+'), {\n'+
+	'  position: position_map_'+mapid+',\n'+
+	'  mapId: "mapid_"+'+divid+',\n'+
+	'  pov: {\n'+
+	'       heading: '+Number(heading)+',\n'+
+	'       pitch: '+Number(pitch)+',\n'+
+	'  },\n'+
 	'});\n';
 
   return code; 
@@ -218,24 +256,33 @@ Blockly.JavaScript['googlemap_point_function'] = function (block) {
 
 Blockly.JavaScript['googlemap_map_center'] = function (block) {
   var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var type = block.getFieldValue('type');
   var latitude = Blockly.JavaScript.valueToCode(block, 'latitude', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var longitude = Blockly.JavaScript.valueToCode(block, 'longitude', Blockly.JavaScript.ORDER_ATOMIC)||"";	
   var mapid = divid.replace(/"/g,"").replace(/'/g,"");
-  
-  var code = 'centerMap(map_'+mapid+', '+latitude+', '+longitude+');\n';
-  
+
+  if (type=="center")
+  	var code = 'centerMap(map_'+mapid+', '+latitude+', '+longitude+');\n';
+  else if (type=="position")
+  	var code = 'positionMap(map_'+mapid+', '+latitude+', '+longitude+');\n';	  
+  else
+  	var code = '';	  
   return code;
 };
 
 Blockly.JavaScript['googlemap_map_function'] = function (block) {		
   var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  var zoom = Blockly.JavaScript.valueToCode(block, 'zoom', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var val = Blockly.JavaScript.valueToCode(block, 'val', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var mapid = divid.replace(/"/g,"").replace(/'/g,"");
   var func = block.getFieldValue('func');
   if (func=="zoom")
-    var code = 'zoomMap(map_'+mapid+', '+zoom+');\n';	
+    var code = 'zoomMap(map_'+mapid+', '+val+');\n';	
   else if (func=="clear")
     var code = 'clearMap(map_'+mapid+');\n';
+  else if (func=="heading")
+    var code = 'headingMap(map_'+mapid+', '+val+');\n';	
+  else if (func=="pitch")
+    var code = 'pitchMap(map_'+mapid+', '+val+');\n';	
   else
     var code = '';
   return code;
