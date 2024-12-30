@@ -38,7 +38,16 @@ Blockly.Blocks['googlemap_addmap'] = {
 	this.appendValueInput("divid")
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);	  
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+        	.appendField(Blockly.Msg["GOOGLEMAP_MAP_TYPE"])			
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["GOOGLEMAP_MAP_ROADMAP"],"roadmap"],
+			[Blockly.Msg["GOOGLEMAP_MAP_SATELLITE"],"satellite"],
+			[Blockly.Msg["GOOGLEMAP_MAP_HYBRID"],"hybrid"],
+			[Blockly.Msg["GOOGLEMAP_MAP_TERRAIN"],"terrain"]
+		]), "type");		  
 	this.appendValueInput("latitude")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
