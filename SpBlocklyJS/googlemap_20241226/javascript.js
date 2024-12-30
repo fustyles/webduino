@@ -136,7 +136,7 @@ Blockly.JavaScript['googlemap_map_function'] = function (block) {
     var code = 'zoomMap(map_'+mapid+', '+val+');\n';	
   else if (func=="clear")
     var code = 'clearMap(map_'+mapid+');\n';
-  else if (func=="heaping")
+  else if (func=="heading")
     var code = 'headingMap(map_'+mapid+', '+val+');\n';	
   else if (func=="pitch")
     var code = 'pitchMap(map_'+mapid+', '+val+');\n';	
