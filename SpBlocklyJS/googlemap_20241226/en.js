@@ -29,6 +29,7 @@ Blockly.Msg["GOOGLEMAP_MAP_UPDATE_HEADING"] = "Update Heading (0~360)";
 Blockly.Msg["GOOGLEMAP_MAP_UPDATE_PITCH"] = "Update Pitch (-90~90)";
 Blockly.Msg["GOOGLEMAP_MAP_UPDATE_ZOOM"] = "Update Zoom Level";
 Blockly.Msg["GOOGLEMAP_MAP_POINTS_CLEAR"] = "Clear All Markers";
+Blockly.Msg["GOOGLEMAP_POINT_CLEAR"] = "Clear Marker";
 Blockly.Msg["GOOGLEMAP_POINT_OPEN_CONTENT"] = "Open Content";
 Blockly.Msg["GOOGLEMAP_POINT_CLOSE_CONTENT"] = "Close Content";
 Blockly.Msg["GOOGLEMAP_POINT_UPDATE_CONTENT"] = "Update Content";
