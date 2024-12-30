@@ -68,6 +68,8 @@ Blockly.JavaScript['googlemap_point_function'] = function (block) {
     var code = 'updateMarkerContent('+pointid+', '+content+', "position");\n';
   else if (func=="update_title")
     var code = 'updateMarkerContent('+pointid+', '+content+', "title");\n';
+  else if (func=="update_zindex")
+    var code = 'updateMarkerContent('+pointid+', '+content+', "zindex");\n';	  
   else if (func=="update_icon")
     var code = 'updateMarkerContent('+pointid+', '+content+', "icon");\n';	  
   else if (func=="open_content")
