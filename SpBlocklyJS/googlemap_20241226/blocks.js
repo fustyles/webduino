@@ -85,7 +85,7 @@ Blockly.Blocks['googlemap_addpoint'] = {
 	this.appendValueInput("title")
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_TITLE"]);
+		.appendField(Blockly.Msg["GOOGLEMAP_TITLE"]);	  
 	this.appendValueInput("content")
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("String")
@@ -112,6 +112,7 @@ Blockly.Blocks['googlemap_point_function'] = {
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_LONGITUDE"],"update_longitude"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_POSITION"],"update_position"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_TITLE"],"update_title"],
+			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_ZINDEX"],"update_zindex"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_ICON"],"update_icon"],			
 			[Blockly.Msg["GOOGLEMAP_POINT_OPEN_CONTENT"],"open_content"],
 			[Blockly.Msg["GOOGLEMAP_POINT_CLOSE_CONTENT"],"close_content"],			
