@@ -108,6 +108,7 @@ Blockly.Blocks['googlemap_point_function'] = {
 	this.appendDummyInput()
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_CONTENT"],"update_content"],
+			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_CONTENT_HEADER"],"update_headercontent"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_LATITUDE"],"update_latitude"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_LONGITUDE"],"update_longitude"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_POSITION"],"update_position"],
