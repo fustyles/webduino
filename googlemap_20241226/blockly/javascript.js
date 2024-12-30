@@ -147,7 +147,7 @@ Blockly.JavaScript['googlemap_loaded'] = function (block) {
   return code;
 };
 
-Blockly.JavaScript['googlemap_addmap'] = function (block) {;
+Blockly.JavaScript['googlemap_addmap'] = function (block) {
   var latitude = Blockly.JavaScript.valueToCode(block, 'latitude', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var longitude = Blockly.JavaScript.valueToCode(block, 'longitude', Blockly.JavaScript.ORDER_ATOMIC)||"";	
   var zoom = Blockly.JavaScript.valueToCode(block, 'zoom', Blockly.JavaScript.ORDER_ATOMIC)||"";	
