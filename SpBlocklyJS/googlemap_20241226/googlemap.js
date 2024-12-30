@@ -105,11 +105,21 @@ function zoomMap(pMapId, val) {
 }
 
 function headingMap(pMapId, val) {
-	pMapId.setHeading(Number(val));	
+	  pMapId.setPov(
+	    {
+	      heading: Number(val),
+	      pitch: pMapId.getPov().pitch,
+	    },
+	  );	
 }
 
 function pitchMap(pMapId, val) {
-	pMapId.setPitch(Number(val));	
+	  pMapId.setPov(
+	    {
+	      heading: pMapId.getPov().heading,
+	      pitch: Number(val),
+	    },
+	  );	
 }
 
 function clearMap(pMapId) {
