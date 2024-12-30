@@ -145,6 +145,7 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'window.openMarkerContent = openMarkerContent;\n'+
 			'window.closeMarkerContent = closeMarkerContent;\n'+
 			'window.centerMap = centerMap;\n'+
+			'window.positionMap = positionMap;\n'+	  
 			'window.zoomMap = zoomMap;\n'+	
 			'window.headingMap = headingMap;\n'+
 			'window.pitchMap = pitchMap;\n'+				
