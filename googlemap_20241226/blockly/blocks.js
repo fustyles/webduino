@@ -130,7 +130,7 @@ Blockly.Blocks['googlemap_point_function'] = {
   validate: function(newValue) {
 	 const block = this.sourceBlock_;
 	 if (!block) return;
-	 if (newValue=="update_content"||newValue=="update_latitude"||newValue=="update_longitude"||newValue=="update_position"||newValue=="update_title"||newValue=="update_icon")
+	 if (newValue=="update_content"||newValue=="update_latitude"||newValue=="update_longitude"||newValue=="update_position"||newValue=="update_title"||newValue=="update_zindex"||newValue=="update_icon")
 		 block.getInput("content").setVisible(true);
 	 else
 		 block.getInput("content").setVisible(false);
