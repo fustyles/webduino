@@ -1,5 +1,6 @@
 Blockly.Msg["CATGOOGLEMAP"] = "Google Map";
 Blockly.Msg["GOOGLEMAP"] = "Google Map";
+Blockly.Msg["GOOGLEMAP_MAP_TYPE"] = "Type";
 Blockly.Msg["GOOGLEMAP_MAP_ROADMAP"] = "Roadmap view";
 Blockly.Msg["GOOGLEMAP_MAP_SATELLITE"] = "Satellite view";
 Blockly.Msg["GOOGLEMAP_MAP_HYBRID"] = "Hybrid view";
