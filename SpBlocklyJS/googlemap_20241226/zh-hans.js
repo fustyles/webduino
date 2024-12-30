@@ -29,6 +29,7 @@ Blockly.Msg["GOOGLEMAP_MAP_UPDATE_HEADING"] = "更新视线方位角(0~360)";
 Blockly.Msg["GOOGLEMAP_MAP_UPDATE_PITCH"] = "更新视线倾斜角(-90~90)";
 Blockly.Msg["GOOGLEMAP_MAP_UPDATE_ZOOM"] = "更新范围缩放值";
 Blockly.Msg["GOOGLEMAP_MAP_POINTS_CLEAR"] = "清除所有位置标记";
+Blockly.Msg["GOOGLEMAP_POINT_CLEAR"] = "清除位置标记";
 Blockly.Msg["GOOGLEMAP_POINT_OPEN_CONTENT"] = "开启内容";
 Blockly.Msg["GOOGLEMAP_POINT_CLOSE_CONTENT"] = "关闭内容";
 Blockly.Msg["GOOGLEMAP_POINT_UPDATE_CONTENT"] = "更新内容";
