@@ -240,13 +240,3 @@ Blockly.Blocks['googlemap_map_function'] = {
 		 block.getInput("val").setVisible(false);
   }
 };
-
-
-
-
-
-
-
-
-
-
