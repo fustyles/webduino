@@ -188,6 +188,7 @@ Blockly.Blocks['googlemap_map_center'] = {
 	.setCheck("String")
 	.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);
     this.appendDummyInput()
+	.setAlign(Blockly.ALIGN_RIGHT)	    
 	.appendField(new Blockly.FieldDropdown([			
 		[Blockly.Msg["GOOGLEMAP_MAP_CENTER"],"center"],
 		[Blockly.Msg["GOOGLEMAP_MAP_POSITION"],"position"]	
