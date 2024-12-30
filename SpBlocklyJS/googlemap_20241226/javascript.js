@@ -59,7 +59,7 @@ Blockly.JavaScript['googlemap_addstreetview'] = function (block) {
 	'  pov: {\n'+
 	'       heading: '+Number(heading)+',\n'+
 	'       pitch: '+Number(pitch)+',\n'+
-	'  },  
+	'  },\n'+
 	'});\n';
 
   return code; 
