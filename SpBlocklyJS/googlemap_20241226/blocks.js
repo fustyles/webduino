@@ -220,8 +220,8 @@ Blockly.Blocks['googlemap_map_function'] = {
 		.appendField(new Blockly.FieldDropdown([			
 			[Blockly.Msg["GOOGLEMAP_MAP_UPDATE_ZOOM"],"zoom"],			
 			[Blockly.Msg["GOOGLEMAP_MAP_POINTS_CLEAR"],"clear"],
-			[Blockly.Msg["GOOGLEMAP_MAP_UPDATE_HEADING"],"zoom"],			
-			[Blockly.Msg["GOOGLEMAP_MAP_UPDATE_PITCH"],"clear"]			
+			[Blockly.Msg["GOOGLEMAP_MAP_UPDATE_HEADING"],"heading"],			
+			[Blockly.Msg["GOOGLEMAP_MAP_UPDATE_PITCH"],"pitch"]			
 		], this.validate), "func");
     this.appendValueInput("zoom")
 	.setCheck("Number")
