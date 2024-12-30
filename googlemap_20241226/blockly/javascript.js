@@ -164,6 +164,13 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['googlemap_loaded'] = function (block) {
+  var statement = Blockly.JavaScript.statementToCode(block, 'statement');
+  var code = 'async function loadedMap() {\n'+statement+'\n}\n'+
+	     'window.loadedMap = loadedMap;\n';
+  return code;
+};
+
 Blockly.JavaScript['googlemap_addmap'] = function (block) {
   var type = block.getFieldValue('type');
   var latitude = Blockly.JavaScript.valueToCode(block, 'latitude', Blockly.JavaScript.ORDER_ATOMIC)||"";
