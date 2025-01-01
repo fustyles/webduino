@@ -41,11 +41,17 @@ function updateMarkerContent(pID, newContent, type) {
 				mapMarkers[i][3].setHeaderContent(newContent);
 			} else if (type === "update_latitude") {
 				mapMarkers[i][4].lat = Number(newContent);
+				mapMarkers[i][4].lng = mapMarkers[i][2].position.lng;
+				mapMarkers[i][4].altitude = mapMarkers[i][2].position.altitude;
 				mapMarkers[i][2].position = mapMarkers[i][4];					
 			} else if (type === "update_longitude") {
+				mapMarkers[i][4].lat = mapMarkers[i][2].position.lat;
 				mapMarkers[i][4].lng = Number(newContent);
+				mapMarkers[i][4].altitude = mapMarkers[i][2].position.altitude;
 				mapMarkers[i][2].position = mapMarkers[i][4];
 			} else if (type === "update_altitude") {
+				mapMarkers[i][4].lat = mapMarkers[i][2].position.lat;
+				mapMarkers[i][4].lng = mapMarkers[i][2].position.lng;
 				mapMarkers[i][4].altitude = Number(newContent);
 				mapMarkers[i][2].position = mapMarkers[i][4];					
 			} else if (type === "update_position") {
@@ -83,17 +89,13 @@ function getMarkerSetting(pID, newContent, property) {
 	for (var i=0;i<mapMarkers.length;i++) {
 		if ("point_"+pID==mapMarkers[i][0]) {			
 			if (property=="latitude") {
-				const position = mapMarkers[i][2].position;
-				return position.lat;
+				return mapMarkers[i][2].position.lat;
 			} else if (property=="longtitude") {
-				const position = mapMarkers[i][2].position;
-				return position.lng;
+				return mapMarkers[i][2].position.lng;
 			} else if (property=="altitude") {
-				const position = mapMarkers[i][2].position;
-				return position.altitude;				
+				return mapMarkers[i][2].position.altitude;				
 			} else if (property=="latlngalt") {
-				const position = mapMarkers[i][2].position;
-				return [position.lat, position.lng, position.altitude];
+				return [mapMarkers[i][2].position.lat, mapMarkers[i][2].position.lng, mapMarkers[i][2].position.altitude];
 			}			
 		}
 	}
