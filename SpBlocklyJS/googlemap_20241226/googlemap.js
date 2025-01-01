@@ -79,14 +79,14 @@ function getMarkerSetting(pID, newContent, property) {
 	for (var i=0;i<mapMarkers.length;i++) {
 		if ("point_"+pID==mapMarkers[i][0]) {
 			if (property=="latitude") {
-				var latLng = mapMarkers[i][2].getPosition();
-				return latLng.lat();
+				var position = mapMarkers[i][2].position;
+				return position.lat;
 			} else if (property=="longtitude") {
-				var latLng = mapMarkers[i][2].getPosition();
-				return latLng.lng();
+				var position = mapMarkers[i][2].position;
+				return position.lng();
 			} else if (property=="latLng") {
-				var latLng = mapMarkers[i][2].getPosition();
-				return [latLng.lat(), latLng.lng()];
+				var position = mapMarkers[i][2].position;
+				return [position.lat(), position.lng()];
 			}			
 		}
 	}
