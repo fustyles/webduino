@@ -41,17 +41,17 @@ function updateMarkerContent(pID, newContent, type) {
 				mapMarkers[i][3].setHeaderContent(newContent);
 			} else if (type === "update_latitude") {
 				mapMarkers[i][4].lat = Number(newContent);
-				//mapMarkers[i][4].lng = mapMarkers[i][2].position.lng;
-				//mapMarkers[i][4].altitude = mapMarkers[i][2].position.altitude;
+				mapMarkers[i][4].lng = mapMarkers[i][2].position.lng;
+				mapMarkers[i][4].altitude = mapMarkers[i][2].position.altitude;
 				mapMarkers[i][2].position = mapMarkers[i][4];					
 			} else if (type === "update_longitude") {
-				//mapMarkers[i][4].lat = mapMarkers[i][2].position.lat;
+				mapMarkers[i][4].lat = mapMarkers[i][2].position.lat;
 				mapMarkers[i][4].lng = Number(newContent);
-				//mapMarkers[i][4].altitude = mapMarkers[i][2].position.altitude;
+				mapMarkers[i][4].altitude = mapMarkers[i][2].position.altitude;
 				mapMarkers[i][2].position = mapMarkers[i][4];
 			} else if (type === "update_altitude") {
-				//mapMarkers[i][4].lat = mapMarkers[i][2].position.lat;
-				//mapMarkers[i][4].lng = mapMarkers[i][2].position.lng;
+				mapMarkers[i][4].lat = mapMarkers[i][2].position.lat;
+				mapMarkers[i][4].lng = mapMarkers[i][2].position.lng;
 				mapMarkers[i][4].altitude = Number(newContent);
 				mapMarkers[i][2].position = mapMarkers[i][4];					
 			} else if (type === "update_position") {
