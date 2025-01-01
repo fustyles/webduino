@@ -102,12 +102,13 @@ Blockly.Blocks['googlemap_addstreetview'] = {
 Blockly.Blocks['googlemap_map_event_add'] = {
   init: function () {
 	this.appendDummyInput()
-		.appendField(Blockly.Msg["GOOGLEMAP"])  
-		.appendField(Blockly.Msg["GOOGLEMAP_MAP_EVENT_ADD"]);
+		.appendField(Blockly.Msg["GOOGLEMAP"]);
 	this.appendValueInput("divid")
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);	  
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);
+	this.appendDummyInput() 
+		.appendField(Blockly.Msg["GOOGLEMAP_MAP_EVENT_ADD"]);	  
 	this.appendDummyInput()
 		.setAlign(Blockly.ALIGN_RIGHT)			
 		.appendField(new Blockly.FieldDropdown([
@@ -145,12 +146,13 @@ Blockly.Blocks['googlemap_map_event_add'] = {
 Blockly.Blocks['googlemap_map_event_remove'] = {
   init: function () {
 	this.appendDummyInput()
-		.appendField(Blockly.Msg["GOOGLEMAP"])  
-		.appendField(Blockly.Msg["GOOGLEMAP_MAP_EVENT_REMOVE"]);
+		.appendField(Blockly.Msg["GOOGLEMAP"]);
 	this.appendValueInput("divid")
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);	  
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);
+	this.appendDummyInput() 
+		.appendField(Blockly.Msg["GOOGLEMAP_MAP_EVENT_REMOVE"]);	  
 	this.appendDummyInput()
 		.setAlign(Blockly.ALIGN_RIGHT)			
 		.appendField(new Blockly.FieldDropdown([
@@ -225,12 +227,13 @@ Blockly.Blocks['googlemap_addpoint'] = {
 Blockly.Blocks['googlemap_point_event_add'] = {
   init: function () {
 	this.appendDummyInput()
-		.appendField(Blockly.Msg["GOOGLEMAP"])  
-		.appendField(Blockly.Msg["GOOGLEMAP_POINT_EVENT_ADD"]);
+		.appendField(Blockly.Msg["GOOGLEMAP"]);
 	this.appendValueInput("pointid")
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_POINTID"]);	  
+		.appendField(Blockly.Msg["GOOGLEMAP_POINTID"]);
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["GOOGLEMAP_POINT_EVENT_ADD"]);	  
 	this.appendDummyInput()
 		.setAlign(Blockly.ALIGN_RIGHT)			
 		.appendField(new Blockly.FieldDropdown([
@@ -252,12 +255,13 @@ Blockly.Blocks['googlemap_point_event_add'] = {
 Blockly.Blocks['googlemap_point_event_remove'] = {
   init: function () {
 	this.appendDummyInput()
-		.appendField(Blockly.Msg["GOOGLEMAP"])  
-		.appendField(Blockly.Msg["GOOGLEMAP_POINT_EVENT_REMOVE"]);
+		.appendField(Blockly.Msg["GOOGLEMAP"]);
 	this.appendValueInput("pointid")
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_POINTID"]);	  
+		.appendField(Blockly.Msg["GOOGLEMAP_POINTID"]);
+	this.appendDummyInput() 
+		.appendField(Blockly.Msg["GOOGLEMAP_POINT_EVENT_REMOVE"]);	  
 	this.appendDummyInput()
 		.setAlign(Blockly.ALIGN_RIGHT)			
 		.appendField(new Blockly.FieldDropdown([
