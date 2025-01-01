@@ -75,6 +75,24 @@ function updateMarkerContent(pID, newContent, type) {
 	}
 }
 
+function getMarkerSetting(pID, newContent, property) {
+	for (var i=0;i<mapMarkers.length;i++) {
+		if ("point_"+pID==mapMarkers[i][0]) {
+			if (property=="latitude") {
+				var latLng = mapMarkers[i][2].getPosition();
+				return latLng.lat();
+			} else if (property=="longtitude") {
+				var latLng = mapMarkers[i][2].getPosition();
+				return latLng.lng();
+			} else if (property=="latLng") {
+				var latLng = mapMarkers[i][2].getPosition();
+				return [latLng.lat(), latLng.lng()];
+			}			
+		}
+	}
+	return null;
+}
+
 function updateMapContent(pMapId, val, type) {
 	if (type=="zoom") {
 		pMapId.setZoom(Number(val));
