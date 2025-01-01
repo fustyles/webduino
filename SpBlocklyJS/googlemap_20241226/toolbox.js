@@ -69,6 +69,20 @@ var catGoogleMap = '<xml>'+
 '  </block>'+  
 '  <block type="googlemap_loaded">'+
 '  </block>'+
+'  <block type="googlemap_map_event_add">'+  
+'    <value name="divid">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+
+'  <block type="googlemap_map_event_remove">'+  
+'    <value name="divid">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+  
 '  <block type="googlemap_map_center">'+  
 '    <value name="divid">'+
 '      <block type="text">'+
@@ -129,7 +143,21 @@ var catGoogleMap = '<xml>'+
 '        <field name="TEXT">台灣是一個美麗的寶島</field>'+
 '      </block>'+
 '    </value>'+
-'  </block>'+  
+'  </block>'+
+'  <block type="googlemap_point_event_add">'+  
+'    <value name="pointid">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+
+'  <block type="googlemap_point_event_remove">'+  
+'    <value name="pointid">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+   
 '  <block type="googlemap_point_function">'+
 '    <value name="pointid">'+
 '      <block type="text">'+
