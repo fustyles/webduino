@@ -30,9 +30,9 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 	     's.src = url;\n'+
 	     'document.body.append(s);\n'+
 	     'function initMap() {\n'+statement+'\n'+
-			'function addMapPoint(pID, pMapId, pLat, pLng, pTitle, pContent) {\n'+
+			'function addMapPoint(pID, pMapId, pLat, pLng, pAlt, pTitle, pContent) {\n'+
 			'	let markerData = {\n'+
-			'	  position: { lat: pLat, lng: pLng },\n'+
+			'	  position: { lat: pLat, lng: pLng, altitude: pAlt},\n'+
 			'	  title: pTitle,\n'+
 			'	};\n'+
 			'	let marker = new google.maps.marker.AdvancedMarkerElement({\n'+
@@ -48,67 +48,109 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'	});\n'+
 			'	mapMarkers.push(["point_"+pID, pMapId, marker, infoWindow, markerData.position]);\n'+
 			'}\n'+
-			'function clearMarker(pID) {\n'+
+			'function getMarker(pID) {\n'+
 			'	for (var i=0;i<mapMarkers.length;i++) {\n'+
 			'		if ("point_"+pID==mapMarkers[i][0]) {\n'+
-			'			mapMarkers[i][2].setMap(null);\n'+
-			'			mapMarkers.splice(i, 1);\n'+
-			'			break;\n'+
+			'			return mapMarkers[i][2];\n'+
 			'		}\n'+
 			'	}\n'+
+			'	return null;\n'+
 			'}\n'+
 			'function updateMarkerContent(pID, newContent, type) {\n'+
 			'	for (var i=0;i<mapMarkers.length;i++) {\n'+
 			'		if ("point_"+pID==mapMarkers[i][0]) {\n'+
-			'			if (type=="content") {\n'+
+			'			if (type=="update_content") {\n'+
 			'				mapMarkers[i][3].setContent(newContent);\n'+
-			'			}\n'+
-			'                       else if (type=="headercontent") {\n'+
-			'	                        mapMarkers[i][3].setHeaderContent(newContent);\n'+
-			'                       }\n'+
-			'			else if (type === "latitude") {\n'+
+			'			} else if (type=="update_headercontent") {\n'+
+			'				mapMarkers[i][3].setHeaderContent(newContent);\n'+
+			'			} else if (type === "update_latitude") {\n'+
 			'				mapMarkers[i][4].lat = Number(newContent);\n'+
-			'				mapMarkers[i][2].position = mapMarkers[i][4];\n'+			
-			'			}\n'+
-			'			else if (type === "longitude") {\n'+
+			'				mapMarkers[i][4].lng = mapMarkers[i][2].position.lng;\n'+
+			'				mapMarkers[i][4].altitude = mapMarkers[i][2].position.altitude;\n'+
+			'				mapMarkers[i][2].position = mapMarkers[i][4];\n'+				
+			'			} else if (type === "update_longitude") {\n'+
+			'				mapMarkers[i][4].lat = mapMarkers[i][2].position.lat;\n'+
 			'				mapMarkers[i][4].lng = Number(newContent);\n'+
-			'				mapMarkers[i][2].position = mapMarkers[i][4];\n'+			
-			'			}\n'+
-			'			else if (type === "position") {\n'+
+			'				mapMarkers[i][4].altitude = mapMarkers[i][2].position.altitude;\n'+
+			'				mapMarkers[i][2].position = mapMarkers[i][4];\n'+
+			'			} else if (type === "update_altitude") {\n'+
+			'				mapMarkers[i][4].lat = mapMarkers[i][2].position.lat;\n'+
+			'				mapMarkers[i][4].lng = mapMarkers[i][2].position.lng;\n'+
+			'				mapMarkers[i][4].altitude = Number(newContent);\n'+
+			'				mapMarkers[i][2].position = mapMarkers[i][4];\n'+
+			'			} else if (type === "update_position") {\n'+
 			'				newContent = newContent.split(",");\n'+
 			'				mapMarkers[i][4].lat = Number(newContent[0]);\n'+
 			'				mapMarkers[i][4].lng = Number(newContent[1]);\n'+
-			'				mapMarkers[i][2].position = mapMarkers[i][4];\n'+			
-			'			}\n'+
-			'			else if (type=="title") {\n'+
+			'				mapMarkers[i][4].altitude = Number(newContent[2]);\n'+
+			'				mapMarkers[i][2].position = mapMarkers[i][4];\n'+
+			'			} else if (type=="update_title") {\n'+
 			'				mapMarkers[i][2].title = newContent;\n'+
-			'			}\n'+
-			'			else if (type=="zindex") {\n'+
+			'			} else if (type=="update_zindex") {\n'+
 			'				mapMarkers[i][2].zIndex = Number(newContent);\n'+
-			'			}\n'+
-			'			else if (type=="icon") {\n'+
+			'			} else if (type=="update_icon") {\n'+
 			'				const flagImg = document.createElement("img");\n'+
 			'				flagImg.src = newContent;\n'+
 			'				mapMarkers[i][2].content= flagImg;\n'+
-			'			}\n'+	  
+			'			} else if (type=="update_gmpDraggable") {\n'+
+			'				mapMarkers[i][2].gmpDraggable = newContent;\n'+
+			'			} else if (type=="update_gmpClickable") {\n'+
+			'				mapMarkers[i][2].gmpClickable = newContent;\n'+
+			'			} else if (type=="open_content") {\n'+
+			'				mapMarkers[i][3].open(mapMarkers[i][1], mapMarkers[i][2]);\n'+
+			'			} else if (type=="close_content") {\n'+
+			'				mapMarkers[i][3].close();\n'+
+			'			} else if (type=="clear") {\n'+
+			'				mapMarkers[i][2].setMap(null);\n'+
+			'				mapMarkers.splice(i, 1);\n'+
+			'			}\n'+
 			'			break;\n'+
 			'		}\n'+
 			'	}\n'+
 			'}\n'+
-			'function openMarkerContent(pID) {\n'+
+			'function getMarkerSetting(pID, property) {\n'+
 			'	for (var i=0;i<mapMarkers.length;i++) {\n'+
 			'		if ("point_"+pID==mapMarkers[i][0]) {\n'+
-			'			mapMarkers[i][3].open(mapMarkers[i][1], mapMarkers[i][2]);\n'+
-			'			break;\n'+
+			'			if (property=="latitude") {\n'+
+			'				const position = mapMarkers[i][2].position;\n'+
+			'				return position.lat;\n'+
+			'			} else if (property=="longtitude") {\n'+
+			'				const position = mapMarkers[i][2].position;\n'+
+			'				return position.lng;\n'+
+			'			} else if (property=="altitude") {\n'+
+			'				const position = mapMarkers[i][2].position;\n'+
+			'				return position.altitude;\n'+
+			'			} else if (property=="latlngalt") {\n'+
+			'				const position = mapMarkers[i][2].position;\n'+
+			'				return [position.lat, position.lng, position.altitude];\n'+
+			'			}\n'+
 			'		}\n'+
 			'	}\n'+
+			'	return null;\n'+
 			'}\n'+
-			'function closeMarkerContent(pID) {\n'+
-			'	for (var i=0;i<mapMarkers.length;i++) {\n'+
-			'		if ("point_"+pID==mapMarkers[i][0]) {\n'+
-			'			mapMarkers[i][3].close();\n'+
-			'			break;\n'+
-			'		}\n'+
+			'function updateMapContent(pMapId, val, type) {\n'+
+			'	if (type=="zoom") {\n'+
+			'		pMapId.setZoom(Number(val));\n'+
+			'	} else if (type === "clear") {\n'+
+			'		for (var i=0;i<mapMarkers.length;i++) {\n'+
+			'			if (pMapId==mapMarkers[i][1]) {\n'+
+			'				mapMarkers[i][2].setMap(null);\n'+
+			'				mapMarkers.splice(i, 1);\n'+
+			'				i--;\n'+
+			'			}\n'+
+			'		}\n'+		
+			'	} else if (type=="heading") {\n'+
+			'		let povData = {\n'+
+			'			heading: Number(val),\n'+
+			'			pitch: pMapId.getPov().pitch\n'+
+			'		};\n'+
+			'		pMapId.setPov(povData);\n'+
+			'	} else if (type === "pitch") {\n'+
+			'		let povData = {\n'+
+			'			heading: pMapId.getPov().heading,\n'+
+			'			pitch: Number(val)\n'+
+			'		};\n'+
+			'		pMapId.setPov(povData);\n'+
 			'	}\n'+
 			'}\n'+
 			'function centerMap(pMapId, lat, lng) {\n'+
@@ -119,37 +161,13 @@ Blockly.JavaScript['googlemap_initial'] = function (block) {
 			'	const newCenter = new google.maps.LatLng(Number(lat), Number(lng));\n'+
 			'	pMapId.setPosition(newCenter);\n'+
 			'}\n'+
-			'function zoomMap(pMapId, val) {\n'+
-			'	pMapId.setZoom(Number(val));\n'+	
-			'}\n'+
-			'function headingMap(pMapId, val) {\n'+
-	  		'	  let povData = { heading: Number(val), pitch: pMapId.getPov().pitch };\n'+
-			'	  pMapId.setPov(povData);\n'+
-			'}\n'+
-			'function pitchMap(pMapId, val) {\n'+
-	  		'	  let povData = { heading: pMapId.getPov().heading, pitch: Number(val) };\n'+
-			'	  pMapId.setPov(povData);\n'+
-			'}\n'+
-			'function clearMap(pMapId) {\n'+
-			'	for (var i=0;i<mapMarkers.length;i++) {\n'+
-			'		if (pMapId==mapMarkers[i][1]) {\n'+
-			'			mapMarkers[i][2].setMap(null);\n'+
-			'			mapMarkers.splice(i, 1);\n'+
-			'			i--;\n'+
-			'		}\n'+
-			'	}\n'+
-			'}\n'+  
 			'window.addMapPoint = addMapPoint;\n'+
-			'window.clearMarker = clearMarker;\n'+
+			'window.getMarker = getMarker;\n'+
 			'window.updateMarkerContent = updateMarkerContent;\n'+
-			'window.openMarkerContent = openMarkerContent;\n'+
-			'window.closeMarkerContent = closeMarkerContent;\n'+
+			'window.getMarkerSetting = getMarkerSetting;\n'+
+			'window.updateMapContent = updateMapContent;\n'+
 			'window.centerMap = centerMap;\n'+
-			'window.positionMap = positionMap;\n'+	  
-			'window.zoomMap = zoomMap;\n'+	
-			'window.headingMap = headingMap;\n'+
-			'window.pitchMap = pitchMap;\n'+				
-			'window.clearMap = clearMap;\n'+
+			'window.positionMap = positionMap;\n'+
 	  		'if (typeof loadedMap === "function") loadedMap();\n'+
 	     '}\n'+
 	     'window.initMap = initMap;\n';
@@ -208,17 +226,54 @@ Blockly.JavaScript['googlemap_addstreetview'] = function (block) {
   return code; 
 };
 
+Blockly.JavaScript['googlemap_map_event_add'] = function (block) {
+  var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var event = block.getFieldValue('event');
+  var statement = Blockly.JavaScript.statementToCode(block, 'statement');
+  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+
+  var code = 'map_'+mapid+'.addListener("'+event+'", async function(e) {\n'+statement+'\n}\n);\n';	
+  return code;
+};
+
+Blockly.JavaScript['googlemap_map_event_remove'] = function (block) {
+  var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var event = block.getFieldValue('event');
+  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+
+  var code = 'google.maps.event.clearListeners(map_'+mapid+', "'+event+'");\n';	  
+  return code;
+};
+
 Blockly.JavaScript['googlemap_addpoint'] = function (block) {
   var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";		
   var pointid = Blockly.JavaScript.valueToCode(block, 'pointid', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  var latitude = Blockly.JavaScript.valueToCode(block, 'latitude', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  var longitude = Blockly.JavaScript.valueToCode(block, 'longitude', Blockly.JavaScript.ORDER_ATOMIC)||"";	
+  var latitude = Blockly.JavaScript.valueToCode(block, 'latitude', Blockly.JavaScript.ORDER_ATOMIC)||"22.625384";
+  var longitude = Blockly.JavaScript.valueToCode(block, 'longitude', Blockly.JavaScript.ORDER_ATOMIC)||"120.371016";
+  var altitude = Blockly.JavaScript.valueToCode(block, 'altitude', Blockly.JavaScript.ORDER_ATOMIC)||"0";
   var title = Blockly.JavaScript.valueToCode(block, 'title', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var content = Blockly.JavaScript.valueToCode(block, 'content', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var mapid = divid.replace(/"/g,"").replace(/'/g,"");
   
-  var code = 'addMapPoint('+pointid+', map_'+mapid+', '+latitude+', '+longitude+', '+title+', '+content+');\n';
+  var code = 'addMapPoint('+pointid+', map_'+mapid+', '+latitude+', '+longitude+', '+altitude+', '+title+', '+content+');\n';
   
+  return code;
+};
+
+Blockly.JavaScript['googlemap_point_event_add'] = function (block) {
+  var pointid = Blockly.JavaScript.valueToCode(block, 'pointid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var event = block.getFieldValue('event');
+  var statement = Blockly.JavaScript.statementToCode(block, 'statement');
+
+  var code = 'getMarker('+pointid+').addListener("'+event+'", async function(e) {\n'+statement+'\n}\n);\n';	
+  return code;
+};
+
+Blockly.JavaScript['googlemap_point_event_remove'] = function (block) {
+  var pointid = Blockly.JavaScript.valueToCode(block, 'pointid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var event = block.getFieldValue('event');
+
+  var code = 'google.maps.event.clearListeners(getMarker('+pointid+'), "'+event+'");\n';
   return code;
 };
 
@@ -226,32 +281,17 @@ Blockly.JavaScript['googlemap_point_function'] = function (block) {
   var pointid = Blockly.JavaScript.valueToCode(block, 'pointid', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var func = block.getFieldValue('func');
   var content = Blockly.JavaScript.valueToCode(block, 'content', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  if (func=="update_content")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "content");\n';
-  else if (func=="update_headercontent")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "headercontent");\n';	  
-  else if (func=="update_latitude")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "latitude");\n';
-  else if (func=="update_longitude")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "longitude");\n';
-  else if (func=="update_position")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "position");\n';
-  else if (func=="update_title")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "title");\n';
-  else if (func=="update_zindex")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "zindex");\n';	  
-  else if (func=="update_icon")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "icon");\n';	  
-  else if (func=="open_content")
-    var code = 'openMarkerContent('+pointid+');\n';
-  else if (func=="close_content")
-    var code = 'closeMarkerContent('+pointid+');\n';
-  else if (func=="clear")
-    var code = 'clearMarker('+pointid+');\n';
-  else
-    var code = '';
   
+  var code = 'updateMarkerContent('+pointid+', '+content+', "'+func+'");\n';
   return code;
+};
+
+Blockly.JavaScript['googlemap_point_get'] = function (block) {		
+  var pointid = Blockly.JavaScript.valueToCode(block, 'pointid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var property = block.getFieldValue('property');
+  
+  var code = 'getMarkerSetting('+pointid+', "'+property+'")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript['googlemap_map_center'] = function (block) {
@@ -275,15 +315,7 @@ Blockly.JavaScript['googlemap_map_function'] = function (block) {
   var val = Blockly.JavaScript.valueToCode(block, 'val', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var mapid = divid.replace(/"/g,"").replace(/'/g,"");
   var func = block.getFieldValue('func');
-  if (func=="zoom")
-    var code = 'zoomMap(map_'+mapid+', '+val+');\n';	
-  else if (func=="clear")
-    var code = 'clearMap(map_'+mapid+');\n';
-  else if (func=="heading")
-    var code = 'headingMap(map_'+mapid+', '+val+');\n';	
-  else if (func=="pitch")
-    var code = 'pitchMap(map_'+mapid+', '+val+');\n';	
-  else
-    var code = '';
+	
+  var code = 'updateMapContent(map_'+mapid+', '+val+', "'+func+'");\n';	
   return code;
 };
