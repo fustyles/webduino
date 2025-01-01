@@ -40,6 +40,8 @@ Blockly.Msg["GOOGLEMAP_POINT_UPDATE_POSITION"] = "Update Latitude, Longitude";
 Blockly.Msg["GOOGLEMAP_POINT_UPDATE_TITLE"] = "Update Title";
 Blockly.Msg["GOOGLEMAP_POINT_UPDATE_ZINDEX"] = "Update Z-Index";
 Blockly.Msg["GOOGLEMAP_POINT_UPDATE_ICON"] = "Update Icon";
+Blockly.Msg["GOOGLEMAP_POINT_UPDATE_GMPDRAGGABLE"] = "Is draggable";
+Blockly.Msg["GOOGLEMAP_POINT_UPDATE_GEMCLICKABLE"] = "Is clickable";
 
 Blockly.Msg["GOOGLEMAP_MAP_EVENT_ADD"] = "Map event added";
 Blockly.Msg["GOOGLEMAP_MAP_EVENT_REMOVE"] = "Map event removed";
