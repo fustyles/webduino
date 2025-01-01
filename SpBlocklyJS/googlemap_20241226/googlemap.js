@@ -79,6 +79,7 @@ function getMarkerSetting(pID, newContent, property) {
 	for (var i=0;i<mapMarkers.length;i++) {
 		if ("point_"+pID==mapMarkers[i][0]) {
 			const markerCluster = new MarkerClusterer({ mapMarkers[i][2], mapMarkers[i][1] });
+			console.log(markerCluster);
 			console.log(markerCluster.getPosition());
 			if (property=="latitude") {
 				var position = markerCluster.getPosition();
