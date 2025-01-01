@@ -133,7 +133,11 @@ Blockly.JavaScript['googlemap_point_function'] = function (block) {
   else if (func=="update_zindex")
     var code = 'updateMarkerContent('+pointid+', '+content+', "zindex");\n';	  
   else if (func=="update_icon")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "icon");\n';	  
+    var code = 'updateMarkerContent('+pointid+', '+content+', "icon");\n';
+  else if (func=="update_gmpDraggable")
+    var code = 'updateMarkerContent('+pointid+', '+content+', "gmpDraggable");\n';
+  else if (func=="update_gmpClickable")
+    var code = 'updateMarkerContent('+pointid+', '+content+', "gmpClickable");\n';	  
   else if (func=="open_content")
     var code = 'openMarkerContent('+pointid+');\n';
   else if (func=="close_content")
