@@ -81,13 +81,13 @@ function getMarkerSetting(pID, newContent, property) {
 			console.log(mapMarkers[i][2].position);
 			if (property=="latitude") {
 				var position = mapMarkers[i][2].position;
-				return position.Fg;
+				return position.lat();
 			} else if (property=="longtitude") {
 				var position =mapMarkers[i][2].position;
-				return position.Hg;
+				return position.lng();
 			} else if (property=="latLng") {
 				var position = mapMarkers[i][2].position;
-				return [position.Fg, position.Hg];
+				return [position.lat(), position.lng()];
 			}			
 		}
 	}
