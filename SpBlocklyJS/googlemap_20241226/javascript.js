@@ -70,7 +70,7 @@ Blockly.JavaScript['googlemap_map_event_add'] = function (block) {
   var statement = Blockly.JavaScript.statementToCode(block, 'statement');
   var mapid = divid.replace(/"/g,"").replace(/'/g,"");
 
-  var code = 'map_'+mapid+'.addEventListener("'+event+'", () => {\n'+statement+'\n}\n);\n';	
+  var code = 'map_'+mapid+'.addListener("'+event+'", () => {\n'+statement+'\n}\n);\n';	
   return code;
 };
 
@@ -79,7 +79,7 @@ Blockly.JavaScript['googlemap_map_event_remove'] = function (block) {
   var event = block.getFieldValue('event');
   var mapid = divid.replace(/"/g,"").replace(/'/g,"");
 
-  var code = 'map_'+mapid+'.removeEventListener("'+event+'");\n';	  
+  var code = 'map_'+mapid+'.removeListener("'+event+'");\n';	  
   return code;
 };
 
@@ -102,7 +102,7 @@ Blockly.JavaScript['googlemap_point_event_add'] = function (block) {
   var event = block.getFieldValue('event');
   var statement = Blockly.JavaScript.statementToCode(block, 'statement');
 
-  var code = 'getMarker('+pointid+').addEventListener("'+event+'", () => {\n'+statement+'\n}\n);\n';	
+  var code = 'getMarker('+pointid+').addListener("'+event+'", () => {\n'+statement+'\n}\n);\n';	
   return code;
 };
 
@@ -110,7 +110,7 @@ Blockly.JavaScript['googlemap_point_event_remove'] = function (block) {
   var pointid = Blockly.JavaScript.valueToCode(block, 'pointid', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var event = block.getFieldValue('event');
 
-  var code = 'getMarker('+pointid+').removeEventListener("'+event+'");\n';	  
+  var code = 'getMarker('+pointid+').removeListener("'+event+'");\n';	  
   return code;
 };
 
