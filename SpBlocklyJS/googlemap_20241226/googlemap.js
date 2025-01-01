@@ -89,16 +89,17 @@ function getMarkerSetting(pID, property) {
 	for (var i=0;i<mapMarkers.length;i++) {
 		if ("point_"+pID==mapMarkers[i][0]) {
 			if (property=="latitude") {
-				console.log(mapMarkers[i][2].position.lat);
-				return mapMarkers[i][2].position.lat;
+				const position = mapMarkers[i][2].position;
+				return position.lat;
 			} else if (property=="longtitude") {
-				console.log(mapMarkers[i][2].position.lng);
-				return mapMarkers[i][2].position.lng;
+				const position = mapMarkers[i][2].position;
+				return position.lng;
 			} else if (property=="altitude") {
-				console.log(mapMarkers[i][2].position.altitude);
-				return mapMarkers[i][2].position.altitude;				
+				const position = mapMarkers[i][2].position;
+				return position.altitude;				
 			} else if (property=="latlngalt") {
-				return [mapMarkers[i][2].position.lat, mapMarkers[i][2].position.lng, mapMarkers[i][2].position.altitude];
+				const position = mapMarkers[i][2].position;
+				return [position.lat, position.lng, position.altitude];
 			}			
 		}
 	}
