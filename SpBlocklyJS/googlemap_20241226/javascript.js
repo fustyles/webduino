@@ -64,6 +64,25 @@ Blockly.JavaScript['googlemap_addstreetview'] = function (block) {
   return code; 
 };
 
+Blockly.JavaScript['googlemap_map_event_add'] = function (block) {
+  var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var event = block.getFieldValue('event');
+  var statement = Blockly.JavaScript.statementToCode(block, 'statement');
+  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+
+  var code = mapid+'.addEventListener("'+event+'", () => {\n'+statement+'\n}\n);\n';	
+  return code;
+};
+
+Blockly.JavaScript['googlemap_map_event_remove'] = function (block) {
+  var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var event = block.getFieldValue('event');
+  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+
+  var code = mapid+'.removeEventListener("'+event+'");\n';	  
+  return code;
+};
+
 Blockly.JavaScript['googlemap_addpoint'] = function (block) {
   var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";		
   var pointid = Blockly.JavaScript.valueToCode(block, 'pointid', Blockly.JavaScript.ORDER_ATOMIC)||"";
@@ -75,6 +94,23 @@ Blockly.JavaScript['googlemap_addpoint'] = function (block) {
   
   var code = 'addMapPoint('+pointid+', map_'+mapid+', '+latitude+', '+longitude+', '+title+', '+content+');\n';
   
+  return code;
+};
+
+Blockly.JavaScript['googlemap_point_event_add'] = function (block) {
+  var pointid = Blockly.JavaScript.valueToCode(block, 'pointid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var event = block.getFieldValue('event');
+  var statement = Blockly.JavaScript.statementToCode(block, 'statement');
+
+  var code = 'getMarker('+pointid+').addEventListener("'+event+'", () => {\n'+statement+'\n}\n);\n';	
+  return code;
+};
+
+Blockly.JavaScript['googlemap_point_event_remove'] = function (block) {
+  var pointid = Blockly.JavaScript.valueToCode(block, 'pointid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var event = block.getFieldValue('event');
+
+  var code = 'getMarker('+pointid+').removeEventListener("'+event+'");\n';	  
   return code;
 };
 
