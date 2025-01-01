@@ -208,7 +208,12 @@ Blockly.Blocks['googlemap_addpoint'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg["GOOGLEMAP_LONGITUDE"]);		
+		.appendField(Blockly.Msg["GOOGLEMAP_LONGITUDE"]);
+	this.appendValueInput("altitudes")
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_ALTITUDES"]);	  
 	this.appendValueInput("title")
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("String")
