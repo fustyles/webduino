@@ -11,6 +11,7 @@ function addMapPoint(pID, pMapId, pLat, pLng, pTitle, pContent) {
 	  position: markerData.position,
 	  map: pMapId,
 	  title: markerData.title,
+	  gmpClickable: true,		
 	});
 	let infoWindow = new google.maps.InfoWindow({
 	  content: pContent,
