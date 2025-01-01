@@ -299,6 +299,7 @@ Blockly.Blocks['googlemap_point_function'] = {
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_CONTENT_HEADER"],"update_headercontent"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_LATITUDE"],"update_latitude"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_LONGITUDE"],"update_longitude"],
+			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_ALTITUDE"],"update_altitude"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_POSITION"],"update_position"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_TITLE"],"update_title"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_ZINDEX"],"update_zindex"],
