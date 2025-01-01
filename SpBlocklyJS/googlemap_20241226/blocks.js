@@ -289,6 +289,8 @@ Blockly.Blocks['googlemap_point_function'] = {
 		.appendField(Blockly.Msg["GOOGLEMAP_POINTID"]);	 	  
 	this.appendDummyInput()
 		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["GOOGLEMAP_POINT_OPEN_CONTENT"],"open_content"],
+			[Blockly.Msg["GOOGLEMAP_POINT_CLOSE_CONTENT"],"close_content"],				
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_CONTENT"],"update_content"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_CONTENT_HEADER"],"update_headercontent"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_LATITUDE"],"update_latitude"],
@@ -299,8 +301,6 @@ Blockly.Blocks['googlemap_point_function'] = {
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_ICON"],"update_icon"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_GMPDRAGGABLE"],"update_gmpDraggable"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_GEMCLICKABLE"],"update_gmpClickable"],
-			[Blockly.Msg["GOOGLEMAP_POINT_OPEN_CONTENT"],"open_content"],
-			[Blockly.Msg["GOOGLEMAP_POINT_CLOSE_CONTENT"],"close_content"],			
 			[Blockly.Msg["GOOGLEMAP_POINT_CLEAR"],"clear"]	
 		], this.validate), "func");	
 	this.appendValueInput("content")
