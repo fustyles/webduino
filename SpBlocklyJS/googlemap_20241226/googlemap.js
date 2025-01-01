@@ -78,16 +78,16 @@ function updateMarkerContent(pID, newContent, type) {
 function getMarkerSetting(pID, newContent, property) {
 	for (var i=0;i<mapMarkers.length;i++) {
 		if ("point_"+pID==mapMarkers[i][0]) {
-			console.log(mapMarkers[i][2].position());
+			console.log(mapMarkers[i][2].getPosition());
 			if (property=="latitude") {
-				var position = mapMarkers[i][2].position();
-				return position.lat;
+				var position = mapMarkers[i][2].getPosition();
+				return position.lat();
 			} else if (property=="longtitude") {
-				var position = mapMarkers[i][2].position();
-				return position.lng;
+				var position = mapMarkers[i][2].getPosition();
+				return position.lng();
 			} else if (property=="latLng") {
 				var position = mapMarkers[i][2].getPosition();
-				return [position.lat, position.lng];
+				return [position.lat(), position.lng()];
 			}			
 		}
 	}
