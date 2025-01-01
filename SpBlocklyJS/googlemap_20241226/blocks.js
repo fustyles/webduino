@@ -334,7 +334,7 @@ Blockly.Blocks['googlemap_point_get'] = {
 			[Blockly.Msg["GOOGLEMAP_LATITUDE"],"latitude"],
 			[Blockly.Msg["GOOGLEMAP_LONGITUDE"],"longtitude"],
 			[Blockly.Msg["GOOGLEMAP_LATLNG"],"latLng"]
-		]), "func");			  
+		]), "property");			  
 	this.setInputsInline(true);
   	this.setOutput(true, null); 
 	this.setColour(210);
