@@ -170,5 +170,12 @@ var catGoogleMap = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
+'  <block type="googlemap_point_get">'+
+'    <value name="pointid">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+  
+'  </block>'+  
 '</category>'+
 '</xml>';
