@@ -6,7 +6,6 @@
     "blockly/javascript.js"
   ],
   "dependencies": [
-    "index.min.js"
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
