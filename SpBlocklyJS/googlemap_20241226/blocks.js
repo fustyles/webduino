@@ -268,8 +268,7 @@ Blockly.Blocks['googlemap_point_event_remove'] = {
 			[Blockly.Msg["GOOGLEMAP_POINT_CLICK"], "click"],
 			[Blockly.Msg["GOOGLEMAP_POINT_DRAG"], "drag"],
 			[Blockly.Msg["GOOGLEMAP_POINT_DRAGEND"], "dragend"],
-			[Blockly.Msg["GOOGLEMAP_POINT_DRAGSTART"], "dragstart"],
-			[Blockly.Msg["GOOGLEMAP_POINT_BETAGMP_CLICK"], "Betagmp-click"]
+			[Blockly.Msg["GOOGLEMAP_POINT_DRAGSTART"], "dragstart"]
 		]), "event");	  
 	this.setInputsInline(true);
 	this.setPreviousStatement(true);
