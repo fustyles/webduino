@@ -76,29 +76,30 @@ function updateMarkerContent(pID, newContent, type) {
 }
 
 function updateMapContent(pMapId, val, type) {
-	if (type=="zoomMap") {
+	if (type=="zoom") {
 		pMapId.setZoom(Number(val));
-	} else if (type=="headingMap") {
-		let povData = {
-			heading: Number(val),
-			pitch: pMapId.getPov().pitch
-		};
-		pMapId.setPov(povData);
-	} else if (type === "pitchMap") {
-		let povData = {
-			heading: pMapId.getPov().heading,
-			pitch: Number(val)
-		};
-		pMapId.setPov(povData);					
-	} else if (type === "clearMap") {
+	} else if (type === "clear") {
 		for (var i=0;i<mapMarkers.length;i++) {
 			if (pMapId==mapMarkers[i][1]) {
 				mapMarkers[i][2].setMap(null);
 				mapMarkers.splice(i, 1);
 				i--;
 			}
-		}					
+		}							
+	} else if (type=="heading") {
+		let povData = {
+			heading: Number(val),
+			pitch: pMapId.getPov().pitch
+		};
+		pMapId.setPov(povData);
+	} else if (type === "pitch") {
+		let povData = {
+			heading: pMapId.getPov().heading,
+			pitch: Number(val)
+		};
+		pMapId.setPov(povData);
 	}
+
 }
 
 function centerMap(pMapId, lat, lng) {
