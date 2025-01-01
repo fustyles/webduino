@@ -123,6 +123,14 @@ Blockly.JavaScript['googlemap_point_function'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['googlemap_point_get'] = function (block) {		
+  var pointid = Blockly.JavaScript.valueToCode(block, 'pointid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var property = block.getFieldValue('property');
+  
+  var code = 'getMarkerSetting('+pointid+', "'+property+'")';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['googlemap_map_center'] = function (block) {
   var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var type = block.getFieldValue('type');
