@@ -133,6 +133,11 @@ var catGoogleMap = '<xml>'+
 '        <field name="NUM">120.933835</field>'+
 '      </block>'+
 '    </value>'+
+'    <value name="altitudes">'+
+'      <block type="math_number">'+
+'        <field name="NUM">0</field>'+
+'      </block>'+
+'    </value>'+  
 '    <value name="title">'+
 '      <block type="text">'+
 '        <field name="TEXT">台灣</field>'+
