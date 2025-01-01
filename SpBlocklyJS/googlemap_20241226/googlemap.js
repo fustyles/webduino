@@ -85,9 +85,12 @@ function getMarkerSetting(pID, newContent, property) {
 			} else if (property=="longtitude") {
 				var position =mapMarkers[i][2].position.toJSON();
 				return position.lng;
-			} else if (property=="latLng") {
+			} else if (property=="altitude") {
+				var position =mapMarkers[i][2].position.toJSON();
+				return position.altitude;				
+			} else if (property=="latlngalt") {
 				var position = mapMarkers[i][2].position.toJSON();
-				return [position.lat, position.lng];
+				return [position.lat, position.lng, position.altitude];
 			}			
 		}
 	}
