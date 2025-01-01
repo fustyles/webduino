@@ -85,6 +85,7 @@ function getMarkerSetting(pID, newContent, property) {
 			console.log(mapMarkers[i][2].position);
 			console.log(mapMarkers[i][2].position.lat);
 			console.log(mapMarkers[i][2].position.lat());
+			console.log(mapMarkers[i][2].position.Eg);			
 			if (property=="latitude") {
 				var position = mapMarkers[i][2].position.toJSON();
 				return position['lat'];
