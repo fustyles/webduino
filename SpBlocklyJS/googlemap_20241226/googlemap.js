@@ -10,8 +10,7 @@ function addMapPoint(pID, pMapId, pLat, pLng, pTitle, pContent) {
 	let marker = new google.maps.marker.AdvancedMarkerElement({
 	  position: markerData.position,
 	  map: pMapId,
-	  title: markerData.title,
-	  gmpClickable: true,		
+	  title: markerData.title,	
 	});
 	let infoWindow = new google.maps.InfoWindow({
 	  content: pContent,
