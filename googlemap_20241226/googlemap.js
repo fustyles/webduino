@@ -16,7 +16,7 @@ function addMapPoint(pID, pMapId, pLat, pLng, pAlt, pTitle, pContent) {
 	  content: pContent,
 	});
 
-	marker.addListener('click', () => {
+	marker.addListener("click", () => {
 	  infoWindow.open(pMapId, marker);
 	});
 
