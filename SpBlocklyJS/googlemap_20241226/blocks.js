@@ -200,7 +200,6 @@ Blockly.Blocks['googlemap_addpoint'] = {
 		.setCheck("String")
 		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);		
 	this.appendValueInput("latitude")
-		.setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["GOOGLEMAP_LATITUDE"]);
@@ -210,7 +209,6 @@ Blockly.Blocks['googlemap_addpoint'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["GOOGLEMAP_LONGITUDE"]);
 	this.appendValueInput("altitude")
-		.setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["GOOGLEMAP_ALTITUDE"]);	  
