@@ -23,6 +23,15 @@ function addMapPoint(pID, pMapId, pLat, pLng, pTitle, pContent) {
 	mapMarkers.push(["point_"+pID, pMapId, marker, infoWindow, markerData.position]);
 }
 
+function getMarker(pID) {
+	for (var i=0;i<mapMarkers.length;i++) {
+		if ("point_"+pID==mapMarkers[i][0]) {
+			return mapMarkers[i][2];
+		}
+	}
+	return null;
+}
+
 function clearMarker(pID) {
 	for (var i=0;i<mapMarkers.length;i++) {
 		if ("point_"+pID==mapMarkers[i][0]) {
