@@ -171,15 +171,7 @@ Blockly.JavaScript['googlemap_map_function'] = function (block) {
   var val = Blockly.JavaScript.valueToCode(block, 'val', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var mapid = divid.replace(/"/g,"").replace(/'/g,"");
   var func = block.getFieldValue('func');
-  if (func=="zoom")
-    var code = 'zoomMap(map_'+mapid+', '+val+');\n';	
-  else if (func=="clear")
-    var code = 'clearMap(map_'+mapid+');\n';
-  else if (func=="heading")
-    var code = 'headingMap(map_'+mapid+', '+val+');\n';	
-  else if (func=="pitch")
-    var code = 'pitchMap(map_'+mapid+', '+val+');\n';	
-  else
-    var code = '';
+	
+  var code = 'updateMapContent(map_'+mapid+', '+val+', "'+func+'");\n';	
   return code;
 };
