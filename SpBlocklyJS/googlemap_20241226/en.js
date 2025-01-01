@@ -73,3 +73,4 @@ Blockly.Msg["GOOGLEMAP_POINT_DRAG"] = "Dragging";
 Blockly.Msg["GOOGLEMAP_POINT_DRAGEND"] = "Drag end";
 Blockly.Msg["GOOGLEMAP_POINT_DRAGSTART"] = "Drag start";
 Blockly.Msg["GOOGLEMAP_POINT_BETAGMP_CLICK"] = "gmp-click";
+Blockly.Msg["GOOGLEMAP_LATLNG"] = "Latitude and Longitude array";
