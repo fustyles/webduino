@@ -2,9 +2,9 @@
 
 let mapMarkers = [];
 
-function addMapPoint(pID, pMapId, pLat, pLng, pTitle, pContent) {
+function addMapPoint(pID, pMapId, pLat, pLng, pAlt, pTitle, pContent) {
 	let markerData = {
-	  position: { lat: pLat, lng: pLng },
+	  position: { lat: pLat, lng: pLng, altitude: pAlt},
 	  title: pTitle,
 	};
 	let marker = new google.maps.marker.AdvancedMarkerElement({
