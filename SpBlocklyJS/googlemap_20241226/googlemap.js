@@ -81,23 +81,19 @@ function updateMarkerContent(pID, newContent, type) {
 
 function getMarkerSetting(pID, newContent, property) {
 	for (var i=0;i<mapMarkers.length;i++) {
-		if ("point_"+pID==mapMarkers[i][0]) {
-			console.log(mapMarkers[i][2].position);
-			console.log(mapMarkers[i][2].position.lat);
-			console.log(mapMarkers[i][2].position.lat());
-			console.log(mapMarkers[i][2].position.Fg);			
+		if ("point_"+pID==mapMarkers[i][0]) {			
 			if (property=="latitude") {
-				var position = mapMarkers[i][2].position.toJSON();
-				return position['lat'];
+				const position = mapMarkers[i][2].position;
+				return position.lat;
 			} else if (property=="longtitude") {
-				var position = mapMarkers[i][2].position.toJSON();
-				return position['lng'];
+				const position = mapMarkers[i][2].position;
+				return position.lng;
 			} else if (property=="altitude") {
-				var position = mapMarkers[i][2].position.toJSON();
-				return position['altitude'];				
+				const position = mapMarkers[i][2].position;
+				return position.altitude;				
 			} else if (property=="latlngalt") {
-				var position = mapMarkers[i][2].position.toJSON();
-				return [position['lat'], position['lng'], position['altitude']];
+				const position = mapMarkers[i][2].position;
+				return [position.lat, position.lng, position.altitude];
 			}			
 		}
 	}
