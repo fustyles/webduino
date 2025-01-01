@@ -81,16 +81,16 @@ function getMarkerSetting(pID, newContent, property) {
 			console.log(mapMarkers[i][2].position.toJSON());
 			if (property=="latitude") {
 				var position = mapMarkers[i][2].position.toJSON();
-				return position.lat;
+				return position['lat'];
 			} else if (property=="longtitude") {
-				var position =mapMarkers[i][2].position.toJSON();
-				return position.lng;
+				var position = mapMarkers[i][2].position.toJSON();
+				return position['lng'];
 			} else if (property=="altitude") {
-				var position =mapMarkers[i][2].position.toJSON();
-				return position.altitude;				
+				var position = mapMarkers[i][2].position.toJSON();
+				return position['altitude'];				
 			} else if (property=="latlngalt") {
 				var position = mapMarkers[i][2].position.toJSON();
-				return [position.lat, position.lng, position.altitude];
+				return [position['lat'], position['lng'], position['altitude']];
 			}			
 		}
 	}
