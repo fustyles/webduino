@@ -79,7 +79,7 @@ Blockly.JavaScript['googlemap_map_event_remove'] = function (block) {
   var event = block.getFieldValue('event');
   var mapid = divid.replace(/"/g,"").replace(/'/g,"");
 
-  var code = 'map_'+mapid+'.removeListener("'+event+'");\n';	  
+  var code = 'google.maps.event.clearListeners(map_'+mapid+', "'+event+'");\n';	  
   return code;
 };
 
