@@ -87,6 +87,35 @@ function updateMarkerContent(pID, newContent, type) {
 	}
 }
 
+function updateMapContent(pMapId, val, type) {
+	if (type=="zoomMap") {
+		pMapId.setZoom(Number(val));
+	}
+	else if (type=="headingMap") {
+		let povData = {
+			heading: Number(val),
+			pitch: pMapId.getPov().pitch
+		};
+		pMapId.setPov(povData);
+	}				
+	else if (type === "pitchMap") {
+		let povData = {
+			heading: pMapId.getPov().heading,
+			pitch: Number(val)
+		};
+		pMapId.setPov(povData);					
+	} 
+	else if (type === "clearMap") {
+		for (var i=0;i<mapMarkers.length;i++) {
+			if (pMapId==mapMarkers[i][1]) {
+				mapMarkers[i][2].setMap(null);
+				mapMarkers.splice(i, 1);
+				i--;
+			}
+		}					
+	}
+}
+
 function centerMap(pMapId, lat, lng) {
 	const newCenter = new google.maps.LatLng(Number(lat), Number(lng));
 	pMapId.setCenter(newCenter);	
@@ -95,34 +124,4 @@ function centerMap(pMapId, lat, lng) {
 function positionMap(pMapId, lat, lng) {
 	const newCenter = new google.maps.LatLng(Number(lat), Number(lng));
 	pMapId.setPosition(newCenter);	
-}
-
-function zoomMap(pMapId, val) {
-	pMapId.setZoom(Number(val));	
-}
-
-function headingMap(pMapId, val) {
-	let povData = {
-		heading: Number(val),
-		pitch: pMapId.getPov().pitch
-	};
-	pMapId.setPov(povData);
-}
-
-function pitchMap(pMapId, val) {
-	let povData = {
-		heading: pMapId.getPov().heading,
-		pitch: Number(val)
-	};
-	pMapId.setPov(povData);
-}
-
-function clearMap(pMapId) {
-	for (var i=0;i<mapMarkers.length;i++) {
-		if (pMapId==mapMarkers[i][1]) {
-			mapMarkers[i][2].setMap(null);
-			mapMarkers.splice(i, 1);
-			i--;
-		}
-	}
 }
