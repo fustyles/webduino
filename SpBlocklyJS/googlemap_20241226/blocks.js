@@ -292,7 +292,9 @@ Blockly.Blocks['googlemap_point_function'] = {
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_POSITION"],"update_position"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_TITLE"],"update_title"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_ZINDEX"],"update_zindex"],
-			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_ICON"],"update_icon"],			
+			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_ICON"],"update_icon"],
+			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_GMPDRAGGABLE"],"gmpDraggable"],
+			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_GEMCLICKABLE"],"gmpClickable"],
 			[Blockly.Msg["GOOGLEMAP_POINT_OPEN_CONTENT"],"open_content"],
 			[Blockly.Msg["GOOGLEMAP_POINT_CLOSE_CONTENT"],"close_content"],			
 			[Blockly.Msg["GOOGLEMAP_POINT_CLEAR"],"clear"]	
