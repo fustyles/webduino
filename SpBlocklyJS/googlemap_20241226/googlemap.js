@@ -32,16 +32,6 @@ function getMarker(pID) {
 	return null;
 }
 
-function clearMarker(pID) {
-	for (var i=0;i<mapMarkers.length;i++) {
-		if ("point_"+pID==mapMarkers[i][0]) {
-			mapMarkers[i][2].setMap(null);
-			mapMarkers.splice(i, 1);
-			break;
-		}
-	}
-}
-
 function updateMarkerContent(pID, newContent, type) {
 	for (var i=0;i<mapMarkers.length;i++) {
 		if ("point_"+pID==mapMarkers[i][0]) {
@@ -75,25 +65,23 @@ function updateMarkerContent(pID, newContent, type) {
 				const flagImg = document.createElement("img");
 				flagImg.src = newContent;
 				mapMarkers[i][2].content= flagImg;
-			} 			
-			break;
-		}
-	}
-}
-
-function openMarkerContent(pID) {
-	for (var i=0;i<mapMarkers.length;i++) {
-		if ("point_"+pID==mapMarkers[i][0]) {
-			mapMarkers[i][3].open(mapMarkers[i][1], mapMarkers[i][2]);
-			break;
-		}
-	}
-}
-
-function closeMarkerContent(pID) {
-	for (var i=0;i<mapMarkers.length;i++) {
-		if ("point_"+pID==mapMarkers[i][0]) {
-			mapMarkers[i][3].close();
+			} 	
+			else if (type=="gmpDraggable") {
+				mapMarkers[i][2].gmpDraggable = newContent;
+			}
+			else if (type=="gmpClickable") {
+				mapMarkers[i][2].gmpClickable = newContent;
+			}
+			else if (type=="openContent") {
+				mapMarkers[i][3].open(mapMarkers[i][1], mapMarkers[i][2]);
+			}
+			else if (type=="closeContent") {
+				mapMarkers[i][3].close();
+			}
+			else if (type=="clear") {
+				mapMarkers[i][2].setMap(null);
+				mapMarkers.splice(i, 1);
+			}			
 			break;
 		}
 	}
