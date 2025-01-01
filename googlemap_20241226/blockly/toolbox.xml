@@ -45,12 +45,12 @@
         </value>  
         <value name="latitude">
           <block type="math_number">
-            <field name="NUM">23.801079</field>
+            <field name="NUM">22.624943</field>
           </block>
         </value>
         <value name="longitude">
           <block type="math_number">
-            <field name="NUM">120.933835</field>
+            <field name="NUM">120.372391</field>
           </block>
         </value>
         <value name="heading">
