@@ -209,11 +209,11 @@ Blockly.Blocks['googlemap_addpoint'] = {
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["GOOGLEMAP_LONGITUDE"]);
-	this.appendValueInput("altitudes")
+	this.appendValueInput("altitude")
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg["GOOGLEMAP_ALTITUDES"]);	  
+		.appendField(Blockly.Msg["GOOGLEMAP_ALTITUDE"]);	  
 	this.appendValueInput("title")
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("String")
@@ -338,7 +338,8 @@ Blockly.Blocks['googlemap_point_get'] = {
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["GOOGLEMAP_LATITUDE"],"latitude"],
 			[Blockly.Msg["GOOGLEMAP_LONGITUDE"],"longtitude"],
-			[Blockly.Msg["GOOGLEMAP_LATLNG"],"latLng"]
+			[Blockly.Msg["GOOGLEMAP_ALTITUDE"],"altitude"],
+			[Blockly.Msg["GOOGLEMAP_LATLNGALT"],"latlngalt"]
 		]), "property");			  
 	this.setInputsInline(true);
   	this.setOutput(true, null); 
