@@ -87,7 +87,9 @@ function updateMarkerContent(pID, newContent, type) {
 
 function getMarkerSetting(pID, newContent, property) {
 	for (var i=0;i<mapMarkers.length;i++) {
-		if ("point_"+pID==mapMarkers[i][0]) {			
+		if ("point_"+pID==mapMarkers[i][0]) {
+			console.log(mapMarkers[i][2].position);
+			console.log(mapMarkers[i][2].position.lat);
 			if (property=="latitude") {
 				return mapMarkers[i][2].position.lat;
 			} else if (property=="longtitude") {
