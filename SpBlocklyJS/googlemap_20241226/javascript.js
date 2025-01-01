@@ -110,7 +110,7 @@ Blockly.JavaScript['googlemap_point_event_remove'] = function (block) {
   var pointid = Blockly.JavaScript.valueToCode(block, 'pointid', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var event = block.getFieldValue('event');
 
-  var code = 'getMarker('+pointid+').removeListener("'+event+'");\n';	  
+  var code = 'google.maps.event.clearListeners(getMarker('+pointid+'), "'+event+'");\n';
   return code;
 };
 
