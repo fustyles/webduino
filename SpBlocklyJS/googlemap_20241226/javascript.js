@@ -118,35 +118,8 @@ Blockly.JavaScript['googlemap_point_function'] = function (block) {
   var pointid = Blockly.JavaScript.valueToCode(block, 'pointid', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var func = block.getFieldValue('func');
   var content = Blockly.JavaScript.valueToCode(block, 'content', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  if (func=="update_content")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "content");\n';
-  else if (func=="update_headercontent")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "headercontent");\n';	  
-  else if (func=="update_latitude")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "latitude");\n';
-  else if (func=="update_longitude")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "longitude");\n';
-  else if (func=="update_position")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "position");\n';
-  else if (func=="update_title")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "title");\n';
-  else if (func=="update_zindex")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "zindex");\n';	  
-  else if (func=="update_icon")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "icon");\n';
-  else if (func=="update_gmpDraggable")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "gmpDraggable");\n';
-  else if (func=="update_gmpClickable")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "gmpClickable");\n';	  
-  else if (func=="open_content")
-    var code = 'updateMarkerContent('+pointid+', "", "openContent");\n';
-  else if (func=="close_content")
-    var code = 'updateMarkerContent('+pointid+', "", "closeContent");\n';
-  else if (func=="clear")
-    var code = 'updateMarkerContent('+pointid+', "", "clear");\n';
-  else
-    var code = '';
   
+  var code = 'updateMarkerContent('+pointid+', '+content+', "'+func+'");\n';
   return code;
 };
 
