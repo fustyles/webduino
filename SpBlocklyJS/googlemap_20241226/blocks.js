@@ -111,9 +111,9 @@ Blockly.Blocks['googlemap_map_event_add'] = {
 	this.appendDummyInput()
 		.setAlign(Blockly.ALIGN_RIGHT)			
 		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["GOOGLEMAP_MAP_CLICK"], "click"],			
 			[Blockly.Msg["GOOGLEMAP_MAP_BOUNDS_CHANGED"], "bounds_changed"],
 			[Blockly.Msg["GOOGLEMAP_MAP_CENTER_CHANGED"], "center_changed"],
-			[Blockly.Msg["GOOGLEMAP_MAP_CLICK"], "click"],
 			[Blockly.Msg["GOOGLEMAP_MAP_CONTEXTMENU"], "contextmenu"],
 			[Blockly.Msg["GOOGLEMAP_MAP_DBLCLICK"], "dblclick"],
 			[Blockly.Msg["GOOGLEMAP_MAP_DRAG"], "drag"],
@@ -154,9 +154,9 @@ Blockly.Blocks['googlemap_map_event_remove'] = {
 	this.appendDummyInput()
 		.setAlign(Blockly.ALIGN_RIGHT)			
 		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["GOOGLEMAP_MAP_CLICK"], "click"],			
 			[Blockly.Msg["GOOGLEMAP_MAP_BOUNDS_CHANGED"], "bounds_changed"],
 			[Blockly.Msg["GOOGLEMAP_MAP_CENTER_CHANGED"], "center_changed"],
-			[Blockly.Msg["GOOGLEMAP_MAP_CLICK"], "click"],
 			[Blockly.Msg["GOOGLEMAP_MAP_CONTEXTMENU"], "contextmenu"],
 			[Blockly.Msg["GOOGLEMAP_MAP_DBLCLICK"], "dblclick"],
 			[Blockly.Msg["GOOGLEMAP_MAP_DRAG"], "drag"],
