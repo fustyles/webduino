@@ -195,6 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}		
 		if (xml.indexOf("googlemap_")!=-1) {
 			script += "<script src='googlemap_20241226/googlemap.js'></script>";
+			script += "<script src='googlemap_20241226/index.min.js'></script>";			
 		}	
 		
 		return script;
@@ -379,6 +380,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}		
 		if (xml.indexOf("googlemap_")!=-1) {
 			script += "<script src='https://fustyles.github.io/webduino/SpBlocklyJS/googlemap_20241226/googlemap.js'></script>";
+			script += "<script src='https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js'></script>";
 		}	
 		
 		return script;
