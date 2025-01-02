@@ -168,6 +168,6 @@ Blockly.JavaScript['googlemap_map_mouse_get'] = function (block) {
   else if  (property=="longtitude")
   	var code = 'event.latLng.toJSON().lng';
   else if  (property=="latlng")			
-  	var code = 'event.latLng.toJSON()';
+  	var code = '[event.latLng.toJSON().lat, event.latLng.toJSON().lng]';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
