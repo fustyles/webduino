@@ -195,10 +195,10 @@ Blockly.Blocks['googlemap_addpoint'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.setCheck("String")
 		.appendField(Blockly.Msg["GOOGLEMAP_POINTID"]);	  
-	this.appendValueInput("divid")
-		.setAlign(Blockly.ALIGN_RIGHT)	
-		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);		
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
+		.appendField(new Blockly.FieldTextInput(""), "divid");		  
 	this.appendValueInput("latitude")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
