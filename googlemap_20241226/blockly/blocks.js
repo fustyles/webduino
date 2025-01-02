@@ -35,10 +35,10 @@ Blockly.Blocks['googlemap_addmap'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg["GOOGLEMAP"])
 	.appendField(Blockly.Msg["GOOGLEMAP_ADDMAP"]);  
-	this.appendValueInput("divid")
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
+		.appendField(new Blockly.FieldTextInput(""), "divid");	
 	this.appendDummyInput()
 		.setAlign(Blockly.ALIGN_RIGHT)	
         	.appendField(Blockly.Msg["GOOGLEMAP_MAP_TYPE"])			
@@ -72,10 +72,10 @@ Blockly.Blocks['googlemap_addstreetview'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg["GOOGLEMAP"])
 	.appendField(Blockly.Msg["GOOGLEMAP_ADDSTREETVIEW"]);  
-	this.appendValueInput("divid")
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);  
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
+		.appendField(new Blockly.FieldTextInput(""), "divid");	 
 	this.appendValueInput("latitude")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
@@ -103,10 +103,10 @@ Blockly.Blocks['googlemap_map_event_add'] = {
   init: function () {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["GOOGLEMAP"]);
-	this.appendValueInput("divid")
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
+		.appendField(new Blockly.FieldTextInput(""), "divid");	
 	this.appendDummyInput() 
 		.appendField(Blockly.Msg["GOOGLEMAP_MAP_EVENT_ADD"]);	  
 	this.appendDummyInput()
@@ -147,10 +147,10 @@ Blockly.Blocks['googlemap_map_event_remove'] = {
   init: function () {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["GOOGLEMAP"]);
-	this.appendValueInput("divid")
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
+		.appendField(new Blockly.FieldTextInput(""), "divid");	
 	this.appendDummyInput() 
 		.appendField(Blockly.Msg["GOOGLEMAP_MAP_EVENT_REMOVE"]);	  
 	this.appendDummyInput()
@@ -195,10 +195,10 @@ Blockly.Blocks['googlemap_addpoint'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.setCheck("String")
 		.appendField(Blockly.Msg["GOOGLEMAP_POINTID"]);	  
-	this.appendValueInput("divid")
-		.setAlign(Blockly.ALIGN_RIGHT)	
-		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);		
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
+		.appendField(new Blockly.FieldTextInput(""), "divid");			
 	this.appendValueInput("latitude")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
@@ -351,10 +351,10 @@ Blockly.Blocks['googlemap_map_center'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg["GOOGLEMAP"]) 
 	.appendField(Blockly.Msg["GOOGLEMAP_CENTERMAP"]); 
-    this.appendValueInput("divid")
-	.setAlign(Blockly.ALIGN_RIGHT)	
-	.setCheck("String")
-	.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);
+    this.appendDummyInput()
+	.setAlign(Blockly.ALIGN_RIGHT)
+	.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
+	.appendField(new Blockly.FieldTextInput(""), "divid");	
     this.appendDummyInput()
 	.setAlign(Blockly.ALIGN_RIGHT)	    
 	.appendField(new Blockly.FieldDropdown([			
@@ -378,12 +378,12 @@ Blockly.Blocks['googlemap_map_center'] = {
 
 Blockly.Blocks['googlemap_map_function'] = {
   init: function () {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["GOOGLEMAP"]);	  
-	this.appendValueInput("divid")
-		.setAlign(Blockly.ALIGN_RIGHT)	
-		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);		 	  
+        this.appendDummyInput()
+        	.appendField(Blockly.Msg["GOOGLEMAP"]);	  
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
+		.appendField(new Blockly.FieldTextInput(""), "divid");			 	  
 	this.appendDummyInput()
 		.appendField(new Blockly.FieldDropdown([			
 			[Blockly.Msg["GOOGLEMAP_MAP_UPDATE_ZOOM"],"zoom"],			
