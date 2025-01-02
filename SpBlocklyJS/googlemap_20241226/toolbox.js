@@ -60,25 +60,10 @@ var catGoogleMap = '<xml>'+
 '  <block type="googlemap_loaded">'+
 '  </block>'+
 '  <block type="googlemap_map_event_add">'+  
-'    <value name="divid">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+
-'    </value>'+
 '  </block>'+
 '  <block type="googlemap_map_event_remove">'+  
-'    <value name="divid">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+
-'    </value>'+
 '  </block>'+  
 '  <block type="googlemap_map_center">'+  
-'    <value name="divid">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+
-'    </value>'+
 '    <value name="latitude">'+
 '      <block type="math_number">'+
 '        <field name="NUM">23.801079</field>'+
