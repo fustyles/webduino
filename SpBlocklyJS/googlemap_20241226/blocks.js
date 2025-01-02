@@ -7,8 +7,7 @@ Blockly.Blocks['googlemap_initial'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("String")
 		.appendField(Blockly.Msg["GOOGLEMAP_APIKEY"]);	  
-	this.appendStatementInput("statement")
-		.appendField(Blockly.Msg["GOOGLEMAP_ADDMAP"]);
+	this.appendStatementInput("statement");
 	this.setInputsInline(true);
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
