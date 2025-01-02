@@ -24,9 +24,9 @@ Blockly.JavaScript['googlemap_addmap'] = function (block) {
   var type = block.getFieldValue('type');
   var latitude = Blockly.JavaScript.valueToCode(block, 'latitude', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var longitude = Blockly.JavaScript.valueToCode(block, 'longitude', Blockly.JavaScript.ORDER_ATOMIC)||"";	
-  var zoom = Blockly.JavaScript.valueToCode(block, 'zoom', Blockly.JavaScript.ORDER_ATOMIC)||"";	
-  var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+  var zoom = Blockly.JavaScript.valueToCode(block, 'zoom', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var mapid = block.getFieldValue('divid')||"";
+  var divid = '"'+mapid+'"';
   
   Blockly.JavaScript.definitions_['googlemap_'+divid] = 'let map_'+mapid+';\n';  
   var code = ''+
