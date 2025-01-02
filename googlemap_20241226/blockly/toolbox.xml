@@ -6,12 +6,7 @@
       </block>
     </value>
     <statement name="statement">
-      <block type="googlemap_addmap">
-        <value name="divid">
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
-        </value>  
+      <block type="googlemap_addmap"> 
         <value name="latitude">
           <block type="math_number">
             <field name="NUM">23.801079</field>
@@ -38,11 +33,6 @@
     </value>
     <statement name="statement">
       <block type="googlemap_addstreetview">
-        <value name="divid">
-          <block type="text">
-            <field name="TEXT"></field>
-          </block>
-        </value>  
         <value name="latitude">
           <block type="math_number">
             <field name="NUM">22.624943</field>
@@ -69,25 +59,10 @@
   <block type="googlemap_loaded">
   </block>
   <block type="googlemap_map_event_add">  
-    <value name="divid">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>
   </block>
   <block type="googlemap_map_event_remove">  
-    <value name="divid">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>
   </block>  
   <block type="googlemap_map_center">  
-    <value name="divid">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>
     <value name="latitude">
       <block type="math_number">
         <field name="NUM">23.801079</field>
@@ -100,11 +75,6 @@
     </value>
   </block>    
   <block type="googlemap_map_function">
-    <value name="divid">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>
     <value name="val">
       <block type="math_number">
         <field name="NUM">8</field>
@@ -117,11 +87,6 @@
         <field name="TEXT"></field>
       </block>
     </value>  
-    <value name="divid">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>
     <value name="latitude">
       <block type="math_number">
         <field name="NUM">23.801079</field>
