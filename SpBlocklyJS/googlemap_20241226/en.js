@@ -77,3 +77,4 @@ Blockly.Msg["GOOGLEMAP_POINT_DRAGSTART"] = "Drag start";
 Blockly.Msg["GOOGLEMAP_POINT_BETAGMP_CLICK"] = "gmp-click";
 Blockly.Msg["GOOGLEMAP_LATLNGALT"]  = "[Latitude, Longitude, Altitude]";
 Blockly.Msg["GOOGLEMAP_LATLNG"] = "[Latitude, Longitude]";
+Blockly.Msg["GOOGLEMAP_MOUSE_POSITION"] = "Mouse position";
