@@ -76,3 +76,4 @@ Blockly.Msg["GOOGLEMAP_POINT_DRAGEND"] = "拖曳结束";
 Blockly.Msg["GOOGLEMAP_POINT_DRAGSTART"] = "拖曳开始";
 Blockly.Msg["GOOGLEMAP_POINT_BETAGMP_CLICK"] = "gmp-点击";
 Blockly.Msg["GOOGLEMAP_LATLNGALT"] = "经纬高度";
+Blockly.Msg["GOOGLEMAP_LATLNG"] = "经纬度";
