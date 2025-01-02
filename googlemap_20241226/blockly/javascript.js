@@ -187,8 +187,8 @@ Blockly.JavaScript['googlemap_addmap'] = function (block) {
   var latitude = Blockly.JavaScript.valueToCode(block, 'latitude', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var longitude = Blockly.JavaScript.valueToCode(block, 'longitude', Blockly.JavaScript.ORDER_ATOMIC)||"";	
   var zoom = Blockly.JavaScript.valueToCode(block, 'zoom', Blockly.JavaScript.ORDER_ATOMIC)||"";	
-  var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+  var mapid = block.getFieldValue('divid')||"";
+  var divid = '"'+mapid+'"';
   
   Blockly.JavaScript.definitions_['googlemap_'+divid] = 'let map_'+mapid+';\n';  
   var code = ''+
@@ -208,8 +208,8 @@ Blockly.JavaScript['googlemap_addstreetview'] = function (block) {
   var longitude = Blockly.JavaScript.valueToCode(block, 'longitude', Blockly.JavaScript.ORDER_ATOMIC)||"";	
   var heading = Blockly.JavaScript.valueToCode(block, 'heading', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var pitch = Blockly.JavaScript.valueToCode(block, 'pitch', Blockly.JavaScript.ORDER_ATOMIC)||"";	
-  var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+  var mapid = block.getFieldValue('divid')||"";
+  var divid = '"'+mapid+'"';
   
   Blockly.JavaScript.definitions_['googlemap_'+divid] = 'let map_'+mapid+';\n';  
   var code = ''+
@@ -227,33 +227,33 @@ Blockly.JavaScript['googlemap_addstreetview'] = function (block) {
 };
 
 Blockly.JavaScript['googlemap_map_event_add'] = function (block) {
-  var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var event = block.getFieldValue('event');
   var statement = Blockly.JavaScript.statementToCode(block, 'statement');
-  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+  var mapid = block.getFieldValue('divid')||"";
+  var divid = '"'+mapid+'"';
 
   var code = 'map_'+mapid+'.addListener("'+event+'", async function(e) {\n'+statement+'\n}\n);\n';	
   return code;
 };
 
 Blockly.JavaScript['googlemap_map_event_remove'] = function (block) {
-  var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var event = block.getFieldValue('event');
-  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+  var mapid = block.getFieldValue('divid')||"";
+  var divid = '"'+mapid+'"';
 
   var code = 'google.maps.event.clearListeners(map_'+mapid+', "'+event+'");\n';	  
   return code;
 };
 
-Blockly.JavaScript['googlemap_addpoint'] = function (block) {
-  var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";		
+Blockly.JavaScript['googlemap_addpoint'] = function (block) {		
   var pointid = Blockly.JavaScript.valueToCode(block, 'pointid', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var latitude = Blockly.JavaScript.valueToCode(block, 'latitude', Blockly.JavaScript.ORDER_ATOMIC)||"22.625384";
   var longitude = Blockly.JavaScript.valueToCode(block, 'longitude', Blockly.JavaScript.ORDER_ATOMIC)||"120.371016";
   var altitude = Blockly.JavaScript.valueToCode(block, 'altitude', Blockly.JavaScript.ORDER_ATOMIC)||"0";
   var title = Blockly.JavaScript.valueToCode(block, 'title', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var content = Blockly.JavaScript.valueToCode(block, 'content', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+  var mapid = block.getFieldValue('divid')||"";
+  var divid = '"'+mapid+'"';
   
   var code = 'addMapPoint('+pointid+', map_'+mapid+', '+latitude+', '+longitude+', '+altitude+', '+title+', '+content+');\n';
   
@@ -295,11 +295,11 @@ Blockly.JavaScript['googlemap_point_get'] = function (block) {
 };
 
 Blockly.JavaScript['googlemap_map_center'] = function (block) {
-  var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var type = block.getFieldValue('type');
   var latitude = Blockly.JavaScript.valueToCode(block, 'latitude', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var longitude = Blockly.JavaScript.valueToCode(block, 'longitude', Blockly.JavaScript.ORDER_ATOMIC)||"";	
-  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+  var mapid = block.getFieldValue('divid')||"";
+  var divid = '"'+mapid+'"';
 
   if (type=="center")
   	var code = 'centerMap(map_'+mapid+', '+latitude+', '+longitude+');\n';
@@ -311,10 +311,10 @@ Blockly.JavaScript['googlemap_map_center'] = function (block) {
 };
 
 Blockly.JavaScript['googlemap_map_function'] = function (block) {		
-  var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var val = Blockly.JavaScript.valueToCode(block, 'val', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
   var func = block.getFieldValue('func');
+  var mapid = block.getFieldValue('divid')||"";
+  var divid = '"'+mapid+'"';	
 	
   var code = 'updateMapContent(map_'+mapid+', '+val+', "'+func+'");\n';	
   return code;
