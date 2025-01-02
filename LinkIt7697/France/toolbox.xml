@@ -8961,7 +8961,9 @@
 			<field name="NUM">8</field>
 		  </block>
 		</value>
-	  </block>  
+	  </block>
+	  <block type="googlemap_map_mouse_get">
+	  </block>  	  
 	  <block type="page_googlemap_addpoint">
 		<value name="pointid">
 		  <block type="text">

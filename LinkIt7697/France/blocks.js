@@ -575,8 +575,7 @@ Blockly.Blocks['page_googlemap_initial'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("String")
 		.appendField(Blockly.Msg["GOOGLEMAP_APIKEY"]);	  
-	this.appendStatementInput("statement")
-	    .appendField(Blockly.Msg["GOOGLEMAP_ADDMAP"]);
+	this.appendStatementInput("statement");
 	this.setInputsInline(true);
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
@@ -976,6 +975,31 @@ Blockly.Blocks['page_googlemap_map_function'] = {
 		 block.getInput("val").setVisible(false);
   }
 };
+
+Blockly.Blocks['googlemap_map_mouse_get'] = {
+  init: function () {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["GOOGLEMAP"])
+		.appendField(Blockly.Msg["GOOGLEMAP_MOUSE_POSITION"]);	  
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
+		.appendField(new Blockly.FieldTextInput(""), "divid");	 	  
+	this.appendDummyInput()
+		.appendField("　")		
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["GOOGLEMAP_LATITUDE"],"latitude"],
+			[Blockly.Msg["GOOGLEMAP_LONGITUDE"],"longtitude"],
+			[Blockly.Msg["GOOGLEMAP_LATLNG"],"latlng"]
+		]), "property");			  
+	this.setInputsInline(true);
+  	this.setOutput(true, null); 
+	this.setColour(Blockly.Msg["HUE_17"]);
+  }
+};
+
+
+
 
 Blockly.Blocks['custom_chat_initial'] = {
   init: function() {

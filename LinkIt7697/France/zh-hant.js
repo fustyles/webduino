@@ -106,6 +106,8 @@ Blockly.Msg["GOOGLEMAP_POINT_DRAGEND"] = "拖曳結束";
 Blockly.Msg["GOOGLEMAP_POINT_DRAGSTART"] = "拖曳開始";
 Blockly.Msg["GOOGLEMAP_POINT_BETAGMP_CLICK"] = "gmp-點擊";
 Blockly.Msg["GOOGLEMAP_LATLNGALT"] = "經緯高度";
+Blockly.Msg["GOOGLEMAP_LATLNG"] = "經緯度";
+Blockly.Msg["GOOGLEMAP_MOUSE_POSITION"] = "滑鼠位置";
 
 Blockly.Msg.DVCBOT_SHOW = "達哥助理";
 Blockly.Msg.DVCBOT_INITIAL_SHOW = "初始化";
