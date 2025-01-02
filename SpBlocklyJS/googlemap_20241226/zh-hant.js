@@ -77,3 +77,4 @@ Blockly.Msg["GOOGLEMAP_POINT_DRAGSTART"] = "拖曳開始";
 Blockly.Msg["GOOGLEMAP_POINT_BETAGMP_CLICK"] = "gmp-點擊";
 Blockly.Msg["GOOGLEMAP_LATLNGALT"] = "經緯高度";
 Blockly.Msg["GOOGLEMAP_LATLNG"] = "經緯度";
+Blockly.Msg["GOOGLEMAP_MOUSE_POSITION"] = "滑鼠位置";
