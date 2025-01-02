@@ -1,5 +1,5 @@
 {
-  "types": ["googlemap_initial","googlemap_loaded","googlemap_addmap","googlemap_addstreetview","googlemap_map_event_add","googlemap_map_event_remove","googlemap_addpoint","googlemap_point_event_add","googlemap_point_event_remove","googlemap_point_get","googlemap_point_function","googlemap_map_center","googlemap_map_function"],
+  "types": ["googlemap_initial","googlemap_loaded","googlemap_addmap","googlemap_addstreetview","googlemap_map_event_add","googlemap_map_event_remove","googlemap_map_mouse_get","googlemap_addpoint","googlemap_point_event_add","googlemap_point_event_remove","googlemap_point_get","googlemap_point_function","googlemap_map_center","googlemap_map_function"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
