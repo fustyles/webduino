@@ -420,6 +420,7 @@ Blockly.Blocks['googlemap_map_mouse_get'] = {
 		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
 		.appendField(new Blockly.FieldTextInput(""), "divid");	 	  
 	this.appendDummyInput()
+		.appendField("　")		
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["GOOGLEMAP_LATITUDE"],"latitude"],
 			[Blockly.Msg["GOOGLEMAP_LONGITUDE"],"longtitude"],
