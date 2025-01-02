@@ -108,11 +108,6 @@ var catGoogleMap = '<xml>'+
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+  
-'    <value name="divid">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+
-'    </value>'+
 '    <value name="latitude">'+
 '      <block type="math_number">'+
 '        <field name="NUM">23.801079</field>'+
