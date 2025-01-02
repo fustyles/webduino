@@ -91,11 +91,6 @@ var catGoogleMap = '<xml>'+
 '    </value>'+
 '  </block>'+    
 '  <block type="googlemap_map_function">'+
-'    <value name="divid">'+
-'      <block type="text">'+
-'        <field name="TEXT"></field>'+
-'      </block>'+
-'    </value>'+
 '    <value name="val">'+
 '      <block type="math_number">'+
 '        <field name="NUM">8</field>'+
