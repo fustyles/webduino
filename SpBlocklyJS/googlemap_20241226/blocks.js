@@ -348,31 +348,31 @@ Blockly.Blocks['googlemap_point_get'] = {
 
 Blockly.Blocks['googlemap_map_center'] = {
   init: function () {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["GOOGLEMAP"]) 
-	.appendField(Blockly.Msg["GOOGLEMAP_CENTERMAP"]); 
-    this.appendValueInput("divid")
-	.setAlign(Blockly.ALIGN_RIGHT)	
-	.setCheck("String")
-	.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);
-    this.appendDummyInput()
-	.setAlign(Blockly.ALIGN_RIGHT)	    
-	.appendField(new Blockly.FieldDropdown([			
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["GOOGLEMAP"]) 
+		.appendField(Blockly.Msg["GOOGLEMAP_CENTERMAP"]); 
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
+		.appendField(new Blockly.FieldTextInput(""), "divid");
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	    
+		.appendField(new Blockly.FieldDropdown([			
 		[Blockly.Msg["GOOGLEMAP_MAP_CENTER"],"center"],
 		[Blockly.Msg["GOOGLEMAP_MAP_POSITION"],"position"]	
-	]), "type");	  
-    this.appendValueInput("latitude")
-	.setCheck("Number")
-	.setAlign(Blockly.ALIGN_RIGHT)
-	.appendField(Blockly.Msg["GOOGLEMAP_LATITUDE"]);
-    this.appendValueInput("longitude")
-	.setCheck("Number")
-	.setAlign(Blockly.ALIGN_RIGHT)
-	.appendField(Blockly.Msg["GOOGLEMAP_LONGITUDE"]);	  
-    this.setInputsInline(false);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(210);
+		]), "type");	  
+	this.appendValueInput("latitude")
+		.setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_LATITUDE"]);
+	this.appendValueInput("longitude")
+		.setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_LONGITUDE"]);	  
+	this.setInputsInline(false);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(210);
   }
 };
 
