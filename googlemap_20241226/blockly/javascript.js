@@ -319,3 +319,17 @@ Blockly.JavaScript['googlemap_map_function'] = function (block) {
   var code = 'updateMapContent(map_'+mapid+', '+val+', "'+func+'");\n';	
   return code;
 };
+
+Blockly.JavaScript['googlemap_map_mouse_get'] = function (block) {		
+  var mapid = block.getFieldValue('divid')||"";
+  var divid = '"'+mapid+'"';
+  var property = block.getFieldValue('property');
+
+  if (property=="latitude")
+  	var code = 'event.latLng.toJSON().lat';
+  else if  (property=="longtitude")
+  	var code = 'event.latLng.toJSON().lng';
+  else if  (property=="latlng")			
+  	var code = '[event.latLng.toJSON().lat, event.latLng.toJSON().lng]';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
