@@ -149,7 +149,8 @@ Blockly.JavaScript['googlemap_map_center'] = function (block) {
 };
 
 Blockly.JavaScript['googlemap_map_function'] = function (block) {		
-  var divid = Blockly.JavaScript.valueToCode(block, 'divid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var mapid = block.getFieldValue('divid')||"";
+  var divid = '"'+mapid+'"';
   var val = Blockly.JavaScript.valueToCode(block, 'val', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var mapid = divid.replace(/"/g,"").replace(/'/g,"");
   var func = block.getFieldValue('func');
