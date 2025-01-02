@@ -59,17 +59,16 @@ Blockly.Arduino['audio_delete'] = function (block) {
 Blockly.Arduino['page_googlemap_initial'] = function (block) {
   var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC)||"";
   var statement = Blockly.Arduino.statementToCode(block, 'statement');
-  key = key.replace(/"/g,"").replace(/'/g,"");
   
   const matches = statement.match(/let position_map_.*? /g);
   var code = matches.join(";").replace(/position_/g, "")+";";
-  code += 'let url = "https:\/\/maps.googleapis.com/maps/api/js?key='+key+'&callback=initMap&v=weekly&libraries=marker";\n'+
+  code += 'let url = "https:\/\/maps.googleapis.com/maps/api/js?key="+'+key+'+"&callback=initMap&v=weekly&libraries=marker";\n'+
 		 'let s = document.createElement("script");\n'+
 		 's.async = true;\n'+
 		 's.defer = true;\n'+
 		 's.src = url;\n'+
 		 'document.body.append(s);\n'+
-		 'function initMap() {\n'+statement+'\nloadedMap();\n}\n'+
+		 'function initMap() {\n'+statement+'\nif (typeof loadedMap === "function") loadedMap();\n}\n'+
 		 'window.initMap = initMap;\n';
   return code;
 };
@@ -82,33 +81,95 @@ Blockly.Arduino['page_googlemap_loaded'] = function (block) {
 };
 
 Blockly.Arduino['page_googlemap_addmap'] = function (block) {;
+  var type = block.getFieldValue('type');
   var latitude = Blockly.Arduino.valueToCode(block, 'latitude', Blockly.Arduino.ORDER_ATOMIC)||"";
   var longitude = Blockly.Arduino.valueToCode(block, 'longitude', Blockly.Arduino.ORDER_ATOMIC)||"";	
   var zoom = Blockly.Arduino.valueToCode(block, 'zoom', Blockly.Arduino.ORDER_ATOMIC)||"";	
-  var divid = Blockly.Arduino.valueToCode(block, 'divid', Blockly.Arduino.ORDER_ATOMIC)||"";
-  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+  var mapid = block.getFieldValue('divid')||"";
+  var divid = '"'+mapid+'"';
    
-  var code = 'let position_map_'+mapid+' = {lat: '+latitude+', lng: '+longitude+'};\n'+
-			'map_'+mapid+' = new google.maps.Map(document.getElementById("gamediv_"+'+divid+'), {\n'+
-			'  zoom: '+zoom+',\n'+
-			'  center: position_map_'+mapid+',\n'+
-			'  mapId: "mapid_"+'+divid+',\n'+
-			'});\n';
+  var code = ''+
+		'let position_map_'+mapid+' = {lat: '+latitude+', lng: '+longitude+'};\n'+
+		'map_'+mapid+' = new google.maps.Map(document.getElementById("gamediv_"+'+divid+'), {\n'+
+		'  zoom: '+zoom+',\n'+
+		'  center: position_map_'+mapid+',\n'+
+		'  mapId: "mapid_"+'+divid+',\n'+
+		'  mapTypeId: "'+type+'",\n'+	  
+		'});\n';
+
+  return code;
+};
+
+Blockly.Arduino['page_googlemap_addstreetview'] = function (block) {
+  var latitude = Blockly.Arduino.valueToCode(block, 'latitude', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var longitude = Blockly.Arduino.valueToCode(block, 'longitude', Blockly.Arduino.ORDER_ATOMIC)||"";	
+  var heading = Blockly.Arduino.valueToCode(block, 'heading', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var pitch = Blockly.Arduino.valueToCode(block, 'pitch', Blockly.Arduino.ORDER_ATOMIC)||"";	
+  var mapid = block.getFieldValue('divid')||"";
+  var divid = '"'+mapid+'"';
+   
+  var code = ''+
+	'let position_map_'+mapid+' = {lat: '+latitude+', lng: '+longitude+'};\n'+
+	'map_'+mapid+' = new google.maps.StreetViewPanorama(document.getElementById("gamediv_"+'+divid+'), {\n'+
+	'  position: position_map_'+mapid+',\n'+
+	'  mapId: "mapid_"+'+divid+',\n'+
+	'  pov: {\n'+
+	'       heading: '+Number(heading)+',\n'+
+	'       pitch: '+Number(pitch)+',\n'+
+	'  },\n'+
+	'});\n';
 
   return code; 
 };
 
-Blockly.Arduino['page_googlemap_addpoint'] = function (block) {
-  var divid = Blockly.Arduino.valueToCode(block, 'divid', Blockly.Arduino.ORDER_ATOMIC)||"";		
+Blockly.Arduino['page_googlemap_map_event_add'] = function (block) {
+  var event = block.getFieldValue('event');
+  var statement = Blockly.Arduino.statementToCode(block, 'statement');
+  var mapid = block.getFieldValue('divid')||"";
+  var divid = '"'+mapid+'"';
+
+  var code = 'map_'+mapid+'.addListener("'+event+'", async function(e) {\n'+statement+'\n}\n);\n';	
+  return code;
+};
+
+Blockly.Arduino['page_googlemap_map_event_remove'] = function (block) {
+  var event = block.getFieldValue('event');
+  var mapid = block.getFieldValue('divid')||"";
+  var divid = '"'+mapid+'"';
+
+  var code = 'google.maps.event.clearListeners(map_'+mapid+', "'+event+'");\n';	  
+  return code;
+};
+
+Blockly.Arduino['page_googlemap_addpoint'] = function (block) {	
   var pointid = Blockly.Arduino.valueToCode(block, 'pointid', Blockly.Arduino.ORDER_ATOMIC)||"";
-  var latitude = Blockly.Arduino.valueToCode(block, 'latitude', Blockly.Arduino.ORDER_ATOMIC)||"";
-  var longitude = Blockly.Arduino.valueToCode(block, 'longitude', Blockly.Arduino.ORDER_ATOMIC)||"";	
+  var latitude = Blockly.Arduino.valueToCode(block, 'latitude', Blockly.Arduino.ORDER_ATOMIC)||"22.625384";
+  var longitude = Blockly.Arduino.valueToCode(block, 'longitude', Blockly.Arduino.ORDER_ATOMIC)||"120.371016";
+  var altitude = Blockly.Arduino.valueToCode(block, 'altitude', Blockly.Arduino.ORDER_ATOMIC)||"0";
   var title = Blockly.Arduino.valueToCode(block, 'title', Blockly.Arduino.ORDER_ATOMIC)||"";
   var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||"";
-  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+  var mapid = block.getFieldValue('divid')||"";
+  var divid = '"'+mapid+'"';
   
-  var code = 'addMapPoint('+pointid+', map_'+mapid+', '+latitude+', '+longitude+', '+title+', '+content+');\n';
+  var code = 'addMapPoint('+pointid+', map_'+mapid+', '+latitude+', '+longitude+', '+altitude+', '+title+', '+content+');\n';
   
+  return code;
+};
+
+Blockly.Arduino['page_googlemap_point_event_add'] = function (block) {
+  var pointid = Blockly.Arduino.valueToCode(block, 'pointid', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var event = block.getFieldValue('event');
+  var statement = Blockly.Arduino.statementToCode(block, 'statement');
+
+  var code = 'getMarker('+pointid+').addListener("'+event+'", async function(e) {\n'+statement+'\n}\n);\n';	
+  return code;
+};
+
+Blockly.Arduino['page_googlemap_point_event_remove'] = function (block) {
+  var pointid = Blockly.Arduino.valueToCode(block, 'pointid', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var event = block.getFieldValue('event');
+
+  var code = 'google.maps.event.clearListeners(getMarker('+pointid+'), "'+event+'");\n';
   return code;
 };
 
@@ -116,52 +177,42 @@ Blockly.Arduino['page_googlemap_point_function'] = function (block) {
   var pointid = Blockly.Arduino.valueToCode(block, 'pointid', Blockly.Arduino.ORDER_ATOMIC)||"";
   var func = block.getFieldValue('func');
   var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||"";
-  if (func=="update_content")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "content");\n';
-  else if (func=="update_latitude")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "latitude");\n';
-  else if (func=="update_longitude")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "longitude");\n';
-  else if (func=="update_position")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "position");\n';
-  else if (func=="update_title")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "title");\n';
-  else if (func=="update_icon")
-    var code = 'updateMarkerContent('+pointid+', '+content+', "icon");\n';	  
-  else if (func=="open_content")
-    var code = 'openMarkerContent('+pointid+');\n';
-  else if (func=="close_content")
-    var code = 'closeMarkerContent('+pointid+');\n';
-  else if (func=="clear")
-    var code = 'clearMarker('+pointid+');\n';
-  else
-    var code = '';
   
+  var code = 'updateMarkerContent('+pointid+', '+content+', "'+func+'");\n';
   return code;
 };
 
+Blockly.Arduino['page_googlemap_point_get'] = function (block) {		
+  var pointid = Blockly.Arduino.valueToCode(block, 'pointid', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var property = block.getFieldValue('property');
+  
+  var code = 'getMarkerSetting('+pointid+', "'+property+'")';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['page_googlemap_map_center'] = function (block) {
-  var divid = Blockly.Arduino.valueToCode(block, 'divid', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var type = block.getFieldValue('type');
   var latitude = Blockly.Arduino.valueToCode(block, 'latitude', Blockly.Arduino.ORDER_ATOMIC)||"";
   var longitude = Blockly.Arduino.valueToCode(block, 'longitude', Blockly.Arduino.ORDER_ATOMIC)||"";	
-  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
-  
-  var code = 'centerMap(map_'+mapid+', '+latitude+', '+longitude+');\n';
-  
+  var mapid = block.getFieldValue('divid')||"";
+  var divid = '"'+mapid+'"';
+
+  if (type=="center")
+  	var code = 'centerMap(map_'+mapid+', '+latitude+', '+longitude+');\n';
+  else if (type=="position")
+  	var code = 'positionMap(map_'+mapid+', '+latitude+', '+longitude+');\n';	  
+  else
+  	var code = '';	  
   return code;
 };
 
 Blockly.Arduino['page_googlemap_map_function'] = function (block) {		
-  var divid = Blockly.Arduino.valueToCode(block, 'divid', Blockly.Arduino.ORDER_ATOMIC)||"";
-  var zoom = Blockly.Arduino.valueToCode(block, 'zoom', Blockly.Arduino.ORDER_ATOMIC)||"";
-  var mapid = divid.replace(/"/g,"").replace(/'/g,"");
+  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC)||"";
   var func = block.getFieldValue('func');
-  if (func=="zoom")
-    var code = 'zoomMap(map_'+mapid+', '+zoom+');\n';	
-  else if (func=="clear")
-    var code = 'clearMap(map_'+mapid+');\n';
-  else
-    var code = '';
+  var mapid = block.getFieldValue('divid')||"";
+  var divid = '"'+mapid+'"';
+  
+  var code = 'updateMapContent(map_'+mapid+', '+val+', "'+func+'");\n';	
   return code;
 };
 

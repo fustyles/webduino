@@ -8903,66 +8903,47 @@
 				<field name="NUM">8</field>
 			  </block>
 			</value>
-			<value name="divid">
-			  <block type="text">
-				<field name="TEXT"></field>
+		  </block>
+		</statement>
+	  </block>
+	  <block type="page_googlemap_initial">
+		<value name="key">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<statement name="statement">
+		  <block type="page_googlemap_addstreetview"> 
+			<value name="latitude">
+			  <block type="math_number">
+				<field name="NUM">22.624943</field>
+			  </block>
+			</value>
+			<value name="longitude">
+			  <block type="math_number">
+				<field name="NUM">120.372391</field>
+			  </block>
+			</value>
+			<value name="heading">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="pitch">
+			  <block type="math_number">
+				<field name="NUM">0</field>
 			  </block>
 			</value>
 		  </block>
 		</statement>
-	  </block>
+	  </block>  
 	  <block type="page_googlemap_loaded">
-	  </block>  
-	  <block type="page_googlemap_addpoint">
-		<value name="pointid">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="divid">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="latitude">
-		  <block type="math_number">
-			<field name="NUM">23.801079</field>
-		  </block>
-		</value>
-		<value name="longitude">
-		  <block type="math_number">
-			<field name="NUM">120.933835</field>
-		  </block>
-		</value>
-		<value name="title">
-		  <block type="text">
-			<field name="TEXT">台灣</field>
-		  </block>
-		</value>
-		<value name="content">
-		  <block type="text">
-			<field name="TEXT">台灣是一個美麗的寶島</field>
-		  </block>
-		</value>
-	  </block>  
-	  <block type="page_googlemap_point_function">
-		<value name="pointid">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>  
-		<value name="content">
-		  <block type="text">
-			<field name="TEXT">新年快樂</field>
-		  </block>
-		</value>
 	  </block>
+	  <block type="page_googlemap_map_event_add">  
+	  </block>
+	  <block type="page_googlemap_map_event_remove">  
+	  </block>  
 	  <block type="page_googlemap_map_center">  
-		<value name="divid">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
 		<value name="latitude">
 		  <block type="math_number">
 			<field name="NUM">23.801079</field>
@@ -8975,16 +8956,76 @@
 		</value>
 	  </block>    
 	  <block type="page_googlemap_map_function">
-		<value name="divid">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="zoom">
+		<value name="val">
 		  <block type="math_number">
 			<field name="NUM">8</field>
 		  </block>
 		</value>
+	  </block>  
+	  <block type="page_googlemap_addpoint">
+		<value name="pointid">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="latitude">
+		  <block type="math_number">
+			<field name="NUM">23.801079</field>
+		  </block>
+		</value>
+		<value name="longitude">
+		  <block type="math_number">
+			<field name="NUM">120.933835</field>
+		  </block>
+		</value>
+		<value name="altitude">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>  
+		<value name="title">
+		  <block type="text">
+			<field name="TEXT">台灣</field>
+		  </block>
+		</value>
+		<value name="content">
+		  <block type="text">
+			<field name="TEXT">台灣是一個美麗的寶島</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="page_googlemap_point_event_add">  
+		<value name="pointid">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="page_googlemap_point_event_remove">  
+		<value name="pointid">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block>   
+	  <block type="page_googlemap_point_function">
+		<value name="pointid">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
+		<value name="content">
+		  <block type="text">
+			<field name="TEXT">新年快樂</field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="page_googlemap_point_get">
+		<value name="pointid">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>  
 	  </block>  
 	</category>	
 		

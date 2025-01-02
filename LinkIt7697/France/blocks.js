@@ -574,9 +574,8 @@ Blockly.Blocks['page_googlemap_initial'] = {
 	this.appendValueInput("key")
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_APIKEY"]);
-	this.appendStatementInput("statement")
-		.appendField(Blockly.Msg["GOOGLEMAP_ADDMAP"]);
+		.appendField(Blockly.Msg["GOOGLEMAP_APIKEY"]);	  
+	this.appendStatementInput("statement");
 	this.setInputsInline(true);
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
@@ -602,11 +601,20 @@ Blockly.Blocks['page_googlemap_addmap'] = {
   init: function () {
     this.appendDummyInput()
         .appendField(Blockly.Msg["GOOGLEMAP"])
-	.appendField(Blockly.Msg["GOOGLEMAP_ADDMAP"]);  
-	this.appendValueInput("divid")
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);	  
+		.appendField(Blockly.Msg["GOOGLEMAP_ADDMAP"]);  
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
+		.appendField(new Blockly.FieldTextInput(""), "divid");
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+        	.appendField(Blockly.Msg["GOOGLEMAP_MAP_TYPE"])			
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["GOOGLEMAP_MAP_ROADMAP"],"roadmap"],
+			[Blockly.Msg["GOOGLEMAP_MAP_SATELLITE"],"satellite"],
+			[Blockly.Msg["GOOGLEMAP_MAP_HYBRID"],"hybrid"],
+			[Blockly.Msg["GOOGLEMAP_MAP_TERRAIN"],"terrain"]
+		]), "type");	  
 	this.appendValueInput("latitude")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
@@ -626,6 +634,124 @@ Blockly.Blocks['page_googlemap_addmap'] = {
   }
 };
 
+Blockly.Blocks['page_googlemap_addstreetview'] = {
+  init: function () {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["GOOGLEMAP"])
+		.appendField(Blockly.Msg["GOOGLEMAP_ADDSTREETVIEW"]);  
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
+		.appendField(new Blockly.FieldTextInput(""), "divid");  
+	this.appendValueInput("latitude")
+		.setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_LATITUDE_CENTER"]);
+	this.appendValueInput("longitude")
+		.setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_LONGITUDE_CENTER"]);		
+	this.appendValueInput("heading")
+		.setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_HEADING"]);
+	this.appendValueInput("pitch")
+		.setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_PITCH"]);	  
+    this.setInputsInline(false);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(Blockly.Msg["HUE_17"]);
+  }
+};
+
+Blockly.Blocks['page_googlemap_map_event_add'] = {
+  init: function () {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["GOOGLEMAP"]);
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
+		.appendField(new Blockly.FieldTextInput(""), "divid");
+	this.appendDummyInput() 
+		.appendField(Blockly.Msg["GOOGLEMAP_MAP_EVENT_ADD"]);	  
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)			
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["GOOGLEMAP_MAP_CLICK"], "click"],			
+			[Blockly.Msg["GOOGLEMAP_MAP_BOUNDS_CHANGED"], "bounds_changed"],
+			[Blockly.Msg["GOOGLEMAP_MAP_CENTER_CHANGED"], "center_changed"],
+			[Blockly.Msg["GOOGLEMAP_MAP_CONTEXTMENU"], "contextmenu"],
+			[Blockly.Msg["GOOGLEMAP_MAP_DBLCLICK"], "dblclick"],
+			[Blockly.Msg["GOOGLEMAP_MAP_DRAG"], "drag"],
+			[Blockly.Msg["GOOGLEMAP_MAP_DRAGEND"], "dragend"],
+			[Blockly.Msg["GOOGLEMAP_MAP_DRAGSTART"], "dragstart"],
+			[Blockly.Msg["GOOGLEMAP_MAP_HEADING_CHANGED"], "heading_changed"],
+			[Blockly.Msg["GOOGLEMAP_MAP_IDLE"], "idle"],
+			[Blockly.Msg["GOOGLEMAP_MAP_ISFRACTIONALZOOMENABLED_CHANGED"], "isfractionalzoomenabled_changed"],
+			[Blockly.Msg["GOOGLEMAP_MAP_MAPCAPABILITIES_CHANGED"], "mapcapabilities_changed"],
+			[Blockly.Msg["GOOGLEMAP_MAP_MAPTYPEID_CHANGED"], "maptypeid_changed"],
+			[Blockly.Msg["GOOGLEMAP_MAP_MOUSEMOVE"], "mousemove"],
+			[Blockly.Msg["GOOGLEMAP_MAP_MOUSEOUT"], "mouseout"],
+			[Blockly.Msg["GOOGLEMAP_MAP_MOUSEOVER"], "mouseover"],
+			[Blockly.Msg["GOOGLEMAP_MAP_PROJECTION_CHANGED"], "projection_changed"],
+			[Blockly.Msg["GOOGLEMAP_MAP_RENDERINGTYPE_CHANGED"], "renderingtype_changed"],
+			[Blockly.Msg["GOOGLEMAP_MAP_TILESLOADED"], "tilesloaded"],
+			[Blockly.Msg["GOOGLEMAP_MAP_TILT_CHANGED"], "tilt_changed"],
+			[Blockly.Msg["GOOGLEMAP_MAP_ZOOM_CHANGED"], "zoom_changed"]
+		]), "event");	  
+	this.appendStatementInput("statement");
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(Blockly.Msg["HUE_17"]);
+	this.setHelpUrl("https://developers.google.com/maps/documentation/javascript/reference?hl=zh-tw");	  
+  }
+};
+
+Blockly.Blocks['page_googlemap_map_event_remove'] = {
+  init: function () {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["GOOGLEMAP"]);
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
+		.appendField(new Blockly.FieldTextInput(""), "divid");
+	this.appendDummyInput() 
+		.appendField(Blockly.Msg["GOOGLEMAP_MAP_EVENT_REMOVE"]);	  
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)			
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["GOOGLEMAP_MAP_CLICK"], "click"],			
+			[Blockly.Msg["GOOGLEMAP_MAP_BOUNDS_CHANGED"], "bounds_changed"],
+			[Blockly.Msg["GOOGLEMAP_MAP_CENTER_CHANGED"], "center_changed"],
+			[Blockly.Msg["GOOGLEMAP_MAP_CONTEXTMENU"], "contextmenu"],
+			[Blockly.Msg["GOOGLEMAP_MAP_DBLCLICK"], "dblclick"],
+			[Blockly.Msg["GOOGLEMAP_MAP_DRAG"], "drag"],
+			[Blockly.Msg["GOOGLEMAP_MAP_DRAGEND"], "dragend"],
+			[Blockly.Msg["GOOGLEMAP_MAP_DRAGSTART"], "dragstart"],
+			[Blockly.Msg["GOOGLEMAP_MAP_HEADING_CHANGED"], "heading_changed"],
+			[Blockly.Msg["GOOGLEMAP_MAP_IDLE"], "idle"],
+			[Blockly.Msg["GOOGLEMAP_MAP_ISFRACTIONALZOOMENABLED_CHANGED"], "isfractionalzoomenabled_changed"],
+			[Blockly.Msg["GOOGLEMAP_MAP_MAPCAPABILITIES_CHANGED"], "mapcapabilities_changed"],
+			[Blockly.Msg["GOOGLEMAP_MAP_MAPTYPEID_CHANGED"], "maptypeid_changed"],
+			[Blockly.Msg["GOOGLEMAP_MAP_MOUSEMOVE"], "mousemove"],
+			[Blockly.Msg["GOOGLEMAP_MAP_MOUSEOUT"], "mouseout"],
+			[Blockly.Msg["GOOGLEMAP_MAP_MOUSEOVER"], "mouseover"],
+			[Blockly.Msg["GOOGLEMAP_MAP_PROJECTION_CHANGED"], "projection_changed"],
+			[Blockly.Msg["GOOGLEMAP_MAP_RENDERINGTYPE_CHANGED"], "renderingtype_changed"],
+			[Blockly.Msg["GOOGLEMAP_MAP_TILESLOADED"], "tilesloaded"],
+			[Blockly.Msg["GOOGLEMAP_MAP_TILT_CHANGED"], "tilt_changed"],
+			[Blockly.Msg["GOOGLEMAP_MAP_ZOOM_CHANGED"], "zoom_changed"]
+		]), "event");	  
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(Blockly.Msg["HUE_17"]);
+	this.setHelpUrl("https://developers.google.com/maps/documentation/javascript/reference?hl=zh-tw");	  
+  }
+};
 
 Blockly.Blocks['page_googlemap_addpoint'] = {
   init: function () {
@@ -636,12 +762,11 @@ Blockly.Blocks['page_googlemap_addpoint'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.setCheck("String")
 		.appendField(Blockly.Msg["GOOGLEMAP_POINTID"]);	  
-	this.appendValueInput("divid")
-		.setAlign(Blockly.ALIGN_RIGHT)	
-		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);		
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
+		.appendField(new Blockly.FieldTextInput(""), "divid");		
 	this.appendValueInput("latitude")
-		.setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["GOOGLEMAP_LATITUDE"]);
@@ -649,11 +774,15 @@ Blockly.Blocks['page_googlemap_addpoint'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg["GOOGLEMAP_LONGITUDE"]);		
+		.appendField(Blockly.Msg["GOOGLEMAP_LONGITUDE"]);
+	this.appendValueInput("altitude")
+		.setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_ALTITUDE"]);	  
 	this.appendValueInput("title")
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_TITLE"]);
+		.appendField(Blockly.Msg["GOOGLEMAP_TITLE"]);	  
 	this.appendValueInput("content")
 		.setAlign(Blockly.ALIGN_RIGHT)	
 		.setCheck("String")
@@ -662,6 +791,60 @@ Blockly.Blocks['page_googlemap_addpoint'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(Blockly.Msg["HUE_17"]);
+  }
+};
+
+Blockly.Blocks['page_googlemap_point_event_add'] = {
+  init: function () {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["GOOGLEMAP"]);
+	this.appendValueInput("pointid")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.setCheck("String")
+		.appendField(Blockly.Msg["GOOGLEMAP_POINTID"]);
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["GOOGLEMAP_POINT_EVENT_ADD"]);	  
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)			
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["GOOGLEMAP_POINT_CLICK"], "click"],
+			[Blockly.Msg["GOOGLEMAP_POINT_DRAG"], "drag"],
+			[Blockly.Msg["GOOGLEMAP_POINT_DRAGEND"], "dragend"],
+			[Blockly.Msg["GOOGLEMAP_POINT_DRAGSTART"], "dragstart"],
+			[Blockly.Msg["GOOGLEMAP_POINT_BETAGMP_CLICK"], "Betagmp-click"]
+		]), "event");	  
+	this.appendStatementInput("statement");
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(Blockly.Msg["HUE_17"]);
+	this.setHelpUrl("https://developers.google.com/maps/documentation/javascript/reference?hl=zh-tw");	  
+  }
+};
+
+Blockly.Blocks['page_googlemap_point_event_remove'] = {
+  init: function () {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["GOOGLEMAP"]);
+	this.appendValueInput("pointid")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.setCheck("String")
+		.appendField(Blockly.Msg["GOOGLEMAP_POINTID"]);
+	this.appendDummyInput() 
+		.appendField(Blockly.Msg["GOOGLEMAP_POINT_EVENT_REMOVE"]);	  
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)			
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["GOOGLEMAP_POINT_CLICK"], "click"],
+			[Blockly.Msg["GOOGLEMAP_POINT_DRAG"], "drag"],
+			[Blockly.Msg["GOOGLEMAP_POINT_DRAGEND"], "dragend"],
+			[Blockly.Msg["GOOGLEMAP_POINT_DRAGSTART"], "dragstart"]
+		]), "event");	  
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(Blockly.Msg["HUE_17"]);
+	this.setHelpUrl("https://developers.google.com/maps/documentation/javascript/reference?hl=zh-tw");	  
   }
 };
 
@@ -675,14 +858,19 @@ Blockly.Blocks['page_googlemap_point_function'] = {
 		.appendField(Blockly.Msg["GOOGLEMAP_POINTID"]);	 	  
 	this.appendDummyInput()
 		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["GOOGLEMAP_POINT_OPEN_CONTENT"],"open_content"],
+			[Blockly.Msg["GOOGLEMAP_POINT_CLOSE_CONTENT"],"close_content"],				
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_CONTENT"],"update_content"],
+			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_CONTENT_HEADER"],"update_headercontent"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_LATITUDE"],"update_latitude"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_LONGITUDE"],"update_longitude"],
+			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_ALTITUDE"],"update_altitude"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_POSITION"],"update_position"],
 			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_TITLE"],"update_title"],
-			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_ICON"],"update_icon"],			
-			[Blockly.Msg["GOOGLEMAP_POINT_OPEN_CONTENT"],"open_content"],
-			[Blockly.Msg["GOOGLEMAP_POINT_CLOSE_CONTENT"],"close_content"],			
+			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_ZINDEX"],"update_zindex"],
+			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_ICON"],"update_icon"],
+			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_GMPDRAGGABLE"],"update_gmpDraggable"],
+			[Blockly.Msg["GOOGLEMAP_POINT_UPDATE_GEMCLICKABLE"],"update_gmpClickable"],
 			[Blockly.Msg["GOOGLEMAP_POINT_CLEAR"],"clear"]	
 		], this.validate), "func");	
 	this.appendValueInput("content")
@@ -697,10 +885,31 @@ Blockly.Blocks['page_googlemap_point_function'] = {
   validate: function(newValue) {
 	 const block = this.sourceBlock_;
 	 if (!block) return;
-	 if (newValue=="update_content"||newValue=="update_latitude"||newValue=="update_longitude"||newValue=="update_position"||newValue=="update_title"||newValue=="update_icon")
+	 if (newValue=="update_content"||newValue=="update_headercontent"||newValue=="update_latitude"||newValue=="update_longitude"||newValue=="update_position"||newValue=="update_title"||newValue=="update_zindex"||newValue=="update_icon"||newValue=="update_gmpDraggable"||newValue=="update_gmpClickable")
 		 block.getInput("content").setVisible(true);
 	 else
 		 block.getInput("content").setVisible(false);
+  }
+};
+
+Blockly.Blocks['page_googlemap_point_get'] = {
+  init: function () {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["GOOGLEMAP"]);	  
+	this.appendValueInput("pointid")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.setCheck("String")
+		.appendField(Blockly.Msg["GOOGLEMAP_POINTID"]);	 	  
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["GOOGLEMAP_LATITUDE"],"latitude"],
+			[Blockly.Msg["GOOGLEMAP_LONGITUDE"],"longtitude"],
+			[Blockly.Msg["GOOGLEMAP_ALTITUDE"],"altitude"],
+			[Blockly.Msg["GOOGLEMAP_LATLNGALT"],"latlngalt"]
+		]), "property");			  
+	this.setInputsInline(true);
+  	this.setOutput(true, null); 
+	this.setColour(Blockly.Msg["HUE_17"]);
   }
 };
 
@@ -708,19 +917,25 @@ Blockly.Blocks['page_googlemap_map_center'] = {
   init: function () {
     this.appendDummyInput()
         .appendField(Blockly.Msg["GOOGLEMAP"]) 
-	.appendField(Blockly.Msg["GOOGLEMAP_CENTERMAP"]); 
-    this.appendValueInput("divid")
-	.setAlign(Blockly.ALIGN_RIGHT)	
-	.setCheck("String")
-	.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);		 	  
+		.appendField(Blockly.Msg["GOOGLEMAP_CENTERMAP"]); 
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
+		.appendField(new Blockly.FieldTextInput(""), "divid");
+    this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	    
+		.appendField(new Blockly.FieldDropdown([			
+			[Blockly.Msg["GOOGLEMAP_MAP_CENTER"],"center"],
+			[Blockly.Msg["GOOGLEMAP_MAP_POSITION"],"position"]	
+		]), "type");	  
     this.appendValueInput("latitude")
-	.setCheck("Number")
-	.setAlign(Blockly.ALIGN_RIGHT)
-	.appendField(Blockly.Msg["GOOGLEMAP_LATITUDE"]);
-    this.appendValueInput("longitude")
-	.setCheck("Number")
-	.setAlign(Blockly.ALIGN_RIGHT)
-	.appendField(Blockly.Msg["GOOGLEMAP_LONGITUDE"]);  
+		.setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_LATITUDE"]);
+	this.appendValueInput("longitude")
+		.setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_LONGITUDE"]);	  
     this.setInputsInline(false);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -732,19 +947,20 @@ Blockly.Blocks['page_googlemap_map_function'] = {
   init: function () {
     this.appendDummyInput()
         .appendField(Blockly.Msg["GOOGLEMAP"]);	  
-	this.appendValueInput("divid")
-		.setAlign(Blockly.ALIGN_RIGHT)	
-		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);		 	  
 	this.appendDummyInput()
-		.appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["GOOGLEMAP_MAP_UPDATE_ZOOM"],"zoom"],
-			[Blockly.Msg["GOOGLEMAP_POINT_CLEAR"],"clear"]	
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
+		.appendField(new Blockly.FieldTextInput(""), "divid");		 	  
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldDropdown([			
+			[Blockly.Msg["GOOGLEMAP_MAP_UPDATE_ZOOM"],"zoom"],			
+			[Blockly.Msg["GOOGLEMAP_MAP_POINTS_CLEAR"],"clear"],
+			[Blockly.Msg["GOOGLEMAP_MAP_UPDATE_HEADING"],"heading"],			
+			[Blockly.Msg["GOOGLEMAP_MAP_UPDATE_PITCH"],"pitch"]			
 		], this.validate), "func");
-    this.appendValueInput("zoom")
+    this.appendValueInput("val")
 	.setCheck("Number")
-	.setAlign(Blockly.ALIGN_RIGHT)
-	.appendField(Blockly.Msg["GOOGLEMAP_ZOOM"]);	  
+	.setAlign(Blockly.ALIGN_RIGHT);	  
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -753,10 +969,10 @@ Blockly.Blocks['page_googlemap_map_function'] = {
   validate: function(newValue) {
 	 const block = this.sourceBlock_;
 	 if (!block) return;
-	 if (newValue=="zoom")
-		 block.getInput("zoom").setVisible(true);
+	 if (newValue=="zoom"||newValue=="heading"||newValue=="pitch")
+		 block.getInput("val").setVisible(true);
 	 else
-		 block.getInput("zoom").setVisible(false);
+		 block.getInput("val").setVisible(false);
   }
 };
 
