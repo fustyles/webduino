@@ -232,7 +232,7 @@ Blockly.JavaScript['googlemap_map_event_add'] = function (block) {
   var mapid = block.getFieldValue('divid')||"";
   var divid = '"'+mapid+'"';
 
-  var code = 'map_'+mapid+'.addListener("'+event+'", async function(e) {\n'+statement+'\n}\n);\n';	
+  var code = 'map_'+mapid+'.addListener("'+event+'", async function(event) {\n'+statement+'\n}\n);\n';	
   return code;
 };
 
