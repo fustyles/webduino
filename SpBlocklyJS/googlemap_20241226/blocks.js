@@ -380,10 +380,10 @@ Blockly.Blocks['googlemap_map_function'] = {
   init: function () {
     this.appendDummyInput()
         .appendField(Blockly.Msg["GOOGLEMAP"]);	  
-	this.appendValueInput("divid")
-		.setAlign(Blockly.ALIGN_RIGHT)	
-		.setCheck("String")
-		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"]);		 	  
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
+		.appendField(new Blockly.FieldTextInput(""), "divid");		 	  
 	this.appendDummyInput()
 		.appendField(new Blockly.FieldDropdown([			
 			[Blockly.Msg["GOOGLEMAP_MAP_UPDATE_ZOOM"],"zoom"],			
