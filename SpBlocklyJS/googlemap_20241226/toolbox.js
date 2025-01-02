@@ -8,11 +8,6 @@ var catGoogleMap = '<xml>'+
 '    </value>'+
 '    <statement name="statement">'+
 '      <block type="googlemap_addmap">'+
-'        <value name="divid">'+
-'          <block type="text">'+
-'            <field name="TEXT"></field>'+
-'          </block>'+
-'        </value>'+  
 '        <value name="latitude">'+
 '          <block type="math_number">'+
 '            <field name="NUM">23.801079</field>'+
@@ -39,11 +34,6 @@ var catGoogleMap = '<xml>'+
 '    </value>'+
 '    <statement name="statement">'+
 '      <block type="googlemap_addstreetview">'+
-'        <value name="divid">'+
-'          <block type="text">'+
-'            <field name="TEXT"></field>'+
-'          </block>'+
-'        </value>'+  
 '        <value name="latitude">'+
 '          <block type="math_number">'+
 '            <field name="NUM">22.624943</field>'+
