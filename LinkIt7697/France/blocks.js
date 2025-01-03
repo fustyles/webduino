@@ -993,7 +993,7 @@ Blockly.Blocks['page_googlemap_map_mouse_get'] = {
 		]), "property");			  
 	this.setInputsInline(true);
   	this.setOutput(true, null); 
-	this.setColour(210);
+	this.setColour(Blockly.Msg["HUE_17"]);
   }
 };
 
