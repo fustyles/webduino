@@ -976,17 +976,16 @@ Blockly.Blocks['page_googlemap_map_function'] = {
   }
 };
 
-Blockly.Blocks['googlemap_map_mouse_get'] = {
+Blockly.Blocks['page_googlemap_map_mouse_get'] = {
   init: function () {
 	this.appendDummyInput()
-		.appendField(Blockly.Msg["GOOGLEMAP"])
-		.appendField(Blockly.Msg["GOOGLEMAP_MOUSE_POSITION"]);	  
+		.appendField(Blockly.Msg["GOOGLEMAP"]);	  
 	this.appendDummyInput()
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["GOOGLEMAP_DIVID"])		
 		.appendField(new Blockly.FieldTextInput(""), "divid");	 	  
 	this.appendDummyInput()
-		.appendField("　")		
+		.appendField(Blockly.Msg["GOOGLEMAP_MOUSE_POSITION"])		
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["GOOGLEMAP_LATITUDE"],"latitude"],
 			[Blockly.Msg["GOOGLEMAP_LONGITUDE"],"longtitude"],
@@ -994,7 +993,7 @@ Blockly.Blocks['googlemap_map_mouse_get'] = {
 		]), "property");			  
 	this.setInputsInline(true);
   	this.setOutput(true, null); 
-	this.setColour(Blockly.Msg["HUE_17"]);
+	this.setColour(210);
   }
 };
 
