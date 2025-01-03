@@ -216,7 +216,7 @@ Blockly.Arduino['page_googlemap_map_function'] = function (block) {
   return code;
 };
 
-Blockly.Arduino['googlemap_map_mouse_get'] = function (block) {		
+Blockly.Arduino['page_googlemap_map_mouse_get'] = function (block) {		
   var mapid = block.getFieldValue('divid')||"";
   var divid = '"'+mapid+'"';
   var property = block.getFieldValue('property');
