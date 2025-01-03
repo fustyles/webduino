@@ -8962,7 +8962,7 @@
 		  </block>
 		</value>
 	  </block>
-	  <block type="googlemap_map_mouse_get">
+	  <block type="page_googlemap_map_mouse_get">
 	  </block>  	  
 	  <block type="page_googlemap_addpoint">
 		<value name="pointid">
