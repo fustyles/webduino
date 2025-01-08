@@ -61,7 +61,7 @@ if ('webkitSpeechRecognition' in window) {
       	  Recognition_final = "";
 	  document.getElementById("gamespan_recognition").innerHTML = Recognition_interim;
 	  if (typeof SpeechRecognition_interim === 'object' && SpeechRecognition_interim !== null) {
-		SpeechRecognition_interim.innerHTML = Recognition_final;
+		SpeechRecognition_interim.innerHTML = Recognition_interim;
 	  }
     }
   };	
