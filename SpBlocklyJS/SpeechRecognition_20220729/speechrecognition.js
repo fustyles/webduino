@@ -54,7 +54,7 @@ if ('webkitSpeechRecognition' in window) {
 	  Recognition_final = linebreak(final_transcript);
 	  document.getElementById("gamespan_recognition").innerText = Recognition_final;
 	  if (typeof SpeechRecognition_interim === 'object' && SpeechRecognition_interim !== null) {
-		SpeechRecognition_interim.innerHTML = Recognition_final;
+		SpeechRecognition_interim.innerText = Recognition_final;
 	  }
 	  if (typeof Recognition_recognitionFinish === 'function') Recognition_recognitionFinish();
     }
@@ -62,7 +62,7 @@ if ('webkitSpeechRecognition' in window) {
       	  Recognition_final = "";
 	  document.getElementById("gamespan_recognition").innerText = Recognition_interim;
 	  if (typeof SpeechRecognition_interim === 'object' && SpeechRecognition_interim !== null) {
-		SpeechRecognition_interim.innerHTML = Recognition_final;
+		SpeechRecognition_interim.innerText = Recognition_final;
 	  }
     }
   };	
