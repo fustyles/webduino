@@ -7,7 +7,6 @@ var first_char = /\S/;
 var Recognition_interim = '';
 var Recognition_final = '';
 var SpeechRecognition_interim;
-window.SpeechRecognition_interim = SpeechRecognition_interim;
 
 if ('webkitSpeechRecognition' in window) {
   var recognition = new webkitSpeechRecognition();
