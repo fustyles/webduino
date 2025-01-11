@@ -274,6 +274,12 @@ Blockly.Blocks['openai_image_initial'] = {
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.OPENAI_IMAGE_KEY_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.OPENAI_MODEL_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+			["dall-e-2","dall-e-2"],
+			["dall-e-3","dall-e-3"]
+	  ]), "model"); 
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -294,7 +300,9 @@ Blockly.Blocks['openai_image_request'] = {
       .appendField(new Blockly.FieldDropdown([
 			["256x256","256x256"],
 			["512x512","512x512"],			
-			["1024x1024","1024x1024"]	  
+			["1024x1024","1024x1024"],			
+			["1024x1792","1024x1792"],			
+			["1792x1024","1792x1024"]	  
 	  ]), "size"); 	  
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
