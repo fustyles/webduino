@@ -93,6 +93,7 @@ var catOpenAI = '<xml>'+
 '    </value>'+
 '  </block>'+
 '  <block type="openai_image_request">'+
+'    <field name="size">1024x1024</field>'+  
 '    <value name="words">'+
 '      <block type="text">'+
 '        <field name="TEXT"></field>'+
