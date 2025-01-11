@@ -298,11 +298,11 @@ Blockly.Blocks['openai_image_request'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.OPENAI_IMAGE_SIZE_SHOW)
       .appendField(new Blockly.FieldDropdown([
-			["256x256","256x256"],
-			["512x512","512x512"],			
-			["1024x1024","1024x1024"],			
-			["1024x1792","1024x1792"],			
-			["1792x1024","1792x1024"]	  
+			["256x256 (E2)","256x256"],
+			["512x512 (E2)","512x512"],			
+			["1024x1024 (E2、E3)","1024x1024"],			
+			["1024x1792 (E3)","1024x1792"],			
+			["1792x1024 (E3)","1792x1024"]	  
 	  ]), "size"); 	  
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
