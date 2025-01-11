@@ -104,7 +104,7 @@ Blockly.JavaScript['openai_image_initial'] = function (block) {
   var key = Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_ATOMIC);
   var model = block.getFieldValue('model');
 
-  var code = 'openai_image_initial('+key+', '+model+');\n';
+  var code = 'openai_image_initial('+key+', "'+model+'");\n';
   return code; 
 };
 
