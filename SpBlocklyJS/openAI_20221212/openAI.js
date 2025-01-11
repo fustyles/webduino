@@ -11,6 +11,7 @@ let openai_response_text_br = "";
 let openai_response_text_n = "";
 let openai_response_text_url = "";
 let openai_response_image_key = "";
+let openai_response_image_model = "";
 let openai_response_image_tokens = 256;	
 let openai_response_image = "";	
 let openai_response_image_br = "";
@@ -106,9 +107,10 @@ function openai_text_response_clear() {
 }
 
 
-function openai_image_initial(input_token) {
+function openai_image_initial(input_token, input_model) {
 	openai_response_image_key = input_token;
-}    
+	openai_response_image_model = input_model;
+}     
 
 function openai_image_request(input_text, input_size) {
   var url = "https://api.openai.com/v1/images/generations";
@@ -136,7 +138,7 @@ function openai_image_request(input_text, input_size) {
 	 }};
 
   var data = {
-	  model: "dall-e-3",
+	  model: openai_response_image_model,
 	  prompt: input_text,
 	  n: 1,
 	  size: input_size	  
