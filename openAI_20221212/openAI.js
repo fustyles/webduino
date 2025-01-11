@@ -136,7 +136,7 @@ async function openai_image_request(input_text, input_size) {
 	 }};
 
   var data = {
-	  model: "dall-e-3",	  
+	  //model: "dall-e-3",	  
 	  prompt: input_text,
 	  n: 1,
 	  size: input_size	  
