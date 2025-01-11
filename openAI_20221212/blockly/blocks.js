@@ -170,10 +170,10 @@ Blockly.Blocks['openai_chat_initial'] = {
   this.appendValueInput("role")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.OPENAI_CHAT_ROLE_SHOW);	  
+      .appendField(Blockly.Msg.OPENAI_ROLE_SHOW);	  
   this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg.OPENAI_CHAT_MODEL_SHOW)
+      .appendField(Blockly.Msg.OPENAI_MODEL_SHOW)
       .appendField(new Blockly.FieldDropdown([
 			["gpt-3.5-turbo","gpt-3.5-turbo"],
 			["gpt-3.5-turbo-0613","gpt-3.5-turbo-0613"],
