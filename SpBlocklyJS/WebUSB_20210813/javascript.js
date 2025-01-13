@@ -52,7 +52,7 @@ Blockly.JavaScript['webusb_getid'] = function(block) {
 
 Blockly.JavaScript['webusb_wait'] = function(block) {
   var value_baudrate = block.getFieldValue('baudrate_');
-  var code = 'while (!webusb_getState()) {\n  await delay(1);\n}\n';
+  var code = 'while (!webusb_state()) {\n  await delay(1);\n}\n';
   return code;
 };
 
