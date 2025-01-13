@@ -39,8 +39,15 @@ Bluetooth_buttonDisconnect.addEventListener('click', async () => {
 });
 
 function handleCharacteristicValueChanged(event) {
-	const value = new TextDecoder().decode(event.target.value);
-	Bluetooth_data.innerText = value;
+	if (event.target.value instanceof DataView) {
+		var value = new Int8Array(event.target.value.buffer);
+		window.Bluetooth_getdata = [...value];
+	} else {
+		var value = event.target.value;
+		window.Bluetooth_getdata = new TextDecoder().decode(value);
+	}
+	Bluetooth_data.innerText = window.Bluetooth_getdata;
+		
 	if (!value) return;
 	
 	if (typeof webbluetooth_getdata === 'function') webbluetooth_getdata();
