@@ -4367,7 +4367,7 @@ function HextoRgb(color) {
 			base64 = head+data;
 		}
 		catch(e) {
-			//console.log(e);
+			console.log(e);
 		}
 		document.getElementById("tmp").parentNode.removeChild(document.getElementById("tmp"));
 		return base64;
