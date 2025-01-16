@@ -4390,9 +4390,8 @@ function HextoRgb(color) {
 			if (input_encode)
 			  data = encodeURIComponent(data);
 			base64 = head+data;			
-		}
-		catch(e) {
-			//console.log(e);
+		} catch(e) {
+			console.log(e);
 		}
 		document.getElementById("tmp").parentNode.removeChild(document.getElementById("tmp"));
 		return base64;
