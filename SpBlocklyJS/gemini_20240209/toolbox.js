@@ -69,7 +69,7 @@ var catGEMINI = '<xml>'+
 '  <block type="gemini_chat_image_request">'+
 '    <value name="words">'+
 '      <block type="text">'+
-'        <field name="TEXT">Please compare the two images.</field>'+
+'        <field name="TEXT">請比較兩張影像</field>'+
 '      </block>'+
 '    </value>'+
 '    <value name="url">'+
