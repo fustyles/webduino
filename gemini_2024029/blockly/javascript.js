@@ -25,13 +25,13 @@ Blockly.JavaScript['gemini_chat_image_request'] = function (block) {
 Blockly.JavaScript['gemini_chat_response'] = function (block) {
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do'); 
   
-  var code = 'async function gemini_chat_respsonse(gemini_chat_data) {\n  '+statements_do+'\n}\nwindow.gemini_chat_respsonse = gemini_chat_respsonse;\n';
+  var code = 'async function gemini_chat_response(gemini_chat_data) {\n  '+statements_do+'\n}\nwindow.gemini_chat_response = gemini_chat_response;\n';
   return code; 
 };
 
 Blockly.JavaScript['gemini_chat_response_data'] = function (block) {
   var br = block.getFieldValue('br');
-  var code = 'gemini_chat_respsonse_br(gemini_chat_data, \''+br+'\')';
+  var code = 'gemini_chat_response_br(gemini_chat_data, \''+br+'\')';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
