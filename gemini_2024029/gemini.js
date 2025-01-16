@@ -27,7 +27,7 @@ function gemini_chat_initial(input_key, input_model, input_tokens) {
 		'		const response = result.response;\n'+
 		'		const text = response.text();\n'+
 		'		gemini_chat_insert(prompt, text);\n'+
-		'		if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(text);\n'+
+		'		if (typeof gemini_chat_response === "function") gemini_chat_response(text);\n'+
 		'	});\n'+
 		'}\n'+
 		'async function gemini_chat_insert(request, response) {\n'+
@@ -59,7 +59,7 @@ function gemini_chat_initial(input_key, input_model, input_tokens) {
 		document.body.appendChild(gemini_mod);
 } 
 
-function gemini_chat_respsonse_br(data, newline) {
+function gemini_chat_response_br(data, newline) {
 	if (newline=="br")
 		return data.replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");
 	else if (newline=="n")
@@ -160,15 +160,8 @@ function gemini_chat_content_file_remote_insert(url) {
 
 async function gemini_chat_image_request(message, imageURL) {
     try {
-	let imageBase64;	    
-	if (imageURL.toLowerCase().trim().indexOf("http")==0)
-            imageBase64 = await getFileBase64(imageURL, 0);
-	else if (imageURL.toLowerCase().trim().indexOf("data:")==0)
-            imageBase64 = imageURL.split(",")[1];
-	else
-            imageBase64 = imageURL;
-	imageBase64 = decodeURIComponent(imageBase64);
-
+		let inline_data = await get_inline_data(imageURL);
+	
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
         const data = {
             contents: [
@@ -177,12 +170,7 @@ async function gemini_chat_image_request(message, imageURL) {
                         {
                             text: message
                         },
-                        {
-                            inline_data: {
-                                mime_type: "image/jpeg",
-                                data: imageBase64
-                            }
-                        }
+                        ...inline_data
                     ]
                 }
             ]
@@ -210,10 +198,38 @@ async function gemini_chat_image_request(message, imageURL) {
             char_request.parts.push(char_request_text);
             chatHistory["history"].push(char_request);
 	}
-	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(result);
+	if (typeof gemini_chat_response === "function") gemini_chat_response(result);
     } catch (error) {
-	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(JSON.stringify(error));
+	if (typeof gemini_chat_response === "function") gemini_chat_response(JSON.stringify(error));
     }
+}
+
+async function get_inline_data(imageList) {
+	let inline_data = [];
+	let imageURL = [];
+	if (typeof imageList === 'string') {
+		imageURL.push(imageList);
+	} else {
+		imageURL = imageList;
+	}
+	let imageBase64;
+	for (let i=0;i<imageURL.length;i++) {
+		if (imageURL[i].toLowerCase().trim().indexOf("http")==0)
+				imageBase64 = await getFileBase64(imageURL[i], 0);
+		else if (imageURL[i].toLowerCase().trim().indexOf("data:")==0)
+				imageBase64 = imageURL[i].split(",")[1];
+		else
+				imageBase64 = imageURL[i];
+		imageBase64 = decodeURIComponent(imageBase64);
+		
+		inline_data.push({
+			inline_data: {
+				mime_type: "image/jpeg",
+				data: imageBase64
+			}
+		});
+	}
+	return 	inline_data;
 }
 
 async function gemini_chat_file_request(fileType, fileURL, message) {
@@ -252,9 +268,9 @@ async function gemini_chat_file_request(fileType, fileURL, message) {
             char_request.parts.push(char_request_text);
             chatHistory["history"].push(char_request);
 	}
-	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(result);
+	if (typeof gemini_chat_response === "function") gemini_chat_response(result);
     } catch (error) {
-	if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(JSON.stringify(error));
+	if (typeof gemini_chat_response === "function") gemini_chat_response(JSON.stringify(error));
     }
 }
 
@@ -270,4 +286,3 @@ async function getFileBase64(fileURL, type) {
     else
     	return base64String;	    
 }
-
