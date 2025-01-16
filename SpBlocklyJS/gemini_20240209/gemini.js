@@ -160,7 +160,7 @@ function gemini_chat_content_file_remote_insert(url) {
 }
 
 async function gemini_chat_image_request(message, imageURL) {
-    try {
+    //try {
 		let inline_data = await get_inline_data(imageURL);
 	
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
@@ -201,9 +201,9 @@ async function gemini_chat_image_request(message, imageURL) {
             chatHistory["history"].push(char_request);
 	}
 	if (typeof gemini_chat_response === "function") gemini_chat_response(result);
-    } catch (error) {
-	if (typeof gemini_chat_response === "function") gemini_chat_response(JSON.stringify(error));
-    }
+    //} catch (error) {
+//	if (typeof gemini_chat_response === "function") gemini_chat_response(JSON.stringify(error));
+    //}
 }
 
 async function get_inline_data(imageList) {
