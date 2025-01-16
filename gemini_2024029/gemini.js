@@ -277,12 +277,11 @@ async function gemini_chat_file_request(fileType, fileURL, message) {
 async function getFileBase64(fileURL, type) {
     const response = await fetch(fileURL);
     const blob = await response.blob();
-    const arrayBuffer = await blob.arrayBuffer();
-    const bytes = new Uint8Array(arrayBuffer);
-    const binaryString = String.fromCharCode(...bytes);
-    const base64String = btoa(binaryString);
-    if (type)
-    	return "data:image/jpeg;base64," + base64String;
-    else
-    	return base64String;	    
+    const base64String = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+    });
+    return type ? `data:image/jpeg;base64,${base64String}` : base64String;
 }
