@@ -231,6 +231,8 @@ async function get_inline_data(imageList) {
 			}
 		});
 	}
+	console.log(imageURL);
+	console.log(inline_data);
 	return 	inline_data;
 }
 
