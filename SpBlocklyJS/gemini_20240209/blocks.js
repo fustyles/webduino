@@ -53,7 +53,7 @@ Blockly.Blocks['gemini_chat_image_request'] = {
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.GEMINI_CHAT_PROMPT_SHOW);
   this.appendValueInput("url")
-      .setCheck("String")
+      .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.GEMINI_CHAT_IMAGE_URL_SHOW);	  
   this.setInputsInline(false);	  
