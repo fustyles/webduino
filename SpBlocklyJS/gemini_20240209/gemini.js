@@ -28,7 +28,7 @@ function gemini_chat_initial(input_key, input_model, input_tokens) {
 		'		const response = result.response;\n'+
 		'		const text = response.text();\n'+
 		'		gemini_chat_insert(prompt, text);\n'+
-		'		if (typeof gemini_chat_respsonse === "function") gemini_chat_respsonse(text);\n'+
+		'		if (typeof gemini_chat_response === "function") gemini_chat_response(text);\n'+
 		'	});\n'+
 		'}\n'+
 		'async function gemini_chat_insert(request, response) {\n'+
