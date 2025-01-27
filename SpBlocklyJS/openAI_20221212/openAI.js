@@ -167,7 +167,7 @@ function openai_chat_initial(input_token, input_role, input_model) {
 }  
 
 function openai_chat_request(input_text) {
-  if (openai_response_chat_model.indexOf("llama")!=-1)
+  if (openai_response_chat_model.toLowerCase().indexOf("llama")!=-1)
     var url = "https://api.llama-api.com";
   else
     var url = "https://api.openai.com/v1/chat/completions";
