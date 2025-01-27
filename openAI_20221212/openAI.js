@@ -168,7 +168,7 @@ function openai_chat_initial(input_token, input_role, input_model) {
 
 async function openai_chat_request(input_text) {
   if (openai_response_chat_model.toLowerCase().indexOf("llama")!=-1)
-    var url = "https://api.llama-api.com/chat/completions";
+    var url = "https://api.groq.com/openai/v1/chat/completions";
   else
     var url = "https://api.openai.com/v1/chat/completions";
 
@@ -359,7 +359,7 @@ function openai_chat_content_file_remote_insert(url) {
 
 async function openai_chat_image_request(input_text, input_url) {
   if (openai_response_chat_model.toLowerCase().indexOf("llama")!=-1)
-    var url = "https://api.llama-api.com/chat/completions";
+    var url = "https://api.groq.com/openai/v1/chat/completions";
   else
     var url = "https://api.openai.com/v1/chat/completions";
 
