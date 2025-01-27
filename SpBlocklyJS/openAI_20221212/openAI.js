@@ -358,7 +358,10 @@ function openai_chat_content_file_remote_insert(url) {
 }
 
 function openai_chat_image_request(input_text, input_url) {
-  var url = "https://api.openai.com/v1/chat/completions";
+  if (openai_response_chat_model.toLowerCase().indexOf("llama")!=-1)
+    var url = "https://api.llama-api.com/chat/completions";
+  else
+    var url = "https://api.openai.com/v1/chat/completions";
 
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url);
