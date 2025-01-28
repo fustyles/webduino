@@ -9,7 +9,7 @@ Blockly.JavaScript['openai_text_initial'] = function (block) {
 Blockly.JavaScript['openai_text_request'] = function (block) {
   var words = Blockly.JavaScript.valueToCode(block, 'words', Blockly.JavaScript.ORDER_ATOMIC)||"";	
 	
-  var code = 'openai_text_request('+words+');\n';
+  var code = 'await openai_text_request('+words+');\n';
   return code; 
 };
 
