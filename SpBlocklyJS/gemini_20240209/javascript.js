@@ -25,7 +25,7 @@ Blockly.JavaScript['gemini_chat_image_request'] = function (block) {
 Blockly.JavaScript['gemini_chat_response'] = function (block) {
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do'); 
   
-  var code = 'function gemini_chat_response(gemini_chat_data) {\n  '+statements_do+'\n}\nwindow.gemini_chat_response = gemini_chat_response;\n';
+  var code = 'async function gemini_chat_response(gemini_chat_data) {\n  '+statements_do+'\n}\nwindow.gemini_chat_response = gemini_chat_response;\n';
   return code; 
 };
 
