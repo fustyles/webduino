@@ -161,7 +161,7 @@ function gemini_chat_content_file_remote_insert(url) {
 
 async function gemini_chat_image_request(message, imageURL) {
     try {
-		let inline_data = await get_inline_data(imageURL);
+        let inline_data = await get_inline_data(imageURL);
 	
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
         const data = {
