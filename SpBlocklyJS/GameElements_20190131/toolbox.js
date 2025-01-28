@@ -469,7 +469,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="top_">'+
 '      <block type="math_number">'+
-'        <field name="NUM">100</field>'+
+'        <field name="NUM">0</field>'+
 '      </block>'+
 '    </value>'+
 '    <value name="fontsize_">'+
@@ -783,7 +783,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="top_">'+
 '    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="width_">'+
@@ -991,7 +991,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="top_">'+
 '    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="width_">'+
@@ -1073,7 +1073,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="top_">'+
 '    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="width_">'+
@@ -1195,7 +1195,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="top_">'+
 '    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="width_">'+
@@ -1302,7 +1302,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="top_">'+
 '    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="background_">'+
@@ -1852,7 +1852,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="top_">'+
 '    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="zindex_">'+
@@ -2501,7 +2501,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="top_">'+
 '    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="width_">'+
@@ -2613,7 +2613,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="top_">'+
 '    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="width_">'+
@@ -2693,7 +2693,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="top_">'+
 '    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="width_">'+
@@ -2816,7 +2816,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="top_">'+
 '    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="size_">'+
@@ -2905,7 +2905,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="top_">'+
 '    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="size_">'+
@@ -2987,7 +2987,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="top_">'+
 '    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="cols_">'+
@@ -3077,7 +3077,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="top_">'+
 '    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="width_">'+
@@ -3179,7 +3179,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="top_">'+
 '    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="min_">'+
@@ -3261,7 +3261,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="top_">'+
 '    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="value_">'+
@@ -3333,7 +3333,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="top_">'+
 '    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="value_">'+
@@ -3405,7 +3405,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="top_">'+
 '    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="max_">'+
@@ -3485,7 +3485,7 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="top_">'+
 '    <block type="math_number">'+
-'    <field name="NUM">100</field>'+
+'    <field name="NUM">0</field>'+
 '    </block>'+
 '    </value>'+
 '    <value name="maxlength_">'+
@@ -3634,7 +3634,7 @@ var catPageElements ='<xml>'+
 '		</value>'+
 '		<value name="top_">'+
 '		  <block type="math_number">'+
-'			<field name="NUM">100</field>'+
+'			<field name="NUM">0</field>'+
 '		  </block>'+
 '		</value>'+
 '		<value name="width_">'+
@@ -3733,7 +3733,7 @@ var catPageElements ='<xml>'+
 '			</value>'+
 '			<value name="top_">'+
 '			  <block type="math_number">'+
-'				<field name="NUM">100</field>'+
+'				<field name="NUM">0</field>'+
 '			  </block>'+
 '			</value>'+
 '			<value name="zindex_">'+
