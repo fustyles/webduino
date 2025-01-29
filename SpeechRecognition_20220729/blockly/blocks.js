@@ -153,7 +153,8 @@ Blockly.Blocks['SpeechRecognition_keyword'] = {
 
 Blockly.Blocks['SpeechRecognition_interim'] = {
   init: function() {
-  this.appendDummyInput()   
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_SHOW)  
       .appendField(Blockly.Msg.SPEECHRECOGNITION_INTERIM);
   this.appendValueInput("left")
       .setCheck("Number")
@@ -184,7 +185,8 @@ Blockly.Blocks['SpeechRecognition_interim'] = {
 
 Blockly.Blocks['SpeechRecognition_interim_element'] = {
   init: function() {
-  this.appendDummyInput()   
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_SHOW)  
       .appendField(Blockly.Msg.SPEECHRECOGNITION_INTERIM);
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
