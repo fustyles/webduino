@@ -175,7 +175,7 @@ async function gemini_chat_image_request(message, imageURL) {
                 }
             ]
         };
-
+console.log(JSON.stringify(data));
         const options = {
             method: 'POST',
             headers: {
