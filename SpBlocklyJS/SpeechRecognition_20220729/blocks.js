@@ -186,8 +186,7 @@ Blockly.Blocks['SpeechRecognition_interim'] = {
 Blockly.Blocks['SpeechRecognition_interim_element'] = {
   init: function() {
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.SPEECHRECOGNITION_SHOW)  
-      .appendField(Blockly.Msg.SPEECHRECOGNITION_INTERIM);
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_SHOW);
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
 		  [Blockly.Msg.ELEMENT_SPAN,"span"],	  
@@ -197,7 +196,9 @@ Blockly.Blocks['SpeechRecognition_interim_element'] = {
 	  ]), "element_");    
   this.appendDummyInput()
       .appendField(Blockly.Msg.ID)
-	  .appendField(new Blockly.FieldTextInput(""), "id_");  	  
+	  .appendField(new Blockly.FieldTextInput(""), "id_");
+  this.appendDummyInput() 
+      .appendField(Blockly.Msg.SPEECHRECOGNITION_INTERIM);	  
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
