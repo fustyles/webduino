@@ -1,8 +1,10 @@
 'use strict';
 let Gemini_api_key = "";
+let Gemini_model = "";
 
 function gemini_chat_initial(input_key, input_model, input_tokens) {
-		Gemini_api_key = input_key;	
+		Gemini_api_key = input_key;
+		Gemini_model = input_model;
 		const gemini_importMap = {
 			"imports": {
 			  "@google/generative-ai": "https://esm.run/@google/generative-ai"
@@ -237,7 +239,7 @@ async function gemini_chat_file_request(fileType, fileURL, message) {
     try {
 	let fileBase64 = await getFileBase64(fileURL, 0);
 	fileBase64 = decodeURIComponent(fileBase64);
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${Gemini_model}:generateContent?key=${Gemini_api_key}`;
         const data = {
             contents: [{
 				"parts":[
