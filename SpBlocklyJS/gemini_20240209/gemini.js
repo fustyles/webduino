@@ -1,9 +1,11 @@
 'use strict';
 
 let Gemini_api_key = "";
+let Gemini_model = "";
 
 function gemini_chat_initial(input_key, input_model, input_tokens) {
 		Gemini_api_key = input_key;
+		Gemini_model = input_model;	
 		const gemini_importMap = {
 			"imports": {
 			  "@google/generative-ai": "https://esm.run/@google/generative-ai"
@@ -162,7 +164,7 @@ function gemini_chat_content_file_remote_insert(url) {
 async function gemini_chat_image_request(message, imageURL) {
     try {
         let inline_data = await get_inline_data(imageURL);
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${Gemini_model}:generateContent?key=${Gemini_api_key}`;
         const data = {
             contents: [
                 {
