@@ -162,7 +162,6 @@ function gemini_chat_content_file_remote_insert(url) {
 async function gemini_chat_image_request(message, imageURL) {
     try {
         let inline_data = await get_inline_data(imageURL);
-	console.log(inline_data);
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
         const data = {
             contents: [
@@ -187,9 +186,7 @@ async function gemini_chat_image_request(message, imageURL) {
 
         const response = await fetch(url, options);
         const json = await response.json();
-	console.log(json);
-        let result;
-	console.log(('error' in json));	    
+        let result;   
         if ('error' in json) {
             result = json.error.message;
         } else {
@@ -260,10 +257,11 @@ async function gemini_chat_file_request(fileType, fileURL, message) {
 
         const response = await fetch(url, options);
         const json = await response.json();
-        let result = json.candidates[0].content.parts[0].text;
-        if (result === "null") {
+        let result;   
+        if ('error' in json) {
             result = json.error.message;
         } else {
+	    result = json.candidates[0].content.parts[0].text;
             var char_request = {};
             char_request.role = "model";
             char_request.parts = [];
