@@ -10,7 +10,9 @@ Blockly.Blocks['gemini_chat_initial'] = {
       .appendField(Blockly.Msg.GEMINI_MODEL_SHOW)
       .appendField(new Blockly.FieldDropdown([
 	        ["gemini-1.5-flash","gemini-1.5-flash"],
-		["gemini-1.5-pro","gemini-1.5-pro"]  
+		["gemini-1.5-pro","gemini-1.5-pro"],
+	        ["gemini-2.0-flash","gemini-2.0-flash"],
+		["gemini-2.0-pro","gemini-2.0-pro"]    
 	  ]), "model");
   this.appendValueInput("tokens")
       .setCheck("Number")
