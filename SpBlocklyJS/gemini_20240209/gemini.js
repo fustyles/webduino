@@ -188,11 +188,12 @@ async function gemini_chat_image_request(message, imageURL) {
         const response = await fetch(url, options);
         const json = await response.json();
 	console.log(json);
-        let result = json.candidates[0].content.parts[0].text;
+        let result;
 	console.log(('error' in json));	    
         if ('error' in json) {
             result = json.error.message;
         } else {
+	    result = json.candidates[0].content.parts[0].text;
             var char_request = {};
             char_request.role = "model";
             char_request.parts = [];
