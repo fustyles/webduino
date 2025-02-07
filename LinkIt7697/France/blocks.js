@@ -1090,8 +1090,11 @@ Blockly.Blocks['gemini_chat_initial'] = {
 	this.appendDummyInput()  
       .appendField(Blockly.Msg.GEMINI_CHAT_MODEL_SHOW)
       .appendField(new Blockly.FieldDropdown([
-			["gemini-1.5-flash","gemini-1.5-flash-latest"],	  
-			["gemini-pro","gemini-pro"]	  
+		["gemini-2.0-flash-lite-preview-02-05","gemini-2.0-flash-lite-preview-02-05"],
+		["gemini-2.0-flash-001","gemini-2.0-flash-001"],	      
+	        ["gemini-1.5-flash","gemini-1.5-flash"],
+		["gemini-1.5-flash-8b","gemini-1.5-flash-8b"],
+	        ["gemini-1.5-pro","gemini-1.5-pro"]	  
 	  ]), "model"); 	  
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
