@@ -257,7 +257,7 @@ async function gemini_chat_file_request(fileType, fileURL, message) {
         const response = await fetch(url, options);
         const json = await response.json();
         let result = json.candidates[0].content.parts[0].text;
-        if (result === "null") {
+        if (json.error.message) {
             result = json.error.message;
         } else {
             var char_request = {};
