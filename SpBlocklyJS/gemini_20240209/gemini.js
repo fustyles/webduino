@@ -159,7 +159,7 @@ function gemini_chat_content_file_remote_insert(url) {
 	});
 }
 
-function gemini_chat_image_request(message, imageURL) {
+async function gemini_chat_image_request(message, imageURL) {
     try {
         let inline_data = await get_inline_data(imageURL);
 	
