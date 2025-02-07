@@ -186,11 +186,10 @@ async function gemini_chat_image_request(message, imageURL) {
         };
 
         const response = await fetch(url, options);
+	console.log(response);
         const json = await response.json();
-	    console.log(json);
-	    console.log(json.error);	    
-	    console.log(json.error.message);
-        let result = json.candidates[0].content.parts[0].text||json.error.message;
+	console.log(json);
+        let result = json.candidates[0].content.parts[0].text;
         if (json.error && json.error.message) {
             result = json.error.message;
         } else {
