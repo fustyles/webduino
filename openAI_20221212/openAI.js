@@ -265,6 +265,7 @@ function openai_chat_response_clear() {
 
 function openai_chat_content_clear() {
 	openai_response_chat_message = [{"role": "system", "content": openai_response_role}];
+	openai_vision_chat_message = [];
 }
 
 function openai_chat_content_file(func) {
