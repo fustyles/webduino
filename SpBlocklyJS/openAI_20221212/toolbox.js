@@ -37,6 +37,8 @@ var catOpenAI = '<xml>'+
 '  </block>'+
 '  <block type="openai_chat_content_clear">'+
 '  </block>'+
+'  <block type="openai_vision_content_clear">'+
+'  </block>'+
 '  <block type="openai_chat_insert">'+
 '    <value name="words">'+
 '      <block type="text">'+
