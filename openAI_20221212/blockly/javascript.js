@@ -114,6 +114,11 @@ Blockly.JavaScript['openai_chat_content_clear'] = function (block) {
   return code;
 };
 
+Blockly.JavaScript['openai_vision_content_clear'] = function (block) {
+  var code = 'openai_chat_content_clear();\n';
+  return code;
+};
+
 Blockly.JavaScript['openai_chat_content_file'] = function (block) {
   var func = block.getFieldValue('func');
   var code = 'openai_chat_content_file("'+func+'");\n';
