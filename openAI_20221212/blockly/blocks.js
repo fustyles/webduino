@@ -302,6 +302,18 @@ Blockly.Blocks['openai_chat_content_clear'] = {
   }
 };
 
+Blockly.Blocks['openai_vision_content_clear'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.OPENAI_CHAT_SHOW)   
+	  .appendField(Blockly.Msg.OPENAI_VISION_CONTENT_CLEAR_SHOW);
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true); 
+  this.setColour(150);
+  }
+};
+
 Blockly.Blocks['openai_chat_content_file'] = {
   init: function () {
   this.appendDummyInput()
