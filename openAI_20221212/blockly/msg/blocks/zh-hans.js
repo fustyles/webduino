@@ -19,6 +19,7 @@ Blockly.Msg["OPENAI_CHAT_SHOW"] = "openAI 聊天";
 Blockly.Msg["OPENAI_CHAT_REQUEST_SHOW"] = "聊天內容";
 Blockly.Msg["OPENAI_CHAT_PROMPT_SHOW"] = "提示词";
 Blockly.Msg["OPENAI_CHAT_CONTENT_CLEAR_SHOW"] = "清除聊天纪录";
+Blockly.Msg["OPENAI_VISION_CONTENT_CLEAR_SHOW"] = "清除视觉分析纪录";
 Blockly.Msg["OPENAI_ROLE_SHOW"] = "助手行为";
 Blockly.Msg["OPENAI_MODEL_SHOW"] = "模型";
 Blockly.Msg["OPENAI_CHAT_INSERT_SHOW"] = "插入资料";
