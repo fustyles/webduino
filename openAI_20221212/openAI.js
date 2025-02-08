@@ -265,6 +265,9 @@ function openai_chat_response_clear() {
 
 function openai_chat_content_clear() {
 	openai_response_chat_message = [{"role": "system", "content": openai_response_role}];
+}
+
+function openai_vision_content_clear() {
 	openai_vision_chat_message = [];
 }
 
@@ -412,7 +415,7 @@ async function openai_chat_image_request(input_text, input_url) {
 	char_message.content.push(user_text);
 	var user_url = {"type":"image_url", "image_url":{"url":input_url}};
 	char_message.content.push(user_url);
-	openai_response_chat_message.push(char_message);
+	//openai_response_chat_message.push(char_message);
 	openai_vision_chat_message.push(char_message);
   
 	var data;
