@@ -54,8 +54,7 @@ Blockly.Blocks['dvcbot_result'] = {
 Blockly.Blocks['dvcbot_result1'] = {
   init: function () {
   this.appendDummyInput()
-	  .appendField(Blockly.Msg.DVCBOT_SHOW)   
-	  .appendField(Blockly.Msg.DVCBOT_RESULT_SHOW);
+	  .appendField(Blockly.Msg.DVCBOT_SHOW);
   this.appendValueInput("userMessage")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
