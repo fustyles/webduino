@@ -28,8 +28,7 @@ async function dvcbot_result(userMessage, newline) {
 	else if (newline=="")
 		return result;
 	else {
-		console.log(result);
-		if (typeof dvcbot_response === "function") await dvcbot_response(result);
+		if (typeof dvcbot_response === "function") {console.log(result); await dvcbot_response(result);}
 	}
   } catch (error) {
     return "error";
