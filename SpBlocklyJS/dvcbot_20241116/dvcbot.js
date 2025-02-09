@@ -21,6 +21,7 @@ async function dvcbot_result(userMessage, newline) {
   try {
     dvcbot_plugin_response = [];
     const result = await sendMessageToDvcbot(userMessage);
+	if (typeof dvcbot_response === "function") dvcbot_response(result);
 	if (newline=="br")
 		return result.replace(/\n/g,"<br>");
 	else if (newline=="no")
