@@ -82,3 +82,19 @@ Blockly.Blocks['dvcbot_result'] = {
   this.setColour(190);
   }
 };
+
+Blockly.Blocks['dvcbot_result1'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.DVCBOT_SHOW)   
+	  .appendField(Blockly.Msg.DVCBOT_RESULT_SHOW);
+  this.appendValueInput("userMessage")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.DVCBOT_USERMESSAGE_SHOW); 	   
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(190);
+  }
+};
