@@ -21,13 +21,16 @@ async function dvcbot_result(userMessage, newline) {
   try {
     dvcbot_plugin_response = [];
     const result = await sendMessageToDvcbot(userMessage);
-	if (typeof dvcbot_response === "function") dvcbot_response(result);
+	
 	if (newline=="br")
 		return result.replace(/\n/g,"<br>");
 	else if (newline=="no")
 		return result.replace(/\n/g,"");
-	else
-		return result;	
+	else if (newline=="")
+		return result;
+	else {
+		if (typeof dvcbot_response === "function") dvcbot_response(result);
+	}
   } catch (error) {
     return "error";
   }
