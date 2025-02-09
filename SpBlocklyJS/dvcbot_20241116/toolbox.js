@@ -21,5 +21,9 @@ var catDvcbot = '<xml>'+
 '  </block>'+ 
 '  <block type="dvcbot_response">'+
 '  </block>'+ 
+'  <block type="dvcbot_response1">'+
+'  </block>'+  
+'  <block type="dvcbot_response_data">'+
+'  </block>'+    
 '</category>'+
 '</xml>';
