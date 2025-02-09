@@ -38,7 +38,7 @@ Blockly.Blocks['dvcbot_response1'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(40);
+  this.setColour(190);
   }
 };
 
@@ -57,7 +57,7 @@ Blockly.Blocks['dvcbot_response_data'] = {
 	  ]), "br"); 	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(40);
+  this.setColour(190);
   }
 };
 
