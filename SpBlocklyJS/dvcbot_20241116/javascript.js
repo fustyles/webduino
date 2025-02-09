@@ -25,6 +25,12 @@ Blockly.JavaScript['dvcbot_result'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['dvcbot_result1'] = function (block) {
+  var userMessage = Blockly.JavaScript.valueToCode(block, 'userMessage', Blockly.JavaScript.ORDER_ATOMIC); 
+  var code = 'await dvcbot_result('+userMessage+', "s");\n';
+  return code;
+};
+
 Blockly.JavaScript['dvcbot_response_data'] = function (block) {
   var br = block.getFieldValue('br');
   var code = 'dvcbot_response_br(dvcbot_data, \''+br+'\')';
