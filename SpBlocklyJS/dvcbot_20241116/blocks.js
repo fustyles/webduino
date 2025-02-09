@@ -61,12 +61,6 @@ Blockly.Blocks['dvcbot_response_data'] = {
   }
 };
 
-Blockly.JavaScript['dvcbot_response_data'] = function (block) {
-  var br = block.getFieldValue('br');
-  var code = 'dvcbot_response_br(dvcbot_data, \''+br+'\')';
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
 Blockly.Blocks['dvcbot_result'] = {
   init: function () {
   this.appendDummyInput()
