@@ -23,7 +23,7 @@ Blockly.JavaScript['dvcbot_result1'] = function (block) {
   return code;
 };
 
-Blockly.JavaScript['dvcbot_respons1'] = function (block) {
+Blockly.JavaScript['dvcbot_response1'] = function (block) {
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do'); 
   
   var code = 'async function dvcbot_response(dvcbot_data) {\n  '+statements_do+'\n}\nwindow.dvcbot_response = dvcbot_response;\n';
