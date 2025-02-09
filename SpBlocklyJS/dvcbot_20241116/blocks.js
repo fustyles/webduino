@@ -29,6 +29,44 @@ Blockly.Blocks['dvcbot_response'] = {
   }
 };
 
+Blockly.Blocks['dvcbot_response1'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.DVCBOT_SHOW) 
+	  .appendField(Blockly.Msg.DVCBOT_RESPONSE_SHOW);
+  this.appendStatementInput("do");
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(40);
+  }
+};
+
+Blockly.Blocks['dvcbot_response_data'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.DVCBOT_SHOW);
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.DVCBOT_RESPONSE_DATA_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.DVCBOT_RESPONSE_DATA_BR_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+			["N",""],
+			["Y \<br\>","br"],
+			["Y \\n","n"]		  
+	  ]), "br"); 	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(40);
+  }
+};
+
+Blockly.JavaScript['dvcbot_response_data'] = function (block) {
+  var br = block.getFieldValue('br');
+  var code = 'dvcbot_response_br(dvcbot_data, \''+br+'\')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.Blocks['dvcbot_result'] = {
   init: function () {
   this.appendDummyInput()
