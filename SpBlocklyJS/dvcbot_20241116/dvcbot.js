@@ -29,7 +29,7 @@ async function dvcbot_result(userMessage, newline) {
 		return result;
 	else {
 		console.log(result);
-		if (typeof dvcbot_response === "function") dvcbot_response(result);
+		if (typeof dvcbot_response === "function") await dvcbot_response(result);
 	}
   } catch (error) {
     return "error";
