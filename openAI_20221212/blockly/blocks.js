@@ -186,6 +186,7 @@ Blockly.Blocks['openai_chat_initial'] = {
 			["gpt-4o","gpt-4o"],
 			["gpt-4o-mini","gpt-4o-mini"],
 			["o1-mini","o1-mini"],
+			["o1-2024-12-17","o1-2024-12-17"],
 			["Groq_llama-3.2-90b-vision-preview","llama-3.2-90b-vision-preview"],
 			["Groq_deepseek-r1-distill-llama-70b","deepseek-r1-distill-llama-70b"],
 			["xAI_grok-2-vision-latest","grok-2-vision-latest"]
