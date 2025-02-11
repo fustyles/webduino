@@ -151,6 +151,18 @@ Blockly.Blocks['linebot_notify'] = {
 	this.setNextStatement(true);
 	this.setTooltip('');
 	this.setColour(250);
+	this.getField('p1').setValue(Blockly.Msg.LINENOTIFY_TEXT_SHOW);  
+	this.getField('p2').setValue("");
+	this.getField('p3').setValue("");
+	this.getField('p4').setValue("");
+	this.getField('p1').setVisible(true);
+	this.getField('p2').setVisible(false);
+	this.getField('p3').setVisible(false);
+	this.getField('p4').setVisible(false);
+	this.getInput('value_parameter1').setVisible(true);
+	this.getInput('value_parameter2').setVisible(false);
+	this.getInput('value_parameter3').setVisible(false);
+	this.getInput('value_parameter4').setVisible(false);	  
   },
   validate: function(newValue) {
 	 const block = this.sourceBlock_;
