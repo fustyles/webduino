@@ -364,6 +364,8 @@ function openai_chat_content_file_remote_insert(url) {
 async function openai_chat_image_request(input_text, input_url) {
   if (openai_response_chat_model.toLowerCase().indexOf("llama")!=-1)
     var url = "https://api.groq.com/openai/v1/chat/completions";
+  else if (openai_response_chat_model.toLowerCase().indexOf("grok")!=-1)
+    var url = "https://api.x.ai/v1";	  
   else
     var url = "https://api.openai.com/v1/chat/completions";
 
