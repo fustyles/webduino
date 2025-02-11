@@ -169,6 +169,8 @@ function openai_chat_initial(input_token, input_role, input_model) {
 async function openai_chat_request(input_text) {
   if (openai_response_chat_model.toLowerCase().indexOf("llama")!=-1)
     var url = "https://api.groq.com/openai/v1/chat/completions";
+  else if (openai_response_chat_model.toLowerCase().indexOf("grok")!=-1)
+    var url = "https://api.x.ai/v1/chat/completions";	  
   else
     var url = "https://api.openai.com/v1/chat/completions";
 
