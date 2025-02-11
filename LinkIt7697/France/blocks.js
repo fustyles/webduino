@@ -20640,7 +20640,8 @@ Blockly.Blocks['linebot_all'] = {
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg.ESP32_LINE_TEXT_SHOW,"text"],
 			[Blockly.Msg.ESP32_LINE_STICKER_SHOW,"sticker"], 
-			[Blockly.Msg.ESP32_LINE_IMAGE_SHOW,"image"]
+			[Blockly.Msg.ESP32_LINE_IMAGE_SHOW,"image"], 
+			[Blockly.Msg.ESP32_LINE_LOCATION_SHOW,"location"]
 		], this.validate), "type_"); 	  
     this.appendValueInput("text_")
         .setCheck(null)
@@ -20661,7 +20662,19 @@ Blockly.Blocks['linebot_all'] = {
     this.appendValueInput("previewImageUrl_")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.ESP32_LINE_PREVIEWIMAGEURL_SHOW,"I2");		
+        .appendField(Blockly.Msg.ESP32_LINE_PREVIEWIMAGEURL_SHOW,"I2");
+    this.appendValueInput("address_")
+        .setCheck("String")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.ESP32_LINE_ADDRESS_SHOW,"P2");	
+    this.appendValueInput("latitude_")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.ESP32_LINE_LATITUDE_SHOW,"P3");
+    this.appendValueInput("longitude_")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.ESP32_LINE_LONGITUDE_SHOW,"P4");	
 	this.setInputsInline(false);	  
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -20673,8 +20686,13 @@ Blockly.Blocks['linebot_all'] = {
 	this.getInput("originalContentUrl_").setVisible(false);
 	this.getField("I1").setVisible(false);
 	this.getInput("previewImageUrl_").setVisible(false);
-	this.getField("I2").setVisible(false);	
-	
+	this.getField("I2").setVisible(false);
+	this.getInput("address_").setVisible(false);
+	this.getField("P2").setVisible(false);
+	this.getInput("latitude_").setVisible(false);
+	this.getField("P3").setVisible(false);
+	this.getInput("longitude_").setVisible(false);
+	this.getField("P4").setVisible(false);
   },
   validate: function(newValue) {
 	 const block = this.sourceBlock_;
@@ -20688,6 +20706,13 @@ Blockly.Blocks['linebot_all'] = {
 		 block.getInput("previewImageUrl_").setVisible(false);
 		 block.getField("I2").setVisible(false);
 		 block.setInputsInline(true);
+
+		 block.getInput("address_").setVisible(false);
+		 block.getField("P2").setVisible(false);
+		 block.getInput("latitude_").setVisible(false);
+		 block.getField("P3").setVisible(false);
+		 block.getInput("longitude_").setVisible(false);
+		 block.getField("P4").setVisible(false); 		 
 	 }
 	 else if (newValue=="sticker") {
 		 block.getInput("packageId_").setVisible(true);
@@ -20698,7 +20723,14 @@ Blockly.Blocks['linebot_all'] = {
 		 block.getField("I1").setVisible(false);
 		 block.getInput("previewImageUrl_").setVisible(false);
 		 block.getField("I2").setVisible(false); 
-		 block.setInputsInline(false);		 
+		 block.setInputsInline(false);
+
+		 block.getInput("address_").setVisible(false);
+		 block.getField("P2").setVisible(false);
+		 block.getInput("latitude_").setVisible(false);
+		 block.getField("P3").setVisible(false);
+		 block.getInput("longitude_").setVisible(false);
+		 block.getField("P4").setVisible(false); 		 
 	 }
 	 else if (newValue=="image") {
 		 block.getInput("packageId_").setVisible(false);
@@ -20709,17 +20741,35 @@ Blockly.Blocks['linebot_all'] = {
 		 block.getField("I1").setVisible(true);
 		 block.getInput("previewImageUrl_").setVisible(true);
 		 block.getField("I2").setVisible(true);
-		 block.setInputsInline(false);		 
+		 block.setInputsInline(false);
+
+		 block.getInput("address_").setVisible(false);
+		 block.getField("P2").setVisible(false);
+		 block.getInput("latitude_").setVisible(false);
+		 block.getField("P3").setVisible(false);
+		 block.getInput("longitude_").setVisible(false);
+		 block.getField("P4").setVisible(false); 
+	 }
+	 else if (newValue=="location") {
+		 block.getInput("packageId_").setVisible(false);
+		 block.getField("S1").setVisible(false);
+		 block.getInput("stickerId_").setVisible(false);
+		 block.getField("S2").setVisible(false);
+		 block.getInput("originalContentUrl_").setVisible(false);
+		 block.getField("I1").setVisible(false);
+		 block.getInput("previewImageUrl_").setVisible(false);
+		 block.getField("I2").setVisible(false);
+		 block.setInputsInline(false);	
+
+		 block.getInput("address_").setVisible(true);
+		 block.getField("P2").setVisible(true);
+		 block.getInput("latitude_").setVisible(true);
+		 block.getField("P3").setVisible(true);
+		 block.getInput("longitude_").setVisible(true);
+		 block.getField("P4").setVisible(true); 		 
 	 }	 
   } 
 };
-
-
-
-
-
-
-
 
 Blockly.Blocks['close_powerdog'] = {
   init: function() {

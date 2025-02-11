@@ -15221,7 +15221,7 @@ Blockly.Arduino['linenotify_all'] = function(block) {
 Blockly.Arduino['linebot_all'] = function(block) {
   Blockly.Arduino.definitions_['linebot'] ='\n'+
 											'String LineBot(String token, String request) {\n'+
-											'  Serial.println(request);\n'+
+											'  //Serial.println(request);\n'+
 											'  String getAll="", getBody="";\n';
 											
 	if (selectBoardType()=="LinkIt")
@@ -15272,13 +15272,17 @@ Blockly.Arduino['linebot_all'] = function(block) {
   var packageId = Blockly.Arduino.valueToCode(block, 'packageId_', Blockly.Arduino.ORDER_ATOMIC);
   var stickerId = Blockly.Arduino.valueToCode(block, 'stickerId_', Blockly.Arduino.ORDER_ATOMIC);  
   var originalContentUrl = Blockly.Arduino.valueToCode(block, 'originalContentUrl_', Blockly.Arduino.ORDER_ATOMIC);
-  var previewImageUrl = Blockly.Arduino.valueToCode(block, 'previewImageUrl_', Blockly.Arduino.ORDER_ATOMIC);    
+  var previewImageUrl = Blockly.Arduino.valueToCode(block, 'previewImageUrl_', Blockly.Arduino.ORDER_ATOMIC); 
+  var address = Blockly.Arduino.valueToCode(block, 'address_', Blockly.Arduino.ORDER_ATOMIC);  
+  var latitude = Blockly.Arduino.valueToCode(block, 'latitude_', Blockly.Arduino.ORDER_ATOMIC);
+  var longitude = Blockly.Arduino.valueToCode(block, 'longitude_', Blockly.Arduino.ORDER_ATOMIC);  
   
   if (!text) text='" "';
   if (!packageId) packageId='""';
   if (!stickerId) stickerId='""';
   if (!originalContentUrl) originalContentUrl='""';
-  if (!previewImageUrl) previewImageUrl='""'; 
+  if (!previewImageUrl) previewImageUrl='""';
+  if (!address) address='""';  
   var message = "";
 
   if (type=="text")
@@ -15287,6 +15291,8 @@ Blockly.Arduino['linebot_all'] = function(block) {
 	message = "\"{\\\"to\\\":\\\"\"+String(" + userid + ")+\"\\\",\\\"messages\\\":[{\\\"type\\\":\\\"sticker\\\",\\\"packageId\\\":\"+String(" + packageId + ")+\",\\\"stickerId\\\":\"+String(" + stickerId + ")+\"}]}\"";
   else if (type=="image")
 	message = "\"{\\\"to\\\":\\\"\"+String(" + userid + ")+\"\\\",\\\"messages\\\":[{\\\"type\\\":\\\"image\\\",\\\"originalContentUrl\\\":\\\"\"+String(" + originalContentUrl + ")+\"\\\",\\\"previewImageUrl\\\":\\\"\"+String(" + previewImageUrl + ")+\"\\\"}]}\"";
+  else if (type=="location")
+	message = "\"{\\\"to\\\":\\\"\"+String(" + userid + ")+\"\\\",\\\"messages\\\":[{\\\"type\\\":\\\"location\\\",\\\"title\\\":\\\"\"+String(" + text + ")+\"\\\",\\\"address\\\":\\\"\"+String(" + address + ")+\"\\\",\\\"latitude\\\":\\\"\"+String(" + latitude + ")+\"\\\",\\\"longitude\\\":\\\"\"+String(" + longitude + ")+\"\\\"}]}\"";
 
   var code = 'LineBot('+token+', '+message+');\n';
   return code;

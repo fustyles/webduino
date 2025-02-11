@@ -13670,7 +13670,22 @@
 		  <block type="text">
 			<field name="TEXT"></field>
 		  </block>
-		</value> 
+		</value>		
+		<value name="address_">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>		
+		</value>		
+		<value name="latitude_">
+		  <block type="math_number">
+			<field name="NUM"></field>
+		  </block>
+		</value>  
+		<value name="longitude_">
+		  <block type="math_number">
+			<field name="NUM"></field>
+		  </block>
+		</value> 		
 	  </block>	  
 	  <block type="linenotify_esp32_br">
 	  </block>	  
