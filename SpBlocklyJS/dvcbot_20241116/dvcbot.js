@@ -252,7 +252,6 @@ function dvcbot_result_plugin() {
 }
 
 function dvcbot_response_br(data, newline) {
-	console.log(data);
 	if (newline=="br")
 		return data.replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");
 	else if (newline=="n")
