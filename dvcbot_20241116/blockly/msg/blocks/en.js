@@ -6,3 +6,6 @@ Blockly.Msg.DVCBOT_RESPONSE_SHOW = "Get Program Return Value";
 Blockly.Msg.DVCBOT_RESULT_SHOW = "Get Response";
 Blockly.Msg.DVCBOT_USERMESSAGE_SHOW = "Conversation Message";
 Blockly.Msg.DVCBOT_RESULT_GET_BR_SHOW = "Line Break";
+Blockly.Msg.DVCBOT_RESPONSE_SHOW = "After Receiving Response";
+Blockly.Msg.DVCBOT_RESPONSE_DATA_SHOW = "Response Data";
+Blockly.Msg.DVCBOT_RESPONSE_BR_SHOW = "Line Break Handling";
