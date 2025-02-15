@@ -1,9 +1,5 @@
 // Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
-+(function (window, document) {
-
-	'use strict';
-	
 	let dvcbot_apiKey = "";
 	let dvcbot_assistantId = "";
 	
@@ -249,14 +245,3 @@
 	function dvcbot_result_plugin() {
 	  return dvcbot_plugin_response;
 	}
-	
-	window.dvcbot_initial = dvcbot_initial;
-	window.dvcbot_result = dvcbot_result;
-	window.createThread = createThread;
-	window.addMessageToThread = addMessageToThread;
-	window.runAssistant = runAssistant;
-	window.getRunResult = getRunResult;
-	window.listMessage = listMessage;	
-	window.sendMessageToDvcbot = sendMessageToDvcbot;
-	
-}(window, window.document));	
