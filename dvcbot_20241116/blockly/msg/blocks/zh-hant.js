@@ -6,3 +6,6 @@ Blockly.Msg.DVCBOT_RESPONSE_SHOW = "取得Plugin回傳值";
 Blockly.Msg.DVCBOT_RESULT_SHOW = "取得回應";
 Blockly.Msg.DVCBOT_USERMESSAGE_SHOW = "對話訊息";
 Blockly.Msg.DVCBOT_RESULT_GET_BR_SHOW = "自動換行";
+Blockly.Msg.DVCBOT_RESPONSE_SHOW = "取得回應後";
+Blockly.Msg.DVCBOT_RESPONSE_DATA_SHOW = "回應資料";
+Blockly.Msg.DVCBOT_RESPONSE_BR_SHOW = "換行處理";
