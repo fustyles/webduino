@@ -246,3 +246,6 @@
 	function dvcbot_result_plugin() {
 	  return dvcbot_plugin_response;
 	}
+
+	async function dvcbot_response_get() {
+	}
