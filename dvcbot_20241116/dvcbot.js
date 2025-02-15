@@ -251,7 +251,6 @@
 	}
 	
 	window.dvcbot_initial = dvcbot_initial;
-	window.dvcbot_result_response = dvcbot_result_response;
 	window.dvcbot_result = dvcbot_result;
 	window.createThread = createThread;
 	window.addMessageToThread = addMessageToThread;
