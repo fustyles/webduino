@@ -247,5 +247,12 @@
 	  return dvcbot_plugin_response;
 	}
 
-	async function dvcbot_response_get(dvcbot_data) {
+	function dvcbot_response_br(data, newline) {
+		console.log(data);
+		if (newline=="br")
+			return data.replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");
+		else if (newline=="n")
+			return data;	
+		else
+			return data.replace(/\n/g,"");
 	}
