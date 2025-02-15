@@ -247,5 +247,5 @@
 	  return dvcbot_plugin_response;
 	}
 
-	async function dvcbot_response_get() {
+	async function dvcbot_response_get(dvcbot_data) {
 	}
