@@ -18,9 +18,7 @@ var catDvcbot = '<xml>'+
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+
-'  </block>'+   
-'  <block type="dvcbot_response">'+
-'  </block>'+ 
+'  </block>'+    
 '  <block type="dvcbot_response1">'+
 '  </block>'+  
 '  <block type="dvcbot_response_data">'+
