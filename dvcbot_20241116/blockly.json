@@ -1,5 +1,5 @@
 {
-  "types": ["dvcbot_initial","dvcbot_response","dvcbot_result"],
+  "types": ["dvcbot_initial","dvcbot_response","dvcbot_result","dvcbot_result1","dvcbot_response1","dvcbot_response_data"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
