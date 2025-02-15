@@ -50,3 +50,50 @@ Blockly.Blocks['dvcbot_result'] = {
   this.setColour(190);
   }
 };
+
+Blockly.Blocks['dvcbot_result1'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.DVCBOT_SHOW);
+  this.appendValueInput("userMessage")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.DVCBOT_USERMESSAGE_SHOW); 	   
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(190);
+  }
+};
+
+Blockly.Blocks['dvcbot_response1'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.DVCBOT_SHOW) 
+	  .appendField(Blockly.Msg.DVCBOT_RESPONSE_SHOW);
+  this.appendStatementInput("do");
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(190);
+  }
+};
+
+Blockly.Blocks['dvcbot_response_data'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.DVCBOT_SHOW);
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.DVCBOT_RESPONSE_DATA_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.DVCBOT_RESPONSE_DATA_BR_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+			["N",""],
+			["Y \<br\>","br"],
+			["Y \\n","n"]		  
+	  ]), "br"); 	  
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(190);
+  }
+};
