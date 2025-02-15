@@ -18,16 +18,19 @@
 
 	async function dvcbot_result(userMessage, newline) {
 	  try {
-		dvcbot_plugin_response = [];
-		const result = await sendMessageToDvcbot(userMessage);
+	    dvcbot_plugin_response = [];
+	    const result = await sendMessageToDvcbot(userMessage);
 		if (newline=="br")
 			return result.replace(/\n/g,"<br>");
 		else if (newline=="no")
-			return result.replace(/\n/g,"");	
-		else
-			return result;	
+			return result.replace(/\n/g,"");
+		else if (newline=="")
+			return result;
+		else {
+			if (typeof dvcbot_response_get === "function") {await dvcbot_response_get(result);}
+		}
 	  } catch (error) {
-		return "error";
+	    return "error";
 	  }
 	}
 
