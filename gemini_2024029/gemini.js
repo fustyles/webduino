@@ -19,39 +19,38 @@ function gemini_chat_initial(input_key, input_model, input_tokens, input_tempera
 		var gemini_mod = document.createElement("script");
 		gemini_mod.type = "module";
 		gemini_mod.textContent = ''+
-		'import { GoogleGenerativeAI } from "@google/generative-ai";\n'+
 		'const genAI = new GoogleGenerativeAI("'+input_key+'");\n'+
 		'var chatHistory = {history: [],generationConfig: {maxOutputTokens: '+input_tokens+', temperature: '+input_temperature+',},};\n'+
 		'window.chatHistory = chatHistory;\n'+			
 		'async function gemini_chat_run(prompt) {\n'+
-		'	const model = await genAI.getGenerativeModel({ model: "'+input_model+'"});\n'+
-		'	const chat = model.startChat(chatHistory);\n'+
-		'	await chat.sendMessage(prompt).then(function(result) {\n'+
-		'		const response = result.response;\n'+
-		'		const text = response.text();\n'+
-		'		gemini_chat_insert(prompt, text);\n'+
-		'		if (typeof gemini_chat_response === "function") gemini_chat_response(text);\n'+
-		'	});\n'+
+		'    const model = await genAI.getGenerativeModel({ model: "'+input_model+'"});\n'+
+		'    const chat = model.startChat(chatHistory);\n'+
+		'    await chat.sendMessage(prompt).then(function(result) {\n'+
+		'        const response = result.response;\n'+
+		'        const text = response.text();\n'+
+		'        gemini_chat_insert(prompt, text);\n'+
+		'        if (typeof gemini_chat_response === "function") gemini_chat_response(text);\n'+
+		'    });\n'+
 		'}\n'+
 		'async function gemini_chat_insert(request, response) {\n'+
-		'	var char_request = {};\n'+
-		'	char_request.role = "user";\n'+
-		'	char_request.parts = [];\n'+
-		'	var char_request_text = {};\n'+
-		'	char_request_text.text = request;\n'+
-		'	char_request.parts.push(char_request_text);\n'+
-		'	chatHistory["history"].push(char_request);\n'+
-		'	var char_response = {};\n'+
-		'	char_response.role = "model";\n'+
-		'	char_response.parts = [];\n'+
-		'	var char_response_text = {};\n'+
-		'	char_response_text.text = response;\n'+
-		'	char_response.parts.push(char_request_text);\n'+
-		'	chatHistory["history"].push(char_response);\n'+
-		'	//console.log(chatHistory);\n'+
+		'    var char_request = {};\n'+
+		'    char_request.role = "user";\n'+
+		'    char_request.parts = [];\n'+
+		'    var char_request_text = {};\n'+
+		'    char_request_text.text = request;\n'+
+		'    char_request.parts.push(char_request_text);\n'+
+		'    chatHistory["history"].push(char_request);\n'+
+		'    var char_response = {};\n'+
+		'    char_response.role = "model";\n'+
+		'    char_response.parts = [];\n'+
+		'    var char_response_text = {};\n'+
+		'    char_response_text.text = response;\n'+
+		'    char_response.parts.push(char_request_text);\n'+
+		'    chatHistory["history"].push(char_response);\n'+
+		'    //console.log(chatHistory);\n'+
 		'}\n'+
 		'async function gemini_chat_clear(){\n'+
-		'	chatHistory["history"] = [];\n'+
+		'    chatHistory["history"] = [];\n'+
 		'}\n'+
 		'window.gemini_chat_run = gemini_chat_run;\n'+
 		'window.gemini_chat_insert = gemini_chat_insert;\n'+
