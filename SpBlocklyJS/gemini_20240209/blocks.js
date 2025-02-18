@@ -18,7 +18,7 @@ Blockly.Blocks['gemini_chat_initial'] = {
   this.appendValueInput("tokens")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.GEMINI_CHAT_MAX_TOKENS);
+      .appendField(Blockly.Msg.GEMINI_CHAT_MAX_TOKENS_SHOW);
   this.appendValueInput("role")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
