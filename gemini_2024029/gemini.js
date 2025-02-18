@@ -4,18 +4,19 @@ let Gemini_api_key = "";
 let Gemini_model = "";
 
 function gemini_chat_initial(input_key, input_model, input_tokens, input_temperature, input_role) {
-		Gemini_api_key = input_key;
-		Gemini_model = input_model;	
-		const gemini_importMap = {
-			"imports": {
-			  "@google/generative-ai": "https://esm.run/@google/generative-ai"
-			}
-		};
-		var gemini_map = document.createElement("script");
-		gemini_map.type = "importmap";
-		gemini_map.textContent = JSON.stringify(gemini_importMap);
-		document.getElementsByTagName('head')[0].append(gemini_map);
-	
+	Gemini_api_key = input_key;
+	Gemini_model = input_model;	
+	const gemini_importMap = {
+		"imports": {
+		  "@google/generative-ai": "https://esm.run/@google/generative-ai"
+		}
+	};
+	var gemini_map = document.createElement("script");
+	gemini_map.type = "importmap";
+	gemini_map.textContent = JSON.stringify(gemini_importMap);
+	document.getElementsByTagName('head')[0].append(gemini_map);
+
+	window.body.onload = function() {
 		var gemini_mod = document.createElement("script");
 		gemini_mod.type = "module";
 		gemini_mod.textContent = ''+
@@ -60,6 +61,7 @@ function gemini_chat_initial(input_key, input_model, input_tokens, input_tempera
 		
 		//console.log(gemini_mod.textContent);
 		document.body.appendChild(gemini_mod);
+	}
 } 
 
 function gemini_chat_response_br(data, newline) {
