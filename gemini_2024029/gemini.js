@@ -58,9 +58,7 @@ function gemini_chat_initial(input_key, input_model, input_tokens, input_tempera
 		'window.gemini_chat_history = chatHistory;\n';
 		
 		//console.log(gemini_mod.textContent);
-		document.body.onload = function(){
-		        document.body.appendChild(gemini_mod);
-		}			
+		document.body.appendChild(gemini_mod);			
 } 
 
 function gemini_chat_response_br(data, newline) {
