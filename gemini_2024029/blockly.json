@@ -6,7 +6,8 @@
     "blockly/javascript.js"
   ],
   "dependencies": [
-    "gemini.js"    
+    "gemini.js",
+    "https://esm.run/@google/generative-ai"
   ],
   "msg": "blockly/msg",
   "blocksMsg": "blockly/msg/blocks",
