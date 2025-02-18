@@ -1,58 +1,64 @@
 'use strict';
-	
 let Gemini_api_key = "";
 let Gemini_model = "";
 
-function gemini_chat_initial(input_key, input_model, input_tokens, input_temperature, input_role) {
-	Gemini_api_key = input_key;
-	Gemini_model = input_model;	
-
-	document.body.onload = function() {
+function gemini_chat_initial(input_key, input_model, input_tokens) {
+		Gemini_api_key = input_key;
+		Gemini_model = input_model;
+		const gemini_importMap = {
+			"imports": {
+			  "@google/generative-ai": "https://esm.run/@google/generative-ai"
+			}
+		};
+		var gemini_map = document.createElement("script");
+		gemini_map.type = "importmap";
+		gemini_map.textContent = JSON.stringify(gemini_importMap);
+		document.getElementsByTagName('head')[0].append(gemini_map);
+	
 		var gemini_mod = document.createElement("script");
 		gemini_mod.type = "module";
 		gemini_mod.textContent = ''+
+		'import { GoogleGenerativeAI } from "@google/generative-ai";\n'+
 		'const genAI = new GoogleGenerativeAI("'+input_key+'");\n'+
-		'var chatHistory = {history: [],generationConfig: {maxOutputTokens: '+input_tokens+', temperature: '+input_temperature+',},};\n'+
+		'var chatHistory = {history: [],generationConfig: {maxOutputTokens: '+input_tokens+',},};\n'+
 		'window.chatHistory = chatHistory;\n'+			
 		'async function gemini_chat_run(prompt) {\n'+
-		'    const model = await genAI.getGenerativeModel({ model: "'+input_model+'"});\n'+
-		'    const chat = model.startChat(chatHistory);\n'+
-		'    await chat.sendMessage(prompt).then(function(result) {\n'+
-		'        const response = result.response;\n'+
-		'        const text = response.text();\n'+
-		'        gemini_chat_insert(prompt, text);\n'+
-		'        if (typeof gemini_chat_response === "function") gemini_chat_response(text);\n'+
-		'    });\n'+
+		'	const model = await genAI.getGenerativeModel({ model: "'+input_model+'"});\n'+
+		'	const chat = model.startChat(chatHistory);\n'+
+		'	await chat.sendMessage(prompt).then(function(result) {\n'+
+		'		const response = result.response;\n'+
+		'		const text = response.text();\n'+
+		'		gemini_chat_insert(prompt, text);\n'+
+		'		if (typeof gemini_chat_response === "function") gemini_chat_response(text);\n'+
+		'	});\n'+
 		'}\n'+
 		'async function gemini_chat_insert(request, response) {\n'+
-		'    var char_request = {};\n'+
-		'    char_request.role = "user";\n'+
-		'    char_request.parts = [];\n'+
-		'    var char_request_text = {};\n'+
-		'    char_request_text.text = request;\n'+
-		'    char_request.parts.push(char_request_text);\n'+
-		'    chatHistory["history"].push(char_request);\n'+
-		'    var char_response = {};\n'+
-		'    char_response.role = "model";\n'+
-		'    char_response.parts = [];\n'+
-		'    var char_response_text = {};\n'+
-		'    char_response_text.text = response;\n'+
-		'    char_response.parts.push(char_request_text);\n'+
-		'    chatHistory["history"].push(char_response);\n'+
-		'    //console.log(chatHistory);\n'+
+		'	var char_request = {};\n'+
+		'	char_request.role = "user";\n'+
+		'	char_request.parts = [];\n'+
+		'	var char_request_text = {};\n'+
+		'	char_request_text.text = request;\n'+
+		'	char_request.parts.push(char_request_text);\n'+
+		'	chatHistory["history"].push(char_request);\n'+
+		'	var char_response = {};\n'+
+		'	char_response.role = "model";\n'+
+		'	char_response.parts = [];\n'+
+		'	var char_response_text = {};\n'+
+		'	char_response_text.text = response;\n'+
+		'	char_response.parts.push(char_request_text);\n'+
+		'	chatHistory["history"].push(char_response);\n'+
+		'	//console.log(chatHistory);\n'+
 		'}\n'+
 		'async function gemini_chat_clear(){\n'+
-		'    chatHistory["history"] = [];\n'+
+		'	chatHistory["history"] = [];\n'+
 		'}\n'+
 		'window.gemini_chat_run = gemini_chat_run;\n'+
 		'window.gemini_chat_insert = gemini_chat_insert;\n'+
 		'window.gemini_chat_clear = gemini_chat_clear;\n'+
-		'window.gemini_chat_history = chatHistory;\n'+
-		'gemini_chat_insert("'+input_role+'", "");\n';
+		'window.gemini_chat_history = chatHistory;\n';
 		
 		//console.log(gemini_mod.textContent);
 		document.body.appendChild(gemini_mod);
-	}
 } 
 
 function gemini_chat_response_br(data, newline) {
@@ -128,12 +134,12 @@ function gemini_chat_content_file_remote(url) {
 			else
 				gemini_chat_clear();			
 		},
-		error: function(jqXHR, textStatus, errorThrown){
-			//console.log(jqXHR);
+  		error: function(jqXHR, textStatus, errorThrown){
+      			//console.log(jqXHR);
 			alert(jqXHR.statusText);
-			//console.log(textStatus);
-			//console.log(errorThrown);
-		}
+      			//console.log(textStatus);
+      			//console.log(errorThrown);
+  		}
 	});
 }
 
@@ -145,55 +151,55 @@ function gemini_chat_content_file_remote_insert(url) {
 			if (data!="")
 				gemini_chat_insert(data, "");			
 		},
-		error: function(jqXHR, textStatus, errorThrown){
-			//console.log(jqXHR);
+  		error: function(jqXHR, textStatus, errorThrown){
+      			//console.log(jqXHR);
 			alert(jqXHR.statusText);
-			//console.log(textStatus);
-			//console.log(errorThrown);
-		}
+      			//console.log(textStatus);
+      			//console.log(errorThrown);
+  		}
 	});
 }
 
 async function gemini_chat_image_request(message, imageURL) {
     try {
-	let inline_data = await get_inline_data(imageURL);
+        let inline_data = await get_inline_data(imageURL);
 	
-	const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
-	const data = {
-	    contents: [
-		{
-		    parts: [
-			{
-			    text: message
-			},
-			...inline_data
-		    ]
-		}
-	    ]
-	};
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${Gemini_api_key}`;
+        const data = {
+            contents: [
+                {
+                    parts: [
+                        {
+                            text: message
+                        },
+                        ...inline_data
+                    ]
+                }
+            ]
+        };
 
-	const options = {
-	    method: 'POST',
-	    headers: {
-		'Content-Type': 'application/json'
-	    },
-	    body: JSON.stringify(data)
-	};
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
 
-	const response = await fetch(url, options);
-	const json = await response.json();
-	let result;   
-	if ('error' in json) {
-	    result = json.error.message;
-	} else {
+        const response = await fetch(url, options);
+        const json = await response.json();
+        let result;   
+        if ('error' in json) {
+            result = json.error.message;
+        } else {
 	    result = json.candidates[0].content.parts[0].text;
-	    var char_request = {};
-	    char_request.role = "model";
-	    char_request.parts = [];
-	    var char_request_text = {};
-	    char_request_text.text = result;
-	    char_request.parts.push(char_request_text);
-	    chatHistory["history"].push(char_request);
+            var char_request = {};
+            char_request.role = "model";
+            char_request.parts = [];
+            var char_request_text = {};
+            char_request_text.text = result;
+            char_request.parts.push(char_request_text);
+            chatHistory["history"].push(char_request);
 	}
 	if (typeof gemini_chat_response === "function") gemini_chat_response(result);
     } catch (error) {
@@ -233,38 +239,38 @@ async function gemini_chat_file_request(fileType, fileURL, message) {
     try {
 	let fileBase64 = await getFileBase64(fileURL, 0);
 	fileBase64 = decodeURIComponent(fileBase64);
-	const url = `https://generativelanguage.googleapis.com/v1beta/models/${Gemini_model}:generateContent?key=${Gemini_api_key}`;
-	const data = {
-	    contents: [{
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${Gemini_model}:generateContent?key=${Gemini_api_key}`;
+        const data = {
+            contents: [{
 				"parts":[
 				  {"inline_data": {"mime_type": fileType, "data": fileBase64}},
 				  {"text": message}
 				]
 			}]
-	};
+        };
 
-	const options = {
-	    method: 'POST',
-	    headers: {
-		'Content-Type': 'application/json'
-	    },
-	    body: JSON.stringify(data)
-	};
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
 
-	const response = await fetch(url, options);
-	const json = await response.json();
-	let result;   
-	if ('error' in json) {
-	    result = json.error.message;
-	} else {
+        const response = await fetch(url, options);
+        const json = await response.json();
+        let result;   
+        if ('error' in json) {
+            result = json.error.message;
+        } else {
 	    result = json.candidates[0].content.parts[0].text;
-	    var char_request = {};
-	    char_request.role = "model";
-	    char_request.parts = [];
-	    var char_request_text = {};
-	    char_request_text.text = result;
-	    char_request.parts.push(char_request_text);
-	    chatHistory["history"].push(char_request);
+            var char_request = {};
+            char_request.role = "model";
+            char_request.parts = [];
+            var char_request_text = {};
+            char_request_text.text = result;
+            char_request.parts.push(char_request_text);
+            chatHistory["history"].push(char_request);
 	}
 	if (typeof gemini_chat_response === "function") gemini_chat_response(result);
     } catch (error) {
@@ -276,10 +282,10 @@ async function getFileBase64(fileURL, type) {
     const response = await fetch(fileURL);
     const blob = await response.blob();
     const base64String = await new Promise((resolve, reject) => {
-	const reader = new FileReader();
-	reader.onloadend = () => resolve(reader.result.split(',')[1]);
-	reader.onerror = reject;
-	reader.readAsDataURL(blob);
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
     });
     return type ? `data:image/jpeg;base64,${base64String}` : base64String;
 }

@@ -1,11 +1,10 @@
 Blockly.JavaScript['gemini_chat_initial'] = function (block) {
   var token = Blockly.JavaScript.valueToCode(block, 'token', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  var tokens = Blockly.JavaScript.valueToCode(block, 'tokens', Blockly.JavaScript.ORDER_ATOMIC)||100; 
-  var temperature = block.getFieldValue('temperature');
+  var tokens = Blockly.JavaScript.valueToCode(block, 'tokens', Blockly.JavaScript.ORDER_ATOMIC)||100;   
   var model = block.getFieldValue('model');
   var role = Blockly.JavaScript.valueToCode(block, 'role', Blockly.JavaScript.ORDER_ATOMIC);   
 
-  var code = 'gemini_chat_initial('+token+', "'+model+'", '+tokens+', '+temperature+','+role+');\n';
+  var code = 'gemini_chat_initial('+token+', "'+model+'", '+tokens+');\nawait delay(1, true);\ngemini_chat_insert('+role+', "");\n';
   return code; 
 };
 

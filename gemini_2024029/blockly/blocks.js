@@ -10,32 +10,16 @@ Blockly.Blocks['gemini_chat_initial'] = {
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg.GEMINI_MODEL_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["gemini-2.0-flash-lite-preview-02-05","gemini-2.0-flash-lite-preview-02-05"],
-		["gemini-2.0-flash-001","gemini-2.0-flash-001"],	      
 	        ["gemini-1.5-flash","gemini-1.5-flash"],
 		["gemini-1.5-flash-8b","gemini-1.5-flash-8b"],
-	        ["gemini-1.5-pro","gemini-1.5-pro"]
+	        ["gemini-1.5-pro","gemini-1.5-pro"],
+		["gemini-2.0-flash-lite-preview-02-05","gemini-2.0-flash-lite-preview-02-05"],
+		["gemini-2.0-flash-001","gemini-2.0-flash-001"]
 	  ]), "model");
   this.appendValueInput("tokens")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.GEMINI_CHAT_MAX_TOKENS_SHOW);
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.GEMINI_CHAT_TEMPERATURE_SHOW)
-      .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(new Blockly.FieldDropdown([
-		["1","1"],
-		["0.9","0.9"],
-		["0.8","0.8"],
-		["0.7","0.7"],
-		["0.6","0.6"],
-		["0.5","0.5"],
-		["0.4","0.4"],
-		["0.3","0.3"],
-		["0.2","0.2"],
-		["0.1","0.1"],
-		["0","0"]
-	  ]), "temperature");	  
+      .appendField(Blockly.Msg.GEMINI_CHAT_MAX_TOKENS);
   this.appendValueInput("role")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
