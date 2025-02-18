@@ -60,7 +60,7 @@
 			'window.gemini_chat_clear = gemini_chat_clear;\n'+
 			'window.gemini_chat_history = chatHistory;\n';
 			
-			//console.log(gemini_mod.textContent);
+			console.log(gemini_mod.textContent);
 			document.body.appendChild(gemini_mod);			
 	} 
 	
