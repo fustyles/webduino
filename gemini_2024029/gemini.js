@@ -16,7 +16,7 @@ function gemini_chat_initial(input_key, input_model, input_tokens, input_tempera
 	gemini_map.textContent = JSON.stringify(gemini_importMap);
 	document.getElementsByTagName('head')[0].append(gemini_map);
 
-	body.onload = function() {
+	document.body.onload = function() {
 		var gemini_mod = document.createElement("script");
 		gemini_mod.type = "module";
 		gemini_mod.textContent = ''+
