@@ -59,7 +59,7 @@
 			window.gemini_chat_history = chatHistory;
    			`;
 			
-			
+		        console.log(window);
 			document.body.appendChild(gemini_mod);	
 		        console.log(window);
 	} 
