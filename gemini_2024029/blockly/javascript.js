@@ -5,7 +5,7 @@ Blockly.JavaScript['gemini_chat_initial'] = function (block) {
   var model = block.getFieldValue('model');
   var role = Blockly.JavaScript.valueToCode(block, 'role', Blockly.JavaScript.ORDER_ATOMIC);   
 
-  var code = 'gemini_chat_initial('+token+', "'+model+'", '+tokens+', '+temperature+');\nawait delay(3);\ngemini_chat_insert('+role+', "");\n';
+  var code = 'gemini_chat_initial('+token+', "'+model+'", '+tokens+', '+temperature+','+role+');\n';
   return code; 
 };
 
