@@ -59,7 +59,8 @@ function gemini_chat_initial(input_key, input_model, input_tokens, input_tempera
 		window.gemini_chat_history = chatHistory;
 		`;
 		
-		document.body.appendChild(gemini_mod);	
+		//document.body.appendChild(gemini_mod);
+		document.getElementsByTagName('head')[0].append(gemini_mod);
 		console.log(gemini_mod.textContent);
 		console.log(window);
 } 
