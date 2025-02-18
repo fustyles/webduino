@@ -22,7 +22,7 @@ function gemini_chat_initial(input_key, input_model, input_tokens, input_tempera
 		import { GoogleGenerativeAI } from "@google/generative-ai";
 		const genAI = new GoogleGenerativeAI("'+input_key+'");
 		var chatHistory = {history: [],generationConfig: {maxOutputTokens: '+input_tokens+', temperature: '+input_temperature+',},};
-		window.chatHistory = chatHistory;		
+		window.chatHistory = chatHistory;
 		async function gemini_chat_run(prompt) {
 			const model = await genAI.getGenerativeModel({ model: "'+input_model+'"});
 			const chat = model.startChat(chatHistory);
