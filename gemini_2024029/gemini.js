@@ -1,6 +1,4 @@
 +(function (window, document) {
-
-  'use strict';
 		
 	let Gemini_api_key = "";
 	let Gemini_model = "";
