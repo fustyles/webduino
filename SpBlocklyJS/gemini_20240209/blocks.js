@@ -21,6 +21,7 @@ Blockly.Blocks['gemini_chat_initial'] = {
       .appendField(Blockly.Msg.GEMINI_CHAT_MAX_TOKENS_SHOW);
   this.appendDummyInput()  
       .appendField(Blockly.Msg.GEMINI_CHAT_TEMPERATURE_SHOW)
+      .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(new Blockly.FieldDropdown([
 		["1","1"],
 		["0.9","0.9"],
