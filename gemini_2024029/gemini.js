@@ -1,4 +1,4 @@
-+(function (window, document) {
+  'use strict';
 		
 	let Gemini_api_key = "";
 	let Gemini_model = "";
@@ -291,15 +291,3 @@
 	    });
 	    return type ? `data:image/jpeg;base64,${base64String}` : base64String;
 	}
-
-  window.gemini_chat_initial = gemini_chat_initial;
-  window.gemini_chat_response_br = gemini_chat_response_br;
-  window.gemini_chat_content_file = gemini_chat_content_file;
-  window.gemini_chat_content_file_remote = gemini_chat_content_file_remote;
-  window.gemini_chat_content_file_remote_insert = gemini_chat_content_file_remote_insert;
-  window.gemini_chat_image_request = gemini_chat_image_request;
-  window.get_inline_data = get_inline_data;
-  window.gemini_chat_file_request = gemini_chat_file_request;
-  window.getFileBase64 = getFileBase64;
-
-}(window, window.document));
