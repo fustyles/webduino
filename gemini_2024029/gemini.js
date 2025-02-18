@@ -53,9 +53,9 @@
 			async function gemini_chat_clear(){
 				chatHistory["history"] = [];
 			}
-			window.gemini_chat_run = gemini_chat_run;
-			window.gemini_chat_insert = gemini_chat_insert;
-			window.gemini_chat_clear = gemini_chat_clear;
+			//window.gemini_chat_run = gemini_chat_run;
+			//window.gemini_chat_insert = gemini_chat_insert;
+			//window.gemini_chat_clear = gemini_chat_clear;
 			window.gemini_chat_history = chatHistory;
    			`;
 			
