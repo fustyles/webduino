@@ -1,6 +1,7 @@
 Blockly.JavaScript['gemini_chat_initial'] = function (block) {
   var token = Blockly.JavaScript.valueToCode(block, 'token', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  var tokens = Blockly.JavaScript.valueToCode(block, 'tokens', Blockly.JavaScript.ORDER_ATOMIC)||100;   
+  var tokens = Blockly.JavaScript.valueToCode(block, 'tokens', Blockly.JavaScript.ORDER_ATOMIC)||100; 
+  var temperature = block.getFieldValue('temperature');
   var model = block.getFieldValue('model');
   var role = Blockly.JavaScript.valueToCode(block, 'role', Blockly.JavaScript.ORDER_ATOMIC);   
 
