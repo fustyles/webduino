@@ -2,7 +2,7 @@
 let Gemini_api_key = "";
 let Gemini_model = "";
 
-function gemini_chat_initial(input_key, input_model, input_tokens) {
+function gemini_chat_initial(input_key, input_model, input_tokens, input_role) {
 		Gemini_api_key = input_key;
 		Gemini_model = input_model;
 		const gemini_importMap = {
@@ -55,7 +55,8 @@ function gemini_chat_initial(input_key, input_model, input_tokens) {
 		'window.gemini_chat_run = gemini_chat_run;\n'+
 		'window.gemini_chat_insert = gemini_chat_insert;\n'+
 		'window.gemini_chat_clear = gemini_chat_clear;\n'+
-		'window.gemini_chat_history = chatHistory;\n';
+		'window.gemini_chat_history = chatHistory;\n'+
+		'gemini_chat_insert("'+input_role+'", "");\n';
 		
 		//console.log(gemini_mod.textContent);
 		document.body.appendChild(gemini_mod);
