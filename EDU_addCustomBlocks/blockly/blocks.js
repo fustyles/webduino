@@ -20,7 +20,7 @@ Blockly.Blocks['addMyBlocks'] = {
         [Blockly.Msg.ADDCUSTOMBLOCKS_MQTT_SHOW,"MQTT_20220324"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_GAMEELEMENTS_SHOW,"GameElements_20190131"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_OPENAI_CHAT_SHOW,"openAI_20221212"],
-        [Blockly.Msg.ADDCUSTOMBLOCKS_GEMINI_CHAT_SHOW,"gemini_20240209"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_GEMINI_CHAT_SHOW,"gemini_2024029"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_LLM_CHAT_SHOW,"llm_20241219"],	      
         [Blockly.Msg.ADDCUSTOMBLOCKS_DVCBOT_SHOW,"dvcbot_20241116"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_HOLISTIC_SHOW,"holistic_20201012"],
@@ -181,7 +181,7 @@ Blockly.Blocks['addMyBlocks'] = {
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/chart_20220723/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/WebBluetooth_20220924/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/openAI_20221212/blockly.json');		    
-		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/gemini_20240209/blockly.json');
+		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/gemini_2024029/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/dvcbot_20241116/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/SpeechRecognition_20220729/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/TextToSpeech_20220729/blockly.json');
@@ -233,7 +233,7 @@ Blockly.Blocks['addMyBlocks'] = {
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/chart_20220723/blockly.json');
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/WebBluetooth_20220924/blockly.json');
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/openAI_20221212/blockly.json');
-		  Code.customTab.$__add__('https://fustyles.github.io/webduino/gemini_20240209/blockly.json');
+		  Code.customTab.$__add__('https://fustyles.github.io/webduino/gemini_2024029/blockly.json');
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/dvcbot_20241116/blockly.json');		    
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/SpeechRecognition_20220729/blockly.json');
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/TextToSpeech_20220729/blockly.json');
@@ -271,7 +271,7 @@ Blockly.Blocks['addMyBlocks'] = {
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/chart_20220723/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/WebBluetooth_20220924/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/openAI_20221212/blockly.json');
-		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/gemini_20240209/blockly.json');
+		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/gemini_2024029/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/dvcbot_20241116/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/SpeechRecognition_20220729/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/TextToSpeech_20220729/blockly.json');
@@ -374,8 +374,8 @@ Blockly.Blocks['addMyBlocks'] = {
 	    else if (this.getFieldValue('func')=='openAI_20221212') {
 				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/openAI_20221212/blockly.json", "TEXT");
 			  }
-	    else if (this.getFieldValue('func')=='gemini_20240209') {
-				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/gemini_20240209/blockly.json", "TEXT");
+	    else if (this.getFieldValue('func')=='gemini_2024029') {
+				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/gemini_2024029/blockly.json", "TEXT");
 			  }		  
 	    else if (this.getFieldValue('func')=='SpeechRecognition_20220729') {
 				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/SpeechRecognition_20220729/blockly.json", "TEXT");
