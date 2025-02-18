@@ -60,7 +60,8 @@ function gemini_chat_initial(input_key, input_model, input_tokens, input_tempera
 		`;
 		
 		document.body.appendChild(gemini_mod);	
-		//console.log(window);
+		console.log(gemini_mod.textContent);
+		console.log(window);
 } 
 
 function gemini_chat_response_br(data, newline) {
