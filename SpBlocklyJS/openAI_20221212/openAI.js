@@ -236,7 +236,8 @@ function openai_chat_request(input_text) {
 	var data;
 	data = {
 	  "model": openai_response_chat_model,
-	  "messages": openai_response_chat_message	  
+	  "messages": openai_response_chat_message,
+	  "temperature": openai_response_chat_temperature
 	};
 
 	xhr.send(JSON.stringify(data));
