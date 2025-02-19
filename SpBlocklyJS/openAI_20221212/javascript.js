@@ -66,8 +66,9 @@ Blockly.JavaScript['openai_chat_initial'] = function (block) {
   var token = Blockly.JavaScript.valueToCode(block, 'token', Blockly.JavaScript.ORDER_ATOMIC); 
   var role = Blockly.JavaScript.valueToCode(block, 'role', Blockly.JavaScript.ORDER_ATOMIC);   
   var model = block.getFieldValue('model');
-
-  var code = 'openai_chat_initial('+token+', '+role+', "'+model+'");\n';
+  var temperature = block.getFieldValue('temperature');
+	
+  var code = 'openai_chat_initial('+token+', '+role+', "'+model+'", "'+temperature+'");\n';
   return code; 
 };
 
