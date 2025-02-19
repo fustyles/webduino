@@ -68,7 +68,7 @@ Blockly.JavaScript['openai_chat_initial'] = function (block) {
   var model = block.getFieldValue('model');
   var temperature = block.getFieldValue('temperature');
 	
-  var code = 'openai_chat_initial('+token+', '+role+', "'+model+'", "'+temperature+'");\n';
+  var code = 'openai_chat_initial('+token+', '+role+', "'+model+'", '+temperature+');\n';
   return code; 
 };
 
