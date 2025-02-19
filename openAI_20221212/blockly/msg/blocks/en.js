@@ -18,6 +18,7 @@ Blockly.Msg["OPENAI_IMAGE_SIZE_SHOW"] = "Size";
 Blockly.Msg["OPENAI_CHAT_SHOW"] = "openAI Chat";
 Blockly.Msg["OPENAI_CHAT_REQUEST_SHOW"] = "Chat Content";
 Blockly.Msg["OPENAI_CHAT_PROMPT_SHOW"] = "Prompt";
+Blockly.Msg["OPENAI_CHAT_TEMPERATURE_SHOW"] = "Temperature";
 Blockly.Msg["OPENAI_CHAT_CONTENT_CLEAR_SHOW"] = "Clear Chat History";
 Blockly.Msg["OPENAI_VISION_CONTENT_CLEAR_SHOW"] = "Clear Vision History";
 Blockly.Msg["OPENAI_ROLE_SHOW"] = "Assistant Behavior";
