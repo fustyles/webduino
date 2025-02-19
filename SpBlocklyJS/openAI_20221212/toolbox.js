@@ -11,6 +11,7 @@ var catOpenAI = '<xml>'+
 '        <field name="TEXT">You are a helpful assistant.</field>'+
 '      </block>'+
 '    </value>'+
+'    <field name="temperature">0.5</field>'+  
 '  </block>'+
 '  <block type="openai_chat_request">'+
 '    <value name="words">'+
