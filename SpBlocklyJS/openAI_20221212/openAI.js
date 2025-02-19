@@ -19,6 +19,7 @@ let openai_response_image_n = "";
 let openai_response_image_url = "";
 let openai_response_chat_key = "";
 let openai_response_chat_model = "gpt-3.5-turbo";
+let openai_response_chat_temperature = 0.5;
 let openai_response_role = "You are a helpful assistant.";
 let openai_response_content = "";
 let openai_response_chat = "";	
@@ -158,9 +159,10 @@ function openai_image_response_clear() {
 	openai_response_image_url = "";	
 } 
 
-function openai_chat_initial(input_token, input_role, input_model) {
+function openai_chat_initial(input_token, input_role, input_model, input_temperature) {
 	openai_response_chat_key = input_token;
 	openai_response_chat_model = input_model;
+	openai_response_chat_temperature = input_temperature;
 	openai_response_role = input_role;
 	openai_response_chat_message = [{"role": "system", "content": input_role}];
 	openai_vision_chat_message = [];
