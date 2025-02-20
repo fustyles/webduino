@@ -17,6 +17,7 @@ Blockly.Msg["OPENAI_IMAGE_RESPONSE_GET_SHOW"] = "Response URL";
 Blockly.Msg["OPENAI_IMAGE_RESPONSE_CLEAR_SHOW"] = "Clear Response URL";
 Blockly.Msg["OPENAI_IMAGE_SIZE_SHOW"] = "Size";
 Blockly.Msg["OPENAI_CHAT_SHOW"] = "openAI Chat";
+Blockly.Msg["OPENAI_CHAT_SET_SHOW"] = "Set";
 Blockly.Msg["OPENAI_CHAT_REQUEST_SHOW"] = "Chat Content";
 Blockly.Msg["OPENAI_CHAT_PROMPT_SHOW"] = "Prompt";
 Blockly.Msg["OPENAI_CHAT_TEMPERATURE_SHOW"] = "Temperature";
