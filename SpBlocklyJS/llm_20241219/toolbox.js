@@ -27,6 +27,15 @@ var catLLM = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
+'  <block type="llm_chat_set">'+
+'    <value name="val">'+
+'    	 <block type="math_number">'+
+'    		 <field name="NUM">0.5</field>'+
+'    	 </block>'+
+'    </value>'+
+'  </block>'+
+'  <block type="llm_chat_response">'+
+'  </block>'+  
 '  <block type="llm_chat_request">'+
 '    <value name="words">'+
 '      <block type="text">'+
@@ -46,8 +55,6 @@ var catLLM = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+   
-'  <block type="llm_chat_response">'+
-'  </block>'+
 '  <block type="llm_chat_response_get">'+
 '  </block>'+
 '  <block type="llm_chat_content_clear">'+
