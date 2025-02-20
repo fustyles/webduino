@@ -245,6 +245,13 @@ async function openai_chat_request(input_text) {
 	xhr.send(JSON.stringify(data));
 }
 
+function openai_chat_set(input_property, input_value) {
+	if (input_property=="temperature")
+		openai_response_chat_temperature = Number(input_value);
+	else if (input_property=="maxOutputTokens")
+		openai_response_chat_max_tokens = Number(input_value);	
+}
+
 function openai_chat_insert(input_text) {
 	var char_message = {};
 	char_message.role = "user";
