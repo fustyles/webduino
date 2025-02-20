@@ -29,6 +29,27 @@ Blockly.Blocks['llm_chat_initial'] = {
   }
 };
 
+Blockly.Blocks['llm_chat_set'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.LLM_CHAT_SHOW)
+	  .appendField(Blockly.Msg.LLM_CHAT_SET_SHOW);
+  this.appendDummyInput()  
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["LLM_CHAT_TEMPERATURE_SHOW"], "temperature"],
+		[Blockly.Msg["LLM_CHAT_MAX_TOKENS_SHOW"], "maxOutputTokens"]	      
+	  ]), "property");
+  this.appendValueInput("val")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT);	  
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(150);
+  }
+};
+
 Blockly.Blocks['llm_chat_request'] = {
   init: function() {
   this.appendDummyInput()
