@@ -72,6 +72,14 @@ Blockly.JavaScript['openai_chat_initial'] = function (block) {
   return code; 
 };
 
+Blockly.JavaScript['openai_chat_set'] = function (block) {
+  var property = block.getFieldValue('property');
+  var val = Blockly.JavaScript.valueToCode(block, 'val', Blockly.JavaScript.ORDER_ATOMIC)||"";	
+  
+  var code = 'await openai_chat_set("'+property+'", '+val+');\n';
+  return code; 
+};
+
 Blockly.JavaScript['openai_chat_request'] = function (block) {
   var words = Blockly.JavaScript.valueToCode(block, 'words', Blockly.JavaScript.ORDER_ATOMIC)||"";	
 	
