@@ -17,6 +17,7 @@ Blockly.Msg["OPENAI_IMAGE_RESPONSE_GET_SHOW"] = "回應網址";
 Blockly.Msg["OPENAI_IMAGE_RESPONSE_CLEAR_SHOW"] = "清除回應網址";
 Blockly.Msg["OPENAI_IMAGE_SIZE_SHOW"] = "尺寸";
 Blockly.Msg["OPENAI_CHAT_SHOW"] = "openAI 聊天";
+Blockly.Msg["OPENAI_CHAT_SET_SHOW"] = "設定";
 Blockly.Msg["OPENAI_CHAT_REQUEST_SHOW"] = "聊天內容";
 Blockly.Msg["OPENAI_CHAT_PROMPT_SHOW"] = "提示詞";
 Blockly.Msg["OPENAI_CHAT_TEMPERATURE_SHOW"] = "溫度";
