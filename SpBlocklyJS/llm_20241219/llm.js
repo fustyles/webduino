@@ -9,6 +9,8 @@ let llm_chat_path = "";
 let llm_chat_model = "";
 let llm_chat_key = "";
 let llm_chat_role = "";
+let llm_chat_max_tokens = 1000;
+let llm_chat_temperature = 0.5;
 let llm_chat_content = "";
 let llm_chat = "";	
 let llm_chat_br = "";
@@ -85,10 +87,19 @@ function llm_chat_request(input_text) {
 	var data;
 	data = {
 	  "model": llm_chat_model,
-	  "messages": llm_chat_message	  
+	  "messages": llm_chat_message,
+	  "max_tokens": llm_chat_max_tokens,
+	  "temperature": llm_chat_temperature
 	};
 
 	xhr.send(JSON.stringify(data));
+}
+
+function llm_chat_set(input_property, input_value) {
+	if (input_property=="temperature")
+		llm_chat_temperature = Number(input_value);
+	else if (input_property=="maxOutputTokens")
+		llm_chat_max_tokens = Number(input_value);	
 }
 
 function llm_chat_insert(input_text) {
