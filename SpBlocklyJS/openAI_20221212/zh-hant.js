@@ -34,3 +34,4 @@ Blockly.Msg["OPENAI_CHAT_CONTENT_FILE_REMOTE_URL_SHOW"] = "網址(.chat)";
 Blockly.Msg["OPENAI_CHAT_CONTENT_FILE_REMOTE_URL_INSERT_SHOW"] = "網址(.txt)";
 Blockly.Msg["OPENAI_CHAT_IMAGE_URL_SHOW"] = "圖片網址";
 Blockly.Msg["OPENAI_CHAT_VISION_SHOW"] = "視覺分析";
+Blockly.Msg["OPENAI_CHAT_MAX_TOKENS_SHOW"] = "最大字數";
