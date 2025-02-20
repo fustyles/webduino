@@ -55,7 +55,8 @@ Blockly.Blocks['gemini_chat_set'] = {
   this.appendDummyInput()  
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg.GEMINI_CHAT_TEMPERATURE_SHOW, "temperature"]
+		[Blockly.Msg["GEMINI_CHAT_TEMPERATURE_SHOW"], "temperature"],
+		[Blockly.Msg["GEMINI_CHAT_MAX_TOKENS_SHOW"], "maxOutputTokens"]	      
 	  ]), "property");
   this.appendValueInput("val")
       .setCheck(null)
