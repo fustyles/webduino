@@ -54,6 +54,27 @@ Blockly.Blocks['openai_chat_initial'] = {
   }
 };
 
+Blockly.Blocks['openai_chat_set'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.OPENAI_CHAT_SHOW)
+	  .appendField(Blockly.Msg.OPENAI_CHAT_SET_SHOW);
+  this.appendDummyInput()  
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg["OPENAI_CHAT_TEMPERATURE_SHOW"], "temperature"],
+		[Blockly.Msg["OPENAI_CHAT_MAX_TOKENS_SHOW"], "maxOutputTokens"]	      
+	  ]), "property");
+  this.appendValueInput("val")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT);	  
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(40);
+  }
+};
+
 Blockly.Blocks['openai_chat_request'] = {
   init: function() {
   this.appendDummyInput()
