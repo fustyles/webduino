@@ -68,7 +68,6 @@ function gemini_chat_set(input_property, input_value) {
 		chatHistory["generationConfig"]["temperature"] = Number(input_value);
 	else if (input_property=="maxOutputTokens")
 		chatHistory["generationConfig"]["maxOutputTokens"] = Number(input_value);	
-	console.log(chatHistory);
 }
 
 function gemini_chat_response_br(data, newline) {
