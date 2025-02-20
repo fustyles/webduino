@@ -63,6 +63,12 @@ function gemini_chat_initial(input_key, input_model, input_tokens, input_tempera
 		document.body.appendChild(gemini_mod);
 } 
 
+function gemini_chat_set(input_property, input_temperature) {
+	if (input_property=="temperature")
+		chatHistory.generationConfig.temperature = input_temperature;
+	console.log(chatHistory);
+}
+
 function gemini_chat_response_br(data, newline) {
 	if (newline=="br")
 		return data.replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");
