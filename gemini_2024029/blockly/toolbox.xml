@@ -17,6 +17,8 @@
        </block>
      </value>  
    </block>
+   <block type="gemini_chat_response">
+   </block>    
    <block type="gemini_chat_request">
      <value name="words">
        <block type="text">
@@ -58,8 +60,6 @@
       </block>
     </value>
   </block>   
-   <block type="gemini_chat_response">
-   </block> 
    <block type="gemini_chat_response_data">
    </block>
    <block type="gemini_chat_insert">
