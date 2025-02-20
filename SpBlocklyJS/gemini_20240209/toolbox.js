@@ -24,15 +24,15 @@ var catGEMINI = '<xml>'+
 '    		<field name="NUM">1.0</field>'+
 '    	</block>'+
 '    </value>'+
-'  </block>'+  
+'  </block>'+ 
+'  <block type="gemini_chat_response">'+
+'  </block>'+   
 '  <block type="gemini_chat_request">'+
 '    <value name="words">'+
 '      <block type="text">'+
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+
-'  </block>'+ 
-'  <block type="gemini_chat_response">'+
 '  </block>'+ 
 '  <block type="gemini_chat_response_data">'+
 '  </block>'+
