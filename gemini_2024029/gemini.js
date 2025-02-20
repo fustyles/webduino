@@ -62,6 +62,14 @@ function gemini_chat_initial(input_key, input_model, input_tokens, input_role) {
 		document.body.appendChild(gemini_mod);
 } 
 
+function gemini_chat_set(input_property, input_value) {
+	if (input_property=="temperature")
+		chatHistory["generationConfig"]["temperature"] = Number(input_value);
+	else if (input_property=="maxOutputTokens")
+		chatHistory["generationConfig"]["maxOutputTokens"] = Number(input_value);	
+	console.log(chatHistory);
+}
+
 function gemini_chat_response_br(data, newline) {
 	if (newline=="br")
 		return data.replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");
