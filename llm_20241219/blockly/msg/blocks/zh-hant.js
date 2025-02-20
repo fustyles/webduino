@@ -19,3 +19,5 @@ Blockly.Msg["LLM_CHAT_RESPONSE_SHOW"] = "取得回應文字後執行";
 Blockly.Msg["LLM_CHAT_RESPONSE_GET_SHOW"] = "回應文字";
 Blockly.Msg["LLM_CHAT_RESPONSE_GET_BR_SHOW"] = "自動換行";
 Blockly.Msg["LLM_CHAT_RESPONSE_CLEAR_SHOW"] = "清除回應文字";
+Blockly.Msg["LLM_CHAT_TEMPERATURE_SHOW"] = "溫度";
+Blockly.Msg["LLM_CHAT_MAX_TOKENS_SHOW"] = "最大字數";
