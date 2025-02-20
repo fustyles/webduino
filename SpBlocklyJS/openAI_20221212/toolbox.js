@@ -13,6 +13,8 @@ var catOpenAI = '<xml>'+
 '    </value>'+
 '    <field name="temperature">0.5</field>'+  
 '  </block>'+
+'  <block type="openai_chat_response">'+
+'  </block>'+  
 '  <block type="openai_chat_request">'+
 '    <value name="words">'+
 '      <block type="text">'+
@@ -32,8 +34,6 @@ var catOpenAI = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+   
-'  <block type="openai_chat_response">'+
-'  </block>'+
 '  <block type="openai_chat_response_get">'+
 '  </block>'+
 '  <block type="openai_chat_content_clear">'+
