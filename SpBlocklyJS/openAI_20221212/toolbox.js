@@ -15,8 +15,15 @@ var catOpenAI = '<xml>'+
 '  </block>'+
 '  <block type="openai_chat_response">'+
 '  </block>'+  
+'  <block type="openai_chat_set">'+
+'    <value name="val">'+
+'    	 <block type="math_number">'+
+'    		 <field name="NUM">0.5</field>'+
+'    	 </block>'+
+'    </value>'+
+'  </block>'+  
 '  <block type="openai_chat_request">'+
-'    <value name="words">'+
+'    <value name="val">'+
 '      <block type="text">'+
 '        <field name="TEXT"></field>'+
 '      </block>'+
