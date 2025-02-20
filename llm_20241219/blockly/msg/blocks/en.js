@@ -19,3 +19,5 @@ Blockly.Msg["LLM_CHAT_RESPONSE_SHOW"] = "Execute after getting response text";
 Blockly.Msg["LLM_CHAT_RESPONSE_GET_SHOW"] = "Response Text";
 Blockly.Msg["LLM_CHAT_RESPONSE_GET_BR_SHOW"] = "Auto Line Break";
 Blockly.Msg["LLM_CHAT_RESPONSE_CLEAR_SHOW"] = "Clear Response Text";
+Blockly.Msg["LLM_CHAT_TEMPERATURE_SHOW"] = "Temperature";
+Blockly.Msg["LLM_CHAT_MAX_TOKENS_SHOW"] = "Maximum Tokens";
