@@ -46,7 +46,7 @@ Blockly.Blocks['llm_chat_set'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(150);
+  this.setColour(230);
   }
 };
 
