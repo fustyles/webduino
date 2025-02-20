@@ -1,5 +1,5 @@
 {
-  "types": ["llm_chat_initial","llm_chat_request","llm_chat_image_request","llm_chat_insert","llm_chat_response","llm_chat_response_get","llm_chat_response_clear","llm_chat_content_clear","llm_chat_content_file","llm_chat_content_file_remote","llm_chat_content_file_remote_insert"],
+  "types": ["llm_chat_initial","llm_chat_set","llm_chat_request","llm_chat_image_request","llm_chat_insert","llm_chat_response","llm_chat_response_get","llm_chat_response_clear","llm_chat_content_clear","llm_chat_content_file","llm_chat_content_file_remote","llm_chat_content_file_remote_insert"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
