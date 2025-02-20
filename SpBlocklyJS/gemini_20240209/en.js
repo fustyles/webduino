@@ -2,6 +2,7 @@ Blockly.Msg["CATGEMINI"] = "Gemini";
 Blockly.Msg["GEMINI_CHAT_SHOW"] = "Gemini Chat";
 Blockly.Msg["GEMINI_APIKEY_SHOW"] = "API Key";
 Blockly.Msg["GEMINI_MODEL_SHOW"] = "Model";
+Blockly.Msg["GEMINI_CHAT_SET_SHOW"] = "Set";
 Blockly.Msg["GEMINI_CHAT_RESPONSE_SHOW"] = "After Receiving Response";
 Blockly.Msg["GEMINI_CHAT_RESPONSE_DATA_SHOW"] = "Response Data";
 Blockly.Msg["GEMINI_CHAT_REQUEST_SHOW"] = "Chat Content";
