@@ -50,6 +50,7 @@ Blockly.Blocks['gemini_chat_initial'] = {
 Blockly.Blocks['gemini_chat_set'] = {
   init: function() {
   this.appendDummyInput()
+	  .appendField(Blockly.Msg.GEMINI_CHAT_SHOW)
 	  .appendField(Blockly.Msg.GEMINI_CHAT_SET_SHOW);
   this.appendDummyInput()  
       .setAlign(Blockly.ALIGN_RIGHT)	  
