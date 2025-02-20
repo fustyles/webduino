@@ -23,7 +23,7 @@ var catOpenAI = '<xml>'+
 '    </value>'+
 '  </block>'+  
 '  <block type="openai_chat_request">'+
-'    <value name="val">'+
+'    <value name="words">'+
 '      <block type="text">'+
 '        <field name="TEXT"></field>'+
 '      </block>'+
