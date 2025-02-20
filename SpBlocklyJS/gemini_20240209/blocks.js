@@ -47,6 +47,25 @@ Blockly.Blocks['gemini_chat_initial'] = {
   }
 };
 
+Blockly.Blocks['gemini_chat_set'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.GEMINI_CHAT_SET_SHOW);
+  this.appendDummyInput()  
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.GEMINI_CHAT_TEMPERATURE_SHOW, "temperature"]
+	  ]), "property");
+  this.appendValueInput("val")
+      .setCheck(null)
+      .setAlign(Blockly.ALIGN_RIGHT);	  
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(40);
+  }
+};
+
 Blockly.Blocks['gemini_chat_request'] = {
   init: function() {
   this.appendDummyInput()
