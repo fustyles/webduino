@@ -24,16 +24,16 @@ Blockly.Blocks['gemini_chat_initial'] = {
       .appendField(Blockly.Msg.GEMINI_CHAT_TEMPERATURE_SHOW)
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(new Blockly.FieldDropdown([
-		["1","1"],
-		["0.9","0.9"],
+		["2.0","2.0"],
+		["1.8","1.8"],
+		["1.6","1.6"],
+		["1.4","1.4"],
+		["1.2","1.2"],	      
+		["1.0","1.0"],
 		["0.8","0.8"],
-		["0.7","0.7"],
 		["0.6","0.6"],
-		["0.5","0.5"],
 		["0.4","0.4"],
-		["0.3","0.3"],
 		["0.2","0.2"],
-		["0.1","0.1"],
 		["0","0"]
 	  ]), "temperature");	  
   this.appendValueInput("role")
