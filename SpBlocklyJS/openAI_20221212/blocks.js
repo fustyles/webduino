@@ -71,7 +71,7 @@ Blockly.Blocks['openai_chat_set'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(40);
+  this.setColour(150);
   }
 };
 
