@@ -19,6 +19,7 @@ let openai_response_image_n = "";
 let openai_response_image_url = "";
 let openai_response_chat_key = "";
 let openai_response_chat_model = "gpt-3.5-turbo";
+let openai_response_chat_max_tokens = 1000;
 let openai_response_chat_temperature = 0.5;
 let openai_response_role = "You are a helpful assistant.";
 let openai_response_content = "";
@@ -237,7 +238,8 @@ async function openai_chat_request(input_text) {
 	data = {
 	  "model": openai_response_chat_model,
 	  "messages": openai_response_chat_message,
-	  "temperature": openai_response_chat_temperature	  
+	  "max_tokens": openai_response_chat_max_tokens,
+	  "temperature": openai_response_chat_temperature
 	};
 
 	xhr.send(JSON.stringify(data));
