@@ -189,6 +189,8 @@ Blockly.Blocks['openai_chat_initial'] = {
 			["o1-2024-12-17","o1-2024-12-17"],
 			["Groq_llama-3.2-90b-vision-preview","llama-3.2-90b-vision-preview"],
 			["Groq_deepseek-r1-distill-llama-70b","deepseek-r1-distill-llama-70b"],
+			["Groq_deepseek-r1-distill-llama-70b-specdec","deepseek-r1-distill-llama-70b-specdec"],
+			["Groq_deepseek-r1-distill-qwen-32b","deepseek-r1-distill-qwen-32b"],
 			["xAI_grok-2-vision-latest","grok-2-vision-latest"]
 	  ]), "model");
   this.appendDummyInput()  
