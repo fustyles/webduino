@@ -40,7 +40,29 @@ var catOpenAI = '<xml>'+
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+
-'  </block>'+   
+'  </block>'+ 
+  '  <block type="openai_chat_image_request">'+
+'    <value name="words">'+
+'      <block type="text">'+
+'        <field name="TEXT">請比較兩張影像</field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="url">'+
+'      <block type="lists_create_with">'+
+'        <mutation items="2"></mutation>'+
+'        <value name="ADD0">'+
+'          <block type="text">'+
+'            <field name="TEXT">Image URL1</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="ADD1">'+
+'          <block type="text">'+
+'            <field name="TEXT">Image URL2</field>'+
+'          </block>'+
+'        </value>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+  
 '  <block type="openai_chat_response_get">'+
 '  </block>'+
 '  <block type="openai_chat_content_clear">'+
@@ -84,7 +106,7 @@ var catOpenAI = '<xml>'+
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+
-'  </block>'+  
+'  </block>'+
 '  <block type="openai_image_response">'+
 '  </block>'+
 '  <block type="openai_image_response_get">'+
