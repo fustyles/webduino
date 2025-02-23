@@ -41,7 +41,7 @@
       </block>
     </value>
   </block>
-  <block type="gemini_chat_image_request">
+  <block type="openai_chat_image_request">
     <value name="words">
       <block type="text">
         <field name="TEXT">請比較兩張影像</field>
