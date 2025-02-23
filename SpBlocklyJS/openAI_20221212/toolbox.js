@@ -1,6 +1,7 @@
 var catOpenAI = '<xml>'+
 '<category name="%{BKY_CATOPENAI}" id="CATOPENAI" colour="150">'+
 '  <block type="openai_chat_initial">'+
+'    <field name="model">gpt-4o-mini</field>'+  
 '    <value name="token">'+
 '      <block type="text">'+
 '        <field name="TEXT"></field>'+
