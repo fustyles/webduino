@@ -436,6 +436,7 @@ async function openai_chat_image_request(input_text, input_url) {
 	var data;
 	data = {
 	  "model": openai_response_chat_model,
+	  "max_tokens": openai_response_chat_max_tokens,
 	  "messages": openai_vision_chat_message	  
 	};
 	xhr.send(JSON.stringify(data));
