@@ -429,8 +429,7 @@ async function openai_chat_image_request(input_text, input_url) {
 	char_message.content = [];
 	var user_text = {"type":"text", "text":input_text};
 	char_message.content.push(user_text);
-	var user_url = {"type":"image_url", "image_url":{"url":input_url}};
-	char_message.content.push(user_url);
+	await get_inline_data(input_url, char_message.content);	
 	//openai_response_chat_message.push(char_message);
 	openai_vision_chat_message.push(char_message);
   
@@ -439,6 +438,43 @@ async function openai_chat_image_request(input_text, input_url) {
 	  "model": openai_response_chat_model,
 	  "messages": openai_vision_chat_message	  
 	};
-
 	xhr.send(JSON.stringify(data));
+}
+
+async function get_inline_data(imageList, inline_data) {
+	let imageURL = [];
+	if (typeof imageList === 'string') {
+		imageURL.push(imageList);
+	} else {
+		imageURL = imageList;
+	}
+	let imageBase64;
+	for (let i=0;i<imageURL.length;i++) {
+		if (imageURL[i].toLowerCase().trim().indexOf("http")==0)
+				imageBase64 = await getFileBase64(imageURL[i], 0);
+		else if (imageURL[i].toLowerCase().trim().indexOf("data:")==0)
+				imageBase64 = imageURL[i].split(",")[1];
+		else
+				imageBase64 = imageURL[i];
+		imageBase64 = decodeURIComponent(imageBase64);
+		inline_data.push({
+			"type": "image_url", 
+			"image_url": {
+				"url": imageBase64, 
+				"detail": "high"
+			}
+		});
+	}
+}
+
+async function getFileBase64(fileURL) {
+    const response = await fetch(fileURL);
+    const blob = await response.blob();
+    const base64String = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+    });
+    return base64String;
 }
