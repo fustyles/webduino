@@ -453,8 +453,6 @@ async function get_inline_data(imageList, inline_data) {
 	for (let i=0;i<imageURL.length;i++) {
 		if (imageURL[i].toLowerCase().trim().indexOf("http")==0)
 				imageBase64 = await getFileBase64(imageURL[i], 0);
-		else if (imageURL[i].toLowerCase().trim().indexOf("data:")==0)
-				imageBase64 = imageURL[i].split(",")[1];
 		else
 				imageBase64 = imageURL[i];
 		imageBase64 = decodeURIComponent(imageBase64);
