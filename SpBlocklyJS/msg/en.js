@@ -641,7 +641,7 @@ Blockly.Msg.MATH_RADIAN_TO_DEGREE_TITLE = "Degree";
 Blockly.Msg.MATH_RADIAN_TO_DEGREE_APPEND = "to Radian";
 Blockly.Msg.MATH_RADIAN_TO_DEGREE_TOOLTIP = "";
 
-Blockly.Msg.LAUNCHSERIAL = "Launch PuTTY serial monitor"
+Blockly.Msg.LAUNCHSERIAL = "Launch PuTTY Serial Monitor"
 Blockly.Msg.DOWNLOAD = "Download PNG"
 Blockly.Msg.PREVIOUSSTEP = "Previous step"
 Blockly.Msg.NEXTSTEP = "Next Step"
@@ -720,7 +720,7 @@ Blockly.Msg["BUTTON_TOOLBOX"] = "Show/Hide Toolbox category";
 Blockly.Msg["BUTTON_ADDREMOTEBLOCKS"] = "Import remote custom blocks";
 Blockly.Msg["BUTTON_ADDEXTENSIONBLOCKS"] = "Import extension custom blocks";
 Blockly.Msg["BUTTON_TOOL"] = "Blockly developer tools";
-Blockly.Msg["BUTTON_WEBSERIAL"] = "Web serial monitor";
+Blockly.Msg["BUTTON_WEBSERIAL"] = "Web Serial Monitor";
 Blockly.Msg["BUTTON_UPLOADCODE"] = "Upload HEX file to nano/uno/pro/pro-mini";
 Blockly.Msg["MSG_WEBSERIAL"] = "Web Serial Monitor";
 Blockly.Msg["LANG-SELECTOR"] = "Select Language";
