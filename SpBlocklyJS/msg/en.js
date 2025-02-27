@@ -60,7 +60,6 @@ Blockly.Msg.CONTROLS_FOREACH_HELPURL = "https://github.com/google/blockly/wiki/L
 Blockly.Msg.CONTROLS_FOREACH_INPUT_INLIST = "in list";
 Blockly.Msg.CONTROLS_FOREACH_INPUT_INLIST_TAIL = "";
 
-Blockly.Msg["BUTTON_WEBMQTT"] = "Web MQTT";
 Blockly.Msg.CONTROLS_FOREACH_INPUT_ITEM = "for each item";
 Blockly.Msg.CONTROLS_FOREACH_TOOLTIP = "For each item in a list, set the variable '%1' to the item, and then do some statements.";
 Blockly.Msg.CONTROLS_FOREACH_TOOLTIP1 = "For each item in a list, set the variable '";
@@ -815,8 +814,7 @@ Blockly.Msg.BUTTON_LINK = "LINK";
 Blockly.Msg["MSG_COLLABORATION"] = "MQTT COLLABORATION";
 Blockly.Msg["COLLABORATION_TIP_TITLE"] = "You need to use wss protocol.";
 
-Blockly.Msg["BUTTON_WEBMQTT"] = "Web MQTT";
-
+Blockly.Msg["BUTTON_WEBMQTT"] = "Web MQTT Monitor";
 
 
 
