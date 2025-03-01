@@ -1758,6 +1758,16 @@ Blockly.Arduino['amb82_mini_file_read_char_get'] = function(block) {
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['amb82_mini_file_play'] = function(block) {
+	var filename = Blockly.Arduino.valueToCode(block, 'filename_', Blockly.Arduino.ORDER_ATOMIC);
+	var type = block.getFieldValue('type_');
+	if (type==1)
+		var code = 'File file = fs.open(file_path+"/"+'+filename+'+".mp3", 1);\nfile.close();\n';
+	else
+		var code = '';
+    return code;
+};
+
 Blockly.Arduino['amb82_mini_folder_list'] = function(block) {
 	Blockly.Arduino.definitions_['amb82_mini_folder_initial'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\nchar obj_buf[512];\nchar obj_path[512];\nchar *obj_name;\n';
 	var type = block.getFieldValue('type');

@@ -188,6 +188,9 @@ Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_FILE"] = "為檔案";
 Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_NAME"] = "物件名稱";
 Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_FILEPATH"] = "物件路徑";
 Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_DIRPATH"] = "物件資料夾路徑";
+Blockly.Msg["AMB82_MINI_PLAY"] = "播放";
+Blockly.Msg["AMB82_MINI_FILE_NAME"] = "檔案名稱";
+Blockly.Msg["AMB82_MINI_AUDIO_RATE"] = "取樣頻率";
 
 Blockly.Msg["AMB82_MINI_RTC_INITIAL"] = "RTC設定現在時間";
 Blockly.Msg["AMB82_MINI_RTC_YEAR"] = "年";

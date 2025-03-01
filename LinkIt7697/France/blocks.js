@@ -1936,6 +1936,26 @@ Blockly.Blocks['amb82_mini_file_read_char_get'] = {
   }
 };
 
+Blockly.Blocks['amb82_mini_file_play'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+      .appendField(Blockly.Msg["AMB82_MINI_PLAY"]); 
+	this.appendValueInput("filename_")
+		.setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_FILE_NAME"]);
+	this.appendDummyInput()
+		.appendField(new Blockly.FieldDropdown([
+			[".mp3","1"]
+		]), "type_");	
+	this.setInputsInline(true);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(Blockly.Msg["HUE_28"]);
+  }
+};
+
 Blockly.Blocks['amb82_mini_folder_list'] = {
   init: function() {
     this.appendDummyInput()
