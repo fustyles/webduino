@@ -21841,8 +21841,7 @@ Blockly.Arduino['fu_mqtt_setup'] = function(block) {
 	if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
 		Blockly.Arduino.setups_.setup_mqtt += 'espClient.setNonBlockingMode();\n  ';
 	
-	Blockly.Arduino.setups_.setup_mqtt += 'randomSeed(micros());\n  '+
-										  'mqtt_client.setServer(mqtt_server,mqtt_port);\n  '+
+	Blockly.Arduino.setups_.setup_mqtt += 'mqtt_client.setServer(mqtt_server,mqtt_port);\n  '+
 										  'mqtt_client.setCallback(callback);\n  '+
 										  '//mqtt_client.setBufferSize(1024);\n  '+
 										  'reconnect();\n  ';										
