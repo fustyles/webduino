@@ -1759,12 +1759,90 @@ Blockly.Arduino['amb82_mini_file_read_char_get'] = function(block) {
 };
 
 Blockly.Arduino['amb82_mini_file_play'] = function(block) {
-	var filename = Blockly.Arduino.valueToCode(block, 'filename_', Blockly.Arduino.ORDER_ATOMIC);
-	var type = block.getFieldValue('type_');
-	if (type==1)
-		var code = 'File file = fs.open(file_path+"/"+'+filename+'+".mp3", 1);\nfile.close();\n';
+	var filename_ = Blockly.Arduino.valueToCode(block, 'filename_', Blockly.Arduino.ORDER_ATOMIC);
+	var type_ = block.getFieldValue('type_');
+	if (type_==1)
+		var code = 'File file = fs.open(file_path+"/"+String('+filename_+')+".mp3", 1);\nfile.close();\n';
 	else
 		var code = '';
+    return code;
+};
+
+Blockly.Arduino['amb82_mini_file_googletts'] = function(block) {
+	var filename = Blockly.Arduino.valueToCode(block, 'filename_', Blockly.Arduino.ORDER_ATOMIC);	
+	var message = Blockly.Arduino.valueToCode(block, 'message_', Blockly.Arduino.ORDER_ATOMIC);
+	var language = block.getFieldValue('language_');
+	var speed = block.getFieldValue('speed_');
+	
+	Blockly.Arduino.definitions_['amb82_mini_file_getGoogleVoice2SD'] = ''
+           +'void amb82_mini_getGoogleVoice2SD(String filepath, String message, String language, int speed) {\n'
+           +'  File file = fs.open(filepath);\n'
+           +'  if(!file){\n'
+           +'    Serial.println("Failed to open file for reading");\n'
+           +'    return;\n' 
+           +'  } else {\n'
+           +'    Serial.print("Connecting to translate.google.com");\n'
+           +'    if (client.connect("translate.google.com", 443)) {\n'
+           +'      client.println("GET /translate_tts?ie=UTF-8&client=tw-ob&tl="+language+"&ttsspeed="+speed+"&q="+urlencode(message)+" HTTP/1.1");\n'
+           +'      client.println("Host: translate.google.com");\n'
+           +'      client.println("Content-Type: text/html; charset=utf-8");\n'
+           +'      client.println("Connection: close");\n'
+           +'      client.println();\n'
+           +'      String getResponse="";\n'
+           +'      boolean state = false;\n'
+           +'      int waitTime = 20000;\n'
+           +'      long startTime = millis();\n'
+           +'      boolean headState = false;\n'
+           +'      while ((startTime + waitTime) > millis()) {\n'
+           +'        while (client.available()) {\n'
+           +'            char c = client.read();\n'
+           +'            if (state==true) file.print(c);\n'
+           +'            if (c == \'\\n\') {\n'
+           +'              if (getResponse.length()==0) {\n'
+           +'                if (!headState) { \n'
+           +'                  client.readStringUntil(\'\\n\');\n'
+           +'                  headState = true;\n'
+           +'                }\n'
+           +'                state=true;\n'
+           +'              }\n'
+           +'              if (getResponse == "0") {\n'
+           +'                waitTime = 0;\n'
+           +'                break;\n'
+           +'              }\n'          
+           +'              getResponse = "";\n'
+           +'            }\n'
+           +'            else if (c != \'\\r\') {\n'
+           +'              getResponse += String(c);\n'
+           +'            }\n'
+           +'            startTime = millis();\n'
+           +'         }\n'
+           +'      }\n'
+           +'      client.stop();\n'
+           +'    } else {\n'
+           +'       Serial.print("Connecting to translate.google.com failed.");\n'
+           +'    }\n'
+           +'  }\n'
+           +'  file.close();\n'
+           +'}\n';
+		   
+	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
+											'  const char *msg = str.c_str();\n'+
+											'  const char *hex = "0123456789ABCDEF";\n'+
+											'  String encodedMsg = "";\n'+
+											'  while (*msg != \'\\0\') {\n'+
+											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
+											'      encodedMsg += *msg;\n'+
+											'    } else {\n'+
+											'      encodedMsg += \'%\';\n'+
+											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
+											'      encodedMsg += hex[*msg & 0xf];\n'+
+											'    }\n'+
+											'    msg++;\n'+
+											'  }\n'+
+											'  return encodedMsg;\n'+
+											'}';		   
+
+	var code = 'amb82_mini_getGoogleVoice2SD(file_path+"/"+'+filename+'+".mp3", '+message+', "'+language+'", '+speed+');\n';
     return code;
 };
 

@@ -191,6 +191,10 @@ Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_DIRPATH"] = "Object directory Path";
 Blockly.Msg["AMB82_MINI_PLAY"] = "Play";
 Blockly.Msg["AMB82_MINI_FILE_NAME"] = "File name";
 Blockly.Msg["AMB82_MINI_AUDIO_RATE"] = "Sample rate";
+Blockly.Msg["AMB82_MINI_GOOGLETTS"] = "Google TTS";
+Blockly.Msg["AMB82_MINI_GOOGLETTS_TEXT"] = "Text";
+Blockly.Msg["AMB82_MINI_GOOGLETTS_LANGUAGE"] = "Language";
+Blockly.Msg["AMB82_MINI_GOOGLETTS_SPEED"] = "Speed";
 
 Blockly.Msg["AMB82_MINI_RTC_INITIAL"] = "RTC set current time";
 Blockly.Msg["AMB82_MINI_RTC_YEAR"] = "Year";
