@@ -1880,6 +1880,22 @@ Blockly.Blocks['amb82_mini_file_open'] = {
   }
 };
 
+Blockly.Blocks['amb82_mini_file_remove'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+		.appendField(Blockly.Msg["AMB82_MINI_FILEREMOVE"]);
+	this.appendValueInput("filename")
+		.setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_FILE_NAME"]);		
+	this.setInputsInline(true);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_29"]);	
+  }
+};
+
 Blockly.Blocks['amb82_mini_file_write'] = {
   init: function() {
     this.appendDummyInput()
@@ -1940,12 +1956,13 @@ Blockly.Blocks['amb82_mini_file_play'] = {
   init: function() {
     this.appendDummyInput()
 	    .appendField(Blockly.Msg["AMB82_MINI"])
-      .appendField(Blockly.Msg["AMB82_MINI_PLAY"]); 
+        .appendField(Blockly.Msg["AMB82_MINI_PLAY"]); 
 	this.appendValueInput("filename_")
 		.setCheck(null)
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["AMB82_MINI_FILE_NAME"]);
 	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
 		.appendField(new Blockly.FieldDropdown([
 			[".mp3","1"]
 		]), "type_");	
@@ -1960,14 +1977,15 @@ Blockly.Blocks['amb82_mini_file_googletts'] = {
   init: function() {
     this.appendDummyInput()
 	    .appendField(Blockly.Msg["AMB82_MINI"])
-      .appendField(Blockly.Msg["AMB82_MINI_GOOGLETTS"]);
+		.appendField(Blockly.Msg["AMB82_MINI_GOOGLETTS"]);
 	this.appendValueInput("message_")
 		.setCheck(null)
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["AMB82_MINI_GOOGLETTS_TEXT"]);	  
-	this.appendDummyInput()  
-		  .appendField(Blockly.Msg["AMB82_MINI_GOOGLETTS_SPEED"])
-		  .appendField(new Blockly.FieldDropdown([
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg["AMB82_MINI_GOOGLETTS_SPEED"])
+		.appendField(new Blockly.FieldDropdown([
 				["1","1"],
 				["0.9","0.9"],
 				["0.8","0.8"],
@@ -1979,8 +1997,9 @@ Blockly.Blocks['amb82_mini_file_googletts'] = {
 				["0.2","0.2"],
 				["0.1","0.1"],	
 				["0","0"]	   
-		  ]), "speed_");		
-	this.appendDummyInput()  
+		]), "speed_");		
+	this.appendDummyInput()
+		  .setAlign(Blockly.ALIGN_RIGHT)
 		  .appendField(Blockly.Msg["AMB82_MINI_GOOGLETTS_LANGUAGE"])
 		  .appendField(new Blockly.FieldDropdown([
 				["Afrikaans","af"],
@@ -2106,12 +2125,29 @@ Blockly.Blocks['amb82_mini_file_googletts'] = {
 	this.appendValueInput("filename_")
 		.setCheck(null)
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg["AMB82_MINI_FILE_NAME"]);
-    this.appendDummyInput()
-	    .appendField(".mp3");	  
-	this.setInputsInline(true);
+		.appendField(Blockly.Msg["AMB82_MINI_FILE_NAME"]+"(.mp3)");	  
+	this.setInputsInline(false);
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
+	this.setColour(Blockly.Msg["HUE_28"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_file_openai_whisper'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_OPENAI_WHISPER"]);
+    this.appendValueInput("key_")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_OPENAI_KEY"]);			
+	this.appendValueInput("filename_")
+		.setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_FILE_NAME"]+"(.mp4)");
+	this.setInputsInline(false);
+	this.setOutput(true, null);
 	this.setColour(Blockly.Msg["HUE_28"]);
   }
 };
@@ -5175,7 +5211,7 @@ Blockly.Blocks['amb82_mini_video_capture_sd'] = {
 			[Blockly.Msg["AMB82_MINI_STILL_OLD"],"0"]
 		]), "origin");			
     this.appendValueInput("filename")
-        .appendField(Blockly.Msg["AMB82_MINI_FILENAME"])	
+        .appendField(Blockly.Msg["AMB82_MINI_FILENAME"]+"(.mp4)")	
 		.setAlign(Blockly.ALIGN_RIGHT);
     this.appendDummyInput()
         .appendField(".jpg");		
@@ -5484,7 +5520,7 @@ Blockly.Blocks['amb82_mini_mp4_initial'] = {
 			["270", "2"]
 		]), "rotation");
     this.appendValueInput("filename")
-        .appendField(Blockly.Msg["AMB82_MINI_FILENAME"])	
+        .appendField(Blockly.Msg["AMB82_MINI_FILENAME"]+"(.mp4)")	
 		.setAlign(Blockly.ALIGN_RIGHT);	
     this.appendValueInput("fileduration")
         .appendField(Blockly.Msg["AMB82_MINI_FILEDURATION"])	

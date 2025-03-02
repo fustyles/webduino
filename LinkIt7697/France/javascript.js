@@ -1717,7 +1717,7 @@ Blockly.Arduino['amb82_mini_folder'] = function(block) {
 		path = 'file_path = String(fs.getRootPath())+'+foldername+';\nfs.mkdir(file_path);\n';
 	else if (type=="root")
 		path = 'file_path = String(fs.getRootPath());\n';
-	var code = 'fs.begin();\n'+path+statement+'fs.end();\n';
+	var code = 'fs.begin();\n  '+path+statement+'fs.end();\n';
     return code;
 };
 
@@ -1725,6 +1725,12 @@ Blockly.Arduino['amb82_mini_file_open'] = function(block) {
 	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
 	var code = 'file = fs.open(file_path+"/"+'+filename+');\n'+statement+'file.close();\n';
+    return code;
+};
+
+Blockly.Arduino['amb82_mini_file_remove'] = function(block) {
+	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
+	var code = 'if (fs.exists(file_path+"/"+'+filename+'))\n    fs.remove(file_path+"/"+'+filename+');\n';
     return code;
 };
 
@@ -1846,6 +1852,84 @@ Blockly.Arduino['amb82_mini_file_googletts'] = function(block) {
 
 	var code = 'amb82_mini_getGoogleVoice2SD(file_path+"/"+'+filename+'+".mp3", '+message+', "'+language+'", '+speed+');\n';
     return code;
+};
+
+Blockly.Arduino['amb82_mini_file_openai_whisper'] = function(block) {
+	var key = Blockly.Arduino.valueToCode(block, 'key_', Blockly.Arduino.ORDER_ATOMIC);
+	var filename = Blockly.Arduino.valueToCode(block, 'filename_', Blockly.Arduino.ORDER_ATOMIC);	
+	
+	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';	
+	Blockly.Arduino.definitions_['amb82_mini_file_sendAudioTpWhisper'] = ''
+           +'String amb82_mini_sendAudioTpWhisper(String key, String filename, String filepath) {\n'
+           +'    uint8_t *fileinput;\n'
+           +'    file = fs.open(filepath);\n'
+           +'    unsigned int fileSize = file.size();\n'
+           +'    fileinput = (uint8_t *)malloc(fileSize + 1);\n'
+           +'    file.read(fileinput, fileSize);\n'
+           +'    fileinput[fileSize] = \'\\0\';\n'
+           +'    file.close();\n'
+           +'    Serial.println("Connect to api.openai.com");\n'
+           +'    if (client.connect("api.openai.com", 443)) {\n'
+           +'      Serial.println("Connection successful");\n'
+           +'      String head = "--Taiwan\\r\\nContent-Disposition: form-data; name=\\"model\\"\\r\\n\\r\\nwhisper-1\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"response_format\\"\\r\\n\\r\\nverbose_json\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"file\\"; filename=\\""+filename+"\\"\\r\\nContent-Type: video/mp4\\r\\n\\r\\n";\n'
+           +'      String tail = "\\r\\n--Taiwan--\\r\\n";\n'
+           +'      uint16_t totalLen = head.length() + fileSize + tail.length();\n'
+           +'      client.println("POST /v1/audio/transcriptions HTTP/1.1");\n'
+           +'      client.println("Connection: keep-alive");\n'
+           +'      client.println("Host: api.openai.com");\n'
+           +'      client.println("Authorization: Bearer " + key);\n'
+           +'      client.println("Content-Length: " + String(totalLen));\n'
+           +'      client.println("Content-Type: multipart/form-data; boundary=Taiwan");\n'
+           +'      client.println();\n'
+           +'      client.print(head);\n'
+           +'      for (size_t n=0;n<fileSize;n=n+1024) {\n'
+           +'        if (n+1024<fileSize) {\n'
+           +'          client.write(fileinput, 1024);\n'
+           +'          fileinput += 1024;\n'
+           +'        }\n'
+           +'        else if (fileSize%1024>0) {\n'
+           +'          size_t remainder = fileSize%1024;\n'
+           +'          client.write(fileinput, remainder);\n'
+           +'        }\n'
+           +'      }\n'
+           +'      client.print(tail);\n'
+           +'      String getResponse="",Feedback="";\n'
+           +'      int waitTime = 20000;\n'
+           +'      long startTime = millis();\n'
+           +'      boolean state = false;\n'
+           +'      while ((startTime + waitTime) > millis()) {\n'
+           +'        Serial.print(".");\n'
+           +'        delay(100);\n'
+           +'        while (client.available()) {\n'
+           +'            char c = client.read();\n'
+           +'            if (state==true) Feedback += String(c); \n'       
+           +'            if (c == \'\\n\') {\n'
+           +'              if (getResponse.length()==0) state=true;\n'
+           +'              getResponse = "";\n'
+           +'            }\n'
+           +'            else if (c != \'\\r\')\n'
+           +'              getResponse += String(c);\n'
+           +'            startTime = millis();\n'
+           +'         }\n'
+           +'         if (Feedback.length()>0) break;\n'
+           +'      }\n'
+           +'      client.stop();\n'
+           +'      JsonObject obj;\n'
+           +'      DynamicJsonDocument doc(4096);\n'
+           +'      deserializeJson(doc, Feedback);\n'
+           +'      obj = doc.as<JsonObject>();\n'
+           +'      String getText = obj["text"].as<String>();\n'
+           +'      if (getText == "null")\n'
+           +'        getText = obj["error"]["message"].as<String>();\n'    
+           +'      return getText;\n'
+           +'    }\n'
+           +'    else {\n'
+           +'      return "Connected to api.openai.com failed.";\n'
+           +'    }\n'
+           +'}\n';	   
+
+	var code = 'amb82_mini_sendAudioTpWhisper('+key+', '+filename+'+".mp4", file_path+"/"+'+filename+'+".mp4")';
+	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['amb82_mini_folder_list'] = function(block) {

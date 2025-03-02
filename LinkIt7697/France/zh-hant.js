@@ -170,7 +170,7 @@ Blockly.Msg["AMB82_MINI_TCP_STILL"] = "TCP串流與可截取影像";
 Blockly.Msg["AMB82_MINI_STILL_NEW"] = "即時";
 Blockly.Msg["AMB82_MINI_STILL_OLD"] = "暫存";
 
-Blockly.Msg["AMB82_MINI_FOLDER"] = "設定資料夾為";
+Blockly.Msg["AMB82_MINI_FOLDER"] = "設定SD資料夾為";
 Blockly.Msg["AMB82_MINI_FOLDER_OPEN"] = "子目錄";
 Blockly.Msg["AMB82_MINI_FOLDER_CREATE"] = "建立子目錄";
 Blockly.Msg["AMB82_MINI_FOLDER_ROOT"] = "根目錄";
@@ -195,6 +195,7 @@ Blockly.Msg["AMB82_MINI_GOOGLETTS"] = "Google TTS";
 Blockly.Msg["AMB82_MINI_GOOGLETTS_TEXT"] = "文字";
 Blockly.Msg["AMB82_MINI_GOOGLETTS_LANGUAGE"] = "語言";
 Blockly.Msg["AMB82_MINI_GOOGLETTS_SPEED"] = "語速";
+Blockly.Msg["AMB82_MINI_OPENAI_WHISPER"] = "openAI Whisper語音轉文字";
 
 Blockly.Msg["AMB82_MINI_RTC_INITIAL"] = "RTC設定現在時間";
 Blockly.Msg["AMB82_MINI_RTC_YEAR"] = "年";
@@ -900,6 +901,7 @@ Blockly.Msg["AMB82_MINI_MP4_STATE"] = "狀態";
 Blockly.Msg["AMB82_MINI_FILENAME"] = "檔名";
 Blockly.Msg["AMB82_MINI_FILEDURATION"] = "長度(秒)";
 Blockly.Msg["AMB82_MINI_FILECOUNT"] = "數目";
+Blockly.Msg["AMB82_MINI_FILEREMOVE"] = "移除檔案";
 Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS"] = "視訊參數";
 Blockly.Msg["AMB82_MINI_VIDEO_INITIAL"] = "視訊初始化";
 Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION"] = "解析度";

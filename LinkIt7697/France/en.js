@@ -170,7 +170,7 @@ Blockly.Msg["AMB82_MINI_TCP_STILL"] = "TCP Streaming and allow screenshot";
 Blockly.Msg["AMB82_MINI_STILL_NEW"] = "Capture image";
 Blockly.Msg["AMB82_MINI_STILL_OLD"] = "Previous image";
 
-Blockly.Msg["AMB82_MINI_FOLDER"] = "Set folder as";
+Blockly.Msg["AMB82_MINI_FOLDER"] = "Set SD folder as";
 Blockly.Msg["AMB82_MINI_FOLDER_OPEN"] = "Sub directory";
 Blockly.Msg["AMB82_MINI_FOLDER_CREATE"] = "Create sub directory";
 Blockly.Msg["AMB82_MINI_FOLDER_ROOT"] = "Root directory";
@@ -195,6 +195,7 @@ Blockly.Msg["AMB82_MINI_GOOGLETTS"] = "Google TTS";
 Blockly.Msg["AMB82_MINI_GOOGLETTS_TEXT"] = "Text";
 Blockly.Msg["AMB82_MINI_GOOGLETTS_LANGUAGE"] = "Language";
 Blockly.Msg["AMB82_MINI_GOOGLETTS_SPEED"] = "Speed";
+Blockly.Msg["AMB82_MINI_OPENAI_WHISPER"] = "openAI Whisper STT";
 
 Blockly.Msg["AMB82_MINI_RTC_INITIAL"] = "RTC set current time";
 Blockly.Msg["AMB82_MINI_RTC_YEAR"] = "Year";
@@ -905,6 +906,7 @@ Blockly.Msg["AMB82_MINI_MP4_STATE"] = "State";
 Blockly.Msg["AMB82_MINI_FILENAME"] = "File name";
 Blockly.Msg["AMB82_MINI_FILEDURATION"] = "File length(s)";
 Blockly.Msg["AMB82_MINI_FILECOUNT"] = "Count";
+Blockly.Msg["AMB82_MINI_FILEREMOVE"] = "REmove file";
 Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS"] = "Vedio settings";
 Blockly.Msg["AMB82_MINI_VIDEO_INITIAL"] = "Vedio Initial";
 Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION"] = "Vedio resolution";

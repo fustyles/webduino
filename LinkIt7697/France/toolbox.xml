@@ -3852,7 +3852,14 @@
 					<field name="TEXT">test.txt</field>
 				  </block>
 				</value>			
-			</block>	
+			</block>
+			<block type="amb82_mini_file_remove">
+				<value name="filename">
+				  <block type="text">
+					<field name="TEXT">test.mp4</field>
+				  </block>
+				</value>			
+			</block>			
 			<block type="amb82_mini_file_write">
 				<value name="content">
 				  <block type="text">
@@ -3890,6 +3897,18 @@
 				  </block>
 				</value>
 				<field name="language_">zh-TW</field>
+			</block>
+			<block type="amb82_mini_file_openai_whisper">
+				<value name="key_">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>			
+				<value name="filename_">
+				  <block type="text">
+					<field name="TEXT">test</field>
+				  </block>
+				</value>
 			</block>			
 			<block type="amb82_mini_folder_list">
 				<value name="foldername">
