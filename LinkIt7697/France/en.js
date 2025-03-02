@@ -170,7 +170,7 @@ Blockly.Msg["AMB82_MINI_TCP_STILL"] = "TCP Streaming and allow screenshot";
 Blockly.Msg["AMB82_MINI_STILL_NEW"] = "Capture image";
 Blockly.Msg["AMB82_MINI_STILL_OLD"] = "Previous image";
 
-Blockly.Msg["AMB82_MINI_FOLDER"] = "Set SD folder as";
+Blockly.Msg["AMB82_MINI_FOLDER"] = "SD Initial Set folder as";
 Blockly.Msg["AMB82_MINI_FOLDER_OPEN"] = "Sub directory";
 Blockly.Msg["AMB82_MINI_FOLDER_CREATE"] = "Create sub directory";
 Blockly.Msg["AMB82_MINI_FOLDER_ROOT"] = "Root directory";
