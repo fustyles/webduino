@@ -170,7 +170,7 @@ Blockly.Msg["AMB82_MINI_TCP_STILL"] = "TCP串流與可截取影像";
 Blockly.Msg["AMB82_MINI_STILL_NEW"] = "即時";
 Blockly.Msg["AMB82_MINI_STILL_OLD"] = "暫存";
 
-Blockly.Msg["AMB82_MINI_FOLDER"] = "設定SD資料夾為";
+Blockly.Msg["AMB82_MINI_FOLDER"] = "SD初始化 設定資料夾為";
 Blockly.Msg["AMB82_MINI_FOLDER_OPEN"] = "子目錄";
 Blockly.Msg["AMB82_MINI_FOLDER_CREATE"] = "建立子目錄";
 Blockly.Msg["AMB82_MINI_FOLDER_ROOT"] = "根目錄";
