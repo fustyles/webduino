@@ -2152,6 +2152,29 @@ Blockly.Blocks['amb82_mini_file_openai_whisper'] = {
   }
 };
 
+Blockly.Blocks['amb82_mini_file_gemini_stt'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_GEMINI_STT"]);
+    this.appendValueInput("key_")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_GEMINI_KEY"]);	
+    this.appendValueInput("message_")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_GEMINI_MESSAGE"]);		
+	this.appendValueInput("filename_")
+		.setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_FILE_NAME"]+"(.mp4)");
+	this.setInputsInline(false);
+	this.setOutput(true, null);
+	this.setColour(Blockly.Msg["HUE_28"]);
+  }
+};
+
 Blockly.Blocks['amb82_mini_folder_list'] = {
   init: function() {
     this.appendDummyInput()

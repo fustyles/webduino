@@ -196,6 +196,7 @@ Blockly.Msg["AMB82_MINI_GOOGLETTS_TEXT"] = "文字";
 Blockly.Msg["AMB82_MINI_GOOGLETTS_LANGUAGE"] = "語言";
 Blockly.Msg["AMB82_MINI_GOOGLETTS_SPEED"] = "語速";
 Blockly.Msg["AMB82_MINI_OPENAI_WHISPER"] = "openAI Whisper語音轉文字";
+Blockly.Msg["AMB82_MINI_GEMINI_STT"] = "Gemini STT語音轉文字";
 
 Blockly.Msg["AMB82_MINI_RTC_INITIAL"] = "RTC設定現在時間";
 Blockly.Msg["AMB82_MINI_RTC_YEAR"] = "年";

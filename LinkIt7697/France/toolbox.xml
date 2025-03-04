@@ -3909,6 +3909,23 @@
 					<field name="TEXT">test</field>
 				  </block>
 				</value>
+			</block>
+			<block type="amb82_mini_file_gemini_stt">
+				<value name="key_">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="message_">
+				  <block type="text">
+					<field name="TEXT">Please convert the audio content into text.</field>
+				  </block>
+				</value>				
+				<value name="filename_">
+				  <block type="text">
+					<field name="TEXT">test</field>
+				  </block>
+				</value>				
 			</block>			
 			<block type="amb82_mini_folder_list">
 				<value name="foldername">
