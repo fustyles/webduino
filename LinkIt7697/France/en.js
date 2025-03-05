@@ -195,8 +195,8 @@ Blockly.Msg["AMB82_MINI_GOOGLETTS"] = "Google TTS";
 Blockly.Msg["AMB82_MINI_GOOGLETTS_TEXT"] = "Text";
 Blockly.Msg["AMB82_MINI_GOOGLETTS_LANGUAGE"] = "Language";
 Blockly.Msg["AMB82_MINI_GOOGLETTS_SPEED"] = "Speed";
-Blockly.Msg["AMB82_MINI_OPENAI_WHISPER"] = "openAI Whisper STT";
-Blockly.Msg["AMB82_MINI_GEMINI_STT"] = "Gemini STT";
+Blockly.Msg["AMB82_MINI_OPENAI_WHISPER"] = "openAI Whisper Audio to text";
+Blockly.Msg["AMB82_MINI_GEMINI_STT"] = "Gemini Video to text";
 
 Blockly.Msg["AMB82_MINI_RTC_INITIAL"] = "RTC set current time";
 Blockly.Msg["AMB82_MINI_RTC_YEAR"] = "Year";

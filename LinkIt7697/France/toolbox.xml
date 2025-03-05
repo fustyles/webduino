@@ -3925,7 +3925,8 @@
 				  <block type="text">
 					<field name="TEXT">test</field>
 				  </block>
-				</value>				
+				</value>
+				<field name="mimetype_">audio/mp4</field>
 			</block>			
 			<block type="amb82_mini_folder_list">
 				<value name="foldername">

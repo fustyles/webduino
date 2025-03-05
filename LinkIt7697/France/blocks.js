@@ -2169,6 +2169,31 @@ Blockly.Blocks['amb82_mini_file_gemini_stt'] = {
 		.setCheck(null)
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["AMB82_MINI_FILE_NAME"]+"(.mp4)");
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["MP4 (audio/mp4)","audio/mp4"],		
+			["AAC (audio/aac)","audio/aac"],
+			["FLAC (audio/flac)","audio/flac"],
+			["MP3 (audio/mp3)","audio/mp3"],
+			["MPA (audio/m4a)","audio/m4a"],
+			["MPEG (audio/mpeg)","audio/mpeg"],
+			["MPGA (audio/mpga)","audio/mpga"],
+			["OPUS (audio/opus)","audio/opus"],
+			["PCM (audio/pcm)","audio/pcm"],
+			["WAV (audio/wav)","audio/wav"],
+			["WEBM (audio/webm)","audio/webm"],
+			["MP4 (video/mp4)","video/mp4"],			
+			["FLV (video/x-flv)","video/x-flv"],
+			["MOV (video/quicktime)","video/quicktime"],
+			["MPEG (video/mpeg)","video/mpeg"],
+			["MPEGS (video/mpegs)","video/mpegs"],
+			["MPGS (video/mpgs)","video/mpgs"],
+			["MPG (video/mpg)","video/mpg"],
+			["WEBM (video/webm)","video/webm"],
+			["WMV (video/wmv)","video/wmv"],
+			["3GPP (video/3gpp)","video/3gpp"]
+		]), "mimetype_");	
 	this.setInputsInline(false);
 	this.setOutput(true, null);
 	this.setColour(Blockly.Msg["HUE_28"]);
