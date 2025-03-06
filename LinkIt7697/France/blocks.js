@@ -5079,10 +5079,6 @@ Blockly.Blocks['amb82_mini_video_initial'] = {
         .appendField(Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION"])	
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_DEFAULT"],""],
-			//["2K (2560×1440)","VIDEO_2K"],
-			//["5M (2448×2050)","VIDEO_5M"], 
-			//["3M (2048×1536)","VIDEO_3M"],
 			["FHD (1920×1080)","VIDEO_FHD"],
 			["HD (1280×720)","VIDEO_HD"],
 			["D1 (720×480)","VIDEO_D1"],
