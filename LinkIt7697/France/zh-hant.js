@@ -3613,3 +3613,5 @@ Blockly.Msg["PMS7003M_GET"] = "PMS7003M 取得";
 Blockly.Msg["PMS7003M_PM25"] = "PM2.5";
 Blockly.Msg["PMS7003M_PM1"] = "PM1.0";
 Blockly.Msg["PMS7003M_PM10"] = "PM10";
+
+Blockly.Msg.TEXT_INDEXOF_TOOLTIP = "返回在第二個字串中的第一個/最後一個匹配項目的索引值。如果未找到則返回 -1。";

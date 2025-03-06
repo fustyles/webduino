@@ -3605,3 +3605,5 @@ Blockly.Msg["PMS7003M_GET"] = "PMS7003M get";
 Blockly.Msg["PMS7003M_PM25"] = "PM2.5";
 Blockly.Msg["PMS7003M_PM1"] = "PM1.0";
 Blockly.Msg["PMS7003M_PM10"] = "PM10";
+
+Blockly.Msg.TEXT_INDEXOF_TOOLTIP = "Returns the index of the first/last occurrence of first text in the second text. Returns -1 if text is not found.";
