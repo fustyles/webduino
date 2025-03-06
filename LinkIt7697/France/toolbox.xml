@@ -3906,7 +3906,7 @@
 				</value>			
 				<value name="filename_">
 				  <block type="text">
-					<field name="TEXT">test</field>
+					<field name="TEXT">test.mp4</field>
 				  </block>
 				</value>
 			</block>
@@ -3923,7 +3923,7 @@
 				</value>				
 				<value name="filename_">
 				  <block type="text">
-					<field name="TEXT">test</field>
+					<field name="TEXT">test.mp4</field>
 				  </block>
 				</value>
 				<field name="mimetype_">audio/mp4</field>

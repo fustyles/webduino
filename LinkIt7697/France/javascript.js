@@ -1856,11 +1856,12 @@ Blockly.Arduino['amb82_mini_file_googletts'] = function(block) {
 
 Blockly.Arduino['amb82_mini_file_openai_whisper'] = function(block) {
 	var key = Blockly.Arduino.valueToCode(block, 'key_', Blockly.Arduino.ORDER_ATOMIC);
-	var filename = Blockly.Arduino.valueToCode(block, 'filename_', Blockly.Arduino.ORDER_ATOMIC);	
+	var filename = Blockly.Arduino.valueToCode(block, 'filename_', Blockly.Arduino.ORDER_ATOMIC);
+    var mimetype = block.getFieldValue('mimetype_');	
 	
 	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';	
 	Blockly.Arduino.definitions_['amb82_mini_file_sendAudioToWhisper'] = ''
-           +'String amb82_mini_sendAudioToWhisper(String key, String filename, String filepath) {\n'
+           +'String amb82_mini_sendAudioToWhisper(String key, String filename, String filepath, String mimeType) {\n'
            +'    uint8_t *fileinput;\n'
            +'    file = fs.open(filepath);\n'
            +'    unsigned int fileSize = file.size();\n'
@@ -1871,7 +1872,7 @@ Blockly.Arduino['amb82_mini_file_openai_whisper'] = function(block) {
            +'    Serial.println("Connect to api.openai.com");\n'
            +'    if (client.connect("api.openai.com", 443)) {\n'
            +'      Serial.println("Connection successful");\n'
-           +'      String head = "--Taiwan\\r\\nContent-Disposition: form-data; name=\\"model\\"\\r\\n\\r\\nwhisper-1\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"response_format\\"\\r\\n\\r\\nverbose_json\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"file\\"; filename=\\""+filename+"\\"\\r\\nContent-Type: video/mp4\\r\\n\\r\\n";\n'
+           +'      String head = "--Taiwan\\r\\nContent-Disposition: form-data; name=\\"model\\"\\r\\n\\r\\nwhisper-1\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"response_format\\"\\r\\n\\r\\nverbose_json\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"file\\"; filename=\\""+filename+"\\"\\r\\nContent-Type: "+mimeType+"\\r\\n\\r\\n";\n'
            +'      String tail = "\\r\\n--Taiwan--\\r\\n";\n'
            +'      uint16_t totalLen = head.length() + fileSize + tail.length();\n'
            +'      client.println("POST /v1/audio/transcriptions HTTP/1.1");\n'
@@ -1929,7 +1930,7 @@ Blockly.Arduino['amb82_mini_file_openai_whisper'] = function(block) {
            +'    }\n'
            +'}\n';	   
 
-	var code = 'amb82_mini_sendAudioToWhisper('+key+', '+filename+'+".mp4", file_path+"/"+'+filename+'+".mp4")';
+	var code = 'amb82_mini_sendAudioToWhisper('+key+', '+filename+', file_path+"/"+'+filename+', "'+mimetype+'")';
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -1942,7 +1943,7 @@ Blockly.Arduino['amb82_mini_file_gemini_stt'] = function(block) {
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
 	Blockly.Arduino.definitions_['amb82_mini_file_sendAudioToGemini'] = ''
-           +'String sendAudioFileToGeminiSTT(String apikey, String filepath, String mimiType, String prompt) {\n'
+           +'String sendAudioFileToGeminiSTT(String apikey, String filepath, String mimeType, String prompt) {\n'
            +'  Serial.println("File: "+filepath);\n'
            +'  uint8_t *fileinput;\n'
            +'  file = fs.open(filepath);\n'
@@ -1958,7 +1959,7 @@ Blockly.Arduino['amb82_mini_file_gemini_stt'] = function(block) {
            +'  Serial.println("Connect to generativelanguage.googleapis.com");\n'
            +'  if (client.connect("generativelanguage.googleapis.com", 443)) {\n'
            +'    Serial.println("Connection successful");\n'
-           +'    String filePart = "{\\"inline_data\\": {\\"data\\": \\""+String(encodedData)+"\\", \\"mime_type\\": \\""+mimiType+"\\",},}";\n'
+           +'    String filePart = "{\\"inline_data\\": {\\"data\\": \\""+String(encodedData)+"\\", \\"mime_type\\": \\""+mimeType+"\\",},}";\n'
            +'    String textPart = "{\\"text\\": \\""+prompt+"\\",}";\n'
            +'    String request = "{\\"contents\\": [{\\"role\\": \\"user\\", \\"parts\\": ["+filePart+", "+textPart+"]}],}";\n'
            +'    client.println("POST /v1beta/models/gemini-2.0-flash:generateContent?key=" + apikey + " HTTP/1.1");\n'
@@ -2013,7 +2014,7 @@ Blockly.Arduino['amb82_mini_file_gemini_stt'] = function(block) {
            +'  }\n'
            +'}\n';
 		   
-    var code = 'sendAudioFileToGeminiSTT('+key+', file_path+"/"+'+filename+'+".mp4", "'+mimetype+'", '+message+')';
+    var code = 'sendAudioFileToGeminiSTT('+key+', file_path+"/"+'+filename+', "'+mimetype+'", '+message+')';
     return [code, Blockly.Arduino.ORDER_NONE];
 };
 
