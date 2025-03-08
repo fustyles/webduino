@@ -575,7 +575,6 @@ Blockly.Arduino['gemini_chat_request'] = function (block) {
 		+'          client.stop();\n'
 		+'          String assistant_content = "{\\"role\\": \\"model\\", \\"parts\\":[{ \\"text\\": \\""+ getResponse+"\\" }]}";\n'
 		+'          historical_messages += ", "+assistant_content;\n'
-		+'          Serial.println("");\n'
 		+'          return getResponse;\n'
 		+'       }\n'
 		+'    }\n'
@@ -1814,8 +1813,10 @@ Blockly.Arduino['amb82_mini_file_googletts'] = function(block) {
 	
 	Blockly.Arduino.definitions_['amb82_mini_file_getGoogleVoice2SD'] = ''
            +'void amb82_mini_getGoogleVoice2SD(String filepath, String message, String language, int speed) {\n'
+           +'  message.replace("\\n", "");\n'		   
            +'  if (fs.exists(filepath))\n'
            +'    fs.remove(filepath);\n'
+           +'  delay(200);\n'		   
            +'  File file = fs.open(filepath);\n'
            +'  if(!file){\n'
            +'    Serial.println("Failed to open file for reading");\n'
@@ -1908,7 +1909,7 @@ Blockly.Arduino['amb82_mini_file_openai_whisper'] = function(block) {
            +'      String tail = "\\r\\n--Taiwan--\\r\\n";\n'
            +'      uint16_t totalLen = head.length() + fileSize + tail.length();\n'
            +'      client.println("POST /v1/audio/transcriptions HTTP/1.1");\n'
-           +'      client.println("Connection: keep-alive");\n'
+           +'      client.println("Connection: close");\n'
            +'      client.println("Host: api.openai.com");\n'
            +'      client.println("Authorization: Bearer " + key);\n'
            +'      client.println("Content-Length: " + String(totalLen));\n'
@@ -1991,10 +1992,11 @@ Blockly.Arduino['amb82_mini_file_gemini_stt'] = function(block) {
            +'  Serial.println("Connect to generativelanguage.googleapis.com");\n'
            +'  if (client.connect("generativelanguage.googleapis.com", 443)) {\n'
            +'    Serial.println("Connection successful");\n'
+           +'    prompt.replace("\\n", "");\n'
            +'    String filePart = "{\\"inline_data\\": {\\"data\\": \\""+String(encodedData)+"\\", \\"mime_type\\": \\""+mimeType+"\\",},}";\n'
            +'    String textPart = "{\\"text\\": \\""+prompt+"\\",}";\n'
            +'    String request = "{\\"contents\\": [{\\"role\\": \\"user\\", \\"parts\\": ["+filePart+", "+textPart+"]}],}";\n'
-           +'    client.println("POST /v1beta/models/gemini-2.0-flash:generateContent?key=" + apikey + " HTTP/1.1");\n'
+		   +'    client.println("POST /v1beta/models/gemini-2.0-flash:generateContent?key=" + apikey + " HTTP/1.1");\n'
            +'    client.println("Connection: close");\n'
            +'    client.println("Host: generativelanguage.googleapis.com");\n'
            +'    client.println("Content-Type: application/json; charset=utf-8");\n'
@@ -4962,6 +4964,10 @@ Blockly.Arduino['amb82_mini_mp4_state'] = function(block) {
 	var state = block.getFieldValue('state');
 	if (state=="begin")
 		var code =  'mp4.begin();\nmp4.printInfo();\n';
+	else if (state=="pause")
+		var code =  'mp4.pause();\n';
+	else if (state=="begin")
+		var code =  'mp4.resume();\n';
 	else 
 		var code =  'mp4.end();\n';
 										
