@@ -1988,7 +1988,6 @@ Blockly.Arduino['amb82_mini_file_gemini_stt'] = function(block) {
            +'  int encodedLen = base64_enc_len(fileSize);\n'
            +'  char *encodedData = (char *)malloc(encodedLen);\n'
            +'  base64_encode(encodedData, (char *)fileinput, fileSize);\n'
-           +'  WiFiSSLClient client;\n'
            +'  Serial.println("Connect to generativelanguage.googleapis.com");\n'
            +'  if (client.connect("generativelanguage.googleapis.com", 443)) {\n'
            +'    Serial.println("Connection successful");\n'
