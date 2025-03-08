@@ -499,11 +499,19 @@ Blockly.Arduino['gemini_chat_initial'] = function (block) {
   Blockly.Arduino.definitions_['gemini_chat_initial'] = ''+
 							  'String Gemini_apikey = '+apikey+';\n'+
 							  'String Gemini_model = "'+model+'";\n'+
-							  'String Gemini_role = '+role+';\n'+							  
+							  'String Gemini_role = '+role+';\n'+
+							  'int Gemini_maxOutputTokens = 800;\n'+				  
 							  'String system_content = "{\\"role\\": \\"model\\", \\"parts\\":[{ \\"text\\":\\""+ Gemini_role+"\\"}]}";\n'+
 							  'String historical_messages = system_content;\n';  																						
 
   var code = '';
+  return code; 
+};
+
+Blockly.Arduino['gemini_chat_maxoutputtokens'] = function (block) {
+  var tokens = Blockly.Arduino.valueToCode(block, 'tokens', Blockly.Arduino.ORDER_ATOMIC)||"";	
+
+  var code = 'Gemini_maxOutputTokens = '+tokens+';\n';
   return code; 
 };
 
@@ -520,7 +528,7 @@ Blockly.Arduino['gemini_chat_request'] = function (block) {
   Blockly.Arduino.definitions_['gemini_chat_request'] += ''
 		+'  String user_content = "{\\"role\\": \\"user\\", \\"parts\\":[{ \\"text\\": \\""+ message+"\\" }]}";\n'
 		+'  historical_messages += ", "+user_content;\n'
-		+'  String request = "{\\"contents\\": [" + historical_messages + "],}";\n'
+		+'  String request = "{\\"contents\\": [" + historical_messages + "],\\"generationConfig\\": {\\"maxOutputTokens\\": " + Gemini_maxOutputTokens + "}}";\n'
 		+'  if (client.connect("generativelanguage.googleapis.com", 443)) {\n'
 		+'    client.println("POST /v1beta/models/"+Gemini_model+":generateContent?key="+Gemini_apikey+" HTTP/1.1");\n'
 		+'    client.println("Connection: close");\n'
@@ -1702,7 +1710,31 @@ Blockly.Arduino['amb82_mini_telegram'] = function(block) {
 
 
 
+Blockly.Arduino['amb82_mini_sd_initial'] = function(block) {
+	Blockly.Arduino.definitions_['amb82_mini_folder_initial'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\nchar *file_list;\n';
+	var type = block.getFieldValue('type');
 
+	if (type=="begin")
+		var code = 'fs.begin();\nfile_path = String(fs.getRootPath());\n';
+	else
+		var code = 'fs.end();\n';
+    return code;
+};
+
+Blockly.Arduino['amb82_mini_sd_folder'] = function(block) {
+	Blockly.Arduino.definitions_['amb82_mini_folder_initial'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\nchar *file_list;\n';
+	var type = block.getFieldValue('type');
+	var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC);
+	
+	var code = '';
+	if (type=="open")
+		code = 'file_path = String(fs.getRootPath())+'+foldername+';\n';
+	else if (type=="create")
+		code = 'file_path = String(fs.getRootPath())+'+foldername+';\nfs.mkdir(file_path);\n';
+	else if (type=="root")
+		code = 'file_path = String(fs.getRootPath());\n';
+    return code;
+};
 
 Blockly.Arduino['amb82_mini_folder'] = function(block) {
 	Blockly.Arduino.definitions_['amb82_mini_folder_initial'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\nchar *file_list;\n';

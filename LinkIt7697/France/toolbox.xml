@@ -3839,6 +3839,15 @@
 			</block>			
 		</category>			
 		<category name="amb82_mini_FileSystem">
+			<block type="amb82_mini_sd_initial">			
+			</block>
+			<block type="amb82_mini_sd_folder">
+				<value name="foldername">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>			
+			</block>			
 			<block type="amb82_mini_folder">
 				<value name="foldername">
 				  <block type="text">
@@ -14093,6 +14102,13 @@
 		  </block>
 		</value>		
 	  </block>
+	  <block type="gemini_chat_maxoutputtokens">
+		<value name="tokens">
+		  <block type="math_number">
+			<field name="NUM">800</field>
+		  </block>
+		</value>		
+	  </block>	  
 	  <block type="gemini_chat_request">
 		<value name="content">
 		  <block type="text">

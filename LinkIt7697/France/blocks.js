@@ -1103,6 +1103,20 @@ Blockly.Blocks['gemini_chat_initial'] = {
   }
 };
 
+Blockly.Blocks['gemini_chat_maxoutputtokens'] = {
+  init: function() {
+	this.appendDummyInput()
+	  .appendField(Blockly.Msg.GEMINI_CHAT_MAXOUTPUTTOKENS_SHOW);
+	this.appendValueInput("tokens")
+	  .setCheck("Number")
+	  .setAlign(Blockly.ALIGN_RIGHT); 	    
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(110);
+  }
+};
+
 Blockly.Blocks['gemini_chat_request'] = {
   init: function() {
 	this.appendValueInput("content")
@@ -1825,6 +1839,56 @@ Blockly.Blocks['amb82_mini_telegram'] = {
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
 	this.setColour(Blockly.Msg["HUE_12"]);
+  }
+};
+
+
+Blockly.Blocks['amb82_mini_sd_initial'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+		.appendField(Blockly.Msg["AMB82_MINI_SD_INITIAL"]);	
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg["AMB82_MINI_SD_BEGIN"],"begin"],		
+		  [Blockly.Msg["AMB82_MINI_SD_END"],"end"]
+		]), "type");			
+	this.setInputsInline(true);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_29"]);	
+  }
+};
+
+Blockly.Blocks['amb82_mini_sd_folder'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+		.appendField(Blockly.Msg["AMB82_MINI_SD_FOLDER"]);		
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg["AMB82_MINI_FOLDER_OPEN"],"open"],		
+		  [Blockly.Msg["AMB82_MINI_FOLDER_CREATE"],"create"],		
+		  [Blockly.Msg["AMB82_MINI_FOLDER_ROOT"],"root"]
+		], this.validate), "type");
+	this.appendValueInput("foldername")
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.setCheck("String");	
+	this.setInputsInline(true);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Msg["HUE_29"]);	
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;
+		if (!block) return;
+		if (newValue=="root") {
+			block.getInput("foldername").setVisible(false);		
+		} else {
+			block.getInput("foldername").setVisible(true);			
+		}
   }
 };
 
