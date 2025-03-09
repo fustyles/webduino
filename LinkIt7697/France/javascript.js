@@ -1911,8 +1911,8 @@ Blockly.Arduino['amb82_mini_file_openai_whisper'] = function(block) {
     var mimetype = block.getFieldValue('mimetype_');	
 	
 	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';	
-	Blockly.Arduino.definitions_['amb82_mini_file_sendAudioToWhisper'] = ''
-           +'String amb82_mini_sendAudioToWhisper(String key, String filename, String filepath, String mimeType) {\n'
+	Blockly.Arduino.definitions_['amb82_mini_file_sendAudioToOpenAIWhisper'] = ''
+           +'String amb82_mini_sendAudioToOpenAIWhisper(String key, String filename, String filepath, String mimeType) {\n'
            +'    uint8_t *fileinput;\n'
            +'    file = fs.open(filepath);\n'
            +'    unsigned int fileSize = file.size();\n'
@@ -1981,7 +1981,87 @@ Blockly.Arduino['amb82_mini_file_openai_whisper'] = function(block) {
            +'    }\n'
            +'}\n';	   
 
-	var code = 'amb82_mini_sendAudioToWhisper('+key+', '+filename+', file_path+"/"+'+filename+', "'+mimetype+'")';
+	var code = 'amb82_mini_sendAudioToOpenAIWhisper('+key+', '+filename+', file_path+"/"+'+filename+', "'+mimetype+'")';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['amb82_mini_file_groq_whisper'] = function(block) {
+	var key = Blockly.Arduino.valueToCode(block, 'key_', Blockly.Arduino.ORDER_ATOMIC);
+	var filename = Blockly.Arduino.valueToCode(block, 'filename_', Blockly.Arduino.ORDER_ATOMIC);
+    var mimetype = block.getFieldValue('mimetype_');	
+	
+	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';	
+	Blockly.Arduino.definitions_['amb82_mini_file_sendAudioToGroqWhisper'] = ''
+           +'String amb82_mini_sendAudioToGroqWhisper(String key, String filename, String filepath, String mimeType) {\n'
+           +'    uint8_t *fileinput;\n'
+           +'    file = fs.open(filepath);\n'
+           +'    unsigned int fileSize = file.size();\n'
+           +'    fileinput = (uint8_t *)malloc(fileSize + 1);\n'
+           +'    file.read(fileinput, fileSize);\n'
+           +'    fileinput[fileSize] = \'\\0\';\n'
+           +'    file.close();\n'
+           +'    Serial.println("Connect to api.groq.com");\n'
+           +'    if (client.connect("api.groq.com", 443)) {\n'
+           +'      Serial.println("Connection successful");\n'
+           +'      String head = "--Taiwan\\r\\nContent-Disposition: form-data; name=\\"model\\"\\r\\n\\r\\nwhisper-large-v3-turbo\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"response_format\\"\\r\\n\\r\\nverbose_json\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"file\\"; filename=\\""+filename+"\\"\\r\\nContent-Type: "+mimeType+"\\r\\n\\r\\n";\n'
+           +'      String tail = "\\r\\n--Taiwan--\\r\\n";\n'
+           +'      uint16_t totalLen = head.length() + fileSize + tail.length();\n'
+           +'      client.println("POST /openai/v1/audio/transcriptions HTTP/1.1");\n'
+           +'      client.println("Connection: close");\n'
+           +'      client.println("Host: api.groq.com");\n'
+           +'      client.println("Authorization: Bearer " + key);\n'
+           +'      client.println("Content-Length: " + String(totalLen));\n'
+           +'      client.println("Content-Type: multipart/form-data; boundary=Taiwan");\n'
+           +'      client.println();\n'
+           +'      client.print(head);\n'
+           +'      for (size_t n=0;n<fileSize;n=n+1024) {\n'
+           +'        if (n+1024<fileSize) {\n'
+           +'          client.write(fileinput, 1024);\n'
+           +'          fileinput += 1024;\n'
+           +'        }\n'
+           +'        else if (fileSize%1024>0) {\n'
+           +'          size_t remainder = fileSize%1024;\n'
+           +'          client.write(fileinput, remainder);\n'
+           +'        }\n'
+           +'      }\n'
+           +'      client.print(tail);\n'
+           +'      String getResponse="",Feedback="";\n'
+           +'      int waitTime = 20000;\n'
+           +'      long startTime = millis();\n'
+           +'      boolean state = false;\n'
+           +'      while ((startTime + waitTime) > millis()) {\n'
+           +'        Serial.print(".");\n'
+           +'        delay(100);\n'
+           +'        while (client.available()) {\n'
+           +'            char c = client.read();\n'
+           +'            if (state==true) Feedback += String(c); \n'       
+           +'            if (c == \'\\n\') {\n'
+           +'              if (getResponse.length()==0) state=true;\n'
+           +'              getResponse = "";\n'
+           +'            }\n'
+           +'            else if (c != \'\\r\')\n'
+           +'              getResponse += String(c);\n'
+           +'            startTime = millis();\n'
+           +'         }\n'
+           +'         if (Feedback.length()>0) break;\n'
+           +'      }\n'
+           +'      client.stop();\n'
+           +'      JsonObject obj;\n'
+           +'      DynamicJsonDocument doc(4096);\n'
+           +'      deserializeJson(doc, Feedback);\n'
+           +'      obj = doc.as<JsonObject>();\n'
+           +'      String getText = obj["text"].as<String>();\n'
+           +'      if (getText == "null")\n'
+           +'        getText = obj["error"]["message"].as<String>();\n'
+           +'      getText.replace("\\n", "");\n'
+           +'      return getText;\n'
+           +'    }\n'
+           +'    else {\n'
+           +'      return "Connected to api.openai.com failed.";\n'
+           +'    }\n'
+           +'}\n';	   
+
+	var code = 'amb82_mini_sendAudioToGroqWhisper('+key+', '+filename+', file_path+"/"+'+filename+', "'+mimetype+'")';
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 

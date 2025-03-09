@@ -2267,6 +2267,36 @@ Blockly.Blocks['amb82_mini_file_openai_whisper'] = {
   }
 };
 
+Blockly.Blocks['amb82_mini_file_groq_whisper'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_GROQ_WHISPER"]);
+    this.appendValueInput("key_")
+        .setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_GROQ_KEY"]);			
+	this.appendValueInput("filename_")
+		.setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_FILE_NAME"]);
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["MP4 (audio/mp4)","audio/mp4"],
+			["MP3 (audio/mp3)","audio/mp3"],
+			["MPA (audio/m4a)","audio/m4a"],
+			["MPEG (audio/mpeg)","audio/mpeg"],
+			["MPGA (audio/mpga)","audio/mpga"],
+			["WAV (audio/wav)","audio/wav"],
+			["WEBM (audio/webm)","audio/webm"]
+		]), "mimetype_");		
+	this.setInputsInline(false);
+	this.setOutput(true, null);
+	this.setColour(Blockly.Msg["HUE_28"]);
+  }
+};
+
 Blockly.Blocks['amb82_mini_file_gemini_stt'] = {
   init: function() {
     this.appendDummyInput()

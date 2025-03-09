@@ -201,6 +201,8 @@ Blockly.Msg["AMB82_MINI_GOOGLETTS_LANGUAGE"] = "語言";
 Blockly.Msg["AMB82_MINI_GOOGLETTS_SPEED"] = "語速";
 Blockly.Msg["AMB82_MINI_OPENAI_WHISPER"] = "openAI Whisper 語音轉文字";
 Blockly.Msg["AMB82_MINI_GEMINI_STT"] = "Gemini 影音轉文字";
+Blockly.Msg["AMB82_MINI_GROQ_WHISPER"] = "Groq Whisper 語音轉文字";
+Blockly.Msg["AMB82_MINI_GROQ_KEY"] = "金鑰";
 
 Blockly.Msg["AMB82_MINI_RTC_INITIAL"] = "RTC設定現在時間";
 Blockly.Msg["AMB82_MINI_RTC_YEAR"] = "年";

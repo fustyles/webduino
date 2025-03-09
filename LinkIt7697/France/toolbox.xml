@@ -3919,6 +3919,18 @@
 				  </block>
 				</value>
 			</block>
+			<block type="amb82_mini_file_groq_whisper">
+				<value name="key_">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>			
+				<value name="filename_">
+				  <block type="text">
+					<field name="TEXT">test.mp4</field>
+				  </block>
+				</value>
+			</block>			
 			<block type="amb82_mini_file_gemini_stt">
 				<value name="key_">
 				  <block type="text">
