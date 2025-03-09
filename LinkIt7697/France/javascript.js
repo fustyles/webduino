@@ -242,11 +242,23 @@ Blockly.Arduino['custom_chat_initial'] = function (block) {
 									  'String custom_model = '+model+';\n'+						  
 									  'String custom_path = '+path+';\n'+
 									  'String custom_key = '+apikey+';\n'+
-									  'String custom_role = '+role+';\n'+									  
+									  'String custom_role = '+role+';\n'+
+									  'int custom_maxOutputTokens = 800;\n'+
+									  'float custom_temperature = 1.0;\n'+										  
 									  'String system_content = "{\\"role\\": \\"system\\", \\"content\\":\\""+ custom_role+"\\"}";\n'+
 									  'String historical_messages = system_content;\n';  																			
 
   var code = '';
+  return code; 
+};
+
+Blockly.Arduino['custom_chat_config'] = function (block) {
+  var config = block.getFieldValue('config');	
+  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC)||"";	
+  if (config=="maxOutputTokens")
+	var code = 'custom_maxOutputTokens = '+val+';\n';
+  else
+	var code = 'custom_temperature = '+val+';\n';
   return code; 
 };
 
@@ -264,9 +276,10 @@ Blockly.Arduino.definitions_['custom_chat_request'] = 'String custom_chat_reques
 		+'  const char* myDomain = domain.c_str();\n'  
 		+'  String user_content = "{\\"role\\": \\"user\\", \\"content\\":\\""+ message+"\\"}";\n'
 		+'  historical_messages += ", "+user_content;\n'
-		+'  String request = "{\\"model\\":\\""+custom_model+"\\",\\"messages\\":[" + historical_messages + "]}";\n'
+		+'  String request = "{\\"model\\":\\""+custom_model+"\\",\\"messages\\":[" + historical_messages + "], \\"max_tokens\\": " + custom_maxOutputTokens + ", \\"temperature\\": " + custom_temperature + "}";\n'
 		+'  Serial.println("Connect to " + String(myDomain));\n'		
 		+'  if (client.connect(myDomain, 443)) {\n'
+		+'    Serial.println("Connection successful");\n'	
 		+'    client.println("POST "+path+" HTTP/1.1");\n'
 		+'    client.println("Connection: close");\n'
 		+'    client.println("Host: "+String(myDomain));\n'
@@ -345,7 +358,7 @@ Blockly.Arduino['custom_chat_gs_request'] = function (block) {
 
   Blockly.Arduino.definitions_['custom_chat_gs_request'] += '\n'+
 			'  if (client.connect(myDomain, 443)) {\n'+
-			'  	 //Serial.println("Connection successful");\n'+
+			'  	 Serial.println("Connection successful");\n'+
 			'    String Data = "&domain="+urlencode(custom_domain)+"&path="+urlencode(custom_path)+"&model="+urlencode(custom_model)+"&key="+urlencode(custom_key)+"&role="+urlencode(custom_role)+"&message="+urlencode(message);\n'+
 			'    client.println("POST /macros/s/"+scriptId+"/exec HTTP/1.1");\n'+
 			'    client.println("Host: " + String(myDomain));\n'+
@@ -409,7 +422,7 @@ Blockly.Arduino['custom_chat_gs_request'] = function (block) {
 
 	Blockly.Arduino.definitions_['custom_chat_gs_request'] += '\n'+
 			'  if (client.connect(myDomain, 443)) {\n'+	
-			'    //Serial.println("Connection successful");\n'+
+			'    Serial.println("Connection successful");\n'+
 			'    client.println("GET " + gsPath + " HTTP/1.1");\n'+
 			'    client.println("Host: " + String(myDomain));\n'+
 			'    client.println("Connection: close");\n'+
@@ -500,7 +513,8 @@ Blockly.Arduino['gemini_chat_initial'] = function (block) {
 							  'String Gemini_apikey = '+apikey+';\n'+
 							  'String Gemini_model = "'+model+'";\n'+
 							  'String Gemini_role = '+role+';\n'+
-							  'int Gemini_maxOutputTokens = 800;\n'+				  
+							  'int Gemini_maxOutputTokens = 800;\n'+
+							  'float Gemini_temperature = 1.0;\n'+							  
 							  'String system_content = "{\\"role\\": \\"model\\", \\"parts\\":[{ \\"text\\":\\""+ Gemini_role+"\\"}]}";\n'+
 							  'String historical_messages = system_content;\n';  																						
 
@@ -508,10 +522,13 @@ Blockly.Arduino['gemini_chat_initial'] = function (block) {
   return code; 
 };
 
-Blockly.Arduino['gemini_chat_maxoutputtokens'] = function (block) {
-  var tokens = Blockly.Arduino.valueToCode(block, 'tokens', Blockly.Arduino.ORDER_ATOMIC)||"";	
-
-  var code = 'Gemini_maxOutputTokens = '+tokens+';\n';
+Blockly.Arduino['gemini_chat_config'] = function (block) {
+  var config = block.getFieldValue('config');	
+  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC)||"";	
+  if (config=="maxOutputTokens")
+	var code = 'Gemini_maxOutputTokens = '+val+';\n';
+  else
+	var code = 'Gemini_temperature = '+val+';\n';
   return code; 
 };
 
@@ -528,8 +545,9 @@ Blockly.Arduino['gemini_chat_request'] = function (block) {
   Blockly.Arduino.definitions_['gemini_chat_request'] += ''
 		+'  String user_content = "{\\"role\\": \\"user\\", \\"parts\\":[{ \\"text\\": \\""+ message+"\\" }]}";\n'
 		+'  historical_messages += ", "+user_content;\n'
-		+'  String request = "{\\"contents\\": [" + historical_messages + "],\\"generationConfig\\": {\\"maxOutputTokens\\": " + Gemini_maxOutputTokens + "}}";\n'
+		+'  String request = "{\\"contents\\": [" + historical_messages + "],\\"generationConfig\\": {\\"maxOutputTokens\\": " + Gemini_maxOutputTokens + ", \\"temperature\\": " + Gemini_temperature + "}}";\n'
 		+'  if (client.connect("generativelanguage.googleapis.com", 443)) {\n'
+		+'    Serial.println("Connection successful");\n'	
 		+'    client.println("POST /v1beta/models/"+Gemini_model+":generateContent?key="+Gemini_apikey+" HTTP/1.1");\n'
 		+'    client.println("Connection: close");\n'
 		+'    client.println("Host: generativelanguage.googleapis.com");\n'
@@ -606,7 +624,7 @@ Blockly.Arduino['gemini_chat_gs_request'] = function (block) {
 
   Blockly.Arduino.definitions_['gemini_chat_gs_request'] += '\n'+
 			'  if (client.connect(myDomain, 443)) {\n'+
-			'  	 //Serial.println("Connection successful");\n'+
+			'  	 Serial.println("Connection successful");\n'+
 			'    String Data = "&key="+urlencode(Gemini_apikey)+"&model="+urlencode(Gemini_model)+"&role="+urlencode(Gemini_role)+"&message="+urlencode(message);\n'+
 			'    client.println("POST /macros/s/"+scriptId+"/exec HTTP/1.1");\n'+
 			'    client.println("Host: " + String(myDomain));\n'+
@@ -670,7 +688,7 @@ Blockly.Arduino['gemini_chat_gs_request'] = function (block) {
 
 	Blockly.Arduino.definitions_['gemini_chat_gs_request'] += '\n'+
 			'  if (client.connect(myDomain, 443)) {\n'+	
-			'    //Serial.println("Connection successful");\n'+
+			'    Serial.println("Connection successful");\n'+
 			'    client.println("GET " + gsPath + " HTTP/1.1");\n'+
 			'    client.println("Host: " + String(myDomain));\n'+
 			'    client.println("Connection: close");\n'+
@@ -7333,11 +7351,23 @@ Blockly.Arduino['openai_chat_initial'] = function (block) {
   Blockly.Arduino.definitions_['openai_chat_initial'] = ''+
 									  'String openai_apikey = '+apikey+';\n'+
 									  'String openai_model = "'+model+'";\n'+
-									  'String openai_role = '+role+';\n'+									  
+									  'String openai_role = '+role+';\n'+	
+									  'int openai_maxOutputTokens = 800;\n'+
+									  'float openai_temperature = 1.0;\n'+										  
 									  'String system_content = "{\\"role\\": \\"system\\", \\"content\\":\\""+ openai_role+"\\"}";\n'+
 									  'String historical_messages = system_content;\n';  
 
   var code = '';
+  return code; 
+};
+
+Blockly.Arduino['openai_chat_config'] = function (block) {
+  var config = block.getFieldValue('config');	
+  var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC)||"";	
+  if (config=="maxOutputTokens")
+	var code = 'openai_maxOutputTokens = '+val+';\n';
+  else
+	var code = 'openai_temperature = '+val+';\n';
   return code; 
 };
 
@@ -7354,8 +7384,9 @@ Blockly.Arduino['openai_chat_request'] = function (block) {
   Blockly.Arduino.definitions_['openai_chat_request'] += ''
 		+'  String user_content = "{\\"role\\": \\"user\\", \\"content\\":\\""+ message+"\\"}";\n'
 		+'  historical_messages += ", "+user_content;\n'
-		+'  String request = "{\\"model\\":\\""+openai_model+"\\",\\"messages\\":[" + historical_messages + "]}";\n'
+		+'  String request = "{\\"model\\":\\""+openai_model+"\\",\\"messages\\":[" + historical_messages + "], \\"max_tokens\\": " + openai_maxOutputTokens + ", \\"temperature\\": " + openai_temperature + "}";\n'
 		+'  if (client.connect("api.openai.com", 443)) {\n'
+		+'    Serial.println("Connection successful");\n'		
 		+'    client.println("POST /v1/chat/completions HTTP/1.1");\n'
 		+'    client.println("Connection: close");\n'
 		+'    client.println("Host: api.openai.com");\n'
@@ -7434,7 +7465,7 @@ Blockly.Arduino['openai_chat_gs_request'] = function (block) {
 
   Blockly.Arduino.definitions_['openai_chat_gs_request'] += '\n'+
 			'  if (client.connect(myDomain, 443)) {\n'+
-			'  	 //Serial.println("Connection successful");\n'+
+			'  	 Serial.println("Connection successful");\n'+
 			'    String Data = "&key="+urlencode(openai_apikey)+"&model="+urlencode(openai_model)+"&role="+urlencode(openai_role)+"&message="+urlencode(message);\n'+
 			'    client.println("POST /macros/s/"+scriptId+"/exec HTTP/1.1");\n'+
 			'    client.println("Host: " + String(myDomain));\n'+
@@ -7498,7 +7529,7 @@ Blockly.Arduino['openai_chat_gs_request'] = function (block) {
 
 	Blockly.Arduino.definitions_['openai_chat_gs_request'] += '\n'+
 			'  if (client.connect(myDomain, 443)) {\n'+	
-			'    //Serial.println("Connection successful");\n'+
+			'    Serial.println("Connection successful");\n'+
 			'    client.println("GET " + gsPath + " HTTP/1.1");\n'+
 			'    client.println("Host: " + String(myDomain));\n'+
 			'    client.println("Connection: close");\n'+

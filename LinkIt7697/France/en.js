@@ -3485,32 +3485,44 @@ Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_SHOW = "Response";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_GET_BR_SHOW = "new line";
 Blockly.Msg.OPENAI_TEXT_RESPONSE_CLEAR_SHOW = "Clear response";
 
-Blockly.Msg.OPENAI_CHAT_INITIAL_SHOW = "openAI chat Initial";
+Blockly.Msg.OPENAI_CHAT_SHOW = "openAI chat";
+Blockly.Msg.OPENAI_CHAT_INITIAL_SHOW = "Initial";
 Blockly.Msg.OPENAI_CHAT_KEY_SHOW = "API Key"; 	  
 Blockly.Msg.OPENAI_CHAT_ROLE_SHOW = "Assistant behavior";
 Blockly.Msg.OPENAI_SCRIPTID_SHOW = "Apps Script ID";   
-Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW = "openAI chat Send content";
-Blockly.Msg.OPENAI_CHAT_RESET_SHOW = "openAI chat Reset messages";
+Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW = "Send content";
+Blockly.Msg.OPENAI_CHAT_RESET_SHOW = "Reset messages";
 Blockly.Msg.OPENAI_CHAT_MODEL_SHOW = "Model";
+Blockly.Msg.OPENAI_CHAT_CONFIG_SHOW = "Config";
+Blockly.Msg.OPENAI_CHAT_MAXOUTPUTTOKENS_SHOW = "Max output tokens";
+Blockly.Msg.OPENAI_CHAT_TEMPERATURE_SHOW = "Temperature";
 
-Blockly.Msg.GEMINI_CHAT_INITIAL_SHOW = "Gemini chat Initial";
+Blockly.Msg.GEMINI_CHAT_SHOW = "Gemini chat";
+Blockly.Msg.GEMINI_CHAT_INITIAL_SHOW = "Initial";
 Blockly.Msg.GEMINI_CHAT_KEY_SHOW = "API Key"; 	  
 Blockly.Msg.GEMINI_CHAT_ROLE_SHOW = "Assistant behavior";
 Blockly.Msg.GEMINI_CHAT_MAXOUTPUTTOKENS_SHOW = "Max output tokens";
+Blockly.Msg.GEMINI_CHAT_CONFIG_SHOW = "Config";
+Blockly.Msg.GEMINI_CHAT_MAXOUTPUTTOKENS_SHOW = "Max output tokens";
+Blockly.Msg.GEMINI_CHAT_TEMPERATURE_SHOW = "Temperature";
 Blockly.Msg.GEMINI_SCRIPTID_SHOW = "Apps Script ID"; 
-Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW = "Gemini chat Send content";
-Blockly.Msg.GEMINI_CHAT_RESET_SHOW = "Gemini chat Reset messages";
+Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW = "Send content";
+Blockly.Msg.GEMINI_CHAT_RESET_SHOW = "Reset messages";
 Blockly.Msg.GEMINI_CHAT_MODEL_SHOW = "Model";
 
-Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW = "LLM chat Initial";
+Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW = "LLM chat";
+Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW = "Initial";
 Blockly.Msg.CUSTOM_CHAT_DOMAIN_SHOW = "Domain";
-Blockly.Msg.CUSTOM_CHAT__PATH_SHOW = "Path";
-Blockly.Msg.CUSTOM_CHAT__MODEL_SHOW = "Model";
+Blockly.Msg.CUSTOM_CHAT_PATH_SHOW = "Path";
+Blockly.Msg.CUSTOM_CHAT_MODEL_SHOW = "Model";
+Blockly.Msg.CUSTOM_CHAT_CONFIG_SHOW = "Config";
+Blockly.Msg.CUSTOM_CHAT_MAXOUTPUTTOKENS_SHOW = "Max output tokens";
+Blockly.Msg.CUSTOM_CHAT_TEMPERATURE_SHOW = "Temperature";
 Blockly.Msg.CUSTOM_CHAT_KEY_SHOW = "API Key"; 	  
 Blockly.Msg.CUSTOM_CHAT_ROLE_SHOW = "Assistant behavior";
 Blockly.Msg.CUSTOM_SCRIPTID_SHOW = "Apps Script ID";  
-Blockly.Msg.CUSTOM_CHAT_REQUEST_SHOW = "Custom Domain chat Send content";
-Blockly.Msg.CUSTOM_CHAT_RESET_SHOW = "Custom Domain chat Reset messages";
+Blockly.Msg.CUSTOM_CHAT_REQUEST_SHOW = "Send content";
+Blockly.Msg.CUSTOM_CHAT_RESET_SHOW = "Reset messages";
 
 Blockly.Msg["GY30_GETDATA_SHOW"] = "GY-30 Light intensity sensor read data(lx)";
 

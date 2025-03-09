@@ -14067,6 +14067,13 @@
 		  </block>
 		</value>		
 	  </block>
+	  <block type="openai_chat_config">
+		<value name="val">
+		  <block type="math_number">
+			<field name="NUM">800</field>
+		  </block>
+		</value>		
+	  </block>	  
 	  <block type="openai_chat_request">
 		<value name="content">
 		  <block type="text">
@@ -14102,8 +14109,8 @@
 		  </block>
 		</value>		
 	  </block>
-	  <block type="gemini_chat_maxoutputtokens">
-		<value name="tokens">
+	  <block type="gemini_chat_config">
+		<value name="val">
 		  <block type="math_number">
 			<field name="NUM">800</field>
 		  </block>
@@ -14159,6 +14166,13 @@
 		  </block>
 		</value>		
 	  </block>
+	  <block type="custom_chat_config">
+		<value name="val">
+		  <block type="math_number">
+			<field name="NUM">800</field>
+		  </block>
+		</value>		
+	  </block>	  
 	  <block type="custom_chat_request">
 		<value name="content">
 		  <block type="text">

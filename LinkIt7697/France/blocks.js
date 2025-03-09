@@ -1003,6 +1003,7 @@ Blockly.Blocks['page_googlemap_map_mouse_get'] = {
 Blockly.Blocks['custom_chat_initial'] = {
   init: function() {
 	this.appendDummyInput()
+		.appendField(Blockly.Msg.CUSTOM_CHAT_SHOW)
 		.appendField(Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW);
     this.appendValueInput("domain")
         .setCheck("String")
@@ -1032,12 +1033,34 @@ Blockly.Blocks['custom_chat_initial'] = {
   }
 };
 
+Blockly.Blocks['custom_chat_config'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.CUSTOM_CHAT_SHOW)
+		.appendField(Blockly.Msg.CUSTOM_CHAT_CONFIG_SHOW);
+	this.appendDummyInput()  
+		  .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.CUSTOM_CHAT_MAXOUTPUTTOKENS_SHOW,"maxoutputtokens"],
+			[Blockly.Msg.CUSTOM_CHAT_TEMPERATURE_SHOW,"temperature"] 
+		  ]), "config");	  
+	this.appendValueInput("val")
+		.setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT); 	    
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(310);
+  }
+};
+
 Blockly.Blocks['custom_chat_request'] = {
   init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.CUSTOM_CHAT_SHOW)
+		.appendField(Blockly.Msg.CUSTOM_CHAT_REQUEST_SHOW);	  
 	this.appendValueInput("content")
-		.appendField(Blockly.Msg.CUSTOM_CHAT_REQUEST_SHOW)
-	  .setCheck("String")
-	  .setAlign(Blockly.ALIGN_RIGHT);
+		  .setCheck("String")
+		  .setAlign(Blockly.ALIGN_RIGHT);
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
 	this.setColour(Blockly.Msg["HUE_15"]);
@@ -1046,8 +1069,10 @@ Blockly.Blocks['custom_chat_request'] = {
 
 Blockly.Blocks['custom_chat_gs_request'] = {
   init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.CUSTOM_CHAT_SHOW)
+		.appendField(Blockly.Msg.CUSTOM_CHAT_REQUEST_SHOW);		  
 	this.appendValueInput("content")
-		.appendField(Blockly.Msg.CUSTOM_CHAT_REQUEST_SHOW)
 		.setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("scriptid")
@@ -1064,7 +1089,8 @@ Blockly.Blocks['custom_chat_gs_request'] = {
 Blockly.Blocks['custom_chat_reset'] = {
   init: function() {
 	this.appendDummyInput()
-	  .appendField(Blockly.Msg.CUSTOM_CHAT_RESET_SHOW); 
+		.appendField(Blockly.Msg.CUSTOM_CHAT_SHOW)
+		.appendField(Blockly.Msg.CUSTOM_CHAT_RESET_SHOW); 
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -1078,6 +1104,7 @@ Blockly.Blocks['custom_chat_reset'] = {
 Blockly.Blocks['gemini_chat_initial'] = {
   init: function() {
 	this.appendDummyInput()
+	  .appendField(Blockly.Msg.GEMINI_CHAT_SHOW)	
 	  .appendField(Blockly.Msg.GEMINI_CHAT_INITIAL_SHOW);
 	this.appendValueInput("apikey")
 	  .setCheck("String")
@@ -1090,10 +1117,12 @@ Blockly.Blocks['gemini_chat_initial'] = {
 	this.appendDummyInput()  
       .appendField(Blockly.Msg.GEMINI_CHAT_MODEL_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["gemini-2.0-flash-lite-preview-02-05","gemini-2.0-flash-lite-preview-02-05"],
-		["gemini-2.0-flash-001","gemini-2.0-flash-001"],	      
+			["gemini-2.0-flash-lite","gemini-2.0-flash-lite"],
+			["gemini-2.0-flash","gemini-2.0-flash"],	  
+			["gemini-2.0-flash-lite-preview-02-05","gemini-2.0-flash-lite-preview-02-05"],
+			["gemini-2.0-flash-001","gemini-2.0-flash-001"],	      
 	        ["gemini-1.5-flash","gemini-1.5-flash"],
-		["gemini-1.5-flash-8b","gemini-1.5-flash-8b"],
+			["gemini-1.5-flash-8b","gemini-1.5-flash-8b"],
 	        ["gemini-1.5-pro","gemini-1.5-pro"]	  
 	  ]), "model"); 	  
     this.setInputsInline(false);
@@ -1103,13 +1132,19 @@ Blockly.Blocks['gemini_chat_initial'] = {
   }
 };
 
-Blockly.Blocks['gemini_chat_maxoutputtokens'] = {
+Blockly.Blocks['gemini_chat_config'] = {
   init: function() {
 	this.appendDummyInput()
-	  .appendField(Blockly.Msg.GEMINI_CHAT_MAXOUTPUTTOKENS_SHOW);
-	this.appendValueInput("tokens")
-	  .setCheck("Number")
-	  .setAlign(Blockly.ALIGN_RIGHT); 	    
+		.appendField(Blockly.Msg.GEMINI_CHAT_SHOW)
+		.appendField(Blockly.Msg.GEMINI_CHAT_CONFIG_SHOW);
+	this.appendDummyInput()  
+		  .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.GEMINI_CHAT_MAXOUTPUTTOKENS_SHOW,"maxoutputtokens"],
+			[Blockly.Msg.GEMINI_CHAT_TEMPERATURE_SHOW,"temperature"] 
+		  ]), "config");	  
+	this.appendValueInput("val")
+		.setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT); 	    
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -1119,8 +1154,10 @@ Blockly.Blocks['gemini_chat_maxoutputtokens'] = {
 
 Blockly.Blocks['gemini_chat_request'] = {
   init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.GEMINI_CHAT_SHOW)
+		.appendField(Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW);	  
 	this.appendValueInput("content")
-		.appendField(Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW)
 		.setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT);
 	this.setInputsInline(true);
@@ -1131,8 +1168,10 @@ Blockly.Blocks['gemini_chat_request'] = {
 
 Blockly.Blocks['gemini_chat_gs_request'] = {
   init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.GEMINI_CHAT_SHOW)
+		.appendField(Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW);		  
 	this.appendValueInput("content")
-		.appendField(Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW)
 		.setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("scriptid")
@@ -1149,7 +1188,8 @@ Blockly.Blocks['gemini_chat_gs_request'] = {
 Blockly.Blocks['gemini_chat_reset'] = {
   init: function() {
 	this.appendDummyInput()
-	  .appendField(Blockly.Msg.GEMINI_CHAT_RESET_SHOW); 
+		.appendField(Blockly.Msg.GEMINI_CHAT_SHOW)
+		.appendField(Blockly.Msg.GEMINI_CHAT_RESET_SHOW); 
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -9501,6 +9541,7 @@ Blockly.Blocks['gy30_getdata'] = {
 Blockly.Blocks['openai_chat_initial'] = {
   init: function() {
 	this.appendDummyInput()
+	  .appendField(Blockly.Msg.OPENAI_CHAT_SHOW)	
 	  .appendField(Blockly.Msg.OPENAI_CHAT_INITIAL_SHOW);
 	this.appendValueInput("apikey")
 	  .setCheck("String")
@@ -9531,12 +9572,34 @@ Blockly.Blocks['openai_chat_initial'] = {
   }
 };
 
+Blockly.Blocks['openai_chat_config'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.OPENAI_CHAT_SHOW)
+		.appendField(Blockly.Msg.OPENAI_CHAT_CONFIG_SHOW);
+	this.appendDummyInput()  
+		  .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.OPENAI_CHAT_MAXOUTPUTTOKENS_SHOW,"maxoutputtokens"],
+			[Blockly.Msg.OPENAI_CHAT_TEMPERATURE_SHOW,"temperature"] 
+		  ]), "config");	  
+	this.appendValueInput("val")
+		.setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT); 	    
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(310);
+  }
+};
+
 Blockly.Blocks['openai_chat_request'] = {
   init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.OPENAI_CHAT_SHOW)
+		.appendField(Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW);	  
 	this.appendValueInput("content")
-		.appendField(Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW)
-	  .setCheck("String")
-	  .setAlign(Blockly.ALIGN_RIGHT);
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT);
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
 	this.setColour(310);
@@ -9545,8 +9608,10 @@ Blockly.Blocks['openai_chat_request'] = {
 
 Blockly.Blocks['openai_chat_gs_request'] = {
   init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.OPENAI_CHAT_SHOW)
+		.appendField(Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW);		
 	this.appendValueInput("content")
-		.appendField(Blockly.Msg.OPENAI_CHAT_REQUEST_SHOW)
 		.setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("scriptid")
@@ -9563,7 +9628,8 @@ Blockly.Blocks['openai_chat_gs_request'] = {
 Blockly.Blocks['openai_chat_reset'] = {
   init: function() {
 	this.appendDummyInput()
-	  .appendField(Blockly.Msg.OPENAI_CHAT_RESET_SHOW); 
+		.appendField(Blockly.Msg.OPENAI_CHAT_SHOW)
+		.appendField(Blockly.Msg.OPENAI_CHAT_RESET_SHOW); 
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
