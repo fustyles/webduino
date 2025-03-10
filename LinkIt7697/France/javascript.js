@@ -1745,9 +1745,9 @@ Blockly.Arduino['amb82_mini_sd_folder'] = function(block) {
 	
 	var code = '';
 	if (type=="open")
-		code = 'file_path = String(fs.getRootPath())+'+foldername+';\n';
+		code = 'file_path = String(fs.getRootPath())+'+foldername+'+"/";\n';
 	else if (type=="create")
-		code = 'file_path = String(fs.getRootPath())+'+foldername+';\nfs.mkdir(file_path);\n';
+		code = 'file_path = String(fs.getRootPath())+'+foldername+'+"/";\nfs.mkdir(file_path);\n';
 	else if (type=="root")
 		code = 'file_path = String(fs.getRootPath());\n';
     return code;
