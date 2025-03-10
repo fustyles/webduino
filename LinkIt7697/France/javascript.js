@@ -1761,9 +1761,9 @@ Blockly.Arduino['amb82_mini_folder'] = function(block) {
 	
 	var path = '';
 	if (type=="open")
-		path = 'file_path = String(fs.getRootPath())+'+foldername+';\n';
+		path = 'file_path = String(fs.getRootPath())+'+foldername+'+"/";\n';
 	else if (type=="create")
-		path = 'file_path = String(fs.getRootPath())+'+foldername+';\nfs.mkdir(file_path);\n';
+		path = 'file_path = String(fs.getRootPath())+'+foldername+'+"/";\nfs.mkdir(file_path);\n';
 	else if (type=="root")
 		path = 'file_path = String(fs.getRootPath());\n';
 	var code = 'fs.begin();\n  '+path+statement+'fs.end();\n';
@@ -1773,13 +1773,13 @@ Blockly.Arduino['amb82_mini_folder'] = function(block) {
 Blockly.Arduino['amb82_mini_file_open'] = function(block) {
 	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
-	var code = 'file = fs.open(file_path+"/"+'+filename+');\n'+statement+'file.close();\n';
+	var code = 'file = fs.open(file_path+'+filename+');\n'+statement+'file.close();\n';
     return code;
 };
 
 Blockly.Arduino['amb82_mini_file_remove'] = function(block) {
 	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
-	var code = 'if (fs.exists(file_path+"/"+'+filename+'))\n    fs.remove(file_path+"/"+'+filename+');\n';
+	var code = 'if (fs.exists(file_path+'+filename+'))\n    fs.remove(file_path+"/"+'+filename+');\n';
     return code;
 };
 
