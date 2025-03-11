@@ -5747,8 +5747,6 @@ Blockly.Blocks['amb82_mini_mp4_state'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["AMB82_MINI_MP4_BEGIN"],"begin"],		
-			[Blockly.Msg["AMB82_MINI_MP4_PAUSE"],"pause"],		
-			[Blockly.Msg["AMB82_MINI_MP4_RESUME"],"resume"],		
 			[Blockly.Msg["AMB82_MINI_MP4_END"],"end"]
 		]), "state");			
     this.setInputsInline(true);
