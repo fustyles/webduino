@@ -5092,10 +5092,6 @@ Blockly.Arduino['amb82_mini_mp4_state'] = function(block) {
 	var state = block.getFieldValue('state');
 	if (state=="begin")
 		var code =  'recordMP4();\n';
-	else if (state=="pause")
-		var code =  'mp4.pause();\n';
-	else if (state=="begin")
-		var code =  'mp4.resume();\n';
 	else 
 		var code =  'mp4.end();\n';
 										
