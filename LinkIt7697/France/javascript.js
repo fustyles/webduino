@@ -4982,75 +4982,106 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 	Blockly.Arduino.setups_.write_peri_reg = "";
 	
 	if (type=="VideoOnly") {
-		Blockly.Arduino.definitions_['amb82_mini_video_initial'] = '#include "StreamIO.h"\n#include "VideoStream.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\nMP4Recording mp4;\nStreamIO videoStreamer(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
-
-		Blockly.Arduino.setups_.setup_amb82_mini_rtsp='config.setRotation('+rotation+');\n  '+   
-											'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
-											'Camera.videoInit();\n  '+
-											'mp4.configVideo(config);\n  '+
-											'mp4.setRecordingDuration('+fileduration+');\n  '+
-											'mp4.setRecordingFileCount('+filecount+');\n  '+
-											'mp4.setRecordingFileName('+filename+');\n  '+
-											'mp4.setRecordingDataType(STORAGE_VIDEO);\n  '+
-											'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
-											'videoStreamer.registerOutput(mp4);\n  '+
-											'if (videoStreamer.begin() != 0) {\n  '+
-											'    Serial.println("StreamIO link start failed");\n  '+
-											'}\n  '+
-											'Camera.channelBegin(amb82_CHANNEL);\n  '+
-											'Camera.printInfo();\n';									
+		Blockly.Arduino.definitions_['amb82_mini_video_initial'] = '#include "StreamIO.h"\n#include "VideoStream.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n'; 
+											
+		Blockly.Arduino.definitions_.amb82_mini_rtsp=   'void recordMP4() {\n'+
+															'  config.setRotation('+rotation+');\n'+
+															'  MP4Recording mp4;\n'+
+															'  StreamIO videoStreamer(1, 1);\n'+															
+															'  Camera.configVideoChannel(amb82_CHANNEL, config);\n'+
+															'  Camera.videoInit();\n'+
+															'  mp4.configVideo(config);\n'+
+															'  mp4.setRecordingDuration('+fileduration+');\n'+
+															'  mp4.setRecordingFileCount('+filecount+');\n'+
+															'  mp4.setRecordingFileName('+filename+');\n'+
+															'  mp4.setRecordingDataType(STORAGE_VIDEO);\n'+
+															'  videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n'+
+															'  videoStreamer.registerOutput(mp4);\n'+
+															'  if (videoStreamer.begin() != 0) {\n'+
+															'      Serial.println("StreamIO link start failed");\n'+
+															'  }\n'+
+															'  Camera.channelBegin(amb82_CHANNEL);\n'+
+															'  Camera.printInfo();\n'+
+														    '  mp4.begin();\n'+
+														    '  delay('+(Number(fileduration)+1)*Number(filecount)*1000+');\n'+																
+															'  mp4.printInfo();\n'+														
+														'}\n';												
 	} else if (type=="SingleVideoWithAudio") {
-		Blockly.Arduino.definitions_['amb82_mini_video_initial'] = '#include "StreamIO.h"\n#include "VideoStream.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting configV(amb82_CHANNEL);\nAudioSetting configA('+audio+');\nAudio audio;\nAAC aac;\nMP4Recording mp4;\nStreamIO audioStreamer(1, 1);\nStreamIO avMixStreamer(2, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+		Blockly.Arduino.definitions_['amb82_mini_video_initial'] = '#include "StreamIO.h"\n#include "VideoStream.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting configV(amb82_CHANNEL);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
-		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
-											'Camera.configVideoChannel(amb82_CHANNEL, configV);\n  '+
-											'Camera.videoInit();\n  '+
-											'audio.configAudio(configA);\n  '+
-											'audio.begin();\n  '+
-											'aac.configAudio(configA);\n  '+
-											'aac.begin();\n  '+					
-											'mp4.configVideo(configV);\n  '+
-											'mp4.configAudio(configA, CODEC_AAC);\n  '+
-											'mp4.setRecordingDuration('+fileduration+');\n  '+
-											'mp4.setRecordingFileCount('+filecount+');\n  '+
-											'mp4.setRecordingFileName('+filename+');\n  '+
-											'audioStreamer.registerInput(audio);\n  '+
-											'audioStreamer.registerOutput(aac);\n  '+
-											'if (audioStreamer.begin() != 0) {\n  '+
-											'    Serial.println("StreamIO link start failed");\n  '+
-											'}\n  '+
-											'avMixStreamer.registerInput1(Camera.getStream(amb82_CHANNEL));\n  '+
-											'avMixStreamer.registerInput2(aac);\n  '+
-											'avMixStreamer.registerOutput(mp4);\n  '+
-											'if (avMixStreamer.begin() != 0) {\n  '+
-											'    Serial.println("StreamIO link start failed");\n  '+
-											'}\n  '+
-											'Camera.channelBegin(amb82_CHANNEL);\n  '+
-											'Camera.printInfo();\n';								
+											
+		Blockly.Arduino.definitions_.amb82_mini_rtsp=   'void recordMP4() {\n'+
+															'  AudioSetting configA('+audio+');\n'+
+															'  Audio audio;\n'+
+															'  AAC aac;\n'+
+															'  MP4Recording mp4;\n'+
+															'  StreamIO audioStreamer(1, 1);\n'+
+															'  StreamIO avMixStreamer(2, 1);\n'+
+															'  Camera.configVideoChannel(amb82_CHANNEL, configV);\n'+
+															'  Camera.videoInit();\n'+															
+															'  audio.configAudio(configA);\n'+
+															'  audio.begin();\n'+
+															'  aac.configAudio(configA);\n'+
+															'  aac.begin();\n'+					
+															'  mp4.configVideo(configV);\n'+
+															'  mp4.configAudio(configA, CODEC_AAC);\n'+
+															'  mp4.setRecordingDuration('+fileduration+');\n'+
+															'  mp4.setRecordingFileCount('+filecount+');\n'+
+															'  mp4.setRecordingFileName('+filename+');\n'+
+															'  audioStreamer.registerInput(audio);\n'+
+															'  audioStreamer.registerOutput(aac);\n'+
+															'  if (audioStreamer.begin() != 0) {\n'+
+															'      Serial.println("StreamIO link start failed");\n'+
+															'  }\n'+
+															'  avMixStreamer.registerInput1(Camera.getStream(amb82_CHANNEL));\n'+
+															'  avMixStreamer.registerInput2(aac);\n'+
+															'  avMixStreamer.registerOutput(mp4);\n'+
+															'  if (avMixStreamer.begin() != 0) {\n'+
+															'      Serial.println("StreamIO link start failed");\n'+
+															'  }\n'+
+															'  Camera.channelBegin(amb82_CHANNEL);\n'+
+															'  Camera.printInfo();\n'+
+														    '  mp4.begin();\n'+
+														    '  delay('+(Number(fileduration)+1)*Number(filecount)*1000+');\n'+																
+															'  audio.printInfo();\n'+	
+															'  mp4.printInfo();\n'+
+															'  avMixStreamer.end();\n'+
+															'  audioStreamer.end();\n'+															
+														'}\n';											
 	} else if (type=="AudioOnly") {
-		Blockly.Arduino.definitions_['amb82_mini_video_initial'] = '#include "StreamIO.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "MP4Recording.h"\nAudioSetting configA('+audio+');\nAudio audio;\nAAC aac;\nMP4Recording mp4;\nStreamIO audioStreamer1(1, 1);\nStreamIO audioStreamer2(1, 1);';
-
-		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+   
-											'audio.configAudio(configA);\n  '+
-											'audio.begin();\n  '+
-											'aac.configAudio(configA);\n  '+
-											'aac.begin();\n  '+
-											'mp4.configAudio(configA, CODEC_AAC);\n  '+
-											'mp4.setRecordingDuration('+fileduration+');\n  '+
-											'mp4.setRecordingFileCount('+filecount+');\n  '+
-											'mp4.setRecordingFileName('+filename+');\n  '+
-											'mp4.setRecordingDataType(STORAGE_AUDIO);\n  '+
-											'audioStreamer1.registerInput(audio);\n  '+
-											'audioStreamer1.registerOutput(aac);\n  '+
-											'if (audioStreamer1.begin() != 0) {\n  '+
-											'    Serial.println("StreamIO link start failed");\n  '+
-											'}\n  '+
-											'audioStreamer2.registerInput(aac);\n  '+
-											'audioStreamer2.registerOutput(mp4);\n  '+
-											'if (audioStreamer2.begin() != 0) {\n  '+
-											'    Serial.println("StreamIO link start failed");\n  '+
-											'}\n  '+
-											'audio.printInfo();\n';						
+		Blockly.Arduino.definitions_['amb82_mini_video_initial'] = '#include "StreamIO.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "MP4Recording.h"\n';
+											
+		Blockly.Arduino.definitions_.amb82_mini_rtsp='void recordMP4() {\n'+
+														'  AudioSetting configA('+audio+');\n'+
+														'  Audio audio;\n'+
+														'  AAC aac;\n'+
+														'  MP4Recording mp4;\n'+														
+														'  StreamIO audioStreamer1(1, 1);\n'+
+														'  StreamIO audioStreamer2(1, 1);\n'+
+														'  audio.configAudio(configA);\n'+
+														'  audio.begin();\n'+	
+														'  aac.configAudio(configA);\n'+
+														'  aac.begin();\n'+
+														'  mp4.configAudio(configA, CODEC_AAC);\n'+
+														'  mp4.setRecordingDuration('+fileduration+');\n'+
+														'  mp4.setRecordingFileCount('+filecount+');\n'+
+														'  mp4.setRecordingFileName('+filename+');\n'+
+														'  mp4.setRecordingDataType(STORAGE_AUDIO);\n'+
+														'  audioStreamer1.registerInput(audio);\n'+
+														'  audioStreamer1.registerOutput(aac);\n'+
+														'  if (audioStreamer1.begin() != 0) {\n'+
+														'      Serial.println("StreamIO link start failed");\n'+
+														'  }\n'+
+														'  audioStreamer2.registerInput(aac);\n'+
+														'  audioStreamer2.registerOutput(mp4);\n'+
+														'  if (audioStreamer2.begin() != 0) {\n'+
+														'      Serial.println("StreamIO link start failed");\n'+
+														'  }\n'+
+														'  mp4.begin();\n'+	
+														'  delay('+(Number(fileduration)+1)*Number(filecount)*1000+');\n'+	
+														'  audio.printInfo();\n'+	
+														'  mp4.printInfo();\n'+													
+													'}\n';						
 	}
 										
 	return '';
@@ -5060,7 +5091,7 @@ Blockly.Arduino['amb82_mini_mp4_state'] = function(block) {
 	var type = block.getFieldValue('type');
 	var state = block.getFieldValue('state');
 	if (state=="begin")
-		var code =  'mp4.begin();\nmp4.printInfo();\n';
+		var code =  'recordMP4();\n';
 	else if (state=="pause")
 		var code =  'mp4.pause();\n';
 	else if (state=="begin")
