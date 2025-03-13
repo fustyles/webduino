@@ -2879,9 +2879,7 @@
 					</value>					  
 			  </block>
 			  <block type="amb82_mini_mp4_state">		  
-			  </block>	
-			  <block type="amb82_mini_mp4_getstate">		  
-			  </block>				  
+			  </block>					  
 		</category>
 		<sep id="category_sep"></sep>		
 		<category name="amb82_mini_video_qrcode">				
