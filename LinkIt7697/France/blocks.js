@@ -1120,10 +1120,7 @@ Blockly.Blocks['gemini_chat_initial'] = {
 			["gemini-2.0-flash-lite","gemini-2.0-flash-lite"],
 			["gemini-2.0-flash","gemini-2.0-flash"],	  
 			["gemini-2.0-flash-lite-preview-02-05","gemini-2.0-flash-lite-preview-02-05"],
-			["gemini-2.0-flash-001","gemini-2.0-flash-001"],	      
-	        ["gemini-1.5-flash","gemini-1.5-flash"],
-			["gemini-1.5-flash-8b","gemini-1.5-flash-8b"],
-	        ["gemini-1.5-pro","gemini-1.5-pro"]	  
+			["gemini-2.0-flash-001","gemini-2.0-flash-001"]  
 	  ]), "model"); 	  
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
@@ -9591,7 +9588,15 @@ Blockly.Blocks['openai_chat_initial'] = {
 			["gpt-4-0613","gpt-4-0613"],
 			["gpt-4-turbo","gpt-4-turbo"],
 			["gpt-4o","gpt-4o"],
-			["gpt-4o-mini","gpt-4o-mini"]	  
+			["gpt-4o-mini","gpt-4o-mini"],
+			["gpt-o1-mini","o1-mini"],
+			["gpt-o1-2024-12-17","o1-2024-12-17"],
+	      	["gpt-4.5-preview","gpt-4.5-preview"],	      
+			["Groq_llama-3.2-90b-vision-preview","llama-3.2-90b-vision-preview"],
+			["Groq_deepseek-r1-distill-llama-70b","deepseek-r1-distill-llama-70b"],
+			["Groq_deepseek-r1-distill-llama-70b-specdec","deepseek-r1-distill-llama-70b-specdec"],
+			["Groq_deepseek-r1-distill-qwen-32b","deepseek-r1-distill-qwen-32b"],
+			["xAI_grok-2-vision-latest","grok-2-vision-latest"]
 	  ]), "model"); 	  
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);

@@ -1815,11 +1815,9 @@ Blockly.Arduino['amb82_mini_file_read_char_get'] = function(block) {
 
 Blockly.Arduino['amb82_mini_file_play'] = function(block) {
 	var filename_ = Blockly.Arduino.valueToCode(block, 'filename_', Blockly.Arduino.ORDER_ATOMIC);
-	var type_ = block.getFieldValue('type_');
-	if (type_==1)
-		var code = 'File file = fs.open(file_path+"/"+String('+filename_+')+".mp3", 1);\nfile.close();\n';
-	else
-		var code = '';
+	var type = block.getFieldValue('type_');
+	
+	var code = 'File file = fs.open(file_path+"/"+String('+filename_+')+".mp3", '+type+');\nfile.close();\n';
     return code;
 };
 
@@ -4982,7 +4980,7 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 	Blockly.Arduino.setups_.write_peri_reg = "";
 	
 	if (type=="VideoOnly") {
-		Blockly.Arduino.definitions_['amb82_mini_video_initial_mp4'] = '#include "StreamIO.h"\n#include "VideoStream.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting configV(amb82_CHANNEL);\n'; 
+		Blockly.Arduino.definitions_['amb82_mini_video_initial_mp4'] = '#include "StreamIO.h"\n#include "VideoStream.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\n'; 
 											
 		Blockly.Arduino.definitions_.amb82_mini_rtsp=   'void recordMP4() {\n'+
 															'  config.setRotation('+rotation+');\n'+
@@ -5015,7 +5013,7 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 
 											
 		Blockly.Arduino.definitions_.amb82_mini_rtsp=   'void recordMP4() {\n'+
-															'  config.setRotation('+rotation+');\n'+		
+															'  configV.setRotation('+rotation+');\n'+		
 															'  AudioSetting configA('+audio+');\n'+
 															'  Audio audio;\n'+
 															'  AAC aac;\n'+
@@ -7497,14 +7495,24 @@ Blockly.Arduino['openai_chat_request'] = function (block) {
 			Blockly.Arduino.definitions_['openai_chat_request'] += '  client.setInsecure();\n';		
 
   Blockly.Arduino.definitions_['openai_chat_request'] += ''
+	    +'  String path = "/v1/chat/completions";\n'
+		+'  char* myDomain = "api.openai.com";\n'
+		+'  if (openai_model.indexOf("llama")!=-1) {\n'
+		+'    myDomain = "api.groq.com";\n'		
+		+'    path = "/openai/v1/chat/completions";\n'
+		+'  } else if (openai_model.indexOf("grok")!=-1) {\n'
+		+'    myDomain = "api.x.ai";\n'
+		+'    path = "/v1/chat/completions";\n'		
+		+'  }\n'
 		+'  String user_content = "{\\"role\\": \\"user\\", \\"content\\":\\""+ message+"\\"}";\n'
 		+'  historical_messages += ", "+user_content;\n'
 		+'  String request = "{\\"model\\":\\""+openai_model+"\\",\\"messages\\":[" + historical_messages + "], \\"max_tokens\\": " + openai_maxOutputTokens + ", \\"temperature\\": " + openai_temperature + "}";\n'
-		+'  if (client.connect("api.openai.com", 443)) {\n'
+		+'  Serial.println("Connect to " + String(myDomain));\n'
+		+'  if (client.connect(myDomain, 443)) {\n'
 		+'    Serial.println("Connection successful");\n'		
-		+'    client.println("POST /v1/chat/completions HTTP/1.1");\n'
+		+'    client.println("POST " + path + " HTTP/1.1");\n'
 		+'    client.println("Connection: close");\n'
-		+'    client.println("Host: api.openai.com");\n'
+		+'    client.println("Host: " + String(myDomain));\n'
 		+'    client.println("Authorization: Bearer " + openai_apikey);\n'
 		+'    client.println("Content-Type: application/json; charset=utf-8");\n'
 		+'    client.println("Content-Length: " + String(request.length()));\n'
@@ -7557,7 +7565,7 @@ Blockly.Arduino['openai_chat_request'] = function (block) {
 		+'    return "error";\n'
 		+'  }\n'
 		+'  else\n'
-		+'    return "Connection failed";\n'
+		+'    return "Connection " + String(myDomain) + " failed";\n'
 		+'  }\n';
 		
   var code = 'openAI_chat_request('+content+')';
