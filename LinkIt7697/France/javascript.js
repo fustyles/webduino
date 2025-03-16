@@ -5329,7 +5329,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 	
   if (framesize=="VIDEO_CUSTOM")
 	framesize = width +", "+height;
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nchar ssid[] = '+ssid+';\nchar pass[] = '+pass+';\nchar ssid_ap[] = '+ssid_ap+';\nchar pass_ap[] = '+pass_ap+';\nchar channel_ap[] = "2";\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\nboolean cameraState = false;\nWiFiServer server(80);\nWiFiServer server81(81);\n';
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nchar ssid[] = '+ssid+';\nchar pass[] = '+pass+';\nchar ssid_ap[] = '+ssid_ap+';\nchar pass_ap[] = '+pass_ap+';\nchar channel_ap[] = "2";\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\nWiFiServer server(80);\nWiFiServer server81(81);\n';
 
   Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 	
@@ -22107,23 +22107,38 @@ Blockly.Arduino['fu_serial_newline'] = function(block) {
 
 Blockly.Arduino['fu_serial_begin'] = function(block) {
   var serial = block.getFieldValue('serial'); 
-  var value_baudrate = Blockly.Arduino.valueToCode(block, 'baudrate', Blockly.Arduino.ORDER_ATOMIC);
-  Blockly.Arduino.setups_['Serial.begin'] = serial+'.begin(%1);'.replace("%1", value_baudrate);
+  var baudrate = Blockly.Arduino.valueToCode(block, 'baudrate', Blockly.Arduino.ORDER_ATOMIC);
+  
+  if ('setupsTop_' in Blockly.Arduino)
+	Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
+  else
+	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
+
   return '';
 };
 
 Blockly.Arduino['fu_serial_begin_select'] = function(block) {
   var serial = block.getFieldValue('serial'); 
-  var value_baudrate = block.getFieldValue('baudrate');
-  Blockly.Arduino.setups_['Serial.begin'] = serial+'.begin(%1);'.replace("%1", value_baudrate);
+  var baudrate = block.getFieldValue('baudrate');
+
+  if ('setupsTop_' in Blockly.Arduino)
+	Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
+  else
+	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);";
+	
   return '';
 };
 
 Blockly.Arduino['fu_serial_begin_config'] = function(block) {
-  var value_baudrate = Blockly.Arduino.valueToCode(block, 'baudrate', Blockly.Arduino.ORDER_ATOMIC);
+  var baudrate = Blockly.Arduino.valueToCode(block, 'baudrate', Blockly.Arduino.ORDER_ATOMIC);
   var serial = block.getFieldValue('serial'); 
-  var dropdown_config = block.getFieldValue('config');
-  Blockly.Arduino.setups_['Serial.begin'] = serial+'.begin(%1, %2);'.replace("%1", value_baudrate).replace("%2", dropdown_config);
+  var config = block.getFieldValue('config');
+  
+  if ('setupsTop_' in Blockly.Arduino)
+	Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+", "+config+");\n  delay(10);";
+  else
+	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+", "+config+");\n  delay(10);";
+
   return '';
 };
 
