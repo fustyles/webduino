@@ -911,6 +911,7 @@ Blockly.Msg["AMB82_MINI_MP4_BEGIN"] = "Begin";
 Blockly.Msg["AMB82_MINI_MP4_PAUSE"] = "Pause"
 Blockly.Msg["AMB82_MINI_MP4_RESUME"] = "Resume"
 Blockly.Msg["AMB82_MINI_MP4_END"] = "End";
+Blockly.Msg["AMB82_MINI_MP4_WAITING"] = "Execute during video recording";
 Blockly.Msg["AMB82_MINI_MP4_STATE"] = "State";
 Blockly.Msg["AMB82_MINI_FILENAME"] = "File name";
 Blockly.Msg["AMB82_MINI_FILEDURATION"] = "File length(s)";

@@ -5713,7 +5713,9 @@ Blockly.Blocks['amb82_mini_mp4_initial'] = {
 		.setAlign(Blockly.ALIGN_RIGHT);	
     this.appendValueInput("filecount")
         .appendField(Blockly.Msg["AMB82_MINI_FILECOUNT"])	
-		.setAlign(Blockly.ALIGN_RIGHT);		
+		.setAlign(Blockly.ALIGN_RIGHT);
+	this.appendStatementInput("waiting")
+		.appendField(Blockly.Msg["AMB82_MINI_MP4_WAITING"]);		
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -5745,7 +5747,7 @@ Blockly.Blocks['amb82_mini_mp4_state'] = {
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["AMB82_MINI_MP4_BEGIN"],"begin"],		
 			[Blockly.Msg["AMB82_MINI_MP4_END"],"end"]
-		]), "state");			
+		]), "state");		
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);

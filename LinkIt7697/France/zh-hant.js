@@ -906,6 +906,7 @@ Blockly.Msg["AMB82_MINI_MP4_BEGIN"] = "開始";
 Blockly.Msg["AMB82_MINI_MP4_PAUSE"] = "暫停"
 Blockly.Msg["AMB82_MINI_MP4_RESUME"] = "恢復"
 Blockly.Msg["AMB82_MINI_MP4_END"] = "結束";
+Blockly.Msg["AMB82_MINI_MP4_WAITING"] = "錄影中執行";
 Blockly.Msg["AMB82_MINI_MP4_STATE"] = "狀態";
 Blockly.Msg["AMB82_MINI_FILENAME"] = "檔名";
 Blockly.Msg["AMB82_MINI_FILEDURATION"] = "長度(秒)";
