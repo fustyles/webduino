@@ -4983,7 +4983,7 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 	Blockly.Arduino.setups_.write_peri_reg = "";
 	
 	if (type=="VideoOnly") {
-		Blockly.Arduino.definitions_['amb82_mini_video_initial_mp4'] = '#include "StreamIO.h"\n#include "VideoStream.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\nString mp4Type = "'+type+'";\n';
+		Blockly.Arduino.definitions_['amb82_mini_video_initial_mp4'] = '#include "StreamIO.h"\n#include "VideoStream.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\n';
 											
 		Blockly.Arduino.definitions_.amb82_mini_rtsp=   'void recordMP4() {\n'+
 															'  config.setRotation('+rotation+');\n'+
@@ -5014,7 +5014,7 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 															'  Camera.videoDeinit();\n'+															
 														'}\n';												
 	} else if (type=="SingleVideoWithAudio") {
-		Blockly.Arduino.definitions_['amb82_mini_video_initial_mp4'] = '#include "StreamIO.h"\n#include "VideoStream.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting configV(amb82_CHANNEL);\nString mp4Type = "'+type+'";\n';
+		Blockly.Arduino.definitions_['amb82_mini_video_initial_mp4'] = '#include "StreamIO.h"\n#include "VideoStream.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting configV(amb82_CHANNEL);\n';
 
 											
 		Blockly.Arduino.definitions_.amb82_mini_rtsp=   'void recordMP4() {\n'+
@@ -5062,7 +5062,7 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 															'  Camera.videoDeinit();\n'+														
 														'}\n';											
 	} else if (type=="AudioOnly") {
-		Blockly.Arduino.definitions_['amb82_mini_video_initial_mp4'] = '#include "StreamIO.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "MP4Recording.h"\nString mp4Type = "'+type+'";\n';
+		Blockly.Arduino.definitions_['amb82_mini_video_initial_mp4'] = '#include "StreamIO.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "MP4Recording.h"\n';
 											
 		Blockly.Arduino.definitions_.amb82_mini_rtsp =	'void recordMP4() {\n'+
 															'  AudioSetting configA('+audio+');\n'+
