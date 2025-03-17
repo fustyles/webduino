@@ -5329,7 +5329,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 	
   if (framesize=="VIDEO_CUSTOM")
 	framesize = width +", "+height;
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nchar ssid[] = '+ssid+';\nchar pass[] = '+pass+';\nchar ssid_ap[] = '+ssid_ap+';\nchar pass_ap[] = '+pass_ap+';\nchar channel_ap[] = "2";\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\nWiFiServer server(80);\nWiFiServer server81(81);\n';
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nchar ssid[] = '+ssid+';\nchar pass[] = '+pass+';\nchar ssid_ap[] = '+ssid_ap+';\nchar pass_ap[] = '+pass_ap+';\nchar channel_ap[] = "2";\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\nWiFiServer server(80);\nWiFiServer server81(81);WiFiServer server82(82);\n';
 
   Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 	
@@ -5417,7 +5417,10 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'      Serial.println(WiFi.localIP());\n'+
 			'      Serial.print("Stream: http://");\n'+
 			'      Serial.print(WiFi.localIP());\n'+
-			'      Serial.println(":81");\n'+			
+			'      Serial.println(":81");\n'+
+			'      Serial.print("Still: http://");\n'+
+			'      Serial.print(WiFi.localIP());\n'+
+			'      Serial.println(":82");\n'+				
 			'      break;\n'+
 			'    }\n'+
 			'  }\n'+
@@ -5430,7 +5433,8 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'  Camera.videoInit();\n'+
 			'  Camera.channelBegin(0);\n'+
 			'  server.begin();\n'+
-			'  server81.begin();\n'+			
+			'  server81.begin();\n'+	
+			'  server82.begin();\n'+			
 			'}\n';
 
 	Blockly.Arduino.definitions_.getRequest = ''+
@@ -5569,7 +5573,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'            currentLine += c;\n'+
 			'          }\n'+
 			'  		   \n'+
-			'          if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP")!=-1)) {\n'+
+			'          if (currentLine.indexOf(" HTTP")!=-1) {\n'+
 			'            currentLine="";\n'+
 			'          }\n'+
 			'        }\n'+
@@ -5578,7 +5582,62 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'      client81.stop();\n'+
 			'    }\n'+
 			'  }\n'+
-			'}\n';			
+			'}\n';
+
+	Blockly.Arduino.definitions_.getRequest82 = ''+
+			'void getRequest82(void *param) {\n'+
+			'  (void)param;\n'+
+			'  while(1){\n'+
+			'    WiFiClient client82 = server82.available();\n'+
+			'    \n'+
+			'    if (client82) {\n'+
+			'      String currentLine = "";\n'+
+			'  	   \n'+
+			'      while (client82.connected()) {\n'+
+			'        if (client82.available()) {\n'+
+			'          char c = client82.read();\n'+
+			'          if (c == \'\\n\') {\n'+
+			'            if (currentLine.length() == 0) {\n'+  
+			'   	        String head = "--Taiwan\\r\\nContent-Type: image/jpeg\\r\\n\\r\\n";\n'+ 
+			'   	        client82.println("HTTP/1.1 200 OK");\n'+ 
+			'   	        client82.println("Access-Control-Allow-Origin: *");\n'+
+			'   	        client82.println("Connection: keep-alive");\n'+		
+			'   	        client82.println("Content-Type: multipart/x-mixed-replace; boundary=Taiwan");\n'+ 
+			'   	        client82.println();\n'+ 
+			'   	        	Camera.getImage(0, &img_addr, &img_len);\n'+ 
+			'   	        	uint8_t *fbBuf = (uint8_t*)img_addr;\n'+ 
+			'   	        	size_t fbLen = img_len;\n'+ 
+			'   	        	client82.print(head);\n'+ 
+			'   	        	for (size_t n=0;n<fbLen;n=n+1024) {\n'+ 
+			'   	        	  	if (n+1024<fbLen) {\n'+ 
+			'   	        	   		client82.write(fbBuf, 1024);\n'+ 
+			'   	        	   		fbBuf += 1024;\n'+ 
+			'   	        		}\n'+ 
+			'   	        		else if (fbLen%1024>0) {\n'+ 
+			'   	        			size_t remainder = fbLen%1024;\n'+ 
+			'   	        			client82.write(fbBuf, remainder);\n'+ 
+			'   	        		}\n'+ 
+			'   	        	}\n'+ 
+			'   	        	client82.print("\\r\\n");\n'+
+			'   	        break;\n'+
+			'            } else {\n'+
+			'              currentLine = "";\n'+
+			'            }\n'+
+			'          }\n'+ 
+			'          else if (c != \'\\r\') {\n'+
+			'            currentLine += c;\n'+
+			'          }\n'+
+			'  		   \n'+
+			'          if (currentLine.indexOf(" HTTP")!=-1) {\n'+
+			'            currentLine="";\n'+
+			'          }\n'+
+			'        }\n'+
+			'      }\n'+
+			'      delay(1);\n'+
+			'      client82.stop();\n'+
+			'    }\n'+
+			'  }\n'+
+			'}\n';						
 
 	Blockly.Arduino.setups_.server_getrequest = ''+	
 			'if (xTaskCreate(getRequest, (const char *)"getRequest", 1024, NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
@@ -5586,7 +5645,10 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'}\n  '+		
 			'if (xTaskCreate(getRequest81, (const char *)"getRequest81", 1024, NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
 			'	Serial.println("Create getRequest81 task failed");\n  '+
-			'}\n';	
+			'}\n'+
+			'if (xTaskCreate(getRequest82, (const char *)"getRequest82", 1024, NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
+			'	Serial.println("Create getRequest82 task failed");\n  '+
+			'}\n';				
 	
     return '';
 };
@@ -6602,6 +6664,8 @@ Blockly.Arduino['knnclassifier_esp32cam'] = function(block) {
 				jsfile = 'knn-classifier_esp32cam_stream.js';
 			}
 		}
+		else
+			jsfile = 'knn-classifier_esp32cam_stream.js';
 	}
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
 	var javascript_recognition = Blockly.Arduino.statementToCode(block, 'javascript_recognition');
@@ -6679,6 +6743,8 @@ Blockly.Arduino['tesseract_esp32cam'] = function(block) {
 				jsfile = 'tesseract_esp32cam_stream.js';
 			}
 		}
+		else
+			jsfile = 'tesseract_esp32cam_stream.js';
 	}	
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
 	var javascript_recognition = Blockly.Arduino.statementToCode(block, 'javascript_recognition');
@@ -6735,6 +6801,8 @@ Blockly.Arduino['posenet_esp32cam'] = function(block) {
 				jsfile = 'posenet_esp32cam_stream.js';
 			}
 		}
+		else
+			jsfile = 'posenet_esp32cam_stream.js';
 	}	
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
 	var javascript_recognition = Blockly.Arduino.statementToCode(block, 'javascript_recognition');
@@ -10771,6 +10839,8 @@ Blockly.Arduino['hands_esp32cam'] = function(block) {
 				jsfile = 'hands_esp32cam_stream.js';
 			}
 		}
+		else
+			jsfile = 'hands_esp32cam_stream.js';
 	}	
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
 	var javascript_recognition = Blockly.Arduino.statementToCode(block, 'javascript_recognition');
@@ -23856,6 +23926,8 @@ Blockly.Arduino['trackingcolor_esp32cam'] = function(block) {
 				jsfile = 'trackingcolor_esp32cam_stream.js';
 			}
 		}
+		else
+			jsfile = 'trackingcolor_esp32cam_stream.js';
 	}	
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
 	var javascript_recognition = Blockly.Arduino.statementToCode(block, 'javascript_recognition');
@@ -23951,6 +24023,8 @@ Blockly.Arduino['cocossd_esp32cam'] = function(block) {
 				jsfile = 'coco-ssd_esp32cam_stream.js';
 			}
 		}
+		else
+			jsfile = 'coco-ssd_esp32cam_stream.js';
 	}
 	
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
@@ -24053,6 +24127,8 @@ Blockly.Arduino['holistic_esp32cam'] = function(block) {
 				jsfile = 'holistic_esp32cam_stream.js';
 			}
 		}
+		else
+			jsfile = 'holistic_esp32cam_stream.js';
 	}
 		
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
@@ -24253,6 +24329,8 @@ Blockly.Arduino['teachablemachine_esp32cam'] = function(block) {
 				jsfile = 'teachablemachine_esp32cam_stream.js';
 			}
 		}
+		else
+			jsfile = 'teachablemachine_esp32cam_stream.js';
 	}	
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
 	var javascript_teachablemachine = Blockly.Arduino.statementToCode(block, 'javascript_teachablemachine');
@@ -25016,6 +25094,8 @@ Blockly.Arduino['faceapidetect_esp32cam'] = function(block) {
 				jsfile = 'faceapidetect_esp32cam_stream.js';
 			}
 		}
+		else
+			jsfile = 'faceapidetect_esp32cam_stream.js';
 	}	
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
 	var javascript_faceapidetect = Blockly.Arduino.statementToCode(block, 'javascript_faceapidetect');
@@ -25095,6 +25175,8 @@ Blockly.Arduino['faceapirecognize_esp32cam'] = function(block) {
 				jsfile = 'faceapi-recognition_esp32cam_stream.js';
 			}
 		}
+		else
+			jsfile = 'faceapi-recognition_esp32cam_stream.js';
 	}	
 	var javascript_initial = Blockly.Arduino.statementToCode(block, 'javascript_initial');
 	var javascript_faceapirecognize = Blockly.Arduino.statementToCode(block, 'javascript_faceapirecognize');
