@@ -13126,6 +13126,7 @@ Blockly.Arduino['esp32_telegrambot_sendmessage_custom'] = function(block) {
 		'       //Serial.println(getBody);\n'+		
 		'       if (getBody.length()>0) break;\n'+
 		'    }\n'+
+		'    client.stop();\n'+		
 		'  }\n'+		
 		'}\n';  
   
