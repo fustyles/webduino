@@ -22378,6 +22378,21 @@ Blockly.Blocks['servermodule_parameter_stream_url'] = {
   }
 };
 
+
+Blockly.Blocks['servermodule_parameter_split'] = {
+  init: function () {
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SPLIT_SHOW);
+	  this.appendValueInput("cmd")
+		  .setCheck(null)
+		  .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_ADDRESS_SHOW);  
+	  this.setInputsInline(true);
+	  this.setPreviousStatement(true);
+	  this.setNextStatement(true);
+	  this.setColour(Blockly.Msg["HUE_12"]);
+  }
+};
+
 Blockly.Blocks['esp32_pinmode'] = {
   init: function() {
 	this.appendDummyInput()

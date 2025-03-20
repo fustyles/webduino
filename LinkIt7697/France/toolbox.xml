@@ -682,6 +682,13 @@
 				  </block>
 				</value>		
 			  </block>
+			  <block type="servermodule_parameter_split">
+				<value name="cmd">
+				  <block type="text">
+					<field name="TEXT">?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
+				  </block>
+				</value>		
+			  </block>			  
 			  <!--
 			  <block type="servermodule_parameter_stream">
 				<value name="cmd">
@@ -2506,6 +2513,13 @@
 				  </block>
 				</value>		
 			  </block>
+			  <block type="servermodule_parameter_split">
+				<value name="cmd">
+				  <block type="text">
+					<field name="TEXT">?cmd=p1;p2;p3;p4;p5;p6;p7;p8;p9</field>
+				  </block>
+				</value>		
+			  </block>			  
 			  <!--
 			  <block type="servermodule_parameter_stream">
 				<value name="cmd">
