@@ -1717,6 +1717,7 @@ Blockly.Blocks['amb82_mini_motiondetection_rtsp'] = {
 		.appendField(Blockly.Msg["AMB82_MINI_MODE"])
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["AMB82_MINI_RTSP"],"rtsp"],
+			[Blockly.Msg["AMB82_MINI_TCP"]+" (PORT:81)","tcp"],
 			[Blockly.Msg["AMB82_MINI_STILL"],"still"]
 		], this.validate), "mode");
 	this.appendDummyInput("size")
@@ -3370,6 +3371,7 @@ Blockly.Blocks['amb82_mini_facedetectionrecognition_rtsp'] = {
 		.appendField(Blockly.Msg["AMB82_MINI_MODE"])
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["AMB82_MINI_RTSP"],"rtsp"],
+			[Blockly.Msg["AMB82_MINI_TCP"]+" (PORT:81)","tcp"],
 			[Blockly.Msg["AMB82_MINI_STILL"],"still"]
 		], this.validate), "mode");
 	this.appendDummyInput("size")
@@ -3519,6 +3521,7 @@ Blockly.Blocks['amb82_mini_facedetection_rtsp'] = {
 		.appendField(Blockly.Msg["AMB82_MINI_MODE"])
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["AMB82_MINI_RTSP"],"rtsp"],
+			[Blockly.Msg["AMB82_MINI_TCP"]+" (PORT:81)","tcp"],
 			[Blockly.Msg["AMB82_MINI_STILL"],"still"]
 		], this.validate), "mode");
 	this.appendDummyInput("size")
@@ -3891,6 +3894,7 @@ Blockly.Blocks['amb82_mini_emotionclassification_rtsp'] = {
 		.appendField(Blockly.Msg["AMB82_MINI_MODE"])
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["AMB82_MINI_RTSP"],"rtsp"],
+			[Blockly.Msg["AMB82_MINI_TCP"]+" (PORT:81)","tcp"],
 			[Blockly.Msg["AMB82_MINI_STILL"],"still"]
 		], this.validate), "mode");
 	this.appendDummyInput("size")
@@ -4336,7 +4340,7 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp'] = {
 			[Blockly.Msg["AMB82_MINI_RTSP"],"rtsp"],
 			[Blockly.Msg["AMB82_MINI_RTSP_STILL"],"still"],
 			[Blockly.Msg["AMB82_MINI_STILL"],""],
-			[Blockly.Msg["AMB82_MINI_TCP"],"tcp"],
+			[Blockly.Msg["AMB82_MINI_TCP"]+" (PORT:81)","tcp"],
 			[Blockly.Msg["AMB82_MINI_USB_UVCD"],"uvc"]
 		], this.validate), "mode");
 	this.appendDummyInput("size")

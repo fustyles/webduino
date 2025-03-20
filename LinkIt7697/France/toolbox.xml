@@ -3499,6 +3499,7 @@
 				</value>			  
 			  </block>			  
 		</category>	
+		<!--
 		<category name="amb82_mini_EmotionClassification">				
 			  <block type="amb82_mini_emotionclassification_rtsp">		  
 			  </block>
@@ -3516,6 +3517,7 @@
 			  <block type="amb82_mini_emotionclassification_rtsp_emotion">		  
 			  </block>			  
 		</category>	
+		-->
 		<sep id="category_sep"></sep>
 		<category name="amb82_mini_BluetoothUart">
 			<block type="amb82_mini_webbluetooth_uuid">
