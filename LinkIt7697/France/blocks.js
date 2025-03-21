@@ -2258,7 +2258,15 @@ Blockly.Blocks['amb82_mini_file_openai_whisper'] = {
 			["MPGA (audio/mpga)","audio/mpga"],
 			["WAV (audio/wav)","audio/wav"],
 			["WEBM (audio/webm)","audio/webm"]
-		]), "mimetype_");		
+		]), "mimetype_");
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_MODEL"])
+		.appendField(new Blockly.FieldDropdown([
+			["whisper-1","whisper-1"],
+			["gpt-4o-mini-transcribe","gpt-4o-mini-transcribe"],
+			["gpt-4o-transcribe","gpt-4o-transcribe"]
+		]), "model_");		
 	this.setInputsInline(false);
 	this.setOutput(true, null);
 	this.setColour(Blockly.Msg["HUE_28"]);

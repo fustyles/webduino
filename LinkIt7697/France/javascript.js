@@ -1929,7 +1929,8 @@ Blockly.Arduino['amb82_mini_file_googletts'] = function(block) {
 Blockly.Arduino['amb82_mini_file_openai_whisper'] = function(block) {
 	var key = Blockly.Arduino.valueToCode(block, 'key_', Blockly.Arduino.ORDER_ATOMIC);
 	var filename = Blockly.Arduino.valueToCode(block, 'filename_', Blockly.Arduino.ORDER_ATOMIC);
-    var mimetype = block.getFieldValue('mimetype_');	
+    var mimetype = block.getFieldValue('mimetype_');
+	var model = block.getFieldValue('model_');	
 	
 	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';	
 	Blockly.Arduino.definitions_['amb82_mini_file_sendAudioToOpenAIWhisper'] = ''
@@ -1944,7 +1945,7 @@ Blockly.Arduino['amb82_mini_file_openai_whisper'] = function(block) {
            +'    Serial.println("Connect to api.openai.com");\n'
            +'    if (client.connect("api.openai.com", 443)) {\n'
            +'      Serial.println("Connection successful");\n'
-           +'      String head = "--Taiwan\\r\\nContent-Disposition: form-data; name=\\"model\\"\\r\\n\\r\\nwhisper-1\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"response_format\\"\\r\\n\\r\\nverbose_json\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"file\\"; filename=\\""+filename+"\\"\\r\\nContent-Type: "+mimeType+"\\r\\n\\r\\n";\n'
+           +'      String head = "--Taiwan\\r\\nContent-Disposition: form-data; name=\\"model\\"\\r\\n\\r\\n'+model+'\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"response_format\\"\\r\\n\\r\\nverbose_json\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"file\\"; filename=\\""+filename+"\\"\\r\\nContent-Type: "+mimeType+"\\r\\n\\r\\n";\n'
            +'      String tail = "\\r\\n--Taiwan--\\r\\n";\n'
            +'      uint16_t totalLen = head.length() + fileSize + tail.length();\n'
            +'      client.println("POST /v1/audio/transcriptions HTTP/1.1");\n'
