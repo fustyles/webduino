@@ -99,7 +99,7 @@ Blockly.Blocks['gemini_chat_image_request'] = {
   this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(40);
+  this.setColour(90);
   }
 };
 
