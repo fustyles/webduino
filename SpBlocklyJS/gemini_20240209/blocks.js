@@ -245,3 +245,19 @@ Blockly.Blocks['gemini_chat_content_file_remote_read'] = {
   this.setHelpUrl("https://ai.google.dev/gemini-api/docs/document-processing?hl=zh-tw");	  
   }
 };
+
+Blockly.Blocks['gemini_generate_image'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.GEMINI_CHAT_SHOW)  
+	  .appendField(Blockly.Msg.GEMINI_GENERATE_IMAGE_SHOW);
+  this.appendValueInput("words")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW);
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(90);
+  }
+};

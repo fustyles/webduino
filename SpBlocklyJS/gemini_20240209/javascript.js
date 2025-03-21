@@ -80,3 +80,10 @@ Blockly.JavaScript['gemini_chat_content_file_remote_read'] = function (block) {
   var code = 'await gemini_chat_file_request("'+type+'", '+url+', '+words+');\n';
   return code;
 };
+
+Blockly.JavaScript['gemini_generate_image'] = function (block) {
+  var words = Blockly.JavaScript.valueToCode(block, 'words', Blockly.JavaScript.ORDER_ATOMIC)||"";	
+  
+  var code = 'await gemini_generate_image_request('+words+');\n';
+  return code; 
+};

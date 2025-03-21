@@ -106,6 +106,13 @@ var catGEMINI = '<xml>'+
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+
-'  </block>'+  
+'  </block>'+
+'  <block type="gemini_generate_image">'+
+'    <value name="words">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+   
 '</category>'+
 '</xml>';
