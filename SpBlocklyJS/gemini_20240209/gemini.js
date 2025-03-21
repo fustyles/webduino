@@ -344,3 +344,52 @@ async function gemini_generate_image_request(message) {
 		if (typeof gemini_chat_response === "function") gemini_chat_response(JSON.stringify(error));
     }
 }
+
+async function gemini_search_request(message) {
+    try {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${Gemini_model}:generateContent?key=${Gemini_api_key}`;
+        const data = {
+            contents: [
+                {
+                    parts: [
+                        {
+                            text: message
+                        }
+                    ]
+                }
+            ],
+			tools: [
+				{
+					google_search: {}
+				}
+			]
+        };
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+
+        const response = await fetch(url, options);
+        const json = await response.json();
+        let result;   
+        if ('error' in json) {
+            result = json.error.message;
+        } else {
+			result = json.candidates[0].content.parts[0].text;
+            var char_request = {};
+            char_request.role = "model";
+            char_request.parts = [];
+            var char_request_text = {};
+            char_request_text.text = result;
+            char_request.parts.push(char_request_text);
+            chatHistory["history"].push(char_request);
+		}
+		if (typeof gemini_chat_response === "function") gemini_chat_response(result);
+    } catch (error) {
+		if (typeof gemini_chat_response === "function") gemini_chat_response(JSON.stringify(error));
+    }
+}

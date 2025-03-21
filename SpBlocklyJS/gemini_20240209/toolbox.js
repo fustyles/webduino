@@ -113,6 +113,13 @@ var catGEMINI = '<xml>'+
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+
+'  </block>'+
+'  <block type="gemini_search">'+
+'    <value name="words">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
 '  </block>'+   
 '</category>'+
 '</xml>';

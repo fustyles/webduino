@@ -98,7 +98,7 @@ Blockly.Blocks['gemini_chat_image_request'] = {
   this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(90);
+  this.setColour(40);
   }
 };
 
@@ -251,6 +251,22 @@ Blockly.Blocks['gemini_generate_image'] = {
   this.appendDummyInput()
 	  .appendField(Blockly.Msg.GEMINI_CHAT_SHOW)  
 	  .appendField(Blockly.Msg.GEMINI_GENERATE_IMAGE_SHOW);
+  this.appendValueInput("words")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW);
+  this.setInputsInline(true);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(90);
+  }
+};
+
+Blockly.Blocks['gemini_search'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.GEMINI_CHAT_SHOW)  
+	  .appendField(Blockly.Msg.GEMINI_SEARCH_SHOW);
   this.appendValueInput("words")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
