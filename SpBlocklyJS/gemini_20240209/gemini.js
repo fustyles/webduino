@@ -379,7 +379,7 @@ async function gemini_search_request(message) {
         if ('error' in json) {
             result = json.error.message;
         } else {
-			result = json.candidates[0].content.parts[0].text;
+            result = json.candidates[0].content.parts[0].join("\n");;
             var char_request = {};
             char_request.role = "model";
             char_request.parts = [];
