@@ -22000,6 +22000,26 @@ Blockly.Blocks['esp32_myfirmata_bluetooth'] = {
   }
 };
 
+Blockly.Blocks['servermodule_parameter_split'] = {
+  init: function () {
+	  this.appendDummyInput()
+		  .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SPLIT_SHOW);
+      this.appendDummyInput()
+          .setAlign(Blockly.ALIGN_RIGHT) 
+          .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.SERVERMODULE_PARAMETER_SPLIT_DEFAULT_SHOW, "false"],		
+			[Blockly.Msg.SERVERMODULE_PARAMETER_SPLIT_SEPARATOR_SHOW, "true"]			
+		  ]), "type");		  
+	  this.appendValueInput("cmd")
+		  .setCheck(null)
+		  .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SPLIT_STRING_SHOW);  
+	  this.setInputsInline(true);
+	  this.setPreviousStatement(true);
+	  this.setNextStatement(true);
+	  this.setColour(Blockly.Msg["HUE_21"]);
+  }
+};
+
 Blockly.Blocks['servermodule_cmd'] = {
   init: function() {
 	this.appendDummyInput()
@@ -22375,21 +22395,6 @@ Blockly.Blocks['servermodule_parameter_stream_url'] = {
 	this.setInputsInline(true);
     this.setOutput(true, null);  
     this.setColour(Blockly.Msg["HUE_12"]);
-  }
-};
-
-
-Blockly.Blocks['servermodule_parameter_split'] = {
-  init: function () {
-	  this.appendDummyInput()
-		  .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SPLIT_SHOW);
-	  this.appendValueInput("cmd")
-		  .setCheck(null)
-		  .appendField(Blockly.Msg.SERVERMODULE_PARAMETER_SET_ADDRESS_SHOW);  
-	  this.setInputsInline(true);
-	  this.setPreviousStatement(true);
-	  this.setNextStatement(true);
-	  this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
 
