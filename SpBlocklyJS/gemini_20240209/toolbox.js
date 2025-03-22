@@ -120,6 +120,18 @@ var catGEMINI = '<xml>'+
 '        <field name="TEXT"></field>'+
 '      </block>'+
 '    </value>'+
+'  </block>'+ 
+'  <block type="gemini_youtube">'+
+'    <value name="url">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+  
+'    <value name="words">'+
+'      <block type="text">'+
+'        <field name="TEXT">Can you summarize this video?</field>'+
+'      </block>'+
+'    </value>'+
 '  </block>'+   
 '</category>'+
 '</xml>';
