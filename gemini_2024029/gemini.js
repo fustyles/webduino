@@ -157,7 +157,7 @@ function gemini_chat_content_file_remote_insert(url) {
 		async: false,
 		success: function (data){
 			if (data!="")
-				gemini_chat_insert(data, "");			
+				gemini_chat_insert(data, "ok");			
 		},
   		error: function(jqXHR, textStatus, errorThrown){
       			//console.log(jqXHR);
