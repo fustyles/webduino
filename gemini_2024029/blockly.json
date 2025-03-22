@@ -1,5 +1,5 @@
 {
-  "types": ["gemini_chat_initial","gemini_chat_set","gemini_chat_request","gemini_chat_image_request","gemini_generate_image","gemini_chat_response","gemini_chat_response_data","gemini_chat_insert","gemini_chat_clear","gemini_chat_content_file","gemini_chat_content_file_remote","gemini_chat_content_file_remote_insert"],
+  "types": ["gemini_chat_initial","gemini_chat_set","gemini_chat_request","gemini_chat_image_request","gemini_generate_image","gemini_search","gemini_chat_response","gemini_chat_response_data","gemini_chat_insert","gemini_chat_clear","gemini_chat_content_file","gemini_chat_content_file_remote","gemini_chat_content_file_remote_insert"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
