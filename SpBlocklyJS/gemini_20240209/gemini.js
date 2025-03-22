@@ -394,10 +394,14 @@ async function gemini_youtube_request(prompt, ytUrl) {
         const data = {
             contents: [
                 {
-			parts:[
-			  {file_data: {file_uri: ytUrl}},
-			  {text: prompt}
-			]
+		    parts: [
+			  {text: prompt},				
+			  {
+			    file_data: {
+				    file_url: ytUrl
+			    }
+			  }
+                     ]
                 }
             ]
         };
