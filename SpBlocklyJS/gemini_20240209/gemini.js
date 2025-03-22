@@ -398,7 +398,7 @@ async function gemini_youtube_request(prompt, ytUrl) {
 			  {text: prompt},				
 			  {
 			    file_data: {
-				    file_url: ytUrl
+				    file_uri: ytUrl
 			    }
 			  }
                      ]
