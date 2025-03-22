@@ -395,7 +395,7 @@ async function gemini_youtube_request(prompt, url) {
             contents: [
                 {
 			parts:[
-			  {file_data: {"file_uri": url}},
+			  {file_data: {file_uri: url}},
 			  {text: prompt}
 			]
                 }
