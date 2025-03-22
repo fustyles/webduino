@@ -94,3 +94,11 @@ Blockly.JavaScript['gemini_search'] = function (block) {
   var code = 'await gemini_search_request('+words+');\n';
   return code; 
 };
+
+Blockly.JavaScript['gemini_youtube'] = function (block) {
+  var words = Blockly.JavaScript.valueToCode(block, 'words', Blockly.JavaScript.ORDER_ATOMIC)||"";	
+  var url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC)||"";
+	
+  var code = 'await gemini_youtube_request('+words+', '+url+');\n';
+  return code; 
+};
