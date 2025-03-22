@@ -277,3 +277,23 @@ Blockly.Blocks['gemini_search'] = {
   this.setColour(90);
   }
 };
+
+Blockly.Blocks['gemini_youtube'] = {
+  init: function() {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.GEMINI_CHAT_SHOW)  
+	  .appendField("Youtube");
+  this.appendValueInput("url")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.GEMINI_CHAT_YOUTUBE_SHOW);	  
+  this.appendValueInput("words")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW);	  
+  this.setInputsInline(false);	  
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(90);
+  }
+};
