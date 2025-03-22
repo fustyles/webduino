@@ -381,7 +381,6 @@ async function gemini_search_request(prompt) {
         } else {
             result = json.candidates[0].content.parts[0].text;
 	    gemini_chat_insert(prompt, result);
-	    console.log(chatHistory["history"]);
         }
         if (typeof gemini_chat_response === "function") gemini_chat_response(result);
     } catch (error) {
