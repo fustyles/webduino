@@ -344,3 +344,46 @@ async function gemini_generate_image_request(message) {
 		if (typeof gemini_chat_response === "function") gemini_chat_response(JSON.stringify(error));
     }
 }
+
+async function gemini_search_request(prompt) {
+    try {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${Gemini_model}:generateContent?key=${Gemini_api_key}`;
+        const data = {
+            contents: [
+                {
+                    parts: [
+                        {
+                            text: prompt
+                        }
+                    ]
+                }
+            ],
+			tools: [
+				{
+					google_search: {}
+				}
+			]
+        };
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+
+        const response = await fetch(url, options);
+        const json = await response.json();
+        let result;   
+        if ('error' in json) {
+            result = json.error.message;
+        } else {
+            result = json.candidates[0].content.parts[0].text;
+	    gemini_chat_insert(prompt, result);
+        }
+        if (typeof gemini_chat_response === "function") gemini_chat_response(result);
+    } catch (error) {
+        if (typeof gemini_chat_response === "function") gemini_chat_response(JSON.stringify(error));
+    }
+}
