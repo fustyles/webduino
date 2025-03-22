@@ -388,14 +388,14 @@ async function gemini_search_request(prompt) {
     }
 }
 
-async function gemini_youtube_request(prompt, url) {
+async function gemini_youtube_request(prompt, ytUrl) {
     try {
         const url = `https://generativelanguage.googleapis.com/v1beta/models/${Gemini_model}:generateContent?key=${Gemini_api_key}`;
         const data = {
             contents: [
                 {
 			parts:[
-			  {file_data: {file_uri: url}},
+			  {file_data: {file_uri: ytUrl}},
 			  {text: prompt}
 			]
                 }
