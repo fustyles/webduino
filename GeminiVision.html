@@ -22,8 +22,8 @@ https://fustyles.github.io/webduino/GeminiVision.html
 Gemini API Key：<input type="text" id="apiKey" size="50" value=""><br>
 Prompt：<textarea id="prompt"  cols="56" rows="6">這是學生的作文，請分析影像中的文字內容，並以作文老師的身分提供簡潔的評論。</textarea><br>
 <input type="file" id="selectImage"></input><br><br>
-<input type="button" value="執行" onclick="div_set('result', 'innerHTML_markdown', 'Please wait...');DetectImage();"><br>
-<div id="gamediv_result" style="color:blue;width:500px;height:450px;overflow:auto;"></div>
+<input type="button" value="執行" onclick="result.innerHTML = marked.parse('Please wait...');DetectImage();"><br>
+<div id="result" style="color:blue;width:500px;height:450px;overflow:auto;"></div>
 </div>
 <div style="position:absolute;left:510px;top:0px">
 <img id="originImage">
@@ -34,7 +34,7 @@ Prompt：<textarea id="prompt"  cols="56" rows="6">這是學生的作文，請�
 <script>
 var selectImage = document.getElementById('selectImage');
 var originImage = document.getElementById('originImage'); 
-var result = document.getElementById('gamediv_result');
+var result = document.getElementById('result');
 var apikey = document.getElementById("apiKey");
 var prompt = document.getElementById("prompt");
   
@@ -48,7 +48,7 @@ const main = async () => {
     await delay(2);
     async function gemini_chat_response(gemini_chat_data) {
 		console.log(gemini_chat_response_br(gemini_chat_data, 'n'));
-        div_set('result', "innerHTML_markdown", (gemini_chat_response_br(gemini_chat_data, 'n')));
+		result.innerHTML = marked.parse(gemini_chat_response_br(gemini_chat_data, 'n')); 
     }
     window.gemini_chat_response = gemini_chat_response;
 };
