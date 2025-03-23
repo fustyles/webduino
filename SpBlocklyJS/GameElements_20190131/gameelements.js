@@ -4205,8 +4205,7 @@ function HextoRgb(color) {
 			var i=-1;
 			var userMedia = "";
 			devices.forEach(function(device) {
-				console.log(device);
-				if (device.kind=="videoinput"&&device.label.includes("facing back")&&input_facing=="back") {
+				if (device.kind=="videoinput"&&(device.label.includes("facing back")||device.label.includes("environment"))&&input_facing=="back") {
 					i++;
 					if (i==input_videoInputIndex) {
 						if (device.deviceId=='')
