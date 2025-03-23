@@ -18,13 +18,18 @@ https://fustyles.github.io/webduino/GeminiVision.html
 	<script src='https://fustyles.github.io/webduino/SpBlocklyJS/gemini_20240209/gemini.js'></script>
 </head>
 <body>
+<div style="position:absolute;left:5px;top:0px">
 Gemini API Key：<input type="text" id="apiKey" size="50" value=""><br>
-Prompt：<input type="text" id="prompt"  size="100" value="這是學生的作文，請分析影像中的文字內容，並以作文老師的身分提供簡潔的評論。"><br>
-<input type="file" id="selectImage"></input><input type="button" value="執行" onclick="div_set('result', 'innerHTML_markdown', 'wait...');DetectImage();">
-<br>
-<div id="gamediv_result" style="color: red;width: 800px;height: 250px;overflow: auto;"></div>
-<br>
+Prompt：<textarea id="prompt"  cols="56" rows="6">這是學生的作文，請分析影像中的文字內容，並以作文老師的身分提供簡潔的評論。</textarea><br>
+<input type="file" id="selectImage"></input><br><br>
+<input type="button" value="執行" onclick="div_set('result', 'innerHTML_markdown', 'Please wait...');DetectImage();"><br>
+<div id="gamediv_result" style="color:blue;width:500px;height:450px;overflow:auto;"></div>
+</div>
+<div style="position:absolute;left:510px;top:0px">
 <img id="originImage">
+</div>
+
+
   
 <script>
 var selectImage = document.getElementById('selectImage');
