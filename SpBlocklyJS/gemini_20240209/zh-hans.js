@@ -25,4 +25,4 @@ Blockly.Msg["GEMINI_CHAT_IMAGE_URL_SHOW"] = "图片网址";
 Blockly.Msg["GEMINI_CHAT_VISION_SHOW"] = "视觉分析";
 Blockly.Msg["GEMINI_GENERATE_IMAGE_SHOW"] = "文字生图";
 Blockly.Msg["GEMINI_SEARCH_SHOW"] = "搜寻";
-Blockly.Msg["GEMINI_CHAT_YOUTUBE_SHOW"] = "网址 (1hr)";
+Blockly.Msg["GEMINI_YOUTUBE_SHOW"] = "网址 (1hr)";
