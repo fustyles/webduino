@@ -255,7 +255,7 @@ Blockly.Blocks['gemini_generate_image'] = {
   this.appendValueInput("words")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW);
+      .appendField(Blockly.Msg["GEMINI_CHAT_PROMPT_SHOW"]);
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -271,7 +271,7 @@ Blockly.Blocks['gemini_search'] = {
   this.appendValueInput("words")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW);
+      .appendField(Blockly.Msg["GEMINI_CHAT_PROMPT_SHOW"]);
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
@@ -291,7 +291,7 @@ Blockly.Blocks['gemini_youtube'] = {
   this.appendValueInput("words")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW);	  
+      .appendField(Blockly.Msg["GEMINI_CHAT_PROMPT_SHOW"]);	  
   this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
