@@ -286,7 +286,7 @@ Blockly.Blocks['gemini_youtube'] = {
   this.appendValueInput("url")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.GEMINI_CHAT_YOUTUBE_SHOW);	  
+      .appendField(Blockly.Msg.GEMINI_YOUTUBE_SHOW);	  
   this.appendValueInput("words")
       .setCheck("String")
       .setAlign(Blockly.ALIGN_RIGHT)
