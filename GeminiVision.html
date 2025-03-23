@@ -42,7 +42,7 @@ const delay = (seconds) => {
     });
 };
 const main = async () => {
-    gemini_chat_initial('AIzaSyBe99HeLbDtq8i7xxBNcI1skHncDTpfiaE', "gemini-2.0-flash", 1000, 1.0, '你是繁體中文的助理。');
+    gemini_chat_initial('', "gemini-2.0-flash", 1000, 1.0, '你是繁體中文的助理。');
     await delay(2);
     async function gemini_chat_response(gemini_chat_data) {
 		console.log(gemini_chat_response_br(gemini_chat_data, 'n'));
