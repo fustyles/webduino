@@ -1,0 +1,84 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/5/2 23:00
+https://www.facebook.com/francefu
+
+Try it!
+https://fustyles.github.io/webduino/TensorFlow/Blazeface_image/Blazeface_image.html
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Headers' content='Origin, X-Requested-With, Content-Type, Accept'>
+	<meta http-equiv='Access-Control-Allow-Methods' content='GET,POST,PUT,DELETE,OPTIONS'>
+	<meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
+	<script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/marked.min.js'></script>
+	<script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script>
+	<script src='https://fustyles.github.io/webduino/SpBlocklyJS/gemini_20240209/gemini.js'></script>
+</head>
+<body>
+Gemini API Key：<input type="text" id="apiKey" size="50" value=""><br>
+Prompt：<input type="text" id="prompt"  size="100" value="這是國中三年級生的作文，請分析影像中的文字內容，並以作文老師的身分提供簡潔的評論。"><br>
+<input type="file" id="selectImage"></input><input type="button" value="執行" onclick="div_set('result', 'innerHTML_markdown', 'wait...');DetectImage();">
+<br>
+<div id="gamediv_result" style="color: red;width: 800px;height: 250px;overflow: auto;"></div>
+<br>
+<img id="originImage">
+  
+<script>
+var selectImage = document.getElementById('selectImage');
+var originImage = document.getElementById('originImage'); 
+var result = document.getElementById('gamediv_result');
+var apikey = document.getElementById("apiKey");
+var prompt = document.getElementById("prompt");
+  
+const delay = (seconds) => {
+    return new Promise((resolve) => {
+        setTimeout(resolve, seconds * 1000);
+    });
+};
+const main = async () => {
+    gemini_chat_initial('AIzaSyBe99HeLbDtq8i7xxBNcI1skHncDTpfiaE', "gemini-2.0-flash", 1000, 1.0, '你是繁體中文的助理。');
+    await delay(2);
+    async function gemini_chat_response(gemini_chat_data) {
+		console.log(gemini_chat_response_br(gemini_chat_data, 'n'));
+        div_set('result', "innerHTML_markdown", (gemini_chat_response_br(gemini_chat_data, 'n')));
+    }
+    window.gemini_chat_response = gemini_chat_response;
+};
+main();
+  
+async function DetectImage() {
+	await gemini_chat_image_request(prompt.value+"\n\n請使用markdown語法回覆！", imageToBase64());
+}
+    
+selectImage.onchange = function (event) {
+  var target = event.target || window.event.srcElement;
+  var files = target.files;
+  if (FileReader && files && files.length) {
+    var fr = new FileReader();
+    fr.onload = function () {
+      result.innerHTML = "";
+      originImage.src = fr.result;
+    }
+    fr.readAsDataURL(files[0]);
+  }
+}
+
+function imageToBase64() {
+    var canvas = document.createElement("canvas");
+    canvas.width = originImage.naturalWidth;
+    canvas.height = originImage.naturalHeight;
+    var context = canvas.getContext("2d");
+    context.drawImage(originImage, 0, 0);
+    var base64 = canvas.toDataURL();
+    var head = base64.substring(0, base64.indexOf(",") + 1);
+    var data = base64.substring(base64.indexOf(",") + 1);
+    data = encodeURIComponent(data);
+    canvas = null;
+    return (head + data);
+}
+</script>
+
+</body>
+</html>
