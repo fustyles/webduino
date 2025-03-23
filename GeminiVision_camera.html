@@ -3,7 +3,7 @@ Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/3/24 00:00
 https://www.facebook.com/francefu
 
 Try it
-https://fustyles.github.io/webduino/GeminiVision.html
+https://fustyles.github.io/webduino/GeminiVision_camera.html
 -->
 <!DOCTYPE html>
 <html>
@@ -29,7 +29,6 @@ Camera：
 <select id="camera_type" onclick="setCamera();"><option value="front">Front</option><option value="back">Back</option></select>
 Index：
 <select id="camera_index" onclick="setCamera();"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select>
-<video id="gamevideo_"></video>
 </div>
 
 <script>
@@ -65,13 +64,11 @@ async function setCamera() {
 }
 
 function imageToBase64() {
-    var canvas = document.createElement("canvas");
-	canvas.style.width = camera_video.style.width;
-	canvas.style.height = camera_video.style.height;		
-	canvas.setAttribute("width", camera_video.width);
-	canvas.setAttribute("height", camera_video.height);	
+    var canvas = document.createElement("canvas");		
+	canvas.setAttribute("width", video_get('', "width"));
+	canvas.setAttribute("height", video_get('', "height"));	
     var context = canvas.getContext("2d");
-    context.drawImage(camera_video, 0, 0);
+    context.drawImage(document.getElementById(video_get('', "id")), 0, 0);
     var base64 = canvas.toDataURL();
     var head = base64.substring(0, base64.indexOf(",") + 1);
     var data = base64.substring(base64.indexOf(",") + 1);
