@@ -299,7 +299,7 @@ async function getFileBase64(fileURL, type) {
 }
 
 async function gemini_generate_image_request(prompt) {
-	let result;
+	let result = "";
     try {
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp-image-generation:generateContent?key=${Gemini_api_key}`;
         const data = {
@@ -331,17 +331,17 @@ async function gemini_generate_image_request(prompt) {
         if ('error' in json) {
             result = json.error.message;
         } else {
-			if (json.candidates[0].content.parts[0].inlineData)
-				result = "data:"+json.candidates[0].content.parts[0].inlineData.mimeType+";base64,"+json.candidates[0].content.parts[0].inlineData.data;
-			else if (json.candidates[0].content.parts[1].inlineData)
-				result = "data:"+json.candidates[0].content.parts[1].inlineData.mimeType+";base64,"+json.candidates[0].content.parts[1].inlineData.data;
-			else if (json.candidates[0].content.parts[2].inlineData)
-				result = "data:"+json.candidates[0].content.parts[2].inlineData.mimeType+";base64,"+json.candidates[0].content.parts[2].inlineData.data;
+		for (var i=0;i<json.candidates[0].content.parts.length;i++) {
+			if (json.candidates[0].content.parts[i].inlineData) {
+				result = "data:"+json.candidates[0].content.parts[i].inlineData.mimeType+";base64,"+json.candidates[0].content.parts[i].inlineData.data;
+				break;
+			}
 		}
+	}
 		
-		if (typeof gemini_chat_response === "function") gemini_chat_response(result);
+	if (typeof gemini_chat_response === "function") gemini_chat_response(result);
     } catch (error) {
-		if (typeof gemini_chat_response === "function") gemini_chat_response(JSON.stringify(error));
+	if (typeof gemini_chat_response === "function") gemini_chat_response(JSON.stringify(error));
     }
 }
 
