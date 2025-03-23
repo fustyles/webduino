@@ -45,8 +45,8 @@ const delay = (seconds) => {
     });
 };
 const main = async () => {
-	head_add_viewport(1, 1, 4, "yes");
-	setCamera();
+    head_add_viewport(1, 1, 4, "yes");
+    setCamera();
     async function gemini_chat_response(gemini_chat_data) {
 		console.log(gemini_chat_response_br(gemini_chat_data, 'n'));
 		result.innerHTML = marked.parse(gemini_chat_response_br(gemini_chat_data, 'n')); 
@@ -61,6 +61,7 @@ async function DetectImage() {
 }
 
 async function setCamera() {
+	video_delete('');
 	video_create1('', 900, 600, 505, 30, true, '', false, false, false, true, true, 1, 999, true, camera_type.value, camera_index.value);
 }
 
