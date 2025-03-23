@@ -42,8 +42,6 @@ const delay = (seconds) => {
     });
 };
 const main = async () => {
-    gemini_chat_initial('', "gemini-2.0-flash", 1000, 1.0, '你是繁體中文的助理。');
-    await delay(2);
     async function gemini_chat_response(gemini_chat_data) {
 		console.log(gemini_chat_response_br(gemini_chat_data, 'n'));
 		result.innerHTML = marked.parse(gemini_chat_response_br(gemini_chat_data, 'n')); 
@@ -53,6 +51,7 @@ const main = async () => {
 main();
   
 async function DetectImage() {
+	gemini_chat_initial(apikey.value, "gemini-2.0-flash", 1000, 1.0, '你是繁體中文的助理。');
 	await gemini_chat_image_request(prompt.value+"\n\n請使用markdown語法回覆！", imageToBase64());
 }
     
