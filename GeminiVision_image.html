@@ -42,6 +42,7 @@ const delay = (seconds) => {
     });
 };
 const main = async () => {
+    head_add_viewport(1, 1, 4, "yes");
     async function gemini_chat_response(gemini_chat_data) {
 		console.log(gemini_chat_response_br(gemini_chat_data, 'n'));
 		result.innerHTML = marked.parse(gemini_chat_response_br(gemini_chat_data, 'n')); 
