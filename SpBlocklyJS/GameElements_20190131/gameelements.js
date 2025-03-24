@@ -4223,7 +4223,7 @@ function HextoRgb(color) {
 							userMedia = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'user', width: obj.width, height: obj.height} };
 					}
 				}
-				else {
+				else if (device.kind=="videoinput") {
 					i++;
 					if (i==input_videoInputIndex) {
 						if (device.deviceId=='')
