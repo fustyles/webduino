@@ -4205,7 +4205,7 @@ function HextoRgb(color) {
 			var i=-1;
 			var userMedia = "";
 			devices.forEach(function(device) {
-				if (device.kind=="videoinput"&&(device.label.includes("back")||device.label.includes("environment"))&&input_facing=="back") {
+				if (device.kind=="videoinput"&&input_facing=="") {
 					i++;
 					if (i==input_videoInputIndex) {
 						if (device.deviceId=='')
@@ -4214,22 +4214,22 @@ function HextoRgb(color) {
 							userMedia = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment', width: obj.width, height: obj.height} };
 					}
 				}				
-				else if (device.kind=="videoinput"&&(device.label.includes("front")||device.label.includes("user"))&&input_facing=="front") {
-					i++;
-					if (i==input_videoInputIndex) {
-						if (device.deviceId=='')
-							userMedia = {audio: false,video: {facingMode: 'user', width: obj.width, height: obj.height} };
-						else
-							userMedia = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'user', width: obj.width, height: obj.height} };
-					}
-				}
-				else if (device.kind=="videoinput") {
+				else if (device.kind=="videoinput"&&(device.label.includes("facing back")||device.label.includes("environment"))&&input_facing=="back") {
 					i++;
 					if (i==input_videoInputIndex) {
 						if (device.deviceId=='')
 							userMedia = {audio: false,video: {facingMode: 'environment', width: obj.width, height: obj.height} };
 						else
 							userMedia = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment', width: obj.width, height: obj.height} };
+					}
+				}				
+				else if (device.kind=="videoinput"&&input_facing=="front") {
+					i++;
+					if (i==input_videoInputIndex) {
+						if (device.deviceId=='')
+							userMedia = {audio: false,video: {facingMode: 'user', width: obj.width, height: obj.height} };
+						else
+							userMedia = {audio: false,video: {deviceId: {'exact':device.deviceId}, facingMode: 'user', width: obj.width, height: obj.height} };
 					}
 				}				
 			});
