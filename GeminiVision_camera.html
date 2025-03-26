@@ -29,7 +29,7 @@ prompt (Chat)：<br>
 <input type="button" value="Run (Chat)" onclick="result1.innerHTML = marked.parse('Please wait...');chat();"><br>
 <div id="result1" style="color:red;width:500px;height:150px;overflow:auto;border:1px solid #000;"></div>
 </div>
-<div style="position:absolute;left:550px;top:0px">
+<div style="position:absolute;left:520px;top:0px">
 Camera：
 <select id="camera_type" onchange="setCamera();"><option value="front">Front Camera</option><option value="back">Rear Camera</option><option value="">Any Camera</option></select>
 Index：
@@ -79,7 +79,7 @@ async function chat() {
 
 async function setCamera() {
 	video_delete('');
-	video_create1('', 900, 600, 505, 30, true, '', false, false, false, true, true, 1, 999, true, camera_type.value, camera_index.value);
+	video_create1('', 900, 600, 520, 30, true, '', false, false, false, true, true, 1, 999, true, camera_type.value, camera_index.value);
 }
 
 function imageToBase64() {
