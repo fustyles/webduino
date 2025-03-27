@@ -22,11 +22,11 @@ https://fustyles.github.io/webduino/GeminiVision_image.html
 Gemini API Key：<input type="text" id="apiKey" size="40" value=""><br><br>
 <input type="file" id="selectImage"></input><br><br>
 prompt (Vision)：<br>
-<textarea id="prompt"  cols="60" rows="5">這是學生的作文，請轉錄文字，若無法辨識以空格替代。</textarea><br>
+<textarea id="prompt"  cols="58" rows="5">這是學生的作文，請轉錄文字，若無法辨識以空格替代。</textarea><br>
 <input type="button" value="Run (Vision)" onclick="result.innerHTML = marked.parse('Please wait...');DetectImage();"><br>
 <div id="result" style="color:blue;width:450px;height:150px;overflow:auto;border:1px solid #000;"></div><br>
 prompt (Chat)：<br>
-<textarea id="prompt1"  cols="60" rows="5">請批改上述作文，簡潔扼要。</textarea><br>
+<textarea id="prompt1"  cols="58" rows="5">請批改上述作文，簡潔扼要。</textarea><br>
 <input type="button" value="Run (Chat)" onclick="result1.innerHTML = marked.parse('Please wait...');chat();"><br>
 <div id="result1" style="color:red;width:450px;height:150px;overflow:auto;border:1px solid #000;"></div>
 </div>
