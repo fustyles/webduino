@@ -66,13 +66,13 @@ const main = async () => {
 main();
   
 async function DetectImage() {
-	gemini_chat_initial(apikey.value, "gemini-2.0-flash", 1000, 1.0, 'You are a smart assistant.');
+	gemini_chat_initial(apikey.value, "gemini-2.0-flash", 10000, 1.0, 'You are a smart assistant.');
 	queryType = 1;	
 	await gemini_chat_image_request(prompt.value+"\n\nPlease reply using markdown syntax!", imageToBase64());
 }
 
 async function chat() {
-	gemini_chat_initial(apikey.value, "gemini-2.0-flash", 1000, 1.0, 'You are a smart assistant.');
+	gemini_chat_initial(apikey.value, "gemini-2.0-flash", 10000, 1.0, 'You are a smart assistant.');
 	queryType = 0;
 	await gemini_chat_run(result.innerText+"\n\n\n"+prompt1.value+"\n\n\nPlease reply using markdown syntax!");
 }
