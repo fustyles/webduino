@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/3/26 20:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/3/28 23:00
 https://www.facebook.com/francefu
 
 Try it
@@ -20,8 +20,11 @@ https://fustyles.github.io/webduino/GeminiVision_image.html
 <body>
 <div style="position:absolute;left:5px;top:0px">
 Gemini API Key：<input type="text" id="apiKey" size="40" value=""><br><br>
-<input type="file" id="selectImage"></input><br><br>
-prompt (Gemini Vision)：<br>
+<input type="file" id="selectImage"></input><br>
+<input type="file" id="selectImage1"></input><br><br>
+prompt (Gemini Vision)：
+<select id="number"><option value="1">1 image</option><option value="2">2 images</option></select>
+<br>
 <textarea id="prompt"  cols="58" rows="5">這是學生的作文，請轉錄文字，若無法辨識以空格替代。</textarea><br>
 <input type="button" value="Run (Gemini Vision)" onclick="result.innerHTML = marked.parse('Please wait...');DetectImage();"><br>
 <div id="result" style="color:blue;width:450px;height:150px;overflow:auto;border:1px solid #000;"></div><br>
@@ -31,12 +34,16 @@ prompt (Gemini Chat)：<br>
 <div id="result1" style="color:red;width:450px;height:150px;overflow:auto;border:1px solid #000;"></div>
 </div>
 <div style="position:absolute;left:510px;top:0px">
-<img id="originImage">
+<img id="originImage"><br>
+<img id="originImage1">
 </div>
 
 <script>
 var selectImage = document.getElementById('selectImage');
-var originImage = document.getElementById('originImage'); 
+var originImage = document.getElementById('originImage');
+var selectImage1 = document.getElementById('selectImage1');
+var originImage1 = document.getElementById('originImage1');
+var number = document.getElementById('number');
 var result = document.getElementById('result');
 var apikey = document.getElementById("apiKey");
 var prompt = document.getElementById("prompt");
@@ -64,7 +71,10 @@ main();
 async function DetectImage() {
 	gemini_chat_initial(apikey.value, "gemini-2.0-flash", 1000, 1.0, 'You are a smart assistant.');
 	queryType = 1;
-	await gemini_chat_image_request(prompt.value+"\n\nPlease reply using markdown syntax!", imageToBase64());
+	if (number.value==1)
+		await gemini_chat_image_request(prompt.value+"\n\nPlease reply using markdown syntax!", imageToBase64(originImage));
+	else if (number.value==2)
+		await gemini_chat_image_request(prompt.value+"\n\nPlease reply using markdown syntax!", [imageToBase64(originImage), imageToBase64(originImage1)]);
 }
 
 async function chat() {
@@ -86,12 +96,25 @@ selectImage.onchange = function (event) {
   }
 }
 
-function imageToBase64() {
+selectImage1.onchange = function (event) {
+  var target = event.target || window.event.srcElement;
+  var files = target.files;
+  if (FileReader && files && files.length) {
+    var fr = new FileReader();
+    fr.onload = function () {
+      result.innerHTML = "";
+      originImage1.src = fr.result;
+    }
+    fr.readAsDataURL(files[0]);
+  }
+}
+
+function imageToBase64(sourceImage) {
     var canvas = document.createElement("canvas");
-    canvas.width = originImage.naturalWidth;
-    canvas.height = originImage.naturalHeight;
+    canvas.width = sourceImage.naturalWidth;
+    canvas.height = sourceImage.naturalHeight;
     var context = canvas.getContext("2d");
-    context.drawImage(originImage, 0, 0);
+    context.drawImage(sourceImage, 0, 0);
     var base64 = canvas.toDataURL();
     var head = base64.substring(0, base64.indexOf(",") + 1);
     var data = base64.substring(base64.indexOf(",") + 1);
