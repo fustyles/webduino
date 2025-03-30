@@ -163,7 +163,7 @@ function sendMessageToLineBot(accessToken, replyToken, message, imageURL) {
 
 function sendMessageToGeminiChat(key, message){
     try {
-        let url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${key}`;
+        let url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`;
         let data = {
           "contents": [
             {
