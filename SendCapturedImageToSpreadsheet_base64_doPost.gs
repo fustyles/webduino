@@ -6,7 +6,7 @@
 var cellWidth = 160;                       //預設插入影像儲存格寬度
 var cellHeight = 120;                      //預設插入影像儲存格高度
 var myFoldername = "spreadsheet_images";   //預設Google雲端硬碟建立資料夾名稱，須設定"知道連結者有檢視權限"才能在試算表連結顯示影像。
-var lineToken = "";                        //可不填
+var linebotToken = "";                        //可不填
 
 function doPost(e) {
   var myFile = e.parameter.file;
@@ -22,7 +22,7 @@ function doPost(e) {
   cellWidth = e.parameter.cellwidth||cellWidth;
   cellHeight = e.parameter.cellheight||cellHeight; 
   myFoldername = e.parameter.foldername||myFoldername;
-  lineToken = e.parameter.linetoken||lineToken;
+  linebotToken = e.parameter.linetoken||linebotToken;
 
   var contentType = myFile.substring(myFile.indexOf(":")+1, myFile.indexOf(";"));
   var data = myFile.substring(myFile.indexOf(",")+1);
@@ -69,7 +69,7 @@ function doPost(e) {
     var formula = '=HYPERLINK("' + imageUrl + '","'+ myDate+" "+myTime +'")';
     sheet.getRange(myRow, myColumn).setFormula(formula);
 
-    lineNotify(imageUrl); 
+    lineBotMessage(imageUrl); 
   }  else if (myFormat=="jpg") {
     var folder, folders = DriveApp.getFoldersByName(myFoldername);
     if (folders.hasNext()) {
@@ -88,27 +88,20 @@ function doPost(e) {
     var formula = 'IMAGE("' + imageThumbnailUrl + '", 1)';
     sheet.getRange(myRow, myColumn).setFormula('=HYPERLINK("' + imageUrl + '", '+formula+')');
 
-    lineNotify(imageUrl);    
+    lineBotMessage(imageUrl);    
   } 
   return  ContentService.createTextOutput("OK");
 }
 
-function lineNotify(message) {
-  var res = "";
-  try {
-    var url = 'https://notify-api.line.me/api/notify';
+function lineBotMessage(message) {
+    var url = 'https://api.line.me/v2/bot/message/push';
     var response = UrlFetchApp.fetch(url, {
       'headers': {
-        'Authorization': 'Bearer ' + lineToken,
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer ' + linebotToken,
       },
       'method': 'post',
-      'payload': {
-          'message': message         
-      }
+      'payload': message
     });
-    res += response.getContentText();
-  } catch(error) {
-    res += error;
-  } 
-  return res;
+    return response;
 }
