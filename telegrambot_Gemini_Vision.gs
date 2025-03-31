@@ -69,7 +69,7 @@ function doPost(e) {
         else {
           gemini_chat_messages = JSON.parse(scriptProperties.getProperty("messages"));
           if (gemini_chat_messages.length > gemini_chat_times_max*2)
-            gemini_clear();
+            msg['message']['text'] = "clear";
         }
 
         if (scriptProperties.getProperty("urls")==""||scriptProperties.getProperty("urls")==null)
@@ -82,7 +82,7 @@ function doPost(e) {
 
           if (getTelegrambotData.userMessage.toLowerCase()=="clear") {
               gemini_clear();
-              telegrambot_response = "Conversation history has been cleared.";
+              telegrambot_response = "Conversation history is full and has been cleared.";
           } else if (getTelegrambotData.userMessage.toLowerCase().indexOf("https://")==0) {
               let urlData = getTelegrambotData.userMessage.split("\n");
               if (urlData.length>1)
