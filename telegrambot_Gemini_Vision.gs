@@ -105,6 +105,7 @@ function getImageUrlBase64(imageURL) {
         let response = UrlFetchApp.fetch(imageURL);
         let blob = response.getBlob();
         let base64Image = Utilities.base64Encode(blob.getBytes());
+
         return String(base64Image);
     } catch (error) {
         return "";
