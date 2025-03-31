@@ -41,8 +41,7 @@ let chat_message_remind = "\n\n請用繁體中文回覆！";
 let scriptProperties = PropertiesService.getScriptProperties();
 
 let getTelegrambotData = {
-  "chatId": "",
-  "updateId": "",  
+  "chatId": "", 
   "userMessage": "",
   "userImageId": "",
   "userImage": "",
@@ -72,7 +71,6 @@ function doPost(e) {
               sendPhotoToTelegramBot(channel_access_TOKEN, getTelegrambotData.chatId, urlData[0].trim());
           } else if (msg['message']['reply_to_message']) {
               getTelegrambotData.replayToMessage = msg['message']['reply_to_message'];
-              getTelegrambotData.updateId = getTelegrambotData.replayToMessage['chat']['id'];
               getTelegrambotData.date = getTelegrambotData.replayToMessage['date'];
               chat_message = getTelegrambotData.userMessage;             
               let imageURL = getHistoricalURL(getTelegrambotData.date);
