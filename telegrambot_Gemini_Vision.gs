@@ -79,14 +79,13 @@ function doPost(e) {
               telegrambot_response = sendMessageToGeminiChat(Gemini_api_key, getTelegrambotData.userMessage);
         }
         else if (msg['message']['photo']) {
-			      getTelegrambotData.userImageId = msg['message']['photo'][0]['file_id'];
+            getTelegrambotData.userImageId = msg['message']['photo'][0]['file_id'];
             getTelegrambotData.userImage = getTelegramBotImageBase64(channel_access_TOKEN, getTelegrambotData.userImageId);
         }
 
         if (getTelegrambotData.userImage)        
             telegrambot_response = sendImageToGeminiVision(Gemini_api_key, chat_message + chat_message_remind, getTelegrambotData.userImage);
 
-        
         sendMessageToTelegramBot(channel_access_TOKEN, getTelegrambotData.chatId, telegrambot_response);
     }
 }
@@ -100,31 +99,34 @@ function getHistoricalURL(chatId, messageId) {
 }
 
 function getImageUrlBase64(imageURL) {
-  try {
-      let response = UrlFetchApp.fetch(imageURL);
-      let blob = response.getBlob();
-      let base64Image = Utilities.base64Encode(blob.getBytes());
-      return String(base64Image);
-  } catch (error) {
-      return "";
-  }
+    try {
+        let response = UrlFetchApp.fetch(imageURL);
+        let blob = response.getBlob();
+        let base64Image = Utilities.base64Encode(blob.getBytes());
+        return String(base64Image);
+    } catch (error) {
+        return "";
+    }
 }
 
 function setWebhook(chat_token, webhook_url) {
     let url = `https://api.telegram.org/bot${chat_token}/setWebhook?url=${webhook_url}&allowed_updates=["message"]`;
     let response = UrlFetchApp.fetch(url);
+
     return response.getContentText();
 }
 
 function deleteWebhook(chat_token) {
     let url = `https://api.telegram.org/bot${chat_token}/deleteWebhook`;
     let response = UrlFetchApp.fetch(url);
+
     return response.getContentText();
 }
 
 function infoWebhook(chat_token) {
     let url = `https://api.telegram.org/bot${chat_token}/getWebhookInfo`;
     let response = UrlFetchApp.fetch(url);
+
     return response.getContentText();
 }
  
@@ -135,6 +137,7 @@ function getTelegramBotImageBase64(chat_token, imageId) {
         let msg = JSON.parse(response.getContentText());
         let imageUrl = `https://api.telegram.org/file/bot${chat_token}/${msg['result']['file_path']}`;
         saveHistoricalURL(getTelegrambotData.chatId, imageUrl);
+
         return getImageUrlBase64(imageUrl);
     } catch (error) {
         return "";
@@ -155,6 +158,7 @@ function sendMessageToTelegramBot(chat_token, chat_id, chat_message) {
         'method': 'post',
         'payload': JSON.stringify(payload),
     });
+
     return response.getContentText();
 }
 
@@ -171,6 +175,7 @@ function sendPhotoToTelegramBot(chat_token, chat_id, imageURL) {
         'method': 'post',
         'payload': JSON.stringify(payload),
     });
+
     return response.getContentText();
 }
 
