@@ -9,7 +9,7 @@ Telegram Bot Webhook & Google Apps script & Gemini Vision
 2. 不明原因，可能太久無人使用自動停用，重新佈署或重建Apps script專案並開放存取權限。
 3. Apps script程式碼有bug。
 4. Telegram Bot未執行START。
-5. 指令碼屬性暫存資料已滿，"專案設定 -> 指令碼屬性"清空
+5. Apps script指令碼屬性暫存資料已滿，"Apps script -> 專案設定 -> 指令碼屬性"清空
 
 Apps Script
 https://script.google.com/home
