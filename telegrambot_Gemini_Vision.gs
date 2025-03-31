@@ -39,7 +39,7 @@ let Gemini_api_key = "xxxxx";
 
 let chat_message_remind = "\n\n請用繁體中文回覆！";
 
-// Telegram bot參數
+// Telegram bot變數
 let getTelegrambotData = {
   "chatId": "",
   "updateId": "",  
