@@ -17,6 +17,9 @@ https://script.google.com/home
 Gemini Vision
 https://ai.google.dev/gemini-api/docs/vision
 
+Telegram Bot API
+https://core.telegram.org/bots/api
+
 Webhook Set： (瀏覽器貼入網址執行)
 https://api.telegram.org/bot{權杖}/setWebhook?allowed_updates=["message"]&url={Apps Script網址}
 
