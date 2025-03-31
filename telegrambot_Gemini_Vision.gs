@@ -162,7 +162,7 @@ function sendMessageToTelegramBot(chat_token, chat_id, chat_message) {
 }
 
 function sendPhotoToTelegramBot(chat_token, chat_id, imageURL) {
-    let url = 'https://api.telegram.org/bot'+chat_token+'/sendMessage';       
+    let url = 'https://api.telegram.org/bot'+chat_token+'/sendPhoto';       
     let payload = {
           "chat_id": chat_id,
           "photo": imageURL
