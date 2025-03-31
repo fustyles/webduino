@@ -29,9 +29,6 @@ let channel_access_UserID = "xxxxx";
 // Gemini設定
 let Gemini_api_key = "xxxxx";
 
-// Apps Script url
-let webhookUrl = "https://script.google.com/macros/s/xxxxx/exec";
-
 
 
 // Telegram bot參數
