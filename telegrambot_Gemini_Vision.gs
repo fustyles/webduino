@@ -57,7 +57,7 @@ let gemini_vision_urls = [];
 
 function doPost(e) {
     if (e.postData) {
-        let telegrambot_response = "請先上傳圖片或輸入圖片網址，再引用圖片或網址回覆輸入提示詞！";
+        let telegrambot_response = "請先上傳影像或輸入影像網址，再引用影像或網址回覆輸入提示詞！";
         let chat_message = "請分析影像中的場景與情境，若有文字資料請將內容進行重點摘要。";
 
         let msg = JSON.parse(e.postData.contents);
