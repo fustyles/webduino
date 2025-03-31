@@ -32,7 +32,7 @@ https://api.telegram.org/bot{權杖}/getWebhookInfo
 
 // Telegram bot
 let channel_access_TOKEN = "xxxxx";
-let channel_access_UserID = "xxxxx";
+let channel_access_UserID = "xxxxx";    //暫無使用
 
 // Gemini設定
 let Gemini_api_key = "xxxxx";
