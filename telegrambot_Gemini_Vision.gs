@@ -80,14 +80,13 @@ function doPost(e) {
               telegrambot_response = sendMessageToGeminiChat(Gemini_api_key, getTelegrambotData.userMessage);
         }
         else if (msg['message']['photo']) {
-			      getTelegrambotData.userImageId = msg['message']['photo'][0]['file_id'];
+            getTelegrambotData.userImageId = msg['message']['photo'][0]['file_id'];
             getTelegrambotData.userImage = getTelegramBotImageBase64(channel_access_TOKEN, getTelegrambotData.userImageId);
         }
 
         if (getTelegrambotData.userImage)        
             telegrambot_response = sendImageToGeminiVision(Gemini_api_key, chat_message + chat_message_remind, getTelegrambotData.userImage);
 
-        
         sendMessageToTelegramBot(channel_access_TOKEN, getTelegrambotData.chatId, telegrambot_response);
     }
 }
@@ -133,16 +132,16 @@ function infoWebhook(chat_token) {
 }
 
 function getTelegramBotImageBase64(chat_token, imageId) {
-	try {
-		let url = "https://api.telegram.org/bot"+chat_token+"/getFile?file_id="+imageId;    
-		let response = UrlFetchApp.fetch(url);
-    let msg = JSON.parse(response.getContentText());
-    let imageUrl = "https://api.telegram.org/file/bot"+chat_token+"/"+msg['result']['file_path'];
-    saveHistoricalURL(getTelegrambotData.chatId, imageUrl);
-    return getImageUrlBase64(imageUrl);
-	} catch (error) {
-		return "";
-	}
+    try {
+	let url = "https://api.telegram.org/bot"+chat_token+"/getFile?file_id="+imageId;    
+	let response = UrlFetchApp.fetch(url);
+        let msg = JSON.parse(response.getContentText());
+        let imageUrl = "https://api.telegram.org/file/bot"+chat_token+"/"+msg['result']['file_path'];
+        saveHistoricalURL(getTelegrambotData.chatId, imageUrl);
+        return getImageUrlBase64(imageUrl);
+    } catch (error) {
+	return "";
+    }
 }
 
 function sendMessageToTelegramBot(chat_token, chat_id, chat_message) {
