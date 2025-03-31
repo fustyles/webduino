@@ -129,7 +129,8 @@ function getHistoricalURL(visionDate) {
     for (let i=0;i<gemini_vision_urls.length;i++) {
       if (gemini_vision_urls[i][0]==visionDate)
         return gemini_vision_urls[i][1];
-    }      
+    }
+
     return "";
 }
 
@@ -138,6 +139,7 @@ function getImageUrlBase64(imageURL) {
         let response = UrlFetchApp.fetch(imageURL);
         let blob = response.getBlob();
         let base64Image = Utilities.base64Encode(blob.getBytes());
+
         return String(base64Image);
     } catch (error) {
         return "";
@@ -232,6 +234,7 @@ function sendMessageToGeminiChat(key, messages){
         response = json["candidates"][0]["content"]["parts"][0]["text"];
         if (response == "null")
           response = json["error"]["message"];
+
         return response;
     } catch (error) {
         return JSON.stringify(error);
