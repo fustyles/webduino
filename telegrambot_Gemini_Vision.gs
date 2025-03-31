@@ -1,5 +1,6 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/3/31 23:30
+
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/3/31 00:00
 https://www.facebook.com/francefu
 Telegram Bot Webhook & Google Apps script & Gemini Vision
 
@@ -8,8 +9,8 @@ Telegram Bot Webhook & Google Apps script & Gemini Vision
 2. 不明原因，可能太久無人使用自動停用，重新佈署或重建Apps script專案並開放存取權限。
 3. Apps script程式碼有bug。
 4. Telegram Bot未執行START。
-5. Apps script指令碼屬性暫存資料已滿，"Apps script -> 專案設定 -> 指令碼屬性"清空
-6. 上傳圖檔已過時無法取得或圖檔模糊不清，請重新上傳圖檔。
+5. 上傳圖檔已過時無法取得或圖檔太小模糊不清，請重新上傳圖檔。
+6. 對話輸入"clear"清除歷史對話資料。
 
 Apps Script
 https://script.google.com/home
@@ -28,6 +29,7 @@ https://api.telegram.org/bot{權杖}/deleteWebhook
 
 Webhook Info： (瀏覽器貼入網址執行)
 https://api.telegram.org/bot{權杖}/getWebhookInfo
+
 */
 
 // Telegram bot
@@ -36,7 +38,8 @@ let channel_access_UserID = "xxxxx";    //暫無使用
 
 // Gemini設定
 let Gemini_api_key = "xxxxx";
-let chat_message_remind = "\n\n請用繁體中文回覆！";
+let chat_message_remind = "";
+let gemini_chat_times_max = 100;   //聊天次數超過則自動清除對話紀錄
 
 let scriptProperties = PropertiesService.getScriptProperties();
 
@@ -50,6 +53,7 @@ let getTelegrambotData = {
 }
 
 let gemini_chat_messages = [];
+let gemini_vision_urls = [];
 
 function doPost(e) {
     if (e.postData) {
@@ -62,13 +66,24 @@ function doPost(e) {
 
         if (scriptProperties.getProperty("messages")==""||scriptProperties.getProperty("messages")==null)
           gemini_chat_messages = [];
-        else
+        else {
           gemini_chat_messages = JSON.parse(scriptProperties.getProperty("messages"));
+          if (gemini_chat_messages.length > gemini_chat_times_max*2)
+            gemini_clear();
+        }
+
+        if (scriptProperties.getProperty("urls")==""||scriptProperties.getProperty("urls")==null)
+          gemini_vision_urls = [];
+        else
+          gemini_vision_urls = JSON.parse(scriptProperties.getProperty("urls"));          
 
         if (msg['message']['text']) {
           getTelegrambotData.userMessage = msg['message']['text'].trim();
 
-          if (getTelegrambotData.userMessage.toLowerCase().indexOf("https://")==0) {
+          if (getTelegrambotData.userMessage.toLowerCase()=="clear") {
+              gemini_clear();
+              telegrambot_response = "Conversation history has been cleared.";
+          } else if (getTelegrambotData.userMessage.toLowerCase().indexOf("https://")==0) {
               let urlData = getTelegrambotData.userMessage.split("\n");
               if (urlData.length>1)
                   chat_message = getTelegrambotData.userMessage.replace(urlData[0], "").trim();
@@ -84,7 +99,7 @@ function doPost(e) {
               if (imageURL)
                 getTelegrambotData.userImage = getImageUrlBase64(imageURL);
           } else {
-              gemini_messages_insert_request(getTelegrambotData.userMessage);
+              gemini_messages_insert_request(getTelegrambotData.userMessage + chat_message_remind);
               telegrambot_response = sendMessageToGeminiChat(Gemini_api_key, gemini_chat_messages);
               gemini_messages_insert_response(telegrambot_response);
           }
@@ -105,12 +120,17 @@ function doPost(e) {
     }
 }
 
-function saveHistoricalURL(chatId, messageURL) {
-    scriptProperties.setProperty(chatId, messageURL);
+function saveHistoricalURL(visionDate, visionURL) {
+    gemini_vision_urls.push([visionDate, visionURL]);
+    scriptProperties.setProperty("urls", JSON.stringify(gemini_vision_urls));
 }
 
-function getHistoricalURL(chatId) {      
-    return scriptProperties.getProperty(chatId);
+function getHistoricalURL(visionDate) {
+    for (let i=0;i<gemini_vision_urls.length;i++) {
+      if (gemini_vision_urls[i][0]==visionDate)
+        return gemini_vision_urls[i][1];
+    }      
+    return "";
 }
 
 function getImageUrlBase64(imageURL) {
@@ -242,8 +262,10 @@ function gemini_messages_insert_response(response) {
   scriptProperties.setProperty("messages", JSON.stringify(gemini_chat_messages));  
 }
 
-function gemini_chat_clear(){
+function gemini_clear() {
+  scriptProperties.deleteAllProperties();
   gemini_chat_messages = [];
+  gemini_vision_urls = [];  
 }
 
 function sendImageToGeminiVision(key, message, imageFile){
