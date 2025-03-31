@@ -69,6 +69,7 @@ function doPost(e) {
                   chat_message = getTelegrambotData.userMessage.replace(urlData[0], "").trim();            
               saveHistoricalURL(getTelegrambotData.chatId, urlData[0].trim());
               getTelegrambotData.userImage = getImageUrlBase64(urlData[0].trim());
+              sendPhotoToTelegramBot(channel_access_TOKEN, getTelegrambotData.chatId, urlData[0].trim());
           } else if (msg['message']['reply_to_message']) {
               getTelegrambotData.replayToMessage = msg['message']['reply_to_message'];
               getTelegrambotData.updateId = getTelegrambotData.replayToMessage['chat']['id'];
