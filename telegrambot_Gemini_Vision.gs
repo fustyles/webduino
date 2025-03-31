@@ -29,7 +29,7 @@ let channel_access_UserID = "xxxxx";
 // Gemini設定
 let Gemini_api_key = "xxxxx";
 
-
+let chat_message_remind = "\n\n請用繁體中文回覆！";
 
 // Telegram bot參數
 let getTelegrambotData = {
@@ -77,7 +77,7 @@ function doPost(e) {
         }
 
         if (getTelegrambotData.userImage)        
-            telegrambot_response = sendImageToGeminiVision(Gemini_api_key, chat_message, getTelegrambotData.userImage);
+            telegrambot_response = sendImageToGeminiVision(Gemini_api_key, chat_message + chat_message_remind, getTelegrambotData.userImage);
 
         
         sendMessageToTelegramBot(channel_access_TOKEN, getTelegrambotData.chatId, telegrambot_response);
