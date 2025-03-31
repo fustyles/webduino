@@ -95,7 +95,7 @@ function saveHistoricalURL(chatId, messageURL) {
     scriptProperties.setProperty(chatId, messageURL);
 }
 
-function getHistoricalURL(chatId, messageId) {      
+function getHistoricalURL(chatId) {      
     return scriptProperties.getProperty(chatId);
 }
 
