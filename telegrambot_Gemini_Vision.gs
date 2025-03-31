@@ -1,6 +1,6 @@
 /*
 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/3/31 13:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/3/31 14:00
 https://www.facebook.com/francefu
 Telegram Bot Webhook & Google Apps script & Gemini Vision
 
@@ -47,7 +47,8 @@ let getTelegrambotData = {
   "userMessage": "",
   "userImageId": "",
   "userImage": "",
-  "replayToMessage": ""
+  "replayToMessage": "",
+  "date": ""  
 }
 
 function doPost(e) {
@@ -65,21 +66,24 @@ function doPost(e) {
           if (getTelegrambotData.userMessage.toLowerCase().indexOf("https://")==0) {
               let urlData = getTelegrambotData.userMessage.split("\n");
               if (urlData.length>1)
-                  chat_message = getTelegrambotData.userMessage.replace(urlData[0], "").trim();            
-              saveHistoricalURL(getTelegrambotData.chatId, urlData[0].trim());
+                  chat_message = getTelegrambotData.userMessage.replace(urlData[0], "").trim();
+              getTelegrambotData.date = msg['message']['date'];     
+              saveHistoricalURL(getTelegrambotData.date, urlData[0].trim());
               getTelegrambotData.userImage = getImageUrlBase64(urlData[0].trim());
               sendPhotoToTelegramBot(channel_access_TOKEN, getTelegrambotData.chatId, urlData[0].trim());
           } else if (msg['message']['reply_to_message']) {
               getTelegrambotData.replayToMessage = msg['message']['reply_to_message'];
               getTelegrambotData.updateId = getTelegrambotData.replayToMessage['chat']['id'];
-              chat_message = getTelegrambotData.userMessage;
-              let imageURL = getHistoricalURL(getTelegrambotData.updateId);
+              getTelegrambotData.date = getTelegrambotData.replayToMessage['date'];
+              chat_message = getTelegrambotData.userMessage;             
+              let imageURL = getHistoricalURL(getTelegrambotData.date);
               if (imageURL)
                 getTelegrambotData.userImage = getImageUrlBase64(imageURL);
           } else
               telegrambot_response = sendMessageToGeminiChat(Gemini_api_key, getTelegrambotData.userMessage);
         }
         else if (msg['message']['photo']) {
+            getTelegrambotData.date = msg['message']['date'];         
             getTelegrambotData.userImageId = msg['message']['photo'][0]['file_id'];
             getTelegrambotData.userImage = getTelegramBotImageBase64(channel_access_TOKEN, getTelegrambotData.userImageId);
         }
@@ -137,7 +141,7 @@ function getTelegramBotImageBase64(chat_token, imageId) {
         let response = UrlFetchApp.fetch(url);
         let msg = JSON.parse(response.getContentText());
         let imageUrl = `https://api.telegram.org/file/bot${chat_token}/${msg['result']['file_path']}`;
-        saveHistoricalURL(getTelegrambotData.chatId, imageUrl);
+        saveHistoricalURL(getTelegrambotData.date, imageUrl);
 
         return getImageUrlBase64(imageUrl);
     } catch (error) {
