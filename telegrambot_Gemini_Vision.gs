@@ -1,6 +1,6 @@
 /*
 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/3/31 12:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/3/31 12:30
 https://www.facebook.com/francefu
 Telegram Bot Webhook & Google Apps script & Gemini Vision
 
