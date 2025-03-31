@@ -39,7 +39,7 @@ let channel_access_UserID = "xxxxx";    //暫無使用
 // Gemini設定
 let Gemini_api_key = "xxxxx";
 let gemini_chat_times_max = 100;   //聊天次數超過則自動清除對話紀錄
-let chat_message_remind = "";    //每次對話內容最後附加的文字
+let chat_message_remind = "";    //每次對話內容最後附加的文字，可不填
 
 let scriptProperties = PropertiesService.getScriptProperties();
 
