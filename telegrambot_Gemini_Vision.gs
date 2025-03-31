@@ -90,7 +90,7 @@ function doPost(e) {
               getTelegrambotData.date = msg['message']['date'];     
               saveHistoricalURL(getTelegrambotData.date, urlData[0].trim());
               getTelegrambotData.userImage = getImageUrlBase64(urlData[0].trim());
-              sendPhotoToTelegramBot(channel_access_TOKEN, getTelegrambotData.chatId, urlData[0].trim());
+              //sendPhotoToTelegramBot(channel_access_TOKEN, getTelegrambotData.chatId, urlData[0].trim());
           } else if (msg['message']['reply_to_message']) {
               getTelegrambotData.replayToMessage = msg['message']['reply_to_message'];
               getTelegrambotData.date = getTelegrambotData.replayToMessage['date'];
