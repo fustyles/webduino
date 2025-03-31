@@ -11,6 +11,8 @@ Telegram Bot Webhook & Google Apps script & Gemini Vision
 4. Telegram Bot未執行START。
 5. 指令碼屬性暫存資料已滿，"專案設定 -> 指令碼屬性"清空
 
+Apps Script
+https://script.google.com/home
 
 Webhook Set： (瀏覽器貼入網址執行)
 https://api.telegram.org/bot{權杖}/setWebhook?allowed_updates=["message"]&url={Apps Script網址}
