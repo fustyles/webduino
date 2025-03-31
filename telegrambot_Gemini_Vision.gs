@@ -112,36 +112,33 @@ function getImageUrlBase64(imageURL) {
 
 function setWebhook(chat_token, webhook_url) {
     let url = `https://api.telegram.org/bot${chat_token}/setWebhook?url=${webhook_url}&allowed_updates=["message"]`;
-
     let response = UrlFetchApp.fetch(url);
     return response.getContentText();
 }
 
 function deleteWebhook(chat_token) {
     let url = `https://api.telegram.org/bot${chat_token}/deleteWebhook`;
-
     let response = UrlFetchApp.fetch(url);
     return response.getContentText();
 }
 
 function infoWebhook(chat_token) {
     let url = `https://api.telegram.org/bot${chat_token}/getWebhookInfo`;
-
     let response = UrlFetchApp.fetch(url);
     return response.getContentText();
 }
  
 function getTelegramBotImageBase64(chat_token, imageId) {
-	try {
-		let url = `https://api.telegram.org/bot${chat_token}/getFile?file_id=${imageId}`;    
-		let response = UrlFetchApp.fetch(url);
-    let msg = JSON.parse(response.getContentText());
-    let imageUrl = `https://api.telegram.org/file/bot${chat_token}/${msg['result']['file_path']}`;
-    saveHistoricalURL(getTelegrambotData.chatId, imageUrl);
-    return getImageUrlBase64(imageUrl);
-	} catch (error) {
-		return "";
-	}
+    try {
+        let url = `https://api.telegram.org/bot${chat_token}/getFile?file_id=${imageId}`;    
+        let response = UrlFetchApp.fetch(url);
+        let msg = JSON.parse(response.getContentText());
+        let imageUrl = `https://api.telegram.org/file/bot${chat_token}/${msg['result']['file_path']}`;
+        saveHistoricalURL(getTelegrambotData.chatId, imageUrl);
+        return getImageUrlBase64(imageUrl);
+    } catch (error) {
+        return "";
+    }
 }
 
 function sendMessageToTelegramBot(chat_token, chat_id, chat_message) {
