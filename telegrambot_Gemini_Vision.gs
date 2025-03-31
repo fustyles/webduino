@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/3/31 14:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/3/31 23:30
 https://www.facebook.com/francefu
 Telegram Bot Webhook & Google Apps script & Gemini Vision
 
@@ -41,13 +41,15 @@ let chat_message_remind = "\n\n請用繁體中文回覆！";
 let scriptProperties = PropertiesService.getScriptProperties();
 
 let getTelegrambotData = {
-  "chatId": "", 
+  "chatId": "",
   "userMessage": "",
   "userImageId": "",
   "userImage": "",
   "replayToMessage": "",
   "date": ""  
 }
+
+let gemini_chat_messages = [];
 
 function doPost(e) {
     if (e.postData) {
@@ -57,6 +59,11 @@ function doPost(e) {
         let msg = JSON.parse(e.postData.contents);
 
         getTelegrambotData.chatId = msg['message']['chat']['id'];
+
+        if (scriptProperties.getProperty("messages")==""||scriptProperties.getProperty("messages")==null)
+          gemini_chat_messages = [];
+        else
+          gemini_chat_messages = JSON.parse(scriptProperties.getProperty("messages"));
 
         if (msg['message']['text']) {
           getTelegrambotData.userMessage = msg['message']['text'].trim();
@@ -76,8 +83,11 @@ function doPost(e) {
               let imageURL = getHistoricalURL(getTelegrambotData.date);
               if (imageURL)
                 getTelegrambotData.userImage = getImageUrlBase64(imageURL);
-          } else
-              telegrambot_response = sendMessageToGeminiChat(Gemini_api_key, getTelegrambotData.userMessage);
+          } else {
+              gemini_messages_insert_request(getTelegrambotData.userMessage);
+              telegrambot_response = sendMessageToGeminiChat(Gemini_api_key, gemini_chat_messages);
+              gemini_messages_insert_response(telegrambot_response);
+          }
         }
         else if (msg['message']['photo']) {
             getTelegrambotData.date = msg['message']['date'];         
@@ -85,8 +95,11 @@ function doPost(e) {
             getTelegrambotData.userImage = getTelegramBotImageBase64(channel_access_TOKEN, getTelegrambotData.userImageId);
         }
 
-        if (getTelegrambotData.userImage)        
+        if (getTelegrambotData.userImage) {
+            gemini_messages_insert_request(chat_message+" (Image Number:"+getTelegrambotData.date+")");
             telegrambot_response = sendImageToGeminiVision(Gemini_api_key, chat_message + chat_message_remind, getTelegrambotData.userImage);
+            gemini_messages_insert_response(telegrambot_response);
+        }
 
         sendMessageToTelegramBot(channel_access_TOKEN, getTelegrambotData.chatId, telegrambot_response);
     }
@@ -105,7 +118,6 @@ function getImageUrlBase64(imageURL) {
         let response = UrlFetchApp.fetch(imageURL);
         let blob = response.getBlob();
         let base64Image = Utilities.base64Encode(blob.getBytes());
-
         return String(base64Image);
     } catch (error) {
         return "";
@@ -182,19 +194,11 @@ function sendPhotoToTelegramBot(chat_token, chat_id, imageURL) {
     return response.getContentText();
 }
 
-function sendMessageToGeminiChat(key, message){
+function sendMessageToGeminiChat(key, messages){
     try {
         let url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`;
         let data = {
-          "contents": [
-            {
-              "parts": [
-                {
-                  "text": message
-                }            
-              ]
-            }
-          ]
+          "contents": messages
         };     
 
         const options = {
@@ -208,11 +212,38 @@ function sendMessageToGeminiChat(key, message){
         response = json["candidates"][0]["content"]["parts"][0]["text"];
         if (response == "null")
           response = json["error"]["message"];
-
         return response;
     } catch (error) {
         return JSON.stringify(error);
     }          
+}
+
+function gemini_messages_insert_request(request) {  
+  let char_request = {};
+  char_request.role = "user";
+  char_request.parts = [];
+  let char_request_text = {};
+  char_request_text.text = request;
+  char_request.parts.push(char_request_text);
+  gemini_chat_messages.push(char_request);
+
+  scriptProperties.setProperty("messages", JSON.stringify(gemini_chat_messages));  
+}
+
+function gemini_messages_insert_response(response) {  
+  let char_response = {};
+  char_response.role = "model";
+  char_response.parts = [];
+  let char_response_text = {};
+  char_response_text.text = response;
+  char_response.parts.push(char_response_text);
+  gemini_chat_messages.push(char_response);
+
+  scriptProperties.setProperty("messages", JSON.stringify(gemini_chat_messages));  
+}
+
+function gemini_chat_clear(){
+  gemini_chat_messages = [];
 }
 
 function sendImageToGeminiVision(key, message, imageFile){
