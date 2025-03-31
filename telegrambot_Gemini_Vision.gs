@@ -36,10 +36,10 @@ let channel_access_UserID = "xxxxx";    //暫無使用
 
 // Gemini設定
 let Gemini_api_key = "xxxxx";
-
 let chat_message_remind = "\n\n請用繁體中文回覆！";
 
-// Telegram bot變數
+let scriptProperties = PropertiesService.getScriptProperties();
+
 let getTelegrambotData = {
   "chatId": "",
   "updateId": "",  
@@ -48,8 +48,6 @@ let getTelegrambotData = {
   "userImage": "",
   "replayToMessage": ""
 }
-
-let scriptProperties = PropertiesService.getScriptProperties();
 
 function doPost(e) {
     if (e.postData) {
