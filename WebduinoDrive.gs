@@ -1,7 +1,10 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2020/12/30 00:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/1 12:00
 https://www.facebook.com/francefu
 */
+
+var linebotToken = "";    //可不填
+var linebotUserId = "";     //可不填
 
 function doPost(e) {
   var myFoldername = e.parameter.myFoldername;
@@ -25,6 +28,69 @@ function doPost(e) {
   
   var imageID = file.getUrl().substring(file.getUrl().indexOf("/d/")+3,file.getUrl().indexOf("view")-1);
   var imageUrl = "https://drive.google.com/uc?authuser=0&id="+imageID;
-   
+  var imageThumbnailUrl = "https://drive.google.com/thumbnail?id="+imageID;
+
+  // lineBotPhoto(myFilename, imageThumbnailUrl, imageUrl);
+
   return  ContentService.createTextOutput(myFoldername+"/"+myFilename+"\n"+imageUrl+"\n"+res);
+}
+
+function lineBotMessage(message) {
+  try {
+    var url = 'https://api.line.me/v2/bot/message/push';
+
+    var payload = JSON.stringify({
+      'to':  linebotUserId,
+      'messages': [{
+        type:'text',
+        text: message
+      }]
+    });
+
+    var response = UrlFetchApp.fetch(url, {
+      'headers': {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer ' + linebotToken,
+      },
+      'method': 'post',
+      'payload': payload
+    });
+	
+    return response.getContentText();
+  } catch(error) {
+    return 'Error: ' + error.message;
+  }	
+}
+
+function lineBotPhoto(message, imageThumbnail, imageFullsize) {
+  try {
+    var url = 'https://api.line.me/v2/bot/message/push';
+
+    var payload = JSON.stringify({
+        'to':  linebotUserId,
+        'messages': [
+          {
+            type:'text',
+            text: message
+          },
+          {
+            type:'image',
+            originalContentUrl: imageFullsize,
+            previewImageUrl: imageThumbnail
+          }
+        ]
+      });
+
+    var response = UrlFetchApp.fetch(url, {
+      'headers': {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer ' + linebotToken,
+      },
+      'method': 'post',
+      'payload': payload
+    });
+    return response.getContentText();      
+  } catch(error) {
+    return 'Error: ' + error.message;
+  }
 }
