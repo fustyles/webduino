@@ -32,7 +32,7 @@ function doPost(e) {
 
   // lineBotPhoto(myFilename, imageThumbnailUrl, imageUrl);
 
-  return  ContentService.createTextOutput(myFoldername+"/"+myFilename+"\n"+imageUrl+"\n"+res);
+  return  ContentService.createTextOutput(myFoldername+"/"+myFilename+"\n"+imageUrl);
 }
 
 function lineBotMessage(message) {
