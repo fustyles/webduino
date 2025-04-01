@@ -1,4 +1,4 @@
-Blockly.Msg["CATLINENOTIFY"] = "Line Notify";
+Blockly.Msg["CATLINENOTIFY"] = "Line Bot";
 Blockly.Msg["LINENOTIFY_SHOW"] = "Line Notify";
 Blockly.Msg["LINENOTIFY_TEXT_SHOW"] = "Text";
 Blockly.Msg["LINENOTIFY_STICKER_SHOW"] = "Sticker";
