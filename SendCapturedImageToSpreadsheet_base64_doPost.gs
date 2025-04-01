@@ -98,6 +98,7 @@ function doPost(e) {
 function lineBotMessage(message) {
   try {
     var url = 'https://api.line.me/v2/bot/message/push';
+
     var payload= JSON.stringify({
       'to':  linebotUserId,
       'messages': [{
