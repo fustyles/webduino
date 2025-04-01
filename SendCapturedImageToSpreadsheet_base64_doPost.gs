@@ -1,5 +1,5 @@
 /*
-  Author : ChungYi Fu (Kaohsiung, Taiwan)   2024/9/7 13:00
+  Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/1 10:00
   https://www.facebook.com/francefu
 */
 
@@ -7,6 +7,7 @@ var cellWidth = 160;                       //預設插入影像儲存格寬度
 var cellHeight = 120;                      //預設插入影像儲存格高度
 var myFoldername = "spreadsheet_images";   //預設Google雲端硬碟建立資料夾名稱，須設定"知道連結者有檢視權限"才能在試算表連結顯示影像。
 var linebotToken = "";                        //可不填
+var linebotUserId = "";                        //可不填
 
 function doPost(e) {
   var myFile = e.parameter.file;
@@ -95,13 +96,20 @@ function doPost(e) {
 
 function lineBotMessage(message) {
     var url = 'https://api.line.me/v2/bot/message/push';
+    var payload= JSON.stringify({
+      'to':  linebotUserId,
+      'messages': [{
+        type:'text',
+        text: message
+      }]
+    });
     var response = UrlFetchApp.fetch(url, {
       'headers': {
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': 'Bearer ' + linebotToken,
       },
       'method': 'post',
-      'payload': message
+      'payload': payload
     });
     return response;
 }
