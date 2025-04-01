@@ -27,4 +27,4 @@ Blockly.Msg.LINENOTIFY_AUDIO_SHOW = "音讯";
 Blockly.Msg.LINENOTIFY_LOCATION_SHOW = "位置";
 Blockly.Msg.LINENOTIFY_LATITUDE_SHOW = "纬度";
 Blockly.Msg.LINENOTIFY_LONGITUDE_SHOW = "经度";
-Blockly.Msg.LINEBOT_SHOW = "聊天机器人";
+Blockly.Msg.LINEBOT_SHOW = "机器人";
