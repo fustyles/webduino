@@ -1,5 +1,5 @@
 /*
-  Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/1 10:00
+  Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/1 11:00
   https://www.facebook.com/francefu
 */
 
@@ -66,11 +66,12 @@ function doPost(e) {
     var file = folder.createFile(blob);
     var imageUrl = file.getUrl();
     var imageID = imageUrl.substring(imageUrl.indexOf("/d/")+3,imageUrl.indexOf("view")-1);       
-    imageUrl = "https://drive.google.com/file/d/"+imageID+"/view?usp=sharing";     
+    imageUrl = "https://drive.google.com/file/d/"+imageID+"/view?usp=sharing";       
+    var imageThumbnailUrl = "https://drive.google.com/thumbnail?id="+imageID;    
     var formula = '=HYPERLINK("' + imageUrl + '","'+ myDate+" "+myTime +'")';
     sheet.getRange(myRow, myColumn).setFormula(formula);
 
-    lineBotMessage(imageUrl); 
+    lineBotPhoto(myTime, imageThumbnailUrl, imageUrl);
   }  else if (myFormat=="jpg") {
     var folder, folders = DriveApp.getFoldersByName(myFoldername);
     if (folders.hasNext()) {
@@ -89,12 +90,13 @@ function doPost(e) {
     var formula = 'IMAGE("' + imageThumbnailUrl + '", 1)';
     sheet.getRange(myRow, myColumn).setFormula('=HYPERLINK("' + imageUrl + '", '+formula+')');
 
-    lineBotMessage(imageUrl);    
+    lineBotPhoto(myTime, imageThumbnailUrl, imageUrl);
   } 
   return  ContentService.createTextOutput("OK");
 }
 
 function lineBotMessage(message) {
+  try {
     var url = 'https://api.line.me/v2/bot/message/push';
     var payload= JSON.stringify({
       'to':  linebotUserId,
@@ -103,6 +105,7 @@ function lineBotMessage(message) {
         text: message
       }]
     });
+
     var response = UrlFetchApp.fetch(url, {
       'headers': {
         'Content-Type': 'application/json; charset=UTF-8',
@@ -111,5 +114,40 @@ function lineBotMessage(message) {
       'method': 'post',
       'payload': payload
     });
-    return response;
+	
+    return response.getContentText();
+  } catch(error) {
+    return error;
+  }	
+}
+
+function lineBotPhoto(message, imageThumbnail, imageFullsize) {
+  try {
+    var url = 'https://api.line.me/v2/bot/message/push';
+	
+    var response = UrlFetchApp.fetch(url, {
+      'headers': {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer ' + linebotToken,
+      },
+      'method': 'post',
+      'payload': JSON.stringify({
+        'to':  linebotUserId,
+        'messages': [
+          {
+            type:'text',
+            text: message
+          },
+          {
+            type:'image',
+            originalContentUrl: imageFullsize,
+            previewImageUrl: imageThumbnail
+          }
+        ]
+      })
+    });
+    return response.getContentText();      
+  } catch(error) {
+    return error;
+  }
 }
