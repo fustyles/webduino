@@ -1,5 +1,5 @@
 /*
-  Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/1 11:00
+  Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/1 11:30
   https://www.facebook.com/francefu
 */
 
@@ -71,7 +71,7 @@ function doPost(e) {
     var formula = '=HYPERLINK("' + imageUrl + '","'+ myDate+" "+myTime +'")';
     sheet.getRange(myRow, myColumn).setFormula(formula);
 
-    lineBotPhoto(myTime, imageThumbnailUrl, imageUrl);
+    lineBotPhoto(myDate+" "+myTime, imageThumbnailUrl, imageUrl);
   }  else if (myFormat=="jpg") {
     var folder, folders = DriveApp.getFoldersByName(myFoldername);
     if (folders.hasNext()) {
@@ -90,7 +90,7 @@ function doPost(e) {
     var formula = 'IMAGE("' + imageThumbnailUrl + '", 1)';
     sheet.getRange(myRow, myColumn).setFormula('=HYPERLINK("' + imageUrl + '", '+formula+')');
 
-    lineBotPhoto(myTime, imageThumbnailUrl, imageUrl);
+    lineBotPhoto(myDate+" "+myTime, imageThumbnailUrl, imageUrl);
   } 
   return  ContentService.createTextOutput("OK");
 }
