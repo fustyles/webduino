@@ -99,7 +99,7 @@ function lineBotMessage(message) {
   try {
     var url = 'https://api.line.me/v2/bot/message/push';
 
-    var payload= JSON.stringify({
+    var payload = JSON.stringify({
       'to':  linebotUserId,
       'messages': [{
         type:'text',
@@ -125,14 +125,8 @@ function lineBotMessage(message) {
 function lineBotPhoto(message, imageThumbnail, imageFullsize) {
   try {
     var url = 'https://api.line.me/v2/bot/message/push';
-	
-    var response = UrlFetchApp.fetch(url, {
-      'headers': {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer ' + linebotToken,
-      },
-      'method': 'post',
-      'payload': JSON.stringify({
+
+    var payload = JSON.stringify({
         'to':  linebotUserId,
         'messages': [
           {
@@ -145,7 +139,15 @@ function lineBotPhoto(message, imageThumbnail, imageFullsize) {
             previewImageUrl: imageThumbnail
           }
         ]
-      })
+      });
+
+    var response = UrlFetchApp.fetch(url, {
+      'headers': {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer ' + linebotToken,
+      },
+      'method': 'post',
+      'payload': payload
     });
     return response.getContentText();      
   } catch(error) {
