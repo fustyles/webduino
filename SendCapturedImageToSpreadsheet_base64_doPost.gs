@@ -118,7 +118,7 @@ function lineBotMessage(message) {
 	
     return response.getContentText();
   } catch(error) {
-    return error;
+    return 'Error: ' + error.message;
   }	
 }
 
@@ -151,6 +151,6 @@ function lineBotPhoto(message, imageThumbnail, imageFullsize) {
     });
     return response.getContentText();      
   } catch(error) {
-    return error;
+    return 'Error: ' + error.message;
   }
 }
