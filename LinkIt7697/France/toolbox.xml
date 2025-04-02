@@ -1176,18 +1176,6 @@
 				  </block>
 				</value>				
 			  </block>			  
-			  <block type="esp32_cam_linenotify">
-				<value name="linetoken">
-				  <block type="text">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="linemessage">
-				  <block type="text">
-					<field name="TEXT">World Peace</field>
-				  </block>
-				</value>				
-			  </block>
 			  <block type="esp32_cam_telegrambot">
 				<value name="token">
 				  <block type="text">
