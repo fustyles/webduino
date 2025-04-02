@@ -16073,32 +16073,67 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
   Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = "'+pass+'";';
   
   Blockly.Arduino.setups_.setup_initWiFi='initWiFi();';
-  Blockly.Arduino.definitions_.initWiFi = ''+
-		'void initWiFi() {\n'+
-		'  for (int i=0;i<2;i++) {\n'+
-		'    WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
-		'    \n'+
-		'    delay(1000);\n'+
-		'    Serial.println("");\n'+
-		'    Serial.print("Connecting to ");\n'+
-		'    Serial.println(_lwifi_ssid);\n'+
-		'    \n'+
-		'    long int StartTime=millis();\n'+
-		'    while (WiFi.status() != WL_CONNECTED) {\n'+
-		'        delay(500);\n'+
-		'        if ((StartTime+5000) < millis()) break;\n'+
-		'    }\n'+
-		'    \n'+
-		'    if (WiFi.status() == WL_CONNECTED) {\n'+     
-		'      Serial.println("");\n'+
-		'      Serial.println("STAIP address: ");\n'+
-		'      Serial.println(WiFi.localIP());\n'+
-		'      Serial.println("");\n'+
-		'    \n'+
-		'      break;\n'+
-		'    }\n'+
-		'  }\n'+	
-		'}\n';  
+  
+  if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735") {
+	Blockly.Arduino.definitions_.initWiFi = ''+
+			'void initWiFi() {\n'+
+			'  for (int i=0;i<2;i++) {\n'+
+			'    if (String(_lwifi_ssid)=="") break;\n'+
+			'    WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
+			'    \n'+
+			'    delay(1000);\n'+
+			'    Serial.println("");\n'+
+			'    Serial.print("Connecting to ");\n'+
+			'    Serial.println(_lwifi_ssid);\n'+
+			'    \n'+
+			'    long int StartTime=millis();\n'+
+			'    while (WiFi.status() != WL_CONNECTED) {\n'+
+			'        delay(500);\n'+
+			'        if ((StartTime+5000) < millis()) break;\n'+
+			'    }\n'+
+			'    \n'+
+			'    if (WiFi.status() == WL_CONNECTED) {\n'+    
+			'      Serial.println("");\n'+
+			'      Serial.print("STAIP address: ");\n'+
+			'      Serial.println(WiFi.localIP());\n'+
+			'      Serial.println("");\n'+			
+			'      break;\n'+
+			'    }\n'+
+			'  }\n'+
+			'  if (String(ssid_ap)!=""&&WiFi.status()!=WL_CONNECTED) {\n'+			
+			'      WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
+			'      Serial.println("APIP address: 192.168.1.1");\n'+
+			'      Serial.println("");\n'+	
+			'  }\n'+		
+			'}\n';	
+  } else {
+	  Blockly.Arduino.definitions_.initWiFi = ''+
+			'void initWiFi() {\n'+
+			'  for (int i=0;i<2;i++) {\n'+
+			'    WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
+			'    \n'+
+			'    delay(1000);\n'+
+			'    Serial.println("");\n'+
+			'    Serial.print("Connecting to ");\n'+
+			'    Serial.println(_lwifi_ssid);\n'+
+			'    \n'+
+			'    long int StartTime=millis();\n'+
+			'    while (WiFi.status() != WL_CONNECTED) {\n'+
+			'        delay(500);\n'+
+			'        if ((StartTime+5000) < millis()) break;\n'+
+			'    }\n'+
+			'    \n'+
+			'    if (WiFi.status() == WL_CONNECTED) {\n'+     
+			'      Serial.println("");\n'+
+			'      Serial.print("STAIP address: ");\n'+
+			'      Serial.println(WiFi.localIP());\n'+
+			'      Serial.println("");\n'+
+			'    \n'+
+			'      break;\n'+
+			'    }\n'+
+			'  }\n'+	
+			'}\n';  
+  }
   var code = '';
   return code; 
 };
