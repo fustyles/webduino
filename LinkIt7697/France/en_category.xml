@@ -1,7 +1,7 @@
 <xml>
 <category><name>FRANCEFU</name><replace>France Blocks</replace></category>
 <category><name>customcode</name><replace>Custom Code</replace></category>
-<category><name>line</name><replace>Line Notification</replace></category>
+<category><name>line</name><replace>Line Bot</replace></category>
 <category><name>client</name><replace>Client Module</replace></category>
 <category><name>wifi</name><replace>WiFi Connection</replace></category>
 <category><name>udp</name><replace>UDP Communication</replace></category>

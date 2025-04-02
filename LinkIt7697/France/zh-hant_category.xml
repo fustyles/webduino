@@ -1,7 +1,7 @@
 <xml>
 <category><name>FRANCEFU</name><replace>法蘭斯積木</replace></category>
 <category><name>customcode</name><replace>自訂程式碼</replace></category>
-<category><name>line</name><replace>Line通知</replace></category>
+<category><name>line</name><replace>Line Bot</replace></category>
 <category><name>client</name><replace>Client模組</replace></category>
 <category><name>wifi</name><replace>WiFi連線</replace></category>
 <category><name>udp</name><replace>UDP通訊</replace></category>
