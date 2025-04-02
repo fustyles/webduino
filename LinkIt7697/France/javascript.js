@@ -1574,8 +1574,10 @@ Blockly.Arduino['amb82_mini_motiondetection_rtsp'] = function(block) {
 	}
 
 	if (mode=="tcp")
-		amb82_mini_video_tcp();
-
+		amb82_mini_video_tcp81();
+	else if (mode=="tcp80")
+		amb82_mini_video_tcp80();
+	
   return "";
 };
 
@@ -3174,8 +3176,10 @@ Blockly.Arduino['amb82_mini_facedetectionrecognition_rtsp'] = function(block) {
 	}
 
 	if (mode=="tcp")
-		amb82_mini_video_tcp();
-
+		amb82_mini_video_tcp81();
+	else if (mode=="tcp80")
+		amb82_mini_video_tcp80();
+	
   return "";
 };
 
@@ -3330,7 +3334,9 @@ Blockly.Arduino['amb82_mini_facedetection_rtsp'] = function(block) {
 	}										
 
 	if (mode=="tcp")
-		amb82_mini_video_tcp();
+		amb82_mini_video_tcp81();
+	else if (mode=="tcp80")
+		amb82_mini_video_tcp80();
 	
   return "";
 };
@@ -3610,7 +3616,9 @@ Blockly.Arduino['amb82_mini_emotionclassification_rtsp'] = function(block) {
 		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";
 
 	if (mode=="tcp")
-		amb82_mini_video_tcp();	
+		amb82_mini_video_tcp81();
+	else if (mode=="tcp80")
+		amb82_mini_video_tcp80();	
 
 	Blockly.Arduino.definitions_['define_amb82_mini_emotionclassification_rtsp'] =''+	
 	'#ifndef __EMOTIONCLASSLIST_H__\n'+
@@ -3929,7 +3937,9 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 	}
 	
 	if (mode=="tcp")
-		amb82_mini_video_tcp();
+		amb82_mini_video_tcp81();
+	else if (mode=="tcp80")
+		amb82_mini_video_tcp80();	
 	else if (mode=="uvc")
 		amb82_mini_usb_uvcd();
 	
@@ -4445,7 +4455,9 @@ Blockly.Arduino['amb82_mini_video_getstill'] = function(block) {
 
 Blockly.Arduino['amb82_mini_video_tcp'] = function(block) {
 
-	Blockly.Arduino.definitions_.ExecuteCommand = 'WiFiServer server81(81);\n';
+	Blockly.Arduino.definitions_.ExecuteCommand = '';
+	Blockly.Arduino.definitions_.define_CONFIG_INIC_IPC_HIGH_TP = '#define CONFIG_INIC_IPC_HIGH_TP\n';
+	Blockly.Arduino.definitions_.define_server81 = 'WiFiServer server81(81);\n';
 	Blockly.Arduino.setups_.write_peri_reg = "";
 	Blockly.Arduino.definitions_.getRequest81 = ''+
 			'void getRequest81(void *param) {\n'+
@@ -4486,6 +4498,7 @@ Blockly.Arduino['amb82_mini_video_tcp'] = function(block) {
 			'   	        		}\n'+ 
 			'   	        	}\n'+ 
 			'   	        	client81.print("\\r\\n");\n'+
+			'   	        	delay(2);\n'+
 			'   	        }\n'+ 
 			'   	        break;\n'+
 			'            } else {\n'+
@@ -4507,8 +4520,9 @@ Blockly.Arduino['amb82_mini_video_tcp'] = function(block) {
 			'  }\n'+
 			'}\n';	
 
-	Blockly.Arduino.setups_.serverbegin = 'server81.begin();\n  '+
-	        'if (xTaskCreate(getRequest81, (const char *)"getRequest81", 1024, NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
+	Blockly.Arduino.setups_.server81begin = ''+
+	        'server81.begin();\n  '+
+	        'if (xTaskCreate(getRequest81, (const char *)"getRequest81", 2048, NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
 			'	Serial.println("Create getRequest81 task failed");\n  '+
 			'}\n';	
 	
@@ -5438,8 +5452,11 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 	
   if (framesize=="VIDEO_CUSTOM")
 	framesize = width +", "+height;
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nchar ssid[] = '+ssid+';\nchar pass[] = '+pass+';\nchar ssid_ap[] = '+ssid_ap+';\nchar pass_ap[] = '+pass_ap+';\nchar channel_ap[] = "2";\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\nWiFiServer server(80);\nWiFiServer server81(81);WiFiServer server82(82);\n';
-
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nchar ssid[] = '+ssid+';\nchar pass[] = '+pass+';\nchar ssid_ap[] = '+ssid_ap+';\nchar pass_ap[] = '+pass_ap+';\nchar channel_ap[] = "2";\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+  Blockly.Arduino.definitions_.define_CONFIG_INIC_IPC_HIGH_TP = '#define CONFIG_INIC_IPC_HIGH_TP\n';
+  Blockly.Arduino.definitions_.define_server80 = 'WiFiServer server81(80);\n';
+  Blockly.Arduino.definitions_.define_server81 = 'WiFiServer server81(81);\n';
+  Blockly.Arduino.definitions_.define_server82 = 'WiFiServer server81(82);\n';
   Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 	
   Blockly.Arduino.variables_['getCommand'] = 'String Feedback="",bleData="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
@@ -5524,26 +5541,26 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'      Serial.println("");\n'+
 			'      Serial.print("Main page: http://");\n'+
 			'      Serial.println(WiFi.localIP());\n'+
-			'      Serial.print("Stream: http://");\n'+
+			'      Serial.print("STA Stream: http://");\n'+
 			'      Serial.print(WiFi.localIP());\n'+
 			'      Serial.println(":81");\n'+
-			'      Serial.print("Still: http://");\n'+
+			'      Serial.print("STA Still: http://");\n'+			
 			'      Serial.print(WiFi.localIP());\n'+
 			'      Serial.println(":82");\n'+				
 			'      break;\n'+
 			'    }\n'+
 			'  }\n'+
 			'  if (String(ssid_ap)!=""&&WiFi.status()!=WL_CONNECTED) {\n'+
-			'    WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
-			'  }\n'+
-			'  Serial.println("");\n'+
+			'      WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
+			'      Serial.print("AP Stream: http://");\n'+
+			'      Serial.println("192.168.1.1:81");\n'+	
+			'      Serial.print("AP Still: http://");\n'+
+			'      Serial.println("192.168.1.1:82");\n'+
+			'  }\n'+			
 			'  config.setRotation('+rotation+');\n'+
 			'  Camera.configVideoChannel(0, config);\n'+
 			'  Camera.videoInit();\n'+
-			'  Camera.channelBegin(0);\n'+
-			'  server.begin();\n'+
-			'  server81.begin();\n'+	
-			'  server82.begin();\n'+			
+			'  Camera.channelBegin(0);\n'+			
 			'}\n';
 
 	Blockly.Arduino.definitions_.getRequest = ''+
@@ -5672,6 +5689,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'   	        		}\n'+ 
 			'   	        	}\n'+ 
 			'   	        	client81.print("\\r\\n");\n'+
+			'   	        	delay(2);\n'+
 			'   	        }\n'+ 
 			'   	        break;\n'+
 			'            } else {\n'+
@@ -5748,13 +5766,16 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'  }\n'+
 			'}\n';						
 
-	Blockly.Arduino.setups_.server_getrequest = ''+	
+	Blockly.Arduino.setups_.serverbegin = ''+	
+			'server.begin();\n'+
 			'if (xTaskCreate(getRequest, (const char *)"getRequest", 1024, NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
 			'	Serial.println("Create getRequest task failed");\n  '+
 			'}\n  '+		
-			'if (xTaskCreate(getRequest81, (const char *)"getRequest81", 1024, NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
+			'server81.begin();\n'+
+			'if (xTaskCreate(getRequest81, (const char *)"getRequest81", 2048, NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
 			'	Serial.println("Create getRequest81 task failed");\n  '+
 			'}\n'+
+			'server82.begin();\n'+
 			'if (xTaskCreate(getRequest82, (const char *)"getRequest82", 1024, NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
 			'	Serial.println("Create getRequest82 task failed");\n  '+
 			'}\n';				
@@ -5777,10 +5798,11 @@ Blockly.Arduino['amb82_mini_stream'] = function(block) {
   if (framesize=="VIDEO_CUSTOM")
 	framesize = width +", "+height;
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "VideoStream.h"\nVideoSetting config('+framesize+', CAM_FPS, VIDEO_JPEG, 1);\nchar ssid[] = '+ssid+';\nchar pass[] = '+pass+';\nchar ssid_ap[] = '+ssid_ap+';\nchar pass_ap[] = '+pass_ap+';\nchar channel_ap[] = "2";\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
-
+  Blockly.Arduino.definitions_.define_CONFIG_INIC_IPC_HIGH_TP = '#define CONFIG_INIC_IPC_HIGH_TP\n';
+  Blockly.Arduino.definitions_.define_server80 = 'WiFiServer server(80);\n';
   Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
 	
-  Blockly.Arduino.definitions_.ExecuteCommand = 'WiFiServer server(80);\n';
+  Blockly.Arduino.definitions_.ExecuteCommand = '';
 	
 	Blockly.Arduino.setups_.write_peri_reg = "";
 	if ('setupsTop_' in Blockly.Arduino)
@@ -5813,20 +5835,20 @@ Blockly.Arduino['amb82_mini_stream'] = function(block) {
 			'    \n'+
 			'    if (WiFi.status() == WL_CONNECTED) {\n'+    
 			'      Serial.println("");\n'+
-			'      Serial.print("Stream: http://");\n'+
-			'      Serial.print(WiFi.localIP());\n'+		
+			'      Serial.print("STA Stream: http://");\n'+
+			'      Serial.println(WiFi.localIP());\n'+		
 			'      break;\n'+
 			'    }\n'+
 			'  }\n'+
-			'  if (String(ssid_ap)!=""&&WiFi.status()!=WL_CONNECTED) {\n'+
+			'  if (String(ssid_ap)!=""&&WiFi.status()!=WL_CONNECTED) {\n'+			
 			'    WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
-			'  }\n'+
-			'  Serial.println("");\n'+
+			'    Serial.print("AP Stream: http://");\n'+
+			'    Serial.println("192.168.1.1");\n'+	
+			'  }\n'+			
 			'  config.setRotation('+rotation+');\n'+
 			'  Camera.configVideoChannel(0, config);\n'+
 			'  Camera.videoInit();\n'+
-			'  Camera.channelBegin(0);\n'+
-			'  server.begin();\n'+		
+			'  Camera.channelBegin(0);\n'+	
 			'}\n';
 
 	Blockly.Arduino.definitions_.getRequest = ''+
@@ -5867,6 +5889,7 @@ Blockly.Arduino['amb82_mini_stream'] = function(block) {
 			'   	        		}\n'+ 
 			'   	        	}\n'+ 
 			'   	        	client.print("\\r\\n");\n'+
+			'   	        	delay(2);\n'+			
 			'   	        }\n'+ 
 			'   	        break;\n'+
 			'            } else {\n'+
@@ -5888,8 +5911,9 @@ Blockly.Arduino['amb82_mini_stream'] = function(block) {
 			'  }\n'+
 			'}\n';			
 
-	Blockly.Arduino.setups_.server_getrequest = ''+	
-			'if (xTaskCreate(getRequest, (const char *)"getRequest", 1024, NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
+	Blockly.Arduino.setups_.server80begin = ''+
+			'server.begin();\n'+	
+			'if (xTaskCreate(getRequest, (const char *)"getRequest", 2048, NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
 			'	Serial.println("Create getRequest task failed");\n  '+
 			'}\n';
 	
@@ -11176,7 +11200,7 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
   var framesize = block.getFieldValue('framesize');
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
 	
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include "esp_http_server.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\ntypedef struct {httpd_req_t *req;size_t len;} jpg_chunking_t;\n#define PART_BOUNDARY "123456789000000000000987654321"\nstatic const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;\nstatic const char* _STREAM_BOUNDARY = "\\r\\n--" PART_BOUNDARY "\\r\\n";\nstatic const char* _STREAM_PART = "Content-Type: image/jpeg\\r\\nContent-Length: %u\\r\\n\\r\\n";\nhttpd_handle_t stream_httpd = NULL;\nhttpd_handle_t camera_httpd = NULL;\n';
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include "esp_http_server.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\ntypedef struct {httpd_req_t *req;size_t len;} jpg_chunking_t;\n#define PART_BOUNDARY "123456789000000000000987654321"\nstatic const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;\nstatic const char* _STREAM_BOUNDARY = "\\r\\n--" PART_BOUNDARY "\\r\\n";\nstatic const char* _STREAM_PART = "Content-Type: image/jpeg\\r\\nContent-Length: %u\\r\\n\\r\\n";\nhttpd_handle_t stream_httpd = NULL;\nhttpd_handle_t camera_httpd = NULL;\n';
   Blockly.Arduino.variables_['getCommand'] = 'String Feedback="",bleData="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
   
   if (selectBoardType()=="esp32")
@@ -11227,7 +11251,7 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
 			'      }\n'+
 			'      \n'+
 			'      if (WiFi.status() == WL_CONNECTED) {\n'+
-			'        WiFi.softAP((WiFi.localIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+      
+			'        WiFi.softAP((WiFi.localIP().toString()+"_"+(String)ssid_ap).c_str(), pass_ap);\n'+      
 			'        Serial.println("");\n'+
 			'        Serial.println("STAIP address: ");\n'+
 			'        Serial.println(WiFi.localIP());\n'+
@@ -11238,7 +11262,7 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
 			'    }\n'+
 			'    \n'+
 			'    if (WiFi.status() != WL_CONNECTED) {\n'+
-			'      WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+
+			'      WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)ssid_ap).c_str(), pass_ap);\n'+
 			'  	   \n'+
 			'    }\n'+
 			'    \n'+
@@ -11948,7 +11972,7 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
   var request = block.getFieldValue('request') === 'TRUE';  
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');	
 	
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\nWiFiServer server(80);\n\n'+
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\nWiFiServer server(80);\n\n'+
 																'#define PWDN_GPIO_NUM     -1\n'+
 																'#define RESET_GPIO_NUM    -1\n'+
 																'#define XCLK_GPIO_NUM      0\n'+
@@ -12150,7 +12174,7 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 			'      }\n'+
 			'      \n'+
 			'      if (WiFi.status() == WL_CONNECTED) {\n'+
-			'        WiFi.softAP((WiFi.localIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+      
+			'        WiFi.softAP((WiFi.localIP().toString()+"_"+(String)ssid_ap).c_str(), pass_ap);\n'+      
 			'        Serial.println("");\n'+
 			'        Serial.println("STAIP address: ");\n'+
 			'        Serial.println(WiFi.localIP());\n'+
@@ -12161,7 +12185,7 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 			'    }\n'+
 			'    \n'+
 			'    if (WiFi.status() != WL_CONNECTED) {\n'+
-			'      WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+
+			'      WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)ssid_ap).c_str(), pass_ap);\n'+
 			'  	   \n'+
 			'    }\n'+
 			'    \n'+
@@ -16036,17 +16060,21 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
 	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <ESP8266WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;";
   else if (selectBoardType()=="esp32") 
 	Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;';
-  else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
+  else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735") {
 	Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\nWiFiSSLClient client;';
+	Blockly.Arduino.definitions_.define_linkit_wifi_ssid_ap='char ssid_ap[] = "AP";';
+	Blockly.Arduino.definitions_.define_linkit_wifi_appass='char pass_ap[] = "12345678";';
+	Blockly.Arduino.definitions_.define_linkit_channel_ap='char channel_ap[] = "2";'; 	
+  }
   else
 	Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;';
 
   Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = "'+ssid+'";';
   Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = "'+pass+'";';
+  
   Blockly.Arduino.setups_.setup_initWiFi='initWiFi();';
   Blockly.Arduino.definitions_.initWiFi = ''+
 		'void initWiFi() {\n'+
-		'  \n'+
 		'  for (int i=0;i<2;i++) {\n'+
 		'    WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
 		'    \n'+
@@ -16532,8 +16560,8 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 
   Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = '+ssid+';';
   Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = '+pass+';';
-  Blockly.Arduino.definitions_.define_linkit_wifi_apssid='const char* apssid = '+ssid_ap+';';
-  Blockly.Arduino.definitions_.define_linkit_wifi_appass='const char* appassword = '+pass_ap+';';   
+  Blockly.Arduino.definitions_.define_linkit_wifi_ssid_ap='const char* ssid_ap = '+ssid_ap+';';
+  Blockly.Arduino.definitions_.define_linkit_wifi_appass='const char* pass_ap = '+pass_ap+';';   
   Blockly.Arduino.definitions_.define_linkit_wifi_server= 'WiFiServer server(80);\n';
 
   Blockly.Arduino.variables_['getCommand'] = 'String Feedback="",bleData="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
@@ -16675,7 +16703,7 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'      }\n'+
 			'      \n'+
 			'      if (WiFi.status() == WL_CONNECTED) {\n'+
-			'        WiFi.softAP((WiFi.localIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+      
+			'        WiFi.softAP((WiFi.localIP().toString()+"_"+(String)ssid_ap).c_str(), pass_ap);\n'+      
 			'        Serial.println("");\n'+
 			'        Serial.println("STAIP address: ");\n'+
 			'        Serial.println(WiFi.localIP());\n'+
@@ -16693,7 +16721,7 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'    }\n'+
 			'    \n'+
 			'    if (WiFi.status() != WL_CONNECTED) {\n'+
-			'      WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+
+			'      WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)ssid_ap).c_str(), pass_ap);\n'+
 			'  	   \n'+
 			'    	pinMode(2, OUTPUT);\n'+ 
 			'    	for (int i=0;i<3;i++) {\n'+ 
@@ -22739,7 +22767,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 	  Blockly.Arduino.definitions_['flash'] = "//Flash mode";
 	
   if (type=="still") {
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\nWiFiServer server(80);\n\n'+
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\nWiFiServer server(80);\n\n'+
 																'#define PWDN_GPIO_NUM     32\n'+
 																'#define RESET_GPIO_NUM    -1\n'+
 																'#define XCLK_GPIO_NUM      0\n'+
@@ -22757,7 +22785,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 																'#define HREF_GPIO_NUM     23\n'+
 																'#define PCLK_GPIO_NUM     22\n';
   } else {
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\n\n'+
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\n\n'+
 																'#define PWDN_GPIO_NUM     32\n'+
 																'#define RESET_GPIO_NUM    -1\n'+
 																'#define XCLK_GPIO_NUM      0\n'+
@@ -23000,7 +23028,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'      }\n'+
 			'      \n'+
 			'      if (WiFi.status() == WL_CONNECTED) {\n'+
-			'        WiFi.softAP((WiFi.localIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+      
+			'        WiFi.softAP((WiFi.localIP().toString()+"_"+(String)ssid_ap).c_str(), pass_ap);\n'+      
 			'        Serial.println("");\n'+
 			'        Serial.println("STAIP address: ");\n'+
 			'        Serial.println(WiFi.localIP());\n'+
@@ -23025,7 +23053,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'    }\n'+
 			'    \n'+
 			'    if (WiFi.status() != WL_CONNECTED) {\n'+
-			'      WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+
+			'      WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)ssid_ap).c_str(), pass_ap);\n'+
 			'  	   \n'+
 			'    }\n'+
 			'    \n'+
@@ -23042,7 +23070,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'    }\n'+
 			'    \n'+
 			'    if (WiFi.status() != WL_CONNECTED) {\n'+
-			'      WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+
+			'      WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)ssid_ap).c_str(), pass_ap);\n'+
 			'  	   \n'+
 			'    }\n'+
 			'    \n'+
@@ -23277,7 +23305,7 @@ Blockly.Arduino['esp32_cam_stream_only_myfirmata'] = function(block) {
   if (flash=="Y")
 	  Blockly.Arduino.definitions_['flash'] = "//Flash mode";
 
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\n\n'+
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\n\n'+
 																'#define PWDN_GPIO_NUM     32\n'+
 																'#define RESET_GPIO_NUM    -1\n'+
 																'#define XCLK_GPIO_NUM      0\n'+
@@ -23392,7 +23420,7 @@ Blockly.Arduino['esp32_cam_stream_only_myfirmata'] = function(block) {
 			'      }\n'+
 			'      \n'+
 			'      if (WiFi.status() == WL_CONNECTED) {\n'+
-			'        WiFi.softAP((WiFi.localIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+      
+			'        WiFi.softAP((WiFi.localIP().toString()+"_"+(String)ssid_ap).c_str(), pass_ap);\n'+      
 			'        Serial.println("");\n'+
 			'        Serial.println("STAIP address: ");\n'+
 			'        Serial.println(WiFi.localIP());\n'+
@@ -23415,7 +23443,7 @@ Blockly.Arduino['esp32_cam_stream_only_myfirmata'] = function(block) {
 			'    }\n'+
 			'    \n'+
 			'    if (WiFi.status() != WL_CONNECTED) {\n'+
-			'      WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+
+			'      WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)ssid_ap).c_str(), pass_ap);\n'+
 			'  	   \n'+
 			'    }\n'+
 			'    \n'+
@@ -23516,7 +23544,7 @@ Blockly.Arduino['esp32_cam_stream_myfirmata'] = function(block) {
 	  Blockly.Arduino.definitions_['flash'] = "//Flash mode";  
 	
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <esp32-hal-ledc.h>\n#include "img_converters.h"\n#include "esp_camera.h"';
-  Blockly.Arduino.definitions_.define_esp_http_server_h_include ='#include "esp_http_server.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* apssid = '+ssid_ap+';\nconst char* appassword = '+pass_ap+';\ntypedef struct {httpd_req_t *req;size_t len;} jpg_chunking_t;\n#define PART_BOUNDARY "123456789000000000000987654321"\nstatic const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;\nstatic const char* _STREAM_BOUNDARY = "\\r\\n--" PART_BOUNDARY "\\r\\n";\nstatic const char* _STREAM_PART = "Content-Type: image/jpeg\\r\\nContent-Length: %u\\r\\n\\r\\n";\nhttpd_handle_t stream_httpd = NULL;\nhttpd_handle_t camera_httpd = NULL;\n';
+  Blockly.Arduino.definitions_.define_esp_http_server_h_include ='#include "esp_http_server.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\ntypedef struct {httpd_req_t *req;size_t len;} jpg_chunking_t;\n#define PART_BOUNDARY "123456789000000000000987654321"\nstatic const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;\nstatic const char* _STREAM_BOUNDARY = "\\r\\n--" PART_BOUNDARY "\\r\\n";\nstatic const char* _STREAM_PART = "Content-Type: image/jpeg\\r\\nContent-Length: %u\\r\\n\\r\\n";\nhttpd_handle_t stream_httpd = NULL;\nhttpd_handle_t camera_httpd = NULL;\n';
   
   if (selectBoardType().indexOf("esp")!=-1)
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
@@ -23727,7 +23755,7 @@ Blockly.Arduino['esp32_cam_stream_myfirmata'] = function(block) {
 			'    }\n'+
 			'    \n'+
 			'    if (WiFi.status() == WL_CONNECTED) {\n'+
-			'      WiFi.softAP((WiFi.localIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+      
+			'      WiFi.softAP((WiFi.localIP().toString()+"_"+(String)ssid_ap).c_str(), pass_ap);\n'+      
 			'      Serial.println("");\n'+
 			'      Serial.println("STAIP address: ");\n'+
 			'      Serial.println(WiFi.localIP());\n'+
@@ -23749,7 +23777,7 @@ Blockly.Arduino['esp32_cam_stream_myfirmata'] = function(block) {
 			'  }\n'+
 			'  \n'+
 			'  if (WiFi.status() != WL_CONNECTED) {\n'+
-			'    WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)apssid).c_str(), appassword);\n'+
+			'    WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)ssid_ap).c_str(), pass_ap);\n'+
 			'  }\n'+
 			'  \n'+
 			'  Serial.println("");\n'+
@@ -25433,9 +25461,11 @@ Blockly.Arduino['faceapirecognize_recognitied'] = function(block) {
   return code;   
 };
 
-function amb82_mini_video_tcp() {
+function amb82_mini_video_tcp81() {
 
-	Blockly.Arduino.definitions_.ExecuteCommand = 'WiFiServer server81(81);\n';
+	Blockly.Arduino.definitions_.ExecuteCommand = '';
+	Blockly.Arduino.definitions_.define_CONFIG_INIC_IPC_HIGH_TP = '#define CONFIG_INIC_IPC_HIGH_TP\n';
+	Blockly.Arduino.definitions_.define_server81 = 'WiFiServer server81(81);\n';
 	Blockly.Arduino.setups_.write_peri_reg = "";
 	Blockly.Arduino.definitions_.getRequest81 = ''+
 			'void getRequest81(void *param) {\n'+
@@ -25476,6 +25506,7 @@ function amb82_mini_video_tcp() {
 			'   	        		}\n'+ 
 			'   	        	}\n'+ 
 			'   	        	client81.print("\\r\\n");\n'+
+			'   	        	delay(2);\n'+
 			'   	        }\n'+ 
 			'   	        break;\n'+
 			'            } else {\n'+
@@ -25497,9 +25528,150 @@ function amb82_mini_video_tcp() {
 			'  }\n'+
 			'}\n';
 
-	Blockly.Arduino.setups_.serverbegin = 'server81.begin();\n  '+
-	        'if (xTaskCreate(getRequest81, (const char *)"getRequest81", 1024, NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
+	Blockly.Arduino.setups_.server81begin = ''+
+	        'server81.begin();\n  '+
+	        'if (xTaskCreate(getRequest81, (const char *)"getRequest81", 2048, NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
 			'	Serial.println("Create getRequest81 task failed");\n  '+
+			'}\n';
+
+	Blockly.Arduino.definitions_.initWiFi = ''+
+			'void initWiFi() {\n'+
+			'  for (int i=0;i<2;i++) {\n'+
+			'    if (String(_lwifi_ssid)=="") break;\n'+
+			'    WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
+			'    \n'+
+			'    delay(1000);\n'+
+			'    Serial.println("");\n'+
+			'    Serial.print("Connecting to ");\n'+
+			'    Serial.println(_lwifi_ssid);\n'+
+			'    \n'+
+			'    long int StartTime=millis();\n'+
+			'    while (WiFi.status() != WL_CONNECTED) {\n'+
+			'        delay(500);\n'+
+			'        if ((StartTime+5000) < millis()) break;\n'+
+			'    }\n'+
+			'    \n'+
+			'    if (WiFi.status() == WL_CONNECTED) {\n'+    
+			'      Serial.println("");\n'+
+			'      Serial.print("STA Stream: http://");\n'+
+			'      Serial.print(WiFi.localIP());\n'+
+			'      Serial.println(":81");\n'+	
+			'      Serial.println("");\n'+			
+			'      break;\n'+
+			'    }\n'+
+			'  }\n'+
+			'  if (String(ssid_ap)!=""&&WiFi.status()!=WL_CONNECTED) {\n'+			
+			'      WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
+			'      Serial.print("AP Stream: http://");\n'+
+			'      Serial.println("192.168.1.1:81");\n'+
+			'      Serial.println("");\n'+	
+			'  }\n'+			
+			'}\n';			
+};
+
+function amb82_mini_video_tcp80() {
+
+	Blockly.Arduino.definitions_.ExecuteCommand = '';
+	Blockly.Arduino.definitions_.define_CONFIG_INIC_IPC_HIGH_TP = '#define CONFIG_INIC_IPC_HIGH_TP\n';
+	Blockly.Arduino.definitions_.define_server80 = 'WiFiServer server(80);\n';
+	Blockly.Arduino.setups_.write_peri_reg = "";
+	Blockly.Arduino.definitions_.getRequest = ''+
+			'void getRequest(void *param) {\n'+
+			'  (void)param;\n'+
+			'  while(1){\n'+
+			'    WiFiClient client = server.available();\n'+
+			'    \n'+
+			'    if (client) {\n'+
+			'      String currentLine = "";\n'+
+			'  	   \n'+
+			'      while (client.connected()) {\n'+
+			'        if (client.available()) {\n'+
+			'          char c = client.read();\n'+             
+			'          \n'+
+			'          \n'+
+			'          if (c == \'\\n\') {\n'+
+			'            if (currentLine.length() == 0) {\n'+  
+			'   	        String head = "--Taiwan\\r\\nContent-Type: image/jpeg\\r\\n\\r\\n";\n'+ 
+			'   	        client.println("HTTP/1.1 200 OK");\n'+ 
+			'   	        client.println("Access-Control-Allow-Origin: *");\n'+
+			'   	        client.println("Connection: keep-alive");\n'+			
+			'   	        client.println("Content-Type: multipart/x-mixed-replace; boundary=Taiwan");\n'+ 
+			'   	        client.println();\n'+ 
+			'   	        while(client.connected()) {\n'+ 
+			'   	        	Camera.getImage(0, &img_addr, &img_len);\n'+ 
+			'   	        	uint8_t *fbBuf = (uint8_t*)img_addr;\n'+ 
+			'   	        	size_t fbLen = img_len;\n'+ 
+			'   	        	client.print(head);\n'+ 
+			'   	        	for (size_t n=0;n<fbLen;n=n+1024) {\n'+ 
+			'   	        	  	if (n+1024<fbLen) {\n'+ 
+			'   	        	   		client.write(fbBuf, 1024);\n'+ 
+			'   	        	   		fbBuf += 1024;\n'+ 
+			'   	        		}\n'+ 
+			'   	        		else if (fbLen%1024>0) {\n'+ 
+			'   	        			size_t remainder = fbLen%1024;\n'+ 
+			'   	        			client.write(fbBuf, remainder);\n'+ 
+			'   	        		}\n'+ 
+			'   	        	}\n'+ 
+			'   	        	client.print("\\r\\n");\n'+
+			'   	        	delay(2);\n'+			
+			'   	        }\n'+ 
+			'   	        break;\n'+
+			'            } else {\n'+
+			'              currentLine = "";\n'+
+			'            }\n'+
+			'          }\n'+ 
+			'          else if (c != \'\\r\') {\n'+
+			'            currentLine += c;\n'+
+			'          }\n'+
+			'  		   \n'+
+			'          if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP")!=-1)) {\n'+
+			'            currentLine="";\n'+
+			'          }\n'+
+			'        }\n'+
+			'      }\n'+
+			'      delay(1);\n'+
+			'      client.stop();\n'+
+			'    }\n'+
+			'  }\n'+
+			'}\n';			
+
+	Blockly.Arduino.setups_.server80begin = ''+
+	        'server.begin();\n  '+	
+			'if (xTaskCreate(getRequest, (const char *)"getRequest", 2048, NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
+			'	Serial.println("Create getRequest task failed");\n  '+
+			'}\n';
+			
+	Blockly.Arduino.definitions_.initWiFi = ''+
+			'void initWiFi() {\n'+
+			'  for (int i=0;i<2;i++) {\n'+
+			'    if (String(_lwifi_ssid)=="") break;\n'+
+			'    WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
+			'    \n'+
+			'    delay(1000);\n'+
+			'    Serial.println("");\n'+
+			'    Serial.print("Connecting to ");\n'+
+			'    Serial.println(_lwifi_ssid);\n'+
+			'    \n'+
+			'    long int StartTime=millis();\n'+
+			'    while (WiFi.status() != WL_CONNECTED) {\n'+
+			'        delay(500);\n'+
+			'        if ((StartTime+5000) < millis()) break;\n'+
+			'    }\n'+
+			'    \n'+
+			'    if (WiFi.status() == WL_CONNECTED) {\n'+    
+			'      Serial.println("");\n'+
+			'      Serial.print("STA Stream: http://");\n'+
+			'      Serial.println(WiFi.localIP());\n'+
+			'      Serial.println("");\n'+			
+			'      break;\n'+
+			'    }\n'+
+			'  }\n'+
+			'  if (String(ssid_ap)!=""&&WiFi.status()!=WL_CONNECTED) {\n'+			
+			'      WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
+			'      Serial.print("AP Stream: http://");\n'+
+			'      Serial.println("192.168.1.1");\n'+
+			'      Serial.println("");\n'+	
+			'  }\n'+		
 			'}\n';			
 };
 
