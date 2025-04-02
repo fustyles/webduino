@@ -1497,7 +1497,7 @@ Blockly.Arduino['amb82_mini_motiondetection_rtsp'] = function(block) {
 	if (mode=="rtsp")
 		var type = "VideoSetting config(VIDEO_D1, CAM_FPS, VIDEO_H264_JPEG, 1);\n";
 	else
-		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";
+		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_JPEG, 1);\n";
 	
 	
 	Blockly.Arduino.definitions_['define_amb82_mini_motiondetection_rtsp'] =''+	
@@ -3088,7 +3088,7 @@ Blockly.Arduino['amb82_mini_facedetectionrecognition_rtsp'] = function(block) {
 	if (mode=="rtsp")
 		var type = "VideoSetting config(VIDEO_FHD, 30, VIDEO_H264, 0);\n";
 	else
-		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";	
+		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_JPEG, 1);\n";	
 
 	Blockly.Arduino.definitions_['define_amb82_mini_facedetectionrecognition_rtsp_list'] =''+	
 	'void FRPostProcess(std::vector<FaceRecognitionResult> results) {\n'+
@@ -3249,7 +3249,7 @@ Blockly.Arduino['amb82_mini_facedetection_rtsp'] = function(block) {
 	if (mode=="rtsp")
 		var type = "VideoSetting config(VIDEO_FHD, 30, VIDEO_H264, 0);\n";
 	else
-		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";		
+		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_JPEG, 1);\n";		
 
 	Blockly.Arduino.definitions_['define_amb82_mini_facedetection_rtsp_list'] =''+	
 	'void FDPostProcess(std::vector<FaceDetectionResult> results) {\n'+
@@ -3613,7 +3613,7 @@ Blockly.Arduino['amb82_mini_emotionclassification_rtsp'] = function(block) {
 	if (mode=="rtsp")
 		var type = "VideoSetting config(VIDEO_FHD, 30, VIDEO_H264, 0);\n";
 	else
-		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";
+		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_JPEG, 1);\n";
 
 	if (mode=="tcp")
 		amb82_mini_video_tcp81();
@@ -3876,7 +3876,7 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 	if (mode=="rtsp")
 		var type = "VideoSetting config(VIDEO_FHD, 30, VIDEO_H264, 0);\n";
 	else
-		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";
+		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_JPEG, 1);\n";
 	
 	if (mode=="rtsp"||mode=="still") {
 		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNObjectDetection.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\n'+type+'VideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNObjectDetection ObjDet;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nint rtsp_portnum;\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
@@ -5522,6 +5522,12 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 
 	Blockly.Arduino.definitions_.initWiFi = ''+
 			'void initWiFi() {\n'+
+			'  WiFi.enableConcurrent();\n'+
+			'  WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
+			'  Serial.println("AP Stream: http://192.168.1.1:81");\n'+	
+			'  Serial.println("AP Still: http://192.168.1.1:82");\n'+
+			'  Serial.println("");\n'+
+			'  delay(5000);\n'+
 			'  for (int i=0;i<2;i++) {\n'+
 			'    if (String(ssid)=="") break;\n'+
 			'    WiFi.begin(ssid, pass);\n'+
@@ -5549,13 +5555,6 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'      Serial.println(":82");\n'+				
 			'      break;\n'+
 			'    }\n'+
-			'  }\n'+
-			'  if (String(ssid_ap)!=""&&WiFi.status()!=WL_CONNECTED) {\n'+
-			'      WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
-			'      Serial.print("AP Stream: http://");\n'+
-			'      Serial.println("192.168.1.1:81");\n'+	
-			'      Serial.print("AP Still: http://");\n'+
-			'      Serial.println("192.168.1.1:82");\n'+
 			'  }\n'+			
 			'  config.setRotation('+rotation+');\n'+
 			'  Camera.configVideoChannel(0, config);\n'+
@@ -5818,6 +5817,11 @@ Blockly.Arduino['amb82_mini_stream'] = function(block) {
 
 	Blockly.Arduino.definitions_.initWiFi = ''+
 			'void initWiFi() {\n'+
+			'  WiFi.enableConcurrent();\n'+		
+			'  WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
+			'  Serial.println("AP Stream: http://192.168.1.1");\n'+
+			'  Serial.println("");\n'+
+			'  delay(5000);\n'+
 			'  for (int i=0;i<2;i++) {\n'+
 			'    if (String(ssid)=="") break;\n'+
 			'    WiFi.begin(ssid, pass);\n'+
@@ -5840,11 +5844,6 @@ Blockly.Arduino['amb82_mini_stream'] = function(block) {
 			'      break;\n'+
 			'    }\n'+
 			'  }\n'+
-			'  if (String(ssid_ap)!=""&&WiFi.status()!=WL_CONNECTED) {\n'+			
-			'    WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
-			'    Serial.print("AP Stream: http://");\n'+
-			'    Serial.println("192.168.1.1");\n'+	
-			'  }\n'+			
 			'  config.setRotation('+rotation+');\n'+
 			'  Camera.configVideoChannel(0, config);\n'+
 			'  Camera.videoInit();\n'+
@@ -16064,7 +16063,7 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
 	Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\nWiFiSSLClient client;';
 	Blockly.Arduino.definitions_.define_linkit_wifi_ssid_ap='char ssid_ap[] = "AP";';
 	Blockly.Arduino.definitions_.define_linkit_wifi_appass='char pass_ap[] = "12345678";';
-	Blockly.Arduino.definitions_.define_linkit_channel_ap='char channel_ap[] = "2";'; 	
+	Blockly.Arduino.definitions_.define_linkit_channel_ap='char channel_ap[] = "1";'; 	
   }
   else
 	Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;';
@@ -16077,6 +16076,11 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
   if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735") {
 	Blockly.Arduino.definitions_.initWiFi = ''+
 			'void initWiFi() {\n'+
+			'  WiFi.enableConcurrent();\n'+
+			'  WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
+			'  Serial.println("APIP address: 192.168.1.1");\n'+
+			'  Serial.println("");\n'+				
+			'  delay(5000);\n'+
 			'  for (int i=0;i<2;i++) {\n'+
 			'    if (String(_lwifi_ssid)=="") break;\n'+
 			'    WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
@@ -16099,11 +16103,6 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
 			'      Serial.println("");\n'+			
 			'      break;\n'+
 			'    }\n'+
-			'  }\n'+
-			'  if (String(ssid_ap)!=""&&WiFi.status()!=WL_CONNECTED) {\n'+			
-			'      WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
-			'      Serial.println("APIP address: 192.168.1.1");\n'+
-			'      Serial.println("");\n'+	
 			'  }\n'+		
 			'}\n';	
   } else {
@@ -25571,6 +25570,11 @@ function amb82_mini_video_tcp81() {
 
 	Blockly.Arduino.definitions_.initWiFi = ''+
 			'void initWiFi() {\n'+
+			'  WiFi.enableConcurrent();\n'+		
+			'  WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
+			'  Serial.println("AP Stream: http://192.168.1.1:81");\n'+
+			'  Serial.println("");\n'+
+			'  delay(5000);\n'+			
 			'  for (int i=0;i<2;i++) {\n'+
 			'    if (String(_lwifi_ssid)=="") break;\n'+
 			'    WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
@@ -25594,13 +25598,7 @@ function amb82_mini_video_tcp81() {
 			'      Serial.println("");\n'+			
 			'      break;\n'+
 			'    }\n'+
-			'  }\n'+
-			'  if (String(ssid_ap)!=""&&WiFi.status()!=WL_CONNECTED) {\n'+			
-			'      WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
-			'      Serial.print("AP Stream: http://");\n'+
-			'      Serial.println("192.168.1.1:81");\n'+
-			'      Serial.println("");\n'+	
-			'  }\n'+			
+			'  }\n'+				
 			'}\n';			
 };
 
@@ -25678,6 +25676,11 @@ function amb82_mini_video_tcp80() {
 			
 	Blockly.Arduino.definitions_.initWiFi = ''+
 			'void initWiFi() {\n'+
+			'  WiFi.enableConcurrent();\n'+			
+			'  WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
+			'  Serial.println("AP Stream: http://192.168.1.1");\n'+
+			'  Serial.println("");\n'+
+			'  delay(5000);\n'+			
 			'  for (int i=0;i<2;i++) {\n'+
 			'    if (String(_lwifi_ssid)=="") break;\n'+
 			'    WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
@@ -25700,13 +25703,7 @@ function amb82_mini_video_tcp80() {
 			'      Serial.println("");\n'+			
 			'      break;\n'+
 			'    }\n'+
-			'  }\n'+
-			'  if (String(ssid_ap)!=""&&WiFi.status()!=WL_CONNECTED) {\n'+			
-			'      WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
-			'      Serial.print("AP Stream: http://");\n'+
-			'      Serial.println("192.168.1.1");\n'+
-			'      Serial.println("");\n'+	
-			'  }\n'+		
+			'  }\n'+	
 			'}\n';			
 };
 
