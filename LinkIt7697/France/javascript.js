@@ -1841,8 +1841,9 @@ Blockly.Arduino['amb82_mini_file_read_char_get'] = function(block) {
 Blockly.Arduino['amb82_mini_file_play'] = function(block) {
 	var filename_ = Blockly.Arduino.valueToCode(block, 'filename_', Blockly.Arduino.ORDER_ATOMIC);
 	var type = block.getFieldValue('type_');
+	var volume = block.getFieldValue('volume_');
 	
-	var code = 'File file = fs.open(file_path+"/"+String('+filename_+')+".mp3", '+type+');\nfile.close();\n';
+	var code = 'File file = fs.open(file_path+"/"+String('+filename_+')+".mp3", '+type+');\nfile.setMp3DigitalVol('+volume+');\nfile.playMp3();\nfile.close();\n';
     return code;
 };
 

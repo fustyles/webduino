@@ -193,6 +193,7 @@ Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_NAME"] = "Object Name";
 Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_FILEPATH"] = "Object Path";
 Blockly.Msg["AMB82_MINI_FILE_ATTRIBUTE_DIRPATH"] = "Object directory Path";
 Blockly.Msg["AMB82_MINI_PLAY"] = "Play";
+Blockly.Msg["AMB82_MINI_VOLUME"] = "Volume";
 Blockly.Msg["AMB82_MINI_FILE_NAME"] = "File name";
 Blockly.Msg["AMB82_MINI_AUDIO_RATE"] = "Sample rate";
 Blockly.Msg["AMB82_MINI_GOOGLETTS"] = "Google TTS";

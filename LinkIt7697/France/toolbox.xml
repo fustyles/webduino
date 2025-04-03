@@ -3895,6 +3895,7 @@
 					<field name="TEXT">test</field>
 				  </block>
 				</value>
+				<field name="volume_">80</field>
 			</block>
 			<block type="amb82_mini_file_googletts">
 				<value name="message_">
