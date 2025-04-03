@@ -164,9 +164,9 @@ Blockly.Msg["AMB82_MINI_MODE"] = "Format";
 Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP Streaming (Default)";
 Blockly.Msg["AMB82_MINI_TCP"] = "TCP streaming";
 Blockly.Msg["AMB82_MINI_TCPSTREAM"] = "TCP streaming enabled";
-Blockly.Msg["AMB82_MINI_RTSP_STILL"] = "RTSP Streaming and allow screenshot";
+Blockly.Msg["AMB82_MINI_RTSP_STILL"] = "RTSP Streaming";
 Blockly.Msg["AMB82_MINI_STILL"] = "Allow Screenshot";
-Blockly.Msg["AMB82_MINI_TCP_STILL"] = "TCP Streaming and allow screenshot";
+Blockly.Msg["AMB82_MINI_TCP_STILL"] = "TCP Streaming";
 Blockly.Msg["AMB82_MINI_STILL_NEW"] = "Capture image";
 Blockly.Msg["AMB82_MINI_STILL_OLD"] = "Previous image";
 

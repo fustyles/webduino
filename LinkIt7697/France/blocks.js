@@ -2268,7 +2268,15 @@ Blockly.Blocks['amb82_mini_file_openai_whisper'] = {
     this.appendValueInput("key_")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg["AMB82_MINI_OPENAI_KEY"]);			
+		.appendField(Blockly.Msg["AMB82_MINI_OPENAI_KEY"]);
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_MODEL"])
+		.appendField(new Blockly.FieldDropdown([
+			["whisper-1","whisper-1"],
+			["gpt-4o-mini-transcribe","gpt-4o-mini-transcribe"],
+			["gpt-4o-transcribe","gpt-4o-transcribe"]
+		]), "model_");			
 	this.appendValueInput("filename_")
 		.setCheck(null)
 		.setAlign(Blockly.ALIGN_RIGHT)
@@ -2283,15 +2291,7 @@ Blockly.Blocks['amb82_mini_file_openai_whisper'] = {
 			["MPGA (audio/mpga)","audio/mpga"],
 			["WAV (audio/wav)","audio/wav"],
 			["WEBM (audio/webm)","audio/webm"]
-		]), "mimetype_");
-	this.appendDummyInput()
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg["AMB82_MINI_MODEL"])
-		.appendField(new Blockly.FieldDropdown([
-			["whisper-1","whisper-1"],
-			["gpt-4o-mini-transcribe","gpt-4o-mini-transcribe"],
-			["gpt-4o-transcribe","gpt-4o-transcribe"]
-		]), "model_");		
+		]), "mimetype_");	
 	this.setInputsInline(false);
 	this.setOutput(true, null);
 	this.setColour(Blockly.Msg["HUE_28"]);

@@ -164,9 +164,9 @@ Blockly.Msg["AMB82_MINI_MODE"] = "格式";
 Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP串流(預設)";
 Blockly.Msg["AMB82_MINI_TCP"] = "TCP串流";
 Blockly.Msg["AMB82_MINI_TCPSTREAM"] = "TCP串流 啟用";
-Blockly.Msg["AMB82_MINI_RTSP_STILL"] = "RTSP串流與可截圖";
-Blockly.Msg["AMB82_MINI_STILL"] = "無串流與可截圖";
-Blockly.Msg["AMB82_MINI_TCP_STILL"] = "TCP串流與可截圖";
+Blockly.Msg["AMB82_MINI_RTSP_STILL"] = "RTSP串流";
+Blockly.Msg["AMB82_MINI_STILL"] = "無串流";
+Blockly.Msg["AMB82_MINI_TCP_STILL"] = "TCP串流";
 Blockly.Msg["AMB82_MINI_STILL_NEW"] = "即時";
 Blockly.Msg["AMB82_MINI_STILL_OLD"] = "暫存";
 
