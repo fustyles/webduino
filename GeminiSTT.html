@@ -18,7 +18,12 @@ https://fustyles.github.io/webduino/GeminiSTT.html
 	Gemini Key：<input type="text" id="key" size="40" value=""><br><br>
 	Prompt：<textarea id="prompt"  cols="45" rows="12">1. Transcribe the audio into text.\n
 2. Return the result in the following format:\n
-{"text":"Transcribed audio into text", "translation":"Transcribed audio into text and translated into Traditional Chinese", "LangCultureName":"Language code", "DisplayName": "Language name"}\n
+{
+"text":"Transcribed audio into text", 
+"translation":"Transcribed audio into text and translated into Traditional Chinese", 
+"LangCultureName":"Language code", 
+"DisplayName": "Language name"
+}\n
 3. Do not use markdown syntax in the reply.</textarea><br><br>
     <label for="audioSource">Audio Source：</label>
     <select id="audioSource"></select>
