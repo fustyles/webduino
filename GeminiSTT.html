@@ -29,9 +29,9 @@ https://fustyles.github.io/webduino/GeminiSTT.html
     <script>
 		
 		let geminiKey = document.getElementById("key");
-		let geminiResult = document.getElementById("result");
 		let geminiPrompt = document.getElementById("prompt");
-		
+		let geminiResult = document.getElementById("result");
+	    
 		let audioContext;
 		let mediaRecorder;
 		let audioChunks = [];
@@ -80,7 +80,7 @@ https://fustyles.github.io/webduino/GeminiSTT.html
 				const reader = new FileReader();
 				reader.onloadend = () => {
 					let base64Audio = reader.result.split(',')[1];
-					sendAudioFileToGeminiSTT(geminiKey.value, geminiPrompt.innerHTML, base64Audio).then(res => {geminiResult.innerHTML = res;})
+					sendAudioFileToGeminiSTT(geminiKey.value, geminiPrompt.value, base64Audio).then(res => {geminiResult.innerHTML = res;})
 				};
 				reader.readAsDataURL(audioBlob);
 				
