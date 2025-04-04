@@ -1,0 +1,149 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/4 22:00
+https://www.facebook.com/francefu
+
+Try it
+https://fustyles.github.io/webduino/GeminiSTT.html
+-->
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini STT</title>
+</head>
+<body>
+    <h1>Gemini STT</h1>
+	Gemini Key：<input type="text" id="key" size="40" value=""><br><br>
+	Prompt：<textarea id="prompt"  cols="43" rows="10">1. 請將音訊轉錄成文字。\n
+2. 並依以下json格式回傳結果：{"LangCultureName":"語系代碼", "text":"音訊轉錄成文字", "translation":"音訊轉錄成文字後翻譯成繁體中文"}\n
+3. 不要使用makedown語法回覆。</textarea><br><br>
+    <label for="audioSource">Audio Source：</label>
+    <select id="audioSource"></select>
+    <br><br>
+    <button id="startRecording">Start recording</button>
+    <button id="stopRecording" disabled>Stop recording</button><br><br>
+	<div id="result"></div>
+    <script>
+		
+		let geminiKey = document.getElementById("key");
+		let geminiResult = document.getElementById("result");
+		let geminiPrompt = document.getElementById("prompt");
+		
+		let audioContext;
+		let mediaRecorder;
+		let audioChunks = [];
+		let selectedDeviceId;
+		let audioUrl;
+
+		const audioSourceSelect = document.getElementById('audioSource');
+		const startRecordingButton = document.getElementById('startRecording');
+		const stopRecordingButton = document.getElementById('stopRecording');
+
+		// 獲取音訊設備並填充下拉選單
+		navigator.mediaDevices.enumerateDevices().then(devices => {
+			devices.forEach(device => {
+				if (device.kind === 'audioinput') {
+					const option = document.createElement('option');
+					option.value = device.deviceId;
+					option.text = device.label || `Microphone ${audioSourceSelect.length + 1}`;
+					audioSourceSelect.appendChild(option);
+				}
+			});
+		});
+
+		// 開始錄音
+		startRecordingButton.addEventListener('click', async () => {
+			selectedDeviceId = audioSourceSelect.value;
+			const stream = await navigator.mediaDevices.getUserMedia({
+				audio: { deviceId: selectedDeviceId ? { exact: selectedDeviceId } : undefined }
+			});
+
+			audioContext = new (window.AudioContext || window.webkitAudioContext)();
+			mediaRecorder = new MediaRecorder(stream);
+			mediaRecorder.ondataavailable = event => {
+				audioChunks.push(event.data);
+			};
+			mediaRecorder.start();
+
+			startRecordingButton.disabled = true;
+			stopRecordingButton.disabled = false;
+		});
+
+		// 停止錄音並下載
+		stopRecordingButton.addEventListener('click', () => {
+			mediaRecorder.stop();
+			mediaRecorder.onstop = () => {
+				const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+				const reader = new FileReader();
+				reader.onloadend = () => {
+					let base64Audio = reader.result.split(',')[1];
+					sendAudioFileToGeminiSTT(geminiKey.value, geminiPrompt.innerHTML, base64Audio).then(res => {geminiResult.innerHTML = res;})
+				};
+				reader.readAsDataURL(audioBlob);
+				
+				/*
+				audioUrl = URL.createObjectURL(audioBlob);				
+				const a = document.createElement('a');
+				a.href = audioUrl;
+				a.download = 'recording.wav';
+				document.body.appendChild(a);
+				a.click();
+				document.body.removeChild(a);
+				*/
+
+				audioChunks = [];
+				startRecordingButton.disabled = false;
+				stopRecordingButton.disabled = true;
+			};
+		});
+
+		async function sendAudioFileToGeminiSTT(apikey, prompt, base64Audio) {
+			let result = "";
+			try {
+				const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apikey}`;
+				const data = {
+					contents: [
+						{
+							role: "user", 
+							parts: [
+								{
+									inline_data: {
+										data: base64Audio, 
+										mime_type: "audio/wav",
+									},
+								}, 
+								{
+									text: prompt,
+								}
+							]
+						}
+					]
+				};
+
+				const options = {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(data)
+				};
+
+				const response = await fetch(url, options);
+				const json = await response.json();
+				console.log(JSON.stringify(json));
+				
+				if ('error' in json)
+					result = json["error"]["message"];
+				else
+					result = json["candidates"][0]["content"]["parts"][0]["text"];
+				return result;
+			}
+			catch (e) {
+				console.log(e);
+			}
+		}		
+	</script>
+</body>
+</html>
