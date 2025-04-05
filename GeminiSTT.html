@@ -10,13 +10,13 @@ https://fustyles.github.io/webduino/GeminiSTT.html
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.95">
     <title>Gemini STT</title>
 </head>
 <body>
     <h1>Gemini STT</h1>
-	Gemini Key：<input type="text" id="key" size="40" value=""><br><br>
-	Prompt：<textarea id="prompt"  cols="45" rows="12">1. Transcribe the audio into text.\n
+    Gemini Key：<input type="text" id="key" size="40" value=""><br><br>
+    Prompt：<textarea id="prompt"  cols="45" rows="12">1. Transcribe the audio into text.\n
 2. Return the result in the following format:\n
 {
 "text":"Transcribed audio into text", 
@@ -30,7 +30,7 @@ https://fustyles.github.io/webduino/GeminiSTT.html
     <br><br>
     <button id="startRecording">Start recording</button>
     <button id="stopRecording" disabled>Stop recording</button><br><br>
-	<div id="result"></div>
+    <div id="result" style="color:blue;width:450px;height:150px;overflow:auto;border:1px solid #000;"></div>
     <script>
 		
 		let geminiKey = document.getElementById("key");
