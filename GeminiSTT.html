@@ -145,7 +145,7 @@ https://fustyles.github.io/webduino/GeminiSTT.html
 					result = json["error"]["message"];
 				else
 					result = json["candidates"][0]["content"]["parts"][0]["text"];
-				return result;
+				return result.replace(/```json|```/g, '');
 			}
 			catch (e) {
 				console.log(e);
