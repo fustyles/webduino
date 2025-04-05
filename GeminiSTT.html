@@ -61,6 +61,7 @@ https://fustyles.github.io/webduino/GeminiSTT.html
 
 		// 開始錄音
 		startRecordingButton.addEventListener('click', async () => {
+			geminiResult.innerHTML = "";
 			selectedDeviceId = audioSourceSelect.value;
 			const stream = await navigator.mediaDevices.getUserMedia({
 				audio: { deviceId: selectedDeviceId ? { exact: selectedDeviceId } : undefined }
