@@ -1,5 +1,5 @@
 <!-- 
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/4 22:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/5 09:00
 https://www.facebook.com/francefu
 
 Try it
@@ -22,7 +22,7 @@ https://fustyles.github.io/webduino/GeminiSTT.html
 "text":"Transcribed audio into text", 
 "translation":"Transcribed audio into text and translated into Traditional Chinese", 
 "LangCultureName":"Language code", 
-"DisplayName": "Language name"
+"LangDisplayName": "Language name"
 }\n
 3. Do not use markdown syntax in the reply.</textarea><br><br>
     <label for="audioSource">Audio Source：</label>
@@ -30,7 +30,7 @@ https://fustyles.github.io/webduino/GeminiSTT.html
     <br><br>
     <button id="startRecording">Start recording</button>
     <button id="stopRecording" disabled>Stop recording</button><br><br>
-    <div id="result" style="color:blue;width:400px;height:180px;overflow:auto;border:1px solid #000;"></div>
+    Result：<div id="result" style="color:blue;width:400px;height:180px;overflow:auto;border:1px solid #000;"></div>
     <script>
 		
 		let geminiKey = document.getElementById("key");
