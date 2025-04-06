@@ -39,3 +39,4 @@ Blockly.Msg.ADDCUSTOMBLOCKS_DVCBOT_SHOW = "[link] DaVinci Assistant";
 Blockly.Msg.ADDCUSTOMBLOCKS_OPENAI_CHAT_SHOW = "[link] openAI";
 Blockly.Msg.ADDCUSTOMBLOCKS_GEMINI_CHAT_SHOW = "[link] Gemini";
 Blockly.Msg.ADDCUSTOMBLOCKS_LLM_CHAT_SHOW = "[link] LLM";
+Blockly.Msg.ADDCUSTOMBLOCKS_AUDIORECORD_SHOW = "[link] Audio Record";
