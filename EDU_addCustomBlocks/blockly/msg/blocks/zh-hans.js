@@ -39,3 +39,4 @@ Blockly.Msg.ADDCUSTOMBLOCKS_OPENAI_CHAT_SHOW = "[取得连结] openAI";
 Blockly.Msg.ADDCUSTOMBLOCKS_GEMINI_CHAT_SHOW = "[取得连结] Gemini";
 Blockly.Msg.ADDCUSTOMBLOCKS_DVCBOT_SHOW = "[取得连结] 达哥助手";
 Blockly.Msg.ADDCUSTOMBLOCKS_LLM_CHAT_SHOW = "[取得连结] LLM";
+Blockly.Msg.ADDCUSTOMBLOCKS_AUDIORECORD_SHOW = "[取得连结] 录音";
