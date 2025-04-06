@@ -27,6 +27,7 @@ Blockly.Blocks['audiorecord_gemini_initial'] = {
         .appendField(Blockly.Msg.AUDIORECORD_GEMINI_SHOW);
     this.appendValueInput("index_")
         .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)	    
         .appendField(Blockly.Msg.AUDIORECORD_DEVICE_INDEX_SHOW);		
     this.appendValueInput("start_")
         .setCheck("String")
@@ -45,7 +46,7 @@ Blockly.Blocks['audiorecord_gemini_initial'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.AUDIORECORD_GEMINI_PROMPT_SHOW);
     this.appendStatementInput("do_")
-		.appendField(Blockly.Msg.AUDIORECORD_GEMINI_RESPONSE_SHOW);		
+	.appendField(Blockly.Msg.AUDIORECORD_GEMINI_RESPONSE_SHOW);		
     this.setInputsInline(false);	  
     this.setPreviousStatement(true);
     this.setNextStatement(true);
