@@ -1,1 +1,1 @@
-MSG.catAUDIORECORD = "Audio Record";
+MSG.CATAUDIORECORD = "Audio Record";
