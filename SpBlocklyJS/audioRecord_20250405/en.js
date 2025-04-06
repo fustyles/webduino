@@ -1,0 +1,10 @@
+Blockly.Msg["CATAUDIORECORD"] = "Audio Record";
+Blockly.Msg["AUDIORECORD_SHOW"] = "Audio Record";
+Blockly.Msg["AUDIORECORD_DEVICE_INDEX_SHOW"] = "Device Index";
+Blockly.Msg["AUDIORECORD_START_ID_SHOW"] = "Start Button Element Original ID";
+Blockly.Msg["AUDIORECORD_STOP_ID_SHOW"] = "Stop Button Element Original ID";
+Blockly.Msg["AUDIORECORD_GEMINI_SHOW"] = "GeminiSTT";
+Blockly.Msg["AUDIORECORD_GEMINI_KEY_SHOW"] = "API Key";
+Blockly.Msg["AUDIORECORD_GEMINI_PROMPT_SHOW"] = "Prompt";
+Blockly.Msg["AUDIORECORD_GEMINI_RESPONSE_SHOW"] = "Execute After Transcribing Audio";
+Blockly.Msg["AUDIORECORD_GEMINI_GET_SHOW"] = "GemniSTT Get Data";

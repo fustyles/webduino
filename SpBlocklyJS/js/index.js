@@ -1,10 +1,9 @@
 /*
 @license
-Copyright 2022 Taiwan (ChungYi Fu)
-SPDX-License-Identifier: Apache-2.0
+Copyright 2025 Taiwan (ChungYi Fu)
 
 @author https://www.facebook.com/francefu/
-@Update 28/2/2025 00:00 (Taiwan Standard Time)
+@Update 6/4/2025 00:00 (Taiwan Standard Time)
 */
 
 var mainPath = 'https://fustyles.github.io/webduino/SpBlocklyJS/';
@@ -202,7 +201,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		}		
 		if (xml.indexOf("googlemap_")!=-1) {
 			script += "<script src='"+jsPath+"googlemap_20241226/googlemap.js'></script>";
-		}	
+		}
+		if (xml.indexOf("audiorecord_")!=-1) {
+			script += "<script src='"+jsPath+"audioRecord_20250405/audioRecord.js'></script>";
+		}		
 		
 		return script;
 	}		
@@ -216,6 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		catKeyboard,
 		catTextToSpeech,
 		catSpeechRecognition,
+		catAudioRecording,
 		"<sep></sep>",
 		catMatrixLed,
 		"<sep></sep>",
