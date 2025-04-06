@@ -46,7 +46,8 @@ Blockly.Blocks['addMyBlocks'] = {
         [Blockly.Msg.ADDCUSTOMBLOCKS_TELLO_SHOW,"Tello_20210103"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_ROBOTFLY_SHOW,"RobotFly_20220127"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_SPEECHRECOGNITION_SHOW,"SpeechRecognition_20220729"],
-        [Blockly.Msg.ADDCUSTOMBLOCKS_TEXTTOSPEECH_SHOW,"TextToSpeech_20220729_20220729"]
+        [Blockly.Msg.ADDCUSTOMBLOCKS_TEXTTOSPEECH_SHOW,"TextToSpeech_20220729"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_AUDIORECORD_SHOW,"audioRecord_20250405"]
       ]), "func");
   this.setTooltip('');
   this.setColour(20);
@@ -187,6 +188,7 @@ Blockly.Blocks['addMyBlocks'] = {
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/TextToSpeech_20220729/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/llm_20241219/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/googlemap_20241226/blockly.json');
+		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/audioRecord_20250405/blockly.json');		    
             }
 	    else if (this.getFieldValue('func')=='addAllNewAI') {
 
@@ -239,6 +241,7 @@ Blockly.Blocks['addMyBlocks'] = {
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/TextToSpeech_20220729/blockly.json');
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/llm_20241219/blockly.json');
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/googlemap_20241226/blockly.json');
+		  Code.customTab.$__add__('https://fustyles.github.io/webduino/audioRecord_20250405/blockly.json');			    
 	    }
 	    else if (this.getFieldValue('func')=='removeAllNewAI') {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20201012/blockly.json');
@@ -277,6 +280,7 @@ Blockly.Blocks['addMyBlocks'] = {
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/TextToSpeech_20220729/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/llm_20241219/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/googlemap_20241226/blockly.json');
+		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/audioRecord_20250405/blockly.json');			    
 	    }
 	    else if (this.getFieldValue('func')=='instascan.js_20201012') {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20200824/blockly.json');
@@ -391,7 +395,10 @@ Blockly.Blocks['addMyBlocks'] = {
 			  }	  
 	    else if (this.getFieldValue('func')=='googlemap_20241226') {
 				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/googlemap_20241226/blockly.json", "TEXT");
-			  }  
+			  }
+	    else if (this.getFieldValue('func')=='audioRecord_20250405') {
+				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/audioRecord_20250405/blockly.json", "TEXT");
+			  }		  
 	    this.getField('func').setValue("");
 	}
       }
