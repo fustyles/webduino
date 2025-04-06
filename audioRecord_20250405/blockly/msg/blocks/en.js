@@ -1,4 +1,3 @@
-Blockly.Msg["CATAUDIORECORD"] = "Audio Record";
 Blockly.Msg["AUDIORECORD_SHOW"] = "Audio Record";
 Blockly.Msg["AUDIORECORD_DEVICE_INDEX_SHOW"] = "Device Index";
 Blockly.Msg["AUDIORECORD_START_ID_SHOW"] = "Start Button Element Original ID";
