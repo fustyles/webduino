@@ -5,5 +5,5 @@ Blockly.Msg["AUDIORECORD_STOP_ID_SHOW"] = "停止按钮元素原始代码";
 Blockly.Msg["AUDIORECORD_GEMINI_SHOW"] = "GeminiSTT";
 Blockly.Msg["AUDIORECORD_GEMINI_KEY_SHOW"] = "API Key";
 Blockly.Msg["AUDIORECORD_GEMINI_PROMPT_SHOW"] = "提示词";
-Blockly.Msg["AUDIORECORD_GEMINI_RESPONSE_SHOW"] = "转录音讯后执行";
+Blockly.Msg["AUDIORECORD_GEMINI_RESPONSE_SHOW"] = "辨识音讯后执行";
 Blockly.Msg["AUDIORECORD_GEMINI_GET_SHOW"] = "GemniSTT 取得数据";
