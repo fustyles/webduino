@@ -136,11 +136,6 @@ async function sendAudioFileToGeminiSTT(apikey, prompt, audioBase64) {
 			result = json["error"]["message"];
 		else
 			result = json["candidates"][0]["content"]["parts"][0]["text"];
-		
-		console.log(result);
-		
-		if (typeof audioGeminiSTT === 'function') audioGeminiSTT(result.replace(/```json|```/g, ''));
-		
 		return result;
 	}
 	catch (e) {
