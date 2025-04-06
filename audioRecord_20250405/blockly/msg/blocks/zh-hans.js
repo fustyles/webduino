@@ -1,4 +1,4 @@
-Blockly.Msg["catAUDIORECORD"] = "录音";
+Blockly.Msg["CATAUDIORECORD"] = "录音";
 Blockly.Msg["AUDIORECORD_SHOW"] = "录音";
 Blockly.Msg["AUDIORECORD_DEVICE_INDEX_SHOW"] = "设备索引";
 Blockly.Msg["AUDIORECORD_START_ID_SHOW"] = "开始按钮元素原始ID";
