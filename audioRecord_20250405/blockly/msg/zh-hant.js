@@ -1,0 +1,1 @@
+MSG.catAUDIORECORD = "錄音";

@@ -1,0 +1,10 @@
+Blockly.Msg["catAUDIORECORD"] = "录音";
+Blockly.Msg["AUDIORECORD_SHOW"] = "录音";
+Blockly.Msg["AUDIORECORD_DEVICE_INDEX_SHOW"] = "设备索引";
+Blockly.Msg["AUDIORECORD_START_ID_SHOW"] = "开始按钮元素原始ID";
+Blockly.Msg["AUDIORECORD_STOP_ID_SHOW"] = "停止按钮元素原始ID";
+Blockly.Msg["AUDIORECORD_GEMINI_SHOW"] = "GeminiSTT";
+Blockly.Msg["AUDIORECORD_GEMINI_KEY_SHOW"] = "API Key";
+Blockly.Msg["AUDIORECORD_GEMINI_PROMPT_SHOW"] = "提示词";
+Blockly.Msg["AUDIORECORD_GEMINI_RESPONSE_SHOW"] = "转录音讯后执行";
+Blockly.Msg["AUDIORECORD_GEMINI_GET_SHOW"] = "GemniSTT 取得数据";
