@@ -9611,6 +9611,7 @@ Blockly.Blocks['openai_chat_initial'] = {
 			["gpt-o1-2024-12-17","o1-2024-12-17"],
 	      	["gpt-4.5-preview","gpt-4.5-preview"],	      
 			["Groq_llama-3.2-90b-vision-preview","llama-3.2-90b-vision-preview"],
+			["Groq_meta-llama/llama-4-scout-17b-16e-instruct","meta-llama/llama-4-scout-17b-16e-instruct"],			
 			["Groq_deepseek-r1-distill-llama-70b","deepseek-r1-distill-llama-70b"],
 			["Groq_deepseek-r1-distill-llama-70b-specdec","deepseek-r1-distill-llama-70b-specdec"],
 			["Groq_deepseek-r1-distill-qwen-32b","deepseek-r1-distill-qwen-32b"],
