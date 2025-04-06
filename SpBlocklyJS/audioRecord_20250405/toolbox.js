@@ -40,7 +40,7 @@ var catAudioRecording ='<xml>'+
 		'</value>'+
 		'<value name="prompt_">'+
 		'    <block type="text">'+
-		'        <field name="TEXT"></field>'+
+		'        <field name="TEXT">Please transcribe the audio into text.</field>'+
 		'    </block>'+
 		'</value>'+			
 	'</block>'+	
