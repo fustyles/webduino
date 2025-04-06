@@ -1,4 +1,4 @@
-<category name="%{BKY_CATAUDIORECORD}" id="cataudiorecording" colour="250">
+<category name="%{BKY_CATAUDIORECORD}" id="cataudiorecord" colour="250">
 	<block type="audiorecord_save_initial">
 		<value name="index_">
 			<block type="math_number">
