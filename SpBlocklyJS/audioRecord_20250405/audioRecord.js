@@ -1,4 +1,3 @@
-// 錄音
 let audioKey = "";
 let audioModel = "";
 let audioPrompt = "";
