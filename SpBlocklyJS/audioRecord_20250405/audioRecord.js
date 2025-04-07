@@ -178,7 +178,7 @@ async function recording_stopRecordingOpenAISTT() {
 	};
 };
 
-async function sendAudioFileToOpenAISTT(apikey, model, prompt, blob, language) {
+async function sendAudioFileToOpenAISTT(key, model, prompt, blob, language) {
 	let result = "";
 	let domain = "api.openai.com";
 	let path = "/v1/audio/transcriptions";
@@ -198,7 +198,7 @@ async function sendAudioFileToOpenAISTT(apikey, model, prompt, blob, language) {
 		const options = {
 			method: 'POST',
 			headers: {
-				'Authorization': 'Bearer ' + apikey
+				'Authorization': 'Bearer ' + key
 			},
 			body: formData
 		};
