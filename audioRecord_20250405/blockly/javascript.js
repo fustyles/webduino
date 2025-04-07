@@ -31,9 +31,10 @@ Blockly.JavaScript['audiorecord_openai_initial'] = function(block) {
   var openaiKey = Blockly.JavaScript.valueToCode(block, 'key_', Blockly.JavaScript.ORDER_ATOMIC);
   var openaiModel = block.getFieldValue('model_');
   var openaiPrompt = Blockly.JavaScript.valueToCode(block, 'prompt_', Blockly.JavaScript.ORDER_ATOMIC);
+  var openaiLanguage = block.getFieldValue('language_');
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
   
-  var code = 'recording_openAISTT_initial('+audioIndex+', '+buttonStartID+', '+buttonStopID+', '+openaiKey+', "'+openaiModel+'", '+openaiPrompt+');\n'+
+  var code = 'recording_openAISTT_initial('+audioIndex+', '+buttonStartID+', '+buttonStopID+', '+openaiKey+', "'+openaiModel+'", '+openaiPrompt+', "'+openaiLanguage+'");\n'+
              'async function audioOpenAISTT(openaiResult) {\n  ' + statements_do + '\n  };\n';
   return code;
 };
