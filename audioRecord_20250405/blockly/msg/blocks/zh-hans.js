@@ -1,4 +1,5 @@
 Blockly.Msg["AUDIORECORD_SHOW"] = "录音";
+Blockly.Msg["AUDIORECORD_SAVE_SHOW"] = "另存新档";
 Blockly.Msg["AUDIORECORD_DEVICE_INDEX_SHOW"] = "设备索引";
 Blockly.Msg["AUDIORECORD_START_ID_SHOW"] = "开始按钮元素原始代码";
 Blockly.Msg["AUDIORECORD_STOP_ID_SHOW"] = "停止按钮元素原始代码";
