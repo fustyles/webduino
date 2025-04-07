@@ -35,7 +35,7 @@ function recording_GeminiSTT_initial(audioIndex, buttonStartID, buttonStopID, ke
 	audioPrompt = prompt;
 }
 
-function recording_openAISTT_initial(audioIndex, buttonStartID, buttonStopID, key, model, prompt) {
+function recording_openAISTT_initial(audioIndex, buttonStartID, buttonStopID, key, model, prompt, language) {
 	audioInputIndex = audioIndex;
 	
 	let audioButtonStart = document.getElementById(buttonStartID);
@@ -49,6 +49,7 @@ function recording_openAISTT_initial(audioIndex, buttonStartID, buttonStopID, ke
 	audioKey = key;	
 	audioModel = model;
 	audioPrompt = prompt;
+	audioLanguage = language;
 }
 
 async function recording_startRecording() {
