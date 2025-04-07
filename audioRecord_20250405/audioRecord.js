@@ -1,6 +1,7 @@
 let audioKey = "";
 let audioModel = "";
-let audioPrompt = "";		
+let audioPrompt = "";
+let audioLanguage = "";
 let audioChunks = [];
 let audioRecorder;
 let audioInputIndex = 0;
@@ -33,7 +34,7 @@ function recording_GeminiSTT_initial(audioIndex, buttonStartID, buttonStopID, ke
 	audioPrompt = prompt;
 }
 
-function recording_openAISTT_initial(audioIndex, buttonStartID, buttonStopID, key, model, prompt) {
+function recording_openAISTT_initial(audioIndex, buttonStartID, buttonStopID, key, model, prompt, language) {
 	audioInputIndex = audioIndex;
 	
 	let audioButtonStart = document.getElementById(buttonStartID);
@@ -47,6 +48,7 @@ function recording_openAISTT_initial(audioIndex, buttonStartID, buttonStopID, ke
 	audioKey = key;	
 	audioModel = model;
 	audioPrompt = prompt;
+	audioLanguage = language;
 }
 
 async function recording_startRecording() {
@@ -165,7 +167,7 @@ async function recording_stopRecordingOpenAISTT() {
 	audioRecorder.stop();
 	audioRecorder.onstop = () => {
 		let audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-		sendAudioFileToOpenAISTT(audioKey, audioModel, audioPrompt, audioBlob).then(
+		sendAudioFileToOpenAISTT(audioKey, audioModel, audioPrompt, audioBlob, audioLanguage).then(
 			res => {
 				if (typeof audioOpenAISTT === 'function') audioOpenAISTT(res);
 			}
@@ -176,7 +178,7 @@ async function recording_stopRecordingOpenAISTT() {
 	};
 };
 
-async function sendAudioFileToOpenAISTT(apikey, model, prompt, audioBlob) {
+async function sendAudioFileToOpenAISTT(key, model, prompt, blob, language) {
 	let result = "";
 	let domain = "api.openai.com";
 	let path = "/v1/audio/transcriptions";
@@ -190,12 +192,14 @@ async function sendAudioFileToOpenAISTT(apikey, model, prompt, audioBlob) {
 		formData.append("model", model);
 		formData.append("response_format", "verbose_json");
 		formData.append("prompt", prompt);
-		formData.append("file", new File([audioBlob], "audio.wav", { type: "audio/wav" }));
+		if (language)
+			formData.append("language", language);
+		formData.append("file", new File([blob], "audio.wav", { type: "audio/wav" }));
 
 		const options = {
 			method: 'POST',
 			headers: {
-				'Authorization': 'Bearer ' + apikey
+				'Authorization': 'Bearer ' + key
 			},
 			body: formData
 		};
