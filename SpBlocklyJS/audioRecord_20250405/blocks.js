@@ -51,7 +51,7 @@ Blockly.Blocks['audiorecord_gemini_initial'] = {
     this.setInputsInline(false);	  
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(180);
+    this.setColour(220);
   }
 };
 
@@ -62,7 +62,7 @@ Blockly.Blocks['audiorecord_gemini_get'] = {
         .appendField(Blockly.Msg.AUDIORECORD_GEMINI_GET_SHOW);
     this.setInputsInline(true);	  
     this.setOutput(true, null);  
-    this.setColour(180);
+    this.setColour(220);
   }  
 };
 
@@ -104,7 +104,7 @@ Blockly.Blocks['audiorecord_openai_initial'] = {
     this.setInputsInline(false);	  
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(180);
+    this.setColour(260);
   }
 };
 
@@ -115,6 +115,6 @@ Blockly.Blocks['audiorecord_openai_get'] = {
         .appendField(Blockly.Msg.AUDIORECORD_OPENAI_GET_SHOW);
     this.setInputsInline(true);	  
     this.setOutput(true, null);  
-    this.setColour(180);
+    this.setColour(260);
   }  
 };
