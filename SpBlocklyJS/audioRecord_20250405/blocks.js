@@ -87,7 +87,8 @@ Blockly.Blocks['audiorecord_openai_initial'] = {
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.AUDIORECORD_GEMINI_KEY_SHOW);
-    this.appendDummyInput()  
+    this.appendDummyInput() 
+        .setAlign(Blockly.ALIGN_RIGHT)	    
         .appendField(Blockly.Msg.AUDIORECORD_OPENAI_MODEL_SHOW)
         .appendField(new Blockly.FieldDropdown([
 			["whisper-1","whisper-1"],
@@ -99,7 +100,8 @@ Blockly.Blocks['audiorecord_openai_initial'] = {
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.AUDIORECORD_GEMINI_PROMPT_SHOW);
-    this.appendDummyInput()  
+    this.appendDummyInput() 
+        .setAlign(Blockly.ALIGN_RIGHT)	    
         .appendField(Blockly.Msg.AUDIORECORD_LANGUAGE_SHOW)
         .appendField(new Blockly.FieldDropdown([
 		["Auto", ""],
