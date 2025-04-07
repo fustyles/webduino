@@ -3,6 +3,7 @@ Blockly.Msg["AUDIORECORD_SAVE_SHOW"] = "Save";
 Blockly.Msg["AUDIORECORD_DEVICE_INDEX_SHOW"] = "Device Index";
 Blockly.Msg["AUDIORECORD_START_ID_SHOW"] = "Start Button Element Original ID";
 Blockly.Msg["AUDIORECORD_STOP_ID_SHOW"] = "Stop Button Element Original ID";
+Blockly.Msg["AUDIORECORD_LANGUAGE_SHOW"] = "Language";
 Blockly.Msg["AUDIORECORD_OPENAI_SHOW"] = "openAI STT";
 Blockly.Msg["AUDIORECORD_OPENAI_MODEL_SHOW"] = "Model";
 Blockly.Msg["AUDIORECORD_OPENAI_GET_SHOW"] = "openAI STT Get Data";
