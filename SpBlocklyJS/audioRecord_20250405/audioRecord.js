@@ -1,5 +1,6 @@
 // 錄音
-let audioGeminiKey = "";
+let audioKey = "";
+let audioModel = "";
 let audioPrompt = "";		
 let audioChunks = [];
 let audioRecorder;
@@ -17,7 +18,7 @@ function recording_save_initial(audioIndex, buttonStartID, buttonStopID) {
 	audioButtonStop.addEventListener('touchend', recording_stopRecordingSave);
 }
 
-function recording_geminiSTT_initial(audioIndex, buttonStartID, buttonStopID, geminiKey, geminiPrompt) {
+function recording_GeminiSTT_initial(audioIndex, buttonStartID, buttonStopID, key, model, prompt) {
 	audioInputIndex = audioIndex;
 	
 	let audioButtonStart = document.getElementById(buttonStartID);
@@ -28,8 +29,25 @@ function recording_geminiSTT_initial(audioIndex, buttonStartID, buttonStopID, ge
 	audioButtonStop.addEventListener('mouseup', recording_stopRecordingGeminiSTT);
 	audioButtonStop.addEventListener('touchend', recording_stopRecordingGeminiSTT);
 	
-	audioGeminiKey = geminiKey;	
-	audioPrompt = geminiPrompt;
+	audioKey = key;	
+	audioModel = model;
+	audioPrompt = prompt;
+}
+
+function recording_openAISTT_initial(audioIndex, buttonStartID, buttonStopID, key, model, prompt) {
+	audioInputIndex = audioIndex;
+	
+	let audioButtonStart = document.getElementById(buttonStartID);
+	audioButtonStart.addEventListener('mousedown', recording_startRecording);
+	audioButtonStart.addEventListener('touchstart', recording_startRecording);
+	
+	let audioButtonStop = document.getElementById(buttonStopID);
+	audioButtonStop.addEventListener('mouseup', recording_stopRecordingOpenAISTT);
+	audioButtonStop.addEventListener('touchend', recording_stopRecordingOpenAISTT);
+	
+	audioKey = key;	
+	audioModel = model;
+	audioPrompt = prompt;
 }
 
 async function recording_startRecording() {
@@ -84,7 +102,7 @@ async function recording_stopRecordingGeminiSTT() {
 		const reader = new FileReader();
 		reader.onloadend = () => {
 			let audioBase64 = reader.result.split(',')[1];
-			sendAudioFileToGeminiSTT(audioGeminiKey, audioPrompt, audioBase64).then(
+			sendAudioFileToGeminiSTT(audioKey, audioModel, audioPrompt, audioBase64).then(
 				res => {
 					if (typeof audioGeminiSTT === 'function') audioGeminiSTT(res);
 				}
@@ -98,10 +116,10 @@ async function recording_stopRecordingGeminiSTT() {
 	};
 };
 
-async function sendAudioFileToGeminiSTT(apikey, prompt, audioBase64) {
+async function sendAudioFileToGeminiSTT(apikey, model, prompt, audioBase64) {
 	let result = "";
 	try {
-		const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apikey}`;
+		const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apikey}`;
 		const data = {
 			contents: [
 				{
@@ -140,5 +158,60 @@ async function sendAudioFileToGeminiSTT(apikey, prompt, audioBase64) {
 	}
 	catch (e) {
 		console.log(e);
+		return JSON.stringify(e);
 	}
-}		
+}
+
+async function recording_stopRecordingOpenAISTT() {
+	audioRecorder.stop();
+	audioRecorder.onstop = () => {
+		let audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+		sendAudioFileToOpenAISTT(audioKey, audioModel, audioPrompt, audioBlob).then(
+			res => {
+				if (typeof audioOpenAISTT === 'function') audioOpenAISTT(res);
+			}
+		)
+		audioChunks = [];
+		startRecordingButton.disabled = false;
+		stopRecordingButton.disabled = true;
+	};
+};
+
+async function sendAudioFileToOpenAISTT(apikey, model, prompt, audioBlob) {
+	let result = "";
+	let domain = "api.openai.com";
+	let path = "/v1/audio/transcriptions";
+	try {
+		if (model.indexOf("whisper-large-v3-turbo")==0) {
+			domain = "api.groq.com";
+			path = "/openai/v1/audio/transcriptions";
+		}
+		const url = `https://${domain}${path}`;
+		const formData = new FormData();
+		formData.append("model", model);
+		formData.append("response_format", "verbose_json");
+		formData.append("prompt", prompt);
+		formData.append("file", new File([audioBlob], "audio.wav", { type: "audio/wav" }));
+
+		const options = {
+			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer ' + apikey
+			},
+			body: formData
+		};
+
+		const response = await fetch(url, options);
+		const json = await response.json();
+		
+		if ('error' in json)
+			result = json["error"]["message"];
+		else
+			result = json["text"];
+		return result;
+	}
+	catch (e) {
+		console.log(e);
+		return JSON.stringify(e);
+	}
+}

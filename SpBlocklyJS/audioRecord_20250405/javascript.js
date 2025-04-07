@@ -14,12 +14,31 @@ Blockly.JavaScript['audiorecord_gemini_initial'] = function(block) {
   var geminiPrompt = Blockly.JavaScript.valueToCode(block, 'prompt_', Blockly.JavaScript.ORDER_ATOMIC);
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
   
-  var code = 'recording_geminiSTT_initial('+audioIndex+', '+buttonStartID+', '+buttonStopID+', '+geminiKey+', '+geminiPrompt+');\n'+
-             'audioGeminiSTT = async function(audioResult) {\n  ' + statements_do + '\n  };\n';
+  var code = 'recording_GeminiSTT_initial('+audioIndex+', '+buttonStartID+', '+buttonStopID+', '+geminiKey+', "gemini-2.0-flash", '+geminiPrompt+');\n'+
+             'audioGeminiSTT = async function(geminiResult) {\n  ' + statements_do + '\n  };\n';
   return code;
 };
 
 Blockly.JavaScript['audiorecord_gemini_get'] = function(block) {
-  var code = 'audioResult';
+  var code = 'geminiResult';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['audiorecord_openai_initial'] = function(block) { 
+  var audioIndex = Blockly.JavaScript.valueToCode(block, 'index_', Blockly.JavaScript.ORDER_ATOMIC);	
+  var buttonStartID = Blockly.JavaScript.valueToCode(block, 'start_', Blockly.JavaScript.ORDER_ATOMIC);
+  var buttonStopID = Blockly.JavaScript.valueToCode(block, 'stop_', Blockly.JavaScript.ORDER_ATOMIC);
+  var openaiKey = Blockly.JavaScript.valueToCode(block, 'key_', Blockly.JavaScript.ORDER_ATOMIC);
+  var openaiModel = block.getFieldValue('model_');
+  var openaiPrompt = Blockly.JavaScript.valueToCode(block, 'prompt_', Blockly.JavaScript.ORDER_ATOMIC);
+  var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
+  
+  var code = 'recording_openAISTT_initial('+audioIndex+', '+buttonStartID+', '+buttonStopID+', '+openaiKey+', "'+openaiModel+'", '+openaiPrompt+');\n'+
+             'audioOpenAISTT = async function(openaiResult) {\n  ' + statements_do + '\n  };\n';
+  return code;
+};
+
+Blockly.JavaScript['audiorecord_openai_get'] = function(block) {
+  var code = 'openaiResult';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
