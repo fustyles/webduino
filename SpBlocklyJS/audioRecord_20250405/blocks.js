@@ -1,7 +1,8 @@
 Blockly.Blocks['audiorecord_save_initial'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.AUDIORECORD_SHOW);
+        .appendField(Blockly.Msg.AUDIORECORD_SHOW)
+        .appendField(Blockly.Msg.AUDIORECORD_SAVE_SHOW);
     this.appendValueInput("index_")
         .setCheck("Number")
         .appendField(Blockly.Msg.AUDIORECORD_DEVICE_INDEX_SHOW);	
