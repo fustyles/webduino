@@ -2,7 +2,7 @@
 let audioKey = "";
 let audioModel = "";
 let audioPrompt = "";
-let audioLanguage = "auto";
+let audioLanguage = "";
 let audioChunks = [];
 let audioRecorder;
 let audioInputIndex = 0;
@@ -192,7 +192,8 @@ async function sendAudioFileToOpenAISTT(key, model, prompt, blob, language) {
 		formData.append("model", model);
 		formData.append("response_format", "verbose_json");
 		formData.append("prompt", prompt);
-		formData.append("language", language);
+		if (language)
+			formData.append("language", language);
 		formData.append("file", new File([blob], "audio.wav", { type: "audio/wav" }));
 
 		const options = {
