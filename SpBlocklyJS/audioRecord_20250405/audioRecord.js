@@ -1,7 +1,8 @@
 // 錄音
 let audioKey = "";
 let audioModel = "";
-let audioPrompt = "";		
+let audioPrompt = "";
+let audioLanguage = "auto";
 let audioChunks = [];
 let audioRecorder;
 let audioInputIndex = 0;
@@ -166,7 +167,7 @@ async function recording_stopRecordingOpenAISTT() {
 	audioRecorder.stop();
 	audioRecorder.onstop = () => {
 		let audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-		sendAudioFileToOpenAISTT(audioKey, audioModel, audioPrompt, audioBlob).then(
+		sendAudioFileToOpenAISTT(audioKey, audioModel, audioPrompt, audioBlob, audioLanguage).then(
 			res => {
 				if (typeof audioOpenAISTT === 'function') audioOpenAISTT(res);
 			}
@@ -191,6 +192,7 @@ async function sendAudioFileToOpenAISTT(apikey, model, prompt, audioBlob) {
 		formData.append("model", model);
 		formData.append("response_format", "verbose_json");
 		formData.append("prompt", prompt);
+		formData.append("language", audioLanguage);
 		formData.append("file", new File([audioBlob], "audio.wav", { type: "audio/wav" }));
 
 		const options = {
