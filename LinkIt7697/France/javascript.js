@@ -1495,7 +1495,7 @@ Blockly.Arduino['amb82_mini_motiondetection_rtsp'] = function(block) {
 	var mode = block.getFieldValue('mode');
 	var framesize = block.getFieldValue('framesize');
 	if (mode=="still")
-		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";
+		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264, 1);\n";
 	else
 		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_JPEG, 1);\n";
 	
@@ -3087,7 +3087,7 @@ Blockly.Arduino['amb82_mini_facedetectionrecognition_rtsp'] = function(block) {
 	var mode = block.getFieldValue('mode');
 	var framesize = block.getFieldValue('framesize');
 	if (mode=="still")
-		var type = "VideoSetting config("+framesize+", 30, VIDEO_H264_JPEG, 0);\n";
+		var type = "VideoSetting config("+framesize+", 30, VIDEO_H264, 0);\n";
 	else
 		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_JPEG, 1);\n";	
 
@@ -3248,7 +3248,7 @@ Blockly.Arduino['amb82_mini_facedetection_rtsp'] = function(block) {
 	var mode = block.getFieldValue('mode');
 	var framesize = block.getFieldValue('framesize');
 	if (mode=="still")
-		var type = "VideoSetting config("+framesize+", 30, VIDEO_H264_JPEG, 0);\n";
+		var type = "VideoSetting config("+framesize+", 30, VIDEO_H264, 0);\n";
 	else
 		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_JPEG, 1);\n";		
 
@@ -3612,7 +3612,7 @@ Blockly.Arduino['amb82_mini_emotionclassification_rtsp'] = function(block) {
 	var mode = block.getFieldValue('mode');
 	var framesize = block.getFieldValue('framesize');
 	if (mode=="still")
-		var type = "VideoSetting config("+framesize+", 30, VIDEO_H264_JPEG, 0);\n";
+		var type = "VideoSetting config("+framesize+", 30, VIDEO_H264, 0);\n";
 	else
 		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_JPEG, 1);\n";
 
@@ -3875,7 +3875,7 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 	var mode = block.getFieldValue('mode');
 	var framesize = block.getFieldValue('framesize');
 	if (mode=="still")
-		var type = "VideoSetting config("+framesize+", 30, VIDEO_H264_JPEG, 0);\n";
+		var type = "VideoSetting config("+framesize+", 30, VIDEO_H264, 0);\n";
 	else
 		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_JPEG, 1);\n";
 	
@@ -16077,11 +16077,11 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
   if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735") {
 	Blockly.Arduino.definitions_.initWiFi = ''+
 			'void initWiFi() {\n'+
-			'  //WiFi.enableConcurrent();\n'+
-			'  //WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
-			'  //Serial.println("APIP address: 192.168.1.1");\n'+
-			'  //Serial.println("");\n'+				
-			'  //delay(5000);\n'+
+			'  WiFi.enableConcurrent();\n'+
+			'  WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
+			'  Serial.println("APIP address: 192.168.1.1");\n'+
+			'  Serial.println("");\n'+				
+			'  delay(5000);\n'+
 			'  for (int i=0;i<2;i++) {\n'+
 			'    if (String(_lwifi_ssid)=="") break;\n'+
 			'    WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
@@ -16105,10 +16105,10 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
 			'      break;\n'+
 			'    }\n'+
 			'  }\n'+
-			'  if (WiFi.status() != WL_CONNECTED) {\n'+
-			'    WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
-			'    Serial.println("APIP address: 192.168.1.1");\n'+
-			'  }\n'+	
+			'  //if (WiFi.status() != WL_CONNECTED) {\n'+
+			'  //  WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
+			'  //  Serial.println("APIP address: 192.168.1.1");\n'+
+			'  //}\n'+	
 			'}\n';	
   } else {
 	  Blockly.Arduino.definitions_.initWiFi = ''+
