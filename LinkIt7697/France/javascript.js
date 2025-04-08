@@ -1495,7 +1495,7 @@ Blockly.Arduino['amb82_mini_motiondetection_rtsp'] = function(block) {
 	var mode = block.getFieldValue('mode');
 	var framesize = block.getFieldValue('framesize');
 	if (mode=="rtsp")
-		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264, 1);\n";
+		var type = "VideoSetting config("+framesize+", 30, VIDEO_H264, 1);\n";
 	else if (mode=="still")
 		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";
 	else
@@ -3089,7 +3089,7 @@ Blockly.Arduino['amb82_mini_facedetectionrecognition_rtsp'] = function(block) {
 	var mode = block.getFieldValue('mode');
 	var framesize = block.getFieldValue('framesize');
 	if (mode=="rtsp")
-		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264, 1);\n";
+		var type = "VideoSetting config("+framesize+", 30, VIDEO_H264, 1);\n";
 	else if (mode=="still")
 		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";
 	else
@@ -3252,7 +3252,7 @@ Blockly.Arduino['amb82_mini_facedetection_rtsp'] = function(block) {
 	var mode = block.getFieldValue('mode');
 	var framesize = block.getFieldValue('framesize');
 	if (mode=="rtsp")
-		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264, 1);\n";
+		var type = "VideoSetting config("+framesize+", 30, VIDEO_H264, 1);\n";
 	else if (mode=="still")
 		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";
 	else
@@ -3618,7 +3618,7 @@ Blockly.Arduino['amb82_mini_emotionclassification_rtsp'] = function(block) {
 	var mode = block.getFieldValue('mode');
 	var framesize = block.getFieldValue('framesize');
 	if (mode=="rtsp")
-		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264, 1);\n";
+		var type = "VideoSetting config("+framesize+", 30, VIDEO_H264, 1);\n";
 	else if (mode=="still")
 		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";
 	else
@@ -3883,9 +3883,11 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 	var mode = block.getFieldValue('mode');
 	var framesize = block.getFieldValue('framesize');
 	if (mode=="rtsp")
-		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264, 1);\n";
+		var type = "VideoSetting config("+framesize+", 30, VIDEO_H264, 1);\n";
 	else if (mode=="still")
 		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";
+	else if (mode=="uvc")
+		var type = "VideoSetting config("+framesize+", 24, VIDEO_H264, 1);\n";	
 	else
 		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_JPEG, 1);\n";
 	
