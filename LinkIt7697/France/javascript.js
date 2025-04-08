@@ -3886,8 +3886,6 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 		var type = "VideoSetting config("+framesize+", 30, VIDEO_H264, 1);\n";
 	else if (mode=="still")
 		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_H264_JPEG, 1);\n";
-	else if (mode=="uvc")
-		var type = "VideoSetting config("+framesize+", 24, VIDEO_H264, 1);\n";	
 	else
 		var type = "VideoSetting config("+framesize+", CAM_FPS, VIDEO_JPEG, 1);\n";
 	
@@ -4082,7 +4080,7 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 	'}';	
 										
 	if (Blockly.Arduino.setups_['setup_usb_uvcd']) {
-		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "StreamIO.h"\n#include "VideoStream.h"\n#include "NNObjectDetection.h"\n#include "VideoStreamOverlay.h"\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\nVideoSetting config(VIDEO_FHD, 30, VIDEO_H264, 0);\nVideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNObjectDetection ObjDet;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
+		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include "StreamIO.h"\n#include "VideoStream.h"\n#include "NNObjectDetection.h"\n#include "VideoStreamOverlay.h"\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\nVideoSetting config(VIDEO_FHD, 24, VIDEO_H264, 0);\nVideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNObjectDetection ObjDet;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
 		Blockly.Arduino.setups_.setup_amb82_mini_objectdetection = '';
 	}
