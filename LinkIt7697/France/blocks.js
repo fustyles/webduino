@@ -1700,6 +1700,24 @@ Blockly.Blocks['udp_write'] = {
   }
 };
 
+var amb82_mini_options = [
+			["FHD (1920×1080)","VIDEO_FHD"],
+			["HD (1280×720)","VIDEO_HD"],
+			["D1 (720×480)","VIDEO_D1"],
+			["VGA (640×480)","VIDEO_VGA"],
+			["WVGA (640×360)","VIDEO_WVGA"],
+			["QVGA (320×240)","VIDEO_QVGA"],
+			["QCIF (176×144)","VIDEO_QCIF"]
+		];
+		
+var amb82_mini_still_options = [
+			["D1 (720×480)","VIDEO_D1"],
+			["VGA (640×480)","VIDEO_VGA"],
+			["WVGA (640×360)","VIDEO_WVGA"],
+			["QVGA (320×240)","VIDEO_QVGA"],
+			["QCIF (176×144)","VIDEO_QCIF"]
+		];
+
 Blockly.Blocks['amb82_mini_motiondetection_rtsp'] = {
   init: function() {
     this.appendDummyInput()
@@ -1716,6 +1734,7 @@ Blockly.Blocks['amb82_mini_motiondetection_rtsp'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["AMB82_MINI_MODE"])
 		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_RTSP"],"rtsp"],		
 			[Blockly.Msg["AMB82_MINI_RTSP_STILL"],"still"],
 			[Blockly.Msg["AMB82_MINI_TCP"]+" (PORT:80)","tcp80"],			
 			[Blockly.Msg["AMB82_MINI_TCP"]+" (PORT:81)","tcp"],
@@ -1752,9 +1771,13 @@ Blockly.Blocks['amb82_mini_motiondetection_rtsp'] = {
 	validate: function(newValue) {
 		const block = this.sourceBlock_;
 		if (!block) return;
-		if (newValue=="rtsp") {
-			block.getInput("size").setVisible(false);
+		if (newValue=="still") {
+			block.getInput("size").removeField("framesize");
+			block.getInput("size").appendField(new Blockly.FieldDropdown(amb82_mini_still_options), "framesize");
+			block.getInput("size").setVisible(true);			
 		} else {
+			block.getInput("size").removeField("framesize");
+			block.getInput("size").appendField(new Blockly.FieldDropdown(amb82_mini_options), "framesize");
 			block.getInput("size").setVisible(true);	
 		}
   }
@@ -3403,6 +3426,7 @@ Blockly.Blocks['amb82_mini_facedetectionrecognition_rtsp'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["AMB82_MINI_MODE"])
 		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_RTSP"],"rtsp"],		
 			[Blockly.Msg["AMB82_MINI_RTSP_STILL"],"still"],
 			[Blockly.Msg["AMB82_MINI_TCP"]+" (PORT:80)","tcp80"],			
 			[Blockly.Msg["AMB82_MINI_TCP"]+" (PORT:81)","tcp"],
@@ -3439,9 +3463,13 @@ Blockly.Blocks['amb82_mini_facedetectionrecognition_rtsp'] = {
 	validate: function(newValue) {
 		const block = this.sourceBlock_;
 		if (!block) return;
-		if (newValue=="rtsp") {
-			block.getInput("size").setVisible(false);
+		if (newValue=="still") {
+			block.getInput("size").removeField("framesize");
+			block.getInput("size").appendField(new Blockly.FieldDropdown(amb82_mini_still_options), "framesize");
+			block.getInput("size").setVisible(true);			
 		} else {
+			block.getInput("size").removeField("framesize");
+			block.getInput("size").appendField(new Blockly.FieldDropdown(amb82_mini_options), "framesize");
 			block.getInput("size").setVisible(true);	
 		}
   }
@@ -3554,6 +3582,7 @@ Blockly.Blocks['amb82_mini_facedetection_rtsp'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["AMB82_MINI_MODE"])
 		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_RTSP"],"rtsp"],		
 			[Blockly.Msg["AMB82_MINI_RTSP_STILL"],"still"],
 			[Blockly.Msg["AMB82_MINI_TCP"]+" (PORT:80)","tcp80"],			
 			[Blockly.Msg["AMB82_MINI_TCP"]+" (PORT:81)","tcp"],
@@ -3583,9 +3612,13 @@ Blockly.Blocks['amb82_mini_facedetection_rtsp'] = {
 	validate: function(newValue) {
 		const block = this.sourceBlock_;
 		if (!block) return;
-		if (newValue=="rtsp") {
-			block.getInput("size").setVisible(false);
+		if (newValue=="still") {
+			block.getInput("size").removeField("framesize");
+			block.getInput("size").appendField(new Blockly.FieldDropdown(amb82_mini_still_options), "framesize");
+			block.getInput("size").setVisible(true);			
 		} else {
+			block.getInput("size").removeField("framesize");
+			block.getInput("size").appendField(new Blockly.FieldDropdown(amb82_mini_options), "framesize");
 			block.getInput("size").setVisible(true);	
 		}
   }
@@ -3928,6 +3961,7 @@ Blockly.Blocks['amb82_mini_emotionclassification_rtsp'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["AMB82_MINI_MODE"])
 		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_RTSP"],"rtsp"],		
 			[Blockly.Msg["AMB82_MINI_RTSP_STILL"],"still"],
 			[Blockly.Msg["AMB82_MINI_TCP"]+" (PORT:80)","tcp80"],			
 			[Blockly.Msg["AMB82_MINI_TCP"]+" (PORT:81)","tcp"],
@@ -3964,9 +3998,13 @@ Blockly.Blocks['amb82_mini_emotionclassification_rtsp'] = {
 	validate: function(newValue) {
 		const block = this.sourceBlock_;
 		if (!block) return;
-		if (newValue=="rtsp") {
-			block.getInput("size").setVisible(false);
+		if (newValue=="still") {
+			block.getInput("size").removeField("framesize");
+			block.getInput("size").appendField(new Blockly.FieldDropdown(amb82_mini_still_options), "framesize");
+			block.getInput("size").setVisible(true);			
 		} else {
+			block.getInput("size").removeField("framesize");
+			block.getInput("size").appendField(new Blockly.FieldDropdown(amb82_mini_options), "framesize");
 			block.getInput("size").setVisible(true);	
 		}
   }
@@ -4373,6 +4411,7 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["AMB82_MINI_MODE"])
 		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_RTSP"],"rtsp"],		
 			[Blockly.Msg["AMB82_MINI_RTSP_STILL"],"still"],
 			[Blockly.Msg["AMB82_MINI_TCP"]+" (PORT:80)","tcp80"],			
 			[Blockly.Msg["AMB82_MINI_TCP"]+" (PORT:81)","tcp"],
@@ -4410,9 +4449,15 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp'] = {
 	validate: function(newValue) {
 		const block = this.sourceBlock_;
 		if (!block) return;
-		if (newValue=="rtsp"||newValue=="uvc") {
+		if (newValue=="still") {
+			block.getInput("size").removeField("framesize");
+			block.getInput("size").appendField(new Blockly.FieldDropdown(amb82_mini_still_options), "framesize");
+			block.getInput("size").setVisible(true);			
+		} else if (newValue=="uvc") {
 			block.getInput("size").setVisible(false);
 		} else {
+			block.getInput("size").removeField("framesize");
+			block.getInput("size").appendField(new Blockly.FieldDropdown(amb82_mini_options), "framesize");
 			block.getInput("size").setVisible(true);	
 		}
   }

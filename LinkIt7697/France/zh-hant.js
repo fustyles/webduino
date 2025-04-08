@@ -161,7 +161,7 @@ Blockly.Msg["AMB82_MINI_BOARD_PIN_BUTTON"] = "功能鍵";
 Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "影像上傳Telegram Bot";
 
 Blockly.Msg["AMB82_MINI_MODE"] = "格式";
-Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP串流(預設)";
+Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP串流(無法截圖)";
 Blockly.Msg["AMB82_MINI_TCP"] = "TCP串流";
 Blockly.Msg["AMB82_MINI_TCPSTREAM"] = "TCP串流 啟用";
 Blockly.Msg["AMB82_MINI_RTSP_STILL"] = "RTSP串流";

@@ -161,7 +161,7 @@ Blockly.Msg["AMB82_MINI_BOARD_PIN_BUTTON"] = "Function keys";
 Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "Upload Screenshot to Telegram Bot";
 
 Blockly.Msg["AMB82_MINI_MODE"] = "Format";
-Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP Streaming (Default)";
+Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP Streaming (Can't still)";
 Blockly.Msg["AMB82_MINI_TCP"] = "TCP streaming";
 Blockly.Msg["AMB82_MINI_TCPSTREAM"] = "TCP streaming enabled";
 Blockly.Msg["AMB82_MINI_RTSP_STILL"] = "RTSP Streaming";
