@@ -16064,7 +16064,7 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
 	Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\nWiFiSSLClient client;';
 	Blockly.Arduino.definitions_.define_linkit_wifi_ssid_ap='char ssid_ap[] = "AP";';
 	Blockly.Arduino.definitions_.define_linkit_wifi_appass='char pass_ap[] = "12345678";';
-	Blockly.Arduino.definitions_.define_linkit_channel_ap='char channel_ap[] = "1";'; 	
+	Blockly.Arduino.definitions_.define_linkit_channel_ap='char channel_ap[] = "2";'; 	
   }
   else
 	Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;';
