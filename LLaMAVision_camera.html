@@ -20,7 +20,7 @@ https://fustyles.github.io/webduino/LLaMAVision_camera.html
 </head>
 <body>
 <div style="position:absolute;left:5px;top:0px">
-LLaMA(Groq) API Key：<input type="text" id="apiKey" size="40" value=""><br><br>
+LLaMA(Groq) API Key：<input type="text" id="apiKey" size="40" value="" onchange="llm_initial();"><br><br>
 prompt (LLaMA Vision)：<br>
 <textarea id="prompt"  cols="58" rows="5">請轉錄文字，若無法辨識以空格替代。</textarea><br>
 <input type="button" value="Run (LLaMA Vision)" onclick="result.innerHTML = marked.parse('Please wait...');DetectImage();"><br>
@@ -65,15 +65,17 @@ const main = async () => {
     window.llm_chat_response = llm_chat_response;
 };
 main();
+
+function llm_initial() {
+	llm_chat_initial('api.groq.com', '/openai/v1/chat/completions', 'meta-llama/llama-4-scout-17b-16e-instruct', apikey.value, 'You are a helpful assistant.');
+}
   
 async function DetectImage() {
-	llm_chat_initial('api.groq.com', '/openai/v1/chat/completions', 'meta-llama/llama-4-scout-17b-16e-instruct', apikey.value, 'You are a helpful assistant.');
 	queryType = 1;	
 	await llm_chat_image_request(prompt.value, imageToBase64());
 }
 
 async function chat() {
-	llm_chat_initial('api.groq.com', '/openai/v1/chat/completions', 'meta-llama/llama-4-scout-17b-16e-instruct', apikey.value, 'You are a helpful assistant.');
 	queryType = 0;
 	await llm_chat_request(result.innerText+"\n\n\n"+prompt1.value);
 }
