@@ -73,15 +73,15 @@ async function DetectImage() {
 	llm_chat_initial('api.groq.com', '/openai/v1/chat/completions', 'meta-llama/llama-4-scout-17b-16e-instruct', apikey.value, 'You are a helpful assistant.');
 	queryType = 1;
 	if (number.value==1)
-		await llm_chat_image_request(prompt.value+"\n\nPlease reply using markdown syntax!", imageToBase64(originImage));
+		await llm_chat_image_request(prompt.value, imageToBase64(originImage));
 	else if (number.value==2)
-		await llm_chat_image_request(prompt.value+"\n\nPlease reply using markdown syntax!", [imageToBase64(originImage), imageToBase64(originImage1)]);
+		await llm_chat_image_request(prompt.value, [imageToBase64(originImage), imageToBase64(originImage1)]);
 }
 
 async function chat() {
 	llm_chat_initial('api.groq.com', '/openai/v1/chat/completions', 'meta-llama/llama-4-scout-17b-16e-instruct', apikey.value, 'You are a helpful assistant.');
 	queryType = 0;
-	await llm_chat_request(result.innerText+"\n\n\n"+prompt1.value+"\n\n\nPlease reply using markdown syntax!");
+	await llm_chat_request(result.innerText+"\n\n\n"+prompt1.value);
 }
     
 selectImage.onchange = function (event) {
