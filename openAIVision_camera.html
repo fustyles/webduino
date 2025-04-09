@@ -71,7 +71,7 @@ function openai_initial() {
 	
 async function DetectImage() {
 	queryType = 1;	
-	await openai_chat_image_request(prompt.value+"\n\nPlease reply using markdown syntax!", imageToBase64());
+	await openai_chat_image_request(prompt.value, imageToBase64());
 }
 
 async function chat() {
