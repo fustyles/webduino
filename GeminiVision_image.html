@@ -76,14 +76,14 @@ function gemini_initial() {
 async function DetectImage() {
 	queryType = 1;
 	if (number.value==1)
-		await gemini_chat_image_request(prompt.value+"\n\nPlease reply using markdown syntax!", imageToBase64(originImage));
+		await gemini_chat_image_request(prompt.value, imageToBase64(originImage));
 	else if (number.value==2)
-		await gemini_chat_image_request(prompt.value+"\n\nPlease reply using markdown syntax!", [imageToBase64(originImage), imageToBase64(originImage1)]);
+		await gemini_chat_image_request(prompt.value, [imageToBase64(originImage), imageToBase64(originImage1)]);
 }
 
 async function chat() {
 	queryType = 0;
-	await gemini_chat_run(result.innerText+"\n\n\n"+prompt1.value+"\n\n\nPlease reply using markdown syntax!");
+	await gemini_chat_run(prompt1.value);
 }
     
 selectImage.onchange = function (event) {
