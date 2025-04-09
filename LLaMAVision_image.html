@@ -20,7 +20,7 @@ https://fustyles.github.io/webduino/LLaMAVision_image.html
 </head>
 <body>
 <div style="position:absolute;left:5px;top:0px">
-LLaMA(Groq) API Key：<input type="text" id="apiKey" size="40" value=""><br><br>
+LLaMA(Groq) API Key：<input type="text" id="apiKey" size="40" value="" onchange="llm_initial();"><br><br>
 <input type="file" id="selectImage"><br>
 <input type="file" id="selectImage1"><br><br>
 prompt (LLaMA Vision)：
@@ -69,9 +69,12 @@ const main = async () => {
     window.llm_chat_response = llm_chat_response;
 };
 main();
+
+function llm_initial() {
+	llm_chat_initial('api.groq.com', '/openai/v1/chat/completions', 'meta-llama/llama-4-scout-17b-16e-instruct', apikey.value, 'You are a helpful assistant.');
+}	
   
 async function DetectImage() {
-	llm_chat_initial('api.groq.com', '/openai/v1/chat/completions', 'meta-llama/llama-4-scout-17b-16e-instruct', apikey.value, 'You are a helpful assistant.');
 	queryType = 1;
 	if (number.value==1)
 		await llm_chat_image_request(prompt.value, imageToBase64(originImage));
@@ -80,7 +83,6 @@ async function DetectImage() {
 }
 
 async function chat() {
-	llm_chat_initial('api.groq.com', '/openai/v1/chat/completions', 'meta-llama/llama-4-scout-17b-16e-instruct', apikey.value, 'You are a helpful assistant.');
 	queryType = 0;
 	await llm_chat_request(result.innerText+"\n\n\n"+prompt1.value);
 }
