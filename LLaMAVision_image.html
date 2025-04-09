@@ -1,0 +1,130 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/9 08:00
+https://www.facebook.com/francefu
+
+Try it
+https://fustyles.github.io/webduino/llaMaVision_image.html
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LLaMA Vision</title>
+	<meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Headers' content='Origin, X-Requested-With, Content-Type, Accept'>
+	<meta http-equiv='Access-Control-Allow-Methods' content='GET,POST,PUT,DELETE,OPTIONS'>
+	<meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
+	<script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/marked.min.js'></script>
+	<script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script>
+	<script src='https://fustyles.github.io/webduino/SpBlocklyJS/llm_20241219/llm.js'></script>
+</head>
+<body>
+<div style="position:absolute;left:5px;top:0px">
+LLaMA API Key：<input type="text" id="apiKey" size="40" value=""><br><br>
+<input type="file" id="selectImage"><br>
+<input type="file" id="selectImage1"><br><br>
+prompt (LLaMA Vision)：
+<select id="number"><option value="1">1 image</option><option value="2">2 images</option></select>
+<br>
+<textarea id="prompt" cols="58" rows="5">這是學生的作文，請轉錄文字，若無法辨識以空格替代。</textarea><br>
+<input type="button" value="Run (LLaMA Vision)" onclick="result.innerHTML = marked.parse(&#39;Please wait...&#39;);DetectImage();"><br>
+<div id="result" style="color:blue;width:450px;height:150px;overflow:auto;border:1px solid #000;"></div><br>
+prompt (LLaMA Chat)：<br>
+<textarea id="prompt1" cols="58" rows="5">請批改上述作文，簡潔扼要。</textarea><br>
+<input type="button" value="Run (LLaMA Chat)" onclick="result1.innerHTML = marked.parse(&#39;Please wait...&#39;);chat();"><br>
+<div id="result1" style="color:red;width:450px;height:150px;overflow:auto;border:1px solid #000;"></div>
+</div>
+<div style="position:absolute;left:510px;top:0px">
+<img id="originImage"><br>
+<img id="originImage1">
+</div>
+
+<script>
+var selectImage = document.getElementById('selectImage');
+var originImage = document.getElementById('originImage');
+var selectImage1 = document.getElementById('selectImage1');
+var originImage1 = document.getElementById('originImage1');
+var number = document.getElementById('number');
+var result = document.getElementById('result');
+var apikey = document.getElementById("apiKey");
+var prompt = document.getElementById("prompt");
+var prompt1 = document.getElementById("prompt1");
+var queryType = 1;
+  
+const delay = (seconds) => {
+    return new Promise((resolve) => {
+        setTimeout(resolve, seconds * 1000);
+    });
+};
+const main = async () => {
+    head_add_viewport(1, 1, 4, "yes");
+    llm_chat_response = async function() {
+		console.log(llm_chat_response_get('n'));
+		if (queryType)
+			result.innerHTML = marked.parse(llm_chat_response_get('n')); 
+		else
+			result1.innerHTML = marked.parse(llm_chat_response_get('n'));		
+    }
+    window.llm_chat_response = llm_chat_response;
+};
+main();
+  
+async function DetectImage() {
+	llm_chat_initial('api.groq.com', '/openai/v1/chat/completions', 'meta-llama/llama-4-scout-17b-16e-instruct', apikey.value, 'You are a helpful assistant.');
+	queryType = 1;
+	if (number.value==1)
+		await llm_chat_image_request(prompt.value+"\n\nPlease reply using markdown syntax!", imageToBase64(originImage));
+	else if (number.value==2)
+		await llm_chat_image_request(prompt.value+"\n\nPlease reply using markdown syntax!", [imageToBase64(originImage), imageToBase64(originImage1)]);
+}
+
+async function chat() {
+	llm_chat_initial('api.groq.com', '/openai/v1/chat/completions', 'meta-llama/llama-4-scout-17b-16e-instruct', apikey.value, 'You are a helpful assistant.');
+	queryType = 0;
+	await llm_chat_request(result.innerText+"\n\n\n"+prompt1.value+"\n\n\nPlease reply using markdown syntax!");
+}
+    
+selectImage.onchange = function (event) {
+  var target = event.target || window.event.srcElement;
+  var files = target.files;
+  if (FileReader && files && files.length) {
+    var fr = new FileReader();
+    fr.onload = function () {
+      result.innerHTML = "";
+      originImage.src = fr.result;
+    }
+    fr.readAsDataURL(files[0]);
+  }
+}
+
+selectImage1.onchange = function (event) {
+  var target = event.target || window.event.srcElement;
+  var files = target.files;
+  if (FileReader && files && files.length) {
+    var fr = new FileReader();
+    fr.onload = function () {
+      result.innerHTML = "";
+      originImage1.src = fr.result;
+    }
+    fr.readAsDataURL(files[0]);
+  }
+}
+
+function imageToBase64(sourceImage) {
+    var canvas = document.createElement("canvas");
+    canvas.width = sourceImage.naturalWidth;
+    canvas.height = sourceImage.naturalHeight;
+    var context = canvas.getContext("2d");
+    context.drawImage(sourceImage, 0, 0);
+    var base64 = canvas.toDataURL();
+    var head = base64.substring(0, base64.indexOf(",") + 1);
+    var data = base64.substring(base64.indexOf(",") + 1);
+    //data = encodeURIComponent(data);
+    canvas = null;
+    return (head + data);
+}
+</script>
+
+
+
+</body></html>
