@@ -71,10 +71,7 @@ const main = async () => {
 main();
   
 async function DetectImage() {
-	if (!initialState) {
-		llm_chat_initial('api.groq.com', '/openai/v1/chat/completions', 'meta-llama/llama-4-scout-17b-16e-instruct', apikey.value, 'You are a helpful assistant.');
-		initialState = true;
-	}
+	llm_chat_initial('api.groq.com', '/openai/v1/chat/completions', 'meta-llama/llama-4-scout-17b-16e-instruct', apikey.value, 'You are a helpful assistant.');
 	queryType = 1;
 	if (number.value==1)
 		await llm_chat_image_request(prompt.value, imageToBase64(originImage));
@@ -83,10 +80,7 @@ async function DetectImage() {
 }
 
 async function chat() {
-	if (!initialState) {
-		llm_chat_initial('api.groq.com', '/openai/v1/chat/completions', 'meta-llama/llama-4-scout-17b-16e-instruct', apikey.value, 'You are a helpful assistant.');
-		initialState = true;
-	}
+	llm_chat_initial('api.groq.com', '/openai/v1/chat/completions', 'meta-llama/llama-4-scout-17b-16e-instruct', apikey.value, 'You are a helpful assistant.');
 	queryType = 0;
 	await llm_chat_request(result.innerText+"\n\n\n"+prompt1.value);
 }
