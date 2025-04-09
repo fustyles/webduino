@@ -19,7 +19,7 @@ https://fustyles.github.io/webduino/GeminiVision_camera.html
 </head>
 <body>
 <div style="position:absolute;left:5px;top:0px">
-Gemini API Key：<input type="text" id="apiKey" size="40" value=""><br><br>
+Gemini API Key：<input type="text" id="apiKey" size="40" value="" onchange="gemini_initial();"><br><br>
 prompt (Gemini Vision)：<br>
 <textarea id="prompt"  cols="58" rows="5">請轉錄文字，若無法辨識以空格替代。</textarea><br>
 <input type="button" value="Run (Gemini Vision)" onclick="result.innerHTML = marked.parse('Please wait...');DetectImage();"><br>
@@ -64,15 +64,17 @@ const main = async () => {
     window.gemini_chat_response = gemini_chat_response;
 };
 main();
+
+function gemini_initial() {
+	gemini_chat_initial(apikey.value, "gemini-2.0-flash", 10000, 1.0, 'You are a smart assistant.');
+}
   
 async function DetectImage() {
-	gemini_chat_initial(apikey.value, "gemini-2.0-flash", 10000, 1.0, 'You are a smart assistant.');
 	queryType = 1;	
 	await gemini_chat_image_request(prompt.value+"\n\nPlease reply using markdown syntax!", imageToBase64());
 }
 
 async function chat() {
-	gemini_chat_initial(apikey.value, "gemini-2.0-flash", 10000, 1.0, 'You are a smart assistant.');
 	queryType = 0;
 	await gemini_chat_run(result.innerText+"\n\n\n"+prompt1.value+"\n\n\nPlease reply using markdown syntax!");
 }
