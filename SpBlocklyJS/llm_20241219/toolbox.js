@@ -13,7 +13,7 @@ var catLLM = '<xml>'+
 '    </value>'+
 '    <value name="model">'+
 '      <block type="text">'+
-'        <field name="TEXT">llama-3.2-90b-vision-preview</field>'+
+'        <field name="TEXT">meta-llama/llama-4-scout-17b-16e-instruct</field>'+
 '      </block>'+
 '    </value>'+
 '    <value name="apikey">'+
