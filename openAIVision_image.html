@@ -20,7 +20,7 @@ https://fustyles.github.io/webduino/openAIVision_image.html
 </head>
 <body>
 <div style="position:absolute;left:5px;top:0px">
-openAI API Key：<input type="text" id="apiKey" size="40" value=""><br><br>
+openAI API Key：<input type="text" id="apiKey" size="40" value="" onchange="openai_initial();"><br><br>
 <input type="file" id="selectImage"><br>
 <input type="file" id="selectImage1"><br><br>
 prompt (openAI Vision)：
@@ -50,6 +50,7 @@ var apikey = document.getElementById("apiKey");
 var prompt = document.getElementById("prompt");
 var prompt1 = document.getElementById("prompt1");
 var queryType = 1;
+var initialState = false;	
   
 const delay = (seconds) => {
     return new Promise((resolve) => {
@@ -68,6 +69,10 @@ const main = async () => {
     window.openAI_chat_response = openAI_chat_response;
 };
 main();
+
+function openai_initial() {
+	openai_chat_initial(apikey.value, 'You are a helpful assistant.', "gpt-4o-mini", 0.5);
+}	
   
 async function DetectImage() {
 	openai_chat_initial(apikey.value, 'You are a helpful assistant.', "gpt-4o-mini", 0.5);
