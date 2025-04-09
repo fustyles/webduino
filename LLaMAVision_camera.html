@@ -77,7 +77,7 @@ async function DetectImage() {
 
 async function chat() {
 	queryType = 0;
-	await llm_chat_request(result.innerText+"\n\n\n"+prompt1.value);
+	await llm_chat_request(prompt1.value);
 }
 
 async function setCamera() {
