@@ -119,7 +119,7 @@ function imageToBase64(sourceImage) {
     var base64 = canvas.toDataURL();
     var head = base64.substring(0, base64.indexOf(",") + 1);
     var data = base64.substring(base64.indexOf(",") + 1);
-    data = encodeURIComponent(data);
+    //data = encodeURIComponent(data);
     canvas = null;
     return (head + data);
 }
