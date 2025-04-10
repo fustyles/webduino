@@ -18279,7 +18279,7 @@ Blockly.Blocks['fu_oled_qrcode_PROGMEM'] = {
 		var block = this.sourceBlock_;
 		var input = block.getInputTargetBlock("PROGMEM");
 		var img=document.createElement('img');
-		var url = "https://chart.googleapis.com/chart?chs=64x64&cht=qr&chl=" + val + "&choe=UTF-8&chld=M|0";
+		var url = "https://quickchart.io/chart?chs=64x64&cht=qr&chl=" + val + "&choe=UTF-8&chld=M|0";
 		img.src = url;
 		
 		img.onload = function (event) {
