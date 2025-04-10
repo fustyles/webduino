@@ -104,7 +104,7 @@ Blockly.Blocks['audiorecord_openai_initial'] = {
         .setAlign(Blockly.ALIGN_RIGHT)	    
         .appendField(Blockly.Msg.AUDIORECORD_LANGUAGE_SHOW)
         .appendField(new Blockly.FieldDropdown([
-		["Auto", ""],
+		["Any", ""],
 		["Afrikaans (af)", "af"],
 		["Arabic (ar)", "ar"],
 		["Azerbaijani (az)", "az"],
