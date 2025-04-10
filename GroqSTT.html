@@ -1,0 +1,125 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/10 09:00
+https://www.facebook.com/francefu
+
+Try it
+https://fustyles.github.io/webduino/GroqSTT.html
+-->
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.95">
+    <title>Groq Whisper (STT)</title>
+</head>
+<body>
+    <h1>Groq Whisper (STT)</h1>
+    Groq Key：<input type="text" id="key" size="40" value=""><br><br>
+    Prompt：<textarea id="prompt"  cols="43" rows="12">Please transcribe the audio into text.</textarea><br><br>
+    <label for="audioSource">Audio：</label>
+    <select id="audioSource"></select>
+    <br><br>
+    <button id="startRecording">Start recording</button>
+    <button id="stopRecording" disabled>Stop recording</button><br><br>
+    Result：<div id="result" style="color:blue;width:360px;height:180px;overflow:auto;border:1px solid #000;"></div>
+    <script>
+		
+		let groqKey = document.getElementById("key");
+		let groqPrompt = document.getElementById("prompt");
+		let groqResult = document.getElementById("result");
+	    
+		let audioContext;
+		let mediaRecorder;
+		let audioChunks = [];
+		let selectedDeviceId;
+		let audioUrl;
+
+		const audioSourceSelect = document.getElementById('audioSource');
+		const startRecordingButton = document.getElementById('startRecording');
+		const stopRecordingButton = document.getElementById('stopRecording');
+
+		// 獲取音訊設備並填充下拉選單
+		navigator.mediaDevices.enumerateDevices().then(devices => {
+			devices.forEach(device => {
+				if (device.kind === 'audioinput') {
+					const option = document.createElement('option');
+					option.value = device.deviceId;
+					option.text = device.label || `Microphone ${audioSourceSelect.length + 1}`;
+					audioSourceSelect.appendChild(option);
+				}
+			});
+		});
+
+		// 開始錄音
+		startRecordingButton.addEventListener('click', async () => {
+			groqResult.innerHTML = "";
+			selectedDeviceId = audioSourceSelect.value;
+			const stream = await navigator.mediaDevices.getUserMedia({
+				audio: { deviceId: selectedDeviceId ? { exact: selectedDeviceId } : undefined }
+			});
+
+			audioContext = new (window.AudioContext || window.webkitAudioContext)();
+			mediaRecorder = new MediaRecorder(stream);
+			mediaRecorder.ondataavailable = event => {
+				audioChunks.push(event.data);
+			};
+			mediaRecorder.start();
+
+			startRecordingButton.disabled = true;
+			stopRecordingButton.disabled = false;
+		});
+
+		// 停止錄音並下載
+		stopRecordingButton.addEventListener('click', () => {
+			mediaRecorder.stop();
+			mediaRecorder.onstop = () => {
+				const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+				// Groq Whisper
+				sendAudioFileToGroqSTT(groqKey.value, groqPrompt.value, audioBlob, "whisper-large-v3-turbo", "").then(res => {groqResult.innerHTML = res;})
+				
+				audioChunks = [];
+				startRecordingButton.disabled = false;
+				stopRecordingButton.disabled = true;
+			};
+		});
+
+		async function sendAudioFileToGroqSTT(apikey, prompt, blob, model, language) {
+			let result = "";
+			let domain = "api.groq.com";
+			let path = "/openai/v1/audio/transcriptions";
+			try {
+				const url = `https://${domain}${path}`;
+				const formData = new FormData();
+				formData.append("model", model);
+				formData.append("response_format", "verbose_json");
+				formData.append("prompt", prompt);
+				if (language)
+					formData.append("language", language);
+				formData.append("file", new File([blob], "audio.wav", { type: "audio/wav" }));
+
+				const options = {
+					method: 'POST',
+					headers: {
+						'Authorization': 'Bearer ' + apikey
+					},
+					body: formData
+				};
+
+				const response = await fetch(url, options);
+				const json = await response.json();
+				console.log(JSON.stringify(json));
+				if ('error' in json)
+					result = json["error"]["message"];
+				else
+					result = json["text"];
+				return result;
+			}
+			catch (e) {
+				console.log(e);
+				return JSON.stringify(e);
+			}
+		}	
+	</script>
+</body>
+</html>
