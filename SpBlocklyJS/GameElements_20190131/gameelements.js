@@ -4893,7 +4893,7 @@ function HextoRgb(color) {
         obj.src = input_value;
       else if (input_property=="volume")
         obj.volume = input_value;
-      else if (input_property=="rate")
+      else if (input_property=="defaultRate")
         obj.defaultPlaybackRate = input_value;	      
       else if (input_property=="currentTime")
         obj.currentTime = input_value;	
@@ -4939,7 +4939,7 @@ function HextoRgb(color) {
 		return obj.src;	
 	  else if (input_property=="volume")
 		return obj.volume;
-	  else if (input_property=="rate")
+	  else if (input_property=="defaultRate")
 		return obj.defaultPlaybackRate;		  
       else if (input_property=="opacity")
         return Number(obj.style.opacity);
