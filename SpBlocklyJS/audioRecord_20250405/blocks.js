@@ -189,17 +189,17 @@ Blockly.Blocks['audiorecord_run'] = {
     this.appendDummyInput() 
         .setAlign(Blockly.ALIGN_RIGHT)	    
         .appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg.AUDIORECORD_SAVE_SHOW,"save"],
-			[Blockly.Msg.AUDIORECORD_GEMINI_SHOW,"gemini"],
-			[Blockly.Msg.AUDIORECORD_OPENAI_SHOW,"openai"]
-	    ]), "type_");  	  
+			[Blockly.Msg.AUDIORECORD_START_SHOW,"start"],
+			[Blockly.Msg.AUDIORECORD_STOP_SHOW,"stop"]
+	    ]), "func_");	  
     this.appendDummyInput() 
         .setAlign(Blockly.ALIGN_RIGHT)	    
         .appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg.AUDIORECORD_START_SHOW,"start"],
-			[Blockly.Msg.AUDIORECORD_STOP_SHOW,"stop"]
-	    ]), "func_");    
-    this.setInputsInline(false);
+			[Blockly.Msg.AUDIORECORD_SAVE_SHOW,"save"],
+			[Blockly.Msg.AUDIORECORD_GEMINI_SHOW,"gemini"],
+			[Blockly.Msg.AUDIORECORD_OPENAI_SHOW,"openai"]
+	    ]), "type_");  	      
+    this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(180);
