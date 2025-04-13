@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='Access-Control-Allow-Headers' content='Origin, X-Requested-With, Content-Type, Accept'>
-    <meta http-equiv='Access-Control-Allow-Methods' content='GET,POST,PUT,DELETE,OPTIONS'>
-    <meta http-equiv='Access-Control-Allow-Origin' content='*'>
-    <meta http-equiv='Access-Control-Allow-Credentials' content='true'>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
-    <script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/marked.min.js'></script>
-    <script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script>
-    <link rel='stylesheet' href='https://fustyles.github.io/webduino/SpBlocklyJS/css/icon_custom.css' />
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js'></script>
-    <script src='https://fustyles.github.io/webduino/SpBlocklyJS/audioRecord_20250405/audioRecord.js'></script>
-</head>
-<body>
-    
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Headers' content='Origin, X-Requested-With, Content-Type, Accept'><meta http-equiv='Access-Control-Allow-Methods' content='GET,POST,PUT,DELETE,OPTIONS'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/marked.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><link rel='stylesheet' href='https://fustyles.github.io/webduino/SpBlocklyJS/css/icon_custom.css' /><script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/audioRecord_20250405/audioRecord.js'></script></head><body>
 <script>
 const delay = (seconds) => {
     return new Promise((resolve) => {
@@ -22,12 +6,28 @@ const delay = (seconds) => {
     });
 };
 const main = async () => {
-    var GeminiKey, GeminiPrompt, result, jsonResult;
+    var GeminiKey, GeminiPrompt, recordingState, recordingTimeMax, result, jsonResult, recordingTimer;
+
+    // 描述此函式...
+    async function funStopRecording() {
+        button_set('mic', "color", '#000000');
+        recordingState = false;
+        await recording_stopRecordingGeminiSTT();
+    }
+
+    // 描述此函式...
+    async function funStartRecording() {
+        button_set('mic', "color", '#ff0000');
+        recordingState = true;
+        await recording_startRecording();
+    }
 
 
     GeminiKey = 'U2FsdGVkX1/MIm9hOJ9IzFNojuj9la0gCM3F/UoWyzQMEaO0ZO+9050jLQ7uJjuU9QyZpdRPjR3RUsGqfCgvNg==';
     GeminiPrompt = ['1. Transcribe the audio into text and the default language is Japanese or Chinese.\\n', '2. Return the result in the following JSON format:\\n', '{  "text": "Transcribed audio into text",   "language": "Japanese or Chinese",  "Chinese":"Chinese text or translate Japanese text into Traditional Chinese.", "Japanese":"Japanese text or translate Chinese text into Japanese." }\\n', '3. Do not use markdown syntax in reply.'].join('');
-    head_add_viewport(0.9, 0.1, 2, "yes");
+    recordingState = false;
+    recordingTimeMax = 15000;
+    head_add_viewport(0.95, 0.5, 2, "yes");
     audio_create('', '', 0, 0, 999);
     audio_set('', "display", false);
     span_create('Chinese', 60, 10, 18, '朗讀中文', 999);
@@ -44,7 +44,7 @@ const main = async () => {
     button_set('stop_circle', "borderradius", 40);
     button_set('play_circle', "borderradius", 40);
     button_set('mic', "borderradius", 40);
-    recording_GeminiSTT_initial(0, (button_get('mic', "id")), (button_get('mic', "id")), (CryptoJS.AES.decrypt(GeminiKey, 'test').toString(CryptoJS.enc.Utf8)), "gemini-2.0-flash", GeminiPrompt);
+    recording_GeminiSTT_initial(0, (CryptoJS.AES.decrypt(GeminiKey, 'test').toString(CryptoJS.enc.Utf8)), "gemini-2.0-flash", GeminiPrompt);
     audioGeminiSTT = async function(geminiResult) {
         div_set('Chinese', "innerHTML_markdown", '');
         div_set('Japanese', "innerHTML_markdown", '');
@@ -88,10 +88,19 @@ const main = async () => {
         audio_control('', "pause");
     };
     document.getElementById('gamebutton_' + 'stop_circle').addEventListener("click", button_stop_circle_click, true);
+    async function button_mic_click(event) {
+        if (recordingState) {
+            clearInterval(recordingTimer);
+            funStopRecording();
+        } else {
+            funStartRecording();
+            recordingTimer = setTimeout(async function() {
+                funStopRecording();
+            }, recordingTimeMax);
+        }
+    };
+    document.getElementById('gamebutton_' + 'mic').addEventListener("click", button_mic_click, true);
 };
 main();
-    
 </script>
-    
-</body>
-</html>
+</body></html>
