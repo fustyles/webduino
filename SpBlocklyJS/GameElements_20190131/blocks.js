@@ -7554,6 +7554,23 @@ Blockly.Blocks['audio_play_googleTTS'] = {
   }
 };
 
+Blockly.Blocks['audio_play_googleTTS1'] = {
+  init: function () {
+  this.appendDummyInput() 
+      .appendField(Blockly.Msg.AUDIO_SRC)	  
+  this.appendValueInput("language_")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(Blockly.Msg.AUDIO_TTS);
+  this.appendValueInput("text_")
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .setCheck(null)
+      .appendField(Blockly.Msg.AUDIO_TEXT);	  
+  this.setInputsInline(false);
+  this.setOutput(true, null); 
+  this.setColour(30);
+  }
+};
+
 Blockly.Blocks['audio_save_googleTTS'] = {
   init: function () {
   this.appendDummyInput() 
