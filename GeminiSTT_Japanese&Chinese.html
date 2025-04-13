@@ -64,7 +64,7 @@ const main = async () => {
         button_set('mic', "color", '#000000');
         ttsSwitch(1);        
     };
-    document.getElementById('gamebutton_' + 'mic').addEventListener("touchend", button_mic_touchend, true);
+    document.getElementById('gamebutton_' + 'mic').addEventListener("touchmove", button_mic_touchend, true);
 };
 main();
 </script>
