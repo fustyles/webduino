@@ -41,7 +41,7 @@ const main = async () => {
     GeminiPrompt = ['1. Transcribe the audio into text and the default language is Japanese or Chinese.\\n', '2. Return the result in the following JSON format:\\n', '{  "text": "Transcribed audio into text",   "language": "Japanese or Chinese",  "Chinese":"Chinese text or translate Japanese text into Traditional Chinese.", "Japanese":"Japanese text or translate Chinese text into Japanese." }\\n', '3. Do not use markdown syntax in reply.'].join('');
     recordingState = false;
     recordingTimeMax = 15000;
-    head_add_viewport(0.95, 0.5, 2, "yes");
+    head_add_viewport(0.95, 0.1, 2, "yes");
     audio_create('', '', 0, 0, 999);
     audio_set('', "display", false);
     span_create('Chinese', 60, 10, 18, '朗讀中文', 999);
