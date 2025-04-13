@@ -687,6 +687,7 @@ Blockly.Msg["AUDIO_CONTROL"] = "控制";
 Blockly.Msg["AUDIO_LOOP"] = "重複播放";
 Blockly.Msg["AUDIO_MUTED"] = "靜音";
 Blockly.Msg["AUDIO_VOLUME"] = "音量";
+Blockly.Msg["AUDIO_RATE"] = "速度";
 Blockly.Msg["AUDIO_CURRENTTIME"] = "目前播放時間";
 Blockly.Msg["AUDIO_CURRENTSRC"] = "目前音訊連結";
 Blockly.Msg["AUDIO_DURATION"] = "";
