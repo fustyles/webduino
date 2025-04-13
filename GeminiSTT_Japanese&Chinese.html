@@ -38,12 +38,10 @@ const main = async () => {
         }
         if ((jsonResult['language']) == 'Chinese') {
             if (checkbox_get('Japanese', "checked")) {
-                ttsSwitch(1);
                 await ttsSpeak(("Google 日本語"), (jsonResult['Japanese']));
             }
         } else if ((jsonResult['language']) == 'Japanese') {
             if (checkbox_get('Chinese', "checked")) {
-                ttsSwitch(1);
                 await ttsSpeak(("Google 國語（臺灣）"), (jsonResult['Chinese']));
             }
         }
@@ -59,10 +57,12 @@ const main = async () => {
     document.getElementById('gamebutton_' + 'mic').addEventListener("touchstart", button_mic_touchstart, true);
     async function button_mic_mouseup(event) {
         button_set('mic', "color", '#000000');
+        ttsSwitch(1);        
     };
     document.getElementById('gamebutton_' + 'mic').addEventListener("mouseup", button_mic_mouseup, true);
     async function button_mic_touchend(event) {
         button_set('mic', "color", '#000000');
+        ttsSwitch(1);        
     };
     document.getElementById('gamebutton_' + 'mic').addEventListener("touchend", button_mic_touchend, true);
 };
