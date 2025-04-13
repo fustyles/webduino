@@ -20,9 +20,12 @@ const main = async () => {
     span_create('Japanese', 40, 320, 18, '日本語の音声読み上げ', 999);
     checkbox_create('Japanese', 10, 320, 18, '1', true, 1, 999, true);
     div_create('Japanese', 340, 270, 10, 350, "solid", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
-    button_toolbox(160, 630, 80, 80, '#000000', '#ffcccc', 40, 1, 0, [
-        ['mic', 'recording']
+    button_toolbox(110, 630, 80, 80, '#000000', '#ffcccc', 40, 1, 0,  [
+        ['volume_up', 'Speaker'],
+        ['mic', 'Recording']
     ]);
+    button_set('mic', "borderradius", 40);
+    button_set('volume_up', "borderradius", 40);
     button_set('mic', "borderradius", 40);
     recording_GeminiSTT_initial(0, (button_get('mic', "id")), (button_get('mic', "id")), (CryptoJS.AES.decrypt(GeminiKey, 'test').toString(CryptoJS.enc.Utf8)), "gemini-2.0-flash", GeminiPrompt);
     audioGeminiSTT = async function(geminiResult) {
@@ -72,6 +75,25 @@ const main = async () => {
         ttsSwitch(1);
     };
     document.getElementById('gamebutton_' + 'mic').addEventListener("touchend", button_mic_touchend, true);
+    async function button_volume_up_click(event) {
+        ttsSwitch(1);
+        if ((jsonResult['language']) == 'Chinese') {
+            if (checkbox_get('Japanese', "checked")) {
+                await ttsSpeak(("Google 日本語"), (jsonResult['Japanese']));
+                while (ttsSpeaking()) {
+                    await delay(1);
+                }
+            }
+        } else if ((jsonResult['language']) == 'Japanese') {
+            if (checkbox_get('Chinese', "checked")) {
+                await ttsSpeak(("Google 國語（臺灣）"), (jsonResult['Chinese']));
+                while (ttsSpeaking()) {
+                    await delay(1);
+                }
+            }
+        }
+    };
+    document.getElementById('gamebutton_' + 'volume_up').addEventListener("click", button_volume_up_click, true);    
 };
 main();
 </script>
