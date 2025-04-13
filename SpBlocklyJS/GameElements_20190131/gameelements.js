@@ -4893,6 +4893,8 @@ function HextoRgb(color) {
         obj.src = input_value;
       else if (input_property=="volume")
         obj.volume = input_value;
+      else if (input_property=="rate")
+        obj.playbackRate = input_value;	      
       else if (input_property=="currentTime")
         obj.currentTime = input_value;	
       else if (input_property=="display"){ 
@@ -4936,7 +4938,9 @@ function HextoRgb(color) {
 	  else if (input_property=="src")
 		return obj.src;	
 	  else if (input_property=="volume")
-		return obj.volume;	
+		return obj.volume;
+	  else if (input_property=="rate")
+		return obj.playbackRate;		  
       else if (input_property=="opacity")
         return Number(obj.style.opacity);
       else if (input_property=="zindex")
