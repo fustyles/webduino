@@ -23,6 +23,37 @@ const main = async () => {
     var GeminiKey, GeminiPrompt, recordingState, recordingTimeMax, result, jsonResult, recordingTimer;
 
     // 描述此函式...
+    async function funGeminiInitial() {
+        GeminiPrompt = ['1. Transcribe the audio into text and the default language is Japanese or Chinese.\\n', '2. Return the result in the following JSON format:\\n', '{   "text": "Transcribed audio into text",    "language": "', select_get('', "selectedText"), ' or Chinese",   "Chinese":"Chinese text or translate Japanese text into Traditional Chinese.",  "Target":"', select_get('', "selectedText"), ' text or translate Chinese text into ', select_get('', "selectedText"), '}\\n', '3. Do not use markdown syntax in reply.'].join('');
+        recording_GeminiSTT_initial(0, (CryptoJS.AES.decrypt(GeminiKey, 'test').toString(CryptoJS.enc.Utf8)), "gemini-2.0-flash", GeminiPrompt);
+        audioGeminiSTT = async function(geminiResult) {
+            div_set('Chinese', "innerHTML_markdown", '');
+            div_set('Target', "innerHTML_markdown", '');
+            var result = (geminiResult);
+            console.log(result);
+            jsonResult = JSON.parse((result.slice(((result.indexOf('{') + 1) - 1), result.lastIndexOf('}') + 1)));
+            if (jsonResult['Chinese']) {
+                div_set('Chinese', "innerHTML_markdown", (jsonResult['Chinese']));
+            }
+            if (jsonResult['Target']) {
+                div_set('Target', "innerHTML_markdown", (jsonResult['Target']));
+            }
+            if ((jsonResult['language']) == 'Chinese') {
+                if (checkbox_get('Target', "checked")) {
+                    audio_set('', "src", (await audio_play_googleTTS_Base64Data((select_get('', "selectedValue")), (jsonResult['Target']))));
+                    audio_control('', "play");
+                }
+            } else if ((jsonResult['language']) != 'Chinese') {
+                if (checkbox_get('Chinese', "checked")) {
+                    audio_set('', "src", (await audio_play_googleTTS_Base64Data("zh-TW", (jsonResult['Chinese']))));
+                    audio_control('', "play");
+                }
+            }
+
+        };
+    }
+
+    // 描述此函式...
     async function funStopRecording() {
         button_set('mic', "color", '#000000');
         recordingState = false;
@@ -38,18 +69,24 @@ const main = async () => {
 
 
     GeminiKey = 'U2FsdGVkX1/MIm9hOJ9IzFNojuj9la0gCM3F/UoWyzQMEaO0ZO+9050jLQ7uJjuU9QyZpdRPjR3RUsGqfCgvNg==';
-    GeminiPrompt = ['1. Transcribe the audio into text and the default language is Japanese or Chinese.\\n', '2. Return the result in the following JSON format:\\n', '{  "text": "Transcribed audio into text",   "language": "Japanese or Chinese",  "Chinese":"Chinese text or translate Japanese text into Traditional Chinese.", "Japanese":"Japanese text or translate Chinese text into Japanese." }\\n', '3. Do not use markdown syntax in reply.'].join('');
     recordingState = false;
     recordingTimeMax = 15000;
-    head_add_viewport(0.9, 0.1, 2, "yes");
+    head_add_viewport(0.9, 0.2, 2, "yes");
     audio_create('', '', 0, 0, 999);
     audio_set('', "display", false);
-    span_create('Chinese', 60, 10, 18, '朗讀中文', 999);
+    span_create('Chinese', 60, 10, 18, 'Speaking Chinese', 999);
     checkbox_create('Chinese', 10, 10, 18, '1', true, 1, 999, true);
     div_create('Chinese', 360, 200, 10, 50, "solid", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
-    span_create('Japanese', 60, 260, 18, '日本語の音声読み上げ', 999);
-    checkbox_create('Japanese', 10, 260, 18, '1', true, 1, 999, true);
-    div_create('Japanese', 360, 200, 10, 300, "solid", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
+    span_create('Target', 60, 260, 18, 'Speaking', 999);
+    select_create('', 150, 30, 140, 255, '#ffffff', '#000000', 16, 1, [
+        ['en', 'English'],
+        ['ja', 'Japanese'],
+        ['ko', 'Korean'],
+        ['vi', 'Vietnamese'],
+        ['th', 'Thai']
+    ], 'ja', 999, true);
+    checkbox_create('Target', 10, 260, 18, '1', true, 1, 999, true);
+    div_create('Target', 360, 200, 10, 300, "solid", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
     button_toolbox(50, 510, 80, 80, '#000000', '#ffffff', 80, 1, 20, [
         ['stop_circle', 'Stop speaking'],
         ['play_circle', 'Speaking'],
@@ -58,39 +95,14 @@ const main = async () => {
     button_set('stop_circle', "borderradius", 40);
     button_set('play_circle', "borderradius", 40);
     button_set('mic', "borderradius", 40);
-    recording_GeminiSTT_initial(0, (CryptoJS.AES.decrypt(GeminiKey, 'test').toString(CryptoJS.enc.Utf8)), "gemini-2.0-flash", GeminiPrompt);
-    audioGeminiSTT = async function(geminiResult) {
-        div_set('Chinese', "innerHTML_markdown", '');
-        div_set('Japanese', "innerHTML_markdown", '');
-        var result = (geminiResult);
-        console.log(result);
-        jsonResult = JSON.parse((result.slice(((result.indexOf('{') + 1) - 1), result.lastIndexOf('}') + 1)));
-        if (jsonResult['Chinese']) {
-            div_set('Chinese', "innerHTML_markdown", (jsonResult['Chinese']));
-        }
-        if (jsonResult['Japanese']) {
-            div_set('Japanese', "innerHTML_markdown", (jsonResult['Japanese']));
-        }
-        if ((jsonResult['language']) == 'Chinese') {
-            if (checkbox_get('Japanese', "checked")) {
-                audio_set('', "src", (await audio_play_googleTTS_Base64Data("ja", (jsonResult['Japanese']))));
-                audio_control('', "play");
-            }
-        } else if ((jsonResult['language']) == 'Japanese') {
-            if (checkbox_get('Chinese', "checked")) {
-                audio_set('', "src", (await audio_play_googleTTS_Base64Data("zh-TW", (jsonResult['Chinese']))));
-                audio_control('', "play");
-            }
-        }
-
-    };
+    GeminiPrompt = '';
     async function button_play_circle_click(event) {
         if ((jsonResult['language']) == 'Chinese') {
-            if (checkbox_get('Japanese', "checked")) {
-                audio_set('', "src", (await audio_play_googleTTS_Base64Data("ja", (jsonResult['Japanese']))));
+            if (checkbox_get('Target', "checked")) {
+                audio_set('', "src", (await audio_play_googleTTS_Base64Data((select_get('', "selectedValue")), (jsonResult['Target']))));
                 audio_control('', "play");
             }
-        } else if ((jsonResult['language']) == 'Japanese') {
+        } else if ((jsonResult['language']) != 'Chinese') {
             if (checkbox_get('Chinese', "checked")) {
                 audio_set('', "src", (await audio_play_googleTTS_Base64Data("zh-TW", (jsonResult['Chinese']))));
                 audio_control('', "play");
@@ -114,6 +126,11 @@ const main = async () => {
         }
     };
     document.getElementById('gamebutton_' + 'mic').addEventListener("click", button_mic_click, true);
+    async function select__change(event) {
+        funGeminiInitial();
+    };
+    document.getElementById('gameselect_' + '').addEventListener("change", select__change, true);
+    funGeminiInitial();
 };
 main();
 </script>
