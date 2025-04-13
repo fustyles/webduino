@@ -74,6 +74,8 @@ var catAudioRecording ='<xml>'+
 		'</value>'+			
 	'</block>'+	
 	'<block type="audiorecord_gemini_get">'+
-	'</block>'+		
+	'</block>'+
+	'<block type="audiorecord_run">'+
+	'</block>'+	
 '</category>'+
 '</xml>';	
