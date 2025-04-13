@@ -43,3 +43,22 @@ Blockly.JavaScript['audiorecord_openai_get'] = function(block) {
   var code = 'openaiResult';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['audiorecord_run'] = function(block) { 
+  var type = block.getFieldValue('type_');
+  var func = block.getFieldValue('func_');
+
+  if (type=="save"&func="start")
+    var code = 'await recording_startRecording();\n';
+  else if (type=="save"&func="stop")
+    var code = 'await recording_stopRecordingSave();\n';
+  else if (type=="gemini"&func="start")
+    var code = 'await recording_startRecording();\n';
+  else if (type=="gemini"&func="stop")
+    var code = 'await recording_stopRecordingGeminiSTT();\n';
+  else if (type=="openai"&func="start")
+    var code = 'await recording_startRecording();\n';
+  else if (type=="openai"&func="stop")
+    var code = 'await recording_stopRecordingOpenAISTT();\n';
+  return code;
+};
