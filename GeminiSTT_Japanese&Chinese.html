@@ -70,22 +70,6 @@ const main = async () => {
         }
 
     };
-    async function button_mic_mousedown(event) {
-        button_set('mic', "color", '#ff0000');
-    };
-    document.getElementById('gamebutton_' + 'mic').addEventListener("mousedown", button_mic_mousedown, true);
-    async function button_mic_touchstart(event) {
-        button_set('mic', "color", '#ff0000');
-    };
-    document.getElementById('gamebutton_' + 'mic').addEventListener("touchstart", button_mic_touchstart, true);
-    async function button_mic_mouseup(event) {
-        button_set('mic', "color", '#000000');
-    };
-    document.getElementById('gamebutton_' + 'mic').addEventListener("mouseup", button_mic_mouseup, true);
-    async function button_mic_touchend(event) {
-        button_set('mic', "color", '#000000');
-    };
-    document.getElementById('gamebutton_' + 'mic').addEventListener("touchend", button_mic_touchend, true);
     async function button_play_circle_click(event) {
         if ((jsonResult['language']) == 'Chinese') {
             if (checkbox_get('Japanese', "checked")) {
