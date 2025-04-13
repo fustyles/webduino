@@ -26,12 +26,16 @@ function recording_GeminiSTT_initial(audioIndex, buttonStartID, buttonStopID, ke
 	audioInputIndex = audioIndex;
 	
 	let audioButtonStart = document.getElementById(buttonStartID);
-	audioButtonStart.addEventListener('mousedown', recording_startRecording);
-	audioButtonStart.addEventListener('touchstart', recording_startRecording);
+	if (audioButtonStart) {	
+		audioButtonStart.addEventListener('mousedown', recording_startRecording);
+		audioButtonStart.addEventListener('touchstart', recording_startRecording);
+	}
 	
 	let audioButtonStop = document.getElementById(buttonStopID);
-	audioButtonStop.addEventListener('mouseup', recording_stopRecordingGeminiSTT);
-	audioButtonStop.addEventListener('touchend', recording_stopRecordingGeminiSTT);
+	if (audioButtonStop) {	
+		audioButtonStop.addEventListener('mouseup', recording_stopRecordingGeminiSTT);
+		audioButtonStop.addEventListener('touchend', recording_stopRecordingGeminiSTT);
+	}
 	
 	audioKey = key;	
 	audioModel = model;
@@ -42,12 +46,16 @@ function recording_openAISTT_initial(audioIndex, buttonStartID, buttonStopID, ke
 	audioInputIndex = audioIndex;
 	
 	let audioButtonStart = document.getElementById(buttonStartID);
-	audioButtonStart.addEventListener('mousedown', recording_startRecording);
-	audioButtonStart.addEventListener('touchstart', recording_startRecording);
+	if (audioButtonStart) {	
+		audioButtonStart.addEventListener('mousedown', recording_startRecording);
+		audioButtonStart.addEventListener('touchstart', recording_startRecording);
+	}
 	
 	let audioButtonStop = document.getElementById(buttonStopID);
-	audioButtonStop.addEventListener('mouseup', recording_stopRecordingOpenAISTT);
-	audioButtonStop.addEventListener('touchend', recording_stopRecordingOpenAISTT);
+	if (audioButtonStop) {	
+		audioButtonStop.addEventListener('mouseup', recording_stopRecordingOpenAISTT);
+		audioButtonStop.addEventListener('touchend', recording_stopRecordingOpenAISTT);
+	}
 	
 	audioKey = key;	
 	audioModel = model;
