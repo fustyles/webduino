@@ -10,12 +10,16 @@ function recording_save_initial(audioIndex, buttonStartID, buttonStopID) {
 	audioInputIndex = audioIndex;
 	
 	let audioButtonStart = document.getElementById(buttonStartID);
-	audioButtonStart.addEventListener('mousedown', recording_startRecording);
-	audioButtonStart.addEventListener('touchstart', recording_startRecording);
+	if (audioButtonStart) {
+		audioButtonStart.addEventListener('mousedown', recording_startRecording);
+		audioButtonStart.addEventListener('touchstart', recording_startRecording);
+	}
 	
 	let audioButtonStop = document.getElementById(buttonStopID);
-	audioButtonStop.addEventListener('mouseup', recording_stopRecordingSave);
-	audioButtonStop.addEventListener('touchend', recording_stopRecordingSave);
+	if (audioButtonStop) {	
+		audioButtonStop.addEventListener('mouseup', recording_stopRecordingSave);
+		audioButtonStop.addEventListener('touchend', recording_stopRecordingSave);
+	}
 }
 
 function recording_GeminiSTT_initial(audioIndex, buttonStartID, buttonStopID, key, model, prompt) {
