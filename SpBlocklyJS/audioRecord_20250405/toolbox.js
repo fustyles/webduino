@@ -5,34 +5,14 @@ var catAudioRecording ='<xml>'+
 			'<block type="math_number">'+
 				'<field name="NUM">0</field>'+
 			'</block>'+
-		'</value>'+ 
-		'<value name="start_">'+
-		'    <block type="text">'+
-		'        <field name="TEXT"></field>'+
-		'    </block>'+
-		'</value>'+
-		'<value name="stop_">'+
-		'    <block type="text">'+
-		'        <field name="TEXT"></field>'+
-		'    </block>'+
-		'</value>'+		
+		'</value>'+ 		
 	'</block>'+	
 	'<block type="audiorecord_openai_initial">'+
 		'<value name="index_">'+
 			'<block type="math_number">'+
 				'<field name="NUM">0</field>'+
 			'</block>'+
-		'</value>'+ 
-		'<value name="start_">'+
-		'    <block type="text">'+
-		'        <field name="TEXT"></field>'+
-		'    </block>'+
-		'</value>'+
-		'<value name="stop_">'+
-		'    <block type="text">'+
-		'        <field name="TEXT"></field>'+
-		'    </block>'+
-		'</value>'+	
+		'</value>'+ 	
 		'<value name="key_">'+
 		'    <block type="text">'+
 		'        <field name="TEXT"></field>'+
@@ -51,17 +31,7 @@ var catAudioRecording ='<xml>'+
 			'<block type="math_number">'+
 				'<field name="NUM">0</field>'+
 			'</block>'+
-		'</value>'+ 
-		'<value name="start_">'+
-		'    <block type="text">'+
-		'        <field name="TEXT"></field>'+
-		'    </block>'+
-		'</value>'+
-		'<value name="stop_">'+
-		'    <block type="text">'+
-		'        <field name="TEXT"></field>'+
-		'    </block>'+
-		'</value>'+	
+		'</value>'+ 	
 		'<value name="key_">'+
 		'    <block type="text">'+
 		'        <field name="TEXT"></field>'+
