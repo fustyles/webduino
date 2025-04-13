@@ -38,19 +38,19 @@ const main = async () => {
             div_set('Japanese', "innerHTML_markdown", (jsonResult['Japanese']));
         }
         if ((jsonResult['language']) == 'Chinese') {
-            if (checkbox_get('Japanese', "checked")) {
+            //if (checkbox_get('Japanese', "checked")) {
                 await ttsSpeak(("Google 日本語"), (jsonResult['Japanese']));
                 while (ttsSpeaking()) {
                     await delay(1);
                 }                
-            }
+            //}
         } else if ((jsonResult['language']) == 'Japanese') {
-            if (checkbox_get('Chinese', "checked")) {
+            //if (checkbox_get('Chinese', "checked")) {
                 await ttsSpeak(("Google 國語（臺灣）"), (jsonResult['Chinese']));
                 while (ttsSpeaking()) {
                     await delay(1);
                 }                
-            }
+            //}
         }
 
     };
