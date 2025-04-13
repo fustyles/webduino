@@ -202,6 +202,6 @@ Blockly.Blocks['audiorecord_run'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(180);
+    this.setColour(300);
   }  
 };
