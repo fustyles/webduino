@@ -6,57 +6,19 @@ let audioChunks = [];
 let audioRecorder;
 let audioInputIndex = 0;
 
-function recording_save_initial(audioIndex, buttonStartID, buttonStopID) {
+function recording_save_initial(audioIndex) {
 	audioInputIndex = audioIndex;
-	
-	let audioButtonStart = document.getElementById(buttonStartID);
-	if (audioButtonStart) {
-		audioButtonStart.addEventListener('mousedown', recording_startRecording);
-		audioButtonStart.addEventListener('touchstart', recording_startRecording);
-	}
-	
-	let audioButtonStop = document.getElementById(buttonStopID);
-	if (audioButtonStop) {	
-		audioButtonStop.addEventListener('mouseup', recording_stopRecordingSave);
-		audioButtonStop.addEventListener('touchend', recording_stopRecordingSave);
-	}
 }
 
-function recording_GeminiSTT_initial(audioIndex, buttonStartID, buttonStopID, key, model, prompt) {
+function recording_GeminiSTT_initial(audioIndex, key, model, prompt) {
 	audioInputIndex = audioIndex;
-	
-	let audioButtonStart = document.getElementById(buttonStartID);
-	if (audioButtonStart) {	
-		audioButtonStart.addEventListener('mousedown', recording_startRecording);
-		audioButtonStart.addEventListener('touchstart', recording_startRecording);
-	}
-	
-	let audioButtonStop = document.getElementById(buttonStopID);
-	if (audioButtonStop) {	
-		audioButtonStop.addEventListener('mouseup', recording_stopRecordingGeminiSTT);
-		audioButtonStop.addEventListener('touchend', recording_stopRecordingGeminiSTT);
-	}
-	
 	audioKey = key;	
 	audioModel = model;
 	audioPrompt = prompt;
 }
 
-function recording_openAISTT_initial(audioIndex, buttonStartID, buttonStopID, key, model, prompt, language) {
+function recording_openAISTT_initial(audioIndex, key, model, prompt, language) {
 	audioInputIndex = audioIndex;
-	
-	let audioButtonStart = document.getElementById(buttonStartID);
-	if (audioButtonStart) {		
-		audioButtonStart.addEventListener('mousedown', recording_startRecording);
-		audioButtonStart.addEventListener('touchstart', recording_startRecording);
-	}
-	
-	let audioButtonStop = document.getElementById(buttonStopID);
-	if (audioButtonStop) {	
-		audioButtonStop.addEventListener('mouseup', recording_stopRecordingOpenAISTT);
-		audioButtonStop.addEventListener('touchend', recording_stopRecordingOpenAISTT);
-	}
-	
 	audioKey = key;	
 	audioModel = model;
 	audioPrompt = prompt;
