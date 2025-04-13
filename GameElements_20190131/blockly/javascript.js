@@ -2550,6 +2550,13 @@ Blockly.JavaScript['audio_play_googleTTS'] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['audio_play_googleTTS1'] = function (block) { 
+  var value_language_ = Blockly.JavaScript.valueToCode(block, 'language_', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_text_ = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'await audio_play_googleTTS_Base64Data(' + value_language_ + ',' + value_text_ + ')';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['audio_save_googleTTS'] = function (block) { 
   var value_language_ = block.getFieldValue('language_');
   var value_text_ = Blockly.JavaScript.valueToCode(block, 'text_', Blockly.JavaScript.ORDER_ATOMIC);
