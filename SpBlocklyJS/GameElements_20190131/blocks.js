@@ -7344,10 +7344,11 @@ Blockly.Blocks['audio_control'] = {
 Blockly.Blocks['audio_play_googleTTS'] = {
   init: function () {
   this.appendDummyInput() 
-      .appendField(Blockly.Msg.AUDIO_SRC)	  
+      .appendField(Blockly.Msg.AUDIO_SRC)
+      .appendField(Blockly.Msg.AUDIO_TTS);
   this.appendDummyInput()
-      .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg.AUDIO_TTS)
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.AUDIO_TTS_LANGUAGE)	  
       .appendField(new Blockly.FieldDropdown([
 		["Abkhaz", "ab"],
 		["Acehnese", "ace"],
@@ -7557,10 +7558,11 @@ Blockly.Blocks['audio_play_googleTTS'] = {
 Blockly.Blocks['audio_play_googleTTS1'] = {
   init: function () {
   this.appendDummyInput() 
-      .appendField(Blockly.Msg.AUDIO_SRC)	  
+      .appendField(Blockly.Msg.AUDIO_SRC)
+      .appendField(Blockly.Msg.AUDIO_TTS);	  
   this.appendValueInput("language_")
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg.AUDIO_TTS);
+      .appendField(Blockly.Msg.AUDIO_TTS_LANGUAGE);
   this.appendValueInput("text_")
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .setCheck(null)
@@ -7574,10 +7576,11 @@ Blockly.Blocks['audio_play_googleTTS1'] = {
 Blockly.Blocks['audio_save_googleTTS'] = {
   init: function () {
   this.appendDummyInput() 
-      .appendField(Blockly.Msg.AUDIO)	  
+      .appendField(Blockly.Msg.AUDIO_SRC)
+      .appendField(Blockly.Msg.AUDIO_TTS);	  
   this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)	  
-      .appendField(Blockly.Msg.AUDIO_TTS)
+      .appendField(Blockly.Msg.AUDIO_TTS_LANGUAGE)
       .appendField(new Blockly.FieldDropdown([
 		["Abkhaz", "ab"],
 		["Acehnese", "ace"],
