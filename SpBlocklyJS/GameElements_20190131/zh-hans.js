@@ -689,6 +689,7 @@ Blockly.Msg["AUDIO_PAUSED"] = "已暂停";
 Blockly.Msg["AUDIO_PLAYED"] = "已播放";
 Blockly.Msg["AUDIO_TTS"] = "文字转语音文件";
 Blockly.Msg["AUDIO_TTS_SAVE"] = "文字转MP3文件";
+Blockly.Msg["AUDIO_TTS_LANGUAGE"] = "语系";
 Blockly.Msg["AUDIO_TEXT"] = "文字";
 Blockly.Msg["AUDIO_PLAY"] = "播放";
 Blockly.Msg["AUDIO_PAUSE"] = "暂停";
