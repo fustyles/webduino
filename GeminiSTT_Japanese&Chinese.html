@@ -15,11 +15,11 @@ const main = async () => {
     ttsSetProperty(1, 1, 1, "ja-JP");
     span_create('Chinese', 40, 10, 18, '朗讀中文', 999);
     checkbox_create('Chinese', 10, 10, 18, '1', true, 1, 999, true);
-    div_create('Chinese', 360, 300, 10, 40, "solid", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
-    span_create('Japanese', 40, 360, 18, '日本語の音声読み上げ', 999);
-    checkbox_create('Japanese', 10, 360, 18, '1', true, 1, 999, true);
-    div_create('Japanese', 360, 300, 10, 390, "solid", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
-    button_toolbox(160, 710, 80, 80, '#000000', '#ffcccc', 40, 1, 0, [
+    div_create('Chinese', 360, 280, 10, 40, "solid", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
+    span_create('Japanese', 40, 340, 18, '日本語の音声読み上げ', 999);
+    checkbox_create('Japanese', 10, 340, 18, '1', true, 1, 999, true);
+    div_create('Japanese', 360, 280, 10, 370, "solid", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
+    button_toolbox(160, 670, 80, 80, '#000000', '#ffcccc', 40, 1, 0, [
         ['mic', 'recording']
     ]);
     button_set('mic', "borderradius", 40);
