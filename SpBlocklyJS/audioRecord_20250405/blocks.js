@@ -181,3 +181,27 @@ Blockly.Blocks['audiorecord_openai_get'] = {
     this.setColour(260);
   }  
 };
+
+Blockly.Blocks['audiorecord_run'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.AUDIORECORD_SHOW);
+    this.appendDummyInput() 
+        .setAlign(Blockly.ALIGN_RIGHT)	    
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.AUDIORECORD_SAVE_SHOW,"save"],
+			[Blockly.Msg.AUDIORECORD_GEMINI_SHOW,"gemini"],
+			[Blockly.Msg.AUDIORECORD_OPENAI_SHOW,"openai"]
+	    ]), "type_");  	  
+    this.appendDummyInput() 
+        .setAlign(Blockly.ALIGN_RIGHT)	    
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.AUDIORECORD_START_SHOW,"start"],
+			[Blockly.Msg.AUDIORECORD_STOP_SHOW,"stop"]
+	    ]), "func_");    
+    this.setInputsInline(false);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(180);
+  }  
+};
