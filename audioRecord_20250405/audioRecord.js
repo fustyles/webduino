@@ -112,8 +112,6 @@ async function recording_stopRecordingGeminiSTT() {
 		reader.readAsDataURL(audioBlob);
 
 		audioChunks = [];
-		startRecordingButton.disabled = false;
-		stopRecordingButton.disabled = true;
 	};
 };
 
@@ -173,8 +171,6 @@ async function recording_stopRecordingOpenAISTT() {
 			}
 		)
 		audioChunks = [];
-		startRecordingButton.disabled = false;
-		stopRecordingButton.disabled = true;
 	};
 };
 
