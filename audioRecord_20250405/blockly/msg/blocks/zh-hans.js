@@ -12,3 +12,5 @@ Blockly.Msg["AUDIORECORD_GEMINI_KEY_SHOW"] = "API Key";
 Blockly.Msg["AUDIORECORD_GEMINI_PROMPT_SHOW"] = "提示词";
 Blockly.Msg["AUDIORECORD_GEMINI_RESPONSE_SHOW"] = "辨识音讯后执行";
 Blockly.Msg["AUDIORECORD_GEMINI_GET_SHOW"] = "Gemni STT 取得数据";
+Blockly.Msg["AUDIORECORD_START_SHOW"] = "开始录音";
+Blockly.Msg["AUDIORECORD_STOP_SHOW"] = "结束录音";
