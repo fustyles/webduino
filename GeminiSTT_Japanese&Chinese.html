@@ -98,6 +98,10 @@ const main = async () => {
     button_set('mic', "borderradius", 40);
     GeminiPrompt = '';
     async function button_play_circle_click(event) {
+        button_set('play_circle', "color", '#33cc00');
+        setTimeout(async function() {
+            button_set('play_circle', "color", '#000000');
+        }, 100);        
         if ((jsonResult['language']) == 'Chinese') {
             if (checkbox_get('Target', "checked")) {
                 audio_set('', "src", (await audio_play_googleTTS_Base64Data((select_get('', "selectedValue")), (jsonResult['Target']))));
@@ -112,6 +116,10 @@ const main = async () => {
     };
     document.getElementById('gamebutton_' + 'play_circle').addEventListener("click", button_play_circle_click, true);
     async function button_stop_circle_click(event) {
+        button_set('stop_circle', "color", '#ff0000');
+        setTimeout(async function() {
+            button_set('stop_circle', "color", '#000000');
+        }, 100);        
         audio_control('', "pause");
     };
     document.getElementById('gamebutton_' + 'stop_circle').addEventListener("click", button_stop_circle_click, true);
