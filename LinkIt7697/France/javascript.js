@@ -5535,10 +5535,12 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'void initWiFi() {\n'+
 			'  WiFi.enableConcurrent();\n'+
 			'  WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
+			'  Serial.println("AP IP: 192.168.1.1");\n'+
 			'  Serial.println("AP Stream: http://192.168.1.1:81");\n'+	
 			'  Serial.println("AP Still: http://192.168.1.1:82");\n'+
 			'  Serial.println("");\n'+
-			'  delay(5000);\n'+
+			'  delay(3000);\n'+
+			'  \n'+				
 			'  for (int i=0;i<2;i++) {\n'+
 			'    if (String(ssid)=="") break;\n'+
 			'    WiFi.begin(ssid, pass);\n'+
@@ -5777,15 +5779,15 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'}\n';						
 
 	Blockly.Arduino.setups_.serverbegin = ''+	
-			'server.begin();\n'+
+			'server.begin();\n  '+
 			'if (xTaskCreate(getRequest, (const char *)"getRequest", 1024, NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
 			'	Serial.println("Create getRequest task failed");\n  '+
 			'}\n  '+		
-			'server81.begin();\n'+
+			'server81.begin();\n  '+
 			'if (xTaskCreate(getRequest81, (const char *)"getRequest81", 2048, NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
 			'	Serial.println("Create getRequest81 task failed");\n  '+
-			'}\n'+
-			'server82.begin();\n'+
+			'}\n  '+
+			'server82.begin();\n  '+
 			'if (xTaskCreate(getRequest82, (const char *)"getRequest82", 1024, NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
 			'	Serial.println("Create getRequest82 task failed");\n  '+
 			'}\n';				
@@ -5830,9 +5832,11 @@ Blockly.Arduino['amb82_mini_stream'] = function(block) {
 			'void initWiFi() {\n'+
 			'  WiFi.enableConcurrent();\n'+		
 			'  WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
+			'  Serial.println("AP IP: 192.168.1.1");\n'+
 			'  Serial.println("AP Stream: http://192.168.1.1");\n'+
 			'  Serial.println("");\n'+
-			'  delay(5000);\n'+
+			'  delay(3000);\n'+
+			'  \n'+				
 			'  for (int i=0;i<2;i++) {\n'+
 			'    if (String(ssid)=="") break;\n'+
 			'    WiFi.begin(ssid, pass);\n'+
@@ -5922,7 +5926,7 @@ Blockly.Arduino['amb82_mini_stream'] = function(block) {
 			'}\n';			
 
 	Blockly.Arduino.setups_.server80begin = ''+
-			'server.begin();\n'+	
+			'server.begin();\n  '+	
 			'if (xTaskCreate(getRequest, (const char *)"getRequest", 2048, NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
 			'	Serial.println("Create getRequest task failed");\n  '+
 			'}\n';
@@ -16089,9 +16093,10 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
 			'void initWiFi() {\n'+
 			'  //WiFi.enableConcurrent();\n'+
 			'  //WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
-			'  //Serial.println("APIP address: 192.168.1.1");\n'+
+			'  //Serial.println("AP IP: 192.168.1.1");\n'+
 			'  //Serial.println("");\n'+				
-			'  //delay(5000);\n'+
+			'  //delay(3000);\n'+
+			'  \n'+				
 			'  for (int i=0;i<2;i++) {\n'+
 			'    if (String(_lwifi_ssid)=="") break;\n'+
 			'    WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
@@ -16117,7 +16122,7 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
 			'  }\n'+
 			'  if (WiFi.status() != WL_CONNECTED) {\n'+
 			'    WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
-			'    Serial.println("APIP address: 192.168.1.1");\n'+
+			'    Serial.println("AP IP: 192.168.1.1");\n'+
 			'  }\n'+	
 			'}\n';	
   } else {
@@ -25587,9 +25592,11 @@ function amb82_mini_video_tcp81() {
 			'void initWiFi() {\n'+
 			'  WiFi.enableConcurrent();\n'+		
 			'  WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
+			'  Serial.println("AP IP: 192.168.1.1");\n'+
 			'  Serial.println("AP Stream: http://192.168.1.1:81");\n'+
 			'  Serial.println("");\n'+
-			'  delay(5000);\n'+			
+			'  delay(3000);\n'+
+			'  \n'+				
 			'  for (int i=0;i<2;i++) {\n'+
 			'    if (String(_lwifi_ssid)=="") break;\n'+
 			'    WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
@@ -25693,9 +25700,11 @@ function amb82_mini_video_tcp80() {
 			'void initWiFi() {\n'+
 			'  WiFi.enableConcurrent();\n'+			
 			'  WiFi.apbegin(ssid_ap, pass_ap, channel_ap, 0);\n'+
+			'  Serial.println("AP IP: 192.168.1.1");\n'+
 			'  Serial.println("AP Stream: http://192.168.1.1");\n'+
 			'  Serial.println("");\n'+
-			'  delay(5000);\n'+			
+			'  delay(3000);\n'+
+			'  \n'+			
 			'  for (int i=0;i<2;i++) {\n'+
 			'    if (String(_lwifi_ssid)=="") break;\n'+
 			'    WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
