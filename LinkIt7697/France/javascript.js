@@ -9319,7 +9319,7 @@ Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
 										   '  TJpgDec.setJpgScale(1);\n'+
 										   '  TJpgDec.setCallback(tft_output);\n';
 
-		var code = 'Camera.getImage(amb82_CHANNEL, &img_addr, &img_len);\nCamera.channelEnd(amb82_CHANNEL);\nCamera.channelBegin(amb82_CHANNEL);\nTJpgDec.drawJpg(0, 0, (const uint8_t*)img_addr, img_len);\n';										   
+		var code = 'Camera.getImage(amb82_CHANNEL, &img_addr, &img_len);\nTJpgDec.drawJpg(0, 0, (const uint8_t*)img_addr, img_len);\n';										   
 
 	} else {
 		
