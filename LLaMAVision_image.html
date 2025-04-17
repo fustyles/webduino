@@ -59,6 +59,7 @@ const delay = (seconds) => {
 };
 const main = async () => {
     head_add_viewport(1, 1, 4, "yes");
+    llm_initial();
     llm_chat_response = async function() {
 		console.log(llm_chat_response_get('n'));
 		if (queryType)
