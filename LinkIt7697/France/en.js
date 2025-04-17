@@ -3313,6 +3313,7 @@ Blockly.Msg["TFT_ICON"] = "Icon";
 Blockly.Msg["TFT_GENERAL"] = "General";
 
 Blockly.Msg["TFT_SD_DRAWJPG_SHOW"] = "TFT LCD read JPG file from sd card ad show";
+Blockly.Msg["TFT_SD_DRAWBMP_SHOW"] = "TFT LCD read BMP file from sd card ad show";
 Blockly.Msg["TFT_SD_FILENAME_SHOW"] = "file name";
 
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_MATH_CONSTANT"] = "Contant";

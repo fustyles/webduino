@@ -12354,7 +12354,34 @@
 				<field name="NUM">0</field>
 			  </block>
 			</value>				
-		  </block>			  
+		  </block>
+		  <block type="tft_sd_drawbmp">
+			<value name="filename">
+			  <block type="math_number">
+				<field name="NUM">1</field>
+			  </block>
+			</value>
+			<value name="width">
+			  <block type="math_number">
+				<field name="NUM">320</field>
+			  </block>
+			</value>
+			<value name="height">
+			  <block type="math_number">
+				<field name="NUM">240</field>
+			  </block>
+			</value>				
+			<value name="x">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>
+			<value name="y">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>				
+		  </block>		  
 	</category>
 	
 	<category name="buzzer">

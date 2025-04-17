@@ -10479,7 +10479,6 @@ Blockly.Blocks['tft_sd_drawjpg'] = {
         .appendField(Blockly.Msg["TFT_SD_DRAWJPG_SHOW"]);
     this.appendValueInput("filename")
 		.appendField(Blockly.Msg["TFT_SD_FILENAME_SHOW"])
-		.appendField("/")
         .setCheck(null);
     this.appendDummyInput()
         .appendField(".jpg");
@@ -10493,7 +10492,42 @@ Blockly.Blocks['tft_sd_drawjpg'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["TFT_BOARD"])
         .appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["TFT_GENERAL"],""]			
+			[Blockly.Msg["TFT_GENERAL"],""],
+			["AmebaPro2","AmebaPro2"]			
+		]), "board");		
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['tft_sd_drawbmp'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["TFT_SD_DRAWBMP_SHOW"]);
+    this.appendValueInput("filename")
+		.appendField(Blockly.Msg["TFT_SD_FILENAME_SHOW"])
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(".bmp");
+    this.appendValueInput("width")
+        .setCheck("Number")
+        .appendField(Blockly.Msg["TFT_WIDTH"]);
+    this.appendValueInput("height")
+        .setCheck("Number")
+        .appendField(Blockly.Msg["TFT_HEIGHT"]);
+    this.appendValueInput("x")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("y")
+        .setCheck("Number")
+        .appendField("y");		
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["TFT_BOARD"])
+        .appendField(new Blockly.FieldDropdown([
+			["AmebaPro2","AmebaPro2"]			
 		]), "board");		
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
@@ -30802,7 +30836,7 @@ Blockly.Blocks['fu_mqtt_sendimage'] = {
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
 			["ESP32-CAM","ESP32-CAM"],
-			["AmebaPro2","AMB82-MINI"]
+			["AmebaPro2","AmebaPro2"]
 		], this.validate), "board");
     this.appendDummyInput("source")
 		.setAlign(Blockly.ALIGN_RIGHT)

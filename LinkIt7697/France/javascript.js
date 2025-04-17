@@ -8506,94 +8506,145 @@ Blockly.Arduino['tft_sd_drawjpg'] = function(block) {
 	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
 	var x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var board = block.getFieldValue('board');
 	
-	Blockly.Arduino.definitions_['esp32_cam_sd_savejpg'] = '#include "SD_MMC.h"\n#include <JPEGDecoder.h>';
-	Blockly.Arduino.setups_['esp32_cam_sd_savejpg'] = ''+
-										'if(!SD_MMC.begin()){\n'+
-										'	Serial.println("Card Mount Failed");\n'+
-										'} else {\n'+
-										'	uint8_t cardType = SD_MMC.cardType();\n'+
-										'	if(cardType == CARD_NONE){\n'+
-										'		Serial.println("No SD_MMC card attached");\n'+
-										'	}\n'+
-										'	SD_MMC.end();\n'+
-										'}\n';
-										
-	Blockly.Arduino.definitions_['drawSdJpeg'] = ''+
-										'void drawSdJpeg(const char *filename, int xpos, int ypos) {\n'+
-										'  tft.setSwapBytes(false);\n'+
-										'  SD_MMC.begin();\n'+
-										'  File jpegFile = SD_MMC.open(filename, FILE_READ);\n'+
-										'  if ( !jpegFile ) {\n'+
-										'    Serial.print("ERROR: File ");\n'+ 
-										'    Serial.print(filename);\n'+
-										'    Serial.println (" not found!");\n';
-	if (Blockly.Arduino.definitions_['flash']) {
-	Blockly.Arduino.definitions_['drawSdJpeg'] += ''+
-										'    pinMode(4, OUTPUT);\n'+
-										'    digitalWrite(4, LOW);\n';
+	if (board=="AmebaPro2") {
+		Blockly.Arduino.definitions_['AmebaPro2_sd_file'] = 'unsigned char* file_data;\nuint32_t file_size;\n';
+		
+		var code = ''+
+				'File file = fs.open(file_path+"/"+String('+filename+')+".jpg");\n'+
+				'if (file.readFile(file_data, file_size)) {\n'+
+				'    TJpgDec.drawJpg('+x+', '+y+', (const uint8_t *)file_data, file_size);\n'+
+				'    free(file_data);\n'+
+				'} else {\n'+
+				'    Serial.println("Failed to get JPG data.");\n'+
+				'}\n'+
+				'file.close();\n';
+	} else {
+		Blockly.Arduino.definitions_['esp32_cam_sd_savejpg'] = '#include "SD_MMC.h"\n#include <JPEGDecoder.h>';
+		Blockly.Arduino.setups_['esp32_cam_sd_savejpg'] = ''+
+											'if(!SD_MMC.begin()){\n'+
+											'	Serial.println("Card Mount Failed");\n'+
+											'} else {\n'+
+											'	uint8_t cardType = SD_MMC.cardType();\n'+
+											'	if(cardType == CARD_NONE){\n'+
+											'		Serial.println("No SD_MMC card attached");\n'+
+											'	}\n'+
+											'	SD_MMC.end();\n'+
+											'}\n';
+											
+		Blockly.Arduino.definitions_['drawSdJpeg'] = ''+
+											'void drawSdJpeg(const char *filename, int xpos, int ypos) {\n'+
+											'  tft.setSwapBytes(false);\n'+
+											'  SD_MMC.begin();\n'+
+											'  File jpegFile = SD_MMC.open(filename, FILE_READ);\n'+
+											'  if ( !jpegFile ) {\n'+
+											'    Serial.print("ERROR: File ");\n'+ 
+											'    Serial.print(filename);\n'+
+											'    Serial.println (" not found!");\n';
+		if (Blockly.Arduino.definitions_['flash']) {
+		Blockly.Arduino.definitions_['drawSdJpeg'] += ''+
+											'    pinMode(4, OUTPUT);\n'+
+											'    digitalWrite(4, LOW);\n';
+		}
+		Blockly.Arduino.definitions_['drawSdJpeg'] += '    return;\n'+
+											'  }\n'+
+											'  bool decoded = JpegDec.decodeSdFile(jpegFile);\n'+
+											'  if (decoded) {\n'+
+											'    jpegRender(xpos, ypos);\n'+
+											'  }\n'+
+											'  else {\n'+
+											'    Serial.println("Jpeg file format not supported!");\n'+
+											'  }\n'+
+											'  jpegFile.close();\n'+
+											'  SD_MMC.end();\n'+
+											'  tft.setSwapBytes(true);\n';										
+		if (Blockly.Arduino.definitions_['flash']) {
+		Blockly.Arduino.definitions_['drawSdJpeg'] += ''+
+											'  pinMode(4, OUTPUT);\n'+
+											'  digitalWrite(4, LOW);\n';
+		}
+		Blockly.Arduino.definitions_['drawSdJpeg'] += '}\n'+
+											'void jpegRender(int xpos, int ypos) {\n'+
+											'  uint16_t *pImg;\n'+
+											'  uint16_t mcu_w = JpegDec.MCUWidth;\n'+
+											'  uint16_t mcu_h = JpegDec.MCUHeight;\n'+
+											'  uint32_t max_x = JpegDec.width;\n'+
+											'  uint32_t max_y = JpegDec.height;\n'+
+											'  uint32_t min_w = jpg_min(mcu_w, max_x % mcu_w);\n'+
+											'  uint32_t min_h = jpg_min(mcu_h, max_y % mcu_h);\n'+
+											'  uint32_t win_w = mcu_w;\n'+
+											'  uint32_t win_h = mcu_h;\n'+
+											'  max_x += xpos;\n'+
+											'  max_y += ypos;\n'+
+											'  while (JpegDec.readSwappedBytes()) {\n'+
+											'    pImg = JpegDec.pImage ;\n'+
+											'    int mcu_x = JpegDec.MCUx * mcu_w + xpos;\n'+
+											'    int mcu_y = JpegDec.MCUy * mcu_h + ypos;\n'+
+											'    if (mcu_x + mcu_w <= max_x) win_w = mcu_w;\n'+
+											'    else win_w = min_w;\n'+
+											'    if (mcu_y + mcu_h <= max_y) win_h = mcu_h;\n'+
+											'    else win_h = min_h;\n'+
+											'    if (win_w != mcu_w) {\n'+
+											'      uint16_t *cImg;\n'+
+											'      int p = 0;\n'+
+											'      cImg = pImg + win_w;\n'+
+											'      for (int h = 1; h < win_h; h++) {\n'+
+											'        p += mcu_w;\n'+
+											'        for (int w = 0; w < win_w; w++) {\n'+
+											'          *cImg = *(pImg + w + p);\n'+
+											'          cImg++;\n'+
+											'        }\n'+
+											'      }\n'+
+											'    }\n'+
+											'    uint32_t mcu_pixels = win_w * win_h;\n'+
+											'    if (( mcu_x + win_w ) <= tft.width() && ( mcu_y + win_h ) <= tft.height())\n'+
+											'      tft.pushImage(mcu_x, mcu_y, win_w, win_h, pImg);\n'+
+											'    else if ( (mcu_y + win_h) >= tft.height())\n'+
+											'      JpegDec.abort();\n'+
+											'  }\n'+
+											'}\n';								
+				  
+		var code = 'drawSdJpeg(("/"+String('+filename+')+".jpg").c_str(), '+x+', '+y+');\n';
 	}
-	Blockly.Arduino.definitions_['drawSdJpeg'] += '    return;\n'+
-										'  }\n'+
-										'  bool decoded = JpegDec.decodeSdFile(jpegFile);\n'+
-										'  if (decoded) {\n'+
-										'    jpegRender(xpos, ypos);\n'+
-										'  }\n'+
-										'  else {\n'+
-										'    Serial.println("Jpeg file format not supported!");\n'+
-										'  }\n'+
-										'  jpegFile.close();\n'+
-										'  SD_MMC.end();\n'+
-										'  tft.setSwapBytes(true);\n';										
-	if (Blockly.Arduino.definitions_['flash']) {
-	Blockly.Arduino.definitions_['drawSdJpeg'] += ''+
-										'  pinMode(4, OUTPUT);\n'+
-										'  digitalWrite(4, LOW);\n';
-	}
-	Blockly.Arduino.definitions_['drawSdJpeg'] += '}\n'+
-										'void jpegRender(int xpos, int ypos) {\n'+
-										'  uint16_t *pImg;\n'+
-										'  uint16_t mcu_w = JpegDec.MCUWidth;\n'+
-										'  uint16_t mcu_h = JpegDec.MCUHeight;\n'+
-										'  uint32_t max_x = JpegDec.width;\n'+
-										'  uint32_t max_y = JpegDec.height;\n'+
-										'  uint32_t min_w = jpg_min(mcu_w, max_x % mcu_w);\n'+
-										'  uint32_t min_h = jpg_min(mcu_h, max_y % mcu_h);\n'+
-										'  uint32_t win_w = mcu_w;\n'+
-										'  uint32_t win_h = mcu_h;\n'+
-										'  max_x += xpos;\n'+
-										'  max_y += ypos;\n'+
-										'  while (JpegDec.readSwappedBytes()) {\n'+
-										'    pImg = JpegDec.pImage ;\n'+
-										'    int mcu_x = JpegDec.MCUx * mcu_w + xpos;\n'+
-										'    int mcu_y = JpegDec.MCUy * mcu_h + ypos;\n'+
-										'    if (mcu_x + mcu_w <= max_x) win_w = mcu_w;\n'+
-										'    else win_w = min_w;\n'+
-										'    if (mcu_y + mcu_h <= max_y) win_h = mcu_h;\n'+
-										'    else win_h = min_h;\n'+
-										'    if (win_w != mcu_w) {\n'+
-										'      uint16_t *cImg;\n'+
-										'      int p = 0;\n'+
-										'      cImg = pImg + win_w;\n'+
-										'      for (int h = 1; h < win_h; h++) {\n'+
-										'        p += mcu_w;\n'+
-										'        for (int w = 0; w < win_w; w++) {\n'+
-										'          *cImg = *(pImg + w + p);\n'+
-										'          cImg++;\n'+
-										'        }\n'+
-										'      }\n'+
-										'    }\n'+
-										'    uint32_t mcu_pixels = win_w * win_h;\n'+
-										'    if (( mcu_x + win_w ) <= tft.width() && ( mcu_y + win_h ) <= tft.height())\n'+
-										'      tft.pushImage(mcu_x, mcu_y, win_w, win_h, pImg);\n'+
-										'    else if ( (mcu_y + win_h) >= tft.height())\n'+
-										'      JpegDec.abort();\n'+
-										'  }\n'+
-										'}\n';								
-			  
-  var code = 'drawSdJpeg(("/"+String('+filename+')+".jpg").c_str(), '+x+', '+y+');\n';
   return code;
 };
+
+Blockly.Arduino['tft_sd_drawbmp'] = function(block) {
+	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
+	var width = Blockly.Arduino.valueToCode(block, 'width', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC)||0;	
+	var x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var board = block.getFieldValue('board');
+	
+	Blockly.Arduino.definitions_['AmebaPro2_sd_file'] = 'unsigned char* file_data;\nuint32_t file_size;\n';
+	Blockly.Arduino.definitions_['convertColour24bitTo16bit565'] = ''+	
+        'void convertColour24bitTo16bit565(unsigned char* bmp_data, uint16_t* rgb565_data, int width, int height) {\n'+
+        '    for (int i = 0; i < width * height * 3; i += 3) {\n'+
+        '        unsigned char b = bmp_data[i];\n'+
+        '        unsigned char g = bmp_data[i + 1];\n'+
+        '        unsigned char r = bmp_data[i + 2];\n'+
+        '        uint16_t rgb565 = ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);\n'+
+        '        rgb565_data[i / 3] = rgb565;\n'+
+        '    }\n'+
+        '}\n';
+	
+	var code = ''+
+        'File file = fs.open(file_path+"/"+String('+filename+')+".bmp");\n'+
+        'if (file.readFile(file_data, file_size)) {\n'+
+        '    uint16_t* rgb565_data = new uint16_t['+width+' * '+height+'];\n'+
+        '    convertColour24bitTo16bit565(file_data, rgb565_data, '+width+', '+height+');\n'+
+        '    tft.drawBitmap('+x+', '+y+', '+width+', '+height+', (const short unsigned int*)rgb565_data);\n'+
+        '    delete[] rgb565_data;\n'+         
+        '    free(file_data);\n'+
+        '} else {\n'+
+        '    Serial.println("Failed to get BMP data.");\n'+
+        '}\n'+
+        'file.close();\n';
+	  
+  return code;
+};	  
 
 Blockly.Arduino['esp32_cam_sd_savejpg'] = function(block) {
 	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);

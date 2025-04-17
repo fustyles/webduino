@@ -3323,6 +3323,7 @@ Blockly.Msg["TFT_ICON"] = "圖示";
 Blockly.Msg["TFT_GENERAL"] = "一般";
 
 Blockly.Msg["TFT_SD_DRAWJPG_SHOW"] = "TFT全彩螢幕  從SD卡讀取JPG圖檔顯示";
+Blockly.Msg["TFT_SD_DRAWBMP_SHOW"] = "TFT全彩螢幕  從SD卡讀取BMP圖檔顯示";
 Blockly.Msg["TFT_SD_FILENAME_SHOW"] = "檔名";
 
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_MATH_CONSTANT"] = "常數";
