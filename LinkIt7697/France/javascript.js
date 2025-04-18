@@ -265,7 +265,7 @@ Blockly.Arduino['custom_chat_config'] = function (block) {
 Blockly.Arduino['custom_chat_request'] = function (block) {
   var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||"Hi";
   
-Blockly.Arduino.definitions_['custom_chat_request'] = 'String custom_chat_request(String domain, String path, String model, String key, String message) {\n';
+  Blockly.Arduino.definitions_['custom_chat_request'] = 'String custom_chat_request(String domain, String path, String model, String key, String message) {\n';
   
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['custom_chat_request'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
@@ -8506,9 +8506,8 @@ Blockly.Arduino['tft_sd_drawjpg'] = function(block) {
 	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
 	var x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC)||0;
-	var board = block.getFieldValue('board');
 	
-	if (board=="AmebaPro2") {
+	if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735") {
 		Blockly.Arduino.definitions_['AmebaPro2_sd_file'] = 'unsigned char* file_data;\nuint32_t file_size;\n';
 		
 		var code = ''+
@@ -8616,32 +8615,36 @@ Blockly.Arduino['tft_sd_drawbmp'] = function(block) {
 	var height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC)||0;	
 	var x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC)||0;
-	var board = block.getFieldValue('board');
 	
-	Blockly.Arduino.definitions_['AmebaPro2_sd_file'] = 'unsigned char* file_data;\nuint32_t file_size;\n';
-	Blockly.Arduino.definitions_['convertColour24bitTo16bit565'] = ''+	
-        'void convertColour24bitTo16bit565(unsigned char* bmp_data, uint16_t* rgb565_data, int width, int height) {\n'+
-        '    for (int i = 0; i < width * height * 3; i += 3) {\n'+
-        '        unsigned char b = bmp_data[i];\n'+
-        '        unsigned char g = bmp_data[i + 1];\n'+
-        '        unsigned char r = bmp_data[i + 2];\n'+
-        '        uint16_t rgb565 = ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);\n'+
-        '        rgb565_data[i / 3] = rgb565;\n'+
-        '    }\n'+
-        '}\n';
+	if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735") {
 	
-	var code = ''+
-        'File file = fs.open(file_path+"/"+String('+filename+')+".bmp");\n'+
-        'if (file.readFile(file_data, file_size)) {\n'+
-        '    uint16_t* rgb565_data = new uint16_t['+width+' * '+height+'];\n'+
-        '    convertColour24bitTo16bit565(file_data, rgb565_data, '+width+', '+height+');\n'+
-        '    tft.drawBitmap('+x+', '+y+', '+width+', '+height+', (const short unsigned int*)rgb565_data);\n'+
-        '    delete[] rgb565_data;\n'+         
-        '    free(file_data);\n'+
-        '} else {\n'+
-        '    Serial.println("Failed to get BMP data.");\n'+
-        '}\n'+
-        'file.close();\n';
+		Blockly.Arduino.definitions_['AmebaPro2_sd_file'] = 'unsigned char* file_data;\nuint32_t file_size;\n';
+		Blockly.Arduino.definitions_['convertColour24bitTo16bit565'] = ''+	
+			'void convertColour24bitTo16bit565(unsigned char* bmp_data, uint16_t* rgb565_data, int width, int height) {\n'+
+			'    for (int i = 0; i < width * height * 3; i += 3) {\n'+
+			'        unsigned char b = bmp_data[i];\n'+
+			'        unsigned char g = bmp_data[i + 1];\n'+
+			'        unsigned char r = bmp_data[i + 2];\n'+
+			'        uint16_t rgb565 = ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);\n'+
+			'        rgb565_data[i / 3] = rgb565;\n'+
+			'    }\n'+
+			'}\n';
+		
+		var code = ''+
+			'File file = fs.open(file_path+"/"+String('+filename+')+".bmp");\n'+
+			'if (file.readFile(file_data, file_size)) {\n'+
+			'    uint16_t* rgb565_data = new uint16_t['+width+' * '+height+'];\n'+
+			'    convertColour24bitTo16bit565(file_data, rgb565_data, '+width+', '+height+');\n'+
+			'    tft.drawBitmap('+x+', '+y+', '+width+', '+height+', (const short unsigned int*)rgb565_data);\n'+
+			'    delete[] rgb565_data;\n'+         
+			'    free(file_data);\n'+
+			'} else {\n'+
+			'    Serial.println("Failed to get BMP data.");\n'+
+			'}\n'+
+			'file.close();\n';
+	} 
+	else
+		var code = '';
 	  
   return code;
 };	  

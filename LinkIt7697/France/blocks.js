@@ -10487,14 +10487,7 @@ Blockly.Blocks['tft_sd_drawjpg'] = {
         .appendField("x");
     this.appendValueInput("y")
         .setCheck("Number")
-        .appendField("y");
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg["TFT_BOARD"])
-        .appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["TFT_GENERAL"],""],
-			["AmebaPro2","AmebaPro2"]			
-		]), "board");		
+        .appendField("y");		
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -10522,13 +10515,7 @@ Blockly.Blocks['tft_sd_drawbmp'] = {
         .appendField("x");
     this.appendValueInput("y")
         .setCheck("Number")
-        .appendField("y");		
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg["TFT_BOARD"])
-        .appendField(new Blockly.FieldDropdown([
-			["AmebaPro2","AmebaPro2"]			
-		]), "board");		
+        .appendField("y");				
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
