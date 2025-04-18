@@ -947,7 +947,7 @@ Blockly.Msg["AMB82_MINI_GEMINI_VISION"] = "影像上傳Gemini視覺分析";
 Blockly.Msg["AMB82_MINI_GEMINI_KEY"] = "Gemini Key";		
 Blockly.Msg["AMB82_MINI_GEMINI_MESSAGE"] = "對話訊息";
 
-Blockly.Msg["AMB82_MINI_CUSTOM_VISION"] = "影像上傳 LM 視覺分析";
+Blockly.Msg["AMB82_MINI_CUSTOM_VISION"] = "影像上傳 VLM 視覺分析";
 Blockly.Msg["AMB82_MINI_CUSTOM_DOMAIN"] = "網域";
 Blockly.Msg["AMB82_MINI_CUSTOM_PATH"] = "路徑";
 Blockly.Msg["AMB82_MINI_CUSTOM_MODEL"] = "模型";
@@ -2137,7 +2137,7 @@ Blockly.Msg["ESP32_CAM_GEMINI_VISION"] = "ESP32-CAM 截圖上傳Gemini視覺分�
 Blockly.Msg["ESP32_CAM_GEMINI_KEY"] = "Gemini Key";
 Blockly.Msg["ESP32_CAM_GEMINI_MESSAGE"] = "對話訊息";	
 
-Blockly.Msg["ESP32_CAM_CUSTOM_VISION"] = "ESP32-CAM 截圖上傳 LM 視覺分析";
+Blockly.Msg["ESP32_CAM_CUSTOM_VISION"] = "ESP32-CAM 截圖上傳 VLM 視覺分析";
 Blockly.Msg["ESP32_CAM_CUSTOM_DOMAIN"] = "網域";
 Blockly.Msg["ESP32_CAM_CUSTOM_PATH"] = "路徑";
 Blockly.Msg["ESP32_CAM_CUSTOM_MODEL"] = "模型";
