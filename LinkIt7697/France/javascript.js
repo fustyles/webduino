@@ -1,3 +1,23 @@
+Blockly.Arduino['amb82_mini_xtaskcreate'] = function (block) {
+    var funcName = block.id.replace(/[^a-zA-Z]/g, '');
+	var quantity = block.getFieldValue('quantity');
+	var statement = Blockly.Arduino.statementToCode(block, 'statement');
+	
+	Blockly.Arduino.setups_["xTaskCreate_"+funcName] = ''+
+			'if (xTaskCreate('+funcName+', (const char *)"'+funcName+'", '+quantity+', NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
+			'	Serial.println("Create '+funcName+' task failed");\n  '+
+			'}\n';
+
+	Blockly.Arduino.definitions_["xTaskCreate_"+funcName] = ''+
+			'void '+funcName+'(void *param) {\n'+
+			'  (void)param;\n'+
+			'  while(1){\n  '+statement+
+			'  }\n'+
+			'}\n';				
+	
+    return '';
+};
+
 Blockly.Arduino['audio_create'] = function (block) {
   var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC); 
   var value_src_ = Blockly.Arduino.valueToCode(block, 'src_', Blockly.Arduino.ORDER_ATOMIC);

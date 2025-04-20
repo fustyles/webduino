@@ -1123,6 +1123,10 @@ Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_NEUTRAL"] = "中性";
 Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_SAD"] = "傷心";
 Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_SURPRISE"] = "驚訝";
 
+Blockly.Msg["AMB82_MINI_XTASKCREATE"] = "多執行緒";
+Blockly.Msg["AMB82_MINI_QUANTITY"] = "配置大小";
+Blockly.Msg["AMB82_MINI_RUN"] = "執行";
+
 Blockly.Msg["EMAKEFUN_ENCODEMOTOR"] = "Emakefun 編碼器馬達";
 Blockly.Msg["EMAKEFUN_MOTORDRIVER_ENCODERPULSE"] = "脈衝";
 Blockly.Msg["EMAKEFUN_PULSE"] = "一圈脈衝";

@@ -817,6 +817,9 @@ Blockly.Msg["AMB82_MINI_FACEDETECTION_WIDTH"] = "Width";
 Blockly.Msg["AMB82_MINI_FACEDETECTION_HIGHT"] = "Height";
 Blockly.Msg["AMB82_MINI_FACEDETECTION_POINT"] = "Feature Point";
 
+Blockly.Msg["AMB82_MINI_XTASKCREATE"] = "Multithreading"; 
+Blockly.Msg["AMB82_MINI_QUANTITY"] = "Allocation Size"; 
+Blockly.Msg["AMB82_MINI_RUN"] = "Run";
 
 Blockly.Msg["ESP32_AES_ENCRYPT"] = "AES ENCRYPT";
 Blockly.Msg["ESP32_AES_DECRYPT"] = "AES DECRYPT";

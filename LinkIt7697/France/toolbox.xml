@@ -3983,6 +3983,10 @@
 			</value>			
 		  </block>			  
 		</category>	
+		<category name="amb82_mini_xTaskCreate">
+		  <block type="amb82_mini_xtaskcreate">		
+		  </block>		
+		</category>		
 	</category>	
 	
 		

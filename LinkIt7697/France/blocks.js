@@ -1,3 +1,27 @@
+Blockly.Blocks['amb82_mini_xtaskcreate'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+        .appendField(Blockly.Msg["AMB82_MINI_XTASKCREATE"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)	
+	    .appendField(Blockly.Msg["AMB82_MINI_QUANTITY"])			
+		.appendField(new Blockly.FieldDropdown([
+			["1024","1024"],
+			["2048","2048"],
+			["3072","3072"],
+			["4096","4096"]				
+		]), "quantity");
+    this.appendStatementInput("statement")
+	    .appendField(Blockly.Msg["AMB82_MINI_RUN"])	
+        .setCheck(null);		
+  this.setInputsInline(true);
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(Blockly.Msg["HUE_8"]);
+  }
+};
+
 Blockly.Blocks['audio_create'] = {
   init: function() {
   this.appendDummyInput()
