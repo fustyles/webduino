@@ -3877,6 +3877,15 @@
 			</block>
 			<block type="amb82_mini_file_read_char_get">			
 			</block>
+			<block type="amb82_mini_folder_list">
+				<value name="foldername">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>			
+			</block>
+			<block type="amb82_mini_folder_list_attribute">			
+			</block>			
 			<block type="amb82_mini_file_play">
 				<value name="filename_">
 				  <block type="text">
@@ -3939,16 +3948,7 @@
 				  </block>
 				</value>
 				<field name="mimetype_">audio/mp4</field>
-			</block>			
-			<block type="amb82_mini_folder_list">
-				<value name="foldername">
-				  <block type="text">
-					<field name="TEXT"></field>
-				  </block>
-				</value>			
-			</block>
-			<block type="amb82_mini_folder_list_attribute">			
-			</block>			
+			</block>						
 		</category>
 		<category name="amb82_mini_Flashmemory">				
 		  <block type="amb82_mini_flashmemory_write">
