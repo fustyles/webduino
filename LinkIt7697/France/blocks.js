@@ -2085,7 +2085,7 @@ Blockly.Blocks['amb82_mini_file_read_char'] = {
 	this.setInputsInline(true);		
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(Blockly.Msg["HUE_28"]);		
+    this.setColour(Blockly.Msg["HUE_25"]);		
   }
 };
 
@@ -2096,7 +2096,7 @@ Blockly.Blocks['amb82_mini_file_read_char_get'] = {
 		.appendField(Blockly.Msg["AMB82_MINI_FILE_READ_CHAR_GET"]);	
 	this.setInputsInline(true);
 	this.setOutput(true, null);  
-	this.setColour(Blockly.Msg["HUE_28"]);	
+	this.setColour(Blockly.Msg["HUE_25"]);	
   }
 };
 
