@@ -86,7 +86,7 @@ Blockly.Blocks['dvcbot_response_data'] = {
   this.appendDummyInput()
       .appendField(Blockly.Msg.DVCBOT_RESPONSE_DATA_SHOW);
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.DVCBOT_RESPONSE_DATA_BR_SHOW)
+      .appendField(Blockly.Msg.DVCBOT_RESULT_GET_BR_SHOW)
       .appendField(new Blockly.FieldDropdown([
 			["N",""],
 			["Y \<br\>","br"],
