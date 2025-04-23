@@ -14,6 +14,7 @@ Blockly.Msg["OPENAI_IMAGE_KEY_SHOW"] = "API Key";
 Blockly.Msg["OPENAI_IMAGE_PROMPT_SHOW"] = "提示词";
 Blockly.Msg["OPENAI_IMAGE_RESPONSE_SHOW"] = "取得回应网址后执行";
 Blockly.Msg["OPENAI_IMAGE_RESPONSE_GET_SHOW"] = "回应网址";
+Blockly.Msg["OPENAI_TEXT_RESPONSE_GET_BR_SHOW"] = "換行轉換";
 Blockly.Msg["OPENAI_IMAGE_RESPONSE_CLEAR_SHOW"] = "清除回应网址";
 Blockly.Msg["OPENAI_IMAGE_SIZE_SHOW"] = "尺寸";
 Blockly.Msg["OPENAI_CHAT_SHOW"] = "openAI 聊天";
