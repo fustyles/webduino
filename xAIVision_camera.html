@@ -1,0 +1,104 @@
+<!-- 
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/9 08:00
+https://www.facebook.com/francefu
+
+Try it
+https://fustyles.github.io/webduino/openAIVision_camera.html
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>xAI Vision</title>
+	<meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Headers' content='Origin, X-Requested-With, Content-Type, Accept'>
+	<meta http-equiv='Access-Control-Allow-Methods' content='GET,POST,PUT,DELETE,OPTIONS'>
+	<meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
+	<script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/marked.min.js'></script>
+	<script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script>
+	<script src='https://fustyles.github.io/webduino/SpBlocklyJS/openAI_20221212/openAI.js'></script>
+</head>
+<body>
+<div style="position:absolute;left:5px;top:0px">
+xAI API Key：<input type="text" id="apiKey" size="40" value="" onchange="openai_initial();"><br><br>
+prompt (xAI Vision)：<br>
+<textarea id="prompt"  cols="58" rows="5">請轉錄文字，若無法辨識以空格替代。</textarea><br>
+<input type="button" value="Run (xAI Vision)" onclick="result.innerHTML = marked.parse('Please wait...');DetectImage();"><br>
+<div id="result" style="color:blue;width:450px;height:150px;overflow:auto;border:1px solid #000;"></div><br>
+prompt (xAI Chat)：<br>
+<textarea id="prompt1"  cols="58" rows="5"></textarea><br>
+<input type="button" value="Run (xAI Chat)" onclick="result1.innerHTML = marked.parse('Please wait...');chat();"><br>
+<div id="result1" style="color:red;width:450px;height:150px;overflow:auto;border:1px solid #000;"></div>
+</div>
+<div style="position:absolute;left:520px;top:0px">
+Camera：
+<select id="camera_type" onchange="setCamera();"><option value="">Select</option><option value="front">Front Camera</option><option value="back">Rear Camera</option><option value="">Any Camera</option></select>
+Index：
+<select id="camera_index" onchange="setCamera();"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+</div>
+
+<script>
+var camera_type = document.getElementById('camera_type');
+var camera_index = document.getElementById('camera_index');
+var camera_video = document.getElementById('gamevideo_');
+var result = document.getElementById('result');
+var apikey = document.getElementById("apiKey");
+var prompt = document.getElementById("prompt");
+var prompt1 = document.getElementById("prompt1");
+var queryType = 1;
+var initialState = false;	
+  
+const delay = (seconds) => {
+    return new Promise((resolve) => {
+        setTimeout(resolve, seconds * 1000);
+    });
+};
+const main = async () => {
+    head_add_viewport(1, 1, 4, "yes");
+    openai_initial();
+    openai_chat_response = async function() {
+		console.log(openai_chat_response_get('n'));
+		if (queryType)
+			result.innerHTML = marked.parse(openai_chat_response_get('n')); 
+		else
+			result1.innerHTML = marked.parse(openai_chat_response_get('n'));		
+    }
+    window.openai_chat_response = openai_chat_response;
+};
+main();
+
+function openai_initial() {
+	openai_chat_initial(apikey.value, 'You are a helpful assistant.', "grok-2-vision-latest", 0.5);
+}
+	
+async function DetectImage() {
+	queryType = 1;	
+	await openai_chat_image_request(prompt.value, imageToBase64());
+}
+
+async function chat() {
+	queryType = 0;
+	await openai_chat_request(prompt1.value);
+}
+
+async function setCamera() {
+	video_delete('');
+	video_create1('', 900, 600, 520, 30, true, '', false, false, false, true, true, 1, 999, true, camera_type.value, camera_index.value);
+}
+
+function imageToBase64() {
+    var canvas = document.createElement("canvas");		
+	canvas.setAttribute("width", video_get('', "width"));
+	canvas.setAttribute("height", video_get('', "height"));	
+    var context = canvas.getContext("2d");
+    context.drawImage(document.getElementById(video_get('', "id")), 0, 0);
+    var base64 = canvas.toDataURL();
+    var head = base64.substring(0, base64.indexOf(",") + 1);
+    var data = base64.substring(base64.indexOf(",") + 1);
+    //data = encodeURIComponent(data);
+    canvas = null;
+    return (head + data);
+}
+</script>
+
+</body>
+</html>
