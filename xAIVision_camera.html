@@ -21,7 +21,7 @@ https://fustyles.github.io/webduino/openAIVision_camera.html
 <div style="position:absolute;left:5px;top:0px">
 xAI API Key：<input type="text" id="apiKey" size="40" value="" onchange="openai_initial();"><br><br>
 prompt (xAI Vision)：<br>
-<textarea id="prompt"  cols="58" rows="5">請轉錄文字，若無法辨識以空格替代。</textarea><br>
+<textarea id="prompt"  cols="58" rows="5">請描述影像內容。</textarea><br>
 <input type="button" value="Run (xAI Vision)" onclick="result.innerHTML = marked.parse('Please wait...');DetectImage();"><br>
 <div id="result" style="color:blue;width:450px;height:150px;overflow:auto;border:1px solid #000;"></div><br>
 prompt (xAI Chat)：<br>
