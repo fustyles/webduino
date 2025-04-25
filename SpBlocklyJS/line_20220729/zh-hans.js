@@ -28,3 +28,4 @@ Blockly.Msg.LINENOTIFY_LOCATION_SHOW = "位置";
 Blockly.Msg.LINENOTIFY_LATITUDE_SHOW = "纬度";
 Blockly.Msg.LINENOTIFY_LONGITUDE_SHOW = "经度";
 Blockly.Msg.LINEBOT_SHOW = "机器人";
+Blockly.Msg.LINENOTIFY_REPLYTOKEN_SHOW = "回覆权杖";
