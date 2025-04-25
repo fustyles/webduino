@@ -71,6 +71,6 @@ Blockly.JavaScript['linebot_reply'] = function (block) {
   var bot_replytoken = Blockly.JavaScript.valueToCode(block, 'bot_replytoken', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var bot_message = Blockly.JavaScript.valueToCode(block, 'bot_message', Blockly.JavaScript.ORDER_ATOMIC)||"";
 	
-  var code = 'linebot_reply_message('+bot_token+','+bot_replytoken+', line_url_escape("bot","text",'+bot_message+'));\n';
+  var code = 'linebot_reply_message('+bot_token+','+bot_replytoken+', line_url_escape("bot","text",'+bot_message+','','',''));\n';
   return code; 
 };
