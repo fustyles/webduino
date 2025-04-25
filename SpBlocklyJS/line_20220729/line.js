@@ -25,29 +25,28 @@ function linebot_push_message(bot_token, bot_userid, bot_msg) {
     });
 }
 
-function replyMessageToLineBot(accessToken, replyToken, message) {
-    const url = 'https://api.line.me/v2/bot/message/reply';
-    const replyMessage = [{
-        "type": "text",
-        "text": message
-    }];
-
-    $.ajax({
-        url: url,
-        type: 'POST',
-        headers: {
-            'Content-Type': 'application/json; charset=UTF-8',
-            'Authorization': 'Bearer ' + accessToken,
+function replyMessageToLineBot(bot_token, bot_replyToken, bot_msg) {
+    bot_msg = JSON.parse(bot_msg);
+    bot_msg["token"]=bot_token;
+    bot_msg["replyToken"]=bot_replyToken;
+    
+    bot_msg["start"]="1325437200";
+    bot_msg["end"]="1325439000";
+    bot_msg["prefix"]="alert";
+    
+    var input_url="https://script.google.com/macros/s/AKfycbx7fPo4QFwPUB__LzFqx1-fkNbPTuxv2_cVce_p6M9McZLiprS2LS1mG4dgkl9CGBQJ/exec";
+    var data = $.ajax({
+        "type": "POST",
+        "dataType": "jsonp",
+        "url": input_url,
+        "data":bot_msg,
+        success: function(jsonp)
+        {
+          console.log(jsonp);
         },
-        data: JSON.stringify({
-            'replyToken': replyToken,
-            'messages': replyMessage
-        }),
-        success: function(response) {
-            console.log('Message sent successfully:', response);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.error('Error sending message:', textStatus, errorThrown);
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+          //console.log(errorThrown);
         }
     });
 }
