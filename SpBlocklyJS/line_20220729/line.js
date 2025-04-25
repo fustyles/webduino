@@ -31,24 +31,25 @@ function replyMessageToLineBot(accessToken, replyToken, message) {
         "type": "text",
         "text": message
     }];
-    
-    const response = fetch(url, {
-        method: 'POST',
+
+    $.ajax({
+        url: url,
+        type: 'POST',
         headers: {
             'Content-Type': 'application/json; charset=UTF-8',
             'Authorization': 'Bearer ' + accessToken,
         },
-        body: JSON.stringify({
+        data: JSON.stringify({
             'replyToken': replyToken,
             'messages': replyMessage
         }),
+        success: function(response) {
+            console.log('Message sent successfully:', response);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error sending message:', textStatus, errorThrown);
+        }
     });
-
-    if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
-    }
-
-    return response.json();
 }
   
 function linenotify_push_message(notify_token, notify_msg) {
