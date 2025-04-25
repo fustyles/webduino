@@ -1,5 +1,5 @@
 function linebot_push_message(bot_token, bot_userid, bot_message) {	
-    var bot_msg = JSON.parse(bot_message);
+    var bot_msg = JSON.parse(bot_message.replace(/(\r\n|\r|\n)/g, '<br>'));
     bot_msg["token"]=bot_token;
     bot_msg["userid"]=bot_userid;
     
@@ -25,7 +25,7 @@ function linebot_push_message(bot_token, bot_userid, bot_message) {
 }
 
 function linebot_reply_message(bot_token, bot_replyToken, bot_message) {
-    var bot_msg = JSON.parse(bot_message);
+    var bot_msg = JSON.parse(bot_message.replace(/(\r\n|\r|\n)/g, '<br>'));
     bot_msg["token"]=bot_token;
     bot_msg["replyToken"]=bot_replyToken;
     
