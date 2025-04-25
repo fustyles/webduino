@@ -24,6 +24,32 @@ function linebot_push_message(bot_token, bot_userid, bot_msg) {
         }
     });
 }
+
+function replyMessageToLineBot(accessToken, replyToken, message) {
+    const url = 'https://api.line.me/v2/bot/message/reply';
+    const replyMessage = [{
+        "type": "text",
+        "text": message
+    }];
+    
+    const response = fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer ' + accessToken,
+        },
+        body: JSON.stringify({
+            'replyToken': replyToken,
+            'messages': replyMessage
+        }),
+    });
+
+    if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+    }
+
+    return response.json();
+}
   
 function linenotify_push_message(notify_token, notify_msg) {
 	notify_msg = notify_msg;
