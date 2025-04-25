@@ -25,6 +25,7 @@ function linebot_push_message(bot_token, bot_userid, bot_msg) {
 }
 
 function linebot_reply_message(bot_token, bot_replyToken, bot_msg) {
+	console.log(bot_msg);
     bot_msg = JSON.parse(bot_msg);
     bot_msg["token"]=bot_token;
     bot_msg["replyToken"]=bot_replyToken;
