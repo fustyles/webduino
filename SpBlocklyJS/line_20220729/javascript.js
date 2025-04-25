@@ -65,3 +65,12 @@ Blockly.JavaScript['linebot_notify'] = function (block) {
   var code = 'linebot_push_message('+bot_token+','+bot_userid+', line_url_escape("bot","'+type+'",'+parameter1+','+parameter2+','+parameter3+','+parameter4+'));\n';
   return code; 
 };
+
+Blockly.JavaScript['linebot_reply'] = function (block) {
+  var bot_token = Blockly.JavaScript.valueToCode(block, 'bot_token', Blockly.JavaScript.ORDER_ATOMIC)||"";  
+  var bot_replytoken = Blockly.JavaScript.valueToCode(block, 'bot_replytoken', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var bot_message = Blockly.JavaScript.valueToCode(block, 'bot_message', Blockly.JavaScript.ORDER_ATOMIC)||"";
+	
+  var code = 'replyMessageToLineBot('+bot_token+', '+bot_replytoken+', '+bot_message+');\n';
+  return code; 
+};
