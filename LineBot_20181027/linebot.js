@@ -215,6 +215,7 @@ function linebot_reply_message(bot_token, bot_replyToken, bot_message) {
   }
 
   window.linebot_push_message = linebot_push_message;
+  window.linebot_reply_message = linebot_reply_message;	
   window.linenotify_push_message = linenotify_push_message;
   window.linenotify_push_image = linenotify_push_image;
   window.line_url_escape = line_url_escape;
