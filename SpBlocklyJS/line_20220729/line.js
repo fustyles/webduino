@@ -208,33 +208,6 @@ function linenotify_push_image(notify_token, notify_id, notify_msg) {
 	*/
 } 
 
-  function linebot_push_message(bot_token,bot_userid,bot_msg) {
-
-    bot_msg = JSON.parse(bot_msg.replace(/(\r\n|\r|\n)/g, '<br>'));
-    bot_msg["token"]=bot_token;
-    bot_msg["userid"]=bot_userid;
-    
-    bot_msg["start"]="1325437200";
-    bot_msg["end"]="1325439000";
-    bot_msg["prefix"]="alert";
-    
-    var input_url="https://script.google.com/macros/s/AKfycbx7fPo4QFwPUB__LzFqx1-fkNbPTuxv2_cVce_p6M9McZLiprS2LS1mG4dgkl9CGBQJ/exec";
-    var data = $.ajax({
-        "type": "POST",
-        "dataType": "jsonp",
-        "url": input_url,
-        "data":bot_msg,
-        success: function(jsonp)
-        {
-          console.log(jsonp);
-        },
-        error: function(jqXHR, textStatus, errorThrown)
-        {
-          //console.log(errorThrown);
-        }
-     });
-  }
-
   function line_url_escape(line, type,parameter1,parameter2,parameter3,parameter4) {
     
     parameter1 = (parameter1+"").replace(/\'/g,"%27").replace(/\"/g,"%22");
