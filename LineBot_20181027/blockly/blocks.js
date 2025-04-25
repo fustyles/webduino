@@ -160,6 +160,30 @@ Blockly.Blocks['linebot_type'] = {
   }
 };
 
+Blockly.Blocks['linebot_reply'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField("Line")
+		.appendField(Blockly.Msg.LINEBOT_SHOW);
+	this.appendValueInput("bot_token")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.LINENOTIFY_TOKEN_SHOW);    
+	this.appendValueInput("bot_replytoken")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.LINENOTIFY_REPLYTOKEN_SHOW);
+	this.appendValueInput("bot_message")
+		.setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.LINENOTIFY_TEXT_SHOW);
+	this.setInputsInline(false);	  
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(65);	  
+  }
+};
+
 Blockly.Blocks['linenotify'] = {
   init: function() {
   this.appendDummyInput()
