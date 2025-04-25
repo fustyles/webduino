@@ -31,23 +31,6 @@ var catLineNotify ='<xml>'+
 '	        <field name="TEXT"></field>'+
 '	      </block>'+
 '	    </value>'+
-'	  </block>'+
-'	  <block type="linebot_reply">'+
-'	    <value name="bot_token">'+
-'	      <block type="text">'+
-'	        <field name="TEXT"></field>'+
-'	      </block>'+
-'	    </value>'+
-'	    <value name="bot_replytoken">'+
-'	      <block type="text">'+
-'	        <field name="TEXT"></field>'+
-'	      </block>'+
-'	    </value>'+
-'	    <value name="bot_message">'+  
-'	      <block type="text">'+
-'	        <field name="TEXT"></field>'+
-'	      </block>'+  
-'	    </value>'+
-'	  </block>'+  
+'	  </block>'+ 
 '    </category>'+
 '</xml>';
