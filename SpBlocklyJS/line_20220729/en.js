@@ -27,3 +27,4 @@ Blockly.Msg["LINENOTIFY_LOCATION_SHOW"] = "Location";
 Blockly.Msg["LINENOTIFY_LATITUDE_SHOW"] = "Latitude";
 Blockly.Msg["LINENOTIFY_LONGITUDE_SHOW"] = "Longitude";
 Blockly.Msg["LINEBOT_SHOW"] = "Chatbot";
+Blockly.Msg["LINENOTIFY_REPLYTOKEN_SHOW"] = "Reply token";
