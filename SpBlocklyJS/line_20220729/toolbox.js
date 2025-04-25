@@ -38,7 +38,7 @@ var catLineNotify ='<xml>'+
 '	        <field name="TEXT"></field>'+
 '	      </block>'+
 '	    </value>'+
-'	    <value name="bot_replaytoken">'+
+'	    <value name="bot_replytoken">'+
 '	      <block type="text">'+
 '	        <field name="TEXT"></field>'+
 '	      </block>'+
