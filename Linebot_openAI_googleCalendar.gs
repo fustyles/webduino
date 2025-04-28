@@ -42,6 +42,7 @@ function doPost(e) {
 
     if (userType=="text") {
       userMessage = msg.events[0].message.text.trim();
+
       openAI_messages = [{"role": "system", "content": openAI_assistant_behavior + "8. 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss")}];
       let chat_message = {};
       chat_message.role = "user";
@@ -49,14 +50,13 @@ function doPost(e) {
       openAI_messages.push(chat_message); 
 	  
       let jsonData = sendMessageToOpenaiChat(openAI_api_KEY, openAI_messages)
-
       if (jsonData!="error") {             
         try {
           let data = JSON.parse(jsonData);
           let date = data.date; // 預期格式：'YYYY-MM-DD'
           let time = data.time; // 預期格式：'HH:MM:00'
           let duration = data.duration; // 預期格式：1
-          let workMatter = data.workMatter;
+          let workMatter = data.workMatter; // 預期格式：文字敘述
 
           let eventDateTime = new Date(date + 'T' + time);
           let calendar = CalendarApp.getDefaultCalendar();
