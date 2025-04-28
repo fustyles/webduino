@@ -10,7 +10,7 @@ const GEMINI_ASSISTANT_BEHAVIOR = `
 請依照以下規範：\n
 1. 如果對話內容包含日期、時間、持續時間、事項，請回傳json格式資料，格式如下：\n
 [{"date":"填入日期轉換為 'YYYY-MM-DD' 格式", "time":"填入時間轉換為 'HH:MM:00' 格式", "duration":"持續幾小時，預設為1","workMatter":"事項內容"}, ...]\n
-2. 資料格式示範： [{"date":"2025-05-01", "time":"12:00:00", "duration":1, "workMatter":"相約吃海鮮大餐！"}, {"date":"2025-05-02", "time":"10:30:00", "duration":1, "workMatter":"相約去打球！"}, ...]\n
+2. 資料格式示範： [{"date":"2025-05-01", "time":"12:00:00", "duration":1, "workMatter":"吃海鮮大餐！"}, {"date":"2025-05-02", "time":"10:30:00", "duration":1, "workMatter":"去打球！"}, ...]\n
 3. 若沒有提及年份，則表示今年。\n
 4. 若沒有提及月份，則表示本月。\n
 5. 若沒有提及持續幾小時，則duration值為1。\n
