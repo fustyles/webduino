@@ -18,7 +18,7 @@ const GEMINI_ASSISTANT_BEHAVIOR = `
 7. 請不要多做解釋。\n
 8. 請不要使用Markdown語法。\n
 `;
-const ERROR_MESSAGE = "請傳送文字訊息包含一筆以上的行事曆所需資料：日期、時間、持續時間(可無)、事項描述，或者提供的 Gemini Key 無法使用！";
+const ERROR_MESSAGE = "請傳送文字訊息包含一筆以上的行事曆所需資料：日期、時間、持續時間(可無)、事項，或者提供的 Gemini Key 無法使用！";
 
 let geminiResponse = "";
 let geminiMessages = "";
