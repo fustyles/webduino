@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/28 23:40
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/28 23:50
 https://www.facebook.com/francefu
 */
 
@@ -60,13 +60,20 @@ function doPost(e) {
 
           let eventDateTime = new Date(date + 'T' + time);
           let calendar = CalendarApp.getDefaultCalendar();
-          calendar.createEvent(workMatter, eventDateTime, new Date(eventDateTime.getTime() + Number(duration) * 60 * 60 * 1000));
-
-          let replyMessage = [{
-            "type":"text",
-            "text": jsonData + "\n\n行事曆建立成功！"
-          }]
-          sendMessageToLineBot(channel_access_TOKEN, replyToken, replyMessage);
+          try {
+            calendar.createEvent(workMatter, eventDateTime, new Date(eventDateTime.getTime() + Number(duration) * 60 * 60 * 1000));
+            let replyMessage = [{
+              "type":"text",
+              "text": jsonData + "\n\n行事曆建立成功！"
+            }];
+            sendMessageToLineBot(channel_access_TOKEN, replyToken, replyMessage);
+          } catch (calendarError) {
+            let replyMessage = [{
+              "type":"text",
+              "text": "行事曆建立失敗，請檢查日期時間格式或權限設定！\n錯誤訊息：" + calendarError
+            }];
+            sendMessageToLineBot(channel_access_TOKEN, replyToken, replyMessage);
+          }
         } catch (error) {
           let replyMessage = [{
             "type":"text",
