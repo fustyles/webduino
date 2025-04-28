@@ -1,12 +1,11 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/28 23:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/28 23:30
 https://www.facebook.com/francefu
 */
 
 let channel_access_TOKEN = "xxxxx";
 let openAI_api_KEY = "xxxxx";
 
-let openAI_model = "gpt-3.5-turbo";   // gpt-3.5-turbo-0301
 let openAI_assistant_behavior = `
 請依照以下規範：\n
 1. 如果對話內容並未能包含完整日期、時間、持續時間、工作事項，請回傳'error'。\n
@@ -29,7 +28,7 @@ let userId = "";
 let eventType = "";
 let replyToken = "";
 
-let error_message = "請傳送文字訊息，並包含行事曆所需資料：日期、時間、事項描述。";
+let error_message = "請傳送文字訊息，並包含行事曆所需資料：日期、時間、事項描述，或者提供的openAI Key無法使用！";
   
 function doPost(e) {
   if (e.postData) {
@@ -47,24 +46,9 @@ function doPost(e) {
       let chat_message = {};
       chat_message.role = "user";
       chat_message.content = userMessage;
-      openAI_messages.push(chat_message);
-
-      let url = "https://api.openAI.com/v1/chat/completions";
-      let payload = {
-        "model": openAI_model,
-        "messages": openAI_messages
-      };    
-      const authHeader = "Bearer "+openAI_api_KEY;
-      const options = {
-        headers: {Authorization: authHeader},
-        method: 'POST',
-        contentType: 'application/json',
-        payload: JSON.stringify(payload)
-      }
+      openAI_messages.push(chat_message); 
 	  
-      let openAI_response = UrlFetchApp.fetch(url, options);
-      let json = JSON.parse(openAI_response.getContentText());
-      let jsonData = json["choices"][0]["message"]["content"].trim(); 
+      let jsonData = sendMessageToOpenaiChat(openAI_api_KEY, openAI_messages)
 
       if (jsonData!="error") {             
         try {
@@ -101,6 +85,36 @@ function doPost(e) {
   }
 
   return  ContentService.createTextOutput("Return = Finish");  
+}
+
+function sendMessageToOpenaiChat(key, messages) {
+    try {
+        let url = "https://api.openAI.com/v1/chat/completions";
+        let data = {
+          "model": "gpt-4o-mini",
+          "messages": messages
+        };     
+
+        const authHeader = "Bearer " + key;
+        const options = {
+            headers: {
+                Authorization: authHeader
+            },
+            method: 'POST',
+            contentType: 'application/json',
+            payload: JSON.stringify(data)
+        }
+
+        let response = UrlFetchApp.fetch(url, options);
+        let json = JSON.parse(response.getContentText());
+        response = json["choices"][0]["message"]["content"];
+        if (response == "null")
+          response = json["error"]["message"];
+
+        return response;
+    } catch (error) {
+        return error;
+    }  
 }
 
 function sendMessageToLineBot(accessToken, replyToken, reply_message) {
