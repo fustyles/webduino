@@ -91,7 +91,7 @@ function doPost(e) {
     }
   }
 
-  return  ContentService.createTextOutput("Return = Finish");  
+  return  ContentService.createTextOutput("OK");  
 }
 
 function sendMessageToOpenaiChat(key, messages) {
