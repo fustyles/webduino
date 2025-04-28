@@ -103,7 +103,7 @@ function sendMessageToGeminiChat(key, messages) {
         if (json.candidates && json.candidates.length > 0 && json.candidates[0].content && json.candidates[0].content.parts && json.candidates[0].content.parts.length > 0) {
             return json.candidates[0].content.parts[0].text;
         } else {
-            return 'JSON.stringify(response)';
+            return JSON.stringify(response);
         }
 
     } catch (error) {
