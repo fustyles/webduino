@@ -28,7 +28,7 @@ let userId = "";
 let eventType = "";
 let replyToken = "";
 
-let error_message = "請傳送文字訊息包含行事曆所需資料：日期、時間、持續時間、事項描述，或者提供的openAI Key無法使用！";
+let error_message = "請傳送文字訊息包含行事曆所需資料：日期、時間、持續時間(可無)、事項描述，或者提供的openAI Key無法使用！";
   
 function doPost(e) {
   if (e.postData) {
