@@ -42,7 +42,7 @@ function doPost(e) {
 
     if (userType=="text") {
       userMessage = msg.events[0].message.text.trim();
-      openAI_messages = [{"role": "system", "content": openAI_assistant_behavior + "8. 現在時間為" + Utilities.formatDate(new Date(), "GMT", "yyyy/MM/dd HH:mm:ss")}];
+      openAI_messages = [{"role": "system", "content": openAI_assistant_behavior + "8. 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss")}];
       let chat_message = {};
       chat_message.role = "user";
       chat_message.content = userMessage;
