@@ -8,9 +8,9 @@ const GEMINI_API_KEY = "xxxxx";
 
 const GEMINI_ASSISTANT_BEHAVIOR = `
 請依照以下規範：\n
-1. 如果對話內容並未能包含完整日期、時間、持續時間、工作事項，請回傳'error'。\n
-2. 如果對話內容包含日期、時間、持續時間、工作事項，請回傳json格式資料，格式如下：\n
-{"date":"填入日期轉換為 'YYYY-MM-DD' 格式", "time":"填入時間轉換為 'HH:MM:00' 格式", "duration":"持續幾小時，預設為1","workMatter":"工作事項內容"}\n
+1. 如果對話內容並未能包含完整日期、時間、持續時間、事項，請回傳'error'。\n
+2. 如果對話內容包含日期、時間、持續時間、事項，請回傳json格式資料，格式如下：\n
+{"date":"填入日期轉換為 'YYYY-MM-DD' 格式", "time":"填入時間轉換為 'HH:MM:00' 格式", "duration":"持續幾小時，預設為1","workMatter":"事項內容"}\n
 3. 資料格式示範： {"date":"2025-05-01", "time":"12:00:00", "duration":1, "workMatter":"相約吃海鮮大餐！"}\n
 4. 若沒有提及年份，則表示今年。\n
 5. 若沒有提及月份，則表示本月。\n
@@ -18,7 +18,7 @@ const GEMINI_ASSISTANT_BEHAVIOR = `
 7. 請不要多做解釋。\n
 8. 請不要使用Markdown語法。\n
 `;
-const ERROR_MESSAGE = "請傳送文字訊息包含行事曆所需資料：日期、時間、持續時間(可無)、事項描述，或者提供的 Gemini Key 無法使用！";
+const ERROR_MESSAGE = "請傳送文字訊息包含行事曆所需資料：日期、時間、持續時間(可無)、事項，或者提供的 Gemini Key 無法使用！";
 
 let geminiResponse = "";
 let geminiMessages = "";
