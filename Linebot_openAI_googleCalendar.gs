@@ -14,9 +14,9 @@ let openAI_assistant_behavior = `
 3. 資料格式示範： {"date":"2025-05-01", "time":"12:00:00", "duration":1, "workMatter":"相約吃海鮮大餐！"}\n
 4. 若沒有提及年份，則表示今年。\n
 5. 若沒有提及月份，則表示本月。\n
-5. 若沒有提及持續幾小時，則duration值為1。\n
-6. 請不要多做解釋。\n
-7. 請不要使用Markdown語法。\n
+6. 若沒有提及持續幾小時，則duration值為1。\n
+7. 請不要多做解釋。\n
+8. 請不要使用Markdown語法。\n
 `;
 
 let openAI_response = "";
@@ -43,7 +43,7 @@ function doPost(e) {
     if (userType=="text") {
       userMessage = msg.events[0].message.text.trim();
 
-      openAI_messages = [{"role": "system", "content": openAI_assistant_behavior + "8. 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss")}];
+      openAI_messages = [{"role": "system", "content": openAI_assistant_behavior + "9. 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss")}];
       let chat_message = {};
       chat_message.role = "user";
       chat_message.content = userMessage;
