@@ -35,7 +35,7 @@ function doPost(e) {
             
             let geminiMessages = [{ "role": "user", "parts": [{ "text": GEMINI_ASSISTANT_BEHAVIOR + "9. 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss") + "\n\n\n\n使用者訊息：" + userMessage }] }];
 
-            let jsonData = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages).replace(/```json|```/g, "");           
+            let jsonData = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages).replace(/```json|```/g, "").trim();           
             if (jsonData!="error") {
                 try {
                     let data = JSON.parse(jsonData);
