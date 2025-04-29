@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/29 08:50
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/29 09:00
 https://www.facebook.com/francefu
 */
 
@@ -20,28 +20,16 @@ const GEMINI_ASSISTANT_BEHAVIOR = `
 `;
 const ERROR_MESSAGE = "請傳送文字訊息包含一筆以上的行事曆所需資料：日期、時間、持續時間(可無)、事項，或者提供的 Gemini Key 無法使用！";
 
-let geminiResponse = "";
-let geminiMessages = "";
-
-let userType = "";
-let userMessage = "";
-let userId = "";
-let eventType = "";
-let replyToken = "";
-
 function doPost(e) {
     if (e.postData) {
         let msg = JSON.parse(e.postData.contents);
-        userType = msg.events[0].message.type;
-        userMessage = msg.events[0].message.text.trim();
-        userId = msg.events[0].source.userId;
-        eventType = msg.events[0].source.type;
-        replyToken = msg.events[0].replyToken;
+        let userType = msg.events[0].message.type;
+        let replyToken = msg.events[0].replyToken;
 
         if (userType=="text") {
-            userMessage = msg.events[0].message.text.replace("```json","").replace("```","").trim();
+            let userMessage = msg.events[0].message.text.replace("```json","").replace("```","").trim();
 
-            geminiMessages = [{ "role": "user", "parts": [{ "text": GEMINI_ASSISTANT_BEHAVIOR + "9. 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss") + "\n\n\n\n使用者訊息：" + userMessage }] }];
+            let geminiMessages = [{ "role": "user", "parts": [{ "text": GEMINI_ASSISTANT_BEHAVIOR + "9. 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss") + "\n\n\n\n使用者訊息：" + userMessage }] }];
 
             let jsonData = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages);           
             if (jsonData!="error") {
