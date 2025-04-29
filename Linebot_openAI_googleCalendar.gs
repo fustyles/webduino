@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/29 00:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/30 08:30
 https://www.facebook.com/francefu
 */
 
@@ -66,27 +66,27 @@ function doPost(e) {
               "type":"text",
               "text": jsonData + "\n\n行事曆建立成功！"
             }];
-            sendMessageToLineBot(channel_access_TOKEN, replyToken, replyMessage);
+            sendMessageToLineBot(replyToken, replyMessage);
           } catch (calendarError) {
             let replyMessage = [{
               "type":"text",
               "text": "行事曆建立失敗，請檢查日期時間格式或權限設定！\n錯誤訊息：" + calendarError
             }];
-            sendMessageToLineBot(channel_access_TOKEN, replyToken, replyMessage);
+            sendMessageToLineBot(replyToken, replyMessage);
           }
         } catch (error) {
           let replyMessage = [{
             "type":"text",
             "text": error_message
           }]      
-          sendMessageToLineBot(channel_access_TOKEN, replyToken, replyMessage);
+          sendMessageToLineBot(replyToken, replyMessage);
         }          
       } else {
         let replyMessage = [{
           "type":"text",
           "text": error_message
         }]      
-        sendMessageToLineBot(channel_access_TOKEN, replyToken, replyMessage);
+        sendMessageToLineBot(replyToken, replyMessage);
       }      
     }
   }
@@ -124,12 +124,12 @@ function sendMessageToOpenaiChat(key, messages) {
     }  
 }
 
-function sendMessageToLineBot(accessToken, replyToken, reply_message) {
+function sendMessageToLineBot(replyToken, reply_message) {
   let url = 'https://api.line.me/v2/bot/message/reply';
   UrlFetchApp.fetch(url, {
     'headers': {
       'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': 'Bearer ' + accessToken,
+      'Authorization': 'Bearer ' + channel_access_TOKEN,
     },
     'method': 'post',
     'payload': JSON.stringify({
