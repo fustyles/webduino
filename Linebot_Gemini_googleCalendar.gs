@@ -131,5 +131,5 @@ function replyErrorMessage(replyToken) {
         "type":"text",
         "text": ERROR_MESSAGE
     }];
-    sendMessageToLineBot(CHANNEL_ACCESS_TOKEN, replyToken, replyMessage);
+    sendMessageToLineBot(replyToken, replyMessage);
 }
