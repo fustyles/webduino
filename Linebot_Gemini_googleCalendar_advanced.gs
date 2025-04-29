@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/29 09:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/29 19:00
 https://www.facebook.com/francefu
 */
 
@@ -26,9 +26,13 @@ function doPost(e) {
         let userType = msg.events[0].message.type;
         let replyToken = msg.events[0].replyToken;
 
-        if (userType=="text") {
-            let userMessage = msg.events[0].message.text.replace(/```json|```/g, "").trim();
-
+        if (userType=="text"||userType=="audio") {
+            let userMessage = "";
+            if (userType=="text")
+              userMessage = msg.events[0].message.text.replace(/```json|```/g, "").trim();
+            else 
+              userMessage = sendAudioToGeminiSTT(getAudioFromLinebot(msg.events[0].message.id), "audio/aac", "請將音訊轉換為文字");
+            
             let geminiMessages = [{ "role": "user", "parts": [{ "text": GEMINI_ASSISTANT_BEHAVIOR + "9. 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss") + "\n\n\n\n使用者訊息：" + userMessage }] }];
 
             let jsonData = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages);           
@@ -105,6 +109,81 @@ function sendMessageToGeminiChat(key, messages) {
     } catch (error) {
         return 'error';
     }
+}
+
+function getAudioFromLinebot(messageId) {
+  var url = 'https://api-data.line.me/v2/bot/message/' + messageId + '/content';
+  
+  var options = {
+    'headers': {
+      'Authorization': 'Bearer ' + CHANNEL_ACCESS_TOKEN,
+    },
+    'method': 'get',
+    'muteHttpExceptions': true
+  };
+  
+  try {
+    var response = UrlFetchApp.fetch(url, options);
+    var responseCode = response.getResponseCode();
+    if (responseCode === 200) {
+      var audioBlob = response.getBlob();
+      var audioBase64Data = Utilities.base64Encode(audioBlob.getBytes());
+      return audioBase64Data;
+    } else {
+      throw new Error('Failed to fetch audio content: ' + responseCode);
+    }
+  } catch (e) {
+    Logger.log('Error fetching audio from LINE: ' + e.toString());
+    return null;
+  }
+}
+
+function sendAudioToGeminiSTT(audioBase64Data, mimeType, prompt) {
+  var url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GEMINI_API_KEY;
+  
+  var filePart = {
+    "inline_data": {
+      "data": audioBase64Data,
+      "mime_type": mimeType
+    }
+  };
+  
+  var textPart = {
+    "text": prompt
+  };
+  
+  var requestBody = {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [filePart, textPart]
+      }
+    ]
+  };
+  
+  var options = {
+    'method': 'post',
+    'contentType': 'application/json; charset=utf-8',
+    'payload': JSON.stringify(requestBody),
+    'muteHttpExceptions': true
+  };
+  
+  try {
+    var response = UrlFetchApp.fetch(url, options);
+    var responseCode = response.getResponseCode();
+    if (responseCode === 200) {
+      var responseData = JSON.parse(response.getContentText());
+      var getText = responseData.candidates[0].content.parts[0].text;
+      if (getText === null) {
+        getText = responseData.error.message;
+      }
+      return getText.replace(/\n/g, '');
+    } else {
+      return 'Error: ' + responseCode + ' ' + response.getContentText();
+    }
+  } catch (e) {
+    return 'Request failed: ' + e.toString();
+  }
 }
 
 function sendMessageToLineBot(replyToken, reply_message) {
