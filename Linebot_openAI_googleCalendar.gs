@@ -3,8 +3,8 @@ Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/30 09:00
 https://www.facebook.com/francefu
 */
 
-let channel_access_TOKEN = "xxxxx";
-let openAI_api_KEY = "xxxxx";
+const channel_access_TOKEN = "xxxxx";
+const openAI_api_KEY = "xxxxx";
 
 let openAI_assistant_behavior = `
 請依照以下規範：\n
@@ -19,7 +19,7 @@ let openAI_assistant_behavior = `
 8. 請不要使用Markdown語法。\n
 `;
 
-let error_message = "請傳送文字訊息包含行事曆所需資料：日期、時間、持續時間(可無)、事項描述，或者提供的openAI Key無法使用！";
+const error_message = "請傳送文字訊息包含行事曆所需資料：日期、時間、持續時間(可無)、事項描述，或者提供的openAI Key無法使用！";
   
 function doPost(e) {
   if (e.postData) {
