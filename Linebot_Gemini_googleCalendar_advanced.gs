@@ -40,7 +40,7 @@ function doPost(e) {
                 try {
                     let data = JSON.parse(jsonData);
                     if (data.length>0) {
-                      for (i=0;i<data.length;i++) {
+                      for (let i=0;i<data.length;i++) {
                         let date = data[i].date; // 預期格式：'YYYY-MM-DD'
                         let time = data[i].time; // 預期格式：'HH:MM:00'
                         let duration = data[i].duration; // 預期格式：1
