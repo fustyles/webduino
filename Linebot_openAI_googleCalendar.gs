@@ -70,7 +70,7 @@ function doPost(e) {
           } catch (calendarError) {
             let replyMessage = [{
               "type":"text",
-              "text": "行事曆建立失敗，請檢查日期時間格式或權限設定！\n錯誤訊息：" + calendarError
+              "text": jsonData + "\n\n行事曆建立失敗，請檢查日期時間格式或權限設定！\n錯誤訊息：" + calendarError
             }];
             sendMessageToLineBot(replyToken, replyMessage);
           }
