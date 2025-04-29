@@ -77,7 +77,7 @@ function doPost(e) {
                             "type":"text",
                             "text": jsonData
                         }];
-                        sendMessageToLineBot(CHANNEL_ACCESS_TOKEN, replyToken, replyMessage);
+                        sendMessageToLineBot(replyToken, replyMessage);
                 }
             } else {
                 replyErrorMessage(replyToken);
