@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/29 20:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/30 00:00
 https://www.facebook.com/francefu
 */
 
@@ -38,13 +38,17 @@ function doPost(e) {
             let jsonData = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages).replace(/```json|```/g, "").trim();           
             if (jsonData!="error") {
                 try {
+                    jsonData = jsonData.match(/\[.*?\]/)[0];
                     let data = JSON.parse(jsonData);
                     if (data.length>0) {
+                      let response = "";
                       for (let i=0;i<data.length;i++) {
                         let date = data[i].date; // 預期格式：'YYYY-MM-DD'
                         let time = data[i].time; // 預期格式：'HH:MM:00'
                         let duration = data[i].duration; // 預期格式：1
                         let workMatter = data[i].workMatter; // 預期格式：文字敘述
+                        response += `項目${i+1}\n行程：${workMatter}\n時間：${date} ${time}\n時數：${duration}\n\n`;
+                        
                         let eventDateTime = new Date(date + 'T' + time);
                         let calendar = CalendarApp.getDefaultCalendar();
                         try {
@@ -60,7 +64,7 @@ function doPost(e) {
                       }
                       let replyMessage = [{
                           "type":"text",
-                          "text": jsonData + "\n\n行事曆建立成功！"
+                          "text": response + "行事曆建立成功！"
                       }];
                       sendMessageToLineBot(replyToken, replyMessage);                       
                     }
