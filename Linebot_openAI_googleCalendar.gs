@@ -37,7 +37,7 @@ function doPost(e) {
       chat_message.content = userMessage;
       openAI_messages.push(chat_message); 
 	  
-      let jsonData = sendMessageToOpenaiChat(openAI_api_KEY, openAI_messages).replace(/```json|```/g, "");
+      let jsonData = sendMessageToOpenaiChat(openAI_api_KEY, openAI_messages).replace(/```json|```/g, "").trim();
       if (jsonData!="error") {             
         try {
           let data = JSON.parse(jsonData);
