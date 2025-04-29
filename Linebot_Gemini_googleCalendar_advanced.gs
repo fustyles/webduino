@@ -29,13 +29,13 @@ function doPost(e) {
         if (userType=="text"||userType=="audio") {
             let userMessage = "";
             if (userType=="text")
-              userMessage = msg.events[0].message.text.replace(/```json|```/g, "").trim();
+              userMessage = msg.events[0].message.text.trim();
             else 
               userMessage = sendAudioToGeminiSTT(getAudioFromLinebot(msg.events[0].message.id), "audio/aac", "請將音訊轉換為文字");
             
             let geminiMessages = [{ "role": "user", "parts": [{ "text": GEMINI_ASSISTANT_BEHAVIOR + "9. 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss") + "\n\n\n\n使用者訊息：" + userMessage }] }];
 
-            let jsonData = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages);           
+            let jsonData = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages).replace(/```json|```/g, "");           
             if (jsonData!="error") {
                 try {
                     let data = JSON.parse(jsonData);
