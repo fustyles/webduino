@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/30 08:50
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/30 09:00
 https://www.facebook.com/francefu
 */
 
@@ -19,31 +19,19 @@ let openAI_assistant_behavior = `
 8. 請不要使用Markdown語法。\n
 `;
 
-let openAI_response = "";
-let openAI_messages = "";
-
-let userType = "";
-let userMessage = "";
-let userId = "";
-let eventType = "";
-let replyToken = "";
-
 let error_message = "請傳送文字訊息包含行事曆所需資料：日期、時間、持續時間(可無)、事項描述，或者提供的openAI Key無法使用！";
   
 function doPost(e) {
   if (e.postData) {
 
     let msg = JSON.parse(e.postData.contents);
-    userType = msg.events[0].message.type;
-    userMessage = msg.events[0].message.text.trim();
-    userId = msg.events[0].source.userId;
-    eventType = msg.events[0].source.type;
-    replyToken = msg.events[0].replyToken;  
+    let userType = msg.events[0].message.type;
+    let replyToken = msg.events[0].replyToken;  
 
     if (userType=="text") {
-      userMessage = msg.events[0].message.text.replace("```json","").replace("```","").trim();
+      let userMessage = msg.events[0].message.text.replace("```json","").replace("```","").trim();
 
-      openAI_messages = [{"role": "system", "content": openAI_assistant_behavior + "9. 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss")}];
+      let openAI_messages = [{"role": "system", "content": openAI_assistant_behavior + "9. 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss")}];
       let chat_message = {};
       chat_message.role = "user";
       chat_message.content = userMessage;
