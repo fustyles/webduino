@@ -41,7 +41,7 @@ function doPost(e) {
     replyToken = msg.events[0].replyToken;  
 
     if (userType=="text") {
-      userMessage = msg.events[0].message.text.trim();
+      userMessage = msg.events[0].message.text.replace("```json","").replace("```","").trim();
 
       openAI_messages = [{"role": "system", "content": openAI_assistant_behavior + "9. 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss")}];
       let chat_message = {};
