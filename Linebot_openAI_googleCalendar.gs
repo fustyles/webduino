@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/30 00:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/30 08:00
 https://www.facebook.com/francefu
 */
 
@@ -15,8 +15,9 @@ let openAI_assistant_behavior = `
 4. 若沒有提及年份，則表示今年。\n
 5. 若沒有提及月份，則表示本月。\n
 6. 若沒有提及持續幾小時，則duration值為1。\n
-7. 請不要多做解釋。\n
-8. 請不要使用Markdown語法。\n
+7. 若提到持續一天或全天，時間由當日00:00:00算起。\n
+8. 請不要多做解釋。\n
+9. 請不要使用Markdown語法。\n
 `;
 
 const error_message = "請傳送文字訊息包含行事曆所需資料：日期、時間、持續時間(可無)、事項描述並聲明要新增行事曆，或者發生提供的openAI Key無法使用！";
