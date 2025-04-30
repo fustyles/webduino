@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/30 00:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/4/30 08:00
 https://www.facebook.com/francefu
 */
 
@@ -14,9 +14,10 @@ const GEMINI_ASSISTANT_BEHAVIOR = `
 3. 若沒有提及年份，則表示今年。\n
 4. 若沒有提及月份，則表示本月。\n
 5. 若沒有提及持續幾小時，則duration值為1。\n
-6. 若使用者對話內容不包含新增行事曆基本資料，則當作一般聊天不用遵守規範第7點，最後在回覆內容中換兩行提醒是否要新增行事曆並說明所需要的資料以及提醒在對話中要聲明是要新增行事曆資料。\n
-7. 請不要多做解釋。\n
-8. 請不要使用Markdown語法。\n
+6. 若提到持續一天或全天，時間由當日00:00:00算起。\n
+7. 若使用者對話內容不包含新增行事曆基本資料，則當作一般聊天不用遵守規範第8點，最後在回覆內容中換兩行提醒是否要新增行事曆並說明所需要的資料以及提醒在對話中要聲明是要新增行事曆資料。\n
+8. 請不要多做解釋。\n
+9. 請不要使用Markdown語法。\n
 `;
 const ERROR_MESSAGE = "請傳送文字或語音訊息，聲明是要新增行事曆資料並包含一筆以上的行事曆所需資料：日期、時間、持續時間(可無)、事項，或者可能發生提供的 Gemini Key 無法使用！";
 
@@ -33,7 +34,7 @@ function doPost(e) {
             else 
               userMessage = sendAudioToGeminiSTT(getAudioFromLinebot(msg.events[0].message.id), "audio/aac", "請將音訊轉換為文字");
             
-            let geminiMessages = [{ "role": "user", "parts": [{ "text": GEMINI_ASSISTANT_BEHAVIOR + "9. 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss") + "\n\n\n\n使用者訊息：" + userMessage }] }];
+            let geminiMessages = [{ "role": "user", "parts": [{ "text": GEMINI_ASSISTANT_BEHAVIOR + "10. 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss") + "\n\n\n\n使用者訊息：" + userMessage }] }];
 
             let jsonData = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages).replace(/```json|```/g, "").trim();           
             if (jsonData!="error") {
