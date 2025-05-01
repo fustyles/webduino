@@ -18,11 +18,21 @@
 				GeminiKey = CryptoJS.AES.decrypt(GeminiKey, 'test').toString(CryptoJS.enc.Utf8);
 				const url = `https://generativelanguage.googleapis.com/v1beta1/models/gemini-2.0-flash-live-preview-04-09:generateContent?key=${GeminiKey}`;
 				const data = {
-				    response_modalities: ["AUDIO"],
-				    speech_config: {
-				        voice_config: {prebuilt_voice_config: {voice_name: "Aoede"}},
-				        language_code: "es-ES",
-				    },
+					contents: [
+						{
+							role: "user",
+							parts: [
+							  {text: prompt}
+							 ]
+						}
+					],
+					generation_config: {					
+					    response_modalities: ["AUDIO"],
+					    speech_config: {
+					        voice_config: {prebuilt_voice_config: {voice_name: "Aoede"}},
+					        language_code: "es-ES",
+					    },
+					}
 				};
 
 				const options = {
