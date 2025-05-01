@@ -39,7 +39,6 @@ function doPost(e) {
             let jsonData = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages).replace(/```json|```/g, "").trim();           
             if (jsonData!="error") {
                 try {
-                    jsonData = jsonData.match(/\[.*?\]/)[0];
                     let data = JSON.parse(jsonData);
                     if (data.length>0) {
                       let response = "";
