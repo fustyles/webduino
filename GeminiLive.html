@@ -34,7 +34,8 @@
 				};
 
 				const response = await fetch(url, options);
-				console.log(response);
+				const json = await response.json();
+				console.log(json);
 			}
 			catch (e) {
 				console.log(e);
