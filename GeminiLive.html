@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <head>
+		<title>Gemini Live (TTS)</title>	
+        <meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Headers' content='Origin, X-Requested-With, Content-Type, Accept'>
+        <meta http-equiv='Access-Control-Allow-Methods' content='GET,POST,PUT,DELETE,OPTIONS'>
+        <meta http-equiv='Access-Control-Allow-Origin' content='*'>
+        <meta http-equiv='Access-Control-Allow-Credentials' content='true'>
+		<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js'></script>
+    </head>
+</head>
+<body>
+	<script>
+		async function gemini_request(prompt, GeminiKey) {
+			try {
+				GeminiKey = CryptoJS.AES.decrypt(GeminiKey, 'test').toString(CryptoJS.enc.Utf8);
+				const url = `https://generativelanguage.googleapis.com/v1beta1/models/gemini-2.0-flash-live-preview-04-09:generateContent?key=${GeminiKey}`;
+				const data = {
+					contents: [
+						{
+							role: "user",
+							parts: [
+							  {text: prompt}
+							 ],
+							
+						}
+					],
+					generation_config: {
+						response_modalities: [
+							"AUDIO"
+						],
+					}
+				};
+
+				const options = {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(data)
+				};
+
+				const response = await fetch(url, options);
+				console.log(response);
+			}
+			catch (e) {
+				console.log(e);
+			}				
+		}
+
+		gemini_request("Hello", "U2FsdGVkX1/MIm9hOJ9IzFNojuj9la0gCM3F/UoWyzQMEaO0ZO+9050jLQ7uJjuU9QyZpdRPjR3RUsGqfCgvNg==");
+	</script>
+</body>
+</html>
