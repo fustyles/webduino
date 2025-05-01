@@ -1,23 +1,33 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/5/1 08:00
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/5/2 01:00
 https://www.facebook.com/francefu
 */
 
 const CHANNEL_ACCESS_TOKEN = "xxxxx";
 const GEMINI_API_KEY = "xxxxx";
+const GOOGLE_SPREADSHEET_ID = "xxxxx";
+const GOOGLE_SPREADSHEET_NAME = "xxxxx";
 
 const GEMINI_ASSISTANT_BEHAVIOR = `
 請依照以下規範：\n
-1. 如果對話內容包含日期、時間、持續時間、事項，請回傳json格式資料，格式如下：\n
-[{"date":"填入日期轉換為 'YYYY-MM-DD' 格式", "time":"填入時間轉換為 'HH:MM:00' 格式", "duration":"持續幾小時，預設為1","workMatter":"事項內容"}, ...]\n
-2. 資料格式示範： [{"date":"2025-05-01", "time":"12:00:00", "duration":1, "workMatter":"吃海鮮大餐！"}, {"date":"2025-05-02", "time":"10:30:00", "duration":1, "workMatter":"去打球！"}, ...]\n
-3. 若沒有提及年份，則表示今年。\n
-4. 若沒有提及月份，則表示本月。\n
-5. 若沒有提及持續幾小時，則duration值為1。\n
-6. 若提到持續一天或全天，時間由當日00:00:00算起。\n
-7. 若使用者對話內容語意並非要新增行事曆，則當作一般聊天不用遵守規範第8點，最後在回覆內容中換兩行提醒是否要新增行事曆並說明所需要的資料以及提醒在對話中要聲明是要新增行事曆行程。\n
-8. 請不要多做解釋。\n
-9. 請不要使用Markdown語法。\n
+1. 請判別使用者對話內容屬於以下哪一種類別：【新增行事曆、記帳、查帳、以上皆非】，若為【新增行事曆、記帳、查帳}則回傳陣列資料。\n
+2. 如果類別為"新增行事曆"且對話內容包含日期、時間、持續時間、事項，請回傳json陣列資料，格式如下：\n
+[{"type":"calendar", "date":"填入日期轉換為 'YYYY-MM-DD' 格式", "time":"填入時間轉換為 'HH:MM:00' 格式", "duration":"持續幾小時，預設為1","workMatter":"事項內容"}, ...]\n
+資料格式示範： [{"type":"calendar", "date":"2025-05-01", "time":"12:00:00", "duration":1, "workMatter":"吃海鮮大餐！"}, {"type":"calendar", "date":"2025-05-02", "time":"10:30:00", "duration":1, "workMatter":"去打球！"}, ...]\n
+3. 如果類別為"記帳"且對話內容包含時間、類別(飲食、交通、居住、娛樂、健康與醫療、個人用品、教育、其他)、金額，請回傳json陣列資料，格式如下：\n
+[{"type":"accounting", "time":"轉換為 'YYYY-MM-DD HH:MM:00' 格式","money":"消費金額","summary":"消費摘要"}, ...]\n
+資料格式示範： [{"type":"accounting", "class":"飲食", "time":"2025-05-01 12:00:00", "money":1000, "summary":"吃海鮮大餐！"}, {"type":"accounting", "class":"交通", "time":"2025-05-02 10:30:00", "money":200, "summary":"搭計程車"}, ...]\n
+4. 如果類別為"查帳"且對話內容包含起訖日期，請回傳json陣列資料，格式如下：\n
+[{"type":"audit", "startTime":"轉換為 'YYYY-MM-DD 00:00:00' 格式", "endTime":"轉換為 'YYYY-MM-DD 23:59:59' 格式"}]\n
+資料格式示範： [{"type":"audit", "startTime":"2025-05-01 00:00:00", "endTime":"2025-05-02 23:59:59"}]\n
+5. 如果類別為"以上皆非"，則當作一般聊天不用遵守規範第11點，最後在回覆內容中換兩行提醒是否要新增行事曆、記帳、查帳，並說明所需要的資料以及提醒在對話中要聲明。\n
+6. 若沒有提及年份，則表示今年。\n
+7. 若沒有提及月份，則表示本月。\n
+8. 若沒有提及時間，則表示00:00:00。\n
+9. 若沒有提及持續幾小時，則duration值為1。\n
+10. 若提到持續一天或全天，時間由當日00:00:00算起。\n
+11. 請不要多做解釋。\n
+12. 請不要使用Markdown語法。\n
 `;
 const ERROR_MESSAGE = "請傳送文字或語音訊息，聲明是要新增行事曆資料並包含一筆以上的行事曆所需資料：日期、時間、持續時間(可無)、事項，或者可能發生提供的 Gemini Key 無法使用！";
 
@@ -34,15 +44,18 @@ function doPost(e) {
             else 
               userMessage = sendAudioToGeminiSTT(getAudioFromLinebot(msg.events[0].message.id), "audio/aac", "請將音訊轉換為文字");
             
-            let geminiMessages = [{ "role": "user", "parts": [{ "text": GEMINI_ASSISTANT_BEHAVIOR + "10. 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss") + "\n\n\n\n使用者訊息：" + userMessage }] }];
+            let geminiMessages = [{ "role": "user", "parts": [{ "text": GEMINI_ASSISTANT_BEHAVIOR + "13. 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss") + "\n\n\n\n使用者訊息：" + userMessage }] }];
 
             let jsonData = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages).replace(/```json|```/g, "").trim();           
             if (jsonData!="error") {
                 try {
-                    let data = JSON.parse(jsonData);
-                    if (data.length>0) {
-                      let response = "";
-                      for (let i=0;i<data.length;i++) {
+                  if (jsonData.indexOf('[')!=-1)
+                    jsonData = jsonData.substring(jsonData.indexOf('['), jsonData.indexOf(']')+1);
+                  let data = JSON.parse(jsonData);
+                  let response = "";
+                  if (data.length>0) {
+                    for (let i=0;i<data.length;i++) {
+                      if (data[i].type=="calendar") {
                         let date = data[i].date; // 預期格式：'YYYY-MM-DD'
                         let time = data[i].time; // 預期格式：'HH:MM:00'
                         let duration = data[i].duration; // 預期格式：1
@@ -52,7 +65,7 @@ function doPost(e) {
                         let eventDateTime = new Date(date + 'T' + time);
                         let calendar = CalendarApp.getDefaultCalendar();
                         try {
-                            calendar.createEvent(workMatter, eventDateTime, new Date(eventDateTime.getTime() + Number(duration) * 60 * 60 * 1000));
+                            calendar.createEvent(workMatter, eventDateTime, new Date(eventDateTime.getTime() + Number(duration) * 60 * 60 * 1000));                                
                         } catch (calendarError) {
                             let replyMessage = [{
                                 "type":"text",
@@ -60,20 +73,39 @@ function doPost(e) {
                             }];
                             sendMessageToLineBot(replyToken, replyMessage);
                             break;
-                        }                       
+                        } 
                       }
-                      let replyMessage = [{
-                          "type":"text",
-                          "text": response + "行事曆建立成功！"
-                      }];
-                      sendMessageToLineBot(replyToken, replyMessage);                       
+                      else if (data[i].type=="accounting") {
+                        try {                            
+                          const ss = SpreadsheetApp.openById(GOOGLE_SPREADSHEET_ID);
+                          const sheet = ss.getSheetByName(GOOGLE_SPREADSHEET_NAME);
+                          const rowData = [data[i].class, data[i].time, data[i].money, data[i].summary];
+                          sheet.appendRow(rowData);
+                          response += `項目${i+1}\n類別：${data[i].class}\n時間：${data[i].time}\n金額：${data[i].money}\n摘要：${data[i].summary}\n\n`;
+                        } catch (accountingError) {
+                            let replyMessage = [{
+                                "type":"text",
+                                "text": jsonData + "\n\n記帳新增失敗，請檢查資料格式是否正確！\n錯誤訊息：" + accountingError
+                            }];
+                            sendMessageToLineBot(replyToken, replyMessage);
+                        }                               
+                      } 
+                      else if (data[i].type=="audit") {
+
+                      }                                             
                     }
+                    let replyMessage = [{
+                        "type":"text",
+                        "text": response + "執行成功！"
+                    }];
+                    sendMessageToLineBot(replyToken, replyMessage); 
+                  }
                 } catch (error) {
-                        let replyMessage = [{
-                            "type":"text",
-                            "text": jsonData
-                        }];
-                        sendMessageToLineBot(replyToken, replyMessage);
+                  let replyMessage = [{
+                      "type":"text",
+                      "text": jsonData
+                  }];
+                  sendMessageToLineBot(replyToken, replyMessage);
                 }
             } else {
                 replyErrorMessage(replyToken);
