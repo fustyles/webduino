@@ -16,7 +16,7 @@
 		async function gemini_request(prompt, GeminiKey) {
 			try {
 				GeminiKey = CryptoJS.AES.decrypt(GeminiKey, 'test').toString(CryptoJS.enc.Utf8);
-				const url = `https://generativelanguage.googleapis.com/v1alpha1/models/gemini-2.0-flash-live-001:generateContent?key=${GeminiKey}`;
+				const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-live-preview-04-09:generateContent?key=${GeminiKey}`;
 				const data = {
 					contents: [
 						{
