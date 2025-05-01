@@ -97,7 +97,7 @@ function doPost(e) {
                     }
                     let replyMessage = [{
                         "type":"text",
-                        "text": response + "執行成功！"
+                        "text": response
                     }];
                     sendMessageToLineBot(replyToken, replyMessage); 
                   }
