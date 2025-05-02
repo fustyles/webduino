@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/5/2 20:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/5/2 21:30
 https://www.facebook.com/francefu
 */
 
@@ -18,7 +18,7 @@ const GEMINI_ASSISTANT_BEHAVIOR = `
 (2) 如果類別為"記帳(type:accounting)"且對話內容包含時間、分類、金額，請回傳json陣列資料，格式如下：\n
 [{"type":"accounting", "time":"轉換為 'YYYY-MM-DD HH:MM:00' 格式","money":"消費金額","summary":"消費摘要"}, ...]\n
 資料格式示範： [{"type":"accounting", "class":"餐飲", "time":"2025-05-01 12:00:00", "money":1000, "summary":"吃海鮮大餐！"}, {"type":"accounting", "class":"交通", "time":"2025-05-02 10:30:00", "money":200, "summary":"搭計程車"}, ...]\n
-依對話內容判別分類為以下類別之一：餐飲, 交通, 居住, 娛樂, 健康與醫療, 個人用品, 教育、其他。\n
+依對話內容判別分類為以下類別之一：餐飲, 交通, 居住, 娛樂, 健康與醫療, 個人用品, 設備、教育、其他。\n
 (3) 如果類別為"查帳(type:audit)"且對話內容包含起訖日期，請回傳json陣列資料，格式如下：\n
 [{"type":"audit", "startDate":"轉換為 'YYYY-MM-DD' 格式", "endDate":"轉換為 'YYYY-MM-DD' 格式"}]\n
 資料格式示範： [{"type":"audit", "startDate":"2025-05-01", "endDate":"2025-05-02"}]\n
@@ -71,14 +71,14 @@ function doPost(e) {
                         let eventDateTime = new Date(date + 'T' + time);
                         let calendar = CalendarApp.getDefaultCalendar();
                         try {
-                            calendar.createEvent(workMatter, eventDateTime, new Date(eventDateTime.getTime() + Number(duration) * 60 * 60 * 1000));                                
+                          calendar.createEvent(workMatter, eventDateTime, new Date(eventDateTime.getTime() + Number(duration) * 60 * 60 * 1000));                            
                         } catch (calendarError) {
-                            let replyMessage = [{
-                                "type":"text",
-                                "text": jsonData + "\n\n行事曆建立失敗，請檢查日期時間格式或權限設定！\n錯誤訊息：" + calendarError
-                            }];
-                            sendMessageToLineBot(replyToken, replyMessage);
-                            break;
+                          let replyMessage = [{
+                              "type":"text",
+                              "text": jsonData + "\n\n行事曆建立失敗，請檢查日期時間格式或權限設定！\n錯誤訊息：" + calendarError
+                          }];
+                          sendMessageToLineBot(replyToken, replyMessage);
+                          break;
                         } 
                       }
                       else if (data[i].type=="accounting") {
