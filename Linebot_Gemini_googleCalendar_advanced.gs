@@ -52,7 +52,7 @@ function doPost(e) {
             if (jsonData!="error"&&jsonData.indexOf('[')!=-1) {
                 try {
                   jsonData = jsonData.substring(jsonData.indexOf('['), jsonData.indexOf(']')+1);
-                  let data = JSON.parse(jsonData.replace(/\\n/g, '\\n'));
+                  let data = JSON.parse(jsonData.replace(/\r\n/g, '\\r\\n').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, ' '));
                   let response = "";
                   if (data.length>0) {
                     for (let i=0;i<data.length;i++) {
@@ -268,7 +268,7 @@ function spreadsheetsql_executeSql(spreadsheet_sql, spreadsheet_id, spreadsheet_
 function spreadsheetsql_QueryResponse(data) {
   let spreadsheetsql_response = [];
   let arr = [];
-  let res = JSON.parse(data.replace(/\\n/g, '\\n'));  //有問題暫不使用
+  let res = JSON.parse(data.replace(/\r\n/g, '\\r\\n').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, ' '));  //有問題暫不使用
 
   try {
 
