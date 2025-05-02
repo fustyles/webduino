@@ -88,7 +88,7 @@ function sendMessageToOpenaiChat(key, messages) {
     try {
         let url = "https://api.groq.com/openai/v1/chat/completions";
         let data = {
-          "model": "meta-llama/llama-4-scout-17b-16e-instruct",      //  deepseek-r1-distill-qwen-32b
+          "model": "meta-llama/llama-4-scout-17b-16e-instruct",      //  "model": "deepseek-r1-distill-qwen-32b",
           "messages": messages
         };     
 
