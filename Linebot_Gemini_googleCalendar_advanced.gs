@@ -99,7 +99,6 @@ function doPost(e) {
                           response = "查帳\n\n"; 
                           let sql = "select A,sum(C) where B>= date'"+data[i].startDate+"' and B<= date '"+data[i].endDate+"' group by A";
                           let jsonData = spreadsheetsql_executeSql(sql, GOOGLE_SPREADSHEET_ID, GOOGLE_SPREADSHEET_NAME);
-                          response = jsonData;
                           let geminiMessages = [{ "role": "user", "parts": [{ "text": "請整理以下資料回應使用者明細清單：\nSQL語法："+sql+"\nSQL資料：" 
                            + jsonData + "\n\n回傳資料格式示範：日期： 2025/5/1 - 2025/5/2\n娛樂： 1000元\n交通： 3000元\n...\n\n總計： 4000元\n\n不要多做解釋！"}] }];
                           response = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages).replace(/```json|```/g, "").trim();                      
