@@ -52,7 +52,7 @@ function doPost(e) {
             if (jsonData!="error"&&jsonData.indexOf('[')!=-1) {
                 try {
                   jsonData = jsonData.substring(jsonData.indexOf('['), jsonData.indexOf(']')+1);
-                  let data = JSON.parse(jsonData.replace(/\\n/g, "<br>"));
+                  let data = JSON.parse(jsonData.replace(/\\n/g, '\\n'));
                   let response = "";
                   if (data.length>0) {
                     for (let i=0;i<data.length;i++) {
@@ -110,7 +110,7 @@ function doPost(e) {
                 } catch (error) {
                   let replyMessage = [{
                       "type":"text",
-                      "text": error + "\n" + jsonData
+                      "text": error + "\n\n" + jsonData
                   }];
                   sendMessageToLineBot(replyToken, replyMessage);
                 }
@@ -268,7 +268,7 @@ function spreadsheetsql_executeSql(spreadsheet_sql, spreadsheet_id, spreadsheet_
 function spreadsheetsql_QueryResponse(data) {
   let spreadsheetsql_response = [];
   let arr = [];
-  let res = JSON.parse(data);  //有問題暫不使用
+  let res = JSON.parse(data.replace(/\\n/g, '\\n'));  //有問題暫不使用
 
   try {
 
