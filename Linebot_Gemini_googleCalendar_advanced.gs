@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/5/2 16:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/5/2 20:30
 https://www.facebook.com/francefu
 */
 
@@ -23,7 +23,7 @@ const GEMINI_ASSISTANT_BEHAVIOR = `
 [{"type":"audit", "startDate":"轉換為 'YYYY-MM-DD' 格式", "endDate":"轉換為 'YYYY-MM-DD' 格式"}]\n
 資料格式示範： [{"type":"audit", "startDate":"2025-05-01", "endDate":"2025-05-02"}]\n
 (4) 如果類別判斷屬於"聊天(type:chat)"，請回傳json陣列資料，格式如下：\n
-[{"type":"chat", "response":"依據使用者的對話內容回覆，最後換兩行提醒是否要新增行事曆、記帳、查帳，並說明所需要的資料以及提醒在對話中要聲明。"}]\n
+[{"type":"chat", "response":"依據使用者的對話內容回覆。"}]\n
 3. 若沒有提及年份，則表示今年。\n
 4. 若沒有提及月份，則表示本月。\n
 5. 若沒有提及時間，則表示00:00:00。\n
@@ -31,6 +31,8 @@ const GEMINI_ASSISTANT_BEHAVIOR = `
 7. 若提到持續一天或全天，時間由當日00:00:00算起。\n
 8. 請不要使用Markdown語法。\n
 `;
+
+const HELP_MESSAGE = "\n\n您可以在此進行【行事曆新增、記帳、查帳、聊天】的功能！";
 const ERROR_MESSAGE = "請傳送文字或語音訊息，進行【行事曆新增、記帳、查帳、聊天】並提供所需資料，或者可能發生提供的 Gemini Key 無法使用！";
 
 function doPost(e) {
@@ -97,14 +99,14 @@ function doPost(e) {
                       } 
                       else if (data[i].type=="audit") {
                           response = "查帳\n\n"; 
-                          let sql = "select A,sum(C) where B>= date'"+data[i].startDate+"' and B<= date '"+data[i].endDate+"' group by A";
+                          let sql = "select A,sum(C) where B>= date'"+data[i].startDate+"' and B<= date '"+data[i].endDate+"' group by A label A '分類',sum(C) '小計'";
                           let jsonData = spreadsheetsql_executeSql(sql, GOOGLE_SPREADSHEET_ID, GOOGLE_SPREADSHEET_NAME);
                           let geminiMessages = [{ "role": "user", "parts": [{ "text": "請整理以下資料回應使用者明細清單：\nSQL語法："+sql+"\nSQL資料：" 
                            + jsonData + "\n\n回傳資料格式示範：日期： 2025/5/1 - 2025/5/2\n娛樂： 1000元\n交通： 3000元\n...\n\n總計： 4000元\n\n不要多做解釋！"}] }];
-                          response = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages).replace(/```json|```/g, "").trim();                      
+                          response = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages).replace(/```json|```/g, "").trim();                     
                       }
                       else if (data[i].type=="chat") {
-                        response = data[i].response;                    
+                        response = data[i].response + HELP_MESSAGE;                    
                       }                                                                    
                     }
                     let replyMessage = [{
@@ -262,9 +264,12 @@ function spreadsheetsql_executeSql(spreadsheet_sql, spreadsheet_id, spreadsheet_
     let request = 'https://docs.google.com/spreadsheets/d/' + spreadsheet_id + '/gviz/tq?gid=' + sheetId + '&range=' + range + '&tq=' + encodeURIComponent(spreadsheet_sql);
     let result = UrlFetchApp.fetch(request).getContentText();
 
-    let dataFrom = result.indexOf('"table":{');
-    let dataTo   = result.lastIndexOf(',"parsedNumHeaders"')+1;  
-    let jsonText = "{"+result.slice(dataFrom+9, dataTo-1)+"}"; 
+    while (result.indexOf("table")!=-1) {
+        let dataFrom = result.indexOf("{");
+        let dataTo   = result.lastIndexOf("}");  
+        result = result.slice(dataFrom+1, dataTo); 
+    }
+    let jsonText = "{"+result+"}";
     return spreadsheetsql_formatResponse(jsonText);
   } catch (error) {
     return 'Error executing SQL: ' + error;
