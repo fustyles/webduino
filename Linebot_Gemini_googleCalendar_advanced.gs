@@ -18,8 +18,8 @@ const GEMINI_ASSISTANT_BEHAVIOR = `
 [{"type":"accounting", "time":"轉換為 'YYYY-MM-DD HH:MM:00' 格式","money":"消費金額","summary":"消費摘要"}, ...]\n
 資料格式示範： [{"type":"accounting", "class":"飲食", "time":"2025-05-01 12:00:00", "money":1000, "summary":"吃海鮮大餐！"}, {"type":"accounting", "class":"交通", "time":"2025-05-02 10:30:00", "money":200, "summary":"搭計程車"}, ...]\n
 4. 如果類別為"查帳"且對話內容包含起訖日期，請回傳json陣列資料，格式如下：\n
-[{"type":"audit", "startTime":"轉換為 'YYYY-MM-DD 00:00:00' 格式", "endTime":"轉換為 'YYYY-MM-DD 23:59:59' 格式"}]\n
-資料格式示範： [{"type":"audit", "startTime":"2025-05-01 00:00:00", "endTime":"2025-05-02 23:59:59"}]\n
+[{"type":"audit", "startDate":"轉換為 'YYYY-MM-DD' 格式", "endDate":"轉換為 'YYYY-MM-DD' 格式"}]\n
+資料格式示範： [{"type":"audit", "startDate":"2025-05-01", "endDate":"2025-05-02"}]\n
 5. 如果類別判斷屬於【聊天】，，請回傳json陣列資料，格式如下：\n
 [{"type":"chat", "response":"依據使用者的對話內容回覆，最後換兩行提醒是否要新增行事曆、記帳、查帳，並說明所需要的資料以及提醒在對話中要聲明。"}]\n
 6. 若沒有提及年份，則表示今年。\n
@@ -41,9 +41,11 @@ function doPost(e) {
             let userMessage = "";
             if (userType=="text")
               userMessage = msg.events[0].message.text.trim();
-            else 
-              userMessage = sendAudioToGeminiSTT(getAudioFromLinebot(msg.events[0].message.id), "audio/aac", "請將音訊轉換為文字");
-            
+            else {
+              let messageId = msg.events[0].message.id;
+              userMessage = sendAudioToGeminiSTT(getAudioFromLinebot(messageId), "audio/aac", "請將音訊轉換為文字");
+            }
+              
             let geminiMessages = [{ "role": "user", "parts": [{ "text": GEMINI_ASSISTANT_BEHAVIOR + "12. 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss") + "\n\n\n\n使用者訊息：" + userMessage }] }];
 
             let jsonData = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages).replace(/```json|```/g, "").trim();           
@@ -90,6 +92,10 @@ function doPost(e) {
                         }                               
                       } 
                       else if (data[i].type=="audit") {
+                          let sql = "select A,sum(C) where B>= date'"+data[i].startDate+"' and B<= date '"+data[i].endDate+"' group by A";
+                          let jsonData = spreadsheetsql_executeSql(sql, GOOGLE_SPREADSHEET_ID, GOOGLE_SPREADSHEET_NAME);
+                          let geminiMessages = [{ "role": "user", "parts": [{ "text": "請整理以下回應使用者的列表資料且不要多做解釋：\nSQL語法："+sql+"\nSQL資料：" + jsonData + "\n\n回傳資料格式示範：日期：2025/5/1 - 2025/5/2\n娛樂 1000元\n交通 3000元\n..."}] }];
+                          response = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages).replace(/```json|```/g, "").trim();                           
                       }
                       else if (data[i].type=="chat") {
                         response = data[i].response.replace(/<br>/g, "\n");                    
@@ -104,7 +110,7 @@ function doPost(e) {
                 } catch (error) {
                   let replyMessage = [{
                       "type":"text",
-                      "text": jsonData
+                      "text": error + "\n" + jsonData
                   }];
                   sendMessageToLineBot(replyToken, replyMessage);
                 }
@@ -119,7 +125,7 @@ function doPost(e) {
 
 function sendMessageToGeminiChat(key, messages) {
     try {
-        let url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + key;
+        let url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`;
         let data = {
             "contents": messages
         };
@@ -149,7 +155,7 @@ function sendMessageToGeminiChat(key, messages) {
 }
 
 function getAudioFromLinebot(messageId) {
-  var url = 'https://api-data.line.me/v2/bot/message/' + messageId + '/content';
+  var url = `https://api-data.line.me/v2/bot/message/${messageId}/content`;
   
   var options = {
     'headers': {
@@ -170,13 +176,12 @@ function getAudioFromLinebot(messageId) {
       throw new Error('Failed to fetch audio content: ' + responseCode);
     }
   } catch (e) {
-    Logger.log('Error fetching audio from LINE: ' + e.toString());
     return null;
   }
 }
 
 function sendAudioToGeminiSTT(audioBase64Data, mimeType, prompt) {
-  var url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GEMINI_API_KEY;
+  var url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
   
   var filePart = {
     "inline_data": {
@@ -236,6 +241,82 @@ function sendMessageToLineBot(replyToken, reply_message) {
             'messages': reply_message
         }),
     });
+}
+
+function spreadsheetsql_executeSql(spreadsheet_sql, spreadsheet_id, spreadsheet_name) {
+  try {
+    let file = SpreadsheetApp.openById(spreadsheet_id);
+    let sheet = file.getSheetByName(spreadsheet_name);
+    if (!sheet) {
+      return 'Error: Sheet "' + spreadsheet_name + '" not found in spreadsheet ID "' + spreadsheet_id + '".';
+    }
+    let sheetId = sheet.getSheetId();
+    let range = sheet.getDataRange().getA1Notation();
+
+    let request = 'https://docs.google.com/spreadsheets/d/' + spreadsheet_id + '/gviz/tq?gid=' + sheetId + '&range=' + range + '&tq=' + encodeURIComponent(spreadsheet_sql);
+    let result = UrlFetchApp.fetch(request).getContentText();
+
+    let dataFrom = result.indexOf('"table":{');
+    let dataTo   = result.lastIndexOf(',"parsedNumHeaders"')+1;  
+    let jsonText = "{"+result.slice(dataFrom+9, dataTo-1)+"}"; 
+    return jsonText;
+  } catch (error) {
+    return 'Error executing SQL: ' + error;
+  }
+}
+
+function spreadsheetsql_QueryResponse(data) {
+  let spreadsheetsql_response = [];
+  let arr = [];
+  let res = JSON.parse(data);  //有問題暫不使用
+
+  try {
+
+    arr.push("<table>");
+    spreadsheetsql_response.push(arr);
+    arr = [];    
+
+    let cols = res.cols;
+    if (cols) {
+      arr.push("<tr>");      
+      for (let i = 0; i < cols.length; i++) {
+        if (cols[i].label)
+          arr.push("<td>" + cols[i].label + "</td>");
+        else
+          arr.push("<td>" + cols[i].id + "</td>");
+      }
+      arr.push("</tr>");
+      spreadsheetsql_response.push(arr);
+      arr = [];
+    }
+
+    let rows = res.rows;
+    if (rows) {
+      for (let i = 0; i < rows.length; i++) {
+        arr.push("<tr>");
+        for (let j = 0; j < rows[i].c.length; j++) {
+          if (rows[i].c[j]) {
+            if (rows[i].c[j].v !== undefined) {
+              arr.push((rows[i].c[j].f !== undefined) ? "<td>"+rows[i].c[j].f+"</td>" : "<td>"+rows[i].c[j].v+"</td>");
+            } else
+              arr.push("");
+          } else
+            arr.push("");
+        }
+        arr.push("</tr>");
+        spreadsheetsql_response.push(arr);
+        arr = [];
+      }
+    }
+    arr.push("</table>");
+    spreadsheetsql_response.push(arr);
+    arr = [];     
+    
+  } catch (error) {
+    return 'Error getting SQL data: ' + error;
+  }  
+
+  return spreadsheetsql_response;
 }
 
 function replyErrorMessage(replyToken) {
