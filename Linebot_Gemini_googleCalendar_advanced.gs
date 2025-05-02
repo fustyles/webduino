@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/5/2 12:30
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/5/2 13:00
 https://www.facebook.com/francefu
 */
 
@@ -12,16 +12,16 @@ const GEMINI_ASSISTANT_BEHAVIOR = `
 請依照以下規範：\n
 (1) 請判別使用者對話內容屬於以下哪一種類別：【新增行事曆、記帳、查帳、聊天】，回傳陣列資料。\n
 (2) \n
-1. 如果類別為"新增行事曆(calendar)"且對話內容包含日期、時間、持續時間、事項，請回傳json陣列資料，格式如下：\n
+1. 如果類別為"新增行事曆(type:calendar)"且對話內容包含日期、時間、持續時間、事項，請回傳json陣列資料，格式如下：\n
 [{"type":"calendar", "date":"填入日期轉換為 'YYYY-MM-DD' 格式", "time":"填入時間轉換為 'HH:MM:00' 格式", "duration":"持續幾小時，預設為1","workMatter":"事項內容"}, ...]\n
 資料格式示範： [{"type":"calendar", "date":"2025-05-01", "time":"12:00:00", "duration":1, "workMatter":"吃海鮮大餐！"}, {"type":"calendar", "date":"2025-05-02", "time":"10:30:00", "duration":1, "workMatter":"去打球！"}, ...]\n
-2. 如果類別為"記帳(accounting)"且對話內容包含時間、類別【飲食、交通、居住、娛樂、健康與醫療、個人用品、教育、其他】、金額，請回傳json陣列資料，格式如下：\n
+2. 如果類別為"記帳(type:accounting)"且對話內容包含時間、類別【飲食、交通、居住、娛樂、健康與醫療、個人用品、教育、其他】、金額，請回傳json陣列資料，格式如下：\n
 [{"type":"accounting", "time":"轉換為 'YYYY-MM-DD HH:MM:00' 格式","money":"消費金額","summary":"消費摘要"}, ...]\n
 資料格式示範： [{"type":"accounting", "class":"飲食", "time":"2025-05-01 12:00:00", "money":1000, "summary":"吃海鮮大餐！"}, {"type":"accounting", "class":"交通", "time":"2025-05-02 10:30:00", "money":200, "summary":"搭計程車"}, ...]\n
-3. 如果類別為"查帳(audit)"且對話內容包含起訖日期，請回傳json陣列資料，格式如下：\n
+3. 如果類別為"查帳(type:audit)"且對話內容包含起訖日期，請回傳json陣列資料，格式如下：\n
 [{"type":"audit", "startDate":"轉換為 'YYYY-MM-DD' 格式", "endDate":"轉換為 'YYYY-MM-DD' 格式"}]\n
 資料格式示範： [{"type":"audit", "startDate":"2025-05-01", "endDate":"2025-05-02"}]\n
-4. 如果類別判斷屬於"聊天(chat)"，請回傳json陣列資料，格式如下：\n
+4. 如果類別判斷屬於"聊天(type:chat)"，請回傳json陣列資料，格式如下：\n
 [{"type":"chat", "response":"依據使用者的對話內容回覆，最後換兩行提醒是否要新增行事曆、記帳、查帳，並說明所需要的資料以及提醒在對話中要聲明。"}]\n
 (3) 若沒有提及年份，則表示今年。\n
 (4) 若沒有提及月份，則表示本月。\n
@@ -96,8 +96,10 @@ function doPost(e) {
                       else if (data[i].type=="audit") {
                           let sql = "select A,sum(C) where B>= date'"+data[i].startDate+"' and B<= date '"+data[i].endDate+"' group by A";
                           let jsonData = spreadsheetsql_executeSql(sql, GOOGLE_SPREADSHEET_ID, GOOGLE_SPREADSHEET_NAME);
-                          let geminiMessages = [{ "role": "user", "parts": [{ "text": "請整理以下資料回應使用者明細清單：\nSQL語法："+sql+"\nSQL資料：" + jsonData + "\n\n回傳資料格式示範：日期：2025/5/1 - 2025/5/2\n娛樂 1000元\n交通 3000元\n...\n\n不要多做解釋！"}] }];
-                          response = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages).replace(/```json|```/g, "").trim();                           
+                          response = jsonData;
+                          let geminiMessages = [{ "role": "user", "parts": [{ "text": "請整理以下資料回應使用者明細清單：\nSQL語法："+sql+"\nSQL資料：" 
+                           + jsonData + "\n\n回傳資料格式示範：日期：2025/5/1 - 2025/5/2\n娛樂 1000元\n交通 3000元\n...\n\n不要多做解釋！"}] }];
+                          response = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages).replace(/```json|```/g, "").trim();                      
                       }
                       else if (data[i].type=="chat") {
                         response = data[i].response;                    
@@ -261,7 +263,7 @@ function spreadsheetsql_executeSql(spreadsheet_sql, spreadsheet_id, spreadsheet_
     let dataFrom = result.indexOf('"table":{');
     let dataTo   = result.lastIndexOf(',"parsedNumHeaders"')+1;  
     let jsonText = "{"+result.slice(dataFrom+9, dataTo-1)+"}"; 
-    return jsonText;
+    return spreadsheetsql_QueryResponse(jsonText);
   } catch (error) {
     return 'Error executing SQL: ' + error;
   }
@@ -269,56 +271,45 @@ function spreadsheetsql_executeSql(spreadsheet_sql, spreadsheet_id, spreadsheet_
 
 function spreadsheetsql_QueryResponse(data) {
   let spreadsheetsql_response = [];
-  let arr = [];
-  let res = JSON.parse(data.replace(/\r\n/g, '\\r\\n').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, ' '));  //有問題暫不使用
+  let res = JSON.parse(data.replace(/\r\n/g, '\\r\\n').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, ' '));
 
   try {
-
-    arr.push("<table>");
-    spreadsheetsql_response.push(arr);
-    arr = [];    
+    spreadsheetsql_response.push("<table>");
 
     let cols = res.cols;
     if (cols) {
-      arr.push("<tr>");      
+      spreadsheetsql_response.push("<th>");      
       for (let i = 0; i < cols.length; i++) {
         if (cols[i].label)
-          arr.push("<td>" + cols[i].label + "</td>");
+          spreadsheetsql_response.push("<td>" + cols[i].label + "</td>");
         else
-          arr.push("<td>" + cols[i].id + "</td>");
+          spreadsheetsql_response.push("<td>" + cols[i].id + "</td>");
       }
-      arr.push("</tr>");
-      spreadsheetsql_response.push(arr);
-      arr = [];
+      spreadsheetsql_response.push("</th>");
     }
 
     let rows = res.rows;
     if (rows) {
       for (let i = 0; i < rows.length; i++) {
-        arr.push("<tr>");
+        spreadsheetsql_response.push("<tr>");
         for (let j = 0; j < rows[i].c.length; j++) {
           if (rows[i].c[j]) {
             if (rows[i].c[j].v !== undefined) {
-              arr.push((rows[i].c[j].f !== undefined) ? "<td>"+rows[i].c[j].f+"</td>" : "<td>"+rows[i].c[j].v+"</td>");
+              spreadsheetsql_response.push((rows[i].c[j].f !== undefined) ? "<td>"+rows[i].c[j].f+"</td>" : "<td>"+rows[i].c[j].v+"</td>");
             } else
-              arr.push("");
+              spreadsheetsql_response.push("");
           } else
-            arr.push("");
+            spreadsheetsql_response.push("");
         }
-        arr.push("</tr>");
-        spreadsheetsql_response.push(arr);
-        arr = [];
+        spreadsheetsql_response.push("</tr>");
       }
     }
-    arr.push("</table>");
-    spreadsheetsql_response.push(arr);
-    arr = [];     
-    
+    spreadsheetsql_response.push("</table>");  
   } catch (error) {
     return 'Error getting SQL data: ' + error;
   }  
 
-  return spreadsheetsql_response;
+  return spreadsheetsql_response.join("");
 }
 
 function replyErrorMessage(replyToken) {
