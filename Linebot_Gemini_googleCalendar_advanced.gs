@@ -99,7 +99,7 @@ function doPost(e) {
                           response = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages).replace(/```json|```/g, "").trim();                           
                       }
                       else if (data[i].type=="chat") {
-                        response = data[i].response.replace(/<br>/g, "\n");                    
+                        response = data[i].response;                    
                       }                                                                    
                     }
                     let replyMessage = [{
