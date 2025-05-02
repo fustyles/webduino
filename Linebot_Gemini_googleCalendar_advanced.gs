@@ -61,7 +61,7 @@ function doPost(e) {
                         let date = data[i].date; // 預期格式：'YYYY-MM-DD'
                         let time = data[i].time; // 預期格式：'HH:MM:00'
                         let duration = data[i].duration; // 預期格式：1
-                        let workMatter = data[i].workMatter.replace(/<br>/g, "\n"); // 預期格式：文字敘述
+                        let workMatter = data[i].workMatter; // 預期格式：文字敘述
                         response += `項目${i+1}\n行程：${workMatter}\n時間：${date} ${time}\n時數：${duration}\n\n`;
                         
                         let eventDateTime = new Date(date + 'T' + time);
@@ -81,7 +81,7 @@ function doPost(e) {
                         try {                            
                           const ss = SpreadsheetApp.openById(GOOGLE_SPREADSHEET_ID);
                           const sheet = ss.getSheetByName(GOOGLE_SPREADSHEET_NAME);
-                          const rowData = [data[i].class, data[i].time, data[i].money, data[i].summary.replace(/<br>/g, "\n")];
+                          const rowData = [data[i].class, data[i].time, data[i].money, data[i].summary];
                           sheet.appendRow(rowData);
                           response += `項目${i+1}\n類別：${data[i].class}\n時間：${data[i].time}\n金額：${data[i].money}\n摘要：${data[i].summary}\n\n`;
                         } catch (accountingError) {
