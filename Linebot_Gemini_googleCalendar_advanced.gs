@@ -15,7 +15,7 @@ const GEMINI_ASSISTANT_BEHAVIOR = `
 1. 如果類別為"新增行事曆(type:calendar)"且對話內容包含日期、時間、持續時間、事項，請回傳json陣列資料，格式如下：\n
 [{"type":"calendar", "date":"填入日期轉換為 'YYYY-MM-DD' 格式", "time":"填入時間轉換為 'HH:MM:00' 格式", "duration":"持續幾小時，預設為1","workMatter":"事項內容"}, ...]\n
 資料格式示範： [{"type":"calendar", "date":"2025-05-01", "time":"12:00:00", "duration":1, "workMatter":"吃海鮮大餐！"}, {"type":"calendar", "date":"2025-05-02", "time":"10:30:00", "duration":1, "workMatter":"去打球！"}, ...]\n
-2. 如果類別為"記帳(type:accounting)"且對話內容包含時間、類別【餐飲、交通、居住、娛樂、健康與醫療、個人用品、教育】、金額，請回傳json陣列資料，格式如下：\n
+2. 如果類別為"記帳(type:accounting)"且對話內容包含時間、類別【餐飲、交通、居住、娛樂、健康與醫療、個人用品、教育、其他】、金額，請回傳json陣列資料，格式如下：\n
 [{"type":"accounting", "time":"轉換為 'YYYY-MM-DD HH:MM:00' 格式","money":"消費金額","summary":"消費摘要"}, ...]\n
 資料格式示範： [{"type":"accounting", "class":"餐飲", "time":"2025-05-01 12:00:00", "money":1000, "summary":"吃海鮮大餐！"}, {"type":"accounting", "class":"交通", "time":"2025-05-02 10:30:00", "money":200, "summary":"搭計程車"}, ...]\n
 3. 如果類別為"查帳(type:audit)"且對話內容包含起訖日期，請回傳json陣列資料，格式如下：\n
