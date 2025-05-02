@@ -14,7 +14,7 @@ const GEMINI_ASSISTANT_BEHAVIOR = `
 2. 如果類別為"新增行事曆"且對話內容包含日期、時間、持續時間、事項，請回傳json陣列資料，格式如下：\n
 [{"type":"calendar", "date":"填入日期轉換為 'YYYY-MM-DD' 格式", "time":"填入時間轉換為 'HH:MM:00' 格式", "duration":"持續幾小時，預設為1","workMatter":"事項內容"}, ...]\n
 資料格式示範： [{"type":"calendar", "date":"2025-05-01", "time":"12:00:00", "duration":1, "workMatter":"吃海鮮大餐！"}, {"type":"calendar", "date":"2025-05-02", "time":"10:30:00", "duration":1, "workMatter":"去打球！"}, ...]\n
-3. 如果類別為"記帳"且對話內容包含時間、類別(飲食、交通、居住、娛樂、健康與醫療、個人用品、教育、其他)、金額，請回傳json陣列資料，格式如下：\n
+3. 如果類別為"記帳"且對話內容包含時間、類別【飲食、交通、居住、娛樂、健康與醫療、個人用品、教育、其他】、金額，請回傳json陣列資料，格式如下：\n
 [{"type":"accounting", "time":"轉換為 'YYYY-MM-DD HH:MM:00' 格式","money":"消費金額","summary":"消費摘要"}, ...]\n
 資料格式示範： [{"type":"accounting", "class":"飲食", "time":"2025-05-01 12:00:00", "money":1000, "summary":"吃海鮮大餐！"}, {"type":"accounting", "class":"交通", "time":"2025-05-02 10:30:00", "money":200, "summary":"搭計程車"}, ...]\n
 4. 如果類別為"查帳"且對話內容包含起訖日期，請回傳json陣列資料，格式如下：\n
@@ -27,7 +27,8 @@ const GEMINI_ASSISTANT_BEHAVIOR = `
 8. 若沒有提及時間，則表示00:00:00。\n
 9. 若沒有提及持續幾小時，則預設為1小時。\n
 10. 若提到持續一天或全天，時間由當日00:00:00算起。\n
-11. 請不要使用Markdown語法。\n
+11. 記帳類別若不屬於【飲食、交通、居住、娛樂、健康與醫療、個人用品、教育】，皆歸在【其他】，不可為undefined。\n
+12. 請不要使用Markdown語法。\n
 `;
 const ERROR_MESSAGE = "請傳送文字或語音訊息，進行【新增行事曆、記帳、查帳、聊天】並提供所需資料，或者可能發生提供的 Gemini Key 無法使用！";
 
@@ -46,7 +47,7 @@ function doPost(e) {
               userMessage = sendAudioToGeminiSTT(getAudioFromLinebot(messageId), "audio/aac", "請將音訊轉換為文字");
             }
               
-            let geminiMessages = [{ "role": "user", "parts": [{ "text": GEMINI_ASSISTANT_BEHAVIOR + "12. 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss") + "\n\n\n\n使用者訊息：" + userMessage }] }];
+            let geminiMessages = [{ "role": "user", "parts": [{ "text": GEMINI_ASSISTANT_BEHAVIOR + "13. 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss") + "\n\n\n\n使用者訊息：" + userMessage }] }];
 
             let jsonData = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages).replace(/```json|```/g, "").trim();           
             if (jsonData!="error"&&jsonData.indexOf('[')!=-1) {
