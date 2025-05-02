@@ -10,9 +10,9 @@ const GOOGLE_SPREADSHEET_NAME = "xxxxx";
 
 const GEMINI_ASSISTANT_BEHAVIOR = `
 請依照以下規範：\n
-1. 請判別使用者對話內容屬於以下哪一種類別：【新增行事曆、記帳、查帳、聊天】，回傳陣列資料。\n
+1. 請判別使用者對話內容屬於以下哪一種類別：【行事曆新增、記帳、查帳、聊天】，回傳陣列資料。\n
 2. \n
-(1) 如果類別為"新增行事曆(type:calendar)"且對話內容包含日期、時間、持續時間、事項，請回傳json陣列資料，格式如下：\n
+(1) 如果類別為"行事曆新增(type:calendar)"且對話內容包含日期、時間、持續時間、事項，請回傳json陣列資料，格式如下：\n
 [{"type":"calendar", "date":"填入日期轉換為 'YYYY-MM-DD' 格式", "time":"填入時間轉換為 'HH:MM:00' 格式", "duration":"持續幾小時，預設為1","workMatter":"事項內容"}, ...]\n
 資料格式示範： [{"type":"calendar", "date":"2025-05-01", "time":"12:00:00", "duration":1, "workMatter":"吃海鮮大餐！"}, {"type":"calendar", "date":"2025-05-02", "time":"10:30:00", "duration":1, "workMatter":"去打球！"}, ...]\n
 (2) 如果類別為"記帳(type:accounting)"且對話內容包含時間、分類、金額，請回傳json陣列資料，格式如下：\n
@@ -31,7 +31,7 @@ const GEMINI_ASSISTANT_BEHAVIOR = `
 7. 若提到持續一天或全天，時間由當日00:00:00算起。\n
 8. 請不要使用Markdown語法。\n
 `;
-const ERROR_MESSAGE = "請傳送文字或語音訊息，進行【新增行事曆、記帳、查帳、聊天】並提供所需資料，或者可能發生提供的 Gemini Key 無法使用！";
+const ERROR_MESSAGE = "請傳送文字或語音訊息，進行【行事曆新增、記帳、查帳、聊天】並提供所需資料，或者可能發生提供的 Gemini Key 無法使用！";
 
 function doPost(e) {
     if (e.postData) {
