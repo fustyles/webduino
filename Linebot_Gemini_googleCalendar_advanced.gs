@@ -15,7 +15,7 @@ const GEMINI_ASSISTANT_BEHAVIOR = `
 1. 如果類別為"新增行事曆(type:calendar)"且對話內容包含日期、時間、持續時間、事項，請回傳json陣列資料，格式如下：\n
 [{"type":"calendar", "date":"填入日期轉換為 'YYYY-MM-DD' 格式", "time":"填入時間轉換為 'HH:MM:00' 格式", "duration":"持續幾小時，預設為1","workMatter":"事項內容"}, ...]\n
 資料格式示範： [{"type":"calendar", "date":"2025-05-01", "time":"12:00:00", "duration":1, "workMatter":"吃海鮮大餐！"}, {"type":"calendar", "date":"2025-05-02", "time":"10:30:00", "duration":1, "workMatter":"去打球！"}, ...]\n
-2. 如果類別為"記帳(type:accounting)"且對話內容包含時間、類別【飲食、交通、居住、娛樂、健康與醫療、個人用品、教育、其他】、金額，請回傳json陣列資料，格式如下：\n
+2. 如果類別為"記帳(type:accounting)"且對話內容包含時間、類別【飲食、交通、居住、娛樂、健康與醫療、個人用品、教育】、金額，請回傳json陣列資料，格式如下：\n
 [{"type":"accounting", "time":"轉換為 'YYYY-MM-DD HH:MM:00' 格式","money":"消費金額","summary":"消費摘要"}, ...]\n
 資料格式示範： [{"type":"accounting", "class":"飲食", "time":"2025-05-01 12:00:00", "money":1000, "summary":"吃海鮮大餐！"}, {"type":"accounting", "class":"交通", "time":"2025-05-02 10:30:00", "money":200, "summary":"搭計程車"}, ...]\n
 3. 如果類別為"查帳(type:audit)"且對話內容包含起訖日期，請回傳json陣列資料，格式如下：\n
@@ -28,8 +28,7 @@ const GEMINI_ASSISTANT_BEHAVIOR = `
 (5) 若沒有提及時間，則表示00:00:00。\n
 (6) 若沒有提及持續幾小時，則預設為1小時。\n
 (7) 若提到持續一天或全天，時間由當日00:00:00算起。\n
-(8) 記帳類別若不屬於【飲食、交通、居住、娛樂、健康與醫療、個人用品、教育】，皆歸在【其他】，不可為undefined。\n
-(9) 請不要使用Markdown語法。\n
+(8) 請不要使用Markdown語法。\n
 `;
 const ERROR_MESSAGE = "請傳送文字或語音訊息，進行【新增行事曆、記帳、查帳、聊天】並提供所需資料，或者可能發生提供的 Gemini Key 無法使用！";
 
@@ -48,7 +47,7 @@ function doPost(e) {
               userMessage = sendAudioToGeminiSTT(getAudioFromLinebot(messageId), "audio/aac", "請將音訊轉換為文字");
             }
               
-            let geminiMessages = [{ "role": "user", "parts": [{ "text": GEMINI_ASSISTANT_BEHAVIOR + "(10) 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss") + "\n\n\n\n使用者訊息：" + userMessage }] }];
+            let geminiMessages = [{ "role": "user", "parts": [{ "text": GEMINI_ASSISTANT_BEHAVIOR + "(9) 現在時間為" + Utilities.formatDate(new Date(), "GMT+8", "yyyy/MM/dd HH:mm:ss") + "\n\n\n\n使用者訊息：" + userMessage }] }];
 
             let jsonData = sendMessageToGeminiChat(GEMINI_API_KEY, geminiMessages).replace(/```json|```/g, "").trim();           
             if (jsonData!="error"&&jsonData.indexOf('[')!=-1) {
@@ -86,7 +85,7 @@ function doPost(e) {
                           const sheet = ss.getSheetByName(GOOGLE_SPREADSHEET_NAME);
                           const rowData = [data[i].class, data[i].time, data[i].money, data[i].summary];
                           sheet.appendRow(rowData);
-                          response += `項目${i+1}\n類別：${data[i].class}\n時間：${data[i].time}\n金額：${data[i].money}\n摘要：${data[i].summary}\n\n`;
+                          response += `項目${i+1}\n類別：${data[i].class?data[i].class:"其他"}\n時間：${data[i].time}\n金額：${data[i].money}\n摘要：${data[i].summary}\n\n`;
                         } catch (accountingError) {
                             let replyMessage = [{
                                 "type":"text",
@@ -266,53 +265,53 @@ function spreadsheetsql_executeSql(spreadsheet_sql, spreadsheet_id, spreadsheet_
     let dataFrom = result.indexOf('"table":{');
     let dataTo   = result.lastIndexOf(',"parsedNumHeaders"')+1;  
     let jsonText = "{"+result.slice(dataFrom+9, dataTo-1)+"}"; 
-    return spreadsheetsql_QueryResponse(jsonText);
+    return spreadsheetsql_formatResponse(jsonText);
   } catch (error) {
     return 'Error executing SQL: ' + error;
   }
 }
 
-function spreadsheetsql_QueryResponse(data) {
-  let spreadsheetsql_response = [];
+function spreadsheetsql_formatResponse(data) {
+  let response = [];
   let res = JSON.parse(data.replace(/\r\n/g, '\\r\\n').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, ' '));
 
   try {
-    spreadsheetsql_response.push("<table>");
+    response.push("<table>");
 
     let cols = res.cols;
     if (cols) {
-      spreadsheetsql_response.push("<th>");      
+      response.push("<th>");      
       for (let i = 0; i < cols.length; i++) {
         if (cols[i].label)
-          spreadsheetsql_response.push("<td>" + cols[i].label + "</td>");
+          response.push("<td>" + cols[i].label + "</td>");
         else
-          spreadsheetsql_response.push("<td>" + cols[i].id + "</td>");
+          response.push("<td>" + cols[i].id + "</td>");
       }
-      spreadsheetsql_response.push("</th>");
+      response.push("</th>");
     }
 
     let rows = res.rows;
     if (rows) {
       for (let i = 0; i < rows.length; i++) {
-        spreadsheetsql_response.push("<tr>");
+        response.push("<tr>");
         for (let j = 0; j < rows[i].c.length; j++) {
           if (rows[i].c[j]) {
             if (rows[i].c[j].v !== undefined) {
-              spreadsheetsql_response.push((rows[i].c[j].f !== undefined) ? "<td>"+rows[i].c[j].f+"</td>" : "<td>"+rows[i].c[j].v+"</td>");
+              response.push((rows[i].c[j].f !== undefined) ? "<td>"+rows[i].c[j].f+"</td>" : "<td>"+rows[i].c[j].v+"</td>");
             } else
-              spreadsheetsql_response.push("");
+              response.push("");
           } else
-            spreadsheetsql_response.push("");
+            response.push("");
         }
-        spreadsheetsql_response.push("</tr>");
+        response.push("</tr>");
       }
     }
-    spreadsheetsql_response.push("</table>");  
+    response.push("</table>");  
   } catch (error) {
     return 'Error getting SQL data: ' + error;
   }  
 
-  return spreadsheetsql_response.join("");
+  return response.join("");
 }
 
 function replyErrorMessage(replyToken) {
