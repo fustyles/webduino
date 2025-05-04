@@ -1,5 +1,5 @@
 /*
-Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/5/4 19:45
+Author : ChungYi Fu (Kaohsiung, Taiwan)   2025/5/4 23:30
 https://www.facebook.com/francefu
 */
 
@@ -65,12 +65,15 @@ function doPost(e) {
                         let time = data[i].time; // 預期格式：'HH:MM:00'
                         let duration = data[i].duration; // 預期格式：1
                         let workMatter = data[i].workMatter; // 預期格式：文字敘述
-                        response += `行事曆 ${i+1}\n行程：${workMatter}\n時間：${date} ${time}\n時數：${duration}\n\n`;
+                        response += `行事曆 ${i+1}\n行程：${workMatter}\n時間：${date} ${time}\n時數：${duration}\n`;
                         
                         let eventDateTime = new Date(date + 'T' + time);
                         let calendar = CalendarApp.getDefaultCalendar();
                         try {
-                          calendar.createEvent(workMatter, eventDateTime, new Date(eventDateTime.getTime() + Number(duration) * 60 * 60 * 1000));                            
+                          let event = calendar.createEvent(workMatter, eventDateTime, new Date(eventDateTime.getTime() + Number(duration) * 60 * 60 * 1000));
+                          let eventId = Utilities.base64Encode(event.getId().split('@')[0] + " " + event.getOriginalCalendarId()).replace(/\=/g, '');
+                          let eventLink = `https://www.google.com/calendar/event?eid=${eventId}`;
+                          response += `查閱: ${eventLink}\n\n`;
                         } catch (calendarError) {
                           let message = jsonData + "\n\n行事曆建立失敗，請檢查日期時間格式或權限設定！\n錯誤訊息：" + calendarError;
                           replyMessageToLinebot(replyToken, message);
@@ -83,7 +86,6 @@ function doPost(e) {
                           const sheet = ss.getSheetByName(GOOGLE_SPREADSHEET_NAME);
                           const rowData = [data[i].class, data[i].time, data[i].money, data[i].summary];
                           sheet.appendRow(rowData);
-
                           response += `記帳 ${i+1}\n類別：${data[i].class?data[i].class:"其他"}\n時間：${data[i].time}\n金額：${data[i].money}\n摘要：${data[i].summary}\n\n`;
                         } catch (accountingError) {
                           let message = jsonData + "\n\n記帳新增失敗，請檢查資料格式是否正確！\n錯誤訊息：" + accountingError;
