@@ -83,6 +83,7 @@ function doPost(e) {
                           const sheet = ss.getSheetByName(GOOGLE_SPREADSHEET_NAME);
                           const rowData = [data[i].class, data[i].time, data[i].money, data[i].summary];
                           sheet.appendRow(rowData);
+
                           response += `記帳 ${i+1}\n類別：${data[i].class?data[i].class:"其他"}\n時間：${data[i].time}\n金額：${data[i].money}\n摘要：${data[i].summary}\n\n`;
                         } catch (accountingError) {
                           let message = jsonData + "\n\n記帳新增失敗，請檢查資料格式是否正確！\n錯誤訊息：" + accountingError;
