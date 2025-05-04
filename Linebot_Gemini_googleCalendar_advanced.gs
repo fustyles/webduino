@@ -23,7 +23,7 @@ const GEMINI_ASSISTANT_BEHAVIOR = `
 [{"type":"audit", "startDate":"轉換為 'YYYY-MM-DD' 格式", "endDate":"轉換為 'YYYY-MM-DD' 格式"}]\n
 資料格式示範： [{"type":"audit", "startDate":"2025-05-01", "endDate":"2025-05-02"}]\n
 (4) 如果類別判斷屬於"聊天(type:chat)"，請回傳json陣列資料，格式如下：\n
-[{"type":"chat", "response":"依據使用者的對話內容回覆。"}]\n
+[{"type":"chat", "response":"依據使用者的對話內容詳細回覆。"}]\n
 3. 若沒有提及年份，則表示今年。\n
 4. 若沒有提及月份，則表示本月。\n
 5. 若沒有提及時間，則表示00:00:00。\n
