@@ -71,8 +71,8 @@ function doPost(e) {
                         let calendar = CalendarApp.getDefaultCalendar();
                         try {
                           let event = calendar.createEvent(workMatter, eventDateTime, new Date(eventDateTime.getTime() + Number(duration) * 60 * 60 * 1000));
-                          let eventId = Utilities.base64Encode(event.getId().split('@')[0] + " " + event.getOriginalCalendarId()).replace(/\=/g, '');
-                          let eventLink = `https://www.google.com/calendar/event?eid=${eventId}`;
+                          let eId = Utilities.base64Encode(event.getId().split('@')[0] + " " + event.getOriginalCalendarId()).replace(/\=/g, '');
+                          let eventLink = `https://www.google.com/calendar/event?eid=${eId}`;
                           response += `查閱: ${eventLink}\n\n`;
                         } catch (calendarError) {
                           let message = jsonData + "\n\n行事曆建立失敗，請檢查日期時間格式或權限設定！\n錯誤訊息：" + calendarError;
