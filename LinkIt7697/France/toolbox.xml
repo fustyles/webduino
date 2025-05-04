@@ -13112,16 +13112,6 @@
 	
 	<category name="RC522">
 	  <block type="RC522_initial">	
-		<value name="sda">
-		  <block type="math_number">
-			<field name="NUM">21</field>
-		  </block>
-		</value>
-		<value name="rst">
-		  <block type="math_number">
-			<field name="NUM">22</field>
-		  </block>
-		</value>
 		<value name="keya">
 		  <block type="text">
 			<field name="TEXT">0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF</field>
@@ -13133,6 +13123,18 @@
 		  </block>		
 		</value>		
 	  </block>
+	  <block type="RC522_set_pin">	
+		<value name="sda">
+		  <block type="math_number">
+			<field name="NUM">21</field>
+		  </block>
+		</value>
+		<value name="rst">
+		  <block type="math_number">
+			<field name="NUM">22</field>
+		  </block>
+		</value>		
+	  </block>	  
 	  <block type="RC522_newcard">			
 	  </block>		  
 	  <block type="RC522_connected">			

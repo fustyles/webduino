@@ -3484,6 +3484,10 @@ Blockly.Msg["RC522_BLOCK"] = "區塊";
 Blockly.Msg["RC522_WRITE_DATA"] = "寫入字串";
 Blockly.Msg["RC522_READ_DATA"] = "資料";
 Blockly.Msg["RC522_CLEAR_DATA"] = "清除資料";
+Blockly.Msg["RC522_NUMBER"] = "裝置數量";
+Blockly.Msg["RC522_PINS_NUMBER"] = "裝置數量";
+Blockly.Msg["RC522_PIN"] = "設定腳位";
+Blockly.Msg["RC522_INDEX"] = "裝置索引";
 	
 Blockly.Msg["FU_SERVO_INDEX"] = "序號(通道)";
 Blockly.Msg["FU_SERVO_PULSEWIDTH"] = "脈衝寬度";

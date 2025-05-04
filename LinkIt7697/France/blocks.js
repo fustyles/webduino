@@ -3715,7 +3715,27 @@ Blockly.Blocks['RC522_initial'] = {
   init: function() {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["RC522"])
-		.appendField(Blockly.Msg["RC522_INITIAL"]);		
+		.appendField(Blockly.Msg["RC522_INITIAL"]);	  
+	this.appendValueInput("keya")
+        .setAlign(Blockly.ALIGN_RIGHT) 	
+		.appendField(Blockly.Msg["PN532_KEYA"])
+		.setCheck("String");
+	this.appendValueInput("keyb")
+        .setAlign(Blockly.ALIGN_RIGHT) 	
+		.appendField(Blockly.Msg["PN532_KEYB"])
+		.setCheck("String");			
+	this.setInputsInline(false);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(Blockly.Msg["HUE_29"]);
+  }
+};
+
+Blockly.Blocks['RC522_set_pin'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["RC522"])
+		.appendField(Blockly.Msg["RC522_PIN"]);		
 	this.appendValueInput("sda","sda")
         .setAlign(Blockly.ALIGN_RIGHT) 		
 		.appendField("SDA")
@@ -3724,26 +3744,46 @@ Blockly.Blocks['RC522_initial'] = {
         .setAlign(Blockly.ALIGN_RIGHT) 		
 		.appendField("RST")
 		.setCheck("Number");
-	this.appendValueInput("keya")
-        .setAlign(Blockly.ALIGN_RIGHT) 	
-		.appendField(Blockly.Msg["PN532_KEYA"])
-		.setCheck("String");
-	this.appendValueInput("keyb")
-        .setAlign(Blockly.ALIGN_RIGHT) 	
-		.appendField(Blockly.Msg["PN532_KEYB"])
-		.setCheck("String");		
-	this.setInputsInline(false);
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["RC522_INDEX"])
+		.appendField(new Blockly.FieldDropdown([
+			["1","1"],		
+			["2","2"],	
+			["3","3"],
+			["4","4"],
+			["5","5"],	
+			["6","6"],
+			["7","7"],
+			["8","8"],	
+			["9","9"],
+			["10","10"]
+		]), "index");		
+	this.setInputsInline(true);
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
 	this.setColour(Blockly.Msg["HUE_29"]);
   }
-};
+};		
 
 Blockly.Blocks['RC522_newcard'] = {
   init: function() {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["RC522"])
-		.appendField(Blockly.Msg["RC522_NEWCARD"]);		
+		.appendField(Blockly.Msg["RC522_NEWCARD"]);
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["RC522_INDEX"])
+		.appendField(new Blockly.FieldDropdown([
+			["1","1"],		
+			["2","2"],	
+			["3","3"],
+			["4","4"],
+			["5","5"],	
+			["6","6"],
+			["7","7"],
+			["8","8"],	
+			["9","9"],
+			["10","10"]
+		]), "index");		
 	this.setInputsInline(true);	
 	this.setOutput(true, null); 
     this.setColour(Blockly.Msg["HUE_29"]);
@@ -3754,7 +3794,21 @@ Blockly.Blocks['RC522_connected'] = {
   init: function() {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["RC522"])
-		.appendField(Blockly.Msg["RC522_CONNECTED"]);		
+		.appendField(Blockly.Msg["RC522_CONNECTED"]);
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["RC522_INDEX"])
+		.appendField(new Blockly.FieldDropdown([
+			["1","1"],		
+			["2","2"],	
+			["3","3"],
+			["4","4"],
+			["5","5"],	
+			["6","6"],
+			["7","7"],
+			["8","8"],	
+			["9","9"],
+			["10","10"]
+		]), "index");		
 	this.setInputsInline(true);	
 	this.setOutput(true, null); 
     this.setColour(Blockly.Msg["HUE_29"]);
@@ -3765,12 +3819,26 @@ Blockly.Blocks['RC522_read'] = {
   init: function() {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["RC522"])
-		.appendField(Blockly.Msg["RC522_READ"]);
+		.appendField(Blockly.Msg["RC522_READ"]);		
 	this.appendDummyInput()
 		.appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["RC522_UID"],"uid"],
 			[Blockly.Msg["RC522_CHIP"],"chip"]			
-		]), "type");			
+		]), "type");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["RC522_INDEX"])
+		.appendField(new Blockly.FieldDropdown([
+			["1","1"],		
+			["2","2"],	
+			["3","3"],
+			["4","4"],
+			["5","5"],	
+			["6","6"],
+			["7","7"],
+			["8","8"],	
+			["9","9"],
+			["10","10"]
+		]), "index");		
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
     this.setColour(Blockly.Msg["HUE_29"]);
@@ -3780,7 +3848,7 @@ Blockly.Blocks['RC522_read'] = {
 Blockly.Blocks['RC522_write_data'] = {
   init: function() {
 	this.appendDummyInput()
-		.appendField(Blockly.Msg["RC522"]);
+		.appendField(Blockly.Msg["RC522"]);		
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["RC522_SECTOR"])
 		.appendField(new Blockly.FieldDropdown([
@@ -3810,7 +3878,21 @@ Blockly.Blocks['RC522_write_data'] = {
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["RC522_WRITE_DATA"]);		
 	this.appendValueInput("data")
-		.setCheck("String");		
+		.setCheck("String");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["RC522_INDEX"])
+		.appendField(new Blockly.FieldDropdown([
+			["1","1"],		
+			["2","2"],	
+			["3","3"],
+			["4","4"],
+			["5","5"],	
+			["6","6"],
+			["7","7"],
+			["8","8"],	
+			["9","9"],
+			["10","10"]
+		]), "index");		
 	this.setInputsInline(true);
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
@@ -3821,7 +3903,7 @@ Blockly.Blocks['RC522_write_data'] = {
 Blockly.Blocks['RC522_read_data'] = {
   init: function() {
 	this.appendDummyInput()
-		.appendField(Blockly.Msg["RC522"]);
+		.appendField(Blockly.Msg["RC522"]);		
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["RC522_SECTOR"])
 		.appendField(new Blockly.FieldDropdown([
@@ -3849,7 +3931,21 @@ Blockly.Blocks['RC522_read_data'] = {
 			["2","2"]		
 		]), "block_");
 	this.appendDummyInput()
-		.appendField(Blockly.Msg["RC522_READ_DATA"]);		
+		.appendField(Blockly.Msg["RC522_READ_DATA"]);	
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["RC522_INDEX"])
+		.appendField(new Blockly.FieldDropdown([
+			["1","1"],		
+			["2","2"],	
+			["3","3"],
+			["4","4"],
+			["5","5"],	
+			["6","6"],
+			["7","7"],
+			["8","8"],	
+			["9","9"],
+			["10","10"]
+		]), "index");		
 	this.setInputsInline(true);	
 	this.setOutput(true, null); 
     this.setColour(Blockly.Msg["HUE_29"]);
@@ -3859,7 +3955,7 @@ Blockly.Blocks['RC522_read_data'] = {
 Blockly.Blocks['RC522_clear_data'] = {
   init: function() {
 	this.appendDummyInput()
-		.appendField(Blockly.Msg["RC522"]);
+		.appendField(Blockly.Msg["RC522"]);		
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["RC522_SECTOR"])
 		.appendField(new Blockly.FieldDropdown([
@@ -3888,6 +3984,20 @@ Blockly.Blocks['RC522_clear_data'] = {
 		]), "block_");
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["RC522_CLEAR_DATA"]);
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["RC522_INDEX"])
+		.appendField(new Blockly.FieldDropdown([
+			["1","1"],		
+			["2","2"],	
+			["3","3"],
+			["4","4"],
+			["5","5"],	
+			["6","6"],
+			["7","7"],
+			["8","8"],	
+			["9","9"],
+			["10","10"]
+		]), "index");		
 	this.setInputsInline(true);
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
@@ -3898,7 +4008,7 @@ Blockly.Blocks['RC522_clear_data'] = {
 Blockly.Blocks['RC522_clear_sector_data'] = {
   init: function() {
 	this.appendDummyInput()
-		.appendField(Blockly.Msg["RC522"]);
+		.appendField(Blockly.Msg["RC522"]);		
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["RC522_SECTOR"])
 		.appendField(new Blockly.FieldDropdown([
@@ -3939,6 +4049,20 @@ Blockly.Blocks['RC522_clear_sector_data'] = {
 		]), "sector2");		
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["RC522_CLEAR_DATA"]);
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["RC522_INDEX"])
+		.appendField(new Blockly.FieldDropdown([
+			["1","1"],		
+			["2","2"],	
+			["3","3"],
+			["4","4"],
+			["5","5"],	
+			["6","6"],
+			["7","7"],
+			["8","8"],	
+			["9","9"],
+			["10","10"]
+		]), "index");		
 	this.setInputsInline(true);
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);

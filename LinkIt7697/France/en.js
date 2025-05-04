@@ -3475,6 +3475,10 @@ Blockly.Msg["RC522_BLOCK"] = "Block";
 Blockly.Msg["RC522_WRITE_DATA"] = "Write data";
 Blockly.Msg["RC522_READ_DATA"] = "Read data";
 Blockly.Msg["RC522_CLEAR_DATA"] = "Clear data";
+Blockly.Msg["RC522_NUMBER"] = "Number of devices"; 
+Blockly.Msg["RC522_PINS_NUMBER"] = "Number of devices"; 
+Blockly.Msg["RC522_PIN"] = "Set pin"; 
+Blockly.Msg["RC522_INDEX"] = "Device index";
 
 Blockly.Msg["FU_SERVO_INDEX"] = "index";
 Blockly.Msg["FU_SERVO_DEFAULT"] = "default";

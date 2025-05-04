@@ -3414,8 +3414,6 @@ Blockly.Arduino['amb82_mini_facedetection_rtsp_point'] = function(block) {
 Blockly.Arduino['RC522_initial'] = function(block) {
 	var keya = Blockly.Arduino.valueToCode(block, 'keya', Blockly.Arduino.ORDER_ATOMIC)||"0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF";
 	var keyb = Blockly.Arduino.valueToCode(block, 'keyb', Blockly.Arduino.ORDER_ATOMIC)||"0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF";
-	var sda = Blockly.Arduino.valueToCode(block, 'sda', Blockly.Arduino.ORDER_ATOMIC)||21;
-	var rst = Blockly.Arduino.valueToCode(block, 'rst', Blockly.Arduino.ORDER_ATOMIC)||22;
 	
 	if ((keya.indexOf("'")==0)&&(keya.lastIndexOf("'")==keya.length-1))
 		keya = keya.substring(1,keya.length-1);
@@ -3426,13 +3424,11 @@ Blockly.Arduino['RC522_initial'] = function(block) {
 	if ((keyb.indexOf('"')==0)&&(keyb.lastIndexOf('"')==keyb.length-1))
 		keyb = keyb.substring(1,keyb.length-1);	
 	
-	Blockly.Arduino.definitions_['RC522_initial'] = '#include <Wire.h>\n#include <SPI.h>\n#include <MFRC522.h>\n#define SS_PIN '+sda+'\n#define RST_PIN '+rst+'\nMFRC522 rfid(SS_PIN, RST_PIN);\nbyte nuidPICC[4] = {0xFF, 0xFF, 0xFF, 0xFF};\nMFRC522::MIFARE_Key keyA = {'+keya+'};\nMFRC522::MIFARE_Key keyB = {'+keyb+'};\nString RC522_UID = "";\n';
-	Blockly.Arduino.setups_['RC522_initial'] = ''
-		+'SPI.begin();\n'
-		+'  rfid.PCD_Init();\n';
+	Blockly.Arduino.definitions_['RC522_initial'] = '#include <Wire.h>\n#include <SPI.h>\n#include <MFRC522.h>\nbyte nuidPICC[4] = {0xFF, 0xFF, 0xFF, 0xFF};\nMFRC522::MIFARE_Key keyA = {'+keya+'};\nMFRC522::MIFARE_Key keyB = {'+keyb+'};\nString RC522_UID = "";\n';
+	Blockly.Arduino.setups_['RC522_initial'] = '  SPI.begin();';
 								
 	Blockly.Arduino.definitions_['RC522_readInfo'] = ''
-		+'String RC522_readInfo(String type) {\n'
+		+'String RC522_readInfo(MFRC522 rfid, String type) {\n'
 		+'  String response = "";\n'
 		+'  if (type=="chip") {\n'
 		+'  	MFRC522::PICC_Type piccType = rfid.PICC_GetType(rfid.uid.sak);\n'
@@ -3456,8 +3452,8 @@ Blockly.Arduino['RC522_initial'] = function(block) {
 		+'}';
 
 	Blockly.Arduino.definitions_['RC522_writedata'] = ''
-		+'void RC522_writeData(int sectorAddr, int blockAddr, String text) {\n'
-		+'  if (RC522_readInfo("uid") != "") {\n'
+		+'void RC522_writeData(MFRC522 rfid, int sectorAddr, int blockAddr, String text) {\n'
+		+'  if (RC522_readInfo(rfid, "uid") != "") {\n'
 		+'    MFRC522::StatusCode status;\n'
 		+'    int trailerBlock = sectorAddr*4+3;\n'
 		+'    status = (MFRC522::StatusCode) rfid.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_B, trailerBlock, &keyB, &(rfid.uid));\n'
@@ -3480,8 +3476,8 @@ Blockly.Arduino['RC522_initial'] = function(block) {
 		+'}';
 		
 	Blockly.Arduino.definitions_['RC522_readdata'] = ''
-		+'String RC522_readData(int sectorAddr, int blockAddr) {\n'
-		+'  if (RC522_readInfo("uid") != "") {\n'
+		+'String RC522_readData(MFRC522 rfid, int sectorAddr, int blockAddr) {\n'
+		+'  if (RC522_readInfo(rfid, "uid") != "") {\n'
 		+'    byte trailerBlock = sectorAddr*4+3;\n'
 		+'    MFRC522::StatusCode status;\n'
 		+'    byte buffer[18];\n'
@@ -3514,56 +3510,74 @@ Blockly.Arduino['RC522_initial'] = function(block) {
     return code;
 };
 
+Blockly.Arduino['RC522_set_pin'] = function(block) {
+	var index = block.getFieldValue('index');
+	var sda = Blockly.Arduino.valueToCode(block, 'sda', Blockly.Arduino.ORDER_ATOMIC);
+	var rst = Blockly.Arduino.valueToCode(block, 'rst', Blockly.Arduino.ORDER_ATOMIC);
+
+	Blockly.Arduino.definitions_['RC522_device'+index+'_pin'] = 'MFRC522 rfid'+index+'('+sda+', '+rst+');';
+	Blockly.Arduino.setups_['RC522_device'+index+'_pin'] = 'rfid'+index+'.PCD_Init();';	
+							
+    var code = '' ;
+    return code;
+};
+
 Blockly.Arduino['RC522_newcard'] = function(block) {
-    var code = 'rfid.PICC_IsNewCardPresent()' ;
+	var index = block.getFieldValue('index');	
+    var code = 'rfid'+index+'.PICC_IsNewCardPresent()' ;
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['RC522_connected'] = function(block) {
-    var code = 'rfid.PICC_ReadCardSerial()' ;
+	var index = block.getFieldValue('index');	
+    var code = 'rfid'+index+'.PICC_ReadCardSerial()' ;
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
-Blockly.Arduino['RC522_read'] = function(block) {	
+Blockly.Arduino['RC522_read'] = function(block) {
+	var index = block.getFieldValue('index');	
 	var type = block.getFieldValue('type');
-
 					
-    var code = 'RC522_readInfo("'+type+'")' ;
+    var code = 'RC522_readInfo(rfid'+index+', "'+type+'")' ;
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['RC522_write_data'] = function(block) {
+	var index = block.getFieldValue('index');	
 	var sector_ = Number(block.getFieldValue('sector_'))||2;
 	var block_ = Number(block.getFieldValue('block_'))||0;
 	var data = Blockly.Arduino.valueToCode(block, 'data', Blockly.Arduino.ORDER_ATOMIC)||"";
 														
-    var code = 'RC522_writeData('+sector_+', '+block_+', '+data+');\n' ;
+    var code = 'RC522_writeData(rfid'+index+', '+sector_+', '+block_+', '+data+');\n' ;
 	return code;
 };
 
 Blockly.Arduino['RC522_read_data'] = function(block) {
+	var index = block.getFieldValue('index');	
 	var sector_ = Number(block.getFieldValue('sector_'))||2;
 	var block_ = Number(block.getFieldValue('block_'))||0;
 								
-    var code = 'RC522_readData('+sector_+', '+block_+')' ;
+    var code = 'RC522_readData(rfid'+index+', '+sector_+', '+block_+')' ;
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
-Blockly.Arduino['RC522_clear_data'] = function(block) {										
+Blockly.Arduino['RC522_clear_data'] = function(block) {
+	var index = block.getFieldValue('index');
 	var sector_ = Number(block.getFieldValue('sector_'))||2;
 	var block_ = Number(block.getFieldValue('block_'))||0;
 
-    var code = 'RC522_writeData('+sector_+', '+block_+',"");\n';
+    var code = 'RC522_writeData(rfid'+index+', '+sector_+', '+block_+',"");\n';
 	return code;
 };
 
 Blockly.Arduino['RC522_clear_sector_data'] = function(block) {
+	var index = block.getFieldValue('index');	
 	Blockly.Arduino.definitions_['RC522_clear_sector'] = ''
-		+'void RC522_clear_sector(int sector1, int sector2) {\n'		
-		+'  if (RC522_readInfo("uid") != "") {\n'
+		+'void RC522_clear_sector(MFRC522 rfid, int sector1, int sector2) {\n'		
+		+'  if (RC522_readInfo(rfid, "uid") != "") {\n'
 		+'    for (int j=sector1*4; j<(sector2+1)*4;j++) {\n'
 		+'    	if (j%4!=3)\n'
-		+'      	RC522_writeData((j-(j%4))/4, (j%4), "");\n'
+		+'      	RC522_writeData(rfid, (j-(j%4))/4, (j%4), "");\n'
 		+'    }\n'
 		+'  }\n'
 		+'}';
@@ -3571,7 +3585,7 @@ Blockly.Arduino['RC522_clear_sector_data'] = function(block) {
 	var sector1 = Number(block.getFieldValue('sector1'));
 	var sector2 = Number(block.getFieldValue('sector2'));
 
-    var code = 'RC522_clear_sector('+sector1+', '+sector2+');\n';
+    var code = 'RC522_clear_sector(rfid'+index+', '+sector1+', '+sector2+');\n';
 	return code;
 };
 
