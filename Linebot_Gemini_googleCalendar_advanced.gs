@@ -61,40 +61,33 @@ function doPost(e) {
                   if (data.length>0) {
                     for (let i=0;i<data.length;i++) {
                       if (data[i].type=="calendar") {
-                        response = "建立行事曆\n\n";
                         let date = data[i].date; // 預期格式：'YYYY-MM-DD'
                         let time = data[i].time; // 預期格式：'HH:MM:00'
                         let duration = data[i].duration; // 預期格式：1
                         let workMatter = data[i].workMatter; // 預期格式：文字敘述
-                        response += `項目${i+1}\n行程：${workMatter}\n時間：${date} ${time}\n時數：${duration}\n\n`;
+                        response += `建立行事曆${i+1}\n行程：${workMatter}\n時間：${date} ${time}\n時數：${duration}\n\n`;
                         
                         let eventDateTime = new Date(date + 'T' + time);
                         let calendar = CalendarApp.getDefaultCalendar();
                         try {
                           calendar.createEvent(workMatter, eventDateTime, new Date(eventDateTime.getTime() + Number(duration) * 60 * 60 * 1000));                            
                         } catch (calendarError) {
-                          let replyMessage = [{
-                              "type":"text",
-                              "text": jsonData + "\n\n行事曆建立失敗，請檢查日期時間格式或權限設定！\n錯誤訊息：" + calendarError
-                          }];
-                          sendMessageToLineBot(replyToken, replyMessage);
+                          let message = jsonData + "\n\n行事曆建立失敗，請檢查日期時間格式或權限設定！\n錯誤訊息：" + calendarError;
+                          replyMessage(replyToken, message);
                           break;
                         } 
                       }
                       else if (data[i].type=="accounting") {
                         try {
-                          response = "記帳\n\n";                            
                           const ss = SpreadsheetApp.openById(GOOGLE_SPREADSHEET_ID);
                           const sheet = ss.getSheetByName(GOOGLE_SPREADSHEET_NAME);
                           const rowData = [data[i].class, data[i].time, data[i].money, data[i].summary];
                           sheet.appendRow(rowData);
-                          response += `項目${i+1}\n類別：${data[i].class?data[i].class:"其他"}\n時間：${data[i].time}\n金額：${data[i].money}\n摘要：${data[i].summary}\n\n`;
+                          response += `記帳${i+1}\n類別：${data[i].class?data[i].class:"其他"}\n時間：${data[i].time}\n金額：${data[i].money}\n摘要：${data[i].summary}\n\n`;
                         } catch (accountingError) {
-                            let replyMessage = [{
-                                "type":"text",
-                                "text": jsonData + "\n\n記帳新增失敗，請檢查資料格式是否正確！\n錯誤訊息：" + accountingError
-                            }];
-                            sendMessageToLineBot(replyToken, replyMessage);
+                          let message = jsonData + "\n\n記帳新增失敗，請檢查資料格式是否正確！\n錯誤訊息：" + accountingError;
+                          replyMessage(replyToken, message);
+                          break;
                         }                               
                       } 
                       else if (data[i].type=="audit") {
@@ -109,26 +102,27 @@ function doPost(e) {
                         response = data[i].response + HELP_MESSAGE;                    
                       }                                                                    
                     }
-                    let replyMessage = [{
-                        "type":"text",
-                        "text": response
-                    }];
-                    sendMessageToLineBot(replyToken, replyMessage); 
+                    replyMessage(replyToken, response);
                   }
                 } catch (error) {
-                  let replyMessage = [{
-                      "type":"text",
-                      "text": error + "\n\n" + jsonData
-                  }];
-                  sendMessageToLineBot(replyToken, replyMessage);
+                  let message = error + "\n\n" + jsonData;
+                  replyMessage(replyToken, message);
                 }
             } else {
-                replyErrorMessage(replyToken);
+                replyMessage(replyToken, ERROR_MESSAGE);
             }
         }
     }
 
     return  ContentService.createTextOutput("OK");
+}
+
+function replyMessage(replyToken, message) {
+    let replyMessage = [{
+        "type":"text",
+        "text": message
+    }];
+    sendMessageToLineBot(replyToken, replyMessage);
 }
 
 function sendMessageToGeminiChat(key, messages) {
@@ -317,12 +311,4 @@ function spreadsheetsql_formatResponse(data) {
   }  
 
   return response.join("");
-}
-
-function replyErrorMessage(replyToken) {
-    let replyMessage = [{
-        "type":"text",
-        "text": ERROR_MESSAGE
-    }];
-    sendMessageToLineBot(replyToken, replyMessage);
 }
