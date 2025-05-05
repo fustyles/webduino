@@ -128,6 +128,7 @@
 <category><name>blemodule</name><replace>Bluetooth Module</replace></category>
 <category><name>pagerecognition</name><replace>Web Recognition</replace></category>
 <category><name>catpageupload</name><replace>Web Upload</replace></category>
+<category><name>amb82_mini_tcp</name><replace>TCP Streaming</replace></category>
 <category><name>amb82_mini_rtsp</name><replace>RTSP Streaming</replace></category>
 <category><name>amb82_mini_rtp</name><replace>RTP Streaming</replace></category>
 <category><name>amb82_mini_ble_keyboard</name><replace>Bluetooth Keyboard</replace></category>

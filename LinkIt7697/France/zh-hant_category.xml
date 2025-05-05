@@ -128,6 +128,7 @@
 <category><name>blemodule</name><replace>藍芽模組</replace></category>
 <category><name>pagerecognition</name><replace>網頁辨識</replace></category>
 <category><name>catpageupload</name><replace>網頁上傳</replace></category>
+<category><name>amb82_mini_tcp</name><replace>TCP串流</replace></category>
 <category><name>amb82_mini_rtsp</name><replace>RTSP串流</replace></category>
 <category><name>amb82_mini_rtp</name><replace>RTP串流</replace></category>
 <category><name>amb82_mini_ble_keyboard</name><replace>藍芽鍵盤</replace></category>

@@ -2259,42 +2259,8 @@
 				  </block>
 				</statement>
 			  </block>
-			  <block type="amb82_mini_stream">
-				<field name="baudrate">115200</field>
-				<field name="framesize">VIDEO_VGA</field>
-				<value name="ssid">
-				  <block type="text">
-					<field name="TEXT">teacher</field>
-				  </block>
-				</value>
-				<value name="password">
-				  <block type="text">
-					<field name="TEXT">12345678</field>
-				  </block>
-				</value>
-				<value name="ssid_ap">
-				  <block type="text">
-					<field name="TEXT">AmebaPro2</field>
-				  </block>
-				</value>
-				<value name="password_ap">
-				  <block type="text">
-					<field name="TEXT">12345678</field>
-				  </block>
-				</value>				
-				<value name="width">
-				  <block type="math_number">
-					<field name="NUM">640</field>
-				  </block>
-				</value> 
-				<value name="height">
-				  <block type="math_number">
-					<field name="NUM">480</field>
-				  </block>
-				</value> 
-			  </block>			  
 			  <block type="amb82_mini_stream_url">							
-			  </block>			  		  
+			  </block>			  
 		</category>		
 		<category name="servercommand">
 			  <block type="servermodule_parameter_split">
@@ -2842,6 +2808,42 @@
 				<field name="board">AMB82-MINI</field>
 			  </block>				  
 		</category>	
+		<category name="amb82_mini_tcp">
+			  <block type="amb82_mini_stream">
+				<field name="baudrate">115200</field>
+				<field name="framesize">VIDEO_VGA</field>
+				<value name="ssid">
+				  <block type="text">
+					<field name="TEXT">teacher</field>
+				  </block>
+				</value>
+				<value name="password">
+				  <block type="text">
+					<field name="TEXT">12345678</field>
+				  </block>
+				</value>
+				<value name="ssid_ap">
+				  <block type="text">
+					<field name="TEXT">AmebaPro2</field>
+				  </block>
+				</value>
+				<value name="password_ap">
+				  <block type="text">
+					<field name="TEXT">12345678</field>
+				  </block>
+				</value>				
+				<value name="width">
+				  <block type="math_number">
+					<field name="NUM">640</field>
+				  </block>
+				</value> 
+				<value name="height">
+				  <block type="math_number">
+					<field name="NUM">480</field>
+				  </block>
+				</value> 
+			  </block>			  
+		</category>		
 		<category name="amb82_mini_rtsp">
 			  <block type="amb82_mini_rtsp">
 			  </block>
