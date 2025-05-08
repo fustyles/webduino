@@ -266,13 +266,13 @@ function spreadsheetsql_executeSql(spreadsheet_sql, spreadsheet_id, spreadsheet_
         result = result.slice(dataFrom+1, dataTo); 
     }
     let jsonText = "{"+result+"}";
-    return spreadsheetsql_formatResponse(jsonText);
+    return spreadsheetsql_convertResponse(jsonText);
   } catch (error) {
     return 'Error executing SQL: ' + error;
   }
 }
 
-function spreadsheetsql_formatResponse(data) {
+function spreadsheetsql_convertResponse(data) {
   let response = [];
   let res = JSON.parse(data.replace(/\r\n/g, '\\r\\n').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, ' '));
 
