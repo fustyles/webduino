@@ -29,7 +29,7 @@ const GEMINI_ASSISTANT_BEHAVIOR = `
 5. 若沒有提及時間，則表示00:00:00。\n
 6. 若沒有提及持續幾小時，則預設為1小時。\n
 7. 若提到持續一天或全天，時間由當日00:00:00算起。\n
-8. 請不要使用Markdown語法。\n
+8. 不可使用Markdown語法。\n
 `;
 
 const HELP_MESSAGE = "\n\n您可以在此進行【行事曆新增、記帳、查帳、聊天】的功能！";
