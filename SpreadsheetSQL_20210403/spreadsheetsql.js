@@ -148,24 +148,32 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 	  spreadsheetsql_response[task_id] = [];
   }   
   
-  function spreadsheet_insert(func, myData, myRow, myCol, myText, mySpreadsheeturl, mySpreadsheetname, myScript) {
-	  myScript += "?func="+func+"&spreadsheeturl="+mySpreadsheeturl+"&spreadsheetname="+mySpreadsheetname+"&row="+myRow+"&col="+myCol+"&text="+myText+"&data="+myData;
-	  //console.log(myScript);
-	  
-      $.ajax({			
-      	type: "GET",
-      	url: myScript,
-      	dataType: "text",
-		crossOrigin: true,
-      	contentType: "application/x-www-form-urlencoded; charset=utf-8",
-      	success: function (response) {
-      		//console.log(response.data);			
-      	},
-      	error: function (thrownError) {
-      		console.log(thrownError);
-      	}
-      });
-  }
+function spreadsheet_insert(func, myData, myRow, myCol, myText, mySpreadsheeturl, mySpreadsheetname, myScript) {
+    var postData = {
+        func: func,
+        spreadsheeturl: mySpreadsheeturl,
+        spreadsheetname: mySpreadsheetname,
+        row: myRow,
+        col: myCol,
+        text: myText,
+        data: myData
+    };
+
+    $.ajax({
+        type: "POST",
+        url: myScript,
+        data: postData,
+        dataType: "text",
+        crossOrigin: true,
+        contentType: "application/x-www-form-urlencoded; charset=utf-8",
+        success: function (response) {
+            //console.log(response.data);
+        },
+        error: function (thrownError) {
+            console.log(thrownError);
+        }
+    });
+}
 
   function spreadsheet_colsToList(cols, cole) {
 	  var colList = "";
