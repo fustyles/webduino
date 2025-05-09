@@ -149,7 +149,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
   }   
   
   function spreadsheet_insert(func, myData, myRow, myCol, myText, mySpreadsheeturl, mySpreadsheetname, myScript) {
-	  myScript += "?func="+func+"&data="+myData+"&spreadsheeturl="+mySpreadsheeturl+"&spreadsheetname="+mySpreadsheetname+"&row="+myRow+"&col="+myCol+"&text="+myText;
+	  myScript += "?func="+func+"&spreadsheeturl="+mySpreadsheeturl+"&spreadsheetname="+mySpreadsheetname+"&row="+myRow+"&col="+myCol+"&text="+myText+"&data="+myData;
 	  console.log(myScript);
 	  
       $.ajax({			
