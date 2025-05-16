@@ -6222,6 +6222,7 @@ Blockly.Blocks['video_create1'] = {
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(290);
+  this.getInput("src_").setVisible(false);	  
   this.getInput("v1").setVisible(false);
   this.getInput("v2").setVisible(false);
   this.getInput("v3").setVisible(false);
