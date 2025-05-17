@@ -2769,7 +2769,7 @@ function HextoRgb(color) {
     else
       obj.style.display = "block";
     obj.allow = "autoplay; fullscreen; geolocation; microphone; camera";
-    obj.sandbox = "allow-same-origin allow-scripts allow-popups allow-forms allow-presentation allow-top-navigation";
+    obj.sandbox = "allow-same-origin allow-scripts allow-popups allow-forms allow-presentation allow-top-navigation allow-modals";
     obj.allowfullscreen = true;
     obj.draggable="true";
     obj.setAttribute("onclick", "javascript:onclickid_set(this);");
