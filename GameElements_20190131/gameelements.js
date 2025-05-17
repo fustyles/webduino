@@ -898,7 +898,7 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
     else if (extname_flash.indexOf("."+substr[substr.length-1]+",")!=-1)
         var src = '<embed src="' + input_url + '" style="width:0px;height:0px" type="application/x-shockwave-flash"></embed>';
     else 
-        var src = '<iframe src="' + input_url + '" style="width:0px;height:0px" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen; geolocation; microphone; camera" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-presentation allow-modals"></iframe>';
+        var src = '<iframe src="' + input_url + '" style="width:0px;height:0px" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen; geolocation; microphone; camera" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-presentation allow-top-navigation allow-modals"></iframe>';
     
     if (document.getElementById("gamemusic_"))
         document.getElementById("gamemusic_").parentNode.removeChild(document.getElementById("gamemusic_"));
