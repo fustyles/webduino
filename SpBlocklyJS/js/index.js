@@ -519,6 +519,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		stopCode();
 		javascriptCode();
+		
+		var windowWidth = window.innerWidth;
+		var windowHeight = window.innerHeight;		
 		var opt = {
 			//dialogClass: "dlg-no-close",
 			draggable: true,			
@@ -526,9 +529,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			resizable: true,
 			modal: false,
 			//show: "blind",
-			//hide: "blind",			
-			width: 800,
-			height: 500,
+			//hide: "blind",
+			width: windowWidth - 500,
+			height: windowHeight - 200,
 			buttons: [			
 				{
 					text: Blockly.Msg.BUTTON_CLOSE,
@@ -568,18 +571,26 @@ document.addEventListener('DOMContentLoaded', function() {
 		$("#dialog_run").dialog(opt).dialog("open");
 		event.preventDefault();
 		
-		$('.ui-dialog').animate({
-			top: 60
-		}, 200); 
 
 		if ($('.ui-dialog-titlebar-close'))	
 			$('.ui-dialog-titlebar-close').attr('title', Blockly.Msg["BUTTON_BOTTOM"]);
 		
 		if (document.getElementById("ui-id-1")) {
+			$(this).parents('.ui-dialog').animate({
+				left: 250
+			}, 200);			
 			document.getElementById("ui-id-1").ondblclick = function () {
+				var windowWidth = window.innerWidth;
+				var windowHeight = window.innerHeight;
+				
 				$(this).parents('.ui-dialog').animate({
-					top: 60			
+					top: 100,
+					left: 250,
+					width: windowWidth - 300,
+					height: windowHeight - 150
 				}, 200);
+				$("#dialog_run").dialog("option", "width", windowWidth - 300);
+				$("#dialog_run").dialog("option", "height", windowHeight - 150);				
 			}	
 		}		
 	}	

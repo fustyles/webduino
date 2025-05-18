@@ -603,6 +603,16 @@ button.ui-button::-moz-focus-inner {
 	padding: 1px;
 	height: 20px;
 }
+.ui-dialog .ui-dialog-titlebar-close::before {
+    content: "▼";
+    font-size: 16px;
+    color: gray;
+	position: absolute;
+	right: -0.05em;
+	top: 40%;
+	margin: -10px 0 0 0;
+	padding: 1px;
+}
 .ui-dialog .ui-dialog-content {
 	position: relative;
 	border: 0;
