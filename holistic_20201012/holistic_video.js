@@ -71,16 +71,7 @@ window.onload = function () {
 		else
 			canvasCtx.drawImage(obj, 0, 0, obj.width, obj.height);
 	
-		if (holisticState.innerHTML =="1") {
-			holistic.setOptions({
-			  modelComplexity: 1,
-			  smoothLandmarks: true,
-			  enableSegmentation: true,
-			  smoothSegmentation: true,
-			  refineFaceLandmarks: true,
-			  minDetectionConfidence: Number(minDetectionConfidence.value),
-			  minTrackingConfidence: Number(minTrackingConfidence.value)
-			});				
+		if (holisticState.innerHTML =="1") {				
 			holistic.send({image: canvas}).then(res => {
 				var source = document.getElementById("sourceId_holistic");
 				setTimeout(function(){loadImage(document.getElementById(source.innerHTML)); }, 100)
@@ -142,6 +133,16 @@ window.onload = function () {
 	const holistic = new Holistic({locateFile: (file) => {
 	  return `https://cdn.jsdelivr.net/npm/@mediapipe/holistic/${file}`;
 	}});
+	
+	holistic.setOptions({
+	  modelComplexity: 1,
+	  smoothLandmarks: true,
+	  enableSegmentation: true,
+	  smoothSegmentation: true,
+	  refineFaceLandmarks: true,
+	  minDetectionConfidence: Number(minDetectionConfidence.value),
+	  minTrackingConfidence: Number(minTrackingConfidence.value)
+	});
 	
 	holistic.onResults(onResults);
 	
