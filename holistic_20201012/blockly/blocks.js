@@ -94,7 +94,7 @@ Blockly.Blocks['holistic_confidence'] = {
         this.setInputsInline(true);
         this.setPreviousStatement(true);
         this.setNextStatement(true);
-        this.setColour(65);
+        this.setColour(60);
         this.setHelpUrl("https://github.com/google-ai-edge/mediapipe/blob/master/docs/solutions/holistic.md");
     }
 };
