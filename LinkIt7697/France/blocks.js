@@ -31848,6 +31848,48 @@ Blockly.Blocks['holistic_video'] = {
     }
 };
 
+Blockly.Blocks['holistic_confidence'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField(Blockly.Msg.HOLISTIC_SHOW);
+        this.appendDummyInput()				
+            .appendField(Blockly.Msg.HOLISTIC_MINDETECTIONCONFIDENCE_SHOW)
+            .appendField(new Blockly.FieldDropdown([
+                ["1", "1"],
+                ["0.9", "0.9"],
+                ["0.8", "0.8"],
+                ["0.7", "0.7"],
+                ["0.6", "0.6"],
+                ["0.5", "0.5"],
+                ["0.4", "0.4"],
+                ["0.3", "0.3"],
+                ["0.2", "0.2"],
+                ["0.1", "0.1"],
+                ["0", "0"]
+            ]), "person_");
+        this.appendDummyInput()				
+            .appendField(Blockly.Msg.HOLISTIC_MINTRACKINGCONFIDENCE_SHOW)
+            .appendField(new Blockly.FieldDropdown([
+                ["1", "1"],
+                ["0.9", "0.9"],
+                ["0.8", "0.8"],
+                ["0.7", "0.7"],
+                ["0.6", "0.6"],
+                ["0.5", "0.5"],
+                ["0.4", "0.4"],
+                ["0.3", "0.3"],
+                ["0.2", "0.2"],
+                ["0.1", "0.1"],
+                ["0", "0"]
+            ]), "landmark_");			
+        this.setInputsInline(true);
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+        this.setColour(Blockly.Msg["HUE_7"]);
+        this.setHelpUrl("https://github.com/google-ai-edge/mediapipe/blob/master/docs/solutions/holistic.md");
+    }
+};
+
 Blockly.Blocks['holistic_recognitied'] = {
   init: function () {
   this.appendDummyInput()  

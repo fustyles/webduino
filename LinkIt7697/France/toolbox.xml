@@ -3988,6 +3988,10 @@
 			  </block>
 			  <block type="holistic_video">    
 			  </block> 
+			  <block type="holistic_confidence">
+				<field name="person_">0.5</field>
+				<field name="landmark_">0.5</field>  
+			  </block> 			  
 			  <block type="holistic_recognitied">
 			  </block> 			  
 			  <block type="holistic_state">

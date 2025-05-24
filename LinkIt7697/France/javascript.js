@@ -24482,6 +24482,13 @@ Blockly.Arduino['holistic_video'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['holistic_confidence'] = function(block) { 
+  var value_person_ = block.getFieldValue('person_');
+  var value_landmark_ = block.getFieldValue('landmark_');
+  var code = 'holistic_confidence(' + value_person_ + ', ' + value_landmark_ + ');\n';
+  return code;
+};
+
 Blockly.Arduino['holistic_recognitied'] = function(block) {
   var value_status = block.getFieldValue('status_');
   var statements_do = Blockly.Arduino.statementToCode(block, 'do_');
