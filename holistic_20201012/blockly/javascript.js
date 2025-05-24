@@ -10,6 +10,13 @@ Blockly.JavaScript['holistic_video'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['holistic_confidence'] = function(block) { 
+  var value_person_ = block.getFieldValue('person_');
+  var value_landmark_ = block.getFieldValue('landmark_');
+  var code = 'holistic_confidence("' + value_person_ + '","' + value_landmark_ + '");\n';
+  return code;
+};
+
 Blockly.JavaScript['holistic_face_position'] = function(block) {
   var value_part_ = Blockly.JavaScript.valueToCode(block, 'part_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_data_ = block.getFieldValue('data_');
