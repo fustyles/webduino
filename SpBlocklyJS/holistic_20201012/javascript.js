@@ -13,7 +13,7 @@ Blockly.JavaScript['holistic_video'] = function(block) {
 Blockly.JavaScript['holistic_confidence'] = function(block) { 
   var value_person_ = block.getFieldValue('person_');
   var value_landmark_ = block.getFieldValue('landmark_');
-  var code = 'holistic_confidence("' + value_person_ + '","' + value_landmark_ + '");\n';
+  var code = 'holistic_confidence(' + value_person_ + ', ' + value_landmark_ + ');\n';
   return code;
 };
 
