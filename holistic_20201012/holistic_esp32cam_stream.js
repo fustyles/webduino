@@ -40,16 +40,7 @@ window.onload = function () {
 			canvasCtx.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);
 		
 		if (holisticState.innerHTML =="1") {
-			try {
-				holistic.setOptions({
-				  modelComplexity: 1,
-				  smoothLandmarks: true,
-				  enableSegmentation: true,
-				  smoothSegmentation: true,
-				  refineFaceLandmarks: true,
-				  minDetectionConfidence: Number(minDetectionConfidence.value),
-				  minTrackingConfidence: Number(minTrackingConfidence.value)
-				});				
+			try {				
 				holistic.send({image: canvas}).then(res => {
 					setTimeout(function(){start();},150);
 				});
@@ -99,6 +90,16 @@ window.onload = function () {
 	const holistic = new Holistic({locateFile: (file) => {
 	  return `https://cdn.jsdelivr.net/npm/@mediapipe/holistic/${file}`;
 	}});
+	
+	holistic.setOptions({
+	  modelComplexity: 1,
+	  smoothLandmarks: true,
+	  enableSegmentation: true,
+	  smoothSegmentation: true,
+	  refineFaceLandmarks: true,
+	  minDetectionConfidence: Number(minDetectionConfidence.value),
+	  minTrackingConfidence: Number(minTrackingConfidence.value)
+	});
 	
 	holistic.onResults(onResults);
 		
