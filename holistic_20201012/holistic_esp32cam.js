@@ -1,11 +1,12 @@
-document.write('<div id="region_holistic" style="z-index:999"><video id="gamevideo_holistic" width="400" height="300" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_holistic" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_holistic" style="position:absolute;display:none"></canvas><br><select id="face_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="pose_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="lefthand_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="righthand_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="scorelimit_holistic" style="position:absolute;visibility:hidden;"><option value="0">0</option><option value="0.1" selected>0.1</option><option value="0.2">0.2</option><option value="0.3">0.3</option><option value="0.4">0.4</option><option value="0.5" selected>0.5</option><option value="0.6">0.6</option><option value="0.7">0.7</option><option value="0.8">0.8</option><option value="0.9">0.9</option></select><br></div><div id="holisticState" style="position:absolute;display:none;">1</div><div id="gamediv_face_holistic" style="position:absolute;display:none;"></div><div id="gamediv_pose_holistic" style="position:absolute;display:none;"></div><div id="gamediv_lefthand_holistic" style="position:absolute;display:none;"></div><div id="gamediv_righthand_holistic" style="position:absolute;display:none;"></div>');
+document.write('<div id="region_holistic" style="z-index:999"><video id="gamevideo_holistic" width="400" height="300" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_holistic" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_holistic" style="position:absolute;display:none"></canvas><br><select id="face_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="pose_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="lefthand_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="righthand_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage_holistic" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="minDetectionConfidence_holistic" style="position:absolute;visibility:hidden;"><option value="0">0</option><option value="0.1">0.1</option><option value="0.2">0.2</option><option value="0.3">0.3</option><option value="0.4">0.4</option><option value="0.5" selected>0.5</option><option value="0.6">0.6</option><option value="0.7">0.7</option><option value="0.8">0.8</option><option value="0.9">0.9</option></select><select id="minTrackingConfidence_holistic" style="position:absolute;visibility:hidden;"><option value="0">0</option><option value="0.1">0.1</option><option value="0.2">0.2</option><option value="0.3">0.3</option><option value="0.4">0.4</option><option value="0.5" selected>0.5</option><option value="0.6">0.6</option><option value="0.7">0.7</option><option value="0.8">0.8</option><option value="0.9">0.9</option></select><br></div><div id="holisticState" style="position:absolute;display:none;">1</div><div id="gamediv_face_holistic" style="position:absolute;display:none;"></div><div id="gamediv_pose_holistic" style="position:absolute;display:none;"></div><div id="gamediv_lefthand_holistic" style="position:absolute;display:none;"></div><div id="gamediv_righthand_holistic" style="position:absolute;display:none;"></div>');
 
 window.onload = function () {
 	var ShowImage = document.getElementById('gameimage_holistic');	
 	var canvas = document.getElementById('gamecanvas_holistic');
 	var canvasCtx = canvas.getContext('2d');
 	var mirrorimage = document.getElementById("mirrorimage_holistic");
-	var scorelimit = document.getElementById("scorelimit_holistic");
+	var minDetectionConfidence = document.getElementById("minDetectionConfidence_holistic");
+	var minTrackingConfidence = document.getElementById("minTrackingConfidence_holistic");	
 	var result = document.getElementById('gamediv_holistic');
 	var holisticState = document.getElementById('holisticState');
 	var face = document.getElementById("face_holistic");
@@ -56,17 +57,25 @@ window.onload = function () {
 			canvasCtx.drawImage(ShowImage, 0, 0, ShowImage.width, ShowImage.height);	
 		
 		if (holisticState.innerHTML =="1") {
-			holistic.send({image: canvas}).then(res => {
+			try {
+				holistic.setOptions({
+				  modelComplexity: 1,
+				  smoothLandmarks: true,
+				  enableSegmentation: true,
+				  smoothSegmentation: true,
+				  refineFaceLandmarks: true,
+				  minDetectionConfidence: Number(minDetectionConfidence.value),
+				  minTrackingConfidence: Number(minTrackingConfidence.value)
+				});				
+				holistic.send({image: canvas}).then(res => {
+					setTimeout(function(){start();},150);
+				});
+			} catch (error) {
 				setTimeout(function(){start();},150);
-			});
+			}
 		}
-		else {
-			//result_face.innerHTML = "";
-			//result_pose.innerHTML = "";
-			//result_lefthand.innerHTML = "";
-			//result_righthand.innerHTML = "";				
+		else
 			setTimeout(function(){start();},150);
-		}   
 	}
 		
 	function onResults(results) {
@@ -108,12 +117,6 @@ window.onload = function () {
 	  return `https://cdn.jsdelivr.net/npm/@mediapipe/holistic/${file}`;
 	}});
 	
-	holistic.setOptions({
-	  modelComplexity: 1,
-	  smoothLandmarks: true,
-	  minDetectionConfidence: 0.5,
-	  minTrackingConfidence: 0.5
-	});
 	holistic.onResults(onResults);
 		
 	function h(a){var c=0;return function(){return c<a.length?{done:!1,value:a[c++]}:{done:!0}}}var l="function"==typeof Object.defineProperties?Object.defineProperty:function(a,c,b){if(a==Array.prototype||a==Object.prototype)return a;a[c]=b.value;return a};
