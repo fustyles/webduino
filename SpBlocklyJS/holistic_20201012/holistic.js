@@ -13,6 +13,11 @@
 	document.getElementById("region_holistic").style.opacity = input_opacity;
     document.getElementById("gamecanvas_holistic").style.display = input_video;
   }
+  
+  function holistic_confidence(input_minDetectionConfidence, input_minTrackingConfidence) {
+	document.getElementById("minDetectionConfidence_holistic").value = input_minDetectionConfidence;
+	document.getElementById("minTrackingConfidence_holistic").value = input_minTrackingConfidence;
+  }  
 	
   function holistic_distance(input_x0,input_y0,input_x1,input_y1) {
       return Math.sqrt(Math.pow((input_x1-input_x0), 2) + Math.pow((input_y1-input_y0), 2));
@@ -125,7 +130,7 @@
 				else if (input_data=="y")
 					return Number(result["data"][input_index].y)*Number(canvas.height);
 				else if (input_data=="z")
-					return Number(result["data"][input_index].z)*Number(canvas.width);
+					return Number(result["data"][input_index].z)*Number(canvas.width);			
 			}
 		}
 		return "";
@@ -143,6 +148,8 @@
 					return Number(result["data"][input_index].y)*Number(canvas.height);
 				else if (input_data=="z")
 					return Number(result["data"][input_index].z)*Number(canvas.width);
+				else if (input_data=="visibility")
+					return Number(result["data"][input_index].visibility);				
 			}
 		}
 		return "";
@@ -159,7 +166,7 @@
 				else if (input_data=="y")
 					return Number(result["data"][input_index].y)*Number(canvas.height);
 				else if (input_data=="z")
-					return Number(result["data"][input_index].z)*Number(canvas.width);
+					return Number(result["data"][input_index].z)*Number(canvas.width);			
 			}
 		}
 		return "";
@@ -176,7 +183,7 @@
 				else if (input_data=="y")
 					return Number(result["data"][input_index].y)*Number(canvas.height);
 				else if (input_data=="z")
-					return Number(result["data"][input_index].z)*Number(canvas.width);
+					return Number(result["data"][input_index].z)*Number(canvas.width);			
 			}
 		}
 		return "";
@@ -203,6 +210,7 @@
 					result_property_arr.push(Number(result["data"][i].x)*Number(canvas.width));
 					result_property_arr.push(Number(result["data"][i].y)*Number(canvas.height));
 					result_property_arr.push(Number(result["data"][i].z)*Number(canvas.width));
+					result_property_arr.push(Number(result["data"][i].visibility));					
 					result_arr.push(result_property_arr);
 				}
 			}
@@ -486,6 +494,7 @@
 	} 
 
   window.holistic_video = holistic_video;
+  window.holistic_confidence = holistic_confidence;  
   window.holistic_distance = holistic_distance;
   window.holistic_angle = holistic_angle;
   window.holistic_angle_3points = holistic_angle_3points;  

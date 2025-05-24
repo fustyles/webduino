@@ -53,7 +53,49 @@ Blockly.Blocks['holistic_video'] = {
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setColour(60);
-        this.setHelpUrl("https://google.github.io/mediapipe/solutions/holistic.html");
+        this.setHelpUrl("https://github.com/google-ai-edge/mediapipe/blob/master/docs/solutions/holistic.md");
+    }
+};
+
+Blockly.Blocks['holistic_confidence'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField(Blockly.Msg.HOLISTIC_SHOW);
+        this.appendDummyInput()				
+            .appendField(Blockly.Msg.HOLISTIC_MINDETECTIONCONFIDENCE_SHOW)
+            .appendField(new Blockly.FieldDropdown([
+                ["1", "1"],
+                ["0.9", "0.9"],
+                ["0.8", "0.8"],
+                ["0.7", "0.7"],
+                ["0.6", "0.6"],
+                ["0.5", "0.5"],
+                ["0.4", "0.4"],
+                ["0.3", "0.3"],
+                ["0.2", "0.2"],
+                ["0.1", "0.1"],
+                ["0", "0"]
+            ]), "person_");
+        this.appendDummyInput()				
+            .appendField(Blockly.Msg.HOLISTIC_MINTRACKINGCONFIDENCE_SHOW)
+            .appendField(new Blockly.FieldDropdown([
+                ["1", "1"],
+                ["0.9", "0.9"],
+                ["0.8", "0.8"],
+                ["0.7", "0.7"],
+                ["0.6", "0.6"],
+                ["0.5", "0.5"],
+                ["0.4", "0.4"],
+                ["0.3", "0.3"],
+                ["0.2", "0.2"],
+                ["0.1", "0.1"],
+                ["0", "0"]
+            ]), "landmark_");			
+        this.setInputsInline(true);
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+        this.setColour(60);
+        this.setHelpUrl("https://github.com/google-ai-edge/mediapipe/blob/master/docs/solutions/holistic.md");
     }
 };
 
@@ -299,7 +341,8 @@ Blockly.Blocks['holistic_pose_position'] = {
       .appendField(new Blockly.FieldDropdown([
 		["x","x"],
 		["y","y"],
-		["z","z"]
+		["z","z"],
+		["visibility","visibility"]
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
