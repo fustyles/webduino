@@ -8,6 +8,7 @@ Blockly.Msg["HOLISTIC_MIRRORIMAGE_SHOW"] = "鏡像";
 Blockly.Msg["HOLISTIC_RESULT_SHOW"] = "結果";
 Blockly.Msg["HOLISTIC_MINDETECTIONCONFIDENCE_SHOW"] = "人物偵測信度底限";
 Blockly.Msg["HOLISTIC_MINTRACKINGCONFIDENCE_SHOW"] = "標記追蹤信度底限";
+Blockly.Msg["HOLISTIC_VISIBILITY_SHOW"] = "能見度";
 Blockly.Msg["HOLISTIC_SKELETON_SHOW"] = "顯示特徵點";
 Blockly.Msg["HOLISTIC_OPACITY_SHOW"] = "透明度";
 Blockly.Msg["HOLISTIC_DISTANCE_SHOW"] = "距離";

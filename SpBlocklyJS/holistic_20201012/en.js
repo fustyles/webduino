@@ -8,6 +8,7 @@ Blockly.Msg["HOLISTIC_MIRRORIMAGE_SHOW"] = "Mirror Image";
 Blockly.Msg["HOLISTIC_RESULT_SHOW"] = "Result";
 Blockly.Msg["HOLISTIC_MINDETECTIONCONFIDENCE_SHOW"] = "Person-detection Minimum confidence value";
 Blockly.Msg["HOLISTIC_MINTRACKINGCONFIDENCE_SHOW"] = "Landmark-tracking Minimum confidence value";
+Blockly.Msg["HOLISTIC_VISIBILITY_SHOW"] = "Visibility value";
 Blockly.Msg["HOLISTIC_SKELETON_SHOW"] = "Show feature points";
 Blockly.Msg["HOLISTIC_OPACITY_SHOW"] = "Opacity";
 Blockly.Msg["HOLISTIC_DISTANCE_SHOW"] = "Distance";

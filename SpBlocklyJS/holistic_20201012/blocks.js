@@ -342,7 +342,7 @@ Blockly.Blocks['holistic_pose_position'] = {
 		["x","x"],
 		["y","y"],
 		["z","z"],
-		["visibility","visibility"]
+		[Blockly.Msg.HOLISTIC_VISIBILITY_SHOW,"visibility"]
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
