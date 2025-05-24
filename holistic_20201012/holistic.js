@@ -13,6 +13,11 @@
 	document.getElementById("region_holistic").style.opacity = input_opacity;
 	document.getElementById("gamecanvas_holistic").style.display = input_video;
   }
+
+  function holistic_confidence(input_minDetectionConfidence, input_minTrackingConfidence) {
+	document.getElementById("minDetectionConfidence_holistic").value = input_minDetectionConfidence;
+	document.getElementById("minTrackingConfidence_holistic").value = input_minTrackingConfidence;
+  }	
 	
   function holistic_distance(input_x0,input_y0,input_x1,input_y1) {
       return Math.sqrt(Math.pow((input_x1-input_x0), 2) + Math.pow((input_y1-input_y0), 2));
@@ -143,6 +148,8 @@
 					return Number(result["data"][input_index].y)*Number(canvas.height);
 				else if (input_data=="z")
 					return Number(result["data"][input_index].z)*Number(canvas.width);
+				else if (input_data=="visibility")
+					return Number(result["data"][input_index].visibility);				
 			}
 		}
 		return "";
@@ -493,6 +500,7 @@
 	} 
 
 	window.holistic_video = holistic_video;
+	window.holistic_confidence = holistic_confidence; 	
 	window.holistic_face_position = holistic_face_position;
 	window.holistic_pose_position = holistic_pose_position;
 	window.holistic_lefthand_position = holistic_lefthand_position;
