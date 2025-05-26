@@ -13773,7 +13773,7 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
 			Blockly.Arduino.definitions_['opendataWeather'] += '  client.setInsecure();\n';	
 	
-	Blockly.Arduino.definitions_['opendataWeather'] +='  if (client.connect("opendata.cwb.gov.tw", 443)) {\n'+
+	Blockly.Arduino.definitions_['opendataWeather'] +='  if (client.connect("opendata.cwa.gov.tw", 443)) {\n'+
 			'    String request = "/api/v1/rest/datastore/F-C0032-001?Authorization="+Authorization+"&locationName="+urlencode(location);\n'+	
 			'    client.println("GET " + request + " HTTP/1.1");\n'+
 			'    client.println("Host: opendata.cwb.gov.tw");\n'+
