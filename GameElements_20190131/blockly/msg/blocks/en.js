@@ -569,6 +569,7 @@ Blockly.Msg.WINDOW_NAME_SELF = "previous_window";
 Blockly.Msg.WINDOW_NAME_TOP = "any_window";
 Blockly.Msg.WINDOW_STOP = "Window stop";
 Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "Image Uint8Array to Base64";
+Blockly.Msg.IMAGE_TO_BASE64 = "Select Image to Base64";
 Blockly.Msg.SPAN_ID = "Span ID";
 Blockly.Msg.SPAN_CREATE = "Span Create";
 Blockly.Msg.SPAN_VALUE = "Value";
