@@ -83,8 +83,16 @@ Blockly.JavaScript['gemini_chat_content_file_remote_read'] = function (block) {
 
 Blockly.JavaScript['gemini_generate_image'] = function (block) {
   var words = Blockly.JavaScript.valueToCode(block, 'words', Blockly.JavaScript.ORDER_ATOMIC)||"";	
-  
+
   var code = 'await gemini_generate_image_request('+words+');\n';
+  return code; 
+};
+
+Blockly.JavaScript['gemini_generate_image_mix'] = function (block) {
+  var words = Blockly.JavaScript.valueToCode(block, 'words', Blockly.JavaScript.ORDER_ATOMIC)||"";	
+  var url = Blockly.JavaScript.valueToCode(block, 'url', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  
+  var code = 'await gemini_generate_image_mix_request('+words+', '+url+');\n';
   return code; 
 };
 

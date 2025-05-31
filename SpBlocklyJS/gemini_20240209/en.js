@@ -24,5 +24,6 @@ Blockly.Msg["GEMINI_CHAT_CONTENT_FILE_REMOTE_URL_INSERT_SHOW"] = "URL";
 Blockly.Msg["GEMINI_CHAT_IMAGE_URL_SHOW"] = "Image URL";
 Blockly.Msg["GEMINI_CHAT_VISION_SHOW"] = "Vision";
 Blockly.Msg["GEMINI_GENERATE_IMAGE_SHOW"] = "Text to image";
+Blockly.Msg["GEMINI_GENERATE_IMAGE_MIX_SHOW"] = "Image and Text to image";
 Blockly.Msg["GEMINI_SEARCH_SHOW"] = "Search";
 Blockly.Msg["GEMINI_YOUTUBE_SHOW"] = "URL (1hr)";

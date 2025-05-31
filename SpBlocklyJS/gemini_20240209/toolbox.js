@@ -114,6 +114,18 @@ var catGEMINI = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
+'  <block type="gemini_generate_image_mix">'+
+'    <value name="words">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'    <value name="url">'+
+'      <block type="text">'+
+'        <field name="TEXT"></field>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+
 '  <block type="gemini_search">'+
 '    <value name="words">'+
 '      <block type="text">'+
