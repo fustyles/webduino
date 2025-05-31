@@ -24,5 +24,6 @@ Blockly.Msg["GEMINI_CHAT_CONTENT_FILE_REMOTE_URL_INSERT_SHOW"] = "網址";
 Blockly.Msg["GEMINI_CHAT_IMAGE_URL_SHOW"] = "圖片網址";
 Blockly.Msg["GEMINI_CHAT_VISION_SHOW"] = "視覺分析";
 Blockly.Msg["GEMINI_GENERATE_IMAGE_SHOW"] = "文字生圖";
+Blockly.Msg["GEMINI_GENERATE_IMAGE_MIX_SHOW"] = "圖文生圖";
 Blockly.Msg["GEMINI_SEARCH_SHOW"] = "搜尋";
 Blockly.Msg["GEMINI_YOUTUBE_SHOW"] = "網址 (1hr)";
