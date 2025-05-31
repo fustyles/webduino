@@ -1,3 +1,10 @@
+Blockly.JavaScript['image_base64'] = function (block) {
+  var base64image = block.getFieldValue('base64image');
+
+  var code = '"'+base64image+'"';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['try_catch_finally'] = function (block) {
   var statements_try = Blockly.JavaScript.statementToCode(block, 'statement_try');
   var statements_catch = Blockly.JavaScript.statementToCode(block, 'statement_catch');

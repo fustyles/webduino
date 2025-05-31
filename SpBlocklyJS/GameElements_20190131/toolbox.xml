@@ -735,7 +735,9 @@
 				<field name="TEXT"></field>
 			  </block>
 			</value> 
-		  </block> 
+		  </block>
+		  <block type="image_base64">
+		  </block>	  
 		  </category>
 		  <category name="%{BKY_CATPAGEELEMENTS_BUTTON}" id="catPageElements_button" colour="120"> 
 

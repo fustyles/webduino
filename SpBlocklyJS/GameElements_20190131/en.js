@@ -613,6 +613,7 @@ Blockly.Msg["SPAN_SET"] = "Set";
 Blockly.Msg["SPAN_GET"] = "Get";
 Blockly.Msg["SPAN_DELETE"] = "Delete";
 Blockly.Msg["IMAGE_BINARY_TO_BASE64"] = "Convert Image Uint8Array to Base64";
+Blockly.Msg["IMAGE_TO_BASE64"] = "Select Image to Base64";
 Blockly.Msg["INCLUDE"] = "Import Remote File";
 Blockly.Msg["INCLUDE_TYPE"] = "Type";
 Blockly.Msg["INCLUDE_JS"] = ".js";

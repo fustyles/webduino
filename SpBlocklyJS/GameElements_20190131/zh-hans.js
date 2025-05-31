@@ -601,7 +601,7 @@ Blockly.Msg.SPAN_SET = "设定";
 Blockly.Msg.SPAN_GET = "取得";
 Blockly.Msg.SPAN_DELETE = "删除";
 Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "图档Uint8Array格式转换Base64格式";
-
+Blockly.Msg.IMAGE_TO_BASE64 = "图档转换Base64格式";
 Blockly.Msg.INCLUDE = "汇入远端档案";
 Blockly.Msg.INCLUDE_TYPE = "类型";
 Blockly.Msg.INCLUDE_JS = ".js";
