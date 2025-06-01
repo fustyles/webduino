@@ -1,3 +1,93 @@
+Blockly.Blocks['image_base64'] = {
+  init: function() {		  
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["IMAGE_TO_BASE64"]);  
+	this.appendDummyInput()
+      .appendField(new Blockly.FieldCheckbox("TRUE"), "encode_")
+      .appendField(Blockly.Msg["ENCODEURI"]);
+    this.appendDummyInput()
+		.appendField(new Blockly.FieldTextInput(""), "base64image");
+	this.getField("base64image").setValidator(this.previewChanged)
+	this.getField("base64image").setVisible(false);
+	this.appendDummyInput("preview");	
+
+	var imageToBase64 = function() {
+		var block = this.sourceBlock_;
+		if (block.getField("base64image"))
+			block.getField("base64image").setValue("");		
+  
+		var img=document.createElement('img');
+		img.onload = function (event) {
+			const canvas = document.createElement('canvas');
+			const context = canvas.getContext('2d');
+			
+			canvas.width=img.width;
+			canvas.height=img.height; 
+			
+			context.fillStyle="#FFFFFF";
+			context.fillRect(0, 0, canvas.width, canvas.height);
+			context.drawImage(img,0,0,img.width,img.height);
+            var base64Data = canvas.toDataURL('image/png');			
+			if (block.getFieldValue("encode_")) {
+				base64Data = base64Data.split(",");
+				base64Data = base64Data[0]+","+encodeURIComponent(base64Data[1]);
+			}
+			
+			block.getField("base64image").setValue(base64Data);
+			
+			document.body.appendChild(canvas);
+			canvas.parentNode.removeChild(canvas);
+			document.body.appendChild(img);
+			img.parentNode.removeChild(img);
+		}
+		
+		var file=document.createElement('input');
+		file.type="file";
+		file.onchange = function (event) {
+			var target = event.target || window.event.srcElement;
+			var files = target.files;
+			if (FileReader && files && files.length) {
+				var fr = new FileReader();
+					fr.onload = function () {    
+					img.src = fr.result;
+				}
+				fr.readAsDataURL(files[0]);
+				file.parentNode.removeChild(file);
+			}
+		}
+		document.body.appendChild(file);
+		file.click();
+    };
+		
+	var field = new Blockly.FieldImage("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAADyUlEQVRIieXVS0xcVRzH8e85l3nAUBCsaZHUqrDQAsWZdGekj8RXVzR10qUwJERXLtTEREPARle6Nl3AMEljGmnorlZjBNpoWzVAQoFKIRFqB9raymNGZu7ce/8uhiG8hOFRY+JvdW/yP+dz/+feew7836KyKQoGg7k+n++w1vopx3GKtNZ/ish4LBa73NHRMb/jcENDQ7lt281KqRNA3holfwGdjuM0RyKRsR2BQ6HQ+yLyCeDClYvaW4EqfBI8+ZCMITNRZOoGpBIAJvBhOBz+bFtwfX39GaCRHA/6wHEoq0EZ7lV1YpvIaDcyfAmsJMCZcDj8VjawsVanwAfkFaFr3kGVVqN0ukwr8OQoHAEBlDZQu8vQJZXI5ABYiUOBQCDW19d3dVMdh0KhZ0VkmByPWx99L720wO5cRcUTBnvyFEql0btxYfC+zR/zkh48cwe763OwkqbWuqK1tXV0PVgvvXEc52PArQ8cX0TLizTH9ueQsISe2xYXx1L0TFgkLOHY/hzKixamKCxFP/8agFtEmjbqeBEOBoO5SqlaXLlQVrNYUJqvuBa1uR61uRsX5sx0t9ejNteiNvsKljx7+RFweRGRk42NjWv9Bavh/Pz8GsCnSiqXfUg9t20mZp01B0/MOnSNW4v3ynCj91YC5Jmm+WJWMPA0AAtLvNVIQUl6Yq2fyRYuBlBu37Zg5d2VfgCRx7OClVIPAEjGtgWTnMtc3c8KFpFxAJmJbsvNjM/MtyEci8UuA3GZuoHY5tZU20SmhgBiwJWs4IVT5gKpBDLavSVXbn0PqXmAzvb29kRWMIBhGE1AUoYvwcydzaHTv+Pc/BbAXNiI1s2yvbq3t3fa7/cncOxXZHIAvec58BZkhcoPX4AZR0TaI5FIZFMwQH9//49+v78EK3FIJn5CKQVF+xYPimWxTWTkO5xfzmZQWylV5ff7B/r7+39dD17vPH5XRD4F3Li86R2psAQ8uyA5t3AeD2XeqQmEgTcBbyJlpaYTqdNfnz93OuuOM+nr67saCAS+VEoVY1vlMht1y70RZHIAuTcCs5PgWHHgnGEYb7S1tZ0NBAI/z5vWqYmHc+75ZOrowepqbg0p9myq46Wpq6vzAi+R3laLgYfAb8CVlV/vyyeCLXPzZpNIevJin6f5YudXLVuCN5tXTwRbZjbA/3Gpt5Oxm0PdFZVVRtJ2DguQSNlHVi77I4EX8K6KqoOupGXXZPCqF6qjo8ODvbBiA9npfHOh46PCPE+TUgqvy3igE/Hzj9JblddPnnq7trb2sX8V/c/lbwo9q8gJVNowAAAAAElFTkSuQmCC", 30, 30, { alt: "*", flipRtl: "FALSE" });
+	field.onMouseUp_ = imageToBase64;
+	
+	this.appendDummyInput()
+		.appendField(field);
+
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(60);
+  },
+	validate: function(newValue) {
+		const block = this.sourceBlock_;		
+		if (block.getField("tmp"))
+			block.getInput("preview").removeField("tmp");	
+		if (block.getField("base64image"))
+			block.getField("base64image").setValue("");		
+  },
+	previewChanged: function(newValue) {
+		const block = this.sourceBlock_;
+		if (newValue!="") {
+			var img = block.getField("base64image");
+			var previewFieldImage = new Blockly.FieldImage(newValue, 30, 30, { alt: "*", flipRtl: "FALSE" });
+			if (block.getField("tmp"))
+				block.getInput("preview").removeField("tmp");
+			block.getInput("preview").appendField(previewFieldImage, "tmp");
+		}	
+	}
+};
+
 Blockly.Blocks['javascript_function_general'] = {
   init: function() {
     this.appendDummyInput()
