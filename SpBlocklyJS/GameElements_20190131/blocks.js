@@ -1,6 +1,22 @@
+Blockly.Blocks['image_base64_set'] = {
+  init: function() {
+    this.appendValueInput("id_")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.IMAGE_ID); 	  
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["IMAGE_TO_BASE64_SET"]);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+	this.setColour(60);
+  }
+};
+
 Blockly.Blocks['image_base64'] = {
   init: function() {		  
     this.appendDummyInput()
+        .appendField(Blockly.Msg.IMAGE)	
 		.appendField(Blockly.Msg["IMAGE_TO_BASE64"]);  
 	this.appendDummyInput()
       .appendField(new Blockly.FieldCheckbox("TRUE"), "encode_")
@@ -2418,9 +2434,10 @@ Blockly.Blocks['point_in_element'] = {
 
 Blockly.Blocks['image_collision'] = {
   init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.IMAGE);	  
   this.appendValueInput("id1_")
       .setCheck(null)
-      .appendField(Blockly.Msg.COLLISION)
       .appendField(Blockly.Msg.ID); 
   this.appendValueInput("id2_")
       .setCheck(null)
@@ -7022,6 +7039,8 @@ Blockly.Blocks['span_delete'] = {
 
 Blockly.Blocks['image_binarytobase64'] = {
   init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.IMAGE);	  
   this.appendValueInput("array_")
       .setCheck(null)
       .appendField(Blockly.Msg.IMAGE_BINARY_TO_BASE64);

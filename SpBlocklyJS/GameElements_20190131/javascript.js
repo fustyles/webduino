@@ -1,3 +1,10 @@
+Blockly.JavaScript['image_base64_set'] = function (block) {
+  var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
+
+  var code = 'image_set_base64file('+value_id_+');\n';
+  return code;
+};
+
 Blockly.JavaScript['image_base64'] = function (block) {
   var base64image = block.getFieldValue('base64image');
 
