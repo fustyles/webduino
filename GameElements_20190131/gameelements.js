@@ -1315,7 +1315,33 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
     }
     else
       return "";
-  }	
+  }
+
+  function image_set_base64file(input_id) {
+    if (document.getElementById("gameimage_"+input_id)) {
+	  var obj = document.getElementById("gameimage_"+input_id);
+	  if (obj) {
+		var file=document.createElement('input');
+		file.type="file";
+		file.style.display = "none";
+		file.onchange = function (event) {
+			var target = event.target || window.event.srcElement;
+			var files = target.files;
+			if (FileReader && files && files.length) {
+				var fr = new FileReader();
+				fr.onload = function () {
+					 obj.src = fr.result;				
+				}
+				fr.readAsDataURL(files[0]);
+				file.parentNode.removeChild(file);
+			}
+		}
+		document.body.appendChild(file);
+		file.click();
+	  }
+
+	}
+  } 	
 
   function image_create(input_id,input_url,input_width,input_height,input_left,input_top,input_zindex,input_display) {
     if (document.getElementById("gameimage_"+input_id))
@@ -5170,6 +5196,7 @@ function HextoRgb(color) {
   window.canvas_capturevideo = canvas_capturevideo;
   window.canvas_getimagedata = canvas_getimagedata;
   window.canvas_setimagedata = canvas_setimagedata;
+  window.image_set_base64file = image_set_base64file;	
   window.image_create = image_create;
   window.image_create_stream = image_create_stream;  
   window.image_set = image_set;
