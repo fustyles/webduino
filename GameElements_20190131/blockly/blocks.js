@@ -7045,12 +7045,14 @@ Blockly.Blocks['window_stop'] = {
 
 Blockly.Blocks['image_binarytobase64'] = {
   init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.IMAGE);	  
   this.appendValueInput("array_")
       .setCheck(null)
       .appendField(Blockly.Msg.IMAGE_BINARY_TO_BASE64);
   this.setInputsInline(true);
   this.setOutput(true, null); 
-  this.setColour(200);   
+  this.setColour(60);   
   }
 };
 
