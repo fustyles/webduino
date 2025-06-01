@@ -1,10 +1,3 @@
-Blockly.JavaScript['image_base64'] = function (block) {
-  var base64image = block.getFieldValue('base64image');
-
-  var code = '"'+base64image+'"';
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
 Blockly.JavaScript['javascript_function_general'] = function(block) {
 	var p1 = Blockly.JavaScript.valueToCode(block, 'p1', Blockly.JavaScript.ORDER_ATOMIC)||"";
 	var code = block.getFieldValue('function').replace("%1", p1)+";\n";	
