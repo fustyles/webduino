@@ -1,8 +1,9 @@
 Blockly.Blocks['image_base64'] = {
   init: function() {		  
     this.appendDummyInput()
-		.appendField(Blockly.Msg["IMAGE_TO_BASE64"]);  
-	this.appendDummyInput()
+        .appendField(Blockly.Msg.IMAGE)	
+        .appendField(Blockly.Msg["IMAGE_TO_BASE64"]);  
+    this.appendDummyInput()
       .appendField(new Blockly.FieldCheckbox("TRUE"), "encode_")
       .appendField(Blockly.Msg["ENCODEURI"]);
     this.appendDummyInput()
@@ -2585,9 +2586,10 @@ Blockly.Blocks['point_in_element'] = {
 
 Blockly.Blocks['image_collision'] = {
   init: function() {
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.IMAGE);	  
   this.appendValueInput("id1_")
       .setCheck(null)
-      .appendField(Blockly.Msg.COLLISION)
       .appendField(Blockly.Msg.ID); 
   this.appendValueInput("id2_")
       .setCheck(null)
