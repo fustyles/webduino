@@ -796,8 +796,6 @@
 					<field name="TEXT"></field>
 				</block>
 			</value>
-		</block>
-		<block type="image_base64">
 		</block>		
 	</category>
 	<category id="catGameElements_sub3" colour="120">
