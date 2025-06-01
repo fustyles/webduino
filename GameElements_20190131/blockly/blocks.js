@@ -1,3 +1,18 @@
+Blockly.Blocks['image_base64_set'] = {
+  init: function() {
+    this.appendValueInput("id_")
+        .setCheck(null)
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.IMAGE_ID); 	  
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["IMAGE_TO_BASE64_SET"]);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+	this.setColour(60);
+  }
+};
+
 Blockly.Blocks['image_base64'] = {
   init: function() {		  
     this.appendDummyInput()
