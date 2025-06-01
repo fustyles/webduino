@@ -569,6 +569,7 @@ Blockly.Msg.WINDOW_NAME_TOP = "任何可被开启视窗";
 Blockly.Msg.WINDOW_STOP = "视窗停止连线";
 Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "Uint8Array格式转换Base64格式";
 Blockly.Msg.IMAGE_TO_BASE64 = "转换Base64格式";
+Blockly.Msg.IMAGE_TO_BASE64_SET = "選取圖檔設定網址";
 Blockly.Msg.SPAN_ID = "行内容器 代码";
 Blockly.Msg.SPAN_CREATE = "行内容器 建立";
 Blockly.Msg.SPAN_VALUE = "值";
