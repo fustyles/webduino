@@ -635,6 +635,7 @@ Blockly.Msg["GOOGLEMAP_EMBED_KEY"] = "Key";
 Blockly.Msg["GOOGLEMAP_EMBED_QUERY"] = "Query";
 
 Blockly.Msg["CATPAGEELEMENTS_JSON"] = "Json";
+Blockly.Msg["JSON"] = "JSON";
 Blockly.Msg["JSON_VARIABLE_SET"] = "Set to"
 Blockly.Msg["JSON_TYPE_STRING"] = "String format convert to JSON format"
 Blockly.Msg["JSON_VARIABLE_GET"] = "Get"
