@@ -14232,6 +14232,77 @@
 	  </block>   	  
     </category>		
 	<sep id="category_sep"></sep>
+	<category name="json">
+		  <block type="json_c_variable">
+			<value name="NUM">
+			  <block type="math_number">
+				<field name="NUM">1024</field>
+			  </block>
+			</value>
+		  </block>
+		  <block type="json_c_set">
+			<value name="OBJ">
+			  <block type="text">
+				<field name="TEXT">{\"a\":1, \"b\":[{\"c\":2}, {\"d\":3}]}</field>
+			  </block>
+			</value>
+		  </block>		  
+		  <block type="json_c_get_index">		  
+			<value name="INDEX">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>	
+		  </block> 		  
+		  <block type="json_c_get_column">
+			<value name="COLUMN">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>	
+		  </block> 		  
+		  <block type="json_c_get_column_index">
+			<value name="COLUMN">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>		  
+			<value name="INDEX">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>	
+		  </block>    
+		  <block type="json_c_get_length">	
+		  </block> 
+		  <block type="json_c_get_column_length">
+			<value name="COLUMN">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>	
+		  </block> 		  
+		  <block type="json_c_get_column_index_length">
+			<value name="COLUMN">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>		  
+			<value name="INDEX">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>	
+		  </block>	
+		  <block type="json_c_get_column1">
+			<value name="COLUMN">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>	
+		  </block> 		  
+    </category>		
+	<sep id="category_sep"></sep>	
 	<category name="others">
 	  <block type="linenotify_esp32_br">
 	  </block>
