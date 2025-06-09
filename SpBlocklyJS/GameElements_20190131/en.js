@@ -654,6 +654,7 @@ Blockly.Msg["ENCODEURI"] = "URL Encode";
 Blockly.Msg["DECODEURI"] = "URL Decode";
 Blockly.Msg["CATPAGEELEMENTS_JSON"] = "Json";
 Blockly.Msg["JSON_VARIABLE_SET"] = "Set to";
+Blockly.Msg["JSON"] = "JSON";
 Blockly.Msg["JSON_TYPE_STRING"] = "Convert Text to JSON Format";
 Blockly.Msg["JSON_VARIABLE_GET"] = "Get";
 Blockly.Msg["JSON_COLUMN"] = "Parameter Name";
