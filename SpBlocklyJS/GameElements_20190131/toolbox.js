@@ -3974,7 +3974,7 @@ var catPageElements ='<xml>'+
 '				<field name="TEXT"></field>'+
 '			  </block>'+
 '			</value>'+
-'		  </block>'+
+'		  </block>'+	
 '		  <block type="json_get_column_index">'+
 '			<value name="COLUMN">'+
 '			  <block type="text">'+
@@ -4010,6 +4010,13 @@ var catPageElements ='<xml>'+
 '			  </block>'+
 '			</value>'+
 '		  </block>'+
+'		  <block type="json_get_column1">'+
+'			<value name="COLUMN">'+
+'			  <block type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </block>'+
+'			</value>'+
+'		  </block>'+	
 '	  </category>'+
 '    </category>'+
 '</xml>';
