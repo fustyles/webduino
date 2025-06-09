@@ -1,3 +1,17 @@
+Blockly.Arduino['image_base64_set'] = function (block) {
+  var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);
+
+  var code = 'image_set_base64file('+value_id_+');\n';
+  return code;
+};
+
+Blockly.Arduino['image_base64'] = function (block) {
+  var base64image = block.getFieldValue('base64image');
+
+  var code = '"'+base64image+'"';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['json_c_variable'] = function (block) {
   Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
   

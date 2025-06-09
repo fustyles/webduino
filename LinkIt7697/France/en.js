@@ -2494,6 +2494,8 @@ Blockly.Msg.ESP32_CAM_CHATID_SHOW = "Chat ID";
 Blockly.Msg.SERVER_GETREQUEST_SHOW = "Server module Get request and execute command";
 
 Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "Image Uint8Array to Base64";
+Blockly.Msg["IMAGE_TO_BASE64"] = "Select Image to Base64";
+Blockly.Msg["IMAGE_TO_BASE64_SET"] = "Select image file then setting URL";
 Blockly.Msg.COCOSSD_CLEAR_SHOW = "Object Detection (coco-ssd) clear result";
 
 Blockly.Msg.ESP32_CAM_TEACHABLEMACHINE_SHOW = "Teachable Machine (custom model)";

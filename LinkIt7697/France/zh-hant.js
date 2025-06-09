@@ -2501,6 +2501,8 @@ Blockly.Msg.ESP32_CAM_CHATID_SHOW = "聊天室ID";
 Blockly.Msg.SERVER_GETREQUEST_SHOW = "Server模組 取得一次網址參數指令並執行自訂指令區";
 
 Blockly.Msg.IMAGE_BINARY_TO_BASE64 = "圖檔Uint8Array格式轉換Base64格式";
+Blockly.Msg["IMAGE_TO_BASE64"] = "轉換Base64格式";
+Blockly.Msg["IMAGE_TO_BASE64_SET"] = "選取圖檔設定網址";
 Blockly.Msg.COCOSSD_CLEAR_SHOW = "物件偵測(coco-ssd) 清除結果";
 
 Blockly.Msg.ESP32_CAM_TEACHABLEMACHINE_SHOW = "機器學習(google)";
