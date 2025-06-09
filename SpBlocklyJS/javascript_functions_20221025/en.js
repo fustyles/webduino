@@ -46,3 +46,7 @@ Blockly.Msg["JAVASCRIPT_FUNCTIONS_MATH_TRUNC"] = "TRUNC (Remove Any Decimal Digi
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_STRING_SPLIT"] = "String to Array";
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_STRING_DELIMITER"] = "Delimiter";
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_EVAL"] = "Execution code string";
+Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE"] = "Replace string";
+Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE_ALL"] = "Search all strings";
+Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE_RE"] = "Regular expression";
+Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE_TO"] = "Replace with";

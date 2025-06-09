@@ -47,5 +47,22 @@ var catJavaScript ='<xml>'+
 '			  </shadow>'+
 '			</value>'+
 '		</block>'+
+'		<block type="javascript_function_replace">'+
+'			<value name="source">'+
+'			  <shadow type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </shadow>'+
+'			</value>'+
+'			<value name="str">'+
+'			  <shadow type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </shadow>'+
+'			</value>'+
+'			<value name="rep">'+
+'			  <shadow type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </shadow>'+
+'			</value>'+
+'		</block>'+
 '    </category>'+
 '</xml>';	

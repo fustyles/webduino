@@ -120,41 +120,13 @@ Blockly.Blocks['javascript_function_general'] = {
         .setAlign(Blockly.ALIGN_RIGHT) 
         .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["JAVASCRIPT_FUNCTIONS_EVAL"],"eval(%1)"]			
-		], this.validate), "function");		
-    this.appendDummyInput()
-		.appendField("(");		
+		]), "function");	
 	this.appendValueInput("p1")
-		.setCheck(null);
-    this.appendDummyInput("comma")
-		.appendField(", ");		
-	this.appendValueInput("p2")
-		.setCheck(null);
-    this.appendDummyInput()
-		.appendField(")");			
+		.setCheck(null);			
 	this.setInputsInline(true);	  
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
     this.setColour(190);
-  },
-	validate: function(newValue) {
-		const block = this.sourceBlock_;
-		if (!block) return;
-		if (newValue.indexOf("%1")!=-1)
-		 	block.getInput("p1").setVisible(true);
-		else {
-			block.getInput("p1").setVisible(false);
-			block.getInput("comma").setVisible(false);
-			block.getInput("p2").setVisible(false);			
-		}
-		if (newValue.indexOf("%2")!=-1) {
-		 	block.getInput("p1").setVisible(true);
-			block.getInput("comma").setVisible(true);		
-		 	block.getInput("p2").setVisible(true);
-		}
-		else {
-			block.getInput("comma").setVisible(false);			
-			block.getInput("p2").setVisible(false);
-		}
   }
 };
 
@@ -164,39 +136,34 @@ Blockly.Blocks['javascript_function_general_get'] = {
         .setAlign(Blockly.ALIGN_RIGHT) 
         .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg["JAVASCRIPT_FUNCTIONS_EVAL"],"eval(%1)"]			
-		], this.validate), "function");		
-    this.appendDummyInput()
-		.appendField("(");		
+		]), "function");		
 	this.appendValueInput("p1")
-		.setCheck(null);
-    this.appendDummyInput("comma")
-		.appendField(", ");		
-	this.appendValueInput("p2")
-		.setCheck(null);
-    this.appendDummyInput()
-		.appendField(")");			
+		.setCheck(null);			
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
     this.setColour(190);
-  },
-	validate: function(newValue) {
-		const block = this.sourceBlock_;
-		if (!block) return;
-		if (newValue.indexOf("%1")!=-1)
-		 	block.getInput("p1").setVisible(true);
-		else {
-			block.getInput("p1").setVisible(false);
-			block.getInput("comma").setVisible(false);
-			block.getInput("p2").setVisible(false);			
-		}
-		if (newValue.indexOf("%2")!=-1) {
-		 	block.getInput("p1").setVisible(true);
-			block.getInput("comma").setVisible(true);		
-		 	block.getInput("p2").setVisible(true);
-		}
-		else {
-			block.getInput("comma").setVisible(false);			
-			block.getInput("p2").setVisible(false);
-		}
+  }
+};
+
+Blockly.Blocks['javascript_function_replace'] = {
+  init: function() {
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE"]);
+	this.appendValueInput("source")
+		.setCheck("String");
+    this.appendDummyInput()		
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE_ALL"],"ALL"],	
+			[Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE_RE"],"RE"]			
+		]), "type");		
+	this.appendValueInput("str")
+		.setCheck(null);
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE_TO"]);			
+	this.appendValueInput("rep")
+		.setCheck(null);		
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(190);
   }
 };
