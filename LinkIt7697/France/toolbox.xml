@@ -2805,7 +2805,7 @@
 					<field name="TEXT">yourtopic/data</field>
 				  </block>
 				</value>
-				<field name="board">AMB82-MINI</field>
+				<field name="board">AmebaPro2</field>
 			  </block>				  
 		</category>	
 		<category name="amb82_mini_tcp">
