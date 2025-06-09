@@ -34,7 +34,7 @@
 			"span_create","span_set","span_get","span_delete",
 			"include_file","code_text","code_text_input","urlcode","custom_googleicon","button_toolbox","element_select","googlemap_embed",
 	  		"json_variable","json_get_index","json_get_column","json_get_column_index","json_string","json_get_length","json_get_column_length","json_get_column_index_length",
-	  		"try_catch_finally","javascript_function_general","javascript_function_general_get",
+	  		"try_catch_finally","javascript_function_general","javascript_function_general_get","javascript_function_replace",
 			"audio_create","audio_set","audio_get","audio_play_googleTTS","audio_play_googleTTS1","audio_save_googleTTS","audio_delete"
 	    ],
   "category": "catPlus",
