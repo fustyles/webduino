@@ -650,6 +650,11 @@ Blockly.Msg["TRY_CATCH_FINALLY"] = "Finally";
 
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_EVAL"] = "Execution code string";
 
+Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE"] = "Replace string";
+Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE_ALL"] = "Search all strings";
+Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE_RE"] = "Regular expression";
+Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE_TO"] = "Replace with";
+
 Blockly.Msg["SPREADSHEET_INSERT"] = "Insert";
 Blockly.Msg["SPREADSHEET_DATE"] = "Date";
 Blockly.Msg["SPREADSHEET_TIME"] = "Time";
