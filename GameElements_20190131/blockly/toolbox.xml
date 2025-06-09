@@ -433,6 +433,23 @@
 			<value name="value_text_"> 			
 			</value>    
 		  </block>
+		<block type="javascript_function_replace">
+			<value name="source">
+			  <shadow type="text">
+				<field name="TEXT"></field>
+			  </shadow>
+			</value>
+			<value name="str">
+			  <shadow type="text">
+				<field name="TEXT"></field>
+			  </shadow>
+			</value>
+			<value name="rep">
+			  <shadow type="text">
+				<field name="TEXT"></field>
+			  </shadow>
+			</value>
+		</block>
 		  <block type="aes_encryption">
 			<value name="value_text_"> 			
 			</value>
