@@ -1,3 +1,26 @@
+Blockly.Blocks['javascript_function_replace'] = {
+  init: function() {
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE"]);
+	this.appendValueInput("source")
+		.setCheck("String");
+    this.appendDummyInput()		
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE_ALL"],"ALL"],	
+			[Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE_RE"],"RE"]			
+		]), "type");		
+	this.appendValueInput("str")
+		.setCheck(null);
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE_TO"]);			
+	this.appendValueInput("rep")
+		.setCheck(null);		
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(190);
+  }
+};
+
 Blockly.Blocks['image_base64_set'] = {
   init: function() {
     this.appendValueInput("id_")
