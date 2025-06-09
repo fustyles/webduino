@@ -1,3 +1,17 @@
+Blockly.JavaScript['javascript_function_replace'] = function(block) {
+	var source = Blockly.JavaScript.valueToCode(block, 'source', Blockly.JavaScript.ORDER_ATOMIC)||"";	
+	var type = block.getFieldValue('type');
+	var str = Blockly.JavaScript.valueToCode(block, 'str', Blockly.JavaScript.ORDER_ATOMIC)||"";
+	if (str.indexOf("'")==0||str.indexOf('"')==0)
+		str = str.substring(1,str.length-1);
+	var rep = Blockly.JavaScript.valueToCode(block, 'rep', Blockly.JavaScript.ORDER_ATOMIC)||"";	
+	if (type=="ALL")
+		var code = source+'.replace(/'+str+'/g, '+rep+')';
+	else
+		var code = source+'.replace('+str+', '+rep+')';
+	return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['image_base64_set'] = function (block) {
   var value_id_ = Blockly.JavaScript.valueToCode(block, 'id_', Blockly.JavaScript.ORDER_ATOMIC);
 
