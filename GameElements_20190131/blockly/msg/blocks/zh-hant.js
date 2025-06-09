@@ -651,6 +651,11 @@ Blockly.Msg["TRY_CATCH_FINALLY"] = "最後執行(Finally)";
 
 Blockly.Msg["JAVASCRIPT_FUNCTIONS_EVAL"] = "執行代碼字串";
 
+Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE"] = "取代字串";
+Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE_ALL"] = "搜尋所有字串";
+Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE_RE"] = "正則表達式";
+Blockly.Msg["JAVASCRIPT_FUNCTIONS_REPLACE_TO"] = "取代為";
+
 Blockly.Msg["SPREADSHEET_INSERT"] = "插入";
 Blockly.Msg["SPREADSHEET_DATE"] = "日期";
 Blockly.Msg["SPREADSHEET_TIME"] = "時間";
