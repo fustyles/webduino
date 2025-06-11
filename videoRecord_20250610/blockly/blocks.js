@@ -89,7 +89,9 @@ Blockly.Blocks['videorecord_run'] = {
         .appendField(new Blockly.FieldDropdown([
 			[Blockly.Msg.VIDEORECORD_SAVE_SHOW,"save"],
 			[Blockly.Msg.VIDEORECORD_GEMINI_SHOW,"gemini"]
-	    ]), "type_"); 	  
+	    ]), "type_");
+    this.appendDummyInput()
+        .appendField("　");	  
     this.appendDummyInput() 
         .setAlign(Blockly.ALIGN_RIGHT)	    
         .appendField(new Blockly.FieldDropdown([
