@@ -7,17 +7,20 @@ let videoRecorder;
 let videoInputIndex = 0;
 let videoWidth = 320;
 let videoHeight = 240;
+let videoAudio = true;
 
-function recording_save_initial(videoIndex, width, height) {
+function recording_save_initial(videoIndex, width, height, audio) {
 	videoInputIndex = videoIndex;
 	videoWidth = width;
-	videoHeight = height;	
+	videoHeight = height;
+	videoAudio = audio;	
 }
 
-function recording_GeminiSTT_initial(videoIndex, width, height, key, model, prompt) {
+function recording_Gemini_initial(videoIndex, width, height, audio, key, model, prompt) {
 	videoInputIndex = videoIndex;
 	videoWidth = width;
-	videoHeight = height;	
+	videoHeight = height;
+	videoAudio = audio;	
 	videoKey = key;	
 	videoModel = model;
 	videoPrompt = prompt;
@@ -27,15 +30,14 @@ async function recording_startRecording() {
 	try {
 		let videoIndex = 0;
 		const devices = await navigator.mediaDevices.enumerateDevices();
-		console.log(devices);
 		for (const device of devices) {
 			if (device.kind === 'videoinput'){
 				if (videoInputIndex==videoIndex) {				
 					let userMedia = "";
 					if (device.deviceId=='')
-						userMedia = {audio: true, video: {facingMode: 'environment', width: videoWidth, height: videoHeight} };
+						userMedia = {audio: videoAudio, video: {facingMode: 'environment', width: videoWidth, height: videoHeight} };
 					else
-						userMedia = {audio: true, video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment', width: videoWidth, height: videoHeight} };				
+						userMedia = {audio: videoAudio, video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment', width: videoWidth, height: videoHeight} };				
 					const stream = await navigator.mediaDevices.getUserMedia(userMedia);
 
 					videoRecorder = new MediaRecorder(stream);
@@ -75,7 +77,7 @@ async function recording_stopRecordingSave() {
 
 };
 
-async function recording_stopRecordingGeminiSTT() {
+async function recording_stopRecordingGemini() {
 	if (videoRecorder && videoRecorder.state === 'recording') {	
 		videoRecorder.stop();
 		videoRecorder.onstop = () => {
@@ -84,9 +86,9 @@ async function recording_stopRecordingGeminiSTT() {
 			const reader = new FileReader();
 			reader.onloadend = () => {
 				let videoBase64 = reader.result.split(',')[1];
-				sendMediaFileToGeminiSTT(videoKey, videoModel, videoPrompt, videoBase64).then(
+				sendMediaFileToGeminiVision(videoKey, videoModel, videoPrompt, videoBase64, "video/wav").then(
 					res => {
-						if (typeof videoGeminiSTT === 'function') videoGeminiSTT(res);
+						if (typeof videoGeminiVision === 'function') videoGeminiVision(res);
 					}
 				)
 			};
@@ -97,12 +99,9 @@ async function recording_stopRecordingGeminiSTT() {
 	}
 };
 
-async function sendMediaFileToGemini(apiKey, filePath, mimeType, prompt) {
+async function sendMediaFileToGeminiVision(apiKey, model, prompt, encodedData, mimeType) {
   try {
-    const fileBuffer = await fs.readFile(filePath);
-    const encodedData = fileBuffer.toString('base64');
-
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
     const filePart = {
       inline_data: {
@@ -112,7 +111,7 @@ async function sendMediaFileToGemini(apiKey, filePath, mimeType, prompt) {
     };
 
     const textPart = {
-      text: prompt.replace(/\n/g, ""), // Remove newlines from prompt
+      text: prompt,
     };
 
     const requestBody = {
@@ -122,14 +121,20 @@ async function sendMediaFileToGemini(apiKey, filePath, mimeType, prompt) {
       }],
     };
 
-    const response = await axios.post(url, requestBody, {
+    const response = await fetch(url, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
       },
-      timeout: 20000, // Set a timeout for the request (20 seconds)
+      body: JSON.stringify(requestBody),
     });
 
-    const responseData = response.data;
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error ? errorData.error.message : `HTTP error! status: ${response.status}`);
+    }
+
+    const responseData = await response.json();
     let getText;
 
     if (responseData && responseData.candidates && responseData.candidates.length > 0 && responseData.candidates[0].content && responseData.candidates[0].content.parts && responseData.candidates[0].content.parts.length > 0) {
@@ -140,22 +145,8 @@ async function sendMediaFileToGemini(apiKey, filePath, mimeType, prompt) {
       getText = "An unexpected error occurred or no text was returned.";
     }
 
-    return getText.replace(/\n/g, ""); // Remove newlines from the final response
+    return getText;
   } catch (error) {
-    console.error("Error connecting to Gemini API or during request:", error.message);
-    if (error.response) {
-      // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx
-      console.error("Gemini API Error Response Data:", error.response.data);
-      console.error("Gemini API Error Status:", error.response.status);
-      console.error("Gemini API Error Headers:", error.response.headers);
-      return `Gemini API error: ${error.response.data.error ? error.response.data.error.message : error.message}`;
-    } else if (error.request) {
-      // The request was made but no response was received
-      return "No response received from Gemini API.";
-    } else {
-      // Something happened in setting up the request that triggered an Error
-      return `Error setting up request: ${error.message}`;
-    }
+    return `${error.message}`;
   }
 }

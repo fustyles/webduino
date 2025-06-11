@@ -13,7 +13,14 @@ Blockly.Blocks['videorecord_save_initial'] = {
 	this.appendValueInput("height_")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.HEIGHT); 		
+		.appendField(Blockly.Msg.HEIGHT); 
+    this.appendDummyInput() 
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.VIDEORECORD_AUDIO_SHOW)	    
+        .appendField(new Blockly.FieldDropdown([
+			["Y","true"],
+			["N","false"]
+	    ]), "audio");		
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -37,7 +44,14 @@ Blockly.Blocks['videorecord_gemini_initial'] = {
 	this.appendValueInput("height_")
 		.setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.HEIGHT); 		
+		.appendField(Blockly.Msg.HEIGHT);
+    this.appendDummyInput() 
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.VIDEORECORD_AUDIO_SHOW)	    
+        .appendField(new Blockly.FieldDropdown([
+			["Y","true"],
+			["N","false"]
+	    ]), "audio"); 		
     this.appendValueInput("key_")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -45,7 +59,7 @@ Blockly.Blocks['videorecord_gemini_initial'] = {
     this.appendValueInput("prompt_")
         .setCheck("String")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.VIDEORECORD_GEMINI_PROMPT_SHOW);
+        .appendField(Blockly.Msg.VIDEORECORD_GEMINI_PROMPT_SHOW);		
     this.appendStatementInput("do_")
 	.appendField(Blockly.Msg.VIDEORECORD_GEMINI_RESPONSE_SHOW);		
     this.setInputsInline(false);	  
