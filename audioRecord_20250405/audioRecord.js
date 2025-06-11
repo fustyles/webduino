@@ -30,22 +30,25 @@ async function recording_startRecording() {
 		let index = 0;
 		const devices = await navigator.mediaDevices.enumerateDevices();
 		for (const device of devices) {
-			if (device.kind === 'audioinput'&&audioInputIndex==index) {
-				const stream = await navigator.mediaDevices.getUserMedia({
-					audio: { deviceId: device.deviceId ? { exact: device.deviceId } : undefined }
-				});
+			if (device.kind === 'audioinput') {
+				if (audioInputIndex==index) {
+					const stream = await navigator.mediaDevices.getUserMedia({
+						audio: { deviceId: device.deviceId ? { exact: device.deviceId } : undefined }
+					});
 
-				let audioContext = new (window.AudioContext || window.webkitAudioContext)();
-				audioRecorder = new MediaRecorder(stream);
+					let audioContext = new (window.AudioContext || window.webkitAudioContext)();
+					audioRecorder = new MediaRecorder(stream);
 
-				audioRecorder.ondataavailable = event => {
-					audioChunks.push(event.data);
-				};
-				audioRecorder.start();
+					audioRecorder.ondataavailable = event => {
+						audioChunks.push(event.data);
+					};
+					audioRecorder.start();
 
-				break;
+					break;
+				}
+				index++;
 			}
-			index++;
+			
 		}
 	} catch (error) {
 		console.error('Error accessing audio devices:', error);
