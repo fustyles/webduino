@@ -1,0 +1,52 @@
+var catVideoRecording ='<xml>'+
+'<category name="%{BKY_CATVIDEORECORD}" id="catVideoRecording" colour="270">'+
+	'<block type="videorecord_save_initial">'+
+		'<value name="index_">'+
+			'<block type="math_number">'+
+				'<field name="NUM">0</field>'+
+			'</block>'+
+		'</value>'+ 
+'		<value name="width_">'+
+'		  <block type="math_number">'+
+'			<field name="NUM">320</field>'+
+'		  </block>'+
+'		</value>'+
+'		<value name="height_">'+
+'		  <block type="math_number">'+
+'			<field name="NUM">240</field>'+
+'		  </block>'+
+'		</value>'+		
+	'</block>'+		
+	'<block type="videorecord_gemini_initial">'+
+		'<value name="index_">'+
+			'<block type="math_number">'+
+				'<field name="NUM">0</field>'+
+			'</block>'+
+		'</value>'+ 
+'		<value name="width_">'+
+'		  <block type="math_number">'+
+'			<field name="NUM">320</field>'+
+'		  </block>'+
+'		</value>'+
+'		<value name="height_">'+
+'		  <block type="math_number">'+
+'			<field name="NUM">240</field>'+
+'		  </block>'+
+'		</value>'+		
+		'<value name="key_">'+
+		'    <block type="text">'+
+		'        <field name="TEXT"></field>'+
+		'    </block>'+
+		'</value>'+
+		'<value name="prompt_">'+
+		'    <block type="text">'+
+		'        <field name="TEXT">Please describe the video into text.</field>'+
+		'    </block>'+
+		'</value>'+			
+	'</block>'+	
+	'<block type="videorecord_gemini_get">'+
+	'</block>'+
+	'<block type="videorecord_run">'+
+	'</block>'+	
+'</category>'+
+'</xml>';	

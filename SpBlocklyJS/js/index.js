@@ -204,6 +204,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		if (xml.indexOf("audiorecord_")!=-1) {
 			script += "<script src='"+jsPath+"audioRecord_20250405/audioRecord.js'></script>";
+		}	
+		if (xml.indexOf("videorecord_")!=-1) {
+			script += "<script src='"+jsPath+"videoRecord_20250610/videoRecord.js'></script>";
 		}		
 		
 		return script;
@@ -219,6 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		catTextToSpeech,
 		catSpeechRecognition,
 		catAudioRecording,
+		catVideoRecording,		
 		"<sep></sep>",
 		catMatrixLed,
 		"<sep></sep>",
