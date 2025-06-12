@@ -39,7 +39,7 @@ Blockly.Arduino['json_c_get_index'] = function (block) {
   var VAR = Blockly.Arduino.nameDB_.getName(block.getFieldValue('VAR'), Blockly.VARIABLE_CATEGORY_NAME);
   var INDEX = Blockly.Arduino.valueToCode(block, 'INDEX', Blockly.Arduino.ORDER_ATOMIC);
   
-  var code = VAR+'['+INDEX+'].as<JsonObject>()';
+  var code = VAR+'['+INDEX+']';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
@@ -64,7 +64,7 @@ Blockly.Arduino['json_c_get_column_index'] = function (block) {
   var COLUMN = Blockly.Arduino.valueToCode(block, 'COLUMN', Blockly.Arduino.ORDER_ATOMIC);
   var INDEX = Blockly.Arduino.valueToCode(block, 'INDEX', Blockly.Arduino.ORDER_ATOMIC);
   
-  var code = VAR+'['+COLUMN+']'+'['+INDEX+'].as<JsonObject>()';
+  var code = VAR+'['+COLUMN+']'+'['+INDEX+']';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
