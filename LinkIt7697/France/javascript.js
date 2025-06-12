@@ -14,23 +14,24 @@ Blockly.Arduino['image_base64'] = function (block) {
 
 Blockly.Arduino['json_c_variable'] = function (block) {
   Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
-  
+  var TYPE = block.getFieldValue('TYPE');
   var VAR = Blockly.Arduino.nameDB_.getName(block.getFieldValue('VAR'), Blockly.VARIABLE_CATEGORY_NAME);
   var NUM = Blockly.Arduino.valueToCode(block, 'NUM', Blockly.Arduino.ORDER_ATOMIC);
   
-  Blockly.Arduino.definitions_['ArduinoJson_'+VAR] = 'JsonObject '+VAR+';\nDynamicJsonDocument '+VAR+'_doc('+NUM+');\n';
+  Blockly.Arduino.definitions_['ArduinoJson_'+VAR] = TYPE+' '+VAR+';\nDynamicJsonDocument '+VAR+'_doc('+NUM+');\n';
   
   var code = '';
   return code;
 };
 
 Blockly.Arduino['json_c_set'] = function (block) {
+  var TYPE = block.getFieldValue('TYPE');	
   var VAR = Blockly.Arduino.nameDB_.getName(block.getFieldValue('VAR'), Blockly.VARIABLE_CATEGORY_NAME);	
   var OBJ = Blockly.Arduino.valueToCode(block, 'OBJ', Blockly.Arduino.ORDER_ATOMIC);
   OBJ = OBJ.replace(/\\\\/g, "\\");
   console.log(OBJ);
   var code = 'deserializeJson('+VAR+'_doc, ' + OBJ + ');\n'
-           + VAR + ' = '+VAR+'_doc.as<JsonObject>();\n'; 
+           + VAR + ' = '+VAR+'_doc.as<'+TYPE+'>();\n'; 
   return code;
 };	   
 
@@ -38,8 +39,8 @@ Blockly.Arduino['json_c_get_index'] = function (block) {
   var VAR = Blockly.Arduino.nameDB_.getName(block.getFieldValue('VAR'), Blockly.VARIABLE_CATEGORY_NAME);
   var INDEX = Blockly.Arduino.valueToCode(block, 'INDEX', Blockly.Arduino.ORDER_ATOMIC);
   
-  var code = VAR+'['+INDEX+']';
-  return [code, Blockly.Arduino.ORDER_NONE];
+  var code = VAR+'['+INDEX+'].as<JsonObject>()';
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['json_c_get_column'] = function (block) { 
@@ -47,7 +48,7 @@ Blockly.Arduino['json_c_get_column'] = function (block) {
   var COLUMN = Blockly.Arduino.valueToCode(block, 'COLUMN', Blockly.Arduino.ORDER_ATOMIC);
   
   var code = VAR+'['+COLUMN+'].as<String>()';
-  return [code, Blockly.Arduino.ORDER_NONE];
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['json_c_get_column1'] = function (block) { 
@@ -55,7 +56,7 @@ Blockly.Arduino['json_c_get_column1'] = function (block) {
   var COLUMN = Blockly.Arduino.valueToCode(block, 'COLUMN', Blockly.Arduino.ORDER_ATOMIC);
   
   var code = VAR+'['+COLUMN+'].as<String>()';
-  return [code, Blockly.Arduino.ORDER_NONE];
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['json_c_get_column_index'] = function (block) { 
@@ -63,15 +64,15 @@ Blockly.Arduino['json_c_get_column_index'] = function (block) {
   var COLUMN = Blockly.Arduino.valueToCode(block, 'COLUMN', Blockly.Arduino.ORDER_ATOMIC);
   var INDEX = Blockly.Arduino.valueToCode(block, 'INDEX', Blockly.Arduino.ORDER_ATOMIC);
   
-  var code = VAR+'['+COLUMN+']'+'['+INDEX+']';
-  return [code, Blockly.Arduino.ORDER_NONE];
+  var code = VAR+'['+COLUMN+']'+'['+INDEX+'].as<JsonObject>()';
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['json_c_get_length'] = function (block) { 
   var VAR = Blockly.Arduino.nameDB_.getName(block.getFieldValue('VAR'), Blockly.VARIABLE_CATEGORY_NAME);
   
   var code = VAR +'.size()';
-  return [code, Blockly.Arduino.ORDER_NONE];
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['json_c_get_column_length'] = function (block) { 
@@ -79,7 +80,7 @@ Blockly.Arduino['json_c_get_column_length'] = function (block) {
   var COLUMN = Blockly.Arduino.valueToCode(block, 'COLUMN', Blockly.Arduino.ORDER_ATOMIC);
   
   var code = VAR +'['+COLUMN+'].size()';
-  return [code, Blockly.Arduino.ORDER_NONE];
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['json_c_get_column_index_length'] = function (block) { 
@@ -88,7 +89,7 @@ Blockly.Arduino['json_c_get_column_index_length'] = function (block) {
   var INDEX = Blockly.Arduino.valueToCode(block, 'INDEX', Blockly.Arduino.ORDER_ATOMIC);
   
   var code = VAR +'['+COLUMN+']['+INDEX+'].size()';
-  return [code, Blockly.Arduino.ORDER_NONE];
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 

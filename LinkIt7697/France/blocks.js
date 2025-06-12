@@ -108,7 +108,14 @@ Blockly.Blocks['json_c_variable'] = {
   init: function () {
     this.appendDummyInput()
 		.appendField(Blockly.Msg["JSON"])
-		.appendField(Blockly.Msg["JSON_VARIABLE"])
+		.appendField(Blockly.Msg["JSON_VARIABLE"]);	  
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)			
+		.appendField(new Blockly.FieldDropdown([
+			["JsonObject","JsonObject"],
+			["JsonArray","JsonArray"]				
+		]), "TYPE");	  
+    this.appendDummyInput()
 		.appendField(new Blockly.FieldVariable("j"), 'VAR');		
 	this.appendValueInput("NUM")
 		.setCheck("Number")
@@ -125,13 +132,19 @@ Blockly.Blocks['json_c_set'] = {
   init: function () {
     this.appendDummyInput()
 		.appendField(Blockly.Msg["JSON"])
-		.appendField(Blockly.Msg["JSON_SET"])
 		.appendField(new Blockly.FieldVariable("j"), 'VAR');
+	this.appendValueInput("OBJ")
+		.setCheck(null)
+		.appendField(Blockly.Msg["JSON_SET"]);
 	this.appendDummyInput()
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg["JSON_TYPE_STRING"]);		
-	this.appendValueInput("OBJ")
-		.setCheck(null);	
+		.appendField(Blockly.Msg["JSON_TYPE_STRING"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)			
+		.appendField(new Blockly.FieldDropdown([
+			["JsonObject","JsonObject"],
+			["JsonArray","JsonArray"]				
+		]), "TYPE");		
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
