@@ -26102,3 +26102,5 @@ setTimeout(function () {
 	}
 	Blockly.Arduino['linkit_wifi_wait_until_ready'] = Blockly.Arduino['esp32_wifi_wait_until_ready'];
 }, 5000);
+
+Blockly.Arduino.quote_=function(a){a=a.replace(/\\/g,"\\\\").replace(/\n/g,"\\\n").replace(/\$/g,"\\$").replace(/'/g,"\\'").replace(/"/g,"\\\"");return'"'+a+'"'};
