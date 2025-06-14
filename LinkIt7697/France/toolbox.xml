@@ -9884,7 +9884,245 @@
     </category>	
 	
 	<sep id="category_sep"></sep>
-	
+	<category name="openai_chat">
+	  <block type="openai_chat_initial">
+		<value name="apikey">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="role">
+		  <block type="text">
+			<field name="TEXT">You are a useful assistant.</field>
+		  </block>
+		</value>		
+	  </block>
+	  <block type="openai_chat_config">
+		<value name="val">
+		  <block type="math_number">
+			<field name="NUM">800</field>
+		  </block>
+		</value>		
+	  </block>	  
+	  <block type="openai_chat_request">
+		<value name="content">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="openai_chat_gs_request">
+		<value name="content">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="scriptid">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>		
+	  </block>	  
+	  <block type="openai_chat_reset">
+	  </block>  	  
+    </category>
+	<category name="gemini_chat">
+	  <block type="gemini_chat_initial">
+		<value name="apikey">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="role">
+		  <block type="text">
+			<field name="TEXT">You are a useful assistant.</field>
+		  </block>
+		</value>		
+	  </block>
+	  <block type="gemini_chat_config">
+		<value name="val">
+		  <block type="math_number">
+			<field name="NUM">800</field>
+		  </block>
+		</value>		
+	  </block>	  
+	  <block type="gemini_chat_request">
+		<value name="content">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="gemini_chat_gs_request">
+		<value name="content">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="scriptid">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>		
+	  </block>	  
+	  <block type="gemini_chat_reset">
+	  </block>  	  
+    </category>
+	<category name="custom_chat">
+	  <block type="custom_chat_initial">
+		<value name="domain">
+		  <block type="text">
+			<field name="TEXT">api.groq.com</field>
+		  </block>
+		</value>
+		<value name="path">
+		  <block type="text">
+			<field name="TEXT">/openai/v1/chat/completions</field>
+		  </block>
+		</value>
+		<value name="model">
+		  <block type="text">
+			<field name="TEXT">meta-llama/llama-4-scout-17b-16e-instruct</field>
+		  </block>
+		</value>		
+		<value name="apikey">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="role">
+		  <block type="text">
+			<field name="TEXT">You are a useful assistant.</field>
+		  </block>
+		</value>		
+	  </block>
+	  <block type="custom_chat_config">
+		<value name="val">
+		  <block type="math_number">
+			<field name="NUM">800</field>
+		  </block>
+		</value>		
+	  </block>	  
+	  <block type="custom_chat_request">
+		<value name="content">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="custom_chat_gs_request">
+		<value name="content">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="scriptid">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>		
+	  </block>	  
+	  <block type="custom_chat_reset">
+	  </block>  	  
+    </category>	
+	<category name="catDvcbot">
+	  <block type="dvcbot_initial">
+		<value name="apiKey">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="assistantId">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>		
+	  </block>
+	  <block type="dvcbot_result">
+		<value name="userMessage">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="scriptid">
+		  <block type="text">
+			<field name="TEXT">AKfycbzz7FWeP9DYgZX2LdRqzAoBZRcHdyHn3t9soKlwr1sytWdVsz_kSoqVLdF9jY6d2JkG4A</field>
+		  </block>
+		</value>		
+	  </block>   	  
+    </category>		
+	<sep id="category_sep"></sep>
+	<category name="json">
+		  <block type="json_c_variable">
+			<value name="NUM">
+			  <block type="math_number">
+				<field name="NUM">1024</field>
+			  </block>
+			</value>
+		  </block>
+		  <block type="json_c_set">
+			<value name="OBJ">
+			  <block type="text">
+				<field name="TEXT">{\"a\":1, \"b\":[{\"c\":2}, {\"d\":3}]}</field>
+			  </block>
+			</value>
+		  </block>		  
+		  <block type="json_c_get_index">		  
+			<value name="INDEX">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>	
+		  </block> 		  
+		  <block type="json_c_get_column">
+			<value name="COLUMN">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>	
+		  </block> 		  
+		  <block type="json_c_get_column_index">
+			<value name="COLUMN">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>		  
+			<value name="INDEX">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>	
+		  </block>    
+		  <block type="json_c_get_length">	
+		  </block> 
+		  <block type="json_c_get_column_length">
+			<value name="COLUMN">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>	
+		  </block> 		  
+		  <block type="json_c_get_column_index_length">
+			<value name="COLUMN">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>		  
+			<value name="INDEX">
+			  <block type="math_number">
+				<field name="NUM">0</field>
+			  </block>
+			</value>	
+		  </block>	
+		  <block type="json_c_get_column1">
+			<value name="COLUMN">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>	
+		  </block> 		  
+    </category>		
+	<sep id="category_sep"></sep>
 	<category name="blemodule">
 		<category name="bluetoothmodule">
 		 
@@ -14072,246 +14310,7 @@
 	  <block type="fu_taiwan_weather_get">
 	  </block>  	  
     </category>
-	<sep id="category_sep"></sep>	
-	<category name="openai_chat">
-	  <block type="openai_chat_initial">
-		<value name="apikey">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="role">
-		  <block type="text">
-			<field name="TEXT">You are a useful assistant.</field>
-		  </block>
-		</value>		
-	  </block>
-	  <block type="openai_chat_config">
-		<value name="val">
-		  <block type="math_number">
-			<field name="NUM">800</field>
-		  </block>
-		</value>		
-	  </block>	  
-	  <block type="openai_chat_request">
-		<value name="content">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="openai_chat_gs_request">
-		<value name="content">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="scriptid">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>		
-	  </block>	  
-	  <block type="openai_chat_reset">
-	  </block>  	  
-    </category>
-	<category name="gemini_chat">
-	  <block type="gemini_chat_initial">
-		<value name="apikey">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="role">
-		  <block type="text">
-			<field name="TEXT">You are a useful assistant.</field>
-		  </block>
-		</value>		
-	  </block>
-	  <block type="gemini_chat_config">
-		<value name="val">
-		  <block type="math_number">
-			<field name="NUM">800</field>
-		  </block>
-		</value>		
-	  </block>	  
-	  <block type="gemini_chat_request">
-		<value name="content">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="gemini_chat_gs_request">
-		<value name="content">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="scriptid">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>		
-	  </block>	  
-	  <block type="gemini_chat_reset">
-	  </block>  	  
-    </category>
-	<category name="custom_chat">
-	  <block type="custom_chat_initial">
-		<value name="domain">
-		  <block type="text">
-			<field name="TEXT">api.groq.com</field>
-		  </block>
-		</value>
-		<value name="path">
-		  <block type="text">
-			<field name="TEXT">/openai/v1/chat/completions</field>
-		  </block>
-		</value>
-		<value name="model">
-		  <block type="text">
-			<field name="TEXT">meta-llama/llama-4-scout-17b-16e-instruct</field>
-		  </block>
-		</value>		
-		<value name="apikey">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="role">
-		  <block type="text">
-			<field name="TEXT">You are a useful assistant.</field>
-		  </block>
-		</value>		
-	  </block>
-	  <block type="custom_chat_config">
-		<value name="val">
-		  <block type="math_number">
-			<field name="NUM">800</field>
-		  </block>
-		</value>		
-	  </block>	  
-	  <block type="custom_chat_request">
-		<value name="content">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-	  </block>
-	  <block type="custom_chat_gs_request">
-		<value name="content">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="scriptid">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>		
-	  </block>	  
-	  <block type="custom_chat_reset">
-	  </block>  	  
-    </category>	
-	<category name="catDvcbot">
-	  <block type="dvcbot_initial">
-		<value name="apiKey">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="assistantId">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>		
-	  </block>
-	  <block type="dvcbot_result">
-		<value name="userMessage">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value>
-		<value name="scriptid">
-		  <block type="text">
-			<field name="TEXT">AKfycbzz7FWeP9DYgZX2LdRqzAoBZRcHdyHn3t9soKlwr1sytWdVsz_kSoqVLdF9jY6d2JkG4A</field>
-		  </block>
-		</value>		
-	  </block>   	  
-    </category>		
-	<sep id="category_sep"></sep>
-	<category name="json">
-		  <block type="json_c_variable">
-			<value name="NUM">
-			  <block type="math_number">
-				<field name="NUM">1024</field>
-			  </block>
-			</value>
-		  </block>
-		  <block type="json_c_set">
-			<value name="OBJ">
-			  <block type="text">
-				<field name="TEXT">{\"a\":1, \"b\":[{\"c\":2}, {\"d\":3}]}</field>
-			  </block>
-			</value>
-		  </block>		  
-		  <block type="json_c_get_index">		  
-			<value name="INDEX">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
-			</value>	
-		  </block> 		  
-		  <block type="json_c_get_column">
-			<value name="COLUMN">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>	
-		  </block> 		  
-		  <block type="json_c_get_column_index">
-			<value name="COLUMN">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>		  
-			<value name="INDEX">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
-			</value>	
-		  </block>    
-		  <block type="json_c_get_length">	
-		  </block> 
-		  <block type="json_c_get_column_length">
-			<value name="COLUMN">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>	
-		  </block> 		  
-		  <block type="json_c_get_column_index_length">
-			<value name="COLUMN">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>		  
-			<value name="INDEX">
-			  <block type="math_number">
-				<field name="NUM">0</field>
-			  </block>
-			</value>	
-		  </block>	
-		  <block type="json_c_get_column1">
-			<value name="COLUMN">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>	
-		  </block> 		  
-    </category>		
-	<sep id="category_sep"></sep>	
+	<sep id="category_sep"></sep>		
 	<category name="others">
 	  <block type="linenotify_esp32_br">
 	  </block>
