@@ -10063,7 +10063,7 @@
 		  <block type="json_c_set">
 			<value name="OBJ">
 			  <block type="text">
-				<field name="TEXT">{\"a\":1, \"b\":[{\"c\":2}, {\"d\":3}]}</field>
+				<field name="TEXT">{"a":1, "b":[{"c":2}, {"d":3}]}</field>
 			  </block>
 			</value>
 		  </block>		  
