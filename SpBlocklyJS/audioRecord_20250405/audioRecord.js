@@ -5,6 +5,7 @@ let audioLanguage = "";
 let audioChunks = [];
 let audioRecorder;
 let audioInputIndex = 0;
+let audioUrl = "";
 
 function recording_save_initial(audioIndex) {
 	audioInputIndex = audioIndex;
@@ -23,6 +24,10 @@ function recording_openAISTT_initial(audioIndex, key, model, prompt, language) {
 	audioModel = model;
 	audioPrompt = prompt;
 	audioLanguage = language;
+}
+
+function recording_audio_get() {
+	return audioUrl;
 }
 
 async function recording_startRecording() {
@@ -55,18 +60,20 @@ async function recording_startRecording() {
 	}
 };
 
-async function recording_stopRecordingSave() {
+async function recording_stopRecording(type) {
 	audioRecorder.stop();
 	audioRecorder.onstop = () => {
 		let audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-		let audioUrl = URL.createObjectURL(audioBlob);
+		audioUrl = URL.createObjectURL(audioBlob);
 	
-		const a = document.createElement('a');
-		a.href = audioUrl;
-		a.download = 'recording.wav';
-		document.body.appendChild(a);
-		a.click();
-		document.body.removeChild(a);
+		if (type) {
+			const a = document.createElement('a');
+			a.href = audioUrl;
+			a.download = 'recording.wav';
+			document.body.appendChild(a);
+			a.click();
+			document.body.removeChild(a);
+		}
 
 		audioChunks = [];
 	};
@@ -76,7 +83,7 @@ async function recording_stopRecordingGeminiSTT() {
 	audioRecorder.stop();
 	audioRecorder.onstop = () => {
 		let audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-		let audioUrl = URL.createObjectURL(audioBlob);
+		audioUrl = URL.createObjectURL(audioBlob);
 		const reader = new FileReader();
 		reader.onloadend = () => {
 			let audioBase64 = reader.result.split(',')[1];
@@ -142,6 +149,7 @@ async function recording_stopRecordingOpenAISTT() {
 	audioRecorder.stop();
 	audioRecorder.onstop = () => {
 		let audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+		audioUrl = URL.createObjectURL(audioBlob);
 		sendAudioFileToOpenAISTT(audioKey, audioModel, audioPrompt, audioBlob, audioLanguage).then(
 			res => {
 				if (typeof audioOpenAISTT === 'function') audioOpenAISTT(res);

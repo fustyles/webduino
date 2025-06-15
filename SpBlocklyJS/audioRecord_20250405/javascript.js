@@ -42,17 +42,26 @@ Blockly.JavaScript['audiorecord_run'] = function(block) {
   var type = block.getFieldValue('type_');
   var func = block.getFieldValue('func_');
 
-  if (type=="save"&func=="start")
+  if (type=="normal"&func=="start")
+    var code = 'await recording_startRecording();\n';
+  else if (type=="normal"&func=="stop")
+    var code = 'await recording_stopRecording(false);\nawait delay(1);';
+  else if (type=="save"&func=="start")
     var code = 'await recording_startRecording();\n';
   else if (type=="save"&func=="stop")
-    var code = 'await recording_stopRecordingSave();\n';
+    var code = 'await recording_stopRecording(true);\nawait delay(1);';
   else if (type=="gemini"&func=="start")
     var code = 'await recording_startRecording();\n';
   else if (type=="gemini"&func=="stop")
-    var code = 'await recording_stopRecordingGeminiSTT();\n';
+    var code = 'await recording_stopRecordingGeminiSTT();await delay(1);\n';
   else if (type=="openai"&func=="start")
     var code = 'await recording_startRecording();\n';
   else if (type=="openai"&func=="stop")
-    var code = 'await recording_stopRecordingOpenAISTT();\n';
+    var code = 'await recording_stopRecordingOpenAISTT();await delay(1);\n';
   return code;
+};
+
+Blockly.JavaScript['audiorecord_audio_get'] = function(block) {
+  var code = 'audioUrl';
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };

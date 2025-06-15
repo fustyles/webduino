@@ -47,5 +47,7 @@ var catAudioRecording ='<xml>'+
 	'</block>'+
 	'<block type="audiorecord_run">'+
 	'</block>'+	
+	'<block type="audiorecord_audio_get">'+
+	'</block>'+		
 '</category>'+
 '</xml>';	

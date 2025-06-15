@@ -1,8 +1,7 @@
 Blockly.Blocks['audiorecord_save_initial'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.AUDIORECORD_SHOW)
-        .appendField(Blockly.Msg.AUDIORECORD_SAVE_SHOW);
+        .appendField(Blockly.Msg.AUDIORECORD_SHOW);
     this.appendValueInput("index_")
         .setCheck("Number")
         .appendField(Blockly.Msg.AUDIORECORD_DEVICE_INDEX_SHOW);			  	    
@@ -165,6 +164,7 @@ Blockly.Blocks['audiorecord_run'] = {
     this.appendDummyInput() 
         .setAlign(Blockly.ALIGN_RIGHT)	    
         .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.AUDIORECORD_NORMAL_SHOW,"normal"],		
 			[Blockly.Msg.AUDIORECORD_SAVE_SHOW,"save"],
 			[Blockly.Msg.AUDIORECORD_GEMINI_SHOW,"gemini"],
 			[Blockly.Msg.AUDIORECORD_OPENAI_SHOW,"openai"]
@@ -179,5 +179,16 @@ Blockly.Blocks['audiorecord_run'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(300);
+  }  
+};
+
+Blockly.Blocks['audiorecord_audio_get'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.AUDIORECORD_SHOW)
+        .appendField(Blockly.Msg.AUDIORECORD_URL_SHOW);
+    this.setInputsInline(true);	  
+    this.setOutput(true, null);  
+    this.setColour(220);
   }  
 };
