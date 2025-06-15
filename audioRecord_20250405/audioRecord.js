@@ -60,13 +60,13 @@ async function recording_startRecording() {
 	}
 };
 
-async function recording_stopRecording(type) {
+async function recording_stopRecording(kind) {
 	audioRecorder.stop();
 	audioRecorder.onstop = () => {
 		let audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
 		laudioUrl = URL.createObjectURL(audioBlob);
 	
-		if (type) {
+		if (kind) {
 			const a = document.createElement('a');
 			a.href = audioUrl;
 			a.download = 'recording.wav';
