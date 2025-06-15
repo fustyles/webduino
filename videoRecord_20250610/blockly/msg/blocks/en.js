@@ -11,3 +11,5 @@ Blockly.Msg["VIDEORECORD_GEMINI_GET_SHOW"] = "Get Gemini Video to Text Data";
 Blockly.Msg["VIDEORECORD_START_SHOW"] = "Start Recording";
 Blockly.Msg["VIDEORECORD_STOP_SHOW"] = "Stop Recording";
 Blockly.Msg["VIDEORECORD_AUDIO_SHOW"] = "Audio";
+Blockly.Msg["VIDEORECORD_URL_SHOW"] = "Record Video URL";
+Blockly.Msg["VIDEORECORD_NORMAL_SHOW"] = "Normal";
