@@ -30,13 +30,22 @@ Blockly.JavaScript['videorecord_run'] = function(block) {
   var type = block.getFieldValue('type_');
   var func = block.getFieldValue('func_');
 
-  if (type=="save"&func=="start")
+    if (type=="normal"&func=="o")
+    var code = 'await recording_startRecording();\n';
+  else if (type=="normal"&func=="stop")
+    var code = 'await recording_stopRecording(false);\n';
+  else if (type=="save"&func=="start")
     var code = 'await recording_startRecording();\n';
   else if (type=="save"&func=="stop")
-    var code = 'await recording_stopRecordingSave();\n';
+    var code = 'await recording_stopRecording(true);\nawait delay(1, true);\n';
   else if (type=="gemini"&func=="start")
     var code = 'await recording_startRecording();\n';
   else if (type=="gemini"&func=="stop")
     var code = 'await recording_stopRecordingGemini();\n';
   return code;
+};
+
+Blockly.JavaScript['videorecord_video_get'] = function(block) {
+  var code = 'videoUrl';
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
