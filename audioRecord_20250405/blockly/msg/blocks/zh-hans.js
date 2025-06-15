@@ -14,3 +14,5 @@ Blockly.Msg["AUDIORECORD_GEMINI_RESPONSE_SHOW"] = "音讯转文字后执行";
 Blockly.Msg["AUDIORECORD_GEMINI_GET_SHOW"] = "Gemni STT 取得数据";
 Blockly.Msg["AUDIORECORD_START_SHOW"] = "开始录音";
 Blockly.Msg["AUDIORECORD_STOP_SHOW"] = "结束录音";
+Blockly.Msg["AUDIORECORD_URL_SHOW"] = "录音档连结";
+Blockly.Msg["AUDIORECORD_NORMAL_SHOW"] = "一般";
