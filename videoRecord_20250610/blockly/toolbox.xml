@@ -46,5 +46,7 @@
 	<block type="videorecord_gemini_get">
 	</block>
 	<block type="videorecord_run">
-	</block>	
+	</block>
+	<block type="videorecord_video_get">
+	</block>'+		
 </category>
