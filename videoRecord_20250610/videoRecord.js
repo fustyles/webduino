@@ -62,14 +62,14 @@ async function recording_startRecording() {
 	}
 };
 
-async function recording_stopRecording(type) {
+async function recording_stopRecording(kind) {
 	if (videoRecorder && videoRecorder.state === 'recording') {
 		videoRecorder.stop();
 		videoRecorder.onstop = () => {
 			let videoBlob = new Blob(videoChunks, { type: 'video/wav' });
 			videoUrl = URL.createObjectURL(videoBlob);
 		
-			if (type) {
+			if (kind) {
 				const a = document.createElement('a');
 				a.href = videoUrl;
 				a.download = 'recording.wav';
