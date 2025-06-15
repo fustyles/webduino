@@ -1,6 +1,5 @@
 Blockly.Msg["CATVIDEORECORD"] = "Record Video";
 Blockly.Msg["VIDEORECORD_SHOW"] = "Record Video";
-Blockly.Msg["VIDEORECORD_NORMAL_SHOW"] = "Normal";
 Blockly.Msg["VIDEORECORD_SAVE_SHOW"] = "Save As";
 Blockly.Msg["VIDEORECORD_DEVICE_INDEX_SHOW"] = "Device Index";
 Blockly.Msg["VIDEORECORD_START_ID_SHOW"] = "Start Button Element ID";
@@ -14,3 +13,4 @@ Blockly.Msg["VIDEORECORD_START_SHOW"] = "Start Recording";
 Blockly.Msg["VIDEORECORD_STOP_SHOW"] = "Stop Recording";
 Blockly.Msg["VIDEORECORD_AUDIO_SHOW"] = "Audio";
 Blockly.Msg["VIDEORECORD_URL_SHOW"] = "Record Video URL";
+Blockly.Msg["VIDEORECORD_NORMAL_SHOW"] = "Normal";

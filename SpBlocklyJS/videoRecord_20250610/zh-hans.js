@@ -1,6 +1,5 @@
 Blockly.Msg["CATVIDEORECORD"] = "录影";
 Blockly.Msg["VIDEORECORD_SHOW"] = "录影";
-Blockly.Msg["VIDEORECORD_NORMAL_SHOW"] = "一般";
 Blockly.Msg["VIDEORECORD_SAVE_SHOW"] = "另存新档";
 Blockly.Msg["VIDEORECORD_DEVICE_INDEX_SHOW"] = "装置索引";
 Blockly.Msg["VIDEORECORD_START_ID_SHOW"] = "开始按钮元素原始代码";
@@ -14,3 +13,4 @@ Blockly.Msg["VIDEORECORD_START_SHOW"] = "开始录影";
 Blockly.Msg["VIDEORECORD_STOP_SHOW"] = "结束录影";
 Blockly.Msg["VIDEORECORD_AUDIO_SHOW"] = "录音";
 Blockly.Msg["VIDEORECORD_URL_SHOW"] = "录影档连结";
+Blockly.Msg["VIDEORECORD_NORMAL_SHOW"] = "一般";
