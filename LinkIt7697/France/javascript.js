@@ -1877,7 +1877,8 @@ Blockly.Arduino['amb82_mini_telegram'] = function(block) {
 
 
 Blockly.Arduino['amb82_mini_sd_initial'] = function(block) {
-	Blockly.Arduino.definitions_['amb82_mini_folder_initial'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\nchar *file_list;\n';
+	Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\n';
+	Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS_file'] = 'File file;\nString file_path = "";\nchar *file_list;\n';
 	var type = block.getFieldValue('type');
 
 	if (type=="begin")
@@ -1888,7 +1889,8 @@ Blockly.Arduino['amb82_mini_sd_initial'] = function(block) {
 };
 
 Blockly.Arduino['amb82_mini_sd_folder'] = function(block) {
-	Blockly.Arduino.definitions_['amb82_mini_folder_initial'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\nchar *file_list;\n';
+	Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\n';
+	Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS_file'] = 'File file;\nString file_path = "";\nchar *file_list;\n';
 	var type = block.getFieldValue('type');
 	var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC);
 	
@@ -1903,7 +1905,8 @@ Blockly.Arduino['amb82_mini_sd_folder'] = function(block) {
 };
 
 Blockly.Arduino['amb82_mini_folder'] = function(block) {
-	Blockly.Arduino.definitions_['amb82_mini_folder_initial'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\nchar *file_list;\n';
+	Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\n';
+	Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS_file'] = 'File file;\nString file_path = "";\nchar *file_list;\n';
 	var type = block.getFieldValue('type');
 	var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC);
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
@@ -2300,7 +2303,9 @@ Blockly.Arduino['amb82_mini_file_gemini_stt'] = function(block) {
 };
 
 Blockly.Arduino['amb82_mini_folder_list'] = function(block) {
-	Blockly.Arduino.definitions_['amb82_mini_folder_initial'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\nchar *file_list;\nchar obj_buf[512];\nchar obj_path[512];\nchar *obj_name;\n';
+	Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\n';
+	Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS_file'] = 'File file;\nString file_path = "";\nchar *file_list;\n';
+	Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS_obj'] = 'char obj_buf[512];\nchar obj_path[512];\nchar *obj_name;\n';
 	var type = block.getFieldValue('type');
 	var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC);
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
@@ -4681,7 +4686,8 @@ Blockly.Arduino['amb82_mini_video_capture_sd'] = function(block) {
 	var origin = block.getFieldValue('origin');
 	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
 
-	Blockly.Arduino.definitions_['amb82_mini_folder_initial'] =  '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\nchar *file_list;\n';
+	Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\n';
+	Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS_file'] = 'File file;\nString file_path = "";\nchar *file_list;\n';
 	
 	Blockly.Arduino.definitions_['amb82_mini_video_capture_sd'] = ''+
 		'void amb82_mini_video_capture_sd(int channel, String filename, bool capture) {\n'+
@@ -9349,9 +9355,8 @@ Blockly.Arduino['tft_initial'] = function(block) {
 		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI.h>\n#include <U8g2_for_TFT_eSPI.h>\n#include <TJpg_Decoder.h>\n';
 	
 	if (board=="AmebaPro2") {
-
-		Blockly.Arduino.definitions_['amb82_mini_folder_initial'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\nchar *file_list;\n'+
-																	'#include "AmebaFatFSFile.h"\n';
+		Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\n#include "AmebaFatFSFile.h"\n';
+		Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS_file'] = 'File file;\nString file_path = "";\nchar *file_list;\n';
 													
 		if (selectBoardType()=="AMB82-MINI")											
 			Blockly.Arduino.definitions_.tftinitial +=  '#define TFT_RESET 5\n'+
@@ -9461,8 +9466,8 @@ Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
 	
 	if (board=="AmebaPro2") {
 
-		Blockly.Arduino.definitions_['amb82_mini_folder_initial'] =  '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\nchar *file_list;\n'+
-													                 '#include "AmebaFatFSFile.h"\n';
+		Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\n#include "AmebaFatFSFile.h"\n';
+		Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS_file'] = 'File file;\nString file_path = "";\nchar *file_list;\n';
 													
 		if (selectBoardType()=="AMB82-MINI")											
 			Blockly.Arduino.definitions_.tftinitial +=  '#define TFT_RESET 5\n'+
