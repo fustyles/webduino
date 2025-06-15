@@ -87,6 +87,7 @@ Blockly.Blocks['videorecord_run'] = {
     this.appendDummyInput() 
         .setAlign(Blockly.ALIGN_RIGHT)	    
         .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.VIDEORECORD_NORMAL_SHOW,"normal"],		
 			[Blockly.Msg.VIDEORECORD_SAVE_SHOW,"save"],
 			[Blockly.Msg.VIDEORECORD_GEMINI_SHOW,"gemini"]
 	    ]), "type_"); 	  
@@ -100,5 +101,16 @@ Blockly.Blocks['videorecord_run'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(300);
+  }  
+};
+
+Blockly.Blocks['videorecord_video_get'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.VIDEORECORD_SHOW)
+        .appendField(Blockly.Msg.VIDEORECORD_URL_SHOW);
+    this.setInputsInline(true);	  
+    this.setOutput(true, null);  
+    this.setColour(220);
   }  
 };

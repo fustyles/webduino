@@ -8,6 +8,7 @@ let videoInputIndex = 0;
 let videoWidth = 320;
 let videoHeight = 240;
 let videoAudio = true;
+let videoUrl = "";
 
 function recording_save_initial(videoIndex, width, height, audio) {
 	videoInputIndex = videoIndex;
@@ -24,6 +25,10 @@ function recording_Gemini_initial(videoIndex, width, height, audio, key, model, 
 	videoKey = key;	
 	videoModel = model;
 	videoPrompt = prompt;
+}
+
+function recording_video_get() {
+	return videoUrl;	
 }
 
 async function recording_startRecording() {
@@ -57,19 +62,23 @@ async function recording_startRecording() {
 	}
 };
 
-async function recording_stopRecordingSave() {
+async function recording_stopRecording(type) {
 	if (videoRecorder && videoRecorder.state === 'recording') {
 		videoRecorder.stop();
 		videoRecorder.onstop = () => {
 			let videoBlob = new Blob(videoChunks, { type: 'video/wav' });
-			let videoUrl = URL.createObjectURL(videoBlob);
+			videoUrl = URL.createObjectURL(videoBlob);
 		
-			const a = document.createElement('a');
-			a.href = videoUrl;
-			a.download = 'recording.wav';
-			document.body.appendChild(a);
-			a.click();
-			document.body.removeChild(a);
+			if (type) {
+				setTimeout(() => {
+					const a = document.createElement('a');
+					a.href = videoUrl;
+					a.download = 'recording.wav';
+					document.body.appendChild(a);
+					a.click();
+					document.body.removeChild(a);
+				}, "1000");
+			}
 
 			videoChunks = [];
 		};		
@@ -82,7 +91,7 @@ async function recording_stopRecordingGemini() {
 		videoRecorder.stop();
 		videoRecorder.onstop = () => {
 			let videoBlob = new Blob(videoChunks, { type: 'video/wav' });
-			let videoUrl = URL.createObjectURL(videoBlob);
+			videoUrl = URL.createObjectURL(videoBlob);
 			const reader = new FileReader();
 			reader.onloadend = () => {
 				let videoBase64 = reader.result.split(',')[1];

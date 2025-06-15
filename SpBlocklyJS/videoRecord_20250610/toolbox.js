@@ -48,5 +48,7 @@ var catVideoRecording ='<xml>'+
 	'</block>'+
 	'<block type="videorecord_run">'+
 	'</block>'+	
+	'<block type="videorecord_video_get">'+
+	'</block>'+		
 '</category>'+
 '</xml>';	
