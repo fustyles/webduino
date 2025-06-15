@@ -33,7 +33,7 @@ Blockly.JavaScript['videorecord_run'] = function(block) {
   if (type=="normal"&func=="start")
     var code = 'await recording_startRecording();\n';
   else if (type=="normal"&func=="stop")
-    var code = 'await recording_stopRecording(false);\n';
+    var code = 'await recording_stopRecording(false);\nawait delay(1, true);\n';
   else if (type=="save"&func=="start")
     var code = 'await recording_startRecording();\n';
   else if (type=="save"&func=="stop")
@@ -41,7 +41,7 @@ Blockly.JavaScript['videorecord_run'] = function(block) {
   else if (type=="gemini"&func=="start")
     var code = 'await recording_startRecording();\n';
   else if (type=="gemini"&func=="stop")
-    var code = 'await recording_stopRecordingGemini();\n';
+    var code = 'await recording_stopRecordingGemini();\nawait delay(1, true);\n';
   return code;
 };
 
