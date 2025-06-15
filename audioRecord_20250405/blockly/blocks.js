@@ -182,3 +182,14 @@ Blockly.Blocks['audiorecord_run'] = {
     this.setColour(300);
   }  
 };
+
+Blockly.Blocks['audiorecord_audio_get'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.AUDIORECORD_SHOW)
+        .appendField(Blockly.Msg.AUDIORECORD_URL_SHOW);
+    this.setInputsInline(true);	  
+    this.setOutput(true, null);  
+    this.setColour(300);
+  }  
+};
