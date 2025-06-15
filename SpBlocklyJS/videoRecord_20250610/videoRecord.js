@@ -70,14 +70,12 @@ async function recording_stopRecording(type) {
 			videoUrl = URL.createObjectURL(videoBlob);
 		
 			if (type) {
-				setTimeout(() => {
-					const a = document.createElement('a');
-					a.href = videoUrl;
-					a.download = 'recording.wav';
-					document.body.appendChild(a);
-					a.click();
-					document.body.removeChild(a);
-				}, "1000");
+				const a = document.createElement('a');
+				a.href = videoUrl;
+				a.download = 'recording.wav';
+				document.body.appendChild(a);
+				a.click();
+				document.body.removeChild(a);
 			}
 
 			videoChunks = [];
