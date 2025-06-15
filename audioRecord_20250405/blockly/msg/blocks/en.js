@@ -14,3 +14,5 @@ Blockly.Msg["AUDIORECORD_GEMINI_RESPONSE_SHOW"] = "Execute After Transcribing Au
 Blockly.Msg["AUDIORECORD_GEMINI_GET_SHOW"] = "GemniSTT Get Data";
 Blockly.Msg["AUDIORECORD_START_SHOW"] = "Start recording";
 Blockly.Msg["AUDIORECORD_STOP_SHOW"] = "Stop recording";
+Blockly.Msg["AUDIORECORD_URL_SHOW"] = "Audio Record URL";
+Blockly.Msg["AUDIORECORD_NORMAL_SHOW"] = "Normal";
