@@ -2300,7 +2300,7 @@ Blockly.Arduino['amb82_mini_file_gemini_stt'] = function(block) {
 };
 
 Blockly.Arduino['amb82_mini_folder_list'] = function(block) {
-	Blockly.Arduino.definitions_['amb82_mini_folder_initial'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\nchar obj_buf[512];\nchar obj_path[512];\nchar *obj_name;\n';
+	Blockly.Arduino.definitions_['amb82_mini_folder_initial'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\nchar *file_list;\nchar obj_buf[512];\nchar obj_path[512];\nchar *obj_name;\n';
 	var type = block.getFieldValue('type');
 	var foldername = Blockly.Arduino.valueToCode(block, 'foldername', Blockly.Arduino.ORDER_ATOMIC);
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
@@ -4681,7 +4681,7 @@ Blockly.Arduino['amb82_mini_video_capture_sd'] = function(block) {
 	var origin = block.getFieldValue('origin');
 	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
 
-	Blockly.Arduino.definitions_['amb82_mini_folder_initial'] =  '#include "AmebaFatFS.h"\nAmebaFatFS fs;';
+	Blockly.Arduino.definitions_['amb82_mini_folder_initial'] =  '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\nchar *file_list;\n';
 	
 	Blockly.Arduino.definitions_['amb82_mini_video_capture_sd'] = ''+
 		'void amb82_mini_video_capture_sd(int channel, String filename, bool capture) {\n'+
@@ -9350,7 +9350,7 @@ Blockly.Arduino['tft_initial'] = function(block) {
 	
 	if (board=="AmebaPro2") {
 
-		Blockly.Arduino.definitions_['amb82_mini_folder_initial'] = '#include "AmebaFatFS.h"\n'+
+		Blockly.Arduino.definitions_['amb82_mini_folder_initial'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\nchar *file_list;\n'+
 																	'#include "AmebaFatFSFile.h"\n';
 													
 		if (selectBoardType()=="AMB82-MINI")											
@@ -9461,8 +9461,8 @@ Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
 	
 	if (board=="AmebaPro2") {
 
-		Blockly.Arduino.definitions_['amb82_mini_folder_initial'] =   '#include "AmebaFatFS.h"\n'+
-													                  '#include "AmebaFatFSFile.h"\n';
+		Blockly.Arduino.definitions_['amb82_mini_folder_initial'] =  '#include "AmebaFatFS.h"\nAmebaFatFS fs;\nFile file;\nString file_path = "";\nchar *file_list;\n'+
+													                 '#include "AmebaFatFSFile.h"\n';
 													
 		if (selectBoardType()=="AMB82-MINI")											
 			Blockly.Arduino.definitions_.tftinitial +=  '#define TFT_RESET 5\n'+
@@ -11005,7 +11005,10 @@ Blockly.Arduino['controls_spreadsheet_query'] = function(block){
 	var like = Blockly.Arduino.valueToCode(block,"like",Blockly.Arduino.ORDER_NONE);
 	
 	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
-	Blockly.Arduino.definitions_['spreadsheetQueryData'] = 'String spreadsheetQueryData = "{\\"values\\":[]}";';		
+	if ('definitionsTop_' in Blockly.Arduino)
+		Blockly.Arduino.definitionsTop_['spreadsheetQueryData'] = 'String spreadsheetQueryData = "{\\"values\\":[]}";';	
+	else 
+		Blockly.Arduino.definitions_['spreadsheetQueryData'] = 'String spreadsheetQueryData = "{\\"values\\":[]}";';	
 
 	Blockly.Arduino.definitions_.Spreadsheet_get = '\n'+
 			'String Spreadsheet_query(String sql, String mySpreadsheetid, String mySpreadsheetname) {\n'+
