@@ -30,7 +30,7 @@ Blockly.JavaScript['videorecord_run'] = function(block) {
   var type = block.getFieldValue('type_');
   var func = block.getFieldValue('func_');
 
-    if (type=="normal"&func=="o")
+  if (type=="normal"&func=="start")
     var code = 'await recording_startRecording();\n';
   else if (type=="normal"&func=="stop")
     var code = 'await recording_stopRecording(false);\n';
