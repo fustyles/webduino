@@ -1,8 +1,7 @@
 Blockly.Blocks['videorecord_save_initial'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.VIDEORECORD_SHOW)
-        .appendField(Blockly.Msg.VIDEORECORD_SAVE_SHOW);
+        .appendField(Blockly.Msg.VIDEORECORD_SHOW);
     this.appendValueInput("index_")
         .setCheck("Number")
         .appendField(Blockly.Msg.VIDEORECORD_DEVICE_INDEX_SHOW);
