@@ -11,3 +11,5 @@ Blockly.Msg["VIDEORECORD_GEMINI_GET_SHOW"] = "Gemini 影片轉文字 取得資�
 Blockly.Msg["VIDEORECORD_START_SHOW"] = "開始錄影";
 Blockly.Msg["VIDEORECORD_STOP_SHOW"] = "結束錄影";
 Blockly.Msg["VIDEORECORD_AUDIO_SHOW"] = "錄音";
+Blockly.Msg["VIDEORECORD_URL_SHOW"] = "錄影檔連結";
+Blockly.Msg["VIDEORECORD_NORMAL_SHOW"] = "一般";
