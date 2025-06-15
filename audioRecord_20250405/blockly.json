@@ -1,5 +1,5 @@
 {
-  "types": ["audiorecord_save_initial","audiorecord_gemini_initial","audiorecord_gemini_get","audiorecord_openai_initial","audiorecord_openai_get","audiorecord_run"],
+  "types": ["audiorecord_save_initial","audiorecord_gemini_initial","audiorecord_gemini_get","audiorecord_openai_initial","audiorecord_openai_get","audiorecord_run","videorecord_video_get"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
