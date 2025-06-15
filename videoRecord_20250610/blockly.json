@@ -1,5 +1,5 @@
 {
-  "types": ["videorecord_save_initial","videorecord_gemini_initial","videorecord_gemini_get","videorecord_run"],
+  "types": ["videorecord_save_initial","videorecord_gemini_initial","videorecord_gemini_get","videorecord_run","videorecord_video_get"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
