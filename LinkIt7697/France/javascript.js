@@ -11010,10 +11010,7 @@ Blockly.Arduino['controls_spreadsheet_query'] = function(block){
 	var like = Blockly.Arduino.valueToCode(block,"like",Blockly.Arduino.ORDER_NONE);
 	
 	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
-	if ('definitionsTop_' in Blockly.Arduino)
-		Blockly.Arduino.definitionsTop_['spreadsheetQueryData'] = 'String spreadsheetQueryData = "{\\"values\\":[]}";';	
-	else 
-		Blockly.Arduino.definitions_['spreadsheetQueryData'] = 'String spreadsheetQueryData = "{\\"values\\":[]}";';	
+	Blockly.Arduino.variables_['spreadsheetQueryData'] = 'String spreadsheetQueryData = "{\\"values\\":[]}";';	
 
 	Blockly.Arduino.definitions_.Spreadsheet_get = '\n'+
 			'String Spreadsheet_query(String sql, String mySpreadsheetid, String mySpreadsheetname) {\n'+
