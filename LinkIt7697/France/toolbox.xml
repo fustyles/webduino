@@ -2847,10 +2847,16 @@
 		<category name="amb82_mini_rtsp">
 			  <block type="amb82_mini_rtsp">
 			  </block>
+			  <block type="amb82_mini_audio_volume">
+				<field name="type">spk</field>
+			  </block>			  
 		</category>
 		<category name="amb82_mini_rtp">				
 			  <block type="amb82_mini_rtp_audio">
 			  </block>
+			  <block type="amb82_mini_audio_volume">
+				<field name="type">spk</field>
+			  </block>			  
 		</category>		
 		<category name="amb82_mini_mp4">				
 			  <block type="amb82_mini_mp4_initial">
@@ -2871,7 +2877,7 @@
 					</value>					  
 			  </block>
 			  <block type="amb82_mini_mp4_state">		  
-			  </block>					  
+			  </block>						  
 		</category>
 		<sep id="category_sep"></sep>		
 		<category name="amb82_mini_video_qrcode">				
@@ -3896,6 +3902,28 @@
 				</value>
 				<field name="volume_">80</field>
 			</block>
+			<block type="amb82_mini_file_remote_get_sd">
+				<value name="domain_">
+				  <block type="text">
+					<field name="TEXT">https://fustyles.github.io/</field>
+				  </block>
+				</value>
+				<value name="port_">
+				  <block type="math_number">
+					<field name="NUM">443</field>
+				  </block>
+				</value> 				
+				<value name="request_">
+				  <block type="text">
+					<field name="TEXT">/webduino/test.pdf</field>
+				  </block>
+				</value>				
+				<value name="filename_">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+			</block>			
 			<block type="amb82_mini_file_googletts">
 				<value name="message_">
 				  <block type="text">
@@ -9966,7 +9994,19 @@
 		</value>		
 	  </block>	  
 	  <block type="gemini_chat_reset">
-	  </block>  	  
+	  </block>
+	  <block type="gemini_chat_content_file_read">
+	    <value name="words">
+	      <block type="text">
+	        <field name="TEXT"></field>
+	      </block>
+	    </value>
+	    <value name="filename">
+	      <block type="text">
+	        <field name="TEXT"></field>
+	      </block>
+	    </value>
+	  </block>	  
     </category>
 	<category name="custom_chat">
 	  <block type="custom_chat_initial">

@@ -1,3 +1,32 @@
+Blockly.Blocks['amb82_mini_file_remote_get_sd'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+		.appendField(Blockly.Msg["AMB82_MINI_FILE_REMOTE_GET"]);
+	this.appendValueInput("domain_")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["AMB82_MINI_FILE_REMOTE_DOMAIN"]);
+	this.appendValueInput("port_")
+		.setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["AMB82_MINI_FILE_REMOTE_PORT"]);
+	this.appendValueInput("request_")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg["AMB82_MINI_FILE_REMOTE_REQUEST"]);		
+	this.appendValueInput("filename_")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_FILE_NAME"]);	 		
+	this.setInputsInline(false);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(Blockly.Msg["HUE_28"]);
+  }
+};
+
+
 Blockly.Blocks['image_base64_set'] = {
   init: function() {
     this.appendValueInput("id_")
@@ -1464,6 +1493,41 @@ Blockly.Blocks['gemini_chat_request'] = {
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
 	this.setColour(110);
+  }
+};
+
+Blockly.Blocks['gemini_chat_content_file_read'] = {
+  init: function () {
+  this.appendDummyInput()
+	  .appendField(Blockly.Msg.GEMINI_CHAT_SHOW)   
+	  .appendField(Blockly.Msg.GEMINI_CHAT_READ_SHOW);	  
+  this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .appendField(new Blockly.FieldDropdown([
+			["PDF", "application/pdf"],
+			["JavaScript", "text/javascript"],
+			["x-JavaScript", "application/x-javascript"],			
+			["Python", "application/x-python, text/x-python"],
+			["TXT", "text/plain"],
+			["HTML", "text/html"],
+			["CSS", "text/css"],
+			["Markdown", "text/md"],
+			["CSV", "text/csv"],
+			["XML", "text/xml"],
+			["RTF", "text/rtf"]
+	  ]), "type"); 
+  this.appendValueInput("filename")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg["AMB82_MINI_FILE_NAME"]);	
+  this.appendValueInput("words")
+      .setCheck("String")
+      .setAlign(Blockly.ALIGN_RIGHT)
+      .appendField(Blockly.Msg.GEMINI_CHAT_PROMPT_SHOW);	  
+  this.setInputsInline(false);
+  this.setOutput(true, null); 
+  this.setColour(110);
+  this.setHelpUrl("https://ai.google.dev/gemini-api/docs/document-processing?hl=zh-tw");	  
   }
 };
 
@@ -6190,6 +6254,22 @@ Blockly.Blocks['amb82_mini_mp4_initial'] = {
 			[Blockly.Msg["AMB82_MINI_8KHZ_MONO_DIGITAL_PDM_MIC"],"2"],
 			[Blockly.Msg["AMB82_MINI_16KHZ_MONO_DIGITAL_PDM_MIC"],"3"]
 		]), "audio");
+	this.appendDummyInput("vol")
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_VOLUME"])	
+		.appendField(new Blockly.FieldDropdown([
+			["100", "100"],
+			["90", "90"],
+			["80", "80"],
+			["70", "70"],
+			["60", "60"],
+			["50", "50"],
+			["40", "40"],
+			["30", "30"],
+			["20", "20"],
+			["10", "10"],
+			["0", "0"]		
+		]), "volume");		
     this.appendDummyInput()
 		.appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"])
 		.setAlign(Blockly.ALIGN_RIGHT)
@@ -6220,8 +6300,10 @@ Blockly.Blocks['amb82_mini_mp4_initial'] = {
 		if (!block) return;
 		if (newValue=="SingleVideoWithAudio"||newValue=="DoubleVideoWithAudio"||newValue=="AudioOnly") {
 			block.getInput("aud").setVisible(true);
+			block.getInput("vol").setVisible(true);
 		} else {
-			block.getInput("aud").setVisible(false);	
+			block.getInput("aud").setVisible(false);
+			block.getInput("vol").setVisible(false);			
 		}
 		if (newValue=="DoubleVideoWithAudio"||newValue=="AudioOnly") {
 			block.getInput("cha").setVisible(false);
@@ -6258,6 +6340,39 @@ Blockly.Blocks['amb82_mini_mp4_getstate'] = {
 	this.setInputsInline(true);
     this.setOutput(true, null);  
     this.setColour(Blockly.Msg["HUE_10"]);	
+  }
+};
+
+Blockly.Blocks['amb82_mini_audio_volume'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg["AMB82_MINI"]);
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_AUDIO_MIC_VOLUME"], "mic"],
+			[Blockly.Msg["AMB82_MINI_AUDIO_SPK_VOLUME"], "spk"]	
+		]), "type");		
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_VOLUME"])	
+		.appendField(new Blockly.FieldDropdown([
+			["100", "100"],
+			["90", "90"],
+			["80", "80"],
+			["70", "70"],
+			["60", "60"],
+			["50", "50"],
+			["40", "40"],
+			["30", "30"],
+			["20", "20"],
+			["10", "10"],
+			["0", "0"]		
+		]), "volume");			
+    this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_25"]);
   }
 };
 

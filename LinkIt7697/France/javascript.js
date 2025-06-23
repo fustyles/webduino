@@ -1,3 +1,81 @@
+Blockly.Arduino['amb82_mini_file_remote_get_sd'] = function(block) {
+	var domain = Blockly.Arduino.valueToCode(block, 'domain_', Blockly.Arduino.ORDER_ATOMIC);	
+	var port = Blockly.Arduino.valueToCode(block, 'port_', Blockly.Arduino.ORDER_ATOMIC);	
+	var request = Blockly.Arduino.valueToCode(block, 'request_', Blockly.Arduino.ORDER_ATOMIC);		
+	var filename = Blockly.Arduino.valueToCode(block, 'filename_', Blockly.Arduino.ORDER_ATOMIC);	
+	
+	Blockly.Arduino.definitions_['amb82_mini_getFile2SD'] = ''
+           +'void amb82_mini_getFile2SD(String filepath, String domain, int port, String request) {\n'		   
+           +'  if (fs.exists(filepath))\n'
+           +'    fs.remove(filepath);\n'
+           +'  delay(200);\n'		   
+           +'  File file = fs.open(filepath);\n'
+           +'  if(!file){\n'
+           +'    Serial.println("Failed to open file for reading");\n'
+           +'    return;\n' 
+           +'  } else {\n'
+           +'    Serial.println("Connecting to " + domain);\n'
+           +'    if (client.connect(domain.c_str(), port)) {\n'
+           +'      Serial.println("Waiting for response...");\n'
+           +'      client.println("GET "+request+" HTTP/1.1");\n'
+           +'      client.println("Host: " + domain);\n'   
+           +'      client.println("Content-Type: text/html; charset=utf-8");\n'	
+           +'      client.println("Connection: close");\n'
+           +'      client.println();\n'
+           +'      String getResponse="";\n'
+           +'      boolean state = false;\n'
+           +'      int waitTime = 20000;\n'
+           +'      long startTime = millis();\n'
+           +'      boolean headState = false;\n'
+           +'      while ((startTime + waitTime) > millis()) {\n'
+           +'        while (client.available()) {\n'
+           +'            char c = client.read();\n'
+           +'            if (state==true) file.print(c);\n'
+           +'            if (c == \'\\n\') {\n'
+           +'              if (getResponse.length()==0) {\n'
+           +'                if (!headState) { \n'
+           +'                  client.readStringUntil(\'\\n\');\n'
+           +'                  headState = true;\n'
+           +'                }\n'
+           +'                state=true;\n'
+           +'              }\n'         
+           +'              getResponse = "";\n'
+           +'            }\n'
+           +'            else if (c != \'\\r\') {\n'
+           +'              getResponse += String(c);\n'
+           +'            }\n'		   
+           +'            startTime = millis();\n'
+           +'         }\n'
+           +'      }\n'
+           +'      client.stop();\n'
+           +'    } else {\n'
+           +'       Serial.print("Connecting to " + domain + " failed.");\n'
+           +'    }\n'
+           +'  }\n'
+           +'  file.close();\n'
+           +'}\n';
+		   
+	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
+											'  const char *msg = str.c_str();\n'+
+											'  const char *hex = "0123456789ABCDEF";\n'+
+											'  String encodedMsg = "";\n'+
+											'  while (*msg != \'\\0\') {\n'+
+											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
+											'      encodedMsg += *msg;\n'+
+											'    } else {\n'+
+											'      encodedMsg += \'%\';\n'+
+											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
+											'      encodedMsg += hex[*msg & 0xf];\n'+
+											'    }\n'+
+											'    msg++;\n'+
+											'  }\n'+
+											'  return encodedMsg;\n'+
+											'}';		   
+
+	var code = 'amb82_mini_getFile2SD(file_path+"/"+'+filename+', ' +domain+', '+port+', '+request+');\n';
+    return code;
+};
+
 Blockly.Arduino['image_base64_set'] = function (block) {
   var value_id_ = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);
 
@@ -727,6 +805,113 @@ Blockly.Arduino['gemini_chat_request'] = function (block) {
 		+'  }\n';
 		
   var code = 'Gemini_chat_request('+content+')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['gemini_chat_content_file_read'] = function (block) {
+  var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var words = Blockly.Arduino.valueToCode(block, 'words', Blockly.Arduino.ORDER_ATOMIC)||"";
+  var mimeType = block.getFieldValue('type');  
+  var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC)||"";
+  
+  Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
+  Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>'; 
+  Blockly.Arduino.definitions_['gemini_chat_file_request'] = 'String gemini_chat_file_request(String mimeType, String filepath, String prompt) {\n';
+  
+	if (selectBoardType()=="LinkIt")
+		Blockly.Arduino.definitions_['gemini_chat_file_request'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_['gemini_chat_file_request'] += '  client.setInsecure();\n';		
+
+  Blockly.Arduino.definitions_['gemini_chat_file_request'] += ''
+           +'  Serial.println("File: "+filepath);\n'
+           +'  uint8_t *fileinput;\n'
+           +'  file = fs.open(filepath);\n'
+           +'  unsigned int fileSize = file.size();\n'
+           +'  fileinput = (uint8_t *)malloc(fileSize + 1);\n'
+           +'  file.read(fileinput, fileSize);\n'
+           +'  fileinput[fileSize] = \'\\0\';\n'
+           +'  file.close();\n'
+           +'  int encodedLen = base64_enc_len(fileSize);\n'
+           +'  char *encodedData = (char *)malloc(encodedLen);\n'
+           +'  base64_encode(encodedData, (char *)fileinput, fileSize);\n'
+           +'  Serial.println("Connect to generativelanguage.googleapis.com");\n'
+           +'  if (client.connect("generativelanguage.googleapis.com", 443)) {\n'
+           +'    Serial.println("Connection successful");\n'
+           +'    prompt.replace("\\n", "");\n'
+           +'    String filePart = "{\\"inline_data\\": {\\"data\\": \\""+String(encodedData)+"\\", \\"mime_type\\": \\""+mimeType+"\\",},}";\n'
+           +'    String textPart = "{\\"text\\": \\""+prompt+"\\",}";\n'
+           +'    String request = "{\\"contents\\": [{\\"role\\": \\"user\\", \\"parts\\": ["+filePart+", "+textPart+"]}],}";\n'
+		   +'    client.println("POST /v1beta/models/gemini-2.0-flash:generateContent?key="+Gemini_apikey+" HTTP/1.1");\n'
+           +'    client.println("Connection: close");\n'
+           +'    client.println("Host: generativelanguage.googleapis.com");\n'
+           +'    client.println("Content-Type: application/json; charset=utf-8");\n'
+           +'    client.println("Content-Length: " + String(request.length()));\n'
+           +'    client.println();\n'
+           +'    for (int i = 0; i < request.length(); i += 1024) {\n'
+           +'      client.print(request.substring(i, i + 1024));\n'
+           +'    }\n'
+           +'    String getResponse="",Feedback="";\n'
+           +'    int waitTime = 20000;\n'
+           +'    long startTime = millis();\n'
+           +'    boolean state = false;\n'
+           +'    boolean headState = false;\n'
+           +'    while ((startTime + waitTime) > millis()) {\n'
+           +'      Serial.print(".");\n'
+           +'      delay(100);\n'
+           +'      while (client.available()) {\n'
+           +'          char c = client.read();\n'
+           +'          if (state==true) Feedback += String(c);\n'
+           +'          if (c == \'\\n\') {\n'
+           +'            if (getResponse.length()==0) {\n'
+           +'              if (!headState) {\n'
+           +'                client.readStringUntil(\'\\n\');\n'
+           +'                headState = true;\n'
+           +'              }\n'  
+           +'              state=true;\n'
+           +'            }\n'
+           +'            getResponse = "";\n'
+           +'          }\n'
+           +'          else if (c != \'\\r\')\n'
+           +'            getResponse += String(c);\n'
+           +'          startTime = millis();\n'
+           +'       }\n'
+           +'       if (Feedback.length()>0) break;\n'
+           +'    }\n'
+           +'    client.stop();\n'
+           +'    JsonObject obj;\n'
+           +'    DynamicJsonDocument doc(4096);\n'
+           +'    deserializeJson(doc, Feedback);\n'
+           +'    obj = doc.as<JsonObject>();\n'
+           +'    String getText = obj["candidates"][0]["content"]["parts"][0]["text"].as<String>();\n'
+           +'    if (getText == "null")\n'
+           +'      getText = obj["error"]["message"].as<String>();\n'
+           +'    getText.replace("\\n", "");\n'
+           +'    return getText;\n'
+           +'  }\n'
+           +'  else {\n'
+           +'    return "Connected to generativelanguage.googleapis.com failed.";\n'
+           +'  }\n'
+           +'}\n';
+		   
+	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
+											'  const char *msg = str.c_str();\n'+
+											'  const char *hex = "0123456789ABCDEF";\n'+
+											'  String encodedMsg = "";\n'+
+											'  while (*msg != \'\\0\') {\n'+
+											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
+											'      encodedMsg += *msg;\n'+
+											'    } else {\n'+
+											'      encodedMsg += \'%\';\n'+
+											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
+											'      encodedMsg += hex[*msg & 0xf];\n'+
+											'    }\n'+
+											'    msg++;\n'+
+											'  }\n'+
+											'  return encodedMsg;\n'+
+											'}';		   	   
+		
+  var code = 'gemini_chat_file_request("'+mimeType+'", file_path+"/"+'+filename+', '+words+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -5249,6 +5434,7 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 	var type = block.getFieldValue('type');
 	var channel = block.getFieldValue('channel');
 	var audio = block.getFieldValue('audio');
+	var volume = block.getFieldValue('volume');
 	var rotation = block.getFieldValue('rotation');	
 	var filename = Blockly.Arduino.valueToCode(block, 'filename', Blockly.Arduino.ORDER_ATOMIC);
 	var fileduration = Blockly.Arduino.valueToCode(block, 'fileduration', Blockly.Arduino.ORDER_ATOMIC);
@@ -5306,6 +5492,7 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 															'  Camera.videoInit();\n'+															
 															'  audio.configAudio(configA);\n'+
 															'  audio.begin();\n'+
+															'  audio.setMicGain('+volume+');\n'+
 															'  aac.configAudio(configA);\n'+
 															'  aac.begin();\n'+					
 															'  mp4.configVideo(configV);\n'+
@@ -5349,7 +5536,8 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 															'  StreamIO audioStreamer1(1, 1);\n'+
 															'  StreamIO audioStreamer2(1, 1);\n'+
 															'  audio.configAudio(configA);\n'+
-															'  audio.begin();\n'+	
+															'  audio.begin();\n'+
+															'  audio.setMicGain('+volume+');\n'+															
 															'  aac.configAudio(configA);\n'+
 															'  aac.begin();\n'+
 															'  mp4.configAudio(configA, CODEC_AAC);\n'+
@@ -5393,6 +5581,17 @@ Blockly.Arduino['amb82_mini_mp4_state'] = function(block) {
 Blockly.Arduino['amb82_mini_mp4_getstate'] = function(block) {
 	var code =  'mp4.getRecordingState()';
 	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['amb82_mini_audio_volume'] = function(block) {
+	var type = block.getFieldValue('type');
+	var volume = block.getFieldValue('volume');
+	if (type=="mic")
+		var code = 'audio.setMicGain('+volume+');\n';
+	else 
+		var code = 'audio.setSpkGain('+volume+');\n';
+										
+	return code;
 };
 
 Blockly.Arduino['amb82_mini_rtsp'] = function(block) {
