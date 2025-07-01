@@ -61,7 +61,8 @@ function gemini_chat_initial(input_key, input_model, input_tokens, input_role) {
 		
 		//console.log(gemini_mod.textContent);
 		document.body.appendChild(gemini_mod);
-		
+
+		console.log(input_role);
 		var checkFunction = function(){
 			if(typeof window.gemini_chat_insert === "function"){
 				gemini_chat_insert(input_role, "OK");
