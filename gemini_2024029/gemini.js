@@ -58,6 +58,7 @@ function gemini_chat_initial(input_key, input_model, input_tokens, input_role) {
 		'window.gemini_chat_insert = gemini_chat_insert;\n'+
 		'window.gemini_chat_clear = gemini_chat_clear;\n'+
 		'window.gemini_chat_history = chatHistory;\n'+
+		'console.log(`'+input_role+'`);\n'+			
 		'gemini_chat_insert(`'+input_role+'`, "OK");\n';
 		
 		//console.log(gemini_mod.textContent);
