@@ -17,7 +17,7 @@ Blockly.JavaScript['videorecord_gemini_initial'] = function(block) {
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
   
   var code = 'recording_Gemini_initial('+videoIndex+', '+videoWidth+', '+videoHeight+', '+videoAudio+', '+geminiKey+', "gemini-2.0-flash", '+geminiPrompt+');\n'+
-             'videoGeminiVision = async function(geminiResult) {\n  ' + statements_do + '\n  };\n';
+             'async function videoGeminiVision(geminiResult) {\n  ' + statements_do + '\n  };\nwindow.videoGeminiVision = videoGeminiVision;\n';
   return code;
 };
 
