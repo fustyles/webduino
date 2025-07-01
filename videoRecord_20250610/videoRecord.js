@@ -32,11 +32,13 @@ function recording_video_get() {
 }
 
 async function recording_startRecording() {
-	try {
+	//try {
 		let videoIndex = 0;
 		const devices = await navigator.mediaDevices.enumerateDevices();
+		console.log(devices);
 		for (const device of devices) {
 			if (device.kind === 'videoinput'){
+				console.log(device);
 				if (videoInputIndex==videoIndex) {				
 					let userMedia = "";
 					if (device.deviceId=='')
@@ -57,9 +59,9 @@ async function recording_startRecording() {
 			}
 			
 		}
-	} catch (error) {
-		console.error('Error accessing video devices:', error);
-	}
+	//} catch (error) {
+	//	console.error('Error accessing video devices:', error);
+	//}
 };
 
 async function recording_stopRecording(kind) {
