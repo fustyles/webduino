@@ -61,7 +61,15 @@ function gemini_chat_initial(input_key, input_model, input_tokens, input_role) {
 		
 		//console.log(gemini_mod.textContent);
 		document.body.appendChild(gemini_mod);
-		gemini_chat_insert(input_role, "OK");
+		
+		var checkFunction = function(){
+			if(typeof window.gemini_chat_insert === "function"){
+				gemini_chat_insert(input_role, "OK");
+			} else {
+				setTimeout(checkFunction, 200);
+			}
+		};
+		checkFunction();	
 } 
 
 function gemini_chat_set(input_property, input_value) {
