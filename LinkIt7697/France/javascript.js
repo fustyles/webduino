@@ -5105,7 +5105,7 @@ Blockly.Arduino['amb82_mini_gemini_vision'] = function(block) {
 			'    }\n'+
 			'    String Data = "{\\"contents\\": [{\\"parts\\": [{\\"text\\": \\""+message+"\\"}, {\\"inline_data\\": {\\"mime_type\\":\\"image/jpeg\\",\\"data\\":\\""+imageFile+"\\"}}]}]}";\n'+
 			'    \n'+
-			'    client.println("POST /v1beta/models/gemini-1.5-flash-latest:generateContent?key="+key+" HTTP/1.1");\n'+
+			'    client.println("POST /v1beta/models/gemini-2.0-flash:generateContent?key="+key+" HTTP/1.1");\n'+
 			'    client.println("Host: "+String(myDomain));\n'+
 			'    client.println("Content-Type: application/json; charset=utf-8");\n'+
 			'    client.println("Content-Length: " + String(Data.length()));\n'+
@@ -25278,7 +25278,7 @@ Blockly.Arduino['esp32_cam_gemini_vision'] = function(block) {
 			'    String Data = "{\\"contents\\": [{\\"parts\\": [{\\"text\\": \\""+message+"\\"}, {\\"inline_data\\": {\\"mime_type\\":\\"image/jpeg\\",\\"data\\":\\""+imageFile+"\\"}}]}]}";\n'+
 
 			'    \n'+
-			'    client.println("POST /v1beta/models/gemini-1.5-flash-latest:generateContent?key="+key+" HTTP/1.1");\n'+
+			'    client.println("POST /v1beta/models/gemini-2.0-flash:generateContent?key="+key+" HTTP/1.1");\n'+
 			'    client.println("Host: "+String(myDomain));\n'+
 			'    client.println("Content-Type: application/json; charset=utf-8");\n'+
 			'    client.println("Content-Length: " + String(Data.length()));\n'+
