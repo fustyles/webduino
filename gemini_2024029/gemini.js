@@ -2,7 +2,7 @@
 let Gemini_api_key = "";
 let Gemini_model = "";
 
-function gemini_chat_initial(input_key, input_model, input_tokens, input_role) {
+function gemini_chat_initial(input_key, input_model, input_tokens, input_temperature, input_role) {
 		Gemini_api_key = input_key;
 		Gemini_model = input_model;
 		const gemini_importMap = {
