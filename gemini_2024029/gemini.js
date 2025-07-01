@@ -21,7 +21,7 @@ function gemini_chat_initial(input_key, input_model, input_tokens, input_tempera
 		gemini_mod.textContent = ''+
 		'import { GoogleGenerativeAI } from "@google/generative-ai";\n'+
 		'const genAI = new GoogleGenerativeAI("'+input_key+'");\n'+
-		'var chatHistory = {history: [],generationConfig: {maxOutputTokens: '+input_tokens+',},};\n'+
+		'var chatHistory = {history: [],generationConfig: {maxOutputTokens: '+input_tokens+', temperature: '+input_temperature+',},};\n'+
 		'window.chatHistory = chatHistory;\n'+			
 		'async function gemini_chat_run(prompt) {\n'+
 		'	const model = await genAI.getGenerativeModel({ model: "'+input_model+'"});\n'+
