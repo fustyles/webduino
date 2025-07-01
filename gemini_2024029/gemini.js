@@ -59,11 +59,11 @@ function gemini_chat_initial(input_key, input_model, input_tokens, input_role) {
 		'window.gemini_chat_run = gemini_chat_run;\n'+
 		'window.gemini_chat_insert = gemini_chat_insert;\n'+
 		'window.gemini_chat_clear = gemini_chat_clear;\n'+
-		'window.gemini_chat_history = chatHistory;\n'+		
-		'gemini_chat_insert(Gemini_role, "OK");\n';
+		'window.gemini_chat_history = chatHistory;\n';	
 		
 		//console.log(gemini_mod.textContent);
 		document.body.appendChild(gemini_mod);
+		gemini_chat_insert(Gemini_role, "OK");
 } 
 
 function gemini_chat_set(input_property, input_value) {
