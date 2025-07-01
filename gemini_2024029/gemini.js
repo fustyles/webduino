@@ -46,10 +46,8 @@ function gemini_chat_initial(input_key, input_model, input_tokens, input_tempera
 		'	var char_response_text = {};\n'+
 		'	char_response_text.text = response;\n'+
 		'	char_response.parts.push(char_response_text);\n'+
-		'	chatHistory["history"].push(char_response);\n'+
-		'	console.log(request);\n'+
-		'	console.log(response);\n'+			
-		'	console.log(chatHistory);\n'+
+		'	chatHistory["history"].push(char_response);\n'+			
+		'	//console.log(chatHistory);\n'+
 		'}\n'+
 		'async function gemini_chat_clear(){\n'+
 		'	chatHistory["history"] = [];\n'+
@@ -62,7 +60,6 @@ function gemini_chat_initial(input_key, input_model, input_tokens, input_tempera
 		//console.log(gemini_mod.textContent);
 		document.body.appendChild(gemini_mod);
 
-		console.log(input_role);
 		var checkFunction = function(){
 			if(typeof window.gemini_chat_insert === "function"){
 				gemini_chat_insert(input_role, "OK");
