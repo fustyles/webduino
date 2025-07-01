@@ -38,17 +38,18 @@ async function recording_startRecording() {
 		console.log(devices);
 		for (const device of devices) {
 			if (device.kind === 'videoinput'){
-				console.log(device);
-				if (videoInputIndex==videoIndex) {				
+				
+				if (videoInputIndex==videoIndex) {
+					console.log(device);
 					let userMedia = "";
 					if (device.deviceId=='')
 						userMedia = {audio: videoAudio, video: {facingMode: 'environment', width: videoWidth, height: videoHeight} };
 					else
 						userMedia = {audio: videoAudio, video: {deviceId: {'exact':device.deviceId}, facingMode: 'environment', width: videoWidth, height: videoHeight} };				
 					const stream = await navigator.mediaDevices.getUserMedia(userMedia);
-
+					console.log(stream);
 					videoRecorder = new MediaRecorder(stream);
-
+					console.log(videoRecorder);
 					videoRecorder.ondataavailable = event => {
 						videoChunks.push(event.data);
 					};
