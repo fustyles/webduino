@@ -1,12 +1,10 @@
 'use strict';
 let Gemini_api_key = "";
 let Gemini_model = "";
-let Gemini_role = "";
 
 function gemini_chat_initial(input_key, input_model, input_tokens, input_role) {
 		Gemini_api_key = input_key;
 		Gemini_model = input_model;
-		Gemini_role = input_role;
 		const gemini_importMap = {
 			"imports": {
 			  "@google/generative-ai": "https://esm.run/@google/generative-ai"
@@ -63,7 +61,7 @@ function gemini_chat_initial(input_key, input_model, input_tokens, input_role) {
 		
 		//console.log(gemini_mod.textContent);
 		document.body.appendChild(gemini_mod);
-		gemini_chat_insert(Gemini_role, "OK");
+		gemini_chat_insert(input_role, "OK");
 } 
 
 function gemini_chat_set(input_property, input_value) {
