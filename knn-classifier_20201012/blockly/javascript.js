@@ -57,7 +57,7 @@ Blockly.JavaScript['knnclassifier_startvideo_media'] = function(block) {
 Blockly.JavaScript['knnclassifier_recognitied'] = function(block) { 
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
   
-  var code = 'async recognitionFinish function() {\n  ' + statements_do + '\n};\nwindow.recognitionFinish = recognitionFinish;\n';
+  var code = 'async function recognitionFinish() {\n  ' + statements_do + '\n};\nwindow.recognitionFinish = recognitionFinish;\n';
   return code;  
 };
 
