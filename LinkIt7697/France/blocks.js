@@ -205,8 +205,21 @@ Blockly.Blocks['json_c_get_column'] = {
 	this.appendValueInput("COLUMN")
 		.setCheck("String")
 		.appendField(Blockly.Msg["JSON_COLUMN"]);
-    this.appendDummyInput()
-		.appendField(Blockly.Msg["JSON_STRING"]);		
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)			
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["JSON_STRING"],"JSON_STRING"],
+			[Blockly.Msg["JSON_CONST_CHAR"],"JSON_CONST_CHAR"],
+			[Blockly.Msg["JSON_INT"],"JSON_INT"],
+			[Blockly.Msg["JSON_UNSIGNED_INT"],"JSON_UNSIGNED_INT"],
+			[Blockly.Msg["JSON_LONG"],"JSON_LONG"],
+			[Blockly.Msg["JSON_UNSIGNED_LONG"],"JSON_UNSIGNED_LONG"],
+			[Blockly.Msg["JSON_FLOAT"],"JSON_FLOAT"],
+			[Blockly.Msg["JSON_DOUBLE"],"JSON_DOUBLE"],
+			[Blockly.Msg["JSON_BOOL"],"JSON_BOOL"],
+			[Blockly.Msg["JSON_JSONARRAY"],"JSON_JSONARRAY"],
+			[Blockly.Msg["JSON_JSONOBJECT"],"JSON_JSONOBJECT"]					
+		]), "TYPE");				
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
 	this.setColour(330);
@@ -223,8 +236,21 @@ Blockly.Blocks['json_c_get_column1'] = {
 	this.appendValueInput("COLUMN")
 		.setCheck("String")
 		.appendField(Blockly.Msg["JSON_COLUMN"]);
-    this.appendDummyInput()
-		.appendField(Blockly.Msg["JSON_STRING"]);		
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)			
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["JSON_STRING"],"JSON_STRING"],
+			[Blockly.Msg["JSON_CONST_CHAR"],"JSON_CONST_CHAR"],
+			[Blockly.Msg["JSON_INT"],"JSON_INT"],
+			[Blockly.Msg["JSON_UNSIGNED_INT"],"JSON_UNSIGNED_INT"],
+			[Blockly.Msg["JSON_LONG"],"JSON_LONG"],
+			[Blockly.Msg["JSON_UNSIGNED_LONG"],"JSON_UNSIGNED_LONG"],
+			[Blockly.Msg["JSON_FLOAT"],"JSON_FLOAT"],
+			[Blockly.Msg["JSON_DOUBLE"],"JSON_DOUBLE"],
+			[Blockly.Msg["JSON_BOOL"],"JSON_BOOL"],
+			[Blockly.Msg["JSON_JSONARRAY"],"JSON_JSONARRAY"],
+			[Blockly.Msg["JSON_JSONOBJECT"],"JSON_JSONOBJECT"]							
+		]), "TYPE");	
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
 	this.setColour(330);

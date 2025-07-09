@@ -124,16 +124,62 @@ Blockly.Arduino['json_c_get_index'] = function (block) {
 Blockly.Arduino['json_c_get_column'] = function (block) { 
   var VAR = Blockly.Arduino.nameDB_.getName(block.getFieldValue('VAR'), Blockly.VARIABLE_CATEGORY_NAME);
   var COLUMN = Blockly.Arduino.valueToCode(block, 'COLUMN', Blockly.Arduino.ORDER_ATOMIC);
+  var TYPE = block.getFieldValue('TYPE');
+  if (TYPE=="JSON_STRING")
+	  TYPE = ".as<String>()";
+  else if (TYPE=="JSON_CONST_CHAR")
+	  TYPE = ".as<const char*>()";
+  else if (TYPE=="JSON_INT")
+	  TYPE = ".as<int>()";
+  else if (TYPE=="JSON_UNSIGNED_INT")
+	  TYPE = ".as<unsigned int>()";
+  else if (TYPE=="JSON_LONG")
+	  TYPE = ".as<long>()";
+  else if (TYPE=="JSON_UNSIGNED_LONG")
+	  TYPE = ".as<unsigned long>()";
+  else if (TYPE=="JSON_FLOAT")
+	  TYPE = ".as<float>()";
+  else if (TYPE=="JSON_DOUBLE")
+	  TYPE = ".as<double>()";
+  else if (TYPE=="JSON_BOOL")
+	  TYPE = ".as<bool>()";
+  else if (TYPE=="JSON_JSONARRAY")
+	  TYPE = ".as<JsonArray>()";
+  else if (TYPE=="JSON_JSONOJECT")
+	  TYPE = ".as<JsonObject>()";
   
-  var code = VAR+'['+COLUMN+'].as<String>()';
+  var code = VAR+'['+COLUMN+']'+TYPE;
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['json_c_get_column1'] = function (block) { 
   var VAR = Blockly.Arduino.valueToCode(block, 'VAR', Blockly.Arduino.ORDER_NONE);
   var COLUMN = Blockly.Arduino.valueToCode(block, 'COLUMN', Blockly.Arduino.ORDER_ATOMIC);
+  var TYPE = block.getFieldValue('TYPE');
+  if (TYPE=="JSON_STRING")
+	  TYPE = ".as<String>()";
+  else if (TYPE=="JSON_CONST_CHAR")
+	  TYPE = ".as<const char*>()";
+  else if (TYPE=="JSON_INT")
+	  TYPE = ".as<int>()";
+  else if (TYPE=="JSON_UNSIGNED_INT")
+	  TYPE = ".as<unsigned int>()";
+  else if (TYPE=="JSON_LONG")
+	  TYPE = ".as<long>()";
+  else if (TYPE=="JSON_UNSIGNED_LONG")
+	  TYPE = ".as<unsigned long>()";
+  else if (TYPE=="JSON_FLOAT")
+	  TYPE = ".as<float>()";
+  else if (TYPE=="JSON_DOUBLE")
+	  TYPE = ".as<double>()";
+  else if (TYPE=="JSON_BOOL")
+	  TYPE = ".as<bool>()";
+  else if (TYPE=="JSON_JSONARRAY")
+	  TYPE = ".as<JsonArray>()";
+  else if (TYPE=="JSON_JSONOBJECT")
+	  TYPE = ".as<JsonObject>()";
   
-  var code = VAR+'['+COLUMN+'].as<String>()';
+  var code = VAR+'['+COLUMN+']'+TYPE;
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
