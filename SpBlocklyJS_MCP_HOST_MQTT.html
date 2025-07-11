@@ -1,0 +1,199 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Headers' content='Origin, X-Requested-With, Content-Type, Accept'><meta http-equiv='Access-Control-Allow-Methods' content='GET,POST,PUT,DELETE,OPTIONS'><meta http-equiv='Access-Control-Allow-Origin' content='*'><meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/marked.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script><link rel='stylesheet' href='https://fustyles.github.io/webduino/SpBlocklyJS/css/icon_custom.css' /><script src='https://fustyles.github.io/webduino/SpBlocklyJS/MQTT_20220324/mqtt.min.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/TextToSpeech_20220729/texttospeech.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/SpeechRecognition_20220729/speechrecognition.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js'></script><script src='https://fustyles.github.io/webduino/SpBlocklyJS/gemini_20240209/gemini.js'></script></head><body>
+<script>
+const delay = (seconds) => {
+    return new Promise((resolve) => {
+        setTimeout(resolve, seconds * 1000);
+    });
+};
+const main = async () => {
+    var MQTT_E8_A8_82_E9_96_B1_E4_B8_BB_E9_A1_8C, MQTT_E7_99_BC_E4_BD_88_E4_B8_BB_E9_A1_8C, Gemini_E9_87_91_E9_91_B0, _E5_9B_9E_E5_82_B3_E7_B5_90_E6_9E_9C, Gemini_E8_A6_8F_E7_AF_84, _E5_B7_A5_E5_85_B7_E5_AE_9A_E7_BE_A9, _E8_AA_9E_E9_9F_B3_E6_9C_97_E8_AE_80_E7_8B_80_E6_85_8B, e, jsonData, jsonArray;
+
+    function mqttBinarytobase64(input_array) {
+        const content = new Uint8Array(input_array);
+        return btoa(String.fromCharCode.apply(null, content));
+    }
+
+
+    // 描述此函式...
+    async function Gemini_E5_88_9D_E5_A7_8B_E5_8C_96() {
+        gemini_chat_initial((CryptoJS.AES.decrypt(Gemini_E9_87_91_E9_91_B0, 'HELLO').toString(CryptoJS.enc.Utf8)), "gemini-2.0-flash", 1000, 0, '你是命名為"發哥"的AI agent，使用繁體中文對話，對話內容請帶點江湖味。');
+        await delay(2);
+        async function gemini_chat_response(gemini_chat_data) {
+            var _E5_9B_9E_E5_82_B3_E7_B5_90_E6_9E_9C = ((gemini_chat_response_br(gemini_chat_data, '')).replace(/```json/g, ''));
+            _E5_9B_9E_E5_82_B3_E7_B5_90_E6_9E_9C = (_E5_9B_9E_E5_82_B3_E7_B5_90_E6_9E_9C.replace(/```/g, ''));
+            if (_E5_9B_9E_E5_82_B3_E7_B5_90_E6_9E_9C.indexOf('[') + 1 == 1) {
+                div_set('workflow', "innerHTML", (['Gemini產生工作流： ', '<br>', '<br>', fontText(2, '#ff0000', 'Arial', _E5_9B_9E_E5_82_B3_E7_B5_90_E6_9E_9C)].join('')));
+                mqtt_client.publish(MQTT_E7_99_BC_E4_BD_88_E4_B8_BB_E9_A1_8C, String(_E5_9B_9E_E5_82_B3_E7_B5_90_E6_9E_9C));
+            } else {
+                div_set('', "innerHTML", ([fontText(2, '#ff6600', 'Arial', ('Gemini： ' + String(_E5_9B_9E_E5_82_B3_E7_B5_90_E6_9E_9C))), '<br>', div_get('', "innerHTML")].join('')));
+                await ttsSpeak(("Microsoft Hanhan - Chinese (Traditional, Taiwan)"), _E5_9B_9E_E5_82_B3_E7_B5_90_E6_9E_9C);
+            }
+
+        }
+        window.gemini_chat_response = gemini_chat_response;
+    }
+
+    // 描述此函式...
+    function _E4_BD_BF_E7_94_A8_E8_80_85_E4_BB_8B_E9_9D_A2_E5_88_9D_E5_A7_8B_E5_8C_96() {
+        ttsSetProperty(1, 1, 1, "cmn-Hant-TW");
+        text_create('', 400, 35, 0, 80, '#ffffff', '#000000', 14, 1, '', 999, true);
+        async function text__focus(event) {
+            element_select("gametext_");
+        };
+        document.getElementById('gametext_' + '').addEventListener("focus", text__focus, true);
+        async function text__keydown(event) {
+            if (event.keyCode == 13) {
+                Gemini_E5_B0_8D_E8_A9_B1();
+            }
+        };
+        document.getElementById('gametext_' + '').addEventListener("keydown", text__keydown, true);
+        div_create('', 410, 300, 0, 140, "solid", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
+        div_create('workflow', 410, 100, 0, 460, "solid", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
+    }
+
+    // 描述此函式...
+    function _E5_8F_96_E5_BE_97_E5_B7_A5_E5_85_B7_E5_AE_9A_E7_BE_A9() {
+        mqtt_client.publish(MQTT_E7_99_BC_E4_BD_88_E4_B8_BB_E9_A1_8C, String('[{   "jsonrpc": "2.0",   "method": "tools_definitions",   "id": 0 }]'));
+    }
+
+    // 描述此函式...
+    async function Gemini_E5_B0_8D_E8_A9_B1() {
+        if ((text_get('', "value")) != '') {
+            div_set('', "innerHTML", ([fontText(2, '#3333ff', 'Arial', ('User： ' + String(text_get('', "value")))), '<br>', div_get('', "innerHTML")].join('')));
+            await gemini_chat_run((['以下為使用者對話內容，請回傳對話內容或者工作流JSON指令：', '\n', text_get('', "value")].join('')));
+            text_set('', "value", '');
+        }
+    }
+
+    // 描述此函式...
+    function Google_E6_8C_89_E9_88_95_E5_88_9D_E5_A7_8B_E5_8C_96() {
+        button_toolbox(0, 0, 63, 63, '#ffffff', '#ff6666', 50, 1, 5, [
+            ['replay', '重設對話'],
+            ['save', '儲存對話'],
+            ['upload_file', '載入對話'],
+            ['volume_off', '語音朗讀'],
+            ['mic_off', '語音辨識'],
+            ['wechat', '送出對話']
+        ]);
+        async function gamebutton_replay_onclick(event) {
+            div_set('', "innerHTML", '');
+            div_set('workflow', "innerHTML", '');
+            text_set('', "value", '');
+            gemini_chat_clear();
+        };
+        document.getElementById("gamebutton_replay").addEventListener("click", gamebutton_replay_onclick, true);
+        async function gamebutton_save_onclick(event) {
+            gemini_chat_content_file("save");
+        };
+        document.getElementById("gamebutton_save").addEventListener("click", gamebutton_save_onclick, true);
+        async function gamebutton_upload_file_onclick(event) {
+            div_set('', "innerHTML", '');
+            div_set('workflow', "innerHTML", '');
+            gemini_chat_content_file("open");
+        };
+        document.getElementById("gamebutton_upload_file").addEventListener("click", gamebutton_upload_file_onclick, true);
+        async function gamebutton_volume_off_onclick(event) {
+            if (_E8_AA_9E_E9_9F_B3_E6_9C_97_E8_AE_80_E7_8B_80_E6_85_8B) {
+                ttsSwitch(0);
+                icon_google("button", 'volume_off', 'volume_off');
+                button_set('volume_off', "color", '#ffffff');
+                ttsState("cancel");
+            } else {
+                ttsSwitch(1);
+                icon_google("button", 'volume_off', 'volume_up');
+                button_set('volume_off', "color", '#3366ff');
+            }
+            _E8_AA_9E_E9_9F_B3_E6_9C_97_E8_AE_80_E7_8B_80_E6_85_8B = !_E8_AA_9E_E9_9F_B3_E6_9C_97_E8_AE_80_E7_8B_80_E6_85_8B;
+        };
+        document.getElementById("gamebutton_volume_off").addEventListener("click", gamebutton_volume_off_onclick, true);
+        async function gamebutton_mic_off_onclick(event) {
+            if (Recognition_state()) {
+                Recognition_switch(0);
+                icon_google("button", 'mic_off', 'mic_off');
+                button_set('mic_off', "color", '#ffffff');
+            } else {
+                Recognition_switch(1);
+                icon_google("button", 'mic_off', 'mic');
+                button_set('mic_off', "color", '#3366ff');
+            }
+        };
+        document.getElementById("gamebutton_mic_off").addEventListener("click", gamebutton_mic_off_onclick, true);
+        async function gamebutton_wechat_onclick(event) {
+            Gemini_E5_B0_8D_E8_A9_B1();
+        };
+        document.getElementById("gamebutton_wechat").addEventListener("click", gamebutton_wechat_onclick, true);
+        setInterval(async function() {
+            if ((Recognition_state()) == false) {
+                icon_google("button", 'mic_off', 'mic_off');
+                button_set('mic_off', "color", '#ffffff');
+            }
+        }, 2000);
+    }
+
+
+    head_add_viewport(1, 1, 2, "yes");
+    MQTT_E8_A8_82_E9_96_B1_E4_B8_BB_E9_A1_8C = 'fustyles/aiagent/subscribe';
+    MQTT_E7_99_BC_E4_BD_88_E4_B8_BB_E9_A1_8C = 'fustyles/aiagent/publish';
+    Gemini_E9_87_91_E9_91_B0 = 'U2FsdGVkX1/X9P1hWdssVe44NCCF6hmvR0Ui7Le+D2an+FfFdlWDl54IiuY2jg9Yf6v/3UPECyOFpKu3HfHd9A==';
+    Gemini_E8_A6_8F_E7_AF_84 = ['請依使用者需求產生工作流指令執行各項工作，並將執行結果經整理後回覆使用者。', '\n', '1. 請依使用者提示詞參照工具Json定義產生工作流的Json陣列資料，陣列資料的前後排列順序即為工作執行的順序。', '\n', '2. 如果使用者的對話內容與工作流工具功能無關，則回覆一般對話內容而非Json陣列資料。', '\n', '3. 如果要完成使用者需求必須分次執行不同工作流，則依順序產生不同工作流，程式將引導陸續執行所有工作流。', '\n', '4.工作流Json陣列資料示範：[{"jsonrpc":"2.0","method":"control_light","params":{"pin1":25,"value1":1,"pin2":26,"value2":0},"id":1},{"jsonrpc":"2.0","method":"delay","params":{"seconds":5},"id":1},{"jsonrpc":"2.0","method":"control_servo","params":{"pin":20,"value":45},"id":1}, ...]', '\n', '5.id值請以亂數產生整數，同一串工作流中id值相同。', '\n', '6.腳位須代入數字', '\n', '7. 回覆的資料前後不可加上Markdown語法。', '\n', '8. 不可多做解釋。', '\n', '9. 下列為工具Json物件定義清單：', '\n'].join('');
+    _E5_B7_A5_E5_85_B7_E5_AE_9A_E7_BE_A9 = '';
+    const clientId = "mqtt_" + Math.random().toString(16).substr(2, 8);
+    const options = {
+        username: '',
+        password: '',
+        keepalive: 60,
+        clientId: clientId,
+        protocolId: "MQTT",
+        protocolVersion: 4,
+        clean: true,
+        reconnectPeriod: 1000,
+        connectTimeout: 30 * 1000
+    }
+
+    var mqtt_client = mqtt.connect('wss://broker.mqttgo.io:8084/mqtt', options);
+    mqtt_client.on("connect", () => {
+        console.log("connected");
+        mqtt_client.subscribe(MQTT_E8_A8_82_E9_96_B1_E4_B8_BB_E9_A1_8C);
+        mqtt_client.on("message", async function(topic, payload) {
+            if (topic == MQTT_E8_A8_82_E9_96_B1_E4_B8_BB_E9_A1_8C) {
+                try {
+                    var _E5_9B_9E_E5_82_B3_E7_B5_90_E6_9E_9C = (new TextDecoder().decode(payload));
+                    _E5_9B_9E_E5_82_B3_E7_B5_90_E6_9E_9C = (_E5_9B_9E_E5_82_B3_E7_B5_90_E6_9E_9C.replace(/\\n/g, ''));
+                    jsonData = JSON.parse((new TextDecoder().decode(payload)));
+                    if (jsonData['tools_definitions']) {
+                        jsonArray = (jsonData['tools_definitions']);
+                        _E5_B7_A5_E5_85_B7_E5_AE_9A_E7_BE_A9 = (JSON.stringify(jsonArray));
+                        gemini_chat_insert((String(Gemini_E8_A6_8F_E7_AF_84) + String(_E5_B7_A5_E5_85_B7_E5_AE_9A_E7_BE_A9)), "ok");
+                    } else {
+                        div_set('', "innerHTML", ([fontText(2, '#33cc00', 'Arial', ('Server： ' + String(new TextDecoder().decode(payload)))), '<br>', div_get('', "innerHTML")].join('')));
+                        await gemini_chat_run((['以下為MCP Server回傳結果，請整理後回覆使用者：', '\n', new TextDecoder().decode(payload)].join('')));
+                    }
+
+                } catch (e) {
+                    div_set('', "innerHTML", ([fontText(2, '#ff0000', 'Arial', ('Error： ' + String(e))), '<br>', div_get('', "innerHTML")].join('')));
+                    console.log((new TextDecoder().decode(payload)));
+
+                } finally {
+
+                }
+            }
+        })
+    })
+
+    Gemini_E5_88_9D_E5_A7_8B_E5_8C_96();
+    _E4_BD_BF_E7_94_A8_E8_80_85_E4_BB_8B_E9_9D_A2_E5_88_9D_E5_A7_8B_E5_8C_96();
+    Google_E6_8C_89_E9_88_95_E5_88_9D_E5_A7_8B_E5_8C_96();
+    _E5_8F_96_E5_BE_97_E5_B7_A5_E5_85_B7_E5_AE_9A_E7_BE_A9();
+    _E8_AA_9E_E9_9F_B3_E6_9C_97_E8_AE_80_E7_8B_80_E6_85_8B = false;
+    ttsSetProperty(1, 1, 1, "cmn-Hant-TW");
+    ttsSwitch(0);
+    recognition.lang = "cmn-Hant-TW";
+    Recognition_switch(0);
+    Recognition_recognitionFinish = async function() {
+        text_set('', "value", (Recognition_final_get()));
+
+    };
+};
+main();
+</script>
+</body></html>
