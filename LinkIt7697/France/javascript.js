@@ -519,6 +519,7 @@ Blockly.Arduino['custom_chat_request'] = function (block) {
 			Blockly.Arduino.definitions_['custom_chat_request'] += '  client.setInsecure();\n';		
 
   Blockly.Arduino.definitions_['custom_chat_request'] += ''
+		+'  message.replace("\\\"", "\\\\\\\"");\n'  
 		+'  const char* myDomain = domain.c_str();\n'  
 		+'  String user_content = "{\\"role\\": \\"user\\", \\"content\\":\\""+ message+"\\"}";\n'
 		+'  historical_messages += ", "+user_content;\n'
@@ -789,6 +790,7 @@ Blockly.Arduino['gemini_chat_request'] = function (block) {
 			Blockly.Arduino.definitions_['gemini_chat_request'] += '  client.setInsecure();\n';		
 
   Blockly.Arduino.definitions_['gemini_chat_request'] += ''
+  		+'  message.replace("\\\"", "\\\\\\\"");\n'
 		+'  String user_content = "{\\"role\\": \\"user\\", \\"parts\\":[{ \\"text\\": \\""+ message+"\\" }]}";\n'
 		+'  historical_messages += ", "+user_content;\n'
 		+'  String request = "{\\"contents\\": [" + historical_messages + "],\\"generationConfig\\": {\\"maxOutputTokens\\": " + Gemini_maxOutputTokens + ", \\"temperature\\": " + Gemini_temperature + "}}";\n'
@@ -870,6 +872,7 @@ Blockly.Arduino['gemini_chat_content_file_read'] = function (block) {
 			Blockly.Arduino.definitions_['gemini_chat_file_request'] += '  client.setInsecure();\n';		
 
   Blockly.Arduino.definitions_['gemini_chat_file_request'] += ''
+    	   +'  prompt.replace("\\\"", "\\\\\\\"");\n'
            +'  Serial.println("File: "+filepath);\n'
            +'  uint8_t *fileinput;\n'
            +'  file = fs.open(filepath);\n'
@@ -2455,6 +2458,7 @@ Blockly.Arduino['amb82_mini_file_gemini_stt'] = function(block) {
 	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
 	Blockly.Arduino.definitions_['amb82_mini_file_sendAudioToGemini'] = ''
            +'String sendAudioFileToGeminiSTT(String apikey, String filepath, String mimeType, String prompt) {\n'
+  		   +'  prompt.replace("\\\"", "\\\\\\\"");\n'		   
            +'  Serial.println("File: "+filepath);\n'
            +'  uint8_t *fileinput;\n'
            +'  file = fs.open(filepath);\n'
@@ -5043,6 +5047,7 @@ Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
 
 	Blockly.Arduino.definitions_.SendStillToOpenaiVision = '\n'+
 			'String SendStillToOpenaiVision(String key, String message, bool capture) {\n'+
+  		    '  message.replace("\\\"", "\\\\\\\"");\n'+		
 			'  const char* myDomain = "api.openai.com";\n'+
 			'  String getResponse="",Feedback="";\n'+			
 			'  Serial.println("Connect to " + String(myDomain));\n'+
@@ -5218,6 +5223,7 @@ Blockly.Arduino['amb82_mini_custom_vision'] = function(block) {
 
 	Blockly.Arduino.definitions_.SendStillToOpenaiVision = '\n'+
 			'String SendStillToCustomVision(String domain, String path, String model, String key, String message, bool capture) {\n'+
+  		    '  message.replace("\\\"", "\\\\\\\"");\n'+		
 			'  const char* myDomain = domain.c_str();\n'+
 			'  String getResponse="",Feedback="";\n'+			
 			'  Serial.println("Connect to " + String(myDomain));\n'+
@@ -8111,6 +8117,7 @@ Blockly.Arduino['openai_chat_request'] = function (block) {
 			Blockly.Arduino.definitions_['openai_chat_request'] += '  client.setInsecure();\n';		
 
   Blockly.Arduino.definitions_['openai_chat_request'] += ''
+  		+'  message.replace("\\\"", "\\\\\\\"");\n'  
 	    +'  String path = "/v1/chat/completions";\n'
 		+'  char* myDomain = "api.openai.com";\n'
 		+'  if (openai_model.indexOf("llama")!=-1) {\n'
@@ -8356,7 +8363,8 @@ Blockly.Arduino['openai_text_request'] = function (block) {
 	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
 			Blockly.Arduino.definitions_['openai_text_request'] += '  client.setInsecure();\n';		
 	
-  Blockly.Arduino.definitions_['openai_text_request'] += '  words = "{\\"model\\":\\"text-davinci-003\\",\\"prompt\\":\\"" + words + "\\",\\"temperature\\":0,\\"max_tokens\\":" + String(max_tokens) + ",\\"frequency_penalty\\":0,\\"presence_penalty\\":0.6,\\"top_p\\":1.0,\\"n\\":1}";\n'
+  Blockly.Arduino.definitions_['openai_text_request'] += '  words.replace("\\\"", "\\\\\\\"");\n'
+                                                        +'  words = "{\\"model\\":\\"text-davinci-003\\",\\"prompt\\":\\"" + words + "\\",\\"temperature\\":0,\\"max_tokens\\":" + String(max_tokens) + ",\\"frequency_penalty\\":0,\\"presence_penalty\\":0.6,\\"top_p\\":1.0,\\"n\\":1}";\n'
 														+'  if (client.connect("api.openai.com", 443)) {\n'
 														+'    client.println("POST /v1/completions HTTP/1.1");\n'
 														+'    client.println("Connection: close");\n'
@@ -25192,6 +25200,7 @@ Blockly.Arduino['esp32_cam_openai_vision'] = function(block) {
 
 	Blockly.Arduino.definitions_.SendStillToOpenaiVision = '\n'+
 			'String SendStillToOpenaiVision(String key, String message) {\n'+
+  		    '  message.replace("\\\"", "\\\\\\\"");\n' +			
 			'  const char* myDomain = "api.openai.com";\n'+
 			'  String getResponse="",Feedback="";\n'+			
 			'  Serial.println("Connect to " + String(myDomain));\n';
@@ -25294,6 +25303,7 @@ Blockly.Arduino['esp32_cam_gemini_vision'] = function(block) {
 
 	Blockly.Arduino.definitions_.SendStillToGeminiVision = '\n'+
 			'String SendStillToGeminiVision(String key, String message) {\n'+
+  		    '  message.replace("\\\"", "\\\\\\\"");\n'+		
 			'  const char* myDomain = "generativelanguage.googleapis.com";\n'+
 			'  String getResponse="",Feedback="";\n'+			
 			'  Serial.println("Connect to " + String(myDomain));\n';
@@ -25391,6 +25401,7 @@ Blockly.Arduino['esp32_cam_custom_vision'] = function(block) {
 
 	Blockly.Arduino.definitions_.SendStillToOpenaiVision = '\n'+
 			'String SendStillToCustomVision(String domain, String path, String model, String key, String message) {\n'+
+  		    '  message.replace("\\\"", "\\\\\\\"");\n'+	
 			'  const char* myDomain = domain.c_str();\n'+
 			'  String getResponse="",Feedback="";\n'+			
 			'  Serial.println("Connect to " + String(myDomain));\n';
