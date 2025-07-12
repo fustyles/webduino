@@ -5127,6 +5127,7 @@ Blockly.Arduino['amb82_mini_gemini_vision'] = function(block) {
 
 	Blockly.Arduino.definitions_.SendStillToGeminiVision = '\n'+
 			'String SendStillToGeminiVision(String key, String message, bool capture) {\n'+
+			'  message.replace("\\\"", "\\\\\\\"");\n'+
 			'  const char* myDomain = "generativelanguage.googleapis.com";\n'+
 			'  String getResponse="",Feedback="";\n'+			
 			'  Serial.println("Connect to " + String(myDomain));\n'+
