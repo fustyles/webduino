@@ -2678,6 +2678,166 @@ Blockly.Blocks['amb82_mini_file_googletts'] = {
   }
 };
 
+Blockly.Blocks['amb82_mini_file_googletts_custom'] = {
+  init: function() {
+    this.appendDummyInput()
+	    .appendField(Blockly.Msg["AMB82_MINI"])
+		.appendField(Blockly.Msg["AMB82_MINI_GOOGLETTS"]+" (FU Flask)");
+	this.appendValueInput("message_")
+		.setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_GOOGLETTS_TEXT"]);	  
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)	
+		.appendField(Blockly.Msg["AMB82_MINI_GOOGLETTS_SPEED"])
+		.appendField(new Blockly.FieldDropdown([
+				["1","1"],
+				["0.9","0.9"],
+				["0.8","0.8"],
+				["0.7","0.7"],
+				["0.6","0.6"],	  
+				["0.5","0.5"],
+				["0.4","0.4"],
+				["0.3","0.3"],
+				["0.2","0.2"],
+				["0.1","0.1"],	
+				["0","0"]	   
+		]), "speed_");		
+	this.appendDummyInput()
+		  .setAlign(Blockly.ALIGN_RIGHT)
+		  .appendField(Blockly.Msg["AMB82_MINI_GOOGLETTS_LANGUAGE"])
+		  .appendField(new Blockly.FieldDropdown([
+				["Afrikaans","af"],
+				["Albanian","sq"],
+				["Amharic","am"],
+				["Arabic","ar"],
+				["Armenian","hy"],
+				["Azerbaijani","az"],
+				["Basque","eu"],
+				["Belarusian","be"],
+				["Bengali","bn"],
+				["Bihari","bh"],
+				["Bosnian","bs"],
+				["Breton","br"],
+				["Bulgarian","bg"],
+				["Cambodian","km"],
+				["Catalan","ca"],
+				["Chinese (Simplified)","zh-CN"],
+				["Chinese (Traditional)","zh-TW"],
+				["Corsican","co"],
+				["Croatian","hr"],
+				["Czech","cs"],
+				["Danish","da"],
+				["Dutch","nl"],
+				["English","en"],
+				["Esperanto","eo"],
+				["Estonian","et"],
+				["Faroese","fo"],
+				["Filipino","tl"],
+				["Finnish","fi"],
+				["French","fr"],
+				["Frisian","fy"],
+				["Galician","gl"],
+				["Georgian","ka"],
+				["German","de"],
+				["Greek","el"],
+				["Guarani","gn"],
+				["Gujarati","gu"],
+				["Hausa","ha"],
+				["Hebrew","iw"],
+				["Hindi","hi"],
+				["Hungarian","hu"],
+				["Icelandic","is"],
+				["Indonesian","id"],
+				["Interlingua","ia"],
+				["Irish","ga"],
+				["Italian","it"],
+				["Japanese","ja"],
+				["Javanese","jw"],
+				["Kannada","kn"],
+				["Kazakh","kk"],
+				["Kinyarwanda","rw"],
+				["Kirundi","rn"],
+				["Korean","ko"],
+				["Kurdish","ku"],
+				["Kyrgyz","ky"],
+				["Laothian","lo"],
+				["Latin","la"],
+				["Latvian","lv"],
+				["Lingala","ln"],
+				["Lithuanian","lt"],
+				["Macedonian","mk"],
+				["Malagasy","mg"],
+				["Malay","ms"],
+				["Malayalam","ml"],
+				["Maltese","mt"],
+				["Maori","mi"],
+				["Marathi","mr"],
+				["Moldavian","mo"],
+				["Mongolian","mn"],
+				["Montenegrin","sr-ME"],
+				["Nepali","ne"],
+				["Norwegian","no"],
+				["Norwegian (Nynorsk)","nn"],
+				["Occitan","oc"],
+				["Oriya","or"],
+				["Oromo","om"],
+				["Pashto","ps"],
+				["Persian","fa"],
+				["Polish","pl"],
+				["Portuguese (Brazil)","pt-BR"],
+				["Portuguese (Portugal)","pt-PT"],
+				["Punjabi","pa"],
+				["Quechua","qu"],
+				["Romanian","ro"],
+				["Romansh","rm"],
+				["Russian","ru"],
+				["Scots Gaelic","gd"],
+				["Serbian","sr"],
+				["Serbo-Croatian","sh"],
+				["Sesotho","st"],
+				["Shona","sn"],
+				["Sindhi","sd"],
+				["Sinhalese","si"],
+				["Slovak","sk"],
+				["Slovenian","sl"],
+				["Somali","so"],
+				["Spanish","es"],
+				["Sundanese","su"],
+				["Swahili","sw"],
+				["Swedish","sv"],
+				["Tajik","tg"],
+				["Tamil","ta"],
+				["Tatar","tt"],
+				["Telugu","te"],
+				["Thai","th"],
+				["Tigrinya","ti"],
+				["Tonga","to"],
+				["Turkish","tr"],
+				["Turkmen","tk"],
+				["Twi","tw"],
+				["Uighur","ug"],
+				["Ukrainian","uk"],
+				["Urdu","ur"],
+				["Uzbek","uz"],
+				["Vietnamese","vi"],
+				["Welsh","cy"],
+				["Xhosa","xh"],
+				["Yiddish","yi"],
+				["Yoruba","yo"],
+				["Zulu","zu"]
+			]), "language_");
+	this.appendValueInput("filename_")
+		.setCheck(null)
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["AMB82_MINI_FILE_NAME"]+"(.mp3)");	  
+	this.setInputsInline(false);
+	this.setPreviousStatement(true);
+	this.setNextStatement(true);
+	this.setColour(Blockly.Msg["HUE_28"]);
+  }
+};
+
 Blockly.Blocks['amb82_mini_file_openai_whisper'] = {
   init: function() {
     this.appendDummyInput()

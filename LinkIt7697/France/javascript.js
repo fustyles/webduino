@@ -15,6 +15,7 @@ Blockly.Arduino['amb82_mini_file_remote_get_sd'] = function(block) {
            +'    return;\n' 
            +'  } else {\n'
            +'    Serial.println("Connecting to " + domain);\n'
+           +'    WiFiSSLClient client;\n'		   
            +'    if (client.connect(domain.c_str(), port)) {\n'
            +'      Serial.println("Waiting for response...");\n'
            +'      client.println("GET "+request+" HTTP/1.1");\n'
@@ -2037,6 +2038,7 @@ Blockly.Arduino['amb82_mini_telegram'] = function(block) {
 	'  const char* myDomain = "api.telegram.org";\n'+
 	'  String getAll="", getBody = "";\n'+
 	'  Serial.println("Connect to " + String(myDomain));\n'+
+    '  WiFiSSLClient client;\n'+		
 	'  if (client.connect(myDomain, 443)) {\n'+
 	'    Serial.println("Connection successful");\n'+
 	'    if (capture) {\n'+
@@ -2222,6 +2224,7 @@ Blockly.Arduino['amb82_mini_file_googletts'] = function(block) {
            +'    return;\n' 
            +'  } else {\n'
            +'    Serial.println("Connecting to translate.google.com");\n'
+           +'    WiFiSSLClient client;\n'			   
            +'    if (client.connect("translate.google.com", 443)) {\n'
            +'      Serial.println("Waiting for response...");\n'
            +'      client.println("GET /translate_tts?ie=UTF-8&client=tw-ob&tl="+language+"&ttsspeed="+speed+"&q="+urlencode(message)+" HTTP/1.1");\n'
@@ -2287,6 +2290,90 @@ Blockly.Arduino['amb82_mini_file_googletts'] = function(block) {
     return code;
 };
 
+Blockly.Arduino['amb82_mini_file_googletts_custom'] = function(block) {
+	var filename = Blockly.Arduino.valueToCode(block, 'filename_', Blockly.Arduino.ORDER_ATOMIC);	
+	var message = Blockly.Arduino.valueToCode(block, 'message_', Blockly.Arduino.ORDER_ATOMIC);
+	var language = block.getFieldValue('language_');
+	var speed = block.getFieldValue('speed_');
+	
+	Blockly.Arduino.definitions_['amb82_mini_file_getGoogleVoice2SD'] = ''
+           +'void amb82_mini_getGoogleVoice2SD_custom(String filepath, String message, String language, int speed) {\n'
+           +'  message.replace("\\n", "");\n'		   
+           +'  if (fs.exists(filepath))\n'
+           +'    fs.remove(filepath);\n'
+           +'  delay(200);\n'		   
+           +'  File file = fs.open(filepath);\n'
+           +'  if(!file){\n'
+           +'    Serial.println("Failed to open file for reading");\n'
+           +'    return;\n' 
+           +'  } else {\n'
+           +'    Serial.println("Connecting to flask-googletts.vercel.app");\n'
+           +'    WiFiSSLClient client;\n'			   
+           +'    if (client.connect("flask-googletts.vercel.app", 443)) {\n'
+           +'      Serial.println("Waiting for response...");\n'
+           +'      client.println("GET /?language="+language+"&speed="+speed+"&message="+urlencode(message)+" HTTP/1.1");\n'
+           +'      client.println("Host: flask-googletts.vercel.app");\n'   
+           +'      client.println("Content-Type: text/html; charset=utf-8");\n'	
+           +'      client.println("Connection: close");\n'
+           +'      client.println();\n'
+           +'      String getResponse="";\n'
+           +'      boolean state = false;\n'
+           +'      int waitTime = 20000;\n'
+           +'      long startTime = millis();\n'
+           +'      boolean headState = false;\n'
+           +'      while ((startTime + waitTime) > millis()) {\n'
+           +'        while (client.available()) {\n'
+           +'            char c = client.read();\n'
+           +'            if (state==true) file.print(c);\n'
+           +'            if (c == \'\\n\') {\n'
+           +'              if (getResponse.length()==0) {\n'
+           +'                if (!headState) { \n'
+           +'                  client.readStringUntil(\'\\n\');\n'
+           +'                  headState = true;\n'
+           +'                }\n'
+           +'                state=true;\n'
+           +'              }\n'         
+           +'              getResponse = "";\n'
+           +'            }\n'
+           +'            else if (c != \'\\r\') {\n'
+           +'              getResponse += String(c);\n'
+           +'            }\n'
+           +'            if (getResponse.indexOf("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU")!=-1) {\n'
+           +'              waitTime = 0;\n'
+           +'              break;\n'
+           +'            }\n' 		   
+           +'            startTime = millis();\n'
+           +'         }\n'
+           +'      }\n'
+           +'      client.stop();\n'
+           +'    } else {\n'
+           +'       Serial.print("Connecting to flask-googletts.vercel.app failed.");\n'
+           +'    }\n'
+           +'  }\n'
+           +'  file.close();\n'
+           +'}\n';
+		   
+	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
+											'  const char *msg = str.c_str();\n'+
+											'  const char *hex = "0123456789ABCDEF";\n'+
+											'  String encodedMsg = "";\n'+
+											'  while (*msg != \'\\0\') {\n'+
+											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
+											'      encodedMsg += *msg;\n'+
+											'    } else {\n'+
+											'      encodedMsg += \'%\';\n'+
+											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
+											'      encodedMsg += hex[*msg & 0xf];\n'+
+											'    }\n'+
+											'    msg++;\n'+
+											'  }\n'+
+											'  return encodedMsg;\n'+
+											'}';		   
+
+	var code = 'amb82_mini_getGoogleVoice2SD_custom(file_path+"/"+'+filename+'+".mp3", '+message+', "'+language+'", '+speed+');\n';
+    return code;
+};
+
 Blockly.Arduino['amb82_mini_file_openai_whisper'] = function(block) {
 	var key = Blockly.Arduino.valueToCode(block, 'key_', Blockly.Arduino.ORDER_ATOMIC);
 	var filename = Blockly.Arduino.valueToCode(block, 'filename_', Blockly.Arduino.ORDER_ATOMIC);
@@ -2304,6 +2391,7 @@ Blockly.Arduino['amb82_mini_file_openai_whisper'] = function(block) {
            +'    fileinput[fileSize] = \'\\0\';\n'
            +'    file.close();\n'
            +'    Serial.println("Connect to api.openai.com");\n'
+           +'    WiFiSSLClient client;\n'			   
            +'    if (client.connect("api.openai.com", 443)) {\n'
            +'      Serial.println("Connection successful");\n'
            +'      String head = "--Taiwan\\r\\nContent-Disposition: form-data; name=\\"model\\"\\r\\n\\r\\n'+model+'\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"response_format\\"\\r\\n\\r\\nverbose_json\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"file\\"; filename=\\""+filename+"\\"\\r\\nContent-Type: "+mimeType+"\\r\\n\\r\\n";\n'
@@ -2384,6 +2472,7 @@ Blockly.Arduino['amb82_mini_file_groq_whisper'] = function(block) {
            +'    fileinput[fileSize] = \'\\0\';\n'
            +'    file.close();\n'
            +'    Serial.println("Connect to api.groq.com");\n'
+           +'    WiFiSSLClient client;\n'			   
            +'    if (client.connect("api.groq.com", 443)) {\n'
            +'      Serial.println("Connection successful");\n'
            +'      String head = "--Taiwan\\r\\nContent-Disposition: form-data; name=\\"model\\"\\r\\n\\r\\nwhisper-large-v3-turbo\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"response_format\\"\\r\\n\\r\\nverbose_json\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"file\\"; filename=\\""+filename+"\\"\\r\\nContent-Type: "+mimeType+"\\r\\n\\r\\n";\n'
@@ -2471,6 +2560,7 @@ Blockly.Arduino['amb82_mini_file_gemini_stt'] = function(block) {
            +'  char *encodedData = (char *)malloc(encodedLen);\n'
            +'  base64_encode(encodedData, (char *)fileinput, fileSize);\n'
            +'  Serial.println("Connect to generativelanguage.googleapis.com");\n'
+           +'  WiFiSSLClient client;\n'			   
            +'  if (client.connect("generativelanguage.googleapis.com", 443)) {\n'
            +'    Serial.println("Connection successful");\n'
            +'    prompt.replace("\\n", "");\n'
@@ -4952,6 +5042,7 @@ Blockly.Arduino['amb82_mini_googledrive'] = function(block) {
 			'  String getAll="", getBody = "";\n'+
 			'  \n'+
 			'  Serial.println("Connect to " + String(myDomain));\n'+
+            '  WiFiSSLClient client;\n'+			
 			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    if (capture) {\n'+
@@ -5051,6 +5142,7 @@ Blockly.Arduino['amb82_mini_openai_vision'] = function(block) {
 			'  const char* myDomain = "api.openai.com";\n'+
 			'  String getResponse="",Feedback="";\n'+			
 			'  Serial.println("Connect to " + String(myDomain));\n'+
+            '  WiFiSSLClient client;\n'+				
 			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    if (capture) {\n'+
@@ -5136,6 +5228,7 @@ Blockly.Arduino['amb82_mini_gemini_vision'] = function(block) {
 			'  const char* myDomain = "generativelanguage.googleapis.com";\n'+
 			'  String getResponse="",Feedback="";\n'+			
 			'  Serial.println("Connect to " + String(myDomain));\n'+
+            '  WiFiSSLClient client;\n'+			
 			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    if (capture) {\n'+
@@ -5227,6 +5320,7 @@ Blockly.Arduino['amb82_mini_custom_vision'] = function(block) {
 			'  const char* myDomain = domain.c_str();\n'+
 			'  String getResponse="",Feedback="";\n'+			
 			'  Serial.println("Connect to " + String(myDomain));\n'+
+            '    WiFiSSLClient client;\n'+				
 			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    if (capture) {\n'+
@@ -5317,6 +5411,7 @@ Blockly.Arduino['amb82_mini_spreadsheet'] = function(block) {
 			'  String getAll="", getBody = "";\n'+
 			'  \n'+
 			'  Serial.println("Connect to " + String(myDomain));\n'+
+            '  WiFiSSLClient client;\n'+		
 			'  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    if (capture) {\n'+
@@ -5407,6 +5502,7 @@ Blockly.Arduino['amb82_mini_linenotify'] = function(block) {
 	
 	Blockly.Arduino.definitions_.SendCapturedImageToLineNotify = '\n'+
 			'String SendStillToLineNotify(String token, String message, bool capture) {\n'+
+            '  WiFiSSLClient client;\n'+	
 			'  if (client.connect("notify-api.line.me", 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
 			'    if (capture) {\n'+
@@ -5495,11 +5591,11 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 	Blockly.Arduino.setups_.write_peri_reg = "";
 	
 	if (type=="VideoOnly") {
-		Blockly.Arduino.definitions_['amb82_mini_video_initial_mp4'] = '#include "StreamIO.h"\n#include "VideoStream.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\n';
+		Blockly.Arduino.definitions_['amb82_mini_video_initial_mp4'] = '#include "StreamIO.h"\n#include "VideoStream.h"\n#include "MP4Recording.h"\nMP4Recording mp4;\n#define amb82_CHANNEL '+channel+'\nVideoSetting config(amb82_CHANNEL);\n';
 											
 		Blockly.Arduino.definitions_.amb82_mini_rtsp=   'void recordMP4() {\n'+
 															'  config.setRotation('+rotation+');\n'+
-															'  MP4Recording mp4;\n'+
+															'  '+
 															'  StreamIO videoStreamer(1, 1);\n'+															
 															'  Camera.configVideoChannel(amb82_CHANNEL, config);\n'+
 															'  Camera.videoInit();\n'+
@@ -5526,7 +5622,7 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 															'  Camera.videoDeinit();\n'+															
 														'}\n';												
 	} else if (type=="SingleVideoWithAudio") {
-		Blockly.Arduino.definitions_['amb82_mini_video_initial_mp4'] = '#include "StreamIO.h"\n#include "VideoStream.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "MP4Recording.h"\n#define amb82_CHANNEL '+channel+'\nVideoSetting configV(amb82_CHANNEL);\n';
+		Blockly.Arduino.definitions_['amb82_mini_video_initial_mp4'] = '#include "StreamIO.h"\n#include "VideoStream.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "MP4Recording.h"\nMP4Recording mp4;\n#define amb82_CHANNEL '+channel+'\nVideoSetting configV(amb82_CHANNEL);\n';
 
 											
 		Blockly.Arduino.definitions_.amb82_mini_rtsp=   'void recordMP4() {\n'+
@@ -5534,7 +5630,7 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 															'  AudioSetting configA('+audio+');\n'+
 															'  Audio audio;\n'+
 															'  AAC aac;\n'+
-															'  MP4Recording mp4;\n'+
+															'  '+
 															'  StreamIO audioStreamer(1, 1);\n'+
 															'  StreamIO avMixStreamer(2, 1);\n'+
 															'  Camera.configVideoChannel(amb82_CHANNEL, configV);\n'+
@@ -5575,13 +5671,13 @@ Blockly.Arduino['amb82_mini_mp4_initial'] = function(block) {
 															'  Camera.videoDeinit();\n'+														
 														'}\n';											
 	} else if (type=="AudioOnly") {
-		Blockly.Arduino.definitions_['amb82_mini_video_initial_mp4'] = '#include "StreamIO.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "MP4Recording.h"\n';
+		Blockly.Arduino.definitions_['amb82_mini_video_initial_mp4'] = '#include "StreamIO.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "MP4Recording.h"\nMP4Recording mp4;\n';
 											
 		Blockly.Arduino.definitions_.amb82_mini_rtsp =	'void recordMP4() {\n'+
 															'  AudioSetting configA('+audio+');\n'+
 															'  Audio audio;\n'+
 															'  AAC aac;\n'+
-															'  MP4Recording mp4;\n'+														
+															'  '+														
 															'  StreamIO audioStreamer1(1, 1);\n'+
 															'  StreamIO audioStreamer2(1, 1);\n'+
 															'  audio.configAudio(configA);\n'+

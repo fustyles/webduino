@@ -3937,6 +3937,19 @@
 				</value>
 				<field name="language_">zh-TW</field>
 			</block>
+			<block type="amb82_mini_file_googletts_custom">
+				<value name="message_">
+				  <block type="text">
+					<field name="TEXT">Hello World</field>
+				  </block>
+				</value>
+				<value name="filename_">
+				  <block type="text">
+					<field name="TEXT">test</field>
+				  </block>
+				</value>
+				<field name="language_">zh-TW</field>
+			</block>			
 			<block type="amb82_mini_file_openai_whisper">
 				<value name="key_">
 				  <block type="text">
