@@ -6458,7 +6458,7 @@ Blockly.Blocks['amb82_mini_mp4_initial'] = {
 			["10", "10"],
 			["0", "0"]		
 		]), "volume");		
-    this.appendDummyInput()
+    this.appendDummyInput("rot")
 		.appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"])
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
@@ -6497,6 +6497,11 @@ Blockly.Blocks['amb82_mini_mp4_initial'] = {
 			block.getInput("cha").setVisible(false);
 		} else {
 			block.getInput("cha").setVisible(true);	
+		}
+		if (newValue=="AudioOnly") {
+			block.getInput("rot").setVisible(false);
+		} else {
+			block.getInput("rot").setVisible(true);	
 		}		
   }
 };
