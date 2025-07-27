@@ -2188,14 +2188,8 @@ Blockly.Msg["EZ_SIZE"] = "大小";
 Blockly.Msg["EZ_TEXT"] = "字串";
 Blockly.Msg["OLED_XBM_VALUE"] = "XBM值";
 Blockly.Msg["OLED_FONT_TTF"] = "開啟本機TTF字型";
-Blockly.Msg["AIRQUALITY_ESP32"] = "台灣空氣品質 (ESP32)";
-Blockly.Msg["AIRQUALITY_SITE"] = "取得 站名";
-Blockly.Msg["AIRQUALITY_AQI"] = "AQI";
-Blockly.Msg["AIRQUALITY_PM25"] = "PM2.5";
-Blockly.Msg["AIRQUALITY_STATE"] = "狀態";
-Blockly.Msg["AIRQUALITY_TIME"] = "更新時間";
 
-Blockly.Msg["AIRQUALITY_ESP32"] = "台灣空氣品質 (ESP32)";
+Blockly.Msg["AIRQUALITY_ESP32"] = "台灣空氣品質";
 Blockly.Msg["AIRQUALITY_AUTHORIZATION"] = "授權碼";	  
 Blockly.Msg["AIRQUALITY_SITE"] = "站名";
 Blockly.Msg["AIRQUALITY_AQI"] = "AQI";

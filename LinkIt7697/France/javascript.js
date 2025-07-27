@@ -13974,162 +13974,16 @@ Blockly.Arduino['fu_taiwan_aqi'] = function(block) {
 	Blockly.Arduino.definitions_['airTime'] = 'String airTime = "";';	
 	Blockly.Arduino.definitions_['opendataAirQuality'] = '\n' +
 			'void opendataAirQuality(String Site, String Authorization) {\n'+
-			'  String request = "/macros/s/AKfycbyd2HGXCxMp48fPQah4zxbmYC4qJkeL_a5sg18Jv4ubKg5aX8MO58p72ZdOBhyuHTXn/exec?key="+Authorization+"&site="+urlencode(Site);\n';
+			'  String request = "/api/v2/aqx_p_432?format=json&language=zh&api_key="+Authorization+"&filters=SiteName,EQ,"+urlencode(Site);\n';
 			
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['opendataAirQuality'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
 			Blockly.Arduino.definitions_['opendataAirQuality'] += '  client.setInsecure();\n';	
 	
-	Blockly.Arduino.definitions_['opendataAirQuality'] += '  String getResponse="",Feedback="";\n'+
-			'  boolean state = false;\n'+
-			'  boolean cutstate = false;\n'+
-			'  int waitTime = 10000;\n'+
-			'  long startTime = millis();\n'+
-			'  if (client.connect("script.google.com", 443)) {\n'+
+	Blockly.Arduino.definitions_['opendataAirQuality'] +='  if (client.connect("data.moenv.gov.tw", 443)) {\n'+
 			'    client.println("GET " + request + " HTTP/1.1");\n'+
-			'    client.println("Host: script.google.com");\n'+
-			'    client.println("Connection: close");\n'+
-			'    client.println();\n'+
-			'    while ((startTime + waitTime) > millis()) {\n'+
-			'      while (client.available()) {\n'+
-			'    	 char c = client.read();\n'+
-			'        getResponse += String(c);\n'+	
-			'        if (state==true&&(c == \'\\r\'||c == \'\\n\'))\n'+
-			'            break;\n'+				
-			'        if (c != \'\\r\'&&c != \'\\n\') {\n'+
-			'          if (getResponse.indexOf("script.googleusercontent.com")!=-1) {\n'+
-			'            state=true;\n'+
-			'            getResponse = "";\n'+
-			'          }\n'+			
-			'          else if (state==true) {\n'+
-			'            Feedback += String(c);\n'+
-			'          }\n'+	
-			'        }\n'+			
-			'        startTime = millis();\n'+
-			'      }\n'+
-			'      if (Feedback.length()!= 0) break;\n'+
-			'    }\n'+
-			'    client.stop();\n'+		
-			'    //Serial.println(Feedback);\n'+
-			'  }\n'+
-			'  if (client.connect("script.googleusercontent.com", 443)) {\n'+
-			'    client.println("GET " + Feedback + " HTTP/1.1");\n'+
-			'    client.println("Host: script.googleusercontent.com");\n'+
-			'    client.println("Connection: close");\n'+
-			'    client.println();\n'+
-			'    getResponse="";\n'+
-			'    Feedback="";\n'+
-			'    state = false;\n'+
-			'    cutstate = false;\n'+
-			'    waitTime = 10000;\n'+
-			'    startTime = millis();\n'+
-			'    while ((startTime + waitTime) > millis()) {\n'+
-			'      while (client.available()) {\n'+
-			'        char c = client.read();\n'+
-			'        if (state==true) {\n'+
-			'          if (cutstate == false||(cutstate == true&&String(c)!="]")) {\n'+
-			'            Feedback += String(c);\n'+
-			'          }\n'+
-			'          if (cutstate == true&&String(c)=="]")\n'+
-			'            state=false;\n'+
-			'          if (Feedback.indexOf("\\"records\\": [")!=-1) {\n'+
-			'            Feedback="";\n'+
-			'            cutstate = true;\n'+
-			'          }\n'+
-			'        }\n'+
-			"        if (c == '\\n') {\n"+
-			'          if (getResponse.length()==0) state=true;\n'+
-			'          getResponse = "";\n'+
-			'        }\n'+
-			"        else if (c != '\\r')\n"+
-			'          getResponse += String(c);\n'+      
-			'        startTime = millis();\n'+
-			'      }\n'+
-			'      if (Feedback.length()!= 0) break;\n'+
-			'    }\n'+
-			'    client.stop();\n'+
-			'    //Serial.println(Feedback);\n'+
-			'    JsonObject obj;\n';
-			
-	if (selectBoardType()=="esp32")
-		Blockly.Arduino.definitions_['opendataAirQuality'] +='    DynamicJsonDocument doc(4096);\n';
-	else if (selectBoardType()=="rp2040"||selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735")
-		Blockly.Arduino.definitions_['opendataAirQuality'] +='    DynamicJsonDocument doc(1024);\n';	
-	else if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['opendataAirQuality'] +='    DynamicJsonDocument doc(352);\n';
-	else
-		Blockly.Arduino.definitions_['opendataAirQuality'] +='    DynamicJsonDocument doc(128);\n';
-			
-Blockly.Arduino.definitions_['opendataAirQuality'] +='    deserializeJson(doc, Feedback);\n'+
-			'    obj = doc.as<JsonObject>();\n'+
-			'    airSite = Site;\n'+
-			'    airAQI = obj["aqi"].as<String>().toInt();\n'+
-			'    airPM25 = obj["pm2.5"].as<String>().toInt();\n'+
-			'    airStatus = obj["status"].as<String>();\n'+			
-			'    airTime = obj["publishtime"].as<String>();\n'+
-			'  }\n'+
-			'}';
-			
-	Blockly.Arduino.definitions_['getAQI'] = '' +			
-			'String getAQI(int index) {\n'+
-			'  if (index==0) {\n'+
-			'    return airSite;\n'+
-			'  } else if (index==1) {\n'+
-			'    return airAQI;\n'+
-			'  } else if (index==2) {\n'+
-			'    return airPM25;\n'+
-			'  } else if (index==3) {\n'+
-			'    return airStatus;\n'+
-			'  } else if (index==4) {\n'+
-			'    return airTime;\n'+
-			'  }\n'+			
-			'  return "";\n'+
-			'}';
-						
-	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
-											'  const char *msg = str.c_str();\n'+
-											'  const char *hex = "0123456789ABCDEF";\n'+
-											'  String encodedMsg = "";\n'+
-											'  while (*msg != \'\\0\') {\n'+
-											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
-											'      encodedMsg += *msg;\n'+
-											'    } else {\n'+
-											'      encodedMsg += \'%\';\n'+
-											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
-											'      encodedMsg += hex[*msg & 0xf];\n'+
-											'    }\n'+
-											'    msg++;\n'+
-											'  }\n'+
-											'  return encodedMsg;\n'+
-											'}';
-											
-	var code = 'opendataAirQuality("'+dropdown_sitename+'",'+value_Authorization+');\n';
-	return code;
-};
-
-Blockly.Arduino['fu_taiwan_aqi_bk'] = function(block) {
-	var dropdown_sitename = block.getFieldValue('sitename');
-	var value_Authorization = Blockly.Arduino.valueToCode(block, 'Authorization', Blockly.Arduino.ORDER_ATOMIC);
-	
-	Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
-	Blockly.Arduino.definitions_['airSite'] = 'String airSite = "";';	
-	Blockly.Arduino.definitions_['airAQI'] = 'String airAQI = "";';	
-	Blockly.Arduino.definitions_['airPM25'] = 'String airPM25 = "";';
-	Blockly.Arduino.definitions_['airStatus'] = 'String airStatus = "";';
-	Blockly.Arduino.definitions_['airTime'] = 'String airTime = "";';	
-	Blockly.Arduino.definitions_['opendataAirQuality'] = '\n' +
-			'void opendataAirQuality(String Site, String Authorization) {\n'+
-			'  String request = "/api/v2/aqx_p_432?api_key="+Authorization+"&format=json&limit=5&filters=SiteName,EQ,"+urlencode(Site);\n';
-			
-	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['opendataAirQuality'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
-			Blockly.Arduino.definitions_['opendataAirQuality'] += '  client.setInsecure();\n';	
-	
-	Blockly.Arduino.definitions_['opendataAirQuality'] +='  if (client.connect("data.epa.gov.tw", 443)) {\n'+
-			'    client.println("GET " + request + " HTTP/1.1");\n'+
-			'    client.println("Host: data.epa.gov.tw");\n'+
+			'    client.println("Host: data.moenv.gov.tw");\n'+
 			'    client.println("Connection: close");\n'+
 			'    client.println();\n'+
 			'    String getResponse="",Feedback="";\n'+
@@ -14244,7 +14098,7 @@ Blockly.Arduino['fu_taiwan_weather'] = function(block) {
 			Blockly.Arduino.definitions_['opendataWeather'] += '  client.setInsecure();\n';	
 	
 	Blockly.Arduino.definitions_['opendataWeather'] +='  if (client.connect("opendata.cwa.gov.tw", 443)) {\n'+
-			'    String request = "/api/v1/rest/datastore/F-C0032-001?Authorization="+Authorization+"&locationName="+urlencode(location);\n'+	
+			'    String request = "/api/v1/rest/datastore/F-C0032-001?format=JSON&Authorization="+Authorization+"&locationName="+urlencode(location);\n'+	
 			'    client.println("GET " + request + " HTTP/1.1");\n'+
 			'    client.println("Host: opendata.cwb.gov.tw");\n'+
 			'    client.println("Connection: close");\n'+

@@ -2188,6 +2188,7 @@ Blockly.Msg["EZ_SIZE"] = "size";
 Blockly.Msg["EZ_TEXT"] = "text";
 Blockly.Msg["OLED_XBM_VALUE"] = "XBM value";
 Blockly.Msg["OLED_FONT_TTF"] = "TTF font";
+
 Blockly.Msg["AIRQUALITY_ESP32"] = "Taiwan air quality(ESP32)";
 Blockly.Msg["AIRQUALITY_AUTHORIZATION"] = "Authorization";
 Blockly.Msg["AIRQUALITY_SITE"] = "Site";
