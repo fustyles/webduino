@@ -10498,7 +10498,7 @@
 		<category id="catWebbitBoard" name="catWebbitBoard">
 			<category id="ws2812" name="ws2812">
 				
-				<block type="BitMatrixLed_matrix_pin">
+				<block type="BitMatrixLed_matrix_pin1">
 					<value name="pin">
 						<block type="math_number">
 							<field name="NUM">4</field>
@@ -11206,7 +11206,7 @@
 				</value>				
 			</block>	
 			<block type="webbit_mooncar_tcs_detect"></block>	
-			<block type="BitMatrixLed_matrix_pin">
+			<block type="BitMatrixLed_matrix_pin1">
 				<value name="pin">
 					<block type="math_number">
 						<field name="NUM">26</field>
@@ -12834,7 +12834,7 @@
 		</block>
 	</category>
 	<category name="ws2812">
-		<block type="BitMatrixLed_matrix_pin">
+		<block type="BitMatrixLed_matrix_pin1">
 			<value name="pin">
 				<block type="math_number">
 					<field name="NUM">4</field>
@@ -13730,7 +13730,7 @@
             </block>
           </value>
         </block>
-		<block type="BitMatrixLed_matrix_pin">
+		<block type="BitMatrixLed_matrix_pin1">
 			<value name="pin">
 			  <block type="math_number">
 				<field name="NUM">15</field>

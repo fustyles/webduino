@@ -29594,6 +29594,22 @@ Blockly.Blocks['BitMatrixLed_matrix_pin'] = {
 	}
 };
 
+Blockly.Blocks['BitMatrixLed_matrix_pin1'] = {
+	init:function(){
+		this.appendDummyInput()
+			.appendField(Blockly.Msg.ESP32_MATRIX_PIN);
+		this.appendValueInput("pin")
+			.setCheck("Number");
+		this.appendDummyInput()
+			.appendField(Blockly.Msg.ESP32_MATRIX_LEDS)
+			.appendField(new Blockly.FieldTextInput("1"), "leds");
+		this.setInputsInline(true);
+		this.setPreviousStatement(true,null);
+		this.setNextStatement(true,null);
+		this.setColour(300);			
+	}
+};
+
 Blockly.Blocks['BitMatrixLed_matrix_brightness'] = {
 	init:function(){
 		this.appendDummyInput()
