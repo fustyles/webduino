@@ -243,7 +243,7 @@ Blockly.Blocks['gemini_chat_content_file_remote_read'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true); 
-  this.setColour(40);
+  this.setColour(90);
   this.setHelpUrl("https://ai.google.dev/gemini-api/docs/document-processing?hl=zh-tw");	  
   }
 };
