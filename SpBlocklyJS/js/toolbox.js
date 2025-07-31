@@ -257,30 +257,18 @@ var catSystem = '<xml>'+
 '    <block type="lists_isEmpty"></block>'+
 '    <block type="lists_indexOf">'+
 '    <value name="VALUE">'+
-'    <block type="variables_get">'+
-'    <field name="VAR">{listVariable}</field>'+
-'    </block>'+
 '    </value>'+
 '    </block>'+
 '    <block type="lists_getIndex">'+
 '    <value name="VALUE">'+
-'    <block type="variables_get">'+
-'    <field name="VAR">{listVariable}</field>'+
-'    </block>'+
 '    </value>'+
 '    </block>'+
 '    <block type="lists_setIndex">'+
 '    <value name="LIST">'+
-'    <block type="variables_get">'+
-'    <field name="VAR">{listVariable}</field>'+
-'    </block>'+
 '    </value>'+
 '    </block>'+
 '    <block type="lists_getSublist">'+
 '    <value name="LIST">'+
-'    <block type="variables_get">'+
-'    <field name="VAR">{listVariable}</field>'+
-'    </block>'+
 '    </value>'+
 '    </block>'+
 '    <block type="lists_sort"></block>'+  
