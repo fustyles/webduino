@@ -670,11 +670,13 @@ const c=[];if(Blocks$$module$build$src$core$blocks.procedures_defnoreturn){var d
 Blocks$$module$build$src$core$blocks.procedures_defreturn&&
 (d=$.createElement$$module$build$src$core$utils$xml("block"),d.setAttribute("type","procedures_defreturn"),d.setAttribute("gap","16"),e=$.createElement$$module$build$src$core$utils$xml("field"),e.setAttribute("name","NAME"),e.appendChild($.createTextNode$$module$build$src$core$utils$xml($.Msg$$module$build$src$core$msg.PROCEDURES_DEFRETURN_PROCEDURE)),d.appendChild(e),c.push(d));
 
+Blocks$$module$build$src$core$blocks.procedures_ifreturn&&(d=$.createElement$$module$build$src$core$utils$xml("block"),
+d.setAttribute("type","procedures_ifreturn"),d.setAttribute("gap","16"),c.push(d));
+
 Blocks$$module$build$src$core$blocks.procedures_return&&
 (d=$.createElement$$module$build$src$core$utils$xml("block"),d.setAttribute("type","procedures_return"),d.setAttribute("gap","16"),c.push(d));
 
-Blocks$$module$build$src$core$blocks.procedures_ifreturn&&(d=$.createElement$$module$build$src$core$utils$xml("block"),
-d.setAttribute("type","procedures_ifreturn"),d.setAttribute("gap","16"),c.push(d));c.length&&c[c.length-1].setAttribute("gap","24");a=allProcedures$$module$build$src$core$procedures(a);b(a[0],"procedures_callnoreturn");b(a[1],"procedures_callreturn");return c};
+c.length&&c[c.length-1].setAttribute("gap","24");a=allProcedures$$module$build$src$core$procedures(a);b(a[0],"procedures_callnoreturn");b(a[1],"procedures_callreturn");return c};
 
 updateMutatorFlyout$$module$build$src$core$procedures=function(a){var b=[],c=a.getBlocksByType("procedures_mutatorarg",!1);for(let f=0,g;g=c[f];f++)b.push(g.getFieldValue("NAME"));c=$.createElement$$module$build$src$core$utils$xml("xml");const d=$.createElement$$module$build$src$core$utils$xml("block");d.setAttribute("type","procedures_mutatorarg");const e=$.createElement$$module$build$src$core$utils$xml("field");e.setAttribute("name","NAME");b=generateUniqueNameFromOptions$$module$build$src$core$variables($.DEFAULT_ARG$$module$build$src$core$procedures,
 b);b=$.createTextNode$$module$build$src$core$utils$xml(b);e.appendChild(b);d.appendChild(e);c.appendChild(d);a.updateToolbox(c)};
