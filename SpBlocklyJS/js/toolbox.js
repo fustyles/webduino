@@ -7,6 +7,7 @@ var catSystem = '<xml>'+
 '    <block type="logic_boolean"></block>'+
 '    <block type="logic_null"></block>'+
 '    <block type="logic_ternary"></block>'+
+'	   <block type="mySwitch"></block>'+   
 '    </category>'+
 '    <category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">'+
 '    <block type="controls_repeat_ext">'+
@@ -35,8 +36,7 @@ var catSystem = '<xml>'+
 '    </value>'+
 '    </block>'+
 '    <block type="controls_forEach"></block>'+
-'    <block type="controls_flow_statements"></block>'+
-'	   <block type="mySwitch"></block>'+  
+'    <block type="controls_flow_statements"></block>'+ 
 '    </category>'+
 '    <category name="%{BKY_CATMATH}" colour="%{BKY_MATH_HUE}">'+
 '    <block type="math_number">'+
