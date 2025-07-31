@@ -44,7 +44,7 @@ Blockly.Blocks['gemini_chat_initial'] = {
   this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(40);
+  this.setColour(70);
   this.setHelpUrl("https://aistudio.google.com/app/prompts/new_chat?utm_source=agd&utm_medium=referral&utm_campaign=core-cta&utm_content=");	  
   }
 };
@@ -114,7 +114,7 @@ Blockly.Blocks['gemini_chat_response'] = {
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(40);
+  this.setColour(70);
   }
 };
 
