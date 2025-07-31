@@ -1,7 +1,6 @@
 var catSystem = '<xml>'+
 '    <category name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">'+
 '    <block type="controls_if"></block>'+
-'	 <block type="mySwitch"></block>'+
 '    <block type="logic_compare"></block>'+
 '    <block type="logic_operation"></block>'+
 '    <block type="logic_negate"></block>'+
@@ -37,6 +36,7 @@ var catSystem = '<xml>'+
 '    </block>'+
 '    <block type="controls_forEach"></block>'+
 '    <block type="controls_flow_statements"></block>'+
+'	   <block type="mySwitch"></block>'+  
 '    </category>'+
 '    <category name="%{BKY_CATMATH}" colour="%{BKY_MATH_HUE}">'+
 '    <block type="math_number">'+
@@ -142,20 +142,6 @@ var catSystem = '<xml>'+
 '    <category name="%{BKY_CATTEXT}" colour="%{BKY_TEXTS_HUE}">'+
 '    <block type="text"></block>'+
 '    <block type="text_join"></block>'+
-'		  <block type="text_to_number">'+
-'			<value name="value_text_">'+
-'			</value>'+
-'		  </block>'+
-'		  <block type="aes_encryption">'+
-'			<value name="value_text_">'+
-'			</value>'+
-'			<value name="value_key_">'+
-'			  <block type="text">'+
-'				<field name="TEXT"></field>'+
-'			  </block>'+
-'			</value>'+
-'		  </block>'+
-'    <block type="text_br"></block>'+
 '    <block type="text_append">'+
 '    <value name="TEXT">'+
 '    <block type="text"></block>'+
@@ -240,6 +226,20 @@ var catSystem = '<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'		  <block type="text_to_number">'+
+'			<value name="value_text_">'+
+'			</value>'+
+'		  </block>'+
+'		  <block type="aes_encryption">'+
+'			<value name="value_text_">'+
+'			</value>'+
+'			<value name="value_key_">'+
+'			  <block type="text">'+
+'				<field name="TEXT"></field>'+
+'			  </block>'+
+'			</value>'+
+'		  </block>'+
+'    <block type="text_br"></block>'+  
 '    </category>'+
 '    <category name="%{BKY_CATLISTS}" colour="%{BKY_LISTS_HUE}">'+
 '    <block type="lists_create_with">'+
