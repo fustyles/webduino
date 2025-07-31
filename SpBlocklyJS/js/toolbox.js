@@ -283,6 +283,7 @@ var catSystem = '<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="lists_sort"></block>'+  
 '    <block type="lists_split">'+
 '    <value name="DELIM">'+
 '    <block type="text">'+
@@ -290,7 +291,10 @@ var catSystem = '<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
-'    <block type="lists_sort"></block>'+
+'    <block type="lists_reverse">'+
+'    <value name="VALUE">'+
+'    </value>'+
+'    </block>'+  
 '    </category>'+
 '    <category name="%{BKY_CATCOLOUR}" colour="%{BKY_COLOUR_HUE}">'+
 '    <block type="colour_picker">'+
