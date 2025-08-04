@@ -2230,6 +2230,7 @@ Blockly.Arduino['amb82_mini_file_googletts'] = function(block) {
            +'      client.println("GET /translate_tts?ie=UTF-8&client=tw-ob&tl="+language+"&ttsspeed="+speed+"&q="+urlencode(message)+" HTTP/1.1");\n'
            +'      client.println("Host: translate.google.com");\n'   
            +'      client.println("Content-Type: text/html; charset=utf-8");\n'	
+           +'      client.println("User-Agent: Mozilla/5.0");\n'		   
            +'      client.println("Connection: close");\n'
            +'      client.println();\n'
            +'      String getResponse="";\n'
