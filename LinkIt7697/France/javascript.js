@@ -26737,6 +26737,7 @@ function startUploading(inoPath) {
 				click: async function() {
 					uploadCode.style.display = "block";
 					uploadState.style.display = "none";
+					uploadCode.scrollTop = 0;
 					
 					let userPrompt = prompt("請輸入程式碼修改需求！");
 					if (userPrompt) {
