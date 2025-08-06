@@ -26700,7 +26700,7 @@ Blockly.Arduino.quote_=function(a){a=a.replace(/\\/g,"\\\\").replace(/\n/g,"\\\n
 
 let geminiKey = "";
 let geminiRole = "你是繁體中文的助理。";
-let geminiModel = "gemini-2.0-flash";
+let geminiModel = "gemini-2.5-flash";
 let previousCode = "";
 
 function startUploading(inoPath) {
