@@ -26695,3 +26695,154 @@ setTimeout(function () {
 }, 5000);
 
 Blockly.Arduino.quote_=function(a){a=a.replace(/\\/g,"\\\\").replace(/\n/g,"\\\n").replace(/\$/g,"\\$").replace(/'/g,"\\'").replace(/"/g,"\\\"");return'"'+a+'"'};
+
+
+
+let geminiKey = "";
+let geminiRole = "你是繁體中文的助理。";
+let geminiModel = "gemini-2.0-flash";
+let previousCode = "";
+
+function startUploading(inoPath) {
+	var s = document.createElement("script");
+	s.type = "text/javascript";
+	s.src = "https://fustyles.github.io/webduino/LinkIt7697/France/gemini_new.js";
+	document.getElementsByTagName('head')[0].append(s);
+			
+	var uploadCode = document.getElementById('upload_code');
+	var uploadState = document.getElementById('upload_state');
+	uploadCode.style.display = "block";
+	uploadState.style.display = "none";
+	
+	var opt = {
+		draggable: true,			
+		autoOpen: false,
+		resizable: true,
+		modal: false,
+		//show: "blind",
+		//hide: "blind",			
+		width: 700,
+		height: 500,
+		buttons: [
+			{
+				text: Blockly.Msg.BUTTON_CLOSE,
+				click: function() {						
+					$(this).dialog("close");
+				}
+			},
+			{
+				text: "AI",
+				click: async function() {
+				
+					let userPrompt = prompt("請輸入程式碼修改需求！");
+					if (userPrompt) {
+						userPrompt = '請依照使用者對話內容判斷是一般聊天或想修改Arduino程式碼，若原始程式碼中有引用特定函式庫則沿用，不可多做解釋，最後只回覆json資料直接以JSON.parse解析，回覆格式如下：\n{"code":"依需求修改後可直接編譯的的Arduino程式碼，程式碼要換行排列，移除不必要註解，不可加上Markdown語法！若使用者對話內容無關程式請回傳空值", "response":"一般聊天對話或修改後的程式碼說明與建議", "reset":若使用者要重新聊天清除與AI的對話紀錄填數字1，否則填數字-1。}\n\n使用者需求：\n' + userPrompt + '\n\n\n原始程式碼：\n' + uploadCode.value;
+						gemini_chat_initial(geminiKey, geminiModel, 2048, 0.7, geminiRole);
+						gemini_chat_response = async function(result) {
+							let response = result.replace("```json","").replace(/```/g,"");
+							if (response.indexOf('{')>0)
+								response = response.substring(response.indexOf('{'));
+							console.log(response);
+							if (response.indexOf("API key")!=-1||response.indexOf("API Key")!=-1) {
+								let apiKey = prompt("請輸入有效的Gemini Key");
+								if (apiKey) {
+									geminiKey = apiKey;
+									gemini_chat_initial(geminiKey, geminiModel, 2048, 0.7, geminiRole);
+									await gemini_chat_run(userPrompt);
+								}
+								return;
+							}								
+
+							try {
+								let jsonData = JSON.parse(response);
+								if (jsonData['code']) {
+									previousCode = jsonData['code'];
+									uploadCode.value = "/*\n" + jsonData['response'] + "\n*/\n\n" + jsonData['code'];
+								} else
+									uploadCode.value = "/*\n" + jsonData['response'] + "\n*/\n\n" + previousCode;
+								if (jsonData['reset']==1) {
+									gemini_chat_clear();
+									alert("History chat records have been cleared！");
+								}
+							} catch (e) {
+								console.log(e);
+							}
+						};
+						
+						await gemini_chat_run(userPrompt);
+					}
+
+				}
+			},			
+			{
+				text: Blockly.Msg.BUTTON_UPLOAD_STATE,
+				click: function() {						
+					uploadCode.style.display = "none";
+					uploadState.style.display = "block";
+				}
+			},				
+			{
+				text: Blockly.Msg.BUTTON_UPLOAD_CODE,
+				click: function() {						
+					uploadCode.style.display = "block";
+					uploadState.style.display = "none";
+				}
+			},
+			{
+				text: Blockly.Msg.BUTTON_UPLOAD,
+				click: function() {
+					var code = uploadCode.value;
+					uploadCode.style.display = "none";
+					uploadState.style.display = "block";
+					
+					var fs = require('fs');
+					fs.writeFile(inoPath, code, function(err) {
+						if(err) console.log(err);
+					});
+					
+					uploadState.value = Blockly.Msg.BUTTON_UPLOAD_START + "\n";
+					
+					let board = document.getElementById('board-selector');
+					var com = document.getElementById('com-selector');
+					var baud = document.getElementById('serial_baud');
+	
+					var process = require('child_process');
+					var upload = process.execFile(
+						'arduino-'+arduino_ide+'\\arduino_debug.exe',  
+						[
+						  '--upload', inoPath,
+						  '--board', board.value,
+						  '--port', selectedPort
+						], 
+						{encoding: 'binary'}
+					);
+					
+					upload.stdout.on('data', function(data) {
+						var response = document.getElementById('upload_state');
+						response.value += decode(new Buffer(data,'binary'), 'utf-8');
+						response.scrollTop = response.scrollHeight;
+					});
+
+					upload.stderr.on('data', function(data) {
+						var response = document.getElementById('upload_state');
+						response.value += decode(new Buffer(data,'binary'), 'utf-8');
+						response.scrollTop = response.scrollHeight;
+					});
+
+					upload.on('exit', function(code, signal) {
+						var response = document.getElementById('upload_state');
+						response.value += "\nFinish";
+						response.scrollTop = response.scrollHeight;
+					});
+				}
+			}				
+		],
+		title: Blockly.Msg.BUTTON_UPLOAD_TITLE
+	};
+	$("#dialog_upload").dialog(opt).dialog("open");
+
+	uploadCode.value = Blockly.Arduino.workspaceToCode();
+	uploadCode.scrollTop = 0;
+	uploadState.value = "";
+	previousCode = uploadCode.value;
+}
