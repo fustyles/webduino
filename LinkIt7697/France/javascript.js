@@ -26744,8 +26744,7 @@ function startUploading(inoPath) {
 							let response = result.replace("```json","").replace(/```/g,"");
 							if (response.indexOf('{')>0)
 								response = response.substring(response.indexOf('{'));
-							console.log(response);
-							if (response.indexOf("API key")!=-1||response.indexOf("API Key")!=-1) {
+							if (response.toLowerCase().indexOf("api key")!=-1) {
 								let apiKey = prompt("請輸入有效的Gemini Key");
 								if (apiKey) {
 									geminiKey = apiKey;
