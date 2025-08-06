@@ -26748,7 +26748,7 @@ function startUploading(inoPath) {
 								let apiKey = prompt("請輸入有效的Gemini Key");
 								if (apiKey) {
 									geminiKey = apiKey;
-									gemini_chat_initial(geminiKey, geminiModel, 2048, 0.7, geminiRole);
+									gemini_chat_initial(geminiKey, geminiModel, 10000, 0, geminiRole);
 									await gemini_chat_run(userPrompt);
 								}
 								return;
