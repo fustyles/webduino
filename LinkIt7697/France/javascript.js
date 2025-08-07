@@ -26739,7 +26739,7 @@ function startUploading(inoPath) {
 					uploadState.style.display = "none";
 					uploadCode.scrollTop = 0;
 					
-					let userPrompt = prompt("請輸入聊天內容或程式碼撰寫細節。");
+					let userPrompt = prompt("Chat with Gemini");
 					if (userPrompt) {
 						userPrompt = '請依照使用者對話內容判斷是一般聊天或想以開發板種類修改對應的Arduino程式碼，若原始程式碼中有引用特定函式庫則沿用，不可多做解釋，清除程式碼不代表清除對話紀錄，最後只回覆json資料是要以JSON.parse直接解析，回覆格式如下：\n{"code":"依需求修改後可直接編譯的的Arduino程式碼，程式碼要換行排列，不可加上Markdown語法！若使用者對話內容無關程式請回傳空值", "response":"一般聊天對話或修改後的程式碼說明與建議，可以小法的稱謂帶點撒嬌語態回覆。", "reset":若使用者要重新聊天清除對話紀錄(非清除程式碼)填數字1，否則填數字-1。}\n\n使用者需求：\n' + userPrompt + '\n\n開發板種類：'+selectBoardType()+'\n\n原始程式碼：\n' + uploadCode.value;
 						gemini_chat_initial(geminiKey, geminiModel, geminiTokens, geminiTemperature, geminiRole);
@@ -26748,7 +26748,7 @@ function startUploading(inoPath) {
 							if (response.indexOf('{')>0)
 								response = response.substring(response.indexOf('{'));
 							if (response.toLowerCase().indexOf("api key")!=-1) {
-								let apiKey = prompt("請輸入有效的Gemini API Key");
+								let apiKey = prompt("Please enter a valid Gemini API Key");
 								if (apiKey) {
 									geminiKey = apiKey;
 									gemini_chat_initial(geminiKey, geminiModel, geminiTokens, geminiTemperature, geminiRole);
@@ -26846,4 +26846,5 @@ function startUploading(inoPath) {
 	uploadCode.scrollTop = 0;
 	uploadState.value = "";
 	previousCode = uploadCode.value;
+
 }
