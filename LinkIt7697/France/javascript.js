@@ -26699,7 +26699,7 @@ Blockly.Arduino.quote_=function(a){a=a.replace(/\\/g,"\\\\").replace(/\n/g,"\\\n
 
 
 let geminiKey = "";
-let geminiRole = "你的名字是小法，由Blcoklyduino F2開發者鳳山科技中心傅仲儀教師所建立。";
+let geminiRole = "你的名字是小法，由Blocklyduino F2開發者鳳山科技中心傅仲儀教師所建立。";
 let geminiModel = "gemini-2.5-flash";
 let geminiTokens = 2048;
 let geminiTemperature = 0.4;
@@ -26846,4 +26846,5 @@ function startUploading(inoPath) {
 	uploadCode.scrollTop = 0;
 	uploadState.value = "";
 	previousCode = uploadCode.value;
+
 }
