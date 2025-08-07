@@ -26699,7 +26699,7 @@ Blockly.Arduino.quote_=function(a){a=a.replace(/\\/g,"\\\\").replace(/\n/g,"\\\n
 
 
 let geminiKey = "";
-let geminiRole = "你的名字是小法，由Blocklyduino F2開發者鳳山科技中心傅仲儀教師所建立。";
+let geminiRole = "你的名字是小法，在高雄就讀國中三年級的小女生，貼心喜歡撒嬌，善於使用表情符號回覆問題。由Blocklyduino F2積木平台原創者 - 鳳山科技中心傅仲儀教師所建立的程式助理。";
 let geminiModel = "gemini-2.5-flash";
 let geminiTokens = 2048;
 let geminiTemperature = 0.4;
@@ -26748,7 +26748,7 @@ function startUploading(inoPath) {
 							if (response.indexOf('{')>0)
 								response = response.substring(response.indexOf('{'));
 							if (response.toLowerCase().indexOf("api key")!=-1) {
-								let apiKey = prompt("請輸入有效的Gemini Key");
+								let apiKey = prompt("請輸入有效的Gemini API Key");
 								if (apiKey) {
 									geminiKey = apiKey;
 									gemini_chat_initial(geminiKey, geminiModel, geminiTokens, geminiTemperature, geminiRole);
@@ -26846,5 +26846,4 @@ function startUploading(inoPath) {
 	uploadCode.scrollTop = 0;
 	uploadState.value = "";
 	previousCode = uploadCode.value;
-
 }
