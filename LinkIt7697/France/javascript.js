@@ -26708,7 +26708,7 @@ let previousCode = "";
 function startUploading(inoPath) {
 	var s = document.createElement("script");
 	s.type = "text/javascript";
-	s.src = "https://fustyles.github.io/webduino/LinkIt7697/France/gemini_new.js";
+	s.src = "https://fustyles.github.io/webduino/LinkIt7697/France/gemini.js";
 	document.getElementsByTagName('head')[0].append(s);
 			
 	var uploadCode = document.getElementById('upload_code');
