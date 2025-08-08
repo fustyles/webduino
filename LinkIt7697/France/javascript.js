@@ -26733,7 +26733,7 @@ function startUploading(inoPath) {
 				}
 			},
 			{
-				text: "Gemini",
+				text: "AI",
 				click: async function() {
 					uploadCode.style.display = "block";
 					uploadState.style.display = "none";
