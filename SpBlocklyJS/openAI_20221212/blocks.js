@@ -26,7 +26,10 @@ Blockly.Blocks['openai_chat_initial'] = {
 			["gpt-4o-mini","gpt-4o-mini"],
 			["gpt-o1-mini","o1-mini"],
 			["gpt-o1-2024-12-17","o1-2024-12-17"],
-	      		["gpt-4.5-preview","gpt-4.5-preview"],	      
+			["gpt-4.5-preview","gpt-4.5-preview"],
+			["gpt-5","gpt-5"],
+			["gpt-5-mini","gpt-5-mini"],
+			["gpt-5-nano","gpt-5-nano"],		  
 			["Groq_llama-3.2-90b-vision-preview","llama-3.2-90b-vision-preview"],
 			["Groq_meta-llama/llama-4-scout-17b-16e-instruct","meta-llama/llama-4-scout-17b-16e-instruct"],
 			["Groq_deepseek-r1-distill-llama-70b","deepseek-r1-distill-llama-70b"], 
@@ -407,4 +410,5 @@ Blockly.Blocks['openai_image_response_clear'] = {
   this.setColour(200);
   }
 };
+
 
