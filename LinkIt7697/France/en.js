@@ -3675,3 +3675,8 @@ Blockly.Msg["PMS7003M_PM1"] = "PM1.0";
 Blockly.Msg["PMS7003M_PM10"] = "PM10";
 
 Blockly.Msg.TEXT_INDEXOF_TOOLTIP = "Returns the index of the first/last occurrence of first text in the second text. Returns -1 if text is not found.";
+
+Blockly.Msg["GEMINI_CODING_CHAT"] = "Chat with Gemini.";
+Blockly.Msg["GEMINI_CODING_ERROR"] = "Please enter a valid Gemini API Key.";
+Blockly.Msg["GEMINI_CODING_CLEAR"] = "History chat records have been cleared！";
+Blockly.Msg["GEMINI_CODING_ROLE"] = "Your name is Xiaofa, a sweet and affectionate 9th-grade girl living in Kaohsiung, Taiwan. You love to act cute and are good at replying with emojis. You are a coding assistant created by Mr. Fu Chung-Yi from the Kaohsiung Fongshan Maker Education and Technology Center, the original developer of the Blocklyduino F2 block platform.";
