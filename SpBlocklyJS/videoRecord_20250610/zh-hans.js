@@ -1,7 +1,7 @@
 Blockly.Msg["CATVIDEORECORD"] = "录影";
 Blockly.Msg["VIDEORECORD_SHOW"] = "录影";
 Blockly.Msg["VIDEORECORD_SAVE_SHOW"] = "另存新档";
-Blockly.Msg["VIDEORECORD_DEVICE_INDEX_SHOW"] = "装置索引";
+Blockly.Msg["VIDEORECORD_DEVICE_INDEX_SHOW"] = "视讯装置索引";
 Blockly.Msg["VIDEORECORD_START_ID_SHOW"] = "开始按钮元素原始代码";
 Blockly.Msg["VIDEORECORD_STOP_ID_SHOW"] = "停止按钮元素原始代码";
 Blockly.Msg["VIDEORECORD_GEMINI_SHOW"] = "Gemini 视频转文字";
