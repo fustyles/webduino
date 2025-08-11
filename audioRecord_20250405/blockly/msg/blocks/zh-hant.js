@@ -17,3 +17,4 @@ Blockly.Msg["AUDIORECORD_STOP_SHOW"] = "結束錄音";
 Blockly.Msg["AUDIORECORD_URL_SHOW"] = "錄音檔連結";
 Blockly.Msg["AUDIORECORD_NORMAL_SHOW"] = "一般";
 
+
