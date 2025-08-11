@@ -1,7 +1,7 @@
 Blockly.Msg["CATVIDEORECORD"] = "Record Video";
 Blockly.Msg["VIDEORECORD_SHOW"] = "Record Video";
 Blockly.Msg["VIDEORECORD_SAVE_SHOW"] = "Save As";
-Blockly.Msg["VIDEORECORD_DEVICE_INDEX_SHOW"] = "Device Index";
+Blockly.Msg["VIDEORECORD_DEVICE_INDEX_SHOW"] = "Camera Device Index";
 Blockly.Msg["VIDEORECORD_START_ID_SHOW"] = "Start Button Element ID";
 Blockly.Msg["VIDEORECORD_STOP_ID_SHOW"] = "Stop Button Element ID";
 Blockly.Msg["VIDEORECORD_GEMINI_SHOW"] = "Gemini Video to Text";
