@@ -1,7 +1,7 @@
 Blockly.Msg["CATAUDIORECORD"] = "錄音";
 Blockly.Msg["AUDIORECORD_SHOW"] = "錄音";
 Blockly.Msg["AUDIORECORD_SAVE_SHOW"] = "另存新檔";
-Blockly.Msg["AUDIORECORD_DEVICE_INDEX_SHOW"] = "裝置索引";
+Blockly.Msg["AUDIORECORD_DEVICE_INDEX_SHOW"] = "音訊裝置索引";
 Blockly.Msg["AUDIORECORD_START_ID_SHOW"] = "開始按鈕元素原始代碼";
 Blockly.Msg["AUDIORECORD_STOP_ID_SHOW"] = "停止按鈕元素原始代碼";
 Blockly.Msg["AUDIORECORD_LANGUAGE_SHOW"] = "語系";
@@ -16,4 +16,5 @@ Blockly.Msg["AUDIORECORD_GEMINI_GET_SHOW"] = "Gemni STT 取得資料";
 Blockly.Msg["AUDIORECORD_START_SHOW"] = "開始錄音";
 Blockly.Msg["AUDIORECORD_STOP_SHOW"] = "結束錄音";
 Blockly.Msg["AUDIORECORD_URL_SHOW"] = "錄音檔連結";
+
 Blockly.Msg["AUDIORECORD_NORMAL_SHOW"] = "一般";
