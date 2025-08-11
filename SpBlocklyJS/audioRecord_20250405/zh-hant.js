@@ -7,7 +7,7 @@ Blockly.Msg["AUDIORECORD_STOP_ID_SHOW"] = "停止按鈕元素原始代碼";
 Blockly.Msg["AUDIORECORD_LANGUAGE_SHOW"] = "語系";
 Blockly.Msg["AUDIORECORD_OPENAI_SHOW"] = "OpenAI STT";
 Blockly.Msg["AUDIORECORD_OPENAI_MODEL_SHOW"] = "模型";
-Blockly.Msg["AUDIORECORD_OPENAI_GET_SHOW"] = "openAI STT 取得資料";
+Blockly.Msg["AUDIORECORD_OPENAI_GET_SHOW"] = "openAI STT 音訊轉文字";
 Blockly.Msg["AUDIORECORD_GEMINI_SHOW"] = "Gemini STT";
 Blockly.Msg["AUDIORECORD_GEMINI_KEY_SHOW"] = "API Key";
 Blockly.Msg["AUDIORECORD_GEMINI_PROMPT_SHOW"] = "提示詞";
@@ -18,3 +18,4 @@ Blockly.Msg["AUDIORECORD_STOP_SHOW"] = "結束錄音";
 Blockly.Msg["AUDIORECORD_URL_SHOW"] = "錄音檔連結";
 
 Blockly.Msg["AUDIORECORD_NORMAL_SHOW"] = "一般";
+
