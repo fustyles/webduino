@@ -34,11 +34,13 @@ Blockly.Blocks['openai_chat_initial'] = {
 			["Groq_meta-llama/llama-4-scout-17b-16e-instruct","meta-llama/llama-4-scout-17b-16e-instruct"],
 			["Groq_deepseek-r1-distill-llama-70b","deepseek-r1-distill-llama-70b"], 
 			["Groq_qwen-qwq-32b","qwen-qwq-32b"],
-			["xAI_grok-3-beta","grok-3-beta"],
-			["xAI_grok-3-fast-beta","grok-3-fast-beta"],
-			["xAI_grok-3-mini-beta","grok-3-mini-beta"],
-			["xAI_grok-3-mini-fast-beta","grok-3-mini-fast-beta"],	      
-			["xAI_grok-2-vision-latest","grok-2-vision-latest"]	
+			["xAI_grok-3-beta" ,"grok-3-beta"],
+			["xAI_grok-3-fast-beta" ,"grok-3-fast-beta"],
+			["xAI_grok-3-mini-beta" ,"grok-3-mini-beta"],
+			["xAI_grok-3-mini-fast-beta" ,"grok-3-mini-fast-beta"],
+			["xAI_grok-2-image-1212" ,"grok-2-image-1212"],
+			["xAI_grok-2-1212" ,"grok-2-1212"],
+			["xAI_grok-2-vision-1212" ,"grok-2-vision-1212"]
 	  ]), "model");
   this.appendDummyInput()  
       .appendField(Blockly.Msg["OPENAI_CHAT_TEMPERATURE_SHOW"])
@@ -410,5 +412,6 @@ Blockly.Blocks['openai_image_response_clear'] = {
   this.setColour(200);
   }
 };
+
 
 
