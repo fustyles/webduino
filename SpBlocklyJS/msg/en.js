@@ -792,7 +792,7 @@ Blockly.Msg["COLOUR_HUE"] = "20";
 Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
 
 Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_EXPORT"] = "Export selected blocks to a local file";
-Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "Import blocks to workspacee from a local file";
+Blockly.Msg["INSERTBLOCKS_WORKSPACE_BLOCK_INSERT"] = "Import blocks to workspace from a local file";
 
 Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_ENABLED"] = "Enabled Pick/Place blocks";
 Blockly.Msg["MYPICKPLACEBLOCK_PICKPLACE_DISABLED"] = "Disabled Pick/Place blocks";
