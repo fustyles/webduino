@@ -1,5 +1,5 @@
-Blockly.Msg["CATVIDEORECORD"] = "Record Video";
-Blockly.Msg["VIDEORECORD_SHOW"] = "Record Video";
+Blockly.Msg["CATVIDEORECORD"] = "Video Record";
+Blockly.Msg["VIDEORECORD_SHOW"] = "Video Record";
 Blockly.Msg["VIDEORECORD_SAVE_SHOW"] = "Save As";
 Blockly.Msg["VIDEORECORD_DEVICE_INDEX_SHOW"] = "Camera Device Index";
 Blockly.Msg["VIDEORECORD_START_ID_SHOW"] = "Start Button Element ID";
