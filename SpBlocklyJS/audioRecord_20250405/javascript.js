@@ -10,7 +10,7 @@ Blockly.JavaScript['audiorecord_gemini_initial'] = function(block) {
   var geminiPrompt = Blockly.JavaScript.valueToCode(block, 'prompt_', Blockly.JavaScript.ORDER_ATOMIC);
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
   
-  var code = 'recording_GeminiSTT_initial('+audioIndex+', '+geminiKey+', "gemini-2.0-flash", '+geminiPrompt+');\n'+
+  var code = 'recording_GeminiSTT_initial('+audioIndex+', '+geminiKey+', "gemini-2.5-flash", '+geminiPrompt+');\n'+
              'audioGeminiSTT = async function(geminiResult) {\n  ' + statements_do + '\n  };\n';
   return code;
 };
@@ -64,4 +64,5 @@ Blockly.JavaScript['audiorecord_run'] = function(block) {
 Blockly.JavaScript['audiorecord_audio_get'] = function(block) {
   var code = 'audioUrl';
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
+
 };
