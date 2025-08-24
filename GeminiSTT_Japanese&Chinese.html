@@ -1,43 +1,125 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Headers' content='Origin, X-Requested-With, Content-Type, Accept'>
-        <meta http-equiv='Access-Control-Allow-Methods' content='GET,POST,PUT,DELETE,OPTIONS'>
-        <meta http-equiv='Access-Control-Allow-Origin' content='*'>
-        <meta http-equiv='Access-Control-Allow-Credentials' content='true'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
-        <script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/marked.min.js'></script>
-        <script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script>
-        <link rel='stylesheet' href='https://fustyles.github.io/webduino/SpBlocklyJS/css/icon_custom.css' />
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js'></script>
-        <script src='https://fustyles.github.io/webduino/SpBlocklyJS/audioRecord_20250405/audioRecord.js'></script>
-    </head>
+<head>
+    <meta charset='utf-8'><meta http-equiv='Access-Control-Allow-Headers' content='Origin, X-Requested-With, Content-Type, Accept'>
+    <meta http-equiv='Access-Control-Allow-Methods' content='GET,POST,PUT,DELETE,OPTIONS'>
+    <meta http-equiv='Access-Control-Allow-Origin' content='*'>
+    <meta http-equiv='Access-Control-Allow-Credentials' content='true'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
+    <script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/marked.min.js'></script>
+    <script src='https://fustyles.github.io/webduino/SpBlocklyJS/GameElements_20190131/gameelements.js'></script>
+    <link rel='stylesheet' href='https://fustyles.github.io/webduino/SpBlocklyJS/css/icon_custom.css' />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js'></script>
+    <script src='https://fustyles.github.io/webduino/SpBlocklyJS/gemini_20240209/gemini.js'></script>
+    <script src='https://fustyles.github.io/webduino/SpBlocklyJS/audioRecord_20250405/audioRecord.js'></script>
+</head>
 <body>
+    <script>
+    const delay = (seconds) => {
+        return new Promise((resolve) => {
+            setTimeout(resolve, seconds * 1000);
+        });
+    };
+    const main = async () => {
+        var GeminiKey, recordingState, GeminiPrompt, recordingTimeMax, result, jsonResult, recordingTimer;
     
-<script>
-const delay = (seconds) => {
-    return new Promise((resolve) => {
-        setTimeout(resolve, seconds * 1000);
-    });
-};
-const main = async () => {
-    var GeminiKey, GeminiPrompt, recordingState, recordingTimeMax, result, jsonResult, recordingTimer;
-
-    // 描述此函式...
-    async function funGeminiInitial() {
-        GeminiPrompt = ['1. Transcribe the audio into text and the default language is Japanese or Chinese.\\n', '2. Return the result in the following JSON format:\\n', '{   "text": "Transcribed audio into text",    "language": "', select_get('', "selectedText"), ' or Chinese",   "Chinese":"Chinese text or translate Japanese text into Traditional Chinese.",  "Target":"', select_get('', "selectedText"), ' text or translate Chinese text into ', select_get('', "selectedText"), '}\\n', '3. Do not use markdown syntax in reply.'].join('');
-        recording_GeminiSTT_initial(0, (CryptoJS.AES.decrypt(GeminiKey, 'test').toString(CryptoJS.enc.Utf8)), "gemini-2.0-flash", GeminiPrompt);
-        audioGeminiSTT = async function(geminiResult) {
-            div_set('Chinese', "innerHTML_markdown", '');
-            div_set('Target', "innerHTML_markdown", '');
-            var result = (geminiResult);
-            console.log(result);
-            jsonResult = JSON.parse((result.slice(((result.indexOf('{') + 1) - 1), result.lastIndexOf('}') + 1)));
-            if (jsonResult['Chinese']) {
-                div_set('Chinese', "innerHTML_markdown", (jsonResult['Chinese']));
+        // 描述此函式...
+        async function funGeminiInitial() {
+            GeminiPrompt = ['1. Transcribe the audio into text and the default language is Japanese or Chinese.\\n', '2. Return the result in the following JSON format:\\n', '{   "text": "Transcribed audio into text", "Source_language": "The language used in the speech is ', select_get('', "selectedText"), ' or Chinese",   "Chinese":"Traditional Chinese text or translate Japanese text into Traditional Chinese.",  "Target":"', select_get('', "selectedText"), ' text or translate Traditional Chinese text into ', select_get('', "selectedText"), '", "Output_language": "Different language from Source language."}\\n', '3. Do not use markdown syntax in reply.'].join('');
+            recording_GeminiSTT_initial(0, (CryptoJS.AES.decrypt(GeminiKey, 'test').toString(CryptoJS.enc.Utf8)), "gemini-2.0-flash", GeminiPrompt);
+            audioGeminiSTT = async function(geminiResult) {
+                div_set('Chinese', "innerHTML_markdown", '');
+                div_set('Target', "innerHTML_markdown", '');
+                div_set('Description', "innerHTML_markdown", '');
+                var result = (geminiResult);
+                console.log(result);
+                jsonResult = JSON.parse((result.slice(((result.indexOf('{') + 1) - 1), result.lastIndexOf('}') + 1)));
+                if (jsonResult['Chinese']) {
+                    div_set('Chinese', "innerHTML_markdown", (jsonResult['Chinese']));
+                }
+                if ((jsonResult['Source_language']) == 'Chinese') {
+                    div_set('Target', "innerHTML_markdown", (jsonResult['Target']));
+                } else {
+                    div_set('Target', "innerHTML_markdown", (jsonResult['text']));
+                }
+                if ((jsonResult['Source_language']) == 'Chinese') {
+                    console.log((['Please briefly explain the vocabularies and the words and Chinese Pinyin and phrases of the  sentence:', '\n', jsonResult['Target'], '\n', '\n', 'Please reply only in ', jsonResult['Source_language'], '. Don\'t explain too much.'].join('')));
+                    await gemini_chat_run((['Please briefly explain the vocabularies and the words and Chinese Pinyin and phrases of the  sentence:', '\n', jsonResult['Target'], '\n', '\n', 'Please reply only in ', jsonResult['Source_language'], '. Don\'t explain too much.'].join('')));
+                    if (checkbox_get('Target', "checked")) {
+                        audio_set('', "src", (await audio_play_googleTTS_Base64Data((select_get('', "selectedValue")), (jsonResult['Target']))));
+                        audio_control('', "play");
+                    }
+                } else if ((jsonResult['Source_language']) != 'Chinese') {
+                    console.log((['Please briefly explain the vocabularies and the words and Chinese Pinyin and phrases of the sentence:', '\n', jsonResult['Chinese'], '\n', '\n', 'Please reply only in ', jsonResult['Source_language'], '. Don\'t explain too much.'].join('')));
+                    await gemini_chat_run((['Please briefly explain the vocabularies and the words and Chinese Pinyin and phrases of the sentence:', '\n', jsonResult['Chinese'], '\n', '\n', 'Please reply only in ', jsonResult['Source_language'], '. Don\'t explain too much.'].join('')));
+                    if (checkbox_get('Chinese', "checked")) {
+                        audio_set('', "src", (await audio_play_googleTTS_Base64Data("zh-TW", (jsonResult['Chinese']))));
+                        audio_control('', "play");
+                    }
+                }
+    
+            };
+            gemini_chat_initial((CryptoJS.AES.decrypt(GeminiKey, 'test').toString(CryptoJS.enc.Utf8)), "gemini-2.5-flash", 200, 0, 'You are the author of teaching books in multiple languages');
+            await delay(2);
+            async function gemini_chat_response(gemini_chat_data) {
+                div_set('Description', "innerHTML_markdown", (gemini_chat_response_br(gemini_chat_data, 'br')));
+    
             }
-            if (jsonResult['Target']) {
-                div_set('Target', "innerHTML_markdown", (jsonResult['Target']));
-            }
+            window.gemini_chat_response = gemini_chat_response;
+        }
+    
+        // 描述此函式...
+        async function funStopRecording() {
+            button_set('mic', "color", '#000000');
+            recordingState = false;
+            await recording_stopRecordingGeminiSTT();
+            await delay(1);
+        }
+    
+        // 描述此函式...
+        async function funStartRecording() {
+            button_set('mic', "color", '#ff0000');
+            recordingState = true;
+            await recording_startRecording();
+        }
+    
+    
+        GeminiKey = 'U2FsdGVkX19oc2Y9bOcQ/wuUfkS2J41I2dCjBiUmv2Z5fxDYnCraz8RKRnnnHr9lM31wRC+OKQq33CiY+LKhXA==';
+        recordingState = false;
+        recordingTimeMax = 15000;
+        head_add_viewport(0.9, 0.2, 2, "yes");
+        audio_create('', '', 40, 455, 999);
+        audio_set('', "defaultRate", 0.7);
+        span_create('Chinese', 60, 10, 18, 'Speaking Chinese', 999);
+        checkbox_create('Chinese', 10, 10, 18, '1', true, 1, 999, true);
+        div_create('Chinese', 360, 180, 10, 40, "solid", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
+        span_create('Target', 60, 235, 18, 'Speaking', 999);
+        select_create('', 150, 30, 140, 230, '#ffffff', '#000000', 16, 1, [
+            ['en', 'English'],
+            ['ja', 'Japanese'],
+            ['ko', 'Korean'],
+            ['vi', 'Vietnamese'],
+            ['th', 'Thai']
+        ], 'ja', 999, true);
+        checkbox_create('Target', 10, 235, 18, '1', true, 1, 999, true);
+        div_create('Target', 360, 180, 10, 270, "solid", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
+        button_toolbox(50, 510, 80, 80, '#000000', '#ffffff', 80, 1, 20, [
+            ['stop_circle', 'Stop speaking'],
+            ['play_circle', 'Speaking'],
+            ['mic', 'Recording']
+        ]);
+        button_set('stop_circle', "borderradius", 40);
+        button_set('play_circle', "borderradius", 40);
+        button_set('mic', "borderradius", 40);
+        div_create('Description', 500, 490, 380, 10, "solid", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
+        div_set('Description', "scrollX", true);
+        div_set('Description', "scrollY", true);
+        GeminiPrompt = '';
+        async function button_play_circle_click(event) {
+            button_set('play_circle', "color", '#33cc00');
+            setTimeout(async function() {
+                button_set('play_circle', "color", '#000000');
+            }, 100);
             if ((jsonResult['language']) == 'Chinese') {
                 if (checkbox_get('Target', "checked")) {
                     audio_set('', "src", (await audio_play_googleTTS_Base64Data((select_get('', "selectedValue")), (jsonResult['Target']))));
@@ -49,99 +131,35 @@ const main = async () => {
                     audio_control('', "play");
                 }
             }
-
         };
-    }
-
-    // 描述此函式...
-    async function funStopRecording() {
-        button_set('mic', "color", '#000000');
-        recordingState = false;
-        await recording_stopRecordingGeminiSTT();
-    }
-
-    // 描述此函式...
-    async function funStartRecording() {
-        button_set('mic', "color", '#ff0000');
-        recordingState = true;
-        await recording_startRecording();
-    }
-
-
-    GeminiKey = 'U2FsdGVkX19oc2Y9bOcQ/wuUfkS2J41I2dCjBiUmv2Z5fxDYnCraz8RKRnnnHr9lM31wRC+OKQq33CiY+LKhXA==';
-    recordingState = false;
-    recordingTimeMax = 15000;
-    head_add_viewport(0.9, 0.2, 2, "yes");
-    audio_create('', '', 40, 455, 999);
-    audio_set('', "defaultRate", 0.7);
-    span_create('Chinese', 60, 10, 18, 'Speaking Chinese', 999);
-    checkbox_create('Chinese', 10, 10, 18, '1', true, 1, 999, true);
-    div_create('Chinese', 360, 180, 10, 40, "solid", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
-    span_create('Target', 60, 235, 18, 'Speaking', 999);
-    select_create('', 150, 30, 140, 230, '#ffffff', '#000000', 16, 1, [
-        ['en', 'English'],
-        ['ja', 'Japanese'],
-        ['ko', 'Korean'],
-        ['vi', 'Vietnamese'],
-        ['th', 'Thai']
-    ], 'ja', 999, true);
-    checkbox_create('Target', 10, 235, 18, '1', true, 1, 999, true);
-    div_create('Target', 360, 180, 10, 270, "solid", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
-    button_toolbox(50, 510, 80, 80, '#000000', '#ffffff', 80, 1, 20, [
-        ['stop_circle', 'Stop speaking'],
-        ['play_circle', 'Speaking'],
-        ['mic', 'Recording']
-    ]);
-    button_set('stop_circle', "borderradius", 40);
-    button_set('play_circle', "borderradius", 40);
-    button_set('mic', "borderradius", 40);
-    GeminiPrompt = '';
-    async function button_play_circle_click(event) {
-        button_set('play_circle', "color", '#33cc00');
-        setTimeout(async function() {
-            button_set('play_circle', "color", '#000000');
-        }, 100);        
-        if ((jsonResult['language']) == 'Chinese') {
-            if (checkbox_get('Target', "checked")) {
-                audio_set('', "src", (await audio_play_googleTTS_Base64Data((select_get('', "selectedValue")), (jsonResult['Target']))));
-                audio_control('', "play");
-            }
-        } else if ((jsonResult['language']) != 'Chinese') {
-            if (checkbox_get('Chinese', "checked")) {
-                audio_set('', "src", (await audio_play_googleTTS_Base64Data("zh-TW", (jsonResult['Chinese']))));
-                audio_control('', "play");
-            }
-        }
-    };
-    document.getElementById('gamebutton_' + 'play_circle').addEventListener("click", button_play_circle_click, true);
-    async function button_stop_circle_click(event) {
-        button_set('stop_circle', "color", '#ff0000');
-        setTimeout(async function() {
-            button_set('stop_circle', "color", '#000000');
-        }, 100);        
-        audio_control('', "pause");
-    };
-    document.getElementById('gamebutton_' + 'stop_circle').addEventListener("click", button_stop_circle_click, true);
-    async function button_mic_click(event) {
-        if (recordingState) {
-            clearInterval(recordingTimer);
-            funStopRecording();
-        } else {
-            funStartRecording();
-            recordingTimer = setTimeout(async function() {
+        document.getElementById('gamebutton_' + 'play_circle').addEventListener("click", button_play_circle_click, true);
+        async function button_stop_circle_click(event) {
+            button_set('stop_circle', "color", '#ff0000');
+            setTimeout(async function() {
+                button_set('stop_circle', "color", '#000000');
+            }, 100);
+            audio_control('', "pause");
+        };
+        document.getElementById('gamebutton_' + 'stop_circle').addEventListener("click", button_stop_circle_click, true);
+        async function button_mic_click(event) {
+            if (recordingState) {
+                clearInterval(recordingTimer);
                 funStopRecording();
-            }, recordingTimeMax);
-        }
-    };
-    document.getElementById('gamebutton_' + 'mic').addEventListener("click", button_mic_click, true);
-    async function select__change(event) {
+            } else {
+                funStartRecording();
+                recordingTimer = setTimeout(async function() {
+                    funStopRecording();
+                }, recordingTimeMax);
+            }
+        };
+        document.getElementById('gamebutton_' + 'mic').addEventListener("click", button_mic_click, true);
+        async function select__change(event) {
+            funGeminiInitial();
+        };
+        document.getElementById('gameselect_' + '').addEventListener("change", select__change, true);
         funGeminiInitial();
     };
-    document.getElementById('gameselect_' + '').addEventListener("change", select__change, true);
-    funGeminiInitial();
-};
-main();
-</script>
-    
+    main();
+    </script>
 </body>
 </html>
