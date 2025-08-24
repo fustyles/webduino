@@ -27,7 +27,7 @@
         // 描述此函式...
         async function funGeminiInitial() {
             GeminiPrompt = ['1. Transcribe the audio into text and the default language is Chinese.\\n', '2. Return the result in the following JSON format:\\n', '{   "text": "Transcribed audio into text", "Source_language": "The language used in the speech is ', select_get('', "selectedText"), ' or Chinese",   "Chinese":"Traditional Chinese text or translate Japanese text into Traditional Chinese.",  "Target":"', select_get('', "selectedText"), ' text or translate Traditional Chinese text into ', select_get('', "selectedText"), '", "Output_language": "Different language from Source language."}\\n', '3. Do not use markdown syntax in reply.'].join('');
-            recording_GeminiSTT_initial(0, (CryptoJS.AES.decrypt(GeminiKey, 'test').toString(CryptoJS.enc.Utf8)), "gemini-2.5-flash", GeminiPrompt);
+            recording_GeminiSTT_initial(0, (CryptoJS.AES.decrypt(GeminiKey, 'test').toString(CryptoJS.enc.Utf8)), "gemini-2.0-flash", GeminiPrompt);
             audioGeminiSTT = async function(geminiResult) {
                 div_set('Chinese', "innerHTML_markdown", '');
                 div_set('Target', "innerHTML_markdown", '');
