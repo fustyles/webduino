@@ -88,7 +88,7 @@
         recordingState = false;
         recordingTimeMax = 15000;
         head_add_viewport(0.9, 0.2, 2, "yes");
-        audio_create('', '', 40, 455, 999);
+        audio_create('', '', 40, 470, 999);
         audio_set('', "defaultRate", 0.7);
         span_create('Chinese', 60, 10, 18, 'Speaking Chinese', 999);
         checkbox_create('Chinese', 10, 10, 18, '1', true, 1, 999, true);
@@ -103,7 +103,7 @@
         ], 'ja', 999, true);
         checkbox_create('Target', 10, 235, 18, '1', true, 1, 999, true);
         div_create('Target', 360, 180, 10, 270, "solid", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
-        button_toolbox(50, 520, 80, 80, '#000000', '#ffffff', 80, 1, 20, [
+        button_toolbox(50, 540, 80, 80, '#000000', '#ffffff', 80, 1, 20, [
             ['stop_circle', 'Stop speaking'],
             ['play_circle', 'Speaking'],
             ['mic', 'Recording']
@@ -111,7 +111,7 @@
         button_set('stop_circle', "borderradius", 40);
         button_set('play_circle', "borderradius", 40);
         button_set('mic', "borderradius", 40);
-        div_create('Description', 360, 490, 380, 10, "solid", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
+        div_create('Description', 360, 600, 380, 10, "solid", 1, '#000000', '#ffffff', '#000000', 14, 1, '', 999, true);
         div_set('Description', "scrollX", true);
         div_set('Description', "scrollY", true);
         GeminiPrompt = '';
