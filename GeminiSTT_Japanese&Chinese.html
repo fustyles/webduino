@@ -44,7 +44,7 @@
                     div_set('Target', "innerHTML_markdown", (jsonResult['text']));
                 }
                 if ((jsonResult['Source_language']) == 'Chinese') {
-                    console.log((['Please briefly explain the vocabularies and the words and Pinyin and phrases of the  sentence:', '\n', jsonResult['Target'], '\n', '\n', 'Please reply only in ', jsonResult['Source_language'], '. Don\'t explain too much.'].join('')));
+                    console.log((['Please briefly explain the vocabularies and the words and Pinyin and phrases of the sentence:', '\n', jsonResult['Target'], '\n', '\n', 'Please reply only in ', jsonResult['Source_language'], '. Don\'t explain too much.'].join('')));
                     await gemini_chat_run((['Please briefly explain the vocabularies and the words and Chinese Pinyin and phrases of the  sentence:', '\n', jsonResult['Target'], '\n', '\n', 'Please reply only in ', jsonResult['Source_language'], '. Don\'t explain too much.'].join('')));
                     if (checkbox_get('Target', "checked")) {
                         audio_set('', "src", (await audio_play_googleTTS_Base64Data((select_get('', "selectedValue")), (jsonResult['Target']))));
