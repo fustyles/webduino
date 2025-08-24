@@ -16,7 +16,7 @@ Blockly.JavaScript['videorecord_gemini_initial'] = function(block) {
   var geminiPrompt = Blockly.JavaScript.valueToCode(block, 'prompt_', Blockly.JavaScript.ORDER_ATOMIC);
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
   
-  var code = 'recording_Gemini_initial('+videoIndex+', '+videoWidth+', '+videoHeight+', '+videoAudio+', '+geminiKey+', "gemini-2.0-flash", '+geminiPrompt+');\n'+
+  var code = 'recording_Gemini_initial('+videoIndex+', '+videoWidth+', '+videoHeight+', '+videoAudio+', '+geminiKey+', "gemini-2.5-flash", '+geminiPrompt+');\n'+
              'videoGeminiVision = async function(geminiResult) {\n  ' + statements_do + '\n  };\n';
   return code;
 };
@@ -48,4 +48,5 @@ Blockly.JavaScript['videorecord_run'] = function(block) {
 Blockly.JavaScript['videorecord_video_get'] = function(block) {
   var code = 'videoUrl';
   return [code, Blockly.JavaScript.ORDER_NONE];
+
 };
