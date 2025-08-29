@@ -374,7 +374,7 @@ async function gemini_generate_image_mix_request(prompt, imageURL) {
 	let result = "";
     try {
 		let inline_data = await get_inline_data(imageURL);	
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent?key=${Gemini_api_key}`;
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${Gemini_api_key}`;
         const data = {
             contents: [
                 {
@@ -502,3 +502,4 @@ async function gemini_youtube_request(prompt, ytUrl) {
         if (typeof gemini_chat_response === "function") gemini_chat_response(JSON.stringify(error));
     }
 }
+
