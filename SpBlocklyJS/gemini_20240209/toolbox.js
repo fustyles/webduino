@@ -126,6 +126,28 @@ var catGEMINI = '<xml>'+
 '      </block>'+
 '    </value>'+
 '  </block>'+
+'  <block type="gemini_generate_image_mix">'+
+'   <value name="words">'+
+'     <block type="text">'+
+'       <field name="TEXT">請合成第一張與第二張影像，生成溫馨的照片。</field>'+
+'     </block>'+
+'   </value>'+
+'   <value name="url">'+
+'     <block type="lists_create_with">'+
+'        <mutation items="2"></mutation>'+
+'        <value name="ADD0">'+
+'          <block type="text">'+
+'            <field name="TEXT">Image URL1</field>'+
+'          </block>'+
+'        </value>'+
+'        <value name="ADD1">'+
+'          <block type="text">'+
+'            <field name="TEXT">Image URL2</field>'+
+'          </block>'+
+'        </value>'+
+'      </block>'+
+'    </value>'+
+'  </block>'+
 '  <block type="gemini_search">'+
 '    <value name="words">'+
 '      <block type="text">'+
@@ -147,3 +169,4 @@ var catGEMINI = '<xml>'+
 '  </block>'+   
 '</category>'+
 '</xml>';
+
