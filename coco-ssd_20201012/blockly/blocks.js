@@ -496,7 +496,10 @@ Blockly.Blocks['cocossd_unrecognitied'] = {
 };
 
 Blockly.Blocks['cocossd_xy_in_triangle'] = {
-  init: function() {		
+  init: function() {
+    this.appendDummyInput()  
+        .appendField(Blockly.Msg.COCOSSD_SHOW)  
+        .appendField(Blockly.Msg.COCOSSD_GEOFENCE);	  
 	this.appendValueInput("x")
 		.setAlign(Blockly.ALIGN_RIGHT) 		
 		.appendField("X")
@@ -538,7 +541,10 @@ Blockly.Blocks['cocossd_xy_in_triangle'] = {
 };
 
 Blockly.Blocks['cocossd_xy_in_quadrilateral'] = {
-  init: function() {	
+  init: function() {
+    this.appendDummyInput()  
+        .appendField(Blockly.Msg.COCOSSD_SHOW)  
+        .appendField(Blockly.Msg.COCOSSD_GEOFENCE);	  
 	this.appendValueInput("x")
 		.setAlign(Blockly.ALIGN_RIGHT) 		
 		.appendField("X")
@@ -589,3 +595,4 @@ Blockly.Blocks['cocossd_xy_in_quadrilateral'] = {
 	this.setColour(60);
   }
 };
+
