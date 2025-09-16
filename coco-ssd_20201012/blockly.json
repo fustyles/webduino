@@ -1,5 +1,5 @@
 {
-  "types": ["cocossd_video", "cocossd_list", "cocossd_object", "cocossd_state", "cocossd_object_number", "cocossd_video_position", "cocossd_startvideo_media", "cocossd_startvideo_stream", "cocossd_clear", "cocossd_canvas_get", "cocossd_pause", "cocossd_recognitied", "cocossd_unrecognitied"],
+  "types": ["cocossd_video", "cocossd_list", "cocossd_object", "cocossd_state", "cocossd_object_number", "cocossd_video_position", "cocossd_startvideo_media", "cocossd_startvideo_stream", "cocossd_clear", "cocossd_canvas_get", "cocossd_pause", "cocossd_recognitied", "cocossd_unrecognitied", "cocossd_xy_in_triangle", "cocossd_xy_in_quadrilateral"],
   "category": "catPlus",
   "scripts": [
     "blockly/blocks.js",
@@ -13,3 +13,4 @@
   "blocksMsg": "blockly/msg/blocks",
   "toolbox": "blockly/toolbox.xml"
 }
+
