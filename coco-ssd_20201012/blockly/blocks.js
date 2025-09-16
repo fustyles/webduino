@@ -494,3 +494,98 @@ Blockly.Blocks['cocossd_unrecognitied'] = {
   this.setColour(60);
   }
 };
+
+Blockly.Blocks['cocossd_xy_in_triangle'] = {
+  init: function() {		
+	this.appendValueInput("x")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("X")
+		.setCheck("Number");		
+	this.appendValueInput("y")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("Y")
+		.setCheck("Number");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["COCOSSD_XY_IN_TRIANGLE"]);			
+	this.appendValueInput("x1")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("X1")
+		.setCheck("Number");		
+	this.appendValueInput("y1")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("Y1")
+		.setCheck("Number");
+	this.appendValueInput("x2")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("X2")
+		.setCheck("Number");		
+	this.appendValueInput("y2")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("Y2")
+		.setCheck("Number");
+	this.appendValueInput("x3")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("X3")
+		.setCheck("Number");		
+	this.appendValueInput("y3")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("Y3")
+		.setCheck("Number");			
+	this.setInputsInline(false);
+	this.setOutput(true, null); 
+	this.setColour(60);
+  }
+};
+
+Blockly.Blocks['cocossd_xy_in_quadrilateral'] = {
+  init: function() {	
+	this.appendValueInput("x")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("X")
+		.setCheck("Number");		
+	this.appendValueInput("y")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("Y")
+		.setCheck("Number");
+	this.appendDummyInput()
+		.appendField(Blockly.Msg["COCOSSD_XY_IN_QUADRILATERAL"]);			
+	this.appendValueInput("x1")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("X1")
+		.setCheck("Number");		
+	this.appendValueInput("y1")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("Y1")
+		.setCheck("Number");
+	this.appendValueInput("x2")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("X2")
+		.setCheck("Number");		
+	this.appendValueInput("y2")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("Y2")
+		.setCheck("Number");
+	this.appendValueInput("x3")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("X3")
+		.setCheck("Number");		
+	this.appendValueInput("y3")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("Y3")
+		.setCheck("Number");
+	this.appendValueInput("x4")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("X4")
+		.setCheck("Number");		
+	this.appendValueInput("y4")
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField("Y4")
+		.setCheck("Number");
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT) 		
+		.appendField(Blockly.Msg["COCOSSD_XY_ARRANGE"]);
+	this.setInputsInline(false);
+	this.setOutput(true, null); 
+	this.setColour(60);
+  }
+};
