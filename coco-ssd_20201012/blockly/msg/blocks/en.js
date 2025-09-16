@@ -34,6 +34,7 @@ Blockly.Msg.COCOSSD_RECOGNITIED_SHOW = "Object Detection recognitied";
 Blockly.Msg.COCOSSD_RECOGNITIED_OBJECT_SHOW = "Object found";
 Blockly.Msg.COCOSSD_RECOGNITIED_NOTHING_SHOW = "No object found";
 Blockly.Msg.COCOSSD_UNRECOGNITIED_SHOW = "Object Detection unrecognitied";
+Blockly.Msg.COCOSSD_GEOFENCE = "Geofence";
 Blockly.Msg.COCOSSD_XY_IN_TRIANGLE = "Within the bounds of a triangle";
 Blockly.Msg.COCOSSD_XY_IN_QUADRILATERAL = "Within the bounds of a convex quadrilateral";
 Blockly.Msg.COCOSSD_XY_ARRANGE = "(Coordinates are arranged in order)";
