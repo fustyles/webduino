@@ -87,3 +87,33 @@ Blockly.JavaScript['cocossd_unrecognitied'] = function(block) {
   var code = 'cocossd_unrecognitionFinish = async function() {\n  cocossd_state(0);\n  ' + statements_do + '\n  cocossd_state(1);\n};\n';
   return code;
 };
+
+Blockly.JavaScript['cocossd_xy_in_triangle'] = function(block) {
+	var x = Blockly.JavaScript.valueToCode(block, 'x', Blockly.JavaScript.ORDER_ATOMIC)||0;
+	var y = Blockly.JavaScript.valueToCode(block, 'y', Blockly.JavaScript.ORDER_ATOMIC)||0;
+	var x1 = Blockly.JavaScript.valueToCode(block, 'x1', Blockly.JavaScript.ORDER_ATOMIC)||0;
+	var y1 = Blockly.JavaScript.valueToCode(block, 'y1', Blockly.JavaScript.ORDER_ATOMIC)||0;
+	var x2 = Blockly.JavaScript.valueToCode(block, 'x2', Blockly.JavaScript.ORDER_ATOMIC)||0;
+	var y2 = Blockly.JavaScript.valueToCode(block, 'y2', Blockly.JavaScript.ORDER_ATOMIC)||0;	
+	var x3 = Blockly.JavaScript.valueToCode(block, 'x3', Blockly.JavaScript.ORDER_ATOMIC)||0;
+	var y3 = Blockly.JavaScript.valueToCode(block, 'y3', Blockly.JavaScript.ORDER_ATOMIC)||0;
+	
+	var code = 'cocossd_xy_in_triangle('+x+', '+y+', '+x1+', '+y1+', '+x2+', '+y2+', '+x3+', '+y3+')';
+	return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['cocossd_xy_in_quadrilateral'] = function(block) {
+	var x = Blockly.JavaScript.valueToCode(block, 'x', Blockly.JavaScript.ORDER_ATOMIC)||0;
+	var y = Blockly.JavaScript.valueToCode(block, 'y', Blockly.JavaScript.ORDER_ATOMIC)||0;
+	var x1 = Blockly.JavaScript.valueToCode(block, 'x1', Blockly.JavaScript.ORDER_ATOMIC)||0;
+	var y1 = Blockly.JavaScript.valueToCode(block, 'y1', Blockly.JavaScript.ORDER_ATOMIC)||0;
+	var x2 = Blockly.JavaScript.valueToCode(block, 'x2', Blockly.JavaScript.ORDER_ATOMIC)||0;
+	var y2 = Blockly.JavaScript.valueToCode(block, 'y2', Blockly.JavaScript.ORDER_ATOMIC)||0;	
+	var x3 = Blockly.JavaScript.valueToCode(block, 'x3', Blockly.JavaScript.ORDER_ATOMIC)||0;
+	var y3 = Blockly.JavaScript.valueToCode(block, 'y3', Blockly.JavaScript.ORDER_ATOMIC)||0;
+	var x4 = Blockly.JavaScript.valueToCode(block, 'x4', Blockly.JavaScript.ORDER_ATOMIC)||0;
+	var y4 = Blockly.JavaScript.valueToCode(block, 'y4', Blockly.JavaScript.ORDER_ATOMIC)||0;
+	
+	var code = 'cocossd_xy_in_quadrilateral('+x+', '+y+', '+x1+', '+y1+', '+x2+', '+y2+', '+x3+', '+y3+', '+x4+', '+y4+')';
+	return [code, Blockly.JavaScript.ORDER_NONE];
+};
