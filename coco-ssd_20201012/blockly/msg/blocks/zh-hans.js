@@ -34,6 +34,7 @@ Blockly.Msg.COCOSSD_RECOGNITIED_SHOW = "物件侦测 侦测完成后";
 Blockly.Msg.COCOSSD_RECOGNITIED_OBJECT_SHOW = "有物件";
 Blockly.Msg.COCOSSD_RECOGNITIED_NOTHING_SHOW = "无物件";
 Blockly.Msg.COCOSSD_UNRECOGNITIED_SHOW = "物件侦测 侦测不到物件后执行";
+Blockly.Msg.COCOSSD_GEOFENCE = "电子围栏";
 Blockly.Msg.COCOSSD_XY_IN_TRIANGLE = "在三边形的范围内";
 Blockly.Msg.COCOSSD_XY_IN_QUADRILATERAL = "在凸四边形的范围内";
 Blockly.Msg.COCOSSD_XY_ARRANGE = "(座标依序排列)";
