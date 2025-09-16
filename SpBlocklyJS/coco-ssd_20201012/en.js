@@ -35,3 +35,6 @@ Blockly.Msg.COCOSSD_RECOGNITIED_SHOW = "After Detection";
 Blockly.Msg.COCOSSD_RECOGNITIED_OBJECT_SHOW = "Objects Detected";
 Blockly.Msg.COCOSSD_RECOGNITIED_NOTHING_SHOW = "No Objects Detected";
 Blockly.Msg.COCOSSD_UNRECOGNITIED_SHOW = "After No Objects Detected";
+Blockly.Msg.COCOSSD_XY_IN_TRIANGLE = "Within the bounds of a triangle";
+Blockly.Msg.COCOSSD_XY_IN_QUADRILATERAL = "Within the bounds of a convex quadrilateral";
+Blockly.Msg.COCOSSD_XY_ARRANGE = "(Coordinates are arranged in order)";

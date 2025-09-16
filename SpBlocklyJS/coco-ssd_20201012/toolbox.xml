@@ -53,5 +53,99 @@
     </value>     
   </block> 
   <block type="cocossd_canvas_get">
-  </block> 
+  </block>
+  <block type="cocossd_xy_in_triangle">
+		<value name="x">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="y">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="x1">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="y1">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="x2">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="y2">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="x3">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="y3">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>					
+  </block>
+  <block type="cocossd_xy_in_quadrilateral">
+		<value name="x">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="y">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="x1">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="y1">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="x2">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="y2">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="x3">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="y3">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="x4">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>
+		<value name="y4">
+		  <block type="math_number">
+			<field name="NUM">0</field>
+		  </block>
+		</value>					
+  </block> 	  
 </category>

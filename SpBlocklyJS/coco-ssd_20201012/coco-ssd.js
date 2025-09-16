@@ -169,7 +169,25 @@
 	}
 	
 	function cocossd_unrecognitionFinish() {
-	}	
+	}
+
+	function cocossd_xy_in_triangle(x, y, x1, y1, x2, y2, x3, y3) {
+	    var area = Math.abs(x1*y2+x2*y3+x3*y1-x2*y1-x3*y2-x1*y3);
+	    var area1 = Math.abs(x1*y2+x2*y+x*y1-x2*y1-x*y2-x1*y);
+	    var area2 = Math.abs(x*y2+x2*y3+x3*y-x2*y-x3*y2-x*y3);
+	    var area3 = Math.abs(x1*y+x*y3+x3*y1-x*y1-x3*y-x1*y3);
+	    return (area==(area1+area2+area3));	
+	}
+	
+	function cocossd_xy_in_quadrilateral(x, y, x1, y1, x2, y2, x3, y3, x4, y4) {
+	    var area = Math.abs(x1*y2+x2*y3+x3*y1-x2*y1-x3*y2-x1*y3)+Math.abs(x1*y4+x4*y3+x3*y1-x4*y1-x3*y4-x1*y3);
+	    var area1 = Math.abs(x1*y2+x2*y+x*y1-x2*y1-x*y2-x1*y);
+	    var area2 = Math.abs(x*y2+x2*y3+x3*y-x2*y-x3*y2-x*y3);
+	    var area3 = Math.abs(x3*y4+x4*y+x*y3-x4*y3-x*y4-x3*y);
+	    var area4 = Math.abs(x1*y4+x4*y+x*y1-x4*y1-x*y4-x1*y);
+	    return (area==(area1+area2+area3+area4));	
+	}
+		
 	
 	window.cocossd_list = cocossd_list;
 	window.cocossd_object = cocossd_object;
@@ -182,5 +200,7 @@
 	window.cocossd_clear = cocossd_clear;
 	window.cocossd_recognitionFinish = cocossd_recognitionFinish;
 	window.cocossd_unrecognitionFinish = cocossd_unrecognitionFinish;
-
+	window.cocossd_xy_in_triangle = cocossd_xy_in_triangle;
+	window.cocossd_xy_in_quadrilateral = cocossd_xy_in_quadrilateral;
+	
 }(window, window.document));
