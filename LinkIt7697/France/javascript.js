@@ -25125,6 +25125,36 @@ Blockly.Arduino['cocossd_pause'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['cocossd_xy_in_triangle'] = function(block) {
+	var x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var x1 = Blockly.Arduino.valueToCode(block, 'x1', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y1 = Blockly.Arduino.valueToCode(block, 'y1', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var x2 = Blockly.Arduino.valueToCode(block, 'x2', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y2 = Blockly.Arduino.valueToCode(block, 'y2', Blockly.Arduino.ORDER_ATOMIC)||0;	
+	var x3 = Blockly.Arduino.valueToCode(block, 'x3', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y3 = Blockly.Arduino.valueToCode(block, 'y3', Blockly.Arduino.ORDER_ATOMIC)||0;
+	
+	var code = 'cocossd_xy_in_triangle('+x+', '+y+', '+x1+', '+y1+', '+x2+', '+y2+', '+x3+', '+y3+')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['cocossd_xy_in_quadrilateral'] = function(block) {
+	var x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var x1 = Blockly.Arduino.valueToCode(block, 'x1', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y1 = Blockly.Arduino.valueToCode(block, 'y1', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var x2 = Blockly.Arduino.valueToCode(block, 'x2', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y2 = Blockly.Arduino.valueToCode(block, 'y2', Blockly.Arduino.ORDER_ATOMIC)||0;	
+	var x3 = Blockly.Arduino.valueToCode(block, 'x3', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y3 = Blockly.Arduino.valueToCode(block, 'y3', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var x4 = Blockly.Arduino.valueToCode(block, 'x4', Blockly.Arduino.ORDER_ATOMIC)||0;
+	var y4 = Blockly.Arduino.valueToCode(block, 'y4', Blockly.Arduino.ORDER_ATOMIC)||0;
+	
+	var code = 'cocossd_xy_in_quadrilateral('+x+', '+y+', '+x1+', '+y1+', '+x2+', '+y2+', '+x3+', '+y3+', '+x4+', '+y4+')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['declare_variable'] = function (block) {
   var variable_variable = Blockly.Arduino.nameDB_.getName(block.getFieldValue('variable'), Blockly.VARIABLE_CATEGORY_NAME);
   var code = 'var ' + variable_variable + ';\n';
