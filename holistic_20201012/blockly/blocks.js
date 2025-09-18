@@ -1068,7 +1068,7 @@ Blockly.Blocks['holistic_points'] = {
 		[Blockly.Msg.HOLISTIC_FACE_SHOW,"11,339,298,333,285,252,390,265,448,367,402,436,289,366,398,366,380,379,401,378,153,149,177,150,151,137,173,59,133,94,235,128,163,22,55,104,68,110"],
 		[Blockly.Msg.HOLISTIC_FACE_3_SHOW,"200,209,33,212,211,215,188,112,144,157,71,64,106,67,108,10,337,297,335,294,301,384,266,341,412,435,431,432,263,429"]		
   ]), "points"); 	  
-  this.setInputsInline(true);
+  this.setInputsInline(false);
   this.setOutput(true, null); 
   this.setColour(200);
   }
@@ -1091,3 +1091,4 @@ Blockly.Blocks['holistic_canvas_get'] = {
   this.setColour(200);
   }
 };
+
