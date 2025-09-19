@@ -2601,7 +2601,9 @@ function elements_collision_color(element1,input_id1,input_id2,input_color) {
       else if (input_property=="fontsize")
         obj.style.fontSize = input_value + "px";	    
       else if (input_property=="opacity")
-        obj.style.opacity = input_value;    
+        obj.style.opacity = input_value;
+      else if (input_property=="textContent")
+        obj.textContent = input_value;		  
       else if (input_property=="innerHTML")
         obj.innerHTML = input_value;
       else if (input_property=="innerHTML_markdown")
@@ -5350,3 +5352,4 @@ function HextoRgb(color) {
   window.audio_save_googleTTS_Base64Data = audio_save_googleTTS_Base64Data;
 	
 }(window, window.document));
+
