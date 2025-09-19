@@ -199,3 +199,9 @@ async function sendAudioFileToOpenAISTT(key, model, prompt, blob, language) {
 		return JSON.stringify(e);
 	}
 }
+
+async function audioGeminiSTT() {
+}
+
+async function audioOpenAISTT() {
+}
