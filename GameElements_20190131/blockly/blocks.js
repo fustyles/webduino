@@ -6240,6 +6240,22 @@ Blockly.Blocks['password_delete'] = {
   }
 };
 
+Blockly.Blocks['password_onchange_do'] = {
+  init: function () {
+  this.appendDummyInput()   
+      .appendField(Blockly.Msg.PASSWORD);	  
+  this.appendValueInput("id_")
+    .setCheck(null)
+    .appendField(Blockly.Msg.PASSWORD_ID);
+  this.appendDummyInput()   
+    .appendField(Blockly.Msg.PASSWORD_ONCHANGE);
+  this.setInputsInline(true);
+  this.appendStatementInput("do_");
+  this.setPreviousStatement(true);
+  this.setNextStatement(true);
+  this.setColour(230);
+  }
+};
 
 Blockly.Blocks['form_create'] = {
   init: function() {
@@ -8028,6 +8044,7 @@ Blockly.Blocks['audio_delete'] = {
   this.setColour(30);
   }
 };
+
 
 
 
