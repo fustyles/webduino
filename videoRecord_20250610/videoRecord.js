@@ -155,3 +155,6 @@ async function sendMediaFileToGeminiVision(apiKey, model, prompt, encodedData, m
     return `${error.message}`;
   }
 }
+
+async function videoGeminiVision() {
+}
