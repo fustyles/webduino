@@ -23,7 +23,7 @@
 			"time_create","time_set","time_get","time_delete","time_onchange_do",
 			"datetime_create","datetime_set","datetime_get","datetime_delete","datetime_onchange_do",
 			"progress_create","progress_set","progress_get","progress_delete",
-			"password_create","password_set","password_get","password_delete",
+			"password_create","password_set","password_get","password_delete","password_onchange_do",
 			"form_create","form_set","form_get","form_delete","form_insert","form_submit",
 			"async_function","call_async_function","transform_async_function","element_event","element_event_stop","document_timer_novar","document_timer_once_novar","location",
 			"color_hextorgb","body_set","gameelements_1","elements_collision_color","point_in_element","mouse_coordinate_get_start","head_add_viewport",
@@ -51,3 +51,4 @@
   "blocksMsg": "blockly/msg/blocks",
   "toolbox": "blockly/toolbox.xml"
 }
+
