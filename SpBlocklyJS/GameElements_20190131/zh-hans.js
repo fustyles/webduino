@@ -472,6 +472,7 @@ Blockly.Msg.PASSWORD_VALUE = "值";
 Blockly.Msg.PASSWORD_SET = "设定";
 Blockly.Msg.PASSWORD_GET = "取得";
 Blockly.Msg.PASSWORD_DELETE = "删除";
+Blockly.Msg.PASSWORD_ONCHANGE = "改变密码后执行";
 Blockly.Msg.MAXLENGTH = "最大长度";
 Blockly.Msg.FORM_CREATE = "表单 建立";
 Blockly.Msg.FORM_ACTION = "提交网址";

@@ -484,6 +484,7 @@ Blockly.Msg["PASSWORD_VALUE"] = "Value";
 Blockly.Msg["PASSWORD_SET"] = "Set";
 Blockly.Msg["PASSWORD_GET"] = "Get";
 Blockly.Msg["PASSWORD_DELETE"] = "Delete";
+Blockly.Msg["PASSWORD_ONCHANGE"] = "Execute after changing password";
 Blockly.Msg["MAXLENGTH"] = "Maximum Length";
 Blockly.Msg["FORM_CREATE"] = "Create Form";
 Blockly.Msg["FORM_ACTION"] = "Submit URL";

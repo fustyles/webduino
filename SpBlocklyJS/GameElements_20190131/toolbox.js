@@ -3564,6 +3564,13 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="password_onchange_do">'+
+'    <value name="id_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
 '    </category>'+
 '    <category name="%{BKY_CATPAGEELEMENTS_FORM}" id="catPageElements_form">'+
 '    <block type="form_create">'+

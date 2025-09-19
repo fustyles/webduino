@@ -484,6 +484,7 @@ Blockly.Msg["PASSWORD_VALUE"] = "值";
 Blockly.Msg["PASSWORD_SET"] = "設定";
 Blockly.Msg["PASSWORD_GET"] = "取得";
 Blockly.Msg["PASSWORD_DELETE"] = "刪除";
+Blockly.Msg["PASSWORD_ONCHANGE"] = "改變密碼後執行";
 Blockly.Msg["MAXLENGTH"] = "最大長度";
 Blockly.Msg["FORM_CREATE"] = "表單 建立";
 Blockly.Msg["FORM_ACTION"] = "提交網址";
