@@ -475,6 +475,7 @@ Blockly.Msg.PASSWORD_VALUE = "Value";
 Blockly.Msg.PASSWORD_SET = "Set";
 Blockly.Msg.PASSWORD_GET = "Value";
 Blockly.Msg.PASSWORD_DELETE = "Delete";
+Blockly.Msg.PASSWORD_ONCHANGE = "Execute after changing password";
 Blockly.Msg.MAXLENGTH = "Max Length";
 Blockly.Msg.FORM_CREATE = "Form Create";
 Blockly.Msg.FORM_ACTION = "Action";
