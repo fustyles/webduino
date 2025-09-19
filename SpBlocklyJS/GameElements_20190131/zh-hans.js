@@ -130,6 +130,7 @@ Blockly.Msg.PROPERTY_PRELOAD = "预载影片";
 Blockly.Msg.PROPERTY_CAM = "本机摄影机";
 Blockly.Msg.PROPERTY_CLASS = "类别名称";
 Blockly.Msg.PROPERTY_SELECT = "全选文字";
+Blockly.Msg.PROPERTY_TEXTCONTENT = "文本内容";
 Blockly.Msg.TABLE = "表格";
 Blockly.Msg.TABLE_ID = "表格代码";
 Blockly.Msg.TABLE_CREATE = "建立";
