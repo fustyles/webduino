@@ -2642,6 +2642,8 @@ function table_change_colsrows(input_id, input_target, input_cmd, input_index) {
         return Number(obj.style.fontSize.replace(/px/ig,""));  	    
       else if (input_property=="opacity")
         return Number(obj.style.opacity);
+      else if (input_property=="textContent")
+        return obj.textContent;			  
       else if (input_property=="innerHTML")
         return obj.innerHTML;
       else if (input_property=="zindex")
@@ -5261,4 +5263,5 @@ function HextoRgb(color) {
   window.audio_play_googleTTS_Base64Data = audio_play_googleTTS_Base64Data;  
   window.audio_save_googleTTS_Base64Data = audio_save_googleTTS_Base64Data; 	
 }(window, window.document));
+
 
