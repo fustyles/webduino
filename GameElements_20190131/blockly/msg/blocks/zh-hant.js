@@ -686,7 +686,7 @@ Blockly.Msg["AUDIO_VOLUME"] = "音量";
 Blockly.Msg["AUDIO_RATE"] = "默认速度";
 Blockly.Msg["AUDIO_CURRENTTIME"] = "目前播放時間";
 Blockly.Msg["AUDIO_CURRENTSRC"] = "目前音訊連結";
-Blockly.Msg["AUDIO_DURATION"] = "";
+Blockly.Msg["AUDIO_DURATION"] = "音訊持續時間";
 Blockly.Msg["AUDIO_ENDED"] = "已播畢";
 Blockly.Msg["AUDIO_PAUSED"] = "已暫停";
 Blockly.Msg["AUDIO_PLAYED"] = "已播放";
@@ -697,5 +697,6 @@ Blockly.Msg["AUDIO_TEXT"] = "文字";
 Blockly.Msg["AUDIO_PLAY"] = "播放";
 Blockly.Msg["AUDIO_PAUSE"] = "暫停";
 Blockly.Msg["AUDIO_LOAD"] = "重新載入";
+
 
 
