@@ -6253,7 +6253,7 @@ Blockly.Blocks['password_onchange_do'] = {
   this.appendStatementInput("do_");
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(230);
+  this.setColour(60);
   }
 };
 
@@ -8044,6 +8044,7 @@ Blockly.Blocks['audio_delete'] = {
   this.setColour(30);
   }
 };
+
 
 
 
