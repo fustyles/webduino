@@ -4356,6 +4356,7 @@ Blockly.Blocks['div_get'] = {
 	  [Blockly.Msg.PROPERTY_SCROLLTOP,"scrollTop"], 
 	  [Blockly.Msg.PROPERTY_SCROLLWIDTH,"scrollWidth"], 
 	  [Blockly.Msg.PROPERTY_SCROLLHEIGHT,"scrollHeight"], 
+	  [Blockly.Msg.PROPERTY_TEXTCONTENT,"textContent"], 		  
 	  [Blockly.Msg.PROPERTY_INNERHTML,"innerHTML"], 
 	  [Blockly.Msg.PROPERTY_ZINDEX,"zindex"], 
 	  [Blockly.Msg.PROPERTY_DISPLAY,"display"], 
@@ -8027,5 +8028,6 @@ Blockly.Blocks['audio_delete'] = {
   this.setColour(30);
   }
 };
+
 
 
