@@ -133,6 +133,7 @@ Blockly.Msg["PROPERTY_PRELOAD"] = "預載影片";
 Blockly.Msg["PROPERTY_CAM"] = "本機攝影機";
 Blockly.Msg["PROPERTY_CLASS"] = "類別名稱";
 Blockly.Msg["PROPERTY_SELECT"] = "全選文字";
+Blockly.Msg["PROPERTY_TEXTCONTENT"] = "文本內容";
 Blockly.Msg["TABLE"] = "表格";
 Blockly.Msg["TABLE_ID"] = "表格代碼";
 Blockly.Msg["TABLE_CREATE"] = "建立";
@@ -706,3 +707,4 @@ Blockly.Msg["AUDIO_TEXT"] = "文字";
 Blockly.Msg["AUDIO_PLAY"] = "播放";
 Blockly.Msg["AUDIO_PAUSE"] = "暫停";
 Blockly.Msg["AUDIO_LOAD"] = "重新載入";
+
