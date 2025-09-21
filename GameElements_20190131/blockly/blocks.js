@@ -4874,7 +4874,12 @@ Blockly.Blocks['a_create'] = {
   this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField(Blockly.Msg.A_TARGET)
-      .appendField(new Blockly.FieldDropdown([["_blank","_blank"], ["_parent","_parent"], ["_self","_self"], ["_top","_top"]]), "target_"); 
+      .appendField(new Blockly.FieldDropdown([
+		  [Blockly.Msg.WINDOW_NAME_NEW,"_blank"],
+		  [Blockly.Msg.WINDOW_NAME_PARENT,"_parent"],
+		  [Blockly.Msg.WINDOW_NAME_SELF,"_self"],
+		  [Blockly.Msg.WINDOW_NAME_TOP,"_top"]		  
+	  ]), "target_"); 
   this.appendValueInput("zindex_")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -8044,6 +8049,7 @@ Blockly.Blocks['audio_delete'] = {
   this.setColour(30);
   }
 };
+
 
 
 
