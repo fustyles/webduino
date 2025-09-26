@@ -53,14 +53,8 @@ var catTeachablemachine ='<xml>'+
 '          </block>'+
 '        </value>'+
 '      </block>'+
-'    	<block type="teachablemachine_pause">'+
-'    		<value name="time_">'+
-'    			<block type="math_number">'+
-'    				<field name="NUM">1000</field>'+
-'    			</block>'+
-'    		</value>'+
-'      </block>'+
 '      <block type="teachablemachine_canvas_get">'+
 '      </block>'+  
 '    </category>'+
 '</xml>';
+
