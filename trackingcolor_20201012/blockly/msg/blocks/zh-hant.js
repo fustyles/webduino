@@ -40,5 +40,6 @@ Blockly.Msg.TRACKINGCOLOR_MIDDLEY_SHOW = "中心Y";
 Blockly.Msg.TRACKINGCOLOR_STATE_SHOW = "顏色追蹤 (Tracking) 偵測狀態";
 Blockly.Msg.TRACKINGCOLOR_CLEAR_SHOW = "顏色追蹤 (Tracking) 清除結果";
 Blockly.Msg.TRACKINGCOLOR_PAUSE_SHOW = "顏色追蹤 (Tracking) 暫停偵測";
-Blockly.Msg.TRACKINGCOLOR_RECOGNITIED_SHOW = "顏色追蹤 (Tracking) 辨識完成後執行";
+Blockly.Msg.TRACKINGCOLOR_RECOGNITIED_SHOW = "顏色追蹤 (Tracking) 偵測完成後執行";
 Blockly.Msg.TRACKINGCOLOR_CANVAS_GET_SHOW = "取得畫面代碼";
+
