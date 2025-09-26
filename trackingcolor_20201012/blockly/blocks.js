@@ -142,7 +142,7 @@ Blockly.Blocks['trackingcolor_video_position'] = {
 Blockly.Blocks['trackingcolor_get'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.TRACKINGCOLOR_GET_SHOW);   	  
+        .appendField(Blockly.Msg.TRACKINGCOLOR_GET_ARRAY_SHOW);   	  
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
           [Blockly.Msg.TRACKINGCOLOR_GET_MAGENTA_SHOW,"magenta"], 
@@ -313,3 +313,4 @@ Blockly.Blocks['trackingcolor_canvas_get'] = {
   this.setColour(200);
   }
 };
+
