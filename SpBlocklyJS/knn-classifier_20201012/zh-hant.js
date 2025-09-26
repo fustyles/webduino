@@ -14,11 +14,12 @@ Blockly.Msg["KNNCLASSIFIER_FACING_BACK_SHOW"] = "後置";
 Blockly.Msg["KNNCLASSIFIER_SRC_SHOW"] = "串流網址";
 Blockly.Msg["KNNCLASSIFIER_CLASS_SHOW"] = "設定分類";
 Blockly.Msg["KNNCLASSIFIER_CLASSNAME_SHOW"] = "名稱";
-Blockly.Msg["KNNCLASSIFIER_CLEARCLASSES_SHOW"] = "清除訓練資料";	   
-Blockly.Msg["KNNCLASSIFIER_SAVEMODEL_SHOW"] = "儲存訓練資料檔"; 	   
-Blockly.Msg["KNNCLASSIFIER_LOADMODEL_SHOW"] = "載入訓練資料檔";
-Blockly.Msg["KNNCLASSIFIER_LOADMODELURL_SHOW"] = "載入訓練資料檔網址";
+Blockly.Msg["KNNCLASSIFIER_CLEARCLASSES_SHOW"] = "清除資料集";	   
+Blockly.Msg["KNNCLASSIFIER_SAVEMODEL_SHOW"] = "儲存資料集"; 	   
+Blockly.Msg["KNNCLASSIFIER_LOADMODEL_SHOW"] = "載入資料集";
+Blockly.Msg["KNNCLASSIFIER_LOADMODELURL_SHOW"] = "載入資料集網址";
 Blockly.Msg["KNNCLASSIFIER_PROBABILITY_SHOW"] = "可能性";
 Blockly.Msg["KNNCLASSIFIER_RECOGNITIED_SHOW"] = "分類完成後";
 Blockly.Msg["KNNCLASSIFIER_CLASS_ARRAY_SHOW"] = "取得分類資料陣列";
 Blockly.Msg["KNNCLASSIFIER_CANVAS_GET_SHOW"] = "取得影像代碼";
+
