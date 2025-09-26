@@ -1,14 +1,14 @@
 Blockly.Msg["CATTRACKINGCOLOR"] = "颜色追踪";
 Blockly.Msg.TRACKINGCOLOR_SHOW = "颜色追踪";
 Blockly.Msg.TRACKINGCOLOR_SET_SHOW = "颜色追踪 视窗设定";
-Blockly.Msg.TRACKINGCOLOR_RANGE_SET_SHOW = "颜色追踪（Tracking）自订范围显示";
+Blockly.Msg.TRACKINGCOLOR_RANGE_SET_SHOW = "颜色追踪（Tracking）自订范围";
 Blockly.Msg.TRACKINGCOLOR_WIDTH_SHOW = "宽度";
 Blockly.Msg.TRACKINGCOLOR_HEIGHT_SHOW = "高度";
 Blockly.Msg.TRACKINGCOLOR_VIDEO_SHOW = "视讯";
 Blockly.Msg.TRACKINGCOLOR_DISPLAY_SHOW = "显示";
 Blockly.Msg.TRACKINGCOLOR_PIXEL_SHOW = "像素图";
 Blockly.Msg.TRACKINGCOLOR_CUSTOM_SHOW = "自订范围";
-Blockly.Msg.TRACKINGCOLOR_RECT_SHOW = "方框颜色";
+Blockly.Msg.TRACKINGCOLOR_RECT_SHOW = "方框类别";
 Blockly.Msg.TRACKINGCOLOR_RED_SHOW = "R值(0~255)";
 Blockly.Msg.TRACKINGCOLOR_TO_SHOW = "~";
 Blockly.Msg.TRACKINGCOLOR_GREEN_SHOW = "G值(0~255)";
@@ -43,4 +43,5 @@ Blockly.Msg.TRACKINGCOLOR_CLEAR_SHOW = "颜色追踪 清除结果";
 Blockly.Msg.TRACKINGCOLOR_PAUSE_SHOW = "颜色追踪 暂停侦测";
 Blockly.Msg.TRACKINGCOLOR_RECOGNITIED_SHOW = "颜色追踪 侦测完成后执行";
 Blockly.Msg.TRACKINGCOLOR_CANVAS_GET_SHOW = "取得画面代码";
+
 
