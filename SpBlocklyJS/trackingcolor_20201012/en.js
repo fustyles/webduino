@@ -14,6 +14,7 @@ Blockly.Msg["TRACKINGCOLOR_TO_SHOW"] = "~";
 Blockly.Msg["TRACKINGCOLOR_GREEN_SHOW"] = "G Value (0~255)";
 Blockly.Msg["TRACKINGCOLOR_BLUE_SHOW"] = "B Value (0~255)";
 Blockly.Msg["TRACKINGCOLOR_GET_SHOW"] = "Get Detection Results";
+Blockly.Msg["TRACKINGCOLOR_GET_ARRAY_SHOW"] = "Get Detection Array Results";
 Blockly.Msg["TRACKINGCOLOR_GET_NUMBER_SHOW"] = "Get Number of Detected Regions";
 Blockly.Msg["TRACKINGCOLOR_MIRRORIMAGE_SHOW"] = "Mirror Image";
 Blockly.Msg["TRACKINGCOLOR_OPACITY_SHOW"] = "Opacity";
@@ -43,4 +44,5 @@ Blockly.Msg["TRACKINGCOLOR_CLEAR_SHOW"] = "Color Tracking Clear Results";
 Blockly.Msg["TRACKINGCOLOR_PAUSE_SHOW"] = "Color Tracking Pause Detection";
 Blockly.Msg["TRACKINGCOLOR_RECOGNITIED_SHOW"] = "Color Tracking Execute After Recognition";
 Blockly.Msg["TRACKINGCOLOR_CANVAS_GET_SHOW"] = "Get Canvas ID";
+
 
