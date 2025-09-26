@@ -536,7 +536,7 @@ Blockly.Blocks['cocossd_xy_in_triangle'] = {
 		.setCheck("Number");			
 	this.setInputsInline(false);
 	this.setOutput(true, null); 
-	this.setColour(60);
+	this.setColour(65);
   }
 };
 
@@ -592,7 +592,8 @@ Blockly.Blocks['cocossd_xy_in_quadrilateral'] = {
 		.appendField(Blockly.Msg["COCOSSD_XY_ARRANGE"]);
 	this.setInputsInline(false);
 	this.setOutput(true, null); 
-	this.setColour(60);
+	this.setColour(65);
   }
 };
+
 
