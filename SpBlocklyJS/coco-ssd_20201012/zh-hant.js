@@ -1,7 +1,7 @@
 Blockly.Msg["CATCOCOSSD"] = "物件偵測";
 Blockly.Msg.COCOSSD_SHOW = "物件偵測";
 Blockly.Msg.COCOSSD_OBJECT_SHOW = "偵測物件";
-Blockly.Msg.COCOSSD_OBJECT_ARRAY_SHOW = "偵測物件資料陣列";
+Blockly.Msg.COCOSSD_OBJECT_ARRAY_SHOW = "取得物件資料陣列";
 Blockly.Msg.COCOSSD_OBJECT_ALL_SHOW = "全部";
 Blockly.Msg.COCOSSD_OBJECT_NUMBER_SHOW = "偵測物件數目";
 Blockly.Msg.COCOSSD_INDEX_SHOW = "索引";
@@ -40,3 +40,4 @@ Blockly.Msg.COCOSSD_XY_IN_TRIANGLE = "在三邊形的範圍內";
 Blockly.Msg.COCOSSD_XY_IN_QUADRILATERAL = "在凸四邊形的範圍內";
 
 Blockly.Msg.COCOSSD_XY_ARRANGE = "(座標依序排列)";
+
