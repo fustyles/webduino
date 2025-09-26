@@ -13,7 +13,7 @@ Blockly.Msg.TRACKINGCOLOR_TO_SHOW = "~";
 Blockly.Msg.TRACKINGCOLOR_GREEN_SHOW = "G值(0~255)";
 Blockly.Msg.TRACKINGCOLOR_BLUE_SHOW = "B值(0~255)";
 Blockly.Msg.TRACKINGCOLOR_GET_SHOW = "取得 侦测结果";
-Blockly.Msg.TRACKINGCOLOR_GET_ARRAY_SHOW = "取得 侦测结果阵列";
+Blockly.Msg.TRACKINGCOLOR_GET_ARRAY_SHOW = "取得 侦测结果资料阵列";
 Blockly.Msg.TRACKINGCOLOR_GET_NUMBER_SHOW = "取得 侦测结果区块数";
 Blockly.Msg.TRACKINGCOLOR_MIRRORIMAGE_SHOW = "镜像";
 Blockly.Msg.TRACKINGCOLOR_OPACITY_SHOW = "透明度";
@@ -43,6 +43,7 @@ Blockly.Msg.TRACKINGCOLOR_CLEAR_SHOW = "颜色追踪 (Tracking) 清除结果";
 Blockly.Msg.TRACKINGCOLOR_PAUSE_SHOW = "颜色追踪 (Tracking) 暂停侦测";
 Blockly.Msg.TRACKINGCOLOR_RECOGNITIED_SHOW = "颜色追踪 (Tracking) 侦测完成后执行";
 Blockly.Msg.TRACKINGCOLOR_CANVAS_GET_SHOW = "取得画面代码";
+
 
 
 
