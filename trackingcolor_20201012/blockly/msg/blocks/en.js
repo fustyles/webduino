@@ -24,7 +24,7 @@ Blockly.Msg.TRACKINGCOLOR_SRC_SHOW = "Stream URL";
 Blockly.Msg.TRACKINGCOLOR_REDRECT_SHOW = "Red";
 Blockly.Msg.TRACKINGCOLOR_GREENRECT_SHOW = "Green";
 Blockly.Msg.TRACKINGCOLOR_BLUERECT_SHOW = "Blue";
-Blockly.Msg.TRACKINGCOLOR_VIDEO_LEFT_SHOW = "TrackColor (Tracking) Screen Left";
+Blockly.Msg.TRACKINGCOLOR_VIDEO_LEFT_SHOW = "Screen Left";
 Blockly.Msg.TRACKINGCOLOR_VIDEO_TOP_SHOW = "TOP";
 Blockly.Msg.TRACKINGCOLOR_GET_MAGENTA_SHOW = "magenta rect";
 Blockly.Msg.TRACKINGCOLOR_GET_CYAN_SHOW = "cyan rect";
@@ -42,3 +42,4 @@ Blockly.Msg.TRACKINGCOLOR_CLEAR_SHOW = "TrackColor (Tracking) clear result";
 Blockly.Msg.TRACKINGCOLOR_PAUSE_SHOW = "TrackColor (Tracking) Pause";
 Blockly.Msg.TRACKINGCOLOR_RECOGNITIED_SHOW = "TrackColor (Tracking) recognitied";
 Blockly.Msg.TRACKINGCOLOR_CANVAS_GET_SHOW = "Get Canvas ID";
+
