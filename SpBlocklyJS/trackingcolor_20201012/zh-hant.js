@@ -25,8 +25,7 @@ Blockly.Msg["TRACKINGCOLOR_SRC_SHOW"] = "串流網址";
 Blockly.Msg["TRACKINGCOLOR_REDRECT_SHOW"] = "紅色";
 Blockly.Msg["TRACKINGCOLOR_GREENRECT_SHOW"] = "綠色";
 Blockly.Msg["TRACKINGCOLOR_BLUERECT_SHOW"] = "藍色";
-Blockly.Msg["TRACKINGCOLOR_VIDEO_SHOW"] = "畫面";
-Blockly.Msg["TRACKINGCOLOR_VIDEO_LEFT_SHOW"] = "靠左距離";
+Blockly.Msg["TRACKINGCOLOR_VIDEO_LEFT_SHOW"] = "畫面 靠左距離";
 Blockly.Msg["TRACKINGCOLOR_VIDEO_TOP_SHOW"] = "靠上距離";
 Blockly.Msg["TRACKINGCOLOR_GET_MAGENTA_SHOW"] = "洋紅色框";
 Blockly.Msg["TRACKINGCOLOR_GET_CYAN_SHOW"] = "青色框";
@@ -44,6 +43,7 @@ Blockly.Msg["TRACKINGCOLOR_CLEAR_SHOW"] = "顏色追蹤 清除結果";
 Blockly.Msg["TRACKINGCOLOR_PAUSE_SHOW"] = "顏色追蹤 暫停偵測";
 Blockly.Msg["TRACKINGCOLOR_RECOGNITIED_SHOW"] = "顏色追蹤 偵測完成後執行";
 Blockly.Msg["TRACKINGCOLOR_CANVAS_GET_SHOW"] = "取得畫面代碼";
+
 
 
 
