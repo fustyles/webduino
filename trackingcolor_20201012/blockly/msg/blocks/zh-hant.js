@@ -12,8 +12,9 @@ Blockly.Msg.TRACKINGCOLOR_RED_SHOW = "R值(0~255)";
 Blockly.Msg.TRACKINGCOLOR_TO_SHOW = "~"; 
 Blockly.Msg.TRACKINGCOLOR_GREEN_SHOW = "G值(0~255)";	
 Blockly.Msg.TRACKINGCOLOR_BLUE_SHOW = "B值(0~255)";	
-Blockly.Msg.TRACKINGCOLOR_GET_SHOW = "取得偵測結果陣列"; 	  
-Blockly.Msg.TRACKINGCOLOR_GET_NUMBER_SHOW = "取得偵測結果區塊數";
+Blockly.Msg.TRACKINGCOLOR_GET_SHOW = "取得 偵測結果"; 	
+Blockly.Msg.TRACKINGCOLOR_GET_ARRAY_SHOW = "取得 偵測結果陣列"; 
+Blockly.Msg.TRACKINGCOLOR_GET_NUMBER_SHOW = "取得 偵測結果區塊數";
 Blockly.Msg.TRACKINGCOLOR_MIRRORIMAGE_SHOW = "鏡像";
 Blockly.Msg.TRACKINGCOLOR_OPACITY_SHOW = "透明度";
 Blockly.Msg.TRACKINGCOLOR_RESULT_SHOW = "結果";
@@ -42,6 +43,7 @@ Blockly.Msg.TRACKINGCOLOR_CLEAR_SHOW = "顏色追蹤 (Tracking) 清除結果";
 Blockly.Msg.TRACKINGCOLOR_PAUSE_SHOW = "顏色追蹤 (Tracking) 暫停偵測";
 Blockly.Msg.TRACKINGCOLOR_RECOGNITIED_SHOW = "顏色追蹤 (Tracking) 偵測完成後執行";
 Blockly.Msg.TRACKINGCOLOR_CANVAS_GET_SHOW = "取得畫面代碼";
+
 
 
 
