@@ -509,6 +509,7 @@ Blockly.Blocks['cocossd_xy_in_triangle'] = {
 		.appendField("Y")
 		.setCheck("Number");
 	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg["COCOSSD_XY_IN_TRIANGLE"]);			
 	this.appendValueInput("x1")
 		.setAlign(Blockly.ALIGN_RIGHT) 		
@@ -554,6 +555,7 @@ Blockly.Blocks['cocossd_xy_in_quadrilateral'] = {
 		.appendField("Y")
 		.setCheck("Number");
 	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["COCOSSD_XY_IN_QUADRILATERAL"]);			
 	this.appendValueInput("x1")
 		.setAlign(Blockly.ALIGN_RIGHT) 		
@@ -595,5 +597,6 @@ Blockly.Blocks['cocossd_xy_in_quadrilateral'] = {
 	this.setColour(65);
   }
 };
+
 
 
