@@ -12,8 +12,9 @@ Blockly.Msg.TRACKINGCOLOR_RED_SHOW = "R Range(0~255)";
 Blockly.Msg.TRACKINGCOLOR_TO_SHOW = "~"; 
 Blockly.Msg.TRACKINGCOLOR_GREEN_SHOW = "G Range(0~255)";	
 Blockly.Msg.TRACKINGCOLOR_BLUE_SHOW = "B Range(0~255)";	
-Blockly.Msg.TRACKINGCOLOR_GET_SHOW = "TrackColor Get "; 	  
-Blockly.Msg.TRACKINGCOLOR_GET_NUMBER_SHOW = "TrackColor Get Number";
+Blockly.Msg.TRACKINGCOLOR_GET_SHOW = "Get Detection Results";
+Blockly.Msg.TRACKINGCOLOR_GET_ARRAY_SHOW = "Get Detection Array Results";	  
+Blockly.Msg.TRACKINGCOLOR_GET_NUMBER_SHOW = "Get Number";
 Blockly.Msg.TRACKINGCOLOR_MIRRORIMAGE_SHOW = "Mirror Image";
 Blockly.Msg.TRACKINGCOLOR_OPACITY_SHOW = "Opacity";
 Blockly.Msg.TRACKINGCOLOR_RESULT_SHOW = "Result";
@@ -42,4 +43,5 @@ Blockly.Msg.TRACKINGCOLOR_CLEAR_SHOW = "TrackColor (Tracking) clear result";
 Blockly.Msg.TRACKINGCOLOR_PAUSE_SHOW = "TrackColor (Tracking) Pause";
 Blockly.Msg.TRACKINGCOLOR_RECOGNITIED_SHOW = "TrackColor (Tracking) recognitied";
 Blockly.Msg.TRACKINGCOLOR_CANVAS_GET_SHOW = "Get Canvas ID";
+
 
