@@ -6,7 +6,7 @@ Blockly.Msg["TRACKINGCOLOR_WIDTH_SHOW"] = "寬度";
 Blockly.Msg["TRACKINGCOLOR_HEIGHT_SHOW"] = "高度";
 Blockly.Msg["TRACKINGCOLOR_VIDEO_SHOW"] = "視訊"; 
 Blockly.Msg["TRACKINGCOLOR_DISPLAY_SHOW"] = "顯示";
-Blockly.Msg["TRACKINGCOLOR_PIXEL_SHOW"] = "像素圖";
+Blockly.Msg["TRACKINGCOLOR_PIXEL_SHOW"] = "遮罩圖";
 Blockly.Msg["TRACKINGCOLOR_CUSTOM_SHOW"] = "自訂範圍";	 
 Blockly.Msg["TRACKINGCOLOR_RECT_SHOW"] = "方框類別";
 Blockly.Msg["TRACKINGCOLOR_RED_SHOW"] = "R值(0~255)";	
@@ -43,5 +43,6 @@ Blockly.Msg["TRACKINGCOLOR_CLEAR_SHOW"] = "顏色追蹤 清除結果";
 Blockly.Msg["TRACKINGCOLOR_PAUSE_SHOW"] = "顏色追蹤 暫停偵測";
 Blockly.Msg["TRACKINGCOLOR_RECOGNITIED_SHOW"] = "顏色追蹤 偵測完成後執行";
 Blockly.Msg["TRACKINGCOLOR_CANVAS_GET_SHOW"] = "取得畫面代碼";
+
 
 
