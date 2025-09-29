@@ -29,9 +29,10 @@ sourceTimer = setInterval(
 				var r=0;
 				var g=0;
 				var b=0;
-
+var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
+				console.log(arg);
 				if(mode.value=="1") {
-					var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
+					
 					if (arg<=reference.value) {
 						imgData.data[i]=0;
 						imgData.data[i+1]=0;
@@ -46,7 +47,6 @@ sourceTimer = setInterval(
 					}
 				}
 				else if(mode.value=="2") {
-					var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
 					if (arg>=reference.value) {
 						imgData.data[i]=0;
 						imgData.data[i+1]=0;
@@ -61,14 +61,12 @@ sourceTimer = setInterval(
 					}
 				}
 				else if(mode.value=="3") {
-					var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
 					imgData.data[i]=arg;
 					imgData.data[i+1]=arg;
 					imgData.data[i+2]=arg;
 					imgData.data[i+3]=255;
 				}
 			}
-			console.log(mode.value);
 			context.putImageData(imgData,0,0);
 		}		
 	}
@@ -88,6 +86,7 @@ function DetectVideo() {
 			if (typeof tesseract_recognitionFinish === 'function') tesseract_recognitionFinish();
 		}) 
 }	
+
 
 
 
