@@ -116,5 +116,7 @@
 	window.tesseract_clear = tesseract_clear;
 	window.tesseract_startvideo_media = tesseract_startvideo_media;
 	window.tesseract_startvideo_stream = tesseract_startvideo_stream;
+	window.tesseract_recognitionFinish = tesseract_recognitionFinish;
 
 }(window, window.document));
+
