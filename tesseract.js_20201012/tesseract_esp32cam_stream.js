@@ -12,9 +12,6 @@ var reference = document.getElementById('reference_tesseract');
 ShowImage.src = 'http://'+window.location.hostname+':81/?stream';
 
 function DetectVideo() {
-	if (canvas.style.visibility == 'visible') return;
-	
-	result.innerHTML = "";
 	canvas.setAttribute("width", ShowImage.width);
 	canvas.setAttribute("height", ShowImage.height);
 	canvas.style.width = ShowImage.width+"px";
@@ -74,9 +71,7 @@ function DetectVideo() {
 			//}
 		).then(({ data: { text } }) => {
 			result.innerHTML = text.replace(/\n/g, "<br>");
-			if (typeof recognitionFinish === 'function') recognitionFinish();
-			setTimeout(function(){
-				canvas.style.visibility='hidden';
-			},2000);
+			if (typeof tesseract_recognitionFinish === 'function') tesseract_recognitionFinish();
 		}) 
 }	
+
