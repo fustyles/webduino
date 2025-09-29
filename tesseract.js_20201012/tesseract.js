@@ -50,6 +50,7 @@
 		video.style.height = input_height+"px";	
 		video.style.visibility = "hidden";
 
+
 		if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
 			console.log("enumerateDevices() not supported.");
 			return;
@@ -114,4 +115,3 @@
 	window.tesseract_startvideo_stream = tesseract_startvideo_stream;
 
 }(window, window.document));
-
