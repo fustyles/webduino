@@ -71,8 +71,6 @@ sourceTimer = setInterval(
 				}
 			}
 			context.putImageData(imgData,0,0);
-						console.log("ok");	
-			canvas.style.visibility = 'visible';	
 		}		
 	}
 , 100);
@@ -91,5 +89,6 @@ function DetectVideo() {
 			if (typeof recognitionFinish === 'function') recognitionFinish();
 		}) 
 }	
+
 
 
