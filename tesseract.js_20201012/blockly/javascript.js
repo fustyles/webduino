@@ -9,7 +9,7 @@ Blockly.JavaScript['tesseract_video'] = function(block) {
 Blockly.JavaScript['tesseract_imageprocessing'] = function(block) { 
   var value_mode_ = block.getFieldValue('mode_');
   var value_reference_ = Blockly.JavaScript.valueToCode(block, 'reference_', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'tesseract_imageprocessing("' + value_mode_ + '","' + value_reference_ + '");\n';
+  var code = 'tesseract_imageprocessing("' + value_mode_ + '",' + value_reference_ + ');\n';
   return code;
 };
 
@@ -61,3 +61,4 @@ Blockly.JavaScript['tesseract_canvas_get'] = function(block) {
   var code = '"tesseract"';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
