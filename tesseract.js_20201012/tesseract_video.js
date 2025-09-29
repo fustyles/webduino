@@ -14,6 +14,7 @@ var obj;
 
 sourceTimer = setInterval(
 	function(){
+		console.log(source.innerHTML);
 		if (source.innerHTML!="") {
 			obj = document.getElementById(source.innerHTML);
 
@@ -87,6 +88,7 @@ function DetectVideo() {
 			if (typeof tesseract_recognitionFinish === 'function') tesseract_recognitionFinish();
 		}) 
 }	
+
 
 
 
