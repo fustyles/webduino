@@ -48,13 +48,7 @@
 		video.height = input_height;
 		video.style.width = input_width+"px";
 		video.style.height = input_height+"px";	
-		video.style.visibility = "visible";
-
-		var canvas = document.getElementById("gamecanvas_tesseract");  
-		canvas.setAttribute("width", video.width);
-		canvas.setAttribute("height", video.height);
-		canvas.style.width = video.width+"px";
-		canvas.style.height = video.height+"px";
+		video.style.visibility = "hidden";
 
 		if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
 			console.log("enumerateDevices() not supported.");
@@ -120,3 +114,4 @@
 	window.tesseract_startvideo_stream = tesseract_startvideo_stream;
 
 }(window, window.document));
+
