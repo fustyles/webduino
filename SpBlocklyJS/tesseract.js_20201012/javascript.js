@@ -53,7 +53,7 @@ Blockly.JavaScript['tesseract_startvideo_stream'] = function(block) {
 Blockly.JavaScript['tesseract_recognitied'] = function(block) {
   var statements_do = Blockly.JavaScript.statementToCode(block, 'do_');
   
-  var code = 'recognitionFinish = async function() {\n  ' + statements_do + '\n};\n';
+  var code = 'tesseract_recognitionFinish = async function() {\n  ' + statements_do + '\n};\nwindow.tesseract_recognitionFinish = tesseract_recognitionFinish;\n';
   return code;  
 };
 

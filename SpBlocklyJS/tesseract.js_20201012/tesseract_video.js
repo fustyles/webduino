@@ -86,7 +86,7 @@ function DetectVideo() {
 			//}
 		).then(({ data: { text } }) => {
 			result.innerHTML = text.replace(/\n/g, "<br>");
-			if (typeof recognitionFinish === 'function') recognitionFinish();
+			if (typeof tesseract_recognitionFinish === 'function') tesseract_recognitionFinish();
 		}) 
 }	
 
