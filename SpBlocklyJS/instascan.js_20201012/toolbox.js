@@ -5,12 +5,12 @@ var catInstascan = '<xml>'+
 '      <block type="instascan_startvideo_media">'+
 '        <value name="width_">'+
 '          <block type="math_number">'+
-'            <field name="NUM">320</field>'+
+'            <field name="NUM">480</field>'+
 '          </block>'+
 '        </value>'+
 '        <value name="height_">'+
 '          <block type="math_number">'+
-'            <field name="NUM">240</field>'+
+'            <field name="NUM">300</field>'+
 '          </block>'+
 '        </value>'+
 '        <value name="index_">'+
@@ -45,4 +45,5 @@ var catInstascan = '<xml>'+
 '        </value>'+  
 '      </block>'+
 '    </category>'+
+
 '</xml>';
