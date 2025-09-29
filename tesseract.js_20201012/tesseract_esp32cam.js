@@ -99,9 +99,7 @@ function DetectVideo() {
 			//}
 		).then(({ data: { text } }) => {
 			result.innerHTML = text.replace(/\n/g, "<br>");
-			if (typeof recognitionFinish === 'function') recognitionFinish();
-			setTimeout(function(){
-				canvas.style.visibility='hidden';
-			},2000);
+			if (typeof tesseract_recognitionFinish === 'function') tesseract_recognitionFinish();
 		}) 
 }	
+
