@@ -22,8 +22,6 @@ sourceTimer = setInterval(
 			canvas.style.width = obj.width+"px";
 			canvas.style.height = obj.height+"px";
 			
-			result.innerHTML = ""; 
-			
 			context.drawImage(obj, 0, 0, obj.width, obj.height);
 			
 			var imgData=context.getImageData(0,0,canvas.width,canvas.height);
@@ -89,6 +87,7 @@ function DetectVideo() {
 			if (typeof tesseract_recognitionFinish === 'function') tesseract_recognitionFinish();
 		}) 
 }	
+
 
 
 
