@@ -14,10 +14,9 @@ var obj;
 
 sourceTimer = setInterval(
 	function(){
-		console.log(source.innerHTML);
 		if (source.innerHTML!="") {
 			obj = document.getElementById(source.innerHTML);
-
+		console.log(obj);
 			canvas.setAttribute("width", obj.width);
 			canvas.setAttribute("height", obj.height);
 			canvas.style.width = obj.width+"px";
@@ -88,6 +87,7 @@ function DetectVideo() {
 			if (typeof tesseract_recognitionFinish === 'function') tesseract_recognitionFinish();
 		}) 
 }	
+
 
 
 
