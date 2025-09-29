@@ -68,7 +68,7 @@ sourceTimer = setInterval(
 					imgData.data[i+3]=255;
 				}
 			}
-			console.log(imgData);
+			console.log(mode.value);
 			context.putImageData(imgData,0,0);
 		}		
 	}
@@ -88,6 +88,7 @@ function DetectVideo() {
 			if (typeof tesseract_recognitionFinish === 'function') tesseract_recognitionFinish();
 		}) 
 }	
+
 
 
 
