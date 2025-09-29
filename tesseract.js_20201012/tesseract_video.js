@@ -16,7 +16,7 @@ sourceTimer = setInterval(
 	function(){
 		if (source.innerHTML!="") {
 			obj = document.getElementById(source.innerHTML);
-		console.log(obj);
+		
 			canvas.setAttribute("width", obj.width);
 			canvas.setAttribute("height", obj.height);
 			canvas.style.width = obj.width+"px";
@@ -68,10 +68,11 @@ sourceTimer = setInterval(
 					imgData.data[i+3]=255;
 				}
 			}
+			console.log(imgData);
 			context.putImageData(imgData,0,0);
 		}		
 	}
-, 100);
+, 1000);
 
 function DetectVideo() {
 	result.innerHTML = "";
@@ -87,6 +88,7 @@ function DetectVideo() {
 			if (typeof tesseract_recognitionFinish === 'function') tesseract_recognitionFinish();
 		}) 
 }	
+
 
 
 
