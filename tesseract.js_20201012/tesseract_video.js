@@ -15,84 +15,79 @@ var obj;
 sourceTimer = setInterval(
 	function(){
 		if (source.innerHTML!="") {
-			clearInterval(sourceTimer);
 			obj = document.getElementById(source.innerHTML);
-		}				
+
+			canvas.setAttribute("width", obj.width);
+			canvas.setAttribute("height", obj.height);
+			canvas.style.width = obj.width+"px";
+			canvas.style.height = obj.height+"px";
+			
+			result.innerHTML = ""; 
+			
+			context.drawImage(obj, 0, 0, obj.width, obj.height);
+			
+			var imgData=context.getImageData(0,0,canvas.width,canvas.height);
+			for (var i=0;i<imgData.data.length;i+=4) {
+				var r=0;
+				var g=0;
+				var b=0;
+
+				if(mode.value=="1") {
+					var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
+					if (arg<=reference.value) {
+						imgData.data[i]=0;
+						imgData.data[i+1]=0;
+						imgData.data[i+2]=0;
+						imgData.data[i+3]=255;
+					}
+					else {
+						imgData.data[i]=255;
+						imgData.data[i+1]=255;
+						imgData.data[i+2]=255;
+						imgData.data[i+3]=255;
+					}
+				}
+				else if(mode.value=="2") {
+					var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
+					if (arg>=reference.value) {
+						imgData.data[i]=0;
+						imgData.data[i+1]=0;
+						imgData.data[i+2]=0;
+						imgData.data[i+3]=255;
+					}
+					else {
+						imgData.data[i]=255;
+						imgData.data[i+1]=255;
+						imgData.data[i+2]=255;
+						imgData.data[i+3]=255;
+					}
+				}
+				else if(mode.value=="3") {
+					var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
+					imgData.data[i]=arg;
+					imgData.data[i+1]=arg;
+					imgData.data[i+2]=arg;
+					imgData.data[i+3]=255;
+				}
+			}
+			context.putImageData(imgData,0,0);
+						console.log("ok");	
+			canvas.style.visibility = 'visible';	
+		}		
 	}
 , 100);
 
 function DetectVideo() {
-	if (source.innerHTML=="") return;
-	obj.style.width = obj.width + 'px';
-	obj.style.height = obj.height + 'px';		
-	canvas.setAttribute("width", obj.width);
-	canvas.setAttribute("height", obj.height);
-	canvas.style.width = obj.width+"px";
-	canvas.style.height = obj.height+"px";
-	
-	result.innerHTML = ""; 
-	
-	context.drawImage(obj, 0, 0, obj.width, obj.height);
-	
-	var imgData=context.getImageData(0,0,canvas.width,canvas.height);
-	for (var i=0;i<imgData.data.length;i+=4) {
-		var r=0;
-		var g=0;
-		var b=0;
-
-		if(mode.value=="1") {
-			var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
-			if (arg<=reference.value) {
-				imgData.data[i]=0;
-				imgData.data[i+1]=0;
-				imgData.data[i+2]=0;
-				imgData.data[i+3]=255;
-			}
-			else {
-				imgData.data[i]=255;
-				imgData.data[i+1]=255;
-				imgData.data[i+2]=255;
-				imgData.data[i+3]=255;
-			}
-		}
-		else if(mode.value=="2") {
-			var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
-			if (arg>=reference.value) {
-				imgData.data[i]=0;
-				imgData.data[i+1]=0;
-				imgData.data[i+2]=0;
-				imgData.data[i+3]=255;
-			}
-			else {
-				imgData.data[i]=255;
-				imgData.data[i+1]=255;
-				imgData.data[i+2]=255;
-				imgData.data[i+3]=255;
-			}
-		}
-		else if(mode.value=="3") {
-			var arg = (imgData.data[i]*11+imgData.data[i+1]*16+imgData.data[i+2]*5)/32;
-			imgData.data[i]=arg;
-			imgData.data[i+1]=arg;
-			imgData.data[i+2]=arg;
-			imgData.data[i+3]=255;
-		}
-	}
-	context.putImageData(imgData,0,0);
-					
-	canvas.style.visibility = 'visible';
-	
 	result.innerHTML = "";
 
 	Tesseract.recognize(
 			canvas,
-			lang.value,
-			{ 
-				logger: m => console.log(m) 
-			}
+			lang.value  //,
+			//{ 
+			//	logger: m => console.log(m) 
+			//}
 		).then(({ data: { text } }) => {
 			result.innerHTML = text.replace(/\n/g, "<br>");
-			canvas.style.visibility='hidden';
 			if (typeof recognitionFinish === 'function') recognitionFinish();
 		}) 
 }	
