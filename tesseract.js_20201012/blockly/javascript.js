@@ -61,8 +61,3 @@ Blockly.JavaScript['tesseract_canvas_get'] = function(block) {
   var code = '"tesseract"';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
-
-
-
-
-
