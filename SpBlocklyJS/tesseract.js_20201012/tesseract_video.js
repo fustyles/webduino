@@ -4,7 +4,7 @@ document.write('<div id="sourceId_tesseract" style="position:absolute;display:no
 var video = document.getElementById('gamevideo_tesseract');
 var canvas = document.getElementById('gamecanvas_tesseract');
 var result = document.getElementById('gamediv_tesseract');
-var context = canvas.getContext('2d');
+var context = canvas.getContext('2d', { willReadFrequently: true });
 var lang = document.getElementById('lang_tesseract');
 var mode = document.getElementById('mode_tesseract');
 var reference = document.getElementById('reference_tesseract');
@@ -89,5 +89,6 @@ function DetectVideo() {
 			if (typeof tesseract_recognitionFinish === 'function') tesseract_recognitionFinish();
 		}) 
 }	
+
 
 
