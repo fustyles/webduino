@@ -41,9 +41,9 @@
 	function tesseract_clear(){
 		result.innerHTML = "";
 	}
-
-	async function tesseract_recognitionFinish() {
-	}
+	
+	async function tesseract_recognitionFinish(){
+	}	
 
 	function tesseract_startvideo_media(input_width, input_height, input_facing, input_videoInputIndex) {
 		var video = document.getElementById("gamevideo_tesseract");
@@ -116,7 +116,5 @@
 	window.tesseract_clear = tesseract_clear;
 	window.tesseract_startvideo_media = tesseract_startvideo_media;
 	window.tesseract_startvideo_stream = tesseract_startvideo_stream;
-	window.tesseract_recognitionFinish = tesseract_recognitionFinish;
 
 }(window, window.document));
-
