@@ -50,6 +50,7 @@ Blockly.JavaScript['tesseract_recognitied'] = function(block) {
   var code = 'async function recognitionFinish() {\n  ' + statements_do + '\n};\nwindow.recognitionFinish = recognitionFinish;\n';
   return code;  
 };
+
 Blockly.JavaScript['tesseract_startvideo_stream'] = function(block) { 
   var value_src_ = Blockly.JavaScript.valueToCode(block, 'src_', Blockly.JavaScript.ORDER_ATOMIC); 
   var code = 'tesseract_startvideo_stream(' + value_src_ + ');\n';
@@ -60,6 +61,7 @@ Blockly.JavaScript['tesseract_canvas_get'] = function(block) {
   var code = '"tesseract"';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
 
 
 
