@@ -19,13 +19,6 @@ var catInstascan = '<xml>'+
 '          </block>'+
 '        </value>'+
 '      </block>'+
-'      <block type="instascan_startvideo_stream">'+
-'        <value name="src_">'+
-'          <block type="text">'+
-'            <field name="TEXT">http://192.168.***.***:81/stream</field>'+
-'          </block>'+
-'        </value>'+
-'      </block>'+
 '      <block type="instascan_recognitied">'+
 '      </block>'+
 '      <block type="instascan_get">'+
@@ -47,3 +40,4 @@ var catInstascan = '<xml>'+
 '    </category>'+
 
 '</xml>';
+
