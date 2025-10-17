@@ -4567,7 +4567,7 @@ function HextoRgb(color) {
 			
 			$.ajax({
 				"type": "POST",
-				"dataType": "json",
+				"dataType": "jsonp",
 				"headers": { 
 				  "Content-Type": "application/x-www-form-urlencoded"
 				},				
@@ -5354,5 +5354,6 @@ function HextoRgb(color) {
   window.audio_save_googleTTS_Base64Data = audio_save_googleTTS_Base64Data;
 	
 }(window, window.document));
+
 
 
