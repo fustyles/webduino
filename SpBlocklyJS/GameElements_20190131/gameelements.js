@@ -4550,7 +4550,7 @@ function HextoRgb(color) {
 			var myFile = canvas.toDataURL();
 			var head = myFile.substring(0, myFile.indexOf(",")+1);
 			var data = myFile.substring(myFile.indexOf(",")+1);
-			data = encodeURIComponent(data);
+			//data = encodeURIComponent(data);
 			myFile = head+data;
 			
 			$.ajax({
@@ -5263,5 +5263,6 @@ function HextoRgb(color) {
   window.audio_play_googleTTS_Base64Data = audio_play_googleTTS_Base64Data;  
   window.audio_save_googleTTS_Base64Data = audio_save_googleTTS_Base64Data; 	
 }(window, window.document));
+
 
 
