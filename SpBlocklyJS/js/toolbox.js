@@ -280,7 +280,7 @@ var catSystem = '<xml>'+
 '    </value>'+
 '    </block>'+
 '    <block type="lists_reverse">'+
-'    <value name="VALUE">'+
+'    <value name="LIST">'+
 '    </value>'+
 '    </block>'+  
 '    </category>'+
@@ -336,3 +336,4 @@ var catSystem = '<xml>'+
 '    <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>'+
 '	 <category name="%{BKY_MYSEARCH}" colour="%{BKY_MYSEARCH_HUE}"  custom="MYSEARCH"></category>'+
 '</xml>';
+
