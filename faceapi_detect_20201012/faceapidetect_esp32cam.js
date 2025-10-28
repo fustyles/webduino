@@ -122,10 +122,11 @@ window.onload = function () {
 		})
 		if (typeof recognitionFinish === 'function') recognitionFinish();
 		
-		setTimeout(function(){start();},150);
+		setTimeout(function(){start();},250);
 	}  
 	
 	function Round(n) {
 		return Math.round(Number(n)*100)/100;
 	}	
 }
+
