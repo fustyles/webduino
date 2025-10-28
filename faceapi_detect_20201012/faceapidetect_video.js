@@ -135,10 +135,10 @@ window.onload = function () {
 
 		try { 
 			document.createEvent("TouchEvent");
-			setTimeout(function(){DetectVideo(obj);},200);
+			setTimeout(function(){DetectVideo(obj);},250);
 		}
 		catch(e) { 
-			setTimeout(function(){DetectVideo(obj);},150);
+			setTimeout(function(){DetectVideo(obj);},250);
 		} 
 	}
 
@@ -146,3 +146,4 @@ window.onload = function () {
 		return Math.round(Number(n)*100)/100;
 	}
 }
+
