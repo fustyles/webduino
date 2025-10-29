@@ -12,20 +12,27 @@ window.onload = function () {
 	let faceDetection;
 	let canvas;	
 
-	ShowImage.src = 'http://'+window.location.hostname+':81/?stream';
+	
 	
 	$(".progress-bar").removeClass('d-none');
 	Promise.all([
-		faceapi.nets.tinyFaceDetector.load(modelPath),
-		faceapi.nets.faceLandmark68TinyNet.load(modelPath),
-		faceapi.nets.faceRecognitionNet.load(modelPath),
-		faceapi.nets.faceExpressionNet.load(modelPath),
-		faceapi.nets.ageGenderNet.load(modelPath)
-	]).then(function(){
-		canvas = faceapi.createCanvasFromMedia(ShowImage);
-		document.getElementById('webcam-container').append(canvas);	
-		DetectImage();
-	})	
+	  faceapi.nets.tinyFaceDetector.load(modelPath),
+	  faceapi.nets.faceLandmark68TinyNet.load(modelPath),
+	  faceapi.nets.faceRecognitionNet.load(modelPath),
+	  faceapi.nets.faceExpressionNet.load(modelPath),
+	  faceapi.nets.ageGenderNet.load(modelPath)
+	])
+	.then(() => {
+	  ShowImage.src = `http://${window.location.hostname}:81/?stream`;
+	  ShowImage.onload = () => {
+	    canvas = faceapi.createCanvasFromMedia(ShowImage);
+	    document.getElementById('webcam-container').append(canvas);
+	    DetectImage();
+	  };
+	})
+	.catch(err => {
+	  console.error(err);
+	});
 
 	async function DetectImage() {
 		canvas.setAttribute("width", ShowImage.width);
@@ -108,5 +115,6 @@ window.onload = function () {
 		return Math.round(Number(n)*100)/100;
 	}	
 }
+
 
 
