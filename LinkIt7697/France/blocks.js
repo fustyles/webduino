@@ -15859,9 +15859,15 @@ Blockly.Blocks['esp32_pixelbit_stream_myfirmata'] = {
 };
 
 Blockly.Blocks['esp32_pixelbit_myfirmata'] = {
-  init: function() {
+  init: function() {	  
     this.appendDummyInput()
         .appendField(Blockly.Msg["ESP32_PIXELBIT_SERVERMODULE_SHOW"]);
+    this.appendDummyInput()	 
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.ESP32_CAM_SERVERMODULE_STILL_SHOW,"still"],
+			[Blockly.Msg.ESP32_CAM_SERVERMODULE_STREAM_SHOW,"stream"]
+		]), "type");		
     this.appendValueInput("ssid")
         .setCheck(null)
 		.setAlign(Blockly.ALIGN_RIGHT)		

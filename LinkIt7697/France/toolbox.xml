@@ -1302,6 +1302,7 @@
 			  <block type="esp32_pixelbit_initial">
 				<field name="framesize">QVGA</field>
 			  </block>
+<!--			  
 			  <block type="esp32_pixelbit_stream_myfirmata">
 				<value name="ssid">
 				  <block type="text" id="100">
@@ -1395,8 +1396,8 @@
 					</next>
 				  </block>
 				</statement>
-			  </block>	
-<!--			  
+			  </block>
+-->
 			  <block type="esp32_pixelbit_myfirmata">
 				<value name="ssid">
 				  <block type="text" id="100">
@@ -1516,8 +1517,7 @@
 					</next>
 				  </block>
 				</statement>
-			  </block>
--->			  
+			  </block>	  
 			  <block type="server_getrequest"></block>
 			  <block type="esp32_cam_camera_property">
 				<value name="value">
