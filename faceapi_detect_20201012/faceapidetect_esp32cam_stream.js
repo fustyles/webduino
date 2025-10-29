@@ -101,11 +101,12 @@ window.onload = function () {
 		})
 		if (typeof recognitionFinish === 'function') recognitionFinish();
 		
-		setTimeout(function(){DetectImage();},250);
+		setTimeout(function(){DetectImage();},150);
 	}  
 	
 	function Round(n) {
 		return Math.round(Number(n)*100)/100;
 	}	
 }
+
 
