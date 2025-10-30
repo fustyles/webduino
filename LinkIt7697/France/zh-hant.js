@@ -1156,6 +1156,7 @@ Blockly.Msg["BOARD_RESTART_SHOW"] = "開發板重啟";
 Blockly.Msg["EMAKEFUN_EDITOR"] = "版本";
 Blockly.Msg["EMAKEFUN_DCMOTOR"] = "Emakefun 直流馬達";
 Blockly.Msg["EMAKEFUN_PWM"] = "轉速";
+Blockly.Msg["EMAKEFUN_PWM_VALUE"] = "值";
 Blockly.Msg["EMAKEFUN_PWM_VARIABLE"] = "轉速變數值";
 Blockly.Msg["EMAKEFUN_CLOCKWISE"] = "正轉";
 Blockly.Msg["EMAKEFUN_COUNTERCLOCKWISE"] = "反轉";

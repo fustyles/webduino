@@ -13764,7 +13764,7 @@
 		<block type="emakefun_io">
 			<value name="aw_val">
 			  <block type="math_number">
-				<field name="NUM">2048</field>
+				<field name="NUM">1023</field>
 			  </block>
 			</value>
 		</block>		

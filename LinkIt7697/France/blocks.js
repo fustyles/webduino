@@ -7800,7 +7800,7 @@ Blockly.Blocks['emakefun_servo_set_angle_360'] = {
     this.appendValueInput("angle")
 		.setAlign(Blockly.ALIGN_RIGHT)
         .setCheck("Number")
-        .appendField(Blockly.Msg["EMAKEFUN_PWM"]+"[0-180]");	
+        .appendField(Blockly.Msg["EMAKEFUN_PWM_VALUE"]+"[0-180]");	
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -7838,7 +7838,7 @@ Blockly.Blocks['emakefun_io'] = {
 			[Blockly.Msg.ESP32_DIGITALWRITE_LOW_SHOW,"LOW"]	
 		]), "dw_val");
     this.appendValueInput("aw_val")
-		.appendField(Blockly.Msg.VALUE+"[0-4096]")
+		.appendField(Blockly.Msg.VALUE)
         .setAlign(Blockly.ALIGN_RIGHT);			
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
