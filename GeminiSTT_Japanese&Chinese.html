@@ -33,7 +33,7 @@
                 div_set('Target', "innerHTML_markdown", '');
                 div_set('Description', "innerHTML_markdown", '');
                 var result = (geminiResult);
-                console.log(result);
+                
                 jsonResult = JSON.parse((result.slice(((result.indexOf('{') + 1) - 1), result.lastIndexOf('}') + 1)));
                 if (jsonResult['Chinese']) {
                     div_set('Chinese', "innerHTML_markdown", (jsonResult['Chinese']));
