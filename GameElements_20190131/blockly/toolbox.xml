@@ -236,7 +236,8 @@
 			</value>
 			<value name="drive_script_">
 				<block type="text">
-					<field name="TEXT">https://script.google.com/macros/s/AKfycbzDT6-TxfHoWiV5tR6gGZctj5HchjHOFOL0ukgAKzmw3DwFTjc123/exec</field>
+					<field name="TEXT"></field>
+					<!-- <field name="TEXT">https://script.google.com/macros/s/AKfycbysXORTz1fwTtjKKDakgjo1NKztyRam2B2NNvx72iq2FWWdGssa3ihhxGk1ZkQmy4ao-A/exec</field> -->
 				</block>
 			</value>
 		</block>
@@ -258,7 +259,8 @@
 			</value>
 			<value name="email_script_">
 				<block type="text">
-					<field name="TEXT">https://script.google.com/macros/s/AKfycbw7skDzXZhAoMNWU22FvmoS5TewKmB7xMmoftq9PVqeum95yeo/exec</field>
+					<field name="TEXT"></field>	
+					<!-- <field name="TEXT">https://script.google.com/macros/s/AKfycbzDT6-TxfHoWiV5tR6gGZctj5HchjHOFOL0ukgAKzmw3DwFTjc/exec</field> -->
 				</block>
 			</value>
 		</block>
@@ -4108,4 +4110,5 @@
 		  </block>		  
 	  </category>	
 </category>
+
 
