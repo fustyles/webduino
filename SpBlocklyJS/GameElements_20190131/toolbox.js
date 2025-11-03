@@ -421,7 +421,8 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="drive_script_">'+
 '    <block type="text">'+
-'    <field name="TEXT">https:\/\/script.google.com\/macros\/s\/AKfycbzDT6-TxfHoWiV5tR6gGZctj5HchjHOFOL0ukgAKzmw3DwFTjc123\/exec</field>'+
+'    <field name="TEXT"></field>'+					
+//				<field name="TEXT">https://script.google.com/macros/s/AKfycbzDT6-TxfHoWiV5tR6gGZctj5HchjHOFOL0ukgAKzmw3DwFTjc/exec</field>
 '    </block>'+
 '    </value>'+
 '    </block>'+
@@ -443,7 +444,8 @@ var catPageElements ='<xml>'+
 '    </value>'+
 '    <value name="email_script_">'+
 '    <block type="text">'+
-'    <field name="TEXT">https:\/\/script.google.com\/macros\/s\/AKfycbw7skDzXZhAoMNWU22FvmoS5TewKmB7xMmoftq9PVqeum95yeo\/exec123</field>'+
+'    <field name="TEXT"></field>'+	
+//   <field name="TEXT">https:\/\/script.google.com\/macros\/s\/AKfycbw7skDzXZhAoMNWU22FvmoS5TewKmB7xMmoftq9PVqeum95yeo\/exec123</field>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
