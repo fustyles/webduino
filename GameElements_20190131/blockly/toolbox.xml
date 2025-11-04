@@ -460,7 +460,6 @@
 				</block>
 			</value>
 		</block>
-		<block type="variable_board"></block>
 		  <block type="text_to_number">
 			<value name="value_text_"> 			
 			</value>    
@@ -4140,6 +4139,7 @@
 		  </block>		  
 	  </category>	
 </category>
+
 
 
 
