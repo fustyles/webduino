@@ -426,6 +426,39 @@ var catPageElements ='<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="video_base64_drive_linebot">'+
+'    <value name="id_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="foldername_">'+
+'    <block type="text">'+
+'    <field name="TEXT">capture</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="filename_">'+
+'    <block type="text">'+
+'    <field name="TEXT">capture.jpg</field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="linetoken_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="lineuserid_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="drive_script_">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+					
+//	 <field name="TEXT">https://script.google.com/macros/s/AKfycbzDT6-TxfHoWiV5tR6gGZctj5HchjHOFOL0ukgAKzmw3DwFTjc/exec</field>
+'    </block>'+
+'    </value>'+
+'    </block>'+
 '    <block type="video_base64_email">'+
 '    <value name="id_">'+
 '    <block type="text">'+
