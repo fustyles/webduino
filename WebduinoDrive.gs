@@ -11,6 +11,8 @@ function doPost(e) {
   var myFile = e.parameter.myFile;
   //var myFilename = e.parameter.myFilename;
   var myFilename = Utilities.formatDate(new Date(), "GMT", "yyyyMMddHHmmss")+"-"+e.parameter.myFilename;
+  linebotToken = e.parameter.linebotToken||linebotToken;
+  linebotUserId = e.parameter.linebotUserId||linebotUserId;
   
   // Save a captured image to Google Drive.
   var folder, folders = DriveApp.getFoldersByName(myFoldername);
@@ -94,3 +96,4 @@ function lineBotPhoto(message, imageThumbnail, imageFullsize) {
     return 'Error: ' + error.message;
   }
 }
+
