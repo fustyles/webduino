@@ -6834,7 +6834,7 @@ Blockly.Blocks['video_base64_drive_linebot'] = {
   this.setInputsInline(false);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
-  this.setColour(290);
+  this.setColour(60);
   }
 };
 
@@ -8087,6 +8087,7 @@ Blockly.Blocks['audio_delete'] = {
   this.setColour(30);
   }
 };
+
 
 
 
