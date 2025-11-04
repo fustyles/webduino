@@ -4593,7 +4593,53 @@ function HextoRgb(color) {
 		document.getElementById("tmp").parentNode.removeChild(document.getElementById("tmp"));
 	}
   }
-  
+
+  function video_base64_drive_linebot(input_id, myFoldername, myFilename, myLineToken, myLineUserid, myScriptUrl) {
+    if (document.getElementById(input_id)) {	
+		var obj = document.getElementById(input_id);
+		var canvas = document.createElement('canvas');
+		canvas.id = 'tmp';
+		canvas.style.position = "absolute";
+		canvas.style.display = "none";
+		document.body.appendChild(canvas);
+		canvas.setAttribute("width", obj.width);
+		canvas.setAttribute("height", obj.height);
+		var context = canvas.getContext("2d");
+		try {
+			context.drawImage(obj,0,0,obj.width,obj.height);
+			var myFile = canvas.toDataURL();
+			
+			$.ajax({
+				"type": "POST",
+				"dataType": "json",
+				"headers": { 
+				  "Content-Type": "application/x-www-form-urlencoded"
+				},				
+				"url": myScriptUrl,
+				"data": {
+							"myFoldername":myFoldername,
+							"myFilename":myFilename,
+							"myFile":myFile,
+							"linebotToken":myLineToken,
+							"linebotUserId":myLineUserid							
+						},
+				success: function(jsonp)
+				{
+				  console.log(jsonp);
+				},
+				error: function(jqXHR, textStatus, errorThrown)
+				{
+				  //console.log(errorThrown);
+				}
+			 });
+		}
+		catch(e) {
+			console.log(e);
+		}
+		document.getElementById("tmp").parentNode.removeChild(document.getElementById("tmp"));
+	}
+  }  
+  	
   function video_base64_email(input_id, myRecipient, mySubject, myScriptUrl) {
     if (document.getElementById(input_id)) {	
 		var obj = document.getElementById(input_id);
@@ -5317,6 +5363,7 @@ function HextoRgb(color) {
   window.video_base64_spreadsheet_new = video_base64_spreadsheet_new;	
   window.spreadsheet_function = spreadsheet_function;
   window.video_base64_drive = video_base64_drive;
+  window.video_base64_drive_linebot = video_base64_drive_linebot;	
   window.video_base64_email = video_base64_email;
   window.fontText = fontText;
   window.fontB = fontB;
@@ -5354,6 +5401,7 @@ function HextoRgb(color) {
   window.audio_save_googleTTS_Base64Data = audio_save_googleTTS_Base64Data;
 	
 }(window, window.document));
+
 
 
 
