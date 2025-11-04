@@ -32,7 +32,8 @@ function doPost(e) {
   var imageUrl = "https://drive.google.com/uc?authuser=0&id="+imageID;
   var imageThumbnailUrl = "https://drive.google.com/thumbnail?id="+imageID;
 
-  // lineBotPhoto(myFilename, imageThumbnailUrl, imageUrl);
+  if (linebotToken&&linebotUserId)
+    lineBotPhoto(myFilename, imageThumbnailUrl, imageUrl);
 
   return  ContentService.createTextOutput(myFoldername+"/"+myFilename+"\n"+imageUrl);
 }
@@ -96,4 +97,5 @@ function lineBotPhoto(message, imageThumbnail, imageFullsize) {
     return 'Error: ' + error.message;
   }
 }
+
 
