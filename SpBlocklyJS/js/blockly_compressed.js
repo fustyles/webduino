@@ -1848,12 +1848,24 @@ zoom(a,b){this.workspace.markFocused();this.workspace.zoomCenter(a);this.fireZoo
 zoomPrevious(a){this.workspace.undo(false);};
 zoomNext(a){this.workspace.undo(true);};
 zoomSearch(a){searchBlocks();this.fireZoomEvent();clearTouchIdentifier$$module$build$src$core$touch();a.stopPropagation();a.preventDefault()};
-zoomShowCategory(a){
-	if (this.workspace.getToolbox().isVisible_)
-		this.workspace.getToolbox().setVisible(false);
-	else
-		this.workspace.getToolbox().setVisible(true);
-	this.workspace.resize();
+zoomShowCategory(){
+	this.workspace.adjustScrollX = function(offsetX) {
+		this.scrollX = this.scrollX + offsetX;
+		this.scroll(this.scrollX, this.scrollY);
+	};
+	
+	var toolbox = this.workspace.getToolbox();
+    var toolboxElement = toolbox.HtmlDiv;
+	
+    if (toolbox.isVisible_) {
+		this.workspace.adjustScrollX(toolboxElement.offsetWidth);
+        toolbox.setVisible(false);
+    } else {
+        toolbox.setVisible(true);
+        this.workspace.adjustScrollX(-toolboxElement.offsetWidth);
+    }
+    
+    this.workspace.resize();
 };
 zoomFit(){this.workspace.zoomToFit();};
 zoomCleanup(){this.workspace.cleanUp();};
