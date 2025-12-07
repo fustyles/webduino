@@ -328,5 +328,8 @@
   </block>    
   <block type="holistic_points">   
   </block>
+  <block type="holistic_state">   
+  </block>	
 </category>
+
 
