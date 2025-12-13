@@ -259,13 +259,19 @@ Order$$module$build$src$generators$javascript$javascript_generator.NONE)||"0")+"
 	const k=[],l=a.getVars();
 	for(let n=0;n<l.length;n++)k[n]=b.nameDB_.getName(l[n],$.NameType$$module$build$src$core$names.VARIABLE);
 	d="function "+c+"("+k.join(", ")+") {\n"+d+e+f+h+g+"}";
-	if (d.indexOf("await ")!=-1) d = "async "+d;
+	//if (d.indexOf("await ")!=-1) 
+		d = "async "+d;
 	d=b.scrub_(a,d);
 	b.definitions_["%"+c]=d;
 	return null
 }
-,procedures_callreturn$$module$build$src$generators$javascript$procedures=function(a,b){const c=b.nameDB_.getName(a.getFieldValue("NAME"),$.NameType$$module$build$src$core$names.PROCEDURE),d=[],e=a.getVars();for(let f=0;f<e.length;f++)d[f]=b.valueToCode(a,"ARG"+f,Order$$module$build$src$generators$javascript$javascript_generator.NONE)||"null";return[c+"("+d.join(", ")+")",Order$$module$build$src$generators$javascript$javascript_generator.FUNCTION_CALL]},
-procedures_callnoreturn$$module$build$src$generators$javascript$procedures=function(a,b){return b.forBlock.procedures_callreturn(a,b)[0]+";\n"},procedures_ifreturn$$module$build$src$generators$javascript$procedures=function(a,b){let c="if ("+(b.valueToCode(a,"CONDITION",Order$$module$build$src$generators$javascript$javascript_generator.NONE)||"false")+") {\n";b.STATEMENT_SUFFIX&&(c+=b.prefixLines(b.injectId(b.STATEMENT_SUFFIX,a),b.INDENT));a.hasReturnValue_?(a=b.valueToCode(a,"VALUE",Order$$module$build$src$generators$javascript$javascript_generator.NONE)||
+,procedures_callreturn$$module$build$src$generators$javascript$procedures=function(a,b){
+	const c=b.nameDB_.getName(a.getFieldValue("NAME"),$.NameType$$module$build$src$core$names.PROCEDURE),d=[],e=a.getVars();for(let f=0;f<e.length;f++)d[f]=b.valueToCode(a,"ARG"+f,Order$$module$build$src$generators$javascript$javascript_generator.NONE)||"null";
+	return["await "+c+"("+d.join(", ")+")",Order$$module$build$src$generators$javascript$javascript_generator.FUNCTION_CALL]
+},
+procedures_callnoreturn$$module$build$src$generators$javascript$procedures=function(a,b){
+	return "await "+b.forBlock.procedures_callreturn(a,b)[0]+";\n"}
+,procedures_ifreturn$$module$build$src$generators$javascript$procedures=function(a,b){let c="if ("+(b.valueToCode(a,"CONDITION",Order$$module$build$src$generators$javascript$javascript_generator.NONE)||"false")+") {\n";b.STATEMENT_SUFFIX&&(c+=b.prefixLines(b.injectId(b.STATEMENT_SUFFIX,a),b.INDENT));a.hasReturnValue_?(a=b.valueToCode(a,"VALUE",Order$$module$build$src$generators$javascript$javascript_generator.NONE)||
 "null",c+=b.INDENT+"return "+a+";\n"):c+=b.INDENT+"return;\n";return c+"}\n"},text$$module$build$src$generators$javascript$text=function(a,b){return[b.quote_(a.getFieldValue("TEXT")),Order$$module$build$src$generators$javascript$javascript_generator.ATOMIC]},text_multiline$$module$build$src$generators$javascript$text=function(a,b){a=b.multiline_quote_(a.getFieldValue("TEXT"));b=-1!==a.indexOf("+")?Order$$module$build$src$generators$javascript$javascript_generator.ADDITION:Order$$module$build$src$generators$javascript$javascript_generator.ATOMIC;
 return[a,b]},text_join$$module$build$src$generators$javascript$text=function(a,b){switch(a.itemCount_){case 0:return["''",Order$$module$build$src$generators$javascript$javascript_generator.ATOMIC];case 1:return a=b.valueToCode(a,"ADD0",Order$$module$build$src$generators$javascript$javascript_generator.NONE)||"''",forceString$$module$build$src$generators$javascript$text(a);case 2:var c=b.valueToCode(a,"ADD0",Order$$module$build$src$generators$javascript$javascript_generator.NONE)||"''";a=b.valueToCode(a,
 "ADD1",Order$$module$build$src$generators$javascript$javascript_generator.NONE)||"''";return[forceString$$module$build$src$generators$javascript$text(c)[0]+" + "+forceString$$module$build$src$generators$javascript$text(a)[0],Order$$module$build$src$generators$javascript$javascript_generator.ADDITION];default:c=Array(a.itemCount_);for(let d=0;d<a.itemCount_;d++)c[d]=b.valueToCode(a,"ADD"+d,Order$$module$build$src$generators$javascript$javascript_generator.NONE)||"''";return["["+c.join(",")+"].join('')",
