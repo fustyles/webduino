@@ -1,0 +1,17 @@
+{
+  "types": ["poses_video", "poses_person", "poses_distance", "poses_angle", "poses_angle_3points", "poses_state", "poses_part_angle", "poses_video_position", "poses_startvideo_media", "poses_startvideo_stream", "poses_recognitied", "poses_canvas_get"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "poses_video.js",
+    "poses.js"
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
+
+
