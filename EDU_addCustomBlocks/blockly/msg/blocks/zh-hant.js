@@ -12,7 +12,7 @@ Blockly.Msg.ADDCUSTOMBLOCKS_TRACKINGCOLOR_SHOW = "[取得連結] 顏色追蹤(tr
 Blockly.Msg.ADDCUSTOMBLOCKS_KNN_CLASSIFIER_SHOW = "[取得連結] 機器學習(tfjs KNN-Classifier)";
 Blockly.Msg.ADDCUSTOMBLOCKS_FACEAPI_RECOGNIZE_SHOW = "[取得連結] 人臉辨識(tfjs face-api.js)";
 Blockly.Msg.ADDCUSTOMBLOCKS_FACEAPI_DETECT_SHOW = "[取得連結] 人臉偵測(tfjs face-api.js)";
-Blockly.Msg.ADDCUSTOMBLOCKS_POSENET_SHOW = "[取得連結] 姿態辨識(tfjs PoseNet)";
+Blockly.Msg.ADDCUSTOMBLOCKS_POSENET_SHOW = "[取得連結] 姿態偵測(tfjs PoseNet)";
 Blockly.Msg.ADDCUSTOMBLOCKS_BLAZEFACE_SHOW = "[取得連結] 臉部偵測(tfjs BlazeFace)";
 Blockly.Msg.ADDCUSTOMBLOCKS_COCO_SSD_SHOW = "[取得連結] 物件辨識(tfjs Coco-SSD)";
 Blockly.Msg.ADDCUSTOMBLOCKS_MOBILENET_SHOW = "[取得連結] 物件分類(tfjs Mobilenet)";
@@ -42,3 +42,4 @@ Blockly.Msg.ADDCUSTOMBLOCKS_LLM_CHAT_SHOW = "[取得連結] LLM";
 Blockly.Msg.ADDCUSTOMBLOCKS_AUDIORECORD_SHOW = "[取得連結] 錄音";
 Blockly.Msg.ADDCUSTOMBLOCKS_VIDEORECORD_SHOW = "[取得連結] 錄影";
 Blockly.Msg.ADDCUSTOMBLOCKS_POSES_SHOW = "[取得連結] 姿態偵測(Mediapipe Holistic)";
+
