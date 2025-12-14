@@ -1,5 +1,5 @@
-Blockly.Msg["CATHOLISTIC"] = "Holistic Detection";
-Blockly.Msg["HOLISTIC_SHOW"] = "Holistic Detection";
+Blockly.Msg["CATHOLISTIC"] = "Holistic Detection(MP)";
+Blockly.Msg["HOLISTIC_SHOW"] = "Holistic Detection(MP)";
 Blockly.Msg["HOLISTIC_PERSON_SHOW"] = "Index";
 Blockly.Msg["HOLISTIC_PART_SHOW"] = "Part";
 Blockly.Msg["HOLISTIC_WIDTH_SHOW"] = "Width";

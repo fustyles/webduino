@@ -207,6 +207,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		}	
 		if (xml.indexOf("videorecord_")!=-1) {
 			script += "<script src='"+jsPath+"videoRecord_20250610/videoRecord.js'></script>";
+		}
+		if (xml.indexOf("poses_")!=-1) {
+			script += '<script src="https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision/vision_bundle.js"  crossorigin="anonymous" type="module"></script>';			
+			script += "<script src='"+jsPath+"poses_20251209/poses_video.js'></script>";			
+			script += "<script src='"+jsPath+"poses_20251209/poses.js'></script>";
 		}		
 		
 		return script;
@@ -253,6 +258,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		catKNNclassifier,		
 		catCocossd,	
 		catHands,
+		catPoses,		
 		catPosenet,
 		catFaceDetect,
 		catFaceRecognize,
@@ -1276,8 +1282,6 @@ function searchBlocks() {
 function searchBlocksKeyword(keyword) {
 	Blockly.mySearch.Blocks=[];
 	Blockly.hideChaff();
-	
-	console.log(Blockly.getMainWorkspace().getAllVariables());
 	
 	if (keyword) {
 		var toolboxItems = Blockly.getMainWorkspace().toolbox_.getToolboxItems();

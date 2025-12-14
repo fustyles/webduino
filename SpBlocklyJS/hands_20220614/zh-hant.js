@@ -1,5 +1,5 @@
-Blockly.Msg["CATHANDS"] = "手勢偵測";
-Blockly.Msg["HANDS_SHOW"] = "手勢偵測";
+Blockly.Msg["CATHANDS"] = "手勢偵測(MP)";
+Blockly.Msg["HANDS_SHOW"] = "手勢偵測(MP)";
 Blockly.Msg["HANDS_PERSON_SHOW"] = "索引";
 Blockly.Msg["HANDS_PART_SHOW"] = "部位";
 Blockly.Msg["HANDS_WIDTH_SHOW"] = "寬度";

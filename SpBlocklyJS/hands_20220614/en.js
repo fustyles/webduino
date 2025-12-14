@@ -1,5 +1,5 @@
-Blockly.Msg["CATHANDS"] = "Hand Gesture Detection";
-Blockly.Msg["HANDS_SHOW"] = "Hand Gesture Detection";
+Blockly.Msg["CATHANDS"] = "Hand Gesture Detection(MP)";
+Blockly.Msg["HANDS_SHOW"] = "Hand Gesture Detection(MP)";
 Blockly.Msg["HANDS_PERSON_SHOW"] = "Index";
 Blockly.Msg["HANDS_PART_SHOW"] = "Part";
 Blockly.Msg["HANDS_WIDTH_SHOW"] = "Width";
