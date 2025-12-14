@@ -41,3 +41,4 @@ Blockly.Msg.ADDCUSTOMBLOCKS_GEMINI_CHAT_SHOW = "[link] Gemini";
 Blockly.Msg.ADDCUSTOMBLOCKS_LLM_CHAT_SHOW = "[link] LLM";
 Blockly.Msg.ADDCUSTOMBLOCKS_AUDIORECORD_SHOW = "[link] Audio Record";
 Blockly.Msg.ADDCUSTOMBLOCKS_VIDEORECORD_SHOW = "[link] Video Record";
+Blockly.Msg.ADDCUSTOMBLOCKS_POSES_SHOW = "[link]  Pose Recognition(Mediapipe Holistic)";
