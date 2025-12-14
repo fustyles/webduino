@@ -25,6 +25,7 @@ Blockly.Blocks['addMyBlocks'] = {
         [Blockly.Msg.ADDCUSTOMBLOCKS_DVCBOT_SHOW,"dvcbot_20241116"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_HOLISTIC_SHOW,"holistic_20201012"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_HANDS_SHOW,"hands_20220614"],
+		[Blockly.Msg.ADDCUSTOMBLOCKS_POSES_SHOW,"poses_20251209"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_COCO_SSD_SHOW,"coco_ssd_20201012"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_TRACKINGCOLOR_SHOW,"trackingcolor_20201012"], 
         [Blockly.Msg.ADDCUSTOMBLOCKS_FACEAPI_RECOGNIZE_SHOW,"faceapi_recognize_20201012"], 
@@ -191,6 +192,7 @@ Blockly.Blocks['addMyBlocks'] = {
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/googlemap_20241226/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/audioRecord_20250405/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/videoRecord_20250610/blockly.json');
+		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/poses_20251209/blockly.json');				
             }
 	    else if (this.getFieldValue('func')=='addAllNewAI') {
 
@@ -232,7 +234,7 @@ Blockly.Blocks['addMyBlocks'] = {
 		    
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/MQTT_20220324/blockly.json');
                   Code.customTab.$__add__('https://fustyles.github.io/webduino/RobotFly_20220127/blockly.json');
-                  Code.customTab.$__add__('https://fustyles.github.io/webduino/hands_20220614/blockly.json');
+                  Code.customTab.$__add__('https://fustyles.github.io/webduino/hands_20220614/blockly.json');			
 		    
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/chart_20220723/blockly.json');
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/WebBluetooth_20220924/blockly.json');
@@ -244,7 +246,8 @@ Blockly.Blocks['addMyBlocks'] = {
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/llm_20241219/blockly.json');
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/googlemap_20241226/blockly.json');
 		  Code.customTab.$__add__('https://fustyles.github.io/webduino/audioRecord_20250405/blockly.json');
-		  Code.customTab.$__add__('https://fustyles.github.io/webduino/videoRecord_20250610/blockly.json');		    
+		  Code.customTab.$__add__('https://fustyles.github.io/webduino/videoRecord_20250610/blockly.json');
+		  Code.customTab.$__add__('https://fustyles.github.io/webduino/poses_20251209/blockly.json');			
 	    }
 	    else if (this.getFieldValue('func')=='removeAllNewAI') {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20201012/blockly.json');
@@ -284,7 +287,8 @@ Blockly.Blocks['addMyBlocks'] = {
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/llm_20241219/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/googlemap_20241226/blockly.json');
 		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/audioRecord_20250405/blockly.json');
-		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/videoRecord_20250610/blockly.json');		    
+		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/videoRecord_20250610/blockly.json');
+		  Code.customTab.$__remove__('https://fustyles.github.io/webduino/poses_20251209/blockly.json');			
 	    }
 	    else if (this.getFieldValue('func')=='instascan.js_20201012') {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20200824/blockly.json');
@@ -405,10 +409,14 @@ Blockly.Blocks['addMyBlocks'] = {
 			  }
 	    else if (this.getFieldValue('func')=='videoRecord_20250610') {
 				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/videoRecord_20250610/blockly.json", "TEXT");
-			  }		  
+			  }	
+	    else if (this.getFieldValue('func')=='poses_20251209') {
+				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/poses_20251209/blockly.json", "TEXT");
+			  }				  
 	    this.getField('func').setValue("");
 	}
       }
     }
   }
 };    
+
