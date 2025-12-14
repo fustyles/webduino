@@ -18,6 +18,9 @@ Chrome瀏覽器console指令：移除自訂積木
 Code.customTab.$__remove__('https://fustyles.github.io/webduino/EDU_addCustomBlocks/blockly.json');
 
 
+姿態偵測 (MediaPipe)
+https://fustyles.github.io/webduino/poses_20251209/blockly.json
+
 
 錄影
 https://fustyles.github.io/webduino/videoRecord_20250610/blockly.json
@@ -567,3 +570,4 @@ https://fustyles.github.io/webduino/MyFirmata_bit.html?DeviceID
 
 Webduino MQTT
 https://fustyles.github.io/webduino/webduino_mqtt.html
+
