@@ -13,15 +13,14 @@ Blockly.JavaScript['poses_video'] = function(block) {
   var value_skeleton_ = block.getFieldValue('skeleton_');
   var value_mirrorimage_ = block.getFieldValue('mirrorimage_');
   var value_opacity_ = block.getFieldValue('opacity_');
-  var code = 'poses_video("' + value_video_ + '","' + value_skeleton_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '");\n';
+  var code = 'poses_video("' + value_video_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '","' + value_skeleton_ + '");\n';
   return code;
 };
 
 Blockly.JavaScript['poses_person'] = function(block) { 
-  var value_person_ = Blockly.JavaScript.valueToCode(block, 'person_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_part_ = block.getFieldValue('part_');
   var value_data_ = block.getFieldValue('data_');
-  var code = 'poses_position(' + value_person_ + ',"' + value_part_ + '","' + value_data_ + '")';
+  var code = 'poses_position("' + value_part_ + '","' + value_data_ + '")';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -67,12 +66,6 @@ Blockly.JavaScript['poses_video_position'] = function(block) {
   return code;
 };
 
-Blockly.JavaScript['poses_persons'] = function(block) { 
-  var value_persons_ = block.getFieldValue('persons_');
-  var code = 'poses_number()';
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
 Blockly.JavaScript['poses_startvideo_media'] = function(block) { 
   var value_width_ = Blockly.JavaScript.valueToCode(block, 'width_', Blockly.JavaScript.ORDER_ATOMIC);
   var value_height_ = Blockly.JavaScript.valueToCode(block, 'height_', Blockly.JavaScript.ORDER_ATOMIC);
@@ -100,6 +93,6 @@ Blockly.JavaScript['poses_recognitied'] = function(block) {
 };
 
 Blockly.JavaScript['poses_canvas_get'] = function(block) { 
-  var code = '"pose"';
+  var code = '"poses"';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };

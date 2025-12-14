@@ -29,13 +29,6 @@ var catPoses = '<xml>'+
 '  <block type="poses_recognitied">'+
 '  </block>'+ 
 '  <block type="poses_person">'+
-'    <value name="person_">'+
-'      <block type="math_number">'+
-'        <field name="NUM">0</field>'+
-'      </block>'+
-'    </value>'+
-'  </block>'+
-'  <block type="poses_persons">'+
 '  </block>'+
 '  <block type="poses_video_position">'+
 '    <value name="left_">'+
@@ -126,13 +119,8 @@ var catPoses = '<xml>'+
 '        </value>'+
 '      </block>'+
 '      <block type="poses_part_angle">'+
-'        <value name="poses_">'+
-'          <block type="math_number">'+
-'            <field name="NUM">0</field>'+
-'          </block>'+
-'        </value>'+
-'    	<field name="part1_">4</field>'+           
-'    	<field name="part2_">20</field>'+
+'    	<field name="part1_">11</field>'+           
+'    	<field name="part2_">12</field>'+
 '        <value name="adjust_">'+
 '          <block type="math_number">'+
 '            <field name="NUM">0</field>'+

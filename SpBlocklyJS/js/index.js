@@ -208,8 +208,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (xml.indexOf("videorecord_")!=-1) {
 			script += "<script src='"+jsPath+"videoRecord_20250610/videoRecord.js'></script>";
 		}
-		if (xml.indexOf("poses_")!=-1) {
-			script += '<script src="https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision/vision_bundle.js"  crossorigin="anonymous" type="module"></script>';			
+		if (xml.indexOf("poses_")!=-1) {			
 			script += "<script src='"+jsPath+"poses_20251209/poses_video.js'></script>";			
 			script += "<script src='"+jsPath+"poses_20251209/poses.js'></script>";
 		}		

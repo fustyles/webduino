@@ -4,9 +4,9 @@
 
   'use strict';
 
-  function poses_video(input_video, input_poses, input_mirrorimage, input_opacity) {
+  function poses_video(input_video, input_mirrorimage, input_opacity, input_poses) {
 	document.getElementById("mirrorimage_poses").value = input_mirrorimage;
-	document.getElementById("poses").value = input_poses;	
+	document.getElementById("poses").value = input_poses;
 	document.getElementById("region_poses").style.opacity = input_opacity;
     document.getElementById("gamecanvas_canvasElement").style.display = input_video;
   }
@@ -111,38 +111,31 @@
 		}	
 	} 
 
-	function poses_position(input_index, input_poses, input_data){
+	function poses_position(input_poses, input_data){
 		var json = document.getElementById("gamediv_poses").innerHTML;
 		if (json!=""&&json!="undefined") {
 			var result = JSON.parse('{"data":'+json+'}');
 			var canvasElement = document.getElementById('gamecanvas_canvasElement');
 			if (result["data"].length>0) {
 				if (input_data=="x")
-					return Number(result["data"][input_poses][input_index].x)*Number(canvasElement.width);
+					return Number(result["data"][input_poses].x)*Number(canvasElement.width);
 				else if (input_data=="y")
-					return Number(result["data"][input_poses][input_index].y)*Number(canvasElement.height);
+					return Number(result["data"][input_poses].y)*Number(canvasElement.height);
 				else if (input_data=="z")
-					return Number(result["data"][input_poses][input_index].z)*Number(canvasElement.width);
+					return Number(result["data"][input_poses].z)*Number(canvasElement.width);
+				else if (input_data=="visibility")
+					return Number(result["data"][input_poses].visibility);				
 			}
 		}
 		return "";
-	}
-
-	function poses_number(){
-		var json = document.getElementById("gamediv_poses").innerHTML;
-		if (json!=""&&json!="undefined") {
-			var result = JSON.parse('{"data":'+json+'}');
-			return result["data"].length;
-		}
-		return 0;
 	}	
 
-  function poses_part_angle(input_number, input_P1, input_P2, input_axis, input_adjust) {
+  function poses_part_angle(input_P1, input_P2, input_axis, input_adjust) {
 	  if (input_axis=="x") {
-		var rightposeP1y = (poses_position(input_number, input_P1, "y"));
-		var rightposeP1z = (poses_position(input_number, input_P1, "z"));
-		var rightposeP2y = (poses_position(input_number, input_P2, "y"));
-		var rightposeP2z = (poses_position(input_number, input_P2, "z"));
+		var rightposeP1y = (poses_position(input_P1, "y"));
+		var rightposeP1z = (poses_position(input_P1, "z"));
+		var rightposeP2y = (poses_position(input_P2, "y"));
+		var rightposeP2z = (poses_position(input_P2, "z"));
 		var rotateAngleX = (poses_angle(rightposeP1y, rightposeP1z, rightposeP2y, rightposeP2z));
 		if (rotateAngleX) {
 			var valX = rotateAngleX+input_adjust;
@@ -153,10 +146,10 @@
 			return null;
 	  }
 	  else if (input_axis=="y") {
-		var rightposeP1x = (poses_position(input_number, input_P1, "x"));
-		var rightposeP1z = (poses_position(input_number, input_P1, "z"));
-		var rightposeP2x = (poses_position(input_number, input_P2, "x"));
-		var rightposeP2z = (poses_position(input_number, input_P2, "z"));
+		var rightposeP1x = (poses_position(input_P1, "x"));
+		var rightposeP1z = (poses_position(input_P1, "z"));
+		var rightposeP2x = (poses_position(input_P2, "x"));
+		var rightposeP2z = (poses_position(input_P2, "z"));
 		var rotateAngleY = (poses_angle(rightposeP1x, rightposeP1z, rightposeP2x, rightposeP2z));
 		if (rotateAngleY) {
 			var valY = rotateAngleY-270+input_adjust;
@@ -167,10 +160,10 @@
 			return null;
 	  }
 	  else if (input_axis=="z") {
-		var rightposeP1x = (poses_position(input_number, input_P1, "x"));
-		var rightposeP1y = (poses_position(input_number, input_P1, "y"));
-		var rightposeP2x = (poses_position(input_number, input_P2, "x"));
-		var rightposeP2y = (poses_position(input_number, input_P2, "y"));
+		var rightposeP1x = (poses_position(input_P1, "x"));
+		var rightposeP1y = (poses_position(input_P1, "y"));
+		var rightposeP2x = (poses_position(input_P2, "x"));
+		var rightposeP2y = (poses_position(input_P2, "y"));
 		var rotateAngleZ = (poses_angle(rightposeP1x, rightposeP1y, rightposeP2x, rightposeP2y));
 		if (rotateAngleZ) {
 			var valZ = rotateAngleZ-270+input_adjust;
@@ -194,7 +187,6 @@
 	
 	window.poses_video = poses_video;
 	window.poses_position = poses_position;
-	window.poses_number = poses_number;	
 	window.poses_distance = poses_distance;
 	window.poses_angle = poses_angle;
 	window.poses_angle_3points = poses_angle_3points;

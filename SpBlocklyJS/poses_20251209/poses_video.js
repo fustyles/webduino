@@ -1,3 +1,4 @@
+document.write('<script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>');
 document.write('<div id="region_poses" style="z-index:999"><video id="gamevideo_poses" width="400" height="300" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_poses" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_poses" style="position:absolute;display:none"></canvas><canvas id="gamecanvas_canvasElement" style="position:absolute;"></canvas><br><select id="poses" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage_poses" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><br></div>');
 document.write('<div id="posesState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="sourceId_poses" style="position:absolute;display:none;"></div>');
@@ -59,10 +60,10 @@ window.onload = function () {
 		canvasCtx.drawImage(canvas, 0, 0, canvasElement.width, canvasElement.height);		
 		
 		if (posesState.innerHTML =="1") {
-			let results = poseLandmarker.detectForVideo(canvas);
-			onResults(results);
-			var source = document.getElementById("sourceId_poses");
-			setTimeout(function(){loadImage(document.getElementById(source.innerHTML)); }, 10)
+			pose.send({image: canvas}).then(res => {
+				var source = document.getElementById("sourceId_poses");
+				setTimeout(function(){loadImage(document.getElementById(source.innerHTML)); }, 10)
+			});
 		}
 		else {
 			//result.innerHTML = "";				
@@ -77,49 +78,38 @@ window.onload = function () {
 		//canvasCtx.save();
 		//canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
 		//canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
-		
+
 		if (poses.value==1) {
-			if (results.multiHandLandmarks) {
-				for (const landmarks of results.multiHandLandmarks) {
-				  drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
-								 {color: '#00FF00', lineWidth: 5});
-				  drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 2});
-				}
+			if (results.poseLandmarks) {
+			    drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS,
+							   {color: '#00FF00', lineWidth: 5});
+			    drawLandmarks(canvasCtx, results.poseLandmarks, {color: '#FF0000', lineWidth: 2});
 			}
 		}
 
-		result.innerHTML = JSON.stringify(results.multiHandLandmarks);
+		result.innerHTML = JSON.stringify(results.poseLandmarks);
 		//canvasCtx.restore();
 		
-		if ((poses_number()) > 0) {
+		if (results.poseLandmarks) {
 			if (typeof poses_recognitionFinish === 'function') poses_recognitionFinish();
 		} else {
 			if (typeof poses_unrecognitionFinish === 'function') poses_unrecognitionFinish();
 		}
 	}
 		
-	function checkLoadVisionBundleJS() {
-		console.log(window);
-		if (typeof FilesetResolver !== 'undefined') {
-			const vision = FilesetResolver.forVisionTasks(
-			  // path/to/wasm/root
-			  "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm"
-			);
-			const poseLandmarker = poseLandmarker.createFromOptions(
-				vision,
-				{
-				  baseOptions: {
-					modelAssetPath: "path/to/model"
-				  },
-				  runningMode: runningMode
-				});		
-		} else {
-			console.error("MediaPipe Tasks Vision 函式庫尚未載入！請檢查 HTML 載入順序。");
-			setTimeout(checkLoadVisionBundleJS, 1000);
-		}
-	}
-	checkLoadVisionBundleJS();
-		
+	const pose = new Pose({locateFile: (file) => {
+	  return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
+	}});
+	pose.setOptions({
+	  modelComplexity: 2,
+	  smoothLandmarks: true,
+	  enableSegmentation: true,
+	  smoothSegmentation: true,
+	  minDetectionConfidence: 0.5,
+	  minTrackingConfidence: 0.5
+	});
+	pose.onResults(onResults);
+			
 	function h(a){var c=0;return function(){return c<a.length?{done:!1,value:a[c++]}:{done:!0}}}var l="function"==typeof Object.defineProperties?Object.defineProperty:function(a,c,b){if(a==Array.prototype||a==Object.prototype)return a;a[c]=b.value;return a};
 	function m(a){a=["object"==typeof globalThis&&globalThis,a,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var c=0;c<a.length;++c){var b=a[c];if(b&&b.Math==Math)return b}throw Error("Cannot find global object");}var n=m(this);function p(a,c){if(c)a:{var b=n;a=a.split(".");for(var d=0;d<a.length-1;d++){var e=a[d];if(!(e in b))break a;b=b[e]}a=a[a.length-1];d=b[a];c=c(d);c!=d&&null!=c&&l(b,a,{configurable:!0,writable:!0,value:c})}}
 	function q(a){var c="undefined"!=typeof Symbol&&Symbol.iterator&&a[Symbol.iterator];return c?c.call(a):{next:h(a)}}var r="function"==typeof Object.assign?Object.assign:function(a,c){for(var b=1;b<arguments.length;b++){var d=arguments[b];if(d)for(var e in d)Object.prototype.hasOwnProperty.call(d,e)&&(a[e]=d[e])}return a};p("Object.assign",function(a){return a||r});

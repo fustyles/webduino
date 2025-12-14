@@ -3,11 +3,7 @@ Blockly.Blocks['poses_part_angle'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.POSES_SHOW);		  
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.POSES_ANGLE_SHOW);
-  this.appendValueInput("poses_")
-      .setCheck("Number")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg.POSES_INDEX_SHOW);		  
+      .appendField(Blockly.Msg.POSES_ROTATE_ANGLE_SHOW);	  
   this.appendDummyInput()
       .appendField(new Blockly.FieldDropdown([
 		["X","x"],	
@@ -19,44 +15,76 @@ Blockly.Blocks['poses_part_angle'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.POSES_PART_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg.POSES_NOSE_SHOW,"nose"],
-		[Blockly.Msg.POSES_LEFTEYE_SHOW,"leftEye"],
-		[Blockly.Msg.POSES_RIGHTEYE_SHOW,"rightEye"],
-		[Blockly.Msg.POSES_LEFTEAR_SHOW,"leftEar"],
-		[Blockly.Msg.POSES_RIGHTEAR_SHOW,"rightEar"],
-		[Blockly.Msg.POSES_LEFTSHOULDER_SHOW,"leftShoulder"],
-		[Blockly.Msg.POSES_RIGHTSHOULDER_SHOW,"rightShoulder"],
-		[Blockly.Msg.POSES_LEFTELBOW_SHOW,"leftElbow"],
-		[Blockly.Msg.POSES_RIGHTELBOW_SHOW,"rightElbow"],
-		[Blockly.Msg.POSES_LEFTWRIST_SHOW,"leftWrist"],
-		[Blockly.Msg.POSES_RIGHTWRIST_SHOW,"rightWrist"],
-		[Blockly.Msg.POSES_LEFTHIP_SHOW,"leftHip"],
-		[Blockly.Msg.POSES_RIGHTHIP_SHOW,"rightHip"],
-		[Blockly.Msg.POSES_LEFTKNEE_SHOW,"leftKnee"],
-		[Blockly.Msg.POSES_RIGHTKNEE_SHOW,"rightKnee"],
-		[Blockly.Msg.POSES_LEFTANKLE_SHOW,"leftAnkle"],
-		[Blockly.Msg.POSES_RIGHTANKLE_SHOW,"rightAnkle"]
+		[Blockly.Msg.POSES_NOSE, "0"],
+		[Blockly.Msg.POSES_LEFT_EYE_INNER, "1"],
+		[Blockly.Msg.POSES_LEFT_EYE, "2"],
+		[Blockly.Msg.POSES_LEFT_EYE_OUTER, "3"],
+		[Blockly.Msg.POSES_RIGHT_EYE_INNER, "4"],
+		[Blockly.Msg.POSES_RIGHT_EYE, "5"],
+		[Blockly.Msg.POSES_RIGHT_EYE_OUTER, "6"],
+		[Blockly.Msg.POSES_LEFT_EAR, "7"],
+		[Blockly.Msg.POSES_RIGHT_EAR, "8"],
+		[Blockly.Msg.POSES_MOUTH_LEFT, "9"],
+		[Blockly.Msg.POSES_MOUTH_RIGHT, "10"],
+		[Blockly.Msg.POSES_LEFT_SHOULDER, "11"],
+		[Blockly.Msg.POSES_RIGHT_SHOULDER, "12"],
+		[Blockly.Msg.POSES_LEFT_ELBOW, "13"],
+		[Blockly.Msg.POSES_RIGHT_ELBOW, "14"],
+		[Blockly.Msg.POSES_LEFT_WRIST, "15"],
+		[Blockly.Msg.POSES_RIGHT_WRIST, "16"],
+		[Blockly.Msg.POSES_LEFT_PINKY, "17"],
+		[Blockly.Msg.POSES_RIGHT_PINKY, "18"],
+		[Blockly.Msg.POSES_LEFT_INDEX, "19"],
+		[Blockly.Msg.POSES_RIGHT_INDEX, "20"],
+		[Blockly.Msg.POSES_LEFT_THUMB, "21"],
+		[Blockly.Msg.POSES_RIGHT_THUMB, "22"],
+		[Blockly.Msg.POSES_LEFT_HIP, "23"],
+		[Blockly.Msg.POSES_RIGHT_HIP, "24"],
+		[Blockly.Msg.POSES_LEFT_KNEE, "25"],
+		[Blockly.Msg.POSES_RIGHT_KNEE, "26"],
+		[Blockly.Msg.POSES_LEFT_ANKLE, "27"],
+		[Blockly.Msg.POSES_RIGHT_ANKLE, "28"],
+		[Blockly.Msg.POSES_LEFT_HEEL, "29"],
+		[Blockly.Msg.POSES_RIGHT_HEEL, "30"],
+		[Blockly.Msg.POSES_LEFT_FOOT_INDEX, "31"],
+		[Blockly.Msg.POSES_RIGHT_FOOT_INDEX, "32"]
   ]), "part1_"); 
   this.appendDummyInput()  
       .appendField(Blockly.Msg.POSES_PART_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg.POSES_NOSE_SHOW,"nose"],
-		[Blockly.Msg.POSES_LEFTEYE_SHOW,"leftEye"],
-		[Blockly.Msg.POSES_RIGHTEYE_SHOW,"rightEye"],
-		[Blockly.Msg.POSES_LEFTEAR_SHOW,"leftEar"],
-		[Blockly.Msg.POSES_RIGHTEAR_SHOW,"rightEar"],
-		[Blockly.Msg.POSES_LEFTSHOULDER_SHOW,"leftShoulder"],
-		[Blockly.Msg.POSES_RIGHTSHOULDER_SHOW,"rightShoulder"],
-		[Blockly.Msg.POSES_LEFTELBOW_SHOW,"leftElbow"],
-		[Blockly.Msg.POSES_RIGHTELBOW_SHOW,"rightElbow"],
-		[Blockly.Msg.POSES_LEFTWRIST_SHOW,"leftWrist"],
-		[Blockly.Msg.POSES_RIGHTWRIST_SHOW,"rightWrist"],
-		[Blockly.Msg.POSES_LEFTHIP_SHOW,"leftHip"],
-		[Blockly.Msg.POSES_RIGHTHIP_SHOW,"rightHip"],
-		[Blockly.Msg.POSES_LEFTKNEE_SHOW,"leftKnee"],
-		[Blockly.Msg.POSES_RIGHTKNEE_SHOW,"rightKnee"],
-		[Blockly.Msg.POSES_LEFTANKLE_SHOW,"leftAnkle"],
-		[Blockly.Msg.POSES_RIGHTANKLE_SHOW,"rightAnkle"]
+		[Blockly.Msg.POSES_NOSE, "0"],
+		[Blockly.Msg.POSES_LEFT_EYE_INNER, "1"],
+		[Blockly.Msg.POSES_LEFT_EYE, "2"],
+		[Blockly.Msg.POSES_LEFT_EYE_OUTER, "3"],
+		[Blockly.Msg.POSES_RIGHT_EYE_INNER, "4"],
+		[Blockly.Msg.POSES_RIGHT_EYE, "5"],
+		[Blockly.Msg.POSES_RIGHT_EYE_OUTER, "6"],
+		[Blockly.Msg.POSES_LEFT_EAR, "7"],
+		[Blockly.Msg.POSES_RIGHT_EAR, "8"],
+		[Blockly.Msg.POSES_MOUTH_LEFT, "9"],
+		[Blockly.Msg.POSES_MOUTH_RIGHT, "10"],
+		[Blockly.Msg.POSES_LEFT_SHOULDER, "11"],
+		[Blockly.Msg.POSES_RIGHT_SHOULDER, "12"],
+		[Blockly.Msg.POSES_LEFT_ELBOW, "13"],
+		[Blockly.Msg.POSES_RIGHT_ELBOW, "14"],
+		[Blockly.Msg.POSES_LEFT_WRIST, "15"],
+		[Blockly.Msg.POSES_RIGHT_WRIST, "16"],
+		[Blockly.Msg.POSES_LEFT_PINKY, "17"],
+		[Blockly.Msg.POSES_RIGHT_PINKY, "18"],
+		[Blockly.Msg.POSES_LEFT_INDEX, "19"],
+		[Blockly.Msg.POSES_RIGHT_INDEX, "20"],
+		[Blockly.Msg.POSES_LEFT_THUMB, "21"],
+		[Blockly.Msg.POSES_RIGHT_THUMB, "22"],
+		[Blockly.Msg.POSES_LEFT_HIP, "23"],
+		[Blockly.Msg.POSES_RIGHT_HIP, "24"],
+		[Blockly.Msg.POSES_LEFT_KNEE, "25"],
+		[Blockly.Msg.POSES_RIGHT_KNEE, "26"],
+		[Blockly.Msg.POSES_LEFT_ANKLE, "27"],
+		[Blockly.Msg.POSES_RIGHT_ANKLE, "28"],
+		[Blockly.Msg.POSES_LEFT_HEEL, "29"],
+		[Blockly.Msg.POSES_RIGHT_HEEL, "30"],
+		[Blockly.Msg.POSES_LEFT_FOOT_INDEX, "31"],
+		[Blockly.Msg.POSES_RIGHT_FOOT_INDEX, "32"]
   ]), "part2_"); 
   this.appendValueInput("adjust_")
       .setCheck("Number")
@@ -100,8 +128,8 @@ Blockly.Blocks['poses_video'] = {
         this.appendDummyInput()
             .appendField(Blockly.Msg.POSES_SKELETON_SHOW)
             .appendField(new Blockly.FieldDropdown([
-                ["Y", "block"],
-                ["N", "none"]
+                ["Y", "1"],
+                ["N", "0"]
             ]), "skeleton_");
         this.setInputsInline(true);
         this.setPreviousStatement(true);
@@ -113,37 +141,51 @@ Blockly.Blocks['poses_video'] = {
 Blockly.Blocks['poses_person'] = {
   init: function() {
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.POSES_SHOW);	  
-  this.appendValueInput("person_")
-      .setCheck("Number")
-      .appendField(Blockly.Msg.POSES_PERSON_SHOW);  
+      .appendField(Blockly.Msg.POSES_SHOW);	   
   this.appendDummyInput()  
       .appendField(Blockly.Msg.POSES_PART_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg.POSES_NOSE_SHOW,"nose"],
-		[Blockly.Msg.POSES_LEFTEYE_SHOW,"leftEye"],
-		[Blockly.Msg.POSES_RIGHTEYE_SHOW,"rightEye"],
-		[Blockly.Msg.POSES_LEFTEAR_SHOW,"leftEar"],
-		[Blockly.Msg.POSES_RIGHTEAR_SHOW,"rightEar"],
-		[Blockly.Msg.POSES_LEFTSHOULDER_SHOW,"leftShoulder"],
-		[Blockly.Msg.POSES_RIGHTSHOULDER_SHOW,"rightShoulder"],
-		[Blockly.Msg.POSES_LEFTELBOW_SHOW,"leftElbow"],
-		[Blockly.Msg.POSES_RIGHTELBOW_SHOW,"rightElbow"],
-		[Blockly.Msg.POSES_LEFTWRIST_SHOW,"leftWrist"],
-		[Blockly.Msg.POSES_RIGHTWRIST_SHOW,"rightWrist"],
-		[Blockly.Msg.POSES_LEFTHIP_SHOW,"leftHip"],
-		[Blockly.Msg.POSES_RIGHTHIP_SHOW,"rightHip"],
-		[Blockly.Msg.POSES_LEFTKNEE_SHOW,"leftKnee"],
-		[Blockly.Msg.POSES_RIGHTKNEE_SHOW,"rightKnee"],
-		[Blockly.Msg.POSES_LEFTANKLE_SHOW,"leftAnkle"],
-		[Blockly.Msg.POSES_RIGHTANKLE_SHOW,"rightAnkle"]
+		[Blockly.Msg.POSES_NOSE, "0"],
+		[Blockly.Msg.POSES_LEFT_EYE_INNER, "1"],
+		[Blockly.Msg.POSES_LEFT_EYE, "2"],
+		[Blockly.Msg.POSES_LEFT_EYE_OUTER, "3"],
+		[Blockly.Msg.POSES_RIGHT_EYE_INNER, "4"],
+		[Blockly.Msg.POSES_RIGHT_EYE, "5"],
+		[Blockly.Msg.POSES_RIGHT_EYE_OUTER, "6"],
+		[Blockly.Msg.POSES_LEFT_EAR, "7"],
+		[Blockly.Msg.POSES_RIGHT_EAR, "8"],
+		[Blockly.Msg.POSES_MOUTH_LEFT, "9"],
+		[Blockly.Msg.POSES_MOUTH_RIGHT, "10"],
+		[Blockly.Msg.POSES_LEFT_SHOULDER, "11"],
+		[Blockly.Msg.POSES_RIGHT_SHOULDER, "12"],
+		[Blockly.Msg.POSES_LEFT_ELBOW, "13"],
+		[Blockly.Msg.POSES_RIGHT_ELBOW, "14"],
+		[Blockly.Msg.POSES_LEFT_WRIST, "15"],
+		[Blockly.Msg.POSES_RIGHT_WRIST, "16"],
+		[Blockly.Msg.POSES_LEFT_PINKY, "17"],
+		[Blockly.Msg.POSES_RIGHT_PINKY, "18"],
+		[Blockly.Msg.POSES_LEFT_INDEX, "19"],
+		[Blockly.Msg.POSES_RIGHT_INDEX, "20"],
+		[Blockly.Msg.POSES_LEFT_THUMB, "21"],
+		[Blockly.Msg.POSES_RIGHT_THUMB, "22"],
+		[Blockly.Msg.POSES_LEFT_HIP, "23"],
+		[Blockly.Msg.POSES_RIGHT_HIP, "24"],
+		[Blockly.Msg.POSES_LEFT_KNEE, "25"],
+		[Blockly.Msg.POSES_RIGHT_KNEE, "26"],
+		[Blockly.Msg.POSES_LEFT_ANKLE, "27"],
+		[Blockly.Msg.POSES_RIGHT_ANKLE, "28"],
+		[Blockly.Msg.POSES_LEFT_HEEL, "29"],
+		[Blockly.Msg.POSES_RIGHT_HEEL, "30"],
+		[Blockly.Msg.POSES_LEFT_FOOT_INDEX, "31"],
+		[Blockly.Msg.POSES_RIGHT_FOOT_INDEX, "32"]
   ]), "part_");  	
   this.appendDummyInput()
       .appendField(Blockly.Msg.POSES_DATA_SHOW)
       .appendField(new Blockly.FieldDropdown([
 		["x","x"],
 		["y","y"],
-		["z","z"]		
+		["z","z"],
+		["visibility","visibility"]		
   ]), "data_");   
   this.setInputsInline(true);
   this.setOutput(true, null); 
@@ -276,19 +318,6 @@ Blockly.Blocks['poses_video_position'] = {
   this.setColour(60);
   }
 };
-
-Blockly.Blocks['poses_persons'] = {
-  init: function() {
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.POSES_SHOW);	  
-  this.appendDummyInput()  
-      .appendField(Blockly.Msg.POSES_PERSONS_NUMBER_SHOW);  
-  this.setInputsInline(true);
-  this.setOutput(true, null); 
-  this.setColour(200);
-  }
-};
-
 
 Blockly.Blocks['poses_startvideo_media'] = {
   init: function() { 
