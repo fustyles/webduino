@@ -1,4 +1,4 @@
-Blockly.Msg.HOLISTIC_SHOW = "Holistic Detect";
+Blockly.Msg.HOLISTIC_SHOW = "Holistic Detect(MP)";
 Blockly.Msg.HOLISTIC_PERSON_SHOW = "Index";
 Blockly.Msg.HOLISTIC_PART_SHOW = "Part";
 Blockly.Msg.HOLISTIC_WIDTH_SHOW = "Video Width";
