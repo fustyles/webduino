@@ -1,4 +1,4 @@
-Blockly.Msg.HOLISTIC_SHOW = "全身侦测";
+Blockly.Msg.HOLISTIC_SHOW = "全身侦测(MP)";
 Blockly.Msg.HOLISTIC_PERSON_SHOW = "索引";
 Blockly.Msg.HOLISTIC_PART_SHOW = "部位";
 Blockly.Msg.HOLISTIC_WIDTH_SHOW = "宽度";
