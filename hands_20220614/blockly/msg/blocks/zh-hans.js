@@ -1,4 +1,4 @@
-Blockly.Msg.HANDS_SHOW = "手势侦测";
+Blockly.Msg.HANDS_SHOW = "手势侦测(MP)";
 Blockly.Msg.HANDS_PERSON_SHOW = "索引";
 Blockly.Msg.HANDS_PART_SHOW = "部位";
 Blockly.Msg.HANDS_WIDTH_SHOW = "宽度";
