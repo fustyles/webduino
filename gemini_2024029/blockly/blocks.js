@@ -10,9 +10,9 @@ Blockly.Blocks['gemini_chat_initial'] = {
       .setAlign(Blockly.ALIGN_RIGHT)	  
       .appendField(Blockly.Msg.GEMINI_MODEL_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		["gemini-3-flash-preview","gemini-3-flash-preview"],
 		["gemini-2.5-flash","gemini-2.5-flash"],
 		["gemini-2.5-flash-lite-preview-06-17","gemini-2.5-flash-lite-preview-06-17"],
+		["gemini-3-flash-preview","gemini-3-flash-preview"],		  
 		["gemini-2.0-flash","gemini-2.0-flash"],	      
 		["gemini-2.0-flash-lite","gemini-2.0-flash-lite"],
 		["gemini-2.0-flash-lite-preview-02-05","gemini-2.0-flash-lite-preview-02-05"],
@@ -321,6 +321,7 @@ Blockly.Blocks['gemini_youtube'] = {
   this.setColour(90);
   }
 };
+
 
 
 
