@@ -9,12 +9,13 @@ Blockly.Blocks['gemini_chat_initial'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.GEMINI_MODEL_SHOW)
       .appendField(new Blockly.FieldDropdown([
+		["gemini-3-flash-preview","gemini-3-flash-preview"],
+		["gemini-2.5-flash","gemini-2.5-flash"],
+		["gemini-2.5-flash-lite-preview-06-17","gemini-2.5-flash-lite-preview-06-17"],
 		["gemini-2.0-flash","gemini-2.0-flash"],	      
 		["gemini-2.0-flash-lite","gemini-2.0-flash-lite"],
 		["gemini-2.0-flash-lite-preview-02-05","gemini-2.0-flash-lite-preview-02-05"],
-		["gemini-2.0-flash-001","gemini-2.0-flash-001"],
-		["gemini-2.5-flash","gemini-2.5-flash"],
-		["gemini-2.5-flash-lite-preview-06-17","gemini-2.5-flash-lite-preview-06-17"]
+		["gemini-2.0-flash-001","gemini-2.0-flash-001"]		
 	  ]), "model");
   this.appendValueInput("tokens")
       .setCheck("Number")
@@ -319,4 +320,5 @@ Blockly.Blocks['gemini_youtube'] = {
   this.setColour(90);
   }
 };
+
 
