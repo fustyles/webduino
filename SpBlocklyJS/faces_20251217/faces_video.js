@@ -1,23 +1,23 @@
 document.write('<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>');
-document.write('<div id="region_poses" style="z-index:999"><video id="gamevideo_poses" width="400" height="300" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_poses" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_poses" style="position:absolute;display:none"></canvas><canvas id="gamecanvas_canvasElement" style="position:absolute;"></canvas><br><select id="poses" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage_poses" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><br></div>');
-document.write('<div id="posesState" style="position:absolute;display:none;">1</div>');
-document.write('<div id="sourceId_poses" style="position:absolute;display:none;"></div>');
-document.write('<div id="gamediv_poses" style="position:absolute;display:none;"></div>');
+document.write('<div id="region_faces" style="z-index:999"><video id="gamevideo_faces" width="400" height="300" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_faces" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_faces" style="position:absolute;display:none"></canvas><canvas id="gamecanvas_canvasElement" style="position:absolute;"></canvas><br><select id="faces" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage_faces" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><br></div>');
+document.write('<div id="facesState" style="position:absolute;display:none;">1</div>');
+document.write('<div id="sourceId_faces" style="position:absolute;display:none;"></div>');
+document.write('<div id="gamediv_faces" style="position:absolute;display:none;"></div>');
 
 window.onload = function () {
-	var canvas = document.getElementById('gamecanvas_poses'); 
+	var canvas = document.getElementById('gamecanvas_faces'); 
 	var context = canvas.getContext('2d');
 	var canvasElement = document.getElementById('gamecanvas_canvasElement'); 
 	var canvasCtx = canvasElement.getContext('2d');
-	var mirrorimage = document.getElementById("mirrorimage_poses");
-	var posesState = document.getElementById('posesState');
+	var mirrorimage = document.getElementById("mirrorimage_faces");
+	var facesState = document.getElementById('facesState');
 	var sourceTimer;
-	var poses = document.getElementById("poses");
-	var result = document.getElementById("gamediv_poses");
+	var faces = document.getElementById("faces");
+	var result = document.getElementById("gamediv_faces");
 	
 	sourceTimer = setInterval(
 		function(){
-			var source = document.getElementById("sourceId_poses");
+			var source = document.getElementById("sourceId_faces");
 			if (source.innerHTML!="") {
 				clearInterval(sourceTimer);
 				loadImage(document.getElementById(source.innerHTML));
@@ -29,7 +29,7 @@ window.onload = function () {
 		if (obj.tagName=="IMG") {
 			if (obj.src=="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7") {
 				setTimeout(function(){
-					var source = document.getElementById("sourceId_poses");
+					var source = document.getElementById("sourceId_faces");
 					loadImage(document.getElementById(source.innerHTML));
 				}, 100)
 				return;
@@ -59,16 +59,16 @@ window.onload = function () {
 		canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
 		canvasCtx.drawImage(canvas, 0, 0, canvasElement.width, canvasElement.height);		
 		
-		if (posesState.innerHTML =="1") {
-			pose.send({image: canvas}).then(res => {
-				var source = document.getElementById("sourceId_poses");
+		if (facesState.innerHTML =="1") {
+			face.send({image: canvas}).then(res => {
+				var source = document.getElementById("sourceId_faces");
 				setTimeout(function(){loadImage(document.getElementById(source.innerHTML)); }, 10)
 			});
 		}
 		else {
 			//result.innerHTML = "";				
 			setTimeout(function(){
-				var source = document.getElementById("sourceId_poses");
+				var source = document.getElementById("sourceId_faces");
 				loadImage(document.getElementById(source.innerHTML));
 			}, 100)
 		}
@@ -79,36 +79,44 @@ window.onload = function () {
 		//canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
 		//canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
 
-		if (poses.value==1) {
-			if (results.poseLandmarks) {
-			    drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS,
-							   {color: '#00FF00', lineWidth: 5});
-			    drawLandmarks(canvasCtx, results.poseLandmarks, {color: '#FF0000', lineWidth: 2});
+		if (faces.value==1) {
+			if (results.multiFaceLandmarks&&results.multiFaceLandmarks.length > 0) {
+				for (const landmarks of results.multiFaceLandmarks) {
+					drawConnectors(canvasCtx, landmarks, FACEMESH_TESSELATION, {color: '#C0C0C070', lineWidth: 1});
+					drawConnectors(canvasCtx, landmarks, FACEMESH_RIGHT_EYE,{color: '#FF3030', lineWidth: 1});
+					drawConnectors(canvasCtx, landmarks, FACEMESH_RIGHT_EYEBROW,{color: '#FF3030', lineWidth: 1});
+					drawConnectors(canvasCtx, landmarks, FACEMESH_LEFT_EYE,{color: '#30FF30', lineWidth: 1});
+					drawConnectors(canvasCtx, landmarks, FACEMESH_LEFT_EYEBROW,{color: '#30FF30', lineWidth: 1});
+					drawConnectors(canvasCtx, landmarks, FACEMESH_FACE_OVAL,{color: '#E0E0E0', lineWidth: 1});
+					drawConnectors(canvasCtx, landmarks, FACEMESH_LIPS,{color: '#FFC0CB', lineWidth: 1});
+					//drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 1});
+				}
 			}
 		}
 
-		result.innerHTML = JSON.stringify(results.poseLandmarks);
+		result.innerHTML = JSON.stringify(results.multiFaceLandmarks);
 		//canvasCtx.restore();
 		
-		if (results.poseLandmarks) {
-			if (typeof poses_recognitionFinish === 'function') poses_recognitionFinish();
+		if (faces_number() > 0) {
+			if (typeof faces_recognitionFinish === 'function') faces_recognitionFinish();
 		} else {
-			if (typeof poses_unrecognitionFinish === 'function') poses_unrecognitionFinish();
+			if (typeof faces_unrecognitionFinish === 'function') faces_unrecognitionFinish();
 		}
 	}
 		
-	const pose = new Pose({locateFile: (file) => {
-	  return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
+	const face = new FaceMesh({locateFile: (file) => {
+	  return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`;
 	}});
-	pose.setOptions({
-	  modelComplexity: 2,
+	face.setOptions({
+	  maxNumFaces: 1,
+	  refineLandmarks: true,
+	  modelComplexity: 1,
 	  smoothLandmarks: true,
-	  enableSegmentation: true,
-	  smoothSegmentation: true,
+	  enableSegmentation: false,
 	  minDetectionConfidence: 0.5,
 	  minTrackingConfidence: 0.5
 	});
-	pose.onResults(onResults);
+	face.onResults(onResults);
 			
 	function h(a){var c=0;return function(){return c<a.length?{done:!1,value:a[c++]}:{done:!0}}}var l="function"==typeof Object.defineProperties?Object.defineProperty:function(a,c,b){if(a==Array.prototype||a==Object.prototype)return a;a[c]=b.value;return a};
 	function m(a){a=["object"==typeof globalThis&&globalThis,a,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var c=0;c<a.length;++c){var b=a[c];if(b&&b.Math==Math)return b}throw Error("Cannot find global object");}var n=m(this);function p(a,c){if(c)a:{var b=n;a=a.split(".");for(var d=0;d<a.length-1;d++){var e=a[d];if(!(e in b))break a;b=b[e]}a=a[a.length-1];d=b[a];c=c(d);c!=d&&null!=c&&l(b,a,{configurable:!0,writable:!0,value:c})}}

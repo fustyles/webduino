@@ -212,6 +212,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='"+jsPath+"poses_20251209/poses_video.js'></script>";			
 			script += "<script src='"+jsPath+"poses_20251209/poses.js'></script>";
 		}		
+		if (xml.indexOf("faces_")!=-1) {			
+			script += "<script src='"+jsPath+"faces_20251217/faces_video.js'></script>";			
+			script += "<script src='"+jsPath+"faces_20251217/faces.js'></script>";
+		}
 		
 		return script;
 	}		
@@ -253,6 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		catDvcbot,
 		"<sep></sep>",		
 		catHolistic,
+		catFaces,		
 		catHands,
 		catPoses,		
 		catTeachablemachine,

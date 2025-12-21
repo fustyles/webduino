@@ -81,7 +81,7 @@ window.onload = function () {
 		//canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
 		
 		if (hands.value==1) {
-			if (results.multiHandLandmarks) {
+			if (results.multiHandLandmarks&&results.multiHandLandmarks.length > 0) {
 				for (const landmarks of results.multiHandLandmarks) {
 				  drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
 								 {color: '#00FF00', lineWidth: 5});
@@ -93,7 +93,7 @@ window.onload = function () {
 		result.innerHTML = JSON.stringify(results.multiHandLandmarks);
 		//canvasCtx.restore();
 		
-		if ((hands_number()) > 0) {
+		if (hands_number() > 0) {
 			if (typeof hands_recognitionFinish === 'function') hands_recognitionFinish();
 		} else {
 			if (typeof hands_unrecognitionFinish === 'function') hands_unrecognitionFinish();
