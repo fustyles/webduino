@@ -1,4 +1,4 @@
-Blockly.Msg.HANDS_SHOW = "Hands Detect(MP)";
+Blockly.Msg.HANDS_SHOW = "Hand Tracking(MP)";
 Blockly.Msg.HANDS_PERSON_SHOW = "Index";
 Blockly.Msg.HANDS_PART_SHOW = "Part";
 Blockly.Msg.HANDS_WIDTH_SHOW = "Video Width";
