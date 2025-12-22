@@ -1,0 +1,17 @@
+{
+  "types": ["faces_video", "faces_video_position", "faces_startvideo_media", "faces_startvideo_stream", "faces_recognitied", "faces_position", "faces_lefteye_position", "faces_righteye_position", "faces_nose_position", "faces_mouth_position", "faces_distance", "faces_angle", "faces_angle_3points", "faces_angle_axis", "faces_state", "faces_canvas_get", "faces_clip_element", "faces_clip_color", "faces_clip_image", "faces_points"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "faces_video.js",
+    "faces.js"
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
+
+
