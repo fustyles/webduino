@@ -1,4 +1,3 @@
-Blockly.Msg["CATPOSES"] = "姿態偵測(MP)";
 Blockly.Msg["POSES_SHOW"] = "姿態偵測(MP)";
 Blockly.Msg["POSES_PERSON_SHOW"] = "索引";
 Blockly.Msg["POSES_PART_SHOW"] = "部位";
