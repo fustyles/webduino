@@ -1,5 +1,4 @@
-Blockly.Msg["CATPOSES"] = "Pose Detection(MP)";
-Blockly.Msg["POSES_SHOW"] = "Pose Detection(MP)";
+Blockly.Msg["POSES_SHOW"] = "Pose Estimation(MP)";
 Blockly.Msg["POSES_PERSON_SHOW"] = "Index";
 Blockly.Msg["POSES_PART_SHOW"] = "Part";
 Blockly.Msg["POSES_WIDTH_SHOW"] = "Width";
