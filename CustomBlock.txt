@@ -66,11 +66,11 @@ Web Bluetooth
 https://fustyles.github.io/webduino/WebBluetooth_20220924/blockly.json
 
 
-(新版) 圖表
+圖表
 https://fustyles.github.io/webduino/chart_20220723/blockly.json
 
 
-(新版) 手勢辨識 (MediaPipe Holistic)
+手勢偵測 (MediaPipe)
 https://fustyles.github.io/webduino/hands_20220614/blockly.json
 
 
@@ -574,5 +574,6 @@ https://fustyles.github.io/webduino/MyFirmata_bit.html?DeviceID
 
 Webduino MQTT
 https://fustyles.github.io/webduino/webduino_mqtt.html
+
 
 
