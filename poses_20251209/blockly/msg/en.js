@@ -1,1 +1,1 @@
-MSG.poses = "Pose Detect(MP)";
+MSG.poses = "Pose Estimation(MP)";
