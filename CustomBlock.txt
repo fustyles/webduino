@@ -26,6 +26,10 @@ https://fustyles.github.io/webduino/faces_20251217/blockly.json
 https://fustyles.github.io/webduino/poses_20251209/blockly.json
 
 
+手勢偵測 (MediaPipe)
+https://fustyles.github.io/webduino/hands_20220614/blockly.json
+
+
 錄影
 https://fustyles.github.io/webduino/videoRecord_20250610/blockly.json
 
@@ -69,9 +73,6 @@ https://fustyles.github.io/webduino/WebBluetooth_20220924/blockly.json
 圖表
 https://fustyles.github.io/webduino/chart_20220723/blockly.json
 
-
-手勢偵測 (MediaPipe)
-https://fustyles.github.io/webduino/hands_20220614/blockly.json
 
 
 Robot Fly(須搭配Web Serial積木)
@@ -574,6 +575,7 @@ https://fustyles.github.io/webduino/MyFirmata_bit.html?DeviceID
 
 Webduino MQTT
 https://fustyles.github.io/webduino/webduino_mqtt.html
+
 
 
 
