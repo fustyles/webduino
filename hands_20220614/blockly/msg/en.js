@@ -1,1 +1,1 @@
-MSG.hands = "Hands Detect (MP)";
+MSG.hands = "Hand Tracking(MP)";
