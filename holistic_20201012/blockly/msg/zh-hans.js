@@ -1,1 +1,1 @@
-MSG.holistic = "全身侦测 (MediaPipe)";
+MSG.holistic = "全身侦测 (MP)";
