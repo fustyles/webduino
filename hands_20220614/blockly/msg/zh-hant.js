@@ -1,1 +1,1 @@
-MSG.hands = "手勢偵測 (MediaPipe)";
+MSG.hands = "手勢偵測 (MP)";
