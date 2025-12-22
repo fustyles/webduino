@@ -1,1 +1,1 @@
-MSG.holistic = "Holistic Detect (MediaPipe)";
+MSG.holistic = "Holistic Detect (MP)";
