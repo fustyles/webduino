@@ -2159,7 +2159,7 @@ Blockly.Blocks['amb82_mini_motiondetection_rtsp'] = {
         .appendField(Blockly.Msg["AMB82_MINI_MOTIONDETECTION_FINISH"]);	  
     this.appendStatementInput("statement_finish")
         .setCheck(null);		
-    this.setInputsInline(true);
+    this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
     this.setColour(Blockly.Msg["HUE_19"]);
@@ -3371,7 +3371,7 @@ Blockly.Blocks['amb82_mini_audioclassification'] = {
         .appendField(Blockly.Msg["AMB82_MINI_AUDIOCLASSIFICATION_FINISH"]);	  
     this.appendStatementInput("statement_finish")
         .setCheck(null);		
-    this.setInputsInline(true);
+    this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
     this.setColour(Blockly.Msg["HUE_24"]);
@@ -4011,7 +4011,7 @@ Blockly.Blocks['amb82_mini_facedetectionrecognition_rtsp'] = {
         .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_FINISH"]);	  
     this.appendStatementInput("statement_finish")
         .setCheck(null);		
-    this.setInputsInline(true);
+    this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
     this.setColour(Blockly.Msg["HUE_23"]);
@@ -4160,7 +4160,7 @@ Blockly.Blocks['amb82_mini_facedetection_rtsp'] = {
         .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTION_FINISH"]);	  
     this.appendStatementInput("statement_finish")
         .setCheck(null);		
-    this.setInputsInline(true);
+    this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
     this.setColour(Blockly.Msg["HUE_12"]);
