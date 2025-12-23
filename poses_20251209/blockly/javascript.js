@@ -93,6 +93,10 @@ Blockly.JavaScript['poses_recognitied'] = function(block) {
 };
 
 Blockly.JavaScript['poses_canvas_get'] = function(block) { 
-  var code = '"poses"';
+    var element_ = block.getFieldValue('element_');
+  if (element_=="VIDEO"||element_=="IMAGE")
+  	var code = '"poses"';
+  else
+  	var code = '"canvasElement"';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
