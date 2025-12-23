@@ -51,9 +51,7 @@
     </value>   
   </block>
   <block type="hands_number">
-  </block>
-  <block type="hands_canvas_get">
-  </block>   
+  </block>  
   <block type="hands_distance">
     <value name="x0_">
     </value>
@@ -108,5 +106,7 @@
 	<field name="NUM">1000</field>
       </block>
     </value> 			  
-  </block>	
+  </block>
+  <block type="hands_canvas_get">
+  </block> 	
 </category>
