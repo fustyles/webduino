@@ -4338,7 +4338,7 @@ Blockly.Arduino['amb82_mini_drawtext'] = function(block) {
 Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 	
 	Blockly.Arduino.setups_.write_peri_reg = "";
-	
+	var rotation = block.getFieldValue('rotation');
 	var model = block.getFieldValue('model');
 	var label = block.getFieldValue('label');
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
@@ -4355,7 +4355,8 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 	
 	if (mode=="rtsp"||mode=="still") {
 		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNObjectDetection.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\n'+type+'VideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNObjectDetection ObjDet;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nint rtsp_portnum;\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
-		Blockly.Arduino.setups_.setup_amb82_mini_objectdetection = ''+   
+		Blockly.Arduino.setups_.setup_amb82_mini_objectdetection = ''+ 
+									'config.setRotation('+rotation+');\n  '+ 		
 									'config.setBitrate(2 * 1024 * 1024);\n  '+
 									'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
 									'Camera.configVideoChannel(CHANNELNN, configNN);\n  '+
@@ -4385,7 +4386,8 @@ Blockly.Arduino['amb82_mini_objectdetection_rtsp'] = function(block) {
 									'OSD.begin();\n';
 	} else {
 		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "NNObjectDetection.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\n'+type+'VideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNObjectDetection ObjDet;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
-		Blockly.Arduino.setups_.setup_amb82_mini_objectdetection = ''+   
+		Blockly.Arduino.setups_.setup_amb82_mini_objectdetection = ''+ 
+									'config.setRotation('+rotation+');\n  '+   
 									'config.setBitrate(2 * 1024 * 1024);\n  '+
 									'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
 									'Camera.configVideoChannel(CHANNELNN, configNN);\n  '+

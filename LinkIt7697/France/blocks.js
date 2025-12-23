@@ -5112,7 +5112,16 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp'] = {
 			["WVGA (640×360)","VIDEO_WVGA"],
 			["QVGA (320×240)","VIDEO_QVGA"],
 			["QCIF (176×144)","VIDEO_QCIF"]
-		]), "framesize");		
+		]), "framesize");
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"])
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["0", "0"],
+			["90", "1"],
+			["180", "3"],		
+			["270", "2"]
+		]), "rotation");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_AFTER"]);	  
     this.appendStatementInput("statement")
