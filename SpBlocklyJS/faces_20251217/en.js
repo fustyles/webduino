@@ -63,3 +63,6 @@ Blockly.Msg["FACES_UMOUTH_SHOW"] = "Upper Lip";
 Blockly.Msg["FACES_DMOUTH_SHOW"] = "Lower Lip";
 Blockly.Msg["FACES_FACE_SHOW"] = "Face";
 Blockly.Msg["FACES_FACE_3_SHOW"] = "Face(Inner 3)";
+Blockly.Msg["FACES_VIDEO_SHOW"] = "Video Media";
+Blockly.Msg["FACES_CANVAS_SHOW"] = "Canvas";
+Blockly.Msg["FACES_IMAGE_SHOW"] = "Image";
