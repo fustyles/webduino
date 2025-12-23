@@ -456,6 +456,12 @@ Blockly.Blocks['faces_canvas_get'] = {
   init: function() {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.FACES_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.FACES_VIDEO_SHOW,"VIDEO"],
+		[Blockly.Msg.FACES_IMAGE_SHOW,"IMAGE"],
+		[Blockly.Msg.FACES_CANVAS_SHOW,"CANVAS"]	
+  ]), "element_");	 	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.FACES_CANVAS_GET_SHOW); 
   this.setInputsInline(true);
@@ -563,4 +569,5 @@ Blockly.Blocks['faces_points'] = {
   this.setOutput(true, null); 
   this.setColour(200);
   }
+
 };
