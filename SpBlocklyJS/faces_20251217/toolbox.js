@@ -141,8 +141,6 @@ var catFaces = '<xml>'+
 '          </block>'+
 '        </value>'+
 '      </block>'+
-'  <block type="faces_canvas_get">'+
-'  </block>'+
   '<block type="faces_lefteye_position">'+
   '</block>'+
   '<block type="faces_righteye_position">'+
@@ -253,6 +251,9 @@ var catFaces = '<xml>'+
     '</value>'+    
   '</block>'+    
   '<block type="faces_points">'+   
-  '</block>'+    
+  '</block>'+
+'  <block type="faces_canvas_get">'+
+'  </block>'+	
 '</category>'+
 '</xml>';
+
