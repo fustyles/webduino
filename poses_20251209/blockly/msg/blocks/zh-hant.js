@@ -63,3 +63,6 @@ Blockly.Msg["POSES_LEFT_HEEL"] = "左腳跟";
 Blockly.Msg["POSES_RIGHT_HEEL"] = "右腳跟";
 Blockly.Msg["POSES_LEFT_FOOT_INDEX"] = "左腳尖";
 Blockly.Msg["POSES_RIGHT_FOOT_INDEX"] = "右腳尖";
+Blockly.Msg["POSES_VIDEO_SHOW"] = "視訊媒體";
+Blockly.Msg["POSES_CANVAS_SHOW"] = "畫布";
+Blockly.Msg["POSES_IMAGE_SHOW"] = "圖片";
