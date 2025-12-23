@@ -382,6 +382,12 @@ Blockly.Blocks['poses_canvas_get'] = {
   init: function() {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.POSES_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.POSES_VIDEO_SHOW,"VIDEO"],
+		[Blockly.Msg.POSES_IMAGE_SHOW,"IMAGE"],
+		[Blockly.Msg.POSES_CANVAS_SHOW,"CANVAS"]	
+  ]), "element_");	 	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.POSES_CANVAS_GET_SHOW); 
   this.setInputsInline(true);
@@ -389,3 +395,4 @@ Blockly.Blocks['poses_canvas_get'] = {
   this.setColour(200);
   }
 };
+
