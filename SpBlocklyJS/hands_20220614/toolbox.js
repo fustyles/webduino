@@ -56,8 +56,6 @@ var catHands ='<xml>'+
 '      </block>'+
 '      <block type="hands_number">'+
 '      </block>'+
-'      <block type="hands_canvas_get">'+
-'      </block>'+
 '      <block type="hands_distance">'+
 '        <value name="x0_">'+
 '          <shadow type="math_number">'+
@@ -148,5 +146,8 @@ var catHands ='<xml>'+
 '          </block>'+
 '        </value>'+
 '      </block>'+
+'      <block type="hands_canvas_get">'+
+'      </block>'+  
 '    </category>'+
 '</xml>';
+
