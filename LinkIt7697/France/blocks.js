@@ -5130,7 +5130,7 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp'] = {
         .appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_FINISH"]);	  
     this.appendStatementInput("statement_finish")
         .setCheck(null);		
-    this.setInputsInline(true);
+    this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
     this.setColour(Blockly.Msg["HUE_22"]);
