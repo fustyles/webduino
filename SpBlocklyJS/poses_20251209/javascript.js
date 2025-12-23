@@ -99,5 +99,4 @@ Blockly.JavaScript['poses_canvas_get'] = function(block) {
   else
   	var code = '"canvasElement"';
   return [code, Blockly.JavaScript.ORDER_NONE];
-
 };
