@@ -62,3 +62,6 @@ Blockly.Msg["FACES_UMOUTH_SHOW"] = "上嘴唇";
 Blockly.Msg["FACES_DMOUTH_SHOW"] = "下嘴唇";
 Blockly.Msg["FACES_FACE_SHOW"] = "脸";
 Blockly.Msg["FACES_FACE_3_SHOW"] = "脸(内3)";
+Blockly.Msg["FACES_VIDEO_SHOW"] = "视讯媒体";
+Blockly.Msg["FACES_CANVAS_SHOW"] = "画布";
+Blockly.Msg["FACES_IMAGE_SHOW"] = "图片";
