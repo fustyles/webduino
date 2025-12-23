@@ -2150,7 +2150,16 @@ Blockly.Blocks['amb82_mini_motiondetection_rtsp'] = {
 			["WVGA (640×360)","VIDEO_WVGA"],
 			["QVGA (320×240)","VIDEO_QVGA"],
 			["QCIF (176×144)","VIDEO_QCIF"]
-		]), "framesize");		
+		]), "framesize");
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"])
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["0", "0"],
+			["90", "1"],
+			["180", "3"],		
+			["270", "2"]
+		]), "rotation");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI_MOTIONDETECTION_AFTER"]);	  
     this.appendStatementInput("statement")
@@ -3299,12 +3308,21 @@ Blockly.Blocks['amb82_mini_imageclassification'] = {
 			.appendField(new Blockly.FieldDropdown([
  				["IMGCLASS","DEFAULT_IMGCLASS"],
  				["IMGCLASS_SD","CUSTOMIZED_IMGCLASS"]
-		]), "model");		
+		]), "model");
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"])
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["0", "0"],
+			["90", "1"],
+			["180", "3"],		
+			["270", "2"]
+		]), "rotation");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_AFTER"]);	  
     this.appendStatementInput("statement")
         .setCheck(null);		
-    this.setInputsInline(true);
+    this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
     this.setColour(Blockly.Msg["HUE_28"]);
@@ -4002,7 +4020,16 @@ Blockly.Blocks['amb82_mini_facedetectionrecognition_rtsp'] = {
 			["WVGA (640×360)","VIDEO_WVGA"],
 			["QVGA (320×240)","VIDEO_QVGA"],
 			["QCIF (176×144)","VIDEO_QCIF"]
-		]), "framesize");		
+		]), "framesize");
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"])
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["0", "0"],
+			["90", "1"],
+			["180", "3"],		
+			["270", "2"]
+		]), "rotation");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTIONRECOGNITION_AFTER"]);	  
     this.appendStatementInput("statement")
@@ -4151,7 +4178,16 @@ Blockly.Blocks['amb82_mini_facedetection_rtsp'] = {
 			["FHD (1920×1080)","VIDEO_FHD"],
 			["HD (1280×720)","VIDEO_HD"],
 			["WVGA (640×360)","VIDEO_WVGA"]
-		]), "framesize");		
+		]), "framesize");
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"])
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(new Blockly.FieldDropdown([
+			["0", "0"],
+			["90", "1"],
+			["180", "3"],		
+			["270", "2"]
+		]), "rotation");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI_FACEDETECTION_AFTER"]);	  
     this.appendStatementInput("statement")
@@ -4802,7 +4838,7 @@ Blockly.Blocks['amb82_mini_xy_in_triangle'] = {
 		.setAlign(Blockly.ALIGN_RIGHT) 		
 		.appendField("Y3")
 		.setCheck("Number");			
-	this.setInputsInline(true);
+	this.setInputsInline(false);
 	this.setOutput(true, null); 
 	this.setColour(Blockly.Msg["HUE_20"]);
   }
@@ -4856,7 +4892,7 @@ Blockly.Blocks['amb82_mini_xy_in_quadrilateral'] = {
 		.setCheck("Number");
 	this.appendDummyInput()
 		.appendField(Blockly.Msg["AMB82_MINI_OBJECTDETECTION_XY_ARRANGE"]);
-	this.setInputsInline(true);
+	this.setInputsInline(false);
 	this.setOutput(true, null); 
 	this.setColour(Blockly.Msg["HUE_20"]);
   }
@@ -4869,7 +4905,7 @@ Blockly.Blocks['amb82_mini_draw_createBitmap'] = {
         .appendField(Blockly.Msg["AMB82_MINI_CREATEBITMAP"]);
     this.appendStatementInput("statement")
         .setCheck(null);		
-	this.setInputsInline(true);
+	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
 	this.setColour(Blockly.Msg["HUE_18"]);
@@ -4920,7 +4956,7 @@ Blockly.Blocks['amb82_mini_drawline'] = {
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField(Blockly.Msg["AMB82_MINI_ALPHA"]+" (0-255)")
 			.setCheck("Number");		
-	this.setInputsInline(true);
+	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
 	this.setColour(Blockly.Msg["HUE_18"]);
@@ -4963,7 +4999,7 @@ Blockly.Blocks['amb82_mini_drawpoint'] = {
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField(Blockly.Msg["AMB82_MINI_ALPHA"]+" (0-255)")
 			.setCheck("Number");		
-	this.setInputsInline(true);
+	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
 	this.setColour(Blockly.Msg["HUE_18"]);
@@ -5014,7 +5050,7 @@ Blockly.Blocks['amb82_mini_drawrect'] = {
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField(Blockly.Msg["AMB82_MINI_ALPHA"]+" (0-255)")
 			.setCheck("Number");		
-	this.setInputsInline(true);
+	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
 	this.setColour(Blockly.Msg["HUE_18"]);
@@ -5057,7 +5093,7 @@ Blockly.Blocks['amb82_mini_drawtext'] = {
 			.setAlign(Blockly.ALIGN_RIGHT) 		
 			.appendField(Blockly.Msg["AMB82_MINI_ALPHA"]+" (0-255)")
 			.setCheck("Number");		
-	this.setInputsInline(true);
+	this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
 	this.setColour(Blockly.Msg["HUE_18"]);

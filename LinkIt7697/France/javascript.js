@@ -1840,7 +1840,7 @@ Blockly.Arduino['ip_format'] = function(block) {
 Blockly.Arduino['amb82_mini_motiondetection_rtsp'] = function(block) {
 	
 	Blockly.Arduino.setups_.write_peri_reg = "";
-	
+	var rotation = block.getFieldValue('rotation');
 	var label = block.getFieldValue('label');
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
 	var statement_finish = Blockly.Arduino.statementToCode(block, 'statement_finish');
@@ -1882,50 +1882,52 @@ Blockly.Arduino['amb82_mini_motiondetection_rtsp'] = function(block) {
 	
 	if (mode=="rtsp"||mode=="still") {
 		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "MotionDetection.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELMD 3\n'+type+'VideoSetting configMD(VIDEO_VGA, 10, VIDEO_RGB, 0);\nRTSP rtsp;\nMotionDetection MD;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerMD(1, 1);\nbool flag_motion = false;\nint rtsp_portnum;\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
-		Blockly.Arduino.setups_.setup_amb82_mini_motiondetection = ''+   
-										'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
-										'Camera.configVideoChannel(CHANNELMD, configMD);\n  '+
-										'Camera.videoInit();\n  '+
-										'rtsp.configVideo(config);\n  '+
-										'rtsp.begin();\n  '+
-										'rtsp_portnum = rtsp.getPort();\n  '+
-										'MD.configVideo(configMD);\n  '+
-										'MD.setResultCallback(mdPostProcess);\n  '+
-										'MD.begin();\n  '+
-										'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
-										'videoStreamer.registerOutput(rtsp);\n  '+
-										'if (videoStreamer.begin() != 0) {\n  '+
-										'    Serial.println("StreamIO link start failed");\n  '+
-										'}\n  '+
-										'Camera.channelBegin(amb82_CHANNEL);\n  '+
-										'videoStreamerMD.registerInput(Camera.getStream(CHANNELMD));\n  '+
-										'videoStreamerMD.setStackSize();\n  '+
-										'videoStreamerMD.registerOutput(MD);\n  '+
-										'if (videoStreamerMD.begin() != 0) {\n  '+
-										'    Serial.println("StreamIO link start failed");\n  '+
-										'}\n  '+
-										'Camera.channelBegin(CHANNELMD);\n  '+
-										'OSD.configVideo(amb82_CHANNEL, config);\n  '+
-										'OSD.begin();\n';
+		Blockly.Arduino.setups_.setup_amb82_mini_motiondetection = ''+
+									'config.setRotation('+rotation+');\n  '+ 		
+									'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
+									'Camera.configVideoChannel(CHANNELMD, configMD);\n  '+
+									'Camera.videoInit();\n  '+
+									'rtsp.configVideo(config);\n  '+
+									'rtsp.begin();\n  '+
+									'rtsp_portnum = rtsp.getPort();\n  '+
+									'MD.configVideo(configMD);\n  '+
+									'MD.setResultCallback(mdPostProcess);\n  '+
+									'MD.begin();\n  '+
+									'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
+									'videoStreamer.registerOutput(rtsp);\n  '+
+									'if (videoStreamer.begin() != 0) {\n  '+
+									'    Serial.println("StreamIO link start failed");\n  '+
+									'}\n  '+
+									'Camera.channelBegin(amb82_CHANNEL);\n  '+
+									'videoStreamerMD.registerInput(Camera.getStream(CHANNELMD));\n  '+
+									'videoStreamerMD.setStackSize();\n  '+
+									'videoStreamerMD.registerOutput(MD);\n  '+
+									'if (videoStreamerMD.begin() != 0) {\n  '+
+									'    Serial.println("StreamIO link start failed");\n  '+
+									'}\n  '+
+									'Camera.channelBegin(CHANNELMD);\n  '+
+									'OSD.configVideo(amb82_CHANNEL, config);\n  '+
+									'OSD.begin();\n';
 	} else {
 		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "MotionDetection.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELMD 3\n'+type+'VideoSetting configMD(VIDEO_VGA, 10, VIDEO_RGB, 0);\nMotionDetection MD;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerMD(1, 1);\nbool flag_motion = false;\n\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
-		Blockly.Arduino.setups_.setup_amb82_mini_motiondetection = ''+   
-										'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
-										'Camera.configVideoChannel(CHANNELMD, configMD);\n  '+
-										'Camera.videoInit();\n  '+
-										'MD.configVideo(configMD);\n  '+
-										'MD.setResultCallback(mdPostProcess);\n  '+
-										'MD.begin();\n  '+
-										'Camera.channelBegin(amb82_CHANNEL);\n  '+
-										'videoStreamerMD.registerInput(Camera.getStream(CHANNELMD));\n  '+
-										'videoStreamerMD.setStackSize();\n  '+
-										'videoStreamerMD.registerOutput(MD);\n  '+
-										'if (videoStreamerMD.begin() != 0) {\n  '+
-										'    Serial.println("StreamIO link start failed");\n  '+
-										'}\n  '+
-										'Camera.channelBegin(CHANNELMD);\n  '+
-										'OSD.configVideo(amb82_CHANNEL, config);\n  '+
-										'OSD.begin();\n';
+		Blockly.Arduino.setups_.setup_amb82_mini_motiondetection = ''+ 
+									'config.setRotation('+rotation+');\n  '+ 		
+									'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
+									'Camera.configVideoChannel(CHANNELMD, configMD);\n  '+
+									'Camera.videoInit();\n  '+
+									'MD.configVideo(configMD);\n  '+
+									'MD.setResultCallback(mdPostProcess);\n  '+
+									'MD.begin();\n  '+
+									'Camera.channelBegin(amb82_CHANNEL);\n  '+
+									'videoStreamerMD.registerInput(Camera.getStream(CHANNELMD));\n  '+
+									'videoStreamerMD.setStackSize();\n  '+
+									'videoStreamerMD.registerOutput(MD);\n  '+
+									'if (videoStreamerMD.begin() != 0) {\n  '+
+									'    Serial.println("StreamIO link start failed");\n  '+
+									'}\n  '+
+									'Camera.channelBegin(CHANNELMD);\n  '+
+									'OSD.configVideo(amb82_CHANNEL, config);\n  '+
+									'OSD.begin();\n';
 	}
 
 	if (mode=="tcp")
@@ -2853,7 +2855,7 @@ Blockly.Arduino['amb82_mini_gtimer_function'] = function(block) {
 Blockly.Arduino['amb82_mini_imageclassification'] = function(block) {
 	
 	Blockly.Arduino.setups_.write_peri_reg = "";
-	
+	var rotation = block.getFieldValue('rotation');
 	var model = block.getFieldValue('model');
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
 
@@ -2882,32 +2884,33 @@ Blockly.Arduino['amb82_mini_imageclassification'] = function(block) {
 	'    }\n'+
 	'}';	
 
-	Blockly.Arduino.setups_.setup_amb82_mini_facedetection = ''+   
-										'config.setBitrate(2 * 1024 * 1024);\n'+
-										'Camera.configVideoChannel(amb82_CHANNEL, config);\n'+
-										'Camera.configVideoChannel(CHANNELNN, configNN);\n'+
-										'Camera.videoInit();\n'+
-										'rtsp.configVideo(config);\n'+
-										'rtsp.begin();\n'+
-										'imgclass.configVideo(configNN);\n'+
-										'imgclass.configInputImageColor(IMAGERGB);\n'+
-										'imgclass.setResultCallback(ICPostProcess);\n'+
-										'imgclass.modelSelect(IMAGE_CLASSIFICATION, NA_MODEL, NA_MODEL, NA_MODEL, NA_MODEL, '+model+');\n'+
-										'imgclass.begin();\n'+
-										'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n'+
-										'videoStreamer.registerOutput(rtsp);\n'+
-										'if (videoStreamer.begin() != 0) {\n'+
-										'    Serial.println("StreamIO link start failed");\n'+
-										'}\n'+
-										'Camera.channelBegin(amb82_CHANNEL);\n'+
-										'videoStreamerNN.registerInput(Camera.getStream(CHANNELNN));\n'+
-										'videoStreamerNN.setStackSize();\n'+
-										'videoStreamerNN.setTaskPriority();\n'+
-										'videoStreamerNN.registerOutput(imgclass);\n'+
-										'if (videoStreamerNN.begin() != 0) {\n'+
-										'    Serial.println("StreamIO link start failed");\n'+
-										'}\n'+
-										'Camera.channelBegin(CHANNELNN);\n';
+	Blockly.Arduino.setups_.setup_amb82_mini_facedetection = ''+ 
+									'config.setRotation('+rotation+');\n  '+	
+									'config.setBitrate(2 * 1024 * 1024);\n'+
+									'Camera.configVideoChannel(amb82_CHANNEL, config);\n'+
+									'Camera.configVideoChannel(CHANNELNN, configNN);\n'+
+									'Camera.videoInit();\n'+
+									'rtsp.configVideo(config);\n'+
+									'rtsp.begin();\n'+
+									'imgclass.configVideo(configNN);\n'+
+									'imgclass.configInputImageColor(IMAGERGB);\n'+
+									'imgclass.setResultCallback(ICPostProcess);\n'+
+									'imgclass.modelSelect(IMAGE_CLASSIFICATION, NA_MODEL, NA_MODEL, NA_MODEL, NA_MODEL, '+model+');\n'+
+									'imgclass.begin();\n'+
+									'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n'+
+									'videoStreamer.registerOutput(rtsp);\n'+
+									'if (videoStreamer.begin() != 0) {\n'+
+									'    Serial.println("StreamIO link start failed");\n'+
+									'}\n'+
+									'Camera.channelBegin(amb82_CHANNEL);\n'+
+									'videoStreamerNN.registerInput(Camera.getStream(CHANNELNN));\n'+
+									'videoStreamerNN.setStackSize();\n'+
+									'videoStreamerNN.setTaskPriority();\n'+
+									'videoStreamerNN.registerOutput(imgclass);\n'+
+									'if (videoStreamerNN.begin() != 0) {\n'+
+									'    Serial.println("StreamIO link start failed");\n'+
+									'}\n'+
+									'Camera.channelBegin(CHANNELNN);\n';
 
   return "";
 };
@@ -3530,7 +3533,7 @@ Blockly.Arduino['amb82_mini_audioclassification_object_name'] = function(block) 
 Blockly.Arduino['amb82_mini_facedetectionrecognition_rtsp'] = function(block) {
 	
 	Blockly.Arduino.setups_.write_peri_reg = "";
-	
+	var rotation = block.getFieldValue('rotation');
 	var model = block.getFieldValue('model');
 	var label = block.getFieldValue('label');
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
@@ -3575,59 +3578,61 @@ Blockly.Arduino['amb82_mini_facedetectionrecognition_rtsp'] = function(block) {
 	
 	if (mode=="rtsp"||mode=="still") {
 		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNFaceDetectionRecognition.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\n'+type+'VideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNFaceDetectionRecognition facerecog;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerFDFR(1, 1);\nStreamIO videoStreamerRGBFD(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
-		Blockly.Arduino.setups_.setup_amb82_mini_facedetection = ''+   
-										'config.setBitrate(2 * 1024 * 1024);\n  '+
-										'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
-										'Camera.configVideoChannel(CHANNELNN, configNN);\n  '+
-										'Camera.videoInit();\n  '+
-										'rtsp.configVideo(config);\n  '+
-										'rtsp.begin();\n  '+
-										'facerecog.configVideo(configNN);\n  '+
-										'facerecog.setResultCallback(FRPostProcess);\n  '+
-										'facerecog.modelSelect(FACE_RECOGNITION, NA_MODEL, '+model+', DEFAULT_MOBILEFACENET);\n  '+
-										'facerecog.begin();\n  '+
-										'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
-										'videoStreamer.registerOutput(rtsp);\n  '+
-										'if (videoStreamer.begin() != 0) {\n  '+
-										'    Serial.println("StreamIO link start failed");\n  '+
-										'}\n  '+
-										'Camera.channelBegin(amb82_CHANNEL);\n  '+
-										'videoStreamerRGBFD.registerInput(Camera.getStream(CHANNELNN));\n  '+
-										'videoStreamerRGBFD.setStackSize();\n  '+
-										'videoStreamerRGBFD.setTaskPriority();\n  '+
-										'videoStreamerRGBFD.registerOutput(facerecog);\n  '+
-										'if (videoStreamerRGBFD.begin() != 0) {\n  '+
-										'    Serial.println("StreamIO link start failed");\n  '+
-										'}\n  '+
-										'Camera.channelBegin(CHANNELNN);\n  '+
-										'OSD.configVideo(amb82_CHANNEL, config);\n  '+
-										'OSD.begin();\n';
+		Blockly.Arduino.setups_.setup_amb82_mini_facedetection = ''+
+									'config.setRotation('+rotation+');\n  '+ 		
+									'config.setBitrate(2 * 1024 * 1024);\n  '+
+									'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
+									'Camera.configVideoChannel(CHANNELNN, configNN);\n  '+
+									'Camera.videoInit();\n  '+
+									'rtsp.configVideo(config);\n  '+
+									'rtsp.begin();\n  '+
+									'facerecog.configVideo(configNN);\n  '+
+									'facerecog.setResultCallback(FRPostProcess);\n  '+
+									'facerecog.modelSelect(FACE_RECOGNITION, NA_MODEL, '+model+', DEFAULT_MOBILEFACENET);\n  '+
+									'facerecog.begin();\n  '+
+									'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
+									'videoStreamer.registerOutput(rtsp);\n  '+
+									'if (videoStreamer.begin() != 0) {\n  '+
+									'    Serial.println("StreamIO link start failed");\n  '+
+									'}\n  '+
+									'Camera.channelBegin(amb82_CHANNEL);\n  '+
+									'videoStreamerRGBFD.registerInput(Camera.getStream(CHANNELNN));\n  '+
+									'videoStreamerRGBFD.setStackSize();\n  '+
+									'videoStreamerRGBFD.setTaskPriority();\n  '+
+									'videoStreamerRGBFD.registerOutput(facerecog);\n  '+
+									'if (videoStreamerRGBFD.begin() != 0) {\n  '+
+									'    Serial.println("StreamIO link start failed");\n  '+
+									'}\n  '+
+									'Camera.channelBegin(CHANNELNN);\n  '+
+									'OSD.configVideo(amb82_CHANNEL, config);\n  '+
+									'OSD.begin();\n';
 	} else {
 		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "NNFaceDetectionRecognition.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\n'+type+'VideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNFaceDetectionRecognition facerecog;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerFDFR(1, 1);\nStreamIO videoStreamerRGBFD(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
-		Blockly.Arduino.setups_.setup_amb82_mini_facedetection = ''+   
-										'config.setBitrate(2 * 1024 * 1024);\n  '+
-										'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
-										'Camera.configVideoChannel(CHANNELNN, configNN);\n  '+
-										'Camera.videoInit();\n  '+
-										'facerecog.configVideo(configNN);\n  '+
-										'facerecog.setResultCallback(FRPostProcess);\n  '+
-										'facerecog.modelSelect(FACE_RECOGNITION, NA_MODEL, '+model+', DEFAULT_MOBILEFACENET);\n  '+
-										'facerecog.begin();\n  '+
-										'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
-										'if (videoStreamer.begin() != 0) {\n  '+
-										'    Serial.println("StreamIO link start failed");\n  '+
-										'}\n  '+
-										'Camera.channelBegin(amb82_CHANNEL);\n  '+
-										'videoStreamerRGBFD.registerInput(Camera.getStream(CHANNELNN));\n  '+
-										'videoStreamerRGBFD.setStackSize();\n  '+
-										'videoStreamerRGBFD.setTaskPriority();\n  '+
-										'videoStreamerRGBFD.registerOutput(facerecog);\n  '+
-										'if (videoStreamerRGBFD.begin() != 0) {\n  '+
-										'    Serial.println("StreamIO link start failed");\n  '+
-										'}\n  '+
-										'Camera.channelBegin(CHANNELNN);\n  '+
-										'OSD.configVideo(amb82_CHANNEL, config);\n  '+
-										'OSD.begin();\n';
+		Blockly.Arduino.setups_.setup_amb82_mini_facedetection = ''+ 
+									'config.setRotation('+rotation+');\n  '+ 		
+									'config.setBitrate(2 * 1024 * 1024);\n  '+
+									'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
+									'Camera.configVideoChannel(CHANNELNN, configNN);\n  '+
+									'Camera.videoInit();\n  '+
+									'facerecog.configVideo(configNN);\n  '+
+									'facerecog.setResultCallback(FRPostProcess);\n  '+
+									'facerecog.modelSelect(FACE_RECOGNITION, NA_MODEL, '+model+', DEFAULT_MOBILEFACENET);\n  '+
+									'facerecog.begin();\n  '+
+									'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
+									'if (videoStreamer.begin() != 0) {\n  '+
+									'    Serial.println("StreamIO link start failed");\n  '+
+									'}\n  '+
+									'Camera.channelBegin(amb82_CHANNEL);\n  '+
+									'videoStreamerRGBFD.registerInput(Camera.getStream(CHANNELNN));\n  '+
+									'videoStreamerRGBFD.setStackSize();\n  '+
+									'videoStreamerRGBFD.setTaskPriority();\n  '+
+									'videoStreamerRGBFD.registerOutput(facerecog);\n  '+
+									'if (videoStreamerRGBFD.begin() != 0) {\n  '+
+									'    Serial.println("StreamIO link start failed");\n  '+
+									'}\n  '+
+									'Camera.channelBegin(CHANNELNN);\n  '+
+									'OSD.configVideo(amb82_CHANNEL, config);\n  '+
+									'OSD.begin();\n';
 	}
 
 	if (mode=="tcp")
@@ -3693,7 +3698,7 @@ Blockly.Arduino['amb82_mini_facedetectionrecognition_rtsp_notunknown'] = functio
 Blockly.Arduino['amb82_mini_facedetection_rtsp'] = function(block) {
 	
 	Blockly.Arduino.setups_.write_peri_reg = "";
-	
+	var rotation = block.getFieldValue('rotation');
 	var model = block.getFieldValue('model');
 	var label = block.getFieldValue('label');
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
@@ -3738,56 +3743,58 @@ Blockly.Arduino['amb82_mini_facedetection_rtsp'] = function(block) {
 	
 	if (mode=="rtsp"||mode=="still") {
 		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "RTSP.h"\n#include "NNFaceDetection.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\n'+type+'VideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNFaceDetection facedet;\nRTSP rtsp;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
-		Blockly.Arduino.setups_.setup_amb82_mini_facedetection = ''+   
-										'config.setBitrate(2 * 1024 * 1024);\n  '+
-										'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
-										'Camera.configVideoChannel(CHANNELNN, configNN);\n  '+
-										'Camera.videoInit();\n  '+
-										'rtsp.configVideo(config);\n  '+
-										'rtsp.begin();\n  '+
-										'facedet.configVideo(configNN);\n  '+
-										'facedet.setResultCallback(FDPostProcess);\n  '+
-										'facedet.modelSelect(FACE_DETECTION, NA_MODEL, '+model+', NA_MODEL);\n  '+
-										'facedet.begin();\n  '+
-										'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
-										'videoStreamer.registerOutput(rtsp);\n  '+
-										'if (videoStreamer.begin() != 0) {\n  '+
-										'    Serial.println("StreamIO link start failed");\n  '+
-										'}\n  '+
-										'Camera.channelBegin(amb82_CHANNEL);\n  '+
-										'videoStreamerNN.registerInput(Camera.getStream(CHANNELNN));\n  '+
-										'videoStreamerNN.setStackSize();\n  '+
-										'videoStreamerNN.setTaskPriority();\n  '+
-										'videoStreamerNN.registerOutput(facedet);\n  '+
-										'if (videoStreamerNN.begin() != 0) {\n  '+
-										'    Serial.println("StreamIO link start failed");\n  '+
-										'}\n  '+
-										'Camera.channelBegin(CHANNELNN);\n  '+
-										'OSD.configVideo(amb82_CHANNEL, config);\n  '+
-										'OSD.begin();\n';
+		Blockly.Arduino.setups_.setup_amb82_mini_facedetection = ''+
+									'config.setRotation('+rotation+');\n  '+ 		
+									'config.setBitrate(2 * 1024 * 1024);\n  '+
+									'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
+									'Camera.configVideoChannel(CHANNELNN, configNN);\n  '+
+									'Camera.videoInit();\n  '+
+									'rtsp.configVideo(config);\n  '+
+									'rtsp.begin();\n  '+
+									'facedet.configVideo(configNN);\n  '+
+									'facedet.setResultCallback(FDPostProcess);\n  '+
+									'facedet.modelSelect(FACE_DETECTION, NA_MODEL, '+model+', NA_MODEL);\n  '+
+									'facedet.begin();\n  '+
+									'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
+									'videoStreamer.registerOutput(rtsp);\n  '+
+									'if (videoStreamer.begin() != 0) {\n  '+
+									'    Serial.println("StreamIO link start failed");\n  '+
+									'}\n  '+
+									'Camera.channelBegin(amb82_CHANNEL);\n  '+
+									'videoStreamerNN.registerInput(Camera.getStream(CHANNELNN));\n  '+
+									'videoStreamerNN.setStackSize();\n  '+
+									'videoStreamerNN.setTaskPriority();\n  '+
+									'videoStreamerNN.registerOutput(facedet);\n  '+
+									'if (videoStreamerNN.begin() != 0) {\n  '+
+									'    Serial.println("StreamIO link start failed");\n  '+
+									'}\n  '+
+									'Camera.channelBegin(CHANNELNN);\n  '+
+									'OSD.configVideo(amb82_CHANNEL, config);\n  '+
+									'OSD.begin();\n';
 	} else {
 		Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\nWiFiSSLClient client;\n#include "StreamIO.h"\n#include "VideoStream.h"\n#include "NNFaceDetection.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\n#define CHANNELNN 3\n#define NNWIDTH  576\n#define NNHEIGHT 320\n'+type+'VideoSetting configNN(NNWIDTH, NNHEIGHT, 10, VIDEO_RGB, 0);\nNNFaceDetection facedet;\nStreamIO videoStreamer(1, 1);\nStreamIO videoStreamerNN(1, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
-		Blockly.Arduino.setups_.setup_amb82_mini_facedetection = ''+   
-										'config.setBitrate(2 * 1024 * 1024);\n  '+
-										'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
-										'Camera.configVideoChannel(CHANNELNN, configNN);\n  '+
-										'Camera.videoInit();\n  '+
-										'facedet.configVideo(configNN);\n  '+
-										'facedet.setResultCallback(FDPostProcess);\n  '+
-										'facedet.modelSelect(FACE_DETECTION, NA_MODEL, '+model+', NA_MODEL);\n  '+
-										'facedet.begin();\n  '+
-										'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
-										'Camera.channelBegin(amb82_CHANNEL);\n  '+
-										'videoStreamerNN.registerInput(Camera.getStream(CHANNELNN));\n  '+
-										'videoStreamerNN.setStackSize();\n  '+
-										'videoStreamerNN.setTaskPriority();\n  '+
-										'videoStreamerNN.registerOutput(facedet);\n  '+
-										'if (videoStreamerNN.begin() != 0) {\n  '+
-										'    Serial.println("StreamIO link start failed");\n  '+
-										'}\n  '+
-										'Camera.channelBegin(CHANNELNN);\n  '+
-										'OSD.configVideo(amb82_CHANNEL, config);\n  '+
-										'OSD.begin();\n';
+		Blockly.Arduino.setups_.setup_amb82_mini_facedetection = ''+
+									'config.setRotation('+rotation+');\n  '+ 		
+									'config.setBitrate(2 * 1024 * 1024);\n  '+
+									'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
+									'Camera.configVideoChannel(CHANNELNN, configNN);\n  '+
+									'Camera.videoInit();\n  '+
+									'facedet.configVideo(configNN);\n  '+
+									'facedet.setResultCallback(FDPostProcess);\n  '+
+									'facedet.modelSelect(FACE_DETECTION, NA_MODEL, '+model+', NA_MODEL);\n  '+
+									'facedet.begin();\n  '+
+									'videoStreamer.registerInput(Camera.getStream(amb82_CHANNEL));\n  '+
+									'Camera.channelBegin(amb82_CHANNEL);\n  '+
+									'videoStreamerNN.registerInput(Camera.getStream(CHANNELNN));\n  '+
+									'videoStreamerNN.setStackSize();\n  '+
+									'videoStreamerNN.setTaskPriority();\n  '+
+									'videoStreamerNN.registerOutput(facedet);\n  '+
+									'if (videoStreamerNN.begin() != 0) {\n  '+
+									'    Serial.println("StreamIO link start failed");\n  '+
+									'}\n  '+
+									'Camera.channelBegin(CHANNELNN);\n  '+
+									'OSD.configVideo(amb82_CHANNEL, config);\n  '+
+									'OSD.begin();\n';
 	}										
 
 	if (mode=="tcp")

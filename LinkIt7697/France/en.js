@@ -243,7 +243,7 @@ Blockly.Msg["AMB82_MINI_GTIMER_INTERVAL2"] = "seconds to execute once";
 Blockly.Msg["AMB82_MINI_GTIMER_FUNCTION"] = "Execute function";
 
 Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION"] = "Image Classification";
-Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_AFTER"] = "Classify";
+Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_AFTER"] = "After Classifying the image";
 Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_LIST"] = "Get Classification Attributes";
 Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_NAME"] = "Class Name";
 Blockly.Msg["AMB82_MINI_IMAGECLASSIFICATION_SCORE"] = "Confidence Score";
