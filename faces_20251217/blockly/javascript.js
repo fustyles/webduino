@@ -120,7 +120,11 @@ Blockly.JavaScript['faces_state'] = function(block) {
 };
 
 Blockly.JavaScript['faces_canvas_get'] = function(block) { 
-  var code = '"canvasElement"';
+  var element_ = block.getFieldValue('element_');
+  if (element_=="VIDEO"||element_=="IMAGE")
+  	var code = '"faces"';
+  else
+  	var code = '"canvasElement"';
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -166,4 +170,5 @@ Blockly.JavaScript['faces_points'] = function (block) {
   var code = '"'+points+'"';
   return [code, Blockly.JavaScript.ORDER_NONE];  
 };
+
 
