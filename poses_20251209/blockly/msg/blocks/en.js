@@ -63,3 +63,6 @@ Blockly.Msg["POSES_LEFT_HEEL"] = "Left Heel";
 Blockly.Msg["POSES_RIGHT_HEEL"] = "Right Heel";
 Blockly.Msg["POSES_LEFT_FOOT_INDEX"] = "Left Foot Index";
 Blockly.Msg["POSES_RIGHT_FOOT_INDEX"] = "Right Foot Index";
+Blockly.Msg["POSES_VIDEO_SHOW"] = "Video Media";
+Blockly.Msg["POSES_CANVAS_SHOW"] = "Canvas";
+Blockly.Msg["POSES_IMAGE_SHOW"] = "Image";
