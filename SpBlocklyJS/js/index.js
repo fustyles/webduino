@@ -216,6 +216,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='"+jsPath+"faces_20251217/faces_video.js'></script>";			
 			script += "<script src='"+jsPath+"faces_20251217/faces.js'></script>";
 		}
+		if (xml.indexOf("robotfly_")!=-1) {			
+			script += "<script src='"+jsPath+"RobotFly_20220127/RobotFly.js'></script>";
+		}		
 		
 		return script;
 	}		
@@ -268,9 +271,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		catFaceRecognize,
 		catTrackingColor,
 		catTesseract,
-		catInstascan
-		//,"<sep></sep>",
-		//catRobotFly
+		catInstascan,
+		"<sep></sep>",
+		catRobotFly
 	];
 	
 	//My Search

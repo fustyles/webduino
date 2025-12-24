@@ -15,7 +15,7 @@ Blockly.Blocks['robotfly_initial'] = {
     this.appendValueInput("throttle_")
         .appendField(Blockly.Msg.ROBOTFLY_THROTTLE_SHOW+"[1000±1000]")
 		.setCheck("Number");	  
-    this.setInputsInline(true);
+    this.setInputsInline(false);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);

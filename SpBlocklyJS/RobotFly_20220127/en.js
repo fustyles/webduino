@@ -1,5 +1,5 @@
-Blockly.Msg["CATROBOTFLY"] = "Robot Fly";
-Blockly.Msg["ROBOTFLY_SHOW"] = "Robot Fly";
+Blockly.Msg["CATROBOTFLY"] = "ArkLab RobotFly";
+Blockly.Msg["ROBOTFLY_SHOW"] = "ArkLab RobotFly";
 Blockly.Msg["ROBOTFLY_ROLL_SHOW"] = "Roll Speed";
 Blockly.Msg["ROBOTFLY_PITCH_SHOW"] = "Pitch Speed";
 Blockly.Msg["ROBOTFLY_YAW_SHOW"] = "Yaw Speed";
