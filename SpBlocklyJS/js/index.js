@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		catFaceRecognize,
 		catTrackingColor,
 		catTesseract,
-		catInstascan
+		catInstascan,
 		"<sep></sep>",
 		catRobotFly
 	];
