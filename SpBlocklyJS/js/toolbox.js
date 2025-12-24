@@ -161,6 +161,23 @@ var catSystem = '<xml>'+
 '    </block>'+
 '    </value>'+
 '    </block>'+
+'    <block type="text_replace">'+
+'    <value name="FROM">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="TO">'+
+'    <block type="text">'+
+'    <field name="TEXT"></field>'+
+'    </block>'+
+'    </value>'+
+'    <value name="TEXT">'+
+'    <block type="variables_get">'+
+'    <field name="VAR">i</field>'+
+'    </block>'+
+'    </value>'+
+'    </block>'+
 '    <block type="text_indexOf">'+
 '    <value name="VALUE">'+
 '    <block type="variables_get">'+
