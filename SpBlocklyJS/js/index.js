@@ -457,7 +457,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (result) {
 			newFile();
 			
-			//document.getElementById('javascript_content').attributeStyleMap.clear();	
+			document.getElementById('javascript_content').attributeStyleMap.clear();
+			document.getElementById('javascript_content').style.display = "none";
 		}
 	}
 
