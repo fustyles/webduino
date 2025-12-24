@@ -269,8 +269,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		catTrackingColor,
 		catTesseract,
 		catInstascan
-		//,"<sep></sep>",
-		//catRobotFly
+		"<sep></sep>",
+		catRobotFly
 	];
 	
 	//My Search
