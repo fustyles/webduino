@@ -28,7 +28,7 @@ Blockly.Msg.ADDCUSTOMBLOCKS_WEBUSB_SHOW = "[取得連結] WEBUSB";
 Blockly.Msg.ADDCUSTOMBLOCKS_MYBACKPACK_SHOW = "[取得連結] 暫存積木(教育版)";
 Blockly.Msg.ADDCUSTOMBLOCKS_WEBSERIAL_SHOW = "[取得連結] Web Serial";
 Blockly.Msg.ADDCUSTOMBLOCKS_MQTT_SHOW = "[取得連結] MQTT";
-Blockly.Msg.ADDCUSTOMBLOCKS_ROBOTFLY_SHOW = "[取得連結] ROBOT FLY";
+Blockly.Msg.ADDCUSTOMBLOCKS_ROBOTFLY_SHOW = "[取得連結] ArkLab RobotFly";
 Blockly.Msg.ADDCUSTOMBLOCKS_CHART_SHOW = "[取得連結] 儀表板";
 Blockly.Msg.ADDCUSTOMBLOCKS_WEBBLUETOOTH_SHOW = "[取得連結] Web Bluetooth";
 Blockly.Msg.ADDCUSTOMBLOCKS_SPEECHRECOGNITION_SHOW = "[取得連結] 語音辨識";
@@ -43,4 +43,5 @@ Blockly.Msg.ADDCUSTOMBLOCKS_HOLISTIC_SHOW = "[取得連結] 全身偵測(Mediapi
 Blockly.Msg.ADDCUSTOMBLOCKS_FACES_SHOW = "[取得連結] 臉部偵測(Mediapipe)";
 Blockly.Msg.ADDCUSTOMBLOCKS_POSES_SHOW = "[取得連結] 姿態偵測(Mediapipe)";
 Blockly.Msg.ADDCUSTOMBLOCKS_HANDS_SHOW = "[取得連結] 手勢偵測(Mediapipe)";
+
 
