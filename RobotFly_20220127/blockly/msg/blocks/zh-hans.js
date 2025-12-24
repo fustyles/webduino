@@ -1,4 +1,4 @@
-Blockly.Msg.ROBOTFLY_SHOW = "Robot Fly";
+Blockly.Msg.ROBOTFLY_SHOW = "ArkLab RobotFly";
 Blockly.Msg.ROBOTFLY_ROLL_SHOW = "左右转速";
 Blockly.Msg.ROBOTFLY_PITCH_SHOW = "前后转速";
 Blockly.Msg.ROBOTFLY_YAW_SHOW = "悬转转速";
