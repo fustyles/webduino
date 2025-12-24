@@ -1,1 +1,1 @@
-MSG.catrobotfly = "Robot Fly";
+MSG.catrobotfly = "ArkLab RobotFly";
