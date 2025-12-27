@@ -23611,7 +23611,7 @@ Blockly.Arduino['fu_mqtt_sendimage'] = function(block) {
 															'    }\n'+													
 															'}\n';
 		var code = 'mqtt_sendImage('+topic+');\n';
-	} else if (board=="AMB82-MINI") {
+	} else if (board=="AmebaPro2") {
 		Blockly.Arduino.definitions_.define_mqtt_sendimage =  'void mqtt_sendImage(String topic, bool capture) {\n'+
 															'    if (mqtt_client.connect(MQTT_CLIENTID.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n'+	
 															'      if (capture) {\n'+

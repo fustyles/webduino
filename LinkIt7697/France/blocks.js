@@ -31657,7 +31657,7 @@ Blockly.Blocks['fu_mqtt_sendimage'] = {
 	validate: function(newValue) {
 		const block = this.sourceBlock_;
 		if (!block) return;
-		if (newValue=="AMB82-MINI") {
+		if (newValue=="AmebaPro2") {
 			block.getInput("source").setVisible(true);
 		} else {
 			block.getInput("source").setVisible(false);			
