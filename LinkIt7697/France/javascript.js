@@ -7543,7 +7543,7 @@ Blockly.Arduino['posenet_recognitied'] = function(block) {
 
 Blockly.Arduino['posenet_canvas_get'] = function(block) { 
   var code = '"posenet"';
-  return [code, Blockly.Arduino.ORDER_NONE];
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['pms7003m_read'] = function(block) { 
@@ -11649,7 +11649,7 @@ Blockly.Arduino['hands_canvas_get'] = function(block) {
   	var code = '"hands"';
   else
   	var code = '"canvasElement"';
-  return [code, Blockly.Arduino.ORDER_NONE];
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['hands_number'] = function(block) {
@@ -25188,7 +25188,7 @@ Blockly.Arduino['trackingcolor_pause'] = function(block) {
 
 Blockly.Arduino['trackingcolor_canvas_get'] = function(block) { 
   var code = '"trackingcolor"';
-  return [code, Blockly.Arduino.ORDER_NONE];
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['cocossd_esp32cam'] = function(block) {
@@ -25268,7 +25268,7 @@ Blockly.Arduino['cocossd_recognitied'] = function(block) {
 
 Blockly.Arduino['cocossd_canvas_get'] = function(block) { 
   var code = '"cocossd"';
-  return [code, Blockly.Arduino.ORDER_NONE];
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['cocossd_clear'] = function(block) { 
@@ -25487,7 +25487,7 @@ Blockly.Arduino['holistic_canvas_get'] = function(block) {
   	var code = '"holistic"';
   else
   	var code = '"canvasElement"';
-  return [code, Blockly.Arduino.ORDER_NONE];
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['holistic_all_poistion'] = function(block) {
@@ -25606,7 +25606,7 @@ Blockly.Arduino['teachablemachine_pause'] = function(block) {
 
 Blockly.Arduino['teachablemachine_canvas_get'] = function(block) {
   var code = '"teachablemachine"';
-  return [code, Blockly.Arduino.ORDER_NONE];
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
@@ -26389,7 +26389,7 @@ Blockly.Arduino['faceapidetect_pause'] = function(block) {
 
 Blockly.Arduino['faceapidetect_canvas_get'] = function(block) { 
   var code = '"faceapidetect"';
-  return [code, Blockly.Arduino.ORDER_NONE];
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['faceapirecognize_esp32cam'] = function(block) {
@@ -26486,7 +26486,7 @@ Blockly.Arduino['faceapirecognize_video_position'] = function(block) {
 
 Blockly.Arduino['faceapirecognize_canvas_get'] = function(block) { 
   var code = '"faceapirecognize"';
-  return [code, Blockly.Arduino.ORDER_NONE];
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['faceapirecognize_recognitied'] = function(block) { 
