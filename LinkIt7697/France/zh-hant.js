@@ -2510,6 +2510,9 @@ Blockly.Msg.HOLISTIC_RECOGNITIED_SHOW = "偵測完成後";
 Blockly.Msg.HOLISTIC_RECOGNITIED_PERSONS_SHOW = "有人";
 Blockly.Msg.HOLISTIC_RECOGNITIED_NOBODY_SHOW = "無人";
 Blockly.Msg.HOLISTIC_PAUSE_SHOW = "暫停偵測";
+Blockly.Msg.HOLISTIC_VIDEO_SHOW = "視訊媒體";
+Blockly.Msg.HOLISTIC_CANVAS_SHOW = "畫布";
+Blockly.Msg.HOLISTIC_IMAGE_SHOW = "圖片";
 
 Blockly.Msg.ESP32_CAM_LINENOTIFY_SHOW = "ESP32-CAM 截圖上傳Line通知";
 Blockly.Msg.ESP32_CAM_LINEMESSAGE_SHOW = "訊息字串";
@@ -2547,6 +2550,7 @@ Blockly.Msg.TEACHABLEMACHINE_MAXCLASS_SHOW = "最大可能性分類名稱";
 Blockly.Msg.TEACHABLEMACHINE_MAXPROBABILITY_SHOW = "最大可能性";
 Blockly.Msg.TEACHABLEMACHINE_PAUSE_SHOW = "暫停偵測";
 Blockly.Msg.TEACHABLEMACHINE_DATA_ARRAY_SHOW = "所有可能性資料陣列";
+Blockly.Msg.TEACHABLEMACHINE_CANVAS_GET_SHOW = "取得畫面代碼";
 
 Blockly.Msg.POSENET_SHOW = "姿態偵測";
 Blockly.Msg.POSENET_PERSON_SHOW = "索引";
@@ -2596,6 +2600,7 @@ Blockly.Msg.POSENET_RECOGNITIED_SHOW = "偵測完成後";
 Blockly.Msg.POSENET_LIMIT_SHOW = "無限制";
 Blockly.Msg.POSENET_RECOGNITIED_PERSONS_SHOW = "有人";
 Blockly.Msg.POSENET_RECOGNITIED_NOBODY_SHOW = "無人";
+Blockly.Msg.POSENET_CANVAS_GET_SHOW = "取得畫面代碼";
 
 Blockly.Msg.ESP32_CAM_TFJS_POSENET_SHOW = "姿態偵測 (posenet)";
 Blockly.Msg.ESP32_CAM_TFJS_POSENET_INITIAL_SHOW = "初始設定";
@@ -2726,6 +2731,7 @@ Blockly.Msg.TRACKINGCOLOR_CLEAR_SHOW = "顏色追蹤 清除結果";
 Blockly.Msg.TRACKINGCOLOR_PAUSE_SHOW = "顏色追蹤 暫停偵測";
 Blockly.Msg.TRACKINGCOLOR_RECOGNITIED_SHOW = "顏色追蹤 偵測完成後執行";
 Blockly.Msg.TRACKINGCOLOR_RECOGNITION_SHOW = "偵測完成後執行";	
+Blockly.Msg.TRACKINGCOLOR_CANVAS_GET_SHOW = "取得畫面代碼";
 
 Blockly.Msg.ESP32_CAM_TRACKINGCOLOR_SHOW = "Tracking顏色追蹤網頁";
 
@@ -2997,6 +3003,9 @@ Blockly.Msg.HANDS_CLEAR_SHOW = "清除結果";
 Blockly.Msg.HANDS_RECOGNITIED_SHOW = "偵測完成後";
 Blockly.Msg.HANDS_RECOGNITIED_OBJECT_SHOW = "有手掌";
 Blockly.Msg.HANDS_RECOGNITIED_NOTHING_SHOW = "無手掌";
+Blockly.Msg.HANDS_VIDEO_SHOW = "視訊媒體";
+Blockly.Msg.HANDS_CANVAS_SHOW = "畫布";
+Blockly.Msg.HANDS_IMAGE_SHOW = "圖片";
 
 Blockly.Msg.ESP32_CAM_HANDS_SHOW = "手勢偵測 (mediapipe)";
 Blockly.Msg.ESP32_CAM_HANDS_INITIAL_SHOW = "初始設定";

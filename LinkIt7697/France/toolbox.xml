@@ -4547,6 +4547,8 @@
 				<field name="NUM">1000</field>
 			  </block>
 			</value> 			  
+		  </block>
+		  <block type="teachablemachine_canvas_get">
 		  </block> 		  
 		</category>
 		
@@ -4691,6 +4693,8 @@
 					<field name="NUM">0</field>
 				  </shadow>				
 			</value>	
+		  </block>
+		  <block type="posenet_canvas_get">
 		  </block> 		  
 		</category>
 
@@ -4926,6 +4930,8 @@
 			      </block>
 			    </value>
 			  </block>
+			  <block type="trackingcolor_canvas_get">
+			  </block>			  
 		</category>	
 		
 		<category name="tesseract" id="tesseract">

@@ -2510,6 +2510,9 @@ Blockly.Msg.HOLISTIC_RECOGNITIED_SHOW = "recognitied";
 Blockly.Msg.HOLISTIC_RECOGNITIED_PERSONS_SHOW = "someone was detected";
 Blockly.Msg.HOLISTIC_RECOGNITIED_NOBODY_SHOW = "There is nobody";
 Blockly.Msg.HOLISTIC_PAUSE_SHOW = "Pause";
+Blockly.Msg.HOLISTIC_VIDEO_SHOW = "Video Media";
+Blockly.Msg.HOLISTIC_CANVAS_SHOW = "Canvas";
+Blockly.Msg.HOLISTIC_IMAGE_SHOW = "Image";
 
 Blockly.Msg.ESP32_CAM_LINENOTIFY_SHOW = "ESP32-CAM send still to Line Notify";
 Blockly.Msg.ESP32_CAM_LINEMESSAGE_SHOW = "Message";
@@ -2547,6 +2550,7 @@ Blockly.Msg.TEACHABLEMACHINE_MAXCLASS_SHOW = "Max ClassName";
 Blockly.Msg.TEACHABLEMACHINE_MAXPROBABILITY_SHOW = "Max Probability";
 Blockly.Msg.TEACHABLEMACHINE_PAUSE_SHOW = "Pause";
 Blockly.Msg.TEACHABLEMACHINE_DATA_ARRAY_SHOW = "Result array";
+Blockly.Msg.TEACHABLEMACHINE_CANVAS_GET_SHOW = "Get Canvas ID";
 
 Blockly.Msg.POSENET_SHOW = "Pose Detection";
 Blockly.Msg.POSENET_PERSON_SHOW = "Index";
@@ -2596,6 +2600,7 @@ Blockly.Msg.POSENET_RECOGNITIED_SHOW = "recognitied";
 Blockly.Msg.POSENET_LIMIT_SHOW = "No limit";
 Blockly.Msg.POSENET_RECOGNITIED_PERSONS_SHOW = "someone was detected";
 Blockly.Msg.POSENET_RECOGNITIED_NOBODY_SHOW = "There is nobody";
+Blockly.Msg.POSENET_CANVAS_GET_SHOW = "Get Canvas ID";
 
 Blockly.Msg.ESP32_CAM_TFJS_POSENET_SHOW = "Pose detection(posenet)";
 Blockly.Msg.ESP32_CAM_TFJS_POSENET_INITIAL_SHOW = "Initial";
@@ -2726,6 +2731,7 @@ Blockly.Msg.TRACKINGCOLOR_STATE_SHOW = "TrackColor Detect State";
 Blockly.Msg.TRACKINGCOLOR_CLEAR_SHOW = "TrackColor clear result";
 Blockly.Msg.TRACKINGCOLOR_PAUSE_SHOW = "TrackColor Pause";
 Blockly.Msg.TRACKINGCOLOR_RECOGNITIED_SHOW = "TrackColor recognitied";
+Blockly.Msg.TRACKINGCOLOR_CANVAS_GET_SHOW = "Get Canvas ID";
 
 Blockly.Msg.TESSERACT_SHOW = "Text Recognition (OCR)";
 Blockly.Msg.TESSERACT_WIDTH_SHOW = "Width";
@@ -2994,6 +3000,9 @@ Blockly.Msg.HANDS_CLEAR_SHOW = "clear result";
 Blockly.Msg.HANDS_RECOGNITIED_SHOW = "recognitied";
 Blockly.Msg.HANDS_RECOGNITIED_OBJECT_SHOW = "hand detected";
 Blockly.Msg.HANDS_RECOGNITIED_NOTHING_SHOW = "no hand detected";
+Blockly.Msg.HANDS_VIDEO_SHOW = "Video Media";
+Blockly.Msg.HANDS_CANVAS_SHOW = "Canvas";
+Blockly.Msg.HANDS_IMAGE_SHOW = "Image";
 
 Blockly.Msg.ESP32_CAM_HANDS_SHOW = "Hand Recognition (mediapipe)";
 Blockly.Msg.ESP32_CAM_HANDS_INITIAL_SHOW = "Initial";

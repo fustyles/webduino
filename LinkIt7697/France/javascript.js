@@ -7541,6 +7541,11 @@ Blockly.Arduino['posenet_recognitied'] = function(block) {
   return code;  
 };
 
+Blockly.Arduino['posenet_canvas_get'] = function(block) { 
+  var code = '"posenet"';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['pms7003m_read'] = function(block) { 
   Blockly.Arduino.definitions_['pms7003m_initial'] = "#include \"PMS.h\"\nPMS pms(Serial2);\nPMS::DATA_PMS pms_data;";
   Blockly.Arduino.setups_['pms7003m_setup'] = "Serial2.begin(9600);";
@@ -11639,7 +11644,11 @@ Blockly.Arduino['hands_video_position'] = function(block) {
 };
 
 Blockly.Arduino['hands_canvas_get'] = function(block) { 
-  var code = '"canvasElement"';
+  var element_ = block.getFieldValue('element_');
+  if (element_=="VIDEO"||element_=="IMAGE")
+  	var code = '"hands"';
+  else
+  	var code = '"canvasElement"';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -25177,6 +25186,11 @@ Blockly.Arduino['trackingcolor_pause'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['trackingcolor_canvas_get'] = function(block) { 
+  var code = '"trackingcolor"';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['cocossd_esp32cam'] = function(block) {
 	var jsfile = 'coco-ssd_esp32cam.js';
 	if (block.parentBlock_) {
@@ -25467,8 +25481,12 @@ Blockly.Arduino['holistic_video_position'] = function(block) {
   return code;
 };
 
-Blockly.Arduino['holistic_canvas_get'] = function(block) { 
-  var code = '"canvasElement"';
+Blockly.Arduino['holistic_canvas_get'] = function(block) {
+  var element_ = block.getFieldValue('element_');
+  if (element_=="VIDEO"||element_=="IMAGE")
+  	var code = '"holistic"';
+  else
+  	var code = '"canvasElement"';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -25584,6 +25602,11 @@ Blockly.Arduino['teachablemachine_pause'] = function(block) {
   var value_time = Blockly.Arduino.valueToCode(block, 'time_', Blockly.Arduino.ORDER_ATOMIC);
   var code = 'teachablemachine_state(0);setTimeout(function(){teachablemachine_state(1);}, '+value_time+');\n';
   return code;
+};
+
+Blockly.Arduino['teachablemachine_canvas_get'] = function(block) {
+  var code = '"teachablemachine"';
+  return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
