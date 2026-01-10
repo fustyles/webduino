@@ -892,7 +892,7 @@ Blockly.Arduino['gemini_chat_content_file_read'] = function (block) {
            +'    String filePart = "{\\"inline_data\\": {\\"data\\": \\""+String(encodedData)+"\\", \\"mime_type\\": \\""+mimeType+"\\",},}";\n'
            +'    String textPart = "{\\"text\\": \\""+prompt+"\\",}";\n'
            +'    String request = "{\\"contents\\": [{\\"role\\": \\"user\\", \\"parts\\": ["+filePart+", "+textPart+"]}],}";\n'
-		   +'    client.println("POST /v1beta/models/gemini-2.0-flash:generateContent?key="+Gemini_apikey+" HTTP/1.1");\n'
+		   +'    client.println("POST /v1beta/models/gemini-2.5-flash:generateContent?key="+Gemini_apikey+" HTTP/1.1");\n'
            +'    client.println("Connection: close");\n'
            +'    client.println("Host: generativelanguage.googleapis.com");\n'
            +'    client.println("Content-Type: application/json; charset=utf-8");\n'
@@ -2570,7 +2570,7 @@ Blockly.Arduino['amb82_mini_file_gemini_stt'] = function(block) {
            +'    String filePart = "{\\"inline_data\\": {\\"data\\": \\""+String(encodedData)+"\\", \\"mime_type\\": \\""+mimeType+"\\",},}";\n'
            +'    String textPart = "{\\"text\\": \\""+prompt+"\\",}";\n'
            +'    String request = "{\\"contents\\": [{\\"role\\": \\"user\\", \\"parts\\": ["+filePart+", "+textPart+"]}],}";\n'
-		   +'    client.println("POST /v1beta/models/gemini-2.0-flash:generateContent?key=" + apikey + " HTTP/1.1");\n'
+		   +'    client.println("POST /v1beta/models/gemini-2.5-flash:generateContent?key=" + apikey + " HTTP/1.1");\n'
            +'    client.println("Connection: close");\n'
            +'    client.println("Host: generativelanguage.googleapis.com");\n'
            +'    client.println("Content-Type: application/json; charset=utf-8");\n'
@@ -5256,7 +5256,7 @@ Blockly.Arduino['amb82_mini_gemini_vision'] = function(block) {
 			'    }\n'+
 			'    String Data = "{\\"contents\\": [{\\"parts\\": [{\\"text\\": \\""+message+"\\"}, {\\"inline_data\\": {\\"mime_type\\":\\"image/jpeg\\",\\"data\\":\\""+imageFile+"\\"}}]}]}";\n'+
 			'    \n'+
-			'    client.println("POST /v1beta/models/gemini-2.0-flash:generateContent?key="+key+" HTTP/1.1");\n'+
+			'    client.println("POST /v1beta/models/gemini-2.5-flash:generateContent?key="+key+" HTTP/1.1");\n'+
 			'    client.println("Host: "+String(myDomain));\n'+
 			'    client.println("Content-Type: application/json; charset=utf-8");\n'+
 			'    client.println("Content-Length: " + String(Data.length()));\n'+
@@ -7539,11 +7539,6 @@ Blockly.Arduino['posenet_recognitied'] = function(block) {
   else
 	  var code = 'posenet_unrecognitionFinish = async function() {\n  posenet_state(0);\n' + statements_do + '\n  posenet_state(1);\n};\n';
   return code;  
-};
-
-Blockly.Arduino['posenet_canvas_get'] = function(block) { 
-  var code = '"posenet"';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['pms7003m_read'] = function(block) { 
@@ -11644,12 +11639,8 @@ Blockly.Arduino['hands_video_position'] = function(block) {
 };
 
 Blockly.Arduino['hands_canvas_get'] = function(block) { 
-  var element_ = block.getFieldValue('element_');
-  if (element_=="VIDEO"||element_=="IMAGE")
-  	var code = '"hands"';
-  else
-  	var code = '"canvasElement"';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  var code = '"canvasElement"';
+  return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['hands_number'] = function(block) {
@@ -23620,7 +23611,7 @@ Blockly.Arduino['fu_mqtt_sendimage'] = function(block) {
 															'    }\n'+													
 															'}\n';
 		var code = 'mqtt_sendImage('+topic+');\n';
-	} else if (board=="AmebaPro2") {
+	} else if (board=="AMB82-MINI") {
 		Blockly.Arduino.definitions_.define_mqtt_sendimage =  'void mqtt_sendImage(String topic, bool capture) {\n'+
 															'    if (mqtt_client.connect(MQTT_CLIENTID.c_str(), MQTT_USER, MQTT_PASSWORD)) {\n'+	
 															'      if (capture) {\n'+
@@ -25186,11 +25177,6 @@ Blockly.Arduino['trackingcolor_pause'] = function(block) {
   return code;
 };
 
-Blockly.Arduino['trackingcolor_canvas_get'] = function(block) { 
-  var code = '"trackingcolor"';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
-};
-
 Blockly.Arduino['cocossd_esp32cam'] = function(block) {
 	var jsfile = 'coco-ssd_esp32cam.js';
 	if (block.parentBlock_) {
@@ -25268,7 +25254,7 @@ Blockly.Arduino['cocossd_recognitied'] = function(block) {
 
 Blockly.Arduino['cocossd_canvas_get'] = function(block) { 
   var code = '"cocossd"';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['cocossd_clear'] = function(block) { 
@@ -25481,13 +25467,9 @@ Blockly.Arduino['holistic_video_position'] = function(block) {
   return code;
 };
 
-Blockly.Arduino['holistic_canvas_get'] = function(block) {
-  var element_ = block.getFieldValue('element_');
-  if (element_=="VIDEO"||element_=="IMAGE")
-  	var code = '"holistic"';
-  else
-  	var code = '"canvasElement"';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+Blockly.Arduino['holistic_canvas_get'] = function(block) { 
+  var code = '"canvasElement"';
+  return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['holistic_all_poistion'] = function(block) {
@@ -25602,11 +25584,6 @@ Blockly.Arduino['teachablemachine_pause'] = function(block) {
   var value_time = Blockly.Arduino.valueToCode(block, 'time_', Blockly.Arduino.ORDER_ATOMIC);
   var code = 'teachablemachine_state(0);setTimeout(function(){teachablemachine_state(1);}, '+value_time+');\n';
   return code;
-};
-
-Blockly.Arduino['teachablemachine_canvas_get'] = function(block) {
-  var code = '"teachablemachine"';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['esp32_cam_googledrive'] = function(block) {
@@ -25860,7 +25837,7 @@ Blockly.Arduino['esp32_cam_gemini_vision'] = function(block) {
 			'    String Data = "{\\"contents\\": [{\\"parts\\": [{\\"text\\": \\""+message+"\\"}, {\\"inline_data\\": {\\"mime_type\\":\\"image/jpeg\\",\\"data\\":\\""+imageFile+"\\"}}]}]}";\n'+
 
 			'    \n'+
-			'    client.println("POST /v1beta/models/gemini-2.0-flash:generateContent?key="+key+" HTTP/1.1");\n'+
+			'    client.println("POST /v1beta/models/gemini-2.5-flash:generateContent?key="+key+" HTTP/1.1");\n'+
 			'    client.println("Host: "+String(myDomain));\n'+
 			'    client.println("Content-Type: application/json; charset=utf-8");\n'+
 			'    client.println("Content-Length: " + String(Data.length()));\n'+
@@ -26389,7 +26366,7 @@ Blockly.Arduino['faceapidetect_pause'] = function(block) {
 
 Blockly.Arduino['faceapidetect_canvas_get'] = function(block) { 
   var code = '"faceapidetect"';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['faceapirecognize_esp32cam'] = function(block) {
@@ -26486,7 +26463,7 @@ Blockly.Arduino['faceapirecognize_video_position'] = function(block) {
 
 Blockly.Arduino['faceapirecognize_canvas_get'] = function(block) { 
   var code = '"faceapirecognize"';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['faceapirecognize_recognitied'] = function(block) { 
