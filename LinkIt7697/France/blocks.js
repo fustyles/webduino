@@ -6684,7 +6684,7 @@ Blockly.Blocks['amb82_mini_stream_url'] = {
     this.appendDummyInput()	 
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
-			[Blockly.Msg["AMB82_MINI_STILL_URL"],"/?getstill"],
+			[Blockly.Msg["AMB82_MINI_STILL_URL"],":82/?getstill"],
 			[Blockly.Msg["AMB82_MINI_STREAM_URL"],":81/?stream"]
 		]), "type");		
 	this.setInputsInline(true);
@@ -9391,7 +9391,17 @@ Blockly.Blocks['posenet_recognitied'] = {
   }
 };
 
-
+Blockly.Blocks['posenet_canvas_get'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.POSENET_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.POSENET_CANVAS_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(Blockly.Msg["HUE_10"]);
+  }
+};
 
 
 
@@ -15634,7 +15644,13 @@ Blockly.Blocks['hands_video_position'] = {
 Blockly.Blocks['hands_canvas_get'] = {
   init: function() {
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.HANDS_SHOW);		  
+      .appendField(Blockly.Msg.HANDS_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.HANDS_VIDEO_SHOW,"VIDEO"],
+		[Blockly.Msg.HANDS_IMAGE_SHOW,"IMAGE"],
+		[Blockly.Msg.HANDS_CANVAS_SHOW,"CANVAS"]	
+  ]), "element_");	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HANDS_CANVAS_GET_SHOW); 
   this.setInputsInline(true);
@@ -31657,7 +31673,7 @@ Blockly.Blocks['fu_mqtt_sendimage'] = {
 	validate: function(newValue) {
 		const block = this.sourceBlock_;
 		if (!block) return;
-		if (newValue=="AMB82-MINI") {
+		if (newValue=="AmebaPro2") {
 			block.getInput("source").setVisible(true);
 		} else {
 			block.getInput("source").setVisible(false);			
@@ -31933,6 +31949,18 @@ Blockly.Blocks['trackingcolor_pause'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setColour(60);
+  }
+};
+
+Blockly.Blocks['trackingcolor_canvas_get'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TRACKINGCOLOR_SHOW);
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TRACKINGCOLOR_CANVAS_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(60);
   }
 };
 
@@ -33146,7 +33174,13 @@ Blockly.Blocks['holistic_video_position'] = {
 Blockly.Blocks['holistic_canvas_get'] = {
   init: function() {
   this.appendDummyInput()  
-      .appendField(Blockly.Msg.HOLISTIC_SHOW);	  
+      .appendField(Blockly.Msg.HOLISTIC_SHOW);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([
+		[Blockly.Msg.HOLISTIC_VIDEO_SHOW,"VIDEO"],
+		[Blockly.Msg.HOLISTIC_IMAGE_SHOW,"IMAGE"],
+		[Blockly.Msg.HOLISTIC_CANVAS_SHOW,"CANVAS"]	
+  ]), "element_");	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.HOLISTIC_CANVAS_GET_SHOW); 
   this.setInputsInline(true);
@@ -33622,6 +33656,19 @@ Blockly.Blocks['teachablemachine_pause'] = {
     this.setColour(Blockly.Msg["HUE_12"]);
   }
 };
+
+Blockly.Blocks['teachablemachine_canvas_get'] = {
+  init: function() {
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TEACHABLEMACHINE_SHOW);	  
+  this.appendDummyInput()  
+      .appendField(Blockly.Msg.TEACHABLEMACHINE_CANVAS_GET_SHOW); 
+  this.setInputsInline(true);
+  this.setOutput(true, null); 
+  this.setColour(Blockly.Msg["HUE_12"]);
+  }
+};
+
 
 Blockly.Blocks['esp32_cam_googledrive'] = {
   init: function() {

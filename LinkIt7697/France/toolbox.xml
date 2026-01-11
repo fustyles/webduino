@@ -4547,6 +4547,8 @@
 				<field name="NUM">1000</field>
 			  </block>
 			</value> 			  
+		  </block>
+		  <block type="teachablemachine_canvas_get">
 		  </block> 		  
 		</category>
 		
@@ -4691,6 +4693,8 @@
 					<field name="NUM">0</field>
 				  </shadow>				
 			</value>	
+		  </block>
+		  <block type="posenet_canvas_get">
 		  </block> 		  
 		</category>
 
@@ -4926,6 +4930,8 @@
 			      </block>
 			    </value>
 			  </block>
+			  <block type="trackingcolor_canvas_get">
+			  </block>			  
 		</category>	
 		
 		<category name="tesseract" id="tesseract">
@@ -5331,7 +5337,14 @@
 		</block> 		
 		<block type="transform_async_function">      
 		</block> 		
-
+		<block type="video_base64">
+			<value name="id_">
+			  <block type="text">
+				<field name="TEXT"></field>
+			  </block>
+			</value>   
+		</block>
+		
 		</category>
 		  <category id="catGameElements_sub26" name="catGameElements_sub26"> 
 
@@ -6517,12 +6530,7 @@
 		  <block type="text">
 			<field name="TEXT"></field>
 		  </block>
-		</value>
-		<value name="value_">
-		  <block type="text">
-			<field name="TEXT"></field>
-		  </block>
-		</value> 		
+		</value>		
 		<value name="x_">
 		  <block type="math_number">
 			<field name="NUM">0</field>
@@ -8892,14 +8900,7 @@
 				 <field name="NUM">0</field>
 			   </block>
 			</value>
-		</block>	
-		<block type="video_base64">
-			<value name="id_">
-			  <block type="text">
-				<field name="TEXT"></field>
-			  </block>
-			</value>   
-		</block>		
+		</block>			
 		<block type="page_spreadsheet_function">
 			<value name="spreadsheeturl">
 			  <block type="text">
