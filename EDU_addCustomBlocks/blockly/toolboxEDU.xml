@@ -1,9 +1,8 @@
     <category id="catPlus">
         <block type="addMyBlocks">
           <value name="url">
-            <block type="text">
-              <field name="TEXT"></field>
-            </block>
+
           </value>
         </block> 
     </category>
+
