@@ -2,7 +2,7 @@
 let Gemini_api_key = "";
 let Gemini_model = "";
 let Gemini_model_image_request = "gemini-2.5-flash";
-let Gemini_model_image_generate = "gemini-2.5-flash-image-preview";
+let Gemini_model_image_generate = "gemini-2.5-flash-image";
 let Gemini_model_youtube_request = "gemini-3-flash-preview";
 
 let chatHistory;
@@ -505,6 +505,7 @@ async function gemini_youtube_request(prompt, ytUrl) {
         if (typeof gemini_chat_response === "function") gemini_chat_response(JSON.stringify(error));
     }
 }
+
 
 
 
