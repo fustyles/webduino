@@ -7861,14 +7861,20 @@ Blockly.Blocks['emakefun_io'] = {
     this.appendDummyInput()
           .setAlign(Blockly.ALIGN_RIGHT)
           .appendField(new Blockly.FieldDropdown([
-			["S1","S1"],		
-			["S2","S2"],
-			["S3","S3"],		
-			["S4","S4"],
-			["S5","S5"],		
-			["S6","S6"],
-			["S7","S7"],		
-			["S8","S8"]			
+			["S1 (0~)","S1"],		
+			["S2 (1~)","S2"],
+			["S3 (14~)","S3"],		
+			["S4 (15~)","S4"],
+			["S5 (3~)","S5"],		
+			["S6 (6~)","S6"],
+			["S7 (9~)","S7"],		
+			["S8 (12~)","S8"],
+			["D2 (2)","2"],
+			["D3 (3~)","3"],		
+			["D4 (4)","4"],
+			["D5 (5~)","5"],		
+			["D6 (6~)","6"],
+			["D7 (7)","7"]			
 		  ]), "servo");		  
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
