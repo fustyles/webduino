@@ -21984,7 +21984,131 @@ Blockly.Blocks['linebot_all'] = {
 			[Blockly.Msg.ESP32_LINE_IMAGE_SHOW,"image"], 
 			[Blockly.Msg.ESP32_LINE_LOCATION_SHOW,"location"], 
 			[Blockly.Msg.ESP32_LINE_AUDIO_SHOW,"audio"]
-		], this.validate), "type_"); 	  
+		], this.validate), "type_");
+	this.appendDummyInput()
+		  .setAlign(Blockly.ALIGN_RIGHT)
+		  .appendField(Blockly.Msg["AMB82_MINI_GOOGLETTS_LANGUAGE"])
+		  .appendField(new Blockly.FieldDropdown([
+				["Afrikaans","af"],
+				["Albanian","sq"],
+				["Amharic","am"],
+				["Arabic","ar"],
+				["Armenian","hy"],
+				["Azerbaijani","az"],
+				["Basque","eu"],
+				["Belarusian","be"],
+				["Bengali","bn"],
+				["Bihari","bh"],
+				["Bosnian","bs"],
+				["Breton","br"],
+				["Bulgarian","bg"],
+				["Cambodian","km"],
+				["Catalan","ca"],
+				["Chinese (Simplified)","zh-CN"],
+				["Chinese (Traditional)","zh-TW"],
+				["Corsican","co"],
+				["Croatian","hr"],
+				["Czech","cs"],
+				["Danish","da"],
+				["Dutch","nl"],
+				["English","en"],
+				["Esperanto","eo"],
+				["Estonian","et"],
+				["Faroese","fo"],
+				["Filipino","tl"],
+				["Finnish","fi"],
+				["French","fr"],
+				["Frisian","fy"],
+				["Galician","gl"],
+				["Georgian","ka"],
+				["German","de"],
+				["Greek","el"],
+				["Guarani","gn"],
+				["Gujarati","gu"],
+				["Hausa","ha"],
+				["Hebrew","iw"],
+				["Hindi","hi"],
+				["Hungarian","hu"],
+				["Icelandic","is"],
+				["Indonesian","id"],
+				["Interlingua","ia"],
+				["Irish","ga"],
+				["Italian","it"],
+				["Japanese","ja"],
+				["Javanese","jw"],
+				["Kannada","kn"],
+				["Kazakh","kk"],
+				["Kinyarwanda","rw"],
+				["Kirundi","rn"],
+				["Korean","ko"],
+				["Kurdish","ku"],
+				["Kyrgyz","ky"],
+				["Laothian","lo"],
+				["Latin","la"],
+				["Latvian","lv"],
+				["Lingala","ln"],
+				["Lithuanian","lt"],
+				["Macedonian","mk"],
+				["Malagasy","mg"],
+				["Malay","ms"],
+				["Malayalam","ml"],
+				["Maltese","mt"],
+				["Maori","mi"],
+				["Marathi","mr"],
+				["Moldavian","mo"],
+				["Mongolian","mn"],
+				["Montenegrin","sr-ME"],
+				["Nepali","ne"],
+				["Norwegian","no"],
+				["Norwegian (Nynorsk)","nn"],
+				["Occitan","oc"],
+				["Oriya","or"],
+				["Oromo","om"],
+				["Pashto","ps"],
+				["Persian","fa"],
+				["Polish","pl"],
+				["Portuguese (Brazil)","pt-BR"],
+				["Portuguese (Portugal)","pt-PT"],
+				["Punjabi","pa"],
+				["Quechua","qu"],
+				["Romanian","ro"],
+				["Romansh","rm"],
+				["Russian","ru"],
+				["Scots Gaelic","gd"],
+				["Serbian","sr"],
+				["Serbo-Croatian","sh"],
+				["Sesotho","st"],
+				["Shona","sn"],
+				["Sindhi","sd"],
+				["Sinhalese","si"],
+				["Slovak","sk"],
+				["Slovenian","sl"],
+				["Somali","so"],
+				["Spanish","es"],
+				["Sundanese","su"],
+				["Swahili","sw"],
+				["Swedish","sv"],
+				["Tajik","tg"],
+				["Tamil","ta"],
+				["Tatar","tt"],
+				["Telugu","te"],
+				["Thai","th"],
+				["Tigrinya","ti"],
+				["Tonga","to"],
+				["Turkish","tr"],
+				["Turkmen","tk"],
+				["Twi","tw"],
+				["Uighur","ug"],
+				["Ukrainian","uk"],
+				["Urdu","ur"],
+				["Uzbek","uz"],
+				["Vietnamese","vi"],
+				["Welsh","cy"],
+				["Xhosa","xh"],
+				["Yiddish","yi"],
+				["Yoruba","yo"],
+				["Zulu","zu"]
+			]), "language_");		
     this.appendValueInput("text_")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -22016,7 +22140,7 @@ Blockly.Blocks['linebot_all'] = {
     this.appendValueInput("longitude_")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.ESP32_LINE_LONGITUDE_SHOW,"P4");	
+        .appendField(Blockly.Msg.ESP32_LINE_LONGITUDE_SHOW,"P4");		
 	this.setInputsInline(false);	  
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -22035,10 +22159,11 @@ Blockly.Blocks['linebot_all'] = {
 	this.getField("P3").setVisible(false);
 	this.getInput("longitude_").setVisible(false);
 	this.getField("P4").setVisible(false);
+	this.getField("language_").setVisible(false);	
   },
   validate: function(newValue) {
 	 const block = this.sourceBlock_;
-	 if (newValue=="text"||newValue=="audio") {
+	 if (newValue=="text") {
 		 block.getInput("packageId_").setVisible(false);
 		 block.getField("S1").setVisible(false);
 		 block.getInput("stickerId_").setVisible(false);
@@ -22047,14 +22172,15 @@ Blockly.Blocks['linebot_all'] = {
 		 block.getField("I1").setVisible(false);
 		 block.getInput("previewImageUrl_").setVisible(false);
 		 block.getField("I2").setVisible(false);
-		 block.setInputsInline(true);
+		 block.setInputsInline(false);
 
 		 block.getInput("address_").setVisible(false);
 		 block.getField("P2").setVisible(false);
 		 block.getInput("latitude_").setVisible(false);
 		 block.getField("P3").setVisible(false);
 		 block.getInput("longitude_").setVisible(false);
-		 block.getField("P4").setVisible(false); 		 
+		 block.getField("P4").setVisible(false); 
+		 block.getField("language_").setVisible(false);
 	 }
 	 else if (newValue=="sticker") {
 		 block.getInput("packageId_").setVisible(true);
@@ -22072,7 +22198,8 @@ Blockly.Blocks['linebot_all'] = {
 		 block.getInput("latitude_").setVisible(false);
 		 block.getField("P3").setVisible(false);
 		 block.getInput("longitude_").setVisible(false);
-		 block.getField("P4").setVisible(false); 		 
+		 block.getField("P4").setVisible(false); 
+		 block.getField("language_").setVisible(false);		 
 	 }
 	 else if (newValue=="image") {
 		 block.getInput("packageId_").setVisible(false);
@@ -22091,6 +22218,7 @@ Blockly.Blocks['linebot_all'] = {
 		 block.getField("P3").setVisible(false);
 		 block.getInput("longitude_").setVisible(false);
 		 block.getField("P4").setVisible(false); 
+		 block.getField("language_").setVisible(false);		 
 	 }
 	 else if (newValue=="location") {
 		 block.getInput("packageId_").setVisible(false);
@@ -22108,7 +22236,27 @@ Blockly.Blocks['linebot_all'] = {
 		 block.getInput("latitude_").setVisible(true);
 		 block.getField("P3").setVisible(true);
 		 block.getInput("longitude_").setVisible(true);
-		 block.getField("P4").setVisible(true); 		 
+		 block.getField("P4").setVisible(true); 
+		 block.getField("language_").setVisible(false);		 
+	 }
+	else if (newValue=="audio") {
+		 block.getInput("packageId_").setVisible(false);
+		 block.getField("S1").setVisible(false);
+		 block.getInput("stickerId_").setVisible(false);
+		 block.getField("S2").setVisible(false);
+		 block.getInput("originalContentUrl_").setVisible(false);
+		 block.getField("I1").setVisible(false);
+		 block.getInput("previewImageUrl_").setVisible(false);
+		 block.getField("I2").setVisible(false);
+		 block.getField("language_").setVisible(true);		 
+		 block.setInputsInline(false);
+
+		 block.getInput("address_").setVisible(false);
+		 block.getField("P2").setVisible(false);
+		 block.getInput("latitude_").setVisible(false);
+		 block.getField("P3").setVisible(false);
+		 block.getInput("longitude_").setVisible(false);
+		 block.getField("P4").setVisible(false); 		 
 	 }	 
   } 
 };
