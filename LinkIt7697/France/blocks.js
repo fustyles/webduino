@@ -21982,7 +21982,8 @@ Blockly.Blocks['linebot_all'] = {
 			[Blockly.Msg.ESP32_LINE_TEXT_SHOW,"text"],
 			[Blockly.Msg.ESP32_LINE_STICKER_SHOW,"sticker"], 
 			[Blockly.Msg.ESP32_LINE_IMAGE_SHOW,"image"], 
-			[Blockly.Msg.ESP32_LINE_LOCATION_SHOW,"location"]
+			[Blockly.Msg.ESP32_LINE_LOCATION_SHOW,"location"], 
+			[Blockly.Msg.ESP32_LINE_AUDIO_SHOW,"audio"]
 		], this.validate), "type_"); 	  
     this.appendValueInput("text_")
         .setCheck(null)
@@ -22037,7 +22038,7 @@ Blockly.Blocks['linebot_all'] = {
   },
   validate: function(newValue) {
 	 const block = this.sourceBlock_;
-	 if (newValue=="text") {
+	 if (newValue=="text"||newValue=="audio") {
 		 block.getInput("packageId_").setVisible(false);
 		 block.getField("S1").setVisible(false);
 		 block.getInput("stickerId_").setVisible(false);

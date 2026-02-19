@@ -1364,6 +1364,7 @@ Blockly.Msg.ESP32_LINE_TEXT_SHOW = "文字";
 Blockly.Msg.ESP32_LINE_STICKER_SHOW = "貼圖";
 Blockly.Msg.ESP32_LINE_IMAGE_SHOW = "圖片";
 Blockly.Msg.ESP32_LINE_LOCATION_SHOW = "座標";
+Blockly.Msg.ESP32_LINE_AUDIO_SHOW = "音訊";
 Blockly.Msg.ESP32_LINE_TITLE_SHOW = "標題文字";
 Blockly.Msg.ESP32_LINE_ADDRESS_SHOW = "地址";
 Blockly.Msg.ESP32_LINE_LATITUDE_SHOW = "緯度";

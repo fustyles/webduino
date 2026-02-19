@@ -16517,6 +16517,23 @@ Blockly.Arduino['linebot_all'] = function(block) {
 											'  }\n'+
 											'  return getBody;\n'+
 											'}\n';
+											
+	Blockly.Arduino.definitions_.urlencode ='String urlencode(String str) {\n'+
+											'  const char *msg = str.c_str();\n'+
+											'  const char *hex = "0123456789ABCDEF";\n'+
+											'  String encodedMsg = "";\n'+
+											'  while (*msg != \'\\0\') {\n'+
+											'    if ((\'a\' <= *msg && *msg <= \'z\') || (\'A\' <= *msg && *msg <= \'Z\') || (\'0\' <= *msg && *msg <= \'9\') || *msg == \'-\' || *msg == \'_\' || *msg == \'.\' || *msg == \'~\') {\n'+
+											'      encodedMsg += *msg;\n'+
+											'    } else {\n'+
+											'      encodedMsg += \'%\';\n'+
+											'      encodedMsg += hex[(unsigned char)*msg >> 4];\n'+
+											'      encodedMsg += hex[*msg & 0xf];\n'+
+											'    }\n'+
+											'    msg++;\n'+
+											'  }\n'+
+											'  return encodedMsg;\n'+
+											'}';											
 
   var token = Blockly.Arduino.valueToCode(block, 'token_', Blockly.Arduino.ORDER_ATOMIC);
   var userid = Blockly.Arduino.valueToCode(block, 'userid_', Blockly.Arduino.ORDER_ATOMIC);
@@ -16546,7 +16563,8 @@ Blockly.Arduino['linebot_all'] = function(block) {
 	message = "\"{\\\"to\\\":\\\"\"+String(" + userid + ")+\"\\\",\\\"messages\\\":[{\\\"type\\\":\\\"image\\\",\\\"originalContentUrl\\\":\\\"\"+String(" + originalContentUrl + ")+\"\\\",\\\"previewImageUrl\\\":\\\"\"+String(" + previewImageUrl + ")+\"\\\"}]}\"";
   else if (type=="location")
 	message = "\"{\\\"to\\\":\\\"\"+String(" + userid + ")+\"\\\",\\\"messages\\\":[{\\\"type\\\":\\\"location\\\",\\\"title\\\":\\\"\"+String(" + text + ")+\"\\\",\\\"address\\\":\\\"\"+String(" + address + ")+\"\\\",\\\"latitude\\\":\\\"\"+String(" + latitude + ")+\"\\\",\\\"longitude\\\":\\\"\"+String(" + longitude + ")+\"\\\"}]}\"";
-
+  else if (type=="audio")
+	message = "\"{\\\"to\\\":\\\"\"+String(" + userid + ")+\"\\\",\\\"messages\\\":[{\\\"type\\\":\\\"audio\\\",\\\"originalContentUrl\\\":\\\"https:\/\/translate.google.com\/translate_tts?ie=UTF-8&client=tw-ob&tl=zh-TW&ttsspeed=1&q=\"+urlencode(String(" + text + "))+\"\\\",\\\"duration\\\": 60000}]}\"";
   var code = 'LineBot('+token+', '+message+');\n';
   return code;
 };

@@ -1365,6 +1365,7 @@ Blockly.Msg.ESP32_LINE_TEXT_SHOW = "Text";
 Blockly.Msg.ESP32_LINE_STICKER_SHOW = "Sticker";
 Blockly.Msg.ESP32_LINE_IMAGE_SHOW = "Image";
 Blockly.Msg.ESP32_LINE_LOCATION_SHOW = "Location";
+Blockly.Msg.ESP32_LINE_AUDIO_SHOW = "Audio";
 Blockly.Msg.ESP32_LINE_TITLE_SHOW = "Title Text";
 Blockly.Msg.ESP32_LINE_ADDRESS_SHOW = "Address";
 Blockly.Msg.ESP32_LINE_LATITUDE_SHOW = "Latitude";
