@@ -1480,9 +1480,11 @@ Blockly.Blocks['gemini_chat_initial'] = {
 		["gemini-2.5-flash-image", "gemini-2.5-flash-image"],
 		["gemini-2.5-flash-lite", "gemini-2.5-flash-lite"],
 		["gemini-2.5-pro", "gemini-2.5-pro"],
-		["gemini-3-pro-preview", "gemini-3-pro-preview"],
+		["gemini-3.1-pro-preview", "gemini-3.1-pro-preview"],
 		["gemini-3-pro-image-preview", "gemini-3-pro-image-preview"],
-		["gemini-3-flash-preview", "gemini-3-flash-preview"]
+		["gemini-3-flash-preview", "gemini-3-flash-preview"],
+		["gemini-3.1-flash-lite-preview", "gemini-3.1-flash-lite-preview"],
+		["gemini-3.1-flash-image-preview", "gemini-3.1-flash-image-preview"]
 	  ]), "model"); 	  
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
