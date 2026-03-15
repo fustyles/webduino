@@ -17,7 +17,8 @@ Blockly.Blocks['gemini_chat_initial'] = {
 		["gemini-3.1-pro-preview", "gemini-3.1-pro-preview"],
 		["gemini-3-pro-image-preview", "gemini-3-pro-image-preview"],
 		["gemini-3-flash-preview", "gemini-3-flash-preview"],
-		["gemini-3.1-flash-lite-preview", "gemini-3.1-flash-lite-preview"]
+		["gemini-3.1-flash-lite-preview", "gemini-3.1-flash-lite-preview"],
+		["gemini-3.1-flash-image-preview", "gemini-3.1-flash-image-preview"]
 	  ]), "model");
   this.appendValueInput("tokens")
       .setCheck("Number")
