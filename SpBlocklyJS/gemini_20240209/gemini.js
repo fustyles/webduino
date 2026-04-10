@@ -1,7 +1,7 @@
 'use strict';
 let Gemini_api_key = "";
 let Gemini_model = "";
-let Gemini_model_image_request = "gemini-3-flash-preview";
+let Gemini_model_image_request = "gemini-2.5-flash";
 let Gemini_model_image_generate = "gemini-3.1-flash-image-preview";
 let Gemini_model_youtube_request = "gemini-3-flash-preview";
 
