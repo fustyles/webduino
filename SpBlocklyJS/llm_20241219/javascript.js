@@ -4,8 +4,9 @@ Blockly.JavaScript['llm_chat_initial'] = function (block) {
   var model = Blockly.JavaScript.valueToCode(block, 'model', Blockly.JavaScript.ORDER_ATOMIC); 
   var key = Blockly.JavaScript.valueToCode(block, 'apikey', Blockly.JavaScript.ORDER_ATOMIC);   
   var role = Blockly.JavaScript.valueToCode(block, 'role', Blockly.JavaScript.ORDER_ATOMIC);  
+  var type = block.getFieldValue('type');
   
-  var code = 'llm_chat_initial('+domain+', '+path+', '+model+', '+key+', '+role+');\n';
+  var code = 'llm_chat_initial('+type+', '+domain+', '+path+', '+model+', '+key+', '+role+');\n';
   return code; 
 };
 
