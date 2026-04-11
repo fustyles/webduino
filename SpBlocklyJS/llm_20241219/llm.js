@@ -39,8 +39,8 @@ function llm_chat_request(input_text) {
 
   xhr.onreadystatechange = function () {
 	 if (xhr.readyState === 4) {
-		//console.log(xhr.status);
-		//console.log(xhr.responseText);
+		console.log(xhr.status);
+		console.log(xhr.responseText);
 		let json = eval("(" + xhr.responseText + ")");
 		if (json["error"]) {
 			llm_chat = json["error"]["message"];
