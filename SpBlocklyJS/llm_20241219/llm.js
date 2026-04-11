@@ -49,9 +49,9 @@ function llm_chat_request(input_text) {
 			if (typeof llm_chat_response === 'function') llm_chat_response();
 		}	
 		else if (json["choices"][0]["message"]["content"]) {
-			llm_chat = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/\n/g,"");
-			llm_chat_br = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");
-			llm_chat_n = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"");
+			llm_chat = json["choices"][0]["message"]["content"].replace(/\n/g,"");
+			llm_chat_br = json["choices"][0]["message"]["content"].replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");
+			llm_chat_n = json["choices"][0]["message"]["content"];
 			if (llm_chat_br.indexOf("<br><br>")==0)
 				llm_chat_br = llm_chat_br.replace("<br><br>","");
 			if (llm_chat_n.indexOf("\n\n")==0)
@@ -244,9 +244,9 @@ function llm_chat_image_request(input_text, input_url) {
 			if (typeof llm_chat_response === 'function') llm_chat_response();
 		}	
 		else if (json["choices"][0]["message"]["content"]) {
-			llm_chat = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/\n/g,"");
-			llm_chat_br = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"").replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");
-			llm_chat_n = json["choices"][0]["message"]["content"].replace("？\n\n","").replace("？\n","").replace(/？\n/g,"");
+			llm_chat = json["choices"][0]["message"]["content"].replace(/\n/g,"");
+			llm_chat_br = json["choices"][0]["message"]["content"].replace(/ /g,"&nbsp;").replace(/\n/g,"<br>");
+			llm_chat_n = json["choices"][0]["message"]["content"];
 			if (llm_chat_br.indexOf("<br><br>")==0)
 				llm_chat_br = llm_chat_br.replace("<br><br>","");
 			if (llm_chat_n.indexOf("\n\n")==0)
