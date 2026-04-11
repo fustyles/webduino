@@ -29,7 +29,7 @@ function llm_chat_initial(input_type, input_domain, input_path, input_model, inp
 }  
 
 function llm_chat_request(input_text) {
-  var url = input_type+"://"+llm_chat_domain+llm_chat_path;
+  var url = llm_chat_type+"://"+llm_chat_domain+llm_chat_path;
 
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url);
@@ -224,7 +224,7 @@ function llm_chat_content_file_remote_insert(url) {
 }
 
 function llm_chat_image_request(input_text, input_url) {
-  var url = input_type+"://"+llm_chat_domain+llm_chat_path;
+  var url = llm_chat_type+"://"+llm_chat_domain+llm_chat_path;
 
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url);
