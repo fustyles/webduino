@@ -4,6 +4,7 @@ Author: Chung-Yi Fu (Kaohsiung, Taiwan)   https://www.facebook.com/francefu
 
 'use strict';
 
+let llm_chat_type = "";
 let llm_chat_domain = "";
 let llm_chat_path = "";
 let llm_chat_model = "";
@@ -17,7 +18,8 @@ let llm_chat_br = "";
 let llm_chat_n = "";
 let llm_chat_message = [{"role": "system", "content": llm_chat_role}];	
 
-function llm_chat_initial(input_domain, input_path, input_model, input_key, input_role) {
+function llm_chat_initial(input_type, input_domain, input_path, input_model, input_key, input_role) {
+	llm_chat_type = input_type;	
 	llm_chat_domain = input_domain;
 	llm_chat_path = input_path;
 	llm_chat_model = input_model;	
@@ -27,7 +29,7 @@ function llm_chat_initial(input_domain, input_path, input_model, input_key, inpu
 }  
 
 function llm_chat_request(input_text) {
-  var url = "https://"+llm_chat_domain+llm_chat_path;
+  var url = input_type+"://"+llm_chat_domain+llm_chat_path;
 
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url);
@@ -222,7 +224,7 @@ function llm_chat_content_file_remote_insert(url) {
 }
 
 function llm_chat_image_request(input_text, input_url) {
-  var url = "https://"+llm_chat_domain+llm_chat_path;;
+  var url = input_type+"://"+llm_chat_domain+llm_chat_path;
 
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url);
