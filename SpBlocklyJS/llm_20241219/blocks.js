@@ -21,7 +21,13 @@ Blockly.Blocks['llm_chat_initial'] = {
 	this.appendValueInput("role")
 		.setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.LLM_CHAT_ROLE_SHOW);  	  
+		.appendField(Blockly.Msg.LLM_CHAT_ROLE_SHOW);
+  	this.appendDummyInput()  
+      .setAlign(Blockly.ALIGN_RIGHT)	  
+      .appendField(new Blockly.FieldDropdown([
+		["HTTPS", "https"],
+		["HTTP", "http"]	      
+	  ]), "type");	  
 	this.setInputsInline(false);	  
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
