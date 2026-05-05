@@ -68,7 +68,7 @@
 <category><name>airquality</name><replace>台灣空氣品質</replace></category>
 <category><name>fu_mqtt</name><replace>MQTT</replace></category>
 <category><name>objectreconginition</name><replace>物件辨識</replace></category>
-<category><name>holisticreconginition</name><replace>全身辨識</replace></category>
+<category><name>holisticreconginition</name><replace>全身偵測 (MP)</replace></category>
 <category><name>teachablemachine</name><replace>機器學習(google)</replace></category>
 <category><name>faceapidetect</name><replace>人臉偵測 (face-api)</replace></category>
 <category><name>faceapirecognize</name><replace>人臉辨識 (face-api)</replace></category>
@@ -79,7 +79,7 @@
 <category><name>uartmodule</name><replace>UART</replace></category>
 <category><name>fudfplayer</name><replace>DFPlayer mini</replace></category>
 <category><name>pixelbit</name><replace>Pixel:Bit網頁模組</replace></category>
-<category><name>hands</name><replace>手勢辨識</replace></category>
+<category><name>hands</name><replace>手勢偵測 (MP)</replace></category>
 <category><name>spreadsheet</name><replace>Google試算表</replace></category>
 <category><name>googlemap</name><replace>網頁地圖</replace></category>
 <category><name>taskhandle</name><replace>雙核心任務</replace></category>

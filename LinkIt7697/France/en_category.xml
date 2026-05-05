@@ -68,7 +68,7 @@
 <category><name>airquality</name><replace>Taiwan Air Quality</replace></category>
 <category><name>fu_mqtt</name><replace>MQTT</replace></category>
 <category><name>objectreconginition</name><replace>Object Recognition</replace></category>
-<category><name>holisticreconginition</name><replace>Holistic Recognition</replace></category>
+<category><name>holisticreconginition</name><replace>Holistic Recognition (MP)</replace></category>
 <category><name>teachablemachine</name><replace>Teachable Machine (Google)</replace></category>
 <category><name>faceapidetect</name><replace>Face Detection (face-api)</replace></category>
 <category><name>faceapirecognize</name><replace>Face Recognition (face-api)</replace></category>
@@ -79,7 +79,7 @@
 <category><name>uartmodule</name><replace>UART</replace></category>
 <category><name>fudfplayer</name><replace>DFPlayer mini</replace></category>
 <category><name>pixelbit</name><replace>Pixel:Bit Web Module</replace></category>
-<category><name>hands</name><replace>Hand Gesture Recognition</replace></category>
+<category><name>hands</name><replace>Hand Gesture Recognition (MP)</replace></category>
 <category><name>spreadsheet</name><replace>Google Spreadsheet</replace></category>
 <category><name>googlemap</name><replace>Page Map</replace></category>
 <category><name>taskhandle</name><replace>Dual Core Task</replace></category>

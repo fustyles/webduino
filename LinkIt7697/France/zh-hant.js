@@ -3112,6 +3112,7 @@ Blockly.Msg["SYSTEM_DATETIME_WEEK"] = "星期";
 Blockly.Msg["SYSTEM_DATETIME_HOUR"] = "時";
 Blockly.Msg["SYSTEM_DATETIME_MINUTE"] = "分";
 Blockly.Msg["SYSTEM_DATETIME_SECOND"] = "秒";
+Blockly.Msg["POINT_IN_ELEMENT"] = "點位於元素區域範圍";
 
 Blockly.Msg["CATCHART"] = "儀表板";
 Blockly.Msg["CATCHARTDOUGHNUT"] = "甜甜圈圖";

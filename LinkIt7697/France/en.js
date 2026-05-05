@@ -3107,6 +3107,7 @@ Blockly.Msg["SYSTEM_DATETIME_WEEK"] = "WEEK";
 Blockly.Msg["SYSTEM_DATETIME_HOUR"] = "HOUR";
 Blockly.Msg["SYSTEM_DATETIME_MINUTE"] = "MINUTE";
 Blockly.Msg["SYSTEM_DATETIME_SECOND"] = "SECOND";
+Blockly.Msg["POINT_IN_ELEMENT"] = "Point Within Element Area";
 
 Blockly.Msg["CATCHART"] = "Dashboard";
 Blockly.Msg["CATCHARTDOUGHNUT"] = "Doughnut chart";

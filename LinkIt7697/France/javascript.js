@@ -18776,6 +18776,18 @@ Blockly.Arduino['elements_collision_color'] = function (block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['point_in_element'] = function (block) {
+  var x = Blockly.Arduino.valueToCode(block, 'x_', Blockly.Arduino.ORDER_ATOMIC);
+  var y = Blockly.Arduino.valueToCode(block, 'y_', Blockly.Arduino.ORDER_ATOMIC);
+  var element = block.getFieldValue('element_');
+  var id = Blockly.Arduino.valueToCode(block, 'id_', Blockly.Arduino.ORDER_ATOMIC);
+  
+  element = "'game"+element+"_'+"+id;
+ 
+  var code = 'point_in_element('+x+', '+y+', '+element+')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['image_collision'] = function (block) {
   var value_id1_ = Blockly.Arduino.valueToCode(block, 'id1_', Blockly.Arduino.ORDER_ATOMIC); 
   var value_id2_ = Blockly.Arduino.valueToCode(block, 'id2_', Blockly.Arduino.ORDER_ATOMIC);
