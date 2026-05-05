@@ -5324,6 +5324,7 @@
 		</block>  
 		<block type="music_delete"> 
 		</block>
+		<!--
 		<block type="async_function">
 		      <value name="name_">
 		        <block type="text">
@@ -5353,7 +5354,8 @@
 		</value>     
 		</block> 		
 		<block type="transform_async_function">      
-		</block> 		
+		</block>
+--> 		
 		<block type="video_base64">
 			<value name="id_">
 			  <block type="text">
