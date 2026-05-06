@@ -13513,6 +13513,7 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 
 	Blockly.Arduino.definitions_.sendMessageToTelegram = ''+
 		'void sendMessageToTelegram(String token, String chatid, String text, String keyboard) {\n'+
+		'  text.replace("\\\\n", "%0A");\n'+			
 		'  const char* myDomain = "api.telegram.org";\n'+
 		'  String getAll="", getBody = "";\n'+
 		'  String request = "parse_mode=HTML&chat_id="+chatid+"&text="+text;\n'+
@@ -13764,6 +13765,7 @@ Blockly.Arduino['esp32cam_telegrambot'] = function(block) {
 
 	Blockly.Arduino.definitions_.sendMessageToTelegram = ''+
 		'void sendMessageToTelegram(String token, String chatid, String text, String keyboard) {\n'+
+		'  text.replace("\\\\n", "%0A");\n'+			
 		'  const char* myDomain = "api.telegram.org";\n'+
 		'  String getAll="", getBody = "";\n'+
 		'  String request = "parse_mode=HTML&chat_id="+chatid+"&text="+text;\n'+
@@ -14035,6 +14037,7 @@ Blockly.Arduino['amb82_mini_telegrambot'] = function(block) {
 
 	Blockly.Arduino.definitions_.sendMessageToTelegram = ''+
 		'void sendMessageToTelegram(String token, String chatid, String text, String keyboard) {\n'+
+		'  text.replace("\\\\n", "%0A");\n'+			
 		'  const char* myDomain = "api.telegram.org";\n'+
 		'  String getAll="", getBody = "";\n'+
 		'  String request = "parse_mode=HTML&chat_id="+chatid+"&text="+text;\n'+

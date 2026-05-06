@@ -21992,7 +21992,8 @@ Blockly.Blocks['linenotify_esp32_br'] = {
 		  ,["\\\\n","\\\\n"]
 		  ,["\\n\\r","\\n\\r"]	
 		  ,["\\\\n\\\\r","\\\\n\\\\r"]			
-		  ,["<br>","<br>"]
+		  ,["<br>","<br>"],
+		  ,["%0A","%0A"]		  
 		  ]), "newline"); 		
 	this.setInputsInline(true);
 	this.setOutput(true, null);  
