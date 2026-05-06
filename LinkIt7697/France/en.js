@@ -3574,6 +3574,7 @@ Blockly.Msg.GEMINI_CHAT_MODEL_SHOW = "Model";
 Blockly.Msg.GEMINI_CHAT_READ_SHOW = "Analyze File";
 Blockly.Msg.GEMINI_CHAT_URL_SHOW = "URL";
 Blockly.Msg.GEMINI_CHAT_PROMPT_SHOW = "Prompt";
+Blockly.Msg.GEMINI_CHAT_SEARCH_REQUEST_SHOW = "Search";
 
 Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW = "LLM chat";
 Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW = "Initial";

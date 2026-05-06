@@ -1527,6 +1527,22 @@ Blockly.Blocks['gemini_chat_request'] = {
   }
 };
 
+Blockly.Blocks['gemini_chat_search_request'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.GEMINI_CHAT_SHOW)
+		.appendField(Blockly.Msg.GEMINI_CHAT_REQUEST_SHOW);	  
+	this.appendValueInput("content")
+		.setCheck("String")
+		.setAlign(Blockly.ALIGN_RIGHT);
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.GEMINI_CHAT_SEARCH_REQUEST_SHOW);			
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(110);
+  }
+};
+
 Blockly.Blocks['gemini_chat_content_file_read'] = {
   init: function () {
   this.appendDummyInput()

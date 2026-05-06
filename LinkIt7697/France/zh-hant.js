@@ -3576,6 +3576,7 @@ Blockly.Msg.GEMINI_CHAT_MODEL_SHOW = "模型";
 Blockly.Msg.GEMINI_CHAT_READ_SHOW = "分析檔案";
 Blockly.Msg.GEMINI_CHAT_URL_SHOW = "網址";
 Blockly.Msg.GEMINI_CHAT_PROMPT_SHOW = "提示詞";
+Blockly.Msg.GEMINI_CHAT_SEARCH_REQUEST_SHOW = "搜尋";
 
 Blockly.Msg.CUSTOM_CHAT_SHOW = "LLM 聊天";
 Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW = "初始化";

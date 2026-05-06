@@ -815,6 +815,7 @@ Blockly.Arduino['gemini_chat_request'] = function (block) {
 		+'      delay(100);\n'
 		+'      while (client.available()) {\n'
 		+'          char c = client.read();\n'
+		+'      	Serial.print(c);\n'		
 		+'          if (state==true)\n'
 		+'            getResponse += String(c);\n'
 		+'          if (c == \'\\n\')\n'
@@ -830,11 +831,11 @@ Blockly.Arduino['gemini_chat_request'] = function (block) {
 		+'            state=true;\n'
 		+'          if (getResponse.indexOf("\\"\\n\\r")!=-1&&state==true) {\n'
 		+'            state=false;\n'
-		+'            getResponse = getResponse.substring(0,getResponse.length()-4);\n'
+		+'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'
 		+'            break;\n'		
 		+'          } else if (getResponse.indexOf("\\"")!=-1&&c == \'\\n\'&&state==true) {\n'
 		+'            state=false;\n'
-		+'            getResponse = getResponse.substring(0,getResponse.length()-4);\n'
+		+'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'
 		+'            break;\n'		
 		+'          }\n'
 		+'       }\n'
@@ -854,6 +855,83 @@ Blockly.Arduino['gemini_chat_request'] = function (block) {
 		+'  }\n';
 		
   var code = 'Gemini_chat_request('+content+')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['gemini_chat_search_request'] = function (block) {
+  var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||"Hi";
+  
+  Blockly.Arduino.definitions_['gemini_chat_search_request'] = 'String Gemini_chat_search_request(String message) {\n';
+  
+	if (selectBoardType()=="LinkIt")
+		Blockly.Arduino.definitions_['gemini_chat_request'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_['gemini_chat_request'] += '  client.setInsecure();\n';		
+
+  Blockly.Arduino.definitions_['gemini_chat_search_request'] += ''
+  		+'  message.replace("\\\"", "\\\\\\\"");\n'
+		+'  String user_content = "{\\"role\\": \\"user\\", \\"parts\\":[{ \\"text\\": \\""+ message+"\\" }]}";\n'
+		+'  historical_messages += ", "+user_content;\n'
+		+'  String request = "{\\"contents\\": [" + historical_messages + "],\\"tools\\": [{google_search: {}}],\\"generationConfig\\": {\\"maxOutputTokens\\": " + Gemini_maxOutputTokens + ", \\"temperature\\": " + Gemini_temperature + "}}";\n'
+		+'  if (client.connect("generativelanguage.googleapis.com", 443)) {\n'
+		+'    Serial.println("Connection successful");\n'	
+		+'    client.println("POST /v1beta/models/"+Gemini_model+":generateContent?key="+Gemini_apikey+" HTTP/1.1");\n'
+		+'    client.println("Connection: close");\n'
+		+'    client.println("Host: generativelanguage.googleapis.com");\n'
+		+'    client.println("Content-Type: application/json; charset=utf-8");\n'
+		+'    client.println("Content-Length: " + String(request.length()));\n'
+		+'    client.println();\n'
+		+'    for (int i = 0; i < request.length(); i += 1024) {\n'
+		+'      client.print(request.substring(i, i+1024));\n'
+		+'    }\n'
+		+'    String getResponse="",Feedback="";\n'
+		+'    boolean state = false;\n'
+		+'    int waitTime = 20000;\n'
+		+'    long startTime = millis();\n'
+		+'    while ((startTime + waitTime) > millis()) {\n'
+		+'      //Serial.print(".");\n'
+		+'      delay(100);\n'
+		+'      while (client.available()) {\n'
+		+'          char c = client.read();\n'
+		+'          if (state==true)\n'
+		+'            getResponse += String(c);\n'
+		+'          if (c == \'\\n\')\n'
+		+'            Feedback = "";\n'
+		+'          else if (c != \'\\r\')\n'
+		+'            Feedback += String(c);\n'
+		+'          if (Feedback.indexOf("\\",\\"text\\":\\"")!=-1)\n'
+		+'            state=true;\n'
+		+'          if (Feedback.indexOf("\\"},")!=-1)\n'
+		+'            state=false;\n'
+		+'          startTime = millis();\n'
+		+'          if (Feedback.indexOf("\\",\\"text\\":\\"")!=-1||Feedback.indexOf("\\"text\\": \\"")!=-1)\n'
+		+'            state=true;\n'
+		+'          if (getResponse.indexOf("\\"\\n\\r")!=-1&&state==true) {\n'
+		+'            state=false;\n'
+		+'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'
+		+'            break;\n'		
+		+'          } else if (getResponse.indexOf("\\"")!=-1&&c == \'\\n\'&&state==true) {\n'
+		+'            state=false;\n'
+		+'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'
+		+'            break;\n'		
+		+'          }\n'
+		+'       }\n'
+		+'       if (getResponse.length()>0) {\n'
+		+'          client.stop();\n'
+		+'          String assistant_content = "{\\"role\\": \\"model\\", \\"parts\\":[{ \\"text\\": \\""+ getResponse+"\\" }]}";\n'
+		+'          historical_messages += ", "+assistant_content;\n'
+		+'          return getResponse;\n'
+		+'       }\n'
+		+'    }\n'
+		+'    client.stop();\n'
+		+'    //Serial.println(Feedback);\n'
+		+'    return "error";\n'
+		+'  }\n'
+		+'  else\n'
+		+'    return "Connection failed";\n'
+		+'  }\n';
+		
+  var code = 'Gemini_chat_search_request('+content+')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
