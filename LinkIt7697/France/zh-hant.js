@@ -159,6 +159,7 @@ Blockly.Msg["AMB82_MINI_BOARD_PIN_LED"] = "補光燈";
 Blockly.Msg["AMB82_MINI_BOARD_PIN_BUTTON"] = "功能鍵";
 
 Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "影像上傳Telegram Bot";
+Blockly.Msg["AMB82_MINI_TELEGRAMBOT_SHOW"] = "Telegram Bot(AMB82-MINI)";
 
 Blockly.Msg["AMB82_MINI_MODE"] = "格式";
 Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP串流(無法截圖)";
@@ -2815,8 +2816,9 @@ Blockly.Msg.ESP32_TELEGRAMBOT_EXECUTE_SHOW = "自訂指令區";
 Blockly.Msg.ESP32_TELEGRAMBOT_LOOP_SHOW = "無窮迴圈區";
 Blockly.Msg.ESP32_TELEGRAMBOT_SENDMESSAGE_SHOW = "傳送字串";
 Blockly.Msg.ESP32_TELEGRAMBOT_SENDLINK_SHOW = "傳送圖片網址";
-Blockly.Msg.ESP32_TELEGRAMBOT_GET_TOKEN_SHOW = "取得權杖";
-Blockly.Msg.ESP32_TELEGRAMBOT_GET_CHATID_SHOW = "取得聊天室ID";
+Blockly.Msg.ESP32_TELEGRAMBOT_GET_TOKEN_SHOW = "Telegram Bot取得權杖";
+Blockly.Msg.ESP32_TELEGRAMBOT_GET_CHATID_SHOW = "Telegram Bot取得聊天室ID";
+Blockly.Msg.ESP32_TELEGRAMBOT_GET_MESSAGE_SHOW = "Telegram Bot取得訊息";
 Blockly.Msg.ESP32_TELEGRAMBOT_SEND_SHOW = "傳送";
 Blockly.Msg.ESP32_TELEGRAMBOT_FORMAT_SHOW = "格式";
 Blockly.Msg.ESP32_TELEGRAMBOT_TEXT_SHOW = "字串";

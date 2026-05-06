@@ -2010,6 +2010,140 @@
 			  </block>
 			</statement>
 		  </block>
+		  
+		  <block type="amb82_mini_telegrambot">
+			<field name="baudrate">115200</field>
+			<field name="framesize">CIF</field>
+			<value name="ssid">
+			  <block type="text" id="Th7r$W^)^V4gjlNS2Z7U">
+				<field name="TEXT">teacher</field>
+			  </block>
+			</value>
+			<value name="password">
+			  <block type="text" id="Ke~{(@F3N`2SP]4{_-hX">
+				<field name="TEXT">12345678</field>
+			  </block>
+			</value>
+			<value name="width">
+			  <block type="math_number">
+				<field name="NUM">640</field>
+			  </block>
+			</value> 
+			<value name="height">
+			  <block type="math_number">
+				<field name="NUM">480</field>
+			  </block>
+			</value> 			
+			<value name="token">
+			  <block type="text" id="tysEFmR6bO-ku^%#QWB@">
+				<field name="TEXT"></field>
+			  </block>
+			</value>
+			<value name="chat_id">
+			  <block type="text" id=".yOC5h+!dE31InIu{LAS">
+				<field name="TEXT"></field>
+			  </block>
+			</value>
+			<value name="command">
+			  <block type="text" id="P9C,6WBg0o=kn[B5$XJD">
+				<field name="TEXT">/on turn on led\n/off turn off led\n/still get still\n/restart Restart the board</field>
+			  </block>
+			</value>
+			<value name="keyboard">
+			  <block type="text" id="PU=%lXd_zJ]8aft!axIs">
+				<field name="TEXT">{"keyboard":[[{"text":"/on"},{"text":"/off"},{"text":"/still"},{"text":"/restart"}]],"one_time_keyboard":false}</field>
+			  </block>
+			</value>
+			<statement name="ExecuteCommand">
+			  <block type="controls_if" id="*/bLS|f$8-DT?C6ygQ9q">
+				<mutation elseif="2" else="1"></mutation>
+				<value name="IF0">
+				  <block type="servermodule_cmd" id="9lclm;?eQ[d?43~CSN7N">
+					<value name="text">
+					  <block type="text" id="xP0imd{zb4N.4pRS[~Uu">
+						<field name="TEXT">/on</field>
+					  </block>
+					</value>
+				  </block>
+				</value>
+				<statement name="DO0">
+				  <block type="esp32_telegrambot_sendmessage_custom" id="i%QLmIr$jMZ}RANP45eF">
+					<value name="token">
+					  <block type="esp32_telegrambot_get_token" id="%RAmT[Kw=KbjH.qFJcO-"></block>
+					</value>
+					<value name="chat_id">
+					  <block type="esp32_telegrambot_get_chatid" id="4dqwHmdPoy/+YbbiC!)z"></block>
+					</value>
+					<value name="message">
+					  <block type="text" id="OVRf#w:;H`#4o[l@KDbT">
+						<field name="TEXT">Turn on</field>
+					  </block>
+					</value>
+				  </block>
+				</statement>
+				<value name="IF1">
+				  <block type="servermodule_cmd" id="1;F-:mQZUG^^^-OWZ#):">
+					<value name="text">
+					  <block type="text" id="_/H{+`I18,jt2F`v9xY{">
+						<field name="TEXT">/off</field>
+					  </block>
+					</value>
+				  </block>
+				</value>
+				<statement name="DO1">
+				  <block type="esp32_telegrambot_sendmessage_custom" id="gQ#n,cvV,Gbrl|BTT$N*">
+					<value name="token">
+					  <block type="esp32_telegrambot_get_token" id="NmS|Zxv(]:5LEIBQj=C:"></block>
+					</value>
+					<value name="chat_id">
+					  <block type="esp32_telegrambot_get_chatid" id="CS:D+#ALWF!+;]*RXO[a"></block>
+					</value>
+					<value name="message">
+					  <block type="text" id="!vkuGu#kv0[Rfgu^r]1!">
+						<field name="TEXT">Turn off</field>
+					  </block>
+					</value>
+				  </block>
+				</statement>
+				<value name="IF2">
+				  <block type="servermodule_cmd" id="q+xAv!IL9LxNk~PG2w`e">
+					<value name="text">
+					  <block type="text" id="nPL*=M`]:+w5jde`W%bk">
+						<field name="TEXT">/still</field>
+					  </block>
+					</value>
+				  </block>
+				</value>
+				<statement name="DO2">
+				  <block type="esp32_cam_telegrambot" id="Dnd}5K%^YK)t,+klnOAa">
+					<value name="token">
+					  <block type="esp32_telegrambot_get_token" id="+}z;j-Z_EV[tKlletXEx"></block>
+					</value>
+					<value name="chatid">
+					  <block type="esp32_telegrambot_get_chatid" id="D0Y4,BWjhGg2j%1N]oRh"></block>
+					</value>
+				  </block>
+				</statement>
+				<statement name="ELSE">
+				  <block type="esp32_telegrambot_sendmessage_custom" id="5Lq|jl?|CJARiONSn%1B">
+					<value name="token">
+					  <block type="esp32_telegrambot_get_token" id="7yR%kpUwkh$o)g;AY3OI"></block>
+					</value>
+					<value name="chat_id">
+					  <block type="esp32_telegrambot_get_chatid" id="0+]_(7y~7k-xDwF%-DM5"></block>
+					</value>
+					<value name="message">
+					  <block type="text" id="u?gzadN_c$)IV@H$^5mE">
+						<field name="TEXT">Command is not defined.</field>
+					  </block>
+					</value>
+				  </block>
+				</statement>
+			  </block>
+			</statement>
+		  </block>
+
+		  
 			  <block type="esp32_telegrambot_sendmessage">
 				<value name="message">
 				  <block type="text" id="100">
@@ -2027,7 +2161,9 @@
 			  <block type="esp32_telegrambot_get_token">			
 			  </block>
 			  <block type="esp32_telegrambot_get_chatid">			
-			  </block>				  
+			  </block>
+			  <block type="esp32_telegrambot_get_message">			
+			  </block>			  
 			  <block type="esp32_telegrambot_sendmessage_custom">
 				<value name="message">
 				  <block type="text" id="100">

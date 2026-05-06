@@ -159,6 +159,7 @@ Blockly.Msg["AMB82_MINI_BOARD_PIN_LED"] = "Fill light";
 Blockly.Msg["AMB82_MINI_BOARD_PIN_BUTTON"] = "Function keys";
 
 Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "Upload Screenshot to Telegram Bot";
+Blockly.Msg["AMB82_MINI_TELEGRAMBOT_SHOW"] = "Telegram Bot(AMB82-MINI)";
 
 Blockly.Msg["AMB82_MINI_MODE"] = "Format";
 Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP Streaming (Can't still)";
@@ -2812,8 +2813,9 @@ Blockly.Msg.ESP32_TELEGRAMBOT_EXECUTE_SHOW = "Custom Command Region";
 Blockly.Msg.ESP32_TELEGRAMBOT_LOOP_SHOW = "Loop";
 Blockly.Msg.ESP32_TELEGRAMBOT_SENDMESSAGE_SHOW = "send message";
 Blockly.Msg.ESP32_TELEGRAMBOT_SENDLINK_SHOW = "send photo link";
-Blockly.Msg.ESP32_TELEGRAMBOT_GET_TOKEN_SHOW = "Get Token";
-Blockly.Msg.ESP32_TELEGRAMBOT_GET_CHATID_SHOW = "Get Chat ID";
+Blockly.Msg.ESP32_TELEGRAMBOT_GET_TOKEN_SHOW = "Telegram Bot Get Token";
+Blockly.Msg.ESP32_TELEGRAMBOT_GET_CHATID_SHOW = "Telegram Bot Get Chat ID";
+Blockly.Msg.ESP32_TELEGRAMBOT_GET_MESSAGE_SHOW = "Telegram Bot Get Message";
 Blockly.Msg.ESP32_TELEGRAMBOT_SEND_SHOW = "Send";
 Blockly.Msg.ESP32_TELEGRAMBOT_FORMAT_SHOW = "Format";
 Blockly.Msg.ESP32_TELEGRAMBOT_TEXT_SHOW = "text";
