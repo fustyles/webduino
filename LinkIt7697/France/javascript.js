@@ -14043,7 +14043,8 @@ Blockly.Arduino['amb82_mini_telegrambot'] = function(block) {
 		'  String request = "parse_mode=HTML&chat_id="+chatid+"&text="+text;\n'+
 		'  if (keyboard!="") request += "&reply_markup="+keyboard;\n'+
 		'  Serial.println("Connect to " + String(myDomain));\n'+
-		'  if (client.connect(myDomain, 443)) {\n'+		
+		'  if (client.connect(myDomain, 443)) {\n'+	
+		'    Serial.println("Connection successful");\n'+		
 		'    client.println("POST /bot"+token+"/sendMessage HTTP/1.1");\n'+
 		'    client.println("Host: " + String(myDomain));\n'+
 		'    client.println("Content-Length: " + String(request.length()));\n'+
@@ -14283,7 +14284,8 @@ Blockly.Arduino['esp32_telegrambot_sendmessage_custom'] = function(block) {
 		else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
 				Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  client.setInsecure();\n';			
 		
-		Blockly.Arduino.definitions_.sendMessageToTelegram_custom +='  if (client.connect(myDomain, 443)) {\n'+		
+		Blockly.Arduino.definitions_.sendMessageToTelegram_custom +='  if (client.connect(myDomain, 443)) {\n'+	
+		'    Serial.println("Connection successful");\n'+
 		'    client.println("POST /bot"+token+"/sendMessage HTTP/1.1");\n'+
 		'    client.println("Host: " + String(myDomain));\n'+
 		'    client.println("Content-Length: " + String(request.length()));\n'+
@@ -14376,7 +14378,8 @@ Blockly.Arduino['esp32_telegrambot_sendlink_custom'] = function(block) {
 		else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
 				Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  client.setInsecure();\n';
 		
-		Blockly.Arduino.definitions_.sendLinkToTelegram_custom +='  if (client.connect(myDomain, 443)) {\n'+			
+		Blockly.Arduino.definitions_.sendLinkToTelegram_custom +='  if (client.connect(myDomain, 443)) {\n'+
+		'    Serial.println("Connection successful");\n'+
 		'    client.println("POST /bot"+token+"/sendPhoto HTTP/1.1");\n'+
 		'    client.println("Host: " + String(myDomain));\n'+
 		'    client.println("Content-Length: " + String(request.length()));\n'+
