@@ -159,7 +159,7 @@ Blockly.Msg["AMB82_MINI_BOARD_PIN_LED"] = "Fill light";
 Blockly.Msg["AMB82_MINI_BOARD_PIN_BUTTON"] = "Function keys";
 
 Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "Upload Screenshot to Telegram Bot";
-Blockly.Msg["AMB82_MINI_TELEGRAMBOT_SHOW"] = "Telegram Bot(AMB82-MINI)";
+Blockly.Msg["AMB82_MINI_TELEGRAMBOT_SHOW"] = "Telegram Bot(AmebaPro2)";
 
 Blockly.Msg["AMB82_MINI_MODE"] = "Format";
 Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP Streaming (Can't still)";

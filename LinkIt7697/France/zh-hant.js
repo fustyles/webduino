@@ -159,7 +159,7 @@ Blockly.Msg["AMB82_MINI_BOARD_PIN_LED"] = "補光燈";
 Blockly.Msg["AMB82_MINI_BOARD_PIN_BUTTON"] = "功能鍵";
 
 Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "影像上傳Telegram Bot";
-Blockly.Msg["AMB82_MINI_TELEGRAMBOT_SHOW"] = "Telegram Bot(AMB82-MINI)";
+Blockly.Msg["AMB82_MINI_TELEGRAMBOT_SHOW"] = "Telegram Bot(AmebaPro2)";
 
 Blockly.Msg["AMB82_MINI_MODE"] = "格式";
 Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP串流(無法截圖)";
