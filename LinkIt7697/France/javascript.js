@@ -773,7 +773,7 @@ Blockly.Arduino['gemini_chat_initial'] = function (block) {
 Blockly.Arduino['gemini_chat_config'] = function (block) {
   var config = block.getFieldValue('config');	
   var val = Blockly.Arduino.valueToCode(block, 'val', Blockly.Arduino.ORDER_ATOMIC)||"";	
-  if (config=="maxOutputTokens")
+  if (config=="maxoutputtokens")
 	var code = 'Gemini_maxOutputTokens = '+val+';\n';
   else
 	var code = 'Gemini_temperature = '+val+';\n';
