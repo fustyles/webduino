@@ -3581,6 +3581,10 @@ Blockly.Msg.GEMINI_CHAT_URL_SHOW = "網址";
 Blockly.Msg.GEMINI_CHAT_PROMPT_SHOW = "提示詞";
 Blockly.Msg.GEMINI_CHAT_SEARCH_REQUEST_SHOW = "搜尋";
 Blockly.Msg.GEMINI_CHAT_HISTORICAL_MESSAGES_LENGTH_SHOW = "取得歷史對話紀錄字串長度";
+Blockly.Msg.GEMINI_CHAT_INSERT_SHOW = "插入";
+Blockly.Msg.GEMINI_CHAT_DIALOGUE_SHOW = "對話";
+Blockly.Msg.GEMINI_CHAT_MODEL_SHOW = "模型";
+Blockly.Msg.GEMINI_CHAT_USER_SHOW = "使用者";
 
 Blockly.Msg.CUSTOM_CHAT_SHOW = "LLM 聊天";
 Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW = "初始化";

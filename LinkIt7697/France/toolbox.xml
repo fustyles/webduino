@@ -10187,6 +10187,13 @@
 		  </block>
 		</value>
 	  </block>
+	  <block type="gemini_chat_insert">
+		<value name="content">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block>	  
 	  <block type="gemini_chat_historical_messages_length">
 	  </block>	  
 	  <block type="gemini_chat_reset">

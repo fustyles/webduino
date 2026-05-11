@@ -936,6 +936,17 @@ Blockly.Arduino['gemini_chat_search_request'] = function (block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['gemini_chat_insert'] = function (block) {
+  var source = block.getFieldValue('source');
+  var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||"";  
+  content = content.replace(/^"(.*)"$/, '$1');
+  if (source=="model")
+	var code = 'historical_messages += ", ";\nhistorical_messages += \"{\\\"role\\\": \\\"model\\\", \\\"parts\\\":[{ \\\"text\\\": \\\"'+ content +'\\\"}]}\";\n';
+  else
+	var code = 'historical_messages += ", ";\nhistorical_messages += \"{\\\"role\\\": \\\"user\\\", \\\"parts\\\":[{ \\\"text\\\": \\\"'+ content +'\\\"}]}\";\n';
+  return code; 
+};
+
 Blockly.Arduino['gemini_chat_content_file_read'] = function (block) {
   var key = Blockly.Arduino.valueToCode(block, 'key', Blockly.Arduino.ORDER_ATOMIC)||"";
   var words = Blockly.Arduino.valueToCode(block, 'words', Blockly.Arduino.ORDER_ATOMIC)||"";
@@ -14192,19 +14203,6 @@ Blockly.Arduino['amb82_mini_telegrambot'] = function(block) {
 			'    while (WiFi.status() != WL_CONNECTED) {\n'+
 			'        delay(500);\n'+
 			'        if ((StartTime+5000) < millis()) break;\n'+
-			'    }\n'+
-			'    \n'+
-			'    if (WiFi.status() == WL_CONNECTED) {\n'+    
-			'      Serial.println("");\n'+
-			'      Serial.print("Main page: http://");\n'+
-			'      Serial.println(WiFi.localIP());\n'+
-			'      Serial.print("STA Stream: http://");\n'+
-			'      Serial.print(WiFi.localIP());\n'+
-			'      Serial.println(":81");\n'+
-			'      Serial.print("STA Still: http://");\n'+			
-			'      Serial.print(WiFi.localIP());\n'+
-			'      Serial.println(":82");\n'+				
-			'      break;\n'+
 			'    }\n'+
 			'  }\n'+			
 			'  config.setRotation('+rotation+');\n'+

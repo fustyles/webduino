@@ -3579,6 +3579,10 @@ Blockly.Msg.GEMINI_CHAT_URL_SHOW = "URL";
 Blockly.Msg.GEMINI_CHAT_PROMPT_SHOW = "Prompt";
 Blockly.Msg.GEMINI_CHAT_SEARCH_REQUEST_SHOW = "Search";
 Blockly.Msg.GEMINI_CHAT_HISTORICAL_MESSAGES_LENGTH_SHOW = "Get the length of the history chat string";
+Blockly.Msg.GEMINI_CHAT_INSERT_SHOW = "Insert"; 
+Blockly.Msg.GEMINI_CHAT_DIALOGUE_SHOW = "Dialogue"; 
+Blockly.Msg.GEMINI_CHAT_MODEL_SHOW = "Model"; 
+Blockly.Msg.GEMINI_CHAT_USER_SHOW = "User";
 
 Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW = "LLM chat";
 Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW = "Initial";
