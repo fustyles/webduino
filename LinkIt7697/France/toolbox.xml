@@ -1812,7 +1812,7 @@
 			</value>
 			<value name="command">
 			  <block type="text" id="mIkDvisWz#Je+cv4.Xk:">
-				<field name="TEXT">/on turn on led\n/off turn off led</field>
+				<field name="TEXT">/help command list\n/on turn on led\n/off turn off led</field>
 			  </block>
 			</value>
 			<value name="keyboard">
@@ -1905,7 +1905,7 @@
 			</value>
 			<value name="command">
 			  <block type="text" id="mIkDvisWz#Je+cv4.Xk:">
-				<field name="TEXT">/on turn on led\n/off turn off led</field>
+				<field name="TEXT">/help command list\n/on turn on led\n/off turn off led</field>
 			  </block>
 			</value>
 			<value name="keyboard">
@@ -2009,7 +2009,7 @@
 			</value>
 			<value name="command">
 			  <block type="text" id="mIkDvisWz#Je+cv4.Xk:">
-				<field name="TEXT">/on turn on led\n/off turn off led</field>
+				<field name="TEXT">/help command list\n/on turn on led\n/off turn off led</field>
 			  </block>
 			</value>
 			<value name="keyboard">
@@ -2095,11 +2095,7 @@
 			  <block type="amb82_mini_telegram_custom">				
 			  </block>   			  
 			  <block type="esp32_cam_telegrambot_custom">				
-			  </block>
-			  <block type="esp32_telegrambot_get_token">			
-			  </block>
-			  <block type="esp32_telegrambot_get_chatid">			
-			  </block>			  
+			  </block>		  
 			  <block type="esp32_telegrambot_sendmessage_custom">
 				<value name="message">
 				  <block type="text" id="100">
@@ -2173,6 +2169,10 @@
 				  </block>
 				</value>				
 			  </block>
+			  <block type="esp32_telegrambot_get_token">			
+			  </block>
+			  <block type="esp32_telegrambot_get_chatid">			
+			  </block>				  
 			<block type="text_br">
 				<field name="newline">\n</field>
 			</block>			  
