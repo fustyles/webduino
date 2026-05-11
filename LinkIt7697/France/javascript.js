@@ -14098,8 +14098,8 @@ Blockly.Arduino['amb82_mini_telegrambot'] = function(block) {
   if ((keyboard.indexOf('"')==0)&&(keyboard.lastIndexOf('"')==keyboard.length-1))
     keyboard = keyboard.substring(1,keyboard.length-1);
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
-  var statements_loop = Blockly.Arduino.statementToCode(block, 'loop');
-
+  var funcName = block.id.replace(/[^a-zA-Z]/g, '');
+	
   Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';  
   
   if (framesize=="VIDEO_CUSTOM")
@@ -14276,7 +14276,7 @@ Blockly.Arduino['amb82_mini_telegrambot'] = function(block) {
 			'        if (text!="") {\n'+
 			'          ExecuteCommand(text);\n'+
 			'        }\n'+
-			'      }\n    '+ statements_loop.replace(/\n/g,"\n  ")+
+			'      }\n'+
 			'  delay(1000);\n'+
 			'    }\n'+
 			'  }\n'+
@@ -14289,9 +14289,18 @@ Blockly.Arduino['amb82_mini_telegrambot'] = function(block) {
 			'    }\n'+
 			'  }\n'+
 			'  getTelegramMessage();\n'+
-			'}\n';	
-			
-	Blockly.Arduino.setups_.getTelegramMessage="getTelegramMessage();\n";
+			'}\n';
+
+	Blockly.Arduino.setups_["xTaskCreate_"+funcName] = ''+
+			'if (xTaskCreate('+funcName+', (const char *)"'+funcName+'", 4096, NULL, tskIDLE_PRIORITY + 1, NULL)!= pdPASS) {\n'+
+			'	Serial.println("Create '+funcName+' task failed");\n  '+
+			'}\n';
+
+	Blockly.Arduino.definitions_["xTaskCreate_"+funcName] = ''+
+			'void '+funcName+'(void *param) {\n'+
+			'  (void)param;\n'+
+			'  getTelegramMessage();\n'+
+			'}\n';				
 
   var code = '';
   return code;

@@ -16654,11 +16654,7 @@ Blockly.Blocks['amb82_mini_telegrambot'] = {
     this.appendDummyInput()
         .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_EXECUTE_SHOW);
     this.appendStatementInput("ExecuteCommand")
-        .setCheck(null);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.ESP32_TELEGRAMBOT_LOOP_SHOW);		
-    this.appendStatementInput("loop")
-        .setCheck(null);
+        .setCheck(null);		
     this.setInputsInline(false);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
