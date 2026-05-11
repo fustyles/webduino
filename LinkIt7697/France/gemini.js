@@ -6,7 +6,7 @@ let chatHistory;
 
 function gemini_chat_initial(input_key, input_model, input_tokens, input_temperature, input_role) {
   Gemini_api_key = input_key;
-  Gemini_model = input_model;
+  Gemini_model = "gemini-3-flash-preview";
 
   chatHistory = {history: [],generationConfig: {maxOutputTokens: input_tokens, temperature: input_temperature,},};
   gemini_chat_insert(input_role, "OK");

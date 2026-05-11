@@ -158,7 +158,8 @@ Blockly.Msg["AMB82_MINI_BOARD_PIN_BLUE"] = "Blue light";
 Blockly.Msg["AMB82_MINI_BOARD_PIN_LED"] = "Fill light";
 Blockly.Msg["AMB82_MINI_BOARD_PIN_BUTTON"] = "Function keys";
 
-Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "Upload Screenshot to Telegram Bot";
+Blockly.Msg["AMB82_MINI_TELEGRAMBOT_STILL"] = "Upload Screenshot to Telegram Bot";
+Blockly.Msg["AMB82_MINI_TELEGRAMBOT_STILL_CUSTOM"] = "Telegram Bot(AmebaPro2) Upload Screenshot";
 Blockly.Msg["AMB82_MINI_TELEGRAMBOT_SHOW"] = "Telegram Bot(AmebaPro2)";
 
 Blockly.Msg["AMB82_MINI_MODE"] = "Format";
@@ -2809,7 +2810,7 @@ Blockly.Msg.ESP32_TELEGRAMBOT_CHATID_SHOW = "Chat ID";
 Blockly.Msg.ESP32_TELEGRAMBOT_COMMAND_SHOW = "Command List";	
 Blockly.Msg.ESP32_TELEGRAMBOT_KEYBOARD_SHOW = "Keyboard";		
 Blockly.Msg.ESP32_TELEGRAMBOT_MAINPAGE_SHOW = "Main Page";
-Blockly.Msg.ESP32_TELEGRAMBOT_EXECUTE_SHOW = "Custom Command Region";
+Blockly.Msg.ESP32_TELEGRAMBOT_EXECUTE_SHOW = "Message Region";
 Blockly.Msg.ESP32_TELEGRAMBOT_LOOP_SHOW = "Loop";
 Blockly.Msg.ESP32_TELEGRAMBOT_SENDMESSAGE_SHOW = "send message";
 Blockly.Msg.ESP32_TELEGRAMBOT_SENDLINK_SHOW = "send photo link";
@@ -3577,6 +3578,7 @@ Blockly.Msg.GEMINI_CHAT_READ_SHOW = "Analyze SD card file";
 Blockly.Msg.GEMINI_CHAT_URL_SHOW = "URL";
 Blockly.Msg.GEMINI_CHAT_PROMPT_SHOW = "Prompt";
 Blockly.Msg.GEMINI_CHAT_SEARCH_REQUEST_SHOW = "Search";
+Blockly.Msg.GEMINI_CHAT_HISTORICAL_MESSAGES_LENGTH_SHOW = "Get the length of the history chat string";
 
 Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW = "LLM chat";
 Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW = "Initial";

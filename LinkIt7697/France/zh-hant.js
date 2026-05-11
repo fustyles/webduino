@@ -158,7 +158,8 @@ Blockly.Msg["AMB82_MINI_BOARD_PIN_BLUE"] = "藍燈";
 Blockly.Msg["AMB82_MINI_BOARD_PIN_LED"] = "補光燈";
 Blockly.Msg["AMB82_MINI_BOARD_PIN_BUTTON"] = "功能鍵";
 
-Blockly.Msg["AMB82_MINI_TELEGRAMBOT"] = "影像上傳Telegram Bot";
+Blockly.Msg["AMB82_MINI_TELEGRAMBOT_STILL"] = "截圖上傳 Telegram Bot";
+Blockly.Msg["AMB82_MINI_TELEGRAMBOT_STILL_CUSTOM"] = "Telegram Bot(AmebaPro2) 截圖上傳";
 Blockly.Msg["AMB82_MINI_TELEGRAMBOT_SHOW"] = "Telegram Bot(AmebaPro2)";
 
 Blockly.Msg["AMB82_MINI_MODE"] = "格式";
@@ -882,11 +883,11 @@ Blockly.Msg["WIRE_CLOCK"] = "匯流排計時器頻率";
 
 Blockly.Msg["AMB82_MINI"] = "AmebaPro2";
 Blockly.Msg["AMB82_MINI_INITIAL"] = "初始化";
-Blockly.Msg["AMB82_MINI_LINENOTIFY"] = "影像上傳Line通知";
+Blockly.Msg["AMB82_MINI_LINENOTIFY"] = "截圖上傳Line通知";
 Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_DEFAULT"] = "預設";
 Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"] = "自訂";
-Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"] = "影像上傳Google雲端硬碟";
-Blockly.Msg["AMB82_MINI_SPREADSHEET"] = "影像上傳Google試算表";
+Blockly.Msg["AMB82_MINI_GOOGLEDRIVE"] = "截圖上傳Google雲端硬碟";
+Blockly.Msg["AMB82_MINI_SPREADSHEET"] = "截圖上傳Google試算表";
 Blockly.Msg["AMB82_MINI_STILL_URL"] = "張流網址";
 Blockly.Msg["AMB82_MINI_STREAM_URL"] = "串流網址";
 Blockly.Msg["AMB82_MINI_RTSP_INITIAL"] = "RTSP初始化";
@@ -947,15 +948,15 @@ Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_BITRATE"] = "比特率";
 Blockly.Msg["AMB82_MINI_VIDEO_GETSTILL"] = "影像截取暫存";
 Blockly.Msg["AMB82_MINI_RTP_AUDIO"] = "RTP音訊串流";
 
-Blockly.Msg["AMB82_MINI_OPENAI_VISION"] = "影像上傳openAI視覺分析";
+Blockly.Msg["AMB82_MINI_OPENAI_VISION"] = "截圖上傳openAI視覺分析";
 Blockly.Msg["AMB82_MINI_OPENAI_KEY"] = "openAI Key";		
 Blockly.Msg["AMB82_MINI_OPENAI_MESSAGE"] = "對話訊息";
 
-Blockly.Msg["AMB82_MINI_GEMINI_VISION"] = "影像上傳Gemini視覺分析";
+Blockly.Msg["AMB82_MINI_GEMINI_VISION"] = "截圖上傳Gemini視覺分析";
 Blockly.Msg["AMB82_MINI_GEMINI_KEY"] = "Gemini Key";		
 Blockly.Msg["AMB82_MINI_GEMINI_MESSAGE"] = "對話訊息";
 
-Blockly.Msg["AMB82_MINI_CUSTOM_VISION"] = "影像上傳 VLM 視覺分析";
+Blockly.Msg["AMB82_MINI_CUSTOM_VISION"] = "截圖上傳 VLM 視覺分析";
 Blockly.Msg["AMB82_MINI_CUSTOM_DOMAIN"] = "網域";
 Blockly.Msg["AMB82_MINI_CUSTOM_PATH"] = "路徑";
 Blockly.Msg["AMB82_MINI_CUSTOM_MODEL"] = "模型";
@@ -2812,7 +2813,7 @@ Blockly.Msg.ESP32_TELEGRAMBOT_CHATID_SHOW = "聊天室ID";
 Blockly.Msg.ESP32_TELEGRAMBOT_COMMAND_SHOW = "指令列表";	
 Blockly.Msg.ESP32_TELEGRAMBOT_KEYBOARD_SHOW = "鍵盤";			
 Blockly.Msg.ESP32_TELEGRAMBOT_MAINPAGE_SHOW = "首頁網頁";
-Blockly.Msg.ESP32_TELEGRAMBOT_EXECUTE_SHOW = "自訂指令區";
+Blockly.Msg.ESP32_TELEGRAMBOT_EXECUTE_SHOW = "訊息處理區";
 Blockly.Msg.ESP32_TELEGRAMBOT_LOOP_SHOW = "無窮迴圈區";
 Blockly.Msg.ESP32_TELEGRAMBOT_SENDMESSAGE_SHOW = "傳送字串";
 Blockly.Msg.ESP32_TELEGRAMBOT_SENDLINK_SHOW = "傳送圖片網址";
@@ -3579,6 +3580,7 @@ Blockly.Msg.GEMINI_CHAT_READ_SHOW = "分析SD卡檔案";
 Blockly.Msg.GEMINI_CHAT_URL_SHOW = "網址";
 Blockly.Msg.GEMINI_CHAT_PROMPT_SHOW = "提示詞";
 Blockly.Msg.GEMINI_CHAT_SEARCH_REQUEST_SHOW = "搜尋";
+Blockly.Msg.GEMINI_CHAT_HISTORICAL_MESSAGES_LENGTH_SHOW = "取得歷史對話紀錄字串長度";
 
 Blockly.Msg.CUSTOM_CHAT_SHOW = "LLM 聊天";
 Blockly.Msg.CUSTOM_CHAT_INITIAL_SHOW = "初始化";

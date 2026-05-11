@@ -1523,7 +1523,7 @@ Blockly.Blocks['gemini_chat_request'] = {
 		.setAlign(Blockly.ALIGN_RIGHT);
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
-	this.setColour(110);
+	this.setColour(160);
   }
 };
 
@@ -1539,7 +1539,7 @@ Blockly.Blocks['gemini_chat_search_request'] = {
 		.appendField(Blockly.Msg.GEMINI_CHAT_SEARCH_REQUEST_SHOW);			
 	this.setInputsInline(true);
 	this.setOutput(true, null); 
-	this.setColour(110);
+	this.setColour(160);
   }
 };
 
@@ -1573,7 +1573,7 @@ Blockly.Blocks['gemini_chat_content_file_read'] = {
       .appendField(Blockly.Msg.GEMINI_CHAT_PROMPT_SHOW);	  
   this.setInputsInline(false);
   this.setOutput(true, null); 
-  this.setColour(110);
+  this.setColour(160);
   this.setHelpUrl("https://ai.google.dev/gemini-api/docs/document-processing?hl=zh-tw");	  
   }
 };
@@ -1591,7 +1591,7 @@ Blockly.Blocks['gemini_chat_gs_request'] = {
 		.appendField(Blockly.Msg.GEMINI_SCRIPTID_SHOW);	  
 	this.setInputsInline(false);
 	this.setOutput(true, null); 
-	this.setColour(110);
+	this.setColour(160);
 	this.setHelpUrl("https://github.com/fustyles/webduino/blob/gs/BlocklyduinoF2_gemini.gs");
   }
 };
@@ -1604,11 +1604,20 @@ Blockly.Blocks['gemini_chat_reset'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(110);
+    this.setColour(160);
   }
 };
 
-
+Blockly.Blocks['gemini_chat_historical_messages_length'] = {
+  init: function() {
+	this.appendDummyInput()
+		.appendField(Blockly.Msg.GEMINI_CHAT_SHOW)
+		.appendField(Blockly.Msg.GEMINI_CHAT_HISTORICAL_MESSAGES_LENGTH_SHOW);			
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+	this.setColour(160);
+  }
+};
 
 
 
@@ -2304,7 +2313,7 @@ Blockly.Blocks['amb82_mini_telegram'] = {
   init: function() {
     this.appendDummyInput()
 	    .appendField(Blockly.Msg["AMB82_MINI"])
-		.appendField(Blockly.Msg["AMB82_MINI_TELEGRAMBOT"]);
+		.appendField(Blockly.Msg["AMB82_MINI_TELEGRAMBOT_STILL"]);
     this.appendDummyInput()
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg["VIDEO_BASE64_ORIGIN"])		
@@ -2320,6 +2329,24 @@ Blockly.Blocks['amb82_mini_telegram'] = {
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg.ESP32_CAM_CHATID_SHOW);			
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(Blockly.Msg["HUE_12"]);
+  }
+};
+
+Blockly.Blocks['amb82_mini_telegram_custom'] = {
+  init: function() {
+    this.appendDummyInput()
+		.appendField(Blockly.Msg["AMB82_MINI_TELEGRAMBOT_STILL_CUSTOM"]);
+    this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["VIDEO_BASE64_ORIGIN"])		
+		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["AMB82_MINI_STILL_NEW"],"1"],		
+			[Blockly.Msg["AMB82_MINI_STILL_OLD"],"0"]
+		]), "source");						
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -34220,6 +34247,17 @@ Blockly.Blocks['esp32_cam_telegrambot'] = {
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(Blockly.Msg.ESP32_CAM_CHATID_SHOW);			
+	this.setInputsInline(true);
+	this.setPreviousStatement(!0);
+	this.setNextStatement(!0);
+	this.setColour(Blockly.Msg["HUE_12"]);
+  }
+};
+
+Blockly.Blocks['esp32_cam_telegrambot_custom'] = {
+  init: function() {
+	this.appendDummyInput()
+        .appendField(Blockly.Msg.ESP32_CAM_TELEGRAMBOT_SHOW);				
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);

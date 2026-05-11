@@ -1199,7 +1199,10 @@ Blockly.Arduino['gemini_chat_reset'] = function (block) {
   return code; 
 };
 
-
+Blockly.Arduino['gemini_chat_historical_messages_length'] = function (block) {				
+  var code = 'historical_messages.length()';
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
 
 
 
@@ -2181,7 +2184,77 @@ Blockly.Arduino['amb82_mini_telegram'] = function(block) {
 	return code;			
 }
 
-
+Blockly.Arduino['amb82_mini_telegram_custom'] = function(block) {
+	var source = block.getFieldValue('source');
+	
+	Blockly.Arduino.definitions_.define_base64 ='#include "Base64.h"';
+	
+	Blockly.Arduino.definitions_.sendCapturedImage2Telegram = '\n'+
+	'String sendCapturedImage2Telegram(String token, String chat_id, bool capture) {\n'+
+	'  const char* myDomain = "api.telegram.org";\n'+
+	'  String getAll="", getBody = "";\n'+
+	'  Serial.println("Connect to " + String(myDomain));\n'+
+    '  WiFiSSLClient client;\n'+		
+	'  if (client.connect(myDomain, 443)) {\n'+
+	'    Serial.println("Connection successful");\n'+
+	'    if (capture) {\n'+
+	'      Camera.getImage(0, &img_addr, &img_len);\n'+	
+	'    }\n'+	
+	'    uint8_t *fbBuf = (uint8_t*)img_addr;\n'+
+	'    size_t fbLen = img_len;\n'+ 	
+	'    String head = "--Taiwan\\r\\nContent-Disposition: form-data; name=\\"chat_id\\"; \\r\\n\\r\\n" + chat_id + "\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"photo\\"; filename=\\"esp32-cam.jpg\\"\\r\\nContent-Type: image/jpeg\\r\\n\\r\\n";\n'+
+	'    String tail = "\\r\\n--Taiwan--\\r\\n";\n'+
+	'    uint16_t imageLen = img_len;\n'+
+	'    uint16_t extraLen = head.length() + tail.length();\n'+
+	'    uint16_t totalLen = imageLen + extraLen;\n'+
+	'    client.println("POST /bot"+token+"/sendPhoto HTTP/1.1");\n'+
+	'    client.println("Host: " + String(myDomain));\n'+
+	'    client.println("Content-Length: " + String(totalLen));\n'+
+	'    client.println("Content-Type: multipart/form-data; boundary=Taiwan");\n'+
+	'    client.println();\n'+
+	'    client.print(head);\n'+
+	'    for (size_t n=0;n<fbLen;n=n+1024) {\n'+
+	'      if (n+1024<fbLen) {\n'+
+	'        client.write(fbBuf, 1024);\n'+
+	'        fbBuf += 1024;\n'+
+	'      } else if (fbLen%1024>0) {\n'+
+	'        size_t remainder = fbLen%1024;\n'+
+	'        client.write(fbBuf, remainder);\n'+
+	'      }\n'+
+	'    }\n'+
+	'    client.print(tail);\n'+
+	'    int waitTime = 10000;\n'+
+	'    long startTime = millis();\n'+
+	'    boolean state = false;\n'+
+	'    while ((startTime + waitTime) > millis()) {\n'+
+	'      Serial.print(".");\n'+
+	'      delay(100);\n'+
+	'      while (client.available()) {\n'+
+	'          char c = client.read();\n'+
+	'          if (state==true) getBody += String(c);\n'+
+	'          if (c == \'\\n\') {\n'+
+	'            if (getAll.length()==0) state=true;\n'+
+	'            getAll = "";\n'+
+	'          }\n'+
+	'          else if (c != \'\\r\')\n'+
+	'            getAll += String(c);\n'+
+	'          startTime = millis();\n'+
+	'       }\n'+
+	'       if (getBody.length()>0) break;\n'+
+	'    }\n'+
+	'    client.stop();\n'+
+	'    Serial.println();\n'+
+	'    //Serial.println(getBody);\n'+
+	'  } else {\n'+
+	'    getBody="Connected to api.telegram.org failed.";\n'+
+	'    Serial.println("Connected to api.telegram.org failed.");\n'+
+	'  }\n'+
+	'  return getBody;\n'+
+	'}\n';
+			
+	var code = 'sendCapturedImage2Telegram(token, chat_id, '+source+');\n';
+	return code;			
+}
 
 
 
@@ -26657,6 +26730,83 @@ Blockly.Arduino['esp32_cam_telegrambot'] = function(block) {
 	'}\n';
 			
 	var code = 'sendCapturedImage2Telegram('+token+', '+chatid+');\n';
+	return code;			
+}
+
+Blockly.Arduino['esp32_cam_telegrambot_custom'] = function(block) {
+    var token = Blockly.Arduino.valueToCode(block, 'token', Blockly.Arduino.ORDER_ATOMIC);
+    var chatid = Blockly.Arduino.valueToCode(block, 'chatid', Blockly.Arduino.ORDER_ATOMIC);
+	
+	Blockly.Arduino.definitions_.sendCapturedImage2Telegram = '\n'+
+	'String sendCapturedImage2Telegram(String token, String chat_id) {\n'+
+	'  const char* myDomain = "api.telegram.org";\n'+
+	'  String getAll="", getBody = "";\n'+
+	'  camera_fb_t * fb = NULL;\n'+
+	'  fb = esp_camera_fb_get();\n'+
+	'  if(!fb) {\n'+
+	'    Serial.println("Camera capture failed");\n'+
+	'    delay(1000);\n'+
+	'    return "Camera capture failed";\n'+
+	'  }\n'+  
+	'  Serial.println("Connect to " + String(myDomain));\n';
+	if (arduinoCore_ESP32)
+		Blockly.Arduino.definitions_.sendCapturedImage2Telegram += '  client.setInsecure();\n';
+	Blockly.Arduino.definitions_.sendCapturedImage2Telegram +='  if (client.connect(myDomain, 443)) {\n'+
+	'    Serial.println("Connection successful");\n'+
+	'    String head = "--Taiwan\\r\\nContent-Disposition: form-data; name=\\"chat_id\\"; \\r\\n\\r\\n" + chat_id + "\\r\\n--Taiwan\\r\\nContent-Disposition: form-data; name=\\"photo\\"; filename=\\"esp32-cam.jpg\\"\\r\\nContent-Type: image/jpeg\\r\\n\\r\\n";\n'+
+	'    String tail = "\\r\\n--Taiwan--\\r\\n";\n'+
+	'    uint16_t imageLen = fb->len;\n'+
+	'    uint16_t extraLen = head.length() + tail.length();\n'+
+	'    uint16_t totalLen = imageLen + extraLen;\n'+
+	'    client.println("POST /bot"+token+"/sendPhoto HTTP/1.1");\n'+
+	'    client.println("Host: " + String(myDomain));\n'+
+	'    client.println("Content-Length: " + String(totalLen));\n'+
+	'    client.println("Content-Type: multipart/form-data; boundary=Taiwan");\n'+
+	'    client.println();\n'+
+	'    client.print(head);\n'+
+	'    uint8_t *fbBuf = fb->buf;\n'+
+	'    size_t fbLen = fb->len;\n'+
+	'    for (size_t n=0;n<fbLen;n=n+1024) {\n'+
+	'      if (n+1024<fbLen) {\n'+
+	'        client.write(fbBuf, 1024);\n'+
+	'        fbBuf += 1024;\n'+
+	'      } else if (fbLen%1024>0) {\n'+
+	'        size_t remainder = fbLen%1024;\n'+
+	'        client.write(fbBuf, remainder);\n'+
+	'      }\n'+
+	'    }\n'+
+	'    client.print(tail);\n'+
+	'    esp_camera_fb_return(fb);\n'+
+	'    int waitTime = 10000;\n'+
+	'    long startTime = millis();\n'+
+	'    boolean state = false;\n'+
+	'    while ((startTime + waitTime) > millis()) {\n'+
+	'      Serial.print(".");\n'+
+	'      delay(100);\n'+
+	'      while (client.available()) {\n'+
+	'          char c = client.read();\n'+
+	'          if (state==true) getBody += String(c);\n'+
+	'          if (c == \'\\n\') {\n'+
+	'            if (getAll.length()==0) state=true;\n'+
+	'            getAll = "";\n'+
+	'          }\n'+
+	'          else if (c != \'\\r\')\n'+
+	'            getAll += String(c);\n'+
+	'          startTime = millis();\n'+
+	'       }\n'+
+	'       if (getBody.length()>0) break;\n'+
+	'    }\n'+
+	'    client.stop();\n'+
+	'    Serial.println();\n'+
+	'    Serial.println(getBody);\n'+
+	'  } else {\n'+
+	'    getBody="Connected to api.telegram.org failed.";\n'+
+	'    Serial.println("Connected to api.telegram.org failed.");\n'+
+	'  }\n'+
+	'  return getBody;\n'+
+	'}\n';
+			
+	var code = 'sendCapturedImage2Telegram(token, chat_id);\n';
 	return code;			
 }
 

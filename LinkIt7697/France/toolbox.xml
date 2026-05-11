@@ -2076,8 +2076,8 @@
 			  </block>
 			</statement>
 		  </block>
-
-		  
+			  <block type="esp32_telegrambot_get_message">			
+			  </block>
 			  <block type="esp32_telegrambot_sendmessage">
 				<value name="message">
 				  <block type="text" id="100">
@@ -2091,12 +2091,14 @@
 					<field name="TEXT"></field>
 				  </block>
 				</value>				
-			  </block>				  
+			  </block>
+			  <block type="amb82_mini_telegram_custom">				
+			  </block>   			  
+			  <block type="esp32_cam_telegrambot_custom">				
+			  </block>
 			  <block type="esp32_telegrambot_get_token">			
 			  </block>
 			  <block type="esp32_telegrambot_get_chatid">			
-			  </block>
-			  <block type="esp32_telegrambot_get_message">			
 			  </block>			  
 			  <block type="esp32_telegrambot_sendmessage_custom">
 				<value name="message">
@@ -2131,19 +2133,7 @@
 					<field name="TEXT"></field>
 				  </block>
 				</value>				
-			  </block>   			  
-			  <block type="esp32_cam_telegrambot">
-				<value name="token">
-				  <block type="text">
-					<field name="TEXT"></field>
-				  </block>
-				</value>
-				<value name="chatid">
-				  <block type="text">
-					<field name="TEXT"></field>
-				  </block>
-				</value>				
-			  </block>
+			  </block> 			  
 			<block type="esp32_telegrambot_spreadsheet_sendcell">
 				<value name="token">
 				  <block type="text">
@@ -10196,6 +10186,8 @@
 			<field name="TEXT"></field>
 		  </block>
 		</value>
+	  </block>
+	  <block type="gemini_chat_historical_messages_length">
 	  </block>	  
 	  <block type="gemini_chat_reset">
 	  </block>
