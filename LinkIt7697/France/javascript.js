@@ -786,9 +786,11 @@ Blockly.Arduino['gemini_chat_request'] = function (block) {
   Blockly.Arduino.definitions_['gemini_chat_request'] = 'String Gemini_chat_request(String message) {\n';
   
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['gemini_chat_request'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+		Blockly.Arduino.definitions_['gemini_chat_request'] += '  TLSClient client;\n  client.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
-			Blockly.Arduino.definitions_['gemini_chat_request'] += '  client.setInsecure();\n';		
+		Blockly.Arduino.definitions_['gemini_chat_request'] += '  WiFiClientSecure client;\n  client.setInsecure();\n';
+	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra")
+		Blockly.Arduino.definitions_['gemini_chat_request'] += '  WiFiSSLClient client;\n';			
 
   Blockly.Arduino.definitions_['gemini_chat_request'] += ''
   		+'  message.replace("\\\"", "\\\\\\\"");\n'
@@ -862,11 +864,13 @@ Blockly.Arduino['gemini_chat_search_request'] = function (block) {
   var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||"Hi";
   
   Blockly.Arduino.definitions_['gemini_chat_search_request'] = 'String Gemini_chat_search_request(String message) {\n';
-  
+  	
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['gemini_chat_request'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+		Blockly.Arduino.definitions_['gemini_chat_search_request'] += '  TLSClient client;\n  client.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
-			Blockly.Arduino.definitions_['gemini_chat_request'] += '  client.setInsecure();\n';		
+		Blockly.Arduino.definitions_['gemini_chat_search_request'] += '  WiFiClientSecure client;\n  client.setInsecure();\n';
+	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra")
+		Blockly.Arduino.definitions_['gemini_chat_search_request'] += '  WiFiSSLClient client;\n';			
 
   Blockly.Arduino.definitions_['gemini_chat_search_request'] += ''
   		+'  message.replace("\\\"", "\\\\\\\"");\n'
@@ -11137,9 +11141,11 @@ Blockly.Arduino['esp32_telegrambot_spreadsheet_sendcell'] = function(block){
 			'  Serial.println("Connect to " + String(myDomain));\n';
 			
 	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_.telegram_Spreadsheet_send += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+		Blockly.Arduino.definitions_.telegram_Spreadsheet_send += '  TLSClient client;\n  client.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
-			Blockly.Arduino.definitions_.telegram_Spreadsheet_send += '  client.setInsecure();\n';
+		Blockly.Arduino.definitions_.telegram_Spreadsheet_send += '  WiFiClientSecure client;\n  client.setInsecure();\n';
+	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra")
+		Blockly.Arduino.definitions_.telegram_Spreadsheet_send += '  WiFiSSLClient client;\n';			
 	
 	Blockly.Arduino.definitions_.telegram_Spreadsheet_send +='  if (client.connect(myDomain, 443)) {\n'+
 			'    Serial.println("Connection successful");\n'+
@@ -13605,11 +13611,13 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 		'  Serial.println("Connect to " + String(myDomain));\n';
 		
 		if (selectBoardType()=="LinkIt")
-			Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+			Blockly.Arduino.definitions_.sendMessageToTelegram += '  TLSClient client;\nclient.setRootCA(rootCA, sizeof(rootCA));\n';
 		else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
-				Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  client.setInsecure();\n';			
+			Blockly.Arduino.definitions_.sendMessageToTelegram += '  WiFiClientSecure client;\n  client.setInsecure();\n';
+		else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra")
+			Blockly.Arduino.definitions_.sendMessageToTelegram += '  WiFiSSLClient client;\n';			
 		
-		Blockly.Arduino.definitions_.sendMessageToTelegram_custom +='  if (client.connect(myDomain, 443)) {\n'+		
+		Blockly.Arduino.definitions_.sendMessageToTelegram +='  if (client.connect(myDomain, 443)) {\n'+		
 		'    client.println("POST /bot"+token+"/sendMessage HTTP/1.1");\n'+
 		'    client.println("Host: " + String(myDomain));\n'+
 		'    client.println("Content-Length: " + String(request.length()));\n'+
@@ -13857,11 +13865,13 @@ Blockly.Arduino['esp32cam_telegrambot'] = function(block) {
 		'  Serial.println("Connect to " + String(myDomain));\n';
 		
 		if (selectBoardType()=="LinkIt")
-			Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+			Blockly.Arduino.definitions_.sendMessageToTelegram += '  TLSClient client;\n  client.setRootCA(rootCA, sizeof(rootCA));\n';
 		else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
-				Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  client.setInsecure();\n';			
+			Blockly.Arduino.definitions_.sendMessageToTelegram += '  WiFiClientSecure client;\n  client.setInsecure();\n';
+		else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra")
+			Blockly.Arduino.definitions_.sendMessageToTelegram += '  WiFiSSLClient client;\n';			
 		
-		Blockly.Arduino.definitions_.sendMessageToTelegram_custom +='  if (client.connect(myDomain, 443)) {\n'+		
+		Blockly.Arduino.definitions_.sendMessageToTelegram +='  if (client.connect(myDomain, 443)) {\n'+		
 		'    client.println("POST /bot"+token+"/sendMessage HTTP/1.1");\n'+
 		'    client.println("Host: " + String(myDomain));\n'+
 		'    client.println("Content-Length: " + String(request.length()));\n'+
@@ -14127,6 +14137,7 @@ Blockly.Arduino['amb82_mini_telegrambot'] = function(block) {
 		'  String request = "parse_mode=HTML&chat_id="+chatid+"&text="+text;\n'+
 		'  if (keyboard!="") request += "&reply_markup="+keyboard;\n'+
 		'  Serial.println("Connect to " + String(myDomain));\n'+
+		'  WiFiSSLClient client;\n'+
 		'  if (client.connect(myDomain, 443)) {\n'+	
 		'    Serial.println("Connection successful");\n'+		
 		'    client.println("POST /bot"+token+"/sendMessage HTTP/1.1");\n'+
@@ -14307,41 +14318,55 @@ Blockly.Arduino['amb82_mini_telegrambot'] = function(block) {
 Blockly.Arduino['esp32_telegrambot_sendmessage'] = function(block) {	
   var value_message = Blockly.Arduino.valueToCode(block, 'message', Blockly.Arduino.ORDER_ATOMIC); 
   
-	Blockly.Arduino.definitions_.sendMessageToTelegram = ''+
-		'void sendMessageToTelegram(String token, String chatid, String text, String keyboard) {\n'+
+	Blockly.Arduino.definitions_.sendMessageToTelegram_custom = ''+
+		'void sendMessageToTelegram_custom(String token, String chatid, String text, String keyboard) {\n'+
 		'  text.replace("\\\\n", "%0A");\n'+		
 		'  const char* myDomain = "api.telegram.org";\n'+
 		'  String getAll="", getBody = "";\n'+
 		'  String request = "parse_mode=HTML&chat_id="+chatid+"&text="+text;\n'+
 		'  if (keyboard!="") request += "&reply_markup="+keyboard;\n'+
-		'  client.println("POST /bot"+token+"/sendMessage HTTP/1.1");\n'+
-		'  client.println("Host: " + String(myDomain));\n'+
-		'  client.println("Content-Length: " + String(request.length()));\n'+
-		'  client.println("Content-Type: application/x-www-form-urlencoded");\n'+
-		'  client.println("Connection: close");\n'+
-		'  client.println();\n'+
-		'  client.print(request);\n'+
-		'  int waitTime = 5000;\n'+
-		'  long startTime = millis();\n'+
-		'  boolean state = false;\n'+
-		'  while ((startTime + waitTime) > millis()) {\n'+
-		'    delay(100);\n'+
-		'    while (client.available())  {\n'+
-		'        char c = client.read();\n'+
-		'        if (state==true) getBody += String(c);\n'+ 
-		'        if (c == \'\\n\')  {\n'+
-		'          if (getAll.length()==0) state=true;\n'+
-		'          getAll = "";\n'+
-		'        }\n'+
-		'        else if (c != \'\\r\')\n'+
-		'          getAll += String(c);\n'+
-		'        startTime = millis();\n'+
-		'     }\n'+
-		'     if (getBody.length()>0) break;\n'+
-		'  }\n'+
+		'  Serial.println("Connect to " + String(myDomain));\n';
+		
+		if (selectBoardType()=="LinkIt")
+			Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  TLSClient client;\n  client.setRootCA(rootCA, sizeof(rootCA));\n';
+		else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  WiFiClientSecure client;\n  client.setInsecure();\n';
+		else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra")
+			Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  WiFiSSLClient client;\n';				
+		
+		Blockly.Arduino.definitions_.sendMessageToTelegram_custom +='  if (client.connect(myDomain, 443)) {\n'+	
+		'    Serial.println("Connection successful");\n'+
+		'    client.println("POST /bot"+token+"/sendMessage HTTP/1.1");\n'+
+		'    client.println("Host: " + String(myDomain));\n'+
+		'    client.println("Content-Length: " + String(request.length()));\n'+
+		'    client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+		'    client.println("Connection: close");\n'+
+		'    client.println();\n'+
+		'    client.print(request);\n'+
+		'    int waitTime = 5000;\n'+
+		'    long startTime = millis();\n'+
+		'    boolean state = false;\n'+
+		'    while ((startTime + waitTime) > millis()) {\n'+
+		'      delay(100);\n'+
+		'      while (client.available())  {\n'+
+		'          char c = client.read();\n'+
+		'          if (state==true) getBody += String(c);\n'+ 
+		'          if (c == \'\\n\')  {\n'+
+		'            if (getAll.length()==0) state=true;\n'+
+		'            getAll = "";\n'+
+		'          }\n'+
+		'          else if (c != \'\\r\')\n'+
+		'            getAll += String(c);\n'+
+		'          startTime = millis();\n'+
+		'       }\n'+
+		'       //Serial.println(getBody);\n'+		
+		'       if (getBody.length()>0) break;\n'+
+		'    }\n'+
+		'    client.stop();\n'+		
+		'  }\n'+		
 		'}\n';  
 		
-  var code = 'sendMessageToTelegram(token, chat_id,'+ value_message +',"");\n' ;
+  var code = 'sendMessageToTelegram_custom(token, chat_id,'+ value_message +',"");\n' ;
   return code;
 };
 
@@ -14360,9 +14385,11 @@ Blockly.Arduino['esp32_telegrambot_sendmessage_custom'] = function(block) {
 		'  Serial.println("Connect to " + String(myDomain));\n';
 		
 		if (selectBoardType()=="LinkIt")
-			Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+			Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  TLSClient client;\n  client.setRootCA(rootCA, sizeof(rootCA));\n';
 		else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
-				Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  client.setInsecure();\n';			
+			Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  WiFiClientSecure client;\n  client.setInsecure();\n';
+		else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra")
+			Blockly.Arduino.definitions_.sendMessageToTelegram_custom += '  WiFiSSLClient client;\n';				
 		
 		Blockly.Arduino.definitions_.sendMessageToTelegram_custom +='  if (client.connect(myDomain, 443)) {\n'+	
 		'    Serial.println("Connection successful");\n'+
@@ -14403,40 +14430,52 @@ Blockly.Arduino['esp32_telegrambot_sendmessage_custom'] = function(block) {
 Blockly.Arduino['esp32_telegrambot_sendlink'] = function(block) {	
 	var value_link = Blockly.Arduino.valueToCode(block, 'link', Blockly.Arduino.ORDER_ATOMIC); 
   
-	Blockly.Arduino.definitions_.sendLinkToTelegram = ''+
-		'void sendLinkToTelegram(String token, String chatid, String link, String keyboard) {\n'+
+	Blockly.Arduino.definitions_.sendLinkToTelegram_custom = ''+
+		'void sendLinkToTelegram_custom(String token, String chatid, String link, String keyboard) {\n'+
 		'  const char* myDomain = "api.telegram.org";\n'+
 		'  String getAll="", getBody = "";\n'+
 		'  String request = "chat_id="+chatid+"&photo="+link;\n'+
 		'  if (keyboard!="") request += "&reply_markup="+keyboard;\n'+
-		'  client.println("POST /bot"+token+"/sendPhoto HTTP/1.1");\n'+
-		'  client.println("Host: " + String(myDomain));\n'+
-		'  client.println("Content-Length: " + String(request.length()));\n'+
-		'  client.println("Content-Type: application/x-www-form-urlencoded");\n'+
-		'  client.println("Connection: close");\n'+
-		'  client.println();\n'+
-		'  client.print(request);\n'+
-		'  int waitTime = 5000;\n'+
-		'  long startTime = millis();\n'+
-		'  boolean state = false;\n'+
-		'  while ((startTime + waitTime) > millis()) {\n'+
-		'    delay(100);\n'+
-		'    while (client.available())  {\n'+
-		'        char c = client.read();\n'+
-		'        if (state==true) getBody += String(c);\n'+ 
-		'        if (c == \'\\n\')  {\n'+
-		'          if (getAll.length()==0) state=true;\n'+
-		'          getAll = "";\n'+
-		'        }\n'+
-		'        else if (c != \'\\r\')\n'+
-		'          getAll += String(c);\n'+
-		'        startTime = millis();\n'+
-		'     }\n'+
-		'     if (getBody.length()>0) break;\n'+
-		'  }\n'+
+		'  Serial.println("Connect to " + String(myDomain));\n';
+		
+		if (selectBoardType()=="LinkIt")
+			Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  TLSClient client;\n  client.setRootCA(rootCA, sizeof(rootCA));\n';
+		else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
+			Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  WiFiClientSecure client;\n  client.setInsecure();\n';
+		else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra")
+			Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  WiFiSSLClient client;\n';	
+		
+		Blockly.Arduino.definitions_.sendLinkToTelegram_custom +='  if (client.connect(myDomain, 443)) {\n'+
+		'    Serial.println("Connection successful");\n'+
+		'    client.println("POST /bot"+token+"/sendPhoto HTTP/1.1");\n'+
+		'    client.println("Host: " + String(myDomain));\n'+
+		'    client.println("Content-Length: " + String(request.length()));\n'+
+		'    client.println("Content-Type: application/x-www-form-urlencoded");\n'+
+		'    client.println("Connection: close");\n'+
+		'    client.println();\n'+
+		'    client.print(request);\n'+
+		'    int waitTime = 5000;\n'+
+		'    long startTime = millis();\n'+
+		'    boolean state = false;\n'+
+		'    while ((startTime + waitTime) > millis()) {\n'+
+		'      delay(100);\n'+
+		'      while (client.available())  {\n'+
+		'          char c = client.read();\n'+
+		'          if (state==true) getBody += String(c);\n'+ 
+		'          if (c == \'\\n\')  {\n'+
+		'            if (getAll.length()==0) state=true;\n'+
+		'            getAll = "";\n'+
+		'          }\n'+
+		'          else if (c != \'\\r\')\n'+
+		'            getAll += String(c);\n'+
+		'          startTime = millis();\n'+
+		'       }\n'+
+		'       if (getBody.length()>0) break;\n'+
+		'    }\n'+
+		'  }\n'+		
 		'}\n';  
 		
-  var code = 'sendLinkToTelegram(token, chat_id,'+ value_link +',"");\n' ;
+  var code = 'sendLinkToTelegram_custom(token, chat_id,'+ value_link +',"");\n' ;
   return code;
 };
 
@@ -14454,9 +14493,11 @@ Blockly.Arduino['esp32_telegrambot_sendlink_custom'] = function(block) {
 		'  Serial.println("Connect to " + String(myDomain));\n';
 		
 		if (selectBoardType()=="LinkIt")
-			Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
+			Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  TLSClient client;\n  client.setRootCA(rootCA, sizeof(rootCA));\n';
 		else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
-				Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  client.setInsecure();\n';
+			Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  WiFiClientSecure client;\n  client.setInsecure();\n';
+		else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra")
+			Blockly.Arduino.definitions_.sendLinkToTelegram_custom += '  WiFiSSLClient client;\n';	
 		
 		Blockly.Arduino.definitions_.sendLinkToTelegram_custom +='  if (client.connect(myDomain, 443)) {\n'+
 		'    Serial.println("Connection successful");\n'+
