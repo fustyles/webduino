@@ -159,8 +159,8 @@ Blockly.Msg["AMB82_MINI_BOARD_PIN_LED"] = "補光燈";
 Blockly.Msg["AMB82_MINI_BOARD_PIN_BUTTON"] = "功能鍵";
 
 Blockly.Msg["AMB82_MINI_TELEGRAMBOT_STILL"] = "截圖上傳 Telegram Bot";
-Blockly.Msg["AMB82_MINI_TELEGRAMBOT_STILL_CUSTOM"] = "Telegram Bot(AmebaPro2) 截圖上傳";
-Blockly.Msg["AMB82_MINI_TELEGRAMBOT_SHOW"] = "Telegram Bot(AmebaPro2)";
+Blockly.Msg["AMB82_MINI_TELEGRAMBOT_STILL_CUSTOM"] = "Telegram Bot (AmebaPro2) 截圖上傳";
+Blockly.Msg["AMB82_MINI_TELEGRAMBOT_SHOW"] = "Telegram Bot (AmebaPro2)";
 
 Blockly.Msg["AMB82_MINI_MODE"] = "格式";
 Blockly.Msg["AMB82_MINI_RTSP"] = "RTSP串流(無法截圖)";
@@ -2519,7 +2519,7 @@ Blockly.Msg.HOLISTIC_IMAGE_SHOW = "圖片";
 
 Blockly.Msg.ESP32_CAM_LINENOTIFY_SHOW = "ESP32-CAM 截圖上傳Line通知";
 Blockly.Msg.ESP32_CAM_LINEMESSAGE_SHOW = "訊息字串";
-Blockly.Msg.ESP32_CAM_TELEGRAMBOT_SHOW = "ESP32-CAM 截圖上傳Telegram Bot";
+Blockly.Msg.ESP32_CAM_TELEGRAMBOT_SHOW = "Telegram Bot (ESP32-CAM) 截圖上傳";
 Blockly.Msg.ESP32_CAM_TOKEN_SHOW = "權杖";
 Blockly.Msg.ESP32_CAM_CHATID_SHOW = "聊天室ID";
 Blockly.Msg.SERVER_GETREQUEST_SHOW = "Server模組 取得一次網址參數指令並執行自訂指令區";
@@ -2805,7 +2805,7 @@ Blockly.Msg["FU_SERVO_TYPE"] = "類型";
 
 
 Blockly.Msg.ESP32_TELEGRAMBOT_SHOW = "Telegram Bot";
-Blockly.Msg.ESP32CAM_TELEGRAMBOT_SHOW = "Telegram Bot(ESP32-CAM)";
+Blockly.Msg.ESP32CAM_TELEGRAMBOT_SHOW = "Telegram Bot (ESP32-CAM)";
 Blockly.Msg.ESP32_TELEGRAMBOT_SSID_SHOW = "無線網路名稱";
 Blockly.Msg.ESP32_TELEGRAMBOT_PASSWORD_SHOW = "無線網路密碼";
 Blockly.Msg.ESP32_TELEGRAMBOT_TOKEN_SHOW = "權杖";
