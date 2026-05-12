@@ -942,12 +942,19 @@ Blockly.Arduino['gemini_chat_search_request'] = function (block) {
 
 Blockly.Arduino['gemini_chat_insert'] = function (block) {
   var source = block.getFieldValue('source');
-  var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||"";  
-  content = content.replace(/^"(.*)"$/, '$1');
-  if (source=="model")
-	var code = 'historical_messages += ", ";\nhistorical_messages += \"{\\\"role\\\": \\\"model\\\", \\\"parts\\\":[{ \\\"text\\\": \\\"'+ content +'\\\"}]}\";\n';
-  else
-	var code = 'historical_messages += ", ";\nhistorical_messages += \"{\\\"role\\\": \\\"user\\\", \\\"parts\\\":[{ \\\"text\\\": \\\"'+ content +'\\\"}]}\";\n';
+  var content = Blockly.Arduino.valueToCode(block, 'content', Blockly.Arduino.ORDER_ATOMIC)||""; 
+
+  Blockly.Arduino.definitions_['gemini_chat_insert_buildMessage'] = ''
+	+'String buildHistoricalData(String role, String content) {\n'
+	+'  String jsonMessage = ", {\\\"role\\\": \\\"";\n'
+	+'  jsonMessage += role;\n'
+	+'  jsonMessage += "\\\", \\\"parts\\\":[{ \\\"text\\\": \\\"";\n'
+	+'  jsonMessage += content;\n'
+	+'  jsonMessage += "\\\" }]}";\n'
+	+'  return jsonMessage;\n'
+	+'}\n';
+  
+  var code = 'historical_messages += buildHistoricalData("'+source+'", '+content+');\n';
   return code; 
 };
 
