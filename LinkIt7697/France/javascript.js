@@ -562,11 +562,11 @@ Blockly.Arduino['custom_chat_request'] = function (block) {
 		+'            state=true;\n'
 		+'          if (getResponse.indexOf("\\"},")!=-1&&state==true) {\n'
 		+'            state=false;\n'
-		+'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'
+		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'
 		+'            break;\n'
 		+'          } else if (getResponse.indexOf("\\"")!=-1&&c == \'\\n\'&&state==true) {\n'
 		+'            state=false;\n'
-		+'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'
+		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'
 		+'            break;\n'		
 		+'          }\n'
 		+'       }\n'
@@ -833,11 +833,11 @@ Blockly.Arduino['gemini_chat_request'] = function (block) {
 		+'            state=true;\n'
 		+'          if (getResponse.indexOf("\\"\\n\\r")!=-1&&state==true) {\n'
 		+'            state=false;\n'
-		+'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'
+		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'
 		+'            break;\n'		
 		+'          } else if (getResponse.indexOf("\\"")!=-1&&c == \'\\n\'&&state==true) {\n'
 		+'            state=false;\n'
-		+'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'
+		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'
 		+'            break;\n'		
 		+'          }\n'
 		+'       }\n'
@@ -913,11 +913,11 @@ Blockly.Arduino['gemini_chat_search_request'] = function (block) {
 		+'            state=true;\n'
 		+'          if (getResponse.indexOf("\\"\\n\\r")!=-1&&state==true) {\n'
 		+'            state=false;\n'
-		+'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'
+		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'
 		+'            break;\n'		
 		+'          } else if (getResponse.indexOf("\\"")!=-1&&c == \'\\n\'&&state==true) {\n'
 		+'            state=false;\n'
-		+'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'
+		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'
 		+'            break;\n'		
 		+'          }\n'
 		+'       }\n'
@@ -8471,11 +8471,11 @@ Blockly.Arduino['openai_chat_request'] = function (block) {
 		+'            state=true;\n'
 		+'          if (getResponse.indexOf("\\"},")!=-1&&state==true) {\n'
 		+'            state=false;\n'
-		+'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'
+		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'
 		+'            break;\n'			
 		+'          } else if (getResponse.indexOf("\\"")!=-1&&c == \'\\n\'&&state==true) {\n'
 		+'            state=false;\n'
-		+'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'
+		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'
 		+'            break;\n'			
 		+'          }\n'
 		+'       }\n'
@@ -8701,7 +8701,7 @@ Blockly.Arduino['openai_text_request'] = function (block) {
 														+'            if (Feedback.indexOf("\\"}}")!=-1) {\n'
 														+'              client.stop();\n'
 														+'              Serial.println();\n'
-														+'              return Feedback.substring(0,Feedback.length()-3);\n'        
+														+'              return Feedback.substring(0, Feedback.lastIndexOf("\""));\n'        
 														+'            }\n'														
 														+'          }\n'
 														+'          if (c == \'\\n\') {\n'
@@ -26284,11 +26284,11 @@ Blockly.Arduino['esp32_cam_openai_vision'] = function(block) {
 			'            state=true;\n'+
 			'          if (getResponse.indexOf("\\"},")!=-1&&state==true) {\n'+
 			'            state=false;\n'+
-			'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'+
+			'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'+
 			'            break;\n'+				
 			'          } else if (getResponse.indexOf("\\"")!=-1&&c == \'\\n\'&&state==true) {\n'+
 			'            state=false;\n'+
-			'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'+
+			'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'+
 			'            break;\n'+				
 			'          }\n'+
 			'       }\n'+
@@ -26485,11 +26485,11 @@ Blockly.Arduino['esp32_cam_custom_vision'] = function(block) {
 			'            state=true;\n'+
 			'          if (getResponse.indexOf("\\"},")!=-1&&state==true) {\n'+
 			'            state=false;\n'+
-			'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'+
+			'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'+
 			'            break;\n'+
 			'          } else if (getResponse.indexOf("\\"")!=-1&&c == \'\\n\'&&state==true) {\n'+
 			'            state=false;\n'+
-			'            getResponse = getResponse.substring(0,getResponse.length()-3);\n'+
+			'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'+
 			'            break;\n'+			
 			'          }\n'+
 			'       }\n'+
