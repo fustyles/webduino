@@ -24097,7 +24097,7 @@ Blockly.Arduino['fu_mqtt_sendimage'] = function(block) {
 															'      int ps = MQTT_MAX_PACKET_SIZE;\n'+
 															'      mqtt_client.beginPublish(topic.c_str(), imgSize, false);\n'+
 															'      for (int i = 0; i < imgSize; i += ps) {\n'+
-															'        int s = (imgSize - i < s) ? (imgSize - i) : ps;\n'+
+															'        int s = (imgSize - i < ps) ? (imgSize - i) : ps;\n'+
 															'        mqtt_client.write((uint8_t *)(fb->buf) + i, s);\n'+
 															'      }\n'+
 															'      boolean isPublished = mqtt_client.endPublish();\n'+
