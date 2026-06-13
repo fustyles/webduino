@@ -31930,11 +31930,7 @@ Blockly.Blocks['fu_mqtt_setup'] = {
     this.appendValueInput("password")
         .setCheck("String")
 		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg["MQTT_FU_PASSWORD"]);	
-    this.appendValueInput("clientid")
-        .setCheck("String")
-		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg["MQTT_FU_CLIENTID"]);		
+		.appendField(Blockly.Msg["MQTT_FU_PASSWORD"]);		
     this.appendStatementInput("topic_subscribe")
         .appendField(Blockly.Msg["MQTT_FU_SUBSCRIBE_TOPIC"]);			
     this.setInputsInline(false);

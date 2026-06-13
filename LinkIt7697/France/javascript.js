@@ -23946,7 +23946,18 @@ Blockly.Arduino['fu_mqtt_setup'] = function(block) {
   Blockly.Arduino.definitions_.define_mqtt_port='const unsigned int mqtt_port = '+port+';';  
   Blockly.Arduino.definitions_.define_mqtt_user='#define MQTT_USER '+user;
   Blockly.Arduino.definitions_.define_mqtt_pass='#define MQTT_PASSWORD '+pass;
-  Blockly.Arduino.definitions_.define_mqtt_clientid='String MQTT_CLIENTID = '+clientid+';'; 
+  Blockly.Arduino.definitions_.define_mqtt_clientid = 'String MQTT_CLIENTID = "";';
+  
+  Blockly.Arduino.definitions_.define_generateMqttClientId = '' +
+	    'String generateMqttClientId() {\n' +
+		'  uint8_t mac[6];\n' +
+		'  WiFi.macAddress(mac);\n' +
+		'  char clientId[32];\n' +
+		'  snprintf(clientId, sizeof(clientId), "MQTT-%02X%02X%02X", mac[3], mac[4], mac[5]);\n' +
+		'  return String(clientId);\n' +
+	    '}';
+
+  Blockly.Arduino.setups_.mqtt_clientid = 'MQTT_CLIENTID = generateMqttClientId();'; 
   
   Blockly.Arduino.definitions_.define_mqtt_client = 'WiFiClient espClient;\nPubSubClient mqtt_client(espClient);\nString mqtt_data = "";\n';
 														
