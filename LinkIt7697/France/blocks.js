@@ -22325,7 +22325,11 @@ Blockly.Blocks['linebot_all'] = {
     this.appendValueInput("longitude_")
         .setCheck("Number")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.ESP32_LINE_LONGITUDE_SHOW,"P4");		
+        .appendField(Blockly.Msg.ESP32_LINE_LONGITUDE_SHOW,"P4");
+    this.appendValueInput("second_")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.ESP32_LINE_AUDIOLENGTH_SHOW,"L1");		
 	this.setInputsInline(false);	  
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -22344,7 +22348,9 @@ Blockly.Blocks['linebot_all'] = {
 	this.getField("P3").setVisible(false);
 	this.getInput("longitude_").setVisible(false);
 	this.getField("P4").setVisible(false);
-	this.getField("language_").setVisible(false);	
+	this.getField("language_").setVisible(false);
+	this.getField("L1").setVisible(false);
+	this.getInput("second_").setVisible(false);		
   },
   validate: function(newValue) {
 	 const block = this.sourceBlock_;
@@ -22366,6 +22372,8 @@ Blockly.Blocks['linebot_all'] = {
 		 block.getInput("longitude_").setVisible(false);
 		 block.getField("P4").setVisible(false); 
 		 block.getField("language_").setVisible(false);
+		 block.getField("L1").setVisible(false); 
+		 block.getInput("second_").setVisible(false);		 
 	 }
 	 else if (newValue=="sticker") {
 		 block.getInput("packageId_").setVisible(true);
@@ -22384,7 +22392,9 @@ Blockly.Blocks['linebot_all'] = {
 		 block.getField("P3").setVisible(false);
 		 block.getInput("longitude_").setVisible(false);
 		 block.getField("P4").setVisible(false); 
-		 block.getField("language_").setVisible(false);		 
+		 block.getField("language_").setVisible(false);
+		 block.getField("L1").setVisible(false); 
+		 block.getInput("second_").setVisible(false)		 
 	 }
 	 else if (newValue=="image") {
 		 block.getInput("packageId_").setVisible(false);
@@ -22403,7 +22413,9 @@ Blockly.Blocks['linebot_all'] = {
 		 block.getField("P3").setVisible(false);
 		 block.getInput("longitude_").setVisible(false);
 		 block.getField("P4").setVisible(false); 
-		 block.getField("language_").setVisible(false);		 
+		 block.getField("language_").setVisible(false);
+		 block.getField("L1").setVisible(false); 
+		 block.getInput("second_").setVisible(false)		 
 	 }
 	 else if (newValue=="location") {
 		 block.getInput("packageId_").setVisible(false);
@@ -22422,7 +22434,9 @@ Blockly.Blocks['linebot_all'] = {
 		 block.getField("P3").setVisible(true);
 		 block.getInput("longitude_").setVisible(true);
 		 block.getField("P4").setVisible(true); 
-		 block.getField("language_").setVisible(false);		 
+		 block.getField("language_").setVisible(false);
+		 block.getField("L1").setVisible(false); 
+		 block.getInput("second_").setVisible(false)		 
 	 }
 	else if (newValue=="audio") {
 		 block.getInput("packageId_").setVisible(false);
@@ -22441,7 +22455,9 @@ Blockly.Blocks['linebot_all'] = {
 		 block.getInput("latitude_").setVisible(false);
 		 block.getField("P3").setVisible(false);
 		 block.getInput("longitude_").setVisible(false);
-		 block.getField("P4").setVisible(false); 		 
+		 block.getField("P4").setVisible(false);
+		 block.getField("L1").setVisible(true); 
+		 block.getInput("second_").setVisible(true) 		 
 	 }	 
   } 
 };

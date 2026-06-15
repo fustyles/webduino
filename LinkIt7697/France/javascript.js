@@ -17007,6 +17007,7 @@ Blockly.Arduino['linebot_all'] = function(block) {
   var address = Blockly.Arduino.valueToCode(block, 'address_', Blockly.Arduino.ORDER_ATOMIC);  
   var latitude = Blockly.Arduino.valueToCode(block, 'latitude_', Blockly.Arduino.ORDER_ATOMIC);
   var longitude = Blockly.Arduino.valueToCode(block, 'longitude_', Blockly.Arduino.ORDER_ATOMIC);  
+  var seconds = Blockly.Arduino.valueToCode(block, 'second_', Blockly.Arduino.ORDER_ATOMIC) || 60000;
   
   if (!text) text='" "';
   if (!packageId) packageId='""';
@@ -17025,7 +17026,7 @@ Blockly.Arduino['linebot_all'] = function(block) {
   else if (type=="location")
 	message = "\"{\\\"to\\\":\\\"\"+String(" + userid + ")+\"\\\",\\\"messages\\\":[{\\\"type\\\":\\\"location\\\",\\\"title\\\":\\\"\"+String(" + text + ")+\"\\\",\\\"address\\\":\\\"\"+String(" + address + ")+\"\\\",\\\"latitude\\\":\\\"\"+String(" + latitude + ")+\"\\\",\\\"longitude\\\":\\\"\"+String(" + longitude + ")+\"\\\"}]}\"";
   else if (type=="audio")
-	message = "\"{\\\"to\\\":\\\"\"+String(" + userid + ")+\"\\\",\\\"messages\\\":[{\\\"type\\\":\\\"audio\\\",\\\"originalContentUrl\\\":\\\"https:\/\/translate.google.com\/translate_tts?ie=UTF-8&client=tw-ob&tl=zh-TW&ttsspeed=1&q=\"+urlencode(String(" + text + "))+\"\\\",\\\"duration\\\": 60000}]}\"";
+	message = "\"{\\\"to\\\":\\\"\"+String(" + userid + ")+\"\\\",\\\"messages\\\":[{\\\"type\\\":\\\"audio\\\",\\\"originalContentUrl\\\":\\\"https:\/\/translate.google.com\/translate_tts?ie=UTF-8&client=tw-ob&tl=zh-TW&ttsspeed=1&q=\"+urlencode(String(" + text + "))+\"\\\",\\\"duration\\\": " + seconds + "}]}\"";
   var code = 'LineBot('+token+', '+message+');\n';
   return code;
 };

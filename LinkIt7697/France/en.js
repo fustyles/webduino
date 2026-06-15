@@ -1372,6 +1372,7 @@ Blockly.Msg.ESP32_LINE_TITLE_SHOW = "Title Text";
 Blockly.Msg.ESP32_LINE_ADDRESS_SHOW = "Address";
 Blockly.Msg.ESP32_LINE_LATITUDE_SHOW = "Latitude";
 Blockly.Msg.ESP32_LINE_LONGITUDE_SHOW = "Longitude"; 
+Blockly.Msg.ESP32_LINE_AUDIOLENGTH_SHOW = "millisecond"; 
 Blockly.Msg.ESP32_LINE_BR_SHOW = "New Line";
 Blockly.Msg.ESP32_LINE_MESSAGE_SHOW = "Message";
 Blockly.Msg.ESP32_LINE_PACKAGEID_SHOW = "Packageid";

@@ -1371,6 +1371,7 @@ Blockly.Msg.ESP32_LINE_TITLE_SHOW = "標題文字";
 Blockly.Msg.ESP32_LINE_ADDRESS_SHOW = "地址";
 Blockly.Msg.ESP32_LINE_LATITUDE_SHOW = "緯度";
 Blockly.Msg.ESP32_LINE_LONGITUDE_SHOW = "經度"; 
+Blockly.Msg.ESP32_LINE_AUDIOLENGTH_SHOW = "毫秒"; 
 Blockly.Msg.ESP32_LINE_BR_SHOW = "換行";
 Blockly.Msg.ESP32_LINE_MESSAGE_SHOW = "訊息字串";
 Blockly.Msg.ESP32_LINE_PACKAGEID_SHOW = "表情包代碼";
