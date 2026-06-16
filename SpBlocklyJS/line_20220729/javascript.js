@@ -54,13 +54,13 @@ Blockly.JavaScript['linenotify_image'] = function (block) {
 };
 
 Blockly.JavaScript['linebot_notify'] = function (block) {
-  var bot_token = Blockly.JavaScript.valueToCode(block, 'bot_token', Blockly.JavaScript.ORDER_ATOMIC)||"";  
-  var bot_userid = Blockly.JavaScript.valueToCode(block, 'bot_userid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var bot_token = Blockly.JavaScript.valueToCode(block, 'bot_token', Blockly.JavaScript.ORDER_ATOMIC);  
+  var bot_userid = Blockly.JavaScript.valueToCode(block, 'bot_userid', Blockly.JavaScript.ORDER_ATOMIC);
   var type = block.getFieldValue('value_type');
-  var parameter1 = Blockly.JavaScript.valueToCode(block, 'value_parameter1', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  var parameter2 = Blockly.JavaScript.valueToCode(block, 'value_parameter2', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  var parameter3 = Blockly.JavaScript.valueToCode(block, 'value_parameter3', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  var parameter4 = Blockly.JavaScript.valueToCode(block, 'value_parameter4', Blockly.JavaScript.ORDER_ATOMIC)||""; 
+  var parameter1 = Blockly.JavaScript.valueToCode(block, 'value_parameter1', Blockly.JavaScript.ORDER_ATOMIC);
+  var parameter2 = Blockly.JavaScript.valueToCode(block, 'value_parameter2', Blockly.JavaScript.ORDER_ATOMIC);
+  var parameter3 = Blockly.JavaScript.valueToCode(block, 'value_parameter3', Blockly.JavaScript.ORDER_ATOMIC);
+  var parameter4 = Blockly.JavaScript.valueToCode(block, 'value_parameter4', Blockly.JavaScript.ORDER_ATOMIC); 
 
   if (!parameter1) parameter1='""';
   if (!parameter2) parameter2='""';
@@ -72,9 +72,9 @@ Blockly.JavaScript['linebot_notify'] = function (block) {
 };
 
 Blockly.JavaScript['linebot_reply'] = function (block) {
-  var bot_token = Blockly.JavaScript.valueToCode(block, 'bot_token', Blockly.JavaScript.ORDER_ATOMIC)||"";  
-  var bot_replytoken = Blockly.JavaScript.valueToCode(block, 'bot_replytoken', Blockly.JavaScript.ORDER_ATOMIC)||"";
-  var bot_message = Blockly.JavaScript.valueToCode(block, 'bot_message', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var bot_token = Blockly.JavaScript.valueToCode(block, 'bot_token', Blockly.JavaScript.ORDER_ATOMIC);  
+  var bot_replytoken = Blockly.JavaScript.valueToCode(block, 'bot_replytoken', Blockly.JavaScript.ORDER_ATOMIC);
+  var bot_message = Blockly.JavaScript.valueToCode(block, 'bot_message', Blockly.JavaScript.ORDER_ATOMIC);
 	
   var code = 'linebot_reply_message('+bot_token+','+bot_replytoken+', line_url_escape("bot","text",'+bot_message+',"","",""));\n';
   return code; 
