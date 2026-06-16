@@ -14,8 +14,8 @@ Blockly.JavaScript['cocossd_list'] = function(block) {
 };
 
 Blockly.JavaScript['cocossd_name'] = function(block) { 
-  var value_object_ = block.getFieldValue('object_')
-  return ['"'+value_object_+'"', Blockly.JavaScript.ORDER_NONE];
+  var value_object_ = '"'+block.getFieldValue('object_')+'"';
+  return [value_object_, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript['cocossd_object'] = function(block) { 
