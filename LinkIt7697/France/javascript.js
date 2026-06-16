@@ -25731,6 +25731,11 @@ Blockly.Arduino['cocossd_list'] = function(block) {
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
+Blockly.Arduino['cocossd_name'] = function(block) { 
+  var value_object_ = '"'+block.getFieldValue('object_')+'"';
+  return [value_object_, Blockly.Arduino.ORDER_NONE];
+};
+
 Blockly.Arduino['cocossd_object'] = function(block) { 
   var value_object_ = block.getFieldValue('object_');
   var value_index_ = Blockly.Arduino.valueToCode(block, 'index_', Blockly.Arduino.ORDER_ATOMIC);

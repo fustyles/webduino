@@ -67,7 +67,7 @@
 <category><name>EZ+</name><replace>EZ Start Kit+</replace></category>
 <category><name>airquality</name><replace>Taiwan Air Quality</replace></category>
 <category><name>fu_mqtt</name><replace>MQTT</replace></category>
-<category><name>objectreconginition</name><replace>Object Recognition</replace></category>
+<category><name>objectreconginition</name><replace>Object Detection</replace></category>
 <category><name>holisticreconginition</name><replace>Holistic Recognition (MP)</replace></category>
 <category><name>teachablemachine</name><replace>Teachable Machine (Google)</replace></category>
 <category><name>faceapidetect</name><replace>Face Detection (face-api)</replace></category>

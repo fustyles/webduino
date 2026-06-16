@@ -4441,7 +4441,9 @@
 			  <block type="cocossd_recognitied">    
 			  </block> 			  
 			  <block type="cocossd_list">
-			  </block>  
+			  </block> 
+			  <block type="cocossd_name">
+			  </block>  			  
 			  <block type="cocossd_object">
 				<value name="index_">
 				  <block type="math_number">
