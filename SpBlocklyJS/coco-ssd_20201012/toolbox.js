@@ -30,6 +30,8 @@ var catCocossd ='<xml>'+
 '      </block>'+
 '      <block type="cocossd_list">'+
 '      </block>'+
+'      <block type="cocossd_name">'+
+'      </block>'+  
 '      <block type="cocossd_object">'+
 '        <value name="index_">'+
 '          <block type="math_number">'+
