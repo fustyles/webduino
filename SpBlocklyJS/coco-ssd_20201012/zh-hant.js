@@ -39,6 +39,7 @@ Blockly.Msg.COCOSSD_GEOFENCE = "電子圍籬";
 Blockly.Msg.COCOSSD_XY_IN_TRIANGLE = "在三邊形的範圍內";
 Blockly.Msg.COCOSSD_XY_IN_QUADRILATERAL = "在凸四邊形的範圍內";
 Blockly.Msg.COCOSSD_XY_ARRANGE = "(座標依序排列)";
+Blockly.Msg.COCOSSD_NAME_SHOW = "物件名稱";
 Blockly.Msg.COCOSSD_AIRPLANE = "飛機";
 Blockly.Msg.COCOSSD_APPLE = "蘋果";
 Blockly.Msg.COCOSSD_BACKPACK = "背包";
