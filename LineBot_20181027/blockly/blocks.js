@@ -34,7 +34,7 @@ Blockly.Blocks['linebot_notify1'] = {
 	this.setPreviousStatement(true);
 	this.setNextStatement(true);
 	this.setTooltip('');
-	this.setColour(250);
+	this.setColour(65);
 	this.getField('p1').setValue(Blockly.Msg.LINENOTIFY_TEXT_SHOW);  
 	this.getField('p2').setValue("");
 	this.getField('p3').setValue("");
