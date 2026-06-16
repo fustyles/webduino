@@ -1,6 +1,6 @@
 Blockly.Msg.COCOSSD_SHOW = "物件偵測(coco-ssd)";
 Blockly.Msg.COCOSSD_OBJECT_SHOW = "偵測物件";
-Blockly.Msg.COCOSSD_OBJECT_ARRAY_SHOW = "取得物件資料陣列";
+Blockly.Msg.COCOSSD_OBJECT_ARRAY_SHOW = "取得資料陣列 物件";
 Blockly.Msg.COCOSSD_OBJECT_ALL_SHOW = "全部";
 Blockly.Msg.COCOSSD_OBJECT_NUMBER_SHOW = "偵測數目 物件";
 Blockly.Msg.COCOSSD_INDEX_SHOW = "索引";
