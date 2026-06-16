@@ -13,6 +13,11 @@ Blockly.JavaScript['cocossd_list'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript['cocossd_name'] = function(block) { 
+  var value_object_ = block.getFieldValue('object_')
+  return [value_object_, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript['cocossd_object'] = function(block) { 
   var value_object_ = block.getFieldValue('object_');
   var value_index_ = Blockly.JavaScript.valueToCode(block, 'index_', Blockly.JavaScript.ORDER_ATOMIC);
