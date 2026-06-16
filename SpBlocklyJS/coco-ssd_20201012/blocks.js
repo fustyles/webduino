@@ -143,8 +143,7 @@ Blockly.Blocks['cocossd_object'] = {
       .appendField(Blockly.Msg.COCOSSD_SHOW);	  
   this.appendDummyInput()  
       .appendField(Blockly.Msg.COCOSSD_OBJECT_SHOW)
-      .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg.COCOSSD_OBJECT_ALL_SHOW,""],	  
+      .appendField(new Blockly.FieldDropdown([  
 		  [Blockly.Msg.COCOSSD_OBJECT_ALL_SHOW,""],
 		  [Blockly.Msg.COCOSSD_AIRPLANE,"airplane"],
 		  [Blockly.Msg.COCOSSD_APPLE,"apple"],
@@ -260,7 +259,6 @@ Blockly.Blocks['cocossd_object_number'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.COCOSSD_OBJECT_NUMBER_SHOW)
       .appendField(new Blockly.FieldDropdown([
-		[Blockly.Msg.COCOSSD_OBJECT_ALL_SHOW,""],
 		  [Blockly.Msg.COCOSSD_OBJECT_ALL_SHOW,""],
 		  [Blockly.Msg.COCOSSD_AIRPLANE,"airplane"],
 		  [Blockly.Msg.COCOSSD_APPLE,"apple"],
