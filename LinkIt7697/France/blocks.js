@@ -22893,7 +22893,7 @@ Blockly.Blocks['esp32_myfirmata'] = {
 Blockly.Blocks['esp32_chat_myfirmata'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.ESP32_SERVERMODULE_SHOW);
+        .appendField(Blockly.Msg.ESP32_SERVERMODULE_CHAT_SHOW);
     this.appendValueInput("ssid")
         .setCheck(null)
 		.setAlign(Blockly.ALIGN_RIGHT)		

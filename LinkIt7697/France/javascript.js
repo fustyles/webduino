@@ -868,9 +868,9 @@ Blockly.Arduino['gemini_chat_search_request'] = function (block) {
 	if (selectBoardType()=="LinkIt")
 		Blockly.Arduino.definitions_['gemini_chat_search_request'] += '  TLSClient client;\n  client.setRootCA(rootCA, sizeof(rootCA));\n';
 	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
-		Blockly.Arduino.definitions_['gemini_chat_search_request'] += '  WiFiClientSecure client;\n  client.setInsecure();\n';
+		Blockly.Arduino.definitions_['gemini_chat_search_request'] += '  WiFiClientSecure client;\n  client.setInsecure();\nclient.setTimeout(10000);\n';
 	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra")
-		Blockly.Arduino.definitions_['gemini_chat_search_request'] += '  WiFiSSLClient client;\n';			
+		Blockly.Arduino.definitions_['gemini_chat_search_request'] += '  WiFiSSLClient client;\nclient.setRecvTimeout(10000);\n';			
 
   Blockly.Arduino.definitions_['gemini_chat_search_request'] += ''
   		+'  message.replace("\\\"", "\\\\\\\"");\n'
@@ -18308,8 +18308,8 @@ Blockly.Arduino['esp32_chat_myfirmata'] = function(block) {
 	"      </svg>\n" +
 	"    </div>\n" +
 	"    <div>\n" +
-	"      <div class=\"header-title\">fuClaw</div>\n" +
-	"      <div class=\"header-sub\">Gemini AI Agent</div>\n" +
+	"      <div class=\"header-title\">Web Chat</div>\n" +
+	"      <div class=\"header-sub\">V1.0</div>\n" +
 	"    </div>\n" +
 	"    <div class=\"header-status\">\n" +
 	"      <div class=\"status-dot\" id=\"statusDot\"></div>\n" +
@@ -18321,7 +18321,7 @@ Blockly.Arduino['esp32_chat_myfirmata'] = function(block) {
 	"    <div class=\"empty-state\" id=\"emptyState\">\n" +
 	"      <div class=\"empty-icon\">&#10022;</div>\n" +
 	"      <div class=\"empty-title\">Start a conversation with Gemini</div>\n" +
-	"      <div class=\"empty-hint\">Enter your message and click Send.<br>fuClaw will invoke Gemini AI.</div>\n" +
+	"      <div class=\"empty-hint\">Enter your message and click Send.</div>\n" +
 	"    </div>\n" +
 	"  </div>\n" +
 	"\n" +
@@ -18391,7 +18391,7 @@ Blockly.Arduino['esp32_chat_myfirmata'] = function(block) {
 	"    var msg = document.createElement('div');\n" +
 	"    msg.className = 'msg ' + role;\n" +
 	"\n" +
-	"    var avatarChar = role === 'user' ? 'U' : 'AI';\n" +
+	"    var avatarChar = role === 'user' ? 'U' : 'B';\n" +
 	"    var avatarCls  = role === 'user' ? 'user-av' : 'ai-av';\n" +
 	"	\n" +
 	"	var content = isHtml ? text : escHtml(text);\n" +
@@ -18399,7 +18399,7 @@ Blockly.Arduino['esp32_chat_myfirmata'] = function(block) {
 	"    msg.innerHTML =\n" +
 	"      '<div class=\"msg-row\">' +\n" +
 	"        '<div class=\"avatar ' + avatarCls + '\">' + avatarChar + '</div>' +\n" +
-	"        '<div class=\"bubble\">' + content + '</div>' +\n" +
+	"        '<div class=\"bubble\">' + content.replace(/\\\\n/g, '<br>'); + '</div>' +\n" +
 	"      '</div>' +\n" +
 	"      '<div class=\"msg-time\">' + time + '</div>';\n" +
 	"\n" +
@@ -18413,7 +18413,7 @@ Blockly.Arduino['esp32_chat_myfirmata'] = function(block) {
 	"    wrap.id = 'typingMsg';\n" +
 	"    wrap.innerHTML =\n" +
 	"      '<div class=\"msg-row\">' +\n" +
-	"        '<div class=\"avatar ai-av\">AI</div>' +\n" +
+	"        '<div class=\"avatar ai-av\">B</div>' +\n" +
 	"        '<div class=\"typing-bubble\">' +\n" +
 	"          '<span></span><span></span><span></span>' +\n" +
 	"        '</div>' +\n" +
