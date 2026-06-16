@@ -39,6 +39,7 @@ Blockly.Msg.COCOSSD_GEOFENCE = "Geofence";
 Blockly.Msg.COCOSSD_XY_IN_TRIANGLE = "Within the bounds of a triangle";
 Blockly.Msg.COCOSSD_XY_IN_QUADRILATERAL = "Within the bounds of a convex quadrilateral";
 Blockly.Msg.COCOSSD_XY_ARRANGE = "(Coordinates are arranged in order)";
+Blockly.Msg.COCOSSD_NAME_SHOW = "Object Name";
 Blockly.Msg.COCOSSD_AIRPLANE = "airplane";
 Blockly.Msg.COCOSSD_APPLE = "apple";
 Blockly.Msg.COCOSSD_BACKPACK = "backpack";
