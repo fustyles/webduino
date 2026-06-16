@@ -38,6 +38,7 @@ Blockly.Msg.COCOSSD_GEOFENCE = "电子围栏";
 Blockly.Msg.COCOSSD_XY_IN_TRIANGLE = "在三边形的范围内";
 Blockly.Msg.COCOSSD_XY_IN_QUADRILATERAL = "在凸四边形的范围内";
 Blockly.Msg.COCOSSD_XY_ARRANGE = "(座标依序排列)";
+Blockly.Msg.COCOSSD_NAME_SHOW = "物体名称";
 Blockly.Msg.COCOSSD_AIRPLANE = "飞机";
 Blockly.Msg.COCOSSD_APPLE = "苹果";
 Blockly.Msg.COCOSSD_BACKPACK = "背包";
