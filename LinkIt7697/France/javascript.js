@@ -562,11 +562,11 @@ Blockly.Arduino['custom_chat_request'] = function (block) {
 		+'            state=true;\n'
 		+'          if (getResponse.indexOf("\\"},")!=-1&&state==true) {\n'
 		+'            state=false;\n'
-		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'
+		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\\""));\n'
 		+'            break;\n'
 		+'          } else if (getResponse.indexOf("\\"")!=-1&&c == \'\\n\'&&state==true) {\n'
 		+'            state=false;\n'
-		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'
+		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\\""));\n'
 		+'            break;\n'		
 		+'          }\n'
 		+'       }\n'
@@ -833,11 +833,11 @@ Blockly.Arduino['gemini_chat_request'] = function (block) {
 		+'            state=true;\n'
 		+'          if (getResponse.indexOf("\\"\\n\\r")!=-1&&state==true) {\n'
 		+'            state=false;\n'
-		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'
+		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\\""));\n'
 		+'            break;\n'		
 		+'          } else if (getResponse.indexOf("\\"")!=-1&&c == \'\\n\'&&state==true) {\n'
 		+'            state=false;\n'
-		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'
+		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\\""));\n'
 		+'            break;\n'		
 		+'          }\n'
 		+'       }\n'
@@ -913,11 +913,11 @@ Blockly.Arduino['gemini_chat_search_request'] = function (block) {
 		+'            state=true;\n'
 		+'          if (getResponse.indexOf("\\"\\n\\r")!=-1&&state==true) {\n'
 		+'            state=false;\n'
-		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'
+		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\\""));\n'
 		+'            break;\n'		
 		+'          } else if (getResponse.indexOf("\\"")!=-1&&c == \'\\n\'&&state==true) {\n'
 		+'            state=false;\n'
-		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'
+		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\\""));\n'
 		+'            break;\n'		
 		+'          }\n'
 		+'       }\n'
@@ -5167,7 +5167,7 @@ Blockly.Arduino['amb82_mini_video_tcp'] = function(block) {
 			'            currentLine += c;\n'+
 			'          }\n'+
 			'  		   \n'+
-			'          if (currentLine.indexOf(" HTTP")!=-1) {\n'+
+			'          if (currentLine.indexOf(" HTTP/1.")!=-1) {\n'+
 			'            currentLine="";\n'+
 			'          }\n'+
 			'        }\n'+
@@ -6242,7 +6242,35 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'  Camera.configVideoChannel(0, config);\n'+
 			'  Camera.videoInit();\n'+
 			'  Camera.channelBegin(0);\n'+			
-			'}\n';
+			'}\n';	
+
+	Blockly.Arduino.definitions_['getCommand'] = ''+
+			'void getCommand(char c) {\n'+
+			'  if (c==\'?\') receiveState=1;\n'+
+			'  if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) receiveState=0;\n'+
+			'  \n'+
+			'  if (receiveState==1) {\n'+
+			'    Command=Command+String(c);\n'+
+			'    \n'+
+			'    if (c==\'=\') cmdState=0;\n'+
+			'    if (c==\';\') pState++;\n'+
+			'    \n'+
+			'    if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==2)&&(c!=\';\')) p2=p2+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==3)&&(c!=\';\')) p3=p3+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==4)&&(c!=\';\')) p4=p4+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==5)&&(c!=\';\')) p5=p5+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==6)&&(c!=\';\')) p6=p6+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==7)&&(c!=\';\')) p7=p7+String(c);\n'+
+			'    if ((cmdState==0)&&(pState==8)&&(c!=\';\')) p8=p8+String(c);\n'+
+			'    if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) p9=p9+String(c);\n'+
+			'    \n'+
+			'    if (c==\'?\') questionState=1;\n'+
+			'    if (c==\'=\') equalState=1;\n'+
+			'    if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'+
+			'  }\n'+
+			'}\n';			
 
 	Blockly.Arduino.definitions_.getRequest = ''+
 			'void getRequest(void *param) {\n'+
@@ -6288,7 +6316,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'          currentLine += c;\n'+
 			'        }\n'+
 			'		   \n'+
-			'        if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP")!=-1)) {\n'+
+			'        if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP/1.")!=-1)) {\n'+
 			'          if (Command.indexOf("stop")!=-1) {\n'+
 			'            client.println();\n'+
 			'            client.println();\n'+
@@ -6304,34 +6332,6 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'    client.stop();\n'+
 			'  }\n'+
 			' }\n'+
-			'}\n';
-
-	Blockly.Arduino.definitions_['getCommand'] = ''+
-			'void getCommand(char c) {\n'+
-			'  if (c==\'?\') receiveState=1;\n'+
-			'  if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) receiveState=0;\n'+
-			'  \n'+
-			'  if (receiveState==1) {\n'+
-			'    Command=Command+String(c);\n'+
-			'    \n'+
-			'    if (c==\'=\') cmdState=0;\n'+
-			'    if (c==\';\') pState++;\n'+
-			'    \n'+
-			'    if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'+
-			'    if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'+
-			'    if ((cmdState==0)&&(pState==2)&&(c!=\';\')) p2=p2+String(c);\n'+
-			'    if ((cmdState==0)&&(pState==3)&&(c!=\';\')) p3=p3+String(c);\n'+
-			'    if ((cmdState==0)&&(pState==4)&&(c!=\';\')) p4=p4+String(c);\n'+
-			'    if ((cmdState==0)&&(pState==5)&&(c!=\';\')) p5=p5+String(c);\n'+
-			'    if ((cmdState==0)&&(pState==6)&&(c!=\';\')) p6=p6+String(c);\n'+
-			'    if ((cmdState==0)&&(pState==7)&&(c!=\';\')) p7=p7+String(c);\n'+
-			'    if ((cmdState==0)&&(pState==8)&&(c!=\';\')) p8=p8+String(c);\n'+
-			'    if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) p9=p9+String(c);\n'+
-			'    \n'+
-			'    if (c==\'?\') questionState=1;\n'+
-			'    if (c==\'=\') equalState=1;\n'+
-			'    if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'+
-			'  }\n'+
 			'}\n';
 
 	Blockly.Arduino.definitions_.getRequest81 = ''+
@@ -6381,7 +6381,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'            currentLine += c;\n'+
 			'          }\n'+
 			'  		   \n'+
-			'          if (currentLine.indexOf(" HTTP")!=-1) {\n'+
+			'          if (currentLine.indexOf(" HTTP/1.")!=-1) {\n'+
 			'            currentLine="";\n'+
 			'          }\n'+
 			'        }\n'+
@@ -6436,7 +6436,7 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'            currentLine += c;\n'+
 			'          }\n'+
 			'  		   \n'+
-			'          if (currentLine.indexOf(" HTTP")!=-1) {\n'+
+			'          if (currentLine.indexOf(" HTTP/1.")!=-1) {\n'+
 			'            currentLine="";\n'+
 			'          }\n'+
 			'        }\n'+
@@ -6583,7 +6583,7 @@ Blockly.Arduino['amb82_mini_stream'] = function(block) {
 			'            currentLine += c;\n'+
 			'          }\n'+
 			'  		   \n'+
-			'          if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP")!=-1)) {\n'+
+			'          if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP/1.")!=-1)) {\n'+
 			'            currentLine="";\n'+
 			'          }\n'+
 			'        }\n'+
@@ -8471,11 +8471,11 @@ Blockly.Arduino['openai_chat_request'] = function (block) {
 		+'            state=true;\n'
 		+'          if (getResponse.indexOf("\\"},")!=-1&&state==true) {\n'
 		+'            state=false;\n'
-		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'
+		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\\""));\n'
 		+'            break;\n'			
 		+'          } else if (getResponse.indexOf("\\"")!=-1&&c == \'\\n\'&&state==true) {\n'
 		+'            state=false;\n'
-		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'
+		+'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\\""));\n'
 		+'            break;\n'			
 		+'          }\n'
 		+'       }\n'
@@ -12096,7 +12096,6 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
 			'  initWiFi();\n'+
 			'  \n'+
 			'  startCameraServer();\n';	
-	
 
 	Blockly.Arduino.definitions_['getCommand'] = ''+
 			'  void getCommand(char c) {\n'+
@@ -13025,7 +13024,34 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 			'    server81.begin();\n'+ 			
 			'  }\n';
 	}
-	
+
+	Blockly.Arduino.definitions_['getCommand'] = ''+
+			'  void getCommand(char c) {\n'+
+			'    if (c==\'?\') receiveState=1;\n'+
+			'    if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) receiveState=0;\n'+
+			'    \n'+
+			'    if (receiveState==1) {\n'+
+			'      Command=Command+String(c);\n'+
+			'      \n'+
+			'      if (c==\'=\') cmdState=0;\n'+
+			'      if (c==\';\') pState++;\n'+
+			'      \n'+
+			'      if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==2)&&(c!=\';\')) p2=p2+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==3)&&(c!=\';\')) p3=p3+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==4)&&(c!=\';\')) p4=p4+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==5)&&(c!=\';\')) p5=p5+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==6)&&(c!=\';\')) p6=p6+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==7)&&(c!=\';\')) p7=p7+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==8)&&(c!=\';\')) p8=p8+String(c);\n'+
+			'      if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) p9=p9+String(c);\n'+
+			'      \n'+
+			'      if (c==\'?\') questionState=1;\n'+
+			'      if (c==\'=\') equalState=1;\n'+
+			'      if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'+
+			'    }\n'+
+			'  }\n';	
 
 	Blockly.Arduino.definitions_.getRequest = ''+
 			'  void getRequest() {\n'+
@@ -13100,7 +13126,7 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 			'            currentLine += c;\n'+
 			'          }\n'+
 			'  		   \n'+
-			'          if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP")!=-1)) {\n'+
+			'          if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP/1.")!=-1)) {\n'+
 			'            if (Command.indexOf("stop")!=-1) {\n'+
 			'              client.println();\n'+
 			'              client.println();\n'+
@@ -13183,35 +13209,7 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 			'		    vTaskDelay(10);\n'+
 			'		  }\n'+
 			'		}';
-	}	
-
-	Blockly.Arduino.definitions_['getCommand'] = ''+
-			'  void getCommand(char c) {\n'+
-			'    if (c==\'?\') receiveState=1;\n'+
-			'    if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) receiveState=0;\n'+
-			'    \n'+
-			'    if (receiveState==1) {\n'+
-			'      Command=Command+String(c);\n'+
-			'      \n'+
-			'      if (c==\'=\') cmdState=0;\n'+
-			'      if (c==\';\') pState++;\n'+
-			'      \n'+
-			'      if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==2)&&(c!=\';\')) p2=p2+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==3)&&(c!=\';\')) p3=p3+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==4)&&(c!=\';\')) p4=p4+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==5)&&(c!=\';\')) p5=p5+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==6)&&(c!=\';\')) p6=p6+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==7)&&(c!=\';\')) p7=p7+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==8)&&(c!=\';\')) p8=p8+String(c);\n'+
-			'      if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) p9=p9+String(c);\n'+
-			'      \n'+
-			'      if (c==\'?\') questionState=1;\n'+
-			'      if (c==\'=\') equalState=1;\n'+
-			'      if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'+
-			'    }\n'+
-			'  }\n';			
+	}				
 
 	if ('loopsTop_' in Blockly.Arduino) {
 		if (type=="still")
@@ -17839,6 +17837,34 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'    server.begin();\n'+ 
 			'  }\n';
 			
+	Blockly.Arduino.definitions_['getCommand'] = ''+
+			'  void getCommand(char c) {\n'+
+			'    if (c==\'?\') receiveState=1;\n'+
+			'    if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) receiveState=0;\n'+
+			'    \n'+
+			'    if (receiveState==1) {\n'+
+			'      Command=Command+String(c);\n'+
+			'      \n'+
+			'      if (c==\'=\') cmdState=0;\n'+
+			'      if (c==\';\') pState++;\n'+
+			'      \n'+
+			'      if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==2)&&(c!=\';\')) p2=p2+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==3)&&(c!=\';\')) p3=p3+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==4)&&(c!=\';\')) p4=p4+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==5)&&(c!=\';\')) p5=p5+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==6)&&(c!=\';\')) p6=p6+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==7)&&(c!=\';\')) p7=p7+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==8)&&(c!=\';\')) p8=p8+String(c);\n'+
+			'      if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) p9=p9+String(c);\n'+
+			'      \n'+
+			'      if (c==\'?\') questionState=1;\n'+
+			'      if (c==\'=\') equalState=1;\n'+
+			'      if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'+
+			'    }\n'+
+			'  }\n';	
+			
 	Blockly.Arduino.definitions_.getRequest = ''+
 			'  void getRequest() {\n'+
 			'    Command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'+
@@ -17879,7 +17905,7 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'            currentLine += c;\n'+
 			'          }\n'+
 			'  		   \n'+
-			'          if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP")!=-1)) {\n'+
+			'          if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP/1.")!=-1)) {\n'+
 			'            if (Command.indexOf("stop")!=-1) {\n'+
 			'              client.println();\n'+
 			'              client.println();\n'+
@@ -17894,7 +17920,703 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'      delay(1);\n'+
 			'      client.stop();\n'+
 			'    }\n'+
-			'  }\n';	
+			'  }\n';		
+
+	if ('loopsTop_' in Blockly.Arduino)
+		Blockly.Arduino.loopsTop_.server_getrequest = "  getRequest();\n";
+	else if ('loops_' in Blockly.Arduino)
+		Blockly.Arduino.loops_.server_getrequest = "  getRequest();\n";
+	
+	code = '';
+	return code;
+};
+
+Blockly.Arduino['esp32_chat_myfirmata'] = function(block) {
+  var mainpage = Blockly.Arduino.valueToCode(block, 'mainpage', Blockly.Arduino.ORDER_ATOMIC);
+  var ssid = Blockly.Arduino.valueToCode(block, 'ssid', Blockly.Arduino.ORDER_ATOMIC);
+  var pass = Blockly.Arduino.valueToCode(block, 'password', Blockly.Arduino.ORDER_ATOMIC);
+  var ssid_ap = Blockly.Arduino.valueToCode(block, 'ssid_ap', Blockly.Arduino.ORDER_ATOMIC);
+  var pass_ap = Blockly.Arduino.valueToCode(block, 'password_ap', Blockly.Arduino.ORDER_ATOMIC);
+  var baudrate = block.getFieldValue('baudrate');  
+  var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
+  
+  if (selectBoardType()=="esp8266")
+	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <ESP8266WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;";
+  else if (selectBoardType()=="esp32") {
+	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;";
+	Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
+	Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';
+  }
+  else 
+	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;";	
+
+  Blockly.Arduino.definitions_.define_linkit_wifi_ssid='char _lwifi_ssid[] = '+ssid+';';
+  Blockly.Arduino.definitions_.define_linkit_wifi_pass='char _lwifi_pass[] = '+pass+';';
+  Blockly.Arduino.definitions_.define_linkit_wifi_ssid_ap='const char* ssid_ap = '+ssid_ap+';';
+  Blockly.Arduino.definitions_.define_linkit_wifi_appass='const char* pass_ap = '+pass_ap+';';   
+  Blockly.Arduino.definitions_.define_linkit_wifi_server= 'WiFiServer server(80);\n';
+  
+	Blockly.Arduino.definitions_.define_index_chat = "" +
+	"const char INDEX_CHAT_HTML[] PROGMEM = R\"rawhtml(\n" +
+	"<!DOCTYPE html>\n" +
+	"<html lang=\"zh-TW\">\n" +
+	"<head>\n" +
+	"<meta charset=\"UTF-8\">\n" +
+	"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+	"<title>Web Chat</title>\n" +
+	"<style>\n" +
+	"  :root {\n" +
+	"    --font-main: -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;\n" +
+	"    --font-mono: 'Courier New', Courier, monospace;\n" +
+	"    --bg:        #f5f7ff;\n" +
+	"    --surface:   #ffffff;\n" +
+	"    --surface2:  #f0f3ff;\n" +
+	"    --border:    #e2e8ff;\n" +
+	"    --accent:    #4f6ef7;\n" +
+	"    --accent2:   #7c3aed;\n" +
+	"    --text:      #1a1d2e;\n" +
+	"    --text2:     #4a5270;\n" +
+	"    --text3:     #9098b8;\n" +
+	"    --success:   #10b981;\n" +
+	"    --user-bg:   linear-gradient(135deg, #4f6ef7, #7c3aed);\n" +
+	"    --ai-bg:     #ffffff;\n" +
+	"    --radius:    16px;\n" +
+	"    --header-h:  64px;\n" +
+	"  }\n" +
+	"\n" +
+	"  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }\n" +
+	"\n" +
+	"  html, body {\n" +
+	"    height: 100%;\n" +
+	"    font-family: var(--font-main);\n" +
+	"    background: var(--bg);\n" +
+	"    color: var(--text);\n" +
+	"    overflow: hidden;\n" +
+	"  }\n" +
+	"\n" +
+	"  .shell {\n" +
+	"    display: flex;\n" +
+	"    flex-direction: column;\n" +
+	"    height: calc(100dvh - 58px);\n" +
+	"    max-width: 780px;\n" +
+	"    margin: 0 auto;\n" +
+	"    background: var(--bg);\n" +
+	"  }\n" +
+	"\n" +
+	"  /* ── header ── */\n" +
+	"  .header {\n" +
+	"    height: var(--header-h);\n" +
+	"    background: var(--surface);\n" +
+	"    border-bottom: 1px solid var(--border);\n" +
+	"    display: flex;\n" +
+	"    align-items: center;\n" +
+	"    padding: 0 20px;\n" +
+	"    gap: 12px;\n" +
+	"    flex-shrink: 0;\n" +
+	"    box-shadow: 0 1px 12px rgba(79,110,247,.06);\n" +
+	"  }\n" +
+	"\n" +
+	"  .header-logo {\n" +
+	"    width: 36px; height: 36px;\n" +
+	"    background: linear-gradient(135deg, #4f6ef7, #7c3aed);\n" +
+	"    border-radius: 10px;\n" +
+	"    display: flex; align-items: center; justify-content: center;\n" +
+	"    flex-shrink: 0;\n" +
+	"    box-shadow: 0 4px 12px rgba(79,110,247,.3);\n" +
+	"    position: relative; overflow: hidden;\n" +
+	"  }\n" +
+	"  .header-logo::before {\n" +
+	"    content: '';\n" +
+	"    position: absolute; inset: 0;\n" +
+	"    background: conic-gradient(transparent 30%, rgba(255,255,255,.2) 50%, transparent 70%);\n" +
+	"    animation: spin 4s linear infinite;\n" +
+	"  }\n" +
+	"  @keyframes spin { to { transform: rotate(360deg); } }\n" +
+	"  .header-logo svg { position: relative; z-index: 1; }\n" +
+	"\n" +
+	"  .header-title {\n" +
+	"    font-size: 1.05rem;\n" +
+	"    font-weight: 600;\n" +
+	"    letter-spacing: -.01em;\n" +
+	"    color: var(--text);\n" +
+	"  }\n" +
+	"  .header-sub {\n" +
+	"    font-size: .72rem;\n" +
+	"    color: var(--text3);\n" +
+	"    margin-top: 1px;\n" +
+	"  }\n" +
+	"\n" +
+	"  .header-status {\n" +
+	"    margin-left: auto;\n" +
+	"    display: flex;\n" +
+	"    align-items: center;\n" +
+	"    gap: 6px;\n" +
+	"    font-size: .72rem;\n" +
+	"    color: var(--text3);\n" +
+	"  }\n" +
+	"  .status-dot {\n" +
+	"    width: 7px; height: 7px;\n" +
+	"    border-radius: 50%;\n" +
+	"    background: var(--success);\n" +
+	"    animation: blink 2.5s ease-in-out infinite;\n" +
+	"  }\n" +
+	"  .status-dot.thinking {\n" +
+	"    background: #f59e0b;\n" +
+	"    animation: pulse-dot .8s ease-in-out infinite;\n" +
+	"  }\n" +
+	"  @keyframes blink     { 0%,100%{opacity:1} 50%{opacity:.3} }\n" +
+	"  @keyframes pulse-dot { 0%,100%{transform:scale(1)} 50%{transform:scale(1.4)} }\n" +
+	"\n" +
+	"  /* ── messages ── */\n" +
+	"  .messages {\n" +
+	"    flex: 1;\n" +
+	"    overflow-y: auto;\n" +
+	"    padding: 24px 20px 12px;\n" +
+	"    display: flex;\n" +
+	"    flex-direction: column;\n" +
+	"    gap: 16px;\n" +
+	"    scroll-behavior: smooth;\n" +
+	"  }\n" +
+	"  .messages::-webkit-scrollbar { width: 4px; }\n" +
+	"  .messages::-webkit-scrollbar-track { background: transparent; }\n" +
+	"  .messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }\n" +
+	"\n" +
+	"  /* ── bubble ── */\n" +
+	"  .msg {\n" +
+	"    display: flex;\n" +
+	"    flex-direction: column;\n" +
+	"    gap: 4px;\n" +
+	"    animation: msg-in .25s ease;\n" +
+	"  }\n" +
+	"  @keyframes msg-in {\n" +
+	"    from { opacity:0; transform:translateY(8px); }\n" +
+	"    to   { opacity:1; transform:translateY(0); }\n" +
+	"  }\n" +
+	"  .msg.user { align-items: flex-end; }\n" +
+	"  .msg.ai   { align-items: flex-start; }\n" +
+	"\n" +
+	"  .msg-row {\n" +
+	"    display: flex;\n" +
+	"    align-items: flex-end;\n" +
+	"    gap: 8px;\n" +
+	"  }\n" +
+	"  .msg.user .msg-row { flex-direction: row-reverse; }\n" +
+	"\n" +
+	"  .avatar {\n" +
+	"    width: 28px; height: 28px;\n" +
+	"    border-radius: 9px;\n" +
+	"    display: flex; align-items: center; justify-content: center;\n" +
+	"    font-size: .75rem;\n" +
+	"    flex-shrink: 0;\n" +
+	"    margin-bottom: 2px;\n" +
+	"    font-family: var(--font-main);\n" +
+	"  }\n" +
+	"  .avatar.user-av { background: linear-gradient(135deg, #4f6ef7, #7c3aed); color: white; }\n" +
+	"  .avatar.ai-av   { background: linear-gradient(135deg, #06b6d4, #4f6ef7); color: white; }\n" +
+	"\n" +
+	"  .bubble {\n" +
+	"    max-width: min(72%, 560px);\n" +
+	"    padding: 11px 15px;\n" +
+	"    border-radius: 16px;\n" +
+	"    font-size: .9rem;\n" +
+	"    line-height: 1.65;\n" +
+	"    white-space: pre-wrap;\n" +
+	"    word-break: break-word;\n" +
+	"    font-family: var(--font-main);\n" +
+	"  }\n" +
+	"  .msg.user .bubble {\n" +
+	"    background: var(--user-bg);\n" +
+	"    color: white;\n" +
+	"    border-bottom-right-radius: 4px;\n" +
+	"    box-shadow: 0 4px 16px rgba(79,110,247,.3);\n" +
+	"  }\n" +
+	"  .msg.ai .bubble {\n" +
+	"    background: var(--ai-bg);\n" +
+	"    color: var(--text);\n" +
+	"    border: 1px solid var(--border);\n" +
+	"    border-bottom-left-radius: 4px;\n" +
+	"    box-shadow: 0 2px 8px rgba(0,0,0,.06);\n" +
+	"  }\n" +
+	"\n" +
+	"  .msg-time {\n" +
+	"    font-size: .65rem;\n" +
+	"    color: var(--text3);\n" +
+	"    padding: 0 4px;\n" +
+	"    font-family: var(--font-mono);\n" +
+	"  }\n" +
+	"\n" +
+	"  /* ── typing indicator ── */\n" +
+	"  .typing-bubble {\n" +
+	"    background: var(--ai-bg);\n" +
+	"    border: 1px solid var(--border);\n" +
+	"    border-radius: 16px;\n" +
+	"    border-bottom-left-radius: 4px;\n" +
+	"    padding: 13px 16px;\n" +
+	"    display: flex; gap: 5px; align-items: center;\n" +
+	"    box-shadow: 0 2px 8px rgba(0,0,0,.06);\n" +
+	"  }\n" +
+	"  .typing-bubble span {\n" +
+	"    width: 6px; height: 6px;\n" +
+	"    border-radius: 50%;\n" +
+	"    background: var(--text3);\n" +
+	"    animation: bounce .9s ease-in-out infinite;\n" +
+	"  }\n" +
+	"  .typing-bubble span:nth-child(2) { animation-delay: .15s; }\n" +
+	"  .typing-bubble span:nth-child(3) { animation-delay: .30s; }\n" +
+	"  @keyframes bounce {\n" +
+	"    0%,60%,100% { transform:translateY(0); }\n" +
+	"    30%          { transform:translateY(-6px); }\n" +
+	"  }\n" +
+	"\n" +
+	"  /* ── empty state ── */\n" +
+	"  .empty-state {\n" +
+	"    flex: 1;\n" +
+	"    display: flex;\n" +
+	"    flex-direction: column;\n" +
+	"    align-items: center;\n" +
+	"    justify-content: center;\n" +
+	"    gap: 12px;\n" +
+	"    color: var(--text3);\n" +
+	"    text-align: center;\n" +
+	"    padding-bottom: 40px;\n" +
+	"    pointer-events: none;\n" +
+	"  }\n" +
+	"  .empty-icon {\n" +
+	"    width: 64px; height: 64px;\n" +
+	"    background: var(--surface2);\n" +
+	"    border: 1px solid var(--border);\n" +
+	"    border-radius: 20px;\n" +
+	"    display: flex; align-items: center; justify-content: center;\n" +
+	"    font-size: 1.8rem;\n" +
+	"  }\n" +
+	"  .empty-title { font-size: .95rem; font-weight: 500; color: var(--text2); }\n" +
+	"  .empty-hint  { font-size: .78rem; line-height: 1.6; max-width: 240px; }\n" +
+	"\n" +
+	"  /* ── input area ── */\n" +
+	"  .input-area {\n" +
+	"    background: var(--surface);\n" +
+	"    border-top: 1px solid var(--border);\n" +
+	"    padding: 14px 16px 16px;\n" +
+	"    flex-shrink: 0;\n" +
+	"    box-shadow: 0 -4px 20px rgba(79,110,247,.05);\n" +
+	"  }\n" +
+	"\n" +
+	"  .input-wrap {\n" +
+	"    display: flex;\n" +
+	"    gap: 10px;\n" +
+	"    align-items: flex-end;\n" +
+	"    background: var(--surface2);\n" +
+	"    border: 1.5px solid var(--border);\n" +
+	"    border-radius: 14px;\n" +
+	"    padding: 10px 10px 10px 14px;\n" +
+	"    transition: border-color .2s, box-shadow .2s;\n" +
+	"  }\n" +
+	"  .input-wrap:focus-within {\n" +
+	"    border-color: var(--accent);\n" +
+	"    box-shadow: 0 0 0 3px rgba(79,110,247,.1);\n" +
+	"    background: white;\n" +
+	"  }\n" +
+	"\n" +
+	"  textarea {\n" +
+	"    flex: 1;\n" +
+	"    background: none;\n" +
+	"    border: none;\n" +
+	"    outline: none;\n" +
+	"    resize: none;\n" +
+	"    font-family: var(--font-main);\n" +
+	"    font-size: .9rem;\n" +
+	"    color: var(--text);\n" +
+	"    line-height: 1.55;\n" +
+	"    min-height: 24px;\n" +
+	"    max-height: 120px;\n" +
+	"    overflow-y: auto;\n" +
+	"    padding: 0;\n" +
+	"  }\n" +
+	"  textarea::placeholder { color: var(--text3); }\n" +
+	"  textarea::-webkit-scrollbar { width: 3px; }\n" +
+	"  textarea::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }\n" +
+	"\n" +
+	"  .send-btn {\n" +
+	"    width: 38px; height: 38px;\n" +
+	"    background: linear-gradient(135deg, var(--accent), var(--accent2));\n" +
+	"    border: none; border-radius: 10px;\n" +
+	"    color: white; cursor: pointer;\n" +
+	"    display: flex; align-items: center; justify-content: center;\n" +
+	"    flex-shrink: 0;\n" +
+	"    transition: transform .15s, box-shadow .15s, opacity .15s;\n" +
+	"    box-shadow: 0 4px 12px rgba(79,110,247,.35);\n" +
+	"  }\n" +
+	"  .send-btn:hover   { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(79,110,247,.45); }\n" +
+	"  .send-btn:active  { transform: translateY(0); opacity: .85; }\n" +
+	"  .send-btn:disabled{ opacity: .4; cursor: not-allowed; transform: none; }\n" +
+	"\n" +
+	"  .input-hint {\n" +
+	"    margin-top: 7px;\n" +
+	"    font-size: .67rem;\n" +
+	"    color: var(--text3);\n" +
+	"    text-align: center;\n" +
+	"    font-family: var(--font-main);\n" +
+	"  }\n" +
+	"  kbd {\n" +
+	"    display: inline-block;\n" +
+	"    padding: 1px 5px;\n" +
+	"    background: var(--surface2);\n" +
+	"    border: 1px solid var(--border);\n" +
+	"    border-radius: 4px;\n" +
+	"    font-family: var(--font-mono);\n" +
+	"    font-size: .65rem;\n" +
+	"    color: var(--text2);\n" +
+	"  }\n" +
+	"\n" +
+	"  /* ── error toast ── */\n" +
+	"  .err-toast {\n" +
+	"    display: none;\n" +
+	"    position: fixed;\n" +
+	"    bottom: 100px;\n" +
+	"    left: 50%; transform: translateX(-50%);\n" +
+	"    background: #fef2f2;\n" +
+	"    border: 1px solid #fecaca;\n" +
+	"    color: #dc2626;\n" +
+	"    border-radius: 10px;\n" +
+	"    padding: 9px 18px;\n" +
+	"    font-size: .8rem;\n" +
+	"    font-family: var(--font-main);\n" +
+	"    z-index: 100;\n" +
+	"    white-space: nowrap;\n" +
+	"    box-shadow: 0 4px 16px rgba(0,0,0,.1);\n" +
+	"    animation: fade-up .25s ease;\n" +
+	"  }\n" +
+	"  @keyframes fade-up {\n" +
+	"    from { opacity:0; transform:translateX(-50%) translateY(6px); }\n" +
+	"    to   { opacity:1; transform:translateX(-50%) translateY(0); }\n" +
+	"  }\n" +
+	"</style>\n" +
+	"</head>\n" +
+	"<body>\n" +
+	"\n" +
+	"<div class=\"shell\">\n" +
+	"\n" +
+	"  <div class=\"header\">\n" +
+	"    <div class=\"header-logo\">\n" +
+	"      <svg width=\"20\" height=\"20\" viewBox=\"0 0 28 28\" fill=\"none\">\n" +
+	"        <circle cx=\"14\" cy=\"9\"  r=\"4\" fill=\"white\" opacity=\".95\"/>\n" +
+	"        <circle cx=\"7\"  cy=\"20\" r=\"3\" fill=\"white\" opacity=\".8\"/>\n" +
+	"        <circle cx=\"21\" cy=\"20\" r=\"3\" fill=\"white\" opacity=\".8\"/>\n" +
+	"        <line x1=\"14\" y1=\"13\" x2=\"7\"  y2=\"17\" stroke=\"white\" stroke-width=\"1.5\" opacity=\".7\"/>\n" +
+	"        <line x1=\"14\" y1=\"13\" x2=\"21\" y2=\"17\" stroke=\"white\" stroke-width=\"1.5\" opacity=\".7\"/>\n" +
+	"        <line x1=\"7\"  y1=\"20\" x2=\"21\" y2=\"20\" stroke=\"white\" stroke-width=\"1.5\" opacity=\".4\"/>\n" +
+	"      </svg>\n" +
+	"    </div>\n" +
+	"    <div>\n" +
+	"      <div class=\"header-title\">fuClaw</div>\n" +
+	"      <div class=\"header-sub\">Gemini AI Agent</div>\n" +
+	"    </div>\n" +
+	"    <div class=\"header-status\">\n" +
+	"      <div class=\"status-dot\" id=\"statusDot\"></div>\n" +
+	"      <span id=\"statusText\">Ready</span>\n" +
+	"    </div>\n" +
+	"  </div>\n" +
+	"\n" +
+	"  <div class=\"messages\" id=\"messages\">\n" +
+	"    <div class=\"empty-state\" id=\"emptyState\">\n" +
+	"      <div class=\"empty-icon\">&#10022;</div>\n" +
+	"      <div class=\"empty-title\">Start a conversation with Gemini</div>\n" +
+	"      <div class=\"empty-hint\">Enter your message and click Send.<br>fuClaw will invoke Gemini AI.</div>\n" +
+	"    </div>\n" +
+	"  </div>\n" +
+	"\n" +
+	"  <div class=\"input-area\">\n" +
+	"    <div class=\"input-wrap\">\n" +
+	"      <textarea\n" +
+	"        id=\"msgInput\"\n" +
+	"        placeholder=\"Type a message... (Shift+Enter for a new line)\"\n" +
+	"        rows=\"1\"\n" +
+	"      ></textarea>\n" +
+	"      <button class=\"send-btn\" id=\"sendBtn\" onclick=\"sendMessage()\" title=\"Send\">\n" +
+	"        <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n" +
+	"          <line x1=\"22\" y1=\"2\" x2=\"11\" y2=\"13\"/>\n" +
+	"          <polygon points=\"22 2 15 22 11 13 2 9 22 2\"/>\n" +
+	"        </svg>\n" +
+	"      </button>\n" +
+	"    </div>\n" +
+	"    <div class=\"input-hint\">\n" +
+	"      <kbd>Enter</kbd> Send &nbsp;&#183;&nbsp; <kbd>Shift</kbd>+<kbd>Enter</kbd> New Line\n" +
+	"    </div>\n" +
+	"  </div>\n" +
+	"\n" +
+	"</div>\n" +
+	"\n" +
+	"<div class=\"err-toast\" id=\"errToast\"></div>\n" +
+	"\n" +
+	"<script>\n" +
+	"  var messagesEl = document.getElementById('messages');\n" +
+	"  var inputEl    = document.getElementById('msgInput');\n" +
+	"  var sendBtn    = document.getElementById('sendBtn');\n" +
+	"  var emptyState = document.getElementById('emptyState');\n" +
+	"  var statusDot  = document.getElementById('statusDot');\n" +
+	"  var statusText = document.getElementById('statusText');\n" +
+	"  var isWaiting  = false;\n" +
+	"\n" +
+	"  inputEl.addEventListener('input', function() {\n" +
+	"    inputEl.style.height = 'auto';\n" +
+	"    inputEl.style.height = Math.min(inputEl.scrollHeight, 120) + 'px';\n" +
+	"  });\n" +
+	"\n" +
+	"  inputEl.addEventListener('keydown', function(e) {\n" +
+	"    if (e.key === 'Enter' && !e.shiftKey) {\n" +
+	"      e.preventDefault();\n" +
+	"      sendMessage();\n" +
+	"    }\n" +
+	"  });\n" +
+	"\n" +
+	"  function nowStr() {\n" +
+	"    var d  = new Date();\n" +
+	"    var hh = ('0' + d.getHours()).slice(-2);\n" +
+	"    var mm = ('0' + d.getMinutes()).slice(-2);\n" +
+	"    var ss = ('0' + d.getSeconds()).slice(-2);\n" +
+	"    return hh + ':' + mm + ':' + ss;\n" +
+	"  }\n" +
+	"\n" +
+	"  function escHtml(str) {\n" +
+	"    return str\n" +
+	"      .replace(/&/g,'&amp;')\n" +
+	"      .replace(/</g,'&lt;')\n" +
+	"      .replace(/>/g,'&gt;')\n" +
+	"      .replace(/\"/g,'&quot;');\n" +
+	"  }\n" +
+	"\n" +
+	"  function appendMsg(role, text, time, isHtml) {\n" +
+	"    if (emptyState) emptyState.style.display = 'none';\n" +
+	"\n" +
+	"    var msg = document.createElement('div');\n" +
+	"    msg.className = 'msg ' + role;\n" +
+	"\n" +
+	"    var avatarChar = role === 'user' ? 'U' : 'AI';\n" +
+	"    var avatarCls  = role === 'user' ? 'user-av' : 'ai-av';\n" +
+	"	\n" +
+	"	var content = isHtml ? text : escHtml(text);\n" +
+	"\n" +
+	"    msg.innerHTML =\n" +
+	"      '<div class=\"msg-row\">' +\n" +
+	"        '<div class=\"avatar ' + avatarCls + '\">' + avatarChar + '</div>' +\n" +
+	"        '<div class=\"bubble\">' + content + '</div>' +\n" +
+	"      '</div>' +\n" +
+	"      '<div class=\"msg-time\">' + time + '</div>';\n" +
+	"\n" +
+	"    messagesEl.appendChild(msg);\n" +
+	"    scrollBottom();\n" +
+	"  }\n" +
+	"\n" +
+	"  function showTyping() {\n" +
+	"    var wrap = document.createElement('div');\n" +
+	"    wrap.className = 'msg ai';\n" +
+	"    wrap.id = 'typingMsg';\n" +
+	"    wrap.innerHTML =\n" +
+	"      '<div class=\"msg-row\">' +\n" +
+	"        '<div class=\"avatar ai-av\">AI</div>' +\n" +
+	"        '<div class=\"typing-bubble\">' +\n" +
+	"          '<span></span><span></span><span></span>' +\n" +
+	"        '</div>' +\n" +
+	"      '</div>';\n" +
+	"    messagesEl.appendChild(wrap);\n" +
+	"    scrollBottom();\n" +
+	"  }\n" +
+	"\n" +
+	"  function hideTyping() {\n" +
+	"    var el = document.getElementById('typingMsg');\n" +
+	"    if (el) el.remove();\n" +
+	"  }\n" +
+	"\n" +
+	"  function setStatus(state) {\n" +
+	"    if (state === 'thinking') {\n" +
+	"      statusDot.className = 'status-dot thinking';\n" +
+	"      statusText.textContent = 'Thinking...';\n" +
+	"      sendBtn.disabled = true;\n" +
+	"    } else {\n" +
+	"      statusDot.className = 'status-dot';\n" +
+	"      statusText.textContent = 'Ready';\n" +
+	"      sendBtn.disabled = false;\n" +
+	"    }\n" +
+	"  }\n" +
+	"\n" +
+	"  function showError(msg) {\n" +
+	"    var t = document.getElementById('errToast');\n" +
+	"    t.textContent = '⚠ ' + msg;\n" +
+	"    t.style.display = 'block';\n" +
+	"    setTimeout(function() { t.style.display = 'none'; }, 4000);\n" +
+	"  }\n" +
+	"\n" +
+	"  function scrollBottom() {\n" +
+	"    messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' });\n" +
+	"  }\n" +
+	"\n" +
+	"  function sendMessage() {\n" +
+	"    if (isWaiting) return;\n" +
+	"\n" +
+	"    var text = inputEl.value.trim();\n" +
+	"    if (!text) return;\n" +
+	"\n" +
+	"    appendMsg('user', text, nowStr());\n" +
+	"\n" +
+	"    inputEl.value = '';\n" +
+	"    inputEl.style.height = 'auto';\n" +
+	"\n" +
+	"    isWaiting = true;\n" +
+	"    setStatus('thinking');\n" +
+	"    showTyping();\n" +
+	"\n" +
+	"    var url = '/?chat=' + encodeURIComponent(text);\n" +
+	"\n" +
+	"    fetch(url, { method: 'GET' })\n" +
+	"      .then(function(res) {\n" +
+	"        if (!res.ok) throw new Error('HTTP ' + res.status);\n" +
+	"        return res.text();\n" +
+	"      })\n" +
+	"      .then(function(reply) {\n" +
+	"        hideTyping();\n" +
+	"		if (reply.indexOf(\"data:image\")!=-1)\n" +
+	"			appendMsg('ai', reply, nowStr(), true);\n" +
+	"		else\n" +
+	"			appendMsg('ai', reply, nowStr());\n" +
+	"      })\n" +
+	"      .catch(function(err) {\n" +
+	"        hideTyping();\n" +
+	"        showError('Cannot connect to the device. (' + err.message + ')');\n" +
+	"      })\n" +
+	"      .finally(function() {\n" +
+	"        isWaiting = false;\n" +
+	"        setStatus('ready');\n" +
+	"        inputEl.focus();\n" +
+	"      });\n" +
+	"  }\n" +
+	"</script>\n" +
+	"\n" +
+	"<!-- fuClaw Global Nav Bar -->\n" +
+	"<style>\n" +
+	"  .fc-nav {\n" +
+	"    position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;\n" +
+	"    background: rgba(255,255,255,.92);\n" +
+	"    backdrop-filter: blur(16px);\n" +
+	"    -webkit-backdrop-filter: blur(16px);\n" +
+	"    border-top: 1px solid rgba(220,228,255,.9);\n" +
+	"    display: flex; justify-content: space-around; align-items: stretch;\n" +
+	"    height: 58px;\n" +
+	"    box-shadow: 0 -4px 24px rgba(79,110,247,.10);\n" +
+	"    font-family: -apple-system,'Segoe UI','Noto Sans TC',sans-serif;\n" +
+	"  }\n" +
+	"  .fc-nav a {\n" +
+	"    flex: 1; display: flex; flex-direction: column;\n" +
+	"    align-items: center; justify-content: center;\n" +
+	"    gap: 3px; text-decoration: none;\n" +
+	"    color: #8892b0; font-size: .6rem; font-weight: 500;\n" +
+	"    letter-spacing: .03em; transition: color .2s;\n" +
+	"    -webkit-tap-highlight-color: transparent;\n" +
+	"    padding: 6px 2px 4px;\n" +
+	"  }\n" +
+	"  .fc-nav a:hover { color: #4f6ef7; }\n" +
+	"  .fc-nav a.fc-active { color: #4f6ef7; }\n" +
+	"  .fc-nav a .fc-ico {\n" +
+	"    width: 28px; height: 28px; border-radius: 9px;\n" +
+	"    display: flex; align-items: center; justify-content: center;\n" +
+	"    font-size: 1.05rem; transition: background .2s, transform .15s;\n" +
+	"  }\n" +
+	"  .fc-nav a.fc-active .fc-ico { background: rgba(79,110,247,.12); transform: scale(1.08); }\n" +
+	"  .fc-nav a:hover .fc-ico { background: rgba(79,110,247,.07); }\n" +
+	"  body { padding-bottom: 68px !important; }\n" +
+	"</style>\n" +
+	"<nav class=\"fc-nav\">\n" +
+	"  <a href=\"/\"           id=\"fcn-config\"   title=\"System Config\"><span class=\"fc-ico\">&#9881;</span><span>Home</span></a>\n" +
+	"  <a href=\"/schedule\"  id=\"fcn-schedule\" title=\"Scheduler\"><span class=\"fc-ico\">&#128197;</span><span>Schedule</span></a>\n" +
+	"  <a href=\"/chat\"      id=\"fcn-chat\"     title=\"Gemini Chat\"><span class=\"fc-ico\">&#128172;</span><span>Chat</span></a>\n" +
+	"</nav>\n" +
+	"<script>\n" +
+	"  (function(){\n" +
+	"    var map={\"/\":\"fcn-config\",\"\":\"fcn-config\",\n" +
+	"             \"/schedule\":\"fcn-schedule\",\"/chat\":\"fcn-chat\"};\n" +
+	"    var seg=location.pathname.replace(/\\/$/,\"\") || \"/\";\n" +
+	"    var el=document.getElementById(map[seg]); if(el) el.className+=\" fc-active\";\n" +
+	"  })();\n" +
+	"</script>\n" +
+	"\n" +
+	"</body>\n" +
+	"</html>\n" +
+	"\n" +
+	"\n" +
+	")rawhtml\";\n";  
+
+  Blockly.Arduino.variables_['getCommand'] = 'String Feedback="",bleData="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
+
+  Blockly.Arduino.definitions_.ExecuteCommand = ''+
+			'void ExecuteCommand() {\n'+
+			statements_executecommand.replace(/\n/g,"\n  ")+
+			'}\n';
+
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.setups_.write_peri_reg="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+	
+	if ('setupsTop_' in Blockly.Arduino)
+		Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+	else
+		Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+	
+	Blockly.Arduino.setups_.setup_wifi=''+
+			'//WiFi.config(IPAddress(192, 168, 201, 100), IPAddress(192, 168, 201, 2), IPAddress(255, 255, 255, 0));\n'+ 
+			'  initWiFi();\n\n';
+
+	Blockly.Arduino.definitions_.initWiFi = ''+
+			'  void initWiFi() {\n'+
+			'    WiFi.mode(WIFI_AP_STA);\n'+
+			'    \n'+
+			'    for (int i=0;i<2;i++) {\n'+
+			'      WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
+			'      \n'+
+			'      delay(1000);\n'+
+			'      Serial.println("");\n'+
+			'      Serial.print("Connecting to ");\n'+
+			'      Serial.println(_lwifi_ssid);\n'+
+			'      \n'+
+			'      long int StartTime=millis();\n'+
+			'      while (WiFi.status() != WL_CONNECTED) {\n'+
+			'          delay(500);\n'+
+			'          if ((StartTime+5000) < millis()) break;\n'+
+			'      }\n'+
+			'      \n'+
+			'      if (WiFi.status() == WL_CONNECTED) {\n'+
+			'        WiFi.softAP((WiFi.localIP().toString()+"_"+(String)ssid_ap).c_str(), pass_ap);\n'+      
+			'        Serial.println("");\n'+
+			'        Serial.println("STAIP address: ");\n'+
+			'        Serial.println(WiFi.localIP());\n'+
+			'        Serial.println("");\n'+
+			'      	 \n'+
+			'    	 pinMode(2, OUTPUT);\n'+ 
+			'    	 for (int i=0;i<5;i++) {\n'+ 
+			'    	   digitalWrite(2, HIGH);\n'+ 
+			'    	   delay(100);\n'+ 
+			'    	   digitalWrite(2, LOW);\n'+ 
+			'    	   delay(100);\n'+ 
+			'    	 }\n'+ 
+			'        break;\n'+
+			'      }\n'+
+			'    }\n'+
+			'    \n'+
+			'    if (WiFi.status() != WL_CONNECTED) {\n'+
+			'      WiFi.softAP((WiFi.softAPIP().toString()+"_"+(String)ssid_ap).c_str(), pass_ap);\n'+
+			'  	   \n'+
+			'    	pinMode(2, OUTPUT);\n'+ 
+			'    	for (int i=0;i<3;i++) {\n'+ 
+			'    	  digitalWrite(2, HIGH);\n'+ 
+			'    	  delay(500);\n'+ 
+			'    	  digitalWrite(2, LOW);\n'+ 
+			'    	  delay(500);\n'+ 
+			'    	}\n'+ 
+			'    }\n'+
+			'    \n'+
+			'    Serial.println("");\n'+
+			'    Serial.println("APIP address: ");\n'+
+			'    Serial.println(WiFi.softAPIP());\n'+
+			'    \n'+
+			'    server.begin();\n'+ 
+			'  }\n';
 			
 	Blockly.Arduino.definitions_['getCommand'] = ''+
 			'  void getCommand(char c) {\n'+
@@ -17922,7 +18644,64 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 			'      if (c==\'=\') equalState=1;\n'+
 			'      if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'+
 			'    }\n'+
-			'  }\n';		
+			'  }\n';
+			
+	Blockly.Arduino.definitions_.getRequest = ''+
+			'  void getRequest() {\n'+
+			'    Command="";cmd="";p1="";p2="";p3="";p4="";p5="";p6="";p7="";p8="";p9="";\n'+
+			'    receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n'+
+			'  	 \n'+
+			'    WiFiClient client = server.available();\n'+
+			'    \n'+
+			'    if (client) {\n'+
+			'      String currentLine = "";\n'+
+			'  	   \n'+
+			'      while (client.connected()) {\n'+
+			'        if (client.available()) {\n'+
+			'          char c = client.read();\n'+             
+			'          \n'+
+			'          getCommand(c);\n'+
+			'          \n'+
+			'          if (c == \'\\n\') {\n'+
+			'            if (currentLine.length() == 0) {\n'+    
+			'   	        client.println("HTTP/1.1 200 OK");\n'+
+			'   	        client.println("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");\n'+
+			'   	        client.println("Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS");\n'+
+			'   	        client.println("Content-Type: text/html; charset=utf-8");\n'+
+			'   	        client.println("Access-Control-Allow-Origin: *");\n'+
+			'   	        client.println("X-Content-Type-Options: nosniff");\n'+
+			'   	        client.println();\n'+
+			'   	        if (Feedback=="")\n'+
+			'   	        	Feedback=String(INDEX_CHAT_HTML);\n'+
+			'   	        for (int index = 0; index < Feedback.length(); index = index+1024) {\n'+
+			'   	          client.print(Feedback.substring(index, index+1024));\n'+
+			'   	        }\n'+
+			'   	        Feedback="";\n'+
+			'   	        break;\n'+
+			'            } else {\n'+
+			'              currentLine = "";\n'+
+			'            }\n'+
+			'          }\n'+ 
+			'          else if (c != \'\\r\') {\n'+
+			'            currentLine += c;\n'+
+			'          }\n'+
+			'  		   \n'+
+			'          if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP/1.")!=-1)) {\n'+
+			'            if (Command.indexOf("stop")!=-1) {\n'+
+			'              client.println();\n'+
+			'              client.println();\n'+
+ 			'             client.stop();\n'+
+			'            }\n'+
+			'            currentLine="";\n'+
+			'            Feedback="";\n'+
+			'            ExecuteCommand();\n'+
+			'          }\n'+
+			'        }\n'+
+			'      }\n'+
+			'      delay(1);\n'+
+			'      client.stop();\n'+
+			'    }\n'+
+			'  }\n';			
 
 	if ('loopsTop_' in Blockly.Arduino)
 		Blockly.Arduino.loopsTop_.server_getrequest = "  getRequest();\n";
@@ -18600,6 +19379,34 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 			'  Serial.println("STAIP address: ");\n'+ 
 			'  Serial.println(WiFi.localIP());\n'+ 
 			'  initWiFi();\n\n';
+			
+	Blockly.Arduino.definitions_['getCommand'] = ''+
+			'  void getCommand(char c) {\n'+
+			'    if (c==\'?\') receiveState=1;\n'+
+			'    if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) receiveState=0;\n'+
+			'    \n'+
+			'    if (receiveState==1) {\n'+
+			'      Command=Command+String(c);\n'+
+			'      \n'+
+			'      if (c==\'=\') cmdState=0;\n'+
+			'      if (c==\';\') pState++;\n'+
+			'      \n'+
+			'      if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==2)&&(c!=\';\')) p2=p2+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==3)&&(c!=\';\')) p3=p3+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==4)&&(c!=\';\')) p4=p4+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==5)&&(c!=\';\')) p5=p5+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==6)&&(c!=\';\')) p6=p6+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==7)&&(c!=\';\')) p7=p7+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==8)&&(c!=\';\')) p8=p8+String(c);\n'+
+			'      if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) p9=p9+String(c);\n'+
+			'      \n'+
+			'      if (c==\'?\') questionState=1;\n'+
+			'      if (c==\'=\') equalState=1;\n'+
+			'      if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'+
+			'    }\n'+
+			'  }\n';			
 
 	Blockly.Arduino.definitions_.initWiFi = ''+
 			'  void initWiFi() {\n'+
@@ -18686,7 +19493,7 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 			'            currentLine += c;\n'+
 			'          }\n'+
 			'  		   \n'+
-			'          if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP")!=-1)) {\n'+
+			'          if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP/1.")!=-1)) {\n'+
 			'            if (Command.indexOf("stop")!=-1) {\n'+
 			'              client.println();\n'+
 			'              client.println();\n'+
@@ -18702,34 +19509,7 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 			'      client.stop();\n'+
 			'    }\n'+
 			'  }\n';	
-			
-	Blockly.Arduino.definitions_['getCommand'] = ''+
-			'  void getCommand(char c) {\n'+
-			'    if (c==\'?\') receiveState=1;\n'+
-			'    if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) receiveState=0;\n'+
-			'    \n'+
-			'    if (receiveState==1) {\n'+
-			'      Command=Command+String(c);\n'+
-			'      \n'+
-			'      if (c==\'=\') cmdState=0;\n'+
-			'      if (c==\';\') pState++;\n'+
-			'      \n'+
-			'      if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==2)&&(c!=\';\')) p2=p2+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==3)&&(c!=\';\')) p3=p3+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==4)&&(c!=\';\')) p4=p4+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==5)&&(c!=\';\')) p5=p5+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==6)&&(c!=\';\')) p6=p6+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==7)&&(c!=\';\')) p7=p7+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==8)&&(c!=\';\')) p8=p8+String(c);\n'+
-			'      if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) p9=p9+String(c);\n'+
-			'      \n'+
-			'      if (c==\'?\') questionState=1;\n'+
-			'      if (c==\'=\') equalState=1;\n'+
-			'      if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'+
-			'    }\n'+
-			'  }\n';
+
 			
 	if ('loopsTop_' in Blockly.Arduino)
 		Blockly.Arduino.loopsTop_.server_getrequest = "  getRequest();\n";
@@ -24570,6 +25350,34 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'    server81.begin();\n'+ 			
 			'  }\n';
 	}
+	
+	Blockly.Arduino.definitions_['getCommand'] = ''+
+			'  void getCommand(char c) {\n'+
+			'    if (c==\'?\') receiveState=1;\n'+
+			'    if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) receiveState=0;\n'+
+			'    \n'+
+			'    if (receiveState==1) {\n'+
+			'      Command=Command+String(c);\n'+
+			'      \n'+
+			'      if (c==\'=\') cmdState=0;\n'+
+			'      if (c==\';\') pState++;\n'+
+			'      \n'+
+			'      if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==2)&&(c!=\';\')) p2=p2+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==3)&&(c!=\';\')) p3=p3+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==4)&&(c!=\';\')) p4=p4+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==5)&&(c!=\';\')) p5=p5+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==6)&&(c!=\';\')) p6=p6+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==7)&&(c!=\';\')) p7=p7+String(c);\n'+
+			'      if ((cmdState==0)&&(pState==8)&&(c!=\';\')) p8=p8+String(c);\n'+
+			'      if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) p9=p9+String(c);\n'+
+			'      \n'+
+			'      if (c==\'?\') questionState=1;\n'+
+			'      if (c==\'=\') equalState=1;\n'+
+			'      if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'+
+			'    }\n'+
+			'  }\n';		
 
 	Blockly.Arduino.definitions_.getRequest = ''+
 			'  void getRequest() {\n'+
@@ -24650,7 +25458,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'            currentLine += c;\n'+
 			'          }\n'+
 			'  		   \n'+
-			'          if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP")!=-1)) {\n'+
+			'          if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP/1.")!=-1)) {\n'+
 			'            if (Command.indexOf("stop")!=-1) {\n'+
 			'              client.println();\n'+
 			'              client.println();\n'+
@@ -24734,35 +25542,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'		  }\n'+
 			'		}';
 	}
-			
-
-	Blockly.Arduino.definitions_['getCommand'] = ''+
-			'  void getCommand(char c) {\n'+
-			'    if (c==\'?\') receiveState=1;\n'+
-			'    if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) receiveState=0;\n'+
-			'    \n'+
-			'    if (receiveState==1) {\n'+
-			'      Command=Command+String(c);\n'+
-			'      \n'+
-			'      if (c==\'=\') cmdState=0;\n'+
-			'      if (c==\';\') pState++;\n'+
-			'      \n'+
-			'      if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==2)&&(c!=\';\')) p2=p2+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==3)&&(c!=\';\')) p3=p3+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==4)&&(c!=\';\')) p4=p4+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==5)&&(c!=\';\')) p5=p5+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==6)&&(c!=\';\')) p6=p6+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==7)&&(c!=\';\')) p7=p7+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==8)&&(c!=\';\')) p8=p8+String(c);\n'+
-			'      if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) p9=p9+String(c);\n'+
-			'      \n'+
-			'      if (c==\'?\') questionState=1;\n'+
-			'      if (c==\'=\') equalState=1;\n'+
-			'      if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'+
-			'    }\n'+
-			'  }\n';			
+				
 
 	if ('loopsTop_' in Blockly.Arduino) {
 		if (type=="still")
@@ -26301,11 +27081,11 @@ Blockly.Arduino['esp32_cam_openai_vision'] = function(block) {
 			'            state=true;\n'+
 			'          if (getResponse.indexOf("\\"},")!=-1&&state==true) {\n'+
 			'            state=false;\n'+
-			'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'+
+			'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\\""));\n'+
 			'            break;\n'+				
 			'          } else if (getResponse.indexOf("\\"")!=-1&&c == \'\\n\'&&state==true) {\n'+
 			'            state=false;\n'+
-			'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'+
+			'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\\""));\n'+
 			'            break;\n'+				
 			'          }\n'+
 			'       }\n'+
@@ -26502,11 +27282,11 @@ Blockly.Arduino['esp32_cam_custom_vision'] = function(block) {
 			'            state=true;\n'+
 			'          if (getResponse.indexOf("\\"},")!=-1&&state==true) {\n'+
 			'            state=false;\n'+
-			'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'+
+			'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\\""));\n'+
 			'            break;\n'+
 			'          } else if (getResponse.indexOf("\\"")!=-1&&c == \'\\n\'&&state==true) {\n'+
 			'            state=false;\n'+
-			'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\""));\n'+
+			'            getResponse = getResponse.substring(0, getResponse.lastIndexOf("\\""));\n'+
 			'            break;\n'+			
 			'          }\n'+
 			'       }\n'+
@@ -27141,7 +27921,7 @@ function amb82_mini_video_tcp81() {
 			'            currentLine += c;\n'+
 			'          }\n'+
 			'  		   \n'+
-			'          if (currentLine.indexOf(" HTTP")!=-1) {\n'+
+			'          if (currentLine.indexOf(" HTTP/1.")!=-1) {\n'+
 			'            currentLine="";\n'+
 			'          }\n'+
 			'        }\n'+
@@ -27249,7 +28029,7 @@ function amb82_mini_video_tcp80() {
 			'            currentLine += c;\n'+
 			'          }\n'+
 			'  		   \n'+
-			'          if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP")!=-1)) {\n'+
+			'          if ((currentLine.indexOf("\/?")!=-1)&&(currentLine.indexOf(" HTTP/1.")!=-1)) {\n'+
 			'            currentLine="";\n'+
 			'          }\n'+
 			'        }\n'+

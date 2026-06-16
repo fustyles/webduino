@@ -895,6 +895,38 @@
 				  </block>
 				</statement>
 			  </block>
+			  <block type="esp32_chat_myfirmata">
+				<value name="ssid">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="password">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="ssid_ap">
+				  <block type="text">
+					<field name="TEXT">myfirmata</field>
+				  </block>
+				</value>
+				<value name="password_ap">
+				  <block type="text">
+					<field name="TEXT">12345678</field>
+				  </block>
+				</value>
+				<field name="baudrate">115200</field>
+				<statement name="ExecuteCommand">
+				  <block type="customcode_comment" inline="true">
+					<value name="text">
+					  <block type="text" id="113">
+						<field name="TEXT">http://192.168.xxx.xxx/?chat=message</field>
+					  </block>
+					</value>
+				  </block>
+				</statement>
+			  </block>			  
 			  <block type="server_getrequest">				
 			  </block>			  
 		</category> 
