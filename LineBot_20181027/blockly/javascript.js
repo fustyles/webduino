@@ -1,3 +1,16 @@
+Blockly.JavaScript['linebot_notify1'] = function (block) {
+  var bot_token = Blockly.JavaScript.valueToCode(block, 'bot_token', Blockly.JavaScript.ORDER_ATOMIC)||"";  
+  var bot_userid = Blockly.JavaScript.valueToCode(block, 'bot_userid', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var type = block.getFieldValue('value_type');
+  var parameter1 = Blockly.JavaScript.valueToCode(block, 'value_parameter1', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var parameter2 = Blockly.JavaScript.valueToCode(block, 'value_parameter2', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var parameter3 = Blockly.JavaScript.valueToCode(block, 'value_parameter3', Blockly.JavaScript.ORDER_ATOMIC)||"";
+  var parameter4 = Blockly.JavaScript.valueToCode(block, 'value_parameter4', Blockly.JavaScript.ORDER_ATOMIC)||""; 
+  
+  var code = 'linebot_push_message('+bot_token+','+bot_userid+', line_url_escape("bot","'+type+'",'+parameter1+','+parameter2+','+parameter3+','+parameter4+'));\n';
+  return code; 
+};
+
 Blockly.JavaScript['linebot_notify'] = function (block) {
   var bot_token = Blockly.JavaScript.valueToCode(block, 'bot_token', Blockly.JavaScript.ORDER_ATOMIC);  
   var bot_userid = Blockly.JavaScript.valueToCode(block, 'bot_userid', Blockly.JavaScript.ORDER_ATOMIC);
