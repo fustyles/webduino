@@ -6,7 +6,12 @@ Blockly.JavaScript['linebot_notify1'] = function (block) {
   var parameter2 = Blockly.JavaScript.valueToCode(block, 'value_parameter2', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var parameter3 = Blockly.JavaScript.valueToCode(block, 'value_parameter3', Blockly.JavaScript.ORDER_ATOMIC)||"";
   var parameter4 = Blockly.JavaScript.valueToCode(block, 'value_parameter4', Blockly.JavaScript.ORDER_ATOMIC)||""; 
-  
+
+  if (!parameter1) parameter1='""';
+  if (!parameter2) parameter2='""';
+  if (!parameter3) parameter3='""';	
+  if (!parameter4) parameter4='""';	
+	
   var code = 'linebot_push_message('+bot_token+','+bot_userid+', line_url_escape("bot","'+type+'",'+parameter1+','+parameter2+','+parameter3+','+parameter4+'));\n';
   return code; 
 };
