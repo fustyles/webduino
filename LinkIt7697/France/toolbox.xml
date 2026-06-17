@@ -918,12 +918,35 @@
 				</value>
 				<field name="baudrate">115200</field>
 				<statement name="ExecuteCommand">
-				  <block type="customcode_comment" inline="true">
+				  <block type="customcode_comment">
 					<value name="text">
-					  <block type="text" id="113">
+					  <block type="text">
 						<field name="TEXT">http://192.168.xxx.xxx/?chat=message</field>
 					  </block>
 					</value>
+					<next>
+					  <block type="controls_if">
+						<mutation else="1"></mutation>
+						<value name="IF0">
+						  <block type="servermodule_cmd">
+							<value name="text">
+							  <block type="text">
+								<field name="TEXT">chat</field>
+							  </block>
+							</value>
+						  </block>
+						</value>
+						<statement name="ELSE">
+						  <block type="servermodule_feedback">
+							<value name="text">
+							  <block type="text">
+								<field name="TEXT">Command is not defined.</field>
+							  </block>
+							</value>
+						  </block>
+						</statement>
+					  </block>
+					</next>
 				  </block>
 				</statement>
 			  </block>			  
@@ -2353,6 +2376,72 @@
 				  </block>
 				</statement>
 			  </block>
+			  <block type="amb82_mini_chat_myfirmata">
+				<field name="baudrate">115200</field>
+				<field name="framesize">VIDEO_VGA</field>
+				<value name="ssid">
+				  <block type="text">
+					<field name="TEXT">teacher</field>
+				  </block>
+				</value>
+				<value name="password">
+				  <block type="text">
+					<field name="TEXT">12345678</field>
+				  </block>
+				</value>
+				<value name="ssid_ap">
+				  <block type="text">
+					<field name="TEXT">AmebaPro2</field>
+				  </block>
+				</value>
+				<value name="password_ap">
+				  <block type="text">
+					<field name="TEXT">12345678</field>
+				  </block>
+				</value>				
+				<value name="width">
+				  <block type="math_number">
+					<field name="NUM">640</field>
+				  </block>
+				</value> 
+				<value name="height">
+				  <block type="math_number">
+					<field name="NUM">480</field>
+				  </block>
+				</value> 
+				<statement name="ExecuteCommand">
+				  <block type="customcode_comment">
+					<value name="text">
+					  <block type="text">
+						<field name="TEXT">http://192.168.xxx.xxx/?chat=message</field>
+					  </block>
+					</value>
+					<next>
+					  <block type="controls_if">
+						<mutation else="1"></mutation>
+						<value name="IF0">
+						  <block type="servermodule_cmd">
+							<value name="text">
+							  <block type="text">
+								<field name="TEXT">chat</field>
+							  </block>
+							</value>
+						  </block>
+						</value>
+						<statement name="ELSE">
+						  <block type="servermodule_feedback">
+							<value name="text">
+							  <block type="text">
+								<field name="TEXT">Command is not defined.</field>
+							  </block>
+							</value>
+						  </block>
+						</statement>
+					  </block>
+					</next>
+				  </block>
+				</statement>
+			  </block>			  
 			  <block type="amb82_mini_stream_url">							
 			  </block>			  
 		</category>		
