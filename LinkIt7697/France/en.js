@@ -1299,6 +1299,7 @@ Blockly.Msg.SERVERMODULE_REQUEST_SHOW = "monitor HTTP request";
 Blockly.Msg.ESP32_SERVERMODULE_SHOW = "ESP、PICO W Page module Initial";
 Blockly.Msg.ESP32_SERVERMODULE_CHAT_SHOW = "ESP、PICO W Page Chat module Initial";
 Blockly.Msg.ESP32_CAM_SERVERMODULE_SHOW = "ESP32-CAM Page module Initial";
+Blockly.Msg.ESP32_CAM_SERVERMODULE_DEFAULT_SHOW = "Default";
 Blockly.Msg.ESP32_CAM_SERVERMODULE_STILL_SHOW = "Custom still";
 Blockly.Msg.ESP32_CAM_SERVERMODULE_STREAM_SHOW = "Custom stream";
 Blockly.Msg.ESP32_CAM_STREAM_SERVERMODULE_SHOW = "ESP32-CAM(official Stream) Page module Initial";

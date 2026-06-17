@@ -4174,7 +4174,19 @@
 				  </block>
 				</value>
 				<field name="mimetype_">audio/mp4</field>
-			</block>						
+			</block>
+			<block type="gemini_chat_content_file_read">
+				<value name="words">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+				<value name="filename">
+				  <block type="text">
+					<field name="TEXT"></field>
+				  </block>
+				</value>
+			</block>	
 		</category>
 		<category name="amb82_mini_Flashmemory">				
 		  <block type="amb82_mini_flashmemory_write">
@@ -10320,19 +10332,7 @@
 	  <block type="gemini_chat_historical_messages_length">
 	  </block>	  
 	  <block type="gemini_chat_reset">
-	  </block>
-	  <block type="gemini_chat_content_file_read">
-	    <value name="words">
-	      <block type="text">
-	        <field name="TEXT"></field>
-	      </block>
-	    </value>
-	    <value name="filename">
-	      <block type="text">
-	        <field name="TEXT"></field>
-	      </block>
-	    </value>
-	  </block>	  
+	  </block>  
     </category>
 	<category name="custom_chat">
 	  <block type="custom_chat_initial">

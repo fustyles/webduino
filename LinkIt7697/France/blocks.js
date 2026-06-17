@@ -1566,7 +1566,8 @@ Blockly.Blocks['gemini_chat_insert'] = {
 
 Blockly.Blocks['gemini_chat_content_file_read'] = {
   init: function () {
-  this.appendDummyInput()
+    this.appendDummyInput()
+	  .appendField(Blockly.Msg["AMB82_MINI"])
 	  .appendField(Blockly.Msg.GEMINI_CHAT_SHOW)   
 	  .appendField(Blockly.Msg.GEMINI_CHAT_READ_SHOW);	  
   this.appendDummyInput()
@@ -1594,7 +1595,7 @@ Blockly.Blocks['gemini_chat_content_file_read'] = {
       .appendField(Blockly.Msg.GEMINI_CHAT_PROMPT_SHOW);	  
   this.setInputsInline(false);
   this.setOutput(true, null); 
-  this.setColour(160);
+  this.setColour(Blockly.Msg["HUE_28"]);
   this.setHelpUrl("https://ai.google.dev/gemini-api/docs/document-processing?hl=zh-tw");	  
   }
 };
@@ -34540,6 +34541,7 @@ Blockly.Blocks['server_getrequest'] = {
     this.appendDummyInput()	 
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg.ESP32_CAM_SERVERMODULE_DEFAULT_SHOW,"default"],		
 			[Blockly.Msg.ESP32_CAM_SERVERMODULE_STILL_SHOW,"still"],
 			[Blockly.Msg.ESP32_CAM_SERVERMODULE_STREAM_SHOW,"stream"]
 		]), "type");		

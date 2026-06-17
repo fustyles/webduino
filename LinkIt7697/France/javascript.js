@@ -970,12 +970,7 @@ Blockly.Arduino['gemini_chat_content_file_read'] = function (block) {
   Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>'; 
   Blockly.Arduino.definitions_['gemini_chat_file_request'] = 'String gemini_chat_file_request(String mimeType, String filepath, String prompt) {\n';
   
-	if (selectBoardType()=="LinkIt")
-		Blockly.Arduino.definitions_['gemini_chat_file_request'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
-	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
-			Blockly.Arduino.definitions_['gemini_chat_file_request'] += '  client.setInsecure();\n  client.setTimeout(10000);\n';
-	else if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra")
-			Blockly.Arduino.definitions_['gemini_chat_file_request'] += '  WiFiSSLClient client;\n  client.setRecvTimeout(10000);\n';
+  Blockly.Arduino.definitions_['gemini_chat_file_request'] += '  WiFiSSLClient client;\n  client.setRecvTimeout(10000);\n';
 
   Blockly.Arduino.definitions_['gemini_chat_file_request'] += ''
     	   +'  prompt.replace("\\\"", "\\\\\\\"");\n'
@@ -14439,11 +14434,6 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
   var statements_loop = Blockly.Arduino.statementToCode(block, 'loop');  
 
   Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
-  
-  if (selectBoardType()=="LinkIt")
-	Blockly.Arduino.definitions_['gemini_chat_request'] += '  client.setRootCA(rootCA, sizeof(rootCA));\n';
-  else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266"||selectBoardType()=="rp2040")
-	Blockly.Arduino.definitions_['gemini_chat_request'] += '  client.setInsecure();\n';	  
 	
   Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nlong message_id_last = 0;\nboolean sendHelp = false;\n';
 
@@ -28453,7 +28443,7 @@ Blockly.Arduino['server_getrequest'] = function(block) {
 	else if ('loops_' in Blockly.Arduino)
 		Blockly.Arduino.loops_.server_getrequest = "";
 
-	if (type=="still")
+	if (type=="still"||type=="default")
 		var code = 'getRequest();\n';
 	else
 		var code = 'getRequest81();\n';
