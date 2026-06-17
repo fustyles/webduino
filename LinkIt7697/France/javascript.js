@@ -7031,53 +7031,10 @@ Blockly.Arduino['amb82_mini_chat_myfirmata'] = function(block) {
 	"\n" +
 	")rawhtml\";\n";
 	
-  Blockly.Arduino.variables_['getCommand'] = 'String Feedback="",bleData="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
+	Blockly.Arduino.variables_['getCommand'] = 'String Feedback="",bleData="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
 
-  Blockly.Arduino.definitions_.ExecuteCommand = 'void executeCommand() {\n'+
-			'  //Serial.println("");\n'+
-			'  //Serial.println("Command: "+Command);\n'+
-			'  //Serial.println("cmd= "+cmd+" ,p1= "+p1+" ,p2= "+p2+" ,p3= "+p3+" ,p4= "+p4+" ,p5= "+p5+" ,p6= "+p6+" ,p7= "+p7+" ,p8= "+p8+" ,p9= "+p9);\n'+
-			'  //Serial.println("");\n'+
-			'  if (cmd=="ip") {\n'+
-			'    IPAddress ip = WiFi.localIP();\n'+
-			'    Feedback=String(ip[0])+"."+String(ip[1])+"."+String(ip[2])+"."+String(ip[3]);\n'+
-			'  } else if (cmd=="mac") {\n'+
-			'    byte mac[6];\n'+
-			'    WiFi.macAddress(mac);\n'+
-			'    Feedback="STA MAC: "+String(mac[0], HEX)+":"+String(mac[1], HEX)+":"+String(mac[2], HEX)+":"+String(mac[3], HEX)+":"+String(mac[4], HEX)+":"+String(mac[5], HEX);\n'+
-			'  } else if (cmd=="digitalwrite") {\n'+
-			'    pinMode(p1.toInt(), OUTPUT);\n'+
-			'    digitalWrite(p1.toInt(), p2.toInt());\n'+
-			'  } else if (cmd=="digitalread") {\n'+
-			'    Feedback=String(digitalRead(p1.toInt()));\n'+
-			'  } else if (cmd=="analogwrite") {\n'+
-			'    pinMode(p1.toInt(), OUTPUT);\n'+
-			'    analogWrite(p1.toInt(), p2.toInt());\n'+
-			'  } else if (cmd=="analogread") {\n'+
-			'    Feedback=String(analogRead(p1.toInt()));\n'+
-			'  } else if (cmd=="resetwifi") {\n'+
-			'    for (int i=0;i<2;i++) {\n'+
-			'      WiFi.begin(const_cast<char*>(p1.c_str()), const_cast<char*>(p2.c_str()));\n'+
-			'      Serial.print("Connecting to ");\n'+
-			'      Serial.println(p1);\n'+
-			'      long int StartTime=millis();\n'+
-			'      while (WiFi.status() != WL_CONNECTED) {\n'+
-			'          delay(500);\n'+
-			'          if ((StartTime+5000) < millis()) break;\n'+
-			'      }\n'+
-			'      Serial.println("");\n'+
-			'      IPAddress ip = WiFi.localIP();\n'+
-			'      Feedback=String(ip[0])+"."+String(ip[1])+"."+String(ip[2])+"."+String(ip[3])+" port: 80, 81";\n'+
-			'    }\n'+
-			'  } else if (cmd=="print") {\n'+
-			'    Serial.print(p1);\n'+
-			'  } else if (cmd=="println") {\n'+
-			'    Serial.println(p1);\n'+
-			'  } else if (cmd=="delay") {\n'+
-			'    delay(p1.toInt());\n'+
-			'  } else {\n  '+ 
+	Blockly.Arduino.definitions_.ExecuteCommand = 'void executeCommand() {\n'+
 			statements_executecommand.replace(/\n/g,"\n  ")+
-			'}\n'+ 
 			'}\n';
 	
 	Blockly.Arduino.setups_.write_peri_reg = "";
@@ -7145,22 +7102,12 @@ Blockly.Arduino['amb82_mini_chat_myfirmata'] = function(block) {
 			'    Command=Command+String(c);\n'+
 			'    \n'+
 			'    if (c==\'=\') cmdState=0;\n'+
-			'    if (c==\';\') pState++;\n'+
 			'    \n'+
 			'    if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'+
-			'    if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'+
-			'    if ((cmdState==0)&&(pState==2)&&(c!=\';\')) p2=p2+String(c);\n'+
-			'    if ((cmdState==0)&&(pState==3)&&(c!=\';\')) p3=p3+String(c);\n'+
-			'    if ((cmdState==0)&&(pState==4)&&(c!=\';\')) p4=p4+String(c);\n'+
-			'    if ((cmdState==0)&&(pState==5)&&(c!=\';\')) p5=p5+String(c);\n'+
-			'    if ((cmdState==0)&&(pState==6)&&(c!=\';\')) p6=p6+String(c);\n'+
-			'    if ((cmdState==0)&&(pState==7)&&(c!=\';\')) p7=p7+String(c);\n'+
-			'    if ((cmdState==0)&&(pState==8)&&(c!=\';\')) p8=p8+String(c);\n'+
-			'    if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) p9=p9+String(c);\n'+
+			'    if ((cmdState==0)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'+
 			'    \n'+
 			'    if (c==\'?\') questionState=1;\n'+
 			'    if (c==\'=\') equalState=1;\n'+
-			'    if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'+
 			'  }\n'+
 			'}\n';			
 
@@ -19466,32 +19413,22 @@ Blockly.Arduino['esp32_chat_myfirmata'] = function(block) {
 			'  }\n';
 			
 	Blockly.Arduino.definitions_['getCommand'] = ''+
-			'  void getCommand(char c) {\n'+
-			'    if (c==\'?\') receiveState=1;\n'+
-			'    if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) receiveState=0;\n'+
+			'void getCommand(char c) {\n'+
+			'  if (c==\'?\') receiveState=1;\n'+
+			'  if ((c==\' \')||(c==\'\\r\')||(c==\'\\n\')) receiveState=0;\n'+
+			'  \n'+
+			'  if (receiveState==1) {\n'+
+			'    Command=Command+String(c);\n'+
 			'    \n'+
-			'    if (receiveState==1) {\n'+
-			'      Command=Command+String(c);\n'+
-			'      \n'+
-			'      if (c==\'=\') cmdState=0;\n'+
-			'      if (c==\';\') pState++;\n'+
-			'      \n'+
-			'      if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==1)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==2)&&(c!=\';\')) p2=p2+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==3)&&(c!=\';\')) p3=p3+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==4)&&(c!=\';\')) p4=p4+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==5)&&(c!=\';\')) p5=p5+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==6)&&(c!=\';\')) p6=p6+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==7)&&(c!=\';\')) p7=p7+String(c);\n'+
-			'      if ((cmdState==0)&&(pState==8)&&(c!=\';\')) p8=p8+String(c);\n'+
-			'      if ((cmdState==0)&&(pState>=9)&&((c!=\';\')||(semicolonState==1))) p9=p9+String(c);\n'+
-			'      \n'+
-			'      if (c==\'?\') questionState=1;\n'+
-			'      if (c==\'=\') equalState=1;\n'+
-			'      if ((pState>=9)&&(c==\';\')) semicolonState=1;\n'+
-			'    }\n'+
-			'  }\n';
+			'    if (c==\'=\') cmdState=0;\n'+
+			'    \n'+
+			'    if ((cmdState==1)&&((c!=\'?\')||(questionState==1))) cmd=cmd+String(c);\n'+
+			'    if ((cmdState==0)&&((c!=\'=\')||(equalState==1))) p1=p1+String(c);\n'+
+			'    \n'+
+			'    if (c==\'?\') questionState=1;\n'+
+			'    if (c==\'=\') equalState=1;\n'+
+			'  }\n'+
+			'}\n';	
 			
 	Blockly.Arduino.definitions_.getRequest = ''+
 			'  void getRequest() {\n'+
