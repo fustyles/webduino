@@ -6188,10 +6188,16 @@ Blockly.Arduino['amb82_mini_myfirmata'] = function(block) {
 			'}\n';
 	
 	Blockly.Arduino.setups_.write_peri_reg = "";
-	if ('setupsTop_' in Blockly.Arduino)
+	if ('setupsTop_' in Blockly.Arduino) {
 		Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
-	else
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
+	else {
 		Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setups_.setup_serial += "while (!Serial) {\n  delay(10);\n}\n";		
+	}
 	Blockly.Arduino.setups_.setup_cam_initial='  initWiFi();\n';
 	
 	Blockly.Arduino.definitions_['Ip2String'] =''+
@@ -7033,10 +7039,16 @@ Blockly.Arduino['amb82_mini_chat_myfirmata'] = function(block) {
 			'}\n';
 	
 	Blockly.Arduino.setups_.write_peri_reg = "";
-	if ('setupsTop_' in Blockly.Arduino)
+	if ('setupsTop_' in Blockly.Arduino) {
 		Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
-	else
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n  delay(10);\n}\n";		
+	}
+	else {
 		Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setups_.setup_serial += "while (!Serial) {\n  delay(10);\n}\n";		
+	}
 	Blockly.Arduino.setups_.setup_cam_initial='  initWiFi();\n';
 	
 	Blockly.Arduino.definitions_['Ip2String'] =''+
@@ -7320,10 +7332,16 @@ Blockly.Arduino['amb82_mini_stream'] = function(block) {
   Blockly.Arduino.definitions_.ExecuteCommand = '';
 	
 	Blockly.Arduino.setups_.write_peri_reg = "";
-	if ('setupsTop_' in Blockly.Arduino)
+	if ('setupsTop_' in Blockly.Arduino) {
 		Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
-	else
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n  delay(10);\n}\n";		
+	}
+	else {
 		Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setups_.setup_serial += "while (!Serial) {\n  delay(10);\n}\n";		
+	}
 	Blockly.Arduino.setups_.setup_cam_initial='  initWiFi();\n';
 	
 	Blockly.Arduino.definitions_['Ip2String'] =''+
@@ -9159,10 +9177,16 @@ Blockly.Arduino['webusb_server_initial'] = function(block) {
 	+'WebUSB WebUSBSerial(1, "");\n'
 	+'#define Serial WebUSBSerial\n';
 	
-	if ('setupsTop_' in Blockly.Arduino)
-		Blockly.Arduino.setupsTop_.setup_serial = 'while (!Serial) {}\nSerial.begin('+baudrate+');\n  delay(10);\n';
-	else
-		Blockly.Arduino.setups_.setup_serial = 'while (!Serial) {}\nSerial.begin('+baudrate+');\n  delay(10);\n';
+	if ('setupsTop_' in Blockly.Arduino) {
+		Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n  delay(10);\n}\n";		
+	}
+	else {
+		Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setups_.setup_serial += "while (!Serial) {\n  delay(10);\n}\n";		
+	}
 	
 	Blockly.Arduino.variables_['getCommand'] = 'String Feedback="",bleData="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
 	
@@ -11002,10 +11026,16 @@ Blockly.Arduino['uart_server_initial'] = function(block) {
 	Blockly.Arduino.variables_['getCommand'] = 'String Feedback="",bleData="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
 	
 	if (serial=="Serial") {
-		if ('setupsTop_' in Blockly.Arduino)
-			Blockly.Arduino.setupsTop_.setup_serial = serial+'.begin('+baudrate+');\n  delay(10);\n  ';
-		else
-			Blockly.Arduino.setups_.setup_serial = serial+'.begin('+baudrate+');\n  delay(10);\n';
+		if ('setupsTop_' in Blockly.Arduino) {
+			Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+			if (selectBoardType()=="rp2040")
+				Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n  delay(10);\n}\n";		
+		}
+		else {
+			Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+			if (selectBoardType()=="rp2040")
+				Blockly.Arduino.setups_.setup_serial += "while (!Serial) {\n  delay(10);\n}\n";		
+		}
 	}
 	else if (serial=="mySerial1") {
 		Blockly.Arduino.definitions_["define_HardwareSerial"+serial] = 'HardwareSerial '+serial+'(1);';
@@ -12830,10 +12860,19 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
 								'#define HREF_GPIO_NUM     26\n'+
 								'#define PCLK_GPIO_NUM     35\n';
 	
-	if ('setupsTop_' in Blockly.Arduino)
-		Blockly.Arduino.setupsTop_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin("+baudrate+");\n  delay(10);\n";
-	else
-		Blockly.Arduino.setups_.setup_serial="WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n  Serial.begin("+baudrate+");\n  delay(10);\n";
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+
+	if ('setupsTop_' in Blockly.Arduino) {
+		Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n  delay(10);\n}\n";		
+	}
+	else {
+		Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setups_.setup_serial += "while (!Serial) {\n  delay(10);\n}\n";		
+	}
 	
 	Blockly.Arduino.definitions_.initWiFi = ''+
 			'  void initWiFi() {\n'+	
@@ -13720,11 +13759,19 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 			'}\n';
 
 	
-	Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
-	if ('setupsTop_' in Blockly.Arduino)
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+
+	if ('setupsTop_' in Blockly.Arduino) {
 		Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
-	else
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n  delay(10);\n}\n";		
+	}
+	else {
 		Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setups_.setup_serial += "while (!Serial) {\n  delay(10);\n}\n";		
+	}
 	
 	Blockly.Arduino.setups_.setup_cam_initial=''+
 			'tca5405.init(21);\n'+
@@ -14234,10 +14281,19 @@ Blockly.Arduino['uart_initial'] = function(block) {
 	var statement = Blockly.Arduino.statementToCode(block, 'statement');
 	
 	if (serial=="Serial") {
-		if ('setupsTop_' in Blockly.Arduino)
-			Blockly.Arduino.setupsTop_.setup_serial = serial+'.begin('+baudrate+');\n  delay(10);\n  ';
-		else
-			Blockly.Arduino.setups_.setup_serial = serial+'.begin('+baudrate+');\n  delay(10);\n  ';
+		if (selectBoardType()=="esp32")
+			Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+
+		if ('setupsTop_' in Blockly.Arduino) {
+			Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+			if (selectBoardType()=="rp2040")
+				Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+		}
+		else {
+			Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+			if (selectBoardType()=="rp2040")
+				Blockly.Arduino.setups_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+		}
 	}
 	else if (serial=="mySerial1") {
 		Blockly.Arduino.definitions_["define_HardwareSerial_"+serial] = 'HardwareSerial '+serial+'(1);';
@@ -14435,7 +14491,35 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 
   Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';
 	
-  Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nlong message_id_last = 0;\nboolean sendHelp = false;\n';
+	if (selectBoardType()=="LinkIt") {
+		Blockly.Arduino.definitions_.define_linkit_wifi_include = '#include <LWiFi.h>\nTLSClient client;\n\n'
+			+'static const char rootCA[] = "-----BEGIN CERTIFICATE-----\\r\\n"\n'
+			+'"MIIDSjCCAjKgAwIBAgIQRK+wgNajJ7qJMDmGLvhAazANBgkqhkiG9w0BAQUFADA/\\r\\n"\n'
+			+'"MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMT\\r\\n"\n'
+			+'"DkRTVCBSb290IENBIFgzMB4XDTAwMDkzMDIxMTIxOVoXDTIxMDkzMDE0MDExNVow\\r\\n"\n'
+			+'"PzEkMCIGA1UEChMbRGlnaXRhbCBTaWduYXR1cmUgVHJ1c3QgQ28uMRcwFQYDVQQD\\r\\n"\n'
+			+'"Ew5EU1QgUm9vdCBDQSBYMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\\r\\n"\n'
+			+'"AN+v6ZdQCINXtMxiZfaQguzH0yxrMMpb7NnDfcdAwRgUi+DoM3ZJKuM/IUmTrE4O\\r\\n"\n'
+			+'"rz5Iy2Xu/NMhD2XSKtkyj4zl93ewEnu1lcCJo6m67XMuegwGMoOifooUMM0RoOEq\\r\\n"\n'
+			+'"OLl5CjH9UL2AZd+3UWODyOKIYepLYYHsUmu5ouJLGiifSKOeDNoJjj4XLh7dIN9b\\r\\n"\n'
+			+'"xiqKqy69cK3FCxolkHRyxXtqqzTWMIn/5WgTe1QLyNau7Fqckh49ZLOMxt+/yUFw\\r\\n"\n'
+			+'"7BZy1SbsOFU5Q9D8/RhcQPGX69Wam40dutolucbY38EVAjqr2m7xPi71XAicPNaD\\r\\n"\n'
+			+'"aeQQmxkqtilX4+U9m5/wAl0CAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNV\\r\\n"\n'
+			+'"HQ8BAf8EBAMCAQYwHQYDVR0OBBYEFMSnsaR7LHH62+FLkHX/xBVghYkQMA0GCSqG\\r\\n"\n'
+			+'"SIb3DQEBBQUAA4IBAQCjGiybFwBcqR7uKGY3Or+Dxz9LwwmglSBd49lZRNI+DT69\\r\\n"\n'
+			+'"ikugdB/OEIKcdBodfpga3csTS7MgROSR6cz8faXbauX+5v3gTt23ADq1cEmv8uXr\\r\\n"\n'
+			+'"AvHRAosZy5Q6XkjEGB5YGV8eAlrwDPGxrancWYaLbumR9YbK+rlmM6pZW87ipxZz\\r\\n"\n'
+			+'"R8srzJmwN0jP41ZL9c8PDHIyh8bwRLtTcm1D9SZImlJnt1ir/md2cXjbDaJWFBM5\\r\\n"\n'
+			+'"JDGFoqgCWjBH4d1QB7wCCZAA62RjYJsWvIjJEubSfZGL+T0yjWW06XyxV3bqxbYo\\r\\n"\n'
+			+'"Ob8VZRzI9neWagqNdwvYkQsEjgfbKbYK7p2CNTUQ\\r\\n"\n'
+			+'"-----END CERTIFICATE-----\\r\\n";'
+		
+		Blockly.Arduino.definitions_.define_linkit_wifi_include += '\n\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nlong message_id_last = 0;\nboolean sendHelp = false;\n';
+	}
+	else if (selectBoardType()=="rp2040")
+		Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nlong message_id_last = 0;\nboolean sendHelp = false;\n';	
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266")			
+		Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nlong message_id_last = 0;\nboolean sendHelp = false;\n';
 
 	Blockly.Arduino.definitions_.sendMessageToTelegram = ''+
 		'void sendMessageToTelegram(String token, String chatid, String text, String keyboard) {\n'+
@@ -14492,10 +14576,6 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 			'    String keyboard = "'+keyboard.replace(/"/g,'\"')+'";\n'+
 			'    sendMessageToTelegram(token, chat_id, command, keyboard);\n'+
 			'  }\n'+
-			'  else if (cmd=="/restart") {\n'+
-			'    sendMessageToTelegram(token, chat_id, "Restart the board", "");\n'+
-			'    ESP.restart();\n'+
-			'  }\n'+
 			'  else if (cmd=="null") {\n'+
 			'    client.stop();\n'+
 			'    getTelegramMessage();\n'+
@@ -14507,16 +14587,21 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 
 	if (selectBoardType()=="esp32")
 		Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
-	if ('setupsTop_' in Blockly.Arduino)
+	if ('setupsTop_' in Blockly.Arduino) {
 		Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
-	else
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
+	else {
 		Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setups_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
 	
 	Blockly.Arduino.setups_.setup_wifi='  initWiFi();\n';
 
 	Blockly.Arduino.definitions_.initWiFi = ''+
 			'void initWiFi() {\n'+
-			'  WiFi.mode(WIFI_STA);\n'+
 			'  for (int i=0;i<2;i++) {\n'+
 			'    WiFi.begin(_lwifi_ssid, _lwifi_pass);\n'+
 			'    delay(1000);\n'+
@@ -14533,24 +14618,8 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 			'      Serial.println("STAIP address: ");\n'+
 			'      Serial.println(WiFi.localIP());\n'+
 			'      Serial.println("");\n'+			
-			'  	 	pinMode(2, OUTPUT);\n'+ 
-			'  	 	for (int i=0;i<5;i++) {\n'+ 
-			'  	   	digitalWrite(2, HIGH);\n'+ 
-			'  	   	delay(100);\n'+ 
-			'  	   	digitalWrite(2, LOW);\n'+ 
-			'  	   	delay(100);\n'+ 
-			'  	 	}\n'+ 
 			'      break;\n'+
 			'    }\n'+
-			'  }\n'+
-			'  if (WiFi.status() != WL_CONNECTED) {\n'+
-			'  	pinMode(2, OUTPUT);\n'+ 
-			'  	for (int i=0;i<3;i++) {\n'+ 
-			'  	  digitalWrite(2, HIGH);\n'+ 
-			'  	  delay(500);\n'+ 
-			'  	  digitalWrite(2, LOW);\n'+ 
-			'  	  delay(500);\n'+ 
-			'  	}\n'+ 
 			'  }\n'+
 			'  Serial.println("");\n'+
 			'}\n';
@@ -14642,33 +14711,42 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 			'      delay(500);\n'+
 			'      if ((StartTime+10000) < millis()) break;\n'+
 			'    }\n'+
-			'    if (WiFi.status() != WL_CONNECTED) {\n'+
-			'      ESP.restart();\n'+
-			'    }\n'+
 			'  }\n'+
 			'}\n';	
 
-	Blockly.Arduino.definitions_.getTelegramMessage += 			
-			'TaskHandle_t Task0;\n'+
-			'void codeForTask0( void * parameter ) {\n'+
-			'  while (true) {\n'+
-			'    getTelegramMessage();\n'+
-			'    vTaskDelay(10);\n'+
-			'  }\n'+
-			'}\n';
+	var code = '';
+  
+	if (selectBoardType()=="esp32") {
+		Blockly.Arduino.definitions_.getTelegramMessage += 			
+				'TaskHandle_t Task0;\n'+
+				'void codeForTask0( void * parameter ) {\n'+
+				'  while (true) {\n'+
+				'    getTelegramMessage();\n'+
+				'    vTaskDelay(10);\n'+
+				'  }\n'+
+				'}\n';
 
 		Blockly.Arduino.setups_.getTelegramMessage=""+
-			'xTaskCreatePinnedToCore(\n'+
-			'	codeForTask0,\n'+
-			'	"Task 0",\n'+
-			'	8192,\n'+
-			'	NULL,\n'+
-			'	1,\n'+
-			'	&Task0,\n'+
-			'	0\n'+
-			'  );\n';
-
-  var code = '';
+				'xTaskCreatePinnedToCore(\n'+
+				'	codeForTask0,\n'+
+				'	"Task 0",\n'+
+				'	8192,\n'+
+				'	NULL,\n'+
+				'	1,\n'+
+				'	&Task0,\n'+
+				'	0\n'+
+				'  );\n';	
+	}
+	else if (selectBoardType()=="rp2040") {
+		Blockly.Arduino.definitions_.setGetTelegramMessage =		
+				'void loop1() {\n'+
+				'  getTelegramMessage();\n'+
+				'  delay(10);\n'+
+				'}\n';
+	}
+	else
+		code = 'getTelegramMessage();\n';
+	
   return code;
 };
 
@@ -14777,11 +14855,19 @@ Blockly.Arduino['esp32cam_telegrambot'] = function(block) {
 			'  }\n'+ 
 			'}\n';
 
-	Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
-	if ('setupsTop_' in Blockly.Arduino)
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+
+	if ('setupsTop_' in Blockly.Arduino) {
 		Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
-	else
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
+	else {
 		Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setups_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
 	
 	Blockly.Arduino.setups_.setup_cam_initial=''+
 			'  Serial.setDebugOutput(true);\n'+
@@ -15041,10 +15127,19 @@ Blockly.Arduino['amb82_mini_telegrambot'] = function(block) {
 			'  }\n'+ 
 			'}\n';
 
-	if ('setupsTop_' in Blockly.Arduino)
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+
+	if ('setupsTop_' in Blockly.Arduino) {
 		Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
-	else
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
+	else {
 		Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setups_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
 	
 	Blockly.Arduino.setups_.setup_cam_initial='  initWiFi();\n';
 	
@@ -17925,43 +18020,27 @@ Blockly.Arduino['esp32_wifi_wait_until_ready']  = function(block){
   
   if (selectBoardType()=="LinkIt") {
 	Blockly.Arduino.definitions_.define_linkit_wifi_include = '#include <LWiFi.h>\nTLSClient client;\n\n'
-	+'static const char rootCA[] = "-----BEGIN CERTIFICATE-----\\r\\n"\n'
-	+'"MIIGYjCCBUqgAwIBAgIQCKNjEl2C+05Z7F44E4EjmzANBgkqhkiG9w0BAQsFADBG\\r\\n"\n'
-	+'"MQswCQYDVQQGEwJVUzEPMA0GA1UEChMGQW1hem9uMRUwEwYDVQQLEwxTZXJ2ZXIg\\r\\n"\n'
-	+'"Q0EgMUIxDzANBgNVBAMTBkFtYXpvbjAeFw0yMjA5MjcwMDAwMDBaFw0yMzA5MjYy\\r\\n"\n'
-	+'"MzU5NTlaMB8xHTAbBgNVBAMTFHVzLWVhc3QtMS5zaWduaW4uYXdzMIIBIjANBgkq\\r\\n"\n'
-	+'"hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA36zuci6fRgK423h3dvLeZMdqwWi1I2p/\\r\\n"\n'
-	+'"Q0qtCnvF6QpqDLkbWYWG/Mi9l/GU2ZihtsjjqUaqdjikq24GzgtYus9VXc/ys0T0\\r\\n"\n'
-	+'"df0suzj9X8nOKrKsxXdTpmFRYLCDbSXZB7kzfcSVmujoE0LuenrBRVyJSqK9QDov\\r\\n"\n'
-	+'"nZnIHtx8I3lUDT3TB/V2PiiZ5mB+ChILosz4sli6XZPe7utAWaa52EXgJeZzh1MC\\r\\n"\n'
-	+'"+yeIhkjALU2AH2jxNx4qBLdXv0xO3aVVN2iElnS0LDMmE3VDepSgfakHxkGsus4P\\r\\n"\n'
-	+'"snPOnWQUCvDUJLqQtlFL5knEgkE2br6NDyl8CKeklTKxu4yb2YOanQIDAQABo4ID\\r\\n"\n'
-	+'"cTCCA20wHwYDVR0jBBgwFoAUWaRmBlKge5WSPKOUByeWdFv5PdAwHQYDVR0OBBYE\\r\\n"\n'
-	+'"FBdfQCN2xO9E+y7gZnqzYCXsD3kfMIGiBgNVHREEgZowgZeCFHVzLWVhc3QtMS5z\\r\\n"\n'
-	+'"aWduaW4uYXdzghYqLnVzLWVhc3QtMS5zaWduaW4uYXdzghVzaWduaW4uYXdzLmFt\\r\\n"\n'
-	+'"YXpvbi5jb22CFyouc2lnbmluLmF3cy5hbWF6b24uY29tghh1cy1lYXN0LTEuYXBp\\r\\n"\n'
-	+'"LnNpZ25pbi5hd3OCCnNpZ25pbi5hd3OCEXVwZGF0ZS5zaWduaW4uYXdzMA4GA1Ud\\r\\n"\n'
-	+'"DwEB/wQEAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwPQYDVR0f\\r\\n"\n'
-	+'"BDYwNDAyoDCgLoYsaHR0cDovL2NybC5zY2ExYi5hbWF6b250cnVzdC5jb20vc2Nh\\r\\n"\n'
-	+'"MWItMS5jcmwwEwYDVR0gBAwwCjAIBgZngQwBAgEwdQYIKwYBBQUHAQEEaTBnMC0G\\r\\n"\n'
-	+'"CCsGAQUFBzABhiFodHRwOi8vb2NzcC5zY2ExYi5hbWF6b250cnVzdC5jb20wNgYI\\r\\n"\n'
-	+'"KwYBBQUHMAKGKmh0dHA6Ly9jcnQuc2NhMWIuYW1hem9udHJ1c3QuY29tL3NjYTFi\\r\\n"\n'
-	+'"LmNydDAMBgNVHRMBAf8EAjAAMIIBfAYKKwYBBAHWeQIEAgSCAWwEggFoAWYAdQCt\\r\\n"\n'
-	+'"9776fP8QyIudPZwePhhqtGcpXc+xDCTKhYY069yCigAAAYOAeWCVAAAEAwBGMEQC\\r\\n"\n'
-	+'"IAHBJfmKhzInbQ7X7u4pMLnHo39gcmTcaM0XhtOkaGkzAiA/k4bypMI7hHd6TP2T\\r\\n"\n'
-	+'"dx91To30QAhF6zvQ5I2Ukh6ppAB1ADXPGRu/sWxXvw+tTG1Cy7u2JyAmUeo/4Srv\\r\\n"\n'
-	+'"qAPDO9ZMAAABg4B5YIkAAAQDAEYwRAIgIuyxrkVBHOc99Sq7O/PkuDTb9b6LX8Xc\\r\\n"\n'
-	+'"wX3EVy88N0ACIARKnlRkzPIWNLWv4WNPfh7Q/PirKcRIDsP4KZKFf1EqAHYAs3N3\\r\\n"\n'
-	+'"B+GEUPhjhtYFqdwRCUp5LbFnDAuH3PADDnk2pZoAAAGDgHlgyAAABAMARzBFAiBQ\\r\\n"\n'
-	+'"XWYnvR0NeQlRlovTCJA9OFHa7Ol32PnYrMfQHdxFrwIhAKtQhH7YlMQSG2RS3y8v\\r\\n"\n'
-	+'"VZZ0auzxRSNKsSfXgBmc3sOLMA0GCSqGSIb3DQEBCwUAA4IBAQCrrddUcqyht9zl\\r\\n"\n'
-	+'"bTysiAzo1EWXTIsqBSKj+gW88E2wFJo6JL+kOFK08vZKv9e78BSYlCumO4qtKiRg\\r\\n"\n'
-	+'"3dGv7CX6b10hjfX0mACq+bFN9j3Y/s27ZQ6qXmtjycA40cYmwCBJ+0LiRPjuCJji\\r\\n"\n'
-	+'"fC3K/2gM0d5bTaeSFpNG64yn5eysfYBon34I7+XTy9Zg3yWe4Z5p1poP6iFDPgdF\\r\\n"\n'
-	+'"1WK27i5TpQc3uw/O/zKgORMFor2dPexHWY99JKSv0vHEppKne622czLZFn7ro9M8\\r\\n"\n'
-	+'"qL7rJvxwMLPky0tvX6XqrM4jXrOdr1uUbhusLRHxqPRjUftuXKUMU8KmSwLLqSmT\\r\\n"\n'
-	+'"fjr4TyYy\\r\\n"\n'
-	+'"-----END CERTIFICATE-----\\r\\n";';
+			+'static const char rootCA[] = "-----BEGIN CERTIFICATE-----\\r\\n"\n'
+			+'"MIIDSjCCAjKgAwIBAgIQRK+wgNajJ7qJMDmGLvhAazANBgkqhkiG9w0BAQUFADA/\\r\\n"\n'
+			+'"MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMT\\r\\n"\n'
+			+'"DkRTVCBSb290IENBIFgzMB4XDTAwMDkzMDIxMTIxOVoXDTIxMDkzMDE0MDExNVow\\r\\n"\n'
+			+'"PzEkMCIGA1UEChMbRGlnaXRhbCBTaWduYXR1cmUgVHJ1c3QgQ28uMRcwFQYDVQQD\\r\\n"\n'
+			+'"Ew5EU1QgUm9vdCBDQSBYMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\\r\\n"\n'
+			+'"AN+v6ZdQCINXtMxiZfaQguzH0yxrMMpb7NnDfcdAwRgUi+DoM3ZJKuM/IUmTrE4O\\r\\n"\n'
+			+'"rz5Iy2Xu/NMhD2XSKtkyj4zl93ewEnu1lcCJo6m67XMuegwGMoOifooUMM0RoOEq\\r\\n"\n'
+			+'"OLl5CjH9UL2AZd+3UWODyOKIYepLYYHsUmu5ouJLGiifSKOeDNoJjj4XLh7dIN9b\\r\\n"\n'
+			+'"xiqKqy69cK3FCxolkHRyxXtqqzTWMIn/5WgTe1QLyNau7Fqckh49ZLOMxt+/yUFw\\r\\n"\n'
+			+'"7BZy1SbsOFU5Q9D8/RhcQPGX69Wam40dutolucbY38EVAjqr2m7xPi71XAicPNaD\\r\\n"\n'
+			+'"aeQQmxkqtilX4+U9m5/wAl0CAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNV\\r\\n"\n'
+			+'"HQ8BAf8EBAMCAQYwHQYDVR0OBBYEFMSnsaR7LHH62+FLkHX/xBVghYkQMA0GCSqG\\r\\n"\n'
+			+'"SIb3DQEBBQUAA4IBAQCjGiybFwBcqR7uKGY3Or+Dxz9LwwmglSBd49lZRNI+DT69\\r\\n"\n'
+			+'"ikugdB/OEIKcdBodfpga3csTS7MgROSR6cz8faXbauX+5v3gTt23ADq1cEmv8uXr\\r\\n"\n'
+			+'"AvHRAosZy5Q6XkjEGB5YGV8eAlrwDPGxrancWYaLbumR9YbK+rlmM6pZW87ipxZz\\r\\n"\n'
+			+'"R8srzJmwN0jP41ZL9c8PDHIyh8bwRLtTcm1D9SZImlJnt1ir/md2cXjbDaJWFBM5\\r\\n"\n'
+			+'"JDGFoqgCWjBH4d1QB7wCCZAA62RjYJsWvIjJEubSfZGL+T0yjWW06XyxV3bqxbYo\\r\\n"\n'
+			+'"Ob8VZRzI9neWagqNdwvYkQsEjgfbKbYK7p2CNTUQ\\r\\n"\n'
+			+'"-----END CERTIFICATE-----\\r\\n";'
+
   }
   else if (selectBoardType()=="esp8266")
 	Blockly.Arduino.definitions_.define_linkit_wifi_include="#include <ESP8266WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;";
@@ -18621,11 +18700,17 @@ Blockly.Arduino['esp32_myfirmata'] = function(block) {
 
 	if (selectBoardType()=="esp32")
 		Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
-	
-	if ('setupsTop_' in Blockly.Arduino)
+
+	if ('setupsTop_' in Blockly.Arduino) {
 		Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
-	else
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
+	else {
 		Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setups_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
 	
 	Blockly.Arduino.setups_.setup_wifi=''+
 			'//WiFi.config(IPAddress(192, 168, 201, 100), IPAddress(192, 168, 201, 2), IPAddress(255, 255, 255, 0));\n'+ 
@@ -19355,11 +19440,17 @@ Blockly.Arduino['esp32_chat_myfirmata'] = function(block) {
 
 	if (selectBoardType()=="esp32")
 		Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
-	
-	if ('setupsTop_' in Blockly.Arduino)
+
+	if ('setupsTop_' in Blockly.Arduino) {
 		Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
-	else
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
+	else {
 		Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setups_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
 	
 	Blockly.Arduino.setups_.setup_wifi=''+
 			'//WiFi.config(IPAddress(192, 168, 201, 100), IPAddress(192, 168, 201, 2), IPAddress(255, 255, 255, 0));\n'+ 
@@ -19516,10 +19607,19 @@ Blockly.Arduino['esp32_myfirmata_bluetooth'] = function(block) {
 
 	var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
 
-	if ('setupsTop_' in Blockly.Arduino)
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+
+	if ('setupsTop_' in Blockly.Arduino) {
 		Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
-	else
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
+	else {
 		Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setups_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
 	
 	Blockly.Arduino.setups_.bt_serial='SerialBT.begin('+blename+');\n  delay(10);\n';	
 	
@@ -20009,10 +20109,19 @@ Blockly.Arduino['esp32_bluetooth_initial'] = function(block) {
 																	'#endif\n'+
 																	'BluetoothSerial SerialBT;\n';
 																	
-	if ('setupsTop_' in Blockly.Arduino)
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+
+	if ('setupsTop_' in Blockly.Arduino) {
 		Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
-	else
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
+	else {
 		Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setups_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
     
     Blockly.Arduino.setups_.bt_serial='SerialBT.begin('+blename+');\n  delay(10);\n';																		
 
@@ -20132,10 +20241,19 @@ Blockly.Arduino['linkit7697_myfirmata'] = function(block) {
 			'}\n'+ 
 			'}\n';
 
-	if ('setupsTop_' in Blockly.Arduino)
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+
+	if ('setupsTop_' in Blockly.Arduino) {
 		Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
-	else
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
+	else {
 		Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setups_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
 	
 	Blockly.Arduino.setups_.setup_wifi=''+
 			'  //WiFi.config(IPAddress(192, 168, 201, 100), IPAddress(192, 168, 201, 2), IPAddress(255, 255, 255, 0));\n'+ 
@@ -25414,10 +25532,19 @@ Blockly.Arduino['fu_serial_begin'] = function(block) {
   var serial = block.getFieldValue('serial'); 
   var baudrate = Blockly.Arduino.valueToCode(block, 'baudrate', Blockly.Arduino.ORDER_ATOMIC);
   
-  if ('setupsTop_' in Blockly.Arduino)
+  if (selectBoardType()=="esp32")
+	Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+
+  if ('setupsTop_' in Blockly.Arduino) {
 	Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
-  else
+	if (selectBoardType()=="rp2040")
+		Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+  }
+  else {
 	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+	if (selectBoardType()=="rp2040")
+		Blockly.Arduino.setups_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+  }
 
   return '';
 };
@@ -25426,10 +25553,19 @@ Blockly.Arduino['fu_serial_begin_select'] = function(block) {
   var serial = block.getFieldValue('serial'); 
   var baudrate = block.getFieldValue('baudrate');
 
-  if ('setupsTop_' in Blockly.Arduino)
+  if (selectBoardType()=="esp32")
+	Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+
+  if ('setupsTop_' in Blockly.Arduino) {
 	Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
-  else
+	if (selectBoardType()=="rp2040")
+		Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+  }
+  else {
 	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+	if (selectBoardType()=="rp2040")
+		Blockly.Arduino.setups_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+  }
 	
   return '';
 };
@@ -25438,11 +25574,20 @@ Blockly.Arduino['fu_serial_begin_config'] = function(block) {
   var baudrate = Blockly.Arduino.valueToCode(block, 'baudrate', Blockly.Arduino.ORDER_ATOMIC);
   var serial = block.getFieldValue('serial'); 
   var config = block.getFieldValue('config');
-  
-  if ('setupsTop_' in Blockly.Arduino)
+
+  if (selectBoardType()=="esp32")
+	Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+
+  if ('setupsTop_' in Blockly.Arduino) {
 	Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+", "+config+");\n  delay(10);\n";
-  else
+	if (selectBoardType()=="rp2040")
+		Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+  }
+  else {
 	Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+", "+config+");\n  delay(10);\n";
+	if (selectBoardType()=="rp2040")
+		Blockly.Arduino.setups_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+  }
 
   return '';
 };
@@ -25993,11 +26138,19 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 			'}\n'+ 
 			'}\n';
 	
-	Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
-	if ('setupsTop_' in Blockly.Arduino)
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+
+	if ('setupsTop_' in Blockly.Arduino) {
 		Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
-	else
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
+	else {
 		Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setups_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
 	
 	Blockly.Arduino.setups_.setup_cam_initial=''+
 			'  Serial.setDebugOutput(true);\n'+
@@ -26387,11 +26540,19 @@ Blockly.Arduino['esp32_cam_stream_only_myfirmata'] = function(block) {
 	
   Blockly.Arduino.definitions_.server81 = 'boolean cameraState = false;\nWiFiServer server81('+port+');\n';
 	
-	Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
-	if ('setupsTop_' in Blockly.Arduino)
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+
+	if ('setupsTop_' in Blockly.Arduino) {
 		Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
-	else
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
+	else {
 		Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setups_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
 	
 	Blockly.Arduino.setups_.setup_cam_initial=''+
 			'  Serial.setDebugOutput(true);\n'+
@@ -26745,11 +26906,19 @@ Blockly.Arduino['esp32_cam_stream_myfirmata'] = function(block) {
 			'}\n'+ 
 			'}\n';
 	
-	Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
-	if ('setupsTop_' in Blockly.Arduino)
+	if (selectBoardType()=="esp32")
+		Blockly.Arduino.setups_.write_peri_reg="  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);";
+
+	if ('setupsTop_' in Blockly.Arduino) {
 		Blockly.Arduino.setupsTop_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
-	else
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setupsTop_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
+	else {
 		Blockly.Arduino.setups_.setup_serial="Serial.begin("+baudrate+");\n  delay(10);\n";
+		if (selectBoardType()=="rp2040")
+			Blockly.Arduino.setups_.setup_serial += "  while (!Serial) {\n    delay(10);\n  }\n";		
+	}
 	
 	Blockly.Arduino.setups_.setup_cam_initial = ''+
 			'  Serial.setDebugOutput(true);\n'+
