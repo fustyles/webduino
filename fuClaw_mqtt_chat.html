@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fuClaw — MQTT Chat</title>
+<!-- mqtt.js from CDN - for offline use, embed the minified source -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.3.7/mqtt.min.js"></script>
+<style>
+:root {
+  --font-ui:   -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+  --font-mono: 'Courier New', Courier, monospace;
+  --bg:        #f7f9ff;
+  --bg2:       #eef3ff;
+  --bg3:       #e3ebff;
+  --border:    #cfd8f5;
+  --border2:   #b8c5ee;
+  --accent:    #5b8cff;
+  --accent2:   #8b5cf6;
+  --green:     #10b981;
+  --red:       #ef4444;
+  --amber:     #f59e0b;
+  --text:      #1e293b;
+  --text2:     #475569;
+  --text3:     #94a3b8;
+  --radius:    10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  overflow: hidden;
+}
+
+/* ── layout ── */
+.app {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: 56px 1fr;
+  height: calc(100dvh - 58px);
+}
+
+/* ── topbar ── */
+.topbar {
+  grid-column: 1 / -1;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 14px;
+}
+
+.logo {
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; flex-shrink: 0;
+}
+.logo::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: conic-gradient(transparent 30%, rgba(255,255,255,.18) 50%, transparent 70%);
+  animation: spin 5s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.logo svg { position: relative; z-index: 1; }
+
+.logo-text { font-size: .95rem; font-weight: 600; letter-spacing: -.01em; }
+.logo-sub  { font-size: .68rem; color: var(--text2); margin-left: 4px; }
+
+.conn-pill {
+  margin-left: auto;
+  display: flex; align-items: center; gap: 7px;
+  padding: 5px 14px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: .72rem;
+  color: var(--text2);
+  cursor: pointer;
+  transition: border-color .2s;
+}
+.conn-pill:hover { border-color: var(--accent); }
+.conn-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--text3);
+  transition: background .3s;
+}
+.conn-dot.connected    { background: var(--green); animation: blink 2.5s ease-in-out infinite; }
+.conn-dot.connecting   { background: var(--amber); animation: blink .6s ease-in-out infinite; }
+.conn-dot.disconnected { background: var(--red); animation: none; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+/* ── sidebar ── */
+.sidebar {
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar-section {
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar-title {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 16px;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text2);
+  cursor: pointer;
+  user-select: none;
+}
+.sidebar-title .chevron { margin-left: auto; font-size: .6rem; transition: transform .2s; }
+.sidebar-title.open .chevron { transform: rotate(180deg); }
+
+.sidebar-body {
+  padding: 0 12px 12px;
+}
+
+/* settings form */
+.field { margin-bottom: 10px; }
+.field label { display: block; font-size: .68rem; color: var(--text2); margin-bottom: 4px; font-family: var(--font-mono); }
+.field input {
+  width: 100%;
+  padding: 7px 10px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.field input:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(79,142,247,.15); }
+.field input::placeholder { color: var(--text3); }
+
+.field-row { display: grid; grid-template-columns: 1fr 80px; gap: 8px; }
+
+.btn {
+  width: 100%;
+  padding: 8px;
+  border: none; border-radius: 7px;
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity .15s, transform .1s;
+}
+.btn:active { transform: scale(.97); }
+.btn-connect {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: white;
+  box-shadow: 0 3px 12px rgba(79,142,247,.3);
+}
+.btn-disconnect {
+  background: var(--bg3);
+  color: var(--red);
+  border: 1px solid var(--border);
+}
+.btn:hover { opacity: .88; }
+
+/* topic list */
+.topic-list { display: flex; flex-direction: column; gap: 6px; }
+
+.topic-item {
+  display: flex; align-items: center; gap: 7px;
+  padding: 7px 10px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: .75rem;
+  font-family: var(--font-mono);
+}
+.topic-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.topic-fmt {
+  padding: 2px 6px; border-radius: 4px;
+  font-size: .62rem; font-weight: 600; letter-spacing: .06em;
+  flex-shrink: 0;
+}
+.fmt-text  { background: rgba(79,142,247,.15);  color: var(--accent); }
+.fmt-html  { background: rgba(168,85,247,.15);  color: var(--accent2); }
+.fmt-b64   { background: rgba(34,211,165,.15);  color: var(--green); }
+.fmt-bin   { background: rgba(251,191,36,.15);  color: var(--amber); }
+
+.topic-del {
+  background: none; border: none; color: var(--text3);
+  cursor: pointer; font-size: .8rem; padding: 2px 4px;
+  transition: color .15s; flex-shrink: 0;
+}
+.topic-del:hover { color: var(--red); }
+
+/* add topic */
+.add-topic { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.add-topic input {
+  width: 100%;
+  padding: 7px 10px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  outline: none;
+  transition: border-color .2s;
+}
+.add-topic input:focus { border-color: var(--accent); }
+.add-topic input::placeholder { color: var(--text3); }
+
+.fmt-select {
+  width: 100%;
+  padding: 7px 10px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.fmt-select:focus { border-color: var(--accent); }
+.fmt-select option { background: var(--bg2); }
+
+.btn-add {
+  background: var(--bg3);
+  border: 1px dashed var(--border2);
+  color: var(--text2);
+  padding: 7px;
+  border-radius: 7px;
+  font-size: .75rem;
+  cursor: pointer;
+  transition: all .2s;
+  text-align: center;
+}
+.btn-add:hover { border-color: var(--accent); color: var(--accent); }
+
+/* publish topic */
+.pub-field { margin-top: 4px; }
+.pub-field label { font-size: .68rem; color: var(--text2); display: block; margin-bottom: 4px; font-family: var(--font-mono); }
+.pub-field input {
+  width: 100%;
+  padding: 7px 10px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  outline: none;
+  transition: border-color .2s;
+}
+.pub-field input:focus { border-color: var(--accent); }
+
+/* ── main chat ── */
+.chat-main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* messages */
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.messages::-webkit-scrollbar { width: 4px; }
+.messages::-webkit-scrollbar-track { background: transparent; }
+.messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+/* empty */
+.empty-state {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px; color: var(--text3); text-align: center;
+  pointer-events: none;
+}
+.empty-icon {
+  width: 56px; height: 56px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--bg3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+}
+.empty-title { font-size: .88rem; color: var(--text2); font-weight: 500; }
+.empty-hint  { font-size: .73rem; line-height: 1.6; max-width: 220px; }
+
+/* message bubble */
+.msg {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  animation: msg-in .2s ease;
+}
+@keyframes msg-in {
+  from { opacity:0; transform:translateY(6px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.msg.outgoing { align-items: flex-end; }
+.msg.incoming { align-items: flex-start; }
+.msg.system   { align-items: center; }
+
+.msg-row { display: flex; align-items: flex-end; gap: 8px; }
+.msg.outgoing .msg-row { flex-direction: row-reverse; }
+
+.avatar {
+  width: 26px; height: 26px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .68rem; font-weight: 700; flex-shrink: 0;
+  margin-bottom: 2px; font-family: var(--font-ui);
+}
+.av-out { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; }
+.av-in  { background: linear-gradient(135deg, var(--green), var(--accent));   color: #0f1117; }
+
+.bubble {
+  max-width: min(68%, 580px);
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: .88rem;
+  line-height: 1.6;
+  word-break: break-word;
+}
+.msg.outgoing .bubble {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: white;
+  border-bottom-right-radius: 3px;
+  box-shadow: 0 3px 14px rgba(79,142,247,.25);
+}
+.msg.incoming .bubble {
+  background: var(--bg3);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 3px;
+  white-space: pre-wrap;
+}
+.msg.system .bubble {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text3);
+  font-size: .72rem;
+  font-family: var(--font-mono);
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+
+/* topic tag on incoming */
+.topic-tag {
+  font-size: .62rem;
+  font-family: var(--font-mono);
+  color: var(--text3);
+  padding: 0 4px;
+  margin-bottom: 1px;
+}
+
+.msg-meta { font-size: .62rem; color: var(--text3); padding: 0 4px; font-family: var(--font-mono); }
+
+/* image in bubble */
+.bubble img {
+  max-width: 240px;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin-top: 4px;
+}
+
+/* html bubble */
+.bubble.html-content { font-size: .85rem; }
+.bubble.html-content * { max-width: 100%; }
+
+/* ── input bar ── */
+.input-bar {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 12px 16px 14px;
+  flex-shrink: 0;
+}
+
+.input-wrap {
+  display: flex; gap: 10px; align-items: flex-end;
+  background: var(--bg3);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 9px 10px 9px 14px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.input-wrap:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(79,142,247,.12);
+}
+
+textarea {
+  flex: 1;
+  background: none; border: none; outline: none;
+  resize: none;
+  font-family: var(--font-ui);
+  font-size: .88rem;
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 22px;
+  max-height: 110px;
+  overflow-y: auto;
+  padding: 0;
+}
+textarea::placeholder { color: var(--text3); }
+
+.send-btn {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border: none; border-radius: 9px;
+  color: white; cursor: pointer; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 3px 10px rgba(79,142,247,.3);
+  transition: transform .15s, opacity .15s;
+}
+.send-btn:hover   { transform: translateY(-1px); }
+.send-btn:active  { transform: scale(.93); }
+.send-btn:disabled{ opacity: .35; cursor: not-allowed; transform: none; }
+
+.mic-btn {
+  width: 36px; height: 36px;
+  background: var(--bg3, #1a1d24);
+  border: 1px solid var(--border, #2a2e38);
+  border-radius: 9px;
+  color: var(--text2, #aab0bd); cursor: pointer; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, background .15s, border-color .15s, color .15s;
+}
+.mic-btn:hover    { border-color: var(--accent); color: var(--accent); }
+.mic-btn:active   { transform: scale(.93); }
+.mic-btn:disabled { opacity: .35; cursor: not-allowed; }
+.mic-btn.recording {
+  background: var(--red); border-color: var(--red); color: white;
+  animation: micPulse 1.1s ease-in-out infinite;
+}
+@keyframes micPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,.45); }
+  50%      { box-shadow: 0 0 0 7px rgba(239,68,68,0); }
+}
+
+.input-hint {
+  margin-top: 6px; font-size: .63rem;
+  color: var(--text3); text-align: center;
+}
+kbd {
+  display: inline-block; padding: 1px 5px;
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 3px; font-family: var(--font-mono);
+  font-size: .6rem; color: var(--text2);
+}
+
+/* ── mobile ── */
+@media (max-width: 600px) {
+  .app { grid-template-columns: 1fr; grid-template-rows: 56px auto 1fr; }
+  .sidebar { max-height: 220px; overflow-y: auto; border-right: none; border-bottom: 1px solid var(--border); }
+}
+
+
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- topbar -->
+  <div class="topbar">
+    <div class="logo">
+      <svg width="18" height="18" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="9"  r="4" fill="white" opacity=".95"/>
+        <circle cx="7"  cy="20" r="3" fill="white" opacity=".8"/>
+        <circle cx="21" cy="20" r="3" fill="white" opacity=".8"/>
+        <line x1="14" y1="13" x2="7"  y2="17" stroke="white" stroke-width="1.5" opacity=".7"/>
+        <line x1="14" y1="13" x2="21" y2="17" stroke="white" stroke-width="1.5" opacity=".7"/>
+        <line x1="7"  y1="20" x2="21" y2="20" stroke="white" stroke-width="1.5" opacity=".4"/>
+      </svg>
+    </div>
+    <span class="logo-text">fuClaw</span>
+    <span class="logo-sub">MQTT Chat</span>
+    <div class="conn-pill" onclick="toggleConnect()">
+      <div class="conn-dot" id="connDot"></div>
+      <span id="connLabel">Disconnected</span>
+    </div>
+  </div>
+
+  <!-- sidebar -->
+  <div class="sidebar">
+
+    <!-- MQTT Settings -->
+    <div class="sidebar-section">
+      <div class="sidebar-title open" id="settingsToggle" onclick="toggleSection('settingsBody', this)">
+        <span>&#9881;</span> MQTT Settings
+        <span class="chevron">&#9660;</span>
+      </div>
+      <div class="sidebar-body" id="settingsBody">
+        <div class="field">
+          <label>BROKER SERVER</label>
+          <input type="text" id="cfg_server" value="mqtt.go" placeholder="192.168.1.100">
+        </div>
+        <div class="field">
+          <label>PORT (WebSocket)</label>
+          <input type="number" id="cfg_port" value="8000" placeholder="8000" value="8000">
+        </div>
+        <div class="field">
+          <label>USERNAME</label>
+          <input type="text" id="cfg_user" value="" placeholder="Optional">
+        </div>
+        <div class="field">
+          <label>PASSWORD</label>
+          <input type="password" id="cfg_pass" value="" placeholder="Optional">
+        </div>
+        <div class="field" style="flex-direction:row; align-items:center; gap:8px;">
+          <input type="checkbox" id="cfg_tls" style="width:auto;">
+          <label style="margin:0;" for="cfg_tls">Use TLS (wss://) — required when this page is loaded over https</label>
+        </div>
+        <button class="btn btn-connect" id="btnConnect" onclick="doConnect()">Connect</button>
+      </div>
+    </div>
+
+    <!-- Subscribe Topics -->
+    <div class="sidebar-section" style="flex:1; overflow:hidden; display:flex; flex-direction:column;">
+      <div class="sidebar-title open" id="subToggle" onclick="toggleSection('subBody', this)">
+        <span>&#128229;</span> Subscribe Topics
+        <span class="chevron">&#9660;</span>
+      </div>
+      <div class="sidebar-body" id="subBody" style="flex:1; overflow-y:auto;">
+        <div class="topic-list" id="topicList"></div>
+        <div class="add-topic" style="margin-top:10px;">
+          <input type="text" id="newTopicName" value="" placeholder="Enter Topic Name">
+          <select class="fmt-select" id="newTopicFmt">
+            <option value="text">Plain Text</option>
+            <option value="html"> HTML Format</option>
+            <option value="binary">Binary Image</option>
+            <option value="base64">Base64 Image</option>
+          </select>
+          <div class="btn-add" onclick="addTopic()">&#43; Add Subscribe Topic</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Publish Topic -->
+    <div class="sidebar-section">
+      <div class="sidebar-title open" id="pubToggle" onclick="toggleSection('pubBody', this)">
+        <span>&#128228;</span> Publish Topic
+        <span class="chevron">&#9660;</span>
+      </div>
+      <div class="sidebar-body" id="pubBody">
+        <div class="pub-field">
+          <label>PUBLISH TOPIC</label>
+          <input type="text" id="cfg_pubTopic" value="" placeholder="fuclaw/command">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- chat main -->
+  <div class="chat-main">
+    <div class="messages" id="messages">
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">&#128200;</div>
+        <div class="empty-title">Disconnected</div>
+        <div class="empty-hint">Enter MQTT settings on the left and click Connect to start chatting.</div>
+      </div>
+    </div>
+
+    <div class="input-bar">
+      <div class="input-wrap">
+        <textarea id="msgInput" placeholder="Enter message..." rows="1" onkeydown="onKey(event)"></textarea>
+        <button class="mic-btn" id="micBtn" onclick="toggleMic()" title="Voice input">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
+        </button>
+        <button class="send-btn" id="sendBtn" onclick="sendMsg()" disabled title="送出">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-hint"><kbd>Enter</kbd> Send &nbsp;&#183;&nbsp; <kbd>Shift</kbd>+<kbd>Enter</kbd> New Line &nbsp;&#183;&nbsp; <span id="micHint">&#127908; Voice input</span></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── state ──
+var mqttClient   = null;
+var isConnected  = false;
+var topics       = [];   // [{name, format}]
+
+// If this page is itself served over https (e.g. GitHub Pages), default to wss://
+// since browsers block a plain ws:// connection from an https page (mixed content).
+if (location.protocol === 'https:') {
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('cfg_tls').checked = true;
+  });
+}
+
+// ── section toggle ──
+function toggleSection(bodyId, titleEl) {
+  var body = document.getElementById(bodyId);
+  var open = body.style.display !== 'none';
+  body.style.display = open ? 'none' : '';
+  titleEl.classList.toggle('open', !open);
+}
+
+// ── connection status ──
+function setStatus(state, label) {
+  var dot   = document.getElementById('connDot');
+  var lbl   = document.getElementById('connLabel');
+  dot.className = 'conn-dot ' + state;
+  lbl.textContent = label;
+}
+
+// ── connect / disconnect ──
+function toggleConnect() {
+  if (isConnected) doDisconnect();
+}
+
+function doConnect() {
+  var server = document.getElementById('cfg_server').value.trim();
+  var port   = parseInt(document.getElementById('cfg_port').value) || 9001;
+  var user   = document.getElementById('cfg_user').value.trim();
+  var pass   = document.getElementById('cfg_pass').value;
+  var useTls = document.getElementById('cfg_tls').checked;
+
+  if (!server) { sysMsg('Please enter the Broker Server address'); return; }
+
+  if (location.protocol === 'https:' && !useTls) {
+    sysMsg('&#9888; This page is loaded over https — most browsers will block a plain ws:// connection (mixed content). Enabling "Use TLS (wss://)" automatically.');
+    useTls = true;
+    document.getElementById('cfg_tls').checked = true;
+  }
+
+  if (mqttClient) { mqttClient.end(true); }
+
+  var url = (useTls ? 'wss://' : 'ws://') + server + ':' + port + '/mqtt';
+  setStatus('connecting', 'Connecting...');
+  sysMsg('Connecting to ' + url);
+
+  var opts = {
+    clientId: 'fuClaw_' + Math.random().toString(16).substr(2,8),
+    clean: true,
+    reconnectPeriod: 0
+  };
+  if (user) opts.username = user;
+  if (pass) opts.password = pass;
+
+  try {
+    mqttClient = mqtt.connect(url, opts);
+  } catch(e) {
+    setStatus('disconnected', 'Connection Failed');
+    sysMsg('mqtt.js is not loaded. Please check your network connection or use the offline version.');
+    return;
+  }
+
+  mqttClient.on('connect', function() {
+    isConnected = true;
+    setStatus('connected', 'Connected');
+    sysMsg('&#10003; Connected to ' + server + ':' + port);
+    document.getElementById('sendBtn').disabled = false;
+    document.getElementById('btnConnect').textContent = 'Reconnect';
+    document.getElementById('btnConnect').className = 'btn btn-disconnect';
+    document.getElementById('emptyState').style.display = 'none';
+
+    // Subscribe all topics
+    topics.forEach(function(t) {
+      mqttClient.subscribe(t.name, function(err) {
+        if (!err) sysMsg('&#128229; Subscription：' + t.name + ' [' + t.format + ']');
+      });
+    });
+  });
+
+  mqttClient.on('message', function(topic, payload) {
+    var topicObj = topics.find(function(t) { return t.name === topic || topicMatch(t.name, topic); });
+    var fmt = topicObj ? topicObj.format : 'text';
+    onMessage(topic, payload, fmt);
+  });
+
+  mqttClient.on('error', function(err) {
+    setStatus('disconnected', 'Connection Error');
+    sysMsg('&#10007; Error:' + err.message);
+    isConnected = false;
+    document.getElementById('sendBtn').disabled = true;
+  });
+
+  mqttClient.on('close', function() {
+    if (isConnected) {
+      setStatus('disconnected', 'Disconnected');
+      sysMsg('&#9675; Connection Closed');
+      isConnected = false;
+      document.getElementById('sendBtn').disabled = true;
+      document.getElementById('btnConnect').textContent = 'Connect';
+      document.getElementById('btnConnect').className = 'btn btn-connect';
+    }
+  });
+}
+
+function doDisconnect() {
+  if (mqttClient) {
+    mqttClient.end();
+    mqttClient = null;
+  }
+  isConnected = false;
+  setStatus('disconnected', 'Disconnected');
+  document.getElementById('sendBtn').disabled = true;
+  sysMsg('Manually disconnected');
+}
+
+// simple wildcard match for # and +
+function topicMatch(pattern, topic) {
+  var re = pattern.replace(/\+/g,'[^/]+').replace(/#/g,'.*');
+  return new RegExp('^' + re + '$').test(topic);
+}
+
+// ── topic management ──
+function renderTopics() {
+  var list = document.getElementById('topicList');
+  list.innerHTML = '';
+  topics.forEach(function(t, i) {
+    var fmtLabels = { text:'TEXT', html:'HTML', base64:'B64', binary:'BIN' };
+    var fmtClass  = { text:'fmt-text', html:'fmt-html', base64:'fmt-b64', binary:'fmt-bin' };
+    var item = document.createElement('div');
+    item.className = 'topic-item';
+    item.innerHTML =
+      '<span class="topic-name">' + escHtml(t.name) + '</span>' +
+      '<span class="topic-fmt ' + fmtClass[t.format] + '">' + fmtLabels[t.format] + '</span>' +
+      '<button class="topic-del" onclick="removeTopic(' + i + ')" title="Delete">&#10005;</button>';
+    list.appendChild(item);
+  });
+}
+
+function addTopic() {
+  var name = document.getElementById('newTopicName').value.trim();
+  var fmt  = document.getElementById('newTopicFmt').value;
+  if (!name) return;
+  if (topics.find(function(t) { return t.name === name; })) {
+    sysMsg('Topic already exists:' + name); return;
+  }
+  topics.push({ name: name, format: fmt });
+  renderTopics();
+  document.getElementById('newTopicName').value = '';
+
+  // Subscribe if already connected
+  if (isConnected && mqttClient) {
+    mqttClient.subscribe(name, function(err) {
+      if (!err) sysMsg('&#128229; Added subscription:' + name + ' [' + fmt + ']');
+    });
+  }
+}
+
+function removeTopic(i) {
+  var t = topics[i];
+  if (isConnected && mqttClient) {
+    mqttClient.unsubscribe(t.name);
+    sysMsg('&#128683; Unsubscribed:' + t.name);
+  }
+  topics.splice(i, 1);
+  renderTopics();
+}
+
+// ── message display ──
+function nowStr() {
+  var d = new Date();
+  return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)+':'+('0'+d.getSeconds()).slice(-2);
+}
+
+function escHtml(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function scrollBottom() {
+  var m = document.getElementById('messages');
+  m.scrollTo({ top: m.scrollHeight, behavior: 'smooth' });
+}
+
+function sysMsg(text) {
+  var el = document.getElementById('emptyState');
+  if (el) el.style.display = 'none';
+  var msg = document.createElement('div');
+  msg.className = 'msg system';
+  msg.innerHTML = '<div class="bubble">' + text + '</div>';
+  document.getElementById('messages').appendChild(msg);
+  scrollBottom();
+}
+
+function appendMsg(role, bubbleHtml, meta, isHtml) {
+  var el = document.getElementById('emptyState');
+  if (el) el.style.display = 'none';
+
+  var msg = document.createElement('div');
+  msg.className = 'msg ' + role;
+
+  var avClass = role === 'outgoing' ? 'av-out' : 'av-in';
+  var avLabel = role === 'outgoing' ? 'U'      : 'AI';
+  var bubbleCls = 'bubble' + (isHtml ? ' html-content' : '');
+
+  msg.innerHTML =
+    (meta ? '<div class="topic-tag">' + escHtml(meta) + '</div>' : '') +
+    '<div class="msg-row">' +
+      '<div class="avatar ' + avClass + '">' + avLabel + '</div>' +
+      '<div class="' + bubbleCls + '">' + bubbleHtml + '</div>' +
+    '</div>' +
+    '<div class="msg-meta">' + nowStr() + '</div>';
+
+  document.getElementById('messages').appendChild(msg);
+  scrollBottom();
+}
+
+function onMessage(topic, payload, fmt) {
+  var content = '';
+  var isHtml  = false;
+
+  if (fmt === 'text') {
+    content = escHtml(payload.toString());
+  }
+  else if (fmt === 'html') {
+    content = payload.toString();
+    isHtml  = true;
+  }
+  else if (fmt === 'base64') {
+    var b64 = payload.toString().trim();
+    if (!b64.startsWith('data:')) b64 = 'data:image/jpeg;base64,' + b64;
+    content = '<img src="' + b64 + '">';
+    isHtml  = true;
+  }
+  else if (fmt === 'binary') {
+    // Convert binary buffer to base64
+    var bytes = new Uint8Array(payload);
+    var bin   = '';
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    var b64 = 'data:image/jpeg;base64,' + btoa(bin);
+    content = '<img src="' + b64 + '">';
+    isHtml  = true;
+  }
+
+  appendMsg('incoming', content, topic, isHtml);
+}
+
+// ── send message ──
+function sendMsg() {
+  if (!isConnected || !mqttClient) return;
+  var text = document.getElementById('msgInput').value.trim();
+  if (!text) return;
+
+  var pubTopic = document.getElementById('cfg_pubTopic').value.trim();
+  if (!pubTopic) { sysMsg('Please set the Publish Topic'); return; }
+
+  mqttClient.publish(pubTopic, text);
+  appendMsg('outgoing', escHtml(text), null, false);
+
+  document.getElementById('msgInput').value = '';
+  document.getElementById('msgInput').style.height = 'auto';
+}
+
+function onKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMsg();
+  }
+  // auto-resize
+  setTimeout(function() {
+    var ta = document.getElementById('msgInput');
+    ta.style.height = 'auto';
+    ta.style.height = Math.min(ta.scrollHeight, 110) + 'px';
+  }, 0);
+}
+
+// ── voice input (browser Web Speech API) ──
+var SpeechRecognitionImpl = window.SpeechRecognition || window.webkitSpeechRecognition;
+var speechRecognizer = null;
+var isRecording = false;
+
+(function initMic() {
+  var micBtn  = document.getElementById('micBtn');
+  var micHint = document.getElementById('micHint');
+
+  if (!SpeechRecognitionImpl) {
+    micBtn.disabled = true;
+    micHint.innerHTML = '&#127908; Voice input not supported in this browser (try Chrome)';
+    return;
+  }
+  // getUserMedia/SpeechRecognition only work in a secure context: https://, or localhost.
+  if (!window.isSecureContext) {
+    micBtn.disabled = true;
+    micHint.innerHTML = '&#127908; Voice input needs https:// — this page is loaded over an insecure origin';
+    return;
+  }
+
+  speechRecognizer = new SpeechRecognitionImpl();
+  speechRecognizer.continuous     = false;
+  speechRecognizer.interimResults = true;
+  speechRecognizer.lang           = (navigator.language || 'en-US');
+
+  speechRecognizer.onstart = function() {
+    isRecording = true;
+    micBtn.classList.add('recording');
+  };
+
+  speechRecognizer.onresult = function(event) {
+    var transcript = '';
+    for (var i = 0; i < event.results.length; i++) {
+      transcript += event.results[i][0].transcript;
+    }
+    var ta = document.getElementById('msgInput');
+    ta.value = transcript;
+    ta.style.height = 'auto';
+    ta.style.height = Math.min(ta.scrollHeight, 110) + 'px';
+  };
+
+  speechRecognizer.onerror = function(event) {
+    if (event.error === 'not-allowed' || event.error === 'permission-denied') {
+      sysMsg('&#10007; Microphone permission denied. Please allow microphone access in your browser settings.');
+    } else if (event.error === 'no-speech') {
+      // user didn't say anything — not worth a system message
+    } else {
+      sysMsg('&#10007; Voice input error: ' + event.error);
+    }
+  };
+
+  speechRecognizer.onend = function() {
+    isRecording = false;
+    micBtn.classList.remove('recording');
+  };
+})();
+
+function toggleMic() {
+  if (!speechRecognizer) return;
+  if (isRecording) {
+    speechRecognizer.stop();
+  } else {
+    document.getElementById('msgInput').value = '';
+    try {
+      speechRecognizer.start();
+    } catch (e) {
+      // start() throws if called while already running; ignore
+    }
+  }
+}
+</script>
+
+<!-- fuClaw Global Nav Bar -->
+<style>
+  .fc-nav {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(220,228,255,.9);
+    display: flex; justify-content: space-around; align-items: stretch;
+    height: 58px;
+    box-shadow: 0 -4px 24px rgba(79,110,247,.10);
+    font-family: -apple-system,'Segoe UI','Noto Sans TC',sans-serif;
+  }
+  .fc-nav a {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 3px; text-decoration: none;
+    color: #8892b0; font-size: .6rem; font-weight: 500;
+    letter-spacing: .03em; transition: color .2s;
+    -webkit-tap-highlight-color: transparent;
+    padding: 6px 2px 4px;
+  }
+  .fc-nav a:hover { color: #4f6ef7; }
+  .fc-nav a.fc-active { color: #4f6ef7; }
+  .fc-nav a .fc-ico {
+    width: 28px; height: 28px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.05rem; transition: background .2s, transform .15s;
+  }
+  .fc-nav a.fc-active .fc-ico { background: rgba(79,110,247,.12); transform: scale(1.08); }
+  .fc-nav a:hover .fc-ico { background: rgba(79,110,247,.07); }
+  body { padding-bottom: 68px !important; }
+</style>
+<nav class="fc-nav">
+  <a href="/"           id="fcn-config"   title="System Config"><span class="fc-ico">&#9881;</span><span>Config</span></a>
+  <a href="/agent"    id="fcn-agent"    title="Agent Config"><span class="fc-ico">&#129302;</span><span>Agent</span></a>
+  <a href="/schedule"  id="fcn-schedule" title="Scheduler"><span class="fc-ico">&#128197;</span><span>Schedule</span></a>
+  <a href="/chat"      id="fcn-chat"     title="Gemini Chat"><span class="fc-ico">&#128172;</span><span>Chat</span></a>
+  <a href="/mqtt" id="fcn-mqtt"     title="MQTT Chat"><span class="fc-ico">&#128225;</span><span>MQTT</span></a>
+</nav>
+<script>
+  (function(){
+    var map={"/":"fcn-config","":"fcn-config","/agent":"fcn-agent",
+             "/schedule":"fcn-schedule","/chat":"fcn-chat",
+             "/mqtt":"fcn-mqtt"};
+    var seg=location.pathname.replace(/\/$/,"") || "/";
+    var el=document.getElementById(map[seg]); if(el) el.className+=" fc-active";
+  })();
+</script>
+
+</body>
+</html>
