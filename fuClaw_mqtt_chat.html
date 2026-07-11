@@ -581,7 +581,7 @@ kbd {
 
     <div class="input-bar">
       <div class="input-wrap">
-        <textarea id="msgInput" placeholder="Enter message..." rows="1" onkeydown="onKey(event)"></textarea>
+        <textarea id="msgInput" placeholder="Enter message..." rows="1" onkeydown="onKey(event)" oninput="updateSendState()"></textarea>
         <button class="mic-btn" id="micBtn" onclick="toggleMic()" title="Voice input">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
@@ -679,7 +679,7 @@ function doConnect() {
     isConnected = true;
     setStatus('connected', 'Connected');
     sysMsg('&#10003; Connected to ' + server + ':' + port);
-    document.getElementById('sendBtn').disabled = false;
+    updateSendState();
     document.getElementById('btnConnect').textContent = 'Reconnect';
     document.getElementById('btnConnect').className = 'btn btn-disconnect';
     document.getElementById('emptyState').style.display = 'none';
@@ -702,7 +702,7 @@ function doConnect() {
     setStatus('disconnected', 'Connection Error');
     sysMsg('&#10007; Error:' + err.message);
     isConnected = false;
-    document.getElementById('sendBtn').disabled = true;
+    updateSendState();
   });
 
   mqttClient.on('close', function() {
@@ -710,7 +710,7 @@ function doConnect() {
       setStatus('disconnected', 'Disconnected');
       sysMsg('&#9675; Connection Closed');
       isConnected = false;
-      document.getElementById('sendBtn').disabled = true;
+      updateSendState();
       document.getElementById('btnConnect').textContent = 'Connect';
       document.getElementById('btnConnect').className = 'btn btn-connect';
     }
@@ -724,7 +724,7 @@ function doDisconnect() {
   }
   isConnected = false;
   setStatus('disconnected', 'Disconnected');
-  document.getElementById('sendBtn').disabled = true;
+  updateSendState();
   sysMsg('Manually disconnected');
 }
 
@@ -861,6 +861,16 @@ function onMessage(topic, payload, fmt) {
 }
 
 // ── send message ──
+// Keeps the send button's enabled state in sync with both the MQTT connection
+// status and whether the textarea actually has content. Must be called
+// explicitly whenever msgInput's value is changed via JS (e.g. by the voice
+// recognizer), since programmatic .value assignment does NOT fire a native
+// 'input' event and therefore won't trigger the oninput handler on its own.
+function updateSendState() {
+  var text = document.getElementById('msgInput').value.trim();
+  document.getElementById('sendBtn').disabled = !isConnected || !text;
+}
+
 function sendMsg() {
   if (!isConnected || !mqttClient) return;
   var text = document.getElementById('msgInput').value.trim();
@@ -874,6 +884,7 @@ function sendMsg() {
 
   document.getElementById('msgInput').value = '';
   document.getElementById('msgInput').style.height = 'auto';
+  updateSendState();
 }
 
 function onKey(e) {
@@ -929,6 +940,11 @@ var isRecording = false;
     ta.value = transcript;
     ta.style.height = 'auto';
     ta.style.height = Math.min(ta.scrollHeight, 110) + 'px';
+    // ta.value was set programmatically, which does NOT fire a native
+    // 'input' event, so the send button's enabled state must be refreshed
+    // manually here — otherwise it stays stuck in whatever state it was
+    // in before dictation started, even once there's a valid transcript.
+    updateSendState();
   };
 
   speechRecognizer.onerror = function(event) {
@@ -944,6 +960,9 @@ var isRecording = false;
   speechRecognizer.onend = function() {
     isRecording = false;
     micBtn.classList.remove('recording');
+    // Safety net: some browsers/OS combos can end recognition without a
+    // final onresult firing, so re-check the button state here too.
+    updateSendState();
   };
 })();
 
@@ -953,6 +972,7 @@ function toggleMic() {
     speechRecognizer.stop();
   } else {
     document.getElementById('msgInput').value = '';
+    updateSendState();
     try {
       speechRecognizer.start();
     } catch (e) {
