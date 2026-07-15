@@ -1,4 +1,4 @@
-Blockly.Msg.YOLOV8N_SHOW = "Object Detection (Yolov8n)";
+Blockly.Msg.YOLOV8N_SHOW = "Object Detection (Yolo)";
 Blockly.Msg.YOLOV8N_OBJECT_SHOW = "Detected Objects";
 Blockly.Msg.YOLOV8N_OBJECT_ALL_SHOW = "All";
 Blockly.Msg.YOLOV8N_OBJECT_NUMBER_SHOW = "Number of Detected";
