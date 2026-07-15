@@ -1,1 +1,1 @@
-MSG.yolov8n = "Object Detection (Yolov8n)";
+MSG.yolov8n = "Object Detection (Yolo)";
