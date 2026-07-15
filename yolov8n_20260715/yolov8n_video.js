@@ -22,7 +22,6 @@ window.onload = function () {
     var scoreLimit = document.getElementById('scorelimit_yolov8n');
 
 	setTimeout(function(){
-		console.log(modelPath.innerHTML);
 	
 	    tf.loadGraphModel(
 	        modelPath.innerHTML
