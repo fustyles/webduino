@@ -1,4 +1,4 @@
-Blockly.Msg.YOLOV8N_SHOW = "物件侦测 (Yolov8n)";
+Blockly.Msg.YOLOV8N_SHOW = "物件侦测 (Yolo)";
 Blockly.Msg.YOLOV8N_OBJECT_SHOW = "侦测物件";
 Blockly.Msg.YOLOV8N_OBJECT_ALL_SHOW = "全部";
 Blockly.Msg.YOLOV8N_OBJECT_NUMBER_SHOW = "侦测数目";
