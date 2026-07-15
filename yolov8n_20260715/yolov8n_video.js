@@ -22,7 +22,6 @@ window.onload = function () {
     var scoreLimit = document.getElementById('scorelimit_yolov8n');
 
 	setTimeout(function(){
-	
 	    tf.loadGraphModel(
 	        modelPath.innerHTML
 	    ).then(model => {
@@ -41,7 +40,7 @@ window.onload = function () {
 	    }).catch(err => {
 	        result.innerHTML = "載入失敗: " + err.message;
 	    });   
-	}, 3000);
+	}, 2000);
 
 	async function DetectVideo(obj) {
 		if (obj.tagName=="IMG") {
