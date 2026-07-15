@@ -68,14 +68,13 @@ window.onload = function () {
 		}
 
 		var LABELS = classList.innerHTML.split(",").map(s => s.trim());
-
-		var inputSize = 640;
+		
 		var threshold = 0.35;
 
 		var input = tf.tidy(() =>
 			tf.image.resizeBilinear(
 				tf.browser.fromPixels(canvas),
-				[inputSize, inputSize]
+				[obj.height, obj.width]
 			).div(255.0).expandDims(0)
 		);
 
