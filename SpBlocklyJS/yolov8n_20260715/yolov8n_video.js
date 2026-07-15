@@ -67,7 +67,7 @@ window.onload = function () {
 			return;
 		}
 
-		var LABELS = classList.innerHTML.split(",");
+		var LABELS = classList.innerHTML.split(",").map(s => s.trim());
 
 		var inputSize = 640;
 		var threshold = 0.35;
