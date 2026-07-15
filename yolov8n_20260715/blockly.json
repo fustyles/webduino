@@ -1,0 +1,16 @@
+{
+  "types": ["yolov8n_video", "yolov8n_object", "yolov8n_state", "yolov8n_object_number", "yolov8n_video_position", "yolov8n_startvideo_media", "yolov8n_startvideo_stream", "yolov8n_clear", "yolov8n_canvas_get", "yolov8n_pause", "yolov8n_recognitied", "yolov8n_unrecognitied", "yolov8n_xy_in_triangle", "yolov8n_xy_in_quadrilateral"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "yolov8n_video.js",
+    "yolov8n.js"
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
+
