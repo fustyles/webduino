@@ -4,9 +4,10 @@
 
   'use strict';
 
-	function yolov8n_video(input_modelpath, input_classes, input_result, input_frame, input_mirrorimage, input_opacity) {
+	function yolov8n_video(input_modelpath, input_classes, input_scorelimit, input_result, input_frame, input_mirrorimage, input_opacity) {
 		document.getElementById('modelpath_yolov8n').innerHTML = input_modelpath;
-		document.getElementById('classes_yolov8n').innerHTML = input_classes;        
+		document.getElementById('classes_yolov8n').innerHTML = input_classes; 
+		document.getElementById('scorelimit_yolov8n').value = input_scorelimit; 
 		document.getElementById('gamediv_yolov8n').style.display = input_result;
 		document.getElementById('frame_yolov8n').value = input_frame;
 		document.getElementById('mirrorimage_yolov8n').value = input_mirrorimage;

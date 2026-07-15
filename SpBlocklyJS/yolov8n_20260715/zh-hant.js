@@ -41,3 +41,4 @@ Blockly.Msg.YOLOV8N_XY_ARRANGE = "(座標依序排列)";
 Blockly.Msg.YOLOV8N_NAME_SHOW = "物件名稱";
 Blockly.Msg.YOLOV8N_MODELPATH_SHOW = "模型路徑 (model.json)";
 Blockly.Msg.YOLOV8N_CLASSES_SHOW = "物件名稱清單 (,)";
+Blockly.Msg.YOLOV8N_SCORELIMIT_SHOW = "信心分數";

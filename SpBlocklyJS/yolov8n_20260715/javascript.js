@@ -1,11 +1,12 @@
 Blockly.JavaScript['yolov8n_video'] = function(block) {
   var value_modelpath_ = Blockly.JavaScript.valueToCode(block, 'modelpath_', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_classes_  = Blockly.JavaScript.valueToCode(block, 'classes_', Blockly.JavaScript.ORDER_ATOMIC);   
+  var value_classes_  = Blockly.JavaScript.valueToCode(block, 'classes_', Blockly.JavaScript.ORDER_ATOMIC); 
+  var value_scorelimit_ = block.getFieldValue('scorelimit_');
   var value_result_ = block.getFieldValue('result_');
   var value_frame_ = block.getFieldValue('frame_');
   var value_mirrorimage_ = block.getFieldValue('mirrorimage_');
   var value_opacity_ = block.getFieldValue('opacity_');
-  var code = 'yolov8n_video(' + value_modelpath_ + ',' + value_classes_ + ',"' + value_result_ + '","' + value_frame_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '");\n';
+  var code = 'yolov8n_video(' + value_modelpath_ + ',' + value_classes_ + ',' + value_scorelimit_ + ',"' + value_result_ + '","' + value_frame_ + '","' + value_mirrorimage_ + '","' + value_opacity_ + '");\n';
   return code;
 };
 

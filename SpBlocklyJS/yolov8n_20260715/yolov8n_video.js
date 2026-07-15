@@ -2,6 +2,7 @@ document.write('<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.
 document.write('<div id="region_yolov8n" style="z-index:999"><video id="gamevideo_yolov8n" width="320" height="240" style="position:absolute;visibility:hidden;" preload autoplay loop muted></video><img id="gameimage_yolov8n" style="position:absolute;visibility:hidden;" crossorigin="anonymous"><canvas id="gamecanvas_yolov8n"></canvas><br><select id="frame_yolov8n" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><select id="mirrorimage_yolov8n" style="position:absolute;visibility:hidden;"><option value="1">Y</option><option value="0">N</option></select><br><div id="gamediv_yolov8n" style="color:red"></div></div>');
 document.write('<div id="modelpath_yolov8n" style="position:absolute;visibility:hidden;"></div>');
 document.write('<div id="classes_yolov8n"  style="position:absolute;visibility:hidden;"></div>');
+document.write('<select id="scorelimit_yolov8n" style="position:absolute;visibility:hidden;"><option value="0">0</option><option value="0.1" selected>0.1</option><option value="0.2">0.2</option><option value="0.3">0.3</option><option value="0.4">0.4</option><option value="0.5">0.5</option><option value="0.6">0.6</option><option value="0.7">0.7</option><option value="0.8">0.8</option><option value="0.9">0.9</option></select>');
 document.write('<div id="yolov8nState" style="position:absolute;display:none;">1</div>');
 document.write('<div id="sourceId_yolov8n" style="position:absolute;display:none;"></div>');
 
@@ -17,7 +18,8 @@ window.onload = function () {
 	var sourceTimer;
 
 	var modelPath = document.getElementById('modelpath_yolov8n');
-	var classList = document.getElementById('classes_yolov8n');    
+	var classList = document.getElementById('classes_yolov8n');
+    var scoreLimit = document.getElementById('scorelimit_yolov8n');
     
     tf.loadGraphModel(
         modelPath.innerHTML
@@ -68,13 +70,14 @@ window.onload = function () {
 		}
 
 		var LABELS = classList.innerHTML.split(",").map(s => s.trim());
-		
-		var threshold = 0.35;
+
+		var inputSize = 640;
+		var threshold = Number(scoreLimit.value);
 
 		var input = tf.tidy(() =>
 			tf.image.resizeBilinear(
 				tf.browser.fromPixels(canvas),
-				[obj.height, obj.width]
+				[inputSize, inputSize]
 			).div(255.0).expandDims(0)
 		);
 

@@ -41,3 +41,4 @@ Blockly.Msg.YOLOV8N_XY_ARRANGE = "(Coordinates are arranged in order)";
 Blockly.Msg.YOLOV8N_NAME_SHOW = "Object Name";
 Blockly.Msg.YOLOV8N_MODELPATH_SHOW = "Model Path (model.json)";
 Blockly.Msg.YOLOV8N_CLASSES_SHOW = "Object Name List (,)";
+Blockly.Msg.YOLOV8N_SCORELIMIT_SHOW = "Confidence Threshold";

@@ -9,7 +9,22 @@ Blockly.Blocks['yolov8n_video'] = {
   this.appendValueInput("classes_")
       .setAlign(Blockly.ALIGN_RIGHT)    
       .setCheck("String")
-      .appendField(Blockly.Msg.YOLOV8N_CLASSES_SHOW);       
+      .appendField(Blockly.Msg.YOLOV8N_CLASSES_SHOW); 
+  this.appendDummyInput() 
+      .setAlign(Blockly.ALIGN_RIGHT)  
+      .appendField(Blockly.Msg.YOLOV8N_SCORELIMIT_SHOW)
+      .appendField(new Blockly.FieldDropdown([
+		["0","0"],
+		["0.1","0.1"],
+		["0.2","0.2"],
+		["0.3","0.3"],
+		["0.4","0.4"],	  
+		["0.5","0.5"],
+		["0.6","0.6"],
+		["0.7","0.7"],
+		["0.8","0.8"],
+		["0.9","0.9"]	  
+  ]), "scorelimit_");      
   this.appendDummyInput() 
       .setAlign(Blockly.ALIGN_RIGHT)    
       .appendField(Blockly.Msg.YOLOV8N_RESULT_SHOW)
