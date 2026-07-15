@@ -216,7 +216,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='"+jsPath+"faces_20251217/faces_video.js'></script>";			
 			script += "<script src='"+jsPath+"faces_20251217/faces.js'></script>";
 		}
-		
+		if (xml.indexOf("yolov8n_")!=-1) {			
+			script += "<script src='"+jsPath+"yolov8n_20260715/yolov8n_video.js'></script>";			
+			script += "<script src='"+jsPath+"yolov8n_20260715/yolov8n.js'></script>";
+		}
+        
 		return script;
 	}		
 	
@@ -261,7 +265,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		catPoses,		
 		catTeachablemachine,
 		catKNNclassifier,		
-		catCocossd,			
+		catCocossd,	
+		catYolov8n,			
 		catPosenet,
 		catFaceDetect,
 		catFaceRecognize,
