@@ -77,7 +77,7 @@ window.onload = function () {
 		var input = tf.tidy(() =>
 			tf.image.resizeBilinear(
 				tf.browser.fromPixels(canvas),
-				[inputSize, inputSize]
+				[obj.height, obj.width]
 			).div(255.0).expandDims(0)
 		);
 
