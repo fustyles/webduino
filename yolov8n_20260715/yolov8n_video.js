@@ -71,7 +71,6 @@ window.onload = function () {
 
 		var LABELS = classList.innerHTML.split(",").map(s => s.trim());
 
-		var inputSize = 640;
 		var threshold = Number(scoreLimit.value);
 
         var imgW = obj.width;

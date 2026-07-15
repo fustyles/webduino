@@ -60,12 +60,28 @@ window.onload = function () {
 		try {
 			var threshold = Number(scoreLimit.value);
 
-			var input = tf.tidy(() =>
-				tf.image.resizeBilinear(
-					tf.browser.fromPixels(canvas),
-					[ShowImage.height, ShowImage.width]
-				).div(255.0).expandDims(0)
-			);
+            var imgW = ShowImage.width;
+            var imgH = ShowImage.height;
+
+            var input = tf.tidy(() => {
+                var img = tf.browser.fromPixels(canvas);
+                
+                var scale = Math.min(640 / imgW, 640 / imgH);
+                var newW = Math.round(imgW * scale);
+                var newH = Math.round(imgH * scale);
+                
+                var resized = tf.image.resizeBilinear(img, [newH, newW]);
+                
+                var padTop  = Math.floor((640 - newH) / 2);
+                var padLeft = Math.floor((640 - newW) / 2);
+                var padded  = tf.pad(resized, [
+                    [padTop,  640 - newH - padTop],
+                    [padLeft, 640 - newW - padLeft],
+                    [0, 0]
+                ], 114 / 255);
+                
+                return padded.div(255.0).expandDims(0);
+            });
 
 			var output = Model.execute(input);
 			input.dispose();
@@ -81,10 +97,16 @@ window.onload = function () {
 				var maxScore = Math.max(...classScores);
 				if (maxScore < threshold) continue;
 				var classId = classScores.indexOf(maxScore);
-				var cx = row[0] / inputSize * canvas.width;
-				var cy = row[1] / inputSize * canvas.height;
-				var w  = row[2] / inputSize * canvas.width;
-				var h  = row[3] / inputSize * canvas.height;
+            
+                var scale  = Math.min(640 / imgW, 640 / imgH);
+                var padTop  = Math.floor((640 - imgH * scale) / 2);
+                var padLeft = Math.floor((640 - imgW * scale) / 2);
+
+                var cx = (row[0] - padLeft) / scale;
+                var cy = (row[1] - padTop)  / scale;
+                var w  =  row[2] / scale;
+                var h  =  row[3] / scale;
+            
 				boxes.push([cy - h/2, cx - w/2, cy + h/2, cx + w/2]);
 				scores.push(maxScore);
 				classes.push(classId);
