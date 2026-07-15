@@ -20,7 +20,7 @@ window.onload = function () {
 	var modelPath = document.getElementById('modelpath_yolov8n');
 	var classList = document.getElementById('classes_yolov8n');
     var scoreLimit = document.getElementById('scorelimit_yolov8n');
-    
+		console.log(modelPath.innerHTML);
     tf.loadGraphModel(
         modelPath.innerHTML
     ).then(model => {
