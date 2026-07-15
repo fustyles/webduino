@@ -21,24 +21,26 @@ window.onload = function () {
 	var classList = document.getElementById('classes_yolov8n');
     var scoreLimit = document.getElementById('scorelimit_yolov8n');
     
-    tf.loadGraphModel(
-        modelPath.innerHTML
-    ).then(model => {
-        Model = model;
-
-		result.innerHTML = "";
-		sourceTimer = setInterval(
-		function(){
-			var source = document.getElementById("sourceId_yolov8n");
-			if (source.innerHTML!="") {
-				clearInterval(sourceTimer);
-				setTimeout(function(){DetectVideo(document.getElementById(source.innerHTML))}, 3000);
-			}				
-		}
-		, 100);	
-    }).catch(err => {
-        result.innerHTML = "載入失敗: " + err.message;
-    });     
+	setTimeout(function(){
+	    tf.loadGraphModel(
+	        modelPath.innerHTML
+	    ).then(model => {
+	        Model = model;
+	
+			result.innerHTML = "";
+			sourceTimer = setInterval(
+			function(){
+				var source = document.getElementById("sourceId_yolov8n");
+				if (source.innerHTML!="") {
+					clearInterval(sourceTimer);
+					setTimeout(function(){DetectVideo(document.getElementById(source.innerHTML))}, 3000);
+				}				
+			}
+			, 100);	
+	    }).catch(err => {
+	        result.innerHTML = "載入失敗: " + err.message;
+	    });   
+	}, 2000);     
 
 	async function DetectVideo(obj) {
 		if (obj.tagName=="IMG") {
