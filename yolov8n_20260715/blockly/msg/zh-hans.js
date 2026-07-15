@@ -1,1 +1,1 @@
-MSG.yolov8n = "物件侦测 (Yolov8n)";
+MSG.yolov8n = "物件侦测 (Yolo)";
