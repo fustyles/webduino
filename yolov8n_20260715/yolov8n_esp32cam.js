@@ -72,99 +72,104 @@ window.onload = function () {
 			return;
 		}
 
-		var threshold = Number(scoreLimit.value);
-
-        var imgW = ShowImage.width;
-        var imgH = ShowImage.height;
-
-        var input = tf.tidy(() => {
-            var img = tf.browser.fromPixels(canvas);
-            
-            var scale = Math.min(640 / imgW, 640 / imgH);
-            var newW = Math.round(imgW * scale);
-            var newH = Math.round(imgH * scale);
-            
-            var resized = tf.image.resizeBilinear(img, [newH, newW]);
-            
-            var padTop  = Math.floor((640 - newH) / 2);
-            var padLeft = Math.floor((640 - newW) / 2);
-            var padded  = tf.pad(resized, [
-                [padTop,  640 - newH - padTop],
-                [padLeft, 640 - newW - padLeft],
-                [0, 0]
-            ], 114 / 255);
-            
-            return padded.div(255.0).expandDims(0);
-        });
-
-		var output = Model.execute(input);
-		input.dispose();
-
-		var tensor = Array.isArray(output) ? output[0] : output;
-		var data = await tensor.squeeze().transpose().array();
-		tensor.dispose();
-
-		var boxes = [], scores = [], classes = [];
-		for (var i = 0; i < data.length; i++) {
-			var row = data[i];
-			var classScores = row.slice(4);
-			var maxScore = Math.max(...classScores);
-			if (maxScore < threshold) continue;
-			var classId = classScores.indexOf(maxScore);
-            
-            var scale  = Math.min(640 / imgW, 640 / imgH);
-            var padTop  = Math.floor((640 - imgH * scale) / 2);
-            var padLeft = Math.floor((640 - imgW * scale) / 2);
-
-            var cx = (row[0] - padLeft) / scale;
-            var cy = (row[1] - padTop)  / scale;
-            var w  =  row[2] / scale;
-            var h  =  row[3] / scale;
-            
-			boxes.push([cy - h/2, cx - w/2, cy + h/2, cx + w/2]);
-			scores.push(maxScore);
-			classes.push(classId);
-		}
-
-		var s = Math.max(canvas.width, canvas.height);
-		result.innerHTML = "";
-
-		if (boxes.length > 0) {
-			var boxTensor   = tf.tensor2d(boxes);
-			var scoreTensor = tf.tensor1d(scores);
-			var nmsIdx = await tf.image.nonMaxSuppressionAsync(boxTensor, scoreTensor, 50, 0.45, threshold);
-			var idxArr = await nmsIdx.array();
-			boxTensor.dispose(); scoreTensor.dispose(); nmsIdx.dispose();
-
-			var res = "";
-			idxArr.forEach(function(idx) {
-				var box = boxes[idx];
-				var y = box[0], x = box[1], y2 = box[2], x2 = box[3];
-				var bw = x2 - x, bh = y2 - y;
-				if (frame.value == 1) {
-					context.lineWidth = Math.round(s / 200);
-					context.strokeStyle = "#00FFFF";
-					context.beginPath();
-					context.rect(x, y, bw, bh);
-					context.stroke();
-					context.lineWidth = "3";
-					context.fillStyle = "yellow";
-					context.font = Math.round(s / 30) + "px Arial";
-					context.fillText(LABELS[classes[idx]], x, y);
-				}
-				res += LABELS[classes[idx]]+","+Math.round(scores[idx]*100)+","+Math.round(x)+","+Math.round(y)+","+Math.round(bw)+","+Math.round(bh)+"<br>";
-			});
-			if (res != "")
-				result.innerHTML = res.substr(0, res.length - 4);
-		}
-
-		if (typeof recognitionFinish === 'function') recognitionFinish();
-
 		try {
-			document.createEvent("TouchEvent");
-			setTimeout(function(){start();}, 250);
-		} catch(e) {
-			setTimeout(function(){start();}, 150);
+			var threshold = Number(scoreLimit.value);
+	
+	        var imgW = ShowImage.width;
+	        var imgH = ShowImage.height;
+	
+	        var input = tf.tidy(() => {
+	            var img = tf.browser.fromPixels(canvas);
+	            
+	            var scale = Math.min(640 / imgW, 640 / imgH);
+	            var newW = Math.round(imgW * scale);
+	            var newH = Math.round(imgH * scale);
+	            
+	            var resized = tf.image.resizeBilinear(img, [newH, newW]);
+	            
+	            var padTop  = Math.floor((640 - newH) / 2);
+	            var padLeft = Math.floor((640 - newW) / 2);
+	            var padded  = tf.pad(resized, [
+	                [padTop,  640 - newH - padTop],
+	                [padLeft, 640 - newW - padLeft],
+	                [0, 0]
+	            ], 114 / 255);
+	            
+	            return padded.div(255.0).expandDims(0);
+	        });
+	
+			var output = Model.execute(input);
+			input.dispose();
+	
+			var tensor = Array.isArray(output) ? output[0] : output;
+			var data = await tensor.squeeze().transpose().array();
+			tensor.dispose();
+	
+			var boxes = [], scores = [], classes = [];
+			for (var i = 0; i < data.length; i++) {
+				var row = data[i];
+				var classScores = row.slice(4);
+				var maxScore = Math.max(...classScores);
+				if (maxScore < threshold) continue;
+				var classId = classScores.indexOf(maxScore);
+	            
+	            var scale  = Math.min(640 / imgW, 640 / imgH);
+	            var padTop  = Math.floor((640 - imgH * scale) / 2);
+	            var padLeft = Math.floor((640 - imgW * scale) / 2);
+	
+	            var cx = (row[0] - padLeft) / scale;
+	            var cy = (row[1] - padTop)  / scale;
+	            var w  =  row[2] / scale;
+	            var h  =  row[3] / scale;
+	            
+				boxes.push([cy - h/2, cx - w/2, cy + h/2, cx + w/2]);
+				scores.push(maxScore);
+				classes.push(classId);
+			}
+	
+			var s = Math.max(canvas.width, canvas.height);
+			result.innerHTML = "";
+	
+			if (boxes.length > 0) {
+				var boxTensor   = tf.tensor2d(boxes);
+				var scoreTensor = tf.tensor1d(scores);
+				var nmsIdx = await tf.image.nonMaxSuppressionAsync(boxTensor, scoreTensor, 50, 0.45, threshold);
+				var idxArr = await nmsIdx.array();
+				boxTensor.dispose(); scoreTensor.dispose(); nmsIdx.dispose();
+	
+				var res = "";
+				idxArr.forEach(function(idx) {
+					var box = boxes[idx];
+					var y = box[0], x = box[1], y2 = box[2], x2 = box[3];
+					var bw = x2 - x, bh = y2 - y;
+					if (frame.value == 1) {
+						context.lineWidth = Math.round(s / 200);
+						context.strokeStyle = "#00FFFF";
+						context.beginPath();
+						context.rect(x, y, bw, bh);
+						context.stroke();
+						context.lineWidth = "3";
+						context.fillStyle = "yellow";
+						context.font = Math.round(s / 30) + "px Arial";
+						context.fillText(LABELS[classes[idx]], x, y);
+					}
+					res += LABELS[classes[idx]]+","+Math.round(scores[idx]*100)+","+Math.round(x)+","+Math.round(y)+","+Math.round(bw)+","+Math.round(bh)+"<br>";
+				});
+				if (res != "")
+					result.innerHTML = res.substr(0, res.length - 4);
+			}
+	
+			if (boxes.length > 0) {
+				if (typeof yolov8n_recognitionFinish === 'function') yolov8n_recognitionFinish();
+			} else {
+				if (typeof yolov8n_unrecognitionFinish === 'function') yolov8n_unrecognitionFinish();
+			}
+
+			setTimeout(function(){start();}, 100);
+			
+		} catch(error) {
+			console.error(error);
+			setTimeout(function(){start();}, 100);
 		}
 	}
 }
