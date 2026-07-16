@@ -149,11 +149,11 @@ window.onload = function () {
 				if (typeof yolov8n_unrecognitionFinish === 'function') yolov8n_unrecognitionFinish();
 			}
 			
-			setTimeout(function(){DetectImage();}, 100);
+			setTimeout(function(){DetectImage();}, 150);
 
 		} catch (error) {
 			console.error(error);
-			setTimeout(function(){DetectImage();}, 100);
+			setTimeout(function(){DetectImage();}, 150);
 		}
 	}
 }
