@@ -163,8 +163,8 @@
 
 <div class="hud panel" id="controls-panel">
   <span class="label">操控說明 [H]</span>
-  <div class="row"><span>前傾 / 後仰</span><kbd>W / S</kbd></div>
-  <div class="row"><span>左右橫滾</span><kbd>A / D</kbd></div>
+  <div class="row"><span>前傾 / 後仰</span><kbd>W/S ↑/↓</kbd></div>
+  <div class="row"><span>左右橫滾</span><kbd>A/D ←/→</kbd></div>
   <div class="row"><span>左右偏航</span><kbd>Q / E</kbd></div>
   <div class="row"><span>油門增加</span><kbd>Space</kbd></div>
   <div class="row"><span>油門減少</span><kbd>Shift</kbd></div>
@@ -179,8 +179,8 @@
   <h1>DRONE <span>SOCCER</span> ARENA</h1>
   <p class="sub">擬真四軸飛行器操控模擬 · 鍵盤控制</p>
   <div class="cheat-grid">
-    <div class="row"><kbd>W/S</kbd><span>前傾 / 後仰</span></div>
-    <div class="row"><kbd>A/D</kbd><span>左右橫滾</span></div>
+    <div class="row"><kbd>W/S ↑/↓</kbd><span>前傾 / 後仰</span></div>
+    <div class="row"><kbd>A/D ←/→</kbd><span>左右橫滾</span></div>
     <div class="row"><kbd>Q/E</kbd><span>左右偏航</span></div>
     <div class="row"><kbd>Space</kbd><span>油門增加</span></div>
     <div class="row"><kbd>Shift</kbd><span>油門減少</span></div>
@@ -447,7 +447,7 @@ window.addEventListener('keydown', (e)=>{
   if(e.code === 'KeyR'){ resetDrone(); }
   if(e.code === 'KeyH'){ showControls = !showControls; document.getElementById('controls-panel').classList.toggle('hidden', !showControls); }
   if(e.code === 'KeyM'){ toggleMute(); }
-  if(e.code === 'Space'){ e.preventDefault(); }
+  if(e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'ArrowDown' || e.code === 'ArrowLeft' || e.code === 'ArrowRight'){ e.preventDefault(); }
 });
 window.addEventListener('keyup', (e)=>{ keys[e.code] = false; });
 
@@ -521,12 +521,12 @@ function animate(now){
 }
 
 function updateDrone(dt){
-  const inputPitch = (keys['KeyW']?1:0) - (keys['KeyS']?1:0);
-  const inputRoll  = (keys['KeyD']?1:0) - (keys['KeyA']?1:0);
+  const inputPitch = ((keys['KeyW']||keys['ArrowUp'])?1:0) - ((keys['KeyS']||keys['ArrowDown'])?1:0);
+  const inputRoll  = ((keys['KeyD']||keys['ArrowRight'])?1:0) - ((keys['KeyA']||keys['ArrowLeft'])?1:0);
   const inputYaw   = (keys['KeyE']?1:0) - (keys['KeyQ']?1:0);
   const inputThr   = (keys['Space']?1:0) - (keys['ShiftLeft']||keys['ShiftRight']?1:0);
 
-  const targetPitch = -inputPitch * MAX_TILT;
+  const targetPitch = inputPitch * MAX_TILT;
   const targetRoll  =  inputRoll  * MAX_TILT;
 
   droneState.pitch += (targetPitch - droneState.pitch) * Math.min(1, RESP_RATE*dt);
