@@ -20,7 +20,6 @@ window.onload = function () {
     var scoreLimit = document.getElementById('scorelimit_yolov8n');
 
 	ShowImage.src = 'http://' + window.location.hostname + ':81/?stream';
-	ShowImage.style.visibility = "visible";
 
 	var LABELS = [];
 
