@@ -322,7 +322,7 @@ scene.add(ceilGeo);
 function buildGoal(z){
   const group = new THREE.Group();
   const ringGeo = new THREE.TorusGeometry(GOAL_R, 0.32, 14, 40);
-  const ringMat = new THREE.MeshStandardMaterial({color:0xffffff, roughness:0.55, metalness:0.02});
+  const ringMat = new THREE.MeshStandardMaterial({color:0xffffff, emissive:0x000000, emissiveIntensity:1.2, roughness:0.55, metalness:0.02});
   const ring = new THREE.Mesh(ringGeo, ringMat);
   group.add(ring);
   const poleGeo = new THREE.CylinderGeometry(0.06, 0.06, GOAL_Y, 8);
@@ -332,10 +332,30 @@ function buildGoal(z){
   group.add(pole);
   group.position.set(0, GOAL_Y, z);
   scene.add(group);
-  return group;
+  return {group, ring, ringMat, z, active:false};
 }
 const goalFar = buildGoal(GOAL_Z);
+goalFar.highlightColor = 0xff3b5c;   // 遠端球門：穿越時變紅色
 const goalNear = buildGoal(-GOAL_Z);
+goalNear.highlightColor = 0x2b7fff;  // 近端球門：穿越時變藍色
+
+/* 無人機穿越圓環時，圓環暫時變色，完全穿出後才變回白色 */
+const GOAL_PASS_HALF_DEPTH = DRONE_R + 0.6; // 判定「正在穿越」的前後範圍
+function updateGoalHighlight(goal){
+  const dz = Math.abs(droneState.position.z - goal.z);
+  const radial = Math.hypot(droneState.position.x, droneState.position.y - GOAL_Y);
+  const passing = dz < GOAL_PASS_HALF_DEPTH && radial < GOAL_R * 0.92;
+  if(passing && !goal.active){
+    goal.active = true;
+    goal.ringMat.color.setHex(goal.highlightColor);
+    goal.ringMat.emissive.setHex(goal.highlightColor);
+  } else if(!passing && goal.active){
+    goal.active = false;
+    goal.ringMat.color.setHex(0xffffff);
+    goal.ringMat.emissive.setHex(0x000000);
+  }
+}
+
 
 
 /* ============ 無人機模型 ============ */
@@ -514,6 +534,8 @@ function animate(now){
     updateBall(dt);
     handleCollisions();
     checkGoals();
+    updateGoalHighlight(goalFar);
+    updateGoalHighlight(goalNear);
   }
   updateCamera(dt);
   updateHUD();
