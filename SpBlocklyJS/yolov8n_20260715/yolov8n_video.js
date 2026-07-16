@@ -33,7 +33,7 @@ window.onload = function () {
 				var source = document.getElementById("sourceId_yolov8n");
 				if (source.innerHTML!="") {
 					clearInterval(sourceTimer);
-					setTimeout(function(){DetectVideo(document.getElementById(source.innerHTML))}, 3000);
+					DetectVideo(document.getElementById(source.innerHTML));
 				}				
 			}
 			, 100);	
