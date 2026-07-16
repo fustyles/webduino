@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>DRONE SOCCER ARENA — 擬真四軸飛行器模擬</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#05070a;
+    --panel:rgba(9,20,26,0.55);
+    --panel-border:rgba(0,229,255,0.35);
+    --cyan:#00e5ff;
+    --red:#ff3b5c;
+    --green:#39ff88;
+    --magenta:#ff2ee0;
+    --text:#d8f3ff;
+    --dim:#5f8a95;
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0; padding:0; width:100%; height:100%; overflow:hidden;
+    background:var(--bg); color:var(--text);
+    font-family:'Share Tech Mono', monospace;
+  }
+  #canvas-wrap{position:fixed; inset:0;}
+  canvas{display:block;}
+
+  /* vignette + scanline for FPV camera feel */
+  #vignette{
+    position:fixed; inset:0; pointer-events:none; z-index:5;
+    background:radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,0.55) 100%);
+  }
+  #scanlines{
+    position:fixed; inset:0; pointer-events:none; z-index:5; opacity:0.06;
+    background:repeating-linear-gradient(0deg, #000 0px, #000 1px, transparent 1px, transparent 3px);
+  }
+
+  .hud{position:fixed; z-index:10; color:var(--text); user-select:none;}
+  .panel{
+    background:var(--panel); border:1px solid var(--panel-border);
+    border-radius:6px; padding:8px 12px; backdrop-filter:blur(4px);
+    box-shadow:0 0 18px rgba(0,229,255,0.06) inset;
+  }
+  .label{color:var(--dim); font-size:10px; letter-spacing:2px;}
+  .val{color:var(--cyan); font-size:20px; font-weight:bold; letter-spacing:1px; text-shadow:0 0 8px rgba(0,229,255,0.5);}
+
+  #telemetry{ top:16px; left:16px; display:flex; gap:14px; }
+  #telemetry .stat{ text-align:left; }
+
+  #score-panel{ top:16px; right:16px; text-align:right; }
+  #score-panel .val{ font-size:28px; color:var(--green); text-shadow:0 0 10px rgba(57,255,136,0.6);}
+
+  #throttle-wrap{ left:16px; bottom:16px; width:26px; height:150px; padding:6px; }
+  #throttle-bar-bg{ width:100%; height:110px; background:rgba(255,255,255,0.06); border-radius:4px; position:relative; overflow:hidden; }
+  #throttle-bar-fill{ position:absolute; bottom:0; left:0; width:100%; background:linear-gradient(0deg, var(--red), var(--green)); border-radius:4px; transition:height 0.05s linear; }
+  #throttle-label{ text-align:center; font-size:9px; color:var(--dim); margin-top:6px; letter-spacing:1px;}
+
+  #horizon-wrap{ left:50%; bottom:18px; transform:translateX(-50%); width:130px; height:130px; padding:0; border-radius:50%; overflow:hidden; border:2px solid var(--panel-border); background:#000; }
+  #horizon-clip{ position:absolute; inset:0; border-radius:50%; overflow:hidden; }
+  #horizon-band{
+    position:absolute; left:-40px; width:210px; height:400px; top:-135px;
+    background:linear-gradient(180deg, #1b3a52 0%, #1b3a52 49%, #0c2a12 51%, #0c2a12 100%);
+    transform-origin:center center;
+  }
+  #horizon-fixed{
+    position:absolute; inset:0; pointer-events:none;
+  }
+  #horizon-fixed .bar{ position:absolute; top:50%; left:50%; width:44px; height:3px; background:var(--cyan); transform:translate(-50%,-50%); box-shadow:0 0 6px var(--cyan);}
+  #horizon-fixed .bar.l{ transform:translate(calc(-50% - 30px), -50%);}
+  #horizon-fixed .bar.r{ transform:translate(calc(-50% + 30px), -50%);}
+  #horizon-fixed .dot{ position:absolute; top:50%; left:50%; width:5px; height:5px; margin:-2.5px; border-radius:50%; background:var(--cyan); box-shadow:0 0 6px var(--cyan);}
+
+  #crosshair{ top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; z-index:6; }
+  #crosshair svg{ opacity:0.55; }
+
+  #message{
+    top:38%; left:50%; transform:translate(-50%,-50%); text-align:center;
+    font-family:'Orbitron', sans-serif; font-weight:800; font-size:44px;
+    color:var(--green); text-shadow:0 0 24px var(--green); opacity:0; transition:opacity 0.25s;
+    letter-spacing:6px; pointer-events:none;
+  }
+  #message.show{opacity:1;}
+
+  #controls-panel{ right:16px; bottom:16px; max-width:230px; font-size:11px; line-height:1.7; }
+  #controls-panel .label{ font-size:11px; color:var(--cyan); letter-spacing:2px; margin-bottom:6px; display:block;}
+  #controls-panel kbd{ background:rgba(0,229,255,0.12); border:1px solid var(--panel-border); border-radius:3px; padding:1px 6px; color:var(--text); font-family:inherit;}
+  #controls-panel .row{ display:flex; justify-content:space-between; gap:8px; margin:2px 0;}
+  #toggle-hint{ position:fixed; right:16px; bottom:16px; font-size:10px; color:var(--dim); z-index:10;}
+
+  #start-screen{
+    position:fixed; inset:0; z-index:20; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    background:radial-gradient(ellipse at center, #0a1620 0%, #05070a 80%);
+    text-align:center; padding:20px;
+  }
+  #start-screen h1{
+    font-family:'Orbitron', sans-serif; font-weight:800; font-size:clamp(28px,6vw,54px);
+    color:var(--text); letter-spacing:6px; margin:0 0 6px 0;
+    text-shadow:0 0 20px rgba(0,229,255,0.5);
+  }
+  #start-screen h1 span{ color:var(--cyan); }
+  #start-screen p.sub{ color:var(--dim); letter-spacing:3px; font-size:12px; margin-bottom:36px;}
+  #start-screen .prompt{
+    font-family:'Orbitron', sans-serif; color:var(--green); letter-spacing:3px; font-size:14px;
+    animation:blink 1.4s infinite; margin-bottom:40px;
+  }
+  @keyframes blink{ 0%,100%{opacity:1;} 50%{opacity:0.25;} }
+  .cheat-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:8px 28px; text-align:left; font-size:13px; }
+  .cheat-grid .row{ display:flex; align-items:center; gap:10px;}
+  .cheat-grid kbd{ background:rgba(0,229,255,0.12); border:1px solid var(--panel-border); border-radius:4px; padding:3px 9px; color:var(--cyan); min-width:56px; text-align:center; display:inline-block;}
+
+  #mute-btn{ position:fixed; z-index:10; top:16px; left:50%; transform:translateX(-50%); background:var(--panel); border:1px solid var(--panel-border); color:var(--text); font-family:'Share Tech Mono',monospace; font-size:11px; padding:5px 12px; border-radius:5px; cursor:pointer; letter-spacing:1px;}
+  #mute-btn:hover{ border-color:var(--cyan); }
+
+  .hidden{ display:none !important; }
+</style>
+</head>
+<body>
+
+<div id="canvas-wrap"></div>
+<div id="vignette"></div>
+<div id="scanlines"></div>
+
+<div class="hud panel" id="telemetry">
+  <div class="stat"><div class="label">ALT</div><div class="val" id="v-alt">0.0</div></div>
+  <div class="stat"><div class="label">SPD</div><div class="val" id="v-spd">0.0</div></div>
+  <div class="stat"><div class="label">PITCH</div><div class="val" id="v-pitch">0</div></div>
+  <div class="stat"><div class="label">ROLL</div><div class="val" id="v-roll">0</div></div>
+  <div class="stat"><div class="label">YAW</div><div class="val" id="v-yaw">0</div></div>
+</div>
+
+<div class="hud panel" id="score-panel">
+  <div class="label">SCORE</div>
+  <div class="val" id="v-score">0</div>
+</div>
+
+<div class="hud panel" id="throttle-wrap">
+  <div id="throttle-bar-bg"><div id="throttle-bar-fill" style="height:50%;"></div></div>
+  <div id="throttle-label">THR <span id="v-thr">50</span>%</div>
+</div>
+
+<div class="hud" id="horizon-wrap">
+  <div id="horizon-clip">
+    <div id="horizon-band"></div>
+  </div>
+  <div id="horizon-fixed">
+    <div class="bar l"></div><div class="bar r"></div><div class="dot"></div>
+  </div>
+</div>
+
+<div class="hud" id="crosshair">
+  <svg width="40" height="40" viewBox="0 0 40 40">
+    <circle cx="20" cy="20" r="10" stroke="#00e5ff" stroke-width="1" fill="none"/>
+    <line x1="20" y1="0" x2="20" y2="10" stroke="#00e5ff" stroke-width="1.5"/>
+    <line x1="20" y1="30" x2="20" y2="40" stroke="#00e5ff" stroke-width="1.5"/>
+    <line x1="0" y1="20" x2="10" y2="20" stroke="#00e5ff" stroke-width="1.5"/>
+    <line x1="30" y1="20" x2="40" y2="20" stroke="#00e5ff" stroke-width="1.5"/>
+  </svg>
+</div>
+
+<div class="hud" id="message">GOAL!</div>
+
+<div class="hud panel" id="controls-panel">
+  <span class="label">操控說明 [H]</span>
+  <div class="row"><span>前傾 / 後仰</span><kbd>W / S</kbd></div>
+  <div class="row"><span>左右橫滾</span><kbd>A / D</kbd></div>
+  <div class="row"><span>左右偏航</span><kbd>Q / E</kbd></div>
+  <div class="row"><span>油門增加</span><kbd>Space</kbd></div>
+  <div class="row"><span>油門減少</span><kbd>Shift</kbd></div>
+  <div class="row"><span>切換視角</span><kbd>C</kbd></div>
+  <div class="row"><span>重置無人機</span><kbd>R</kbd></div>
+  <div class="row"><span>靜音切換</span><kbd>M</kbd></div>
+</div>
+
+<button id="mute-btn">🔊 引擎聲 [M]</button>
+
+<div id="start-screen">
+  <h1>DRONE <span>SOCCER</span> ARENA</h1>
+  <p class="sub">擬真四軸飛行器操控模擬 · 鍵盤控制</p>
+  <div class="cheat-grid">
+    <div class="row"><kbd>W/S</kbd><span>前傾 / 後仰</span></div>
+    <div class="row"><kbd>A/D</kbd><span>左右橫滾</span></div>
+    <div class="row"><kbd>Q/E</kbd><span>左右偏航</span></div>
+    <div class="row"><kbd>Space</kbd><span>油門增加</span></div>
+    <div class="row"><kbd>Shift</kbd><span>油門減少</span></div>
+    <div class="row"><kbd>C</kbd><span>切換視角</span></div>
+    <div class="row"><kbd>R</kbd><span>重置無人機</span></div>
+    <div class="row"><kbd>M</kbd><span>靜音切換</span></div>
+  </div>
+  <p class="prompt" style="margin-top:36px;">按下任意鍵 開始飛行</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+"use strict";
+
+/* ============ 基本設定 ============ */
+const FIELD_W = 40, FIELD_L = 74, WALL_H = 16;
+const GOAL_Z = FIELD_L/2 - 3, GOAL_Y = 6, GOAL_R = 4;
+const GRAVITY = 9.8;
+const MAX_THRUST = 2.15 * GRAVITY;   // hover throttle ~= 0.465
+const MAX_TILT = 0.52;               // ~30 deg
+const LIN_DRAG = 0.55;
+const YAW_ACCEL = 3.2, YAW_DAMP = 2.4;
+const RESP_RATE = 7.5;
+const THROTTLE_RATE = 0.7;
+const DRONE_R = 0.75, BALL_R = 0.55;
+
+let score = 0;
+let cameraMode = 'chase'; // 'chase' | 'fpv'
+let started = false;
+let showControls = true;
+let muted = false;
+
+/* ============ THREE 場景 ============ */
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x05070a);
+scene.fog = new THREE.FogExp2(0x05070a, 0.014);
+
+const camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 500);
+camera.position.set(0, 6, -14);
+
+const renderer = new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+document.getElementById('canvas-wrap').appendChild(renderer.domElement);
+
+window.addEventListener('resize', ()=>{
+  camera.aspect = window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+/* 燈光 */
+scene.add(new THREE.AmbientLight(0x6a7a72, 0.6));
+const keyLight = new THREE.DirectionalLight(0xfafff5, 0.55);
+keyLight.position.set(20, 40, -10);
+scene.add(keyLight);
+
+const rig1 = new THREE.PointLight(0x00e5ff, 0.9, 60);
+rig1.position.set(-16, 14, 0); scene.add(rig1);
+const rig2 = new THREE.PointLight(0xff2ee0, 0.9, 60);
+rig2.position.set(16, 14, 0); scene.add(rig2);
+const rig3 = new THREE.PointLight(0xffffff, 0.7, 50);
+rig3.position.set(0, 14, GOAL_Z); scene.add(rig3);
+const rig4 = new THREE.PointLight(0xffffff, 0.7, 50);
+rig4.position.set(0, 14, -GOAL_Z); scene.add(rig4);
+
+/* 場地地板：草皮綠色，搭配白色足球場地線 */
+const floorGeo = new THREE.PlaneGeometry(FIELD_W, FIELD_L, 1, 1);
+const floorMat = new THREE.MeshStandardMaterial({color:0x1f9e4c, roughness:0.65, metalness:0.04});
+const floor = new THREE.Mesh(floorGeo, floorMat);
+floor.rotation.x = -Math.PI/2;
+scene.add(floor);
+
+/* 白色場地線繪製工具 */
+const lineMat = new THREE.MeshBasicMaterial({color:0xffffff});
+function drawLine(x1, z1, x2, z2, width){
+  const dx = x2-x1, dz = z2-z1;
+  const len = Math.hypot(dx, dz);
+  if(len < 0.001) return;
+  const geo = new THREE.BoxGeometry(len, 0.02, width);
+  const mesh = new THREE.Mesh(geo, lineMat);
+  const dir = new THREE.Vector3(dx, 0, dz).normalize();
+  mesh.quaternion.setFromUnitVectors(new THREE.Vector3(1,0,0), dir);
+  mesh.position.set((x1+x2)/2, 0.025, (z1+z2)/2);
+  scene.add(mesh);
+}
+const LINE_W = 0.2;
+const marginX = FIELD_W/2 - 1.5, marginZ = FIELD_L/2 - 1.5;
+// 場地外框
+drawLine(-marginX, -marginZ, marginX, -marginZ, LINE_W);
+drawLine(-marginX,  marginZ, marginX,  marginZ, LINE_W);
+drawLine(-marginX, -marginZ, -marginX, marginZ, LINE_W);
+drawLine( marginX, -marginZ,  marginX, marginZ, LINE_W);
+// 中線
+drawLine(-marginX, 0, marginX, 0, LINE_W);
+// 兩側球門禁區框 (三邊，開口朝向球門)
+const boxHalfW = 8, boxDepth = 9;
+[1,-1].forEach(sign=>{
+  const lineZ = sign * marginZ;
+  const innerZ = sign * (marginZ - boxDepth);
+  drawLine(-boxHalfW, lineZ, -boxHalfW, innerZ, LINE_W);
+  drawLine( boxHalfW, lineZ,  boxHalfW, innerZ, LINE_W);
+  drawLine(-boxHalfW, innerZ, boxHalfW, innerZ, LINE_W);
+});
+
+/* 中圈 (白色場地線的一部分) */
+const centerRingGeo = new THREE.RingGeometry(4.6, 4.8, 48);
+const centerRingMat = new THREE.MeshBasicMaterial({color:0xffffff, side:THREE.DoubleSide});
+const centerRing = new THREE.Mesh(centerRingGeo, centerRingMat);
+centerRing.rotation.x = -Math.PI/2; centerRing.position.y = 0.025;
+scene.add(centerRing);
+const centerDotGeo = new THREE.CircleGeometry(0.18, 16);
+const centerDot = new THREE.Mesh(centerDotGeo, centerRingMat);
+centerDot.rotation.x = -Math.PI/2; centerDot.position.y = 0.025;
+scene.add(centerDot);
+
+/* 邊界安全網 (以線框表示比賽籠) */
+function buildCageWall(w, h, segX, segY){
+  const g = new THREE.PlaneGeometry(w, h, segX, segY);
+  const m = new THREE.MeshBasicMaterial({color:0x00e5ff, wireframe:true, transparent:true, opacity:0.18});
+  return new THREE.Mesh(g, m);
+}
+const wallFront = buildCageWall(FIELD_W, WALL_H, 16, 6);
+wallFront.position.set(0, WALL_H/2, FIELD_L/2);
+scene.add(wallFront);
+const wallBack = wallFront.clone(); wallBack.position.z = -FIELD_L/2; scene.add(wallBack);
+
+const wallSideGeo = buildCageWall(FIELD_L, WALL_H, 24, 6);
+wallSideGeo.rotation.y = Math.PI/2; wallSideGeo.position.set(FIELD_W/2, WALL_H/2, 0);
+scene.add(wallSideGeo);
+const wallSideGeo2 = wallSideGeo.clone(); wallSideGeo2.position.x = -FIELD_W/2; scene.add(wallSideGeo2);
+
+const ceilGeo = buildCageWall(FIELD_W, FIELD_L, 16, 24);
+ceilGeo.rotation.x = Math.PI/2; ceilGeo.position.y = WALL_H;
+scene.add(ceilGeo);
+
+/* 球門：純白色圓環 (無人機足球以圓環為門，比照實際場地的白色泡棉圓框) */
+function buildGoal(z){
+  const group = new THREE.Group();
+  const ringGeo = new THREE.TorusGeometry(GOAL_R, 0.32, 14, 40);
+  const ringMat = new THREE.MeshStandardMaterial({color:0xffffff, roughness:0.55, metalness:0.02});
+  const ring = new THREE.Mesh(ringGeo, ringMat);
+  group.add(ring);
+  const poleGeo = new THREE.CylinderGeometry(0.06, 0.06, GOAL_Y, 8);
+  const poleMat = new THREE.MeshStandardMaterial({color:0xf2f2f2, roughness:0.7});
+  const pole = new THREE.Mesh(poleGeo, poleMat);
+  pole.position.y = -GOAL_Y/2;
+  group.add(pole);
+  group.position.set(0, GOAL_Y, z);
+  scene.add(group);
+  return group;
+}
+const goalFar = buildGoal(GOAL_Z);
+const goalNear = buildGoal(-GOAL_Z);
+
+
+/* ============ 無人機模型 ============ */
+const drone = new THREE.Group();
+
+const bodyMat = new THREE.MeshStandardMaterial({color:0xff5720, emissive:0xff5720, emissiveIntensity:0.35, roughness:0.35, metalness:0.35});
+const bodyGeo = new THREE.BoxGeometry(0.55, 0.18, 0.75);
+const body = new THREE.Mesh(bodyGeo, bodyMat);
+drone.add(body);
+
+const armMat = new THREE.MeshStandardMaterial({color:0xffe000, emissive:0xffe000, emissiveIntensity:0.25, roughness:0.4, metalness:0.3});
+const motorMat = new THREE.MeshStandardMaterial({color:0x1c2229, roughness:0.5, metalness:0.6});
+const armPositions = [
+  {x: 0.62, z: 0.62, front:true},
+  {x:-0.62, z: 0.62, front:true},
+  {x: 0.62, z:-0.62, front:false},
+  {x:-0.62, z:-0.62, front:false},
+];
+const propellers = [];
+armPositions.forEach(p=>{
+  const armGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.9, 6);
+  const arm = new THREE.Mesh(armGeo, armMat);
+  arm.position.set(p.x*0.5, 0, p.z*0.5);
+  const armDir = new THREE.Vector3(p.x, 0, p.z).normalize();
+  arm.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0), armDir);
+  drone.add(arm);
+
+  const motorGeo = new THREE.CylinderGeometry(0.09, 0.11, 0.14, 10);
+  const motor = new THREE.Mesh(motorGeo, motorMat);
+  motor.position.set(p.x, 0.08, p.z);
+  drone.add(motor);
+
+  const propGeo = new THREE.BoxGeometry(0.55, 0.02, 0.06);
+  const propMat = new THREE.MeshStandardMaterial({color:0x14181d, transparent:true, opacity:0.85});
+  const prop = new THREE.Mesh(propGeo, propMat);
+  prop.position.set(p.x, 0.16, p.z);
+  drone.add(prop);
+  propellers.push(prop);
+
+  const ledGeo = new THREE.SphereGeometry(0.05, 8, 8);
+  const ledMat = new THREE.MeshStandardMaterial({
+    color: p.front ? 0xff3b5c : 0x39ff88,
+    emissive: p.front ? 0xff3b5c : 0x39ff88,
+    emissiveIntensity: 2
+  });
+  const led = new THREE.Mesh(ledGeo, ledMat);
+  led.position.set(p.x, 0.02, p.z);
+  drone.add(led);
+});
+
+// 機頭指示條 (辨識前方)
+const noseMat = new THREE.MeshStandardMaterial({color:0x00e5ff, emissive:0x00e5ff, emissiveIntensity:1.5});
+const nose = new THREE.Mesh(new THREE.ConeGeometry(0.06,0.22,8), noseMat);
+nose.rotation.x = Math.PI/2;
+nose.position.set(0, 0.02, 0.42);
+drone.add(nose);
+
+drone.position.set(0, 3, -20);
+scene.add(drone);
+
+/* 無人機聚光燈 (照亮下方地面, 增添飛行感) */
+const droneLight = new THREE.SpotLight(0xbfefff, 0.8, 20, Math.PI/6, 0.5, 1);
+droneLight.position.set(0,0,0);
+drone.add(droneLight);
+const droneLightTarget = new THREE.Object3D();
+droneLightTarget.position.set(0,-1,0);
+drone.add(droneLightTarget);
+droneLight.target = droneLightTarget;
+
+/* ============ 足球 ============ */
+const ballGeo = new THREE.SphereGeometry(BALL_R, 20, 20);
+const ballMat = new THREE.MeshStandardMaterial({color:0xffffff, emissive:0x224455, roughness:0.35, metalness:0.1});
+const ballMesh = new THREE.Mesh(ballGeo, ballMat);
+const pentaGeo = new THREE.IcosahedronGeometry(BALL_R*1.001, 1);
+const pentaMat = new THREE.MeshBasicMaterial({color:0x0a0a0a, wireframe:true, transparent:true, opacity:0.4});
+ballMesh.add(new THREE.Mesh(pentaGeo, pentaMat));
+scene.add(ballMesh);
+
+const ball = {
+  position: new THREE.Vector3(0, 1.2, 0),
+  velocity: new THREE.Vector3(0,0,0)
+};
+
+/* ============ 狀態 ============ */
+const droneState = {
+  position: drone.position,
+  velocity: new THREE.Vector3(0,0,0),
+  pitch:0, roll:0, yaw:0, yawRate:0,
+  throttle:0.5
+};
+
+function resetDrone(){
+  droneState.position.set(0, 3, -20);
+  droneState.velocity.set(0,0,0);
+  droneState.pitch=0; droneState.roll=0; droneState.yaw=0; droneState.yawRate=0;
+  droneState.throttle=0.5;
+}
+function resetBall(){
+  ball.position.set(0,1.2,0);
+  ball.velocity.set(0,0,0);
+}
+
+/* ============ 輸入 ============ */
+const keys = {};
+window.addEventListener('keydown', (e)=>{
+  keys[e.code] = true;
+  if(!started){ startGame(); }
+  if(e.code === 'KeyC'){ cameraMode = (cameraMode==='chase') ? 'fpv' : 'chase'; }
+  if(e.code === 'KeyR'){ resetDrone(); }
+  if(e.code === 'KeyH'){ showControls = !showControls; document.getElementById('controls-panel').classList.toggle('hidden', !showControls); }
+  if(e.code === 'KeyM'){ toggleMute(); }
+  if(e.code === 'Space'){ e.preventDefault(); }
+});
+window.addEventListener('keyup', (e)=>{ keys[e.code] = false; });
+
+document.getElementById('mute-btn').addEventListener('click', toggleMute);
+
+/* ============ 音效 (引擎嗡鳴) ============ */
+let audioCtx=null, osc=null, gainNode=null;
+function initAudio(){
+  if(audioCtx) return;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  osc = audioCtx.createOscillator();
+  osc.type = 'sawtooth';
+  gainNode = audioCtx.createGain();
+  gainNode.gain.value = 0.0;
+  osc.connect(gainNode);
+  gainNode.connect(audioCtx.destination);
+  osc.frequency.value = 90;
+  osc.start();
+}
+function toggleMute(){
+  muted = !muted;
+  document.getElementById('mute-btn').textContent = muted ? '🔇 引擎聲 [M]' : '🔊 引擎聲 [M]';
+}
+
+function startGame(){
+  started = true;
+  document.getElementById('start-screen').classList.add('hidden');
+  initAudio();
+}
+
+/* ============ HUD 更新 ============ */
+const elAlt = document.getElementById('v-alt');
+const elSpd = document.getElementById('v-spd');
+const elPitch = document.getElementById('v-pitch');
+const elRoll = document.getElementById('v-roll');
+const elYaw = document.getElementById('v-yaw');
+const elThr = document.getElementById('v-thr');
+const elThrFill = document.getElementById('throttle-bar-fill');
+const elScore = document.getElementById('v-score');
+const elMessage = document.getElementById('message');
+const horizonBand = document.getElementById('horizon-band');
+
+function showMessage(text){
+  elMessage.textContent = text;
+  elMessage.classList.add('show');
+  setTimeout(()=> elMessage.classList.remove('show'), 1300);
+}
+
+/* ============ 主更新迴圈 ============ */
+const euler = new THREE.Euler(0,0,0,'YXZ');
+const quat = new THREE.Quaternion();
+const up = new THREE.Vector3(0,1,0);
+let goalCooldown = false;
+
+let lastTime = performance.now();
+function animate(now){
+  requestAnimationFrame(animate);
+  let dt = (now - lastTime)/1000;
+  lastTime = now;
+  dt = Math.min(dt, 0.05);
+
+  if(started){
+    updateDrone(dt);
+    updateBall(dt);
+    handleCollisions();
+    checkGoals();
+  }
+  updateCamera(dt);
+  updateHUD();
+  renderer.render(scene, camera);
+}
+
+function updateDrone(dt){
+  const inputPitch = (keys['KeyW']?1:0) - (keys['KeyS']?1:0);
+  const inputRoll  = (keys['KeyD']?1:0) - (keys['KeyA']?1:0);
+  const inputYaw   = (keys['KeyE']?1:0) - (keys['KeyQ']?1:0);
+  const inputThr   = (keys['Space']?1:0) - (keys['ShiftLeft']||keys['ShiftRight']?1:0);
+
+  const targetPitch = -inputPitch * MAX_TILT;
+  const targetRoll  =  inputRoll  * MAX_TILT;
+
+  droneState.pitch += (targetPitch - droneState.pitch) * Math.min(1, RESP_RATE*dt);
+  droneState.roll  += (targetRoll  - droneState.roll)  * Math.min(1, RESP_RATE*dt);
+
+  droneState.yawRate += inputYaw * YAW_ACCEL * dt;
+  droneState.yawRate *= Math.max(0, 1 - YAW_DAMP*dt);
+  droneState.yaw += droneState.yawRate * dt;
+
+  droneState.throttle += inputThr * THROTTLE_RATE * dt;
+  droneState.throttle = Math.max(0, Math.min(1, droneState.throttle));
+
+  euler.set(droneState.pitch, droneState.yaw, droneState.roll, 'YXZ');
+  quat.setFromEuler(euler);
+
+  const thrustDir = up.clone().applyQuaternion(quat);
+  const thrustMag = droneState.throttle * MAX_THRUST;
+  const accel = thrustDir.multiplyScalar(thrustMag);
+  accel.y -= GRAVITY;
+
+  droneState.velocity.addScaledVector(accel, dt);
+  droneState.velocity.multiplyScalar(Math.max(0, 1 - LIN_DRAG*dt));
+  droneState.position.addScaledVector(droneState.velocity, dt);
+
+  // 地面碰撞
+  if(droneState.position.y < 0.35){
+    droneState.position.y = 0.35;
+    if(droneState.velocity.y < 0) droneState.velocity.y = 0;
+    droneState.velocity.x *= 0.85;
+    droneState.velocity.z *= 0.85;
+  }
+  if(droneState.position.y > WALL_H - 0.5){
+    droneState.position.y = WALL_H - 0.5;
+    if(droneState.velocity.y > 0) droneState.velocity.y = 0;
+  }
+  // 邊界碰撞
+  const halfW = FIELD_W/2 - 0.8, halfL = FIELD_L/2 - 0.8;
+  if(droneState.position.x > halfW){ droneState.position.x = halfW; droneState.velocity.x *= -0.4; }
+  if(droneState.position.x < -halfW){ droneState.position.x = -halfW; droneState.velocity.x *= -0.4; }
+  if(droneState.position.z > halfL){ droneState.position.z = halfL; droneState.velocity.z *= -0.4; }
+  if(droneState.position.z < -halfL){ droneState.position.z = -halfL; droneState.velocity.z *= -0.4; }
+
+  drone.quaternion.copy(quat);
+  drone.position.copy(droneState.position);
+
+  propellers.forEach((p,i)=>{
+    p.rotation.y += (6 + droneState.throttle*40) * dt * (i%2===0?1:-1);
+  });
+
+  if(audioCtx && osc && gainNode){
+    osc.frequency.value = 70 + droneState.throttle*260 + Math.abs(droneState.velocity.length())*3;
+    gainNode.gain.value = muted ? 0 : (0.015 + droneState.throttle*0.05);
+  }
+}
+
+function updateBall(dt){
+  ball.velocity.y -= GRAVITY*dt;
+  ball.velocity.x *= Math.max(0, 1 - 0.15*dt);
+  ball.velocity.z *= Math.max(0, 1 - 0.15*dt);
+  ball.position.addScaledVector(ball.velocity, dt);
+
+  if(ball.position.y < BALL_R){
+    ball.position.y = BALL_R;
+    if(ball.velocity.y < 0) ball.velocity.y *= -0.42;
+    ball.velocity.x *= 0.9; ball.velocity.z *= 0.9;
+  }
+  const halfW = FIELD_W/2 - BALL_R, halfL = FIELD_L/2 - BALL_R;
+  if(ball.position.x > halfW){ ball.position.x = halfW; ball.velocity.x *= -0.55; }
+  if(ball.position.x < -halfW){ ball.position.x = -halfW; ball.velocity.x *= -0.55; }
+  if(ball.position.z > halfL && Math.abs(ball.position.x) > GOAL_R){ ball.position.z = halfL; ball.velocity.z *= -0.55; }
+  if(ball.position.z < -halfL && Math.abs(ball.position.x) > GOAL_R){ ball.position.z = -halfL; ball.velocity.z *= -0.55; }
+
+  ballMesh.position.copy(ball.position);
+  ballMesh.rotation.x += ball.velocity.length()*dt*0.6;
+  ballMesh.rotation.z += ball.velocity.length()*dt*0.3;
+}
+
+const tmpV = new THREE.Vector3();
+function handleCollisions(){
+  tmpV.copy(ball.position).sub(droneState.position);
+  const dist = tmpV.length();
+  const minDist = DRONE_R + BALL_R;
+  if(dist < minDist && dist > 0.0001){
+    const overlap = minDist - dist;
+    const dir = tmpV.normalize();
+    ball.position.addScaledVector(dir, overlap);
+    ball.velocity.addScaledVector(dir, overlap*22);
+    ball.velocity.addScaledVector(droneState.velocity, 0.55);
+  }
+}
+
+function checkGoals(){
+  if(goalCooldown) return;
+  const withinRing = (Math.hypot(ball.position.x, ball.position.y-GOAL_Y) < GOAL_R*0.85);
+  if(withinRing && ball.position.z > GOAL_Z-0.3 && ball.position.z < GOAL_Z+0.3 && ball.velocity.z > 0.5){
+    scoreGoal();
+  }
+  if(withinRing && ball.position.z < -GOAL_Z+0.3 && ball.position.z > -GOAL_Z-0.3 && ball.velocity.z < -0.5){
+    scoreGoal();
+  }
+}
+function scoreGoal(){
+  score += 1;
+  goalCooldown = true;
+  showMessage('GOAL!');
+  setTimeout(()=>{ resetBall(); goalCooldown=false; }, 1400);
+}
+
+/* ============ 攝影機 ============ */
+const camPos = new THREE.Vector3(0,6,-14);
+function updateCamera(dt){
+  if(cameraMode === 'chase'){
+    const yawOnly = new THREE.Quaternion().setFromEuler(new THREE.Euler(0, droneState.yaw, 0));
+    const back = new THREE.Vector3(0,0,-1).applyQuaternion(yawOnly);
+    const desired = droneState.position.clone()
+      .addScaledVector(back, 6.5)
+      .add(new THREE.Vector3(0, 2.6, 0));
+    const t = 1 - Math.pow(0.001, dt);
+    camPos.lerp(desired, t);
+    camera.position.copy(camPos);
+    camera.lookAt(droneState.position.clone().add(new THREE.Vector3(0,0.6,0)));
+  } else {
+    const fwd = new THREE.Vector3(0,0.15,1).applyQuaternion(drone.quaternion).multiplyScalar(0.5);
+    camera.position.copy(droneState.position).add(fwd);
+    camera.quaternion.copy(drone.quaternion);
+    camera.rotateX(-0.05);
+  }
+}
+
+/* ============ HUD 顯示 ============ */
+function updateHUD(){
+  elAlt.textContent = droneState.position.y.toFixed(1);
+  elSpd.textContent = droneState.velocity.length().toFixed(1);
+  elPitch.textContent = Math.round(droneState.pitch*180/Math.PI);
+  elRoll.textContent = Math.round(droneState.roll*180/Math.PI);
+  elYaw.textContent = Math.round(((droneState.yaw*180/Math.PI)%360+360)%360);
+  elThr.textContent = Math.round(droneState.throttle*100);
+  elThrFill.style.height = (droneState.throttle*100)+'%';
+  elScore.textContent = score;
+
+  const pitchDeg = droneState.pitch*180/Math.PI;
+  const rollDeg = droneState.roll*180/Math.PI;
+  horizonBand.style.transform = `translateY(${pitchDeg*2}px) rotate(${rollDeg}deg)`;
+}
+
+requestAnimationFrame(animate);
+})();
+</script>
+</body>
+</html>
