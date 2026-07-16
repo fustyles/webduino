@@ -12,7 +12,6 @@ window.onload = function () {
 	var Model;
 
 	ShowImage.src = 'http://'+window.location.hostname+':81/?stream';
-	ShowImage.style.visibility = "visible";
 	
 	cocoSsd.load().then(cocoSsd_Model => {
 		ShowImage.style.visibility = "hidden";
