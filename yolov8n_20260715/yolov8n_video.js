@@ -40,7 +40,7 @@ window.onload = function () {
 	    }).catch(err => {
 	        result.innerHTML = "載入失敗: " + err.message;
 	    });   
-	}, 3000);
+	}, 5000);
 
 	async function DetectVideo(obj) {
 		if (obj.tagName=="IMG") {
