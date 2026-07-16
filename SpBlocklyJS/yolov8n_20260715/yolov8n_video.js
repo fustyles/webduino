@@ -33,14 +33,14 @@ window.onload = function () {
 				var source = document.getElementById("sourceId_yolov8n");
 				if (source.innerHTML!="") {
 					clearInterval(sourceTimer);
-					DetectVideo(document.getElementById(source.innerHTML));
+					setTimeout(function(){DetectVideo(document.getElementById(source.innerHTML))}, 3000);
 				}				
 			}
 			, 100);	
 	    }).catch(err => {
 	        result.innerHTML = "載入失敗: " + err.message;
 	    });   
-	}, 2000);     
+	}, 3000);     
 
 	async function DetectVideo(obj) {
 		if (obj.tagName=="IMG") {
