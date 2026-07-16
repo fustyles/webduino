@@ -144,8 +144,12 @@ window.onload = function () {
 					result.innerHTML = res.substr(0, res.length - 4);
 			}
 
-			if (typeof recognitionFinish === 'function') recognitionFinish();
-
+			if (boxes.length > 0) {
+				if (typeof yolov8n_recognitionFinish === 'function') yolov8n_recognitionFinish();
+			} else {
+				if (typeof yolov8n_unrecognitionFinish === 'function') yolov8n_unrecognitionFinish();
+			}
+			
 			setTimeout(function(){DetectImage();}, 100);
 
 		} catch (error) {
