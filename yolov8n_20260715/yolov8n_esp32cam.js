@@ -165,11 +165,11 @@ window.onload = function () {
 				if (typeof yolov8n_unrecognitionFinish === 'function') yolov8n_unrecognitionFinish();
 			}
 
-			setTimeout(function(){start();}, 100);
+			setTimeout(function(){start();}, 150);
 			
 		} catch(error) {
 			console.error(error);
-			setTimeout(function(){start();}, 100);
+			setTimeout(function(){start();}, 150);
 		}
 	}
 }
