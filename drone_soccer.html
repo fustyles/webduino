@@ -203,7 +203,10 @@
 
 /* ============ 基本設定 ============ */
 const FIELD_W = 40, FIELD_L = 74, WALL_H = 16;
-const GOAL_Z = FIELD_L/2 - 3, GOAL_Y = WALL_H/2, GOAL_R = 4 * 4/5;
+const FIELD_MARGIN_Z = FIELD_L/2 - 1.5;   // 地上白線外框到牆邊的距離
+const BOX_HALF_W = 8, BOX_DEPTH = 9;      // 禁區框尺寸
+const GOAL_Z = FIELD_MARGIN_Z - BOX_DEPTH/2; // 球門圓環放在禁區框正中央，離牆保留足夠淨空
+const GOAL_Y = WALL_H/2, GOAL_R = 4 * 4/5;
 const GRAVITY = 9.8;
 const MAX_THRUST = 2.15 * GRAVITY;   // hover throttle ~= 0.465
 const MAX_TILT = 0.52;               // ~30 deg
@@ -280,22 +283,21 @@ function drawLine(x1, z1, x2, z2, width){
   scene.add(mesh);
 }
 const LINE_W = 0.2;
-const marginX = FIELD_W/2 - 1.5, marginZ = FIELD_L/2 - 1.5;
+const marginX = FIELD_W/2 - 1.5;
 // 場地外框
-drawLine(-marginX, -marginZ, marginX, -marginZ, LINE_W);
-drawLine(-marginX,  marginZ, marginX,  marginZ, LINE_W);
-drawLine(-marginX, -marginZ, -marginX, marginZ, LINE_W);
-drawLine( marginX, -marginZ,  marginX, marginZ, LINE_W);
+drawLine(-marginX, -FIELD_MARGIN_Z, marginX, -FIELD_MARGIN_Z, LINE_W);
+drawLine(-marginX,  FIELD_MARGIN_Z, marginX,  FIELD_MARGIN_Z, LINE_W);
+drawLine(-marginX, -FIELD_MARGIN_Z, -marginX, FIELD_MARGIN_Z, LINE_W);
+drawLine( marginX, -FIELD_MARGIN_Z,  marginX, FIELD_MARGIN_Z, LINE_W);
 // 中線
 drawLine(-marginX, 0, marginX, 0, LINE_W);
-// 兩側球門禁區框 (三邊，開口朝向球門)
-const boxHalfW = 8, boxDepth = 9;
+// 兩側球門禁區框 (三邊，開口朝向球門；球門圓環會放在框的正中央)
 [1,-1].forEach(sign=>{
-  const lineZ = sign * marginZ;
-  const innerZ = sign * (marginZ - boxDepth);
-  drawLine(-boxHalfW, lineZ, -boxHalfW, innerZ, LINE_W);
-  drawLine( boxHalfW, lineZ,  boxHalfW, innerZ, LINE_W);
-  drawLine(-boxHalfW, innerZ, boxHalfW, innerZ, LINE_W);
+  const lineZ = sign * FIELD_MARGIN_Z;
+  const innerZ = sign * (FIELD_MARGIN_Z - BOX_DEPTH);
+  drawLine(-BOX_HALF_W, lineZ, -BOX_HALF_W, innerZ, LINE_W);
+  drawLine( BOX_HALF_W, lineZ,  BOX_HALF_W, innerZ, LINE_W);
+  drawLine(-BOX_HALF_W, innerZ, BOX_HALF_W, innerZ, LINE_W);
 });
 
 /* 中圈 (白色場地線的一部分) */
