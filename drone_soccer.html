@@ -346,9 +346,14 @@ function updateGoalHighlight(goal){
   const radial = Math.hypot(droneState.position.x, droneState.position.y - GOAL_Y);
   const passing = dz < GOAL_PASS_HALF_DEPTH && radial < GOAL_R * 0.92;
   if(passing && !goal.active){
-    goal.active = true;
-    goal.ringMat.color.setHex(goal.highlightColor);
-    goal.ringMat.emissive.setHex(goal.highlightColor);
+    // 只有當無人機的移動方向是「從場地中間朝該球門所在的牆邊」時才變色，反方向穿越不觸發
+    const outwardSign = Math.sign(goal.z);
+    const movingOutward = droneState.velocity.z * outwardSign > 0.15;
+    if(movingOutward){
+      goal.active = true;
+      goal.ringMat.color.setHex(goal.highlightColor);
+      goal.ringMat.emissive.setHex(goal.highlightColor);
+    }
   } else if(!passing && goal.active){
     goal.active = false;
     goal.ringMat.color.setHex(0xffffff);
