@@ -385,8 +385,9 @@ function updateGoalHighlight(goal){
 const drone = new THREE.Group();
 
 const bodyMat = new THREE.MeshStandardMaterial({color:0xff5720, emissive:0xff5720, emissiveIntensity:0.35, roughness:0.35, metalness:0.35});
-const bodyGeo = new THREE.BoxGeometry(0.55, 0.18, 0.75);
+const bodyGeo = new THREE.CylinderGeometry(0.4, 0.4, 0.2, 8);
 const body = new THREE.Mesh(bodyGeo, bodyMat);
+body.rotation.y = Math.PI/8; // 讓八邊形的其中一個平面正對機頭方向
 drone.add(body);
 
 const armMat = new THREE.MeshStandardMaterial({color:0xffe000, emissive:0xffe000, emissiveIntensity:0.25, roughness:0.4, metalness:0.3});
