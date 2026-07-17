@@ -545,7 +545,7 @@ function animate(now){
 function updateDrone(dt){
   const inputPitch = ((keys['KeyW']||keys['ArrowUp'])?1:0) - ((keys['KeyS']||keys['ArrowDown'])?1:0);
   const inputRoll  = ((keys['KeyD']||keys['ArrowRight'])?1:0) - ((keys['KeyA']||keys['ArrowLeft'])?1:0);
-  const inputYaw   = (keys['KeyE']?1:0) - (keys['KeyQ']?1:0);
+  const inputYaw   = (keys['KeyQ']?1:0) - (keys['KeyE']?1:0);
   const inputThr   = (keys['Space']?1:0) - (keys['ShiftLeft']||keys['ShiftRight']?1:0);
 
   const targetPitch = inputPitch * MAX_TILT;
