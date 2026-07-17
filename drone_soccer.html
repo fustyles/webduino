@@ -203,7 +203,7 @@
 
 /* ============ 基本設定 ============ */
 const FIELD_W = 40, FIELD_L = 74, WALL_H = 16;
-const GOAL_Z = FIELD_L/2 - 3, GOAL_Y = 6, GOAL_R = 4;
+const GOAL_Z = FIELD_L/2 - 3, GOAL_Y = WALL_H/2, GOAL_R = 4 * 4/5;
 const GRAVITY = 9.8;
 const MAX_THRUST = 2.15 * GRAVITY;   // hover throttle ~= 0.465
 const MAX_TILT = 0.52;               // ~30 deg
@@ -211,7 +211,7 @@ const LIN_DRAG = 0.55;
 const YAW_ACCEL = 3.2, YAW_DAMP = 2.4;
 const RESP_RATE = 7.5;
 const THROTTLE_RATE = 0.7;
-const DRONE_R = 0.75, BALL_R = 0.55;
+const DRONE_R = 0.75;
 const GROUND_Y = 0.35;
 const HOVER_ALT = 3.0;        // 一鍵起飛後預設定高高度
 const CLIMB_RATE = 1.3;       // 等距上升/下降速率 (公尺/秒)
@@ -332,14 +332,18 @@ scene.add(ceilGeo);
 /* 球門：純白色圓環 (無人機足球以圓環為門，比照實際場地的白色泡棉圓框) */
 function buildGoal(z){
   const group = new THREE.Group();
-  const ringGeo = new THREE.TorusGeometry(GOAL_R, 0.32, 14, 40);
+  const ringTube = 0.32;
+  const ringGeo = new THREE.TorusGeometry(GOAL_R, ringTube, 14, 40);
   const ringMat = new THREE.MeshStandardMaterial({color:0xffffff, emissive:0x000000, emissiveIntensity:1.2, roughness:0.55, metalness:0.02});
   const ring = new THREE.Mesh(ringGeo, ringMat);
   group.add(ring);
-  const poleGeo = new THREE.CylinderGeometry(0.06, 0.06, GOAL_Y, 8);
+  // 支柱只從地面連到圓環最底部邊緣,不穿入圓心,避免擋住球門開口
+  const ringBottomLocalY = -(GOAL_R + ringTube);
+  const poleHeight = GOAL_Y + ringBottomLocalY; // 地面(世界 y=0)到圓環底緣的距離
+  const poleGeo = new THREE.CylinderGeometry(0.07, 0.09, poleHeight, 8);
   const poleMat = new THREE.MeshStandardMaterial({color:0xf2f2f2, roughness:0.7});
   const pole = new THREE.Mesh(poleGeo, poleMat);
-  pole.position.y = -GOAL_Y/2;
+  pole.position.y = ringBottomLocalY - poleHeight/2;
   group.add(pole);
   group.position.set(0, GOAL_Y, z);
   scene.add(group);
@@ -369,6 +373,7 @@ function updateGoalHighlight(goal){
     goal.active = false;
     goal.ringMat.color.setHex(0xffffff);
     goal.ringMat.emissive.setHex(0x000000);
+    scoreGoal(); // 完全穿越圓環，計分
   }
 }
 
@@ -441,20 +446,6 @@ droneLightTarget.position.set(0,-1,0);
 drone.add(droneLightTarget);
 droneLight.target = droneLightTarget;
 
-/* ============ 足球 ============ */
-const ballGeo = new THREE.SphereGeometry(BALL_R, 20, 20);
-const ballMat = new THREE.MeshStandardMaterial({color:0xffffff, emissive:0x224455, roughness:0.35, metalness:0.1});
-const ballMesh = new THREE.Mesh(ballGeo, ballMat);
-const pentaGeo = new THREE.IcosahedronGeometry(BALL_R*1.001, 1);
-const pentaMat = new THREE.MeshBasicMaterial({color:0x0a0a0a, wireframe:true, transparent:true, opacity:0.4});
-ballMesh.add(new THREE.Mesh(pentaGeo, pentaMat));
-scene.add(ballMesh);
-
-const ball = {
-  position: new THREE.Vector3(0, 1.2, 0),
-  velocity: new THREE.Vector3(0,0,0)
-};
-
 /* ============ 狀態 ============ */
 const droneState = {
   position: drone.position,
@@ -472,10 +463,6 @@ function resetDrone(){
   droneState.throttle=0;
   droneState.armed=false;
   droneState.targetAltitude=GROUND_Y;
-}
-function resetBall(){
-  ball.position.set(0,1.2,0);
-  ball.velocity.set(0,0,0);
 }
 
 function takeoff(){
@@ -557,7 +544,6 @@ function showMessage(text){
 const euler = new THREE.Euler(0,0,0,'YXZ');
 const quat = new THREE.Quaternion();
 const up = new THREE.Vector3(0,1,0);
-let goalCooldown = false;
 
 let lastTime = performance.now();
 function animate(now){
@@ -568,9 +554,6 @@ function animate(now){
 
   if(started){
     updateDrone(dt);
-    updateBall(dt);
-    handleCollisions();
-    checkGoals();
     updateGoalHighlight(goalFar);
     updateGoalHighlight(goalNear);
   }
@@ -666,57 +649,9 @@ function updateDrone(dt){
   }
 }
 
-function updateBall(dt){
-  ball.velocity.y -= GRAVITY*dt;
-  ball.velocity.x *= Math.max(0, 1 - 0.15*dt);
-  ball.velocity.z *= Math.max(0, 1 - 0.15*dt);
-  ball.position.addScaledVector(ball.velocity, dt);
-
-  if(ball.position.y < BALL_R){
-    ball.position.y = BALL_R;
-    if(ball.velocity.y < 0) ball.velocity.y *= -0.42;
-    ball.velocity.x *= 0.9; ball.velocity.z *= 0.9;
-  }
-  const halfW = FIELD_W/2 - BALL_R, halfL = FIELD_L/2 - BALL_R;
-  if(ball.position.x > halfW){ ball.position.x = halfW; ball.velocity.x *= -0.55; }
-  if(ball.position.x < -halfW){ ball.position.x = -halfW; ball.velocity.x *= -0.55; }
-  if(ball.position.z > halfL && Math.abs(ball.position.x) > GOAL_R){ ball.position.z = halfL; ball.velocity.z *= -0.55; }
-  if(ball.position.z < -halfL && Math.abs(ball.position.x) > GOAL_R){ ball.position.z = -halfL; ball.velocity.z *= -0.55; }
-
-  ballMesh.position.copy(ball.position);
-  ballMesh.rotation.x += ball.velocity.length()*dt*0.6;
-  ballMesh.rotation.z += ball.velocity.length()*dt*0.3;
-}
-
-const tmpV = new THREE.Vector3();
-function handleCollisions(){
-  tmpV.copy(ball.position).sub(droneState.position);
-  const dist = tmpV.length();
-  const minDist = DRONE_R + BALL_R;
-  if(dist < minDist && dist > 0.0001){
-    const overlap = minDist - dist;
-    const dir = tmpV.normalize();
-    ball.position.addScaledVector(dir, overlap);
-    ball.velocity.addScaledVector(dir, overlap*22);
-    ball.velocity.addScaledVector(droneState.velocity, 0.55);
-  }
-}
-
-function checkGoals(){
-  if(goalCooldown) return;
-  const withinRing = (Math.hypot(ball.position.x, ball.position.y-GOAL_Y) < GOAL_R*0.85);
-  if(withinRing && ball.position.z > GOAL_Z-0.3 && ball.position.z < GOAL_Z+0.3 && ball.velocity.z > 0.5){
-    scoreGoal();
-  }
-  if(withinRing && ball.position.z < -GOAL_Z+0.3 && ball.position.z > -GOAL_Z-0.3 && ball.velocity.z < -0.5){
-    scoreGoal();
-  }
-}
 function scoreGoal(){
   score += 1;
-  goalCooldown = true;
   showMessage('GOAL!');
-  setTimeout(()=>{ resetBall(); goalCooldown=false; }, 1400);
 }
 
 /* ============ 攝影機 ============ */
