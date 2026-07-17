@@ -123,6 +123,7 @@
 <div id="scanlines"></div>
 
 <div class="hud panel" id="telemetry">
+  <div class="stat"><div class="label">STATUS</div><div class="val" id="v-status" style="font-size:15px;">待機</div></div>
   <div class="stat"><div class="label">ALT</div><div class="val" id="v-alt">0.0</div></div>
   <div class="stat"><div class="label">SPD</div><div class="val" id="v-spd">0.0</div></div>
   <div class="stat"><div class="label">PITCH</div><div class="val" id="v-pitch">0</div></div>
@@ -136,8 +137,8 @@
 </div>
 
 <div class="hud panel" id="throttle-wrap">
-  <div id="throttle-bar-bg"><div id="throttle-bar-fill" style="height:50%;"></div></div>
-  <div id="throttle-label">THR <span id="v-thr">50</span>%</div>
+  <div id="throttle-bar-bg"><div id="throttle-bar-fill" style="height:0%;"></div></div>
+  <div id="throttle-label">AUTO THR <span id="v-thr">0</span>%</div>
 </div>
 
 <div class="hud" id="horizon-wrap">
@@ -166,8 +167,10 @@
   <div class="row"><span>前傾 / 後仰</span><kbd>W/S ↑/↓</kbd></div>
   <div class="row"><span>左右橫滾</span><kbd>A/D ←/→</kbd></div>
   <div class="row"><span>左右偏航</span><kbd>Q / E</kbd></div>
-  <div class="row"><span>油門增加</span><kbd>Space</kbd></div>
-  <div class="row"><span>油門減少</span><kbd>Shift</kbd></div>
+  <div class="row"><span>一鍵起飛</span><kbd>T</kbd></div>
+  <div class="row"><span>一鍵降落</span><kbd>L</kbd></div>
+  <div class="row"><span>等距上升</span><kbd>Space</kbd></div>
+  <div class="row"><span>等距下降</span><kbd>Shift</kbd></div>
   <div class="row"><span>切換視角</span><kbd>C</kbd></div>
   <div class="row"><span>重置無人機</span><kbd>R</kbd></div>
   <div class="row"><span>靜音切換</span><kbd>M</kbd></div>
@@ -177,13 +180,15 @@
 
 <div id="start-screen">
   <h1>DRONE <span>SOCCER</span> ARENA</h1>
-  <p class="sub">擬真四軸飛行器操控模擬 · 鍵盤控制</p>
+  <p class="sub">擬真四軸飛行器操控模擬 · 氣壓定高 · 鍵盤控制</p>
   <div class="cheat-grid">
     <div class="row"><kbd>W/S ↑/↓</kbd><span>前傾 / 後仰</span></div>
     <div class="row"><kbd>A/D ←/→</kbd><span>左右橫滾</span></div>
     <div class="row"><kbd>Q/E</kbd><span>左右偏航</span></div>
-    <div class="row"><kbd>Space</kbd><span>油門增加</span></div>
-    <div class="row"><kbd>Shift</kbd><span>油門減少</span></div>
+    <div class="row"><kbd>T</kbd><span>一鍵起飛</span></div>
+    <div class="row"><kbd>L</kbd><span>一鍵降落</span></div>
+    <div class="row"><kbd>Space</kbd><span>等距上升</span></div>
+    <div class="row"><kbd>Shift</kbd><span>等距下降</span></div>
     <div class="row"><kbd>C</kbd><span>切換視角</span></div>
     <div class="row"><kbd>R</kbd><span>重置無人機</span></div>
     <div class="row"><kbd>M</kbd><span>靜音切換</span></div>
@@ -207,6 +212,12 @@ const YAW_ACCEL = 3.2, YAW_DAMP = 2.4;
 const RESP_RATE = 7.5;
 const THROTTLE_RATE = 0.7;
 const DRONE_R = 0.75, BALL_R = 0.55;
+const GROUND_Y = 0.35;
+const HOVER_ALT = 3.0;        // 一鍵起飛後預設定高高度
+const CLIMB_RATE = 1.3;       // 等距上升/下降速率 (公尺/秒)
+const ALT_MAX = WALL_H - 1.5;
+const ALT_HOLD_KP = 2.6, ALT_HOLD_KD = 3.4; // 氣壓定高 PD 控制器增益
+const ALT_ERR_CLAMP = 2.5;    // 限制誤差避免起飛/降落瞬間暴衝
 
 let score = 0;
 let cameraMode = 'chase'; // 'chase' | 'fpv'
@@ -418,7 +429,7 @@ nose.rotation.x = Math.PI/2;
 nose.position.set(0, 0.02, 0.42);
 drone.add(nose);
 
-drone.position.set(0, 3, -20);
+drone.position.set(0, GROUND_Y, -20);
 scene.add(drone);
 
 /* 無人機聚光燈 (照亮下方地面, 增添飛行感) */
@@ -449,18 +460,36 @@ const droneState = {
   position: drone.position,
   velocity: new THREE.Vector3(0,0,0),
   pitch:0, roll:0, yaw:0, yawRate:0,
-  throttle:0.5
+  throttle:0,
+  armed:false,          // 是否已起飛(馬達運轉中)
+  targetAltitude:GROUND_Y  // 氣壓定高目標高度
 };
 
 function resetDrone(){
-  droneState.position.set(0, 3, -20);
+  droneState.position.set(0, GROUND_Y, -20);
   droneState.velocity.set(0,0,0);
   droneState.pitch=0; droneState.roll=0; droneState.yaw=0; droneState.yawRate=0;
-  droneState.throttle=0.5;
+  droneState.throttle=0;
+  droneState.armed=false;
+  droneState.targetAltitude=GROUND_Y;
 }
 function resetBall(){
   ball.position.set(0,1.2,0);
   ball.velocity.set(0,0,0);
+}
+
+function takeoff(){
+  if(!droneState.armed){
+    droneState.armed = true;
+    droneState.targetAltitude = HOVER_ALT;
+    showMessage('起飛');
+  }
+}
+function land(){
+  if(droneState.armed){
+    droneState.targetAltitude = GROUND_Y;
+    showMessage('降落中');
+  }
 }
 
 /* ============ 輸入 ============ */
@@ -470,6 +499,8 @@ window.addEventListener('keydown', (e)=>{
   if(!started){ startGame(); }
   if(e.code === 'KeyC'){ cameraMode = (cameraMode==='chase') ? 'fpv' : 'chase'; }
   if(e.code === 'KeyR'){ resetDrone(); }
+  if(e.code === 'KeyT'){ takeoff(); }
+  if(e.code === 'KeyL'){ land(); }
   if(e.code === 'KeyH'){ showControls = !showControls; document.getElementById('controls-panel').classList.toggle('hidden', !showControls); }
   if(e.code === 'KeyM'){ toggleMute(); }
   if(e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'ArrowDown' || e.code === 'ArrowLeft' || e.code === 'ArrowRight'){ e.preventDefault(); }
@@ -505,6 +536,7 @@ function startGame(){
 
 /* ============ HUD 更新 ============ */
 const elAlt = document.getElementById('v-alt');
+const elStatus = document.getElementById('v-status');
 const elSpd = document.getElementById('v-spd');
 const elPitch = document.getElementById('v-pitch');
 const elRoll = document.getElementById('v-roll');
@@ -551,7 +583,6 @@ function updateDrone(dt){
   const inputPitch = ((keys['KeyW']||keys['ArrowUp'])?1:0) - ((keys['KeyS']||keys['ArrowDown'])?1:0);
   const inputRoll  = ((keys['KeyD']||keys['ArrowRight'])?1:0) - ((keys['KeyA']||keys['ArrowLeft'])?1:0);
   const inputYaw   = (keys['KeyQ']?1:0) - (keys['KeyE']?1:0);
-  const inputThr   = (keys['Space']?1:0) - (keys['ShiftLeft']||keys['ShiftRight']?1:0);
 
   const targetPitch = inputPitch * MAX_TILT;
   const targetRoll  =  inputRoll  * MAX_TILT;
@@ -563,13 +594,30 @@ function updateDrone(dt){
   droneState.yawRate *= Math.max(0, 1 - YAW_DAMP*dt);
   droneState.yaw += droneState.yawRate * dt;
 
-  droneState.throttle += inputThr * THROTTLE_RATE * dt;
-  droneState.throttle = Math.max(0, Math.min(1, droneState.throttle));
+  // 等距上升 / 等距下降:只調整定高目標,實際油門由定高控制器自動計算
+  if(droneState.armed){
+    const inputClimb = (keys['Space']?1:0) - ((keys['ShiftLeft']||keys['ShiftRight'])?1:0);
+    droneState.targetAltitude += inputClimb * CLIMB_RATE * dt;
+    droneState.targetAltitude = Math.max(GROUND_Y, Math.min(ALT_MAX, droneState.targetAltitude));
+  }
 
   euler.set(droneState.pitch, droneState.yaw, droneState.roll, 'YXZ');
   quat.setFromEuler(euler);
-
   const thrustDir = up.clone().applyQuaternion(quat);
+
+  // 氣壓定高 PD 控制器:自動計算維持目標高度所需的油門
+  if(droneState.armed){
+    let altErr = droneState.targetAltitude - droneState.position.y;
+    altErr = Math.max(-ALT_ERR_CLAMP, Math.min(ALT_ERR_CLAMP, altErr));
+    const desiredVerticalAccel = GRAVITY + ALT_HOLD_KP*altErr - ALT_HOLD_KD*droneState.velocity.y;
+    const vertComponent = Math.max(thrustDir.y, 0.25); // 傾斜過大時避免除以過小值造成暴衝
+    let thrustMagNeeded = desiredVerticalAccel / vertComponent;
+    thrustMagNeeded = Math.max(0, Math.min(MAX_THRUST, thrustMagNeeded));
+    droneState.throttle = thrustMagNeeded / MAX_THRUST;
+  } else {
+    droneState.throttle = 0;
+  }
+
   const thrustMag = droneState.throttle * MAX_THRUST;
   const accel = thrustDir.multiplyScalar(thrustMag);
   accel.y -= GRAVITY;
@@ -579,11 +627,19 @@ function updateDrone(dt){
   droneState.position.addScaledVector(droneState.velocity, dt);
 
   // 地面碰撞
-  if(droneState.position.y < 0.35){
-    droneState.position.y = 0.35;
+  if(droneState.position.y < GROUND_Y){
+    droneState.position.y = GROUND_Y;
     if(droneState.velocity.y < 0) droneState.velocity.y = 0;
     droneState.velocity.x *= 0.85;
     droneState.velocity.z *= 0.85;
+  }
+  // 降落完成:高度與速度都趨於穩定時自動解除武裝(馬達停轉)
+  if(droneState.armed && droneState.targetAltitude <= GROUND_Y + 0.05 &&
+     droneState.position.y <= GROUND_Y + 0.05 && Math.abs(droneState.velocity.y) < 0.3){
+    droneState.armed = false;
+    droneState.throttle = 0;
+    droneState.velocity.set(0,0,0);
+    showMessage('已降落');
   }
   if(droneState.position.y > WALL_H - 0.5){
     droneState.position.y = WALL_H - 0.5;
@@ -600,12 +656,13 @@ function updateDrone(dt){
   drone.position.copy(droneState.position);
 
   propellers.forEach((p,i)=>{
-    p.rotation.y += (6 + droneState.throttle*40) * dt * (i%2===0?1:-1);
+    const spinSpeed = droneState.armed ? (6 + droneState.throttle*40) : 0;
+    p.rotation.y += spinSpeed * dt * (i%2===0?1:-1);
   });
 
   if(audioCtx && osc && gainNode){
     osc.frequency.value = 70 + droneState.throttle*260 + Math.abs(droneState.velocity.length())*3;
-    gainNode.gain.value = muted ? 0 : (0.015 + droneState.throttle*0.05);
+    gainNode.gain.value = muted ? 0 : (droneState.armed ? (0.015 + droneState.throttle*0.05) : 0);
   }
 }
 
@@ -666,6 +723,7 @@ function scoreGoal(){
 const camPos = new THREE.Vector3(0,6,-14);
 function updateCamera(dt){
   if(cameraMode === 'chase'){
+    drone.visible = true;
     const yawOnly = new THREE.Quaternion().setFromEuler(new THREE.Euler(0, droneState.yaw, 0));
     const back = new THREE.Vector3(0,0,-1).applyQuaternion(yawOnly);
     const desired = droneState.position.clone()
@@ -676,9 +734,12 @@ function updateCamera(dt){
     camera.position.copy(camPos);
     camera.lookAt(droneState.position.clone().add(new THREE.Vector3(0,0.6,0)));
   } else {
-    const fwd = new THREE.Vector3(0,0.15,1).applyQuaternion(drone.quaternion).multiplyScalar(0.5);
+    // 第一人稱視角:隱藏自機模型，避免鏡頭穿入機身造成畫面被機身顏色佔滿
+    drone.visible = false;
+    const fwd = new THREE.Vector3(0,0.12,1).applyQuaternion(drone.quaternion).multiplyScalar(0.9);
     camera.position.copy(droneState.position).add(fwd);
     camera.quaternion.copy(drone.quaternion);
+    camera.rotateY(Math.PI); // 相機預設朝向本地 -Z，機頭朝向本地 +Z，需轉 180 度對齊機頭方向
     camera.rotateX(-0.05);
   }
 }
@@ -693,6 +754,15 @@ function updateHUD(){
   elThr.textContent = Math.round(droneState.throttle*100);
   elThrFill.style.height = (droneState.throttle*100)+'%';
   elScore.textContent = score;
+
+  if(droneState.armed){
+    const holding = Math.abs(droneState.targetAltitude - droneState.position.y) < 0.3;
+    elStatus.textContent = holding ? '定高中' : (droneState.targetAltitude > droneState.position.y ? '爬升中' : '下降中');
+    elStatus.style.color = 'var(--green)';
+  } else {
+    elStatus.textContent = '待機 [T]';
+    elStatus.style.color = 'var(--dim)';
+  }
 
   const pitchDeg = droneState.pitch*180/Math.PI;
   const rollDeg = droneState.roll*180/Math.PI;
