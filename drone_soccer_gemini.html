@@ -349,58 +349,39 @@
         let cameraMode = 0; 
         const CAMERA_MODES = ['CHASE', 'COCKPIT', 'FREE'];
 
-        // Web Audio API 物理引擎聲合成
+        // Web Audio API 引擎嗡鳴音效（採用參考檔案的簡潔單振盪器設計）
         function initAudio() {
             if (audioCtx) return;
             try {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                
-                const osc1 = audioCtx.createOscillator();
-                const osc2 = audioCtx.createOscillator();
-                const filter = audioCtx.createBiquadFilter();
+
+                const osc = audioCtx.createOscillator();
+                osc.type = 'sawtooth';
+                osc.frequency.value = 90;
+
                 const gain = audioCtx.createGain();
+                gain.gain.value = 0.0;
 
-                osc1.type = 'sawtooth';
-                osc2.type = 'triangle';
-                
-                osc1.frequency.setValueAtTime(60, audioCtx.currentTime);
-                osc2.frequency.setValueAtTime(60.8, audioCtx.currentTime); 
-
-                filter.type = 'lowpass';
-                filter.frequency.setValueAtTime(180, audioCtx.currentTime);
-
-                gain.gain.setValueAtTime(0, audioCtx.currentTime); 
-
-                osc1.connect(filter);
-                osc2.connect(filter);
-                filter.connect(gain);
+                osc.connect(gain);
                 gain.connect(audioCtx.destination);
 
-                osc1.start();
-                osc2.start();
+                osc.start();
 
-                droneSynth = { osc1, osc2, filter, gain };
+                droneSynth = { osc, gain };
             } catch (e) {
                 console.warn("無法啟動 Web Audio API：", e);
             }
         }
 
-        // 隨油門大小動態調整音頻
+        // 隨油門大小與飛行速度動態調整引擎音頻（音高與音量都跟著油門走）
         function updateDroneSound() {
-            if (!soundEnabled || !droneSynth) return;
-            
+            if (!droneSynth) return;
+
             const currentSpeed = drone.velocity.length();
-            const pitchFactor = 1 + (drone.input.throttle * 2.5) + (currentSpeed * 0.2);
-            
-            const baseFreq = 48 + pitchFactor * 40;
-            droneSynth.osc1.frequency.setTargetAtTime(baseFreq, audioCtx.currentTime, 0.1);
-            droneSynth.osc2.frequency.setTargetAtTime(baseFreq * 1.015, audioCtx.currentTime, 0.1);
+            droneSynth.osc.frequency.value = 70 + drone.input.throttle * 260 + currentSpeed * 3;
 
-            const cutoff = 150 + pitchFactor * 160;
-            droneSynth.filter.frequency.setTargetAtTime(cutoff, audioCtx.currentTime, 0.15);
-
-            const targetVolume = drone.input.throttle > 0.05 ? (0.08 + (drone.input.throttle * 0.22)) : 0.005;
-            droneSynth.gain.gain.setTargetAtTime(targetVolume, audioCtx.currentTime, 0.15);
+            const armed = drone.input.throttle > 0.02;
+            droneSynth.gain.gain.value = soundEnabled ? (armed ? (0.015 + drone.input.throttle * 0.05) : 0) : 0;
         }
 
         // 成功穿過霓虹圓環時的電子 chime 音效
@@ -1600,7 +1581,6 @@
                 initAudio();
                 
                 soundEnabled = true;
-                if (droneSynth) droneSynth.gain.gain.setValueAtTime(0.005, audioCtx.currentTime);
 
                 const startScreen = document.getElementById('startScreen');
                 startScreen.classList.add('opacity-0', 'scale-95');
@@ -1623,12 +1603,10 @@
                     if (audioCtx && audioCtx.state === 'suspended') {
                         audioCtx.resume();
                     }
-                    if (droneSynth) droneSynth.gain.gain.setTargetAtTime(0.1, audioCtx.currentTime, 0.15);
                     icon.className = 'fa-solid fa-volume-high text-sm';
                     btn.classList.add('text-emerald-400');
                     showSystemNotification("馬達物理聲音：開啟");
                 } else {
-                    if (droneSynth) droneSynth.gain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.15);
                     icon.className = 'fa-solid fa-volume-xmark text-sm';
                     btn.classList.remove('text-emerald-400');
                     showSystemNotification("馬達物理聲音：靜音");
