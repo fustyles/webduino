@@ -80,7 +80,7 @@
                         </p>
                     </div>
                     <ul class="space-y-1 text-slate-400 text-[11px] tech-font">
-                        <li><span class="text-emerald-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">T</span> : 一鍵起飛 (平穩上升至 1.2 米並定高)</li>
+                        <li><span class="text-emerald-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">T</span> : 一鍵起飛 (平穩上升至 1.5 米並定高)</li>
                         <li><span class="text-rose-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">L</span> : 一鍵降落 (平穩降落至中心並熄火)</li>
                     </ul>
                 </div>
@@ -298,8 +298,9 @@
             // 氣壓定高與自動駕駛
             targetAltitude: 0.1, // 初始定高目標
             touchAltitudeInput: 0, // 觸控定高增量
+            touchActive: false, // 右搖桿(前後左右)是否正在被觸控操作
             autoFlightState: 'none', // 'none' / 'takingoff' / 'landing'
-            targetTakeoffHeight: 1.2, // 起飛高度改為 1.2 米 (與光環等高)
+            targetTakeoffHeight: 1.5, // 起飛高度改為 1.5 米 (與光環置中後的高度等高)
 
             // 操控輸入
             input: {
@@ -329,10 +330,10 @@
         // 配合 6m x 4m 尺寸：
         // 地板長度方向為 Z 軸 (Z: -3 至 +3)
         // 地板寬度方向為 X 軸 (X: -2 至 +2)
-        // 紅色球門線在 Z = -2.25，藍色球門線在 Z = 2.25。高度 1.2 米。
+        // 紅色球門線在 Z = -2.25，藍色球門線在 Z = 2.25。高度置中於場地高度正中央 (cageH / 2 = 1.5 米)。
         const ringCourse = [
-            { pos: new THREE.Vector3(0, 1.2, -2.25), color: 0xef4444, size: 0.9, lastPassTime: 0 }, // 紅色方框球門線正上方
-            { pos: new THREE.Vector3(0, 1.2, 2.25), color: 0x3b82f6, size: 0.9, lastPassTime: 0 }   // 藍色方框球門線正上方
+            { pos: new THREE.Vector3(0, 1.5, -2.25), color: 0xef4444, size: 0.9, lastPassTime: 0, forwardSign: -1, prevSide: null }, // 紅色方框球門線正上方，高度置中；正向穿越方向為 -Z（由場地中央飛向紅方球門外）
+            { pos: new THREE.Vector3(0, 1.5, 2.25), color: 0x3b82f6, size: 0.9, lastPassTime: 0, forwardSign: 1, prevSide: null }   // 藍色方框球門線正上方，高度置中；正向穿越方向為 +Z（由場地中央飛向藍方球門外）
         ];
         let score = 0;
         let particles = []; 
@@ -940,16 +941,19 @@
                 scene.add(ringMesh);
                 ringData.mesh = ringMesh;
 
-                // 科技感懸索 - 直連頂部頂棚骨架 (Y = 3.0)
-                const lineGeo = new THREE.CylinderGeometry(0.005, 0.005, 1.8, 6);
+                // 科技感懸索 - 直連頂部頂棚骨架 (天花板 Y = 3.0)，依球門實際高度動態計算長度
+                const ceilingY = 3.0;
+                const cableLen = ceilingY - ringData.pos.y;
+                const lineGeo = new THREE.CylinderGeometry(0.005, 0.005, cableLen, 6);
                 const lineMat = new THREE.MeshBasicMaterial({ color: 0x1e293b });
-                
+                const cableCenterY = ringData.pos.y + cableLen / 2;
+
                 const leftLine = new THREE.Mesh(lineGeo, lineMat);
-                leftLine.position.set(ringData.pos.x - 0.45, 2.1, ringData.pos.z);
+                leftLine.position.set(ringData.pos.x - 0.45, cableCenterY, ringData.pos.z);
                 scene.add(leftLine);
 
                 const rightLine = new THREE.Mesh(lineGeo, lineMat);
-                rightLine.position.set(ringData.pos.x + 0.45, 2.1, ringData.pos.z);
+                rightLine.position.set(ringData.pos.x + 0.45, cableCenterY, ringData.pos.z);
                 scene.add(rightLine);
             });
         }
@@ -1063,12 +1067,12 @@
             });
         }
 
-        // 一鍵起飛：自動控制 PD 至 1.2 米並懸停 (球門高度)
+        // 一鍵起飛：自動控制 PD 至 1.5 米並懸停 (置中後的球門高度)
         function triggerTakeoff() {
             if (drone.position.y < 0.15) {
-                drone.targetAltitude = 1.2;
+                drone.targetAltitude = 1.5;
                 drone.autoFlightState = 'takingoff';
-                showSystemNotification("自動駕駛：起飛中... 攀升至 1.2m 等高球門區");
+                showSystemNotification("自動駕駛：起飛中... 攀升至 1.5m 等高球門區");
             } else {
                 showSystemNotification("無法起飛：已在空中懸停");
             }
@@ -1122,9 +1126,10 @@
                 drone.touchAltitudeInput = 0;
             }));
 
-            joyRight.addEventListener('touchstart', (e) => handleJoystick(e, joyRight, knobRight, updateRightJoy), { passive: false });
-            joyRight.addEventListener('touchmove', (e) => handleJoystick(e, joyRight, knobRight, updateRightJoy), { passive: false });
+            joyRight.addEventListener('touchstart', (e) => { drone.touchActive = true; handleJoystick(e, joyRight, knobRight, updateRightJoy); }, { passive: false });
+            joyRight.addEventListener('touchmove', (e) => { drone.touchActive = true; handleJoystick(e, joyRight, knobRight, updateRightJoy); }, { passive: false });
             joyRight.addEventListener('touchend', () => resetJoystick(knobRight, () => {
+                drone.touchActive = false;
                 drone.input.pitch = 0;
                 drone.input.roll = 0;
             }));
@@ -1182,23 +1187,21 @@
                 }
             }
 
-            // 鍵盤或方向鍵前進後退左右映射
-            if (window.innerWidth >= 768) {
-                // W與↑：往前傾斜前進，S與↓：往後傾斜後退 (方向完美契合您的需求)
-                if (keys.w || keys.arrowup) drone.input.pitch = 1.0;
-                else if (keys.s || keys.arrowdown) drone.input.pitch = -1.0;
-                else drone.input.pitch = 0;
+            // 鍵盤或方向鍵前進後退左右映射（不限視窗寬度，桌面/窄視窗皆可用鍵盤操作）
+            // W與↑：往前傾斜前進，S與↓：往後傾斜後退 (方向完美契合您的需求)
+            if (keys.w || keys.arrowup) drone.input.pitch = 1.0;
+            else if (keys.s || keys.arrowdown) drone.input.pitch = -1.0;
+            else if (!drone.touchActive) drone.input.pitch = 0;
 
-                // A與←：往左滾轉，D與→：往右滾轉
-                if (keys.d || keys.arrowright) drone.input.roll = 1.0;
-                else if (keys.a || keys.arrowleft) drone.input.roll = -1.0;
-                else drone.input.roll = 0;
+            // A與←：往左滾轉，D與→：往右滾轉
+            if (keys.d || keys.arrowright) drone.input.roll = 1.0;
+            else if (keys.a || keys.arrowleft) drone.input.roll = -1.0;
+            else if (!drone.touchActive) drone.input.roll = 0;
 
-                // Q/E：旋轉
-                if (keys.e) drone.input.yaw = 1.0;
-                else if (keys.q) drone.input.yaw = -1.0;
-                else drone.input.yaw = 0;
-            }
+            // Q/E：旋轉
+            if (keys.e) drone.input.yaw = 1.0;
+            else if (keys.q) drone.input.yaw = -1.0;
+            else drone.input.yaw = 0;
 
             // 平滑計算目標俯仰及側滾傾角
             const targetPitchAngle = drone.input.pitch * drone.constants.maxTilt;
@@ -1269,6 +1272,18 @@
                 drone.position.y = ceilingLimit;
                 drone.velocity.y = -0.1;
             }
+
+            // 螺旋槳旋轉動畫：依油門大小決定轉速，怠速時也保留低速旋轉以顯示馬達待機
+            const idleSpin = 8;   // 待機最低轉速 (rad/s)
+            const maxSpin = 90;   // 全油門最高轉速 (rad/s)
+            const spinSpeed = drone.input.throttle > 0.02
+                ? idleSpin + drone.input.throttle * maxSpin
+                : 0;
+            drone.rotors.forEach((rotorGroup, idx) => {
+                // 相鄰馬達反向旋轉，模擬真實四軸無人機的扭力抵消
+                const dir = (idx === 0 || idx === 3) ? 1 : -1;
+                rotorGroup.rotation.y += dir * spinSpeed * delta;
+            });
         } // <-- ADDED THIS CLOSING BRACE
 
         // 圓環外框碰撞 (反彈物理) 與圓環中心穿越累加判定
@@ -1329,11 +1344,24 @@
                     }
                 }
 
-                // 2. 偵測穿越光環中心
+                // 2. 偵測穿越光環中心（僅「正向」穿越才計分，反向穿越不計分）
                 const distToCenter = drone.position.distanceTo(ring.pos);
                 const innerOpeningRadius = R - r - 0.05; // 留下安全裕度 (~0.36m)
-                
-                if (distToCenter < innerOpeningRadius) {
+
+                // 以光環平面（Z 軸法線）判斷無人機目前在哪一側
+                const rawSide = drone.position.z - ring.pos.z;
+                const currentSide = rawSide !== 0 ? Math.sign(rawSide) : (ring.prevSide || ring.forwardSign * -1);
+
+                if (ring.prevSide === null) {
+                    // 初始化：剛進場時先記錄所在側，避免一開場就被誤判成穿越
+                    ring.prevSide = currentSide;
+                }
+
+                const crossedPlane = ring.prevSide !== currentSide; // 這一影格是否跨越了光環所在平面
+                const isForwardPass = crossedPlane && currentSide === ring.forwardSign;
+                const isReversePass = crossedPlane && currentSide !== ring.forwardSign;
+
+                if (distToCenter < innerOpeningRadius && isForwardPass) {
                     const currentTime = clock.getElapsedTime();
                     if (!ring.lastPassTime || (currentTime - ring.lastPassTime > 1.5)) {
                         ring.lastPassTime = currentTime;
@@ -1353,7 +1381,12 @@
                             ring.mesh.material.emissive.setHex(origColor);
                         }, 800);
                     }
+                } else if (distToCenter < innerOpeningRadius && isReversePass) {
+                    // 反向穿越：不計分，僅提示玩家
+                    showSystemNotification("反向穿越 - 不計分");
                 }
+
+                ring.prevSide = currentSide;
             });
         }
 
@@ -1520,6 +1553,7 @@
             score = 0;
             ringCourse.forEach(ring => {
                 ring.lastPassTime = 0;
+                ring.prevSide = null; // 重置方向追蹤，避免沿用重設前的側邊狀態
                 ring.mesh.material.color.setHex(ring.color);
                 ring.mesh.material.emissive.setHex(ring.color);
             });
