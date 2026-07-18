@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>3D 賽博無人機競技場 - Mini Cyber Drone Arena</title>
+    <title>DRONE SOCCER ARENA — 擬真四軸飛行器模擬</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -56,9 +56,8 @@
                 <i class="fa-solid fa-circle-nodes"><svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg></i>
             </div>
             <h1 class="text-3xl md:text-5xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-500 to-blue-500 mb-2">
-                MICRO DRONE ARENA
+                DRONE SOCCER ARENA
             </h1>
-            <p class="text-emerald-200/80 text-sm md:text-base tech-font mb-6">依據 3fc47b8b-0d54-496f-abc0-0f49a0d9871a.jpg 實體充氣網籠設計</p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-left text-xs md:text-sm text-slate-300">
                 <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800">
@@ -73,12 +72,6 @@
                     </ul>
                 </div>
                 <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800 flex flex-col justify-between">
-                    <div>
-                        <p class="font-bold text-cyan-400 mb-2"><i class="fa-solid fa-circle-info mr-2"></i>場地規格與自動控制</p>
-                        <p class="text-slate-400 leading-relaxed text-[11px] mb-3">
-                            本項目嚴格參考 <b>場地規畫圖 (螢幕擷取畫面 2026-07-18 162351.png)</b>。草綠色場地完美劃分為紅色方框與藍色方框禁區。2個充氣白色安全光環精準對齊兩側底線「球門線」上方。
-                        </p>
-                    </div>
                     <ul class="space-y-1 text-slate-400 text-[11px] tech-font">
                         <li><span class="text-emerald-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">T</span> : 一鍵起飛 (平穩上升至 1.5 米並定高)</li>
                         <li><span class="text-rose-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">L</span> : 一鍵降落 (平穩降落至中心並熄火)</li>
@@ -89,9 +82,6 @@
             <button id="btnLaunch" class="w-full py-4 text-lg font-bold text-white uppercase rounded-xl shadow-[0_0_30px_rgba(16,185,129,0.3)] bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 transition-all duration-300 transform hover:scale-102 active:scale-98">
                 啟動網籠無人機系統
             </button>
-            <p class="mt-3 text-xs text-slate-500">
-                本模擬器基於 <b>Three.js</b> 與 <b>Web Audio API</b> 實時物理音效技術建構
-            </p>
         </div>
     </div>
 
