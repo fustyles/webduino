@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<title>DRONE SOCCER — 鳳山科技中心</title>
+<title>DRONE SOCCER ARENA — 擬真四軸飛行器模擬</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -179,7 +179,7 @@
 <button id="mute-btn">🔊 引擎聲 [M]</button>
 
 <div id="start-screen">
-  <h1>DRONE <span>SOCCER</span></h1>
+  <h1>DRONE <span>SOCCER</span> ARENA</h1>
   <p class="sub">擬真四軸飛行器操控模擬 · 氣壓定高 · 鍵盤控制</p>
   <div class="cheat-grid">
     <div class="row"><kbd>W/S ↑/↓</kbd><span>前傾 / 後仰</span></div>
@@ -202,12 +202,21 @@
 "use strict";
 
 /* ============ 基本設定 ============ */
-const FIELD_W = 40, FIELD_L = 74, WALL_H = 16;
+/* 依官方無人機足球場地規則的比例換算：短邊 4 : 長邊 6 : 高度 3 */
+const FIELD_W = 40;                    // 短邊 (球門所在的那一側)
+const FIELD_L = FIELD_W * 6/4;         // 長邊 (兩球門之間的飛行方向) = 60
+const WALL_H  = FIELD_W * 3/4;         // 高度 = 30
 const FIELD_MARGIN_Z = FIELD_L/2 - 1.5;   // 地上白線外框到牆邊的距離
 const BOX_HALF_W = 8, BOX_DEPTH = 9;      // 禁區框尺寸
-const GOAL_Z = FIELD_MARGIN_Z - BOX_DEPTH/2; // 球門圓環放在禁區框正中央，離牆保留足夠淨空
-const GOAL_Y = WALL_H/2, GOAL_R = 4 * 4/5;
-const GOAL_RING_TUBE = 0.32; // 圓環管徑(碰撞偵測也會用到)
+/* 球門：依規則外徑50公分:內徑30公分 = 5:3 的比例換算，並設於短邊中心、
+   距短邊 0.5～1 公尺處、高度離地 1 公尺以上（此處置中於牆高，已滿足此下限） */
+const GOAL_OUTER_R = FIELD_W * 0.0625;    // 外徑佔短邊 12.5% → 外半徑 2.5
+const GOAL_INNER_R = FIELD_W * 0.0375;    // 內徑佔短邊 7.5%  → 內半徑 1.5
+const GOAL_R = (GOAL_OUTER_R + GOAL_INNER_R) / 2;      // 圓環中心線半徑 = 2.0
+const GOAL_RING_TUBE = (GOAL_OUTER_R - GOAL_INNER_R) / 2; // 圓環管徑半徑 = 0.5
+const GOAL_Y = WALL_H/2;               // 垂直置中，且遠高於「離地1公尺以上」的下限
+const GOAL_EDGE_DIST = FIELD_L * 0.125;   // 距短邊約 0.5~1 公尺範圍內的中間值
+const GOAL_Z = FIELD_L/2 - GOAL_EDGE_DIST; // 球門位置：短邊中心點往場內方向的距離
 const GRAVITY = 9.8;
 const MAX_THRUST = 2.15 * GRAVITY;   // hover throttle ~= 0.465
 const MAX_TILT = 0.52;               // ~30 deg
@@ -218,10 +227,10 @@ const THROTTLE_RATE = 0.7;
 const DRONE_R = 0.75;
 const GROUND_Y = 0.35;
 const HOVER_ALT = 3.0;        // 一鍵起飛後預設定高高度
-const CLIMB_RATE = 1.3;       // 等距上升/下降速率 (公尺/秒)
+const CLIMB_RATE = 3.2;       // 等距上升/下降速率 (公尺/秒)
 const ALT_MAX = WALL_H - 1.5;
-const ALT_HOLD_KP = 2.6, ALT_HOLD_KD = 3.4; // 氣壓定高 PD 控制器增益
-const ALT_ERR_CLAMP = 2.5;    // 限制誤差避免起飛/降落瞬間暴衝
+const ALT_HOLD_KP = 3.2, ALT_HOLD_KD = 3.6; // 氣壓定高 PD 控制器增益
+const ALT_ERR_CLAMP = 4.0;    // 限制誤差避免起飛/降落瞬間暴衝
 
 let score = 0;
 let cameraMode = 'chase'; // 'chase' | 'fpv'
@@ -255,13 +264,13 @@ keyLight.position.set(20, 40, -10);
 scene.add(keyLight);
 
 const rig1 = new THREE.PointLight(0x00e5ff, 0.9, 60);
-rig1.position.set(-16, 14, 0); scene.add(rig1);
+rig1.position.set(-16, WALL_H-4, 0); scene.add(rig1);
 const rig2 = new THREE.PointLight(0xff2ee0, 0.9, 60);
-rig2.position.set(16, 14, 0); scene.add(rig2);
+rig2.position.set(16, WALL_H-4, 0); scene.add(rig2);
 const rig3 = new THREE.PointLight(0xffffff, 0.7, 50);
-rig3.position.set(0, 14, GOAL_Z); scene.add(rig3);
+rig3.position.set(0, WALL_H-4, GOAL_Z); scene.add(rig3);
 const rig4 = new THREE.PointLight(0xffffff, 0.7, 50);
-rig4.position.set(0, 14, -GOAL_Z); scene.add(rig4);
+rig4.position.set(0, WALL_H-4, -GOAL_Z); scene.add(rig4);
 
 /* 場地地板：草皮綠色，搭配白色足球場地線 */
 const floorGeo = new THREE.PlaneGeometry(FIELD_W, FIELD_L, 1, 1);
@@ -339,14 +348,15 @@ function buildGoal(z){
   const ringMat = new THREE.MeshStandardMaterial({color:0xffffff, emissive:0x000000, emissiveIntensity:1.2, roughness:0.55, metalness:0.02});
   const ring = new THREE.Mesh(ringGeo, ringMat);
   group.add(ring);
-  // 支柱只從地面連到圓環最底部邊緣,不穿入圓心,避免擋住球門開口
-  const ringBottomLocalY = -(GOAL_R + GOAL_RING_TUBE);
-  const poleHeight = GOAL_Y + ringBottomLocalY; // 地面(世界 y=0)到圓環底緣的距離
-  const poleGeo = new THREE.CylinderGeometry(0.07, 0.09, poleHeight, 8);
-  const poleMat = new THREE.MeshStandardMaterial({color:0xf2f2f2, roughness:0.7});
-  const pole = new THREE.Mesh(poleGeo, poleMat);
-  pole.position.y = ringBottomLocalY - poleHeight/2;
-  group.add(pole);
+  // 吊繩只從天花板連到圓環最頂部邊緣,不穿入圓心,避免擋住球門開口
+  const ringTopLocalY = GOAL_R + GOAL_RING_TUBE;
+  const ceilingLocalY = WALL_H - GOAL_Y; // 天花板在此 group 局部座標中的高度
+  const cableHeight = ceilingLocalY - ringTopLocalY;
+  const cableGeo = new THREE.CylinderGeometry(0.035, 0.035, cableHeight, 6);
+  const cableMat = new THREE.MeshStandardMaterial({color:0xd8dde0, roughness:0.6, metalness:0.3});
+  const cable = new THREE.Mesh(cableGeo, cableMat);
+  cable.position.y = ringTopLocalY + cableHeight/2;
+  group.add(cable);
   group.position.set(0, GOAL_Y, z);
   scene.add(group);
   return {group, ring, ringMat, z, active:false};
@@ -361,7 +371,7 @@ const GOAL_PASS_HALF_DEPTH = DRONE_R + 0.6; // 判定「正在穿越」的前後
 function updateGoalHighlight(goal){
   const dz = Math.abs(droneState.position.z - goal.z);
   const radial = Math.hypot(droneState.position.x, droneState.position.y - GOAL_Y);
-  const passing = dz < GOAL_PASS_HALF_DEPTH && radial < GOAL_R * 0.92;
+  const passing = dz < GOAL_PASS_HALF_DEPTH && radial < GOAL_INNER_R * 0.95;
   if(passing && !goal.active){
     // 只有當無人機的移動方向是「從場地中間朝該球門所在的牆邊」時才變色，反方向穿越不觸發
     const outwardSign = Math.sign(goal.z);
@@ -470,7 +480,7 @@ nose.rotation.x = Math.PI/2;
 nose.position.set(0, 0.02, 0.42);
 drone.add(nose);
 
-drone.position.set(0, GROUND_Y, -20);
+drone.position.set(0, GROUND_Y, -15);
 scene.add(drone);
 
 /* 無人機聚光燈 (照亮下方地面, 增添飛行感) */
@@ -493,7 +503,7 @@ const droneState = {
 };
 
 function resetDrone(){
-  droneState.position.set(0, GROUND_Y, -20);
+  droneState.position.set(0, GROUND_Y, -15);
   droneState.velocity.set(0,0,0);
   droneState.pitch=0; droneState.roll=0; droneState.yaw=0; droneState.yawRate=0;
   droneState.throttle=0;
@@ -696,10 +706,19 @@ function scoreGoal(){
 
 /* ============ 攝影機 ============ */
 const camPos = new THREE.Vector3(0,6,-14);
+let camYaw = 0; // 攝影機自己的朝向角度，只跟著「移動方向」轉，不跟著機頭偏航轉
+
 function updateCamera(dt){
   if(cameraMode === 'chase'){
     drone.visible = true;
-    const yawOnly = new THREE.Quaternion().setFromEuler(new THREE.Euler(0, droneState.yaw, 0));
+    // 攝影機朝向平滑跟隨「機頭方向」，但用較慢的速率追趕，而不是每幀瞬間對齊。
+    // 這樣快速偏航(Q/E)時鏡頭不會立刻硬轉、原地甩動；而且跟隨的是機頭角度這種
+    // 平穩變化的量，不是瞬時速度方向(速度方向在加減速、飄移時容易抖動亂跳，
+    // 之前就是這個原因造成視角亂轉頭暈)。
+    let diff = droneState.yaw - camYaw;
+    diff = Math.atan2(Math.sin(diff), Math.cos(diff)); // 取最短角度差，避免繞遠路
+    camYaw += diff * Math.min(1, 2.2*dt);
+    const yawOnly = new THREE.Quaternion().setFromEuler(new THREE.Euler(0, camYaw, 0));
     const back = new THREE.Vector3(0,0,-1).applyQuaternion(yawOnly);
     const desired = droneState.position.clone()
       .addScaledVector(back, 6.5)
