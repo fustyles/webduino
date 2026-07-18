@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>3D 賽博無人機競技場 - Mini Cyber Drone Arena</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            user-select: none;
+            background-color: #020617;
+        }
+        .tech-font {
+            font-family: 'Share Tech Mono', monospace;
+        }
+        /* 玻璃擬態樣式 */
+        .glassmorphism {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-button {
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.35);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-button:hover {
+            background: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+            transform: translateY(-1px);
+        }
+        /* 隱藏滾動條 */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        .joystick-zone {
+            touch-action: none;
+        }
+    </style>
+</head>
+<body class="relative w-screen h-screen">
+
+    <!-- 開場與加載畫面 -->
+    <div id="startScreen" class="absolute inset-0 z-50 flex flex-col items-center justify-center bg-slate-950/95 transition-all duration-700">
+        <div class="max-w-2xl px-6 py-8 mx-4 text-center glassmorphism rounded-2xl border border-emerald-500/30 shadow-[0_0_50px_rgba(16,185,129,0.15)]">
+            <div class="flex justify-center mb-4 text-emerald-400 text-6xl animate-pulse">
+                <i class="fa-solid fa-circle-nodes"><svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg></i>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-500 to-blue-500 mb-2">
+                MICRO DRONE ARENA
+            </h1>
+            <p class="text-emerald-200/80 text-sm md:text-base tech-font mb-6">依據 3fc47b8b-0d54-496f-abc0-0f49a0d9871a.jpg 實體充氣網籠設計</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-left text-xs md:text-sm text-slate-300">
+                <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800">
+                    <p class="font-bold text-emerald-400 mb-2"><i class="fa-solid fa-keyboard mr-2"></i>鍵盤控制說明</p>
+                    <ul class="space-y-1 text-slate-400 tech-font">
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">W</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">↑</span> : 前進 (Pitch Forward)</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">S</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">↓</span> : 後退 (Pitch Backward)</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">A</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">←</span> : 向左 (Roll Left)</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">D</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">→</span> : 向右 (Roll Right)</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">Q</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">E</span> : 逆/順時針旋轉 (Yaw)</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded font-bold text-emerald-400">Space</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded font-bold text-rose-400">Shift</span> : 升高 / 降低 0.5 米</li>
+                    </ul>
+                </div>
+                <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <p class="font-bold text-cyan-400 mb-2"><i class="fa-solid fa-circle-info mr-2"></i>場地規格與自動控制</p>
+                        <p class="text-slate-400 leading-relaxed text-[11px] mb-3">
+                            本項目嚴格參考 <b>場地規畫圖 (螢幕擷取畫面 2026-07-18 162351.png)</b>。草綠色場地完美劃分為紅色方框與藍色方框禁區。2個充氣白色安全光環精準對齊兩側底線「球門線」上方。
+                        </p>
+                    </div>
+                    <ul class="space-y-1 text-slate-400 text-[11px] tech-font">
+                        <li><span class="text-emerald-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">T</span> : 一鍵起飛 (平穩上升至 1.2 米並定高)</li>
+                        <li><span class="text-rose-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">L</span> : 一鍵降落 (平穩降落至中心並熄火)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <button id="btnLaunch" class="w-full py-4 text-lg font-bold text-white uppercase rounded-xl shadow-[0_0_30px_rgba(16,185,129,0.3)] bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 transition-all duration-300 transform hover:scale-102 active:scale-98">
+                啟動網籠無人機系統
+            </button>
+            <p class="mt-3 text-xs text-slate-500">
+                本模擬器基於 <b>Three.js</b> 與 <b>Web Audio API</b> 實時物理音效技術建構
+            </p>
+        </div>
+    </div>
+
+    <!-- 遊戲主場景與 HUD -->
+    <div id="gameUI" class="absolute inset-0 z-10 pointer-events-none flex flex-col justify-between p-4 md:p-6 select-none">
+        
+        <!-- 頂部資訊條 -->
+        <header class="w-full flex justify-between items-start pointer-events-auto">
+            <!-- 左上角：任務狀態與計分 -->
+            <div class="glassmorphism rounded-xl px-4 py-3 text-white flex flex-col min-w-[150px] shadow-lg">
+                <span class="text-[10px] text-emerald-400 uppercase tracking-wider font-semibold">Goal Score</span>
+                <div class="flex items-baseline gap-2 mt-1">
+                    <span id="scoreText" class="text-2xl font-extrabold tech-font text-yellow-300">0</span>
+                    <span class="text-xs text-slate-400">次</span>
+                </div>
+                <div class="text-[9px] text-slate-400 mt-1">
+                    重複穿越光環累計得分
+                </div>
+            </div>
+
+            <!-- 中間頂部：羅盤方位角 -->
+            <div class="hidden md:flex flex-col items-center glassmorphism text-white px-6 py-2 rounded-xl border border-slate-700/30">
+                <span class="text-[9px] text-slate-400 tracking-widest uppercase mb-1">Heading</span>
+                <div class="flex items-center gap-1.5 tech-font text-lg font-bold">
+                    <span id="compassVal" class="text-emerald-300">000°</span>
+                    <span id="compassDir" class="text-xs text-slate-400">(N)</span>
+                </div>
+            </div>
+
+            <!-- 右上角：系統快捷控制 -->
+            <div class="flex gap-2">
+                <button id="btnTakeoff" class="px-3.5 h-10 rounded-xl glassmorphism text-emerald-400 hover:text-emerald-300 hover:border-emerald-400/50 flex items-center justify-center gap-1.5 transition-all cursor-pointer pointer-events-auto border border-emerald-500/20">
+                    <i class="fa-solid fa-plane-departure text-xs"></i>
+                    <span class="text-[10px] font-semibold tech-font">TAKEOFF (T)</span>
+                </button>
+                <button id="btnLand" class="px-3.5 h-10 rounded-xl glassmorphism text-rose-400 hover:text-rose-300 hover:border-rose-400/50 flex items-center justify-center gap-1.5 transition-all cursor-pointer pointer-events-auto border border-rose-500/20">
+                    <i class="fa-solid fa-plane-arrival text-xs"></i>
+                    <span class="text-[10px] font-semibold tech-font">LAND (L)</span>
+                </button>
+                <button id="btnSound" class="w-10 h-10 rounded-xl glassmorphism text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
+                    <i class="fa-solid fa-volume-high text-sm"></i>
+                </button>
+                <button id="btnCam" class="px-3.5 h-10 rounded-xl glassmorphism text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
+                    <i class="fa-solid fa-camera text-sm"></i>
+                    <span id="camText" class="text-xs font-semibold tech-font">CHASE</span>
+                </button>
+                <button id="btnReset" class="w-10 h-10 rounded-xl glassmorphism text-slate-300 hover:text-rose-400 flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
+                    <i class="fa-solid fa-arrows-rotate text-sm"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 中間右側：簡易姿態儀 -->
+        <div class="absolute right-4 top-24 pointer-events-auto hidden sm:flex flex-col gap-3">
+            <div class="glassmorphism p-3 rounded-xl text-white w-48 shadow-md border border-slate-800/30">
+                <h3 class="text-[10px] text-emerald-300 uppercase font-semibold tracking-wider mb-2">Attitude Indicator</h3>
+                <div class="relative w-full h-24 bg-slate-900/80 rounded-lg overflow-hidden border border-slate-800/50 flex items-center justify-center">
+                    <!-- 姿態地平線 -->
+                    <div id="horizonLine" class="absolute w-[200%] h-[200%] bg-gradient-to-b from-indigo-950/50 to-emerald-950/50 border-t-2 border-emerald-400 transition-all duration-100 ease-out" style="transform: rotate(0deg) translateY(0px);"></div>
+                    <!-- 固定十字標 -->
+                    <div class="absolute w-6 h-0.5 bg-yellow-400"></div>
+                    <div class="absolute w-2 h-2 rounded-full bg-yellow-400"></div>
+                    <div class="absolute left-1/2 top-2 h-2 w-0.5 bg-white/40 -translate-x-1/2"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-2 mt-2 text-center text-[10px] text-slate-400 tech-font">
+                    <div>PITCH: <span id="pitchAngle" class="text-white">0°</span></div>
+                    <div>ROLL: <span id="rollAngle" class="text-white">0°</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部大資訊面板 -->
+        <footer class="w-full flex flex-col md:flex-row gap-4 items-end justify-between pointer-events-auto">
+            <!-- 飛行參數玻璃面板 (左下) -->
+            <div class="glassmorphism rounded-2xl p-4 text-white w-full md:w-auto md:min-w-[400px] shadow-2xl flex flex-col gap-3 border border-slate-800/40">
+                <div class="flex items-center justify-between border-b border-slate-800/60 pb-2">
+                    <span class="text-[11px] text-emerald-400 tracking-wider font-semibold uppercase flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping"></span> Telemetry Status
+                    </span>
+                    <span id="flightMode" class="text-[10px] bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 px-2 py-0.5 rounded-full tech-font">BARO-ALT HOLD ON</span>
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                    <!-- 速度 -->
+                    <div class="flex flex-col">
+                        <span class="text-[10px] text-slate-400 uppercase">Speed</span>
+                        <div class="flex items-baseline gap-1 mt-1">
+                            <span id="telemetrySpeed" class="text-2xl font-bold tech-font text-emerald-300">0.0</span>
+                            <span class="text-[10px] text-slate-500">m/s</span>
+                        </div>
+                        <div class="w-full bg-slate-900 h-1 rounded-full mt-1.5 overflow-hidden">
+                            <div id="speedBar" class="bg-emerald-400 h-full w-0 transition-all duration-200"></div>
+                        </div>
+                    </div>
+                    <!-- 高度 -->
+                    <div class="flex flex-col">
+                        <span class="text-[10px] text-slate-400 uppercase">Altitude</span>
+                        <div class="flex items-baseline gap-1 mt-1">
+                            <span id="telemetryAlt" class="text-2xl font-bold tech-font text-cyan-300">0.10</span>
+                            <span class="text-[10px] text-slate-500">m</span>
+                        </div>
+                        <div class="w-full bg-slate-900 h-1 rounded-full mt-1.5 overflow-hidden">
+                            <div id="altBar" class="bg-cyan-400 h-full w-[10%] transition-all duration-200"></div>
+                        </div>
+                    </div>
+                    <!-- 油門 -->
+                    <div class="flex flex-col">
+                        <span class="text-[10px] text-slate-400 uppercase">Throttle</span>
+                        <div class="flex items-baseline gap-1 mt-1">
+                            <span id="telemetryThrottle" class="text-2xl font-bold tech-font text-yellow-300">0%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 h-1 rounded-full mt-1.5 overflow-hidden">
+                            <div id="throttleBar" class="bg-yellow-400 h-full w-[0%] transition-all duration-200"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 操作提示面板 (右下) -->
+            <div class="hidden lg:flex glassmorphism rounded-2xl p-4 text-slate-300 w-[300px] border border-slate-800/40 text-[11px] flex flex-col gap-1.5">
+                <span class="text-[10px] text-emerald-400 uppercase font-semibold tracking-wider">Flight Controls Guide</span>
+                <div class="flex justify-between">
+                    <span>One-key Takeoff / Land:</span>
+                    <span class="tech-font text-emerald-400 font-bold bg-slate-800 px-1 rounded">T</span> / <span class="tech-font text-rose-400 font-bold bg-slate-800 px-1 rounded">L</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Altitude Up / Down (0.5m):</span>
+                    <span class="tech-font text-white bg-slate-800 px-1 rounded">Space</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">Shift</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Pitch Forward/Back:</span>
+                    <span class="tech-font text-white bg-slate-800 px-1 rounded">W / ↑</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">S / ↓</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Roll Left/Right:</span>
+                    <span class="tech-font text-white bg-slate-800 px-1 rounded">A / ←</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">D / →</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Yaw Rotate:</span>
+                    <span class="tech-font text-white bg-slate-800 px-1 rounded">Q</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">E</span>
+                </div>
+            </div>
+        </footer>
+
+        <!-- 觸控搖桿區域 (用於行動裝置或預覽操作) -->
+        <div id="touchControls" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex justify-between w-full max-w-[500px] px-4 pointer-events-none md:hidden">
+            <!-- 左搖桿 (高度/旋轉) -->
+            <div class="joystick-zone pointer-events-auto relative w-24 h-24 rounded-full bg-slate-950/80 border border-emerald-500/30 flex items-center justify-center shadow-lg" id="joyLeft">
+                <div class="w-10 h-10 rounded-full bg-emerald-500/40 border border-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.4)] absolute" id="knobLeft"></div>
+                <span class="absolute text-[7px] text-emerald-400/50 uppercase font-semibold tracking-widest pointer-events-none">YAW / ALT</span>
+            </div>
+            <!-- 右搖桿 (前後左右移動) -->
+            <div class="joystick-zone pointer-events-auto relative w-24 h-24 rounded-full bg-slate-950/80 border border-cyan-500/30 flex items-center justify-center shadow-lg" id="joyRight">
+                <div class="w-10 h-10 rounded-full bg-cyan-500/40 border border-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.4)] absolute" id="knobRight"></div>
+                <span class="absolute text-[7px] text-cyan-400/50 uppercase font-semibold tracking-widest pointer-events-none">MOVE</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 提示框 / 遊戲完賽慶祝面板 -->
+    <div id="victoryScreen" class="absolute inset-0 z-40 hidden flex-col items-center justify-center bg-slate-950/85 backdrop-blur-md transition-all duration-500">
+        <div class="max-w-md px-6 py-8 mx-4 text-center glassmorphism rounded-2xl border border-yellow-500/40 shadow-[0_0_50px_rgba(234,179,8,0.2)]">
+            <div class="flex justify-center mb-4 text-yellow-400 text-5xl animate-bounce">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2 class="text-2xl font-extrabold text-yellow-300 tracking-wider mb-2">微型場地穿梭圓滿完成！</h2>
+            <p class="text-slate-300 text-xs md:text-sm mb-6 leading-relaxed">
+                您已成功操控微縮無人機，在 6m × 4m 限制空間內順利穿過紅藍底線「球門線」上方對齊的霓虹光環！
+            </p>
+            <div class="flex gap-4">
+                <button id="btnRestart" class="w-full py-3 text-xs md:text-sm font-bold text-slate-950 bg-yellow-400 rounded-lg shadow-lg hover:bg-yellow-300 transition-all duration-300 uppercase">
+                    再次挑戰
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3D 渲染畫布容器 -->
+    <div id="canvas-container" class="absolute inset-0 w-full h-full z-0"></div>
+
+    <!-- 引入 Three.js 與 OrbitControls -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script>
+        // 1. 全局系統變數與參數
+        let scene, camera, renderer, clock, orbitControls;
+        const container = document.getElementById('canvas-container');
+        let soundEnabled = false;
+
+        // 2. 音訊合成器 (Web Audio API)
+        let audioCtx = null;
+        let droneSynth = null;
+
+        // 3. 微型無人機物理與姿態狀態 (比原版縮小，適配 6m x 4m)
+        const drone = {
+            mesh: null,
+            rotors: [], // 四個螺旋槳
+            lights: [], // 紅綠翼閃爍燈
+            position: new THREE.Vector3(0, 0.1, 0), // 初始停留於球場正中央地板 (高度 0.1 米)
+            velocity: new THREE.Vector3(0, 0, 0),
+            rotation: new THREE.Euler(0, 0, 0, 'YXZ'), // 歐拉旋轉順序
+            
+            // 氣壓定高與自動駕駛
+            targetAltitude: 0.1, // 初始定高目標
+            touchAltitudeInput: 0, // 觸控定高增量
+            autoFlightState: 'none', // 'none' / 'takingoff' / 'landing'
+            targetTakeoffHeight: 1.2, // 起飛高度改為 1.2 米 (與光環等高)
+
+            // 操控輸入
+            input: {
+                pitch: 0,   // 前後 (W/↑: 1 往前, S/↓: -1 往後)
+                roll: 0,    // 左右側傾 (A/←: -1, D/→: 1)
+                yaw: 0,     // 旋轉 (Q: -1, E: 1)
+                throttle: 0.0
+            },
+
+            // 微型機身物理常量 (在小空間內具有更高的阻尼、更高的定高敏捷度)
+            constants: {
+                mass: 0.4,               // 極輕量化
+                maxThrottleThrust: 18.0, // 適合微型機的總拉力
+                gravity: 9.8,
+                linearDrag: 1.8,         // 大幅增加空氣阻力，防止在小場地瞬間飛出邊界
+                pitchRollSpeed: 1.6,     // 更敏捷的俯仰/側滾反應
+                yawSpeed: 3.5,           // 偏航旋轉速度
+                maxTilt: 0.40,           // 降低最大物理傾角，更利於狹小空間精準操作
+                recoveryRate: 10.0,      // 水平校正恢復速度
+            },
+
+            currentPitch: 0,
+            currentRoll: 0,
+        };
+
+        // 4. 遊戲目標 (僅有 2 個光環：精準懸浮於紅藍底邊禁區球門線正上方)
+        // 配合 6m x 4m 尺寸：
+        // 地板長度方向為 Z 軸 (Z: -3 至 +3)
+        // 地板寬度方向為 X 軸 (X: -2 至 +2)
+        // 紅色球門線在 Z = -2.25，藍色球門線在 Z = 2.25。高度 1.2 米。
+        const ringCourse = [
+            { pos: new THREE.Vector3(0, 1.2, -2.25), color: 0xef4444, size: 0.9, lastPassTime: 0 }, // 紅色方框球門線正上方
+            { pos: new THREE.Vector3(0, 1.2, 2.25), color: 0x3b82f6, size: 0.9, lastPassTime: 0 }   // 藍色方框球門線正上方
+        ];
+        let score = 0;
+        let particles = []; 
+
+        // 5. 鍵盤輸入
+        const keys = { 
+            w: false, s: false, a: false, d: false, 
+            arrowup: false, arrowdown: false, arrowleft: false, arrowright: false,
+            q: false, e: false, ' ': false, shift: false, t: false, l: false 
+        };
+
+        // 6. 攝影機模式 (0: Chase, 1: Cockpit, 2: Free)
+        let cameraMode = 0; 
+        const CAMERA_MODES = ['CHASE', 'COCKPIT', 'FREE'];
+
+        // Web Audio API 物理引擎聲合成
+        function initAudio() {
+            if (audioCtx) return;
+            try {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                
+                const osc1 = audioCtx.createOscillator();
+                const osc2 = audioCtx.createOscillator();
+                const filter = audioCtx.createBiquadFilter();
+                const gain = audioCtx.createGain();
+
+                osc1.type = 'sawtooth';
+                osc2.type = 'triangle';
+                
+                osc1.frequency.setValueAtTime(60, audioCtx.currentTime);
+                osc2.frequency.setValueAtTime(60.8, audioCtx.currentTime); 
+
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(180, audioCtx.currentTime);
+
+                gain.gain.setValueAtTime(0, audioCtx.currentTime); 
+
+                osc1.connect(filter);
+                osc2.connect(filter);
+                filter.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc1.start();
+                osc2.start();
+
+                droneSynth = { osc1, osc2, filter, gain };
+            } catch (e) {
+                console.warn("無法啟動 Web Audio API：", e);
+            }
+        }
+
+        // 隨油門大小動態調整音頻
+        function updateDroneSound() {
+            if (!soundEnabled || !droneSynth) return;
+            
+            const currentSpeed = drone.velocity.length();
+            const pitchFactor = 1 + (drone.input.throttle * 2.5) + (currentSpeed * 0.2);
+            
+            const baseFreq = 48 + pitchFactor * 40;
+            droneSynth.osc1.frequency.setTargetAtTime(baseFreq, audioCtx.currentTime, 0.1);
+            droneSynth.osc2.frequency.setTargetAtTime(baseFreq * 1.015, audioCtx.currentTime, 0.1);
+
+            const cutoff = 150 + pitchFactor * 160;
+            droneSynth.filter.frequency.setTargetAtTime(cutoff, audioCtx.currentTime, 0.15);
+
+            const targetVolume = drone.input.throttle > 0.05 ? (0.08 + (drone.input.throttle * 0.22)) : 0.005;
+            droneSynth.gain.gain.setTargetAtTime(targetVolume, audioCtx.currentTime, 0.15);
+        }
+
+        // 成功穿過霓虹圓環時的電子 chime 音效
+        function playChimeSound() {
+            if (!soundEnabled || !audioCtx) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const osc2 = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'sine';
+                osc2.type = 'sine';
+                
+                osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
+                osc.frequency.exponentialRampToValueAtTime(1174.66, audioCtx.currentTime + 0.12); // D6
+                
+                osc2.frequency.setValueAtTime(880.00, audioCtx.currentTime); // A5
+                osc2.frequency.exponentialRampToValueAtTime(1760.00, audioCtx.currentTime + 0.12); // A6
+
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+
+                osc.connect(gain);
+                osc2.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc2.start();
+                osc.stop(audioCtx.currentTime + 0.4);
+                osc2.stop(audioCtx.currentTime + 0.4);
+            } catch(e){}
+        }
+
+        // 初始化 Three.js 基礎設定
+        function initScene() {
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x010409);
+            scene.fog = new THREE.FogExp2(0x010409, 0.035); 
+
+            clock = new THREE.Clock();
+
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.05, 100);
+            
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.1;
+            container.appendChild(renderer.domElement);
+
+            orbitControls = new THREE.OrbitControls(camera, renderer.domElement);
+            orbitControls.enableDamping = true;
+            orbitControls.dampingFactor = 0.05;
+            orbitControls.maxPolarAngle = Math.PI / 2 - 0.02; // 防止穿透地板
+            orbitControls.enabled = false;
+
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        // 設置賽博空間光源
+        function setupLights() {
+            const ambientLight = new THREE.AmbientLight(0x071510, 1.2);
+            scene.add(ambientLight);
+
+            const hemiLight = new THREE.HemisphereLight(0x10b981, 0x010409, 0.5); // 綠色穹頂光
+            scene.add(hemiLight);
+
+            // 賽事場地對角高對比度投光燈 (紅、藍)
+            const corners = [
+                { x: -2.3, z: -3.3, color: 0xef4444 }, // 紅區角落
+                { x: 2.3, z: -3.3, color: 0xef4444 },
+                { x: -2.3, z: 3.3, color: 0x3b82f6 },  // 藍區角落
+                { x: 2.3, z: 3.3, color: 0x3b82f6 }
+            ];
+
+            corners.forEach(corner => {
+                const poleGeo = new THREE.CylinderGeometry(0.04, 0.08, 3.5, 8);
+                const poleMat = new THREE.MeshStandardMaterial({ color: 0x111827, metalness: 0.9, roughness: 0.1 });
+                const pole = new THREE.Mesh(poleGeo, poleMat);
+                pole.position.set(corner.x, 1.75, corner.z);
+                pole.castShadow = true;
+                scene.add(pole);
+
+                const headGeo = new THREE.SphereGeometry(0.15, 12, 12);
+                const headMat = new THREE.MeshBasicMaterial({ color: corner.color });
+                const head = new THREE.Mesh(headGeo, headMat);
+                head.position.set(corner.x, 3.5, corner.z);
+                scene.add(head);
+
+                const spotLight = new THREE.SpotLight(corner.color, 3.5, 12, Math.PI / 4, 0.5, 1.2);
+                spotLight.position.set(corner.x, 3.5, corner.z);
+                spotLight.target.position.set(corner.x * 0.4, 0, corner.z * 0.4);
+                spotLight.castShadow = true;
+                spotLight.shadow.mapSize.width = 512;
+                spotLight.shadow.mapSize.height = 512;
+                scene.add(spotLight);
+                scene.add(spotLight.target);
+            });
+        }
+
+        // 使用 Canvas 繪製專屬於 6公尺 × 4公尺（長 Z-axis, 寬 X-axis）草綠色對稱發光場地貼圖
+        function createSoccerField() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 768; // 4:6 比例 (512x768 完美對應)
+            const ctx = canvas.getContext('2d');
+
+            // 1. 深草綠色賽博科技質感底色
+            ctx.fillStyle = '#022c22';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 2. 綠色條紋相間草坪
+            ctx.fillStyle = '#064e3b';
+            const stripCount = 12;
+            const stripHeight = canvas.height / stripCount;
+            for (let i = 0; i < stripCount; i += 2) {
+                ctx.fillRect(0, i * stripHeight, canvas.width, stripHeight);
+            }
+
+            // 3. 科技微弱格柵背景
+            ctx.strokeStyle = '#047857';
+            ctx.lineWidth = 1;
+            const gridSize = 16;
+            for (let x = 0; x < canvas.width; x += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+                ctx.stroke();
+            }
+            for (let y = 0; y < canvas.height; y += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+
+            // 4. 繪製邊線（Top half 藍色區，Bottom half 紅色區）
+            const margin = 20;
+            const w = canvas.width - margin * 2;
+            const h = canvas.height - margin * 2;
+            const centerY = canvas.height / 2;
+
+            // 繪製紅區邊線 (下半部，Z 軸為負值，Canvas 為 0 到 Y_center)
+            ctx.strokeStyle = '#ef4444';
+            ctx.shadowColor = '#f87171';
+            ctx.shadowBlur = 8;
+            ctx.lineWidth = 4;
+            ctx.strokeRect(margin, margin, w, centerY - margin);
+
+            // 繪製藍區邊線 (上半部，Z 軸為正值，Canvas 為 Y_center 到 Height)
+            ctx.strokeStyle = '#3b82f6';
+            ctx.shadowColor = '#60a5fa';
+            ctx.shadowBlur = 8;
+            ctx.strokeRect(margin, centerY, w, canvas.height - margin - centerY);
+
+            // 白色中圈與中線
+            ctx.strokeStyle = '#ffffff';
+            ctx.shadowColor = '#ffffff';
+            ctx.shadowBlur = 4;
+            ctx.lineWidth = 3;
+            // 中圈
+            ctx.beginPath();
+            ctx.arc(canvas.width / 2, centerY, 60, 0, Math.PI * 2);
+            ctx.stroke();
+            // 中線
+            ctx.beginPath();
+            ctx.moveTo(margin, centerY);
+            ctx.lineTo(canvas.width - margin, centerY);
+            ctx.stroke();
+
+            // 5. 繪製紅藍禁區框
+            // 紅色方框 (Bottom half)
+            ctx.strokeStyle = '#ef4444';
+            ctx.shadowColor = '#f87171';
+            // 寬約場地的一半，高代表深度
+            const boxW = w * 0.6;
+            const boxH = 150;
+            const boxX = canvas.width / 2 - boxW / 2;
+            ctx.strokeRect(boxX, margin, boxW, boxH);
+
+            // 藍色方框 (Top half)
+            ctx.strokeStyle = '#3b82f6';
+            ctx.shadowColor = '#60a5fa';
+            ctx.strokeRect(boxX, canvas.height - margin - boxH, boxW, boxH);
+
+            // 6. 標示紅色「球門線」與藍色「球門線」 (圓環精準對準於其上方)
+            // 紅色球門線 (在紅禁區深處靠近底線的地方，對應 Y = 96)
+            ctx.strokeStyle = '#ef4444';
+            ctx.lineWidth = 8;
+            ctx.beginPath();
+            ctx.moveTo(canvas.width / 2 - 50, margin + 40);
+            ctx.lineTo(canvas.width / 2 + 50, margin + 40);
+            ctx.stroke();
+
+            // 藍色球門線 (在藍禁區深處靠近底線，對應 Y = canvas.height - margin - 40)
+            ctx.strokeStyle = '#3b82f6';
+            ctx.beginPath();
+            ctx.moveTo(canvas.width / 2 - 50, canvas.height - margin - 40);
+            ctx.lineTo(canvas.width / 2 + 50, canvas.height - margin - 40);
+            ctx.stroke();
+
+            // 7. 文字標示「起始區 START」與「球門 GOAL」
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.shadowBlur = 0;
+            ctx.font = 'bold 13px "Share Tech Mono", monospace';
+            ctx.textAlign = 'center';
+
+            // 紅方起始區
+            ctx.fillText('起始區 START ZONE', canvas.width / 2, margin + boxH - 25);
+            ctx.fillStyle = '#f87171';
+            ctx.fillText('球門 GOAL', canvas.width / 2, margin + 25);
+
+            // 藍方起始區
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.fillText('起始區 START ZONE', canvas.width / 2, canvas.height - margin - boxH + 35);
+            ctx.fillStyle = '#60a5fa';
+            ctx.fillText('球門 GOAL', canvas.width / 2, canvas.height - margin - 25);
+
+            const texture = new THREE.CanvasTexture(canvas);
+            
+            // 建立 4m × 6m 的平面
+            const fieldGeo = new THREE.PlaneGeometry(4, 6);
+            const fieldMat = new THREE.MeshStandardMaterial({
+                map: texture,
+                roughness: 0.5,
+                metalness: 0.1,
+                side: THREE.DoubleSide
+            });
+
+            const field = new THREE.Mesh(fieldGeo, fieldMat);
+            field.rotation.x = -Math.PI / 2;
+            field.receiveShadow = true;
+            scene.add(field);
+
+            // 外圍深邃大底板
+            const outerGeo = new THREE.PlaneGeometry(60, 60);
+            const outerMat = new THREE.MeshStandardMaterial({
+                color: 0x010204,
+                roughness: 0.95,
+                metalness: 0.5
+            });
+            const outer = new THREE.Mesh(outerGeo, outerMat);
+            outer.rotation.x = -Math.PI / 2;
+            outer.position.y = -0.02;
+            outer.receiveShadow = true;
+            scene.add(outer);
+        }
+
+        // 繪製亮綠色防護格網貼圖 (根據 3fc47b8b-0d54-496f-abc0-0f49a0d9871a.jpg 亮綠色格柵網)
+        function createNetTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 128;
+            canvas.height = 128;
+            const ctx = canvas.getContext('2d');
+            
+            // 網底透明
+            ctx.clearRect(0, 0, 128, 128);
+
+            // 格網線條 - 使用照片中的明亮綠色 (Emerald-Green)
+            ctx.strokeStyle = '#10b981'; 
+            ctx.lineWidth = 4;
+            ctx.strokeRect(0, 0, 128, 128);
+
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.wrapS = THREE.RepeatWrapping;
+            texture.wrapT = THREE.RepeatWrapping;
+            return texture;
+        }
+
+        // 建造完整充氣柱框架與格網 (適配 6m x 4m)
+        function buildInflatableCage() {
+            const cageGroup = new THREE.Group();
+
+            // 1. 保護網 (Netting) 設置
+            const netTex = createNetTexture();
+            const netMat = new THREE.MeshBasicMaterial({
+                map: netTex,
+                transparent: true,
+                opacity: 0.38,
+                side: THREE.DoubleSide,
+                depthWrite: false // 防透明渲染穿透
+            });
+
+            const cageW = 4.0;
+            const cageL = 6.0;
+            const cageH = 3.0;
+
+            // 兩側縱向牆面 (左/右)
+            const sideNetGeo = new THREE.PlaneGeometry(cageL, cageH);
+            const leftNet = new THREE.Mesh(sideNetGeo, netMat);
+            leftNet.position.set(-cageW / 2, cageH / 2, 0);
+            leftNet.rotation.y = Math.PI / 2;
+            netTex.clone(); // 獨立貼圖重複設置
+            leftNet.material = leftNet.material.clone();
+            leftNet.material.map.repeat.set(12, 6);
+            cageGroup.add(leftNet);
+
+            const rightNet = leftNet.clone();
+            rightNet.position.x = cageW / 2;
+            cageGroup.add(rightNet);
+
+            // 前後橫向牆面 (前/後)
+            const frontNetGeo = new THREE.PlaneGeometry(cageW, cageH);
+            const frontNet = new THREE.Mesh(frontNetGeo, netMat);
+            frontNet.position.set(0, cageH / 2, -cageL / 2);
+            frontNet.material = frontNet.material.clone();
+            frontNet.material.map.repeat.set(8, 6);
+            cageGroup.add(frontNet);
+
+            const backNet = frontNet.clone();
+            backNet.position.z = cageL / 2;
+            cageGroup.add(backNet);
+
+            // 頂棚 (Ceiling)
+            const roofNetGeo = new THREE.PlaneGeometry(cageW, cageL);
+            const roofNet = new THREE.Mesh(roofNetGeo, netMat);
+            roofNet.position.set(0, cageH, 0);
+            roofNet.rotation.x = Math.PI / 2;
+            roofNet.material = roofNet.material.clone();
+            roofNet.material.map.repeat.set(8, 12);
+            cageGroup.add(roofNet);
+
+            // 2. 充氣圓柱骨架 (Inflatable Pillars)
+            // 圓角充氣圓管材質
+            const tubeMatWhite = new THREE.MeshStandardMaterial({
+                color: 0xe2e8f0,
+                roughness: 0.15,
+                metalness: 0.1,
+                bumpScale: 0.05
+            });
+            const tubeMatRed = new THREE.MeshStandardMaterial({
+                color: 0xef4444, // 紅區骨架
+                roughness: 0.15,
+                metalness: 0.1
+            });
+            const tubeMatBlue = new THREE.MeshStandardMaterial({
+                color: 0x3b82f6, // 藍區骨架
+                roughness: 0.15,
+                metalness: 0.1
+            });
+
+            const pillarRad = 0.15; // 圓管粗度 30cm
+
+            // 4 根垂直立柱 (4 Corners)
+            const vertGeo = new THREE.CylinderGeometry(pillarRad, pillarRad, cageH, 16);
+            
+            // 紅方 (Z = -3) 的左前/右前立柱
+            const p1 = new THREE.Mesh(vertGeo, tubeMatRed);
+            p1.position.set(-cageW / 2, cageH / 2, -cageL / 2);
+            p1.castShadow = true;
+            cageGroup.add(p1);
+
+            const p2 = p1.clone();
+            p2.position.x = cageW / 2;
+            cageGroup.add(p2);
+
+            // 藍方 (Z = +3) 的左後/右後立柱
+            const p3 = new THREE.Mesh(vertGeo, tubeMatBlue);
+            p3.position.set(-cageW / 2, cageH / 2, cageL / 2);
+            p3.castShadow = true;
+            cageGroup.add(p3);
+
+            const p4 = p3.clone();
+            p4.position.x = cageW / 2;
+            cageGroup.add(p4);
+
+            // 4 根底部橫臥底管 (接縫地板)
+            const horizLongGeo = new THREE.CylinderGeometry(pillarRad, pillarRad, cageL, 16);
+            const horizShortGeo = new THREE.CylinderGeometry(pillarRad, pillarRad, cageW, 16);
+
+            // 縱向底管
+            const bottomLongL = new THREE.Mesh(horizLongGeo, tubeMatWhite);
+            bottomLongL.rotation.x = Math.PI / 2;
+            bottomLongL.position.set(-cageW / 2, pillarRad, 0);
+            bottomLongL.castShadow = true;
+            cageGroup.add(bottomLongL);
+
+            const bottomLongR = bottomLongL.clone();
+            bottomLongR.position.x = cageW / 2;
+            cageGroup.add(bottomLongR);
+
+            // 橫向底管 (紅/藍底線)
+            const bottomShortF = new THREE.Mesh(horizShortGeo, tubeMatRed);
+            bottomShortF.rotation.z = Math.PI / 2;
+            bottomShortF.position.set(0, pillarRad, -cageL / 2);
+            bottomShortF.castShadow = true;
+            cageGroup.add(bottomShortF);
+
+            const bottomShortB = new THREE.Mesh(horizShortGeo, tubeMatBlue);
+            bottomShortB.rotation.z = Math.PI / 2;
+            bottomShortB.position.set(0, pillarRad, cageL / 2);
+            bottomShortB.castShadow = true;
+            cageGroup.add(bottomShortB);
+
+            // 4 根頂部拉接橫管
+            const topLongL = bottomLongL.clone();
+            topLongL.position.y = cageH - pillarRad / 2;
+            cageGroup.add(topLongL);
+
+            const topLongR = bottomLongR.clone();
+            topLongR.position.y = cageH - pillarRad / 2;
+            cageGroup.add(topLongR);
+
+            const topShortF = bottomShortF.clone();
+            topShortF.position.y = cageH - pillarRad / 2;
+            cageGroup.add(topShortF);
+
+            const topShortB = bottomShortB.clone();
+            topShortB.position.y = cageH - pillarRad / 2;
+            cageGroup.add(topShortB);
+
+            scene.add(cageGroup);
+        }
+
+        // 建造精密縮小版高科技無人機 (體積減小，動作在小球場更精緻靈活)
+        function buildDrone() {
+            const droneGroup = new THREE.Group();
+
+            // 1. 微型中控主機
+            const bodyGeo = new THREE.BoxGeometry(0.24, 0.08, 0.24);
+            const bodyMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.9, roughness: 0.1 });
+            const body = new THREE.Mesh(bodyGeo, bodyMat);
+            body.castShadow = true;
+            droneGroup.add(body);
+
+            // 2. 亮藍色半透明科技艙蓋
+            const canopyGeo = new THREE.SphereGeometry(0.09, 16, 16);
+            canopyGeo.scale(1, 0.5, 1.2);
+            const canopyMat = new THREE.MeshStandardMaterial({ color: 0x10b981, emissive: 0x047857, roughness: 0.05, metalness: 0.9 });
+            const canopy = new THREE.Mesh(canopyGeo, canopyMat);
+            canopy.position.y = 0.06;
+            canopy.position.z = 0.015;
+            canopy.castShadow = true;
+            droneGroup.add(canopy);
+
+            // 3. 前向航行攝像頭鏡頭 (綠光)
+            const lensGeo = new THREE.SphereGeometry(0.035, 12, 12);
+            const lensMat = new THREE.MeshBasicMaterial({ color: 0x10b981 });
+            const lens = new THREE.Mesh(lensGeo, lensMat);
+            lens.position.set(0, 0, 0.135);
+            droneGroup.add(lens);
+
+            // 4. 四個微型對角機臂
+            const armAngle = Math.PI / 4;
+            const armDist = 0.28;
+            const armPositions = [
+                { x: Math.sin(armAngle) * armDist, z: Math.cos(armAngle) * armDist, color: 0x10b981 }, // 右前 (綠)
+                { x: -Math.sin(armAngle) * armDist, z: Math.cos(armAngle) * armDist, color: 0x10b981 }, // 左前 (綠)
+                { x: Math.sin(armAngle) * armDist, z: -Math.cos(armAngle) * armDist, color: 0xef4444 }, // 右後 (紅)
+                { x: -Math.sin(armAngle) * armDist, z: -Math.cos(armAngle) * armDist, color: 0xef4444 }  // 左後 (紅)
+            ];
+
+            armPositions.forEach((pos, idx) => {
+                const armGeo = new THREE.CylinderGeometry(0.018, 0.018, armDist, 8);
+                const armMat = new THREE.MeshStandardMaterial({ color: 0x334155, metalness: 0.95, roughness: 0.1 });
+                const arm = new THREE.Mesh(armGeo, armMat);
+                arm.rotation.z = Math.PI / 2;
+                arm.rotation.y = (idx === 0 || idx === 3) ? -armAngle : armAngle;
+                arm.position.set(pos.x / 2, 0, pos.z / 2);
+                arm.castShadow = true;
+                droneGroup.add(arm);
+
+                // 電機馬達
+                const motorGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.08, 8);
+                const motorMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.2 });
+                const motor = new THREE.Mesh(motorGeo, motorMat);
+                motor.position.set(pos.x, 0.02, pos.z);
+                motor.castShadow = true;
+                droneGroup.add(motor);
+
+                // 旋翼組件
+                const rotorGroup = new THREE.Group();
+                rotorGroup.position.set(pos.x, 0.05, pos.z);
+                
+                const shaftGeo = new THREE.CylinderGeometry(0.006, 0.006, 0.03, 8);
+                const shaftMat = new THREE.MeshStandardMaterial({ color: 0x000000 });
+                const shaft = new THREE.Mesh(shaftGeo, shaftMat);
+                rotorGroup.add(shaft);
+
+                const bladeGeo = new THREE.BoxGeometry(0.018, 0.003, 0.22);
+                const bladeMat = new THREE.MeshStandardMaterial({ color: 0xf1f5f9, transparent: true, opacity: 0.85 });
+                const blade = new THREE.Mesh(bladeGeo, bladeMat);
+                blade.castShadow = true;
+                rotorGroup.add(blade);
+
+                droneGroup.add(rotorGroup);
+                drone.rotors.push(rotorGroup);
+
+                // 微型閃爍LED
+                const ledGeo = new THREE.SphereGeometry(0.02, 8, 8);
+                const ledMat = new THREE.MeshBasicMaterial({ color: pos.color });
+                const led = new THREE.Mesh(ledGeo, ledMat);
+                led.position.set(pos.x, -0.02, pos.z);
+                droneGroup.add(led);
+                drone.lights.push({ mesh: led, originalColor: pos.color });
+            });
+
+            // 底部雷射測距定高光束
+            const bottomLight = new THREE.SpotLight(0x00ffcc, 5.0, 4, Math.PI / 6, 0.4, 0.9);
+            bottomLight.position.set(0, -0.04, 0);
+            bottomLight.castShadow = true;
+            const lightTarget = new THREE.Object3D();
+            lightTarget.position.set(0, -3, 0);
+            bottomLight.add(lightTarget);
+            bottomLight.target = lightTarget;
+            droneGroup.add(bottomLight);
+
+            const bottomGlowGeo = new THREE.SphereGeometry(0.03, 8, 8);
+            const bottomGlowMat = new THREE.MeshBasicMaterial({ color: 0x00ffcc });
+            const bottomGlow = new THREE.Mesh(bottomGlowGeo, bottomGlowMat);
+            bottomGlow.position.set(0, -0.04, 0);
+            droneGroup.add(bottomGlow);
+
+            droneGroup.position.copy(drone.position);
+            scene.add(droneGroup);
+            drone.mesh = droneGroup;
+        }
+
+        // 建造 2 個發光光環 (精準垂直懸浮在左右底線白色球門正上方)
+        function setupTargetRings() {
+            ringCourse.forEach((ringData) => {
+                // 發光 Torus
+                const ringGeo = new THREE.TorusGeometry(ringData.size / 2, 0.035, 12, 36);
+                const ringMat = new THREE.MeshStandardMaterial({
+                    color: ringData.color,
+                    emissive: ringData.color,
+                    emissiveIntensity: 2.5,
+                    roughness: 0.1
+                });
+                const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+                
+                ringMesh.position.copy(ringData.pos);
+                // 圓孔朝向 Z 軸 (因為無人機是在 Z 軸上朝兩端球門穿飛)
+                // TorusGeometry 預設面朝 Z 軸，不需額外旋轉，完美面向前後方向！
+
+                scene.add(ringMesh);
+                ringData.mesh = ringMesh;
+
+                // 科技感懸索 - 直連頂部頂棚骨架 (Y = 3.0)
+                const lineGeo = new THREE.CylinderGeometry(0.005, 0.005, 1.8, 6);
+                const lineMat = new THREE.MeshBasicMaterial({ color: 0x1e293b });
+                
+                const leftLine = new THREE.Mesh(lineGeo, lineMat);
+                leftLine.position.set(ringData.pos.x - 0.45, 2.1, ringData.pos.z);
+                scene.add(leftLine);
+
+                const rightLine = new THREE.Mesh(lineGeo, lineMat);
+                rightLine.position.set(ringData.pos.x + 0.45, 2.1, ringData.pos.z);
+                scene.add(rightLine);
+            });
+        }
+
+        // 產生爆破粒子效果
+        function createExplosion(position, colorHex) {
+            const particleCount = 30;
+            const geo = new THREE.SphereGeometry(0.03, 6, 6);
+            
+            for (let i = 0; i < particleCount; i++) {
+                const mat = new THREE.MeshBasicMaterial({
+                    color: colorHex,
+                    transparent: true,
+                    opacity: 1.0
+                });
+                const mesh = new THREE.Mesh(geo, mat);
+                mesh.position.copy(position);
+                
+                const velocity = new THREE.Vector3(
+                    (Math.random() - 0.5) * 6,
+                    (Math.random() - 0.5) * 6,
+                    (Math.random() - 0.5) * 6
+                );
+                
+                scene.add(mesh);
+                particles.push({
+                    mesh: mesh,
+                    velocity: velocity,
+                    life: 1.0,
+                    decay: 0.02 + Math.random() * 0.03
+                });
+            }
+        }
+
+        // 產生尾跡粒子
+        function spawnTrailParticle(pos) {
+            const geo = new THREE.BoxGeometry(0.015, 0.015, 0.015);
+            const mat = new THREE.MeshBasicMaterial({
+                color: 0x10b981,
+                transparent: true,
+                opacity: 0.8
+            });
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.position.copy(pos).add(new THREE.Vector3((Math.random()-0.5)*0.1, -0.02, (Math.random()-0.5)*0.1));
+            
+            scene.add(mesh);
+            particles.push({
+                mesh: mesh,
+                velocity: new THREE.Vector3(0, -0.8 - Math.random() * 0.8, 0),
+                life: 0.5,
+                decay: 0.05
+            });
+        }
+
+        function updateParticles(delta) {
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.mesh.position.addScaledVector(p.velocity, delta);
+                p.life -= p.decay;
+                p.mesh.material.opacity = p.life;
+                p.mesh.scale.setScalar(p.life);
+
+                if (p.life <= 0) {
+                    scene.remove(p.mesh);
+                    p.mesh.geometry.dispose();
+                    p.mesh.material.dispose();
+                    particles.splice(i, 1);
+                }
+            }
+        }
+
+        // 鍵盤控制監聽
+        function setupKeyboard() {
+            window.addEventListener('keydown', (e) => {
+                const key = e.key.toLowerCase();
+                if (key in keys) {
+                    keys[key] = true;
+                    if (key === ' ' || key === 'shift' || key.startsWith('arrow')) e.preventDefault();
+                }
+                
+                // 單擊 Space 精準爬升 0.5 米
+                if (key === ' ') {
+                    e.preventDefault();
+                    if (drone.position.y < 0.15) {
+                        drone.targetAltitude = 0.5;
+                    } else {
+                        drone.targetAltitude = Math.min(2.6, drone.targetAltitude + 0.5); // 格網頂部限制於 2.6m
+                    }
+                    drone.autoFlightState = 'none';
+                    showSystemNotification(`設定定高：${drone.targetAltitude.toFixed(1)} 米`);
+                }
+
+                // 單擊 Shift 精準下降 0.5 米
+                if (key === 'shift') {
+                    e.preventDefault();
+                    drone.targetAltitude = Math.max(0.10, drone.targetAltitude - 0.5);
+                    drone.autoFlightState = 'none';
+                    showSystemNotification(`設定定高：${drone.targetAltitude.toFixed(1)} 米`);
+                }
+                
+                if (key === 'c') cycleCameraMode();
+                if (key === 't') triggerTakeoff();
+                if (key === 'l') triggerLanding();
+            });
+
+            window.addEventListener('keyup', (e) => {
+                const key = e.key.toLowerCase();
+                if (key in keys) {
+                    keys[key] = false;
+                }
+            });
+        }
+
+        // 一鍵起飛：自動控制 PD 至 1.2 米並懸停 (球門高度)
+        function triggerTakeoff() {
+            if (drone.position.y < 0.15) {
+                drone.targetAltitude = 1.2;
+                drone.autoFlightState = 'takingoff';
+                showSystemNotification("自動駕駛：起飛中... 攀升至 1.2m 等高球門區");
+            } else {
+                showSystemNotification("無法起飛：已在空中懸停");
+            }
+        }
+
+        // 一鍵降落：自動降落至 0.1 米中心並熄火
+        function triggerLanding() {
+            if (drone.position.y > 0.15) {
+                drone.targetAltitude = 0.1;
+                drone.autoFlightState = 'landing';
+                showSystemNotification("自動駕駛：降落中... 緩緩下降中");
+            } else {
+                showSystemNotification("無法降落：已在地面");
+            }
+        }
+
+        // 行動端觸控搖桿
+        function setupTouchControls() {
+            const joyLeft = document.getElementById('joyLeft');
+            const knobLeft = document.getElementById('knobLeft');
+            const joyRight = document.getElementById('joyRight');
+            const knobRight = document.getElementById('knobRight');
+
+            function handleJoystick(e, zone, knob, callback) {
+                e.preventDefault();
+                const touch = e.touches[0];
+                const rect = zone.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                const dx = touch.clientX - centerX;
+                const dy = touch.clientY - centerY;
+                const dist = Math.min(rect.width / 2, Math.sqrt(dx * dx + dy * dy));
+                const angle = Math.atan2(dy, dx);
+                
+                const percentX = (Math.cos(angle) * dist) / (rect.width / 2);
+                const percentY = (Math.sin(angle) * dist) / (rect.height / 2);
+
+                knob.style.transform = `translate(${percentX * 30}px, ${percentY * 30}px)`;
+                callback(percentX, percentY);
+            }
+
+            function resetJoystick(knob, callback) {
+                knob.style.transform = `translate(0px, 0px)`;
+                callback(0, 0);
+            }
+
+            joyLeft.addEventListener('touchstart', (e) => handleJoystick(e, joyLeft, knobLeft, updateLeftJoy), { passive: false });
+            joyLeft.addEventListener('touchmove', (e) => handleJoystick(e, joyLeft, knobLeft, updateLeftJoy), { passive: false });
+            joyLeft.addEventListener('touchend', () => resetJoystick(knobLeft, () => {
+                drone.input.yaw = 0;
+                drone.touchAltitudeInput = 0;
+            }));
+
+            joyRight.addEventListener('touchstart', (e) => handleJoystick(e, joyRight, knobRight, updateRightJoy), { passive: false });
+            joyRight.addEventListener('touchmove', (e) => handleJoystick(e, joyRight, knobRight, updateRightJoy), { passive: false });
+            joyRight.addEventListener('touchend', () => resetJoystick(knobRight, () => {
+                drone.input.pitch = 0;
+                drone.input.roll = 0;
+            }));
+
+            function updateLeftJoy(x, y) {
+                drone.touchAltitudeInput = -y;
+                drone.input.yaw = x;
+            }
+
+            function updateRightJoy(x, y) {
+                if (drone.autoFlightState !== 'none' && (Math.abs(x) > 0.1 || Math.abs(y) > 0.1)) {
+                    drone.autoFlightState = 'none';
+                    showSystemNotification("手動接管姿態控制");
+                }
+                drone.input.pitch = -y; // 往前推為前進
+                drone.input.roll = x;
+            }
+        }
+
+        // 核心 PD 飛控物理計算
+        function updateDronePhysics(delta) {
+            if (!drone.mesh) return;
+
+            // 鍵盤或方向鍵偵測 -> 退出自動駕駛
+            if (keys.w || keys.s || keys.a || keys.d || 
+                keys.arrowup || keys.arrowdown || keys.arrowleft || keys.arrowright ||
+                keys.q || keys.e || keys[' '] || keys.shift) { // 增加按鍵檢測範圍
+                if (drone.autoFlightState !== 'none') {
+                    drone.autoFlightState = 'none';
+                    showSystemNotification("手動接管姿態控制");
+                }
+            }
+
+            // 觸控定高目標
+            if (Math.abs(drone.touchAltitudeInput) > 0.05) {
+                drone.targetAltitude = THREE.MathUtils.clamp(
+                    drone.targetAltitude + drone.touchAltitudeInput * delta * 2.5,
+                    0.10,
+                    2.6
+                );
+                if (drone.autoFlightState !== 'none') drone.autoFlightState = 'none';
+            }
+
+            // 自動起降過渡
+            if (drone.autoFlightState === 'takingoff') {
+                const altError = drone.targetAltitude - drone.position.y;
+                if (Math.abs(altError) < 0.1 && Math.abs(drone.velocity.y) < 0.1) {
+                    drone.autoFlightState = 'none';
+                    showSystemNotification("定高起飛完成");
+                }
+            } else if (drone.autoFlightState === 'landing') {
+                if (drone.position.y <= 0.11) {
+                    drone.autoFlightState = 'none';
+                    showSystemNotification("自動降落成功，馬達關機");
+                }
+            }
+
+            // 鍵盤或方向鍵前進後退左右映射
+            if (window.innerWidth >= 768) {
+                // W與↑：往前傾斜前進，S與↓：往後傾斜後退 (方向完美契合您的需求)
+                if (keys.w || keys.arrowup) drone.input.pitch = 1.0;
+                else if (keys.s || keys.arrowdown) drone.input.pitch = -1.0;
+                else drone.input.pitch = 0;
+
+                // A與←：往左滾轉，D與→：往右滾轉
+                if (keys.d || keys.arrowright) drone.input.roll = 1.0;
+                else if (keys.a || keys.arrowleft) drone.input.roll = -1.0;
+                else drone.input.roll = 0;
+
+                // Q/E：旋轉
+                if (keys.e) drone.input.yaw = 1.0;
+                else if (keys.q) drone.input.yaw = -1.0;
+                else drone.input.yaw = 0;
+            }
+
+            // 平滑計算目標俯仰及側滾傾角
+            const targetPitchAngle = drone.input.pitch * drone.constants.maxTilt;
+            const targetRollAngle = drone.input.roll * drone.constants.maxTilt;
+
+            drone.currentPitch = THREE.MathUtils.lerp(drone.currentPitch, targetPitchAngle, delta * drone.constants.pitchRollSpeed * 12);
+            drone.currentRoll = THREE.MathUtils.lerp(drone.currentRoll, targetRollAngle, delta * drone.constants.pitchRollSpeed * 12);
+
+            // 偏航旋轉 (Yaw)
+            drone.rotation.y -= drone.input.yaw * drone.constants.yawSpeed * delta;
+
+            // PD高度維持演算法 (精細適配 0.4kg 機型)
+            const altError = drone.targetAltitude - drone.position.y;
+            const climbRate = drone.velocity.y;
+
+            const kpAlt = 15.0; 
+            const kdAlt = 8.0; 
+
+            // --- 修正起飛靜止問題 ---
+            // 增加一個微小的 baseThrust 補償，確保在起飛初期即有足夠動力克服初始慣性
+            const hoverThrust = drone.constants.gravity * drone.constants.mass;
+            let targetVerticalForce = hoverThrust + (altError * kpAlt) - (climbRate * kdAlt);
+
+            // 如果正在起飛且目前推力過低，給予一個最小起飛閾值 (0.45 比例)
+            if (drone.autoFlightState === 'takingoff' && targetVerticalForce < hoverThrust * 0.9) {
+                targetVerticalForce = hoverThrust * 1.15; 
+            }
+
+            let idealThrottle = targetVerticalForce / drone.constants.maxThrottleThrust;
+            drone.input.throttle = THREE.MathUtils.clamp(idealThrottle, 0.0, 1.0);
+
+            // 地面完全關機
+            if (drone.targetAltitude <= 0.15 && drone.position.y <= 0.11) {
+                drone.input.throttle = 0.0;
+            }
+
+            // 計算旋翼向量推力
+            const thrustAmount = drone.input.throttle * drone.constants.maxThrottleThrust;
+            const localUp = new THREE.Vector3(0, 1, 0);
+            localUp.applyEuler(new THREE.Euler(drone.currentPitch, 0, drone.currentRoll, 'YXZ'));
+            localUp.applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y);
+            
+            const forceThrust = localUp.multiplyScalar(thrustAmount);
+            const forceGravity = new THREE.Vector3(0, -drone.constants.gravity * drone.constants.mass, 0);
+            const forceDrag = drone.velocity.clone().multiplyScalar(-drone.constants.linearDrag);
+
+            const totalForce = new THREE.Vector3().add(forceThrust).add(forceGravity).add(forceDrag);
+            const acceleration = totalForce.divideScalar(drone.constants.mass);
+
+            drone.velocity.addScaledVector(acceleration, delta);
+            drone.position.addScaledVector(drone.velocity, delta);
+
+            // [修正] 將計算出的物理位置與旋轉同步至 Three.js Mesh
+            drone.mesh.position.copy(drone.position);
+            drone.mesh.rotation.set(drone.currentPitch, drone.rotation.y, drone.currentRoll, 'YXZ');
+
+            // 地板與 6m x 4m 網籠安全邊界彈力碰撞偵測 (X: 4m, Z: 6m, Y: 3m)
+            const groundLimit = 0.10;
+            if (drone.position.y < groundLimit) {
+                drone.position.y = groundLimit;
+                drone.velocity.y = 0;
+                drone.velocity.multiplyScalar(0.5); // 著地減速
+            }
+
+            // 安全網與充氣橫樑頂部物理阻隔
+            const ceilingLimit = 2.75;
+            if (drone.position.y > ceilingLimit) {
+                drone.position.y = ceilingLimit;
+                drone.velocity.y = -0.1;
+            }
+        } // <-- ADDED THIS CLOSING BRACE
+
+        // 圓環外框碰撞 (反彈物理) 與圓環中心穿越累加判定
+        function checkRingCollisions() {
+            if (!drone.mesh) return;
+
+            const R = 0.45; // 光環外徑半徑 (0.9m / 2)
+            const r = 0.035; // 圓環管粗半徑
+            const droneRadius = 0.20; // 無人機有效碰撞半徑
+            const tubeCollisionThreshold = r + droneRadius; // ~0.235m
+
+            ringCourse.forEach((ring) => {
+                // 1. 偵測與光環圓柱框的實體碰撞 (反彈)
+                const px = drone.position.x - ring.pos.x;
+                const py = drone.position.y - ring.pos.y;
+                const pz = drone.position.z - ring.pos.z;
+
+                // 投影至 XY 平面 (光環垂直於 Z 軸)
+                const d_xy = Math.sqrt(px * px + py * py);
+                if (d_xy > 0.01) {
+                    // 找到光環管中心圓圈上距離無人機最近的一點
+                    const qx = R * (px / d_xy);
+                    const qy = R * (py / d_xy);
+                    const qz = 0; // 光環自身 Z 平面
+
+                    // 此最近點與無人機的 3D 向量與距離
+                    const vx = px - qx;
+                    const vy = py - qy;
+                    const vz = pz - qz;
+                    const tubeDist = Math.sqrt(vx * vx + vy * vy + vz * vz);
+
+                    // 如果距離小於碰撞半徑，表示撞擊了光環的實體圓管框
+                    if (tubeDist < tubeCollisionThreshold) {
+                        // 計算法線 (指向無人機)
+                        const nx = vx / tubeDist;
+                        const ny = vy / tubeDist;
+                        const nz = vz / tubeDist;
+
+                        // 1. 位置排開防止穿透
+                        const pushDist = tubeCollisionThreshold - tubeDist;
+                        drone.position.x += nx * pushDist;
+                        drone.position.y += ny * pushDist;
+                        drone.position.z += nz * pushDist;
+
+                        // 2. 速度反彈
+                        const dot = drone.velocity.x * nx + drone.velocity.y * ny + drone.velocity.z * nz;
+                        if (dot < 0) { // 僅在接近時反彈
+                            const restitution = 0.7; // 彈力係數
+                            drone.velocity.x -= (1 + restitution) * dot * nx;
+                            drone.velocity.y -= (1 + restitution) * dot * ny;
+                            drone.velocity.z -= (1 + restitution) * dot * nz;
+                        }
+
+                        // 3. 觸發碰撞視覺與通知
+                        createExplosion(drone.position.clone(), 0xfacc15); // 黃色撞擊火花
+                        showSystemNotification("撞擊光環邊框！安全反彈");
+                        return; // 撞擊邊框時不進行穿過判定
+                    }
+                }
+
+                // 2. 偵測穿越光環中心
+                const distToCenter = drone.position.distanceTo(ring.pos);
+                const innerOpeningRadius = R - r - 0.05; // 留下安全裕度 (~0.36m)
+                
+                if (distToCenter < innerOpeningRadius) {
+                    const currentTime = clock.getElapsedTime();
+                    if (!ring.lastPassTime || (currentTime - ring.lastPassTime > 1.5)) {
+                        ring.lastPassTime = currentTime;
+                        score++;
+                        
+                        playChimeSound();
+                        createExplosion(ring.pos, 0x10b981); // 穿越綠色粒子效果
+                        updateHUD();
+                        showSystemNotification(`成功穿越！累計次數：${score}`);
+
+                        // 讓該光環短暫閃爍亮綠色
+                        const origColor = ring.color;
+                        ring.mesh.material.color.setHex(0x10b981);
+                        ring.mesh.material.emissive.setHex(0x10b981);
+                        setTimeout(() => {
+                            ring.mesh.material.color.setHex(origColor);
+                            ring.mesh.material.emissive.setHex(origColor);
+                        }, 800);
+                    }
+                }
+            });
+        }
+
+        // 循環視角切換
+        function cycleCameraMode() {
+            cameraMode = (cameraMode + 1) % CAMERA_MODES.length;
+            
+            if (cameraMode === 2) {
+                orbitControls.enabled = true;
+                orbitControls.target.copy(drone.position);
+            } else {
+                orbitControls.enabled = false;
+            }
+
+            document.getElementById('camText').innerText = CAMERA_MODES[cameraMode];
+            showSystemNotification(`視角切換：${CAMERA_MODES[cameraMode]}`);
+        }
+
+        // 攝影機動態平滑追蹤
+        function updateCamera(delta) {
+            if (!drone.mesh) return;
+
+            if (cameraMode === 0) {
+                // 第三人稱跟隨 (Chase View) - 配合 6m 緊湊場景拉近距離
+                drone.mesh.visible = true;
+                const backOffset = 1.6;
+                const upOffset = 0.55;
+
+                const relativeCameraOffset = new THREE.Vector3(0, upOffset, -backOffset);
+                relativeCameraOffset.applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y);
+                
+                const targetCameraPosition = drone.position.clone().add(relativeCameraOffset);
+                camera.position.lerp(targetCameraPosition, 0.12);
+
+                const lookTarget = drone.position.clone().add(new THREE.Vector3(0, 0.1, 0));
+                camera.lookAt(lookTarget);
+
+            } else if (cameraMode === 1) {
+                // 第一人稱駕駛艙 (Cockpit View) - 隱藏機體防止擋住視線
+                drone.mesh.visible = false;
+                const relativeCameraOffset = new THREE.Vector3(0, 0.04, 0.1);
+                relativeCameraOffset.applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y);
+                
+                const targetCameraPosition = drone.position.clone().add(relativeCameraOffset);
+                camera.position.copy(targetCameraPosition);
+
+                const forwardDir = new THREE.Vector3(0, 0, 1);
+                forwardDir.applyEuler(new THREE.Euler(drone.currentPitch, drone.rotation.y, 0, 'YXZ'));
+                
+                const lookTarget = camera.position.clone().add(forwardDir);
+                camera.lookAt(lookTarget);
+
+            } else if (cameraMode === 2) {
+                // 自由觀測視角
+                drone.mesh.visible = true;
+                orbitControls.target.lerp(drone.position, 0.1);
+                orbitControls.update();
+            }
+        }
+
+        // 更新 UI 各項傳感面板數值
+        function updateHUD() {
+            document.getElementById('scoreText').innerText = score;
+
+            const speedMagnitude = drone.velocity.length();
+            document.getElementById('telemetrySpeed').innerText = speedMagnitude.toFixed(1);
+            const speedBarPercent = Math.min((speedMagnitude / 10) * 100, 100); // 最大量程改為 10 m/s
+            document.getElementById('speedBar').style.width = `${speedBarPercent}%`;
+
+            const currentAlt = drone.position.y;
+            document.getElementById('telemetryAlt').innerText = currentAlt.toFixed(2);
+            const altBarPercent = Math.min((currentAlt / 3.0) * 100, 100);
+            document.getElementById('altBar').style.width = `${altBarPercent}%`;
+
+            const throttlePercent = Math.round(drone.input.throttle * 100);
+            document.getElementById('telemetryThrottle').innerText = `${throttlePercent}%`;
+            document.getElementById('throttleBar').style.width = `${throttlePercent}%`;
+
+            const fModeText = document.getElementById('flightMode');
+            if (drone.autoFlightState === 'takingoff') {
+                fModeText.innerText = "AUTO-TAKEOFF ACTIVE";
+                fModeText.className = "text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full tech-font animate-pulse";
+            } else if (drone.autoFlightState === 'landing') {
+                fModeText.innerText = "AUTO-LANDING ACTIVE";
+                fModeText.className = "text-[10px] bg-rose-500/20 text-rose-300 border border-rose-500/40 px-2 py-0.5 rounded-full tech-font animate-pulse";
+            } else {
+                fModeText.innerText = "BARO-ALT HOLD ON";
+                fModeText.className = "text-[10px] bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full tech-font";
+            }
+
+            let degrees = Math.round((drone.rotation.y * (180 / Math.PI)) % 360);
+            if (degrees < 0) degrees += 360;
+            document.getElementById('compassVal').innerText = `${String(degrees).padStart(3, '0')}°`;
+            
+            let dirStr = 'N';
+            if (degrees >= 337.5 || degrees < 22.5) dirStr = 'N';
+            else if (degrees >= 22.5 && degrees < 67.5) dirStr = 'NE';
+            else if (degrees >= 67.5 && degrees < 112.5) dirStr = 'E';
+            else if (degrees >= 112.5 && degrees < 157.5) dirStr = 'SE';
+            else if (degrees >= 157.5 && degrees < 202.5) dirStr = 'S';
+            else if (degrees >= 202.5 && degrees < 247.5) dirStr = 'SW';
+            else if (degrees >= 247.5 && degrees < 292.5) dirStr = 'W';
+            else if (degrees >= 292.5 && degrees < 337.5) dirStr = 'NW';
+            document.getElementById('compassDir').innerText = `(${dirStr})`;
+
+            const pitchDeg = Math.round(drone.currentPitch * (180 / Math.PI));
+            const rollDeg = Math.round(drone.currentRoll * (180 / Math.PI));
+            document.getElementById('pitchAngle').innerText = `${pitchDeg}°`;
+            document.getElementById('rollAngle').innerText = `${rollDeg}°`;
+
+            const horizon = document.getElementById('horizonLine');
+            horizon.style.transform = `rotate(${-rollDeg}deg) translateY(${pitchDeg * 1.5}px)`;
+        }
+
+        // 系統消息提示
+        function showSystemNotification(text) {
+            const oldNotify = document.getElementById('sysNotification');
+            if (oldNotify) oldNotify.remove();
+
+            const container = document.body;
+            const notification = document.createElement('div');
+            notification.id = 'sysNotification';
+            notification.className = 'absolute top-20 left-1/2 -translate-x-1/2 glassmorphism text-emerald-300 font-bold px-4 py-2 rounded-lg text-xs tracking-wider border border-emerald-500/30 shadow-md z-30 transition-all duration-300 transform -translate-y-2 opacity-0 pointer-events-none uppercase tech-font';
+            notification.innerText = text;
+            container.appendChild(notification);
+
+            requestAnimationFrame(() => {
+                notification.classList.remove('-translate-y-2', 'opacity-0');
+            });
+
+            setTimeout(() => {
+                notification.classList.add('-translate-y-2', 'opacity-0');
+                setTimeout(() => notification.remove(), 300);
+            }, 1600);
+        }
+
+        // 動畫循環
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const delta = Math.min(clock.getDelta(), 0.1); 
+
+            updateDronePhysics(delta);
+            checkRingCollisions();
+            updateParticles(delta);
+            updateCamera(delta);
+            updateDroneSound();
+            updateHUD();
+
+            renderer.render(scene, camera);
+        }
+
+        // 重設模擬器
+        function resetGame() {
+            drone.position.set(0, 0.10, 0); // 完美置中停在地面
+            drone.velocity.set(0, 0, 0);
+            drone.rotation.set(0, 0, 0);
+            drone.currentPitch = 0;
+            drone.currentRoll = 0;
+            drone.input.throttle = 0.0; 
+            drone.targetAltitude = 0.10;
+            drone.autoFlightState = 'none';
+
+            score = 0;
+            ringCourse.forEach(ring => {
+                ring.lastPassTime = 0;
+                ring.mesh.material.color.setHex(ring.color);
+                ring.mesh.material.emissive.setHex(ring.color);
+            });
+
+            updateHUD();
+
+            document.getElementById('victoryScreen').classList.add('hidden');
+            document.getElementById('victoryScreen').classList.remove('flex');
+
+            showSystemNotification("場地已重置 - 微型機正中央安全停靠");
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // UI 事件綁定
+        function bindUIEvents() {
+            document.getElementById('btnLaunch').addEventListener('click', () => {
+                initAudio();
+                
+                soundEnabled = true;
+                if (droneSynth) droneSynth.gain.gain.setValueAtTime(0.005, audioCtx.currentTime);
+
+                const startScreen = document.getElementById('startScreen');
+                startScreen.classList.add('opacity-0', 'scale-95');
+                setTimeout(() => startScreen.remove(), 750);
+
+                showSystemNotification("氣壓飛控系統連線 - 6m x 4m 禁區網籠就緒");
+            });
+
+            document.getElementById('btnTakeoff').addEventListener('click', triggerTakeoff);
+            document.getElementById('btnLand').addEventListener('click', triggerLanding);
+
+            document.getElementById('btnSound').addEventListener('click', (e) => {
+                const btn = e.currentTarget;
+                const icon = btn.querySelector('i');
+                
+                soundEnabled = !soundEnabled;
+
+                if (soundEnabled) {
+                    initAudio();
+                    if (audioCtx && audioCtx.state === 'suspended') {
+                        audioCtx.resume();
+                    }
+                    if (droneSynth) droneSynth.gain.gain.setTargetAtTime(0.1, audioCtx.currentTime, 0.15);
+                    icon.className = 'fa-solid fa-volume-high text-sm';
+                    btn.classList.add('text-emerald-400');
+                    showSystemNotification("馬達物理聲音：開啟");
+                } else {
+                    if (droneSynth) droneSynth.gain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.15);
+                    icon.className = 'fa-solid fa-volume-xmark text-sm';
+                    btn.classList.remove('text-emerald-400');
+                    showSystemNotification("馬達物理聲音：靜音");
+                }
+            });
+
+            document.getElementById('btnCam').addEventListener('click', cycleCameraMode);
+            document.getElementById('btnReset').addEventListener('click', resetGame);
+            document.getElementById('btnRestart').addEventListener('click', resetGame);
+        }
+
+        // 入口啟動
+        window.onload = function() {
+            initScene();
+            setupLights();
+            createSoccerField();
+            buildInflatableCage(); // 創建 3fc47b8b-0d54-496f-abc0-0f49a0d9871a.jpg 的充氣柱網壁
+            buildDrone();
+            setupTargetRings();
+            setupKeyboard();
+            setupTouchControls();
+            bindUIEvents();
+            animate();
+        };
+
+    </script>
+</body>
+</html>
