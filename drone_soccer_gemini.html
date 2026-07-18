@@ -1273,6 +1273,28 @@
                 drone.velocity.y = -0.1;
             }
 
+            // 四周充氣網牆邊界彈力碰撞偵測 (X: 4m 寬 / Z: 6m 長，扣除無人機半徑安全裕度)
+            const droneBodyRadius = 0.20;
+            const xLimit = 4.0 / 2 - droneBodyRadius;  // 左右網牆
+            const zLimit = 6.0 / 2 - droneBodyRadius;  // 前後網牆
+            const wallRestitution = 0.4; // 網子有彈性，撞擊後緩速反彈
+
+            if (drone.position.x < -xLimit) {
+                drone.position.x = -xLimit;
+                if (drone.velocity.x < 0) drone.velocity.x *= -wallRestitution;
+            } else if (drone.position.x > xLimit) {
+                drone.position.x = xLimit;
+                if (drone.velocity.x > 0) drone.velocity.x *= -wallRestitution;
+            }
+
+            if (drone.position.z < -zLimit) {
+                drone.position.z = -zLimit;
+                if (drone.velocity.z < 0) drone.velocity.z *= -wallRestitution;
+            } else if (drone.position.z > zLimit) {
+                drone.position.z = zLimit;
+                if (drone.velocity.z > 0) drone.velocity.z *= -wallRestitution;
+            }
+
             // 螺旋槳旋轉動畫：依油門大小決定轉速，怠速時也保留低速旋轉以顯示馬達待機
             const idleSpin = 8;   // 待機最低轉速 (rad/s)
             const maxSpin = 90;   // 全油門最高轉速 (rad/s)
