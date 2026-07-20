@@ -50,6 +50,8 @@ window.onload = function () {
 			}
 		}	
 		
+        obj.width = obj.naturalWidth;
+        obj.heightH = obj.naturalHeight;      
 		obj.style.width = obj.width + 'px';
 		obj.style.height = obj.height + 'px';		
 		canvas.setAttribute("width", obj.width);
