@@ -68,7 +68,7 @@
                         <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">A</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">←</span> : 向左 (Roll Left)</li>
                         <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">D</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">→</span> : 向右 (Roll Right)</li>
                         <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">Q</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">E</span> : 逆/順時針旋轉 (Yaw)</li>
-                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded font-bold text-emerald-400">Space</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded font-bold text-rose-400">Shift</span> : 升高 / 降低 0.05 米</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded font-bold text-emerald-400">Space</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded font-bold text-rose-400">Alt</span> : 長按連續 升高 / 降低</li>
                         <li><span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">C</span> : 切換鏡頭視角 (跟隨 / 座艙 / 自由)</li>
                     </ul>
                 </div>
@@ -82,12 +82,28 @@
                 </div>
             </div>
 
-            <div id="btnLaunch" class="w-full py-4 text-center cursor-pointer select-none">
-                <p class="text-lg font-bold text-emerald-400 uppercase tracking-widest animate-pulse">
-                    按下任意鍵 開始飛行
-                </p>
-                <p class="text-[11px] text-slate-500 mt-1 tech-font">Press Any Key to Start</p>
+            <div class="p-3 mb-5 bg-slate-900/80 rounded-lg border border-slate-800 text-left text-xs md:text-sm text-slate-300">
+                <p class="font-bold text-yellow-300 mb-2"><i class="fa-solid fa-trophy mr-2"></i>對戰規則</p>
+                <ul class="space-y-1 text-slate-400 tech-font text-[11px] md:text-xs">
+                    <li>球門光環與您的無人機 <span class="text-white">同色 = 自家球門</span>（不計分，需防守）</li>
+                    <li>球門光環與您的無人機 <span class="text-white">異色 = 對手球門</span>（穿越才計分）</li>
+                    <li>您的機頭預設面向對手球門方向</li>
+                    <li>電腦控制的守門無人機會鎮守對手球門，撞擊會使您彈開</li>
+                </ul>
             </div>
+
+            <p class="text-xs text-slate-400 mb-3 tracking-wider uppercase tech-font">請選擇您的隊伍</p>
+            <div class="flex gap-4 mb-2">
+                <div id="btnTeamRed" class="flex-1 py-4 text-center cursor-pointer select-none rounded-xl glass-button border-rose-500/50 bg-rose-500/10 hover:bg-rose-500/25" style="border-color: rgba(239,68,68,0.5); background: rgba(239,68,68,0.12);">
+                    <p class="text-base md:text-lg font-bold text-rose-400 uppercase tracking-widest">紅隊出戰</p>
+                    <p class="text-[10px] text-slate-500 mt-1 tech-font">攻打藍色球門</p>
+                </div>
+                <div id="btnTeamBlue" class="flex-1 py-4 text-center cursor-pointer select-none rounded-xl glass-button" style="border-color: rgba(59,130,246,0.5); background: rgba(59,130,246,0.12);">
+                    <p class="text-base md:text-lg font-bold text-blue-400 uppercase tracking-widest">藍隊出戰</p>
+                    <p class="text-[10px] text-slate-500 mt-1 tech-font">攻打紅色球門</p>
+                </div>
+            </div>
+            <p class="text-[11px] text-slate-500 mt-2 tech-font">或按下任意鍵以紅隊開始飛行 (Press Any Key = Red Team)</p>
         </div>
     </div>
 
@@ -104,7 +120,11 @@
                     <span class="text-xs text-slate-400">次</span>
                 </div>
                 <div class="text-[9px] text-slate-400 mt-1">
-                    重複穿越光環累計得分
+                    僅穿越對手球門才計分
+                </div>
+                <div class="flex items-center gap-1.5 mt-2 pt-2 border-t border-slate-700/40">
+                    <span id="teamDot" class="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-[0_0_6px_rgba(239,68,68,0.8)]"></span>
+                    <span id="teamLabel" class="text-[10px] text-slate-300 tech-font">紅隊 vs <span id="oppLabel" class="text-blue-400">藍色球門</span></span>
                 </div>
             </div>
 
@@ -213,8 +233,8 @@
                     <span class="tech-font text-emerald-400 font-bold bg-slate-800 px-1 rounded">T</span> / <span class="tech-font text-rose-400 font-bold bg-slate-800 px-1 rounded">L</span>
                 </div>
                 <div class="flex justify-between">
-                    <span>Altitude Up / Down (0.05m):</span>
-                    <span class="tech-font text-white bg-slate-800 px-1 rounded">Space</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">Shift</span>
+                    <span>Altitude Up / Down (Hold):</span>
+                    <span class="tech-font text-white bg-slate-800 px-1 rounded">Space</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">Alt</span>
                 </div>
                 <div class="flex justify-between">
                     <span>Pitch Forward/Back:</span>
@@ -340,17 +360,47 @@
         // 地板寬度方向為 X 軸 (X: -2 至 +2)
         // 紅色球門線在 Z = -2.25，藍色球門線在 Z = 2.25。高度置中於場地高度正中央 (cageH / 2 = 1.5 米)。
         const ringCourse = [
-            { pos: new THREE.Vector3(0, 1.5, -2.25), color: 0xef4444, size: 0.9, lastPassTime: 0, forwardSign: -1, prevSide: null }, // 紅色方框球門線正上方，高度置中；正向穿越方向為 -Z（由場地中央飛向紅方球門外）
-            { pos: new THREE.Vector3(0, 1.5, 2.25), color: 0x3b82f6, size: 0.9, lastPassTime: 0, forwardSign: 1, prevSide: null }   // 藍色方框球門線正上方，高度置中；正向穿越方向為 +Z（由場地中央飛向藍方球門外）
+            { pos: new THREE.Vector3(0, 1.5, -2.25), color: 0xef4444, team: 'red', size: 0.9, lastPassTime: 0, forwardSign: -1, prevSide: null }, // 紅色方框球門線正上方，高度置中；正向穿越方向為 -Z（由場地中央飛向紅方球門外）
+            { pos: new THREE.Vector3(0, 1.5, 2.25), color: 0x3b82f6, team: 'blue', size: 0.9, lastPassTime: 0, forwardSign: 1, prevSide: null }   // 藍色方框球門線正上方，高度置中；正向穿越方向為 +Z（由場地中央飛向藍方球門外）
         ];
         let score = 0;
-        let particles = []; 
+        let particles = [];
+
+        // 7. 對戰隊伍系統：玩家隊伍 / 對手隊伍 / 電腦守門機
+        let playerTeam = 'red';           // 'red' 或 'blue'，可於開場畫面選擇
+        const TEAM_COLORS = { red: 0xef4444, blue: 0x3b82f6 };
+        function getOpponentTeam(team) { return team === 'red' ? 'blue' : 'red'; }
+        function getOwnGoalRing() { return ringCourse.find(r => r.team === playerTeam); }
+        function getOpponentGoalRing() { return ringCourse.find(r => r.team === getOpponentTeam(playerTeam)); }
+
+        // 電腦控制的守門無人機（鎮守對手球門，碰撞會將玩家彈開）
+        const aiDrone = {
+            mesh: null,
+            canopyRef: null,
+            glowRef: null,
+            rotors: [],
+            position: new THREE.Vector3(0, 1.5, 2.25),
+            velocity: new THREE.Vector3(0, 0, 0),
+            team: 'blue',
+            guardRing: null,
+            aimTarget: new THREE.Vector3(0, 1.5, 2.25), // AI 目前瞄準的攔截點（帶反應延遲與誤差，不會即時鎖定玩家）
+            reactionTimer: 0,       // 距離下次「重新判斷」還要多久（模擬人類反應延遲）
+            constants: {
+                maxSpeed: 1.9,        // 守門機最高攔截移動速度 (m/s)
+                accel: 4.2,           // 加速度，決定攔截反應靈敏度
+                guardRadiusXY: 0.48,  // 守門機可左右上下移動的最大半徑
+                guardDepth: 0.26,     // 守門機可離開球門平面向前迎擊的最大深度
+                reactionMin: 0.22,    // 最短反應間隔（秒）
+                reactionMax: 0.55,    // 最長反應間隔（秒）
+                aimError: 0.16,       // 每次重新判斷時的瞄準誤差半徑（米）
+            },
+        };
 
         // 5. 鍵盤輸入
         const keys = { 
             w: false, s: false, a: false, d: false, 
             arrowup: false, arrowdown: false, arrowleft: false, arrowright: false,
-            q: false, e: false, ' ': false, shift: false, t: false, l: false 
+            q: false, e: false, ' ': false, alt: false, t: false, l: false 
         };
 
         // 6. 攝影機模式 (0: Chase, 1: Cockpit, 2: Free)
@@ -817,7 +867,7 @@
             body.castShadow = true;
             droneGroup.add(body);
 
-            // 2. 亮藍色半透明科技艙蓋
+            // 2. 亮藍色半透明科技艙蓋（依隊伍顏色動態變化）
             const canopyGeo = new THREE.SphereGeometry(0.09, 16, 16);
             canopyGeo.scale(1, 0.5, 1.2);
             const canopyMat = new THREE.MeshStandardMaterial({ color: 0x10b981, emissive: 0x047857, roughness: 0.05, metalness: 0.9 });
@@ -826,6 +876,7 @@
             canopy.position.z = 0.015;
             canopy.castShadow = true;
             droneGroup.add(canopy);
+            drone.canopyRef = canopy;
 
             // 3. 前向航行攝像頭鏡頭 (綠光)
             const lensGeo = new THREE.SphereGeometry(0.035, 12, 12);
@@ -904,10 +955,97 @@
             const bottomGlow = new THREE.Mesh(bottomGlowGeo, bottomGlowMat);
             bottomGlow.position.set(0, -0.04, 0);
             droneGroup.add(bottomGlow);
+            drone.glowRef = bottomGlow;
 
             droneGroup.position.copy(drone.position);
             scene.add(droneGroup);
             drone.mesh = droneGroup;
+        }
+
+        // 依隊伍顏色重新為無人機艙蓋 / 底部光球上色（玩家與守門機共用）
+        function applyTeamColor(droneObj, colorHex) {
+            droneObj.teamColor = colorHex;
+            if (droneObj.canopyRef) {
+                droneObj.canopyRef.material.color.setHex(colorHex);
+                droneObj.canopyRef.material.emissive.setHex(colorHex);
+            }
+            if (droneObj.glowRef) {
+                droneObj.glowRef.material.color.setHex(colorHex);
+            }
+        }
+
+        // 建造電腦控制的守門無人機（外型較樸素以利辨識，鎮守對手球門）
+        function buildAIDrone() {
+            const group = new THREE.Group();
+
+            const bodyGeo = new THREE.BoxGeometry(0.24, 0.08, 0.24);
+            const bodyMat = new THREE.MeshStandardMaterial({ color: 0x1e1b2e, metalness: 0.85, roughness: 0.2 });
+            const body = new THREE.Mesh(bodyGeo, bodyMat);
+            body.castShadow = true;
+            group.add(body);
+
+            const canopyGeo = new THREE.SphereGeometry(0.09, 16, 16);
+            canopyGeo.scale(1, 0.5, 1.2);
+            const canopyMat = new THREE.MeshStandardMaterial({ color: 0x3b82f6, emissive: 0x1d4ed8, roughness: 0.05, metalness: 0.9 });
+            const canopy = new THREE.Mesh(canopyGeo, canopyMat);
+            canopy.position.set(0, 0.06, 0.015);
+            canopy.castShadow = true;
+            group.add(canopy);
+            aiDrone.canopyRef = canopy;
+
+            const armAngle = Math.PI / 4;
+            const armDist = 0.28;
+            const armPositions = [
+                { x: Math.sin(armAngle) * armDist, z: Math.cos(armAngle) * armDist },
+                { x: -Math.sin(armAngle) * armDist, z: Math.cos(armAngle) * armDist },
+                { x: Math.sin(armAngle) * armDist, z: -Math.cos(armAngle) * armDist },
+                { x: -Math.sin(armAngle) * armDist, z: -Math.cos(armAngle) * armDist }
+            ];
+            armPositions.forEach((pos, idx) => {
+                const armGeo = new THREE.CylinderGeometry(0.018, 0.018, armDist, 8);
+                const armMat = new THREE.MeshStandardMaterial({ color: 0x2b2440, metalness: 0.9, roughness: 0.15 });
+                const arm = new THREE.Mesh(armGeo, armMat);
+                arm.rotation.z = Math.PI / 2;
+                arm.rotation.y = (idx === 0 || idx === 3) ? -armAngle : armAngle;
+                arm.position.set(pos.x / 2, 0, pos.z / 2);
+                arm.castShadow = true;
+                group.add(arm);
+
+                const motorGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.08, 8);
+                const motorMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.2 });
+                const motor = new THREE.Mesh(motorGeo, motorMat);
+                motor.position.set(pos.x, 0.02, pos.z);
+                group.add(motor);
+
+                const rotorGroup = new THREE.Group();
+                rotorGroup.position.set(pos.x, 0.05, pos.z);
+                const bladeGeo = new THREE.BoxGeometry(0.018, 0.003, 0.22);
+                const bladeMat = new THREE.MeshStandardMaterial({ color: 0xcbd5e1, transparent: true, opacity: 0.8 });
+                const blade = new THREE.Mesh(bladeGeo, bladeMat);
+                rotorGroup.add(blade);
+                group.add(rotorGroup);
+                aiDrone.rotors.push(rotorGroup);
+            });
+
+            // 守門機專屬警示燈環（辨識用，持續脈動）
+            const warnGeo = new THREE.TorusGeometry(0.16, 0.012, 8, 24);
+            const warnMat = new THREE.MeshBasicMaterial({ color: 0xfacc15, transparent: true, opacity: 0.55 });
+            const warnRing = new THREE.Mesh(warnGeo, warnMat);
+            warnRing.rotation.x = Math.PI / 2;
+            warnRing.position.y = 0.04;
+            group.add(warnRing);
+            aiDrone.warnRingRef = warnRing;
+
+            const bottomGlowGeo = new THREE.SphereGeometry(0.03, 8, 8);
+            const bottomGlowMat = new THREE.MeshBasicMaterial({ color: 0x3b82f6 });
+            const bottomGlow = new THREE.Mesh(bottomGlowGeo, bottomGlowMat);
+            bottomGlow.position.set(0, -0.04, 0);
+            group.add(bottomGlow);
+            aiDrone.glowRef = bottomGlow;
+
+            group.position.copy(aiDrone.position);
+            scene.add(group);
+            aiDrone.mesh = group;
         }
 
         // 建造 2 個發光光環 (精準垂直懸浮在左右底線白色球門正上方)
@@ -945,6 +1083,45 @@
                 rightLine.position.set(ringData.pos.x + 0.45, cableCenterY, ringData.pos.z);
                 scene.add(rightLine);
             });
+        }
+
+        // 依玩家所選隊伍設定雙方顏色、機頭朝向與守門機守備位置
+        function configureMatch(team) {
+            playerTeam = team;
+            const oppTeam = getOpponentTeam(team);
+            aiDrone.team = oppTeam;
+            aiDrone.guardRing = getOpponentGoalRing();
+
+            applyTeamColor(drone, TEAM_COLORS[team]);
+            applyTeamColor(aiDrone, TEAM_COLORS[oppTeam]);
+
+            // 玩家機頭預設面向對手球門：紅隊面向 +Z（藍方球門），藍隊面向 -Z（紅方球門）
+            drone.rotation.y = (team === 'red') ? 0 : Math.PI;
+
+            // 守門機重新定位到對手球門正中央守備
+            if (aiDrone.guardRing) {
+                aiDrone.position.set(aiDrone.guardRing.pos.x, aiDrone.guardRing.pos.y, aiDrone.guardRing.pos.z);
+                aiDrone.velocity.set(0, 0, 0);
+                aiDrone.aimTarget.copy(aiDrone.position);
+                aiDrone.reactionTimer = 0;
+                if (aiDrone.mesh) {
+                    aiDrone.mesh.position.copy(aiDrone.position);
+                    aiDrone.mesh.rotation.y = (team === 'red') ? Math.PI : 0; // 守門機面向玩家方向
+                }
+            }
+
+            updateTeamHUD();
+        }
+
+        // 更新左上角隊伍徽章與對手球門顏色標示
+        function updateTeamHUD() {
+            const teamDot = document.getElementById('teamDot');
+            const teamLabel = document.getElementById('teamLabel');
+            if (!teamDot || !teamLabel) return;
+
+            const isRed = playerTeam === 'red';
+            teamDot.className = `w-2.5 h-2.5 rounded-full ${isRed ? 'bg-rose-500 shadow-[0_0_6px_rgba(239,68,68,0.8)]' : 'bg-blue-500 shadow-[0_0_6px_rgba(59,130,246,0.8)]'}`;
+            teamLabel.innerHTML = `${isRed ? '紅隊' : '藍隊'} vs <span class="${isRed ? 'text-blue-400' : 'text-rose-400'}">${isRed ? '藍色球門' : '紅色球門'}</span>`;
         }
 
         // 產生爆破粒子效果
@@ -1042,27 +1219,23 @@
                 const key = e.key.toLowerCase();
                 if (key in keys) {
                     keys[key] = true;
-                    if (key === ' ' || key === 'shift' || key.startsWith('arrow')) e.preventDefault();
+                    // Alt 鍵務必立即 preventDefault：瀏覽器/系統會把單獨的 Alt 鍵解讀為
+                    // 「開啟選單列 / 視窗選單」快捷鍵，若不攔截，網頁會瞬間失去鍵盤焦點，
+                    // 導致之後所有按鍵（包含同時按下的 W）看起來像「沒有反應」。
+                    if (key === ' ' || key === 'alt' || key.startsWith('arrow')) e.preventDefault();
                 }
                 
-                // 單擊 Space 精準爬升 0.05 米
-                if (key === ' ') {
-                    e.preventDefault();
-                    if (drone.position.y < 0.15) {
-                        drone.targetAltitude = 0.15;
-                    } else {
-                        drone.targetAltitude = Math.min(2.6, drone.targetAltitude + 0.05); // 格網頂部限制於 2.6m
-                    }
+                // 按下 Space／Alt 僅顯示一次提示，實際連續升降改在 updateDronePhysics() 內以 delta time 平滑處理
+                if (key === ' ' && !e.repeat) {
                     drone.autoFlightState = 'none';
-                    showSystemNotification(`設定定高：${drone.targetAltitude.toFixed(2)} 米`);
+                    showSystemNotification("按住 Space 持續上升，放開停止");
                 }
 
-                // 單擊 Shift 精準下降 0.05 米
-                if (key === 'shift') {
-                    e.preventDefault();
-                    drone.targetAltitude = Math.max(0.10, drone.targetAltitude - 0.05);
+                // 原本使用 Shift，但 Shift 是瀏覽器/作業系統輔助功能常用的修飾鍵，長按容易被系統攔截或
+                // 觸發「篩選鍵/相黏鍵」等輔助功能，造成同時按 W 時像是沒反應；改用 Alt 並自行 preventDefault 可避免這個衝突
+                if (key === 'alt' && !e.repeat) {
                     drone.autoFlightState = 'none';
-                    showSystemNotification(`設定定高：${drone.targetAltitude.toFixed(2)} 米`);
+                    showSystemNotification("按住 Alt 持續下降，放開停止");
                 }
                 
                 if (key === 'c') cycleCameraMode();
@@ -1076,6 +1249,10 @@
                 const key = e.key.toLowerCase();
                 if (key in keys) {
                     keys[key] = false;
+                    if (key === 'alt') e.preventDefault(); // 同樣攔截 keyup，避免瀏覽器事後補觸發選單焦點跳轉
+                    if (key === ' ' || key === 'alt') {
+                        showSystemNotification(`定高調整完成：${drone.targetAltitude.toFixed(2)} 米`);
+                    }
                 }
             });
         }
@@ -1169,7 +1346,7 @@
             // 鍵盤或方向鍵偵測 -> 退出自動駕駛
             if (keys.w || keys.s || keys.a || keys.d || 
                 keys.arrowup || keys.arrowdown || keys.arrowleft || keys.arrowright ||
-                keys.q || keys.e || keys[' '] || keys.shift) { // 增加按鍵檢測範圍
+                keys.q || keys.e || keys[' '] || keys.alt) { // 增加按鍵檢測範圍
                 if (drone.autoFlightState !== 'none') {
                     drone.autoFlightState = 'none';
                     showSystemNotification("手動接管姿態控制");
@@ -1183,6 +1360,17 @@
                     0.10,
                     2.6
                 );
+                if (drone.autoFlightState !== 'none') drone.autoFlightState = 'none';
+            }
+
+            // 按住 Space／Alt 連續升降目標高度（每秒固定速率，鬆開立即停止，非單次跳動）
+            const altHoldRate = 0.7; // 每秒升降速率 (m/s)
+            if (keys[' ']) {
+                drone.targetAltitude = Math.min(2.6, drone.targetAltitude + altHoldRate * delta);
+                if (drone.autoFlightState !== 'none') drone.autoFlightState = 'none';
+            }
+            if (keys.alt) {
+                drone.targetAltitude = Math.max(0.10, drone.targetAltitude - altHoldRate * delta);
                 if (drone.autoFlightState !== 'none') drone.autoFlightState = 'none';
             }
 
@@ -1396,33 +1584,145 @@
                 const isForwardPass = crossedPlane && currentSide === ring.forwardSign;
                 const isReversePass = crossedPlane && currentSide !== ring.forwardSign;
 
+                const isOpponentGoal = ring.team !== playerTeam; // 異色球門 = 對手球門
+
                 if (distToCenter < innerOpeningRadius && isForwardPass) {
                     const currentTime = clock.getElapsedTime();
                     if (!ring.lastPassTime || (currentTime - ring.lastPassTime > 1.5)) {
                         ring.lastPassTime = currentTime;
-                        score++;
-                        
-                        playChimeSound();
-                        createExplosion(ring.pos, 0x10b981); // 穿越綠色粒子效果
-                        updateHUD();
-                        showSystemNotification(`成功穿越！累計次數：${score}`);
 
-                        // 讓該光環短暫閃爍亮綠色
-                        const origColor = ring.color;
-                        ring.mesh.material.color.setHex(0x10b981);
-                        ring.mesh.material.emissive.setHex(0x10b981);
-                        setTimeout(() => {
-                            ring.mesh.material.color.setHex(origColor);
-                            ring.mesh.material.emissive.setHex(origColor);
-                        }, 800);
+                        if (isOpponentGoal) {
+                            // 只有穿過對手球門（異色光環）才計分
+                            score++;
+
+                            playChimeSound();
+                            createExplosion(ring.pos, 0x10b981); // 穿越綠色粒子效果
+                            updateHUD();
+                            showSystemNotification(`得分！成功穿越對手球門，累計：${score}`);
+
+                            // 讓該光環短暫閃爍亮綠色
+                            const origColor = ring.color;
+                            ring.mesh.material.color.setHex(0x10b981);
+                            ring.mesh.material.emissive.setHex(0x10b981);
+                            setTimeout(() => {
+                                ring.mesh.material.color.setHex(origColor);
+                                ring.mesh.material.emissive.setHex(origColor);
+                            }, 800);
+                        } else {
+                            // 穿越自家球門：不計分，僅提示
+                            showSystemNotification("這是您的自家球門 - 不計分");
+                        }
                     }
                 } else if (distToCenter < innerOpeningRadius && isReversePass) {
                     // 反向穿越：不計分，僅提示玩家
-                    showSystemNotification("反向穿越 - 不計分");
+                    showSystemNotification(isOpponentGoal ? "反向穿越對手球門 - 不計分" : "反向穿越自家球門 - 不計分");
                 }
 
                 ring.prevSide = currentSide;
             });
+        }
+
+        // 電腦守門機 AI：於對手球門口攔截玩家，但刻意加入反應延遲與瞄準誤差，不會完美貼防
+        function updateAIDrone(delta) {
+            if (!aiDrone.mesh || !aiDrone.guardRing || !drone.mesh) return;
+
+            const ring = aiDrone.guardRing;
+            const c = aiDrone.constants;
+
+            // 反應延遲：AI 並非每一影格都重新鎖定玩家位置，而是每隔一段隨機時間才「重新判斷」一次
+            aiDrone.reactionTimer -= delta;
+            if (aiDrone.reactionTimer <= 0) {
+                aiDrone.reactionTimer = c.reactionMin + Math.random() * (c.reactionMax - c.reactionMin);
+
+                // 玩家相對球門中心的水平/垂直偏移
+                let dx = drone.position.x - ring.pos.x;
+                let dy = drone.position.y - ring.pos.y;
+
+                // 加入隨機瞄準誤差，模擬預判失準（笨手笨腳）
+                dx += (Math.random() - 0.5) * 2 * c.aimError;
+                dy += (Math.random() - 0.5) * 2 * c.aimError;
+
+                const offsetLen = Math.sqrt(dx * dx + dy * dy);
+                if (offsetLen > c.guardRadiusXY) {
+                    dx = (dx / offsetLen) * c.guardRadiusXY;
+                    dy = (dy / offsetLen) * c.guardRadiusXY;
+                }
+
+                // 玩家越靠近球門，守門機越往前迎擊（機率性地才會出擊，並非每次都撲上前）
+                const distToRing = Math.abs(drone.position.z - ring.pos.z);
+                const willEngage = Math.random() < 0.78; // 提高主動出擊迎擊的機率
+                const engageDepth = willEngage
+                    ? THREE.MathUtils.clamp(1.4 - distToRing, 0, 1) * c.guardDepth
+                    : 0;
+                const dz = -ring.forwardSign * engageDepth;
+
+                aiDrone.aimTarget.set(ring.pos.x + dx, ring.pos.y + dy, ring.pos.z + dz);
+            }
+
+            // 以較低的加速度緩緩追向「上次判斷」的目標位置（帶阻尼，動作明顯較遲鈍）
+            const toTarget = aiDrone.aimTarget.clone().sub(aiDrone.position);
+            const dist = toTarget.length();
+            if (dist > 0.01) {
+                const desiredVel = toTarget.normalize().multiplyScalar(Math.min(c.maxSpeed, dist * 2.2));
+                const steer = desiredVel.sub(aiDrone.velocity).multiplyScalar(c.accel * delta);
+                aiDrone.velocity.add(steer);
+            }
+            aiDrone.velocity.multiplyScalar(0.88); // 阻尼，避免震盪
+            aiDrone.position.addScaledVector(aiDrone.velocity, delta);
+
+            aiDrone.mesh.position.copy(aiDrone.position);
+            // 守門機機身面向玩家
+            const lookDir = drone.position.clone().sub(aiDrone.position);
+            if (lookDir.length() > 0.05) {
+                aiDrone.mesh.rotation.y = Math.atan2(lookDir.x, lookDir.z);
+            }
+
+            // 警示燈環持續脈動，並依守門機自身隊伍顏色顯示
+            if (aiDrone.warnRingRef) {
+                const pulse = 0.4 + Math.sin(clock.getElapsedTime() * 6) * 0.25;
+                aiDrone.warnRingRef.material.opacity = pulse;
+            }
+
+            // 螺旋槳待機旋轉動畫
+            aiDrone.rotors.forEach((rotorGroup, idx) => {
+                const dir = (idx === 0 || idx === 3) ? 1 : -1;
+                rotorGroup.rotation.y += dir * 40 * delta;
+            });
+        }
+
+        // 玩家無人機與守門機的實體碰撞：偵測到重疊時互相彈開
+        function checkDroneVsDroneCollision() {
+            if (!drone.mesh || !aiDrone.mesh) return;
+
+            const droneRadius = 0.20;
+            const combinedRadius = droneRadius * 2;
+
+            const diff = drone.position.clone().sub(aiDrone.position);
+            const dist = diff.length();
+
+            if (dist < combinedRadius && dist > 0.001) {
+                const normal = diff.normalize();
+
+                // 位置排開，防止兩機互相穿透
+                const overlap = combinedRadius - dist;
+                drone.position.addScaledVector(normal, overlap * 0.85);
+                aiDrone.position.addScaledVector(normal, -overlap * 0.15);
+
+                // 玩家速度反彈（守門機視為較重的攔截物，彈開力道較強）
+                const relVel = drone.velocity.dot(normal);
+                if (relVel < 0) {
+                    const restitution = 1.1;
+                    drone.velocity.addScaledVector(normal, -(1 + restitution) * relVel);
+                } else {
+                    drone.velocity.addScaledVector(normal, 1.5);
+                }
+
+                // 守門機也會被輕微推開，但很快會被 AI 拉回守備位置
+                aiDrone.velocity.addScaledVector(normal, -0.6);
+
+                createExplosion(drone.position.clone(), 0xfacc15);
+                showSystemNotification("被守門機攔截！撞擊彈開");
+            }
         }
 
         // 循環視角切換
@@ -1565,7 +1865,9 @@
             const delta = Math.min(clock.getDelta(), 0.1); 
 
             updateDronePhysics(delta);
+            updateAIDrone(delta);
             checkRingCollisions();
+            checkDroneVsDroneCollision();
             updateParticles(delta);
             updateCamera(delta);
             updateDroneSound();
@@ -1593,6 +1895,8 @@
                 ring.mesh.material.emissive.setHex(ring.color);
             });
 
+            configureMatch(playerTeam); // 重新配置隊伍顏色、機頭朝向並將守門機歸位
+
             updateHUD();
 
             document.getElementById('victoryScreen').classList.add('hidden');
@@ -1609,10 +1913,12 @@
 
         // UI 事件綁定
         function bindUIEvents() {
-            function startFlight() {
+            function startFlight(team) {
                 const startScreen = document.getElementById('startScreen');
                 if (!startScreen || startScreen.dataset.launched === 'true') return; // 避免重複觸發
                 startScreen.dataset.launched = 'true';
+
+                configureMatch(team || 'red');
 
                 initAudio();
                 soundEnabled = true;
@@ -1620,13 +1926,25 @@
                 startScreen.classList.add('opacity-0', 'scale-95');
                 setTimeout(() => startScreen.remove(), 750);
 
-                showSystemNotification("氣壓飛控系統連線 - 6m x 4m 禁區網籠就緒");
+                const isRed = (team || 'red') === 'red';
+                showSystemNotification(`氣壓飛控系統連線 - ${isRed ? '紅隊' : '藍隊'}出戰，目標：${isRed ? '藍色' : '紅色'}球門`);
             }
 
-            // 按下任意鍵即可開始（桌面鍵盤）
-            window.addEventListener('keydown', startFlight, { once: true });
-            // 觸控/滑鼠點擊起始畫面也可開始（無實體鍵盤的行動裝置）
-            document.getElementById('startScreen').addEventListener('click', startFlight, { once: true });
+            // 按下任意鍵即可開始，預設以紅隊出戰（桌面鍵盤）
+            window.addEventListener('keydown', () => startFlight('red'), { once: true });
+
+            // 點選紅隊 / 藍隊按鈕，選定隊伍後立即開始飛行
+            document.getElementById('btnTeamRed').addEventListener('click', (e) => {
+                e.stopPropagation();
+                startFlight('red');
+            }, { once: true });
+            document.getElementById('btnTeamBlue').addEventListener('click', (e) => {
+                e.stopPropagation();
+                startFlight('blue');
+            }, { once: true });
+
+            // 觸控/滑鼠點擊起始畫面其餘區域也可開始（預設紅隊，無實體鍵盤的行動裝置）
+            document.getElementById('startScreen').addEventListener('click', () => startFlight('red'), { once: true });
 
             document.getElementById('btnTakeoff').addEventListener('click', triggerTakeoff);
             document.getElementById('btnLand').addEventListener('click', triggerLanding);
@@ -1645,7 +1963,9 @@
             createSoccerField();
             buildInflatableCage(); // 創建 3fc47b8b-0d54-496f-abc0-0f49a0d9871a.jpg 的充氣柱網壁
             buildDrone();
+            buildAIDrone();
             setupTargetRings();
+            configureMatch(playerTeam); // 套用預設紅隊配色、機頭朝向並讓守門機就位
             setupKeyboard();
             setupTouchControls();
             bindUIEvents();
