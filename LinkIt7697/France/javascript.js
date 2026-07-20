@@ -7655,7 +7655,7 @@ Blockly.Arduino['TinyGPS_get_state'] = function(block){
 
 Blockly.Arduino['esp32_blekeyboard'] = function(block) {
     var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_.define_esp32_blekeyboard_include = '#include <BleKeyboard.h>\nBleKeyboard bleKeyboard;\n';
+	Blockly.Arduino.definitions_.define_esp32_blekeyboard_include = '#include <BleKeyboard.h>\nBleKeyboard bleKeyboard;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\n';
 	Blockly.Arduino.definitions_.blekeyboard = '\n'+
 			'void blekeyboard(String type, uint8_t keycode1, uint8_t keycode2, uint8_t keycode3, int presstime, String characters) {\n'+
 			'  if(bleKeyboard.isConnected()) {\n'+			
@@ -7755,7 +7755,7 @@ Blockly.Arduino['esp32_blekeyboard_chartoascii'] = function(block) {
 
 Blockly.Arduino['esp32_blemouse'] = function(block) {
     var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_.define_esp32_blemouse_include = '#include <BleMouse.h>\nBleMouse bleMouse('+blename+', "Espressif", 100);\n';
+	Blockly.Arduino.definitions_.define_esp32_blemouse_include = '#include <BleMouse.h>\nBleMouse bleMouse('+blename+', "Espressif", 100);\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\n';
 	Blockly.Arduino.definitions_.blemouse = '\n'+
 			'void blemouse(String type, byte event, String mode, float delaytime, int pixels) {\n'+
 			'  if (type=="click") \n'+
