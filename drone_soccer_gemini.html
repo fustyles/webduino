@@ -68,7 +68,7 @@
                         <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">A</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">←</span> : 向左 (Roll Left)</li>
                         <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">D</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">→</span> : 向右 (Roll Right)</li>
                         <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">Q</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">E</span> : 逆/順時針旋轉 (Yaw)</li>
-                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded font-bold text-emerald-400">Space</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded font-bold text-rose-400">Shift</span> : 升高 / 降低 0.5 米</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded font-bold text-emerald-400">Space</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded font-bold text-rose-400">Shift</span> : 升高 / 降低 0.2 米</li>
                         <li><span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">C</span> : 切換鏡頭視角 (跟隨 / 座艙 / 自由)</li>
                     </ul>
                 </div>
@@ -213,7 +213,7 @@
                     <span class="tech-font text-emerald-400 font-bold bg-slate-800 px-1 rounded">T</span> / <span class="tech-font text-rose-400 font-bold bg-slate-800 px-1 rounded">L</span>
                 </div>
                 <div class="flex justify-between">
-                    <span>Altitude Up / Down (0.5m):</span>
+                    <span>Altitude Up / Down (0.2m):</span>
                     <span class="tech-font text-white bg-slate-800 px-1 rounded">Space</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">Shift</span>
                 </div>
                 <div class="flex justify-between">
@@ -1045,22 +1045,22 @@
                     if (key === ' ' || key === 'shift' || key.startsWith('arrow')) e.preventDefault();
                 }
                 
-                // 單擊 Space 精準爬升 0.5 米
+                // 單擊 Space 精準爬升 0.2 米
                 if (key === ' ') {
                     e.preventDefault();
                     if (drone.position.y < 0.15) {
-                        drone.targetAltitude = 0.5;
+                        drone.targetAltitude = 0.3;
                     } else {
-                        drone.targetAltitude = Math.min(2.6, drone.targetAltitude + 0.5); // 格網頂部限制於 2.6m
+                        drone.targetAltitude = Math.min(2.6, drone.targetAltitude + 0.2); // 格網頂部限制於 2.6m
                     }
                     drone.autoFlightState = 'none';
                     showSystemNotification(`設定定高：${drone.targetAltitude.toFixed(1)} 米`);
                 }
 
-                // 單擊 Shift 精準下降 0.5 米
+                // 單擊 Shift 精準下降 0.2 米
                 if (key === 'shift') {
                     e.preventDefault();
-                    drone.targetAltitude = Math.max(0.10, drone.targetAltitude - 0.5);
+                    drone.targetAltitude = Math.max(0.10, drone.targetAltitude - 0.2);
                     drone.autoFlightState = 'none';
                     showSystemNotification(`設定定高：${drone.targetAltitude.toFixed(1)} 米`);
                 }
