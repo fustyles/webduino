@@ -1748,18 +1748,22 @@
             if (!drone.mesh) return;
 
             if (cameraMode === 0) {
-                // 場邊定點視角：模擬一位身高 165 公分的操作員站在球場「短邊」外側、偏向一側觀看
-                // （符合實際無人機足球比賽中操作員站在端線後方偏一側、可斜視整條球場的站位習慣）
+                // 場邊定點視角：模擬一位身高 165 公分的操作員站在「自家球門這一端」的短邊外側、偏向一側觀看，
+                // 讓對手球門（要攻擊的目標光環）永遠位於視線正前方，紅隊/藍隊皆會依所選隊伍自動調整站位方向
                 // 視角固定不隨無人機平移，只會轉動視線追蹤機身，且預設至少微微上仰（不會低頭俯視）
                 drone.mesh.visible = true;
 
                 const eyeHeight = 1.65; // 165 公分標準身高的視線高度
                 const sidelineMargin = 1.8; // 與網籠保持的安全站立距離
                 const sideOffsetX = CAGE_WIDTH * 0.3; // 偏向短邊其中一側站立，而非站在正中央
+
+                // 站在「自家球門這一端」的短邊外側，讓對手球門始終位於正前方（不論選紅隊或藍隊皆適用）
+                const oppGoal = getOpponentGoalRing();
+                const standSign = oppGoal ? -Math.sign(oppGoal.pos.z) : -1;
                 const fixedCameraPosition = new THREE.Vector3(
                     sideOffsetX,
                     eyeHeight,
-                    -(CAGE_LENGTH / 2 + sidelineMargin)
+                    standSign * (CAGE_LENGTH / 2 + sidelineMargin)
                 );
                 camera.position.lerp(fixedCameraPosition, 0.15);
 
