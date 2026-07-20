@@ -75,6 +75,8 @@
                     <ul class="space-y-1 text-slate-400 text-[11px] tech-font">
                         <li><span class="text-emerald-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">T</span> : 一鍵起飛 (平穩上升至 1.5 米並定高)</li>
                         <li><span class="text-rose-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">L</span> : 一鍵降落 (平穩降落至中心並熄火)</li>
+                        <li><span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">R</span> : 重置無人機 (回到場地中央)</li>
+                        <li><span class="text-slate-300 bg-slate-800 px-1.5 py-0.5 rounded font-bold">M</span> : 靜音切換</li>
                     </ul>
                 </div>
             </div>
@@ -1000,6 +1002,28 @@
         }
 
         // 鍵盤控制監聽
+        // 靜音切換（按鈕與鍵盤 M 鍵共用）
+        function toggleSound() {
+            const btn = document.getElementById('btnSound');
+            const icon = btn.querySelector('i');
+
+            soundEnabled = !soundEnabled;
+
+            if (soundEnabled) {
+                initAudio();
+                if (audioCtx && audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                icon.className = 'fa-solid fa-volume-high text-sm';
+                btn.classList.add('text-emerald-400');
+                showSystemNotification("馬達物理聲音：開啟");
+            } else {
+                icon.className = 'fa-solid fa-volume-xmark text-sm';
+                btn.classList.remove('text-emerald-400');
+                showSystemNotification("馬達物理聲音：靜音");
+            }
+        }
+
         function setupKeyboard() {
             window.addEventListener('keydown', (e) => {
                 const key = e.key.toLowerCase();
@@ -1031,6 +1055,8 @@
                 if (key === 'c') cycleCameraMode();
                 if (key === 't') triggerTakeoff();
                 if (key === 'l') triggerLanding();
+                if (key === 'r') resetGame();
+                if (key === 'm') toggleSound();
             });
 
             window.addEventListener('keyup', (e) => {
@@ -1592,26 +1618,7 @@
             document.getElementById('btnTakeoff').addEventListener('click', triggerTakeoff);
             document.getElementById('btnLand').addEventListener('click', triggerLanding);
 
-            document.getElementById('btnSound').addEventListener('click', (e) => {
-                const btn = e.currentTarget;
-                const icon = btn.querySelector('i');
-                
-                soundEnabled = !soundEnabled;
-
-                if (soundEnabled) {
-                    initAudio();
-                    if (audioCtx && audioCtx.state === 'suspended') {
-                        audioCtx.resume();
-                    }
-                    icon.className = 'fa-solid fa-volume-high text-sm';
-                    btn.classList.add('text-emerald-400');
-                    showSystemNotification("馬達物理聲音：開啟");
-                } else {
-                    icon.className = 'fa-solid fa-volume-xmark text-sm';
-                    btn.classList.remove('text-emerald-400');
-                    showSystemNotification("馬達物理聲音：靜音");
-                }
-            });
+            document.getElementById('btnSound').addEventListener('click', toggleSound);
 
             document.getElementById('btnCam').addEventListener('click', cycleCameraMode);
             document.getElementById('btnReset').addEventListener('click', resetGame);
