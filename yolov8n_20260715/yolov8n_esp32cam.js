@@ -54,8 +54,14 @@ window.onload = function () {
 	}
 
 	async function DetectImage() {
+        ShowImage.width = ShowImage.naturalWidth;
+        ShowImage.heightH = ShowImage.naturalHeight;   		
+		ShowImage.style.width = ShowImage.width + 'px';
+		ShowImage.style.height = ShowImage.height + 'px';
 		canvas.setAttribute("width", ShowImage.width);
 		canvas.setAttribute("height", ShowImage.height);
+		canvas.style.width = ShowImage.width + "px";
+		canvas.style.height = ShowImage.height + "px";
 
 		if (mirrorimage.value == 1) {
 			context.translate((canvas.width + ShowImage.width) / 2, 0);
