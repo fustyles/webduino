@@ -34,6 +34,8 @@ window.onload = function () {
 	});
 
 	async function DetectImage() {
+        ShowImage.width = ShowImage.naturalWidth;
+        ShowImage.heightH = ShowImage.naturalHeight;   		
 		ShowImage.style.width = ShowImage.width + 'px';
 		ShowImage.style.height = ShowImage.height + 'px';
 		canvas.setAttribute("width", ShowImage.width);
