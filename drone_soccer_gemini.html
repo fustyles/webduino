@@ -79,9 +79,12 @@
                 </div>
             </div>
 
-            <button id="btnLaunch" class="w-full py-4 text-lg font-bold text-white uppercase rounded-xl shadow-[0_0_30px_rgba(16,185,129,0.3)] bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 transition-all duration-300 transform hover:scale-102 active:scale-98">
-                啟動無人機系統
-            </button>
+            <div id="btnLaunch" class="w-full py-4 text-center cursor-pointer select-none">
+                <p class="text-lg font-bold text-emerald-400 uppercase tracking-widest animate-pulse">
+                    按下任意鍵 開始飛行
+                </p>
+                <p class="text-[11px] text-slate-500 mt-1 tech-font">Press Any Key to Start</p>
+            </div>
         </div>
     </div>
 
@@ -1567,17 +1570,24 @@
 
         // UI 事件綁定
         function bindUIEvents() {
-            document.getElementById('btnLaunch').addEventListener('click', () => {
+            function startFlight() {
+                const startScreen = document.getElementById('startScreen');
+                if (!startScreen || startScreen.dataset.launched === 'true') return; // 避免重複觸發
+                startScreen.dataset.launched = 'true';
+
                 initAudio();
-                
                 soundEnabled = true;
 
-                const startScreen = document.getElementById('startScreen');
                 startScreen.classList.add('opacity-0', 'scale-95');
                 setTimeout(() => startScreen.remove(), 750);
 
                 showSystemNotification("氣壓飛控系統連線 - 6m x 4m 禁區網籠就緒");
-            });
+            }
+
+            // 按下任意鍵即可開始（桌面鍵盤）
+            window.addEventListener('keydown', startFlight, { once: true });
+            // 觸控/滑鼠點擊起始畫面也可開始（無實體鍵盤的行動裝置）
+            document.getElementById('startScreen').addEventListener('click', startFlight, { once: true });
 
             document.getElementById('btnTakeoff').addEventListener('click', triggerTakeoff);
             document.getElementById('btnLand').addEventListener('click', triggerLanding);
