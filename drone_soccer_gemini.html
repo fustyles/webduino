@@ -327,6 +327,7 @@
             targetAltitude: 0.1, // 初始定高目標
             touchAltitudeInput: 0, // 觸控定高增量
             touchActive: false, // 右搖桿(前後左右)是否正在被觸控操作
+            touchActiveLeft: false, // 左搖桿(旋轉)是否正在被觸控操作
             autoFlightState: 'none', // 'none' / 'takingoff' / 'landing'
             targetTakeoffHeight: 1.5, // 起飛高度改為 1.5 米 (與光環置中後的高度等高)
 
@@ -1309,9 +1310,10 @@
                 callback(0, 0);
             }
 
-            joyLeft.addEventListener('touchstart', (e) => handleJoystick(e, joyLeft, knobLeft, updateLeftJoy), { passive: false });
-            joyLeft.addEventListener('touchmove', (e) => handleJoystick(e, joyLeft, knobLeft, updateLeftJoy), { passive: false });
+            joyLeft.addEventListener('touchstart', (e) => { drone.touchActiveLeft = true; handleJoystick(e, joyLeft, knobLeft, updateLeftJoy); }, { passive: false });
+            joyLeft.addEventListener('touchmove', (e) => { drone.touchActiveLeft = true; handleJoystick(e, joyLeft, knobLeft, updateLeftJoy); }, { passive: false });
             joyLeft.addEventListener('touchend', () => resetJoystick(knobLeft, () => {
+                drone.touchActiveLeft = false;
                 drone.input.yaw = 0;
                 drone.touchAltitudeInput = 0;
             }));
@@ -1399,10 +1401,10 @@
             else if (keys.a || keys.arrowleft) drone.input.roll = -1.0;
             else if (!drone.touchActive) drone.input.roll = 0;
 
-            // Q/E：旋轉
+            // Q/E：旋轉（左搖桿觸控時比照鍵盤邏輯，向左/右推等同 Q/E）
             if (keys.e) drone.input.yaw = 1.0;
             else if (keys.q) drone.input.yaw = -1.0;
-            else drone.input.yaw = 0;
+            else if (!drone.touchActiveLeft) drone.input.yaw = 0;
 
             // 平滑計算目標俯仰及側滾傾角
             const targetPitchAngle = drone.input.pitch * drone.constants.maxTilt;
