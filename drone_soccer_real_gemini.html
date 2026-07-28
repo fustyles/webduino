@@ -88,7 +88,7 @@
                     <li>球門光環與您的無人機 <span class="text-white">同色 = 自家球門</span>（不計分，需防守）</li>
                     <li>球門光環與您的無人機 <span class="text-white">異色 = 對手球門</span>（穿越才計分）</li>
                     <li>您的機頭預設面向對手球門方向</li>
-                    <li>電腦控制的守門無人機會鎮守對手球門，撞擊會使您彈開</li>
+                    <li>對手球門由 <span class="text-white">2 台電腦守門機聯手鎮守</span>（1 打 2），撞擊會使您彈開</li>
                 </ul>
             </div>
 
@@ -362,9 +362,15 @@
         // 地板長度方向為 Z 軸 (Z: -3 至 +3)
         // 地板寬度方向為 X 軸 (X: -2 至 +2)
         // 紅色球門線在 Z = -2.25，藍色球門線在 Z = 2.25。高度置中於場地高度正中央 (cageH / 2 = 1.5 米)。
+        // 依真實規格調整：無人機球型護籠外徑 20 公分 (半徑 0.10m)；球門光環「淨開口」內直徑 60 公分 (半徑 0.30m)
+        const DRONE_CAGE_RADIUS = 0.10;   // 無人機足球護籠半徑，整體球徑 = 20 公分
+        const RING_CLEAR_RADIUS = 0.30;   // 光環實際淨開口半徑 (扣除管粗後可通過的孔徑)，內直徑 = 60 公分
+        const RING_TUBE_RADIUS = 0.022;   // 光環管粗半徑 (依比例縮小)
+        const RING_CENTER_RADIUS = RING_CLEAR_RADIUS + RING_TUBE_RADIUS; // 圓環管中心線半徑 (TorusGeometry 用)
+
         const ringCourse = [
-            { pos: new THREE.Vector3(0, 1.5, -2.25), color: 0xef4444, team: 'red', size: 0.9, lastPassTime: 0, forwardSign: -1, prevSide: null }, // 紅色方框球門線正上方，高度置中；正向穿越方向為 -Z（由場地中央飛向紅方球門外）
-            { pos: new THREE.Vector3(0, 1.5, 2.25), color: 0x3b82f6, team: 'blue', size: 0.9, lastPassTime: 0, forwardSign: 1, prevSide: null }   // 藍色方框球門線正上方，高度置中；正向穿越方向為 +Z（由場地中央飛向藍方球門外）
+            { pos: new THREE.Vector3(0, 1.5, -2.25), color: 0xef4444, team: 'red', size: RING_CENTER_RADIUS * 2, lastPassTime: 0, forwardSign: -1, prevSide: null }, // 紅色方框球門線正上方，高度置中；正向穿越方向為 -Z（由場地中央飛向紅方球門外）
+            { pos: new THREE.Vector3(0, 1.5, 2.25), color: 0x3b82f6, team: 'blue', size: RING_CENTER_RADIUS * 2, lastPassTime: 0, forwardSign: 1, prevSide: null }   // 藍色方框球門線正上方，高度置中；正向穿越方向為 +Z（由場地中央飛向藍方球門外）
         ];
         let score = 0;
         let particles = [];
@@ -376,28 +382,39 @@
         function getOwnGoalRing() { return ringCourse.find(r => r.team === playerTeam); }
         function getOpponentGoalRing() { return ringCourse.find(r => r.team === getOpponentTeam(playerTeam)); }
 
-        // 電腦控制的守門無人機（鎮守對手球門，碰撞會將玩家彈開）
-        const aiDrone = {
-            mesh: null,
-            canopyRef: null,
-            glowRef: null,
-            rotors: [],
-            position: new THREE.Vector3(0, 1.5, 2.25),
-            velocity: new THREE.Vector3(0, 0, 0),
-            team: 'blue',
-            guardRing: null,
-            aimTarget: new THREE.Vector3(0, 1.5, 2.25), // AI 目前瞄準的攔截點（帶反應延遲與誤差，不會即時鎖定玩家）
-            reactionTimer: 0,       // 距離下次「重新判斷」還要多久（模擬人類反應延遲）
-            constants: {
-                maxSpeed: 1.9,        // 守門機最高攔截移動速度 (m/s)
-                accel: 4.2,           // 加速度，決定攔截反應靈敏度
-                guardRadiusXY: 0.48,  // 守門機可左右上下移動的最大半徑
-                guardDepth: 0.26,     // 守門機可離開球門平面向前迎擊的最大深度
-                reactionMin: 0.22,    // 最短反應間隔（秒）
-                reactionMax: 0.55,    // 最長反應間隔（秒）
-                aimError: 0.16,       // 每次重新判斷時的瞄準誤差半徑（米）
-            },
+        // 電腦控制的守門無人機（兩台，聯手鎮守對手球門，碰撞會將玩家彈開）
+        const AI_GUARD_CONSTANTS = {
+            maxSpeed: 1.9,        // 守門機最高攔截移動速度 (m/s)
+            accel: 4.2,           // 加速度，決定攔截反應靈敏度
+            guardRadiusXY: 0.48,  // 守門機可左右上下移動的最大半徑
+            guardDepth: 0.26,     // 守門機可離開球門平面向前迎擊的最大深度
+            reactionMin: 0.22,    // 最短反應間隔（秒）
+            reactionMax: 0.55,    // 最長反應間隔（秒）
+            aimError: 0.16,       // 每次重新判斷時的瞄準誤差半徑（米）
         };
+
+        // 建立單一守門機的狀態物件；guardHomeOffsetX 讓兩台守門機分工鎮守球門左右兩側，避免疊在一起
+        function createAIDroneState(guardHomeOffsetX) {
+            return {
+                mesh: null,
+                canopyRef: null,
+                cageMatRef: null,
+                warnRingRef: null,
+                glowRef: null,
+                rotors: [],
+                position: new THREE.Vector3(0, 1.5, 2.25),
+                velocity: new THREE.Vector3(0, 0, 0),
+                team: 'blue',
+                guardRing: null,
+                guardHomeOffsetX: guardHomeOffsetX, // 這台守門機預設偏向球門左側或右側的守備分工偏移量（米）
+                aimTarget: new THREE.Vector3(0, 1.5, 2.25), // AI 目前瞄準的攔截點（帶反應延遲與誤差，不會即時鎖定玩家）
+                reactionTimer: 0,       // 距離下次「重新判斷」還要多久（模擬人類反應延遲）
+                constants: AI_GUARD_CONSTANTS,
+            };
+        }
+
+        // 兩台守門機：一台鎮守球門左側、一台鎮守球門右側，形成雙人聯防（玩家 1 機攻擊 vs 敵方 2 機守門）
+        const aiDrones = [createAIDroneState(-0.22), createAIDroneState(0.22)];
 
         // 5. 鍵盤輸入
         const keys = { 
@@ -862,16 +879,62 @@
             scene.add(cageGroup);
         }
 
-        // 建造精密縮小版高科技無人機 (體積減小，動作在小球場更精緻靈活)
+        // 在兩點之間建造一根圓柱護籠桿件 (用於組成測地線球型護籠)
+        function createCageRod(p1, p2, radius, material) {
+            const dir = new THREE.Vector3().subVectors(p2, p1);
+            const len = dir.length();
+            const geo = new THREE.CylinderGeometry(radius, radius, len, 6);
+            const mesh = new THREE.Mesh(geo, material);
+            const mid = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
+            mesh.position.copy(mid);
+            mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.clone().normalize());
+            mesh.castShadow = true;
+            return mesh;
+        }
+
+        // 建造測地線球型護籠 (仿照真實無人機足球造型)，回傳 { group, material }
+        function createDroneCage(radius, colorHex) {
+            const group = new THREE.Group();
+            const material = new THREE.MeshStandardMaterial({
+                color: colorHex,
+                emissive: colorHex,
+                emissiveIntensity: 0.12,
+                metalness: 0.25,
+                roughness: 0.55
+            });
+
+            // 以二階細分二十面體的邊線來近似足球護籠的五邊/六邊格狀結構
+            const icoGeo = new THREE.IcosahedronGeometry(radius, 1);
+            const edgesGeo = new THREE.EdgesGeometry(icoGeo, 1);
+            const posAttr = edgesGeo.attributes.position;
+            const rodRadius = radius * 0.05;
+
+            const p1 = new THREE.Vector3();
+            const p2 = new THREE.Vector3();
+            for (let i = 0; i < posAttr.count; i += 2) {
+                p1.fromBufferAttribute(posAttr, i);
+                p2.fromBufferAttribute(posAttr, i + 1);
+                group.add(createCageRod(p1, p2, rodRadius, material));
+            }
+
+            icoGeo.dispose();
+            edgesGeo.dispose();
+
+            return { group, material };
+        }
+
+        // 建造精密縮小版高科技無人機 (體積減小，動作在小球場更精緻靈活；整體以20公分球型護籠包覆)
         function buildDrone() {
             const droneGroup = new THREE.Group();
+            const innerGroup = new THREE.Group(); // 內部機構整組縮小，包覆於20公分球型護籠內
+            const INNER_SCALE = 0.23;
 
             // 1. 微型中控主機
             const bodyGeo = new THREE.BoxGeometry(0.24, 0.08, 0.24);
             const bodyMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.9, roughness: 0.1 });
             const body = new THREE.Mesh(bodyGeo, bodyMat);
             body.castShadow = true;
-            droneGroup.add(body);
+            innerGroup.add(body);
 
             // 2. 亮藍色半透明科技艙蓋（依隊伍顏色動態變化）
             const canopyGeo = new THREE.SphereGeometry(0.09, 16, 16);
@@ -881,7 +944,7 @@
             canopy.position.y = 0.06;
             canopy.position.z = 0.015;
             canopy.castShadow = true;
-            droneGroup.add(canopy);
+            innerGroup.add(canopy);
             drone.canopyRef = canopy;
 
             // 3. 前向航行攝像頭鏡頭 (綠光)
@@ -889,7 +952,7 @@
             const lensMat = new THREE.MeshBasicMaterial({ color: 0x10b981 });
             const lens = new THREE.Mesh(lensGeo, lensMat);
             lens.position.set(0, 0, 0.135);
-            droneGroup.add(lens);
+            innerGroup.add(lens);
 
             // 4. 四個微型對角機臂
             const armAngle = Math.PI / 4;
@@ -909,7 +972,7 @@
                 arm.rotation.y = (idx === 0 || idx === 3) ? -armAngle : armAngle;
                 arm.position.set(pos.x / 2, 0, pos.z / 2);
                 arm.castShadow = true;
-                droneGroup.add(arm);
+                innerGroup.add(arm);
 
                 // 電機馬達
                 const motorGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.08, 8);
@@ -917,7 +980,7 @@
                 const motor = new THREE.Mesh(motorGeo, motorMat);
                 motor.position.set(pos.x, 0.02, pos.z);
                 motor.castShadow = true;
-                droneGroup.add(motor);
+                innerGroup.add(motor);
 
                 // 旋翼組件
                 const rotorGroup = new THREE.Group();
@@ -934,7 +997,7 @@
                 blade.castShadow = true;
                 rotorGroup.add(blade);
 
-                droneGroup.add(rotorGroup);
+                innerGroup.add(rotorGroup);
                 drone.rotors.push(rotorGroup);
 
                 // 微型閃爍LED
@@ -942,13 +1005,22 @@
                 const ledMat = new THREE.MeshBasicMaterial({ color: pos.color });
                 const led = new THREE.Mesh(ledGeo, ledMat);
                 led.position.set(pos.x, -0.02, pos.z);
-                droneGroup.add(led);
+                innerGroup.add(led);
                 drone.lights.push({ mesh: led, originalColor: pos.color });
             });
 
-            // 底部雷射測距定高光束
+            innerGroup.scale.setScalar(INNER_SCALE);
+            droneGroup.add(innerGroup);
+
+            // 5. 足球狀測地線球型護籠 (外徑20公分，符合真實無人機足球規格)
+            const { group: cageGroup, material: cageMat } = createDroneCage(DRONE_CAGE_RADIUS, 0x10b981);
+            droneGroup.add(cageGroup);
+            drone.cageMatRef = cageMat;
+
+            // 底部雷射測距定高光束 (置於球體底部)
+            const glowY = -DRONE_CAGE_RADIUS * 0.9;
             const bottomLight = new THREE.SpotLight(0x00ffcc, 5.0, 4, Math.PI / 6, 0.4, 0.9);
-            bottomLight.position.set(0, -0.04, 0);
+            bottomLight.position.set(0, glowY, 0);
             bottomLight.castShadow = true;
             const lightTarget = new THREE.Object3D();
             lightTarget.position.set(0, -3, 0);
@@ -956,10 +1028,10 @@
             bottomLight.target = lightTarget;
             droneGroup.add(bottomLight);
 
-            const bottomGlowGeo = new THREE.SphereGeometry(0.03, 8, 8);
+            const bottomGlowGeo = new THREE.SphereGeometry(0.015, 8, 8);
             const bottomGlowMat = new THREE.MeshBasicMaterial({ color: 0x00ffcc });
             const bottomGlow = new THREE.Mesh(bottomGlowGeo, bottomGlowMat);
-            bottomGlow.position.set(0, -0.04, 0);
+            bottomGlow.position.set(0, glowY, 0);
             droneGroup.add(bottomGlow);
             drone.glowRef = bottomGlow;
 
@@ -968,7 +1040,7 @@
             drone.mesh = droneGroup;
         }
 
-        // 依隊伍顏色重新為無人機艙蓋 / 底部光球上色（玩家與守門機共用）
+        // 依隊伍顏色重新為無人機艙蓋 / 護籠 / 底部光球上色（玩家與守門機共用）
         function applyTeamColor(droneObj, colorHex) {
             droneObj.teamColor = colorHex;
             if (droneObj.canopyRef) {
@@ -978,17 +1050,23 @@
             if (droneObj.glowRef) {
                 droneObj.glowRef.material.color.setHex(colorHex);
             }
+            if (droneObj.cageMatRef) {
+                droneObj.cageMatRef.color.setHex(colorHex);
+                droneObj.cageMatRef.emissive.setHex(colorHex);
+            }
         }
 
-        // 建造電腦控制的守門無人機（外型較樸素以利辨識，鎮守對手球門）
-        function buildAIDrone() {
+        // 建造電腦控制的守門無人機（外型較樸素以利辨識，鎮守對手球門）；傳入對應的 aiState 讓每台守門機各自持有自己的網格參照
+        function buildAIDrone(aiState) {
             const group = new THREE.Group();
+            const innerGroup = new THREE.Group(); // 內部機構整組縮小，包覆於20公分球型護籠內
+            const INNER_SCALE = 0.23;
 
             const bodyGeo = new THREE.BoxGeometry(0.24, 0.08, 0.24);
             const bodyMat = new THREE.MeshStandardMaterial({ color: 0x1e1b2e, metalness: 0.85, roughness: 0.2 });
             const body = new THREE.Mesh(bodyGeo, bodyMat);
             body.castShadow = true;
-            group.add(body);
+            innerGroup.add(body);
 
             const canopyGeo = new THREE.SphereGeometry(0.09, 16, 16);
             canopyGeo.scale(1, 0.5, 1.2);
@@ -996,8 +1074,8 @@
             const canopy = new THREE.Mesh(canopyGeo, canopyMat);
             canopy.position.set(0, 0.06, 0.015);
             canopy.castShadow = true;
-            group.add(canopy);
-            aiDrone.canopyRef = canopy;
+            innerGroup.add(canopy);
+            aiState.canopyRef = canopy;
 
             const armAngle = Math.PI / 4;
             const armDist = 0.28;
@@ -1015,13 +1093,13 @@
                 arm.rotation.y = (idx === 0 || idx === 3) ? -armAngle : armAngle;
                 arm.position.set(pos.x / 2, 0, pos.z / 2);
                 arm.castShadow = true;
-                group.add(arm);
+                innerGroup.add(arm);
 
                 const motorGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.08, 8);
                 const motorMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.2 });
                 const motor = new THREE.Mesh(motorGeo, motorMat);
                 motor.position.set(pos.x, 0.02, pos.z);
-                group.add(motor);
+                innerGroup.add(motor);
 
                 const rotorGroup = new THREE.Group();
                 rotorGroup.position.set(pos.x, 0.05, pos.z);
@@ -1029,36 +1107,49 @@
                 const bladeMat = new THREE.MeshStandardMaterial({ color: 0xcbd5e1, transparent: true, opacity: 0.8 });
                 const blade = new THREE.Mesh(bladeGeo, bladeMat);
                 rotorGroup.add(blade);
-                group.add(rotorGroup);
-                aiDrone.rotors.push(rotorGroup);
+                innerGroup.add(rotorGroup);
+                aiState.rotors.push(rotorGroup);
             });
 
-            // 守門機專屬警示燈環（辨識用，持續脈動）
-            const warnGeo = new THREE.TorusGeometry(0.16, 0.012, 8, 24);
+            innerGroup.scale.setScalar(INNER_SCALE);
+            group.add(innerGroup);
+
+            // 足球狀測地線球型護籠 (外徑20公分，符合真實無人機足球規格)
+            const { group: cageGroup, material: cageMat } = createDroneCage(DRONE_CAGE_RADIUS, 0x3b82f6);
+            group.add(cageGroup);
+            aiState.cageMatRef = cageMat;
+
+            // 守門機專屬警示燈環（辨識用，緊貼護籠外側，持續脈動）
+            const warnGeo = new THREE.TorusGeometry(DRONE_CAGE_RADIUS * 1.15, 0.006, 8, 24);
             const warnMat = new THREE.MeshBasicMaterial({ color: 0xfacc15, transparent: true, opacity: 0.55 });
             const warnRing = new THREE.Mesh(warnGeo, warnMat);
             warnRing.rotation.x = Math.PI / 2;
-            warnRing.position.y = 0.04;
             group.add(warnRing);
-            aiDrone.warnRingRef = warnRing;
+            aiState.warnRingRef = warnRing;
 
-            const bottomGlowGeo = new THREE.SphereGeometry(0.03, 8, 8);
+            const glowY = -DRONE_CAGE_RADIUS * 0.9;
+            const bottomGlowGeo = new THREE.SphereGeometry(0.015, 8, 8);
             const bottomGlowMat = new THREE.MeshBasicMaterial({ color: 0x3b82f6 });
             const bottomGlow = new THREE.Mesh(bottomGlowGeo, bottomGlowMat);
-            bottomGlow.position.set(0, -0.04, 0);
+            bottomGlow.position.set(0, glowY, 0);
             group.add(bottomGlow);
-            aiDrone.glowRef = bottomGlow;
+            aiState.glowRef = bottomGlow;
 
-            group.position.copy(aiDrone.position);
+            group.position.copy(aiState.position);
             scene.add(group);
-            aiDrone.mesh = group;
+            aiState.mesh = group;
+        }
+
+        // 建造兩台守門機（分別對應 aiDrones 陣列中的每個狀態物件）
+        function buildAIDrones() {
+            aiDrones.forEach(aiState => buildAIDrone(aiState));
         }
 
         // 建造 2 個發光光環 (精準垂直懸浮在左右底線白色球門正上方)
         function setupTargetRings() {
             ringCourse.forEach((ringData) => {
                 // 發光 Torus
-                const ringGeo = new THREE.TorusGeometry(ringData.size / 2, 0.035, 12, 36);
+                const ringGeo = new THREE.TorusGeometry(ringData.size / 2, RING_TUBE_RADIUS, 12, 36);
                 const ringMat = new THREE.MeshStandardMaterial({
                     color: ringData.color,
                     emissive: ringData.color,
@@ -1082,11 +1173,11 @@
                 const cableCenterY = ringData.pos.y + cableLen / 2;
 
                 const leftLine = new THREE.Mesh(lineGeo, lineMat);
-                leftLine.position.set(ringData.pos.x - 0.45, cableCenterY, ringData.pos.z);
+                leftLine.position.set(ringData.pos.x - ringData.size / 2, cableCenterY, ringData.pos.z);
                 scene.add(leftLine);
 
                 const rightLine = new THREE.Mesh(lineGeo, lineMat);
-                rightLine.position.set(ringData.pos.x + 0.45, cableCenterY, ringData.pos.z);
+                rightLine.position.set(ringData.pos.x + ringData.size / 2, cableCenterY, ringData.pos.z);
                 scene.add(rightLine);
             });
         }
@@ -1095,26 +1186,30 @@
         function configureMatch(team) {
             playerTeam = team;
             const oppTeam = getOpponentTeam(team);
-            aiDrone.team = oppTeam;
-            aiDrone.guardRing = getOpponentGoalRing();
+            const guardRing = getOpponentGoalRing();
 
             applyTeamColor(drone, TEAM_COLORS[team]);
-            applyTeamColor(aiDrone, TEAM_COLORS[oppTeam]);
 
             // 玩家機頭預設面向對手球門：紅隊面向 +Z（藍方球門），藍隊面向 -Z（紅方球門）
             drone.rotation.y = (team === 'red') ? 0 : Math.PI;
 
-            // 守門機重新定位到對手球門正中央守備
-            if (aiDrone.guardRing) {
-                aiDrone.position.set(aiDrone.guardRing.pos.x, aiDrone.guardRing.pos.y, aiDrone.guardRing.pos.z);
-                aiDrone.velocity.set(0, 0, 0);
-                aiDrone.aimTarget.copy(aiDrone.position);
-                aiDrone.reactionTimer = 0;
-                if (aiDrone.mesh) {
-                    aiDrone.mesh.position.copy(aiDrone.position);
-                    aiDrone.mesh.rotation.y = (team === 'red') ? Math.PI : 0; // 守門機面向玩家方向
+            // 兩台守門機皆重新配置隊伍顏色，並依各自左右分工偏移，重新定位到對手球門守備
+            aiDrones.forEach(aiState => {
+                aiState.team = oppTeam;
+                aiState.guardRing = guardRing;
+                applyTeamColor(aiState, TEAM_COLORS[oppTeam]);
+
+                if (guardRing) {
+                    aiState.position.set(guardRing.pos.x + aiState.guardHomeOffsetX, guardRing.pos.y, guardRing.pos.z);
+                    aiState.velocity.set(0, 0, 0);
+                    aiState.aimTarget.copy(aiState.position);
+                    aiState.reactionTimer = 0;
+                    if (aiState.mesh) {
+                        aiState.mesh.position.copy(aiState.position);
+                        aiState.mesh.rotation.y = (team === 'red') ? Math.PI : 0; // 守門機面向玩家方向
+                    }
                 }
-            }
+            });
 
             updateTeamHUD();
         }
@@ -1494,7 +1589,7 @@
             }
 
             // 四周充氣網牆邊界彈力碰撞偵測 (X: 4m 寬 / Z: 6m 長，扣除無人機半徑安全裕度)
-            const droneBodyRadius = 0.20;
+            const droneBodyRadius = DRONE_CAGE_RADIUS;
             const xLimit = 4.0 / 2 - droneBodyRadius;  // 左右網牆
             const zLimit = 6.0 / 2 - droneBodyRadius;  // 前後網牆
             const wallRestitution = 0.4; // 網子有彈性，撞擊後緩速反彈
@@ -1532,10 +1627,10 @@
         function checkRingCollisions() {
             if (!drone.mesh) return;
 
-            const R = 0.45; // 光環外徑半徑 (0.9m / 2)
-            const r = 0.035; // 圓環管粗半徑
-            const droneRadius = 0.20; // 無人機有效碰撞半徑
-            const tubeCollisionThreshold = r + droneRadius; // ~0.235m
+            const R = RING_CENTER_RADIUS; // 光環管中心線半徑 (淨開口內直徑 60cm，另加管粗)
+            const r = RING_TUBE_RADIUS; // 圓環管粗半徑
+            const droneRadius = DRONE_CAGE_RADIUS; // 無人機球型護籠有效碰撞半徑 (直徑20cm)
+            const tubeCollisionThreshold = r + droneRadius;
 
             ringCourse.forEach((ring) => {
                 // 1. 偵測與光環圓柱框的實體碰撞 (反彈)
@@ -1588,7 +1683,7 @@
 
                 // 2. 偵測穿越光環中心（僅「正向」穿越才計分，反向穿越不計分）
                 const distToCenter = drone.position.distanceTo(ring.pos);
-                const innerOpeningRadius = R - r - 0.05; // 留下安全裕度 (~0.36m)
+                const innerOpeningRadius = R - r - 0.05; // 留下安全裕度 (依新光環尺寸約 ~0.23m)
 
                 // 以光環平面（Z 軸法線）判斷無人機目前在哪一側
                 const rawSide = drone.position.z - ring.pos.z;
@@ -1642,19 +1737,20 @@
         }
 
         // 電腦守門機 AI：於對手球門口攔截玩家，但刻意加入反應延遲與瞄準誤差，不會完美貼防
-        function updateAIDrone(delta) {
-            if (!aiDrone.mesh || !aiDrone.guardRing || !drone.mesh) return;
+        // 每台守門機各自獨立運算，並依 guardHomeOffsetX 分工鎮守球門左側或右側，形成雙人聯防
+        function updateSingleAIDrone(aiState, delta) {
+            if (!aiState.mesh || !aiState.guardRing || !drone.mesh) return;
 
-            const ring = aiDrone.guardRing;
-            const c = aiDrone.constants;
+            const ring = aiState.guardRing;
+            const c = aiState.constants;
 
             // 反應延遲：AI 並非每一影格都重新鎖定玩家位置，而是每隔一段隨機時間才「重新判斷」一次
-            aiDrone.reactionTimer -= delta;
-            if (aiDrone.reactionTimer <= 0) {
-                aiDrone.reactionTimer = c.reactionMin + Math.random() * (c.reactionMax - c.reactionMin);
+            aiState.reactionTimer -= delta;
+            if (aiState.reactionTimer <= 0) {
+                aiState.reactionTimer = c.reactionMin + Math.random() * (c.reactionMax - c.reactionMin);
 
-                // 玩家相對球門中心的水平/垂直偏移
-                let dx = drone.position.x - ring.pos.x;
+                // 玩家相對「這台守門機守備分工中心」（球門中心 + 左右分工偏移）的水平/垂直偏移
+                let dx = drone.position.x - (ring.pos.x + aiState.guardHomeOffsetX);
                 let dy = drone.position.y - ring.pos.y;
 
                 // 加入隨機瞄準誤差，模擬預判失準（笨手笨腳）
@@ -1675,48 +1771,68 @@
                     : 0;
                 const dz = -ring.forwardSign * engageDepth;
 
-                aiDrone.aimTarget.set(ring.pos.x + dx, ring.pos.y + dy, ring.pos.z + dz);
+                aiState.aimTarget.set(ring.pos.x + aiState.guardHomeOffsetX + dx, ring.pos.y + dy, ring.pos.z + dz);
             }
 
             // 以較低的加速度緩緩追向「上次判斷」的目標位置（帶阻尼，動作明顯較遲鈍）
-            const toTarget = aiDrone.aimTarget.clone().sub(aiDrone.position);
+            const toTarget = aiState.aimTarget.clone().sub(aiState.position);
             const dist = toTarget.length();
             if (dist > 0.01) {
                 const desiredVel = toTarget.normalize().multiplyScalar(Math.min(c.maxSpeed, dist * 2.2));
-                const steer = desiredVel.sub(aiDrone.velocity).multiplyScalar(c.accel * delta);
-                aiDrone.velocity.add(steer);
+                const steer = desiredVel.sub(aiState.velocity).multiplyScalar(c.accel * delta);
+                aiState.velocity.add(steer);
             }
-            aiDrone.velocity.multiplyScalar(0.88); // 阻尼，避免震盪
-            aiDrone.position.addScaledVector(aiDrone.velocity, delta);
+            aiState.velocity.multiplyScalar(0.88); // 阻尼，避免震盪
+            aiState.position.addScaledVector(aiState.velocity, delta);
 
-            aiDrone.mesh.position.copy(aiDrone.position);
+            aiState.mesh.position.copy(aiState.position);
             // 守門機機身面向玩家
-            const lookDir = drone.position.clone().sub(aiDrone.position);
+            const lookDir = drone.position.clone().sub(aiState.position);
             if (lookDir.length() > 0.05) {
-                aiDrone.mesh.rotation.y = Math.atan2(lookDir.x, lookDir.z);
+                aiState.mesh.rotation.y = Math.atan2(lookDir.x, lookDir.z);
             }
 
             // 警示燈環持續脈動，並依守門機自身隊伍顏色顯示
-            if (aiDrone.warnRingRef) {
+            if (aiState.warnRingRef) {
                 const pulse = 0.4 + Math.sin(clock.getElapsedTime() * 6) * 0.25;
-                aiDrone.warnRingRef.material.opacity = pulse;
+                aiState.warnRingRef.material.opacity = pulse;
             }
 
             // 螺旋槳待機旋轉動畫
-            aiDrone.rotors.forEach((rotorGroup, idx) => {
+            aiState.rotors.forEach((rotorGroup, idx) => {
                 const dir = (idx === 0 || idx === 3) ? 1 : -1;
                 rotorGroup.rotation.y += dir * 40 * delta;
             });
         }
 
-        // 玩家無人機與守門機的實體碰撞：偵測到重疊時互相彈開
-        function checkDroneVsDroneCollision() {
-            if (!drone.mesh || !aiDrone.mesh) return;
+        // 更新兩台守門機，並在彼此靠太近時輕輕互相推開，避免疊在同一個攔截點上
+        function updateAIDrone(delta) {
+            aiDrones.forEach(aiState => updateSingleAIDrone(aiState, delta));
 
-            const droneRadius = 0.20;
+            if (aiDrones.length === 2 && aiDrones[0].mesh && aiDrones[1].mesh) {
+                const [a, b] = aiDrones;
+                const combinedRadius = DRONE_CAGE_RADIUS * 2.2; // 稍留餘裕，避免兩台守門機的護籠互相卡住
+                const diff = a.position.clone().sub(b.position);
+                const dist = diff.length();
+                if (dist < combinedRadius && dist > 0.001) {
+                    const normal = diff.normalize();
+                    const overlap = combinedRadius - dist;
+                    a.position.addScaledVector(normal, overlap * 0.5);
+                    b.position.addScaledVector(normal, -overlap * 0.5);
+                    a.mesh.position.copy(a.position);
+                    b.mesh.position.copy(b.position);
+                }
+            }
+        }
+
+        // 玩家無人機與守門機的實體碰撞：偵測到重疊時互相彈開（兩台守門機皆會參與攔截判定）
+        function checkSingleDroneVsDroneCollision(aiState) {
+            if (!drone.mesh || !aiState.mesh) return;
+
+            const droneRadius = DRONE_CAGE_RADIUS;
             const combinedRadius = droneRadius * 2;
 
-            const diff = drone.position.clone().sub(aiDrone.position);
+            const diff = drone.position.clone().sub(aiState.position);
             const dist = diff.length();
 
             if (dist < combinedRadius && dist > 0.001) {
@@ -1725,7 +1841,7 @@
                 // 位置排開，防止兩機互相穿透
                 const overlap = combinedRadius - dist;
                 drone.position.addScaledVector(normal, overlap * 0.85);
-                aiDrone.position.addScaledVector(normal, -overlap * 0.15);
+                aiState.position.addScaledVector(normal, -overlap * 0.15);
 
                 // 玩家速度反彈（守門機視為較重的攔截物，彈開力道較強）
                 const relVel = drone.velocity.dot(normal);
@@ -1737,11 +1853,15 @@
                 }
 
                 // 守門機也會被輕微推開，但很快會被 AI 拉回守備位置
-                aiDrone.velocity.addScaledVector(normal, -0.6);
+                aiState.velocity.addScaledVector(normal, -0.6);
 
                 createExplosion(drone.position.clone(), 0xfacc15);
                 showSystemNotification("被守門機攔截！撞擊彈開");
             }
+        }
+
+        function checkDroneVsDroneCollision() {
+            aiDrones.forEach(aiState => checkSingleDroneVsDroneCollision(aiState));
         }
 
         // 循環視角切換
@@ -2000,7 +2120,7 @@
             createSoccerField();
             buildInflatableCage(); // 創建 3fc47b8b-0d54-496f-abc0-0f49a0d9871a.jpg 的充氣柱網壁
             buildDrone();
-            buildAIDrone();
+            buildAIDrones();
             setupTargetRings();
             configureMatch(playerTeam); // 套用預設紅隊配色、機頭朝向並讓守門機就位
             setupKeyboard();
