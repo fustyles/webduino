@@ -859,6 +859,69 @@
             return { group, material };
         }
 
+        // 建造機尾閃爍警示燈（固定安裝於機身本體正後方，而非護籠上，鮮紅色快閃，讓操作者一眼判別機尾/機頭朝向）
+        function createTailBeacon() {
+            const group = new THREE.Group();
+
+            // 尾桿：水平向後延伸的細長支架（沿 -Z 方向），讓燈座清楚凸出於護籠外殼之外
+            const finLength = 0.07;
+            const finGeo = new THREE.BoxGeometry(0.014, 0.014, finLength);
+            const finMat = new THREE.MeshStandardMaterial({ color: 0x111827, metalness: 0.6, roughness: 0.45 });
+            const fin = new THREE.Mesh(finGeo, finMat);
+            fin.position.set(0, 0.02, -finLength / 2); // 由機身背面沿水平方向向後伸出
+            fin.castShadow = true;
+            group.add(fin);
+
+            // 燈座位置：位於水平尾桿的末端（機身正後方）
+            const beaconPos = new THREE.Vector3(0, 0.02, -finLength);
+
+            // 高亮紅色燈珠本體
+            const baseColor = new THREE.Color(0xff1a1a);
+            const beaconGeo = new THREE.SphereGeometry(0.022 / 3, 12, 12);
+            const beaconMat = new THREE.MeshBasicMaterial({ color: baseColor.clone() });
+            beaconMat.userData.baseColor = baseColor;
+            const beacon = new THREE.Mesh(beaconGeo, beaconMat);
+            beacon.position.copy(beaconPos);
+            group.add(beacon);
+
+            // 光暈效果：以多層半透明疊加球體 + 疊加混合模擬柔光暈染，讓燈珠在暗處更加醒目突出
+            const haloLayers = [
+                { scale: 2.4, opacity: 0.4 },
+                { scale: 4.0, opacity: 0.2 },
+                { scale: 6.0, opacity: 0.09 }
+            ];
+            const haloMats = [];
+            haloLayers.forEach(layer => {
+                const haloGeo = new THREE.SphereGeometry((0.022 / 3) * layer.scale, 10, 10);
+                const haloMat = new THREE.MeshBasicMaterial({
+                    color: baseColor.clone(),
+                    transparent: true,
+                    opacity: layer.opacity,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false
+                });
+                const halo = new THREE.Mesh(haloGeo, haloMat);
+                halo.position.copy(beaconPos);
+                group.add(halo);
+                haloMats.push(haloMat);
+            });
+            beaconMat.userData.haloMats = haloMats;
+
+            // 搭配點光源，讓機尾燈在暗處也十分醒目
+            const beaconLight = new THREE.PointLight(0xff1a1a, 2.2, 1.1, 2);
+            beaconLight.position.copy(beaconPos);
+            group.add(beaconLight);
+
+            return { group, beaconMat, beaconLight };
+        }
+
+        // 機尾燈固定常亮（不閃爍，避免操作者分心），僅在建立時設定一次即可
+        function updateTailBeacon(beaconMat, beaconLight) {
+            if (!beaconMat) return;
+            beaconMat.color.copy(beaconMat.userData.baseColor);
+            if (beaconLight) beaconLight.intensity = 1.2;
+        }
+
         // 建造精密縮小版高科技無人機 (體積減小，動作在小球場更精緻靈活；整體以20公分球型護籠包覆)
         function buildDrone() {
             const droneGroup = new THREE.Group();
@@ -950,6 +1013,14 @@
             // 5. 足球狀測地線球型護籠 (外徑20公分，符合真實無人機足球規格)
             const { group: cageGroup } = createDroneCage(DRONE_CAGE_RADIUS, 0x10b981);
             droneGroup.add(cageGroup);
+
+            // 5b. 機尾閃爍警示燈（緊貼中控主機機身背面，方便辨識機頭/機尾朝向）
+            const { group: tailGroup, beaconMat: tailBeaconMat, beaconLight: tailBeaconLight } = createTailBeacon();
+            tailGroup.position.set(0, 0, -0.045); // 緊貼中控主機機身背面 (body 深度 0.24 * INNER_SCALE 0.23 之外緣再留一點間距)
+            droneGroup.add(tailGroup);
+            drone.tailBeaconMat = tailBeaconMat;
+            drone.tailBeaconLight = tailBeaconLight;
+            updateTailBeacon(drone.tailBeaconMat, drone.tailBeaconLight);
 
             // 底部雷射測距定高光束 (置於球體底部)
             const glowY = -DRONE_CAGE_RADIUS * 0.9;
