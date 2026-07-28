@@ -924,13 +924,17 @@
         function createTailBeacon() {
             const group = new THREE.Group();
 
-            // 尾翼固定片，讓燈座清楚凸出於護籠外殼之外
-            const finGeo = new THREE.BoxGeometry(0.016, 0.05, 0.008);
+            // 尾桿：水平向後延伸的細長支架（沿 -Z 方向），讓燈座清楚凸出於護籠外殼之外
+            const finLength = 0.07;
+            const finGeo = new THREE.BoxGeometry(0.014, 0.014, finLength);
             const finMat = new THREE.MeshStandardMaterial({ color: 0x111827, metalness: 0.6, roughness: 0.45 });
             const fin = new THREE.Mesh(finGeo, finMat);
-            fin.position.y = 0.02;
+            fin.position.set(0, 0.02, -finLength / 2); // 由機身背面沿水平方向向後伸出
             fin.castShadow = true;
             group.add(fin);
+
+            // 燈座位置：位於水平尾桿的末端（機身正後方）
+            const beaconPos = new THREE.Vector3(0, 0.02, -finLength);
 
             // 高亮紅色燈珠本體
             const baseColor = new THREE.Color(0xff1a1a);
@@ -938,12 +942,35 @@
             const beaconMat = new THREE.MeshBasicMaterial({ color: baseColor.clone() });
             beaconMat.userData.baseColor = baseColor;
             const beacon = new THREE.Mesh(beaconGeo, beaconMat);
-            beacon.position.y = 0.05;
+            beacon.position.copy(beaconPos);
             group.add(beacon);
 
+            // 光暈效果：以多層半透明疊加球體 + 疊加混合模擬柔光暈染，讓燈珠在暗處更加醒目突出
+            const haloLayers = [
+                { scale: 2.4, opacity: 0.4 },
+                { scale: 4.0, opacity: 0.2 },
+                { scale: 6.0, opacity: 0.09 }
+            ];
+            const haloMats = [];
+            haloLayers.forEach(layer => {
+                const haloGeo = new THREE.SphereGeometry((0.022 / 3) * layer.scale, 10, 10);
+                const haloMat = new THREE.MeshBasicMaterial({
+                    color: baseColor.clone(),
+                    transparent: true,
+                    opacity: layer.opacity,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false
+                });
+                const halo = new THREE.Mesh(haloGeo, haloMat);
+                halo.position.copy(beaconPos);
+                group.add(halo);
+                haloMats.push(haloMat);
+            });
+            beaconMat.userData.haloMats = haloMats;
+
             // 搭配點光源，讓機尾燈在暗處也十分醒目
-            const beaconLight = new THREE.PointLight(0xff1a1a, 1.2, 0.7, 2);
-            beaconLight.position.copy(beacon.position);
+            const beaconLight = new THREE.PointLight(0xff1a1a, 2.2, 1.1, 2);
+            beaconLight.position.copy(beaconPos);
             group.add(beaconLight);
 
             return { group, beaconMat, beaconLight };
