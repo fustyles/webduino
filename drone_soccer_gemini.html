@@ -362,9 +362,15 @@
         // 地板長度方向為 Z 軸 (Z: -3 至 +3)
         // 地板寬度方向為 X 軸 (X: -2 至 +2)
         // 紅色球門線在 Z = -2.25，藍色球門線在 Z = 2.25。高度置中於場地高度正中央 (cageH / 2 = 1.5 米)。
+        // 依真實規格調整：無人機球型護籠外徑 20 公分 (半徑 0.10m)；球門光環「淨開口」內直徑 60 公分 (半徑 0.30m)
+        const DRONE_CAGE_RADIUS = 0.10;   // 無人機足球護籠半徑，整體球徑 = 20 公分
+        const RING_CLEAR_RADIUS = 0.30;   // 光環實際淨開口半徑 (扣除管粗後可通過的孔徑)，內直徑 = 60 公分
+        const RING_TUBE_RADIUS = 0.022;   // 光環管粗半徑 (依比例縮小)
+        const RING_CENTER_RADIUS = RING_CLEAR_RADIUS + RING_TUBE_RADIUS; // 圓環管中心線半徑 (TorusGeometry 用)
+
         const ringCourse = [
-            { pos: new THREE.Vector3(0, 1.5, -2.25), color: 0xef4444, team: 'red', size: 0.9, lastPassTime: 0, forwardSign: -1, prevSide: null }, // 紅色方框球門線正上方，高度置中；正向穿越方向為 -Z（由場地中央飛向紅方球門外）
-            { pos: new THREE.Vector3(0, 1.5, 2.25), color: 0x3b82f6, team: 'blue', size: 0.9, lastPassTime: 0, forwardSign: 1, prevSide: null }   // 藍色方框球門線正上方，高度置中；正向穿越方向為 +Z（由場地中央飛向藍方球門外）
+            { pos: new THREE.Vector3(0, 1.5, -2.25), color: 0xef4444, team: 'red', size: RING_CENTER_RADIUS * 2, lastPassTime: 0, forwardSign: -1, prevSide: null }, // 紅色方框球門線正上方，高度置中；正向穿越方向為 -Z（由場地中央飛向紅方球門外）
+            { pos: new THREE.Vector3(0, 1.5, 2.25), color: 0x3b82f6, team: 'blue', size: RING_CENTER_RADIUS * 2, lastPassTime: 0, forwardSign: 1, prevSide: null }   // 藍色方框球門線正上方，高度置中；正向穿越方向為 +Z（由場地中央飛向藍方球門外）
         ];
         let score = 0;
         let particles = [];
@@ -859,16 +865,62 @@
             scene.add(cageGroup);
         }
 
-        // 建造精密縮小版高科技無人機 (體積減小，動作在小球場更精緻靈活)
+        // 在兩點之間建造一根圓柱護籠桿件 (用於組成測地線球型護籠)
+        function createCageRod(p1, p2, radius, material) {
+            const dir = new THREE.Vector3().subVectors(p2, p1);
+            const len = dir.length();
+            const geo = new THREE.CylinderGeometry(radius, radius, len, 6);
+            const mesh = new THREE.Mesh(geo, material);
+            const mid = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
+            mesh.position.copy(mid);
+            mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.clone().normalize());
+            mesh.castShadow = true;
+            return mesh;
+        }
+
+        // 建造測地線球型護籠 (仿照附圖足球狀無人機防護外殼)，回傳 { group, material }
+        function createDroneCage(radius, colorHex) {
+            const group = new THREE.Group();
+            const material = new THREE.MeshStandardMaterial({
+                color: colorHex,
+                emissive: colorHex,
+                emissiveIntensity: 0.12,
+                metalness: 0.25,
+                roughness: 0.55
+            });
+
+            // 以二階細分二十面體的邊線來近似足球護籠的五邊/六邊格狀結構
+            const icoGeo = new THREE.IcosahedronGeometry(radius, 1);
+            const edgesGeo = new THREE.EdgesGeometry(icoGeo, 1);
+            const posAttr = edgesGeo.attributes.position;
+            const rodRadius = radius * 0.05;
+
+            const p1 = new THREE.Vector3();
+            const p2 = new THREE.Vector3();
+            for (let i = 0; i < posAttr.count; i += 2) {
+                p1.fromBufferAttribute(posAttr, i);
+                p2.fromBufferAttribute(posAttr, i + 1);
+                group.add(createCageRod(p1, p2, rodRadius, material));
+            }
+
+            icoGeo.dispose();
+            edgesGeo.dispose();
+
+            return { group, material };
+        }
+
+        // 建造精密縮小版高科技無人機 (體積減小，動作在小球場更精緻靈活；整體以20公分球型護籠包覆)
         function buildDrone() {
             const droneGroup = new THREE.Group();
+            const innerGroup = new THREE.Group(); // 內部機構整組縮小，包覆於20公分球型護籠內
+            const INNER_SCALE = 0.23;
 
             // 1. 微型中控主機
             const bodyGeo = new THREE.BoxGeometry(0.24, 0.08, 0.24);
             const bodyMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.9, roughness: 0.1 });
             const body = new THREE.Mesh(bodyGeo, bodyMat);
             body.castShadow = true;
-            droneGroup.add(body);
+            innerGroup.add(body);
 
             // 2. 亮藍色半透明科技艙蓋（依隊伍顏色動態變化）
             const canopyGeo = new THREE.SphereGeometry(0.09, 16, 16);
@@ -878,7 +930,7 @@
             canopy.position.y = 0.06;
             canopy.position.z = 0.015;
             canopy.castShadow = true;
-            droneGroup.add(canopy);
+            innerGroup.add(canopy);
             drone.canopyRef = canopy;
 
             // 3. 前向航行攝像頭鏡頭 (綠光)
@@ -886,7 +938,7 @@
             const lensMat = new THREE.MeshBasicMaterial({ color: 0x10b981 });
             const lens = new THREE.Mesh(lensGeo, lensMat);
             lens.position.set(0, 0, 0.135);
-            droneGroup.add(lens);
+            innerGroup.add(lens);
 
             // 4. 四個微型對角機臂
             const armAngle = Math.PI / 4;
@@ -906,7 +958,7 @@
                 arm.rotation.y = (idx === 0 || idx === 3) ? -armAngle : armAngle;
                 arm.position.set(pos.x / 2, 0, pos.z / 2);
                 arm.castShadow = true;
-                droneGroup.add(arm);
+                innerGroup.add(arm);
 
                 // 電機馬達
                 const motorGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.08, 8);
@@ -914,7 +966,7 @@
                 const motor = new THREE.Mesh(motorGeo, motorMat);
                 motor.position.set(pos.x, 0.02, pos.z);
                 motor.castShadow = true;
-                droneGroup.add(motor);
+                innerGroup.add(motor);
 
                 // 旋翼組件
                 const rotorGroup = new THREE.Group();
@@ -931,7 +983,7 @@
                 blade.castShadow = true;
                 rotorGroup.add(blade);
 
-                droneGroup.add(rotorGroup);
+                innerGroup.add(rotorGroup);
                 drone.rotors.push(rotorGroup);
 
                 // 微型閃爍LED
@@ -939,13 +991,22 @@
                 const ledMat = new THREE.MeshBasicMaterial({ color: pos.color });
                 const led = new THREE.Mesh(ledGeo, ledMat);
                 led.position.set(pos.x, -0.02, pos.z);
-                droneGroup.add(led);
+                innerGroup.add(led);
                 drone.lights.push({ mesh: led, originalColor: pos.color });
             });
 
-            // 底部雷射測距定高光束
+            innerGroup.scale.setScalar(INNER_SCALE);
+            droneGroup.add(innerGroup);
+
+            // 5. 足球狀測地線球型護籠 (外徑20公分，符合真實無人機足球規格，仿照附圖造型)
+            const { group: cageGroup, material: cageMat } = createDroneCage(DRONE_CAGE_RADIUS, 0x10b981);
+            droneGroup.add(cageGroup);
+            drone.cageMatRef = cageMat;
+
+            // 底部雷射測距定高光束 (置於球體底部)
+            const glowY = -DRONE_CAGE_RADIUS * 0.9;
             const bottomLight = new THREE.SpotLight(0x00ffcc, 5.0, 4, Math.PI / 6, 0.4, 0.9);
-            bottomLight.position.set(0, -0.04, 0);
+            bottomLight.position.set(0, glowY, 0);
             bottomLight.castShadow = true;
             const lightTarget = new THREE.Object3D();
             lightTarget.position.set(0, -3, 0);
@@ -953,10 +1014,10 @@
             bottomLight.target = lightTarget;
             droneGroup.add(bottomLight);
 
-            const bottomGlowGeo = new THREE.SphereGeometry(0.03, 8, 8);
+            const bottomGlowGeo = new THREE.SphereGeometry(0.015, 8, 8);
             const bottomGlowMat = new THREE.MeshBasicMaterial({ color: 0x00ffcc });
             const bottomGlow = new THREE.Mesh(bottomGlowGeo, bottomGlowMat);
-            bottomGlow.position.set(0, -0.04, 0);
+            bottomGlow.position.set(0, glowY, 0);
             droneGroup.add(bottomGlow);
             drone.glowRef = bottomGlow;
 
@@ -965,7 +1026,7 @@
             drone.mesh = droneGroup;
         }
 
-        // 依隊伍顏色重新為無人機艙蓋 / 底部光球上色（玩家與守門機共用）
+        // 依隊伍顏色重新為無人機艙蓋 / 護籠 / 底部光球上色（玩家與守門機共用）
         function applyTeamColor(droneObj, colorHex) {
             droneObj.teamColor = colorHex;
             if (droneObj.canopyRef) {
@@ -975,17 +1036,23 @@
             if (droneObj.glowRef) {
                 droneObj.glowRef.material.color.setHex(colorHex);
             }
+            if (droneObj.cageMatRef) {
+                droneObj.cageMatRef.color.setHex(colorHex);
+                droneObj.cageMatRef.emissive.setHex(colorHex);
+            }
         }
 
         // 建造電腦控制的守門無人機（外型較樸素以利辨識，鎮守對手球門）
         function buildAIDrone() {
             const group = new THREE.Group();
+            const innerGroup = new THREE.Group(); // 內部機構整組縮小，包覆於20公分球型護籠內
+            const INNER_SCALE = 0.23;
 
             const bodyGeo = new THREE.BoxGeometry(0.24, 0.08, 0.24);
             const bodyMat = new THREE.MeshStandardMaterial({ color: 0x1e1b2e, metalness: 0.85, roughness: 0.2 });
             const body = new THREE.Mesh(bodyGeo, bodyMat);
             body.castShadow = true;
-            group.add(body);
+            innerGroup.add(body);
 
             const canopyGeo = new THREE.SphereGeometry(0.09, 16, 16);
             canopyGeo.scale(1, 0.5, 1.2);
@@ -993,7 +1060,7 @@
             const canopy = new THREE.Mesh(canopyGeo, canopyMat);
             canopy.position.set(0, 0.06, 0.015);
             canopy.castShadow = true;
-            group.add(canopy);
+            innerGroup.add(canopy);
             aiDrone.canopyRef = canopy;
 
             const armAngle = Math.PI / 4;
@@ -1012,13 +1079,13 @@
                 arm.rotation.y = (idx === 0 || idx === 3) ? -armAngle : armAngle;
                 arm.position.set(pos.x / 2, 0, pos.z / 2);
                 arm.castShadow = true;
-                group.add(arm);
+                innerGroup.add(arm);
 
                 const motorGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.08, 8);
                 const motorMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.2 });
                 const motor = new THREE.Mesh(motorGeo, motorMat);
                 motor.position.set(pos.x, 0.02, pos.z);
-                group.add(motor);
+                innerGroup.add(motor);
 
                 const rotorGroup = new THREE.Group();
                 rotorGroup.position.set(pos.x, 0.05, pos.z);
@@ -1026,23 +1093,31 @@
                 const bladeMat = new THREE.MeshStandardMaterial({ color: 0xcbd5e1, transparent: true, opacity: 0.8 });
                 const blade = new THREE.Mesh(bladeGeo, bladeMat);
                 rotorGroup.add(blade);
-                group.add(rotorGroup);
+                innerGroup.add(rotorGroup);
                 aiDrone.rotors.push(rotorGroup);
             });
 
-            // 守門機專屬警示燈環（辨識用，持續脈動）
-            const warnGeo = new THREE.TorusGeometry(0.16, 0.012, 8, 24);
+            innerGroup.scale.setScalar(INNER_SCALE);
+            group.add(innerGroup);
+
+            // 足球狀測地線球型護籠 (外徑20公分，符合真實無人機足球規格，仿照附圖造型)
+            const { group: cageGroup, material: cageMat } = createDroneCage(DRONE_CAGE_RADIUS, 0x3b82f6);
+            group.add(cageGroup);
+            aiDrone.cageMatRef = cageMat;
+
+            // 守門機專屬警示燈環（辨識用，緊貼護籠外側，持續脈動）
+            const warnGeo = new THREE.TorusGeometry(DRONE_CAGE_RADIUS * 1.15, 0.006, 8, 24);
             const warnMat = new THREE.MeshBasicMaterial({ color: 0xfacc15, transparent: true, opacity: 0.55 });
             const warnRing = new THREE.Mesh(warnGeo, warnMat);
             warnRing.rotation.x = Math.PI / 2;
-            warnRing.position.y = 0.04;
             group.add(warnRing);
             aiDrone.warnRingRef = warnRing;
 
-            const bottomGlowGeo = new THREE.SphereGeometry(0.03, 8, 8);
+            const glowY = -DRONE_CAGE_RADIUS * 0.9;
+            const bottomGlowGeo = new THREE.SphereGeometry(0.015, 8, 8);
             const bottomGlowMat = new THREE.MeshBasicMaterial({ color: 0x3b82f6 });
             const bottomGlow = new THREE.Mesh(bottomGlowGeo, bottomGlowMat);
-            bottomGlow.position.set(0, -0.04, 0);
+            bottomGlow.position.set(0, glowY, 0);
             group.add(bottomGlow);
             aiDrone.glowRef = bottomGlow;
 
@@ -1055,7 +1130,7 @@
         function setupTargetRings() {
             ringCourse.forEach((ringData) => {
                 // 發光 Torus
-                const ringGeo = new THREE.TorusGeometry(ringData.size / 2, 0.035, 12, 36);
+                const ringGeo = new THREE.TorusGeometry(ringData.size / 2, RING_TUBE_RADIUS, 12, 36);
                 const ringMat = new THREE.MeshStandardMaterial({
                     color: ringData.color,
                     emissive: ringData.color,
@@ -1079,11 +1154,11 @@
                 const cableCenterY = ringData.pos.y + cableLen / 2;
 
                 const leftLine = new THREE.Mesh(lineGeo, lineMat);
-                leftLine.position.set(ringData.pos.x - 0.45, cableCenterY, ringData.pos.z);
+                leftLine.position.set(ringData.pos.x - ringData.size / 2, cableCenterY, ringData.pos.z);
                 scene.add(leftLine);
 
                 const rightLine = new THREE.Mesh(lineGeo, lineMat);
-                rightLine.position.set(ringData.pos.x + 0.45, cableCenterY, ringData.pos.z);
+                rightLine.position.set(ringData.pos.x + ringData.size / 2, cableCenterY, ringData.pos.z);
                 scene.add(rightLine);
             });
         }
@@ -1491,7 +1566,7 @@
             }
 
             // 四周充氣網牆邊界彈力碰撞偵測 (X: 4m 寬 / Z: 6m 長，扣除無人機半徑安全裕度)
-            const droneBodyRadius = 0.20;
+            const droneBodyRadius = DRONE_CAGE_RADIUS;
             const xLimit = 4.0 / 2 - droneBodyRadius;  // 左右網牆
             const zLimit = 6.0 / 2 - droneBodyRadius;  // 前後網牆
             const wallRestitution = 0.4; // 網子有彈性，撞擊後緩速反彈
@@ -1529,10 +1604,10 @@
         function checkRingCollisions() {
             if (!drone.mesh) return;
 
-            const R = 0.45; // 光環外徑半徑 (0.9m / 2)
-            const r = 0.035; // 圓環管粗半徑
-            const droneRadius = 0.20; // 無人機有效碰撞半徑
-            const tubeCollisionThreshold = r + droneRadius; // ~0.235m
+            const R = RING_CENTER_RADIUS; // 光環管中心線半徑 (淨開口內直徑 60cm，另加管粗)
+            const r = RING_TUBE_RADIUS; // 圓環管粗半徑
+            const droneRadius = DRONE_CAGE_RADIUS; // 無人機球型護籠有效碰撞半徑 (直徑20cm)
+            const tubeCollisionThreshold = r + droneRadius;
 
             ringCourse.forEach((ring) => {
                 // 1. 偵測與光環圓柱框的實體碰撞 (反彈)
@@ -1585,7 +1660,7 @@
 
                 // 2. 偵測穿越光環中心（僅「正向」穿越才計分，反向穿越不計分）
                 const distToCenter = drone.position.distanceTo(ring.pos);
-                const innerOpeningRadius = R - r - 0.05; // 留下安全裕度 (~0.36m)
+                const innerOpeningRadius = R - r - 0.05; // 留下安全裕度 (依新光環尺寸約 ~0.23m)
 
                 // 以光環平面（Z 軸法線）判斷無人機目前在哪一側
                 const rawSide = drone.position.z - ring.pos.z;
@@ -1710,7 +1785,7 @@
         function checkDroneVsDroneCollision() {
             if (!drone.mesh || !aiDrone.mesh) return;
 
-            const droneRadius = 0.20;
+            const droneRadius = DRONE_CAGE_RADIUS;
             const combinedRadius = droneRadius * 2;
 
             const diff = drone.position.clone().sub(aiDrone.position);
