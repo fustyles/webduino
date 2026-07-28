@@ -346,13 +346,15 @@
                 gravity: 9.8,
                 linearDrag: 1.8,         // 大幅增加空氣阻力，防止在小場地瞬間飛出邊界
                 pitchRollSpeed: 1.6,     // 更敏捷的俯仰/側滾反應
-                yawSpeed: 3.5,           // 偏航旋轉速度
+                yawSpeed: 1.6,           // 偏航旋轉速度 (調低，避免單次按壓旋轉角度過大)
+                yawRampSpeed: 6.0,       // 偏航加速平滑係數 (數值越小，起步越柔和、單次按壓角度越小)
                 maxTilt: 0.40,           // 降低最大物理傾角，更利於狹小空間精準操作
                 recoveryRate: 10.0,      // 水平校正恢復速度
             },
 
             currentPitch: 0,
             currentRoll: 0,
+            currentYawRate: 0, // 目前平滑後的偏航角速度，避免單次按壓瞬間跳到最大轉速
         };
 
         // 4. 遊戲目標 (僅有 2 個光環：精準懸浮於紅藍底邊禁區球門線正上方)
@@ -1292,7 +1294,11 @@
 
             function handleJoystick(e, zone, knob, callback) {
                 e.preventDefault();
-                const touch = e.touches[0];
+                // 修正：不能用 e.touches[0]，那是「整個畫面」所有觸點的第一個，
+                // 當左右搖桿同時被按住時，兩邊都會抓到同一根手指，導致無法同時操作。
+                // e.targetTouches 只包含「最初就按在這個元素上」的觸點，兩個搖桿才能各自獨立追蹤。
+                const touch = e.targetTouches ? e.targetTouches[0] : e.touches[0];
+                if (!touch) return;
                 const rect = zone.getBoundingClientRect();
                 const centerX = rect.left + rect.width / 2;
                 const centerY = rect.top + rect.height / 2;
@@ -1416,8 +1422,16 @@
             drone.currentPitch = THREE.MathUtils.lerp(drone.currentPitch, targetPitchAngle, delta * drone.constants.pitchRollSpeed * 12);
             drone.currentRoll = THREE.MathUtils.lerp(drone.currentRoll, targetRollAngle, delta * drone.constants.pitchRollSpeed * 12);
 
-            // 偏航旋轉 (Yaw)
-            drone.rotation.y -= drone.input.yaw * drone.constants.yawSpeed * delta;
+            // 偏航旋轉 (Yaw)：先將目標角速度做平滑漸進，而非直接套用最大轉速，
+            // 這樣單次快速按壓/點擊時，角速度還沒加速到最大值就放開了，旋轉角度自然變小；
+            // 長按時則會逐漸加速到 yawSpeed 的最大轉速，手感更接近真實無人機。
+            const targetYawRate = drone.input.yaw * drone.constants.yawSpeed;
+            drone.currentYawRate = THREE.MathUtils.lerp(
+                drone.currentYawRate,
+                targetYawRate,
+                delta * drone.constants.yawRampSpeed
+            );
+            drone.rotation.y -= drone.currentYawRate * delta;
 
             // PD高度維持演算法 (精細適配 0.4kg 機型)
             const altError = drone.targetAltitude - drone.position.y;
@@ -1905,6 +1919,7 @@
             drone.rotation.set(0, 0, 0);
             drone.currentPitch = 0;
             drone.currentRoll = 0;
+            drone.currentYawRate = 0;
             drone.input.throttle = 0.0; 
             drone.targetAltitude = 0.10;
             drone.autoFlightState = 'none';
