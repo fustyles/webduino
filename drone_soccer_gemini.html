@@ -379,6 +379,8 @@
         // 7. 對戰隊伍系統：玩家隊伍 / 對手隊伍 / 電腦守門機
         let playerTeam = 'red';           // 'red' 或 'blue'，可於開場畫面選擇
         const TEAM_COLORS = { red: 0xef4444, blue: 0x3b82f6 };
+        // 機尾燈顏色需與隊伍框體顏色形成對比，避免「紅框配紅燈」不明顯：紅隊配藍燈、藍隊配紅燈
+        const TAIL_BEACON_COLORS = { red: 0x2f6bff, blue: 0xff1a1a };
         function getOpponentTeam(team) { return team === 'red' ? 'blue' : 'red'; }
         function getOwnGoalRing() { return ringCourse.find(r => r.team === playerTeam); }
         function getOpponentGoalRing() { return ringCourse.find(r => r.team === getOpponentTeam(playerTeam)); }
@@ -1013,6 +1015,18 @@
             return { group, beaconMat, beaconLight };
         }
 
+        // 依隊伍切換機尾燈顏色（同步更新燈珠本體、光暈疊層與點光源），確保與護籠顏色形成對比、清楚可辨
+        function setTailBeaconColor(beaconMat, beaconLight, colorHex) {
+            if (!beaconMat) return;
+            const newColor = new THREE.Color(colorHex);
+            beaconMat.userData.baseColor = newColor;
+            beaconMat.color.copy(newColor);
+            if (beaconMat.userData.haloMats) {
+                beaconMat.userData.haloMats.forEach(haloMat => haloMat.color.copy(newColor));
+            }
+            if (beaconLight) beaconLight.color.copy(newColor);
+        }
+
         // 機尾燈固定常亮（不閃爍，避免操作者分心），僅在建立時設定一次即可
         function updateTailBeacon(beaconMat, beaconLight) {
             if (!beaconMat) return;
@@ -1158,6 +1172,9 @@
                 droneObj.cageMatRef.color.setHex(colorHex);
                 droneObj.cageMatRef.emissive.setHex(colorHex);
             }
+            // 依隊伍顏色切換機尾燈：紅隊護籠配藍色機尾燈、藍隊護籠配紅色機尾燈，避免同色系不易辨識
+            const tailColorHex = (colorHex === TEAM_COLORS.red) ? TAIL_BEACON_COLORS.red : TAIL_BEACON_COLORS.blue;
+            setTailBeaconColor(droneObj.tailBeaconMat, droneObj.tailBeaconLight, tailColorHex);
         }
 
         // 建造電腦控制的守門無人機（外型較樸素以利辨識，鎮守對手球門）；傳入對應的 aiState 讓每台守門機各自持有自己的網格參照
