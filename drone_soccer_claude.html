@@ -170,7 +170,7 @@
   <div class="row"><span>一鍵起飛</span><kbd>T</kbd></div>
   <div class="row"><span>一鍵降落</span><kbd>L</kbd></div>
   <div class="row"><span>等距上升</span><kbd>Space</kbd></div>
-  <div class="row"><span>等距下降</span><kbd>Shift</kbd></div>
+  <div class="row"><span>等距下降</span><kbd>Ctrl</kbd></div>
   <div class="row"><span>切換視角</span><kbd>C</kbd></div>
   <div class="row"><span>重置無人機</span><kbd>R</kbd></div>
   <div class="row"><span>靜音切換</span><kbd>M</kbd></div>
@@ -188,7 +188,7 @@
     <div class="row"><kbd>T</kbd><span>一鍵起飛</span></div>
     <div class="row"><kbd>L</kbd><span>一鍵降落</span></div>
     <div class="row"><kbd>Space</kbd><span>等距上升</span></div>
-    <div class="row"><kbd>Shift</kbd><span>等距下降</span></div>
+    <div class="row"><kbd>Ctrl</kbd><span>等距下降</span></div>
     <div class="row"><kbd>C</kbd><span>切換視角</span></div>
     <div class="row"><kbd>R</kbd><span>重置無人機</span></div>
     <div class="row"><kbd>M</kbd><span>靜音切換</span></div>
@@ -220,8 +220,8 @@ const GOAL_EDGE_DIST = FIELD_L * 0.125;   // 距短邊約 0.5~1 公尺範圍內�
 const GOAL_Z = FIELD_L/2 - GOAL_EDGE_DIST; // 球門位置：短邊中心點往場內方向的距離
 const GRAVITY = 9.8;
 const MAX_THRUST = 2.15 * GRAVITY;   // hover throttle ~= 0.465
-const MAX_TILT = 0.52;               // ~30 deg
-const LIN_DRAG = 0.55;
+const MAX_TILT = 0.32;               // 降低最大傾角(~18度)，減少水平移動速度
+const LIN_DRAG = 1.0;                // 提高阻力，降低最高移動速度
 const YAW_ACCEL = 3.2, YAW_DAMP = 2.4;
 const RESP_RATE = 7.5;
 const THROTTLE_RATE = 0.7;
@@ -483,6 +483,38 @@ nose.rotation.x = Math.PI/2;
 nose.position.set(0, 0.02*SD, 0.42*SD);
 drone.add(nose);
 
+/* 機尾燈：固定安裝於機身正後方(與機頭指示條相對)，鮮紅色常亮不閃爍，方便操作者一眼判別機尾/機頭朝向 */
+const tailBeaconBaseColor = new THREE.Color(0xff1a1a);
+const tailBeaconGeo = new THREE.SphereGeometry(0.05*SD, 10, 10);
+const tailBeaconMat = new THREE.MeshStandardMaterial({
+  color: tailBeaconBaseColor,
+  emissive: tailBeaconBaseColor,
+  emissiveIntensity: 2
+});
+const tailBeacon = new THREE.Mesh(tailBeaconGeo, tailBeaconMat);
+tailBeacon.position.set(0, 0.02*SD, -0.42*SD);
+drone.add(tailBeacon);
+
+// 柔光暈染：多層半透明疊加球體 + 疊加混合，讓機尾燈在暗處更醒目
+[1.8, 3.0, 4.5].forEach((scale, idx) => {
+  const haloGeo = new THREE.SphereGeometry(0.05*SD*scale, 10, 10);
+  const haloMat = new THREE.MeshBasicMaterial({
+    color: tailBeaconBaseColor,
+    transparent: true,
+    opacity: idx === 0 ? 0.6 : (idx === 1 ? 0.28 : 0.12),
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  });
+  const halo = new THREE.Mesh(haloGeo, haloMat);
+  halo.position.copy(tailBeacon.position);
+  drone.add(halo);
+});
+
+// 搭配小型點光源，讓機尾燈在暗處也十分醒目
+const tailBeaconLight = new THREE.PointLight(0xff1a1a, 1.2, 0.6, 2);
+tailBeaconLight.position.copy(tailBeacon.position);
+drone.add(tailBeaconLight);
+
 /* 足球外框保護殼：直徑20公分的鏤空球形護籠，仿足球無人機的防撞球殼 */
 const cageGeo = new THREE.IcosahedronGeometry(DRONE_R, 1);
 const cageEdges = new THREE.EdgesGeometry(cageGeo);
@@ -550,6 +582,9 @@ window.addEventListener('keydown', (e)=>{
   if(e.code === 'KeyH'){ showControls = !showControls; document.getElementById('controls-panel').classList.toggle('hidden', !showControls); }
   if(e.code === 'KeyM'){ toggleMute(); }
   if(e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'ArrowDown' || e.code === 'ArrowLeft' || e.code === 'ArrowRight'){ e.preventDefault(); }
+  // 按住 Ctrl 操作遊戲按鍵時嘗試攔截瀏覽器預設行為(例如部分瀏覽器的 Ctrl+字母快捷鍵)，
+  // 降低長按 Ctrl 下降同時按下 W/A/S/D 等移動鍵時誤觸瀏覽器快捷鍵的風險
+  if(e.ctrlKey && ['KeyW','KeyA','KeyS','KeyD','KeyQ','KeyE','KeyT','KeyR','KeyL','KeyM','KeyH','KeyC'].includes(e.code)){ e.preventDefault(); }
 });
 window.addEventListener('keyup', (e)=>{ keys[e.code] = false; });
 
@@ -638,7 +673,7 @@ function updateDrone(dt){
 
   // 等距上升 / 等距下降:只調整定高目標,實際油門由定高控制器自動計算
   if(droneState.armed){
-    const inputClimb = (keys['Space']?1:0) - ((keys['ShiftLeft']||keys['ShiftRight'])?1:0);
+    const inputClimb = (keys['Space']?1:0) - ((keys['ControlLeft']||keys['ControlRight'])?1:0);
     droneState.targetAltitude += inputClimb * CLIMB_RATE * dt;
     droneState.targetAltitude = Math.max(GROUND_Y, Math.min(ALT_MAX, droneState.targetAltitude));
   }
