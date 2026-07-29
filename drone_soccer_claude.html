@@ -361,36 +361,54 @@ function buildGoal(z){
   group.add(cable);
   group.position.set(0, GOAL_Y, z);
   scene.add(group);
-  return {group, ring, ringMat, z, active:false};
+  return {group, ring, ringMat, z, prevSide:null, lastPassTime:-999, flashTimeout:null};
 }
 const goalFar = buildGoal(GOAL_Z);
 goalFar.highlightColor = 0xff3b5c;   // 遠端球門：穿越時變紅色
 const goalNear = buildGoal(-GOAL_Z);
 goalNear.highlightColor = 0x2b7fff;  // 近端球門：穿越時變藍色
 
-/* 無人機穿越圓環時，圓環暫時變色，完全穿出後才變回白色。
-   canScore=true 的球門才會在「完整從前方穿越」時計分；canScore=false 只做視覺提示，不計分
+/* 無人機穿越圓環的方向判定：以「逐幀偵測是否跨越球門所在平面」為準(而非停留在區域內與否)，
+   這樣才能正確排除「飛進去又退回同一側」或「反向穿越」這類不應計分的情況。
+   canScore=true 的球門才會在「完整從前方正向穿越」時計分；canScore=false 只做視覺提示，不計分
    (這是「1機攻、2機守」的單一球門攻防練習，近端球門只是起飛區背景，不是得分目標) */
-const GOAL_PASS_HALF_DEPTH = DRONE_R + 0.15; // 判定「正在穿越」的前後範圍
-function updateGoalHighlight(goal, canScore) {
-  const dz = Math.abs(droneState.position.z - goal.z);
-  const radial = Math.hypot(droneState.position.x, droneState.position.y - GOAL_Y);
-  const passing = dz < GOAL_PASS_HALF_DEPTH && radial < GOAL_INNER_R * 0.95;
-  if(passing && !goal.active){
-    // 只有當無人機的移動方向是「從場地中間朝該球門所在的牆邊」時才變色，反方向穿越不觸發、也不計分
-    const outwardSign = Math.sign(goal.z);
-    const movingOutward = droneState.velocity.z * outwardSign > 0.15;
-    if(movingOutward){
-      goal.active = true;
-      goal.ringMat.color.setHex(goal.highlightColor);
-      goal.ringMat.emissive.setHex(goal.highlightColor);
-    }
-  } else if(!passing && goal.active){
-    goal.active = false;
+const GOAL_PASS_COOLDOWN = 1.2; // 秒，避免同一次穿越因位置抖動被重複判定
+function flashGoalRing(goal){
+  goal.ringMat.color.setHex(goal.highlightColor);
+  goal.ringMat.emissive.setHex(goal.highlightColor);
+  if(goal.flashTimeout) clearTimeout(goal.flashTimeout);
+  goal.flashTimeout = setTimeout(()=>{
     goal.ringMat.color.setHex(0xffffff);
     goal.ringMat.emissive.setHex(0x000000);
-    if(canScore) scoreGoal(); // 完整從前方穿越圓環才計分，反向穿越不計分
+  }, 500);
+}
+function updateGoalHighlight(goal, canScore){
+  const radial = Math.hypot(droneState.position.x, droneState.position.y - GOAL_Y);
+  const outwardSign = Math.sign(goal.z); // 正向(得分)方向：由場地中央朝該球門所在的牆邊飛出
+
+  const rawSide = droneState.position.z - goal.z;
+  const currentSide = rawSide !== 0 ? Math.sign(rawSide) : (goal.prevSide !== null ? goal.prevSide : -outwardSign);
+
+  if(goal.prevSide === null){
+    goal.prevSide = currentSide; // 剛進場時先記錄所在側，避免一開場就被誤判成穿越
+    return;
   }
+
+  const crossedPlane = goal.prevSide !== currentSide; // 這一影格是否跨越了球門所在的平面
+  const isForwardPass = crossedPlane && currentSide === outwardSign;  // 從前方(場地中央)穿越到後方(球門外側)：正向，計分方向
+  const isReversePass = crossedPlane && currentSide !== outwardSign;  // 從後方穿越回前方：反向，不計分
+
+  const withinOpening = radial < GOAL_INNER_R * 0.95;
+  const now = performance.now() / 1000;
+
+  if(withinOpening && isForwardPass && (now - goal.lastPassTime > GOAL_PASS_COOLDOWN)){
+    goal.lastPassTime = now;
+    flashGoalRing(goal);
+    if(canScore) scoreGoal(); // 完整從前方正向穿越圓環才計分，反向穿越一律不計分
+  }
+  // isReversePass 不計分、也不觸發變色提示
+
+  goal.prevSide = currentSide;
 }
 
 /* 無人機撞到圓環實體邊框時的反彈處理 (球門洞口中間可以自由穿越，只有撞到管狀邊框才會反彈) */
@@ -809,6 +827,8 @@ function resetDrone(){
   droneState.throttle=0;
   droneState.armed=false;
   droneState.targetAltitude=GROUND_Y;
+  goalFar.prevSide = null;   // 重置穿越方向追蹤，避免重生位置剛好落在球門另一側造成誤判
+  goalNear.prevSide = null;
 }
 
 function takeoff(){
