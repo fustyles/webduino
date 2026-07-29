@@ -553,15 +553,19 @@ droneLightTarget.position.set(0,-0.3,0);
 drone.add(droneLightTarget);
 droneLight.target = droneLightTarget;
 
-/* ============ 敵方 AI 守門機 (兩台，各鎮守一個球門，會主動攔截玩家) ============ */
+/* ============ 敵方 AI 守門機 (兩台，聯防同一個球門，會主動攔截玩家) ============ */
 const AI_GUARD_CONSTANTS = {
-  maxSpeed: 1.7,        // 守門機最高攔截移動速度 (m/s)
+  maxSpeed: 1.7,        // 守門機一般攔截移動速度 (m/s)
   accel: 4.0,           // 加速度，決定攔截反應靈敏度
-  guardRadiusXY: 0.20,  // 守門機可左右上下移動的最大半徑 (球門開口半徑0.3，扣除自身護籠半徑後的活動範圍)
+  guardRadiusXY: 0.20,  // 守門機可左右上下移動的基準半徑 (球門開口半徑0.3，扣除自身護籠半徑後的活動範圍)
   guardDepth: 0.22,     // 守門機可離開球門平面向前迎擊的最大深度
-  reactionMin: 0.20,    // 最短反應間隔（秒），模擬人類反應延遲
-  reactionMax: 0.50,    // 最長反應間隔（秒）
-  aimError: 0.14        // 每次重新判斷時的瞄準誤差半徑（米），避免 AI 打得太精準
+  guardStandoff: 0.16,  // 守門機平時的基本站位距離(球門前方，而非站在環中央)
+  reactionMin: 0.16,    // 最短反應間隔（秒），模擬人類反應延遲
+  reactionMax: 0.38,    // 最長反應間隔（秒）
+  aimError: 0.14,       // 每次重新判斷時的瞄準誤差半徑（米），避免 AI 打得太精準
+  chargeRange: 0.5,     // 玩家進入此距離內且正在攻門時，觸發主動衝撞攔截
+  chargeSpeedMul: 1.8,  // 主動衝撞時的速度倍率
+  chargeAccelMul: 2.0   // 主動衝撞時的加速度倍率
 };
 
 // 建造一台守門機模型 (與玩家機外觀相同的四軸+護籠+機尾燈造型，僅機身/機頭/機尾燈改用隊伍識別色)
@@ -645,17 +649,18 @@ function buildAIGuardDrone(goal, accentColorHex, guardHomeOffsetX) {
   const cageFill2 = new THREE.Mesh(cageGeo2, new THREE.MeshStandardMaterial({color:0xffffff, transparent:true, opacity:0.05, roughness:0.6, side:THREE.DoubleSide, depthWrite:false}));
   group.add(cageFill2);
 
-  group.position.set(guardHomeOffsetX, GOAL_Y, goal.z);
+  const initStandoffZ = goal.z - Math.sign(goal.z) * AI_GUARD_CONSTANTS.guardStandoff;
+  group.position.set(guardHomeOffsetX, GOAL_Y, initStandoffZ);
   scene.add(group);
 
   return {
     group,
     propellers: propellers2,
-    position: new THREE.Vector3(guardHomeOffsetX, GOAL_Y, goal.z),
+    position: new THREE.Vector3(guardHomeOffsetX, GOAL_Y, initStandoffZ),
     velocity: new THREE.Vector3(0, 0, 0),
     goal,
     guardHomeOffsetX,       // 這台守門機負責鎮守球門左側或右側的偏移量(米)，兩台合力聯防同一個球門
-    aimTarget: new THREE.Vector3(guardHomeOffsetX, GOAL_Y, goal.z),
+    aimTarget: new THREE.Vector3(guardHomeOffsetX, GOAL_Y, initStandoffZ),
     reactionTimer: 0,
     lastHitMsgTime: 0
   };
@@ -674,30 +679,50 @@ function updateAIGuard(aiState, dt) {
   if (aiState.reactionTimer <= 0) {
     aiState.reactionTimer = AI_GUARD_CONSTANTS.reactionMin + Math.random() * (AI_GUARD_CONSTANTS.reactionMax - AI_GUARD_CONSTANTS.reactionMin);
 
+    // 每次重新判斷時，活動半徑也隨機縮放(0.5~1.4倍)，讓移動範圍忽大忽小，不會每次都繞固定圈
+    const radiusScale = 0.5 + Math.random() * 0.9;
+    const guardRadius = AI_GUARD_CONSTANTS.guardRadiusXY * radiusScale;
+
     // 玩家相對「這台守門機守備分工中心」（球門中心 + 左右分工偏移）的水平/垂直偏移
     let dx = droneState.position.x - aiState.guardHomeOffsetX + (Math.random() - 0.5) * 2 * AI_GUARD_CONSTANTS.aimError;
     let dy = (droneState.position.y - GOAL_Y) + (Math.random() - 0.5) * 2 * AI_GUARD_CONSTANTS.aimError;
     const offsetLen = Math.sqrt(dx*dx + dy*dy);
-    if (offsetLen > AI_GUARD_CONSTANTS.guardRadiusXY) {
-      dx = dx / offsetLen * AI_GUARD_CONSTANTS.guardRadiusXY;
-      dy = dy / offsetLen * AI_GUARD_CONSTANTS.guardRadiusXY;
+    if (offsetLen > guardRadius) {
+      dx = dx / offsetLen * guardRadius;
+      dy = dy / offsetLen * guardRadius;
     }
 
-    // 玩家越靠近球門，守門機越往前迎擊（機率性出擊，不是每次都撲上前）
+    // 玩家越靠近球門，守門機越往前迎擊；但即使沒有迎擊，平時也會保持在球門前方的基本站位距離，
+    // 不會停在球門環的中央(真實比賽中守門機是在球門前防守，不會卡在環裡)
     const outwardSign = Math.sign(goal.z);
     const distToRing = Math.abs(droneState.position.z - goal.z);
     const willEngage = Math.random() < 0.78;
-    const engageDepth = willEngage ? THREE.MathUtils.clamp(1.4 - distToRing, 0, 1) * AI_GUARD_CONSTANTS.guardDepth : 0;
+    const extraEngage = willEngage ? THREE.MathUtils.clamp(1.4 - distToRing, 0, 1) * (AI_GUARD_CONSTANTS.guardDepth - AI_GUARD_CONSTANTS.guardStandoff) : 0;
+    const engageDepth = AI_GUARD_CONSTANTS.guardStandoff + extraEngage;
     const dz = -outwardSign * engageDepth;
 
     aiState.aimTarget.set(aiState.guardHomeOffsetX + dx, GOAL_Y + dy, goal.z + dz);
   }
 
-  const toTarget = aiState.aimTarget.clone().sub(aiState.position);
+  // 持續性的小幅搖擺動作(不受反應延遲影響)，讓守門機在等待/巡邏時仍有生氣，不會呆站不動
+  const t = performance.now() * 0.001;
+  const wobbleX = Math.sin(t * 1.7 + aiState.guardHomeOffsetX * 13) * 0.045;
+  const wobbleY = Math.cos(t * 1.3 + aiState.guardHomeOffsetX * 9) * 0.035;
+
+  // 近距離主動衝撞：玩家已經逼近且正朝球門攻門方向前進時，捨棄反應延遲、直接全速逼近玩家實際位置攔截
+  const outwardSignNow = Math.sign(goal.z);
+  const distToPlayer = droneState.position.distanceTo(aiState.position);
+  const playerAttacking = droneState.velocity.z * outwardSignNow > 0.1;
+  const charging = distToPlayer < AI_GUARD_CONSTANTS.chargeRange && playerAttacking;
+  const chaseTarget = charging ? droneState.position : aiState.aimTarget;
+  const effMaxSpeed = charging ? AI_GUARD_CONSTANTS.maxSpeed * AI_GUARD_CONSTANTS.chargeSpeedMul : AI_GUARD_CONSTANTS.maxSpeed;
+  const effAccel = charging ? AI_GUARD_CONSTANTS.accel * AI_GUARD_CONSTANTS.chargeAccelMul : AI_GUARD_CONSTANTS.accel;
+
+  const toTarget = chaseTarget.clone().add(new THREE.Vector3(wobbleX, wobbleY, 0)).sub(aiState.position);
   const dist = toTarget.length();
   if (dist > 0.01) {
-    const desiredVel = toTarget.normalize().multiplyScalar(Math.min(AI_GUARD_CONSTANTS.maxSpeed, dist * 2.2));
-    const steer = desiredVel.sub(aiState.velocity).multiplyScalar(AI_GUARD_CONSTANTS.accel * dt);
+    const desiredVel = toTarget.normalize().multiplyScalar(Math.min(effMaxSpeed, dist * 2.2));
+    const steer = desiredVel.sub(aiState.velocity).multiplyScalar(effAccel * dt);
     aiState.velocity.add(steer);
   }
   aiState.velocity.multiplyScalar(0.88); // 阻尼，避免震盪
@@ -733,7 +758,7 @@ function separateAIGuards() {
   }
 }
 
-// 玩家與單一守門機的實體碰撞：偵測到重疊時互相彈開
+// 玩家與單一守門機的實體碰撞：偵測到重疊時互相推開 (力道較溫和，避免彈飛感過強)
 function checkPlayerVsAIDrone(aiState) {
   const combinedRadius = DRONE_R * 2;
   const diff = new THREE.Vector3().subVectors(droneState.position, aiState.position);
@@ -741,17 +766,17 @@ function checkPlayerVsAIDrone(aiState) {
   if (dist < combinedRadius && dist > 0.001) {
     const normal = diff.normalize();
     const overlap = combinedRadius - dist;
-    droneState.position.addScaledVector(normal, overlap * 0.85);
-    aiState.position.addScaledVector(normal, -overlap * 0.15);
+    droneState.position.addScaledVector(normal, overlap * 0.7);
+    aiState.position.addScaledVector(normal, -overlap * 0.3);
 
     const relVel = droneState.velocity.dot(normal);
     if (relVel < 0) {
-      const restitution = 1.1;
+      const restitution = 0.35;
       droneState.velocity.addScaledVector(normal, -(1 + restitution) * relVel);
     } else {
-      droneState.velocity.addScaledVector(normal, 1.2);
+      droneState.velocity.addScaledVector(normal, 0.4);
     }
-    aiState.velocity.addScaledVector(normal, -0.6); // 守門機也會被輕微推開，但很快會被 AI 拉回守備位置
+    aiState.velocity.addScaledVector(normal, -0.3); // 守門機也會被輕微推開，但很快會被 AI 拉回守備位置
 
     const now = performance.now();
     if (now - aiState.lastHitMsgTime > 900) {
