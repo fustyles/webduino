@@ -68,7 +68,7 @@
                         <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">A</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">←</span> : 向左 (Roll Left)</li>
                         <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">D</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">→</span> : 向右 (Roll Right)</li>
                         <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">Q</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">E</span> : 逆/順時針旋轉 (Yaw)</li>
-                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded font-bold text-emerald-400">Space</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded font-bold text-rose-400">Alt</span> : 長按連續 升高 / 降低</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded font-bold text-emerald-400">Space</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded font-bold text-rose-400">Ctrl</span> : 長按連續 升高 / 降低</li>
                         <li><span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">C</span> : 切換鏡頭視角 (跟隨 / 座艙 / 自由)</li>
                     </ul>
                 </div>
@@ -234,7 +234,7 @@
                 </div>
                 <div class="flex justify-between">
                     <span>Altitude Up / Down (Hold):</span>
-                    <span class="tech-font text-white bg-slate-800 px-1 rounded">Space</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">Alt</span>
+                    <span class="tech-font text-white bg-slate-800 px-1 rounded">Space</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">Ctrl</span>
                 </div>
                 <div class="flex justify-between">
                     <span>Pitch Forward/Back:</span>
@@ -303,6 +303,7 @@
     <!-- 引入 Three.js 與 OrbitControls -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/utils/BufferGeometryUtils.js"></script>
 
     <script>
         // 1. 全局系統變數與參數
@@ -420,7 +421,7 @@
         const keys = { 
             w: false, s: false, a: false, d: false, 
             arrowup: false, arrowdown: false, arrowleft: false, arrowright: false,
-            q: false, e: false, ' ': false, alt: false, t: false, l: false 
+            q: false, e: false, ' ': false, control: false, t: false, l: false 
         };
 
         // 6. 攝影機模式 (0: Chase, 1: Cockpit, 2: Free)
@@ -889,29 +890,65 @@
             return mesh;
         }
 
-        // 建造測地線球型護籠 (仿照附圖足球狀無人機防護外殼)，回傳 { group, material }
+        // 建造測地線球型護籠 (仿照附圖的細網狀無人機防護外殼：高密度細桿交織成球，內部機身清晰可見)，回傳 { group, material }
         function createDroneCage(radius, colorHex) {
             const group = new THREE.Group();
             const material = new THREE.MeshStandardMaterial({
                 color: colorHex,
                 emissive: colorHex,
-                emissiveIntensity: 0.12,
-                metalness: 0.25,
-                roughness: 0.55
+                emissiveIntensity: 0.08,
+                metalness: 0.15,
+                roughness: 0.4,
+                transparent: true,
+                opacity: 0.92
             });
 
-            // 以二階細分二十面體的邊線來近似足球護籠的五邊/六邊格狀結構
-            const icoGeo = new THREE.IcosahedronGeometry(radius, 1);
+            // 以高階細分二十面體的邊線來近似附圖中細密的測地線網狀結構 (detail 3 = 遠比原本更多、更小的三角網格)
+            const CAGE_DETAIL = 3;
+            const icoGeo = new THREE.IcosahedronGeometry(radius, CAGE_DETAIL);
             const edgesGeo = new THREE.EdgesGeometry(icoGeo, 1);
             const posAttr = edgesGeo.attributes.position;
-            const rodRadius = radius * 0.022; // 護籠桿件變細，維持防護但更輕巧通透
+            const rodRadius = radius * 0.010; // 桿件變得非常細，形成通透的細網而非厚重護籠
 
+            const rodGeometries = [];
             const p1 = new THREE.Vector3();
             const p2 = new THREE.Vector3();
+            const mid = new THREE.Vector3();
+            const dir = new THREE.Vector3();
+            const quat = new THREE.Quaternion();
+            const up = new THREE.Vector3(0, 1, 0);
+            const matrix = new THREE.Matrix4();
+
             for (let i = 0; i < posAttr.count; i += 2) {
                 p1.fromBufferAttribute(posAttr, i);
                 p2.fromBufferAttribute(posAttr, i + 1);
-                group.add(createCageRod(p1, p2, rodRadius, material));
+                dir.subVectors(p2, p1);
+                const len = dir.length();
+                if (len < 1e-6) continue;
+                mid.addVectors(p1, p2).multiplyScalar(0.5);
+                quat.setFromUnitVectors(up, dir.clone().normalize());
+                matrix.compose(mid, quat, new THREE.Vector3(1, 1, 1));
+
+                const rodGeo = new THREE.CylinderGeometry(rodRadius, rodRadius, len, 5, 1);
+                rodGeo.applyMatrix4(matrix);
+                rodGeometries.push(rodGeo);
+            }
+
+            // 合併所有細桿為單一幾何體，避免數百個獨立網格拖累效能
+            let cageMesh;
+            if (THREE.BufferGeometryUtils && rodGeometries.length) {
+                const mergedGeo = THREE.BufferGeometryUtils.mergeBufferGeometries(rodGeometries, false);
+                cageMesh = new THREE.Mesh(mergedGeo, material);
+                cageMesh.castShadow = true;
+                group.add(cageMesh);
+                rodGeometries.forEach(g => g.dispose());
+            } else {
+                // 後備方案：若合併工具不可用，退回逐一建立網格
+                rodGeometries.forEach(g => {
+                    const mesh = new THREE.Mesh(g, material);
+                    mesh.castShadow = true;
+                    group.add(mesh);
+                });
             }
 
             icoGeo.dispose();
@@ -1394,23 +1431,23 @@
                 const key = e.key.toLowerCase();
                 if (key in keys) {
                     keys[key] = true;
-                    // Alt 鍵務必立即 preventDefault：瀏覽器/系統會把單獨的 Alt 鍵解讀為
-                    // 「開啟選單列 / 視窗選單」快捷鍵，若不攔截，網頁會瞬間失去鍵盤焦點，
+                    // Ctrl 鍵務必立即 preventDefault：部分瀏覽器/系統會把修飾鍵解讀為
+                    // 快捷鍵起手式，若不攔截，網頁可能瞬間失去鍵盤焦點，
                     // 導致之後所有按鍵（包含同時按下的 W）看起來像「沒有反應」。
-                    if (key === ' ' || key === 'alt' || key.startsWith('arrow')) e.preventDefault();
+                    if (key === ' ' || key === 'control' || key.startsWith('arrow')) e.preventDefault();
                 }
                 
-                // 按下 Space／Alt 僅顯示一次提示，實際連續升降改在 updateDronePhysics() 內以 delta time 平滑處理
+                // 按下 Space／Ctrl 僅顯示一次提示，實際連續升降改在 updateDronePhysics() 內以 delta time 平滑處理
                 if (key === ' ' && !e.repeat) {
                     drone.autoFlightState = 'none';
                     showSystemNotification("按住 Space 持續上升，放開停止");
                 }
 
-                // 原本使用 Shift，但 Shift 是瀏覽器/作業系統輔助功能常用的修飾鍵，長按容易被系統攔截或
-                // 觸發「篩選鍵/相黏鍵」等輔助功能，造成同時按 W 時像是沒反應；改用 Alt 並自行 preventDefault 可避免這個衝突
-                if (key === 'alt' && !e.repeat) {
+                // 原本使用 Alt，但單獨按下 Alt 容易被瀏覽器/作業系統解讀為「開啟選單列/視窗選單」，
+                // 導致網頁瞬間失去鍵盤焦點；改用 Ctrl 並自行 preventDefault 可避免這個衝突
+                if (key === 'control' && !e.repeat) {
                     drone.autoFlightState = 'none';
-                    showSystemNotification("按住 Alt 持續下降，放開停止");
+                    showSystemNotification("按住 Ctrl 持續下降，放開停止");
                 }
                 
                 if (key === 'c') cycleCameraMode();
@@ -1424,8 +1461,8 @@
                 const key = e.key.toLowerCase();
                 if (key in keys) {
                     keys[key] = false;
-                    if (key === 'alt') e.preventDefault(); // 同樣攔截 keyup，避免瀏覽器事後補觸發選單焦點跳轉
-                    if (key === ' ' || key === 'alt') {
+                    if (key === 'control') e.preventDefault(); // 同樣攔截 keyup，避免瀏覽器事後補觸發選單焦點跳轉
+                    if (key === ' ' || key === 'control') {
                         showSystemNotification(`定高調整完成：${drone.targetAltitude.toFixed(2)} 米`);
                     }
                 }
@@ -1526,7 +1563,7 @@
             // 鍵盤或方向鍵偵測 -> 退出自動駕駛
             if (keys.w || keys.s || keys.a || keys.d || 
                 keys.arrowup || keys.arrowdown || keys.arrowleft || keys.arrowright ||
-                keys.q || keys.e || keys[' '] || keys.alt) { // 增加按鍵檢測範圍
+                keys.q || keys.e || keys[' '] || keys.control) { // 增加按鍵檢測範圍
                 if (drone.autoFlightState !== 'none') {
                     drone.autoFlightState = 'none';
                     showSystemNotification("手動接管姿態控制");
@@ -1543,13 +1580,13 @@
                 if (drone.autoFlightState !== 'none') drone.autoFlightState = 'none';
             }
 
-            // 按住 Space／Alt 連續升降目標高度（每秒固定速率，鬆開立即停止，非單次跳動）
+            // 按住 Space／Ctrl 連續升降目標高度（每秒固定速率，鬆開立即停止，非單次跳動）
             const altHoldRate = 0.7; // 每秒升降速率 (m/s)
             if (keys[' ']) {
                 drone.targetAltitude = Math.min(2.6, drone.targetAltitude + altHoldRate * delta);
                 if (drone.autoFlightState !== 'none') drone.autoFlightState = 'none';
             }
-            if (keys.alt) {
+            if (keys.control) {
                 drone.targetAltitude = Math.max(0.10, drone.targetAltitude - altHoldRate * delta);
                 if (drone.autoFlightState !== 'none') drone.autoFlightState = 'none';
             }
