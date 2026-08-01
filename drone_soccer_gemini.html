@@ -84,9 +84,10 @@
                         <li><span class="text-rose-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">S</span> : 減少油門，長按持續下降，放開定高懸停</li>
                         <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">↑</span> : 前進 (Pitch Forward)</li>
                         <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">↓</span> : 後退 (Pitch Backward)</li>
-                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">A</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">←</span> : 向左 (Roll Left)</li>
-                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">D</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">→</span> : 向右 (Roll Right)</li>
-                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">Q</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">E</span> : 逆/順時針旋轉 (Yaw)</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">←</span> : 向左滾轉 (Roll Left)</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">→</span> : 向右滾轉 (Roll Right)</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">A</span> : 逆時針旋轉 (Yaw Left)</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">D</span> : 順時針旋轉 (Yaw Right)</li>
                         <li><span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">C</span> : 切換鏡頭視角 (跟隨 / 座艙 / 自由)</li>
                     </ul>
                 </div>
@@ -265,11 +266,11 @@
                 </div>
                 <div class="flex justify-between">
                     <span>Roll Left/Right:</span>
-                    <span class="tech-font text-white bg-slate-800 px-1 rounded">A / ←</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">D / →</span>
+                    <span class="tech-font text-white bg-slate-800 px-1 rounded">←</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">→</span>
                 </div>
                 <div class="flex justify-between">
-                    <span>Yaw Rotate:</span>
-                    <span class="tech-font text-white bg-slate-800 px-1 rounded">Q</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">E</span>
+                    <span>Yaw Rotate (CCW/CW):</span>
+                    <span class="tech-font text-white bg-slate-800 px-1 rounded">A</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">D</span>
                 </div>
                 <div class="flex justify-between">
                     <span>Cycle Camera View:</span>
@@ -358,8 +359,8 @@
             // 操控輸入
             input: {
                 pitch: 0,   // 前後 (↑: 1 往前, ↓: -1 往後；W/S 已改為油門升降，不再控制 pitch)
-                roll: 0,    // 左右側傾 (A/←: -1, D/→: 1)
-                yaw: 0,     // 旋轉 (Q: -1, E: 1)
+                roll: 0,    // 左右側傾 (←: -1, →: 1；A/D 已改為偏航 yaw，不再控制 roll)
+                yaw: 0,     // 旋轉 (A: -1 逆時針, D: 1 順時針；已取代 Q/E)
                 throttle: 0.0
             },
 
@@ -446,7 +447,7 @@
         const keys = { 
             w: false, s: false, a: false, d: false, 
             arrowup: false, arrowdown: false, arrowleft: false, arrowright: false,
-            q: false, e: false, ' ': false, control: false, t: false, l: false 
+            ' ': false, control: false, t: false, l: false 
         };
 
         // 6. 攝影機模式 (0: Chase, 1: Cockpit, 2: Free)
@@ -1617,7 +1618,7 @@
             // 鍵盤或方向鍵偵測 -> 退出自動駕駛
             if (keys.w || keys.s || keys.a || keys.d || 
                 keys.arrowup || keys.arrowdown || keys.arrowleft || keys.arrowright ||
-                keys.q || keys.e || keys[' '] || keys.control) { // 增加按鍵檢測範圍
+                keys[' '] || keys.control) { // 增加按鍵檢測範圍
                 if (drone.autoFlightState !== 'none') {
                     drone.autoFlightState = 'none';
                     showSystemNotification("手動接管姿態控制");
@@ -1669,14 +1670,15 @@
             else if (keys.arrowdown) drone.input.pitch = -1.0;
             else if (!drone.touchActive) drone.input.pitch = 0;
 
-            // A與←：往左滾轉，D與→：往右滾轉
-            if (keys.d || keys.arrowright) drone.input.roll = 1.0;
-            else if (keys.a || keys.arrowleft) drone.input.roll = -1.0;
+            // ←/→：往左/往右滾轉（A/D 已改為偏航旋轉，見下方）
+            if (keys.arrowright) drone.input.roll = 1.0;
+            else if (keys.arrowleft) drone.input.roll = -1.0;
             else if (!drone.touchActive) drone.input.roll = 0;
 
-            // Q/E：旋轉（左搖桿觸控時比照鍵盤邏輯，向左/右推等同 Q/E）
-            if (keys.e) drone.input.yaw = 1.0;
-            else if (keys.q) drone.input.yaw = -1.0;
+            // A/D：偏航旋轉（取代原本的 Q/E），A 為逆時針旋轉，D 為順時針旋轉
+            // 左搖桿觸控時比照鍵盤邏輯，向左/右推等同 A/D
+            if (keys.d) drone.input.yaw = 1.0;
+            else if (keys.a) drone.input.yaw = -1.0;
             else if (!drone.touchActiveLeft) drone.input.yaw = 0;
 
             // 平滑計算目標俯仰及側滾傾角

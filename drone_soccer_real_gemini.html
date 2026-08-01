@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>DRONE SOCCER ARENA (Gemini) — 法蘭斯</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -45,6 +45,23 @@
         .joystick-zone {
             touch-action: none;
         }
+        /* 觸控搖桿區域定位：
+           1. env(safe-area-inset-bottom) 避開 iPhone 底部手勢列/瀏海機種的安全區域
+           2. 額外疊加 6vh 依手機螢幕高度比例往上抬升，長螢幕手機會抬得更高，避免被系統手勢列或瀏覽器底部工具列遮蔽
+           3. clamp() 設定最小/最大範圍，避免在極端螢幕比例下位置過低或過高 */
+        #touchControls {
+            bottom: clamp(28px, calc(env(safe-area-inset-bottom, 0px) + 6vh + 14px), 120px);
+        }
+        /* 螢幕高度較矮（如手機橫向/小型平板）時，搖桿整體再縮小並降低抬升幅度，避免佔用過多畫面 */
+        @media (max-height: 480px) {
+            #touchControls {
+                bottom: clamp(10px, calc(env(safe-area-inset-bottom, 0px) + 2vh + 8px), 60px);
+            }
+            #touchControls .joystick-zone {
+                width: 4.5rem;
+                height: 4.5rem;
+            }
+        }
     </style>
 </head>
 <body class="relative w-screen h-screen">
@@ -63,12 +80,14 @@
                 <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800">
                     <p class="font-bold text-emerald-400 mb-2"><i class="fa-solid fa-keyboard mr-2"></i>鍵盤控制說明</p>
                     <ul class="space-y-1 text-slate-400 tech-font">
-                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">W</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">↑</span> : 前進 (Pitch Forward)</li>
-                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">S</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">↓</span> : 後退 (Pitch Backward)</li>
-                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">A</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">←</span> : 向左 (Roll Left)</li>
-                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">D</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">→</span> : 向右 (Roll Right)</li>
-                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">Q</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">E</span> : 逆/順時針旋轉 (Yaw)</li>
-                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded font-bold text-emerald-400">Space</span> / <span class="text-white bg-slate-800 px-1.5 py-0.5 rounded font-bold text-rose-400">Ctrl</span> : 長按連續 升高 / 降低</li>
+                        <li><span class="text-emerald-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">W</span> : 增加油門，長按持續上升，放開定高懸停</li>
+                        <li><span class="text-rose-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">S</span> : 減少油門，長按持續下降，放開定高懸停</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">↑</span> : 前進 (Pitch Forward)</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">↓</span> : 後退 (Pitch Backward)</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">←</span> : 向左滾轉 (Roll Left)</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">→</span> : 向右滾轉 (Roll Right)</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">A</span> : 逆時針旋轉 (Yaw Left)</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">D</span> : 順時針旋轉 (Yaw Right)</li>
                         <li><span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">C</span> : 切換鏡頭視角 (跟隨 / 座艙 / 自由)</li>
                     </ul>
                 </div>
@@ -78,6 +97,7 @@
                         <li><span class="text-rose-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">L</span> : 一鍵降落 (平穩降落至中心並熄火)</li>
                         <li><span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">R</span> : 重置無人機 (回到場地中央)</li>
                         <li><span class="text-slate-300 bg-slate-800 px-1.5 py-0.5 rounded font-bold">M</span> : 靜音切換</li>
+                        <li><span class="text-slate-300 bg-slate-800 px-1.5 py-0.5 rounded font-bold">Space</span> / <span class="text-slate-300 bg-slate-800 px-1.5 py-0.5 rounded font-bold">Ctrl</span> : 油門升 / 降 (備用鍵，同 W/S)</li>
                     </ul>
                 </div>
             </div>
@@ -233,20 +253,24 @@
                     <span class="tech-font text-emerald-400 font-bold bg-slate-800 px-1 rounded">T</span> / <span class="tech-font text-rose-400 font-bold bg-slate-800 px-1 rounded">L</span>
                 </div>
                 <div class="flex justify-between">
-                    <span>Altitude Up / Down (Hold):</span>
+                    <span>Throttle Up/Down (Hold):</span>
+                    <span class="tech-font text-white bg-slate-800 px-1 rounded">W</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">S</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Altitude Up/Down (Alt Key):</span>
                     <span class="tech-font text-white bg-slate-800 px-1 rounded">Space</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">Ctrl</span>
                 </div>
                 <div class="flex justify-between">
                     <span>Pitch Forward/Back:</span>
-                    <span class="tech-font text-white bg-slate-800 px-1 rounded">W / ↑</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">S / ↓</span>
+                    <span class="tech-font text-white bg-slate-800 px-1 rounded">↑</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">↓</span>
                 </div>
                 <div class="flex justify-between">
                     <span>Roll Left/Right:</span>
-                    <span class="tech-font text-white bg-slate-800 px-1 rounded">A / ←</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">D / →</span>
+                    <span class="tech-font text-white bg-slate-800 px-1 rounded">←</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">→</span>
                 </div>
                 <div class="flex justify-between">
-                    <span>Yaw Rotate:</span>
-                    <span class="tech-font text-white bg-slate-800 px-1 rounded">Q</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">E</span>
+                    <span>Yaw Rotate (CCW/CW):</span>
+                    <span class="tech-font text-white bg-slate-800 px-1 rounded">A</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">D</span>
                 </div>
                 <div class="flex justify-between">
                     <span>Cycle Camera View:</span>
@@ -264,7 +288,7 @@
         </footer>
 
         <!-- 觸控搖桿區域 (用於行動裝置或預覽操作) -->
-        <div id="touchControls" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex justify-between w-full max-w-[500px] px-4 pointer-events-none md:hidden">
+        <div id="touchControls" class="absolute left-1/2 -translate-x-1/2 flex justify-between w-full max-w-[500px] px-4 pointer-events-none md:hidden">
             <!-- 左搖桿 (高度/旋轉) -->
             <div class="joystick-zone pointer-events-auto relative w-24 h-24 rounded-full bg-slate-950/80 border border-emerald-500/30 flex items-center justify-center shadow-lg" id="joyLeft">
                 <div class="w-10 h-10 rounded-full bg-emerald-500/40 border border-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.4)] absolute" id="knobLeft"></div>
@@ -326,7 +350,7 @@
             
             // 氣壓定高與自動駕駛
             targetAltitude: 0.1, // 初始定高目標
-            touchAltitudeInput: 0, // 觸控定高增量
+            touchAltitudeInput: 0, // 觸控定高增量 (已套用平方曲線，幅度越大動力輸出越強)
             touchActive: false, // 右搖桿(前後左右)是否正在被觸控操作
             touchActiveLeft: false, // 左搖桿(旋轉)是否正在被觸控操作
             autoFlightState: 'none', // 'none' / 'takingoff' / 'landing'
@@ -334,9 +358,9 @@
 
             // 操控輸入
             input: {
-                pitch: 0,   // 前後 (W/↑: 1 往前, S/↓: -1 往後)
-                roll: 0,    // 左右側傾 (A/←: -1, D/→: 1)
-                yaw: 0,     // 旋轉 (Q: -1, E: 1)
+                pitch: 0,   // 前後 (↑: 1 往前, ↓: -1 往後；W/S 已改為油門升降，不再控制 pitch)
+                roll: 0,    // 左右側傾 (←: -1, →: 1；A/D 已改為偏航 yaw，不再控制 roll)
+                yaw: 0,     // 旋轉 (A: -1 逆時針, D: 1 順時針；已取代 Q/E)
                 throttle: 0.0
             },
 
@@ -421,7 +445,7 @@
         const keys = { 
             w: false, s: false, a: false, d: false, 
             arrowup: false, arrowdown: false, arrowleft: false, arrowright: false,
-            q: false, e: false, ' ': false, control: false, t: false, l: false 
+            ' ': false, control: false, t: false, l: false 
         };
 
         // 6. 攝影機模式 (0: Chase, 1: Cockpit, 2: Free)
@@ -1427,7 +1451,17 @@
                     if (key === ' ' || key === 'control' || key.startsWith('arrow')) e.preventDefault();
                 }
                 
-                // 按下 Space／Ctrl 僅顯示一次提示，實際連續升降改在 updateDronePhysics() 內以 delta time 平滑處理
+                // 按下 W/S 或 Space／Ctrl 僅顯示一次提示，實際連續升降改在 updateDronePhysics() 內以 delta time 平滑處理
+                // W/S：對應左搖桿油門邏輯（向上=增加動力上升，向下=減少動力下降）
+                if (key === 'w' && !e.repeat) {
+                    drone.autoFlightState = 'none';
+                    showSystemNotification("按住 W 持續上升，放開定高懸停");
+                }
+                if (key === 's' && !e.repeat) {
+                    drone.autoFlightState = 'none';
+                    showSystemNotification("按住 S 持續下降，放開定高懸停");
+                }
+
                 if (key === ' ' && !e.repeat) {
                     drone.autoFlightState = 'none';
                     showSystemNotification("按住 Space 持續上升，放開停止");
@@ -1452,7 +1486,7 @@
                 if (key in keys) {
                     keys[key] = false;
                     if (key === 'control') e.preventDefault(); // 同樣攔截 keyup，避免瀏覽器事後補觸發選單焦點跳轉
-                    if (key === ' ' || key === 'control') {
+                    if (key === ' ' || key === 'control' || key === 'w' || key === 's') {
                         showSystemNotification(`定高調整完成：${drone.targetAltitude.toFixed(2)} 米`);
                     }
                 }
@@ -1532,7 +1566,11 @@
             }));
 
             function updateLeftJoy(x, y) {
-                drone.touchAltitudeInput = -y;
+                // 依推桿幅度給予非線性(平方)反應曲線：
+                // 輕推(位移小) -> 平方後數值更小，動力變化非常和緩，利於微調高度、貼地起降、絲滑升降鏡頭；
+                // 重推到底(位移趨近 1) -> 平方後仍趨近 1，維持接近全速的動力輸出，可急速爬升/急速下墜。
+                const raw = -y; // 保留方向：向上推為正(上升)，向下拉為負(下降)
+                drone.touchAltitudeInput = Math.sign(raw) * Math.pow(Math.abs(raw), 2);
                 drone.input.yaw = x;
             }
 
@@ -1553,30 +1591,34 @@
             // 鍵盤或方向鍵偵測 -> 退出自動駕駛
             if (keys.w || keys.s || keys.a || keys.d || 
                 keys.arrowup || keys.arrowdown || keys.arrowleft || keys.arrowright ||
-                keys.q || keys.e || keys[' '] || keys.control) { // 增加按鍵檢測範圍
+                keys[' '] || keys.control) { // 增加按鍵檢測範圍
                 if (drone.autoFlightState !== 'none') {
                     drone.autoFlightState = 'none';
                     showSystemNotification("手動接管姿態控制");
                 }
             }
 
-            // 觸控定高目標
-            if (Math.abs(drone.touchAltitudeInput) > 0.05) {
+            // 觸控定高目標：推桿幅度(經平方曲線處理)直接對應動力輸出強弱
+            // 輕推 -> 目標高度緩慢挪動 -> 高度誤差小 -> PD 定高僅輸出接近懸停的和緩馬達動力
+            // 重推到底 -> 目標高度快速拉開一大段距離 -> 高度誤差瞬間放大 -> PD 定高立即輸出接近最大/最小馬達動力，達到急速爬升/急墜的效果
+            if (Math.abs(drone.touchAltitudeInput) > 0.03) {
                 drone.targetAltitude = THREE.MathUtils.clamp(
-                    drone.targetAltitude + drone.touchAltitudeInput * delta * 2.5,
+                    drone.targetAltitude + drone.touchAltitudeInput * delta * 3.5,
                     0.10,
                     2.6
                 );
                 if (drone.autoFlightState !== 'none') drone.autoFlightState = 'none';
             }
 
-            // 按住 Space／Ctrl 連續升降目標高度（每秒固定速率，鬆開立即停止，非單次跳動）
+            // 按住 W／S 或 Space／Ctrl 連續升降目標高度（每秒固定速率，鬆開立即停止，非單次跳動）
+            // W/S 對應左搖桿上下推的油門(Throttle)邏輯：向上(W)增加動力上升，向下(S)減少動力下降，
+            // 放開後不回歸油門為 0，而是維持在放開當下的高度（氣壓定高懸停），與真實多軸機一致。
             const altHoldRate = 0.7; // 每秒升降速率 (m/s)
-            if (keys[' ']) {
+            if (keys.w || keys[' ']) {
                 drone.targetAltitude = Math.min(2.6, drone.targetAltitude + altHoldRate * delta);
                 if (drone.autoFlightState !== 'none') drone.autoFlightState = 'none';
             }
-            if (keys.control) {
+            if (keys.s || keys.control) {
                 drone.targetAltitude = Math.max(0.10, drone.targetAltitude - altHoldRate * delta);
                 if (drone.autoFlightState !== 'none') drone.autoFlightState = 'none';
             }
@@ -1595,20 +1637,21 @@
                 }
             }
 
-            // 鍵盤或方向鍵前進後退左右映射（不限視窗寬度，桌面/窄視窗皆可用鍵盤操作）
-            // W與↑：往前傾斜前進，S與↓：往後傾斜後退 (方向完美契合您的需求)
-            if (keys.w || keys.arrowup) drone.input.pitch = 1.0;
-            else if (keys.s || keys.arrowdown) drone.input.pitch = -1.0;
+            // 方向鍵前進後退映射（不限視窗寬度，桌面/窄視窗皆可用鍵盤操作）
+            // ↑：往前傾斜前進，↓：往後傾斜後退（W/S 已改為油門升降，見下方）
+            if (keys.arrowup) drone.input.pitch = 1.0;
+            else if (keys.arrowdown) drone.input.pitch = -1.0;
             else if (!drone.touchActive) drone.input.pitch = 0;
 
-            // A與←：往左滾轉，D與→：往右滾轉
-            if (keys.d || keys.arrowright) drone.input.roll = 1.0;
-            else if (keys.a || keys.arrowleft) drone.input.roll = -1.0;
+            // ←/→：往左/往右滾轉（A/D 已改為偏航旋轉，見下方）
+            if (keys.arrowright) drone.input.roll = 1.0;
+            else if (keys.arrowleft) drone.input.roll = -1.0;
             else if (!drone.touchActive) drone.input.roll = 0;
 
-            // Q/E：旋轉（左搖桿觸控時比照鍵盤邏輯，向左/右推等同 Q/E）
-            if (keys.e) drone.input.yaw = 1.0;
-            else if (keys.q) drone.input.yaw = -1.0;
+            // A/D：偏航旋轉（取代原本的 Q/E），A 為逆時針旋轉，D 為順時針旋轉
+            // 左搖桿觸控時比照鍵盤邏輯，向左/右推等同 A/D
+            if (keys.d) drone.input.yaw = 1.0;
+            else if (keys.a) drone.input.yaw = -1.0;
             else if (!drone.touchActiveLeft) drone.input.yaw = 0;
 
             // 平滑計算目標俯仰及側滾傾角
