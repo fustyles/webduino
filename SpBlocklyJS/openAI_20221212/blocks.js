@@ -14,35 +14,20 @@ Blockly.Blocks['openai_chat_initial'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.OPENAI_MODEL_SHOW)
       .appendField(new Blockly.FieldDropdown([
-			["gpt-4.1","gpt-4.1"],
 			["gpt-5","gpt-5"],
 			["gpt-5-nano","gpt-5-nano"],
 			["gpt-5-mini","gpt-5-mini"],
 			["gpt-5.4-pro","gpt-5.4-pro"],
-			["gpt-5.4","gpt-5.4"],		 
-			["Groq_llama-3.1-8b-instant","llama-3.1-8b-instant"],
-			["Groq_llama-3.3-70b-versatile","llama-3.3-70b-versatile"],
-			["Groq_openai/gpt-oss-120b","openai/gpt-oss-120b"],
-			["Groq_openai/gpt-oss-20b","openai/gpt-oss-20b"],
-			["Groq_whisper-large-v3","whisper-large-v3"],
-			["Groq_whisper-large-v3-turbo","whisper-large-v3-turbo"],
-			["Groq_canopylabs/orpheus-arabic-saudi","canopylabs/orpheus-arabic-saudi"],
-			["Groq_canopylabs/orpheus-v1-english","canopylabs/orpheus-v1-english"],
-			["Groq_meta-llama/llama-4-scout-17b-16e-instruct","meta-llama/llama-4-scout-17b-16e-instruct"],
-			["Groq_meta-llama/llama-prompt-guard-2-22m","meta-llama/llama-prompt-guard-2-22m"],
-			["Groq_meta-llama/llama-prompt-guard-2-86m","meta-llama/llama-prompt-guard-2-86m"],
-			["Groq_moonshotai/kimi-k2-instruct-0905","moonshotai/kimi-k2-instruct-0905"],
-			["Groq_openai/gpt-oss-safeguard-20b","openai/gpt-oss-safeguard-20b"],
-			["Groq_qwen/qwen3-32b","qwen/qwen3-32b"],
-			["xAI_grok-4.20-multi-agent-beta-0309" ,"grok-4.20-multi-agent-beta-0309"],
-			["xAI_grok-4.20-beta-0309-reasoning" ,"grok-4.20-beta-0309-reasoning"],
-			["xAI_grok-4.20-beta-0309-non-reasoning" ,"grok-4.20-beta-0309-non-reasoning"],
-			["xAI_grok-code-fast-1" ,"grok-code-fast-1"],
-			["xAI_grok-4-1-fast-reasoning" ,"grok-4-1-fast-reasoning"],
-			["xAI_grok-4-1-fast-non-reasoning" ,"grok-4-1-fast-non-reasoning"],
-			["xAI_grok-imagine-image-pro" ,"grok-imagine-image-pro"],
-			["xAI_grok-imagine-image" ,"grok-imagine-image"],
-			["xAI_grok-imagine-video" ,"grok-imagine-video"]		  
+			["gpt-5.4","gpt-5.4"],
+			["GPT-5.4_mini","gpt-5.4-mini"],
+			["GPT-5.4_nano","gpt-5.4-nano"],
+			["GPT-5.6_Sol","gpt-5.6-sol"],
+			["GPT-5.6_Terra","gpt-5.6-terra"],
+			["GPT-5.6_Luna","gpt-5.6-luna"],
+			["GPT-5.5","gpt-5.5"],
+			["GPT-5.5_Pro","gpt-5.5-pro"],
+			["xAI_grok-4.5" ,"grok-4.5"],
+			["xAI_grok-imagine-image-quality" ,"grok-imagine-image-quality"]		  
 	  ]), "model");
   this.appendDummyInput()  
       .appendField(Blockly.Msg["OPENAI_CHAT_TEMPERATURE_SHOW"])
@@ -345,8 +330,12 @@ Blockly.Blocks['openai_image_initial'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.OPENAI_MODEL_SHOW)
       .appendField(new Blockly.FieldDropdown([
+			["gpt-image-1.5","gpt-image-1.5"],
+			["chatgpt-image-latest","chatgpt-image-latest"],
+			["gpt-image-1","gpt-image-1"],
+			["gpt-image-1-mini","gpt-image-1-mini"],
 			["dall-e-2","dall-e-2"],
-			["dall-e-3","dall-e-3"]
+			["dall-e-3","dall-e-3"]	
 	  ]), "model"); 
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
@@ -366,11 +355,15 @@ Blockly.Blocks['openai_image_request'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.OPENAI_IMAGE_SIZE_SHOW)
       .appendField(new Blockly.FieldDropdown([
+			["Auto", "auto"],
+			["1024×1024", "1024x1024"],
+			["1536×1024", "1536x1024"],
+			["1024×1536", "1024x1536"],
 			["256x256 (DE2)","256x256"],
 			["512x512 (DE2)","512x512"],			
 			["1024x1024 (DE2、DE3)","1024x1024"],			
 			["1024x1792 (DE3)","1024x1792"],			
-			["1792x1024 (DE3)","1792x1024"]	  
+			["1792x1024 (DE3)","1792x1024"]	
 	  ]), "size"); 	  
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
