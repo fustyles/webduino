@@ -88,12 +88,12 @@ Blockly.Blocks['openai_image_initial'] = {
   this.appendDummyInput()  
       .appendField(Blockly.Msg.OPENAI_MODEL_SHOW)
       .appendField(new Blockly.FieldDropdown([
-			["dall-e-2","dall-e-2"],
-			["dall-e-3","dall-e-3"],
 			["gpt-image-1.5","gpt-image-1.5"],
 			["chatgpt-image-latest","chatgpt-image-latest"],
 			["gpt-image-1","gpt-image-1"],
-			["gpt-image-1-mini","gpt-image-1-mini"]
+			["gpt-image-1-mini","gpt-image-1-mini"],
+			["dall-e-2","dall-e-2"],
+			["dall-e-3","dall-e-3"]		  
 	  ]), "model"); 	  
   this.setInputsInline(true);	  
   this.setPreviousStatement(true);
