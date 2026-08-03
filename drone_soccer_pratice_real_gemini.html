@@ -290,7 +290,7 @@
             </div>
             <h2 class="text-2xl font-extrabold text-yellow-300 tracking-wider mb-2">微型場地穿梭圓滿完成！</h2>
             <p class="text-slate-300 text-xs md:text-sm mb-6 leading-relaxed">
-                您已成功操控微縮無人機，在 6m × 4m 限制空間內順利穿過紅藍底線「球門線」上方對齊的霓虹光環！
+                您已成功操控微縮無人機，在 6m × 3m 限制空間內順利穿過紅藍底線「球門線」上方對齊的霓虹光環！
             </p>
             <div class="flex gap-4">
                 <button id="btnRestart" class="w-full py-3 text-xs md:text-sm font-bold text-slate-950 bg-yellow-400 rounded-lg shadow-lg hover:bg-yellow-300 transition-all duration-300 uppercase">
@@ -318,7 +318,7 @@
         let audioCtx = null;
         let droneSynth = null;
 
-        // 3. 微型無人機物理與姿態狀態 (比原版縮小，適配 6m x 4m)
+        // 3. 微型無人機物理與姿態狀態 (比原版縮小，適配 6m x 3m)
         const drone = {
             mesh: null,
             rotors: [], // 四個螺旋槳
@@ -362,9 +362,9 @@
         };
 
         // 4. 遊戲目標 (僅有 2 個光環：精準懸浮於紅藍底邊禁區球門線正上方)
-        // 配合 6m x 4m 尺寸：
+        // 配合 6m x 3m 尺寸：
         // 地板長度方向為 Z 軸 (Z: -3 至 +3)
-        // 地板寬度方向為 X 軸 (X: -2 至 +2)
+        // 地板寬度方向為 X 軸 (X: -1.5 至 +1.5)
         // 紅色球門線在 Z = -2.25，藍色球門線在 Z = 2.25。高度置中於場地高度正中央 (cageH / 2 = 1.5 米)。
         // 依真實規格調整：無人機球型護籠外徑 20 公分 (半徑 0.10m)；球門光環「淨開口」內直徑 60 公分 (半徑 0.30m)
         const DRONE_CAGE_RADIUS = 0.10;   // 無人機足球護籠半徑，整體球徑 = 20 公分
@@ -389,7 +389,7 @@
         // 6. 攝影機模式 (0: Chase, 1: Cockpit, 2: Free)
         let cameraMode = 0; 
         const CAMERA_MODES = ['SIDELINE', 'COCKPIT', 'FREE'];
-        const CAGE_WIDTH = 4.0;   // 場地寬度 (X軸)
+        const CAGE_WIDTH = 3.0;   // 場地寬度 (X軸)
         const CAGE_LENGTH = 6.0;  // 場地長度 (Z軸)
         const CAGE_HEIGHT = 3.0;  // 籠子高度
 
@@ -497,10 +497,10 @@
 
             // 賽事場地對角高對比度投光燈 (紅、藍)
             const corners = [
-                { x: -2.3, z: -3.3, color: 0xef4444 }, // 紅區角落
-                { x: 2.3, z: -3.3, color: 0xef4444 },
-                { x: -2.3, z: 3.3, color: 0x3b82f6 },  // 藍區角落
-                { x: 2.3, z: 3.3, color: 0x3b82f6 }
+                { x: -1.8, z: -3.3, color: 0xef4444 }, // 紅區角落
+                { x: 1.8, z: -3.3, color: 0xef4444 },
+                { x: -1.8, z: 3.3, color: 0x3b82f6 },  // 藍區角落
+                { x: 1.8, z: 3.3, color: 0x3b82f6 }
             ];
 
             corners.forEach(corner => {
@@ -528,11 +528,11 @@
             });
         }
 
-        // 使用 Canvas 繪製專屬於 6公尺 × 4公尺（長 Z-axis, 寬 X-axis）草綠色對稱發光場地貼圖
+        // 使用 Canvas 繪製專屬於 6公尺 × 3公尺（長 Z-axis, 寬 X-axis）草綠色對稱發光場地貼圖
         function createSoccerField() {
             const canvas = document.createElement('canvas');
-            canvas.width = 512;
-            canvas.height = 768; // 4:6 比例 (512x768 完美對應)
+            canvas.width = 384;
+            canvas.height = 768; // 3:6 比例 (384x768 完美對應)
             const ctx = canvas.getContext('2d');
 
             // 1. 深草綠色賽博科技質感底色
@@ -648,8 +648,8 @@
 
             const texture = new THREE.CanvasTexture(canvas);
             
-            // 建立 4m × 6m 的平面
-            const fieldGeo = new THREE.PlaneGeometry(4, 6);
+            // 建立 3m × 6m 的平面
+            const fieldGeo = new THREE.PlaneGeometry(3, 6);
             const fieldMat = new THREE.MeshStandardMaterial({
                 map: texture,
                 roughness: 0.5,
@@ -697,7 +697,7 @@
             return texture;
         }
 
-        // 建造完整充氣柱框架與格網 (適配 6m x 4m)
+        // 建造完整充氣柱框架與格網 (適配 6m x 3m)
         function buildInflatableCage() {
             const cageGroup = new THREE.Group();
 
@@ -1498,7 +1498,7 @@
             drone.mesh.position.copy(drone.position);
             drone.mesh.rotation.set(drone.currentPitch, drone.rotation.y, drone.currentRoll, 'YXZ');
 
-            // 地板與 6m x 4m 網籠安全邊界彈力碰撞偵測 (X: 4m, Z: 6m, Y: 3m)
+            // 地板與 6m x 3m 網籠安全邊界彈力碰撞偵測 (X: 3m, Z: 6m, Y: 3m)
             const groundLimit = 0.10;
             if (drone.position.y < groundLimit) {
                 drone.position.y = groundLimit;
@@ -1513,9 +1513,9 @@
                 drone.velocity.y = -0.1;
             }
 
-            // 四周充氣網牆邊界彈力碰撞偵測 (X: 4m 寬 / Z: 6m 長，扣除無人機半徑安全裕度)
+            // 四周充氣網牆邊界彈力碰撞偵測 (X: 3m 寬 / Z: 6m 長，扣除無人機半徑安全裕度)
             const droneBodyRadius = DRONE_CAGE_RADIUS;
-            const xLimit = 4.0 / 2 - droneBodyRadius;  // 左右網牆
+            const xLimit = 3.0 / 2 - droneBodyRadius;  // 左右網牆
             const zLimit = 6.0 / 2 - droneBodyRadius;  // 前後網牆
             const wallRestitution = 0.4; // 網子有彈性，撞擊後緩速反彈
 
@@ -1861,7 +1861,7 @@
                 startScreen.classList.add('opacity-0', 'scale-95');
                 setTimeout(() => startScreen.remove(), 750);
 
-                showSystemNotification("氣壓飛控系統連線 - 6m x 4m 禁區網籠就緒");
+                showSystemNotification("氣壓飛控系統連線 - 6m x 3m 禁區網籠就緒");
             }
 
             // 按下任意鍵即可開始（桌面鍵盤）
