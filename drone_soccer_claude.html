@@ -164,13 +164,13 @@
 
 <div class="hud panel" id="controls-panel">
   <span class="label">操控說明 [H]</span>
-  <div class="row"><span>前傾 / 後仰</span><kbd>W/S ↑/↓</kbd></div>
-  <div class="row"><span>左右橫滾</span><kbd>A/D ←/→</kbd></div>
-  <div class="row"><span>左右偏航</span><kbd>Q / E</kbd></div>
+  <div class="row"><span>前傾 / 後仰</span><kbd>↑ / ↓</kbd></div>
+  <div class="row"><span>左右橫滾</span><kbd>← / →</kbd></div>
+  <div class="row"><span>左右偏航</span><kbd>A / D</kbd></div>
   <div class="row"><span>一鍵起飛</span><kbd>T</kbd></div>
   <div class="row"><span>一鍵降落</span><kbd>L</kbd></div>
-  <div class="row"><span>等距上升</span><kbd>Space</kbd></div>
-  <div class="row"><span>等距下降</span><kbd>Ctrl</kbd></div>
+  <div class="row"><span>等距上升</span><kbd>W / Space</kbd></div>
+  <div class="row"><span>等距下降</span><kbd>S / Ctrl</kbd></div>
   <div class="row"><span>切換視角</span><kbd>C</kbd></div>
   <div class="row"><span>重置無人機</span><kbd>R</kbd></div>
   <div class="row"><span>靜音切換</span><kbd>M</kbd></div>
@@ -182,13 +182,13 @@
   <h1>DRONE <span>SOCCER</span> ARENA</h1>
   <p class="sub">擬真四軸飛行器操控模擬 · 氣壓定高 · 鍵盤控制 · 1機攻 2機守，正向完整穿越遠端球門才計分</p>
   <div class="cheat-grid">
-    <div class="row"><kbd>W/S ↑/↓</kbd><span>前傾 / 後仰</span></div>
-    <div class="row"><kbd>A/D ←/→</kbd><span>左右橫滾</span></div>
-    <div class="row"><kbd>Q/E</kbd><span>左右偏航</span></div>
+    <div class="row"><kbd>↑ / ↓</kbd><span>前傾 / 後仰</span></div>
+    <div class="row"><kbd>← / →</kbd><span>左右橫滾</span></div>
+    <div class="row"><kbd>A / D</kbd><span>左右偏航</span></div>
     <div class="row"><kbd>T</kbd><span>一鍵起飛</span></div>
     <div class="row"><kbd>L</kbd><span>一鍵降落</span></div>
-    <div class="row"><kbd>Space</kbd><span>等距上升</span></div>
-    <div class="row"><kbd>Ctrl</kbd><span>等距下降</span></div>
+    <div class="row"><kbd>W / Space</kbd><span>等距上升</span></div>
+    <div class="row"><kbd>S / Ctrl</kbd><span>等距下降</span></div>
     <div class="row"><kbd>C</kbd><span>切換視角</span></div>
     <div class="row"><kbd>R</kbd><span>重置無人機</span></div>
     <div class="row"><kbd>M</kbd><span>靜音切換</span></div>
@@ -857,9 +857,8 @@ window.addEventListener('keydown', (e)=>{
   if(e.code === 'KeyH'){ showControls = !showControls; document.getElementById('controls-panel').classList.toggle('hidden', !showControls); }
   if(e.code === 'KeyM'){ toggleMute(); }
   if(e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'ArrowDown' || e.code === 'ArrowLeft' || e.code === 'ArrowRight'){ e.preventDefault(); }
-  // 按住 Ctrl 操作遊戲按鍵時嘗試攔截瀏覽器預設行為(例如部分瀏覽器的 Ctrl+字母快捷鍵)，
-  // 降低長按 Ctrl 下降同時按下 W/A/S/D 等移動鍵時誤觸瀏覽器快捷鍵的風險
-  if(e.ctrlKey && ['KeyW','KeyA','KeyS','KeyD','KeyQ','KeyE','KeyT','KeyR','KeyL','KeyM','KeyH','KeyC'].includes(e.code)){ e.preventDefault(); }
+  // 按住 Ctrl 操作遊戲按鍵時嘗試攔截瀏覽器預設行為(例如部分瀏覽器的 Ctrl+字母快捷鍵)
+  if(e.ctrlKey && ['KeyW','KeyA','KeyS','KeyD','KeyT','KeyR','KeyL','KeyM','KeyH','KeyC'].includes(e.code)){ e.preventDefault(); }
 });
 window.addEventListener('keyup', (e)=>{ keys[e.code] = false; });
 
@@ -933,9 +932,9 @@ function animate(now){
 }
 
 function updateDrone(dt){
-  const inputPitch = ((keys['KeyW']||keys['ArrowUp'])?1:0) - ((keys['KeyS']||keys['ArrowDown'])?1:0);
-  const inputRoll  = ((keys['KeyD']||keys['ArrowRight'])?1:0) - ((keys['KeyA']||keys['ArrowLeft'])?1:0);
-  const inputYaw   = (keys['KeyQ']?1:0) - (keys['KeyE']?1:0);
+  const inputPitch = (keys['ArrowUp']?1:0) - (keys['ArrowDown']?1:0);
+  const inputRoll  = (keys['ArrowRight']?1:0) - (keys['ArrowLeft']?1:0);
+  const inputYaw   = (keys['KeyA']?1:0) - (keys['KeyD']?1:0);
 
   const targetPitch = inputPitch * MAX_TILT;
   const targetRoll  =  inputRoll  * MAX_TILT;
@@ -949,7 +948,7 @@ function updateDrone(dt){
 
   // 等距上升 / 等距下降:只調整定高目標,實際油門由定高控制器自動計算
   if(droneState.armed){
-    const inputClimb = (keys['Space']?1:0) - ((keys['ControlLeft']||keys['ControlRight'])?1:0);
+    const inputClimb = ((keys['KeyW']||keys['Space'])?1:0) - ((keys['KeyS']||keys['ControlLeft']||keys['ControlRight'])?1:0);
     droneState.targetAltitude += inputClimb * CLIMB_RATE * dt;
     droneState.targetAltitude = Math.max(GROUND_Y, Math.min(ALT_MAX, droneState.targetAltitude));
   }
@@ -1036,7 +1035,7 @@ function updateCamera(dt){
   if(cameraMode === 'chase'){
     drone.visible = true;
     // 攝影機朝向平滑跟隨「機頭方向」，但用較慢的速率追趕，而不是每幀瞬間對齊。
-    // 這樣快速偏航(Q/E)時鏡頭不會立刻硬轉、原地甩動；而且跟隨的是機頭角度這種
+    // 這樣快速偏航(A/D)時鏡頭不會立刻硬轉、原地甩動；而且跟隨的是機頭角度這種
     // 平穩變化的量，不是瞬時速度方向(速度方向在加減速、飄移時容易抖動亂跳，
     // 之前就是這個原因造成視角亂轉頭暈)。
     let diff = droneState.yaw - camYaw;
