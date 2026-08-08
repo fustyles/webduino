@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>DRONE SOCCER ARENA (Gemini) — Francis</title>
+    <title>無人機足球競技場 (Gemini) — Francis</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -70,32 +70,32 @@
     <div id="startScreen" class="absolute inset-0 z-50 flex flex-col items-center justify-center bg-slate-950/95 transition-all duration-700">
         <div class="max-w-2xl px-6 py-8 mx-4 text-center glassmorphism rounded-2xl border border-emerald-500/30 shadow-[0_0_50px_rgba(16,185,129,0.15)]">
             <h1 class="text-3xl md:text-5xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-500 to-blue-500 mb-2">
-                DRONE SOCCER ARENA
+                無人機足球競技場
             </h1>
             <h2 class="text-1xl md:text-1xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-500 to-blue-500 mb-2">
                 Fengshan Tech Center - Francis
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-left text-xs md:text-sm text-slate-300">
                 <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800">
-                    <p class="font-bold text-emerald-400 mb-2"><i class="fa-solid fa-keyboard mr-2"></i>Keyboard Controls</p>
+                    <p class="font-bold text-emerald-400 mb-2"><i class="fa-solid fa-keyboard mr-2"></i>鍵盤操控</p>
                     <ul class="space-y-1 text-slate-400 tech-font">
-                        <li><span class="text-emerald-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">W</span> : Increase throttle, hold to climb, release to hold altitude</li>
-                        <li><span class="text-rose-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">S</span> : Decrease throttle, hold to descend, release to hold altitude</li>
-                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">A</span> : Yaw Left (rotate counter-clockwise)</li>
-                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">D</span> : Yaw Right (rotate clockwise)</li>
-                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">↑</span> : Pitch Forward</li>
-                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">↓</span> : Pitch Backward</li>
-                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">←</span> : Roll Left</li>
-                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">→</span> : Roll Right</li>
-                        <li><span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">C</span> : Cycle camera view (Sideline / Cockpit / Free)</li>
+                        <li><span class="text-emerald-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">W</span>：增加油門，按住上升，放開維持高度</li>
+                        <li><span class="text-rose-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">S</span>：減少油門，按住下降，放開維持高度</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">A</span>：向左偏航（逆時針旋轉）</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">D</span>：向右偏航（順時針旋轉）</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">↑</span>：向前俯衝</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">↓</span>：向後仰退</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">←</span>：向左側滾</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">→</span>：向右側滾</li>
+                        <li><span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">C</span>：切換鏡頭視角（場邊 / 座艙 / 自由）</li>
                     </ul>
                 </div>
                 <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800 flex flex-col justify-between">
                     <ul class="space-y-1 text-slate-400 text-[11px] tech-font">
-                        <li><span class="text-emerald-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">T</span> : One-key takeoff (smoothly climb to 1.5m and hold)</li>
-                        <li><span class="text-rose-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">L</span> : One-key landing (smoothly descend to center and power off)</li>
-                        <li><span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">R</span> : Reset drone (return to arena center)</li>
-                        <li><span class="text-slate-300 bg-slate-800 px-1.5 py-0.5 rounded font-bold">M</span> : Toggle mute</li>
+                        <li><span class="text-emerald-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">T</span>：一鍵起飛（平滑爬升至 1.5 公尺並定高）</li>
+                        <li><span class="text-rose-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">L</span>：一鍵降落（平滑下降至中心並關閉馬達）</li>
+                        <li><span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">R</span>：重設無人機（回到場地中心）</li>
+                        <li><span class="text-slate-300 bg-slate-800 px-1.5 py-0.5 rounded font-bold">M</span>：切換靜音</li>
                     </ul>
                 </div>
             </div>
@@ -110,18 +110,18 @@
                 </ul>
             </div>
 -->
-            <p class="text-xs text-slate-400 mb-3 tracking-wider uppercase tech-font">Select Your Team</p>
+            <p class="text-xs text-slate-400 mb-3 tracking-wider uppercase tech-font">選擇你的隊伍</p>
             <div class="flex gap-4 mb-2">
                 <div id="btnTeamRed" class="flex-1 py-4 text-center cursor-pointer select-none rounded-xl glass-button border-rose-500/50 bg-rose-500/10 hover:bg-rose-500/25" style="border-color: rgba(239,68,68,0.5); background: rgba(239,68,68,0.12);">
-                    <p class="text-base md:text-lg font-bold text-rose-400 uppercase tracking-widest">Play as Red</p>
-                    <p class="text-[10px] text-slate-500 mt-1 tech-font">Attack the Blue Goal</p>
+                    <p class="text-base md:text-lg font-bold text-rose-400 uppercase tracking-widest">以紅隊出戰</p>
+                    <p class="text-[10px] text-slate-500 mt-1 tech-font">攻擊藍方球門</p>
                 </div>
                 <div id="btnTeamBlue" class="flex-1 py-4 text-center cursor-pointer select-none rounded-xl glass-button" style="border-color: rgba(59,130,246,0.5); background: rgba(59,130,246,0.12);">
-                    <p class="text-base md:text-lg font-bold text-blue-400 uppercase tracking-widest">Play as Blue</p>
-                    <p class="text-[10px] text-slate-500 mt-1 tech-font">Attack the Red Goal</p>
+                    <p class="text-base md:text-lg font-bold text-blue-400 uppercase tracking-widest">以藍隊出戰</p>
+                    <p class="text-[10px] text-slate-500 mt-1 tech-font">攻擊紅方球門</p>
                 </div>
             </div>
-            <p class="text-[11px] text-slate-500 mt-2 tech-font">Or press any key to start as Red Team (Press Any Key = Red Team)</p>
+            <p class="text-[11px] text-slate-500 mt-2 tech-font">或按任意鍵以紅隊開始遊戲（按任意鍵 = 紅隊）</p>
         </div>
     </div>
 
@@ -132,27 +132,27 @@
         <header class="w-full flex justify-between items-start pointer-events-auto">
             <!-- 左上角：任務狀態與計分 -->
             <div class="glassmorphism rounded-xl px-4 py-3 text-white flex flex-col min-w-[150px] shadow-lg">
-                <span class="text-[10px] text-emerald-400 uppercase tracking-wider font-semibold">Goal Score</span>
+                <span class="text-[10px] text-emerald-400 uppercase tracking-wider font-semibold">進球得分</span>
                 <div class="flex items-baseline gap-2 mt-1">
                     <span id="scoreText" class="text-2xl font-extrabold tech-font text-yellow-300">0</span>
-                    <span class="text-xs text-slate-400">GOALS</span>
+                    <span class="text-xs text-slate-400">球</span>
                 </div>
                 <div class="text-[9px] text-slate-400 mt-1">
-                    Only crossing the opponent's goal scores. Return to center line to score again.
+                    僅穿越對方球門才計分，須回到中線才能再次得分。
                 </div>
                 <div class="flex items-center gap-1.5 mt-2 pt-2 border-t border-slate-700/40">
                     <span id="scoreStatusDot" class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]"></span>
-                    <span id="scoreStatusText" class="text-[10px] font-semibold tech-font text-emerald-300">READY TO SCORE</span>
+                    <span id="scoreStatusText" class="text-[10px] font-semibold tech-font text-emerald-300">可以得分</span>
                 </div>
                 <div class="flex items-center gap-1.5 mt-2 pt-2 border-t border-slate-700/40">
                     <span id="teamDot" class="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-[0_0_6px_rgba(239,68,68,0.8)]"></span>
-                    <span id="teamLabel" class="text-[10px] text-slate-300 tech-font">RED TEAM vs <span id="oppLabel" class="text-blue-400">BLUE GOAL</span></span>
+                    <span id="teamLabel" class="text-[10px] text-slate-300 tech-font">紅隊 vs <span id="oppLabel" class="text-blue-400">藍方球門</span></span>
                 </div>
             </div>
 
             <!-- 中間頂部：羅盤方位角 -->
             <div class="hidden md:flex flex-col items-center glassmorphism text-white px-6 py-2 rounded-xl border border-slate-700/30">
-                <span class="text-[9px] text-slate-400 tracking-widest uppercase mb-1">Heading</span>
+                <span class="text-[9px] text-slate-400 tracking-widest uppercase mb-1">航向</span>
                 <div class="flex items-center gap-1.5 tech-font text-lg font-bold">
                     <span id="compassVal" class="text-emerald-300">000°</span>
                     <span id="compassDir" class="text-xs text-slate-400">(N)</span>
@@ -163,18 +163,18 @@
             <div class="flex gap-2">
                 <button id="btnTakeoff" class="px-3.5 h-10 rounded-xl glassmorphism text-emerald-400 hover:text-emerald-300 hover:border-emerald-400/50 flex items-center justify-center gap-1.5 transition-all cursor-pointer pointer-events-auto border border-emerald-500/20">
                     <i class="fa-solid fa-plane-departure text-xs"></i>
-                    <span class="text-[10px] font-semibold tech-font">TAKEOFF (T)</span>
+                    <span class="text-[10px] font-semibold tech-font">起飛 (T)</span>
                 </button>
                 <button id="btnLand" class="px-3.5 h-10 rounded-xl glassmorphism text-rose-400 hover:text-rose-300 hover:border-rose-400/50 flex items-center justify-center gap-1.5 transition-all cursor-pointer pointer-events-auto border border-rose-500/20">
                     <i class="fa-solid fa-plane-arrival text-xs"></i>
-                    <span class="text-[10px] font-semibold tech-font">LAND (L)</span>
+                    <span class="text-[10px] font-semibold tech-font">降落 (L)</span>
                 </button>
                 <button id="btnSound" class="w-10 h-10 rounded-xl glassmorphism text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
                     <i class="fa-solid fa-volume-high text-sm"></i>
                 </button>
                 <button id="btnCam" class="px-3.5 h-10 rounded-xl glassmorphism text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
                     <i class="fa-solid fa-camera text-sm"></i>
-                    <span id="camText" class="text-xs font-semibold tech-font">SIDELINE</span>
+                    <span id="camText" class="text-xs font-semibold tech-font">場邊</span>
                 </button>
                 <button id="btnReset" class="w-10 h-10 rounded-xl glassmorphism text-slate-300 hover:text-rose-400 flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
                     <i class="fa-solid fa-arrows-rotate text-sm"></i>
@@ -184,14 +184,14 @@
 
         <!-- 右下角：電子時鐘（比賽計時） -->
         <div id="gameClockPanel" class="absolute bottom-4 right-4 z-20 glassmorphism rounded-xl px-4 py-2 flex flex-col items-center shadow-lg border border-cyan-500/20 pointer-events-none">
-            <span class="text-[9px] text-cyan-300 uppercase tracking-widest font-semibold">Match Timer</span>
+            <span class="text-[9px] text-cyan-300 uppercase tracking-widest font-semibold">比賽計時</span>
             <span id="gameClockText" class="text-xl font-extrabold tech-font text-cyan-300 tracking-wider">00:00:00</span>
         </div>
 
         <!-- 中間右側：簡易姿態儀 -->
         <div class="absolute right-4 top-24 pointer-events-auto hidden sm:flex flex-col gap-3">
             <div class="glassmorphism p-3 rounded-xl text-white w-48 shadow-md border border-slate-800/30">
-                <h3 class="text-[10px] text-emerald-300 uppercase font-semibold tracking-wider mb-2">Attitude Indicator</h3>
+                <h3 class="text-[10px] text-emerald-300 uppercase font-semibold tracking-wider mb-2">姿態儀</h3>
                 <div class="relative w-full h-24 bg-slate-900/80 rounded-lg overflow-hidden border border-slate-800/50 flex items-center justify-center">
                     <!-- 姿態地平線 -->
                     <div id="horizonLine" class="absolute w-[200%] h-[200%] bg-gradient-to-b from-indigo-950/50 to-emerald-950/50 border-t-2 border-emerald-400 transition-all duration-100 ease-out" style="transform: rotate(0deg) translateY(0px);"></div>
@@ -201,8 +201,8 @@
                     <div class="absolute left-1/2 top-2 h-2 w-0.5 bg-white/40 -translate-x-1/2"></div>
                 </div>
                 <div class="grid grid-cols-2 gap-2 mt-2 text-center text-[10px] text-slate-400 tech-font">
-                    <div>PITCH: <span id="pitchAngle" class="text-white">0°</span></div>
-                    <div>ROLL: <span id="rollAngle" class="text-white">0°</span></div>
+                    <div>俯仰角: <span id="pitchAngle" class="text-white">0°</span></div>
+                    <div>側滾角: <span id="rollAngle" class="text-white">0°</span></div>
                 </div>
             </div>
         </div>
@@ -213,14 +213,14 @@
             <div class="glassmorphism rounded-2xl p-4 text-white w-full md:w-auto md:min-w-[400px] shadow-2xl flex flex-col gap-3 border border-slate-800/40">
                 <div class="flex items-center justify-between border-b border-slate-800/60 pb-2">
                     <span class="text-[11px] text-emerald-400 tracking-wider font-semibold uppercase flex items-center gap-1.5">
-                        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping"></span> Telemetry Status
+                        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping"></span> 遙測狀態
                     </span>
-                    <span id="flightMode" class="text-[10px] bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 px-2 py-0.5 rounded-full tech-font">BARO-ALT HOLD ON</span>
+                    <span id="flightMode" class="text-[10px] bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 px-2 py-0.5 rounded-full tech-font">氣壓定高已開啟</span>
                 </div>
                 <div class="grid grid-cols-3 gap-4">
                     <!-- 速度 -->
                     <div class="flex flex-col">
-                        <span class="text-[10px] text-slate-400 uppercase">Speed</span>
+                        <span class="text-[10px] text-slate-400 uppercase">速度</span>
                         <div class="flex items-baseline gap-1 mt-1">
                             <span id="telemetrySpeed" class="text-2xl font-bold tech-font text-emerald-300">0.0</span>
                             <span class="text-[10px] text-slate-500">m/s</span>
@@ -231,7 +231,7 @@
                     </div>
                     <!-- 高度 -->
                     <div class="flex flex-col">
-                        <span class="text-[10px] text-slate-400 uppercase">Altitude</span>
+                        <span class="text-[10px] text-slate-400 uppercase">高度</span>
                         <div class="flex items-baseline gap-1 mt-1">
                             <span id="telemetryAlt" class="text-2xl font-bold tech-font text-cyan-300">0.10</span>
                             <span class="text-[10px] text-slate-500">m</span>
@@ -242,7 +242,7 @@
                     </div>
                     <!-- 油門 -->
                     <div class="flex flex-col">
-                        <span class="text-[10px] text-slate-400 uppercase">Throttle</span>
+                        <span class="text-[10px] text-slate-400 uppercase">油門</span>
                         <div class="flex items-baseline gap-1 mt-1">
                             <span id="telemetryThrottle" class="text-2xl font-bold tech-font text-yellow-300">0%</span>
                         </div>
@@ -255,41 +255,41 @@
 
             <!-- 操作提示面板 (右下) -->
             <div class="hidden lg:flex glassmorphism rounded-2xl p-4 text-slate-300 w-[300px] border border-slate-800/40 text-[11px] flex flex-col gap-1.5">
-                <span class="text-[10px] text-emerald-400 uppercase font-semibold tracking-wider">Flight Controls Guide</span>
+                <span class="text-[10px] text-emerald-400 uppercase font-semibold tracking-wider">飛行操控指南</span>
                 <div class="flex justify-between">
-                    <span>One-key Takeoff / Land:</span>
+                    <span>一鍵起飛 / 降落：</span>
                     <span class="tech-font text-emerald-400 font-bold bg-slate-800 px-1 rounded">T</span> / <span class="tech-font text-rose-400 font-bold bg-slate-800 px-1 rounded">L</span>
                 </div>
                 <div class="flex justify-between">
-                    <span>Throttle Up/Down (Hold):</span>
+                    <span>油門上升/下降（按住）：</span>
                     <span class="tech-font text-white bg-slate-800 px-1 rounded">W</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">S</span>
                 </div>
                 <div class="flex justify-between">
-                    <span>Altitude Up/Down (Alt Key):</span>
+                    <span>高度上升/下降（備用鍵）：</span>
                     <span class="tech-font text-white bg-slate-800 px-1 rounded">Space</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">Ctrl</span>
                 </div>
                 <div class="flex justify-between">
-                    <span>Pitch Forward/Back:</span>
+                    <span>俯仰前進/後退：</span>
                     <span class="tech-font text-white bg-slate-800 px-1 rounded">↑</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">↓</span>
                 </div>
                 <div class="flex justify-between">
-                    <span>Roll Left/Right:</span>
+                    <span>側滾左/右：</span>
                     <span class="tech-font text-white bg-slate-800 px-1 rounded">←</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">→</span>
                 </div>
                 <div class="flex justify-between">
-                    <span>Yaw Rotate (CCW/CW):</span>
+                    <span>偏航旋轉（逆時針/順時針）：</span>
                     <span class="tech-font text-white bg-slate-800 px-1 rounded">A</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">D</span>
                 </div>
                 <div class="flex justify-between">
-                    <span>Cycle Camera View:</span>
+                    <span>切換鏡頭視角：</span>
                     <span class="tech-font text-cyan-400 font-bold bg-slate-800 px-1 rounded">C</span>
                 </div>
                 <div class="flex justify-between">
-                    <span>Reset Drone:</span>
+                    <span>重設無人機：</span>
                     <span class="tech-font text-cyan-400 font-bold bg-slate-800 px-1 rounded">R</span>
                 </div>
                 <div class="flex justify-between">
-                    <span>Mute Toggle:</span>
+                    <span>靜音切換：</span>
                     <span class="tech-font text-slate-300 font-bold bg-slate-800 px-1 rounded">M</span>
                 </div>
             </div>
@@ -300,12 +300,12 @@
             <!-- 左搖桿 (高度/旋轉) -->
             <div class="joystick-zone pointer-events-auto relative w-24 h-24 rounded-full bg-slate-950/80 border border-emerald-500/30 flex items-center justify-center shadow-lg" id="joyLeft">
                 <div class="w-10 h-10 rounded-full bg-emerald-500/40 border border-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.4)] absolute" id="knobLeft"></div>
-                <span class="absolute text-[7px] text-emerald-400/50 uppercase font-semibold tracking-widest pointer-events-none">YAW / ALT</span>
+                <span class="absolute text-[7px] text-emerald-400/50 uppercase font-semibold tracking-widest pointer-events-none">偏航 / 高度</span>
             </div>
             <!-- 右搖桿 (前後左右移動) -->
             <div class="joystick-zone pointer-events-auto relative w-24 h-24 rounded-full bg-slate-950/80 border border-cyan-500/30 flex items-center justify-center shadow-lg" id="joyRight">
                 <div class="w-10 h-10 rounded-full bg-cyan-500/40 border border-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.4)] absolute" id="knobRight"></div>
-                <span class="absolute text-[7px] text-cyan-400/50 uppercase font-semibold tracking-widest pointer-events-none">MOVE</span>
+                <span class="absolute text-[7px] text-cyan-400/50 uppercase font-semibold tracking-widest pointer-events-none">移動</span>
             </div>
         </div>
 
@@ -317,13 +317,13 @@
             <div class="flex justify-center mb-4 text-yellow-400 text-5xl animate-bounce">
                 <i class="fa-solid fa-trophy"></i>
             </div>
-            <h2 class="text-2xl font-extrabold text-yellow-300 tracking-wider mb-2">Mission Complete!</h2>
+            <h2 class="text-2xl font-extrabold text-yellow-300 tracking-wider mb-2">任務完成！</h2>
             <p class="text-slate-300 text-xs md:text-sm mb-6 leading-relaxed">
-                You've successfully piloted the mini drone through the neon rings aligned above the red and blue goal lines within the arena!
+                你已成功操控迷你無人機，穿越競技場內紅藍球門線正上方的霓虹光環！
             </p>
             <div class="flex gap-4">
                 <button id="btnRestart" class="w-full py-3 text-xs md:text-sm font-bold text-slate-950 bg-yellow-400 rounded-lg shadow-lg hover:bg-yellow-300 transition-all duration-300 uppercase">
-                    Play Again
+                    再玩一次
                 </button>
             </div>
         </div>
@@ -506,6 +506,7 @@
         // 6. 攝影機模式 (0: Chase, 1: Cockpit, 2: Free)
         let cameraMode = 0; 
         const CAMERA_MODES = ['SIDELINE', 'COCKPIT', 'FREE'];
+        const CAMERA_MODES_ZH = ['場邊', '座艙', '自由']; // 對應 CAMERA_MODES 的索引順序
         const CAGE_WIDTH = 3.0;   // 場地寬度 (X軸)
         const CAGE_LENGTH = 6.0;  // 場地長度 (Z軸)
         const CAGE_HEIGHT = 3.0;  // 籠子高度
@@ -804,15 +805,15 @@
             ctx.textAlign = 'center';
 
             // 紅方起始區
-            ctx.fillText('START ZONE', canvas.width / 2, margin + boxH - 25);
+            ctx.fillText('起始區', canvas.width / 2, margin + boxH - 25);
             ctx.fillStyle = '#f87171';
-            ctx.fillText('GOAL', canvas.width / 2, margin + 25);
+            ctx.fillText('球門', canvas.width / 2, margin + 25);
 
             // 藍方起始區
             ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-            ctx.fillText('START ZONE', canvas.width / 2, canvas.height - margin - boxH + 35);
+            ctx.fillText('起始區', canvas.width / 2, canvas.height - margin - boxH + 35);
             ctx.fillStyle = '#60a5fa';
-            ctx.fillText('GOAL', canvas.width / 2, canvas.height - margin - 25);
+            ctx.fillText('球門', canvas.width / 2, canvas.height - margin - 25);
 
             const texture = new THREE.CanvasTexture(canvas);
             
@@ -1453,7 +1454,7 @@
 
             const isRed = playerTeam === 'red';
             teamDot.className = `w-2.5 h-2.5 rounded-full ${isRed ? 'bg-rose-500 shadow-[0_0_6px_rgba(239,68,68,0.8)]' : 'bg-blue-500 shadow-[0_0_6px_rgba(59,130,246,0.8)]'}`;
-            teamLabel.innerHTML = `${isRed ? 'RED TEAM' : 'BLUE TEAM'} vs <span class="${isRed ? 'text-blue-400' : 'text-rose-400'}">${isRed ? 'BLUE GOAL' : 'RED GOAL'}</span>`;
+            teamLabel.innerHTML = `${isRed ? '紅隊' : '藍隊'} vs <span class="${isRed ? 'text-blue-400' : 'text-rose-400'}">${isRed ? '藍方球門' : '紅方球門'}</span>`;
         }
 
         // 產生爆破粒子效果
@@ -1538,11 +1539,11 @@
                 }
                 icon.className = 'fa-solid fa-volume-high text-sm';
                 btn.classList.add('text-emerald-400');
-                showSystemNotification("Motor sound: ON");
+                showSystemNotification("馬達音效：開啟");
             } else {
                 icon.className = 'fa-solid fa-volume-xmark text-sm';
                 btn.classList.remove('text-emerald-400');
-                showSystemNotification("Motor sound: MUTED");
+                showSystemNotification("馬達音效：靜音");
             }
         }
 
@@ -1561,23 +1562,23 @@
                 // W/S：對應左搖桿油門邏輯（向上=增加動力上升，向下=減少動力下降）
                 if (key === 'w' && !e.repeat) {
                     drone.autoFlightState = 'none';
-                    showSystemNotification("Hold W to climb, release to hold altitude");
+                    showSystemNotification("按住 W 上升，放開維持高度");
                 }
                 if (key === 's' && !e.repeat) {
                     drone.autoFlightState = 'none';
-                    showSystemNotification("Hold S to descend, release to hold altitude");
+                    showSystemNotification("按住 S 下降，放開維持高度");
                 }
 
                 if (key === ' ' && !e.repeat) {
                     drone.autoFlightState = 'none';
-                    showSystemNotification("Hold Space to climb, release to stop");
+                    showSystemNotification("按住空白鍵上升，放開停止");
                 }
 
                 // 原本使用 Alt，但單獨按下 Alt 容易被瀏覽器/作業系統解讀為「開啟選單列/視窗選單」，
                 // 導致網頁瞬間失去鍵盤焦點；改用 Ctrl 並自行 preventDefault 可避免這個衝突
                 if (key === 'control' && !e.repeat) {
                     drone.autoFlightState = 'none';
-                    showSystemNotification("Hold Ctrl to descend, release to stop");
+                    showSystemNotification("按住 Ctrl 下降，放開停止");
                 }
                 
                 if (key === 'c') cycleCameraMode();
@@ -1593,7 +1594,7 @@
                     keys[key] = false;
                     if (key === 'control') e.preventDefault(); // 同樣攔截 keyup，避免瀏覽器事後補觸發選單焦點跳轉
                     if (key === ' ' || key === 'control' || key === 'w' || key === 's') {
-                        showSystemNotification(`Altitude hold set: ${drone.targetAltitude.toFixed(2)} m`);
+                        showSystemNotification(`定高設定：${drone.targetAltitude.toFixed(2)} 公尺`);
                     }
                 }
             });
@@ -1604,9 +1605,9 @@
             if (drone.position.y < 0.15) {
                 drone.targetAltitude = 1.5;
                 drone.autoFlightState = 'takingoff';
-                showSystemNotification("Autopilot: Taking off... climbing to 1.5m goal height");
+                showSystemNotification("自動駕駛：起飛中…爬升至 1.5 公尺球門高度");
             } else {
-                showSystemNotification("Cannot take off: already airborne");
+                showSystemNotification("無法起飛：目前已在空中");
             }
         }
 
@@ -1615,9 +1616,9 @@
             if (drone.position.y > 0.15) {
                 drone.targetAltitude = 0.1;
                 drone.autoFlightState = 'landing';
-                showSystemNotification("Autopilot: Landing... descending slowly");
+                showSystemNotification("自動駕駛：降落中…緩慢下降");
             } else {
-                showSystemNotification("Cannot land: already on the ground");
+                showSystemNotification("無法降落：目前已在地面");
             }
         }
 
@@ -1683,7 +1684,7 @@
             function updateRightJoy(x, y) {
                 if (drone.autoFlightState !== 'none' && (Math.abs(x) > 0.1 || Math.abs(y) > 0.1)) {
                     drone.autoFlightState = 'none';
-                    showSystemNotification("Manual attitude control resumed");
+                    showSystemNotification("已恢復手動姿態控制");
                 }
                 drone.input.pitch = -y; // 往前推為前進
                 drone.input.roll = x;
@@ -1700,7 +1701,7 @@
                 keys[' '] || keys.control) { // 增加按鍵檢測範圍
                 if (drone.autoFlightState !== 'none') {
                     drone.autoFlightState = 'none';
-                    showSystemNotification("Manual attitude control resumed");
+                    showSystemNotification("已恢復手動姿態控制");
                 }
             }
 
@@ -1734,12 +1735,12 @@
                 const altError = drone.targetAltitude - drone.position.y;
                 if (Math.abs(altError) < 0.1 && Math.abs(drone.velocity.y) < 0.1) {
                     drone.autoFlightState = 'none';
-                    showSystemNotification("Auto takeoff complete");
+                    showSystemNotification("自動起飛完成");
                 }
             } else if (drone.autoFlightState === 'landing') {
                 if (drone.position.y <= 0.11) {
                     drone.autoFlightState = 'none';
-                    showSystemNotification("Auto landing successful, motors off");
+                    showSystemNotification("自動降落成功，馬達已關閉");
                 }
             }
 
@@ -1892,7 +1893,7 @@
                 if (!readyToScore) {
                     readyToScore = true;
                     playCenterLineSound();
-                    showSystemNotification("Back at center line - ready to score again");
+                    showSystemNotification("已回到中線 - 可再次得分");
                 }
             }
 
@@ -1952,7 +1953,7 @@
 
                         // 3. 觸發碰撞視覺與通知
                         createExplosion(drone.position.clone(), 0xfacc15); // 黃色撞擊火花
-                        showSystemNotification("Hit ring frame! Bounced back safely");
+                        showSystemNotification("撞到光環框架！安全彈開");
                         return; // 撞擊邊框時不進行穿過判定
                     }
                 }
@@ -1990,7 +1991,7 @@
                                 playChimeSound();
                                 createExplosion(ring.pos, 0x10b981); // 穿越綠色粒子效果
                                 updateHUD();
-                                showSystemNotification(`GOAL! Passed through opponent goal, total: ${score} (return to center line to score again)`);
+                                showSystemNotification(`進球！穿越對方球門，總分：${score}（需回到中線才能再次得分）`);
 
                                 // 讓該光環短暫閃爍亮綠色
                                 const origColor = ring.color;
@@ -2004,16 +2005,16 @@
                                 // 尚未回到中線就再次穿越對手球門：不計分，播放低沉警示音效並提示
                                 playDeniedGoalSound();
                                 createExplosion(ring.pos, 0x94a3b8); // 灰色粒子效果，提示未計分
-                                showSystemNotification("Not scored - return to center line first before attacking again");
+                                showSystemNotification("未計分 - 需先回到中線才能再次進攻");
                             }
                         } else {
                             // 穿越自家球門：不計分，僅提示
-                            showSystemNotification("This is your own goal - not scored");
+                            showSystemNotification("這是己方球門 - 不計分");
                         }
                     }
                 } else if (distToCenter < innerOpeningRadius && isReversePass) {
                     // 反向穿越：不計分，僅提示玩家
-                    showSystemNotification(isOpponentGoal ? "Reverse pass through opponent goal - not scored" : "Reverse pass through own goal - not scored");
+                    showSystemNotification(isOpponentGoal ? "反向穿越對方球門 - 不計分" : "反向穿越己方球門 - 不計分");
                 }
 
                 ring.prevSide = currentSide;
@@ -2140,7 +2141,7 @@
                 aiState.velocity.addScaledVector(normal, -0.6);
 
                 createExplosion(drone.position.clone(), 0xfacc15);
-                showSystemNotification("Intercepted by goalkeeper drone! Knocked back");
+                showSystemNotification("被守門無人機攔截！被彈開");
             }
         }
 
@@ -2159,8 +2160,8 @@
                 orbitControls.enabled = false;
             }
 
-            document.getElementById('camText').innerText = CAMERA_MODES[cameraMode];
-            showSystemNotification(`Camera view: ${CAMERA_MODES[cameraMode]}`);
+            document.getElementById('camText').innerText = CAMERA_MODES_ZH[cameraMode];
+            showSystemNotification(`鏡頭視角：${CAMERA_MODES_ZH[cameraMode]}`);
         }
 
         // 攝影機動態平滑追蹤
@@ -2233,11 +2234,11 @@
                 if (readyToScore) {
                     statusDot.className = "w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]";
                     statusText.className = "text-[10px] font-semibold tech-font text-emerald-300";
-                    statusText.innerText = "READY TO SCORE";
+                    statusText.innerText = "可以得分";
                 } else {
                     statusDot.className = "w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_6px_rgba(251,191,36,0.8)] animate-pulse";
                     statusText.className = "text-[10px] font-semibold tech-font text-amber-300";
-                    statusText.innerText = "RETURN TO CENTER LINE";
+                    statusText.innerText = "請回到中線";
                 }
             }
 
@@ -2257,13 +2258,13 @@
 
             const fModeText = document.getElementById('flightMode');
             if (drone.autoFlightState === 'takingoff') {
-                fModeText.innerText = "AUTO-TAKEOFF ACTIVE";
+                fModeText.innerText = "自動起飛中";
                 fModeText.className = "text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full tech-font animate-pulse";
             } else if (drone.autoFlightState === 'landing') {
-                fModeText.innerText = "AUTO-LANDING ACTIVE";
+                fModeText.innerText = "自動降落中";
                 fModeText.className = "text-[10px] bg-rose-500/20 text-rose-300 border border-rose-500/40 px-2 py-0.5 rounded-full tech-font animate-pulse";
             } else {
-                fModeText.innerText = "BARO-ALT HOLD ON";
+                fModeText.innerText = "氣壓定高已開啟";
                 fModeText.className = "text-[10px] bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full tech-font";
             }
 
@@ -2368,7 +2369,7 @@
             document.getElementById('victoryScreen').classList.add('hidden');
             document.getElementById('victoryScreen').classList.remove('flex');
 
-            showSystemNotification("Arena reset - drone safely parked at center");
+            showSystemNotification("競技場已重設 - 無人機安全停於中心");
         }
 
         function onWindowResize() {
@@ -2395,7 +2396,7 @@
                 setTimeout(() => startScreen.remove(), 750);
 
                 const isRed = (team || 'red') === 'red';
-                showSystemNotification(`Baro flight controller online - ${isRed ? 'Red Team' : 'Blue Team'} launched, target: ${isRed ? 'Blue' : 'Red'} goal`);
+                showSystemNotification(`氣壓飛控系統上線 - ${isRed ? "紅隊" : "藍隊"} 出擊，目標：${isRed ? "藍" : "紅"}方球門`);
             }
 
             // 按下任意鍵即可開始，預設以紅隊出戰（桌面鍵盤）
