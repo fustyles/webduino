@@ -531,7 +531,7 @@
             targetRing: null,      // 攻擊目標：玩家的己方球門
             aimTarget: new THREE.Vector3(0, 1.5, 2.25),
             reactionTimer: 0,
-            phase: 'advance',      // 'advance'：正在進攻 / 'retreat'：撤退整隊，準備重新發動攻勢
+            phase: 'advance',      // 'advance'：正在進攻 / 'retreat'：得分後撤退回中線 / 'descend'：回線後先降到中間高度，再重新展開攻勢
             weaveSeed: Math.random() * 100,
             constants: AI_ATTACKER_CONSTANTS,
         };
@@ -2011,8 +2011,8 @@
                     playCenterLineSound();
                     showSystemNotification("AI 攻擊機已回到中線 - 準備再次進攻");
                 }
-                // 攻擊機退回己方半場後，代表整隊完畢，可以重新展開攻勢
-                if (attacker.phase === 'retreat') attacker.phase = 'advance';
+                // 攻擊機退回己方半場後，先進入「降到中間高度」的整隊階段，降完高度才會以隨機方向重新展開攻勢
+                if (attacker.phase === 'retreat') attacker.phase = 'descend';
             }
 
             centerLinePrevSide = currentSide;
@@ -2207,9 +2207,23 @@
                     // 瞄準球門後方一小段距離，確保有實際「穿越」的動作而非卡在框邊
                     const beyondZ = ring.pos.z + ring.forwardSign * 0.45;
                     attacker.aimTarget.set(ring.pos.x + dx, ring.pos.y + dy, beyondZ);
+                } else if (attacker.phase === 'descend') {
+                    // 回線整隊階段：先降到中間高度（與球門同高），避免一回線就從高空直接斜衝而下，
+                    // 降到定高後才會以隨機方向重新展開攻勢
+                    const midAltitude = ring.pos.y;
+
+                    if (Math.abs(attacker.position.y - midAltitude) > 0.15) {
+                        // 尚未降到中間高度：原地垂直下降，先不做任何水平移動
+                        attacker.aimTarget.set(attacker.position.x, midAltitude, attacker.position.z);
+                    } else {
+                        // 已降到中間高度：重新隨機化搖擺相位與左右閃避方向，切換回一般進攻模式，
+                        // 讓每一波攻勢的方向都不同，而不是每次都固定斜下衝
+                        attacker.phase = 'advance';
+                        attacker.weaveSeed = Math.random() * 100;
+                    }
                 } else {
                     // 撤退階段：強制先垂直爬升到高於球門框架最高點的安全高度，完全脫離框架與防守機的糾纏範圍後，
-                    // 才在這個安全高度直線飛回對側半場整隊，跨越中線後才會重新展開下一波攻勢
+                    // 才在這個安全高度直線飛回對側半場整隊，跨越中線後才會先降到中間高度整隊
                     const clearAltitude = ring.pos.y + RING_CENTER_RADIUS + RING_TUBE_RADIUS + 0.4; // 球門框架最高點再加安全裕度
 
                     if (attacker.position.y < clearAltitude - 0.1) {
