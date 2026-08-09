@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>無人機足球競技場 — 法蘭斯</title>
+    <title>無人機足球競技場 (Gemini) — Francis</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -73,7 +73,7 @@
                 無人機足球競技場
             </h1>
             <h2 class="text-1xl md:text-1xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-500 to-blue-500 mb-2">
-                鳳山科技中心 - 法蘭斯
+                Fengshan Tech Center - Francis
             </h2>
             <p class="text-xs md:text-sm text-slate-300 mb-5 leading-relaxed text-left">
                 你將操控隊上其中一台<span class="text-yellow-300 font-bold">防守無人機（機身有金色警示環標記）</span>，與 AI 隊友一同鎮守己方球門；<span class="text-rose-300 font-bold">AI 攻擊機</span>會主動來襲，試圖穿越你方球門得分，請設法將它攔截、彈開！
@@ -2111,7 +2111,8 @@
                     }
 
                     createExplosion(attacker.position.clone(), 0xfacc15);
-                    attacker.phase = 'retreat'; // 撞框視為攻勢受阻，撤退整隊
+                    // 撞框僅是物理彈開，不主動改變目前的階段：若正在進攻就繼續進攻，若正在撤退則繼續撤退，
+                    // 避免撞框把「得分後應撤退」的狀態誤蓋回進攻，導致卡在球門後面繞不出去
                     return; // 撞擊邊框時不進行穿過判定
                 }
             }
@@ -2153,11 +2154,12 @@
                             ring.mesh.material.color.setHex(origColor);
                             ring.mesh.material.emissive.setHex(origColor);
                         }, 800);
+
+                        attacker.phase = 'retreat'; // 得分後依規則須先撤退回中線，才能重新取得攻門資格
                     } else {
+                        // 尚未回到中線、無法再次得分：不撤退，直接繼續纏鬥進攻
                         showSystemNotification("攻擊機再次穿越，但尚未回到中線重新取得攻門資格");
                     }
-
-                    attacker.phase = 'retreat'; // 無論是否得分，穿越後都先撤退重整
                 }
             }
 
@@ -2165,7 +2167,8 @@
         }
 
         // AI 攻擊機行為邏輯：從對側半場助跑而來，以左右搖擺閃避動作逼近玩家球門，試圖穿越得分；
-        // 得分或被攔截後會先撤退回己方半場整隊，跨越中線後才會重新展開下一波攻勢
+        // 撞到框架或被防守機攔截時只會物理彈開，不會撤退，會立刻繼續纏鬥、連續進攻；
+        // 只有在「成功得分」之後才會依規則撤退回己方半場，跨越中線後才會重新展開下一波攻勢
         function updateAttacker(delta) {
             if (!attacker.mesh || !attacker.targetRing) return;
 
@@ -2205,8 +2208,17 @@
                     const beyondZ = ring.pos.z + ring.forwardSign * 0.45;
                     attacker.aimTarget.set(ring.pos.x + dx, ring.pos.y + dy, beyondZ);
                 } else {
-                    // 撤退階段：飛回對側半場重新整隊，準備下一波攻勢
-                    attacker.aimTarget.set((Math.random() - 0.5) * 1.0, 1.5, -ring.pos.z);
+                    // 撤退階段：強制先垂直爬升到高於球門框架最高點的安全高度，完全脫離框架與防守機的糾纏範圍後，
+                    // 才在這個安全高度直線飛回對側半場整隊，跨越中線後才會重新展開下一波攻勢
+                    const clearAltitude = ring.pos.y + RING_CENTER_RADIUS + RING_TUBE_RADIUS + 0.4; // 球門框架最高點再加安全裕度
+
+                    if (attacker.position.y < clearAltitude - 0.1) {
+                        // 尚未爬升到安全高度：原地垂直爬升，先不做任何水平移動，確保先完全脫離框架範圍
+                        attacker.aimTarget.set(attacker.position.x, clearAltitude, attacker.position.z);
+                    } else {
+                        // 已經爬升到安全高度以上：在此高空直線飛回對側半場重新整隊
+                        attacker.aimTarget.set((Math.random() - 0.5) * 1.0, clearAltitude, -ring.pos.z);
+                    }
                 }
             }
 
@@ -2356,7 +2368,8 @@
                 // 防守機也會受到些微反作用力
                 defenderVel.addScaledVector(normal, 0.4);
 
-                attacker.phase = 'retreat'; // 被攔截後強制撤退整隊，準備重新來襲
+                // 被攔截僅是物理彈開，不主動改變目前的階段：進攻中被攔截就立刻繼續纏鬥進攻，
+                // 但如果此時正在撤退整隊（例如剛得分還沒飛出安全範圍），不會被打斷、依然繼續撤退
 
                 createExplosion(attacker.position.clone(), 0x10b981); // 綠色攔截成功特效
                 playChimeSound(); // 清亮提示音，代表成功防守
@@ -2427,19 +2440,9 @@
                 );
                 camera.position.lerp(fixedCameraPosition, 0.15);
 
-                // 視線水平追蹤玩家的防守機位置；當 AI 攻擊機逼近己方球門時，視線會適度往攻擊機方向偏移，
-                // 確保能在近距離清楚看見來襲的攻擊機（僅調整視線方向，站立位置與網外距離維持不變）
-                let lookAtPos = drone.position;
-                if (oppGoal && attacker.mesh) {
-                    const ownGoal = getOwnGoalRing();
-                    if (ownGoal) {
-                        const distAttackerToGoal = Math.abs(attacker.position.z - ownGoal.pos.z);
-                        if (distAttackerToGoal < 2.2) {
-                            const blend = THREE.MathUtils.clamp(1 - distAttackerToGoal / 2.2, 0, 0.6);
-                            lookAtPos = drone.position.clone().lerp(attacker.position, blend);
-                        }
-                    }
-                }
+                // 視線水平追蹤玩家自己的防守機位置為主，不會因為攻擊機接近而偏移視線；
+                // 垂直角度至少維持預設的微微上仰（約6度），避免視角往下看
+                const lookAtPos = drone.position;
 
                 const horizontalDist = Math.max(
                     0.5,
