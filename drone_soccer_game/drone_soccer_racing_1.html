@@ -1110,16 +1110,11 @@
         }
 
         // 在 canvas 上畫出序號徽章：未通過為紅底，正確依序通過後轉為綠底
-        // flipped=true 時，整個徽章（圓底、外框、數字）左右水平鏡像，
-        // 用來提示玩家：這個障礙的穿越方向（Z軸分量）與一般（正向）障礙相反
-        function drawNumberBadge(ctx, number, passed, flipped) {
+        // 一律畫成「正常、不鏡像」；鏡像與否交由徽章平面自身的 3D 朝向決定
+        // （平面法線固定朝向各自的入口方向，從入口方向看是正常字，從相反方向看因為
+        // 是同一塊平面的背面，會自然呈現鏡像效果——不是預先燒錄的固定鏡像圖）
+        function drawNumberBadge(ctx, number, passed) {
             ctx.clearRect(0, 0, 64, 64);
-            ctx.save();
-            if (flipped) {
-                // 以畫布中心為軸，水平鏡像整個繪製內容
-                ctx.translate(64, 0);
-                ctx.scale(-1, 1);
-            }
             ctx.fillStyle = passed ? '#10b981' : '#ef4444';
             ctx.beginPath();
             ctx.arc(32, 32, 27, 0, Math.PI * 2);
@@ -1132,60 +1127,38 @@
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText(String(number), 32, 34);
-            ctx.restore();
         }
 
-        // ==================== 序號牌擺放規則（固定規則，兩個獨立方向，互不干擾） ====================
-        // 序號牌身兼兩個用途，所以位置由兩段「各自獨立、絕對距離都固定」的偏移組成，
-        // 兩段偏移量都是寫死的世界座標常數，跟光環半徑 r 無關（r 只用來跳過光環本身的
-        // 大小），確保每個障礙套用同一條公式、同一組數字，不需要也不可以針對個別光環
-        // 另外調數字：
-        //
-        //   A. 離光環頂端的高度：一律沿障礙自身的 up 方向，以「光環半徑 r + 固定高度
-        //      HEIGHT_ABOVE_RING」當距離貼在光環外側上方。因為 r 只是用來跳過光環本身、
-        //      HEIGHT_ABOVE_RING 才是牌子真正「離光環頂端多高」的量，這個值是常數，
-        //      每個序號牌離自己光環頂端的高度永遠一樣，不會有的牌子貼比較高、有的比較低。
-        //   B. 前後位置：光環本身是一個面，以這個面為基準分前後兩側；序號牌沿著「入口
-        //      方向」(= 穿越方向 normal 的反向，垂直於光環面、指向無人機準備進入的那一側)
-        //      移動固定距離 DEPTH_OFFSET。前後位置永遠只有兩種結果：入口在前就整塊移動
-        //      +DEPTH_OFFSET，入口在後就整塊移動 -DEPTH_OFFSET(方向由 entranceDir 決定)，
-        //      距離本身是常數，不隨光環大小縮放。斜向穿越時 normal 的 x/z 分量同時存在，
-        //      入口方向向量自然同時包含兩者，仍是同一條公式，不需要另外拆分支。
-        //
-        // 這兩段偏移各自獨立疊加（不做向量合成後再正規化），確保 A 不會被 B 稀釋，
-        // 未來新增或修改障礙只要給 normal 和 r 就會自動套用，不能再對任何一個光環
-        // 的序號牌另外調整數值。
-        const BADGE_HEIGHT_ABOVE_RING = 0.055; // A：離光環頂端的固定高度（世界座標單位），所有序號牌共用
-        const BADGE_DEPTH_OFFSET = 0.10;       // B：沿入口方向的固定位移量（世界座標單位），所有序號牌共用
+        // ==================== 序號牌擺放規則 ====================
+        // 序號牌固定貼在光環中心點（與光環同一個中心座標），呈半透明狀，
+        // 不需要額外的高度/前後偏移計算。
         function computeBadgePosition(ob) {
-            const verticalOffset = ob.r + BADGE_HEIGHT_ABOVE_RING; // A：光環半徑 + 固定高度
-            const entranceDir = ob.frame.forward.clone().negate(); // 入口方向 = 穿越方向的反向
-
-            return ob.posVec.clone()
-                .addScaledVector(ob.frame.up, verticalOffset)
-                .addScaledVector(entranceDir, BADGE_DEPTH_OFFSET);
+            return ob.posVec.clone();
         }
 
-        // 建立漂浮在障礙開口的序號徽章 (size 決定徽章直徑，僅比光環寬度稍大，與光環局部重疊)
-        // flipped=true 時徽章水平鏡像顯示，提示玩家此障礙為反向穿越
-        function createNumberSprite(number, size, flipped) {
+        // 建立漂浮在障礙開口的序號牌 (size 決定邊長；貼在光環中心)
+        // 用有朝向的平面（非永遠面向攝影機的 Sprite）：平面法線固定朝向 entranceDir(入口方向)，
+        // 釘死在世界座標/光環自身朝向上，不會跟著攝影機轉。從入口方向（一般順向飛行時面對的方向）
+        // 看永遠是正常數字；只有像序號5這種入口方向與其他光環相反的，從「一般順向」的角度看
+        // 才會自然呈現鏡像；如果玩家刻意轉向反過來看，物理上所有光環都會對應地換邊(正的變鏡像、
+        // 鏡像的變正的)，這是同一塊平面正反兩面的自然結果，不是額外邏輯判斷出來的
+        function createNumberPlane(number, size) {
             const canvas = document.createElement('canvas');
             canvas.width = 64;
             canvas.height = 64;
             const ctx = canvas.getContext('2d');
-            drawNumberBadge(ctx, number, false, flipped);
+            drawNumberBadge(ctx, number, false);
 
             const texture = new THREE.CanvasTexture(canvas);
-            const mat = new THREE.SpriteMaterial({ map: texture, depthTest: false, transparent: true });
-            const sprite = new THREE.Sprite(mat);
-            sprite.scale.set(size, size, size);
-            sprite.renderOrder = 999;
-            sprite.userData.canvas = canvas;
-            sprite.userData.ctx = ctx;
-            sprite.userData.number = number;
-            sprite.userData.texture = texture;
-            sprite.userData.flipped = flipped;
-            return sprite;
+            const geo = new THREE.PlaneGeometry(size, size);
+            const mat = new THREE.MeshBasicMaterial({ map: texture, depthTest: false, transparent: true, side: THREE.DoubleSide });
+            const plane = new THREE.Mesh(geo, mat);
+            plane.renderOrder = 999;
+            plane.userData.canvas = canvas;
+            plane.userData.ctx = ctx;
+            plane.userData.number = number;
+            plane.userData.texture = texture;
+            return plane;
         }
 
         // 建立起降圈地面標記 (固定於場地，與關卡無關)
@@ -1218,16 +1191,21 @@
             scene.add(mesh);
             ob.mesh = mesh;
 
-            // 序號牌：小尺寸(僅比光環的圓管寬度稍大)，統一貼在光環正上方並與光環重疊(見 computeBadgePosition)
+            // 序號牌：小尺寸(僅比光環的圓管寬度稍大)，統一貼在光環中心點、呈半透明(見 computeBadgePosition)
             const ringBandWidth = tubeR * 2; // 光環圓管視覺寬度
             const badgeSize = ringBandWidth * 2.2; // 比光環寬度稍大一點
-            // 穿越方向在 Z 軸上與一般障礙相反(forward.z < 0)時，徽章水平鏡像顯示，
-            // 讓玩家一眼就能看出「這個要反向穿越」
-            const flipped = ob.frame.forward.z < 0;
-            const numberSprite = createNumberSprite(orderNumber, badgeSize, flipped);
-            numberSprite.position.copy(computeBadgePosition(ob));
-            scene.add(numberSprite);
-            ob.numberSprite = numberSprite;
+            const numberPlane = createNumberPlane(orderNumber, badgeSize);
+            numberPlane.position.copy(computeBadgePosition(ob));
+            // 平面法線(局部Z軸)朝向入口方向(-forward)，讓從入口方向看時是正常數字；
+            // 局部Y軸沿用光環的 up(確保上下不顛倒)；因為 right×up=forward 而非 entranceDir，
+            // 局部X軸須用 -right 才能維持 X×Y=Z 的正規旋轉矩陣(行列式+1)，
+            // 否則會變成鏡射矩陣，導致從任何角度看都是鏡像(而非僅背面鏡像)
+            const entranceDir = ob.frame.forward.clone().negate();
+            const badgeRight = ob.frame.right.clone().negate();
+            const badgeBasisMat = new THREE.Matrix4().makeBasis(badgeRight, ob.frame.up, entranceDir);
+            numberPlane.quaternion.setFromRotationMatrix(badgeBasisMat);
+            scene.add(numberPlane);
+            ob.numberSprite = numberPlane;
         }
 
         // 清除場上所有障礙網格
@@ -1243,13 +1221,13 @@
         function markGateCleared(ob) {
             ob.mesh.material.color.setHex(0x10b981);
             ob.mesh.material.emissive.setHex(0x10b981);
-            drawNumberBadge(ob.numberSprite.userData.ctx, ob.numberSprite.userData.number, true, ob.numberSprite.userData.flipped);
+            drawNumberBadge(ob.numberSprite.userData.ctx, ob.numberSprite.userData.number, true);
             ob.numberSprite.userData.texture.needsUpdate = true;
         }
 
         // 重置單一障礙的序號徽章為未通過的紅底狀態
         function resetGateBadge(ob) {
-            drawNumberBadge(ob.numberSprite.userData.ctx, ob.numberSprite.userData.number, false, ob.numberSprite.userData.flipped);
+            drawNumberBadge(ob.numberSprite.userData.ctx, ob.numberSprite.userData.number, false);
             ob.numberSprite.userData.texture.needsUpdate = true;
         }
 
