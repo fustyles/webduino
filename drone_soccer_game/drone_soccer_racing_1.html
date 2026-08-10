@@ -1127,31 +1127,35 @@
         }
 
         // ==================== 序號牌擺放規則（固定規則，兩個獨立方向，互不干擾） ====================
-        // 序號牌身兼兩個用途，所以位置由兩段「各自獨立、比例固定」的偏移組成：
+        // 序號牌身兼兩個用途，所以位置由兩段「各自獨立、絕對距離都固定」的偏移組成，
+        // 兩段偏移量都是寫死的世界座標常數，跟光環半徑 r 無關（r 只用來跳過光環本身的
+        // 大小），確保每個障礙套用同一條公式、同一組數字，不需要也不可以針對個別光環
+        // 另外調數字：
         //
-        //   A. 可辨識度（高低）：一律沿障礙自身的 up 方向、以「光環半徑 r 減去固定比例」
-        //      當距離，把牌貼在光環正上方；比例對所有障礙都相同，因此只有牌面「下緣」
-        //      會與光環管身重疊，不會擋到數字，而且每個障礙的重疊份量看起來完全一致，
-        //      不會有些貼很高、有些貼很低的問題。
-        //   B. 進出方向指引：光環本身是一個面，以這個面為基準分前後兩側；序號牌沿著
-        //      「入口方向」(= 穿越方向 normal 的反向，也就是垂直於光環面、指向無人機
-        //      準備進入的那一側) 額外做固定距離的位移，牌貼在哪一側就代表那一側是
-        //      正確穿越的起點。這段位移量同樣是固定比例，不隨光環大小或方向改變公式，
-        //      斜向穿越時 normal 的 x/z 分量自然同時存在，會自動得到綜合的前後/左右位置，
-        //      不需要另外拆分支判斷。
+        //   A. 離光環頂端的高度：一律沿障礙自身的 up 方向，以「光環半徑 r + 固定高度
+        //      HEIGHT_ABOVE_RING」當距離貼在光環外側上方。因為 r 只是用來跳過光環本身、
+        //      HEIGHT_ABOVE_RING 才是牌子真正「離光環頂端多高」的量，這個值是常數，
+        //      每個序號牌離自己光環頂端的高度永遠一樣，不會有的牌子貼比較高、有的比較低。
+        //   B. 前後位置：光環本身是一個面，以這個面為基準分前後兩側；序號牌沿著「入口
+        //      方向」(= 穿越方向 normal 的反向，垂直於光環面、指向無人機準備進入的那一側)
+        //      移動固定距離 DEPTH_OFFSET。前後位置永遠只有兩種結果：入口在前就整塊移動
+        //      +DEPTH_OFFSET，入口在後就整塊移動 -DEPTH_OFFSET(方向由 entranceDir 決定)，
+        //      距離本身是常數，不隨光環大小縮放。斜向穿越時 normal 的 x/z 分量同時存在，
+        //      入口方向向量自然同時包含兩者，仍是同一條公式，不需要另外拆分支。
         //
-        // 這兩段偏移各自獨立疊加（不做向量合成後再正規化），確保 A 的高度比例永遠固定，
-        // 不會被 B 的方向偏移稀釋掉，未來新增或修改障礙只要給 normal 和 r 就會自動套用。
-        function computeBadgePosition(ob, badgeSize) {
-            const verticalOffset = ob.r - badgeSize * 0.32; // A：固定重疊比例，貼齊光環上緣
+        // 這兩段偏移各自獨立疊加（不做向量合成後再正規化），確保 A 不會被 B 稀釋，
+        // 未來新增或修改障礙只要給 normal 和 r 就會自動套用，不能再對任何一個光環
+        // 的序號牌另外調整數值。
+        const BADGE_HEIGHT_ABOVE_RING = 0.055; // A：離光環頂端的固定高度（世界座標單位），所有序號牌共用
+        const BADGE_DEPTH_OFFSET = 0.10;       // B：沿入口方向的固定位移量（世界座標單位），所有序號牌共用
+        function computeBadgePosition(ob) {
+            const verticalOffset = ob.r + BADGE_HEIGHT_ABOVE_RING; // A：光環半徑 + 固定高度
             const entranceDir = ob.frame.forward.clone().negate(); // 入口方向 = 穿越方向的反向
-            const axialOffset = badgeSize * 0.5; // B：固定的入口方向位移量
 
             return ob.posVec.clone()
                 .addScaledVector(ob.frame.up, verticalOffset)
-                .addScaledVector(entranceDir, axialOffset);
+                .addScaledVector(entranceDir, BADGE_DEPTH_OFFSET);
         }
-
 
         // 建立漂浮在障礙開口的序號徽章 (size 決定徽章直徑，僅比光環寬度稍大，與光環局部重疊)
         function createNumberSprite(number, size) {
@@ -1207,7 +1211,7 @@
             const ringBandWidth = tubeR * 2; // 光環圓管視覺寬度
             const badgeSize = ringBandWidth * 2.2; // 比光環寬度稍大一點
             const numberSprite = createNumberSprite(orderNumber, badgeSize);
-            numberSprite.position.copy(computeBadgePosition(ob, badgeSize));
+            numberSprite.position.copy(computeBadgePosition(ob));
             scene.add(numberSprite);
             ob.numberSprite = numberSprite;
         }
