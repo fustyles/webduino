@@ -412,11 +412,11 @@
             3: {
                 name: '第三關：高手 - 立體通道與複合操控',
                 gates: [
-                    { pos: [-0.5, 1.5, -1.2], normal: [0, 0, 1], r: 0.28, shape: 'ring', color: 0xf87171 },
+                    { pos: [-0.5, 0.304, -1.2], normal: [0, 0, 1], r: 0.28, shape: 'ring', color: 0xf87171 }, // 緊貼地面
                     { pos: [-0.2, 1.5, 0.3], normal: [0, 0, 1], r: 0.24, shape: 'ring', color: 0xf87171 },       // 通道入口
                     { pos: [0.2, 1.0, -0.05], normal: [1, 0, 0], r: 0.20, shape: 'ring', color: 0xf87171 },      // 位於序號2前方，需先通過2再折返穿越（左向右），高度降低製造立體高低差
                     { pos: [0.5, 1.9, 1.0], normal: [0.7071, 0, 0.7071], r: 0.17, shape: 'ring', color: 0xf87171 }, // 鑰匙孔，傾斜 45°
-                    { pos: [-0.3, 1.4, 1.7], normal: [0, 0, -1], r: 0.14, shape: 'ring', color: 0xf87171 }, // 後向前穿越，需迴繞折返
+                    { pos: [-0.3, 0.9, 1.7], normal: [0, 0, -1], r: 0.14, shape: 'ring', color: 0xf87171 }, // 後向前穿越，需迴繞折返，放低一點
                     { pos: [0, 1.6, 2.25], normal: [0, 0, 1], r: 0.12, shape: 'ring', color: 0xfbbf24 }          // 折返門
                 ]
             }
@@ -1126,27 +1126,32 @@
             ctx.fillText(String(number), 32, 34);
         }
 
-        // ==================== 序號牌擺放規則 ====================
-        // 序號牌位置由兩個向量組合而成，兩者都直接來自障礙自身的座標系 (getObstacleFrame)，
-        // 不需要針對個別關卡另外加欄位判斷，未來新增或修改障礙時規則會自動套用：
+        // ==================== 序號牌擺放規則（固定規則，兩個獨立方向，互不干擾） ====================
+        // 序號牌身兼兩個用途，所以位置由兩段「各自獨立、比例固定」的偏移組成：
         //
-        //   1. 主要方向：以障礙的 up 方向（貼緊光環管身、確保重疊可辨識）與「入口方向」
-        //      （= 穿越方向 normal 的反向，代表無人機從哪一側進入）兩者相加後正規化，
-        //      得到一個介於「正上方」與「入口那一側」中間的合成方向，兩者權重相等，
-        //      確保左右/前後的差異夠明顯、不會被「貼頂」蓋過去：
-        //        ・左進右出 (normal 指向 +X) → 入口方向為 -X → 牌偏向光環左上方
-        //        ・右進左出 (normal 指向 -X) → 入口方向為 +X → 牌偏向光環右上方
-        //        ・前進後出 (normal 指向 +Z，遠離起點) → 入口方向為 -Z → 牌偏向光環前上方
-        //        ・後進前出 (normal 指向 -Z，靠近起點) → 入口方向為 +Z → 牌偏向光環後上方
-        //      斜向穿越時 normal 的 x/z 分量同時存在，入口方向向量自然同時包含兩者，
-        //      不需要另外拆成「左右」「前後」分別判斷，就能得到綜合位置。
-        //   2. 偏移距離取光環半徑 r 附近的值，讓牌面持續與光環管身重疊、維持可辨識度。
+        //   A. 可辨識度（高低）：一律沿障礙自身的 up 方向、以「光環半徑 r 減去固定比例」
+        //      當距離，把牌貼在光環正上方；比例對所有障礙都相同，因此只有牌面「下緣」
+        //      會與光環管身重疊，不會擋到數字，而且每個障礙的重疊份量看起來完全一致，
+        //      不會有些貼很高、有些貼很低的問題。
+        //   B. 進出方向指引：光環本身是一個面，以這個面為基準分前後兩側；序號牌沿著
+        //      「入口方向」(= 穿越方向 normal 的反向，也就是垂直於光環面、指向無人機
+        //      準備進入的那一側) 額外做固定距離的位移，牌貼在哪一側就代表那一側是
+        //      正確穿越的起點。這段位移量同樣是固定比例，不隨光環大小或方向改變公式，
+        //      斜向穿越時 normal 的 x/z 分量自然同時存在，會自動得到綜合的前後/左右位置，
+        //      不需要另外拆分支判斷。
+        //
+        // 這兩段偏移各自獨立疊加（不做向量合成後再正規化），確保 A 的高度比例永遠固定，
+        // 不會被 B 的方向偏移稀釋掉，未來新增或修改障礙只要給 normal 和 r 就會自動套用。
         function computeBadgePosition(ob, badgeSize) {
-            const entranceDir = ob.frame.forward.clone().negate(); // 入口方向 = 穿越方向的反向（已是單位向量）
-            const dir = ob.frame.up.clone().add(entranceDir).normalize(); // 上方 + 入口方向，等權重合成
-            const offsetMag = ob.r - badgeSize * 0.15; // 貼齊光環邊緣，維持重疊感
-            return ob.posVec.clone().addScaledVector(dir, offsetMag);
+            const verticalOffset = ob.r - badgeSize * 0.32; // A：固定重疊比例，貼齊光環上緣
+            const entranceDir = ob.frame.forward.clone().negate(); // 入口方向 = 穿越方向的反向
+            const axialOffset = badgeSize * 0.5; // B：固定的入口方向位移量
+
+            return ob.posVec.clone()
+                .addScaledVector(ob.frame.up, verticalOffset)
+                .addScaledVector(entranceDir, axialOffset);
         }
+
 
         // 建立漂浮在障礙開口的序號徽章 (size 決定徽章直徑，僅比光環寬度稍大，與光環局部重疊)
         function createNumberSprite(number, size) {
@@ -1361,18 +1366,26 @@
             });
         }
 
-        // 檢查是否降落於起降圈內，只有在圈內完全降落才停止計時
+        // 降落規則（固定規則）：
+        //   1. 尚未依序完成全部障礙時，只要降落在「任何位置」，立即視為違規出局，終止計時、結束比賽。
+        //   2. 已依序完成全部障礙時，必須降落在起降圈內才會結束比賽並顯示成績；
+        //      降落在圈外則僅提示、不停止計時，讓玩家自行飛回圈內完賽。
         function checkRaceFinish() {
             if (raceState !== 'racing') return;
             const distHome = Math.hypot(drone.position.x - HOME_POS.x, drone.position.z - HOME_POS.z);
             const speed = drone.velocity.length();
+            const cleared = nextExpectedGateIndex >= totalGates; // 必須依序穿越全部障礙才算完成
 
             if (drone.position.y < 0.15 && speed < 0.3) {
-                if (distHome < HOME_RADIUS) {
+                if (!cleared) {
+                    // 尚未完成所有關卡就降落 → 違規出局，立即終止比賽
+                    finishRace();
+                } else if (distHome < HOME_RADIUS) {
+                    // 已完成所有關卡且降落於起降圈內 → 正常結束比賽
                     finishRace();
                 } else if (!landedIncompleteNotified) {
                     landedIncompleteNotified = true;
-                    showSystemNotification("請降落於起降圈內才能停止計時");
+                    showSystemNotification("請降落於起降圈內才能結束比賽");
                 }
             } else {
                 landedIncompleteNotified = false;
@@ -1402,13 +1415,13 @@
                 hintEl.classList.add('hidden');
                 showSystemNotification(`關卡完成！總時間 ${totalSec.toFixed(1)} 秒`);
             } else {
-                titleEl.innerText = '尚未過關';
+                titleEl.innerText = '違規出局';
                 titleEl.className = 'text-2xl font-extrabold text-rose-400 tracking-wider mb-1';
                 iconEl.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
                 iconEl.className = 'flex justify-center mb-4 text-rose-400 text-5xl';
-                hintEl.innerText = '未依序穿越全部障礙，此次僅記錄降落時間，不算過關';
+                hintEl.innerText = '尚未依序穿越全部障礙即降落，已違規出局，比賽終止';
                 hintEl.classList.remove('hidden');
-                showSystemNotification(`已降落，但未依序完成全部障礙 (${gatesPassed}/${totalGates})`);
+                showSystemNotification(`尚未完成全部障礙即降落，違規出局 (${gatesPassed}/${totalGates})`);
             }
 
             const finishScreen = document.getElementById('finishScreen');
