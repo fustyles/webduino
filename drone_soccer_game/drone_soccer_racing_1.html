@@ -293,7 +293,7 @@
 
     <!-- 關卡完成結算畫面 -->
     <div id="finishScreen" class="absolute inset-0 z-40 hidden flex-col items-center justify-center bg-slate-950/85 backdrop-blur-md transition-all duration-500">
-        <div class="max-w-md px-6 py-8 mx-4 text-center glassmorphism rounded-2xl border border-yellow-500/40 shadow-[0_0_50px_rgba(234,179,8,0.2)]">
+        <div class="max-w-lg px-6 py-8 mx-4 text-center glassmorphism rounded-2xl border border-yellow-500/40 shadow-[0_0_50px_rgba(234,179,8,0.2)]">
             <div id="finishIcon" class="flex justify-center mb-4 text-yellow-400 text-5xl">
                 <i class="fa-solid fa-flag-checkered"></i>
             </div>
@@ -1110,8 +1110,16 @@
         }
 
         // 在 canvas 上畫出序號徽章：未通過為紅底，正確依序通過後轉為綠底
-        function drawNumberBadge(ctx, number, passed) {
+        // flipped=true 時，整個徽章（圓底、外框、數字）左右水平鏡像，
+        // 用來提示玩家：這個障礙的穿越方向（Z軸分量）與一般（正向）障礙相反
+        function drawNumberBadge(ctx, number, passed, flipped) {
             ctx.clearRect(0, 0, 64, 64);
+            ctx.save();
+            if (flipped) {
+                // 以畫布中心為軸，水平鏡像整個繪製內容
+                ctx.translate(64, 0);
+                ctx.scale(-1, 1);
+            }
             ctx.fillStyle = passed ? '#10b981' : '#ef4444';
             ctx.beginPath();
             ctx.arc(32, 32, 27, 0, Math.PI * 2);
@@ -1124,6 +1132,7 @@
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText(String(number), 32, 34);
+            ctx.restore();
         }
 
         // ==================== 序號牌擺放規則（固定規則，兩個獨立方向，互不干擾） ====================
@@ -1158,12 +1167,13 @@
         }
 
         // 建立漂浮在障礙開口的序號徽章 (size 決定徽章直徑，僅比光環寬度稍大，與光環局部重疊)
-        function createNumberSprite(number, size) {
+        // flipped=true 時徽章水平鏡像顯示，提示玩家此障礙為反向穿越
+        function createNumberSprite(number, size, flipped) {
             const canvas = document.createElement('canvas');
             canvas.width = 64;
             canvas.height = 64;
             const ctx = canvas.getContext('2d');
-            drawNumberBadge(ctx, number, false);
+            drawNumberBadge(ctx, number, false, flipped);
 
             const texture = new THREE.CanvasTexture(canvas);
             const mat = new THREE.SpriteMaterial({ map: texture, depthTest: false, transparent: true });
@@ -1174,6 +1184,7 @@
             sprite.userData.ctx = ctx;
             sprite.userData.number = number;
             sprite.userData.texture = texture;
+            sprite.userData.flipped = flipped;
             return sprite;
         }
 
@@ -1210,7 +1221,10 @@
             // 序號牌：小尺寸(僅比光環的圓管寬度稍大)，統一貼在光環正上方並與光環重疊(見 computeBadgePosition)
             const ringBandWidth = tubeR * 2; // 光環圓管視覺寬度
             const badgeSize = ringBandWidth * 2.2; // 比光環寬度稍大一點
-            const numberSprite = createNumberSprite(orderNumber, badgeSize);
+            // 穿越方向在 Z 軸上與一般障礙相反(forward.z < 0)時，徽章水平鏡像顯示，
+            // 讓玩家一眼就能看出「這個要反向穿越」
+            const flipped = ob.frame.forward.z < 0;
+            const numberSprite = createNumberSprite(orderNumber, badgeSize, flipped);
             numberSprite.position.copy(computeBadgePosition(ob));
             scene.add(numberSprite);
             ob.numberSprite = numberSprite;
@@ -1229,13 +1243,13 @@
         function markGateCleared(ob) {
             ob.mesh.material.color.setHex(0x10b981);
             ob.mesh.material.emissive.setHex(0x10b981);
-            drawNumberBadge(ob.numberSprite.userData.ctx, ob.numberSprite.userData.number, true);
+            drawNumberBadge(ob.numberSprite.userData.ctx, ob.numberSprite.userData.number, true, ob.numberSprite.userData.flipped);
             ob.numberSprite.userData.texture.needsUpdate = true;
         }
 
         // 重置單一障礙的序號徽章為未通過的紅底狀態
         function resetGateBadge(ob) {
-            drawNumberBadge(ob.numberSprite.userData.ctx, ob.numberSprite.userData.number, false);
+            drawNumberBadge(ob.numberSprite.userData.ctx, ob.numberSprite.userData.number, false, ob.numberSprite.userData.flipped);
             ob.numberSprite.userData.texture.needsUpdate = true;
         }
 
