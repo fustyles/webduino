@@ -356,6 +356,9 @@ const CAGE_SIZE = 3.0; // 固定外框 3m x 3m x 3m
 const ARENA = { xMin: -2.3, xMax: 2.3, zMin: -3.4, zMax: 2.3, yMax: 3.3 };
 const PAD_RADIUS = 0.45;
 const DRONE_CAGE_RADIUS = 0.10;
+// 定高上限：略高於迷宮頂部護網 (y = CAGE_SIZE)，讓無人機全力爬升時能真正頂到最頂端的護網，
+// 而不是在還沒碰到頂部之前就被人為的定高上限擋住，較符合真實飛行手感
+const MAX_TARGET_ALTITUDE = ARENA.yMax - DRONE_CAGE_RADIUS - 0.05;
 
 const MAZE_LEVELS = {
     easy:   { n: 3, unit: 1.00, label: '易・3×3×3（邊長100cm・27格）' },
@@ -745,7 +748,7 @@ function buildMazeGeometry(mazeData) {
     const group = new THREE.Group();
     const half = CAGE_SIZE / 2;
     const n = mazeData.n, unit = mazeData.unit;
-    const pipeRadius = 0.025; // 5cm 直徑水管骨架
+    const pipeRadius = 0.016; // 視覺骨架調細（實際碰撞僅由護網面判定，管子本身不影響飛行判定）
 
     const pipeMat = new THREE.MeshStandardMaterial({ color: 0xe5e7eb, roughness: 0.35, metalness: 0.15 });
     const pipeGeos = [];
@@ -1350,12 +1353,12 @@ function setupTouchControls() {
 }
 
 // ==================== 立體迷宮碰撞與任務判定 ====================
-function resolveMazeWallCollisions() {
+function resolveMazeWallCollisions(prevPos) {
     if (!maze) return;
     const half = CAGE_SIZE / 2;
     const n = maze.n, unit = maze.unit;
     const r = DRONE_CAGE_RADIUS;
-    const restitution = 0.35;
+    const restitution = 0.22;
 
     if (drone.position.x < -half - 0.3 || drone.position.x > half + 0.3 ||
         drone.position.z < -half - 0.3 || drone.position.z > half + 0.3 ||
@@ -1374,43 +1377,64 @@ function resolveMazeWallCollisions() {
         return idx;
     }
 
+    // 用「移動前後平均座標」查詢晶格索引，較能反映整段移動路徑實際掃過的晶格
+    const midX = (prevPos.x + drone.position.x) / 2;
+    const midY = (prevPos.y + drone.position.y) / 2;
+    const midZ = (prevPos.z + drone.position.z) / 2;
+
+    // X 方向平面：同時檢查「本幀是否直接跨越平面」(防止高速移動直接穿透護網)
+    // 以及「是否仍停留在平面緩衝帶內」(維持貼牆時的碰撞判定)
     for (let ix = 0; ix <= n; ix++) {
         const planeX = -half + ix * unit;
-        const dist = drone.position.x - planeX;
-        if (Math.abs(dist) < r) {
-            const iy = cellIndexY(drone.position.y);
-            const iz = cellIndexXZ(drone.position.z);
-            if (maze.xBlocked[ix][iy][iz]) {
-                const sign = dist >= 0 ? 1 : -1;
-                drone.position.x = planeX + sign * r;
-                drone.velocity.x *= -restitution;
-            }
+        const prevDist = prevPos.x - planeX;
+        const newDist = drone.position.x - planeX;
+        const crossed = (prevDist >= 0 && newDist < 0) || (prevDist <= 0 && newDist > 0);
+        const nearBand = Math.abs(newDist) < r;
+        if (!crossed && !nearBand) continue;
+        const iy = cellIndexY(midY);
+        const iz = cellIndexXZ(midZ);
+        if (!maze.xBlocked[ix][iy][iz]) continue;
+        const sign = prevDist >= 0 ? 1 : (prevDist < 0 ? -1 : (newDist >= 0 ? 1 : -1));
+        drone.position.x = planeX + sign * r;
+        // 只有當速度仍朝牆面移動時才反彈，避免與相鄰面的修正互相拉扯造成卡頓（常見於管子交叉處）
+        if (drone.velocity.x === 0 || Math.sign(drone.velocity.x) === -sign) {
+            drone.velocity.x *= -restitution;
         }
     }
+
+    // Y 方向平面
     for (let iy = 0; iy <= n; iy++) {
         const planeY = iy * unit;
-        const dist = drone.position.y - planeY;
-        if (Math.abs(dist) < r) {
-            const ix2 = cellIndexXZ(drone.position.x);
-            const iz2 = cellIndexXZ(drone.position.z);
-            if (maze.yBlocked[iy][ix2][iz2]) {
-                const sign = dist >= 0 ? 1 : -1;
-                drone.position.y = planeY + sign * r;
-                drone.velocity.y *= -restitution;
-            }
+        const prevDist = prevPos.y - planeY;
+        const newDist = drone.position.y - planeY;
+        const crossed = (prevDist >= 0 && newDist < 0) || (prevDist <= 0 && newDist > 0);
+        const nearBand = Math.abs(newDist) < r;
+        if (!crossed && !nearBand) continue;
+        const ix2 = cellIndexXZ(midX);
+        const iz2 = cellIndexXZ(midZ);
+        if (!maze.yBlocked[iy][ix2][iz2]) continue;
+        const sign = prevDist >= 0 ? 1 : (prevDist < 0 ? -1 : (newDist >= 0 ? 1 : -1));
+        drone.position.y = planeY + sign * r;
+        if (drone.velocity.y === 0 || Math.sign(drone.velocity.y) === -sign) {
+            drone.velocity.y *= -restitution;
         }
     }
+
+    // Z 方向平面
     for (let iz = 0; iz <= n; iz++) {
         const planeZ = -half + iz * unit;
-        const dist = drone.position.z - planeZ;
-        if (Math.abs(dist) < r) {
-            const ix3 = cellIndexXZ(drone.position.x);
-            const iy3 = cellIndexY(drone.position.y);
-            if (maze.zBlocked[iz][ix3][iy3]) {
-                const sign = dist >= 0 ? 1 : -1;
-                drone.position.z = planeZ + sign * r;
-                drone.velocity.z *= -restitution;
-            }
+        const prevDist = prevPos.z - planeZ;
+        const newDist = drone.position.z - planeZ;
+        const crossed = (prevDist >= 0 && newDist < 0) || (prevDist <= 0 && newDist > 0);
+        const nearBand = Math.abs(newDist) < r;
+        if (!crossed && !nearBand) continue;
+        const ix3 = cellIndexXZ(midX);
+        const iy3 = cellIndexY(midY);
+        if (!maze.zBlocked[iz][ix3][iy3]) continue;
+        const sign = prevDist >= 0 ? 1 : (prevDist < 0 ? -1 : (newDist >= 0 ? 1 : -1));
+        drone.position.z = planeZ + sign * r;
+        if (drone.velocity.z === 0 || Math.sign(drone.velocity.z) === -sign) {
+            drone.velocity.z *= -restitution;
         }
     }
 }
@@ -1474,14 +1498,14 @@ function updateDronePhysics(delta) {
 
     if (Math.abs(drone.touchAltitudeInput) > 0.03) {
         drone.targetAltitude = THREE.MathUtils.clamp(
-            drone.targetAltitude + drone.touchAltitudeInput * delta * 3.5, 0.10, 2.6
+            drone.targetAltitude + drone.touchAltitudeInput * delta * 3.5, 0.10, MAX_TARGET_ALTITUDE
         );
         if (drone.autoFlightState !== 'none') drone.autoFlightState = 'none';
     }
 
     const altHoldRate = 0.7;
     if (keys.w || keys[' ']) {
-        drone.targetAltitude = Math.min(2.6, drone.targetAltitude + altHoldRate * delta);
+        drone.targetAltitude = Math.min(MAX_TARGET_ALTITUDE, drone.targetAltitude + altHoldRate * delta);
         if (drone.autoFlightState !== 'none') drone.autoFlightState = 'none';
     }
     if (keys.s || keys.control) {
@@ -1596,7 +1620,7 @@ function updateDronePhysics(delta) {
     }
 
     // ---- 立體迷宮晶格護網碰撞 ----
-    resolveMazeWallCollisions();
+    resolveMazeWallCollisions(prevPos);
 
     // ---- 入口 / 出口穿越偵測 ----
     checkMazeGatePass(prevPos);
