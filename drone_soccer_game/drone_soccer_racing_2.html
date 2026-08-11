@@ -576,6 +576,18 @@ function shuffleArray(arr) {
 const MAZE_MIN_OPEN = 2;
 const MAZE_MAX_OPEN = 3;
 
+// 檢查：若開啟這條邊，是否會讓某一端的晶格在「同一軸向」兩面都開放（形成直通貫穿），
+// 用來讓生成過程盡量避免出現一路直線暢通的捷徑，強迫路徑轉彎
+function wouldCreateStraightThrough(xBlocked, yBlocked, zBlocked, edge) {
+    function cellHasAxisThrough(c, axis) {
+        const [cix, ciy, ciz] = c;
+        if (axis === 'x') return !xBlocked[cix][ciy][ciz] && !xBlocked[cix + 1][ciy][ciz];
+        if (axis === 'y') return !yBlocked[ciy][cix][ciz] && !yBlocked[ciy + 1][cix][ciz];
+        return !zBlocked[ciz][cix][ciy] && !zBlocked[ciz + 1][cix][ciy];
+    }
+    return cellHasAxisThrough(edge.a, edge.axis) || cellHasAxisThrough(edge.b, edge.axis);
+}
+
 function buildMazeDataCore(n) {
     // xBlocked[ix][iy][iz]: ix = 0..n (垂直於X軸的平面), iy,iz = 0..n-1 (晶格索引)
     const xBlocked = make3D(n + 1, n, n, true);
@@ -622,7 +634,8 @@ function buildMazeDataCore(n) {
         else zBlocked[edge.p][edge.f1][edge.f2] = false;
     }
 
-    // 反覆掃描：優先開放能幫助「開口數不足」晶格的共用面，且絕不讓任一晶格超過上限
+    // 第一輪：優先開放能幫助「開口數不足」晶格的共用面，且盡量避開會造成同軸直通貫穿的面，
+    // 讓路徑多轉彎、減少一路暢通的直線捷徑
     let changed = true, rounds = 0;
     while (changed && rounds < 8) {
         changed = false;
@@ -631,24 +644,26 @@ function buildMazeDataCore(n) {
             if (openState[idx]) return;
             const oa = getOpen(edge.a), ob = getOpen(edge.b);
             const needed = (oa < MAZE_MIN_OPEN) || (ob < MAZE_MIN_OPEN);
-            if (needed && oa < MAZE_MAX_OPEN && ob < MAZE_MAX_OPEN) {
-                markEdgeOpen(edge);
-                incOpen(edge.a);
-                incOpen(edge.b);
-                openState[idx] = true;
-                changed = true;
-            }
+            if (!needed || oa >= MAZE_MAX_OPEN || ob >= MAZE_MAX_OPEN) return;
+            if (wouldCreateStraightThrough(xBlocked, yBlocked, zBlocked, edge)) return;
+            markEdgeOpen(edge);
+            incOpen(edge.a);
+            incOpen(edge.b);
+            openState[idx] = true;
+            changed = true;
         });
     }
 
-    // 保底修復：仍未達最少開口數的晶格，嘗試開放一條邊，但絕不讓鄰居超過上限3
+    // 保底修復：仍未達最少開口數的晶格，優先挑「不會造成直通」的邊；真的沒有選擇時才退而求其次，
+    // 但絕不讓鄰居超過上限3
     for (let ix = 0; ix < n; ix++) {
         for (let iy = 0; iy < n; iy++) {
             for (let iz = 0; iz < n; iz++) {
                 let guard = 0;
                 while (openCount[ix][iy][iz] < MAZE_MIN_OPEN && guard < 10) {
                     guard++;
-                    let candidate = -1, candidateNeighborOpen = Infinity;
+                    let bestNonStraight = -1, bestNonStraightNeighbor = Infinity;
+                    let bestStraight = -1, bestStraightNeighbor = Infinity;
                     edges.forEach((edge, idx) => {
                         if (openState[idx]) return;
                         const touches = (edge.a[0] === ix && edge.a[1] === iy && edge.a[2] === iz) ||
@@ -657,8 +672,13 @@ function buildMazeDataCore(n) {
                         const other = (edge.a[0] === ix && edge.a[1] === iy && edge.a[2] === iz) ? edge.b : edge.a;
                         const oc = getOpen(other);
                         if (oc >= MAZE_MAX_OPEN) return; // 絕不讓鄰居超過上限
-                        if (oc < candidateNeighborOpen) { candidateNeighborOpen = oc; candidate = idx; }
+                        if (wouldCreateStraightThrough(xBlocked, yBlocked, zBlocked, edge)) {
+                            if (oc < bestStraightNeighbor) { bestStraightNeighbor = oc; bestStraight = idx; }
+                        } else {
+                            if (oc < bestNonStraightNeighbor) { bestNonStraightNeighbor = oc; bestNonStraight = idx; }
+                        }
                     });
+                    const candidate = bestNonStraight !== -1 ? bestNonStraight : bestStraight;
                     if (candidate === -1) break;
                     const edge = edges[candidate];
                     markEdgeOpen(edge);
@@ -672,13 +692,15 @@ function buildMazeDataCore(n) {
 
     return {
         n, xBlocked, yBlocked, zBlocked,
+        entrance3D, exit3D,
         entranceCell: { ix: entrance3D.ix, iy: entrance3D.iy },
         exitCell: { ix: exit3D.ix, iy: exit3D.iy },
         openCount
     };
 }
 
-// 驗證每個晶格開口數是否落在 [2,3] 之間，不合格就重新生成（機率很高，通常 1~2 次就會成功）
+// 驗證每個晶格開口數是否落在 [2,3] 之間，且入口/出口正上方那一整條垂直柱不可完全暢通貫穿頂部
+// （避免玩家起飛後直接一路直線垂直穿越整座迷宮）；不合格就重新生成
 function isMazeValid(core) {
     const n = core.n;
     for (let ix = 0; ix < n; ix++) {
@@ -689,6 +711,14 @@ function isMazeValid(core) {
             }
         }
     }
+    function columnFullyOpen(ix, iz) {
+        for (let iy = 1; iy < n; iy++) {
+            if (core.yBlocked[iy][ix][iz]) return false;
+        }
+        return true;
+    }
+    if (columnFullyOpen(core.entrance3D.ix, core.entrance3D.iz)) return false;
+    if (columnFullyOpen(core.exit3D.ix, core.exit3D.iz)) return false;
     return true;
 }
 
@@ -697,10 +727,10 @@ function buildMazeData(levelKey) {
     const n = cfg.n, unit = cfg.unit;
 
     let core = null;
-    for (let attempt = 0; attempt < 60; attempt++) {
+    for (let attempt = 0; attempt < 150; attempt++) {
         const candidate = buildMazeDataCore(n);
         if (isMazeValid(candidate)) { core = candidate; break; }
-        core = candidate; // 保底：萬一 60 次都不完美，仍使用最後一次的結果（極端情況才會發生）
+        core = candidate; // 保底：萬一 150 次都不完美，仍使用最後一次的結果（極端情況才會發生）
     }
 
     return {
