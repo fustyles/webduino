@@ -1109,13 +1109,15 @@
             return { forward, right, up };
         }
 
-        // 在 canvas 上畫出序號徽章：未通過為紅底，正確依序通過後轉為綠底
+        // 在 canvas 上畫出序號徽章：未通過時依穿越方向區分底色 —
+        // 由前向後(forward.z ≥ 0)為紅底，由後向前(forward.z < 0)為橙底；
+        // 正確依序通過後，不分方向一律轉為綠底。
         // 一律畫成「正常、不鏡像」；鏡像與否交由徽章平面自身的 3D 朝向決定
         // （平面法線固定朝向各自的入口方向，從入口方向看是正常字，從相反方向看因為
         // 是同一塊平面的背面，會自然呈現鏡像效果——不是預先燒錄的固定鏡像圖）
-        function drawNumberBadge(ctx, number, passed) {
+        function drawNumberBadge(ctx, number, passed, unpassedColor) {
             ctx.clearRect(0, 0, 64, 64);
-            ctx.fillStyle = passed ? '#10b981' : '#ef4444';
+            ctx.fillStyle = passed ? '#10b981' : (unpassedColor || '#ef4444');
             ctx.beginPath();
             ctx.arc(32, 32, 27, 0, Math.PI * 2);
             ctx.fill();
@@ -1142,12 +1144,12 @@
         // 看永遠是正常數字；只有像序號5這種入口方向與其他光環相反的，從「一般順向」的角度看
         // 才會自然呈現鏡像；如果玩家刻意轉向反過來看，物理上所有光環都會對應地換邊(正的變鏡像、
         // 鏡像的變正的)，這是同一塊平面正反兩面的自然結果，不是額外邏輯判斷出來的
-        function createNumberPlane(number, size) {
+        function createNumberPlane(number, size, unpassedColor) {
             const canvas = document.createElement('canvas');
             canvas.width = 64;
             canvas.height = 64;
             const ctx = canvas.getContext('2d');
-            drawNumberBadge(ctx, number, false);
+            drawNumberBadge(ctx, number, false, unpassedColor);
 
             const texture = new THREE.CanvasTexture(canvas);
             const geo = new THREE.PlaneGeometry(size, size);
@@ -1158,6 +1160,7 @@
             plane.userData.ctx = ctx;
             plane.userData.number = number;
             plane.userData.texture = texture;
+            plane.userData.unpassedColor = unpassedColor;
             return plane;
         }
 
@@ -1194,7 +1197,10 @@
             // 序號牌：小尺寸(僅比光環的圓管寬度稍大)，統一貼在光環中心點、呈半透明(見 computeBadgePosition)
             const ringBandWidth = tubeR * 2; // 光環圓管視覺寬度
             const badgeSize = ringBandWidth * 2.2; // 比光環寬度稍大一點
-            const numberPlane = createNumberPlane(orderNumber, badgeSize);
+            // 依該光環的穿越方向決定未通過時的底色：forward.z ≥ 0 視為由前向後(紅底)，
+            // forward.z < 0 視為由後向前(橙底)，與九宮格版本的紅/橙配色規則一致
+            const unpassedColor = ob.frame.forward.z >= 0 ? '#ef4444' : '#f97316';
+            const numberPlane = createNumberPlane(orderNumber, badgeSize, unpassedColor);
             numberPlane.position.copy(computeBadgePosition(ob));
             // 平面法線(局部Z軸)朝向入口方向(-forward)，讓從入口方向看時是正常數字；
             // 局部Y軸沿用光環的 up(確保上下不顛倒)；因為 right×up=forward 而非 entranceDir，
@@ -1225,9 +1231,9 @@
             ob.numberSprite.userData.texture.needsUpdate = true;
         }
 
-        // 重置單一障礙的序號徽章為未通過的紅底狀態
+        // 重置單一障礙的序號徽章為未通過狀態 (依原本方向恢復紅底或橙底)
         function resetGateBadge(ob) {
-            drawNumberBadge(ob.numberSprite.userData.ctx, ob.numberSprite.userData.number, false);
+            drawNumberBadge(ob.numberSprite.userData.ctx, ob.numberSprite.userData.number, false, ob.numberSprite.userData.unpassedColor);
             ob.numberSprite.userData.texture.needsUpdate = true;
         }
 
