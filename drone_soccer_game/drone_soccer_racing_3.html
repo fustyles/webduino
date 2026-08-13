@@ -1944,6 +1944,21 @@
                 relativeCameraOffset.applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y);
                 
                 const targetCameraPosition = drone.position.clone().add(relativeCameraOffset);
+
+                // 九宮格景深保護：無人機貼近格柵準備穿越時，鏡頭若跟著貼太近，
+                // 視野會被單一宮格塞滿、看不到其他號碼，需自行飛離才能重新看清全局。
+                // 這裡強制鏡頭與九宮格平面(Z=GRID_WALL_Z)至少保持 GRID_CAM_CLEARANCE 的景深，
+                // 讓整片九宮格(寬1.8m)在鏡頭視野內維持足夠餘裕。判斷「該撐開在哪一側」時，
+                // 用「原本（未修正前）鏡頭位置」本身相對格柵的正負號來決定——而不是用無人機
+                // 的瞬間位置或機頭朝向，這樣鏡頭只會在無人機已經飛離格柵夠遠（原始跟隨位置
+                // 本身也自然換到另一側）之後才會跟著換邊，不會在無人機才剛穿越、還在格柵
+                // 另一側不遠處時，就把鏡頭卡在原本那一側出不來。
+                const GRID_CAM_CLEARANCE = 2.3;
+                const gridSide = targetCameraPosition.z >= GRID_WALL_Z ? 1 : -1;
+                if (Math.abs(targetCameraPosition.z - GRID_WALL_Z) < GRID_CAM_CLEARANCE) {
+                    targetCameraPosition.z = GRID_WALL_Z + gridSide * GRID_CAM_CLEARANCE;
+                }
+
                 camera.position.lerp(targetCameraPosition, 0.12);
 
                 const lookTarget = drone.position.clone().add(new THREE.Vector3(0, 0.1, 0));
