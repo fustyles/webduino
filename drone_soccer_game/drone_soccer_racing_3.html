@@ -1,0 +1,2228 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>無人機競技場 (Gemini) — 法蘭斯</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            user-select: none;
+            background-color: #020617;
+        }
+        .tech-font {
+            font-family: 'Share Tech Mono', monospace;
+        }
+        /* 玻璃擬態樣式 */
+        .glassmorphism {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-button {
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.35);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-button:hover {
+            background: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+            transform: translateY(-1px);
+        }
+        /* 隱藏滾動條 */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        .joystick-zone {
+            touch-action: none;
+        }
+        /* 觸控搖桿區域定位：
+           1. env(safe-area-inset-bottom) 避開 iPhone 底部手勢列/瀏海機種的安全區域
+           2. 額外疊加 6vh 依手機螢幕高度比例往上抬升，長螢幕手機會抬得更高，避免被系統手勢列或瀏覽器底部工具列遮蔽
+           3. clamp() 設定最小/最大範圍，避免在極端螢幕比例下位置過低或過高 */
+        #touchControls {
+            bottom: clamp(28px, calc(env(safe-area-inset-bottom, 0px) + 6vh + 14px), 120px);
+        }
+        /* 螢幕高度較矮（如手機橫向/小型平板）時，搖桿整體再縮小並降低抬升幅度，避免佔用過多畫面 */
+        @media (max-height: 480px) {
+            #touchControls {
+                bottom: clamp(10px, calc(env(safe-area-inset-bottom, 0px) + 2vh + 8px), 60px);
+            }
+            #touchControls .joystick-zone {
+                width: 4.5rem;
+                height: 4.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="relative w-screen h-screen">
+
+    <!-- 開場與加載畫面 -->
+    <div id="startScreen" class="absolute inset-0 z-50 flex flex-col items-center justify-center bg-slate-950/95 transition-all duration-700">
+        <div class="max-w-2xl px-3 sm:px-6 py-6 sm:py-8 mx-3 sm:mx-4 text-center glassmorphism rounded-2xl border border-emerald-500/30 shadow-[0_0_50px_rgba(16,185,129,0.15)]">
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-500 to-blue-500 mb-2">
+                無人機九宮格穿越計時賽
+            </h1>
+            <h1 class="text-1xl md:text-1xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-500 to-blue-500 mb-2">
+                鳳山科技中心 - 法蘭斯
+            </h1>
+            <div class="grid grid-cols-2 gap-2 sm:gap-4 mb-8 text-left text-[10px] sm:text-xs md:text-sm text-slate-300">
+                <div class="p-2 sm:p-3 bg-slate-900/80 rounded-lg border border-slate-800">
+                    <p class="font-bold text-emerald-400 mb-2 flex items-center gap-1.5"><i class="fa-solid fa-keyboard"></i>飛行控制</p>
+                    <ul class="space-y-1 text-slate-400 tech-font">
+                        <li><span class="text-emerald-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">W</span> 油門增加</li>
+                        <li><span class="text-rose-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">S</span> 油門減少</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">A</span> 逆時針旋轉</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">D</span> 順時針旋轉</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">↑</span> 前進</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">↓</span> 後退</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">←</span> 向左滾轉</li>
+                        <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">→</span> 向右滾轉</li>
+                        <li><span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">C</span> 切換鏡頭視角</li>
+                    </ul>
+                </div>
+                <div class="p-2 sm:p-3 bg-slate-900/80 rounded-lg border border-slate-800 flex flex-col justify-between">
+                    <ul class="space-y-1 text-slate-400 tech-font">
+                        <li><span class="text-emerald-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">T</span> 一鍵起飛</li>
+                        <li><span class="text-rose-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">L</span> 一鍵降落</li>
+                        <li><span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">R</span> 重置無人機</li>
+                        <li><span class="text-slate-300 bg-slate-800 px-1.5 py-0.5 rounded font-bold">M</span> 靜音切換</li>
+                        <li><span class="text-slate-300 bg-slate-800 px-1.5 py-0.5 rounded font-bold">Space</span> / <span class="text-slate-300 bg-slate-800 px-1.5 py-0.5 rounded font-bold">Ctrl</span> 油門升/降</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-1.5 sm:gap-2 mb-2">
+                <button class="level-btn flex flex-col items-start px-3 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/40 hover:bg-emerald-500/20 transition-all text-left" data-level="1">
+                    <span class="text-emerald-300 font-bold text-xs sm:text-sm">第一關　新手</span>
+                    <span class="text-slate-400 text-[9px] sm:text-[10px] tech-font">相鄰宮格・循序前進</span>
+                </button>
+                <button class="level-btn flex flex-col items-start px-3 py-2 rounded-xl bg-cyan-500/10 border border-cyan-500/40 hover:bg-cyan-500/20 transition-all text-left" data-level="2">
+                    <span class="text-cyan-300 font-bold text-xs sm:text-sm">第二關　初階</span>
+                    <span class="text-slate-400 text-[9px] sm:text-[10px] tech-font">小範圍跳躍宮格</span>
+                </button>
+                <button class="level-btn flex flex-col items-start px-3 py-2 rounded-xl bg-sky-500/10 border border-sky-500/40 hover:bg-sky-500/20 transition-all text-left" data-level="3">
+                    <span class="text-sky-300 font-bold text-xs sm:text-sm">第三關　中階</span>
+                    <span class="text-slate-400 text-[9px] sm:text-[10px] tech-font">跳躍宮格・距離加大</span>
+                </button>
+                <button class="level-btn flex flex-col items-start px-3 py-2 rounded-xl bg-amber-500/10 border border-amber-500/40 hover:bg-amber-500/20 transition-all text-left" data-level="4">
+                    <span class="text-amber-300 font-bold text-xs sm:text-sm">第四關　進階</span>
+                    <span class="text-slate-400 text-[9px] sm:text-[10px] tech-font">大跳躍宮格</span>
+                </button>
+                <button class="level-btn flex flex-col items-start px-3 py-2 rounded-xl bg-orange-500/10 border border-orange-500/40 hover:bg-orange-500/20 transition-all text-left" data-level="5">
+                    <span class="text-orange-300 font-bold text-xs sm:text-sm">第五關　高手</span>
+                    <span class="text-slate-400 text-[9px] sm:text-[10px] tech-font">密集大跳躍宮格</span>
+                </button>
+                <button class="level-btn flex flex-col items-start px-3 py-2 rounded-xl bg-rose-500/10 border border-rose-500/40 hover:bg-rose-500/20 transition-all text-left" data-level="6">
+                    <span class="text-rose-300 font-bold text-xs sm:text-sm">第六關　大師</span>
+                    <span class="text-slate-400 text-[9px] sm:text-[10px] tech-font">極限跳躍宮格</span>
+                </button>
+            </div>
+            <p class="text-[10px] text-slate-500 mt-2 tech-font leading-relaxed">九宮格共 9 個小方框，須依 1→9 順序通過才會轉為綠圈；未通過時奇數編號(1,3,5,7,9)為紅圈、偶數編號(2,4,6,8)為橙圈。方向固定：奇數須由前向後穿越，偶數須由後向前穿越。若穿越到非目前應穿越的編號(不論由前向後或由後向前)，一律視為穿錯，會扣除前一個編號、退回未穿越狀態。起飛開始計時，降落地面(任何位置)即完成計時，不需飛回特定地點。</p>
+        </div>
+    </div>
+
+    <!-- 遊戲主場景與 HUD -->
+    <div id="gameUI" class="absolute inset-0 z-10 pointer-events-none flex flex-col justify-between p-4 md:p-6 select-none">
+        
+        <!-- 頂部資訊條 -->
+        <header class="w-full flex justify-between items-start pointer-events-auto">
+            <!-- 左上角：關卡計時與宮格穿越進度 -->
+            <div class="glassmorphism rounded-xl px-4 py-3 text-white flex flex-col min-w-[150px] shadow-lg">
+                <span id="raceLevelName" class="text-[10px] text-emerald-400 uppercase tracking-wider font-semibold">尚未選擇關卡</span>
+                <div class="flex items-baseline gap-2 mt-1">
+                    <span id="raceTimer" class="text-2xl font-extrabold tech-font text-yellow-300">0.0</span>
+                    <span class="text-xs text-slate-400">秒</span>
+                </div>
+                <div class="text-[9px] text-slate-400 mt-1">
+                    穿越進度：<span id="gateProgress" class="text-slate-200 font-semibold">0 / 0</span>
+                </div>
+                <div class="text-[9px] text-slate-400 mt-0.5">
+                    下一目標：<span id="nextGateInfo" class="text-yellow-300 font-semibold">－</span>
+                </div>
+            </div>
+
+            <!-- 中間頂部：羅盤方位角 -->
+            <div class="hidden md:flex flex-col items-center glassmorphism text-white px-6 py-2 rounded-xl border border-slate-700/30">
+                <span class="text-[9px] text-slate-400 tracking-widest uppercase mb-1">航向</span>
+                <div class="flex items-center gap-1.5 tech-font text-lg font-bold">
+                    <span id="compassVal" class="text-emerald-300">000°</span>
+                    <span id="compassDir" class="text-xs text-slate-400">(N)</span>
+                </div>
+            </div>
+
+            <!-- 右上角：系統快捷控制 -->
+            <div class="flex gap-2">
+                <button id="btnTakeoff" class="px-3.5 h-10 rounded-xl glassmorphism text-emerald-400 hover:text-emerald-300 hover:border-emerald-400/50 flex items-center justify-center gap-1.5 transition-all cursor-pointer pointer-events-auto border border-emerald-500/20">
+                    <i class="fa-solid fa-plane-departure text-xs"></i>
+                    <span class="text-[10px] font-semibold tech-font">起飛 (T)</span>
+                </button>
+                <button id="btnLand" class="px-3.5 h-10 rounded-xl glassmorphism text-rose-400 hover:text-rose-300 hover:border-rose-400/50 flex items-center justify-center gap-1.5 transition-all cursor-pointer pointer-events-auto border border-rose-500/20">
+                    <i class="fa-solid fa-plane-arrival text-xs"></i>
+                    <span class="text-[10px] font-semibold tech-font">降落 (L)</span>
+                </button>
+                <button id="btnSound" class="w-10 h-10 rounded-xl glassmorphism text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
+                    <i class="fa-solid fa-volume-high text-sm"></i>
+                </button>
+                <button id="btnCam" class="px-3.5 h-10 rounded-xl glassmorphism text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
+                    <i class="fa-solid fa-camera text-sm"></i>
+                    <span id="camText" class="text-xs font-semibold tech-font">跟隨</span>
+                </button>
+                <button id="btnReset" class="w-10 h-10 rounded-xl glassmorphism text-slate-300 hover:text-rose-400 flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
+                    <i class="fa-solid fa-arrows-rotate text-sm"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 中間右側：簡易姿態儀 -->
+        <div class="absolute right-4 top-24 pointer-events-auto hidden sm:flex flex-col gap-3">
+            <div class="glassmorphism p-3 rounded-xl text-white w-48 shadow-md border border-slate-800/30">
+                <h3 class="text-[10px] text-emerald-300 uppercase font-semibold tracking-wider mb-2">姿態儀</h3>
+                <div class="relative w-full h-24 bg-slate-900/80 rounded-lg overflow-hidden border border-slate-800/50 flex items-center justify-center">
+                    <!-- 姿態地平線 -->
+                    <div id="horizonLine" class="absolute w-[200%] h-[200%] bg-gradient-to-b from-indigo-950/50 to-emerald-950/50 border-t-2 border-emerald-400 transition-all duration-100 ease-out" style="transform: rotate(0deg) translateY(0px);"></div>
+                    <!-- 固定十字標 -->
+                    <div class="absolute w-6 h-0.5 bg-yellow-400"></div>
+                    <div class="absolute w-2 h-2 rounded-full bg-yellow-400"></div>
+                    <div class="absolute left-1/2 top-2 h-2 w-0.5 bg-white/40 -translate-x-1/2"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-2 mt-2 text-center text-[10px] text-slate-400 tech-font">
+                    <div>俯仰: <span id="pitchAngle" class="text-white">0°</span></div>
+                    <div>翻滾: <span id="rollAngle" class="text-white">0°</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部大資訊面板 -->
+        <footer class="w-full flex flex-col md:flex-row gap-4 items-end justify-between pointer-events-auto">
+            <!-- 飛行參數玻璃面板 (左下) -->
+            <div class="glassmorphism rounded-2xl p-4 text-white w-full md:w-auto md:min-w-[400px] shadow-2xl flex flex-col gap-3 border border-slate-800/40">
+                <div class="flex items-center justify-between border-b border-slate-800/60 pb-2">
+                    <span class="text-[11px] text-emerald-400 tracking-wider font-semibold uppercase flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping"></span> 遙測狀態
+                    </span>
+                    <span id="flightMode" class="text-[10px] bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 px-2 py-0.5 rounded-full tech-font">氣壓定高中</span>
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                    <!-- 速度 -->
+                    <div class="flex flex-col">
+                        <span class="text-[10px] text-slate-400 uppercase">速度</span>
+                        <div class="flex items-baseline gap-1 mt-1">
+                            <span id="telemetrySpeed" class="text-2xl font-bold tech-font text-emerald-300">0.0</span>
+                            <span class="text-[10px] text-slate-500">m/s</span>
+                        </div>
+                        <div class="w-full bg-slate-900 h-1 rounded-full mt-1.5 overflow-hidden">
+                            <div id="speedBar" class="bg-emerald-400 h-full w-0 transition-all duration-200"></div>
+                        </div>
+                    </div>
+                    <!-- 高度 -->
+                    <div class="flex flex-col">
+                        <span class="text-[10px] text-slate-400 uppercase">高度</span>
+                        <div class="flex items-baseline gap-1 mt-1">
+                            <span id="telemetryAlt" class="text-2xl font-bold tech-font text-cyan-300">0.10</span>
+                            <span class="text-[10px] text-slate-500">m</span>
+                        </div>
+                        <div class="w-full bg-slate-900 h-1 rounded-full mt-1.5 overflow-hidden">
+                            <div id="altBar" class="bg-cyan-400 h-full w-[10%] transition-all duration-200"></div>
+                        </div>
+                    </div>
+                    <!-- 油門 -->
+                    <div class="flex flex-col">
+                        <span class="text-[10px] text-slate-400 uppercase">油門</span>
+                        <div class="flex items-baseline gap-1 mt-1">
+                            <span id="telemetryThrottle" class="text-2xl font-bold tech-font text-yellow-300">0%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 h-1 rounded-full mt-1.5 overflow-hidden">
+                            <div id="throttleBar" class="bg-yellow-400 h-full w-[0%] transition-all duration-200"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 操作提示面板 (右下) -->
+            <div class="hidden lg:flex glassmorphism rounded-2xl p-4 text-slate-300 w-[300px] border border-slate-800/40 text-[11px] flex flex-col gap-1.5">
+                <span class="text-[10px] text-emerald-400 uppercase font-semibold tracking-wider">飛行操作指南</span>
+                <div class="flex justify-between">
+                    <span>一鍵起飛 / 降落：</span>
+                    <span class="tech-font text-emerald-400 font-bold bg-slate-800 px-1 rounded">T</span> / <span class="tech-font text-rose-400 font-bold bg-slate-800 px-1 rounded">L</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>油門增加/減少（長按）：</span>
+                    <span class="tech-font text-white bg-slate-800 px-1 rounded">W</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">S</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>高度升降（備用鍵）：</span>
+                    <span class="tech-font text-white bg-slate-800 px-1 rounded">Space</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">Ctrl</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>前進/後退（俯仰）：</span>
+                    <span class="tech-font text-white bg-slate-800 px-1 rounded">↑</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">↓</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>左右滾轉：</span>
+                    <span class="tech-font text-white bg-slate-800 px-1 rounded">←</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">→</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>偏航旋轉（左/右）：</span>
+                    <span class="tech-font text-white bg-slate-800 px-1 rounded">A</span> / <span class="tech-font text-white bg-slate-800 px-1 rounded">D</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>切換鏡頭視角：</span>
+                    <span class="tech-font text-cyan-400 font-bold bg-slate-800 px-1 rounded">C</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>重置無人機：</span>
+                    <span class="tech-font text-cyan-400 font-bold bg-slate-800 px-1 rounded">R</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>靜音切換：</span>
+                    <span class="tech-font text-slate-300 font-bold bg-slate-800 px-1 rounded">M</span>
+                </div>
+            </div>
+        </footer>
+
+        <!-- 觸控搖桿區域 (用於行動裝置或預覽操作) -->
+        <div id="touchControls" class="absolute left-1/2 -translate-x-1/2 flex justify-between w-full max-w-[500px] px-4 pointer-events-none md:hidden">
+            <!-- 左搖桿 (高度/旋轉) -->
+            <div class="joystick-zone pointer-events-auto relative w-24 h-24 rounded-full bg-slate-950/80 border border-emerald-500/30 flex items-center justify-center shadow-lg" id="joyLeft">
+                <div class="w-10 h-10 rounded-full bg-emerald-500/40 border border-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.4)] absolute" id="knobLeft"></div>
+                <span class="absolute text-[7px] text-emerald-400/50 uppercase font-semibold tracking-widest pointer-events-none">偏航 / 高度</span>
+            </div>
+            <!-- 右搖桿 (前後左右移動) -->
+            <div class="joystick-zone pointer-events-auto relative w-24 h-24 rounded-full bg-slate-950/80 border border-cyan-500/30 flex items-center justify-center shadow-lg" id="joyRight">
+                <div class="w-10 h-10 rounded-full bg-cyan-500/40 border border-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.4)] absolute" id="knobRight"></div>
+                <span class="absolute text-[7px] text-cyan-400/50 uppercase font-semibold tracking-widest pointer-events-none">移動</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 大型即時穿越提示：成功(綠)／錯誤(紅) 大字提醒，避免玩家錯過穿越結果 -->
+    <div id="bigFeedback" class="absolute inset-0 z-30 flex items-start justify-center pointer-events-none pt-20 sm:pt-28">
+        <div id="bigFeedbackText" class="text-xl sm:text-2xl md:text-4xl font-extrabold tracking-wider text-center px-4 opacity-0 scale-90 select-none transition-all duration-200 ease-out" style="text-shadow: 0 0 18px rgba(0,0,0,0.9), 0 0 4px rgba(0,0,0,0.9);"></div>
+    </div>
+
+    <!-- 關卡完成結算畫面 -->
+    <div id="finishScreen" class="absolute inset-0 z-40 hidden flex-col items-center justify-center bg-slate-950/85 backdrop-blur-md transition-all duration-500">
+        <div class="max-w-lg px-6 py-8 mx-4 text-center glassmorphism rounded-2xl border border-yellow-500/40 shadow-[0_0_50px_rgba(234,179,8,0.2)]">
+            <div id="finishIcon" class="flex justify-center mb-4 text-yellow-400 text-5xl">
+                <i class="fa-solid fa-flag-checkered"></i>
+            </div>
+            <h2 id="finishTitle" class="text-2xl font-extrabold text-yellow-300 tracking-wider mb-1">關卡完成！</h2>
+            <p id="finishLevelName" class="text-slate-400 text-xs mb-4"></p>
+            <p class="text-5xl font-extrabold text-emerald-300 tech-font my-2"><span id="finishTime">0.0</span><span class="text-lg text-slate-400"> 秒</span></p>
+            <p class="text-slate-400 text-[11px] mb-2">穿越宮格 <span id="finishGates" class="text-slate-200 font-semibold"></span>　罰時 <span id="finishPenalty" class="text-rose-300 font-semibold"></span> 秒</p>
+            <p id="finishHint" class="text-rose-400 text-[11px] mb-4 hidden"></p>
+            <div class="flex flex-col gap-2">
+                <button id="btnNextLevel" class="hidden w-full py-3 text-xs md:text-sm font-bold text-slate-950 bg-emerald-400 rounded-lg shadow-lg hover:bg-emerald-300 transition-all duration-300">
+                    <i class="fa-solid fa-forward mr-1"></i>下一關
+                </button>
+                <div class="flex gap-3">
+                    <button id="btnRetryLevel" class="flex-1 py-3 text-xs md:text-sm font-bold text-slate-950 bg-yellow-400 rounded-lg shadow-lg hover:bg-yellow-300 transition-all duration-300">
+                        重新挑戰
+                    </button>
+                    <button id="btnBackMenu" class="flex-1 py-3 text-xs md:text-sm font-bold text-slate-200 bg-slate-700 rounded-lg shadow-lg hover:bg-slate-600 transition-all duration-300">
+                        返回選單
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3D 渲染畫布容器 -->
+    <div id="canvas-container" class="absolute inset-0 w-full h-full z-0"></div>
+
+    <!-- 引入 Three.js 與 OrbitControls -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/utils/BufferGeometryUtils.js"></script>
+
+    <script>
+        // 1. 全局系統變數與參數
+        let scene, camera, renderer, clock, orbitControls;
+        const container = document.getElementById('canvas-container');
+        let soundEnabled = false;
+
+        // 2. 音訊合成器 (Web Audio API)
+        let audioCtx = null;
+        let droneSynth = null;
+
+        // 3. 微型無人機物理與姿態狀態 (比原版縮小，適配 6m x 3m)
+        const drone = {
+            mesh: null,
+            rotors: [], // 四個螺旋槳
+            lights: [], // 紅綠翼閃爍燈
+            position: new THREE.Vector3(0, 0.1, -2.2), // 初始停留於起降圈中心 (往場地近端後移，讓前方留出較大布局空間)
+            velocity: new THREE.Vector3(0, 0, 0),
+            rotation: new THREE.Euler(0, 0, 0, 'YXZ'), // 歐拉旋轉順序
+            
+            // 氣壓定高與自動駕駛
+            targetAltitude: 0.1, // 初始定高目標
+            touchAltitudeInput: 0, // 觸控定高增量 (已套用平方曲線，幅度越大動力輸出越強)
+            touchActive: false, // 右搖桿(前後左右)是否正在被觸控操作
+            touchActiveLeft: false, // 左搖桿(旋轉)是否正在被觸控操作
+            autoFlightState: 'none', // 'none' / 'takingoff' / 'landing'
+            targetTakeoffHeight: 1.5, // 起飛高度改為 1.5 米 (與九宮格置中後的高度等高)
+
+            // 操控輸入
+            input: {
+                pitch: 0,   // 前後 (↑: 1 往前, ↓: -1 往後；W/S 已改為油門升降，不再控制 pitch)
+                roll: 0,    // 左右側傾 (←: -1, →: 1；A/D 已改為偏航 yaw，不再控制 roll)
+                yaw: 0,     // 旋轉 (A: -1 逆時針, D: 1 順時針；已取代 Q/E)
+                throttle: 0.0
+            },
+
+            // 微型機身物理常量 (在小空間內具有更高的阻尼、更高的定高敏捷度)
+            constants: {
+                mass: 0.4,               // 極輕量化
+                maxThrottleThrust: 18.0, // 適合微型機的總拉力
+                gravity: 9.8,
+                linearDrag: 1.8,         // 大幅增加空氣阻力，防止在小場地瞬間飛出邊界
+                pitchRollSpeed: 1.6,     // 更敏捷的俯仰/側滾反應
+                yawSpeed: 1.6,           // 偏航旋轉速度 (調低，避免單次按壓旋轉角度過大)
+                yawRampSpeed: 6.0,       // 偏航加速平滑係數 (數值越小，起步越柔和、單次按壓角度越小)
+                maxTilt: 0.40,           // 降低最大物理傾角，更利於狹小空間精準操作
+                recoveryRate: 10.0,      // 水平校正恢復速度
+            },
+
+            currentPitch: 0,
+            currentRoll: 0,
+            currentYawRate: 0, // 目前平滑後的偏航角速度，避免單次按壓瞬間跳到最大轉速
+        };
+
+        // 4. 無人機護籠尺寸參數 (配合 6m x 3m 場地)
+        // 地板長度方向為 Z 軸 (Z: -3 至 +3)
+        // 地板寬度方向為 X 軸 (X: -1.5 至 +1.5)
+        // 依真實規格調整：無人機球型護籠外徑 20 公分 (半徑 0.10m)
+        const DRONE_CAGE_RADIUS = 0.10;   // 無人機足球護籠半徑，整體球徑 = 20 公分
+        let particles = [];
+
+        // ==================== 九宮格穿越計時賽：關卡資料 ====================
+        // 九宮格規格：大正方形框 1.8m(寬) x 1.8m(高) x 0.05m(厚)，由 9 個小正方形框組成，
+        // 每個小正方形框邊長 0.6m（3 x 0.6m = 1.8m），以固定不動的實體格柵（框邊）分隔。
+        // 格柵置於場地正中央 (Z = GRID_WALL_Z 的垂直平面)，玩家可繞到格柵前方或後方，
+        // 分別完成「由前向後」與「由後向前」兩種穿越方向。
+        const GRID_WALL_Z = 0;            // 九宮格所在的 Z 平面（場地正中央）
+        const GRID_CENTER_Y = 1.5;        // 九宮格整體置中高度
+        const CELL_SIZE = 0.6;            // 每個小正方形框邊長 0.6m
+        const BEAM_THICK = 0.05;          // 框邊厚度 0.05m（含大外框與內部格柵）
+        const HALF_OPEN = (CELL_SIZE - BEAM_THICK) / 2; // 淨開口半寬 (扣除框邊厚度後的可穿越安全範圍)
+        const GRID_BEAMS = []; // 九宮格所有實體框邊的世界座標包圍盒 (AABB)，供碰撞偵測共用
+
+        // 9 個小宮格中心點座標對照表：index 0-8，col/row 皆為 0,1,2 (左→右／下→上)
+        const CELL_COORDS = [
+            [0, 0], [1, 0], [2, 0],
+            [0, 1], [1, 1], [2, 1],
+            [0, 2], [1, 2], [2, 2]
+        ];
+        function cellCenter(cellIdx) {
+            const [col, row] = CELL_COORDS[cellIdx];
+            return new THREE.Vector3(
+                (col - 1) * CELL_SIZE,
+                GRID_CENTER_Y + (row - 1) * CELL_SIZE,
+                GRID_WALL_Z
+            );
+        }
+
+        // 起飛位置位於九宮格「前方」(Z 較小處)；起飛開始計時，降落地面即完成計時(不需畫圈)
+        const HOME_POS = new THREE.Vector3(0, 0.10, -2.3);
+
+        // 每一關的 sequence 陣列，索引 0-8 對應序號牌 1-9：
+        //   cell: 該序號要放在哪一個小宮格 (對照 CELL_COORDS)
+        // 穿越方向為固定規則(見 loadLevel)：奇數編號 1,3,5,7,9 一律由前向後；
+        //                                偶數編號 2,4,6,8 一律由後向前，六關皆相同。
+        // 難度設計依據：連續編號之間的宮格位移量(距離)越大越難、跳躍越不規律越難。
+        const LEVEL_DEFS = {
+            1: {
+                name: '第一關：新手 - 相鄰宮格・循序前進',
+                sequence: [
+                    { cell: 0 }, { cell: 1 }, { cell: 2 },
+                    { cell: 5 }, { cell: 4 }, { cell: 3 },
+                    { cell: 6 }, { cell: 7 }, { cell: 8 }
+                ]
+            },
+            2: {
+                name: '第二關：初階 - 小範圍跳躍',
+                sequence: [
+                    { cell: 0 }, { cell: 2 }, { cell: 1 },
+                    { cell: 5 }, { cell: 3 }, { cell: 4 },
+                    { cell: 6 }, { cell: 8 }, { cell: 7 }
+                ]
+            },
+            3: {
+                name: '第三關：中階 - 跳躍宮格',
+                sequence: [
+                    { cell: 0 }, { cell: 2 }, { cell: 8 },
+                    { cell: 6 }, { cell: 4 }, { cell: 1 },
+                    { cell: 7 }, { cell: 3 }, { cell: 5 }
+                ]
+            },
+            4: {
+                name: '第四關：進階 - 大跳躍宮格',
+                sequence: [
+                    { cell: 4 }, { cell: 0 }, { cell: 8 },
+                    { cell: 2 }, { cell: 6 }, { cell: 1 },
+                    { cell: 7 }, { cell: 3 }, { cell: 5 }
+                ]
+            },
+            5: {
+                name: '第五關：高手 - 密集大跳躍',
+                sequence: [
+                    { cell: 8 }, { cell: 3 }, { cell: 0 },
+                    { cell: 5 }, { cell: 2 }, { cell: 7 },
+                    { cell: 4 }, { cell: 1 }, { cell: 6 }
+                ]
+            },
+            6: {
+                name: '第六關：大師 - 極限跳躍',
+                sequence: [
+                    { cell: 0 }, { cell: 8 }, { cell: 2 },
+                    { cell: 6 }, { cell: 5 }, { cell: 1 },
+                    { cell: 7 }, { cell: 3 }, { cell: 4 }
+                ]
+            }
+        };
+
+        let currentLevelId = null;
+        let currentGates = [];
+        let gatesPassed = 0;
+        let totalGates = 0;
+        let nextExpectedGateIndex = 0; // 下一個必須穿越的宮格序號（0-based），強制依序通關
+        let raceState = 'menu'; // 'menu' / 'idle' / 'racing' / 'finished'
+        let raceStartTime = 0;
+        let raceElapsedMs = 0;
+        let penaltySeconds = 0;
+        // ==================== 九宮格穿越計時賽：關卡資料結束 ====================
+
+
+        // 5. 鍵盤輸入
+        const keys = { 
+            w: false, s: false, a: false, d: false, 
+            arrowup: false, arrowdown: false, arrowleft: false, arrowright: false,
+            ' ': false, control: false, t: false, l: false 
+        };
+
+        // 6. 攝影機模式 (0: Chase, 1: Cockpit, 2: Free)
+        let cameraMode = 0; 
+        const CAMERA_MODES = ['跟隨', '座艙', '自由'];
+
+        // Web Audio API 引擎嗡鳴音效（採用參考檔案的簡潔單振盪器設計）
+        function initAudio() {
+            if (audioCtx) return;
+            try {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+                const osc = audioCtx.createOscillator();
+                osc.type = 'sawtooth';
+                osc.frequency.value = 90;
+
+                const gain = audioCtx.createGain();
+                gain.gain.value = 0.0;
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+
+                droneSynth = { osc, gain };
+            } catch (e) {
+                console.warn("無法啟動 Web Audio API：", e);
+            }
+        }
+
+        // 隨油門大小與飛行速度動態調整引擎音頻（音高與音量都跟著油門走）
+        function updateDroneSound() {
+            if (!droneSynth) return;
+
+            const currentSpeed = drone.velocity.length();
+            droneSynth.osc.frequency.value = 70 + drone.input.throttle * 260 + currentSpeed * 3;
+
+            const armed = drone.input.throttle > 0.02;
+            droneSynth.gain.gain.value = soundEnabled ? (armed ? (0.015 + drone.input.throttle * 0.05) : 0) : 0;
+        }
+
+        // 成功穿過霓虹圓環時的電子 chime 音效
+        function playChimeSound() {
+            if (!soundEnabled || !audioCtx) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const osc2 = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'sine';
+                osc2.type = 'sine';
+                
+                osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
+                osc.frequency.exponentialRampToValueAtTime(1174.66, audioCtx.currentTime + 0.12); // D6
+                
+                osc2.frequency.setValueAtTime(880.00, audioCtx.currentTime); // A5
+                osc2.frequency.exponentialRampToValueAtTime(1760.00, audioCtx.currentTime + 0.12); // A6
+
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+
+                osc.connect(gain);
+                osc2.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc2.start();
+                osc.stop(audioCtx.currentTime + 0.4);
+                osc2.stop(audioCtx.currentTime + 0.4);
+            } catch(e){}
+        }
+
+        // 穿錯編號／方向錯誤時的低沉警示音效 (與成功 chime 明顯區隔，下滑刺耳的方波蜂鳴聲)
+        function playErrorSound() {
+            if (!soundEnabled || !audioCtx) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const osc2 = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'square';
+                osc2.type = 'square';
+
+                osc.frequency.setValueAtTime(240, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(90, audioCtx.currentTime + 0.28);
+
+                osc2.frequency.setValueAtTime(160, audioCtx.currentTime); // 疊加不諧和音，加強警示感
+                osc2.frequency.exponentialRampToValueAtTime(60, audioCtx.currentTime + 0.28);
+
+                gain.gain.setValueAtTime(0.16, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.32);
+
+                osc.connect(gain);
+                osc2.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc2.start();
+                osc.stop(audioCtx.currentTime + 0.34);
+                osc2.stop(audioCtx.currentTime + 0.34);
+            } catch(e){}
+        }
+
+        // 初始化 Three.js 基礎設定
+        function initScene() {
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x010409);
+            scene.fog = new THREE.FogExp2(0x010409, 0.035); 
+
+            clock = new THREE.Clock();
+
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.05, 100);
+            
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.1;
+            container.appendChild(renderer.domElement);
+
+            orbitControls = new THREE.OrbitControls(camera, renderer.domElement);
+            orbitControls.enableDamping = true;
+            orbitControls.dampingFactor = 0.05;
+            orbitControls.maxPolarAngle = Math.PI / 2 - 0.02; // 防止穿透地板
+            orbitControls.enabled = false;
+
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        // 設置賽博空間光源
+        function setupLights() {
+            const ambientLight = new THREE.AmbientLight(0x071510, 1.2);
+            scene.add(ambientLight);
+
+            const hemiLight = new THREE.HemisphereLight(0x10b981, 0x010409, 0.5); // 綠色穹頂光
+            scene.add(hemiLight);
+
+            // 賽事場地對角高對比度投光燈 (紅、藍)
+            const corners = [
+                { x: -1.8, z: -3.3, color: 0xef4444 }, // 紅區角落
+                { x: 1.8, z: -3.3, color: 0xef4444 },
+                { x: -1.8, z: 3.3, color: 0x3b82f6 },  // 藍區角落
+                { x: 1.8, z: 3.3, color: 0x3b82f6 }
+            ];
+
+            corners.forEach(corner => {
+                const poleGeo = new THREE.CylinderGeometry(0.04, 0.08, 3.5, 8);
+                const poleMat = new THREE.MeshStandardMaterial({ color: 0x111827, metalness: 0.9, roughness: 0.1 });
+                const pole = new THREE.Mesh(poleGeo, poleMat);
+                pole.position.set(corner.x, 1.75, corner.z);
+                pole.castShadow = true;
+                scene.add(pole);
+
+                const headGeo = new THREE.SphereGeometry(0.15, 12, 12);
+                const headMat = new THREE.MeshBasicMaterial({ color: corner.color });
+                const head = new THREE.Mesh(headGeo, headMat);
+                head.position.set(corner.x, 3.5, corner.z);
+                scene.add(head);
+
+                const spotLight = new THREE.SpotLight(corner.color, 3.5, 12, Math.PI / 4, 0.5, 1.2);
+                spotLight.position.set(corner.x, 3.5, corner.z);
+                spotLight.target.position.set(corner.x * 0.4, 0, corner.z * 0.4);
+                spotLight.castShadow = true;
+                spotLight.shadow.mapSize.width = 512;
+                spotLight.shadow.mapSize.height = 512;
+                scene.add(spotLight);
+                scene.add(spotLight.target);
+            });
+        }
+
+        // 使用 Canvas 繪製專屬於 6公尺 × 3公尺（長 Z-axis, 寬 X-axis）草綠色對稱發光場地貼圖
+        function createSoccerField() {
+            // 場地地板 (已移除場地圖示與文字標示，保留純色地面待改裝為競速賽道使用)
+            // 建立 3m × 6m 的主場地平面
+            const fieldGeo = new THREE.PlaneGeometry(3, 6);
+            const fieldMat = new THREE.MeshStandardMaterial({
+                color: 0x022c22,
+                roughness: 0.6,
+                metalness: 0.1,
+                side: THREE.DoubleSide
+            });
+
+            const field = new THREE.Mesh(fieldGeo, fieldMat);
+            field.rotation.x = -Math.PI / 2;
+            field.receiveShadow = true;
+            scene.add(field);
+
+            // 外圍深邃大底板
+            const outerGeo = new THREE.PlaneGeometry(60, 60);
+            const outerMat = new THREE.MeshStandardMaterial({
+                color: 0x010204,
+                roughness: 0.95,
+                metalness: 0.5
+            });
+            const outer = new THREE.Mesh(outerGeo, outerMat);
+            outer.rotation.x = -Math.PI / 2;
+            outer.position.y = -0.02;
+            outer.receiveShadow = true;
+            scene.add(outer);
+        }
+
+        // 繪製亮綠色防護格網貼圖 (根據 3fc47b8b-0d54-496f-abc0-0f49a0d9871a.jpg 亮綠色格柵網)
+        function createNetTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 128;
+            canvas.height = 128;
+            const ctx = canvas.getContext('2d');
+            
+            // 網底透明
+            ctx.clearRect(0, 0, 128, 128);
+
+            // 格網線條 - 使用照片中的明亮綠色 (Emerald-Green)
+            ctx.strokeStyle = '#10b981'; 
+            ctx.lineWidth = 4;
+            ctx.strokeRect(0, 0, 128, 128);
+
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.wrapS = THREE.RepeatWrapping;
+            texture.wrapT = THREE.RepeatWrapping;
+            return texture;
+        }
+
+        // 建造完整充氣柱框架與格網 (適配 6m x 3m)
+        function buildInflatableCage() {
+            const cageGroup = new THREE.Group();
+
+            // 1. 保護網 (Netting) 設置
+            const netTex = createNetTexture();
+            const netMat = new THREE.MeshBasicMaterial({
+                map: netTex,
+                transparent: true,
+                opacity: 0.38,
+                side: THREE.DoubleSide,
+                depthWrite: false // 防透明渲染穿透
+            });
+
+            const cageW = 3.0;
+            const cageL = 6.0;
+            const cageH = 3.0;
+
+            // 兩側縱向牆面 (左/右)
+            const sideNetGeo = new THREE.PlaneGeometry(cageL, cageH);
+            const leftNet = new THREE.Mesh(sideNetGeo, netMat);
+            leftNet.position.set(-cageW / 2, cageH / 2, 0);
+            leftNet.rotation.y = Math.PI / 2;
+            netTex.clone(); // 獨立貼圖重複設置
+            leftNet.material = leftNet.material.clone();
+            leftNet.material.map.repeat.set(12, 6);
+            cageGroup.add(leftNet);
+
+            const rightNet = leftNet.clone();
+            rightNet.position.x = cageW / 2;
+            cageGroup.add(rightNet);
+
+            // 前後橫向牆面 (前/後)
+            const frontNetGeo = new THREE.PlaneGeometry(cageW, cageH);
+            const frontNet = new THREE.Mesh(frontNetGeo, netMat);
+            frontNet.position.set(0, cageH / 2, -cageL / 2);
+            frontNet.material = frontNet.material.clone();
+            frontNet.material.map.repeat.set(8, 6);
+            cageGroup.add(frontNet);
+
+            const backNet = frontNet.clone();
+            backNet.position.z = cageL / 2;
+            cageGroup.add(backNet);
+
+            // 頂棚 (Ceiling)
+            const roofNetGeo = new THREE.PlaneGeometry(cageW, cageL);
+            const roofNet = new THREE.Mesh(roofNetGeo, netMat);
+            roofNet.position.set(0, cageH, 0);
+            roofNet.rotation.x = Math.PI / 2;
+            roofNet.material = roofNet.material.clone();
+            roofNet.material.map.repeat.set(8, 12);
+            cageGroup.add(roofNet);
+
+            // 2. 充氣圓柱骨架 (Inflatable Pillars)
+            // 圓角充氣圓管材質
+            const tubeMatWhite = new THREE.MeshStandardMaterial({
+                color: 0xe2e8f0,
+                roughness: 0.15,
+                metalness: 0.1,
+                bumpScale: 0.05
+            });
+            const tubeMatRed = new THREE.MeshStandardMaterial({
+                color: 0xef4444, // 紅區骨架
+                roughness: 0.15,
+                metalness: 0.1
+            });
+            const tubeMatBlue = new THREE.MeshStandardMaterial({
+                color: 0x3b82f6, // 藍區骨架
+                roughness: 0.15,
+                metalness: 0.1
+            });
+
+            const pillarRad = 0.15; // 圓管粗度 30cm
+
+            // 4 根垂直立柱 (4 Corners)
+            const vertGeo = new THREE.CylinderGeometry(pillarRad, pillarRad, cageH, 16);
+            
+            // 紅方 (Z = -3) 的左前/右前立柱
+            const p1 = new THREE.Mesh(vertGeo, tubeMatRed);
+            p1.position.set(-cageW / 2, cageH / 2, -cageL / 2);
+            p1.castShadow = true;
+            cageGroup.add(p1);
+
+            const p2 = p1.clone();
+            p2.position.x = cageW / 2;
+            cageGroup.add(p2);
+
+            // 藍方 (Z = +3) 的左後/右後立柱
+            const p3 = new THREE.Mesh(vertGeo, tubeMatBlue);
+            p3.position.set(-cageW / 2, cageH / 2, cageL / 2);
+            p3.castShadow = true;
+            cageGroup.add(p3);
+
+            const p4 = p3.clone();
+            p4.position.x = cageW / 2;
+            cageGroup.add(p4);
+
+            // 4 根底部橫臥底管 (接縫地板)
+            const horizLongGeo = new THREE.CylinderGeometry(pillarRad, pillarRad, cageL, 16);
+            const horizShortGeo = new THREE.CylinderGeometry(pillarRad, pillarRad, cageW, 16);
+
+            // 縱向底管
+            const bottomLongL = new THREE.Mesh(horizLongGeo, tubeMatWhite);
+            bottomLongL.rotation.x = Math.PI / 2;
+            bottomLongL.position.set(-cageW / 2, pillarRad, 0);
+            bottomLongL.castShadow = true;
+            cageGroup.add(bottomLongL);
+
+            const bottomLongR = bottomLongL.clone();
+            bottomLongR.position.x = cageW / 2;
+            cageGroup.add(bottomLongR);
+
+            // 橫向底管 (紅/藍底線)
+            const bottomShortF = new THREE.Mesh(horizShortGeo, tubeMatRed);
+            bottomShortF.rotation.z = Math.PI / 2;
+            bottomShortF.position.set(0, pillarRad, -cageL / 2);
+            bottomShortF.castShadow = true;
+            cageGroup.add(bottomShortF);
+
+            const bottomShortB = new THREE.Mesh(horizShortGeo, tubeMatBlue);
+            bottomShortB.rotation.z = Math.PI / 2;
+            bottomShortB.position.set(0, pillarRad, cageL / 2);
+            bottomShortB.castShadow = true;
+            cageGroup.add(bottomShortB);
+
+            // 4 根頂部拉接橫管
+            const topLongL = bottomLongL.clone();
+            topLongL.position.y = cageH - pillarRad / 2;
+            cageGroup.add(topLongL);
+
+            const topLongR = bottomLongR.clone();
+            topLongR.position.y = cageH - pillarRad / 2;
+            cageGroup.add(topLongR);
+
+            const topShortF = bottomShortF.clone();
+            topShortF.position.y = cageH - pillarRad / 2;
+            cageGroup.add(topShortF);
+
+            const topShortB = bottomShortB.clone();
+            topShortB.position.y = cageH - pillarRad / 2;
+            cageGroup.add(topShortB);
+
+            scene.add(cageGroup);
+        }
+
+        // 建造測地線球型護籠 (細密網狀結構：高密度細桿交織成球，內部機身清晰可見)，回傳 { group, material }
+        function createDroneCage(radius, colorHex) {
+            const group = new THREE.Group();
+            const material = new THREE.MeshStandardMaterial({
+                color: colorHex,
+                emissive: colorHex,
+                emissiveIntensity: 0.08,
+                metalness: 0.15,
+                roughness: 0.4,
+                transparent: true,
+                opacity: 0.92
+            });
+
+            // 以高階細分二十面體的邊線組成細密的測地線網格 (detail 3 = 密集的小三角網格)
+            const CAGE_DETAIL = 3;
+            const icoGeo = new THREE.IcosahedronGeometry(radius, CAGE_DETAIL);
+            const edgesGeo = new THREE.EdgesGeometry(icoGeo, 1);
+            const posAttr = edgesGeo.attributes.position;
+            const rodRadius = radius * 0.010; // 桿件變得非常細，形成通透的細網而非厚重護籠
+
+            const rodGeometries = [];
+            const p1 = new THREE.Vector3();
+            const p2 = new THREE.Vector3();
+            const mid = new THREE.Vector3();
+            const dir = new THREE.Vector3();
+            const quat = new THREE.Quaternion();
+            const up = new THREE.Vector3(0, 1, 0);
+            const matrix = new THREE.Matrix4();
+
+            for (let i = 0; i < posAttr.count; i += 2) {
+                p1.fromBufferAttribute(posAttr, i);
+                p2.fromBufferAttribute(posAttr, i + 1);
+                dir.subVectors(p2, p1);
+                const len = dir.length();
+                if (len < 1e-6) continue;
+                mid.addVectors(p1, p2).multiplyScalar(0.5);
+                quat.setFromUnitVectors(up, dir.clone().normalize());
+                matrix.compose(mid, quat, new THREE.Vector3(1, 1, 1));
+
+                const rodGeo = new THREE.CylinderGeometry(rodRadius, rodRadius, len, 5, 1);
+                rodGeo.applyMatrix4(matrix);
+                rodGeometries.push(rodGeo);
+            }
+
+            // 合併所有細桿為單一幾何體，避免數百個獨立網格拖累效能
+            let cageMesh;
+            if (THREE.BufferGeometryUtils && rodGeometries.length) {
+                const mergedGeo = THREE.BufferGeometryUtils.mergeBufferGeometries(rodGeometries, false);
+                cageMesh = new THREE.Mesh(mergedGeo, material);
+                cageMesh.castShadow = true;
+                group.add(cageMesh);
+                rodGeometries.forEach(g => g.dispose());
+            } else {
+                // 後備方案：若合併工具不可用，退回逐一建立網格
+                rodGeometries.forEach(g => {
+                    const mesh = new THREE.Mesh(g, material);
+                    mesh.castShadow = true;
+                    group.add(mesh);
+                });
+            }
+
+            icoGeo.dispose();
+            edgesGeo.dispose();
+
+            return { group, material };
+        }
+
+        // 建造機尾閃爍警示燈（固定安裝於機身本體正後方，而非護籠上，鮮紅色快閃，讓操作者一眼判別機尾/機頭朝向）
+        function createTailBeacon() {
+            const group = new THREE.Group();
+
+            // 尾桿：水平向後延伸的細長支架（沿 -Z 方向），讓燈座清楚凸出於護籠外殼之外
+            const finLength = 0.07;
+            const finGeo = new THREE.BoxGeometry(0.014, 0.014, finLength);
+            const finMat = new THREE.MeshStandardMaterial({ color: 0x111827, metalness: 0.6, roughness: 0.45 });
+            const fin = new THREE.Mesh(finGeo, finMat);
+            fin.position.set(0, 0.02, -finLength / 2); // 由機身背面沿水平方向向後伸出
+            fin.castShadow = true;
+            group.add(fin);
+
+            // 燈座位置：位於水平尾桿的末端（機身正後方）
+            const beaconPos = new THREE.Vector3(0, 0.02, -finLength);
+
+            // 高亮紅色燈珠本體
+            const baseColor = new THREE.Color(0xff1a1a);
+            const beaconGeo = new THREE.SphereGeometry(0.022 / 3, 12, 12);
+            const beaconMat = new THREE.MeshBasicMaterial({ color: baseColor.clone() });
+            beaconMat.userData.baseColor = baseColor;
+            const beacon = new THREE.Mesh(beaconGeo, beaconMat);
+            beacon.position.copy(beaconPos);
+            group.add(beacon);
+
+            // 光暈效果：以多層半透明疊加球體 + 疊加混合模擬柔光暈染，讓燈珠在暗處更加醒目突出
+            const haloLayers = [
+                { scale: 2.4, opacity: 0.4 },
+                { scale: 4.0, opacity: 0.2 },
+                { scale: 6.0, opacity: 0.09 }
+            ];
+            const haloMats = [];
+            haloLayers.forEach(layer => {
+                const haloGeo = new THREE.SphereGeometry((0.022 / 3) * layer.scale, 10, 10);
+                const haloMat = new THREE.MeshBasicMaterial({
+                    color: baseColor.clone(),
+                    transparent: true,
+                    opacity: layer.opacity,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false
+                });
+                const halo = new THREE.Mesh(haloGeo, haloMat);
+                halo.position.copy(beaconPos);
+                group.add(halo);
+                haloMats.push(haloMat);
+            });
+            beaconMat.userData.haloMats = haloMats;
+
+            // 搭配點光源，讓機尾燈在暗處也十分醒目
+            const beaconLight = new THREE.PointLight(0xff1a1a, 2.2, 1.1, 2);
+            beaconLight.position.copy(beaconPos);
+            group.add(beaconLight);
+
+            return { group, beaconMat, beaconLight };
+        }
+
+        // 機尾燈固定常亮（不閃爍，避免操作者分心），僅在建立時設定一次即可
+        function updateTailBeacon(beaconMat, beaconLight) {
+            if (!beaconMat) return;
+            beaconMat.color.copy(beaconMat.userData.baseColor);
+            if (beaconLight) beaconLight.intensity = 1.2;
+        }
+
+        // 建造精密縮小版高科技無人機 (體積減小，動作在小球場更精緻靈活；整體以20公分球型護籠包覆)
+        function buildDrone() {
+            const droneGroup = new THREE.Group();
+            const innerGroup = new THREE.Group(); // 內部機構整組縮小，包覆於20公分球型護籠內
+            const INNER_SCALE = 0.23;
+
+            // 1. 微型中控主機
+            const bodyGeo = new THREE.BoxGeometry(0.24, 0.08, 0.24);
+            const bodyMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.9, roughness: 0.1 });
+            const body = new THREE.Mesh(bodyGeo, bodyMat);
+            body.castShadow = true;
+            innerGroup.add(body);
+
+            // 2. 亮藍色半透明科技艙蓋
+            const canopyGeo = new THREE.SphereGeometry(0.09, 16, 16);
+            canopyGeo.scale(1, 0.5, 1.2);
+            const canopyMat = new THREE.MeshStandardMaterial({ color: 0x10b981, emissive: 0x047857, roughness: 0.05, metalness: 0.9 });
+            const canopy = new THREE.Mesh(canopyGeo, canopyMat);
+            canopy.position.y = 0.06;
+            canopy.position.z = 0.015;
+            canopy.castShadow = true;
+            innerGroup.add(canopy);
+
+            // 3. 前向航行攝像頭鏡頭 (綠光)
+            const lensGeo = new THREE.SphereGeometry(0.035, 12, 12);
+            const lensMat = new THREE.MeshBasicMaterial({ color: 0x10b981 });
+            const lens = new THREE.Mesh(lensGeo, lensMat);
+            lens.position.set(0, 0, 0.135);
+            innerGroup.add(lens);
+
+            // 4. 四個微型對角機臂
+            const armAngle = Math.PI / 4;
+            const armDist = 0.28;
+            const armPositions = [
+                { x: Math.sin(armAngle) * armDist, z: Math.cos(armAngle) * armDist, color: 0x10b981 }, // 右前 (綠)
+                { x: -Math.sin(armAngle) * armDist, z: Math.cos(armAngle) * armDist, color: 0x10b981 }, // 左前 (綠)
+                { x: Math.sin(armAngle) * armDist, z: -Math.cos(armAngle) * armDist, color: 0xef4444 }, // 右後 (紅)
+                { x: -Math.sin(armAngle) * armDist, z: -Math.cos(armAngle) * armDist, color: 0xef4444 }  // 左後 (紅)
+            ];
+
+            armPositions.forEach((pos, idx) => {
+                const armGeo = new THREE.CylinderGeometry(0.018, 0.018, armDist, 8);
+                const armMat = new THREE.MeshStandardMaterial({ color: 0x334155, metalness: 0.95, roughness: 0.1 });
+                const arm = new THREE.Mesh(armGeo, armMat);
+                arm.rotation.z = Math.PI / 2;
+                arm.rotation.y = (idx === 0 || idx === 3) ? -armAngle : armAngle;
+                arm.position.set(pos.x / 2, 0, pos.z / 2);
+                arm.castShadow = true;
+                innerGroup.add(arm);
+
+                // 電機馬達
+                const motorGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.08, 8);
+                const motorMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.2 });
+                const motor = new THREE.Mesh(motorGeo, motorMat);
+                motor.position.set(pos.x, 0.02, pos.z);
+                motor.castShadow = true;
+                innerGroup.add(motor);
+
+                // 旋翼組件
+                const rotorGroup = new THREE.Group();
+                rotorGroup.position.set(pos.x, 0.05, pos.z);
+                
+                const shaftGeo = new THREE.CylinderGeometry(0.006, 0.006, 0.03, 8);
+                const shaftMat = new THREE.MeshStandardMaterial({ color: 0x000000 });
+                const shaft = new THREE.Mesh(shaftGeo, shaftMat);
+                rotorGroup.add(shaft);
+
+                const bladeGeo = new THREE.BoxGeometry(0.018, 0.003, 0.22);
+                const bladeMat = new THREE.MeshStandardMaterial({ color: 0xf1f5f9, transparent: true, opacity: 0.85 });
+                const blade = new THREE.Mesh(bladeGeo, bladeMat);
+                blade.castShadow = true;
+                rotorGroup.add(blade);
+
+                innerGroup.add(rotorGroup);
+                drone.rotors.push(rotorGroup);
+
+                // 微型閃爍LED
+                const ledGeo = new THREE.SphereGeometry(0.02, 8, 8);
+                const ledMat = new THREE.MeshBasicMaterial({ color: pos.color });
+                const led = new THREE.Mesh(ledGeo, ledMat);
+                led.position.set(pos.x, -0.02, pos.z);
+                innerGroup.add(led);
+                drone.lights.push({ mesh: led, originalColor: pos.color });
+            });
+
+            innerGroup.scale.setScalar(INNER_SCALE);
+            droneGroup.add(innerGroup);
+
+            // 5. 足球狀測地線球型護籠 (外徑20公分，符合真實無人機足球規格)
+            const { group: cageGroup } = createDroneCage(DRONE_CAGE_RADIUS, 0x10b981);
+            droneGroup.add(cageGroup);
+
+            // 5b. 機尾閃爍警示燈（緊貼中控主機機身背面，方便辨識機頭/機尾朝向）
+            const { group: tailGroup, beaconMat: tailBeaconMat, beaconLight: tailBeaconLight } = createTailBeacon();
+            tailGroup.position.set(0, 0, -0.045); // 緊貼中控主機機身背面 (body 深度 0.24 * INNER_SCALE 0.23 之外緣再留一點間距)
+            droneGroup.add(tailGroup);
+            drone.tailBeaconMat = tailBeaconMat;
+            drone.tailBeaconLight = tailBeaconLight;
+            updateTailBeacon(drone.tailBeaconMat, drone.tailBeaconLight);
+
+            // 底部雷射測距定高光束 (置於球體底部)
+            const glowY = -DRONE_CAGE_RADIUS * 0.9;
+            const bottomLight = new THREE.SpotLight(0x00ffcc, 5.0, 4, Math.PI / 6, 0.4, 0.9);
+            bottomLight.position.set(0, glowY, 0);
+            bottomLight.castShadow = true;
+            const lightTarget = new THREE.Object3D();
+            lightTarget.position.set(0, -3, 0);
+            bottomLight.add(lightTarget);
+            bottomLight.target = lightTarget;
+            droneGroup.add(bottomLight);
+
+            const bottomGlowGeo = new THREE.SphereGeometry(0.015, 8, 8);
+            const bottomGlowMat = new THREE.MeshBasicMaterial({ color: 0x00ffcc });
+            const bottomGlow = new THREE.Mesh(bottomGlowGeo, bottomGlowMat);
+            bottomGlow.position.set(0, glowY, 0);
+            droneGroup.add(bottomGlow);
+
+            droneGroup.position.copy(drone.position);
+            scene.add(droneGroup);
+            drone.mesh = droneGroup;
+        }
+
+        // 產生爆破粒子效果
+        function createExplosion(position, colorHex) {
+            const particleCount = 30;
+            const geo = new THREE.SphereGeometry(0.03, 6, 6);
+            
+            for (let i = 0; i < particleCount; i++) {
+                const mat = new THREE.MeshBasicMaterial({
+                    color: colorHex,
+                    transparent: true,
+                    opacity: 1.0
+                });
+                const mesh = new THREE.Mesh(geo, mat);
+                mesh.position.copy(position);
+                
+                const velocity = new THREE.Vector3(
+                    (Math.random() - 0.5) * 6,
+                    (Math.random() - 0.5) * 6,
+                    (Math.random() - 0.5) * 6
+                );
+                
+                scene.add(mesh);
+                particles.push({
+                    mesh: mesh,
+                    velocity: velocity,
+                    life: 1.0,
+                    decay: 0.02 + Math.random() * 0.03
+                });
+            }
+        }
+
+        // 產生尾跡粒子
+        function spawnTrailParticle(pos) {
+            const geo = new THREE.BoxGeometry(0.015, 0.015, 0.015);
+            const mat = new THREE.MeshBasicMaterial({
+                color: 0x10b981,
+                transparent: true,
+                opacity: 0.8
+            });
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.position.copy(pos).add(new THREE.Vector3((Math.random()-0.5)*0.1, -0.02, (Math.random()-0.5)*0.1));
+            
+            scene.add(mesh);
+            particles.push({
+                mesh: mesh,
+                velocity: new THREE.Vector3(0, -0.8 - Math.random() * 0.8, 0),
+                life: 0.5,
+                decay: 0.05
+            });
+        }
+
+        function updateParticles(delta) {
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.mesh.position.addScaledVector(p.velocity, delta);
+                p.life -= p.decay;
+                p.mesh.material.opacity = p.life;
+                p.mesh.scale.setScalar(p.life);
+
+                if (p.life <= 0) {
+                    scene.remove(p.mesh);
+                    p.mesh.geometry.dispose();
+                    p.mesh.material.dispose();
+                    particles.splice(i, 1);
+                }
+            }
+        }
+
+        // 鍵盤控制監聽
+        // ==================== 九宮格穿越計時賽：關卡系統 ====================
+
+        // 建造九宮格實體格柵 (固定不動，與關卡選擇無關，僅需在啟動時建立一次)：
+        // 由 4 根縱向框邊 + 4 根橫向框邊組成大外框(1.8m x 1.8m x 0.05m厚)與內部格柵，
+        // 剛好圍出 9 個 0.6m x 0.6m 的小正方形框。所有框邊皆為世界座標軸對齊的長方體，
+        // 同時記錄每根框邊的包圍盒 (AABB) 供無人機碰撞偵測使用。
+        function buildGridFrame() {
+            const frameGroup = new THREE.Group();
+            const beamMat = new THREE.MeshStandardMaterial({
+                color: 0xcbd5e1, emissive: 0x0891b2, emissiveIntensity: 0.35,
+                metalness: 0.85, roughness: 0.25
+            });
+            const halfSpan = (CELL_SIZE * 3) / 2; // 1.8 / 2 = 0.9
+            const gridLines = [-halfSpan, -halfSpan / 3, halfSpan / 3, halfSpan]; // -0.9, -0.3, 0.3, 0.9
+
+            // 4 根縱向框邊 (沿 Y 軸延伸，分隔各欄)
+            gridLines.forEach(x => {
+                const geo = new THREE.BoxGeometry(BEAM_THICK, CELL_SIZE * 3, BEAM_THICK);
+                const beam = new THREE.Mesh(geo, beamMat);
+                beam.position.set(x, GRID_CENTER_Y, GRID_WALL_Z);
+                beam.castShadow = true;
+                frameGroup.add(beam);
+                GRID_BEAMS.push({
+                    min: new THREE.Vector3(x - BEAM_THICK / 2, GRID_CENTER_Y - halfSpan, GRID_WALL_Z - BEAM_THICK / 2),
+                    max: new THREE.Vector3(x + BEAM_THICK / 2, GRID_CENTER_Y + halfSpan, GRID_WALL_Z + BEAM_THICK / 2)
+                });
+            });
+
+            // 4 根橫向框邊 (沿 X 軸延伸，分隔各列)
+            gridLines.forEach(y => {
+                const geo = new THREE.BoxGeometry(CELL_SIZE * 3, BEAM_THICK, BEAM_THICK);
+                const beam = new THREE.Mesh(geo, beamMat);
+                beam.position.set(0, GRID_CENTER_Y + y, GRID_WALL_Z);
+                beam.castShadow = true;
+                frameGroup.add(beam);
+                GRID_BEAMS.push({
+                    min: new THREE.Vector3(-halfSpan, GRID_CENTER_Y + y - BEAM_THICK / 2, GRID_WALL_Z - BEAM_THICK / 2),
+                    max: new THREE.Vector3(halfSpan, GRID_CENTER_Y + y + BEAM_THICK / 2, GRID_WALL_Z + BEAM_THICK / 2)
+                });
+            });
+
+            // 兩側裝飾用立柱，讓九宮格看起來穩固地立於場地中央 (純視覺，不參與碰撞)
+            const legMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.7, roughness: 0.3 });
+            [-halfSpan, halfSpan].forEach(x => {
+                const legGeo = new THREE.CylinderGeometry(0.02, 0.02, GRID_CENTER_Y - halfSpan, 8);
+                const leg = new THREE.Mesh(legGeo, legMat);
+                leg.position.set(x, (GRID_CENTER_Y - halfSpan) / 2, GRID_WALL_Z);
+                leg.castShadow = true;
+                frameGroup.add(leg);
+            });
+
+            scene.add(frameGroup);
+        }
+
+        // 在 canvas 上畫出序號徽章：未通過時依方向規則區分底色 —
+        // 奇數(1,3,5,7,9・由前向後)為紅底，偶數(2,4,6,8・由後向前)為橙底；
+        // 正確依序通過後，不分奇偶一律轉為綠底。
+        // 一律畫成「正常、不鏡像」；鏡像與否交由徽章平面自身的 3D 朝向決定
+        // （平面法線固定朝向各自的入口方向，從入口方向看是正常字，從相反方向看因為
+        // 是同一塊平面的背面，會自然呈現鏡像效果——不是預先燒錄的固定鏡像圖）
+        function drawNumberBadge(ctx, number, passed) {
+            ctx.clearRect(0, 0, 64, 64);
+            const unpassedColor = (number % 2 === 0) ? '#f97316' : '#ef4444'; // 偶數橙底／奇數紅底
+            ctx.fillStyle = passed ? '#10b981' : unpassedColor;
+            ctx.beginPath();
+            ctx.arc(32, 32, 27, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = '#ffffff';
+            ctx.stroke();
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 28px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(String(number), 32, 34);
+        }
+
+        // ==================== 序號牌擺放規則 ====================
+        // 序號牌固定貼在小宮格正中央（與該宮格中心同一個座標），呈半透明狀，
+        // 不需要額外的高度/前後偏移計算。
+        function computeBadgePosition(ob) {
+            return ob.posVec.clone();
+        }
+
+        // 建立漂浮在宮格開口正中央的序號牌 (size 決定邊長；貼在宮格中心)
+        // 用有朝向的平面（非永遠面向攝影機的 Sprite）：平面法線固定朝向該宮格的入口方向，
+        // 釘死在世界座標上，不會跟著攝影機轉。從入口方向（正確穿越方向的起始側）
+        // 看永遠是正常數字；從錯誤方向看則因為是同一塊平面的背面，會自然呈現鏡像效果，
+        // 直覺地提示玩家方向錯誤——這是同一塊平面正反兩面的自然結果，不是額外邏輯判斷出來的
+        function createNumberPlane(number, size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 64;
+            canvas.height = 64;
+            const ctx = canvas.getContext('2d');
+            drawNumberBadge(ctx, number, false);
+
+            const texture = new THREE.CanvasTexture(canvas);
+            const geo = new THREE.PlaneGeometry(size, size);
+            const mat = new THREE.MeshBasicMaterial({ map: texture, transparent: true, side: THREE.DoubleSide });
+            const plane = new THREE.Mesh(geo, mat);
+            plane.userData.canvas = canvas;
+            plane.userData.ctx = ctx;
+            plane.userData.number = number;
+            plane.userData.texture = texture;
+            return plane;
+        }
+
+        // 建立單一宮格的序號牌（紅色小圓圈圖示，位於小宮格正中央；orderNumber 為 1-9 的通關順序）
+        function buildGateBadge(ob, orderNumber) {
+            // 小圓圈尺寸：明顯小於 0.6m 的宮格開口，符合「小圓圈圖示」的規格
+            const badgeSize = CELL_SIZE * 0.32;
+            const numberPlane = createNumberPlane(orderNumber, badgeSize);
+            numberPlane.position.copy(computeBadgePosition(ob));
+            // 平面法線固定朝向「正確入口方向」：dir=1(由前向後) 入口在 -Z，法線需朝 -Z，故繞Y軸轉180度；
+            // dir=-1(由後向前) 入口在 +Z，法線維持預設的 +Z，不需旋轉。
+            // 如此一來，玩家從正確方向接近時看到的永遠是正常數字；從錯誤方向看則會是鏡像，
+            // 直覺地提示「這裡該從另一側穿越」。
+            numberPlane.rotation.y = (ob.dir === 1) ? Math.PI : 0;
+            scene.add(numberPlane);
+            ob.numberSprite = numberPlane;
+        }
+
+        // 清除場上所有序號牌 (九宮格框體本身固定不變，不需清除)
+        function clearObstacles() {
+            currentGates.forEach(ob => {
+                if (ob.numberSprite) { scene.remove(ob.numberSprite); ob.numberSprite.material.map.dispose(); ob.numberSprite.material.dispose(); }
+            });
+            currentGates = [];
+        }
+
+        // 依序正確穿越後：紅牌轉為綠牌
+        function markGateCleared(ob) {
+            drawNumberBadge(ob.numberSprite.userData.ctx, ob.numberSprite.userData.number, true);
+            ob.numberSprite.userData.texture.needsUpdate = true;
+        }
+
+        // 重置單一宮格的序號牌為未通過的紅牌狀態
+        function resetGateBadge(ob) {
+            drawNumberBadge(ob.numberSprite.userData.ctx, ob.numberSprite.userData.number, false);
+            ob.numberSprite.userData.texture.needsUpdate = true;
+        }
+
+        // 載入指定關卡：依該關的序號/方向配置在 9 個固定宮格上放置序號牌，重置無人機到起點、重置計時與進度
+        function loadLevel(levelId) {
+            const def = LEVEL_DEFS[levelId];
+            if (!def) return;
+            clearObstacles();
+            currentLevelId = levelId;
+
+            def.sequence.forEach((g, idx) => {
+                const badgeNumber = idx + 1;
+                // 固定規則：奇數編號(1,3,5,7,9)由前向後；偶數編號(2,4,6,8)由後向前
+                const dir = (badgeNumber % 2 === 1) ? 1 : -1;
+                const ob = {
+                    cellIdx: g.cell, dir: dir,
+                    posVec: cellCenter(g.cell),
+                    passed: false, prevZ: undefined, collisionCooldown: -99
+                };
+                buildGateBadge(ob, badgeNumber);
+                currentGates.push(ob);
+            });
+
+            totalGates = currentGates.length;
+            gatesPassed = 0;
+            nextExpectedGateIndex = 0;
+            penaltySeconds = 0;
+            raceElapsedMs = 0;
+            raceState = 'idle';
+
+            drone.position.copy(HOME_POS);
+            drone.velocity.set(0, 0, 0);
+            drone.rotation.set(0, 0, 0);
+            drone.currentPitch = 0;
+            drone.currentRoll = 0;
+            drone.currentYawRate = 0;
+            drone.input.throttle = 0.0;
+            drone.targetAltitude = 0.10;
+            drone.autoFlightState = 'none';
+
+            document.getElementById('raceLevelName').innerText = def.name;
+            updateHUD();
+            showSystemNotification(`已載入 ${def.name} - 起飛即開始計時`);
+        }
+
+        // 每幀檢查無人機是否撞到九宮格的實體框邊，若撞到則推開並反彈，而非直接穿透
+        // (九宮格框邊固定不動、世界座標軸對齊，故以球體 vs. 長方體(AABB) 的最近點碰撞即可)
+        function updateWallCollision() {
+            if (!drone.mesh) return;
+            const droneR = DRONE_CAGE_RADIUS;
+            const buffer = 0.02; // 額外碰撞緩衝
+            const nowT = clock.getElapsedTime();
+            const p = drone.position;
+
+            GRID_BEAMS.forEach((beam, beamIdx) => {
+                // 找出無人機中心在此長方體上的最近點
+                const nx = Math.min(Math.max(p.x, beam.min.x), beam.max.x);
+                const ny = Math.min(Math.max(p.y, beam.min.y), beam.max.y);
+                const nz = Math.min(Math.max(p.z, beam.min.z), beam.max.z);
+                const dx = p.x - nx, dy = p.y - ny, dz = p.z - nz;
+                const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+                const minDist = droneR + buffer;
+
+                if (dist < minDist) {
+                    const invDist = dist > 0.0001 ? 1 / dist : 0;
+                    // 若無人機中心剛好落在框邊內部 (dist=0，極少發生)，退而以最靠近的軸向推出
+                    const normal = dist > 0.0001
+                        ? new THREE.Vector3(dx * invDist, dy * invDist, dz * invDist)
+                        : new THREE.Vector3(0, 0, p.z >= GRID_WALL_Z ? 1 : -1);
+
+                    const overlap = minDist - dist;
+                    drone.position.addScaledVector(normal, overlap);
+
+                    const vDotN = drone.velocity.dot(normal);
+                    if (vDotN < 0) {
+                        const restitution = 0.6;
+                        drone.velocity.addScaledVector(normal, -(1 + restitution) * vDotN);
+                    }
+                    drone.velocity.multiplyScalar(0.92); // 額外阻尼，避免反覆震盪
+
+                    if (nowT - (beam.collisionCooldown || -99) > 0.6) {
+                        beam.collisionCooldown = nowT;
+                        createExplosion(drone.position.clone(), 0xfacc15);
+                        showSystemNotification("撞擊宮格框邊！請對準小方框開口穿越");
+                    }
+                }
+            });
+        }
+
+        // 每幀檢查每個宮格是否被穿越：
+        //   - 若是目前應穿越的宮格(nextExpectedGateIndex)，須符合該編號規定的方向才算通過；方向錯誤僅提示、不計入。
+        //   - 若是「非目前應穿越」的宮格，不論由前向後或由後向前穿越，只要穿過開口就一律視為「穿錯編號」，
+        //     不需符合該宮格原本設定的方向。
+        function updateGates() {
+            if (!drone.mesh) return;
+            currentGates.forEach((ob, idx) => {
+                if (ob.passed) return;
+                const lx = drone.position.x - ob.posVec.x;
+                const ly = drone.position.y - ob.posVec.y;
+                const curZ = drone.position.z;
+                const inOpening = Math.abs(lx) < HALF_OPEN && Math.abs(ly) < HALF_OPEN;
+
+                if (ob.prevZ === undefined) ob.prevZ = curZ;
+                // 偵測「任何方向」的穿越 (由前向後 或 由後向前 皆算一次穿越事件)
+                const crossedForward = ob.prevZ <= GRID_WALL_Z && curZ > GRID_WALL_Z;
+                const crossedBackward = ob.prevZ >= GRID_WALL_Z && curZ < GRID_WALL_Z;
+                const crossedAny = crossedForward || crossedBackward;
+                // 该次穿越是否符合此宮格編號規定的方向 (奇數由前向後／偶數由後向前)
+                const matchesAssignedDir = ob.dir === 1 ? crossedForward : crossedBackward;
+
+                if (crossedAny && inOpening) {
+                    if (idx !== nextExpectedGateIndex) {
+                        // 穿錯編號：不論方向為何，一律扣除「前一個」已完成的編號，退回未穿越(紅/橙牌)狀態
+                        if (nextExpectedGateIndex > 0) {
+                            const prevOb = currentGates[nextExpectedGateIndex - 1];
+                            prevOb.passed = false;
+                            resetGateBadge(prevOb);
+                            nextExpectedGateIndex--;
+                            gatesPassed = Math.max(0, gatesPassed - 1);
+                            playErrorSound();
+                            showBigFeedback(`✗ 穿錯編號！第 ${nextExpectedGateIndex + 1} 號已扣除`, 'error');
+                            showSystemNotification(`穿錯編號！第 ${nextExpectedGateIndex + 1} 號已扣除，退回未穿越，請重新依序穿越`);
+                        } else {
+                            playErrorSound();
+                            showBigFeedback(`✗ 順序錯誤！請先穿越第 ${nextExpectedGateIndex + 1} 號`, 'error');
+                            showSystemNotification(`順序錯誤！請先穿越第 ${nextExpectedGateIndex + 1} 號宮格`);
+                        }
+                    } else if (matchesAssignedDir) {
+                        ob.passed = true;
+                        nextExpectedGateIndex++;
+                        gatesPassed++;
+                        playChimeSound();
+                        createExplosion(ob.posVec.clone(), 0x10b981);
+                        markGateCleared(ob);
+                        showBigFeedback(`✓ 第 ${idx + 1} 號 穿越成功！`, 'success');
+                        showSystemNotification(`穿越成功！(${gatesPassed}/${totalGates})`);
+                    } else {
+                        playErrorSound();
+                        showBigFeedback(`✗ 方向錯誤！第 ${idx + 1} 號須${ob.dir === 1 ? '由前向後' : '由後向前'}`, 'error');
+                        showSystemNotification(`方向錯誤！第 ${idx + 1} 號宮格須${ob.dir === 1 ? '由前向後' : '由後向前'}穿越`);
+                    }
+                }
+                ob.prevZ = curZ;
+            });
+        }
+
+        // 降落規則（固定規則）：無論是否已完成全部 9 個宮格，只要無人機降落在地面(任何位置)，
+        // 即立即停止計時、結束比賽。已完成全部宮格則視為過關，否則視為中途出局。
+        function checkRaceFinish() {
+            if (raceState !== 'racing') return;
+            const speed = drone.velocity.length();
+            if (drone.position.y < 0.15 && speed < 0.3) {
+                finishRace();
+            }
+        }
+
+        function finishRace() {
+            raceState = 'finished';
+            raceElapsedMs = performance.now() - raceStartTime;
+            const totalSec = (raceElapsedMs / 1000) + penaltySeconds;
+            const cleared = nextExpectedGateIndex >= totalGates; // 必須依序穿越全部 9 個宮格才算過關
+
+            document.getElementById('finishLevelName').innerText = LEVEL_DEFS[currentLevelId].name;
+            document.getElementById('finishTime').innerText = totalSec.toFixed(1);
+            document.getElementById('finishGates').innerText = `${gatesPassed} / ${totalGates}`;
+            document.getElementById('finishPenalty').innerText = penaltySeconds.toFixed(0);
+
+            const titleEl = document.getElementById('finishTitle');
+            const iconEl = document.getElementById('finishIcon');
+            const hintEl = document.getElementById('finishHint');
+            const nextBtn = document.getElementById('btnNextLevel');
+            const hasNextLevel = !!LEVEL_DEFS[currentLevelId + 1];
+
+            if (cleared) {
+                titleEl.innerText = '關卡完成！';
+                titleEl.className = 'text-2xl font-extrabold text-yellow-300 tracking-wider mb-1';
+                iconEl.innerHTML = '<i class="fa-solid fa-flag-checkered"></i>';
+                iconEl.className = 'flex justify-center mb-4 text-yellow-400 text-5xl';
+                hintEl.innerText = '';
+                hintEl.classList.add('hidden');
+                showSystemNotification(`關卡完成！總時間 ${totalSec.toFixed(1)} 秒`);
+                if (hasNextLevel) {
+                    nextBtn.classList.remove('hidden');
+                } else {
+                    nextBtn.classList.add('hidden');
+                }
+            } else {
+                titleEl.innerText = '違規出局';
+                titleEl.className = 'text-2xl font-extrabold text-rose-400 tracking-wider mb-1';
+                iconEl.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+                iconEl.className = 'flex justify-center mb-4 text-rose-400 text-5xl';
+                hintEl.innerText = '尚未依序穿越全部 9 個宮格即降落，已違規出局，比賽終止';
+                hintEl.classList.remove('hidden');
+                showSystemNotification(`尚未完成全部宮格即降落，違規出局 (${gatesPassed}/${totalGates})`);
+                nextBtn.classList.add('hidden');
+            }
+
+            const finishScreen = document.getElementById('finishScreen');
+            finishScreen.classList.remove('hidden');
+            finishScreen.classList.add('flex');
+        }
+
+        // ==================== 九宮格穿越計時賽：關卡系統結束 ====================
+
+        // 靜音切換（按鈕與鍵盤 M 鍵共用）
+        function toggleSound() {
+            const btn = document.getElementById('btnSound');
+            const icon = btn.querySelector('i');
+
+            soundEnabled = !soundEnabled;
+
+            if (soundEnabled) {
+                initAudio();
+                if (audioCtx && audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                icon.className = 'fa-solid fa-volume-high text-sm';
+                btn.classList.add('text-emerald-400');
+                showSystemNotification("馬達物理聲音：開啟");
+            } else {
+                icon.className = 'fa-solid fa-volume-xmark text-sm';
+                btn.classList.remove('text-emerald-400');
+                showSystemNotification("馬達物理聲音：靜音");
+            }
+        }
+
+        function setupKeyboard() {
+            window.addEventListener('keydown', (e) => {
+                const key = e.key.toLowerCase();
+                if (key in keys) {
+                    keys[key] = true;
+                    // Ctrl 鍵務必立即 preventDefault：部分瀏覽器/系統會把修飾鍵解讀為
+                    // 快捷鍵起手式，若不攔截，網頁可能瞬間失去鍵盤焦點，
+                    // 導致之後所有按鍵（包含同時按下的 W）看起來像「沒有反應」。
+                    if (key === ' ' || key === 'control' || key.startsWith('arrow')) e.preventDefault();
+                }
+                
+                // 按下 W/S 或 Space／Ctrl 僅顯示一次提示，實際連續升降改在 updateDronePhysics() 內以 delta time 平滑處理
+                // W/S：對應左搖桿油門邏輯（向上=增加動力上升，向下=減少動力下降）
+                if (key === 'w' && !e.repeat) {
+                    drone.autoFlightState = 'none';
+                    showSystemNotification("按住 W 持續上升，放開定高懸停");
+                }
+                if (key === 's' && !e.repeat) {
+                    drone.autoFlightState = 'none';
+                    showSystemNotification("按住 S 持續下降，放開定高懸停");
+                }
+
+                if (key === ' ' && !e.repeat) {
+                    drone.autoFlightState = 'none';
+                    showSystemNotification("按住 Space 持續上升，放開停止");
+                }
+
+                // 原本使用 Alt，但單獨按下 Alt 容易被瀏覽器/作業系統解讀為「開啟選單列/視窗選單」，
+                // 導致網頁瞬間失去鍵盤焦點；改用 Ctrl 並自行 preventDefault 可避免這個衝突
+                if (key === 'control' && !e.repeat) {
+                    drone.autoFlightState = 'none';
+                    showSystemNotification("按住 Ctrl 持續下降，放開停止");
+                }
+                
+                if (key === 'c') cycleCameraMode();
+                if (key === 't') triggerTakeoff();
+                if (key === 'l') triggerLanding();
+                if (key === 'r') resetGame();
+                if (key === 'm') toggleSound();
+            });
+
+            window.addEventListener('keyup', (e) => {
+                const key = e.key.toLowerCase();
+                if (key in keys) {
+                    keys[key] = false;
+                    if (key === 'control') e.preventDefault(); // 同樣攔截 keyup，避免瀏覽器事後補觸發選單焦點跳轉
+                    if (key === ' ' || key === 'control' || key === 'w' || key === 's') {
+                        showSystemNotification(`定高調整完成：${drone.targetAltitude.toFixed(2)} 米`);
+                    }
+                }
+            });
+        }
+
+        // 一鍵起飛：自動控制 PD 至 1.5 米並懸停
+        function triggerTakeoff() {
+            if (drone.position.y < 0.15) {
+                drone.targetAltitude = 1.5;
+                drone.autoFlightState = 'takingoff';
+
+                if (currentLevelId !== null) {
+                    // 每次起飛都視為全新一次計時挑戰：計時、罰時、障礙進度、通過順序全部歸零重來
+                    raceState = 'racing';
+                    raceStartTime = performance.now();
+                    raceElapsedMs = 0;
+                    penaltySeconds = 0;
+                    gatesPassed = 0;
+                    nextExpectedGateIndex = 0;
+                    currentGates.forEach(ob => {
+                        ob.passed = false;
+                        ob.prevZ = undefined;
+                        resetGateBadge(ob);
+                    });
+
+                    const finishScreen = document.getElementById('finishScreen');
+                    if (finishScreen && !finishScreen.classList.contains('hidden')) {
+                        finishScreen.classList.add('hidden');
+                        finishScreen.classList.remove('flex');
+                    }
+
+                    showSystemNotification("計時開始！自動駕駛：起飛中...");
+                } else {
+                    showSystemNotification("自動駕駛：起飛中... 攀升至 1.5m 定高");
+                }
+            } else {
+                showSystemNotification("無法起飛：已在空中懸停");
+            }
+        }
+
+        // 一鍵降落：自動降落至 0.1 米中心並熄火
+        function triggerLanding() {
+            if (drone.position.y > 0.15) {
+                drone.targetAltitude = 0.1;
+                drone.autoFlightState = 'landing';
+                showSystemNotification("自動駕駛：降落中... 緩緩下降中");
+            } else {
+                showSystemNotification("無法降落：已在地面");
+            }
+        }
+
+        // 行動端觸控搖桿
+        function setupTouchControls() {
+            const joyLeft = document.getElementById('joyLeft');
+            const knobLeft = document.getElementById('knobLeft');
+            const joyRight = document.getElementById('joyRight');
+            const knobRight = document.getElementById('knobRight');
+
+            function handleJoystick(e, zone, knob, callback) {
+                e.preventDefault();
+                // 修正：不能用 e.touches[0]，那是「整個畫面」所有觸點的第一個，
+                // 當左右搖桿同時被按住時，兩邊都會抓到同一根手指，導致無法同時操作。
+                // e.targetTouches 只包含「最初就按在這個元素上」的觸點，兩個搖桿才能各自獨立追蹤。
+                const touch = e.targetTouches ? e.targetTouches[0] : e.touches[0];
+                if (!touch) return;
+                const rect = zone.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                const dx = touch.clientX - centerX;
+                const dy = touch.clientY - centerY;
+                const dist = Math.min(rect.width / 2, Math.sqrt(dx * dx + dy * dy));
+                const angle = Math.atan2(dy, dx);
+                
+                const percentX = (Math.cos(angle) * dist) / (rect.width / 2);
+                const percentY = (Math.sin(angle) * dist) / (rect.height / 2);
+
+                knob.style.transform = `translate(${percentX * 30}px, ${percentY * 30}px)`;
+                callback(percentX, percentY);
+            }
+
+            function resetJoystick(knob, callback) {
+                knob.style.transform = `translate(0px, 0px)`;
+                callback(0, 0);
+            }
+
+            joyLeft.addEventListener('touchstart', (e) => { drone.touchActiveLeft = true; handleJoystick(e, joyLeft, knobLeft, updateLeftJoy); }, { passive: false });
+            joyLeft.addEventListener('touchmove', (e) => { drone.touchActiveLeft = true; handleJoystick(e, joyLeft, knobLeft, updateLeftJoy); }, { passive: false });
+            joyLeft.addEventListener('touchend', () => resetJoystick(knobLeft, () => {
+                drone.touchActiveLeft = false;
+                drone.input.yaw = 0;
+                drone.touchAltitudeInput = 0;
+            }));
+
+            joyRight.addEventListener('touchstart', (e) => { drone.touchActive = true; handleJoystick(e, joyRight, knobRight, updateRightJoy); }, { passive: false });
+            joyRight.addEventListener('touchmove', (e) => { drone.touchActive = true; handleJoystick(e, joyRight, knobRight, updateRightJoy); }, { passive: false });
+            joyRight.addEventListener('touchend', () => resetJoystick(knobRight, () => {
+                drone.touchActive = false;
+                drone.input.pitch = 0;
+                drone.input.roll = 0;
+            }));
+
+            function updateLeftJoy(x, y) {
+                // 依推桿幅度給予非線性(平方)反應曲線：
+                // 輕推(位移小) -> 平方後數值更小，動力變化非常和緩，利於微調高度、貼地起降、絲滑升降鏡頭；
+                // 重推到底(位移趨近 1) -> 平方後仍趨近 1，維持接近全速的動力輸出，可急速爬升/急速下墜。
+                const raw = -y; // 保留方向：向上推為正(上升)，向下拉為負(下降)
+                drone.touchAltitudeInput = Math.sign(raw) * Math.pow(Math.abs(raw), 2);
+                drone.input.yaw = x;
+            }
+
+            function updateRightJoy(x, y) {
+                if (drone.autoFlightState !== 'none' && (Math.abs(x) > 0.1 || Math.abs(y) > 0.1)) {
+                    drone.autoFlightState = 'none';
+                    showSystemNotification("手動接管姿態控制");
+                }
+                drone.input.pitch = -y; // 往前推為前進
+                drone.input.roll = x;
+            }
+        }
+
+        // 核心 PD 飛控物理計算
+        function updateDronePhysics(delta) {
+            if (!drone.mesh) return;
+
+            // 鍵盤或方向鍵偵測 -> 退出自動駕駛
+            if (keys.w || keys.s || keys.a || keys.d || 
+                keys.arrowup || keys.arrowdown || keys.arrowleft || keys.arrowright ||
+                keys[' '] || keys.control) { // 增加按鍵檢測範圍
+                if (drone.autoFlightState !== 'none') {
+                    drone.autoFlightState = 'none';
+                    showSystemNotification("手動接管姿態控制");
+                }
+            }
+
+            // 觸控定高目標：推桿幅度(經平方曲線處理)直接對應動力輸出強弱
+            // 輕推 -> 目標高度緩慢挪動 -> 高度誤差小 -> PD 定高僅輸出接近懸停的和緩馬達動力
+            // 重推到底 -> 目標高度快速拉開一大段距離 -> 高度誤差瞬間放大 -> PD 定高立即輸出接近最大/最小馬達動力，達到急速爬升/急墜的效果
+            if (Math.abs(drone.touchAltitudeInput) > 0.03) {
+                drone.targetAltitude = THREE.MathUtils.clamp(
+                    drone.targetAltitude + drone.touchAltitudeInput * delta * 3.5,
+                    0.10,
+                    2.6
+                );
+                if (drone.autoFlightState !== 'none') drone.autoFlightState = 'none';
+            }
+
+            // 按住 W／S 或 Space／Ctrl 連續升降目標高度（每秒固定速率，鬆開立即停止，非單次跳動）
+            // W/S 對應左搖桿上下推的油門(Throttle)邏輯：向上(W)增加動力上升，向下(S)減少動力下降，
+            // 放開後不回歸油門為 0，而是維持在放開當下的高度（氣壓定高懸停），與真實多軸機一致。
+            const altHoldRate = 0.7; // 每秒升降速率 (m/s)
+            if (keys.w || keys[' ']) {
+                drone.targetAltitude = Math.min(2.6, drone.targetAltitude + altHoldRate * delta);
+                if (drone.autoFlightState !== 'none') drone.autoFlightState = 'none';
+            }
+            if (keys.s || keys.control) {
+                drone.targetAltitude = Math.max(0.10, drone.targetAltitude - altHoldRate * delta);
+                if (drone.autoFlightState !== 'none') drone.autoFlightState = 'none';
+            }
+
+            // 自動起降過渡
+            if (drone.autoFlightState === 'takingoff') {
+                const altError = drone.targetAltitude - drone.position.y;
+                if (Math.abs(altError) < 0.1 && Math.abs(drone.velocity.y) < 0.1) {
+                    drone.autoFlightState = 'none';
+                    showSystemNotification("定高起飛完成");
+                }
+            } else if (drone.autoFlightState === 'landing') {
+                if (drone.position.y <= 0.11) {
+                    drone.autoFlightState = 'none';
+                    showSystemNotification("自動降落成功，馬達關機");
+                }
+            }
+
+            // 方向鍵前進後退映射（不限視窗寬度，桌面/窄視窗皆可用鍵盤操作）
+            // ↑：往前傾斜前進，↓：往後傾斜後退（W/S 已改為油門升降，見下方）
+            if (keys.arrowup) drone.input.pitch = 1.0;
+            else if (keys.arrowdown) drone.input.pitch = -1.0;
+            else if (!drone.touchActive) drone.input.pitch = 0;
+
+            // ←/→：往左/往右滾轉（A/D 已改為偏航旋轉，見下方）
+            if (keys.arrowright) drone.input.roll = 1.0;
+            else if (keys.arrowleft) drone.input.roll = -1.0;
+            else if (!drone.touchActive) drone.input.roll = 0;
+
+            // A/D：偏航旋轉（取代原本的 Q/E），A 為逆時針旋轉，D 為順時針旋轉
+            // 左搖桿觸控時比照鍵盤邏輯，向左/右推等同 A/D
+            if (keys.d) drone.input.yaw = 1.0;
+            else if (keys.a) drone.input.yaw = -1.0;
+            else if (!drone.touchActiveLeft) drone.input.yaw = 0;
+
+            // 平滑計算目標俯仰及側滾傾角
+            const targetPitchAngle = drone.input.pitch * drone.constants.maxTilt;
+            const targetRollAngle = drone.input.roll * drone.constants.maxTilt;
+
+            drone.currentPitch = THREE.MathUtils.lerp(drone.currentPitch, targetPitchAngle, delta * drone.constants.pitchRollSpeed * 12);
+            drone.currentRoll = THREE.MathUtils.lerp(drone.currentRoll, targetRollAngle, delta * drone.constants.pitchRollSpeed * 12);
+
+            // 偏航旋轉 (Yaw)：先將目標角速度做平滑漸進，而非直接套用最大轉速，
+            // 這樣單次快速按壓/點擊時，角速度還沒加速到最大值就放開了，旋轉角度自然變小；
+            // 長按時則會逐漸加速到 yawSpeed 的最大轉速，手感更接近真實無人機。
+            const targetYawRate = drone.input.yaw * drone.constants.yawSpeed;
+            drone.currentYawRate = THREE.MathUtils.lerp(
+                drone.currentYawRate,
+                targetYawRate,
+                delta * drone.constants.yawRampSpeed
+            );
+            drone.rotation.y -= drone.currentYawRate * delta;
+
+            // PD高度維持演算法 (精細適配 0.4kg 機型)
+            const altError = drone.targetAltitude - drone.position.y;
+            const climbRate = drone.velocity.y;
+
+            const kpAlt = 15.0; 
+            const kdAlt = 8.0; 
+
+            // --- 修正起飛靜止問題 ---
+            // 增加一個微小的 baseThrust 補償，確保在起飛初期即有足夠動力克服初始慣性
+            const hoverThrust = drone.constants.gravity * drone.constants.mass;
+            let targetVerticalForce = hoverThrust + (altError * kpAlt) - (climbRate * kdAlt);
+
+            // 如果正在起飛且目前推力過低，給予一個最小起飛閾值 (0.45 比例)
+            if (drone.autoFlightState === 'takingoff' && targetVerticalForce < hoverThrust * 0.9) {
+                targetVerticalForce = hoverThrust * 1.15; 
+            }
+
+            let idealThrottle = targetVerticalForce / drone.constants.maxThrottleThrust;
+            drone.input.throttle = THREE.MathUtils.clamp(idealThrottle, 0.0, 1.0);
+
+            // 地面完全關機
+            if (drone.targetAltitude <= 0.15 && drone.position.y <= 0.11) {
+                drone.input.throttle = 0.0;
+            }
+
+            // 計算旋翼向量推力
+            const thrustAmount = drone.input.throttle * drone.constants.maxThrottleThrust;
+            const localUp = new THREE.Vector3(0, 1, 0);
+            localUp.applyEuler(new THREE.Euler(drone.currentPitch, 0, drone.currentRoll, 'YXZ'));
+            localUp.applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y);
+            
+            const forceThrust = localUp.multiplyScalar(thrustAmount);
+            const forceGravity = new THREE.Vector3(0, -drone.constants.gravity * drone.constants.mass, 0);
+            const forceDrag = drone.velocity.clone().multiplyScalar(-drone.constants.linearDrag);
+
+            const totalForce = new THREE.Vector3().add(forceThrust).add(forceGravity).add(forceDrag);
+            const acceleration = totalForce.divideScalar(drone.constants.mass);
+
+            drone.velocity.addScaledVector(acceleration, delta);
+            drone.position.addScaledVector(drone.velocity, delta);
+
+            // [修正] 將計算出的物理位置與旋轉同步至 Three.js Mesh
+            drone.mesh.position.copy(drone.position);
+            drone.mesh.rotation.set(drone.currentPitch, drone.rotation.y, drone.currentRoll, 'YXZ');
+
+            // 地板與 6m x 3m 網籠安全邊界彈力碰撞偵測 (X: 3m, Z: 6m, Y: 3m)
+            const groundLimit = 0.10;
+            if (drone.position.y < groundLimit) {
+                drone.position.y = groundLimit;
+                drone.velocity.y = 0;
+                drone.velocity.multiplyScalar(0.5); // 著地減速
+            }
+
+            // 安全網與充氣橫樑頂部物理阻隔
+            const ceilingLimit = 2.75;
+            if (drone.position.y > ceilingLimit) {
+                drone.position.y = ceilingLimit;
+                drone.velocity.y = -0.1;
+            }
+
+            // 四周充氣網牆邊界彈力碰撞偵測 (X: 3m 寬 / Z: 6m 長，扣除無人機半徑安全裕度)
+            const droneBodyRadius = DRONE_CAGE_RADIUS;
+            const xLimit = 3.0 / 2 - droneBodyRadius;  // 左右網牆
+            const zLimit = 6.0 / 2 - droneBodyRadius;  // 前後網牆
+            const wallRestitution = 0.4; // 網子有彈性，撞擊後緩速反彈
+
+            if (drone.position.x < -xLimit) {
+                drone.position.x = -xLimit;
+                if (drone.velocity.x < 0) drone.velocity.x *= -wallRestitution;
+            } else if (drone.position.x > xLimit) {
+                drone.position.x = xLimit;
+                if (drone.velocity.x > 0) drone.velocity.x *= -wallRestitution;
+            }
+
+            if (drone.position.z < -zLimit) {
+                drone.position.z = -zLimit;
+                if (drone.velocity.z < 0) drone.velocity.z *= -wallRestitution;
+            } else if (drone.position.z > zLimit) {
+                drone.position.z = zLimit;
+                if (drone.velocity.z > 0) drone.velocity.z *= -wallRestitution;
+            }
+
+            // 螺旋槳旋轉動畫：依油門大小決定轉速，怠速時也保留低速旋轉以顯示馬達待機
+            const idleSpin = 8;   // 待機最低轉速 (rad/s)
+            const maxSpin = 90;   // 全油門最高轉速 (rad/s)
+            const spinSpeed = drone.input.throttle > 0.02
+                ? idleSpin + drone.input.throttle * maxSpin
+                : 0;
+            drone.rotors.forEach((rotorGroup, idx) => {
+                // 相鄰馬達反向旋轉，模擬真實四軸無人機的扭力抵消
+                const dir = (idx === 0 || idx === 3) ? 1 : -1;
+                rotorGroup.rotation.y += dir * spinSpeed * delta;
+            });
+        } // <-- ADDED THIS CLOSING BRACE
+
+        // 圓環外框碰撞 (反彈物理) 與圓環中心穿越累加判定
+        // 循環視角切換
+        function cycleCameraMode() {
+            cameraMode = (cameraMode + 1) % CAMERA_MODES.length;
+            
+            if (cameraMode === 2) {
+                orbitControls.enabled = true;
+                orbitControls.target.copy(drone.position);
+            } else {
+                orbitControls.enabled = false;
+            }
+
+            document.getElementById('camText').innerText = CAMERA_MODES[cameraMode];
+            showSystemNotification(`視角切換：${CAMERA_MODES[cameraMode]}`);
+        }
+
+        // 攝影機動態平滑追蹤
+        function updateCamera(delta) {
+            if (!drone.mesh) return;
+
+            if (cameraMode === 0) {
+                // 第三人稱跟隨 (Chase View) - 配合 6m 緊湊場景拉近距離
+                drone.mesh.visible = true;
+                const backOffset = 1.6;
+                const upOffset = 0.55;
+
+                const relativeCameraOffset = new THREE.Vector3(0, upOffset, -backOffset);
+                relativeCameraOffset.applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y);
+                
+                const targetCameraPosition = drone.position.clone().add(relativeCameraOffset);
+                camera.position.lerp(targetCameraPosition, 0.12);
+
+                const lookTarget = drone.position.clone().add(new THREE.Vector3(0, 0.1, 0));
+                camera.lookAt(lookTarget);
+
+            } else if (cameraMode === 1) {
+                // 第一人稱駕駛艙 (Cockpit View) - 隱藏機體防止擋住視線
+                drone.mesh.visible = false;
+                const relativeCameraOffset = new THREE.Vector3(0, 0.04, 0.1);
+                relativeCameraOffset.applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y);
+                
+                const targetCameraPosition = drone.position.clone().add(relativeCameraOffset);
+                camera.position.copy(targetCameraPosition);
+
+                const forwardDir = new THREE.Vector3(0, 0, 1);
+                forwardDir.applyEuler(new THREE.Euler(drone.currentPitch, drone.rotation.y, 0, 'YXZ'));
+                
+                const lookTarget = camera.position.clone().add(forwardDir);
+                camera.lookAt(lookTarget);
+
+            } else if (cameraMode === 2) {
+                // 自由觀測視角
+                drone.mesh.visible = true;
+                orbitControls.target.lerp(drone.position, 0.1);
+                orbitControls.update();
+            }
+        }
+
+        // 更新 UI 各項傳感面板數值
+        function updateHUD() {
+            if (raceState === 'racing') {
+                raceElapsedMs = performance.now() - raceStartTime;
+            }
+            const totalSec = (raceElapsedMs / 1000) + penaltySeconds;
+            const timerEl = document.getElementById('raceTimer');
+            if (timerEl) timerEl.innerText = totalSec.toFixed(1);
+            const progressEl = document.getElementById('gateProgress');
+            if (progressEl) progressEl.innerText = `${gatesPassed} / ${totalGates}`;
+
+            const nextInfoEl = document.getElementById('nextGateInfo');
+            if (nextInfoEl) {
+                const nextOb = currentGates[nextExpectedGateIndex];
+                if (nextOb) {
+                    nextInfoEl.innerText = `第 ${nextExpectedGateIndex + 1} 號・${nextOb.dir === 1 ? '由前向後' : '由後向前'}`;
+                } else {
+                    nextInfoEl.innerText = totalGates > 0 ? '全部完成，降落地面即完成計時' : '－';
+                }
+            }
+
+            const speedMagnitude = drone.velocity.length();
+            document.getElementById('telemetrySpeed').innerText = speedMagnitude.toFixed(1);
+            const speedBarPercent = Math.min((speedMagnitude / 10) * 100, 100); // 最大量程改為 10 m/s
+            document.getElementById('speedBar').style.width = `${speedBarPercent}%`;
+
+            const currentAlt = drone.position.y;
+            document.getElementById('telemetryAlt').innerText = currentAlt.toFixed(2);
+            const altBarPercent = Math.min((currentAlt / 3.0) * 100, 100);
+            document.getElementById('altBar').style.width = `${altBarPercent}%`;
+
+            const throttlePercent = Math.round(drone.input.throttle * 100);
+            document.getElementById('telemetryThrottle').innerText = `${throttlePercent}%`;
+            document.getElementById('throttleBar').style.width = `${throttlePercent}%`;
+
+            const fModeText = document.getElementById('flightMode');
+            if (drone.autoFlightState === 'takingoff') {
+                fModeText.innerText = "自動起飛中";
+                fModeText.className = "text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full tech-font animate-pulse";
+            } else if (drone.autoFlightState === 'landing') {
+                fModeText.innerText = "自動降落中";
+                fModeText.className = "text-[10px] bg-rose-500/20 text-rose-300 border border-rose-500/40 px-2 py-0.5 rounded-full tech-font animate-pulse";
+            } else {
+                fModeText.innerText = "氣壓定高中";
+                fModeText.className = "text-[10px] bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full tech-font";
+            }
+
+            let degrees = Math.round((drone.rotation.y * (180 / Math.PI)) % 360);
+            if (degrees < 0) degrees += 360;
+            document.getElementById('compassVal').innerText = `${String(degrees).padStart(3, '0')}°`;
+            
+            let dirStr = 'N';
+            if (degrees >= 337.5 || degrees < 22.5) dirStr = 'N';
+            else if (degrees >= 22.5 && degrees < 67.5) dirStr = 'NE';
+            else if (degrees >= 67.5 && degrees < 112.5) dirStr = 'E';
+            else if (degrees >= 112.5 && degrees < 157.5) dirStr = 'SE';
+            else if (degrees >= 157.5 && degrees < 202.5) dirStr = 'S';
+            else if (degrees >= 202.5 && degrees < 247.5) dirStr = 'SW';
+            else if (degrees >= 247.5 && degrees < 292.5) dirStr = 'W';
+            else if (degrees >= 292.5 && degrees < 337.5) dirStr = 'NW';
+            document.getElementById('compassDir').innerText = `(${dirStr})`;
+
+            const pitchDeg = Math.round(drone.currentPitch * (180 / Math.PI));
+            const rollDeg = Math.round(drone.currentRoll * (180 / Math.PI));
+            document.getElementById('pitchAngle').innerText = `${pitchDeg}°`;
+            document.getElementById('rollAngle').innerText = `${rollDeg}°`;
+
+            const horizon = document.getElementById('horizonLine');
+            horizon.style.transform = `rotate(${-rollDeg}deg) translateY(${pitchDeg * 1.5}px)`;
+        }
+
+        // 系統消息提示
+        function showSystemNotification(text) {
+            const oldNotify = document.getElementById('sysNotification');
+            if (oldNotify) oldNotify.remove();
+
+            const container = document.body;
+            const notification = document.createElement('div');
+            notification.id = 'sysNotification';
+            notification.className = 'absolute top-20 left-1/2 -translate-x-1/2 glassmorphism text-emerald-300 font-bold px-4 py-2 rounded-lg text-xs tracking-wider border border-emerald-500/30 shadow-md z-30 transition-all duration-300 transform -translate-y-2 opacity-0 pointer-events-none uppercase tech-font';
+            notification.innerText = text;
+            container.appendChild(notification);
+
+            requestAnimationFrame(() => {
+                notification.classList.remove('-translate-y-2', 'opacity-0');
+            });
+
+            setTimeout(() => {
+                notification.classList.add('-translate-y-2', 'opacity-0');
+                setTimeout(() => notification.remove(), 300);
+            }, 1600);
+        }
+
+        // 大型即時穿越提示：成功('success'綠色)／錯誤('error'紅色) 大字顯示於畫面正中上方，
+        // 搭配彈跳縮放動畫，讓玩家在快速飛行操作中也不會錯過穿越結果
+        let bigFeedbackTimer = null;
+        function showBigFeedback(text, type) {
+            const el = document.getElementById('bigFeedbackText');
+            if (!el) return;
+            if (bigFeedbackTimer) clearTimeout(bigFeedbackTimer);
+
+            const colorClass = type === 'success' ? 'text-emerald-400' : 'text-rose-500';
+            el.className = `text-xl sm:text-2xl md:text-4xl font-extrabold tracking-wider text-center px-4 select-none transition-all duration-200 ease-out ${colorClass}`;
+            el.innerText = text;
+            el.style.opacity = '0';
+            el.style.transform = 'scale(0.75)';
+
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'scale(1.12)';
+                    setTimeout(() => { el.style.transform = 'scale(1)'; }, 140);
+                });
+            });
+
+            bigFeedbackTimer = setTimeout(() => {
+                el.style.opacity = '0';
+                el.style.transform = 'scale(0.9)';
+            }, 1000);
+        }
+
+        // 動畫循環
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const delta = Math.min(clock.getDelta(), 0.1); 
+
+            updateDronePhysics(delta);
+            updateWallCollision();
+            updateGates();
+            checkRaceFinish();
+            updateParticles(delta);
+            updateCamera(delta);
+            updateDroneSound();
+            updateHUD();
+
+            renderer.render(scene, camera);
+        }
+
+        // 重設模擬器
+        function resetGame() {
+            if (currentLevelId !== null) {
+                loadLevel(currentLevelId);
+                return;
+            }
+
+            drone.position.copy(HOME_POS); // 置中停於起降圈
+            drone.velocity.set(0, 0, 0);
+            drone.rotation.set(0, 0, 0);
+            drone.currentPitch = 0;
+            drone.currentRoll = 0;
+            drone.currentYawRate = 0;
+            drone.input.throttle = 0.0; 
+            drone.targetAltitude = 0.10;
+            drone.autoFlightState = 'none';
+
+            updateHUD();
+
+            showSystemNotification("場地已重置 - 微型機正中央安全停靠");
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // UI 事件綁定
+        function bindUIEvents() {
+            function showStartScreen() {
+                const startScreen = document.getElementById('startScreen');
+                startScreen.classList.remove('hidden', 'opacity-0', 'scale-95');
+                startScreen.classList.add('flex');
+            }
+
+            function hideStartScreen() {
+                const startScreen = document.getElementById('startScreen');
+                startScreen.classList.add('opacity-0', 'scale-95');
+                setTimeout(() => {
+                    startScreen.classList.add('hidden');
+                    startScreen.classList.remove('flex');
+                }, 700);
+            }
+
+            function selectLevel(levelId) {
+                if (!soundEnabled) {
+                    initAudio();
+                    soundEnabled = true;
+                }
+                hideStartScreen();
+                loadLevel(levelId);
+                showSystemNotification("氣壓飛控系統連線 - 九宮格關卡就緒");
+            }
+
+            document.querySelectorAll('.level-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const levelId = parseInt(btn.dataset.level, 10);
+                    selectLevel(levelId);
+                });
+            });
+
+            document.getElementById('btnRetryLevel').addEventListener('click', () => {
+                const finishScreen = document.getElementById('finishScreen');
+                finishScreen.classList.add('hidden');
+                finishScreen.classList.remove('flex');
+                loadLevel(currentLevelId);
+            });
+
+            document.getElementById('btnNextLevel').addEventListener('click', () => {
+                const finishScreen = document.getElementById('finishScreen');
+                finishScreen.classList.add('hidden');
+                finishScreen.classList.remove('flex');
+                const nextId = currentLevelId + 1;
+                if (LEVEL_DEFS[nextId]) loadLevel(nextId);
+            });
+
+            document.getElementById('btnBackMenu').addEventListener('click', () => {
+                const finishScreen = document.getElementById('finishScreen');
+                finishScreen.classList.add('hidden');
+                finishScreen.classList.remove('flex');
+                clearObstacles();
+                currentLevelId = null;
+                raceState = 'menu';
+                document.getElementById('raceLevelName').innerText = '尚未選擇關卡';
+                updateHUD();
+                showStartScreen();
+            });
+
+            document.getElementById('btnTakeoff').addEventListener('click', triggerTakeoff);
+            document.getElementById('btnLand').addEventListener('click', triggerLanding);
+
+            document.getElementById('btnSound').addEventListener('click', toggleSound);
+
+            document.getElementById('btnCam').addEventListener('click', cycleCameraMode);
+            document.getElementById('btnReset').addEventListener('click', resetGame);
+        }
+
+        // 入口啟動
+        window.onload = function() {
+            initScene();
+            setupLights();
+            createSoccerField();
+            buildInflatableCage(); // 創建 3fc47b8b-0d54-496f-abc0-0f49a0d9871a.jpg 的充氣柱網壁
+            buildGridFrame(); // 建立固定不動的九宮格實體格柵 (1.8m x 1.8m x 0.05m厚，9 個 0.6m 小方框)
+            buildDrone();
+            setupKeyboard();
+            setupTouchControls();
+            bindUIEvents();
+            animate();
+        };
+
+    </script>
+</body>
+</html>
