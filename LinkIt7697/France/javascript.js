@@ -7657,12 +7657,13 @@ Blockly.Arduino['esp32_blekeyboard'] = function(block) {
     var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
 	Blockly.Arduino.definitions_.define_esp32_blekeyboard_include = '#include <BleKeyboard.h>\nBleKeyboard bleKeyboard;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\n';
 	Blockly.Arduino.definitions_.blekeyboard = '\n'+
-			'void blekeyboard(String type, uint8_t keycode1, uint8_t keycode2, uint8_t keycode3, int presstime, String characters) {\n'+
+			'void blekeyboard(String type, uint8_t keycode1, uint8_t keycode2, uint8_t keycode3, uint8_t keycode4, int presstime, String characters) {\n'+
 			'  if(bleKeyboard.isConnected()) {\n'+			
 			'    if (type=="press") {\n'+
 			'      if (keycode1!=0) bleKeyboard.press(keycode1);\n'+
 			'      if (keycode2!=0) bleKeyboard.press(keycode2);\n'+
 			'      if (keycode3!=0) bleKeyboard.press(keycode3);\n'+
+			'      if (keycode4!=0) bleKeyboard.press(keycode4);\n'+			
 			'      delay(presstime);\n'+
 			'      bleKeyboard.releaseAll();\n'+
 			'    } else if (type=="press_norelease") {\n'+
@@ -7694,37 +7695,38 @@ Blockly.Arduino['esp32_blekeyboard_press'] = function(block) {
 	var keycode1 = Blockly.Arduino.valueToCode(block, 'keycode1', Blockly.Arduino.ORDER_ATOMIC)||-1;
 	var keycode2 = Blockly.Arduino.valueToCode(block, 'keycode2', Blockly.Arduino.ORDER_ATOMIC)||-1;
 	var keycode3 = Blockly.Arduino.valueToCode(block, 'keycode3', Blockly.Arduino.ORDER_ATOMIC)||-1;
+	var keycode4 = Blockly.Arduino.valueToCode(block, 'keycode4', Blockly.Arduino.ORDER_ATOMIC)||-1;	
 	var presstime = Blockly.Arduino.valueToCode(block, 'presstime', Blockly.Arduino.ORDER_ATOMIC)||10;
 	
-	return 'blekeyboard("press", '+keycode1+', '+keycode2+', '+keycode3+', '+presstime+', "");\n';
+	return 'blekeyboard("press", '+keycode1+', '+keycode2+', '+keycode3+', '+keycode4+', '+presstime+', "");\n';
 };
 
 Blockly.Arduino['esp32_blekeyboard_press_norelease'] = function(block) {	
 	var keycode1 = Blockly.Arduino.valueToCode(block, 'keycode1', Blockly.Arduino.ORDER_ATOMIC)||-1;
 	
-	return 'blekeyboard("press_norelease", '+keycode1+', -1, -1, 0, "");\n';
+	return 'blekeyboard("press_norelease", '+keycode1+', -1, -1, -1, 0, "");\n';
 };
 
 Blockly.Arduino['esp32_blekeyboard_release'] = function(block) {	
 	var keycode1 = Blockly.Arduino.valueToCode(block, 'keycode1', Blockly.Arduino.ORDER_ATOMIC)||-1;
 	
-	return 'blekeyboard("release", '+keycode1+', -1, -1, 0, "");\n';
+	return 'blekeyboard("release", '+keycode1+', -1, -1, -1, 0, "");\n';
 };
 
 Blockly.Arduino['esp32_blekeyboard_release_all'] = function(block) {
-	return 'blekeyboard("release_all", -1, -1, -1, 0, "");\n';
+	return 'blekeyboard("release_all", -1, -1, -1, -1, 0, "");\n';
 };
 
 Blockly.Arduino['esp32_blekeyboard_print'] = function(block) {	
 	var characters = Blockly.Arduino.valueToCode(block, 'characters', Blockly.Arduino.ORDER_ATOMIC)||"";
 	
-	return 'blekeyboard("print", -1, -1, -1, -1, '+characters+');\n';
+	return 'blekeyboard("print", -1, -1, -1, -1, -1, '+characters+');\n';
 };
 
 Blockly.Arduino['esp32_blekeyboard_write'] = function(block) {	
 	var keycode = Blockly.Arduino.valueToCode(block, 'keycode', Blockly.Arduino.ORDER_ATOMIC)||-1;
 	
-	return 'blekeyboard("write", '+keycode+', -1, -1, -1, "");\n';
+	return 'blekeyboard("write", '+keycode+', -1, -1, -1, -1, "");\n';
 };
 
 Blockly.Arduino['esp32_blekeyboard_keycode'] = function(block) {	

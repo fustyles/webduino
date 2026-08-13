@@ -7527,6 +7527,10 @@ Blockly.Blocks['esp32_blekeyboard_press'] = {
         .setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)		
 		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"]+"3");	
+    this.appendValueInput("keycode4")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"]+"4");			
     this.appendValueInput("presstime")
         .setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)		
