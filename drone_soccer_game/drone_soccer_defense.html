@@ -401,6 +401,9 @@
         // 依真實規格調整：無人機球型護籠外徑 20 公分 (半徑 0.10m)；球門光環「淨開口」內直徑 60 公分 (半徑 0.30m)
         const DRONE_CAGE_RADIUS = 0.10;   // 無人機足球護籠半徑，整體球徑 = 20 公分
         const RING_CLEAR_RADIUS = 0.30;   // 光環實際淨開口半徑 (扣除管粗後可通過的孔徑)，內直徑 = 60 公分
+        // AI 攻擊機最終瞄準球門時，容許的目標範圍：球門中心 40 公分直徑圓內（半徑 20 公分），
+        // 比實際開口 (60 公分直徑) 更收斂，逼近球門的最後階段一律鎖定在這個中央範圍內出手
+        const ATTACKER_GOAL_AIM_RADIUS = 0.20;
         const RING_TUBE_RADIUS = 0.022;   // 光環管粗半徑 (依比例縮小)
         const RING_CENTER_RADIUS = RING_CLEAR_RADIUS + RING_TUBE_RADIUS; // 圓環管中心線半徑 (TorusGeometry 用)
 
@@ -515,6 +518,195 @@
             aimError: 0.2,
         };
 
+        // 攻擊曲線庫：每一波新的進攻（重新起飛、回線整隊完畢、或繞回前方完畢後）都會從中隨機抽選一種，
+        // 並隨機化方向、幅度、頻率等參數，讓每一波攻勢的路線都不一樣，攻擊機不會每次都用同一招
+        const ATTACK_PATTERNS = [
+            'diagonal_weave', // 斜向搖擺：左右上下同相位連動，走明顯的斜線逼近（原本的預設招式）
+            's_curve',        // S型蛇行：大幅度、較慢速的左右滑行，貼近球門才收斂
+            'high_dive',      // 高空俯衝：先拉高高度助跑，接近球門的最後階段才急速俯衝下探
+            'low_skim',       // 貼地偷襲：全程壓低高度前進，只做小幅左右閃避
+            'feint_dodge',    // 假動作：先朝一側大幅偏移製造假象，最後衝刺瞬間切向另一側
+            'side_swoop',     // 側翼繞後：從側邊大幅繞出，最後才急轉切回中路穿越
+            'spiral',         // 螺旋鑽入：X/Y 以正弦餘弦組合旋轉前進，半徑隨接近球門而收斂
+        ];
+
+        // 依隨機抽到的曲線類型與隨機參數，計算本影格瞄準點相對球門中心的水平(dx)與垂直(dy)偏移量；
+        // weaveScale 為 0.15~1 的收斂係數，越靠近球門數值越小，用來讓大部分招式在最後階段自然收斂對準開口
+        function computeAttackCurveOffset(attacker, c, weaveScale) {
+            const t = clock.getElapsedTime();
+            const seed = attacker.weaveSeed;
+            const dir = attacker.patternDir;
+            const ampX = c.weaveAmplitude * attacker.patternAmpScale;
+            const ampY = c.weaveAmplitudeY * attacker.patternAmpScale;
+            const freq = attacker.patternFreqScale;
+
+            let dx = 0, dy = 0;
+
+            switch (attacker.attackPattern) {
+                case 's_curve': {
+                    const phase = t * 0.5 * freq + seed;
+                    dx = Math.sin(phase) * ampX * 1.6 * dir * weaveScale;
+                    dy = Math.sin(phase * 0.6 + seed) * ampY * 0.5 * weaveScale;
+                    break;
+                }
+                case 'high_dive': {
+                    const phase = t * 0.9 * freq + seed;
+                    dx = Math.sin(phase) * ampX * 0.6 * dir * weaveScale;
+                    // 遠離球門時飛高，越接近球門 weaveScale 越小，讓高度逐漸轉為俯衝下探
+                    dy = ampY * 1.8 * (weaveScale - 0.5);
+                    break;
+                }
+                case 'low_skim': {
+                    const phase = t * 1.1 * freq + seed;
+                    dx = Math.sin(phase) * ampX * 1.1 * dir * weaveScale;
+                    dy = -Math.abs(ampY * 0.9) * weaveScale - 0.05; // 全程壓低，維持在球門偏下方
+                    break;
+                }
+                case 'feint_dodge': {
+                    // weaveScale 較大代表還在遠處助跑（假動作階段），較小代表已進入最後衝刺（真正切入方向）
+                    if (weaveScale > 0.4) {
+                        dx = ampX * 1.4 * dir * weaveScale;
+                        dy = Math.sin(t * 1.3 * freq + seed) * ampY * 0.4 * weaveScale;
+                    } else {
+                        dx = -ampX * 1.1 * dir * weaveScale;
+                        dy = Math.sin(t * 2.0 * freq + seed) * ampY * 0.3 * weaveScale;
+                    }
+                    break;
+                }
+                case 'side_swoop': {
+                    dx = ampX * 1.8 * dir * weaveScale;
+                    dy = Math.sin(t * 1.4 * freq + seed) * ampY * 0.6 * weaveScale;
+                    break;
+                }
+                case 'spiral': {
+                    const phase = t * 1.6 * freq + seed;
+                    dx = Math.cos(phase) * ampX * dir * weaveScale;
+                    dy = Math.sin(phase) * ampY * weaveScale;
+                    break;
+                }
+                default: { // 'diagonal_weave'
+                    const diagPhase = t * 0.75 * freq + seed;
+                    const weaveX = Math.sin(diagPhase) * ampX * dir;
+                    const weaveYDiagonal = Math.sin(diagPhase) * ampY * c.diagonalBias;
+                    const weaveYChoppy = Math.sin(t * 1.9 * freq + seed * 2.3) * ampY * (1 - c.diagonalBias);
+                    dx = weaveX * weaveScale;
+                    dy = (weaveYDiagonal + weaveYChoppy) * weaveScale;
+                    break;
+                }
+            }
+
+            return { dx, dy };
+        }
+
+        // 每一波新的進攻開始時呼叫：隨機抽選一種攻擊曲線，並隨機化方向、幅度、頻率，
+        // 讓攻擊機的來襲路線每次都不一樣，不會每次都用同一招固定套路
+        function pickAttackPattern(attacker) {
+            attacker.attackPattern = ATTACK_PATTERNS[Math.floor(Math.random() * ATTACK_PATTERNS.length)];
+            attacker.weaveSeed = Math.random() * 100;
+            attacker.patternDir = Math.random() < 0.5 ? 1 : -1;        // 起始左右偏移方向隨機
+            attacker.patternAmpScale = 0.75 + Math.random() * 0.55;    // 幅度隨機縮放 0.75~1.3 倍
+            attacker.patternFreqScale = 0.75 + Math.random() * 0.5;    // 頻率隨機縮放 0.75~1.25 倍
+            attacker.gapTimer = 0; // 新一波攻勢開始時，立即重新判讀一次防守縫隙
+        }
+
+        // 掃描球門開口一圈，估算玩家防守機與 AI 隊友守門機各自封鎖的角度範圍，
+        // 回傳尚未被封鎖、縫隙面積最大的方向角度與其縫隙寬裕程度（純計算，不含任何平滑處理）
+        function scanWidestGapAngle(ring) {
+            const blockers = [];
+            if (drone && drone.mesh) blockers.push(drone.position);
+            aiDrones.forEach(ai => { if (ai.mesh) blockers.push(ai.position); });
+
+            if (blockers.length === 0) return null; // 沒有防守機在場，交由呼叫端處理（直接瞄準正中央）
+
+            const numSamples = 36;
+            let bestAngle = 0;
+            let bestClearance = -Infinity;
+
+            for (let i = 0; i < numSamples; i++) {
+                const angle = (i / numSamples) * Math.PI * 2;
+                let minClearance = Infinity;
+
+                blockers.forEach((pos) => {
+                    const bx = pos.x - ring.pos.x;
+                    const by = pos.y - ring.pos.y;
+                    const bAngle = Math.atan2(by, bx);
+                    const bDist = Math.sqrt(bx * bx + by * by);
+
+                    // 防守機離球門中心越近，能封鎖的角度範圍越大（貼近圓心時幾乎封鎖整個開口）；
+                    // 離中心越遠（貼近開口邊緣或已飛出開口外）時，能封鎖的角度範圍就越窄
+                    const halfWidth = Math.atan2(DRONE_CAGE_RADIUS + 0.15, Math.max(bDist, 0.06));
+
+                    let diff = Math.abs(angle - bAngle);
+                    diff = Math.min(diff, Math.PI * 2 - diff);
+                    const clearance = diff - halfWidth;
+                    if (clearance < minClearance) minClearance = clearance;
+                });
+
+                if (minClearance > bestClearance) {
+                    bestClearance = minClearance;
+                    bestAngle = angle;
+                }
+            }
+
+            return { angle: bestAngle, clearance: bestClearance };
+        }
+
+        // 兩個角度間的最短夾角差（考慮 -π~π 環繞），正負代表方向，絕對值不超過 π
+        function shortestAngleDiff(from, to) {
+            let diff = (to - from) % (Math.PI * 2);
+            if (diff > Math.PI) diff -= Math.PI * 2;
+            if (diff < -Math.PI) diff += Math.PI * 2;
+            return diff;
+        }
+
+        // 更新攻擊機對「縫隙方向」的判讀：每隔一段較長時間（模擬觀察、判斷防守站位所需的反應時間）
+        // 才重新掃描一次最新的縫隙角度，且實際瞄準角度只會以有限的轉向速率慢慢轉過去，
+        // 而非每次判斷都瞬間跳到新角度——避免防守機一移動，攻擊機瞄準點就跟著瞬間亂甩、看起來很智障
+        function updateAttackerGapEstimate(attacker, ring, delta) {
+            attacker.gapTimer -= delta;
+            if (attacker.gapTimer <= 0) {
+                attacker.gapTimer = 0.55 + Math.random() * 0.35; // 每 0.55~0.9 秒才重新判讀一次防守站位
+                const result = scanWidestGapAngle(ring);
+                if (result) {
+                    attacker.gapHasBlockers = true;
+                    attacker.gapTargetAngle = result.angle;
+                    attacker.gapTargetClearance = result.clearance;
+                } else {
+                    attacker.gapHasBlockers = false;
+                }
+            }
+
+            if (!attacker.gapHasBlockers) return;
+
+            // 角度以有限轉速平滑跟上新的判讀結果（每秒最多轉動約 2.2 弧度，約 126 度/秒），
+            // 縫隙寬裕程度則直接以較慢的線性內插平滑，兩者都能避免瞬間跳動
+            const maxTurnRate = 2.2;
+            const angleDiff = shortestAngleDiff(attacker.gapAngle, attacker.gapTargetAngle);
+            const maxStep = maxTurnRate * delta;
+            attacker.gapAngle += THREE.MathUtils.clamp(angleDiff, -maxStep, maxStep);
+
+            attacker.gapClearance = THREE.MathUtils.lerp(attacker.gapClearance, attacker.gapTargetClearance, Math.min(1, delta * 2.5));
+        }
+
+        // 依目前平滑後的縫隙角度與寬裕程度，回傳球門開口內、該方向上的瞄準座標；
+        // 瞄準範圍一律限制在球門中心 40 公分直徑圓內 (ATTACKER_GOAL_AIM_RADIUS)
+        function computeGoalGapOffset(attacker) {
+            if (!attacker.gapHasBlockers) {
+                return { x: 0, y: 0 }; // 沒有防守機在場時，直接瞄準球門正中央
+            }
+
+            // 縫隙越窄（clearance 越小甚至為負，代表防守機幾乎封死球門）時，瞄準點收斂靠近正中央，
+            // 避免刻意衝向一個其實仍然擁擠的角度；縫隙夠寬時才瞄準靠近 40 公分圓邊緣處
+            const radiusScale = THREE.MathUtils.clamp(0.35 + attacker.gapClearance * 0.55, 0.3, 1);
+            const targetR = ATTACKER_GOAL_AIM_RADIUS * radiusScale;
+
+            return {
+                x: Math.cos(attacker.gapAngle) * targetR,
+                y: Math.sin(attacker.gapAngle) * targetR,
+            };
+        }
+
+
         // AI 攻擊機狀態物件：外型沿用與守門機相同的簡化模型建構函式，顏色會在 configureMatch() 中依隊伍動態上色
         const attacker = {
             mesh: null,
@@ -531,8 +723,19 @@
             targetRing: null,      // 攻擊目標：玩家的己方球門
             aimTarget: new THREE.Vector3(0, 1.5, 2.25),
             reactionTimer: 0,
-            phase: 'advance',      // 'advance'：正在進攻 / 'retreat'：得分後撤退回中線 / 'descend'：回線後先降到中間高度，再重新展開攻勢
+            phase: 'advance',      // 'advance'：正在進攻 / 'retreat'：得分後撤退回中線 / 'descend'：回線後先降到中間高度，再重新展開攻勢 / 'loopback'：意外滑到球門後方，繞回前方重新纏鬥
             weaveSeed: Math.random() * 100,
+            attackPattern: 'diagonal_weave', // 本波進攻抽到的攻擊曲線類型，見 ATTACK_PATTERNS
+            patternDir: 1,          // 本波曲線的起始左右方向
+            patternAmpScale: 1,     // 本波曲線的幅度縮放
+            patternFreqScale: 1,    // 本波曲線的頻率縮放
+            gapTimer: 0,            // 距離下一次重新判讀防守縫隙還有多久
+            gapHasBlockers: false,  // 目前是否有偵測到防守機
+            gapAngle: 0,            // 平滑後、實際用來瞄準的縫隙角度
+            gapTargetAngle: 0,      // 最近一次判讀出的縫隙角度（平滑的目標值）
+            gapClearance: 0,        // 平滑後的縫隙寬裕程度
+            gapTargetClearance: 0,  // 最近一次判讀出的縫隙寬裕程度（平滑的目標值）
+            regroupTarget: new THREE.Vector3(0, 1.5, 0), // 被攔截後「撤退一段距離＋隨機高度」的重新整隊目標點
             constants: AI_ATTACKER_CONSTANTS,
         };
 
@@ -1546,7 +1749,7 @@
             attacker.velocity.set(0, 0, 0);
             attacker.phase = 'advance';
             attacker.reactionTimer = 0;
-            attacker.weaveSeed = Math.random() * 100;
+            pickAttackPattern(attacker); // 每次重新起飛都重新抽選一種攻擊曲線
             attacker.aimTarget.copy(attacker.position);
 
             if (attacker.mesh) {
@@ -2157,8 +2360,12 @@
 
                         attacker.phase = 'retreat'; // 得分後依規則須先撤退回中線，才能重新取得攻門資格
                     } else {
-                        // 尚未回到中線、無法再次得分：不撤退，直接繼續纏鬥進攻
-                        showSystemNotification("攻擊機再次穿越，但尚未回到中線重新取得攻門資格");
+                        // 尚未回到中線、無法再次得分：這是一次「意外穿越」，不會被判定為得分，
+                        // 但攻擊機此刻已經到了球門後方（與護籠之間的狹窄空間），
+                        // 若放任它留在原地會導致卡住猶疑，因此立即切換為「繞回前方」階段，
+                        // 讓它先爬升到安全高度、繞回球門前方，再繼續纏鬥進攻
+                        showSystemNotification("攻擊機意外穿越，正繞回前方重新進攻");
+                        attacker.phase = 'loopback';
                     }
                 }
             }
@@ -2166,9 +2373,15 @@
             ring.attackerPrevSide = currentSide;
         }
 
-        // AI 攻擊機行為邏輯：從對側半場助跑而來，以左右搖擺閃避動作逼近玩家球門，試圖穿越得分；
-        // 撞到框架或被防守機攔截時只會物理彈開，不會撤退，會立刻繼續纏鬥、連續進攻；
-        // 只有在「成功得分」之後才會依規則撤退回己方半場，跨越中線後才會重新展開下一波攻勢
+        // AI 攻擊機行為邏輯：從對側半場助跑而來，每一波新攻勢會從 ATTACK_PATTERNS 攻擊曲線庫中隨機抽選一種
+        // （斜向搖擺／S型蛇行／高空俯衝／貼地偷襲／假動作／側翼繞後／螺旋鑽入），並隨機化方向、幅度、頻率，
+        // 逼近玩家球門試圖穿越得分，讓每一波攻勢的路線都不一樣；
+        // 撞到球門框架僅是物理彈開，不主動改變階段，會立刻繼續纏鬥、連續進攻；
+        // 但若是被防守機（玩家或 AI 隊友）成功攔截，則會進入「重新整隊」階段：隨機選擇撤退一段距離
+        // 並調整到隨機高度，抵達後才恢復一般進攻模式並重新抽選攻擊曲線，不會原地立刻正面續攻；
+        // 只有在「成功得分」之後才會依規則撤退回己方半場，跨越中線後才會重新展開下一波攻勢（重新抽選曲線）；
+        // 若「意外」滑到球門後方與護籠之間的狹窄空間（未觸發正式得分流程），會立刻切換為
+        // 「繞回前方」階段，先爬升到安全高度再繞回球門前方重新纏鬥（重新抽選曲線），避免卡在那個窄小區域猶疑不前
         function updateAttacker(delta) {
             if (!attacker.mesh || !attacker.targetRing) return;
 
@@ -2184,29 +2397,61 @@
             const ring = attacker.targetRing;
             const c = attacker.constants;
 
+            // 每一影格都更新一次縫隙判讀（內部自帶較慢的重新掃描節奏與轉向速率限制，見函式註解），
+            // 讓瞄準角度可以連續、平滑地朝目標轉動，而不是每次判斷都瞬間跳到新角度
+            updateAttackerGapEstimate(attacker, ring, delta);
+
+            // 安全機制：每一影格都檢查一次，若正處於「進攻階段」卻已經身處球門後方
+            // （例如貼著框邊滑過去、而非真正穿越開口，因此沒有觸發上面的得分/意外穿越判定），
+            // 立即改走「繞回前方」流程，並強制本影格馬上重新規劃目標，不必等待下次反應計時，
+            // 這樣才能避免它停留在球門後方與護籠前方之間的狹窄空間裡反覆猶疑
+            if (attacker.phase === 'advance') {
+                const sideNow = attacker.position.z - ring.pos.z;
+                const behindGoal = sideNow !== 0 && Math.sign(sideNow) === ring.forwardSign;
+                if (behindGoal) {
+                    attacker.phase = 'loopback';
+                    attacker.reactionTimer = 0;
+                }
+            }
+
             attacker.reactionTimer -= delta;
             if (attacker.reactionTimer <= 0) {
                 attacker.reactionTimer = c.reactionMin + Math.random() * (c.reactionMax - c.reactionMin);
 
                 if (attacker.phase === 'advance') {
-                    // 進攻階段：左右與上下搖擺共用同一組相位，讓路線明顯偏向「斜著飛」而非單純水平或垂直移動，
-                    // 另外疊加一個較快的獨立波形，製造忽高忽低、較不規律的高度變化；越靠近球門搖擺幅度越收斂，準備直線衝刺穿越
-                    const t = clock.getElapsedTime();
-                    const diagPhase = t * 0.75 + attacker.weaveSeed;
-                    const weaveX = Math.sin(diagPhase) * c.weaveAmplitude;
-                    const weaveYDiagonal = Math.sin(diagPhase) * c.weaveAmplitudeY * c.diagonalBias;
-                    const weaveYChoppy = Math.sin(t * 1.9 + attacker.weaveSeed * 2.3) * c.weaveAmplitudeY * (1 - c.diagonalBias);
-                    const weaveY = weaveYDiagonal + weaveYChoppy;
-
+                    // 進攻階段：依本波抽到的攻擊曲線（見 ATTACK_PATTERNS / computeAttackCurveOffset）計算搖擺/假動作偏移量，
+                    // 同時估算兩台防守機（玩家 + AI 隊友）在球門開口上封鎖的角度範圍，找出縫隙面積最大的方向作為瞄準中心；
+                    // 越靠近球門，最終瞄準點越收斂到該縫隙中心，越遠則越以曲線本身的搖擺/假動作為主，保留迷惑效果
                     const distToGoal = Math.abs(attacker.position.z - ring.pos.z);
                     const weaveScale = THREE.MathUtils.clamp(distToGoal / 1.5, 0.15, 1);
 
-                    let dx = weaveX * weaveScale + (Math.random() - 0.5) * 2 * c.aimError;
-                    let dy = weaveY * weaveScale + (Math.random() - 0.5) * 2 * c.aimError;
+                    const offset = computeAttackCurveOffset(attacker, c, weaveScale);
+                    const gap = computeGoalGapOffset(attacker);
+                    const commitToGap = (1 - weaveScale) * 0.75; // 0（遠處，以曲線為主）~ 0.64（貼近球門，收斂到縫隙中心，但保留曲線動作避免過於死板）
 
-                    // 瞄準球門後方一小段距離，確保有實際「穿越」的動作而非卡在框邊
-                    const beyondZ = ring.pos.z + ring.forwardSign * 0.45;
-                    attacker.aimTarget.set(ring.pos.x + dx, ring.pos.y + dy, beyondZ);
+                    let dx = THREE.MathUtils.lerp(offset.dx, gap.x, commitToGap) + (Math.random() - 0.5) * 2 * c.aimError;
+                    let dy = THREE.MathUtils.lerp(offset.dy, gap.y, commitToGap) + (Math.random() - 0.5) * 2 * c.aimError;
+
+                    // 越靠近球門，允許的瞄準範圍越收斂；貼近球門的最後瞬間（weaveScale 收斂到最小值 0.15），
+                    // 瞄準範圍必須嚴格收斂在球門中心 40 公分直徑圓內 (ATTACKER_GOAL_AIM_RADIUS)；
+                    // 遠處助跑階段則放寬上限，保留曲線本身較大幅度的搖擺/假動作與側翼繞行效果
+                    const proximityT = THREE.MathUtils.clamp((weaveScale - 0.15) / (1 - 0.15), 0, 1);
+                    const maxAimRadius = THREE.MathUtils.lerp(ATTACKER_GOAL_AIM_RADIUS, 1.4, proximityT);
+                    const aimLen = Math.sqrt(dx * dx + dy * dy);
+                    if (aimLen > maxAimRadius) {
+                        const clampScale = maxAimRadius / aimLen;
+                        dx *= clampScale;
+                        dy *= clampScale;
+                    }
+
+                    // 瞄準點的深度依是否具備攻門資格而定：
+                    // 具備資格時，瞄準球門後方一小段距離，確保有實際「穿越」的動作而非卡在框邊；
+                    // 不具備資格時（剛得分、尚未回中線），刻意只瞄準球門前方一小段距離，
+                    // 逼近、纏鬥但不主動衝過球門，降低意外滑到球門後方狹窄空間的機率
+                    const targetZ = readyToScore
+                        ? ring.pos.z + ring.forwardSign * 0.45
+                        : ring.pos.z - ring.forwardSign * 0.35;
+                    attacker.aimTarget.set(ring.pos.x + dx, ring.pos.y + dy, targetZ);
                 } else if (attacker.phase === 'descend') {
                     // 回線整隊階段：先降到中間高度（與球門同高），避免一回線就從高空直接斜衝而下，
                     // 降到定高後才會以隨機方向重新展開攻勢
@@ -2216,10 +2461,43 @@
                         // 尚未降到中間高度：原地垂直下降，先不做任何水平移動
                         attacker.aimTarget.set(attacker.position.x, midAltitude, attacker.position.z);
                     } else {
-                        // 已降到中間高度：重新隨機化搖擺相位與左右閃避方向，切換回一般進攻模式，
-                        // 讓每一波攻勢的方向都不同，而不是每次都固定斜下衝
+                        // 已降到中間高度：重新抽選攻擊曲線並隨機化參數，切換回一般進攻模式，
+                        // 讓每一波攻勢的路線都不同，而不是每次都固定同一招
                         attacker.phase = 'advance';
-                        attacker.weaveSeed = Math.random() * 100;
+                        pickAttackPattern(attacker);
+                    }
+                } else if (attacker.phase === 'loopback') {
+                    // 繞回前方階段：這不是正式得分後的撤退，攻擊機仍保有攻門資格（或即將重新取得），
+                    // 只是意外滑到了球門後方與護籠之間的狹窄空間，因此先垂直爬升到安全高度脫離該空間，
+                    // 再從安全高度水平繞回球門前方（近側），一到位就立刻恢復一般進攻搖擺模式重新纏鬥，
+                    // 不會像撤退階段一樣飛回對側半場中線
+                    const clearAltitude = ring.pos.y + RING_CENTER_RADIUS + RING_TUBE_RADIUS + 0.4;
+
+                    if (attacker.position.y < clearAltitude - 0.1) {
+                        // 尚未爬升到安全高度：原地垂直爬升，先不做任何水平移動
+                        attacker.aimTarget.set(attacker.position.x, clearAltitude, attacker.position.z);
+                    } else {
+                        const stillBehind = Math.sign(attacker.position.z - ring.pos.z) === ring.forwardSign;
+                        if (stillBehind) {
+                            // 已到安全高度但仍在球門後方：在安全高空水平繞回球門前方（近側）
+                            const frontZ = ring.pos.z - ring.forwardSign * 0.9;
+                            attacker.aimTarget.set((Math.random() - 0.5) * 1.0, clearAltitude, frontZ);
+                        } else {
+                            // 已成功繞回球門前方：恢復一般進攻模式，重新抽選攻擊曲線
+                            attacker.phase = 'advance';
+                            pickAttackPattern(attacker);
+                        }
+                    }
+                } else if (attacker.phase === 'regroup') {
+                    // 被攔截後的重新整隊：目標點（隨機撤退距離＋隨機高度）已在碰撞當下設定好，
+                    // 這裡持續飛向該點；抵達後才恢復一般進攻模式並重新抽選攻擊曲線，
+                    // 不會像撤退階段一樣飛回對側半場中線，只是在自己這一側先拉開距離、換個高度重新來過
+                    const distToRegroup = attacker.position.distanceTo(attacker.regroupTarget);
+                    if (distToRegroup < 0.25) {
+                        attacker.phase = 'advance';
+                        pickAttackPattern(attacker);
+                    } else {
+                        attacker.aimTarget.copy(attacker.regroupTarget);
                     }
                 } else {
                     // 撤退階段：強制先垂直爬升到高於球門框架最高點的安全高度，完全脫離框架與防守機的糾纏範圍後，
@@ -2382,8 +2660,30 @@
                 // 防守機也會受到些微反作用力
                 defenderVel.addScaledVector(normal, 0.4);
 
-                // 被攔截僅是物理彈開，不主動改變目前的階段：進攻中被攔截就立刻繼續纏鬥進攻，
-                // 但如果此時正在撤退整隊（例如剛得分還沒飛出安全範圍），不會被打斷、依然繼續撤退
+                // 被攔截後不再原地立刻正面續攻：只要當下正在主動進攻階段（而非已經處於得分撤退、
+                // 繞回前方、或前一次攔截後的重新整隊等既有流程中），就隨機選擇撤退一段距離、
+                // 調整到隨機高度，整隊完畢後才重新展開攻勢；若正處於其他既有流程則不打斷，維持原流程
+                if (attacker.phase === 'advance' && attacker.targetRing) {
+                    const ring = attacker.targetRing;
+                    const retreatDist = 0.3 + Math.random() * 0.5; // 隨機撤退距離，約 0.3~0.8 公尺（僅拉開短距離重新調整，不飛遠）
+                    const randomAltitude = THREE.MathUtils.clamp(0.4 + Math.random() * 2.0, 0.25, 2.8); // 隨機重新調整高度
+                    const xLimitR = CAGE_WIDTH / 2 - droneRadius;
+                    const zLimitR = CAGE_LENGTH / 2 - droneRadius;
+
+                    const retreatX = THREE.MathUtils.clamp(
+                        attacker.position.x + (Math.random() - 0.5) * 0.6,
+                        -xLimitR, xLimitR
+                    );
+                    // 沿著「遠離球門」的方向（回到自己這一側）退開一段距離，而非直接飛回中線
+                    const retreatZ = THREE.MathUtils.clamp(
+                        attacker.position.z - ring.forwardSign * retreatDist,
+                        -zLimitR, zLimitR
+                    );
+
+                    attacker.phase = 'regroup';
+                    attacker.reactionTimer = 0;
+                    attacker.regroupTarget.set(retreatX, randomAltitude, retreatZ);
+                }
 
                 createExplosion(attacker.position.clone(), 0x10b981); // 綠色攔截成功特效
                 playChimeSound(); // 清亮提示音，代表成功防守
