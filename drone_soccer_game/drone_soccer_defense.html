@@ -404,6 +404,8 @@
         // AI 攻擊機最終瞄準球門時，容許的目標範圍：球門中心 40 公分直徑圓內（半徑 20 公分），
         // 比實際開口 (60 公分直徑) 更收斂，逼近球門的最後階段一律鎖定在這個中央範圍內出手
         const ATTACKER_GOAL_AIM_RADIUS = 0.20;
+        // 攻擊機偵測到防守機（玩家或 AI 隊友）進入此距離內時，會優先閃避，且閃避方向固定朝向球門圓心
+        const ATTACKER_EVADE_DISTANCE = 0.55;
         const RING_TUBE_RADIUS = 0.022;   // 光環管粗半徑 (依比例縮小)
         const RING_CENTER_RADIUS = RING_CLEAR_RADIUS + RING_TUBE_RADIUS; // 圓環管中心線半徑 (TorusGeometry 用)
 
@@ -510,8 +512,8 @@
         const AI_ATTACKER_CONSTANTS = {
             maxSpeed: 1.55,        // 攻擊機最高飛行速度 (m/s)，略低於守門機以利防守方攔截
             accel: 3.2,            // 加速度
-            weaveAmplitude: 0.85,  // 左右閃避搖擺幅度（米），加大讓路線更明顯地走斜角
-            weaveAmplitudeY: 0.55, // 上下高度起伏幅度（米），忽高忽低
+            weaveAmplitude: 1.9,   // 左右閃避搖擺幅度（米），大幅加大讓曲線更誇張、路線更明顯地走斜角
+            weaveAmplitudeY: 1.15, // 上下高度起伏幅度（米），大幅加大讓忽高忽低更明顯
             diagonalBias: 0.5,     // 左右與上下連動係數，讓移動偏向「斜著飛」而非單純水平或垂直
             reactionMin: 0.22,
             reactionMax: 0.5,
@@ -604,7 +606,7 @@
             attacker.attackPattern = ATTACK_PATTERNS[Math.floor(Math.random() * ATTACK_PATTERNS.length)];
             attacker.weaveSeed = Math.random() * 100;
             attacker.patternDir = Math.random() < 0.5 ? 1 : -1;        // 起始左右偏移方向隨機
-            attacker.patternAmpScale = 0.75 + Math.random() * 0.55;    // 幅度隨機縮放 0.75~1.3 倍
+            attacker.patternAmpScale = 0.85 + Math.random() * 0.85;    // 幅度隨機縮放 0.85~1.7 倍
             attacker.patternFreqScale = 0.75 + Math.random() * 0.5;    // 頻率隨機縮放 0.75~1.25 倍
             attacker.gapTimer = 0; // 新一波攻勢開始時，立即重新判讀一次防守縫隙
         }
@@ -686,6 +688,16 @@
             attacker.gapAngle += THREE.MathUtils.clamp(angleDiff, -maxStep, maxStep);
 
             attacker.gapClearance = THREE.MathUtils.lerp(attacker.gapClearance, attacker.gapTargetClearance, Math.min(1, delta * 2.5));
+        }
+
+        // 計算攻擊機與最近一台防守機（玩家或 AI 隊友）的距離，供閃避行為判斷使用
+        function nearestDefenderDistance(attackerPos) {
+            let minDist = Infinity;
+            if (drone && drone.mesh) minDist = Math.min(minDist, attackerPos.distanceTo(drone.position));
+            aiDrones.forEach((ai) => {
+                if (ai.mesh) minDist = Math.min(minDist, attackerPos.distanceTo(ai.position));
+            });
+            return minDist;
         }
 
         // 依目前平滑後的縫隙角度與寬裕程度，回傳球門開口內、該方向上的瞄準座標；
@@ -2381,7 +2393,8 @@
         // 並調整到隨機高度，抵達後才恢復一般進攻模式並重新抽選攻擊曲線，不會原地立刻正面續攻；
         // 只有在「成功得分」之後才會依規則撤退回己方半場，跨越中線後才會重新展開下一波攻勢（重新抽選曲線）；
         // 若「意外」滑到球門後方與護籠之間的狹窄空間（未觸發正式得分流程），會立刻切換為
-        // 「繞回前方」階段，先爬升到安全高度再繞回球門前方重新纏鬥（重新抽選曲線），避免卡在那個窄小區域猶疑不前
+        // 「繞回前方」階段，先爬升到安全高度再繞回球門前方重新纏鬥（重新抽選曲線），避免卡在那個窄小區域猶疑不前；
+        // 進攻過程中若有防守機逼近到 ATTACKER_EVADE_DISTANCE 以內，會優先閃避，且閃避方向固定朝向球門圓心切入
         function updateAttacker(delta) {
             if (!attacker.mesh || !attacker.targetRing) return;
 
@@ -2414,6 +2427,9 @@
                 }
             }
 
+            // 閃避機制的判定邏輯移到反應計時區塊之後執行（見下方），確保閃避覆寫不會被
+            // 同一影格內剛計算出的曲線/縫隙瞄準結果蓋回去
+
             attacker.reactionTimer -= delta;
             if (attacker.reactionTimer <= 0) {
                 attacker.reactionTimer = c.reactionMin + Math.random() * (c.reactionMax - c.reactionMin);
@@ -2436,7 +2452,7 @@
                     // 瞄準範圍必須嚴格收斂在球門中心 40 公分直徑圓內 (ATTACKER_GOAL_AIM_RADIUS)；
                     // 遠處助跑階段則放寬上限，保留曲線本身較大幅度的搖擺/假動作與側翼繞行效果
                     const proximityT = THREE.MathUtils.clamp((weaveScale - 0.15) / (1 - 0.15), 0, 1);
-                    const maxAimRadius = THREE.MathUtils.lerp(ATTACKER_GOAL_AIM_RADIUS, 1.4, proximityT);
+                    const maxAimRadius = THREE.MathUtils.lerp(ATTACKER_GOAL_AIM_RADIUS, 1.8, proximityT);
                     const aimLen = Math.sqrt(dx * dx + dy * dy);
                     if (aimLen > maxAimRadius) {
                         const clampScale = maxAimRadius / aimLen;
@@ -2511,6 +2527,19 @@
                         // 已經爬升到安全高度以上：在此高空直線飛回對側半場重新整隊
                         attacker.aimTarget.set((Math.random() - 0.5) * 1.0, clearAltitude, -ring.pos.z);
                     }
+                }
+            }
+
+            // 閃避機制：每一影格都檢查一次，若正在進攻階段且有防守機逼近到閃避距離內，
+            // 立即優先閃避，且閃避方向固定朝向球門圓心（而非隨機躲開）——防守機貼身時，
+            // 攻擊機會捨棄原本剛計算出的曲線/縫隙瞄準，直接朝球門正中央切入，越靠近防守機切入意圖越強烈；
+            // 不受一般反應延遲限制，確保能及時反應，避免頻繁被同一台防守機正面攔截
+            if (attacker.phase === 'advance') {
+                const nearestDist = nearestDefenderDistance(attacker.position);
+                if (nearestDist < ATTACKER_EVADE_DISTANCE) {
+                    const evadeT = THREE.MathUtils.clamp(1 - nearestDist / ATTACKER_EVADE_DISTANCE, 0, 1);
+                    attacker.aimTarget.x = THREE.MathUtils.lerp(attacker.aimTarget.x, ring.pos.x, evadeT);
+                    attacker.aimTarget.y = THREE.MathUtils.lerp(attacker.aimTarget.y, ring.pos.y, evadeT);
                 }
             }
 
