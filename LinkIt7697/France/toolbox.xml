@@ -3810,6 +3810,8 @@
 			</value>
 			<value name="keycode3">
 			</value>
+			<value name="keycode4">
+			</value>            
 			<value name="presstime">
 			  <block type="math_number">
 				<field name="NUM">10</field>
@@ -3821,10 +3823,6 @@
 			  <block type="amb82_mini_blekeyboard_keycode">
 				<field name="keycode">0</field>
 			  </block>
-			</value>
-			<value name="keycode2">
-			</value>
-			<value name="keycode3">
 			</value>			
 		  </block>	
 		  <block type="amb82_mini_blekeyboard_release">
@@ -3832,10 +3830,6 @@
 			  <block type="amb82_mini_blekeyboard_keycode">
 				<field name="keycode">0</field>
 			  </block>
-			</value>
-			<value name="keycode2">
-			</value>
-			<value name="keycode3">
 			</value>			
 		  </block>	
 		  <block type="amb82_mini_blekeyboard_release_all">			
@@ -10815,6 +10809,8 @@
 			</value>
 			<value name="keycode3">
 			</value>
+			<value name="keycode4">
+			</value>            
 			<value name="presstime">
 			  <block type="math_number">
 				<field name="NUM">10</field>
@@ -10826,10 +10822,6 @@
 			  <block type="esp32_blekeyboard_keycode">
 				<field name="keycode">0</field>
 			  </block>
-			</value>
-			<value name="keycode2">
-			</value>
-			<value name="keycode3">
 			</value>			
 		  </block>	
 		  <block type="esp32_blekeyboard_release">
@@ -10837,10 +10829,6 @@
 			  <block type="esp32_blekeyboard_keycode">
 				<field name="keycode">0</field>
 			  </block>
-			</value>
-			<value name="keycode2">
-			</value>
-			<value name="keycode3">
 			</value>			
 		  </block>	
 		  <block type="esp32_blekeyboard_release_all">			

@@ -5019,12 +5019,13 @@ Blockly.Arduino['amb82_mini_blekeyboard'] = function(block) {
     var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
 	Blockly.Arduino.definitions_.define_esp32_blekeyboard_include = '#include "BLEHIDDevice.h"\n#include "BLEHIDKeyboard.h"\n#include "BLEDevice.h"\nBLEHIDKeyboard keyboardDev;\nBLEAdvertData advdata;\n';
 	Blockly.Arduino.definitions_.blekeyboard = '\n'+
-			'void blekeyboard(String type, uint16_t keycode1, uint16_t keycode2, uint16_t keycode3, String characters, char character, int presstime) {\n'+
+			'void blekeyboard(String type, uint16_t keycode1, uint16_t keycode2, uint16_t keycode3, uint16_t keycode4, String characters, char character, int presstime) {\n'+
 			'  if(BLE.connected()) {\n'+			
 			'    if (type=="press") {\n'+
 			'      if (keycode1!=0x00) keyboardDev.keyPress(keycode1);\n'+
 			'      if (keycode2!=0x00) keyboardDev.keyPress(keycode2);\n'+
 			'      if (keycode3!=0x00) keyboardDev.keyPress(keycode3);\n'+
+			'      if (keycode4!=0x00) keyboardDev.keyPress(keycode4);\n'+            
 			'      delay(presstime);\n'+
 			'      keyboardDev.keyReleaseAll();\n'+
 			'    } else if (type=="press_norelease") {\n'+
@@ -5078,47 +5079,48 @@ Blockly.Arduino['amb82_mini_blekeyboard_press'] = function(block) {
 	var keycode1 = Blockly.Arduino.valueToCode(block, 'keycode1', Blockly.Arduino.ORDER_ATOMIC)||-1;
 	var keycode2 = Blockly.Arduino.valueToCode(block, 'keycode2', Blockly.Arduino.ORDER_ATOMIC)||-1;
 	var keycode3 = Blockly.Arduino.valueToCode(block, 'keycode3', Blockly.Arduino.ORDER_ATOMIC)||-1;
+    var keycode4 = Blockly.Arduino.valueToCode(block, 'keycode3', Blockly.Arduino.ORDER_ATOMIC)||-1;
 	var presstime = Blockly.Arduino.valueToCode(block, 'presstime', Blockly.Arduino.ORDER_ATOMIC)||10;
 	
-	return 'blekeyboard("press", '+keycode1+', '+keycode2+', '+keycode3+', "", \'\\0\', '+presstime+');\n';
+	return 'blekeyboard("press", '+keycode1+', '+keycode2+', '+keycode3+', '+keycode4+', "", \'\\0\', '+presstime+');\n';
 };
 
 Blockly.Arduino['amb82_mini_blekeyboard_press_norelease'] = function(block) {	
 	var keycode1 = Blockly.Arduino.valueToCode(block, 'keycode1', Blockly.Arduino.ORDER_ATOMIC)||0x00;
 	
-	return 'blekeyboard("press_norelease", '+keycode1+', 0x00, 0x00, "", \'\\0\', 0);\n';
+	return 'blekeyboard("press_norelease", '+keycode1+', 0x00, 0x00, 0x00, "", \'\\0\', 0);\n';
 };
 
 Blockly.Arduino['amb82_mini_blekeyboard_release'] = function(block) {	
 	var keycode1 = Blockly.Arduino.valueToCode(block, 'keycode1', Blockly.Arduino.ORDER_ATOMIC)||0x00;
 	
-	return 'blekeyboard("release", '+keycode1+', 0x00, 0x00, "", \'\\0\', 0);\n';
+	return 'blekeyboard("release", '+keycode1+', 0x00, 0x00, 0x00, "", \'\\0\', 0);\n';
 };
 
 Blockly.Arduino['amb82_mini_blekeyboard_release_all'] = function(block) {
-	return 'blekeyboard("release_all", 0x00, 0x00, 0x00, "", \'\\0\', 0);\n';
+	return 'blekeyboard("release_all", 0x00, 0x00, 0x00, 0x00, "", \'\\0\', 0);\n';
 };
 
 Blockly.Arduino['amb82_mini_blekeyboard_print'] = function(block) {	
 	var characters = Blockly.Arduino.valueToCode(block, 'characters', Blockly.Arduino.ORDER_ATOMIC)||"";
 	
-	return 'blekeyboard("print", 0x00, 0x00, 0x00, '+characters+', \'\\0\', 0);\n';
+	return 'blekeyboard("print", 0x00, 0x00, 0x00, 0x00, '+characters+', \'\\0\', 0);\n';
 };
 
 Blockly.Arduino['amb82_mini_blekeyboard_write'] = function(block) {	
 	var keycode = Blockly.Arduino.valueToCode(block, 'keycode', Blockly.Arduino.ORDER_ATOMIC)||"";
 	
-	return 'blekeyboard("write", 0x00, 0x00, 0x00, "", '+keycode+', 10);\n';
+	return 'blekeyboard("write", 0x00, 0x00, 0x00, 0x00, "", '+keycode+', 10);\n';
 };
 
 Blockly.Arduino['amb82_mini_blekeyboard_press_norelease_consumer'] = function(block) {	
 	var keycode = Blockly.Arduino.valueToCode(block, 'keycode', Blockly.Arduino.ORDER_ATOMIC)||0x00;
 	
-	return 'blekeyboard("press_norelease_consumer", '+keycode+', 0x00, 0x00, "", \'\\0\', 0);\n';
+	return 'blekeyboard("press_norelease_consumer", '+keycode+', 0x00, 0x00, 0x00, "", \'\\0\', 0);\n';
 };
 
 Blockly.Arduino['amb82_mini_blekeyboard_release_consumer'] = function(block) {
-	return 'blekeyboard("release_consumer", 0x00, 0x00, 0x00, "", \'\\0\', 0);\n';
+	return 'blekeyboard("release_consumer", 0x00, 0x00, 0x00, 0x00, "", \'\\0\', 0);\n';
 };
 
 Blockly.Arduino['amb82_mini_blekeyboard_keycode'] = function(block) {	

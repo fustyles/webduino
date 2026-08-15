@@ -6068,7 +6068,11 @@ Blockly.Blocks['amb82_mini_blekeyboard_press'] = {
     this.appendValueInput("keycode3")
         .setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)		
-		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"]+"3");	
+		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"]+"3");
+    this.appendValueInput("keycode4")
+        .setCheck("Number")
+		.setAlign(Blockly.ALIGN_RIGHT)		
+		.appendField(Blockly.Msg["ESP32_BLEKEYBOARD_KEYCODE_SHOW"]+"4");        
     this.appendValueInput("presstime")
         .setCheck("Number")
 		.setAlign(Blockly.ALIGN_RIGHT)		
