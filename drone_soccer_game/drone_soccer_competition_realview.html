@@ -2028,47 +2028,62 @@
 
             const ring = aiState.guardRing;
             const c = aiState.constants;
+            const homeX = ring.pos.x + aiState.guardHomeOffsetX;
+            const homeY = ring.pos.y;
+            const homeZ = ring.pos.z;
 
             // 反應延遲：AI 並非每一影格都重新鎖定玩家位置，而是每隔一段隨機時間才「重新判斷」一次
             aiState.reactionTimer -= delta;
             if (aiState.reactionTimer <= 0) {
                 aiState.reactionTimer = c.reactionMin + Math.random() * (c.reactionMax - c.reactionMin);
 
-                // 玩家相對「這台守門機守備分工中心」（球門中心 + 左右分工偏移）的水平/垂直偏移
-                let dx = drone.position.x - (ring.pos.x + aiState.guardHomeOffsetX);
-                let dy = drone.position.y - ring.pos.y;
+                // 玩家目前位置 + 隨機瞄準誤差，模擬預判失準（不會完美貼防）
+                const px = drone.position.x + (Math.random() - 0.5) * 2 * c.aimError;
+                const py = THREE.MathUtils.clamp(
+                    drone.position.y + (Math.random() - 0.5) * 0.2,
+                    homeY - 0.35, homeY + 0.35
+                );
 
-                // 加入隨機瞄準誤差，模擬預判失準（笨手笨腳）
-                dx += (Math.random() - 0.5) * 2 * c.aimError;
-                dy += (Math.random() - 0.5) * 2 * c.aimError;
+                // 依玩家目前速度預判 0.25 秒後的走向，讓守門機看起來會「提前卡位」而非死盯玩家當下位置
+                const predict = drone.velocity.clone().multiplyScalar(0.25);
 
-                const offsetLen = Math.sqrt(dx * dx + dy * dy);
-                if (offsetLen > c.guardRadiusXY) {
-                    dx = (dx / offsetLen) * c.guardRadiusXY;
-                    dy = (dy / offsetLen) * c.guardRadiusXY;
-                }
-
-                // 玩家越靠近球門，守門機越往前迎擊（機率性地才會出擊，並非每次都撲上前）
-                const distToRing = Math.abs(drone.position.z - ring.pos.z);
-                const willEngage = Math.random() < 0.78; // 提高主動出擊迎擊的機率
+                // 玩家越靠近球門，守門機越有機率主動前壓迎擊
+                const distToRing = Math.abs(drone.position.z - homeZ);
+                const willEngage = distToRing < 2.4 && Math.random() < 0.78;
                 const engageDepth = willEngage
-                    ? THREE.MathUtils.clamp(1.4 - distToRing, 0, 1) * c.guardDepth
+                    ? Math.min(c.guardDepth, distToRing * 0.35)
                     : 0;
                 const dz = -ring.forwardSign * engageDepth;
 
-                aiState.aimTarget.set(ring.pos.x + aiState.guardHomeOffsetX + dx, ring.pos.y + dy, ring.pos.z + dz);
+                aiState.aimTarget.set(
+                    THREE.MathUtils.clamp(px + predict.x * 0.4, homeX - c.guardRadiusXY, homeX + c.guardRadiusXY),
+                    THREE.MathUtils.clamp(py + predict.y * 0.2, homeY - 0.35, homeY + 0.35),
+                    homeZ + dz
+                );
             }
 
-            // 以較低的加速度緩緩追向「上次判斷」的目標位置（帶阻尼，動作明顯較遲鈍）
+            // 以彈簧式轉向追向目標，並在接近速度上限時收斂，動作更靈敏、不再被每影格阻尼拖慢
             const toTarget = aiState.aimTarget.clone().sub(aiState.position);
             const dist = toTarget.length();
-            if (dist > 0.01) {
-                const desiredVel = toTarget.normalize().multiplyScalar(Math.min(c.maxSpeed, dist * 2.2));
-                const steer = desiredVel.sub(aiState.velocity).multiplyScalar(c.accel * delta);
+            if (dist > 0.02) {
+                const desiredVel = toTarget.normalize().multiplyScalar(Math.min(c.maxSpeed, dist * 3));
+                const steer = desiredVel.sub(aiState.velocity).multiplyScalar(Math.min(1, c.accel * delta));
                 aiState.velocity.add(steer);
+                if (aiState.velocity.length() > c.maxSpeed) aiState.velocity.setLength(c.maxSpeed);
+            } else {
+                aiState.velocity.multiplyScalar(0.9); // 只在幾乎抵達目標時才衰減，避免原地震盪
             }
-            aiState.velocity.multiplyScalar(0.88); // 阻尼，避免震盪
             aiState.position.addScaledVector(aiState.velocity, delta);
+
+            // 邊界收束：確保守門機不會因追擊而偏離自己負責的守備範圍太遠
+            aiState.position.x = THREE.MathUtils.clamp(aiState.position.x, homeX - c.guardRadiusXY, homeX + c.guardRadiusXY);
+            aiState.position.y = THREE.MathUtils.clamp(aiState.position.y, homeY - 0.4, homeY + 0.4);
+            const maxDepth = c.guardDepth + 0.05;
+            if (homeZ < 0) {
+                aiState.position.z = THREE.MathUtils.clamp(aiState.position.z, homeZ - 0.05, homeZ + maxDepth);
+            } else {
+                aiState.position.z = THREE.MathUtils.clamp(aiState.position.z, homeZ - maxDepth, homeZ + 0.05);
+            }
 
             aiState.mesh.position.copy(aiState.position);
             // 守門機機身面向玩家
