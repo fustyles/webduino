@@ -7657,7 +7657,9 @@ Blockly.Arduino['TinyGPS_get_state'] = function(block){
 
 Blockly.Arduino['esp32_blekeyboard'] = function(block) {
     var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_.define_esp32_blekeyboard_include = '#include <BleKeyboard.h>\nBleKeyboard bleKeyboard;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\n';
+	Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
+	Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';    
+	Blockly.Arduino.definitions_.define_esp32_blekeyboard_include = '#include <BleKeyboard.h>\nBleKeyboard bleKeyboard;\n';
 	Blockly.Arduino.definitions_.blekeyboard = '\n'+
 			'void blekeyboard(String type, uint8_t keycode1, uint8_t keycode2, uint8_t keycode3, uint8_t keycode4, int presstime, String characters) {\n'+
 			'  if(bleKeyboard.isConnected()) {\n'+			
@@ -7759,7 +7761,9 @@ Blockly.Arduino['esp32_blekeyboard_chartoascii'] = function(block) {
 
 Blockly.Arduino['esp32_blemouse'] = function(block) {
     var blename = Blockly.Arduino.valueToCode(block, 'blename', Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_.define_esp32_blemouse_include = '#include <BleMouse.h>\nBleMouse bleMouse('+blename+', "Espressif", 100);\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\n';
+	Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
+	Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';    
+	Blockly.Arduino.definitions_.define_esp32_blemouse_include = '#include <BleMouse.h>\nBleMouse bleMouse('+blename+', "Espressif", 100);\n';
 	Blockly.Arduino.definitions_.blemouse = '\n'+
 			'void blemouse(String type, byte event, String mode, float delaytime, int pixels) {\n'+
 			'  if (type=="click") \n'+
@@ -8247,6 +8251,11 @@ Blockly.Arduino['ps2_initial'] = function (block) {
 	//	Blockly.Arduino.definitions_['joystick_initial_analogMax'] = 'int analogMax = 1023;\n';
 	//}
 	
+    if (selectBoardType()=="esp32") {
+        Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
+        Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"'; 
+    }
+    
 	Blockly.Arduino.definitions_['define_ps2_initial'] = '#include <PS2X_lib.h>\n'
 														+'#define PS2_DAT        '+DAT+'\n'  
 														+'#define PS2_CMD        '+CMD+'\n' 
@@ -12868,8 +12877,10 @@ Blockly.Arduino['fu_servo'] = function(block) {
 Blockly.Arduino['esp32_pixelbit_initial'] = function(block) {
 	
   var framesize = block.getFieldValue('framesize');
-																
-  Blockly.Arduino.definitions_['define_esp32_pixelbit_initial'] ='#include "esp_camera.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\n'+
+				
+  Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
+  Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';                
+  Blockly.Arduino.definitions_['define_esp32_pixelbit_initial'] ='#include "esp_camera.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n'+
 																'#define PWDN_GPIO_NUM     -1\n'+
 																'#define RESET_GPIO_NUM    -1\n'+
 																'#define XCLK_GPIO_NUM      0\n'+
@@ -12968,7 +12979,9 @@ Blockly.Arduino['esp32_pixelbit_stream_myfirmata'] = function(block) {
   var framesize = block.getFieldValue('framesize');
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
 	
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include "esp_http_server.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\ntypedef struct {httpd_req_t *req;size_t len;} jpg_chunking_t;\n#define PART_BOUNDARY "123456789000000000000987654321"\nstatic const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;\nstatic const char* _STREAM_BOUNDARY = "\\r\\n--" PART_BOUNDARY "\\r\\n";\nstatic const char* _STREAM_PART = "Content-Type: image/jpeg\\r\\nContent-Length: %u\\r\\n\\r\\n";\nhttpd_handle_t stream_httpd = NULL;\nhttpd_handle_t camera_httpd = NULL;\n';
+  Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
+  Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';    
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include "esp_http_server.h"\n#include <tca5405.h>\nTCA5405 tca5405;\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\ntypedef struct {httpd_req_t *req;size_t len;} jpg_chunking_t;\n#define PART_BOUNDARY "123456789000000000000987654321"\nstatic const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;\nstatic const char* _STREAM_BOUNDARY = "\\r\\n--" PART_BOUNDARY "\\r\\n";\nstatic const char* _STREAM_PART = "Content-Type: image/jpeg\\r\\nContent-Length: %u\\r\\n\\r\\n";\nhttpd_handle_t stream_httpd = NULL;\nhttpd_handle_t camera_httpd = NULL;\n';
   Blockly.Arduino.variables_['getCommand'] = 'String Feedback="",bleData="",Command="",cmd="",p1="",p2="",p3="",p4="",p5="",p6="",p7="",p8="",p9="";\nbyte receiveState=0,cmdState=1,pState=1,questionState=0,equalState=0,semicolonState=0;\n';
   
   if (selectBoardType()=="esp32")
@@ -13749,8 +13762,12 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
   var request = block.getFieldValue('request') === 'TRUE'; 
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
 	
+  Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
+  Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';  
+    
   if (type=="still") {
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\nWiFiServer server(80);\n\n'+
+    
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include <tca5405.h>\nTCA5405 tca5405;\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\nWiFiServer server(80);\n\n'+
 																'#define PWDN_GPIO_NUM     -1\n'+
 																'#define RESET_GPIO_NUM    -1\n'+
 																'#define XCLK_GPIO_NUM      0\n'+
@@ -13768,7 +13785,7 @@ Blockly.Arduino['esp32_pixelbit_myfirmata'] = function(block) {
 																'#define HREF_GPIO_NUM     26\n'+
 																'#define PCLK_GPIO_NUM     35\n';
   } else {
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include <tca5405.h>\nTCA5405 tca5405;\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\n\n'+
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include <tca5405.h>\nTCA5405 tca5405;\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\n\n'+
 																'#define PWDN_GPIO_NUM     -1\n'+
 																'#define RESET_GPIO_NUM    -1\n'+
 																'#define XCLK_GPIO_NUM      0\n'+
@@ -14652,9 +14669,14 @@ Blockly.Arduino['esp32_telegrambot'] = function(block) {
 	}
 	else if (selectBoardType()=="rp2040")
 		Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nlong message_id_last = 0;\nboolean sendHelp = false;\n';	
-	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266")			
-		Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nlong message_id_last = 0;\nboolean sendHelp = false;\n';
-
+	else if (selectBoardType()=="esp32"||selectBoardType()=="esp8266") {		
+		Blockly.Arduino.definitions_.define_linkit_wifi_include='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nlong message_id_last = 0;\nboolean sendHelp = false;\n';
+    }
+	if (selectBoardType()=="esp32") {	
+        Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
+        Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';	
+    }
+    
 	Blockly.Arduino.definitions_.sendMessageToTelegram = ''+
 		'void sendMessageToTelegram(String token, String chatid, String text, String keyboard) {\n'+
 		'  text.replace("\\\\n", "%0A");\n'+			
@@ -14900,9 +14922,12 @@ Blockly.Arduino['esp32cam_telegrambot'] = function(block) {
   var statements_executecommand = Blockly.Arduino.statementToCode(block, 'ExecuteCommand');
   var statements_loop = Blockly.Arduino.statementToCode(block, 'loop');
 
-  Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>';  
+  Blockly.Arduino.definitions_['ArduinoJson'] = '#include <ArduinoJson.h>'; 
+
+  Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
+  Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';
   
-  Blockly.Arduino.definitions_['define_linkit_wifi_include'] = '#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\n#include "Base64_tool.h"\n#include "Base64.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nlong message_id_last = 0;\nboolean sendHelp = false;\n'+
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] = '#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include "Base64_tool.h"\n#include "Base64.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nString token = '+token+';\nString chat_id = '+chat_id+';\nlong message_id_last = 0;\nboolean sendHelp = false;\n'+
 																'#define PWDN_GPIO_NUM     32\n'+
 																'#define RESET_GPIO_NUM    -1\n'+
 																'#define XCLK_GPIO_NUM      0\n'+
@@ -18141,7 +18166,8 @@ Blockly.Arduino['linenotify_http'] = function (block) {
 };
 
 Blockly.Arduino['close_powerdog'] = function(block) { 
-  Blockly.Arduino.definitions_['close_powerdog'] ='#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"';
+  Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
+  Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';
   var code = 'WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);\n';
   return code; 
 };
@@ -26010,7 +26036,10 @@ Blockly.Arduino['esp32_cam_initial'] = function(block) {
 	if (flash=="Y")
 		Blockly.Arduino.definitions_['flash'] = "//Flash mode";
 
-	Blockly.Arduino.definitions_['define_esp_camera'] ='#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\n'+
+	Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
+	Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';
+    
+	Blockly.Arduino.definitions_['define_esp_camera'] ='#include "esp_camera.h"\n'+
 															'#define PWDN_GPIO_NUM     32\n'+
 															'#define RESET_GPIO_NUM    -1\n'+
 															'#define XCLK_GPIO_NUM      0\n'+
@@ -26104,9 +26133,12 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 
   if (flash=="Y")
 	  Blockly.Arduino.definitions_['flash'] = "//Flash mode";
+  
+  Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
+  Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';  
 	
   if (type=="still") {
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\nWiFiServer server(80);\n\n'+
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\nWiFiServer server(80);\n\n'+
 																'#define PWDN_GPIO_NUM     32\n'+
 																'#define RESET_GPIO_NUM    -1\n'+
 																'#define XCLK_GPIO_NUM      0\n'+
@@ -26124,7 +26156,7 @@ Blockly.Arduino['esp32_cam_myfirmata'] = function(block) {
 																'#define HREF_GPIO_NUM     23\n'+
 																'#define PCLK_GPIO_NUM     22\n';
   } else {
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\n\n'+
+	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\n\n'+
 																'#define PWDN_GPIO_NUM     32\n'+
 																'#define RESET_GPIO_NUM    -1\n'+
 																'#define XCLK_GPIO_NUM      0\n'+
@@ -26652,23 +26684,25 @@ Blockly.Arduino['esp32_cam_stream_only_myfirmata'] = function(block) {
   if (flash=="Y")
 	  Blockly.Arduino.definitions_['flash'] = "//Flash mode";
 
-	Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\n\n'+
-																'#define PWDN_GPIO_NUM     32\n'+
-																'#define RESET_GPIO_NUM    -1\n'+
-																'#define XCLK_GPIO_NUM      0\n'+
-																'#define SIOD_GPIO_NUM     26\n'+
-																'#define SIOC_GPIO_NUM     27\n'+
-																'#define Y9_GPIO_NUM       35\n'+
-																'#define Y8_GPIO_NUM       34\n'+
-																'#define Y7_GPIO_NUM       39\n'+
-																'#define Y6_GPIO_NUM       36\n'+
-																'#define Y5_GPIO_NUM       21\n'+
-																'#define Y4_GPIO_NUM       19\n'+
-																'#define Y3_GPIO_NUM       18\n'+
-																'#define Y2_GPIO_NUM        5\n'+
-																'#define VSYNC_GPIO_NUM    25\n'+
-																'#define HREF_GPIO_NUM     23\n'+
-																'#define PCLK_GPIO_NUM     22\n'; 
+  Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
+  Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';
+  Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <WiFiClientSecure.h>\nWiFiClientSecure client;\n#include "esp_camera.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\n\n'+
+                                                            '#define PWDN_GPIO_NUM     32\n'+
+                                                            '#define RESET_GPIO_NUM    -1\n'+
+                                                            '#define XCLK_GPIO_NUM      0\n'+
+                                                            '#define SIOD_GPIO_NUM     26\n'+
+                                                            '#define SIOC_GPIO_NUM     27\n'+
+                                                            '#define Y9_GPIO_NUM       35\n'+
+                                                            '#define Y8_GPIO_NUM       34\n'+
+                                                            '#define Y7_GPIO_NUM       39\n'+
+                                                            '#define Y6_GPIO_NUM       36\n'+
+                                                            '#define Y5_GPIO_NUM       21\n'+
+                                                            '#define Y4_GPIO_NUM       19\n'+
+                                                            '#define Y3_GPIO_NUM       18\n'+
+                                                            '#define Y2_GPIO_NUM        5\n'+
+                                                            '#define VSYNC_GPIO_NUM    25\n'+
+                                                            '#define HREF_GPIO_NUM     23\n'+
+                                                            '#define PCLK_GPIO_NUM     22\n'; 
 
   Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
 	
@@ -26898,8 +26932,10 @@ Blockly.Arduino['esp32_cam_stream_myfirmata'] = function(block) {
   if (flash=="Y")
 	  Blockly.Arduino.definitions_['flash'] = "//Flash mode";  
 	
+  Blockly.Arduino.definitions_.define_soc_h_include ='#include "soc/soc.h"';
+  Blockly.Arduino.definitions_.define_rtc_cntl_reg_h_include ='#include "soc/rtc_cntl_reg.h"';    
   Blockly.Arduino.definitions_['define_linkit_wifi_include'] ='#include <WiFi.h>\n#include <esp32-hal-ledc.h>\n#include "img_converters.h"\n#include "esp_camera.h"';
-  Blockly.Arduino.definitions_.define_esp_http_server_h_include ='#include "esp_http_server.h"\n#include "soc/soc.h"\n#include "soc/rtc_cntl_reg.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\ntypedef struct {httpd_req_t *req;size_t len;} jpg_chunking_t;\n#define PART_BOUNDARY "123456789000000000000987654321"\nstatic const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;\nstatic const char* _STREAM_BOUNDARY = "\\r\\n--" PART_BOUNDARY "\\r\\n";\nstatic const char* _STREAM_PART = "Content-Type: image/jpeg\\r\\nContent-Length: %u\\r\\n\\r\\n";\nhttpd_handle_t stream_httpd = NULL;\nhttpd_handle_t camera_httpd = NULL;\n';
+  Blockly.Arduino.definitions_.define_esp_http_server_h_include ='#include "esp_http_server.h"\nchar _lwifi_ssid[] = '+ssid+';\nchar _lwifi_pass[] = '+pass+';\nconst char* ssid_ap = '+ssid_ap+';\nconst char* pass_ap = '+pass_ap+';\ntypedef struct {httpd_req_t *req;size_t len;} jpg_chunking_t;\n#define PART_BOUNDARY "123456789000000000000987654321"\nstatic const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;\nstatic const char* _STREAM_BOUNDARY = "\\r\\n--" PART_BOUNDARY "\\r\\n";\nstatic const char* _STREAM_PART = "Content-Type: image/jpeg\\r\\nContent-Length: %u\\r\\n\\r\\n";\nhttpd_handle_t stream_httpd = NULL;\nhttpd_handle_t camera_httpd = NULL;\n';
   
   if (selectBoardType().indexOf("esp")!=-1)
 	Blockly.Arduino.definitions_.define_base64 ='#include "Base64_tool.h"';
