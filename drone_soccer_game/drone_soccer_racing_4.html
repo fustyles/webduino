@@ -1508,14 +1508,20 @@ function resolveMazeWallCollisions(prevPos) {
         const iz = cellIndexXZ(midZ);
         if (!maze.xBlocked[ix][iy][iz]) continue;
         const sign = prevDist >= 0 ? 1 : (prevDist < 0 ? -1 : (newDist >= 0 ? 1 : -1));
-        drone.position.x = planeX + sign * r;
-        if (drone.velocity.x === 0 || Math.sign(drone.velocity.x) === -sign) {
+        const movingIntoWall = drone.velocity.x === 0 || Math.sign(drone.velocity.x) === -sign;
+        // 只有「真的穿透平面」或「正朝牆面移動（含靜止）」時才夾回邊界並吸收速度；
+        // 若無人機已經在緩衝帶內但速度是朝遠離牆面的方向，就不要每幀強制拉回同一個位置，
+        // 否則會卡住幾幀、放開後速度已經蓄積，一放開就是一次明顯的跳動
+        if (crossed || movingIntoWall) {
+            drone.position.x = planeX + sign * r;
             drone.velocity.x = 0;
         }
     }
 
     // Y 方向平面
-    for (let iy = 0; iy <= n; iy++) {
+    // iy === 0（絕對地板）交給外層通用的地板邊界處理即可，這裡略過：
+    // 地面層晶格必然沒有「往下」的路徑連接，兩套系統各自處理同一個邊界容易互相干擾
+    for (let iy = 1; iy <= n; iy++) {
         const planeY = iy * unit;
         const prevDist = prevPos.y - planeY;
         const newDist = drone.position.y - planeY;
@@ -1526,19 +1532,20 @@ function resolveMazeWallCollisions(prevPos) {
         const iz2 = cellIndexXZ(midZ);
         if (!maze.yBlocked[iy][ix2][iz2]) continue;
         const sign = prevDist >= 0 ? 1 : (prevDist < 0 ? -1 : (newDist >= 0 ? 1 : -1));
-        drone.position.y = planeY + sign * r;
-        if (drone.velocity.y === 0 || Math.sign(drone.velocity.y) === -sign) {
+        const movingIntoWall = drone.velocity.y === 0 || Math.sign(drone.velocity.y) === -sign;
+        if (crossed || movingIntoWall) {
+            drone.position.y = planeY + sign * r;
             drone.velocity.y = 0;
-        }
-        // 同步定高目標：若定高系統想去的高度已經被天花板/地板護網擋住，
-        // 讓目標高度貼齊目前碰撞後的高度，避免定高控制持續朝牆面加力，
-        // 造成無人機看似靜止卻上下抖動的問題
-        // sign > 0：護網在下方（地板型阻擋，卡住下降）→ 目標高度不可低於目前位置
-        // sign < 0：護網在上方（天花板型阻擋，卡住上升）→ 目標高度不可高於目前位置
-        if (sign > 0 && drone.targetAltitude < drone.position.y) {
-            drone.targetAltitude = drone.position.y;
-        } else if (sign < 0 && drone.targetAltitude > drone.position.y) {
-            drone.targetAltitude = drone.position.y;
+            // 同步定高目標：若定高系統想去的高度已經被天花板/地板護網擋住，
+            // 讓目標高度貼齊目前碰撞後的高度，避免定高控制持續朝牆面加力，
+            // 造成無人機看似靜止卻上下抖動的問題
+            // sign > 0：護網在下方（地板型阻擋，卡住下降）→ 目標高度不可低於目前位置
+            // sign < 0：護網在上方（天花板型阻擋，卡住上升）→ 目標高度不可高於目前位置
+            if (sign > 0 && drone.targetAltitude < drone.position.y) {
+                drone.targetAltitude = drone.position.y;
+            } else if (sign < 0 && drone.targetAltitude > drone.position.y) {
+                drone.targetAltitude = drone.position.y;
+            }
         }
     }
 
@@ -1554,8 +1561,9 @@ function resolveMazeWallCollisions(prevPos) {
         const iy3 = cellIndexY(midY);
         if (!maze.zBlocked[iz][ix3][iy3]) continue;
         const sign = prevDist >= 0 ? 1 : (prevDist < 0 ? -1 : (newDist >= 0 ? 1 : -1));
-        drone.position.z = planeZ + sign * r;
-        if (drone.velocity.z === 0 || Math.sign(drone.velocity.z) === -sign) {
+        const movingIntoWall = drone.velocity.z === 0 || Math.sign(drone.velocity.z) === -sign;
+        if (crossed || movingIntoWall) {
+            drone.position.z = planeZ + sign * r;
             drone.velocity.z = 0;
         }
     }
@@ -1607,8 +1615,10 @@ function checkMazeGatePass(prevPos) {
 // ==================== 核心 PD 飛控物理計算 ====================
 function updateDronePhysics(delta) {
     if (!drone.mesh) return;
-    const prevPos = drone.position.clone();
+    const prevPosFrameStart = drone.position.clone();
+    const groundLimit = 0.10;
 
+    // ---- 每幀處理一次的操控輸入判讀（不需要逐個物理子步重算）----
     if (keys.w || keys.s || keys.a || keys.d ||
         keys.arrowup || keys.arrowdown || keys.arrowleft || keys.arrowright ||
         keys[' '] || keys.control) {
@@ -1660,102 +1670,117 @@ function updateDronePhysics(delta) {
     else if (keys.a) drone.input.yaw = -1.0;
     else if (!drone.touchActiveLeft) drone.input.yaw = 0;
 
-    const targetPitchAngle = drone.input.pitch * drone.constants.maxTilt;
-    const targetRollAngle = drone.input.roll * drone.constants.maxTilt;
+    // ---- 物理積分採固定子步（fixed sub-step）----
+    // 關卡越大（6~8m 立方），場景幾何與光源越多，畫面幀率可能較低、單幀 delta 變大且不穩定。
+    // 若直接用整個不穩定的 delta 做一次積分，位移量與碰撞判定的誤差會被放大，
+    // 在較大關卡就會表現成「大量晶格震動、甚至自行偏移位置」。
+    // 這裡固定每個子步為 1/120 秒，依實際經過時間切成多個子步分別積分＋碰撞判定，
+    // 讓模擬品質不再受畫面幀率影響，關卡越大也不會變得更不穩定。
+    const FIXED_SUBSTEP = 1 / 120;
+    let remaining = delta;
+    let guard = 0;
 
-    drone.currentPitch = THREE.MathUtils.lerp(drone.currentPitch, targetPitchAngle, delta * drone.constants.pitchRollSpeed * 12);
-    drone.currentRoll = THREE.MathUtils.lerp(drone.currentRoll, targetRollAngle, delta * drone.constants.pitchRollSpeed * 12);
+    while (remaining > 1e-6 && guard < 24) {
+        const step = remaining > FIXED_SUBSTEP ? FIXED_SUBSTEP : remaining;
+        remaining -= step;
+        guard++;
+        const subPrevPos = drone.position.clone();
 
-    const targetYawRate = drone.input.yaw * drone.constants.yawSpeed;
-    drone.currentYawRate = THREE.MathUtils.lerp(drone.currentYawRate, targetYawRate, delta * drone.constants.yawRampSpeed);
-    drone.rotation.y -= drone.currentYawRate * delta;
+        const targetPitchAngle = drone.input.pitch * drone.constants.maxTilt;
+        const targetRollAngle = drone.input.roll * drone.constants.maxTilt;
 
-    const altError = drone.targetAltitude - drone.position.y;
-    const climbRate = drone.velocity.y;
-    const kpAlt = 15.0;
-    const kdAlt = 8.0;
+        drone.currentPitch = THREE.MathUtils.lerp(drone.currentPitch, targetPitchAngle, step * drone.constants.pitchRollSpeed * 12);
+        drone.currentRoll = THREE.MathUtils.lerp(drone.currentRoll, targetRollAngle, step * drone.constants.pitchRollSpeed * 12);
 
-    const hoverThrust = drone.constants.gravity * drone.constants.mass;
-    let targetVerticalForce = hoverThrust + (altError * kpAlt) - (climbRate * kdAlt);
+        const targetYawRate = drone.input.yaw * drone.constants.yawSpeed;
+        drone.currentYawRate = THREE.MathUtils.lerp(drone.currentYawRate, targetYawRate, step * drone.constants.yawRampSpeed);
+        drone.rotation.y -= drone.currentYawRate * step;
 
-    if (drone.autoFlightState === 'takingoff' && targetVerticalForce < hoverThrust * 0.9) {
-        targetVerticalForce = hoverThrust * 1.15;
+        const altError = drone.targetAltitude - drone.position.y;
+        const climbRate = drone.velocity.y;
+        const kpAlt = 15.0;
+        const kdAlt = 8.0;
+
+        const hoverThrust = drone.constants.gravity * drone.constants.mass;
+        let targetVerticalForce = hoverThrust + (altError * kpAlt) - (climbRate * kdAlt);
+
+        if (drone.autoFlightState === 'takingoff' && targetVerticalForce < hoverThrust * 0.9) {
+            targetVerticalForce = hoverThrust * 1.15;
+        }
+
+        let idealThrottle = targetVerticalForce / drone.constants.maxThrottleThrust;
+        drone.input.throttle = THREE.MathUtils.clamp(idealThrottle, 0.0, 1.0);
+
+        if (drone.targetAltitude <= 0.15 && drone.position.y <= 0.11) {
+            // 已在地面附近且目標高度也貼近地面：直接鎖定於地面靜止，
+            // 而不是每幀先斷油門讓重力拉一下、再被地板邊界彈回去，
+            // 避免無人機在停靠時看似靜止卻持續微幅上下抖動
+            drone.input.throttle = 0.0;
+            drone.position.y = 0.10;
+            drone.velocity.y = 0;
+        }
+
+        const thrustAmount = drone.input.throttle * drone.constants.maxThrottleThrust;
+        const localUp = new THREE.Vector3(0, 1, 0);
+        localUp.applyEuler(new THREE.Euler(drone.currentPitch, 0, drone.currentRoll, 'YXZ'));
+        localUp.applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y);
+
+        const forceThrust = localUp.multiplyScalar(thrustAmount);
+        const forceGravity = new THREE.Vector3(0, -drone.constants.gravity * drone.constants.mass, 0);
+        const forceDrag = drone.velocity.clone().multiplyScalar(-drone.constants.linearDrag);
+
+        const totalForce = new THREE.Vector3().add(forceThrust).add(forceGravity).add(forceDrag);
+        const acceleration = totalForce.divideScalar(drone.constants.mass);
+
+        drone.velocity.addScaledVector(acceleration, step);
+        drone.position.addScaledVector(drone.velocity, step);
+
+        // ---- 場地地板 / 天花板安全邊界 ----
+        if (drone.position.y < groundLimit) {
+            drone.position.y = groundLimit;
+            drone.velocity.y = 0;
+            drone.velocity.multiplyScalar(0.5);
+        }
+
+        const ceilingLimit = ARENA.yMax - DRONE_CAGE_RADIUS;
+        if (drone.position.y > ceilingLimit) {
+            drone.position.y = ceilingLimit;
+            drone.velocity.y = -0.1;
+        }
+
+        // ---- 外圍安全飛行邊界（起降場 + 迷宮週邊） ----
+        const droneBodyRadius = DRONE_CAGE_RADIUS;
+        const wallRestitution = 0.4;
+        if (drone.position.x < ARENA.xMin + droneBodyRadius) {
+            drone.position.x = ARENA.xMin + droneBodyRadius;
+            if (drone.velocity.x < 0) drone.velocity.x *= -wallRestitution;
+        } else if (drone.position.x > ARENA.xMax - droneBodyRadius) {
+            drone.position.x = ARENA.xMax - droneBodyRadius;
+            if (drone.velocity.x > 0) drone.velocity.x *= -wallRestitution;
+        }
+        if (drone.position.z < ARENA.zMin + droneBodyRadius) {
+            drone.position.z = ARENA.zMin + droneBodyRadius;
+            if (drone.velocity.z < 0) drone.velocity.z *= -wallRestitution;
+        } else if (drone.position.z > ARENA.zMax - droneBodyRadius) {
+            drone.position.z = ARENA.zMax - droneBodyRadius;
+            if (drone.velocity.z > 0) drone.velocity.z *= -wallRestitution;
+        }
+
+        // ---- 立體迷宮晶格護網碰撞（用本子步的起訖位置判定）----
+        resolveMazeWallCollisions(subPrevPos);
     }
 
-    let idealThrottle = targetVerticalForce / drone.constants.maxThrottleThrust;
-    drone.input.throttle = THREE.MathUtils.clamp(idealThrottle, 0.0, 1.0);
-
-    if (drone.targetAltitude <= 0.15 && drone.position.y <= 0.11) {
-        // 已在地面附近且目標高度也貼近地面：直接鎖定於地面靜止，
-        // 而不是每幀先斷油門讓重力拉一下、再被地板邊界彈回去，
-        // 避免無人機在停靠時看似靜止卻持續微幅上下抖動
-        drone.input.throttle = 0.0;
-        drone.position.y = 0.10;
-        drone.velocity.y = 0;
-    }
-
-    const thrustAmount = drone.input.throttle * drone.constants.maxThrottleThrust;
-    const localUp = new THREE.Vector3(0, 1, 0);
-    localUp.applyEuler(new THREE.Euler(drone.currentPitch, 0, drone.currentRoll, 'YXZ'));
-    localUp.applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y);
-
-    const forceThrust = localUp.multiplyScalar(thrustAmount);
-    const forceGravity = new THREE.Vector3(0, -drone.constants.gravity * drone.constants.mass, 0);
-    const forceDrag = drone.velocity.clone().multiplyScalar(-drone.constants.linearDrag);
-
-    const totalForce = new THREE.Vector3().add(forceThrust).add(forceGravity).add(forceDrag);
-    const acceleration = totalForce.divideScalar(drone.constants.mass);
-
-    drone.velocity.addScaledVector(acceleration, delta);
-    drone.position.addScaledVector(drone.velocity, delta);
-
-    // ---- 場地地板 / 天花板安全邊界 ----
-    const groundLimit = 0.10;
-    const wasOnGround = prevPos.y <= groundLimit + 0.02;
-
-    if (drone.position.y < groundLimit) {
-        drone.position.y = groundLimit;
-        drone.velocity.y = 0;
-        drone.velocity.multiplyScalar(0.5);
-    }
-
-    const ceilingLimit = ARENA.yMax - DRONE_CAGE_RADIUS;
-    if (drone.position.y > ceilingLimit) {
-        drone.position.y = ceilingLimit;
-        drone.velocity.y = -0.1;
-    }
-
-    // ---- 外圍安全飛行邊界（起降場 + 迷宮週邊） ----
-    const droneBodyRadius = DRONE_CAGE_RADIUS;
-    const wallRestitution = 0.4;
-    if (drone.position.x < ARENA.xMin + droneBodyRadius) {
-        drone.position.x = ARENA.xMin + droneBodyRadius;
-        if (drone.velocity.x < 0) drone.velocity.x *= -wallRestitution;
-    } else if (drone.position.x > ARENA.xMax - droneBodyRadius) {
-        drone.position.x = ARENA.xMax - droneBodyRadius;
-        if (drone.velocity.x > 0) drone.velocity.x *= -wallRestitution;
-    }
-    if (drone.position.z < ARENA.zMin + droneBodyRadius) {
-        drone.position.z = ARENA.zMin + droneBodyRadius;
-        if (drone.velocity.z < 0) drone.velocity.z *= -wallRestitution;
-    } else if (drone.position.z > ARENA.zMax - droneBodyRadius) {
-        drone.position.z = ARENA.zMax - droneBodyRadius;
-        if (drone.velocity.z > 0) drone.velocity.z *= -wallRestitution;
-    }
-
-    // ---- 立體迷宮晶格護網碰撞 ----
-    resolveMazeWallCollisions(prevPos);
-
-    // 無人機視覺模型（含攝影機跟隨的基準座標）要在所有邊界／護網碰撞修正「之後」再同步，
+    // 無人機視覺模型（含攝影機跟隨的基準座標）要在所有子步的邊界／護網碰撞修正「之後」再同步，
     // 否則模型會顯示修正前（尚未卡牆）的座標，下一幀又被拉回修正後座標，
     // 在無人機貼著天花板/地板或護網靜止時，會表現成每幀都在原地上下抖動
     drone.mesh.position.copy(drone.position);
     drone.mesh.rotation.set(drone.currentPitch, drone.rotation.y, drone.currentRoll, 'YXZ');
 
-    // ---- 入口 / 出口穿越偵測 ----
-    checkMazeGatePass(prevPos);
+    // ---- 入口 / 出口穿越偵測（用整個畫面幀的起訖位置）----
+    checkMazeGatePass(prevPosFrameStart);
 
     // ---- 任務計時：離地即開始計時 ----
+    const wasOnGround = prevPosFrameStart.y <= groundLimit + 0.02;
     const isOnGround = drone.position.y <= groundLimit + 0.02;
     if (wasOnGround && !isOnGround && !mission.timerRunning) {
         mission.timerRunning = true;
