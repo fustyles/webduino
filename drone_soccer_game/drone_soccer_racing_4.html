@@ -354,6 +354,7 @@
     <script>
 // ==================== 全域系統變數 ====================
 let scene, camera, renderer, clock, orbitControls;
+let cameraLookSmooth = null; // 攝影機注視點的平滑座標，用來過濾無人機位置的高頻微幅雜訊，避免畫面跟著抖動
 let soundEnabled = false;
 let audioCtx = null;
 let droneSynth = null;
@@ -1467,7 +1468,6 @@ function resolveMazeWallCollisions(prevPos) {
     const half = CAGE_SIZE / 2;
     const n = maze.n, unit = maze.unit;
     const r = DRONE_CAGE_RADIUS;
-    const restitution = 0.22;
 
     if (drone.position.x < -half - 0.3 || drone.position.x > half + 0.3 ||
         drone.position.z < -half - 0.3 || drone.position.z > half + 0.3 ||
@@ -1493,6 +1493,10 @@ function resolveMazeWallCollisions(prevPos) {
 
     // X 方向平面：同時檢查「本幀是否直接跨越平面」(防止高速移動直接穿透護網)
     // 以及「是否仍停留在平面緩衝帶內」(維持貼牆時的碰撞判定)
+    // 隧道護網一律採「軟停止」：只吸收朝牆面方向的速度分量、完全不反彈。
+    // 在狹窄的 1 公尺通道與轉彎處，若採用彈開（restitution）回饋，兩個面同時碰撞時
+    // 會互相拉扯彈跳，玩家操控時會感覺無人機自己亂飄、劇烈上下或左右跳動而不受控；
+    // 軟停止則是碰到哪一面就卡住那個方向，其餘方向仍可正常操控，手感更可預期。
     for (let ix = 0; ix <= n; ix++) {
         const planeX = -half + ix * unit;
         const prevDist = prevPos.x - planeX;
@@ -1505,9 +1509,8 @@ function resolveMazeWallCollisions(prevPos) {
         if (!maze.xBlocked[ix][iy][iz]) continue;
         const sign = prevDist >= 0 ? 1 : (prevDist < 0 ? -1 : (newDist >= 0 ? 1 : -1));
         drone.position.x = planeX + sign * r;
-        // 只有當速度仍朝牆面移動時才反彈，避免與相鄰面的修正互相拉扯造成卡頓（常見於管子交叉處）
         if (drone.velocity.x === 0 || Math.sign(drone.velocity.x) === -sign) {
-            drone.velocity.x *= -restitution;
+            drone.velocity.x = 0;
         }
     }
 
@@ -1525,7 +1528,17 @@ function resolveMazeWallCollisions(prevPos) {
         const sign = prevDist >= 0 ? 1 : (prevDist < 0 ? -1 : (newDist >= 0 ? 1 : -1));
         drone.position.y = planeY + sign * r;
         if (drone.velocity.y === 0 || Math.sign(drone.velocity.y) === -sign) {
-            drone.velocity.y *= -restitution;
+            drone.velocity.y = 0;
+        }
+        // 同步定高目標：若定高系統想去的高度已經被天花板/地板護網擋住，
+        // 讓目標高度貼齊目前碰撞後的高度，避免定高控制持續朝牆面加力，
+        // 造成無人機看似靜止卻上下抖動的問題
+        // sign > 0：護網在下方（地板型阻擋，卡住下降）→ 目標高度不可低於目前位置
+        // sign < 0：護網在上方（天花板型阻擋，卡住上升）→ 目標高度不可高於目前位置
+        if (sign > 0 && drone.targetAltitude < drone.position.y) {
+            drone.targetAltitude = drone.position.y;
+        } else if (sign < 0 && drone.targetAltitude > drone.position.y) {
+            drone.targetAltitude = drone.position.y;
         }
     }
 
@@ -1543,7 +1556,7 @@ function resolveMazeWallCollisions(prevPos) {
         const sign = prevDist >= 0 ? 1 : (prevDist < 0 ? -1 : (newDist >= 0 ? 1 : -1));
         drone.position.z = planeZ + sign * r;
         if (drone.velocity.z === 0 || Math.sign(drone.velocity.z) === -sign) {
-            drone.velocity.z *= -restitution;
+            drone.velocity.z = 0;
         }
     }
 }
@@ -1673,7 +1686,12 @@ function updateDronePhysics(delta) {
     drone.input.throttle = THREE.MathUtils.clamp(idealThrottle, 0.0, 1.0);
 
     if (drone.targetAltitude <= 0.15 && drone.position.y <= 0.11) {
+        // 已在地面附近且目標高度也貼近地面：直接鎖定於地面靜止，
+        // 而不是每幀先斷油門讓重力拉一下、再被地板邊界彈回去，
+        // 避免無人機在停靠時看似靜止卻持續微幅上下抖動
         drone.input.throttle = 0.0;
+        drone.position.y = 0.10;
+        drone.velocity.y = 0;
     }
 
     const thrustAmount = drone.input.throttle * drone.constants.maxThrottleThrust;
@@ -1690,9 +1708,6 @@ function updateDronePhysics(delta) {
 
     drone.velocity.addScaledVector(acceleration, delta);
     drone.position.addScaledVector(drone.velocity, delta);
-
-    drone.mesh.position.copy(drone.position);
-    drone.mesh.rotation.set(drone.currentPitch, drone.rotation.y, drone.currentRoll, 'YXZ');
 
     // ---- 場地地板 / 天花板安全邊界 ----
     const groundLimit = 0.10;
@@ -1730,6 +1745,12 @@ function updateDronePhysics(delta) {
 
     // ---- 立體迷宮晶格護網碰撞 ----
     resolveMazeWallCollisions(prevPos);
+
+    // 無人機視覺模型（含攝影機跟隨的基準座標）要在所有邊界／護網碰撞修正「之後」再同步，
+    // 否則模型會顯示修正前（尚未卡牆）的座標，下一幀又被拉回修正後座標，
+    // 在無人機貼著天花板/地板或護網靜止時，會表現成每幀都在原地上下抖動
+    drone.mesh.position.copy(drone.position);
+    drone.mesh.rotation.set(drone.currentPitch, drone.rotation.y, drone.currentRoll, 'YXZ');
 
     // ---- 入口 / 出口穿越偵測 ----
     checkMazeGatePass(prevPos);
@@ -1770,6 +1791,12 @@ function cycleCameraMode() {
 function updateCamera(delta) {
     if (!drone.mesh) return;
 
+    // 用平滑後的座標取代每幀直接讀取的原始 drone.position，
+    // 過濾掉單幀等級的高頻微幅雜訊（例如貼牆碰撞修正的殘留量），避免畫面看起來在抖動；
+    // 平滑係數夠大，正常飛行操控的手感不會受影響
+    if (!cameraLookSmooth) cameraLookSmooth = drone.position.clone();
+    else cameraLookSmooth.lerp(drone.position, 0.35);
+
     if (cameraMode === 0) {
         drone.mesh.visible = true;
         const backOffset = 1.9;
@@ -1778,13 +1805,13 @@ function updateCamera(delta) {
         relativeCameraOffset.applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y);
         const targetCameraPosition = drone.position.clone().add(relativeCameraOffset);
         camera.position.lerp(targetCameraPosition, 0.12);
-        const lookTarget = drone.position.clone().add(new THREE.Vector3(0, 0.1, 0));
+        const lookTarget = cameraLookSmooth.clone().add(new THREE.Vector3(0, 0.1, 0));
         camera.lookAt(lookTarget);
     } else if (cameraMode === 1) {
         drone.mesh.visible = false;
         const relativeCameraOffset = new THREE.Vector3(0, 0.04, 0.1);
         relativeCameraOffset.applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y);
-        const targetCameraPosition = drone.position.clone().add(relativeCameraOffset);
+        const targetCameraPosition = cameraLookSmooth.clone().add(relativeCameraOffset);
         camera.position.copy(targetCameraPosition);
         const forwardDir = new THREE.Vector3(0, 0, 1);
         forwardDir.applyEuler(new THREE.Euler(drone.currentPitch, drone.rotation.y, 0, 'YXZ'));
@@ -1954,6 +1981,9 @@ function placeDroneAtPad() {
         drone.mesh.position.copy(drone.position);
         drone.mesh.rotation.set(0, 0, 0);
     }
+    // 重新定位後立刻同步攝影機的平滑注視點，避免鏡頭從舊位置緩慢滑過來
+    if (cameraLookSmooth) cameraLookSmooth.copy(drone.position);
+    else cameraLookSmooth = drone.position.clone();
 }
 
 function resetGame() {
