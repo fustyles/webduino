@@ -834,11 +834,21 @@ function buildMazeGeometry(mazeData) {
     });
     const netGeos = [];
 
-    // 「X」禁止通過標記：不透明白色實心 3D 十字條，平貼在每個有護網的面正中央
-    const xMarkMat = new THREE.MeshBasicMaterial({
-        color: 0xffffff, transparent: true, opacity: 0.92, side: THREE.DoubleSide, depthWrite: false
+    // 「X」禁止通過標記：依所在面的朝向分成三種顏色（沿用常見 3D 座標軸配色：
+    // X 軸方向面＝紅、Y 軸方向面＝綠、Z 軸方向面＝藍），
+    // 讓多層護網前後重疊、半透明穿插時，還能靠顏色判斷這個 X 記號到底貼在哪個朝向的面上
+    const xMarkMatX = new THREE.MeshBasicMaterial({
+        color: 0xef4444, transparent: true, opacity: 0.92, side: THREE.DoubleSide, depthWrite: false
     });
-    const xMarkGeos = [];
+    const xMarkMatY = new THREE.MeshBasicMaterial({
+        color: 0x22c55e, transparent: true, opacity: 0.92, side: THREE.DoubleSide, depthWrite: false
+    });
+    const xMarkMatZ = new THREE.MeshBasicMaterial({
+        color: 0x3b82f6, transparent: true, opacity: 0.92, side: THREE.DoubleSide, depthWrite: false
+    });
+    const xMarkGeosX = [];
+    const xMarkGeosY = [];
+    const xMarkGeosZ = [];
     function addXMark(barLength, barWidth, barThickness, localOffset) {
         const bar1 = new THREE.BoxGeometry(barLength, barWidth, barThickness);
         bar1.rotateZ(Math.PI / 4);
@@ -868,7 +878,7 @@ function buildMazeGeometry(mazeData) {
                 addXMark(XMARK_LEN, XMARK_WIDTH, XMARK_THICK, XMARK_OFFSET).forEach(bar => {
                     bar.rotateY(Math.PI / 2);
                     bar.translate(cx, cy, cz);
-                    xMarkGeos.push(bar);
+                    xMarkGeosX.push(bar);
                 });
             }
         }
@@ -888,7 +898,7 @@ function buildMazeGeometry(mazeData) {
                 addXMark(XMARK_LEN, XMARK_WIDTH, XMARK_THICK, XMARK_OFFSET).forEach(bar => {
                     bar.rotateX(Math.PI / 2);
                     bar.translate(cx, cy, cz);
-                    xMarkGeos.push(bar);
+                    xMarkGeosY.push(bar);
                 });
             }
         }
@@ -905,7 +915,7 @@ function buildMazeGeometry(mazeData) {
 
                 addXMark(XMARK_LEN, XMARK_WIDTH, XMARK_THICK, XMARK_OFFSET).forEach(bar => {
                     bar.translate(cx, cy, cz);
-                    xMarkGeos.push(bar);
+                    xMarkGeosZ.push(bar);
                 });
             }
         }
@@ -918,12 +928,14 @@ function buildMazeGeometry(mazeData) {
     }
     netGeos.forEach(g => g.dispose());
 
-    if (THREE.BufferGeometryUtils && xMarkGeos.length) {
-        const mergedXMarks = THREE.BufferGeometryUtils.mergeBufferGeometries(xMarkGeos, false);
-        const xMarkMesh = new THREE.Mesh(mergedXMarks, xMarkMat);
-        group.add(xMarkMesh);
-    }
-    xMarkGeos.forEach(g => g.dispose());
+    [[xMarkGeosX, xMarkMatX], [xMarkGeosY, xMarkMatY], [xMarkGeosZ, xMarkMatZ]].forEach(([geos, mat]) => {
+        if (THREE.BufferGeometryUtils && geos.length) {
+            const merged = THREE.BufferGeometryUtils.mergeBufferGeometries(geos, false);
+            const mesh = new THREE.Mesh(merged, mat);
+            group.add(mesh);
+        }
+        geos.forEach(g => g.dispose());
+    });
 
     // 入口 / 出口標示
     const en = mazeData.entranceCell, ex = mazeData.exitCell;
