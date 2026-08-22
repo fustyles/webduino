@@ -2498,17 +2498,13 @@ var amb82_mini_options = [
 			["HD (1280×720)","VIDEO_HD"],
 			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×360)","VIDEO_WVGA"],
-			["QVGA (320×240)","VIDEO_QVGA"],
-			["QCIF (176×144)","VIDEO_QCIF"]
+			["WVGA (640×360)","VIDEO_WVGA"]
 		];
 		
 var amb82_mini_still_options = [
 			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×360)","VIDEO_WVGA"],
-			["QVGA (320×240)","VIDEO_QVGA"],
-			["QCIF (176×144)","VIDEO_QCIF"]
+			["WVGA (640×360)","VIDEO_WVGA"]
 		];
 
 Blockly.Blocks['amb82_mini_motiondetection_rtsp'] = {
@@ -2544,9 +2540,7 @@ Blockly.Blocks['amb82_mini_motiondetection_rtsp'] = {
 			["HD (1280×720)","VIDEO_HD"],
 			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×360)","VIDEO_WVGA"],
-			["QVGA (320×240)","VIDEO_QVGA"],
-			["QCIF (176×144)","VIDEO_QCIF"]
+			["WVGA (640×360)","VIDEO_WVGA"]
 		]), "framesize");
     this.appendDummyInput()
 		.appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"])
@@ -4432,9 +4426,7 @@ Blockly.Blocks['amb82_mini_facedetectionrecognition_rtsp'] = {
 			["HD (1280×720)","VIDEO_HD"],
 			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×360)","VIDEO_WVGA"],
-			["QVGA (320×240)","VIDEO_QVGA"],
-			["QCIF (176×144)","VIDEO_QCIF"]
+			["WVGA (640×360)","VIDEO_WVGA"]
 		]), "framesize");
     this.appendDummyInput()
 		.appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"])
@@ -5109,9 +5101,7 @@ Blockly.Blocks['amb82_mini_emotionclassification_rtsp'] = {
 			["HD (1280×720)","VIDEO_HD"],
 			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×360)","VIDEO_WVGA"],
-			["QVGA (320×240)","VIDEO_QVGA"],
-			["QCIF (176×144)","VIDEO_QCIF"]
+			["WVGA (640×360)","VIDEO_WVGA"]
 		]), "framesize");		
     this.appendDummyInput()
         .appendField(Blockly.Msg["AMB82_MINI_EMOTIONCLASSIFICATION_AFTER"]);	  
@@ -5560,9 +5550,7 @@ Blockly.Blocks['amb82_mini_objectdetection_rtsp'] = {
 			["HD (1280×720)","VIDEO_HD"],
 			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
-			["WVGA (640×360)","VIDEO_WVGA"],
-			["QVGA (320×240)","VIDEO_QVGA"],
-			["QCIF (176×144)","VIDEO_QCIF"]
+			["WVGA (640×360)","VIDEO_WVGA"]
 		]), "framesize");
     this.appendDummyInput()
 		.appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"])
@@ -6455,8 +6443,6 @@ Blockly.Blocks['amb82_mini_video_initial'] = {
 			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
 			["WVGA (640×360)","VIDEO_WVGA"],
-			["QVGA (320×240)","VIDEO_QVGA"],
-			["QCIF (176×144)","VIDEO_QCIF"],
 			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"],"VIDEO_CUSTOM"]
 		], this.validate), "resolution");
 	this.appendValueInput("width")
@@ -6626,7 +6612,7 @@ Blockly.Blocks['amb82_mini_video_capture_sd'] = {
 			[Blockly.Msg["AMB82_MINI_STILL_OLD"],"0"]
 		]), "origin");			
     this.appendValueInput("filename")
-        .appendField(Blockly.Msg["AMB82_MINI_FILENAME"]+"(.mp4)")	
+        .appendField(Blockly.Msg["AMB82_MINI_FILENAME"])	
 		.setAlign(Blockly.ALIGN_RIGHT);
     this.appendDummyInput()
         .appendField(".jpg");		
@@ -7066,7 +7052,7 @@ Blockly.Blocks['amb82_mini_rtsp'] = {
 			[Blockly.Msg["AMB82_MINI_8KHZ_MONO_DIGITAL_PDM_MIC"],"2"],
 			[Blockly.Msg["AMB82_MINI_16KHZ_MONO_DIGITAL_PDM_MIC"],"3"]
 		]), "audio");
-    this.appendDummyInput()
+    this.appendDummyInput("rot")
 		.appendField(Blockly.Msg["AMB82_MINI_VIDEO_SETTINGS_ROTATION"])
 		.setAlign(Blockly.ALIGN_RIGHT)
 		.appendField(new Blockly.FieldDropdown([
@@ -7092,6 +7078,11 @@ Blockly.Blocks['amb82_mini_rtsp'] = {
 			block.getInput("cha").setVisible(false);
 		} else {
 			block.getInput("cha").setVisible(true);	
+		}
+		if (newValue=="AudioOnly") {
+			block.getInput("rot").setVisible(false);
+		} else {
+			block.getInput("rot").setVisible(true);	
 		}		
   }
 };
@@ -7166,8 +7157,6 @@ Blockly.Blocks['amb82_mini_myfirmata'] = {
 			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
 			["WVGA (640×360)","VIDEO_WVGA"],
-			["QVGA (320×240)","VIDEO_QVGA"],
-			["QCIF (176×144)","VIDEO_QCIF"],
 			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"],"VIDEO_CUSTOM"]
 		], this.validate), "framesize");
 	this.appendValueInput("width")
@@ -7267,8 +7256,6 @@ Blockly.Blocks['amb82_mini_chat_myfirmata'] = {
 			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
 			["WVGA (640×360)","VIDEO_WVGA"],
-			["QVGA (320×240)","VIDEO_QVGA"],
-			["QCIF (176×144)","VIDEO_QCIF"],
 			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"],"VIDEO_CUSTOM"]
 		], this.validate), "framesize");
 	this.appendValueInput("width")
@@ -7362,8 +7349,6 @@ Blockly.Blocks['amb82_mini_stream'] = {
 			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
 			["WVGA (640×360)","VIDEO_WVGA"],
-			["QVGA (320×240)","VIDEO_QVGA"],
-			["QCIF (176×144)","VIDEO_QCIF"],
 			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"],"VIDEO_CUSTOM"]
 		], this.validate), "framesize");
 	this.appendValueInput("width")
@@ -17087,8 +17072,6 @@ Blockly.Blocks['amb82_mini_telegrambot'] = {
 			["D1 (720×480)","VIDEO_D1"],
 			["VGA (640×480)","VIDEO_VGA"],
 			["WVGA (640×360)","VIDEO_WVGA"],
-			["QVGA (320×240)","VIDEO_QVGA"],
-			["QCIF (176×144)","VIDEO_QCIF"],
 			[Blockly.Msg["AMB82_MINI_VIDEO_RESOLUTION_CUSTOM"],"VIDEO_CUSTOM"]
 		], this.validate), "framesize");
 	this.appendValueInput("width")
@@ -22485,11 +22468,12 @@ Blockly.Blocks['linenotify_esp32_br'] = {
 	this.appendDummyInput()
 		.appendField(new Blockly.FieldDropdown([
 		  ["\\n","\\n"]
-		  ,["\\\\n","\\\\n"]
-		  ,["\\n\\r","\\n\\r"]	
+		  ,["%0A","%0A"]          
+		  ,["\\n\\r","\\n\\r"]
+		  ,["%0A%0D","%0A%0D"]  
+		  ,["\\\\n","\\\\n"]          
 		  ,["\\\\n\\\\r","\\\\n\\\\r"]			
-		  ,["<br>","<br>"]
-		  ,["%0A","%0A"]		  
+		  ,["<br>","<br>"]		  
 		  ]), "newline"); 		
 	this.setInputsInline(true);
 	this.setOutput(true, null);  
@@ -34568,7 +34552,7 @@ Blockly.Blocks['teachablemachine_model'] = {
   this.appendValueInput("model_")
       .setCheck("String")
       .appendField(Blockly.Msg.TEACHABLEMACHINE_MODEL_SHOW);  
-  this.setInputsInline(true);	  
+  this.setInputsInline(false);	  
   this.setPreviousStatement(true);
   this.setNextStatement(true);
   this.setColour(Blockly.Msg["HUE_12"]);

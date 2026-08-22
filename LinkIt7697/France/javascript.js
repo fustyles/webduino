@@ -1800,7 +1800,7 @@ Blockly.Arduino['amb82_mini_webbluetooth_wait'] = function(block) {
 
 Blockly.Arduino['amb82_mini_webbluetooth_sendtext'] = function(block) {
   var value_cmd = Blockly.Arduino.valueToCode(block, 'cmd_', Blockly.Arduino.ORDER_ATOMIC);
-  var code = 'Tx.writeString(String('+value_cmd+'));\if (BLE.connected(0) && notify) {Tx.notify(0);}\n'
+  var code = 'Tx.writeString(String('+value_cmd+'));\if (BLE.connected(0)) {Tx.notify(0);}\n'
   return code;
 };
 
@@ -3118,7 +3118,7 @@ Blockly.Arduino['amb82_mini_deepsleep_initial'] = function(block) {
 			+'#define WAKUPE_SETTING (uint32_t)(PM_rtc_Alarm)\n';
 	}	
 	
-	Blockly.Arduino.setups_['amb82_mini_deepsleep'] = 'PowerMode.begin(DEEPSLEEP_MODE, WAKEUP_SOURCE, WAKUPE_SETTING);\n';		
+	Blockly.Arduino.setups_['amb82_mini_deepsleep'] = 'PowerMode.begin(DEEPSLEEP_MODE, WAKEUP_SOURCE, 0, WAKUPE_SETTING);\n';		
 	
 	var code = '';
     return code;
@@ -6209,7 +6209,7 @@ Blockly.Arduino['amb82_mini_rtsp'] = function(block) {
 	} else if (type=="AudioOnly") {
 		Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#include "StreamIO.h"\n#include "AudioStream.h"\n#include "AudioEncoder.h"\n#include "RTSP.h"\nAAC encoder;\nAudioSetting configA('+audio+');\nAudio audio;\nRTSP rtsp;\nStreamIO audioStreamer1(1, 1);\nStreamIO audioStreamer2(1, 1);';
 
-		Blockly.Arduino.setups_.setup_amb82_mini_rtsp='config.setRotation('+rotation+');\n  '+
+		Blockly.Arduino.setups_.setup_amb82_mini_rtsp=''+
 											'audio.configAudio(configA);\n  '+
 											'audio.begin();\n  '+
 											'encoder.configAudio(configA);\n  '+
