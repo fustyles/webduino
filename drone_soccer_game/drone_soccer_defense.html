@@ -95,8 +95,8 @@
                 </div>
                 <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800 flex flex-col justify-between">
                     <ul class="space-y-1 text-slate-400 text-[11px] tech-font">
-                        <li><span class="text-emerald-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">T</span>：一鍵起飛（平滑爬升至 1.5 公尺並定高）</li>
-                        <li><span class="text-rose-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">L</span>：一鍵降落（平滑下降至中心並關閉馬達）</li>
+                        <li><span class="text-emerald-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">T</span>：三台無人機一起起飛（平滑爬升至 1.5 公尺並定高）</li>
+                        <li><span class="text-rose-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">L</span>：三台無人機一起降落（平滑下降並關閉馬達）</li>
                         <li><span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">R</span>：重設無人機（回到場地中心）</li>
                         <li><span class="text-slate-300 bg-slate-800 px-1.5 py-0.5 rounded font-bold">M</span>：切換靜音</li>
                     </ul>
@@ -494,13 +494,14 @@
                 warnRingRef: null,
                 glowRef: null,
                 rotors: [],
-                position: new THREE.Vector3(0, 1.5, 2.25),
+                position: new THREE.Vector3(0, 0.10, 2.25),
                 velocity: new THREE.Vector3(0, 0, 0),
                 team: 'blue',
                 guardRing: null,
                 guardHomeOffsetX: guardHomeOffsetX, // 這台守門機預設偏向球門左側或右側的守備分工偏移量（米）
-                aimTarget: new THREE.Vector3(0, 1.5, 2.25), // AI 目前瞄準的攔截點（帶反應延遲與誤差，不會即時鎖定攻擊機）
+                aimTarget: new THREE.Vector3(0, 0.10, 2.25), // AI 目前瞄準的攔截點（帶反應延遲與誤差，不會即時鎖定攻擊機）
                 reactionTimer: 0,       // 距離下次「重新判斷」還要多久（模擬人類反應延遲）
+                altitudeState: 'grounded', // 'grounded' | 'takingoff' | 'flying' | 'landing'：與玩家一起貼地待命，按 T/L 才會同步升降
                 constants: AI_GUARD_CONSTANTS,
             };
         }
@@ -748,6 +749,8 @@
             gapClearance: 0,        // 平滑後的縫隙寬裕程度
             gapTargetClearance: 0,  // 最近一次判讀出的縫隙寬裕程度（平滑的目標值）
             regroupTarget: new THREE.Vector3(0, 1.5, 0), // 被攔截後「撤退一段距離＋隨機高度」的重新整隊目標點
+            altitudeState: 'grounded', // 'grounded' | 'takingoff' | 'flying' | 'landing'：與玩家一起貼地待命，按 T/L 才會同步升降
+            homePosition: new THREE.Vector3(0, 0.10, -2.25), // 貼地待命／降落回歸的位置，由 resetAttacker() 依球門位置更新
             constants: AI_ATTACKER_CONSTANTS,
         };
 
@@ -1735,6 +1738,7 @@
                     aiState.velocity.set(0, 0, 0);
                     aiState.aimTarget.copy(aiState.position);
                     aiState.reactionTimer = 0;
+                    aiState.altitudeState = 'grounded';
                     if (aiState.mesh) {
                         aiState.mesh.position.copy(aiState.position);
                         aiState.mesh.rotation.y = (team === 'red') ? 0 : Math.PI; // 與玩家同向，面朝場地中央迎戰
@@ -1757,10 +1761,12 @@
             if (!ring) return;
 
             const homeZ = -ring.pos.z; // 場地對側（即對方球門所在區域），讓攻擊機有完整助跑距離
-            attacker.position.set((Math.random() - 0.5) * 0.6, 0.10, homeZ);
+            attacker.homePosition.set((Math.random() - 0.5) * 0.6, 0.10, homeZ);
+            attacker.position.copy(attacker.homePosition);
             attacker.velocity.set(0, 0, 0);
             attacker.phase = 'advance';
             attacker.reactionTimer = 0;
+            attacker.altitudeState = 'grounded';
             pickAttackPattern(attacker); // 每次重新起飛都重新抽選一種攻擊曲線
             attacker.aimTarget.copy(attacker.position);
 
@@ -1924,24 +1930,36 @@
             });
         }
 
-        // 一鍵起飛：自動控制 PD 至 1.5 米並懸停 (置中後的球門高度)，同時讓 AI 隊友守門機與 AI 攻擊機一起升空
+        // 一鍵起飛：自動控制 PD 至 1.5 米並懸停（球門高度），並讓 AI 隊友與 AI 攻擊機一起同步起飛
         function triggerTakeoff() {
             if (drone.position.y < 0.15) {
                 drone.targetAltitude = 1.5;
                 drone.autoFlightState = 'takingoff';
-                matchLive = true; // AI 隊友與 AI 攻擊機同步升空，攻擊機開始來襲
+                liftTeammatesAndAttacker();
                 showSystemNotification("自動駕駛：全隊升空中…爬升至 1.5 公尺球門高度，AI 攻擊機開始來襲！");
             } else {
                 showSystemNotification("無法起飛：目前已在空中");
             }
         }
 
-        // 一鍵降落：自動降落至 0.1 米中心並熄火
+        // 讓 AI 隊友守門機與 AI 攻擊機開始起飛（若目前仍貼地待命）
+        function liftTeammatesAndAttacker() {
+            aiDrones.forEach(aiState => {
+                if (aiState.altitudeState === 'grounded') aiState.altitudeState = 'takingoff';
+            });
+            if (attacker.altitudeState === 'grounded') attacker.altitudeState = 'takingoff';
+        }
+
+        // 一鍵降落：自動降落至 0.1 米中心並熄火，並讓 AI 隊友與 AI 攻擊機一起同步降落
         function triggerLanding() {
             if (drone.position.y > 0.15) {
                 drone.targetAltitude = 0.1;
                 drone.autoFlightState = 'landing';
-                showSystemNotification("自動駕駛：降落中…緩慢下降");
+                aiDrones.forEach(aiState => {
+                    if (aiState.altitudeState === 'flying' || aiState.altitudeState === 'takingoff') aiState.altitudeState = 'landing';
+                });
+                if (attacker.altitudeState === 'flying' || attacker.altitudeState === 'takingoff') attacker.altitudeState = 'landing';
+                showSystemNotification("自動駕駛：全隊降落中…緩慢下降");
             } else {
                 showSystemNotification("無法降落：目前已在地面");
             }
@@ -2022,8 +2040,8 @@
 
             // 保險機制：即使玩家不是按 T，而是用其他方式（如手動油門）自行離地，也一起讓 AI 隊友與攻擊機升空，
             // 避免因為只用手動控制而讓對手一直卡在地面不動
-            if (!matchLive && drone.position.y > 0.2) {
-                matchLive = true;
+            if (drone.position.y > 0.2) {
+                liftTeammatesAndAttacker();
             }
 
             // 鍵盤或方向鍵偵測 -> 退出自動駕駛
@@ -2284,7 +2302,7 @@
 
         // AI 攻擊機與光環外框的碰撞（反彈物理），以及穿越玩家己方球門中心的計分判定
         function checkAttackerRingCollisions() {
-            if (!attacker.mesh || !attacker.targetRing) return;
+            if (!attacker.mesh || !attacker.targetRing || attacker.altitudeState !== 'flying') return;
 
             const ring = attacker.targetRing; // 攻擊機唯一的進攻目標：玩家的己方球門
             const R = RING_CENTER_RADIUS;
@@ -2398,7 +2416,10 @@
         function updateAttacker(delta) {
             if (!attacker.mesh || !attacker.targetRing) return;
 
-            if (!matchLive) {
+            const ring = attacker.targetRing;
+            const c = attacker.constants;
+
+            if (attacker.altitudeState === 'grounded') {
                 // 尚未起飛：貼地待命，僅播放怠速螺旋槳動畫，不會移動也不會來襲
                 attacker.rotors.forEach((rotorGroup, idx) => {
                     const dir = (idx === 0 || idx === 3) ? 1 : -1;
@@ -2407,8 +2428,42 @@
                 return;
             }
 
-            const ring = attacker.targetRing;
-            const c = attacker.constants;
+            if (attacker.altitudeState === 'takingoff') {
+                // 平滑爬升至球門高度，尚未開始攻擊判斷，避免起飛途中橫向亂飄
+                attacker.position.y = THREE.MathUtils.lerp(attacker.position.y, ring.pos.y, delta * 1.6);
+                attacker.mesh.position.copy(attacker.position);
+                if (Math.abs(attacker.position.y - ring.pos.y) < 0.05) {
+                    attacker.position.y = ring.pos.y;
+                    attacker.altitudeState = 'flying';
+                    attacker.reactionTimer = 0; // 一到位就立刻重新規劃攻勢，避免延用起飛前的舊瞄準點
+                }
+                attacker.rotors.forEach((rotorGroup, idx) => {
+                    const dir = (idx === 0 || idx === 3) ? 1 : -1;
+                    rotorGroup.rotation.y += dir * 50 * delta;
+                });
+                return;
+            }
+
+            if (attacker.altitudeState === 'landing') {
+                // 平滑退回起始待命點並降到地面關閉馬達
+                attacker.velocity.multiplyScalar(0.8);
+                attacker.position.x = THREE.MathUtils.lerp(attacker.position.x, attacker.homePosition.x, delta * 1.2);
+                attacker.position.z = THREE.MathUtils.lerp(attacker.position.z, attacker.homePosition.z, delta * 1.2);
+                attacker.position.y = THREE.MathUtils.lerp(attacker.position.y, 0.10, delta * 2.0);
+                attacker.mesh.position.copy(attacker.position);
+                if (Math.abs(attacker.position.y - 0.10) < 0.02) {
+                    attacker.position.y = 0.10;
+                    attacker.velocity.set(0, 0, 0);
+                    attacker.altitudeState = 'grounded';
+                }
+                attacker.rotors.forEach((rotorGroup, idx) => {
+                    const dir = (idx === 0 || idx === 3) ? 1 : -1;
+                    rotorGroup.rotation.y += dir * 30 * delta;
+                });
+                return;
+            }
+
+            // altitudeState === 'flying'：以下為原本的完整進攻行為邏輯
 
             // 每一影格都更新一次縫隙判讀（內部自帶較慢的重新掃描節奏與轉向速率限制，見函式註解），
             // 讓瞄準角度可以連續、平滑地朝目標轉動，而不是每次判斷都瞬間跳到新角度
@@ -2585,7 +2640,13 @@
         function updateSingleAIDrone(aiState, delta) {
             if (!aiState.mesh || !aiState.guardRing || !attacker.mesh) return;
 
-            if (!matchLive) {
+            const ring = aiState.guardRing;
+            const c = aiState.constants;
+            const homeX = ring.pos.x + aiState.guardHomeOffsetX;
+            const homeY = ring.pos.y;
+            const homeZ = ring.pos.z;
+
+            if (aiState.altitudeState === 'grounded') {
                 // 尚未起飛：貼地待命，僅播放怠速螺旋槳動畫，不會移動
                 aiState.rotors.forEach((rotorGroup, idx) => {
                     const dir = (idx === 0 || idx === 3) ? 1 : -1;
@@ -2594,8 +2655,42 @@
                 return;
             }
 
-            const ring = aiState.guardRing;
-            const c = aiState.constants;
+            if (aiState.altitudeState === 'takingoff') {
+                // 平滑爬升至球門高度，尚未開始攔截判斷，避免起飛途中橫向亂飄
+                aiState.position.y = THREE.MathUtils.lerp(aiState.position.y, homeY, delta * 1.8);
+                aiState.mesh.position.copy(aiState.position);
+                if (Math.abs(aiState.position.y - homeY) < 0.05) {
+                    aiState.position.y = homeY;
+                    aiState.altitudeState = 'flying';
+                    aiState.reactionTimer = 0; // 一到位就立刻重新判讀攻擊機位置
+                }
+                aiState.rotors.forEach((rotorGroup, idx) => {
+                    const dir = (idx === 0 || idx === 3) ? 1 : -1;
+                    rotorGroup.rotation.y += dir * 50 * delta;
+                });
+                return;
+            }
+
+            if (aiState.altitudeState === 'landing') {
+                // 平滑退回起始待命點並降到地面關閉馬達
+                aiState.velocity.multiplyScalar(0.8);
+                aiState.position.x = THREE.MathUtils.lerp(aiState.position.x, homeX, delta * 1.5);
+                aiState.position.z = THREE.MathUtils.lerp(aiState.position.z, homeZ, delta * 1.5);
+                aiState.position.y = THREE.MathUtils.lerp(aiState.position.y, 0.10, delta * 2.0);
+                aiState.mesh.position.copy(aiState.position);
+                if (Math.abs(aiState.position.y - 0.10) < 0.02) {
+                    aiState.position.y = 0.10;
+                    aiState.velocity.set(0, 0, 0);
+                    aiState.altitudeState = 'grounded';
+                }
+                aiState.rotors.forEach((rotorGroup, idx) => {
+                    const dir = (idx === 0 || idx === 3) ? 1 : -1;
+                    rotorGroup.rotation.y += dir * 30 * delta;
+                });
+                return;
+            }
+
+            // altitudeState === 'flying'：以下為原本的攔截邏輯（帶反應延遲與瞄準誤差）
 
             // 反應延遲：AI 並非每一影格都重新鎖定攻擊機位置，而是每隔一段隨機時間才「重新判斷」一次
             aiState.reactionTimer -= delta;
@@ -2665,7 +2760,7 @@
 
         // 防守機（玩家或 AI 隊友）與 AI 攻擊機的實體碰撞：偵測到重疊時視為成功攔截，將攻擊機彈開並強迫其撤退整隊
         function checkAttackerVsDefenderCollision(defenderPos, defenderVel, isPlayer) {
-            if (!attacker.mesh) return;
+            if (!attacker.mesh || attacker.altitudeState !== 'flying') return;
 
             const droneRadius = DRONE_CAGE_RADIUS;
             const combinedRadius = droneRadius * 2;
