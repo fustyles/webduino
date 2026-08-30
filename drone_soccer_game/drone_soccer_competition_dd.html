@@ -1190,13 +1190,19 @@ function updateDronePhysics(rig, delta) {
     else if (keys.a) rig.input.yaw = -1.0;
     else if (!rig.touchActiveLeft) rig.input.yaw = 0;
 
+    // 使用「框架率無關」的指數平滑：alpha = 1 - e^(-rate*delta) 永遠介於 0~1 之間，
+    // 不管 delta 多大（多台無人機同時被操控、CPU 負載升高造成單幀時間變長）都不會
+    // 像原本 THREE.MathUtils.lerp(a, b, delta*rate) 在 delta*rate > 1 時那樣衝過目標值
+    // 甚至反向超出，這正是「無碰撞也會上下抖動不停」的根因。
+    const pitchRollAlpha = 1 - Math.exp(-rig.constants.pitchRollSpeed * 12 * delta);
     const targetPitchAngle = rig.input.pitch * rig.constants.maxTilt;
     const targetRollAngle = rig.input.roll * rig.constants.maxTilt;
-    rig.currentPitch = THREE.MathUtils.lerp(rig.currentPitch, targetPitchAngle, delta * rig.constants.pitchRollSpeed * 12);
-    rig.currentRoll = THREE.MathUtils.lerp(rig.currentRoll, targetRollAngle, delta * rig.constants.pitchRollSpeed * 12);
+    rig.currentPitch = THREE.MathUtils.lerp(rig.currentPitch, targetPitchAngle, pitchRollAlpha);
+    rig.currentRoll = THREE.MathUtils.lerp(rig.currentRoll, targetRollAngle, pitchRollAlpha);
 
+    const yawAlpha = 1 - Math.exp(-rig.constants.yawRampSpeed * delta);
     const targetYawRate = rig.input.yaw * rig.constants.yawSpeed;
-    rig.currentYawRate = THREE.MathUtils.lerp(rig.currentYawRate, targetYawRate, delta * rig.constants.yawRampSpeed);
+    rig.currentYawRate = THREE.MathUtils.lerp(rig.currentYawRate, targetYawRate, yawAlpha);
     rig.rotation.y -= rig.currentYawRate * delta;
 
     const altError2 = rig.targetAltitude - rig.position.y;
@@ -1757,10 +1763,12 @@ function checkAttackerVsDefenderCollision(defenderRig) {
     if (!attacker.mesh || !defenderRig.mesh || attacker.altitudeState !== 'flying') return;
     const droneRadius = DRONE_CAGE_RADIUS;
     const combinedRadius = droneRadius * 2;
-    const diff = defenderRig.position.clone().sub(attacker.position);
-    const dist = diff.length();
+    // 法向量只取水平（X/Z）分量，避免推擠 Y 方向跟高度 PD 控制器互搶，造成彈開後續抖動
+    const diffFull = defenderRig.position.clone().sub(attacker.position);
+    const diffHoriz = new THREE.Vector3(diffFull.x, 0, diffFull.z);
+    const dist = diffHoriz.length();
     if (dist < combinedRadius && dist > 0.001) {
-        const normal = diff.normalize(); // 由攻擊機指向防守機
+        const normal = diffHoriz.normalize(); // 由攻擊機指向防守機（純水平）
 
         const overlap = combinedRadius - dist;
         attacker.position.addScaledVector(normal, -overlap * 0.85);
@@ -1833,13 +1841,23 @@ function checkAttackerVsDefenderCollisions() {
 function checkPlayerVsTeammateCollision() {
     if (!D1.mesh || !D2.mesh) return;
     const combinedRadius = DRONE_CAGE_RADIUS * 2.2;
-    const diff = D1.position.clone().sub(D2.position);
-    const dist = diff.length();
+    // 只取水平分量分離，並補上速度修正，避免分開後下一幀又立刻貼回去、持續抖動
+    const diffFull = D1.position.clone().sub(D2.position);
+    const diffHoriz = new THREE.Vector3(diffFull.x, 0, diffFull.z);
+    const dist = diffHoriz.length();
     if (dist < combinedRadius && dist > 0.001) {
-        const normal = diff.normalize();
+        const normal = diffHoriz.normalize();
         const overlap = combinedRadius - dist;
         D1.position.addScaledVector(normal, overlap * 0.5);
         D2.position.addScaledVector(normal, -overlap * 0.5);
+
+        const relVel = D2.velocity.clone().sub(D1.velocity);
+        const sepSpeed = relVel.dot(normal);
+        if (sepSpeed > 0) {
+            const correction = sepSpeed * 0.5;
+            D1.velocity.addScaledVector(normal, correction);
+            D2.velocity.addScaledVector(normal, -correction);
+        }
     }
 }
 // ---------------- 相機（每台無人機各自獨立視角）----------------
@@ -2182,7 +2200,7 @@ function bindUIEvents() {
 // ---------------- 主要動畫迴圈（單一共用場景，兩台獨立渲染器/攝影機）----------------
 function animate() {
     requestAnimationFrame(animate);
-    const delta = Math.min(clock.getDelta(), 0.1);
+    const delta = Math.min(clock.getDelta(), 0.05);
 
     updateDronePhysics(D1, delta);
     updateDronePhysics(D2, delta);
