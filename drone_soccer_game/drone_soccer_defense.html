@@ -407,6 +407,12 @@
         // 若瞄準半徑直接設到這個零容錯極限，只要有一點點追蹤誤差就會撞框——這正是攻擊機撞框機率偏高的主因。
         // 因此刻意內縮到 0.14，保留約 6 公分（DRONE_CAGE_RADIUS 的一半以上）的安全餘裕。
         const ATTACKER_GOAL_AIM_RADIUS = 0.14;
+        // 縫隙方向雖然該跟曲線搖擺同量級才能真正發揮引導作用，但曲線是左右搖擺的震盪訊號、會自然回中，
+        // 縫隙方向卻是「防守機不動就一直指同一邊」的持續偏壓；如果讓它跟曲線一樣可以吃到滿滿 1.8 公尺，
+        // 防守機只要一直卡在同一側，攻擊機就會被持續拉去一個很誇張的偏移量，等真的接近球門要收斂回小範圍時
+        // 根本來不及轉回來，反而一頭撞進框架——這正是「兩台防守機都卡下方，攻擊機卻一直重複撞上方框架」的
+        // 真正成因。因此縫隙方向額外用這個較保守的上限收斂，早期還是有明顯的引導作用，但不會被拖去離譜的極端位置
+        const ATTACKER_GAP_LEAD_RADIUS = 0.5;
         // 攻擊機偵測到防守機（玩家或 AI 隊友）進入此距離內時，會優先閃避，且閃避方向固定朝向球門圓心
         const ATTACKER_EVADE_DISTANCE = 0.55;
         const RING_TUBE_RADIUS = 0.022;   // 光環管粗半徑 (依比例縮小)
@@ -2410,9 +2416,56 @@
                     }
 
                     createExplosion(attacker.position.clone(), 0xfacc15);
-                    // 撞框僅是物理彈開，不主動改變目前的階段：若正在進攻就繼續進攻，若正在撤退則繼續撤退，
-                    // 避免撞框把「得分後應撤退」的狀態誤蓋回進攻，導致卡在球門後面繞不出去
-                    return; // 撞擊邊框時不進行穿過判定
+
+                    // 撞框代表這一波瞄準角度算錯了，跟被防守機攔截一樣需要重新評估，而不是彈開後立刻
+                    // 沿用同一套（可能還是算錯的）瞄準點往同一個地方再撞一次——這正是「兩台防守機都卡
+                    // 在下方，攻擊機卻一直重複撞上方框架」的根本原因：原本撞框完全不會觸發任何重整
+                    if (attacker.phase === 'advance' && attacker.targetRing) {
+                        const missAngle = Math.atan2(py, px); // 撞擊點相對球門中心的方位角
+                        const verticalness = Math.abs(Math.sin(missAngle)); // 1=正上/正下方失手，0=側邊失手
+                        const isEccentricMiss = verticalness > 0.55; // 明顯偏上或偏下，才需要大動作重新來過
+
+                        if (!isEccentricMiss) {
+                            // 失手位置偏球心（比較接近水平側邊）：退回距離短沒關係，只縮短反應計時盡快重新判讀
+                            attacker.reactionTimer = Math.min(attacker.reactionTimer, 0.08 + Math.random() * 0.12);
+                        } else {
+                            // 失手位置明顯偏上方或偏下方：拉長撤退距離，才有足夠助跑空間重新抓角度；
+                            // 並有一半機率不管縫隙判斷、直接換到正對面那一側重新嘗試——避免防守站位沒變、
+                            // 縫隙判斷又算出同一個方向，導致每次都用幾乎一樣的角度再撞一次同一面牆
+                            const retreatDist = 0.6 + Math.random() * 1.0;
+                            const maxSideAngle = 0.7;
+                            const sideAngle = (Math.random() * 2 - 1) * maxSideAngle;
+                            const backX = ring.forwardSign * Math.sin(sideAngle);
+                            const backZ = -ring.forwardSign * Math.cos(sideAngle);
+                            const xLimitR = CAGE_WIDTH / 2 - droneRadius;
+                            const zLimitR = CAGE_LENGTH / 2 - droneRadius;
+                            const stageR = RING_CLEAR_RADIUS * 0.7;
+
+                            let biasX, biasY;
+                            if (Math.random() < 0.5) {
+                                const oppositeAngle = missAngle + Math.PI;
+                                biasX = Math.cos(oppositeAngle) * stageR;
+                                biasY = Math.sin(oppositeAngle) * stageR;
+                            } else {
+                                const freshGap = computeMidlineGapAngle(ring, attacker.position);
+                                biasX = freshGap ? Math.cos(freshGap.angle) * stageR : 0;
+                                biasY = freshGap ? Math.sin(freshGap.angle) * stageR : 0;
+                            }
+
+                            const retreatX = THREE.MathUtils.clamp(attacker.position.x + backX * retreatDist + biasX, -xLimitR, xLimitR);
+                            const retreatZ = THREE.MathUtils.clamp(attacker.position.z + backZ * retreatDist, -zLimitR, zLimitR);
+                            const altitudeJitter = 0.6 + retreatDist * 0.8;
+                            const randomAltitude = THREE.MathUtils.clamp(
+                                ring.pos.y + biasY + (Math.random() - 0.5) * 2 * (altitudeJitter * 0.4), 0.25, 2.8
+                            );
+
+                            attacker.phase = 'regroup';
+                            attacker.reactionTimer = 0;
+                            attacker.regroupTarget.set(retreatX, randomAltitude, retreatZ);
+                        }
+                    }
+
+                    return; // 一般擦框、或偏中心的失手：只是物理彈開，不主動改變階段（明顯偏上下的失手已在上面另外處理）
                 }
             }
 
@@ -2562,11 +2615,15 @@
                     const distToGoal = Math.abs(attacker.position.z - ring.pos.z);
                     const weaveScale = THREE.MathUtils.clamp(distToGoal / 1.5, 0.15, 1);
 
-                    // 允許的瞄準範圍隨距離收斂：越靠近球門越收斂到 ATTACKER_GOAL_AIM_RADIUS 這個安全小圓；
-                    // 遠處助跑階段則放寬上限，保留曲線本身較大幅度的搖擺/假動作與側翼繞行效果。
-                    // 這裡先算出來，是因為縫隙方向的目標偏移量也要用同一把尺，見下方說明
-                    const proximityT = THREE.MathUtils.clamp((weaveScale - 0.15) / (1 - 0.15), 0, 1);
-                    const maxAimRadius = THREE.MathUtils.lerp(ATTACKER_GOAL_AIM_RADIUS, 1.8, proximityT);
+                    // 允許的瞄準範圍隨距離收斂，先算出來是因為縫隙方向的目標偏移量也要用同一把尺（見下方說明）。
+                    // 這裡刻意跟 weaveScale 脫鉤、改用獨立的收斂窗：原本借用 weaveScale 換算出來的收斂曲線，
+                    // 只有最後 0.225 公尺才會真正收斂到安全小圓內；攻擊機最高時速 1.55 m/s，衝過這段距離只要
+                    // 約 0.15 秒，比反應間隔(0.22~0.5秒)還短，等於幾乎沒有時間讓飛控系統把側向位置/速度真正
+                    // 收斂進去，經常帶著還很大的側向位移直接衝出球門開口之外——這正是「大比例攻擊位置落在
+                    // 球門圓環外」的成因。改成從距離球門 2.5 公尺開始收斂、1.0 公尺處就已收斂到安全小圓，
+                    // 讓飛控系統有充分距離與時間真正完成側向修正，而不是理論上該收斂、實際上來不及
+                    const aimConvergeT = THREE.MathUtils.clamp((2.5 - distToGoal) / 1.5, 0, 1);
+                    const maxAimRadius = THREE.MathUtils.lerp(1.8, ATTACKER_GOAL_AIM_RADIUS, aimConvergeT);
 
                     const offset = computeAttackCurveOffset(attacker, c, weaveScale);
                     // 縫隙方向的目標偏移量改用「跟曲線搖擺同一把尺」(maxAimRadius) 縮放，而不是固定的
@@ -2574,7 +2631,7 @@
                     // 就算後面用 commitToGap 混合權重，縫隙方向的實際影響力也會被曲線的巨大振幅完全淹沒，
                     // 等於遠處時「以為」有考慮縫隙、其實幾乎沒有生效——這正是攻擊機明明兩台防守機都卡
                     // 同一側，卻遲遲不會轉往真正空出來那一側的主因。統一量級後，遠處也能真正感受到縫隙方向的拉力
-                    const gap = computeGoalGapOffset(attacker, maxAimRadius);
+                    const gap = computeGoalGapOffset(attacker, Math.min(maxAimRadius, ATTACKER_GAP_LEAD_RADIUS));
                     // 人類選手在遠處助跑時就會先看好哪一側防守比較鬆、預先把身位帶過去，
                     // 而不是等貼近球門才臨時反應；因此即使距離還很遠（weaveScale = 1），
                     // 也保留一定比例的縫隙方向做為底線傾向（0.35），越靠近球門才逐漸提高到
