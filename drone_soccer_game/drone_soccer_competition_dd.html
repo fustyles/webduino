@@ -1221,9 +1221,7 @@ function updateDronePhysics(rig, delta) {
     rig.velocity.addScaledVector(acceleration, delta);
     rig.position.addScaledVector(rig.velocity, delta);
 
-    rig.mesh.position.copy(rig.position);
-    rig.mesh.rotation.set(rig.currentPitch, rig.rotation.y, rig.currentRoll, 'YXZ');
-
+    // ---- 場地邊界夾限：必須在同步到 mesh 之前完成，避免顯示「未修正」座標造成抖動 ----
     const groundLimit = 0.10;
     if (rig.position.y < groundLimit) { rig.position.y = groundLimit; rig.velocity.y = 0; rig.velocity.multiplyScalar(0.5); }
     const ceilingLimit = 2.75;
@@ -1237,6 +1235,10 @@ function updateDronePhysics(rig, delta) {
     else if (rig.position.x > xLimit) { rig.position.x = xLimit; if (rig.velocity.x > 0) rig.velocity.x *= -wallRestitution; }
     if (rig.position.z < -zLimit) { rig.position.z = -zLimit; if (rig.velocity.z < 0) rig.velocity.z *= -wallRestitution; }
     else if (rig.position.z > zLimit) { rig.position.z = zLimit; if (rig.velocity.z > 0) rig.velocity.z *= -wallRestitution; }
+
+    // ---- 邊界修正完成後，才把最終座標同步給 3D 模型 ----
+    rig.mesh.position.copy(rig.position);
+    rig.mesh.rotation.set(rig.currentPitch, rig.rotation.y, rig.currentRoll, 'YXZ');
 
     const idleSpin = 8, maxSpin = 90;
     const spinSpeed = rig.input.throttle > 0.02 ? idleSpin + rig.input.throttle * maxSpin : 0;
