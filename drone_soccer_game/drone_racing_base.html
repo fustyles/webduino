@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>無人機足球高低環競速 — 法蘭斯</title>
+    <title>無人機競技場 (Gemini) — 法蘭斯</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -70,7 +70,7 @@
     <div id="startScreen" class="absolute inset-0 z-50 flex flex-col items-center justify-center bg-slate-950/95 transition-all duration-700">
         <div class="max-w-2xl px-3 sm:px-6 py-6 sm:py-8 mx-3 sm:mx-4 text-center glassmorphism rounded-2xl border border-emerald-500/30 shadow-[0_0_50px_rgba(16,185,129,0.15)]">
             <h1 class="text-3xl md:text-5xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-500 to-blue-500 mb-2">
-                無人機足球高低環競速
+                無人機競技場
             </h1>
             <h1 class="text-1xl md:text-1xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-500 to-blue-500 mb-2">
                 鳳山科技中心 - 法蘭斯
@@ -101,21 +101,12 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 gap-2 mb-2">
-                <button class="level-btn flex items-center justify-between px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/40 hover:bg-emerald-500/20 transition-all text-left" data-level="1">
-                    <span class="text-emerald-300 font-bold text-sm">第一關　新手</span>
-                    <span class="text-slate-400 text-[11px] tech-font">S 型航線・4 個障礙</span>
-                </button>
-                <button class="level-btn flex items-center justify-between px-4 py-3 rounded-xl bg-cyan-500/10 border border-cyan-500/40 hover:bg-cyan-500/20 transition-all text-left" data-level="2">
-                    <span class="text-cyan-300 font-bold text-sm">第二關　進階</span>
-                    <span class="text-slate-400 text-[11px] tech-font">高度切換・5 個障礙</span>
-                </button>
-                <button class="level-btn flex items-center justify-between px-4 py-3 rounded-xl bg-rose-500/10 border border-rose-500/40 hover:bg-rose-500/20 transition-all text-left" data-level="3">
-                    <span class="text-rose-300 font-bold text-sm">第三關　高手</span>
-                    <span class="text-slate-400 text-[11px] tech-font">立體通道・6 個障礙</span>
-                </button>
+            <div id="btnLaunch" class="w-full py-4 text-center cursor-pointer select-none">
+                <p class="text-lg font-bold text-emerald-400 uppercase tracking-widest animate-pulse">
+                    按下任意鍵 開始飛行
+                </p>
+                <p class="text-[11px] text-slate-500 mt-1 tech-font">按任意鍵開始</p>
             </div>
-            <p class="text-[10px] text-slate-500 mt-2 tech-font">選擇關卡後，起飛瞬間開始計時，返回起點降落並穿越全部障礙即完成</p>
         </div>
     </div>
 
@@ -124,17 +115,8 @@
         
         <!-- 頂部資訊條 -->
         <header class="w-full flex justify-between items-start pointer-events-auto">
-            <!-- 左上角：關卡計時與障礙進度 -->
-            <div class="glassmorphism rounded-xl px-4 py-3 text-white flex flex-col min-w-[150px] shadow-lg">
-                <span id="raceLevelName" class="text-[10px] text-emerald-400 uppercase tracking-wider font-semibold">尚未選擇關卡</span>
-                <div class="flex items-baseline gap-2 mt-1">
-                    <span id="raceTimer" class="text-2xl font-extrabold tech-font text-yellow-300">0.0</span>
-                    <span class="text-xs text-slate-400">秒</span>
-                </div>
-                <div class="text-[9px] text-slate-400 mt-1">
-                    障礙穿越：<span id="gateProgress" class="text-slate-200 font-semibold">0 / 0</span>
-                </div>
-            </div>
+            <!-- 左上角保留空間 (原計分面板已移除，留待後續改裝使用) -->
+            <div></div>
 
             <!-- 中間頂部：羅盤方位角 -->
             <div class="hidden md:flex flex-col items-center glassmorphism text-white px-6 py-2 rounded-xl border border-slate-700/30">
@@ -291,28 +273,6 @@
 
     </div>
 
-    <!-- 關卡完成結算畫面 -->
-    <div id="finishScreen" class="absolute inset-0 z-40 hidden flex-col items-center justify-center bg-slate-950/85 backdrop-blur-md transition-all duration-500">
-        <div class="max-w-lg px-6 py-8 mx-4 text-center glassmorphism rounded-2xl border border-yellow-500/40 shadow-[0_0_50px_rgba(234,179,8,0.2)]">
-            <div id="finishIcon" class="flex justify-center mb-4 text-yellow-400 text-5xl">
-                <i class="fa-solid fa-flag-checkered"></i>
-            </div>
-            <h2 id="finishTitle" class="text-2xl font-extrabold text-yellow-300 tracking-wider mb-1">關卡完成！</h2>
-            <p id="finishLevelName" class="text-slate-400 text-xs mb-4"></p>
-            <p class="text-5xl font-extrabold text-emerald-300 tech-font my-2"><span id="finishTime">0.0</span><span class="text-lg text-slate-400"> 秒</span></p>
-            <p class="text-slate-400 text-[11px] mb-2">穿越障礙 <span id="finishGates" class="text-slate-200 font-semibold"></span>　罰時 <span id="finishPenalty" class="text-rose-300 font-semibold"></span> 秒</p>
-            <p id="finishHint" class="text-rose-400 text-[11px] mb-4 hidden"></p>
-            <div class="flex gap-3">
-                <button id="btnRetryLevel" class="flex-1 py-3 text-xs md:text-sm font-bold text-slate-950 bg-yellow-400 rounded-lg shadow-lg hover:bg-yellow-300 transition-all duration-300">
-                    重新挑戰
-                </button>
-                <button id="btnBackMenu" class="flex-1 py-3 text-xs md:text-sm font-bold text-slate-200 bg-slate-700 rounded-lg shadow-lg hover:bg-slate-600 transition-all duration-300">
-                    返回選單
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- 3D 渲染畫布容器 -->
     <div id="canvas-container" class="absolute inset-0 w-full h-full z-0"></div>
 
@@ -336,7 +296,7 @@
             mesh: null,
             rotors: [], // 四個螺旋槳
             lights: [], // 紅綠翼閃爍燈
-            position: new THREE.Vector3(0, 0.1, -2.2), // 初始停留於起降圈中心 (往場地近端後移，讓前方留出較大布局空間)
+            position: new THREE.Vector3(0, 0.1, 0), // 初始停留於球場正中央地板 (高度 0.1 米)
             velocity: new THREE.Vector3(0, 0, 0),
             rotation: new THREE.Euler(0, 0, 0, 'YXZ'), // 歐拉旋轉順序
             
@@ -379,61 +339,7 @@
         // 地板寬度方向為 X 軸 (X: -1.5 至 +1.5)
         // 依真實規格調整：無人機球型護籠外徑 20 公分 (半徑 0.10m)
         const DRONE_CAGE_RADIUS = 0.10;   // 無人機足球護籠半徑，整體球徑 = 20 公分
-        let particles = [];
-
-        // ==================== 穿越障礙競速賽：關卡資料 ====================
-        // 每個障礙(gate)的 normal 為「正向穿越方向」向量，pos 為中心點座標 [x,y,z]，
-        // r 為淨開口安全半徑(公尺)。所有障礙皆為圓形光環：越往場地後段（越晚穿越）半徑越小、難度越高，
-        // 最靠近鏡頭（起點）的第一個光環半徑加大，讓玩家熱身。
-        // 起點往後移至場地近端，讓前方留出較大的飛行與布局空間；起降圈半徑用於判定降落是否有效停止計時。
-        const HOME_POS = new THREE.Vector3(0, 0.10, -2.2);
-        const HOME_RADIUS = 0.5;
-
-        const LEVEL_DEFS = {
-            1: {
-                name: '第一關：新手 - S 型航線',
-                gates: [
-                    { pos: [0.6, 1.5, -1.4], normal: [0, 0, 1], r: 0.34, shape: 'ring', color: 0x34d399 },
-                    { pos: [-0.6, 1.5, 0.0], normal: [0, 0, 1], r: 0.29, shape: 'ring', color: 0x34d399 },
-                    { pos: [0.6, 1.5, 1.4], normal: [0, 0, 1], r: 0.25, shape: 'ring', color: 0x34d399 },
-                    { pos: [0, 1.5, 2.25], normal: [0, 0, 1], r: 0.21, shape: 'ring', color: 0xfbbf24 } // 折返門
-                ]
-            },
-            2: {
-                name: '第二關：進階 - 高度切換與偏航對準',
-                gates: [
-                    { pos: [0, 0.8, -1.5], normal: [0, 0, 1], r: 0.32, shape: 'ring', color: 0x38bdf8 },
-                    { pos: [0.7, 1.5, -0.2], normal: [0, 0, 1], r: 0.27, shape: 'ring', color: 0x38bdf8 },
-                    { pos: [-0.7, 2.2, 1.1], normal: [0, 0, 1], r: 0.23, shape: 'ring', color: 0x38bdf8 },
-                    { pos: [0.6, 1.5, 1.8], normal: [0, 0, 1], r: 0.19, shape: 'ring', color: 0x38bdf8 },
-                    { pos: [0, 1.3, 2.25], normal: [0, 0, 1], r: 0.16, shape: 'ring', color: 0xfbbf24 } // 折返門
-                ]
-            },
-            3: {
-                name: '第三關：高手 - 立體通道與複合操控',
-                gates: [
-                    { pos: [-0.5, 0.304, -1.2], normal: [0, 0, 1], r: 0.28, shape: 'ring', color: 0xf87171 }, // 緊貼地面
-                    { pos: [-0.2, 1.5, 0.3], normal: [0, 0, 1], r: 0.24, shape: 'ring', color: 0xf87171 },       // 通道入口
-                    { pos: [0.2, 1.0, -0.05], normal: [1, 0, 0], r: 0.20, shape: 'ring', color: 0xf87171 },      // 位於序號2前方，需先通過2再折返穿越（左向右），高度降低製造立體高低差
-                    { pos: [0.5, 1.9, 1.0], normal: [0.7071, 0, 0.7071], r: 0.17, shape: 'ring', color: 0xf87171 }, // 鑰匙孔，傾斜 45°
-                    { pos: [-0.3, 0.9, 1.7], normal: [0, 0, -1], r: 0.14, shape: 'ring', color: 0xf87171 }, // 後向前穿越，需迴繞折返，放低一點
-                    { pos: [0, 1.6, 2.25], normal: [0, 0, 1], r: 0.12, shape: 'ring', color: 0xfbbf24 }          // 折返門
-                ]
-            }
-        };
-
-        let currentLevelId = null;
-        let currentGates = [];
-        let gatesPassed = 0;
-        let totalGates = 0;
-        let nextExpectedGateIndex = 0; // 下一個必須穿越的障礙序號（0-based），強制依序通關
-        let raceState = 'menu'; // 'menu' / 'idle' / 'racing' / 'finished'
-        let raceStartTime = 0;
-        let raceElapsedMs = 0;
-        let penaltySeconds = 0;
-        let landedIncompleteNotified = false;
-        // ==================== 穿越障礙競速賽：關卡資料結束 ====================
-
+        let particles = []; 
 
         // 5. 鍵盤輸入
         const keys = { 
@@ -1098,341 +1004,6 @@
         }
 
         // 鍵盤控制監聽
-        // ==================== 穿越障礙競速賽：關卡系統 ====================
-
-        // 計算障礙的本地座標系 (forward = 穿越方向，right/up 為開口平面基準軸)
-        function getObstacleFrame(normalArr) {
-            const forward = new THREE.Vector3(normalArr[0], normalArr[1], normalArr[2]).normalize();
-            const refUp = Math.abs(forward.y) > 0.9 ? new THREE.Vector3(1, 0, 0) : new THREE.Vector3(0, 1, 0);
-            const right = new THREE.Vector3().crossVectors(refUp, forward).normalize();
-            const up = new THREE.Vector3().crossVectors(forward, right).normalize();
-            return { forward, right, up };
-        }
-
-        // 在 canvas 上畫出序號徽章：未通過時依穿越方向區分底色 —
-        // 由前向後(forward.z ≥ 0)為紅底，由後向前(forward.z < 0)為橙底；
-        // 正確依序通過後，不分方向一律轉為綠底。
-        // 一律畫成「正常、不鏡像」；鏡像與否交由徽章平面自身的 3D 朝向決定
-        // （平面法線固定朝向各自的入口方向，從入口方向看是正常字，從相反方向看因為
-        // 是同一塊平面的背面，會自然呈現鏡像效果——不是預先燒錄的固定鏡像圖）
-        function drawNumberBadge(ctx, number, passed, unpassedColor) {
-            ctx.clearRect(0, 0, 64, 64);
-            ctx.fillStyle = passed ? '#10b981' : (unpassedColor || '#ef4444');
-            ctx.beginPath();
-            ctx.arc(32, 32, 27, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.lineWidth = 3;
-            ctx.strokeStyle = '#ffffff';
-            ctx.stroke();
-            ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 28px sans-serif';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText(String(number), 32, 34);
-        }
-
-        // ==================== 序號牌擺放規則 ====================
-        // 序號牌固定貼在光環中心點（與光環同一個中心座標），呈半透明狀，
-        // 不需要額外的高度/前後偏移計算。
-        function computeBadgePosition(ob) {
-            return ob.posVec.clone();
-        }
-
-        // 建立漂浮在障礙開口的序號牌 (size 決定邊長；貼在光環中心)
-        // 用有朝向的平面（非永遠面向攝影機的 Sprite）：平面法線固定朝向 entranceDir(入口方向)，
-        // 釘死在世界座標/光環自身朝向上，不會跟著攝影機轉。從入口方向（一般順向飛行時面對的方向）
-        // 看永遠是正常數字；只有像序號5這種入口方向與其他光環相反的，從「一般順向」的角度看
-        // 才會自然呈現鏡像；如果玩家刻意轉向反過來看，物理上所有光環都會對應地換邊(正的變鏡像、
-        // 鏡像的變正的)，這是同一塊平面正反兩面的自然結果，不是額外邏輯判斷出來的
-        function createNumberPlane(number, size, unpassedColor) {
-            const canvas = document.createElement('canvas');
-            canvas.width = 64;
-            canvas.height = 64;
-            const ctx = canvas.getContext('2d');
-            drawNumberBadge(ctx, number, false, unpassedColor);
-
-            const texture = new THREE.CanvasTexture(canvas);
-            const geo = new THREE.PlaneGeometry(size, size);
-            const mat = new THREE.MeshBasicMaterial({ map: texture, depthTest: false, transparent: true, side: THREE.DoubleSide });
-            const plane = new THREE.Mesh(geo, mat);
-            plane.renderOrder = 999;
-            plane.userData.canvas = canvas;
-            plane.userData.ctx = ctx;
-            plane.userData.number = number;
-            plane.userData.texture = texture;
-            plane.userData.unpassedColor = unpassedColor;
-            return plane;
-        }
-
-        // 建立起降圈地面標記 (固定於場地，與關卡無關)
-        function buildLandingPadMarker() {
-            const ringGeo = new THREE.RingGeometry(HOME_RADIUS - 0.025, HOME_RADIUS, 48);
-            const ringMat = new THREE.MeshBasicMaterial({ color: 0x34d399, transparent: true, opacity: 0.85, side: THREE.DoubleSide });
-            const ring = new THREE.Mesh(ringGeo, ringMat);
-            ring.rotation.x = -Math.PI / 2;
-            ring.position.set(HOME_POS.x, 0.015, HOME_POS.z);
-            scene.add(ring);
-
-            // 內側淡色填色，讓起降圈在地板上更明顯
-            const fillGeo = new THREE.CircleGeometry(HOME_RADIUS - 0.025, 48);
-            const fillMat = new THREE.MeshBasicMaterial({ color: 0x34d399, transparent: true, opacity: 0.08, side: THREE.DoubleSide });
-            const fill = new THREE.Mesh(fillGeo, fillMat);
-            fill.rotation.x = -Math.PI / 2;
-            fill.position.set(HOME_POS.x, 0.01, HOME_POS.z);
-            scene.add(fill);
-        }
-
-        // 建立單一障礙(gate)的 3D 網格與碰撞資料（所有障礙統一為圓形光環造型）
-        function buildGateMesh(ob, orderNumber) {
-            const tubeR = 0.024;
-            const geo = new THREE.TorusGeometry(ob.r, tubeR, 10, 30);
-            const mat = new THREE.MeshStandardMaterial({ color: ob.color, emissive: ob.color, emissiveIntensity: 2.2, roughness: 0.15 });
-            const mesh = new THREE.Mesh(geo, mat);
-            mesh.position.copy(ob.posVec);
-            const basisMat = new THREE.Matrix4().makeBasis(ob.frame.right, ob.frame.up, ob.frame.forward);
-            mesh.quaternion.setFromRotationMatrix(basisMat);
-            scene.add(mesh);
-            ob.mesh = mesh;
-
-            // 序號牌：小尺寸(僅比光環的圓管寬度稍大)，統一貼在光環中心點、呈半透明(見 computeBadgePosition)
-            const ringBandWidth = tubeR * 2; // 光環圓管視覺寬度
-            const badgeSize = ringBandWidth * 2.2; // 比光環寬度稍大一點
-            // 依該光環的穿越方向決定未通過時的底色：forward.z ≥ 0 視為由前向後(紅底)，
-            // forward.z < 0 視為由後向前(橙底)，與九宮格版本的紅/橙配色規則一致
-            const unpassedColor = ob.frame.forward.z >= 0 ? '#ef4444' : '#f97316';
-            const numberPlane = createNumberPlane(orderNumber, badgeSize, unpassedColor);
-            numberPlane.position.copy(computeBadgePosition(ob));
-            // 平面法線(局部Z軸)朝向入口方向(-forward)，讓從入口方向看時是正常數字；
-            // 局部Y軸沿用光環的 up(確保上下不顛倒)；因為 right×up=forward 而非 entranceDir，
-            // 局部X軸須用 -right 才能維持 X×Y=Z 的正規旋轉矩陣(行列式+1)，
-            // 否則會變成鏡射矩陣，導致從任何角度看都是鏡像(而非僅背面鏡像)
-            const entranceDir = ob.frame.forward.clone().negate();
-            const badgeRight = ob.frame.right.clone().negate();
-            const badgeBasisMat = new THREE.Matrix4().makeBasis(badgeRight, ob.frame.up, entranceDir);
-            numberPlane.quaternion.setFromRotationMatrix(badgeBasisMat);
-            scene.add(numberPlane);
-            ob.numberSprite = numberPlane;
-        }
-
-        // 清除場上所有障礙網格
-        function clearObstacles() {
-            currentGates.forEach(ob => {
-                if (ob.mesh) { scene.remove(ob.mesh); ob.mesh.geometry.dispose(); ob.mesh.material.dispose(); }
-                if (ob.numberSprite) { scene.remove(ob.numberSprite); ob.numberSprite.material.map.dispose(); ob.numberSprite.material.dispose(); }
-            });
-            currentGates = [];
-        }
-
-        // 障礙通過後切換視覺為亮綠色，序號徽章同步轉為綠底
-        function markGateCleared(ob) {
-            ob.mesh.material.color.setHex(0x10b981);
-            ob.mesh.material.emissive.setHex(0x10b981);
-            drawNumberBadge(ob.numberSprite.userData.ctx, ob.numberSprite.userData.number, true);
-            ob.numberSprite.userData.texture.needsUpdate = true;
-        }
-
-        // 重置單一障礙的序號徽章為未通過狀態 (依原本方向恢復紅底或橙底)
-        function resetGateBadge(ob) {
-            drawNumberBadge(ob.numberSprite.userData.ctx, ob.numberSprite.userData.number, false, ob.numberSprite.userData.unpassedColor);
-            ob.numberSprite.userData.texture.needsUpdate = true;
-        }
-
-        // 載入指定關卡：建立障礙、重置無人機到起點、重置計時與進度
-        function loadLevel(levelId) {
-            const def = LEVEL_DEFS[levelId];
-            if (!def) return;
-            clearObstacles();
-            currentLevelId = levelId;
-
-            def.gates.forEach((g, idx) => {
-                const ob = {
-                    pos: g.pos, r: g.r, shape: g.shape, color: g.color,
-                    posVec: new THREE.Vector3(g.pos[0], g.pos[1], g.pos[2]),
-                    frame: getObstacleFrame(g.normal),
-                    passed: false, prevLz: undefined, collisionCooldown: -99
-                };
-                buildGateMesh(ob, idx + 1);
-                currentGates.push(ob);
-            });
-
-            totalGates = currentGates.length;
-            gatesPassed = 0;
-            nextExpectedGateIndex = 0;
-            penaltySeconds = 0;
-            raceElapsedMs = 0;
-            raceState = 'idle';
-            landedIncompleteNotified = false;
-
-            drone.position.copy(HOME_POS);
-            drone.velocity.set(0, 0, 0);
-            drone.rotation.set(0, 0, 0);
-            drone.currentPitch = 0;
-            drone.currentRoll = 0;
-            drone.currentYawRate = 0;
-            drone.input.throttle = 0.0;
-            drone.targetAltitude = 0.10;
-            drone.autoFlightState = 'none';
-
-            document.getElementById('raceLevelName').innerText = def.name;
-            updateHUD();
-            showSystemNotification(`已載入 ${def.name} - 起飛即開始計時`);
-        }
-
-        // 每幀檢查無人機是否撞到障礙的實體框體（圓環/方框邊框），若撞到則推開並反彈，而非直接穿透
-        function updateGateCollisions() {
-            if (!drone.mesh) return;
-            const droneR = DRONE_CAGE_RADIUS;
-            const tubeR = 0.03; // 框體視覺粗細，並留一點碰撞緩衝
-            const nowT = clock.getElapsedTime();
-
-            currentGates.forEach(ob => {
-                const rel = drone.position.clone().sub(ob.posVec);
-                const lz = rel.dot(ob.frame.forward);
-                const lx = rel.dot(ob.frame.right);
-                const ly = rel.dot(ob.frame.up);
-                const radial = Math.sqrt(lx * lx + ly * ly) || 0.0001;
-
-                // 只在貼近框體所在的「管狀」區域內才需要計算碰撞（開口中央與遠處都略過，節省效能）
-                if (radial < ob.r - droneR - tubeR || radial > ob.r + droneR + tubeR || Math.abs(lz) > droneR + tubeR) return;
-
-                // 以圓形框近似最近邊界點（方框/六角框亦套用同樣的圓形碰撞邊界，簡化但足夠穩定）
-                const ux = lx / radial;
-                const uy = ly / radial;
-                const nearestX = ux * ob.r;
-                const nearestY = uy * ob.r;
-                const dx = lx - nearestX;
-                const dy = ly - nearestY;
-                const dz = lz;
-                const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
-                const minDist = tubeR + droneR;
-
-                if (dist < minDist) {
-                    const invDist = dist > 0.0001 ? 1 / dist : 0;
-                    const nxLocal = dist > 0.0001 ? dx * invDist : ux;
-                    const nyLocal = dist > 0.0001 ? dy * invDist : uy;
-                    const nzLocal = dist > 0.0001 ? dz * invDist : 0;
-
-                    const worldNormal = ob.frame.right.clone().multiplyScalar(nxLocal)
-                        .add(ob.frame.up.clone().multiplyScalar(nyLocal))
-                        .add(ob.frame.forward.clone().multiplyScalar(nzLocal));
-
-                    const overlap = minDist - dist;
-                    drone.position.addScaledVector(worldNormal, overlap);
-
-                    const vDotN = drone.velocity.dot(worldNormal);
-                    if (vDotN < 0) {
-                        const restitution = 0.6;
-                        drone.velocity.addScaledVector(worldNormal, -(1 + restitution) * vDotN);
-                    }
-                    drone.velocity.multiplyScalar(0.92); // 額外阻尼，避免反覆震盪
-
-                    if (nowT - ob.collisionCooldown > 0.6) {
-                        ob.collisionCooldown = nowT;
-                        createExplosion(drone.position.clone(), 0xfacc15);
-                        showSystemNotification("撞擊障礙框體！請對準開口穿越");
-                    }
-                }
-            });
-        }
-
-        // 每幀檢查每個障礙是否被「依序」正向穿越；順序不對即使穿過開口也不計入通過
-        function updateGates() {
-            if (!drone.mesh) return;
-            currentGates.forEach((ob, idx) => {
-                if (ob.passed) return;
-                const rel = drone.position.clone().sub(ob.posVec);
-                const lz = rel.dot(ob.frame.forward);
-                const lx = rel.dot(ob.frame.right);
-                const ly = rel.dot(ob.frame.up);
-                const radial = Math.sqrt(lx * lx + ly * ly);
-
-                if (ob.prevLz === undefined) ob.prevLz = lz;
-                const crossedForward = ob.prevLz <= 0 && lz > 0;
-
-                if (crossedForward) {
-                    if (idx !== nextExpectedGateIndex) {
-                        showSystemNotification(`順序錯誤！請先穿越第 ${nextExpectedGateIndex + 1} 號障礙`);
-                    } else if (radial < ob.r) {
-                        ob.passed = true;
-                        nextExpectedGateIndex++;
-                        gatesPassed++;
-                        playChimeSound();
-                        createExplosion(ob.posVec.clone(), 0x10b981);
-                        markGateCleared(ob);
-                        showSystemNotification(`穿越成功！(${gatesPassed}/${totalGates})`);
-                    } else {
-                        showSystemNotification("脫靶！請重新對準障礙穿越");
-                    }
-                }
-                ob.prevLz = lz;
-            });
-        }
-
-        // 降落規則（固定規則）：
-        //   1. 尚未依序完成全部障礙時，只要降落在「任何位置」，立即視為違規出局，終止計時、結束比賽。
-        //   2. 已依序完成全部障礙時，必須降落在起降圈內才會結束比賽並顯示成績；
-        //      降落在圈外則僅提示、不停止計時，讓玩家自行飛回圈內完賽。
-        function checkRaceFinish() {
-            if (raceState !== 'racing') return;
-            const distHome = Math.hypot(drone.position.x - HOME_POS.x, drone.position.z - HOME_POS.z);
-            const speed = drone.velocity.length();
-            const cleared = nextExpectedGateIndex >= totalGates; // 必須依序穿越全部障礙才算完成
-
-            if (drone.position.y < 0.15 && speed < 0.3) {
-                if (!cleared) {
-                    // 尚未完成所有關卡就降落 → 違規出局，立即終止比賽
-                    finishRace();
-                } else if (distHome < HOME_RADIUS) {
-                    // 已完成所有關卡且降落於起降圈內 → 正常結束比賽
-                    finishRace();
-                } else if (!landedIncompleteNotified) {
-                    landedIncompleteNotified = true;
-                    showSystemNotification("請降落於起降圈內才能結束比賽");
-                }
-            } else {
-                landedIncompleteNotified = false;
-            }
-        }
-
-        function finishRace() {
-            raceState = 'finished';
-            raceElapsedMs = performance.now() - raceStartTime;
-            const totalSec = (raceElapsedMs / 1000) + penaltySeconds;
-            const cleared = nextExpectedGateIndex >= totalGates; // 必須依序穿越全部障礙才算過關
-
-            document.getElementById('finishLevelName').innerText = LEVEL_DEFS[currentLevelId].name;
-            document.getElementById('finishTime').innerText = totalSec.toFixed(1);
-            document.getElementById('finishGates').innerText = `${gatesPassed} / ${totalGates}`;
-            document.getElementById('finishPenalty').innerText = penaltySeconds.toFixed(0);
-
-            const titleEl = document.getElementById('finishTitle');
-            const iconEl = document.getElementById('finishIcon');
-            const hintEl = document.getElementById('finishHint');
-            if (cleared) {
-                titleEl.innerText = '關卡完成！';
-                titleEl.className = 'text-2xl font-extrabold text-yellow-300 tracking-wider mb-1';
-                iconEl.innerHTML = '<i class="fa-solid fa-flag-checkered"></i>';
-                iconEl.className = 'flex justify-center mb-4 text-yellow-400 text-5xl';
-                hintEl.innerText = '';
-                hintEl.classList.add('hidden');
-                showSystemNotification(`關卡完成！總時間 ${totalSec.toFixed(1)} 秒`);
-            } else {
-                titleEl.innerText = '違規出局';
-                titleEl.className = 'text-2xl font-extrabold text-rose-400 tracking-wider mb-1';
-                iconEl.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
-                iconEl.className = 'flex justify-center mb-4 text-rose-400 text-5xl';
-                hintEl.innerText = '尚未依序穿越全部障礙即降落，已違規出局，比賽終止';
-                hintEl.classList.remove('hidden');
-                showSystemNotification(`尚未完成全部障礙即降落，違規出局 (${gatesPassed}/${totalGates})`);
-            }
-
-            const finishScreen = document.getElementById('finishScreen');
-            finishScreen.classList.remove('hidden');
-            finishScreen.classList.add('flex');
-        }
-
-        // ==================== 穿越障礙競速賽：關卡系統結束 ====================
-
         // 靜音切換（按鈕與鍵盤 M 鍵共用）
         function toggleSound() {
             const btn = document.getElementById('btnSound');
@@ -1513,34 +1084,7 @@
             if (drone.position.y < 0.15) {
                 drone.targetAltitude = 1.5;
                 drone.autoFlightState = 'takingoff';
-
-                if (currentLevelId !== null) {
-                    // 每次起飛都視為全新一次計時挑戰：計時、罰時、障礙進度、通過順序全部歸零重來
-                    raceState = 'racing';
-                    raceStartTime = performance.now();
-                    raceElapsedMs = 0;
-                    penaltySeconds = 0;
-                    gatesPassed = 0;
-                    nextExpectedGateIndex = 0;
-                    landedIncompleteNotified = false;
-                    currentGates.forEach(ob => {
-                        ob.passed = false;
-                        ob.prevLz = undefined;
-                        ob.mesh.material.color.setHex(ob.color);
-                        ob.mesh.material.emissive.setHex(ob.color);
-                        resetGateBadge(ob);
-                    });
-
-                    const finishScreen = document.getElementById('finishScreen');
-                    if (finishScreen && !finishScreen.classList.contains('hidden')) {
-                        finishScreen.classList.add('hidden');
-                        finishScreen.classList.remove('flex');
-                    }
-
-                    showSystemNotification("計時開始！自動駕駛：起飛中...");
-                } else {
-                    showSystemNotification("自動駕駛：起飛中... 攀升至 1.5m 定高");
-                }
+                showSystemNotification("自動駕駛：起飛中... 攀升至 1.5m 定高");
             } else {
                 showSystemNotification("無法起飛：已在空中懸停");
             }
@@ -1869,15 +1413,6 @@
 
         // 更新 UI 各項傳感面板數值
         function updateHUD() {
-            if (raceState === 'racing') {
-                raceElapsedMs = performance.now() - raceStartTime;
-            }
-            const totalSec = (raceElapsedMs / 1000) + penaltySeconds;
-            const timerEl = document.getElementById('raceTimer');
-            if (timerEl) timerEl.innerText = totalSec.toFixed(1);
-            const progressEl = document.getElementById('gateProgress');
-            if (progressEl) progressEl.innerText = `${gatesPassed} / ${totalGates}`;
-
             const speedMagnitude = drone.velocity.length();
             document.getElementById('telemetrySpeed').innerText = speedMagnitude.toFixed(1);
             const speedBarPercent = Math.min((speedMagnitude / 10) * 100, 100); // 最大量程改為 10 m/s
@@ -1957,9 +1492,6 @@
             const delta = Math.min(clock.getDelta(), 0.1); 
 
             updateDronePhysics(delta);
-            updateGateCollisions();
-            updateGates();
-            checkRaceFinish();
             updateParticles(delta);
             updateCamera(delta);
             updateDroneSound();
@@ -1970,12 +1502,7 @@
 
         // 重設模擬器
         function resetGame() {
-            if (currentLevelId !== null) {
-                loadLevel(currentLevelId);
-                return;
-            }
-
-            drone.position.copy(HOME_POS); // 置中停於起降圈
+            drone.position.set(0, 0.10, 0); // 完美置中停在地面
             drone.velocity.set(0, 0, 0);
             drone.rotation.set(0, 0, 0);
             drone.currentPitch = 0;
@@ -1998,56 +1525,24 @@
 
         // UI 事件綁定
         function bindUIEvents() {
-            function showStartScreen() {
+            function startFlight() {
                 const startScreen = document.getElementById('startScreen');
-                startScreen.classList.remove('hidden', 'opacity-0', 'scale-95');
-                startScreen.classList.add('flex');
-            }
+                if (!startScreen || startScreen.dataset.launched === 'true') return; // 避免重複觸發
+                startScreen.dataset.launched = 'true';
 
-            function hideStartScreen() {
-                const startScreen = document.getElementById('startScreen');
+                initAudio();
+                soundEnabled = true;
+
                 startScreen.classList.add('opacity-0', 'scale-95');
-                setTimeout(() => {
-                    startScreen.classList.add('hidden');
-                    startScreen.classList.remove('flex');
-                }, 700);
-            }
+                setTimeout(() => startScreen.remove(), 750);
 
-            function selectLevel(levelId) {
-                if (!soundEnabled) {
-                    initAudio();
-                    soundEnabled = true;
-                }
-                hideStartScreen();
-                loadLevel(levelId);
                 showSystemNotification("氣壓飛控系統連線 - 6m x 3m 禁區網籠就緒");
             }
 
-            document.querySelectorAll('.level-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const levelId = parseInt(btn.dataset.level, 10);
-                    selectLevel(levelId);
-                });
-            });
-
-            document.getElementById('btnRetryLevel').addEventListener('click', () => {
-                const finishScreen = document.getElementById('finishScreen');
-                finishScreen.classList.add('hidden');
-                finishScreen.classList.remove('flex');
-                loadLevel(currentLevelId);
-            });
-
-            document.getElementById('btnBackMenu').addEventListener('click', () => {
-                const finishScreen = document.getElementById('finishScreen');
-                finishScreen.classList.add('hidden');
-                finishScreen.classList.remove('flex');
-                clearObstacles();
-                currentLevelId = null;
-                raceState = 'menu';
-                document.getElementById('raceLevelName').innerText = '尚未選擇關卡';
-                updateHUD();
-                showStartScreen();
-            });
+            // 按下任意鍵即可開始（桌面鍵盤）
+            window.addEventListener('keydown', startFlight, { once: true });
+            // 觸控/滑鼠點擊起始畫面也可開始（無實體鍵盤的行動裝置）
+            document.getElementById('startScreen').addEventListener('click', startFlight, { once: true });
 
             document.getElementById('btnTakeoff').addEventListener('click', triggerTakeoff);
             document.getElementById('btnLand').addEventListener('click', triggerLanding);
@@ -2064,7 +1559,6 @@
             setupLights();
             createSoccerField();
             buildInflatableCage(); // 創建 3fc47b8b-0d54-496f-abc0-0f49a0d9871a.jpg 的充氣柱網壁
-            buildLandingPadMarker(); // 起降圈地面標記
             buildDrone();
             setupKeyboard();
             setupTouchControls();
