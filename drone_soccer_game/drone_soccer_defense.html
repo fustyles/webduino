@@ -401,9 +401,12 @@
         // 依真實規格調整：無人機球型護籠外徑 20 公分 (半徑 0.10m)；球門光環「淨開口」內直徑 60 公分 (半徑 0.30m)
         const DRONE_CAGE_RADIUS = 0.10;   // 無人機足球護籠半徑，整體球徑 = 20 公分
         const RING_CLEAR_RADIUS = 0.30;   // 光環實際淨開口半徑 (扣除管粗後可通過的孔徑)，內直徑 = 60 公分
-        // AI 攻擊機最終瞄準球門時，容許的目標範圍：球門中心 40 公分直徑圓內（半徑 20 公分），
-        // 比實際開口 (60 公分直徑) 更收斂，逼近球門的最後階段一律鎖定在這個中央範圍內出手
-        const ATTACKER_GOAL_AIM_RADIUS = 0.20;
+        // AI 攻擊機最終瞄準球門時，容許的目標範圍：
+        // 物理上「機身中心完全不會擦到框架」的理論零誤差極限是 RING_CLEAR_RADIUS(0.30) − DRONE_CAGE_RADIUS(0.10) = 0.20，
+        // 但攻擊機瞄準時還會疊加隨機誤差(aimError)、曲線搖擺殘留量、轉向/加速度的追蹤延遲等現實飛控誤差，
+        // 若瞄準半徑直接設到這個零容錯極限，只要有一點點追蹤誤差就會撞框——這正是攻擊機撞框機率偏高的主因。
+        // 因此刻意內縮到 0.14，保留約 6 公分（DRONE_CAGE_RADIUS 的一半以上）的安全餘裕。
+        const ATTACKER_GOAL_AIM_RADIUS = 0.14;
         // 攻擊機偵測到防守機（玩家或 AI 隊友）進入此距離內時，會優先閃避，且閃避方向固定朝向球門圓心
         const ATTACKER_EVADE_DISTANCE = 0.55;
         const RING_TUBE_RADIUS = 0.022;   // 光環管粗半徑 (依比例縮小)
@@ -518,7 +521,10 @@
             diagonalBias: 0.5,     // 左右與上下連動係數，讓移動偏向「斜著飛」而非單純水平或垂直
             reactionMin: 0.22,
             reactionMax: 0.5,
-            aimError: 0.2,
+            // 原本 0.2 幾乎等於整個瞄準容許半徑(舊值 0.20)本身，等於每次幾乎都會把瞄準點誤差
+            // 頂到邊界，也是撞框機率偏高的另一主因；縮小到 0.06，讓它只是合理的手感誤差，
+            // 不會系統性地把每一次瞄準都推到安全邊緣外
+            aimError: 0.06,
         };
 
         // 攻擊曲線庫：每一波新的進攻（重新起飛、回線整隊完畢、或繞回前方完畢後）都會從中隨機抽選一種，
@@ -612,13 +618,40 @@
             attacker.gapTimer = 0; // 新一波攻勢開始時，立即重新判讀一次防守縫隙
         }
 
-        // 掃描球門開口一圈，估算玩家防守機與 AI 隊友守門機各自封鎖的角度範圍，
-        // 回傳尚未被封鎖、縫隙面積最大的方向角度與其縫隙寬裕程度（純計算，不含任何平滑處理）
-        function scanWidestGapAngle(ring) {
+        // 收集目前場上所有防守機（玩家機 + AI 隊友守門機）的世界座標位置
+        function collectDefenderBlockers() {
             const blockers = [];
             if (drone && drone.mesh) blockers.push(drone.position);
             aiDrones.forEach(ai => { if (ai.mesh) blockers.push(ai.position); });
+            return blockers;
+        }
 
+        // 估算「某個角度方向」上的縫隙寬裕程度：該方向與每台防守機封鎖角範圍的最小差距，
+        // 差距越大代表這個方向越空、越適合攻擊機瞄準（純計算，不含任何平滑處理）
+        function angleClearanceAt(angle, ring, blockers) {
+            let minClearance = Infinity;
+            blockers.forEach((pos) => {
+                const bx = pos.x - ring.pos.x;
+                const by = pos.y - ring.pos.y;
+                const bAngle = Math.atan2(by, bx);
+                const bDist = Math.sqrt(bx * bx + by * by);
+
+                // 防守機離球門中心越近，能封鎖的角度範圍越大（貼近圓心時幾乎封鎖整個開口）；
+                // 離中心越遠（貼近開口邊緣或已飛出開口外）時，能封鎖的角度範圍就越窄
+                const halfWidth = Math.atan2(DRONE_CAGE_RADIUS + 0.15, Math.max(bDist, 0.06));
+
+                let diff = Math.abs(angle - bAngle);
+                diff = Math.min(diff, Math.PI * 2 - diff);
+                const clearance = diff - halfWidth;
+                if (clearance < minClearance) minClearance = clearance;
+            });
+            return minClearance;
+        }
+
+        // 掃描球門開口一圈，回傳尚未被封鎖、縫隙面積最大的方向角度與其縫隙寬裕程度。
+        // 做為只有 0~1 台防守機在場、或幾何解退化時的備援方案（見 computeMidlineGapAngle）
+        function scanWidestGapAngle(ring) {
+            const blockers = collectDefenderBlockers();
             if (blockers.length === 0) return null; // 沒有防守機在場，交由呼叫端處理（直接瞄準正中央）
 
             const numSamples = 36;
@@ -627,31 +660,62 @@
 
             for (let i = 0; i < numSamples; i++) {
                 const angle = (i / numSamples) * Math.PI * 2;
-                let minClearance = Infinity;
-
-                blockers.forEach((pos) => {
-                    const bx = pos.x - ring.pos.x;
-                    const by = pos.y - ring.pos.y;
-                    const bAngle = Math.atan2(by, bx);
-                    const bDist = Math.sqrt(bx * bx + by * by);
-
-                    // 防守機離球門中心越近，能封鎖的角度範圍越大（貼近圓心時幾乎封鎖整個開口）；
-                    // 離中心越遠（貼近開口邊緣或已飛出開口外）時，能封鎖的角度範圍就越窄
-                    const halfWidth = Math.atan2(DRONE_CAGE_RADIUS + 0.15, Math.max(bDist, 0.06));
-
-                    let diff = Math.abs(angle - bAngle);
-                    diff = Math.min(diff, Math.PI * 2 - diff);
-                    const clearance = diff - halfWidth;
-                    if (clearance < minClearance) minClearance = clearance;
-                });
-
-                if (minClearance > bestClearance) {
-                    bestClearance = minClearance;
+                const clearance = angleClearanceAt(angle, ring, blockers);
+                if (clearance > bestClearance) {
+                    bestClearance = clearance;
                     bestAngle = angle;
                 }
             }
 
             return { angle: bestAngle, clearance: bestClearance };
+        }
+
+        // 幾何版縫隙判讀（修正版）：兩台防守機連線的「中垂線」上所有點都跟兩台防守機等距，
+        // 這條中垂線與球門淨開口圓最多會交於兩點；兩交點都同樣跟兩台防守機等距，
+        // 但其中一點貼近防守機連線本身（中垂線在圓內較短的那一段），另一點則落在防守機
+        // 連線的另一側、離兩台防守機都更遠（中垂線在圓內較長的那一段）——後者才是真正
+        // 「兩台防守機之間、且離兩者都最遠」的開口方向，因此取中垂線較長那一段對應的交點。
+        // （不需要再額外用「攻擊機目前方向」湊出第三頂點去算三角形外心：交點本身已經同時
+        //  滿足「跟兩台防守機等距」且「落在球門開口邊界上」，比原本以攻擊機方向為準的版本更貼合防守站位本身、不受攻擊機當下角度干擾）
+        // 只有 0~1 台防守機在場、或中垂線根本不與圓相交（兩防守機相距過遠、中垂線整條都在圓外）時，
+        // 才退回 scanWidestGapAngle() 的取樣掃描法。
+        function computeMidlineGapAngle(ring, attackerPos) {
+            const blockers = collectDefenderBlockers();
+            if (blockers.length === 0) return null;       // 沒有防守機：交由呼叫端直接瞄準球門正中央
+            if (blockers.length === 1) return scanWidestGapAngle(ring); // 只有一台，湊不出連線，退回取樣法
+
+            // 目前只會有兩台防守機（玩家 + 1 台 AI 隊友），直接取前兩台
+            const b1x = blockers[0].x - ring.pos.x;
+            const b1y = blockers[0].y - ring.pos.y;
+            const b2x = blockers[1].x - ring.pos.x;
+            const b2y = blockers[1].y - ring.pos.y;
+
+            const dx = b2x - b1x;
+            const dy = b2y - b1y;
+            const segLen = Math.sqrt(dx * dx + dy * dy);
+            if (segLen < 1e-6) return scanWidestGapAngle(ring); // 兩防守機幾乎疊在一起，連線方向不明，退回取樣法
+
+            // 中垂線 = 通過兩防守機連線中點 M、方向垂直於該連線的直線：P(t) = M + t·u
+            const mx = (b1x + b2x) / 2;
+            const my = (b1y + b2y) / 2;
+            const ux = -dy / segLen;
+            const uy = dx / segLen;
+
+            // 解 |M + t·u|^2 = R^2（R = 球門淨開口半徑），u 為單位向量，展開後為 t 的一元二次方程式
+            const R = RING_CLEAR_RADIUS;
+            const mDotU = mx * ux + my * uy;
+            const discriminant = mDotU * mDotU - (mx * mx + my * my - R * R);
+            if (discriminant < 0) return scanWidestGapAngle(ring); // 中垂線沒有與球門圓相交，退回取樣法
+
+            const sqrtDisc = Math.sqrt(discriminant);
+            const t1 = -mDotU + sqrtDisc;
+            const t2 = -mDotU - sqrtDisc;
+            const t = Math.abs(t1) > Math.abs(t2) ? t1 : t2; // 取中垂線在圓內「較長」那一段對應的交點
+
+            const angle = Math.atan2(my + t * uy, mx + t * ux);
+            const clearance = angleClearanceAt(angle, ring, blockers); // 沿用同一套寬裕度量，確保跟下游縮放公式相容
+
+            return { angle, clearance };
         }
 
         // 兩個角度間的最短夾角差（考慮 -π~π 環繞），正負代表方向，絕對值不超過 π
@@ -669,7 +733,7 @@
             attacker.gapTimer -= delta;
             if (attacker.gapTimer <= 0) {
                 attacker.gapTimer = 0.55 + Math.random() * 0.35; // 每 0.55~0.9 秒才重新判讀一次防守站位
-                const result = scanWidestGapAngle(ring);
+                const result = computeMidlineGapAngle(ring, attacker.position);
                 if (result) {
                     attacker.gapHasBlockers = true;
                     attacker.gapTargetAngle = result.angle;
@@ -702,16 +766,18 @@
         }
 
         // 依目前平滑後的縫隙角度與寬裕程度，回傳球門開口內、該方向上的瞄準座標；
-        // 瞄準範圍一律限制在球門中心 40 公分直徑圓內 (ATTACKER_GOAL_AIM_RADIUS)
-        function computeGoalGapOffset(attacker) {
+        // targetRadius 由呼叫端傳入（跟曲線搖擺共用同一把隨距離收斂的尺），而不是固定寫死的安全半徑，
+        // 這樣遠處助跑時縫隙方向也能有跟曲線振幅相當的量級，真正發揮引導作用，不會被曲線淹沒
+        function computeGoalGapOffset(attacker, targetRadius) {
             if (!attacker.gapHasBlockers) {
                 return { x: 0, y: 0 }; // 沒有防守機在場時，直接瞄準球門正中央
             }
 
             // 縫隙越窄（clearance 越小甚至為負，代表防守機幾乎封死球門）時，瞄準點收斂靠近正中央，
-            // 避免刻意衝向一個其實仍然擁擠的角度；縫隙夠寬時才瞄準靠近 40 公分圓邊緣處
-            const radiusScale = THREE.MathUtils.clamp(0.35 + attacker.gapClearance * 0.55, 0.3, 1);
-            const targetR = ATTACKER_GOAL_AIM_RADIUS * radiusScale;
+            // 避免刻意衝向一個其實仍然擁擠的角度；縫隙夠寬時也不會頂到瞄準圓的最外緣（上限收在 0.85），
+            // 保留一點餘裕給後續疊加的 aimError／曲線殘留量，避免每次都精準貼著邊界飛
+            const radiusScale = THREE.MathUtils.clamp(0.35 + attacker.gapClearance * 0.55, 0.3, 0.85);
+            const targetR = targetRadius * radiusScale;
 
             return {
                 x: Math.cos(attacker.gapAngle) * targetR,
@@ -2496,18 +2562,28 @@
                     const distToGoal = Math.abs(attacker.position.z - ring.pos.z);
                     const weaveScale = THREE.MathUtils.clamp(distToGoal / 1.5, 0.15, 1);
 
+                    // 允許的瞄準範圍隨距離收斂：越靠近球門越收斂到 ATTACKER_GOAL_AIM_RADIUS 這個安全小圓；
+                    // 遠處助跑階段則放寬上限，保留曲線本身較大幅度的搖擺/假動作與側翼繞行效果。
+                    // 這裡先算出來，是因為縫隙方向的目標偏移量也要用同一把尺，見下方說明
+                    const proximityT = THREE.MathUtils.clamp((weaveScale - 0.15) / (1 - 0.15), 0, 1);
+                    const maxAimRadius = THREE.MathUtils.lerp(ATTACKER_GOAL_AIM_RADIUS, 1.8, proximityT);
+
                     const offset = computeAttackCurveOffset(attacker, c, weaveScale);
-                    const gap = computeGoalGapOffset(attacker);
-                    const commitToGap = (1 - weaveScale) * 0.75; // 0（遠處，以曲線為主）~ 0.64（貼近球門，收斂到縫隙中心，但保留曲線動作避免過於死板）
+                    // 縫隙方向的目標偏移量改用「跟曲線搖擺同一把尺」(maxAimRadius) 縮放，而不是固定的
+                    // 極小安全半徑：兩者原本一個可以到 1.8 公尺、一個永遠鎖在 0.14 公尺內，量級差了十幾倍，
+                    // 就算後面用 commitToGap 混合權重，縫隙方向的實際影響力也會被曲線的巨大振幅完全淹沒，
+                    // 等於遠處時「以為」有考慮縫隙、其實幾乎沒有生效——這正是攻擊機明明兩台防守機都卡
+                    // 同一側，卻遲遲不會轉往真正空出來那一側的主因。統一量級後，遠處也能真正感受到縫隙方向的拉力
+                    const gap = computeGoalGapOffset(attacker, maxAimRadius);
+                    // 人類選手在遠處助跑時就會先看好哪一側防守比較鬆、預先把身位帶過去，
+                    // 而不是等貼近球門才臨時反應；因此即使距離還很遠（weaveScale = 1），
+                    // 也保留一定比例的縫隙方向做為底線傾向（0.35），越靠近球門才逐漸提高到
+                    // 完全收斂（0.75），曲線搖擺/假動作則疊加在這個傾向之上，不會完全蓋過它
+                    const commitToGap = THREE.MathUtils.lerp(0.35, 0.75, 1 - weaveScale);
 
                     let dx = THREE.MathUtils.lerp(offset.dx, gap.x, commitToGap) + (Math.random() - 0.5) * 2 * c.aimError;
                     let dy = THREE.MathUtils.lerp(offset.dy, gap.y, commitToGap) + (Math.random() - 0.5) * 2 * c.aimError;
 
-                    // 越靠近球門，允許的瞄準範圍越收斂；貼近球門的最後瞬間（weaveScale 收斂到最小值 0.15），
-                    // 瞄準範圍必須嚴格收斂在球門中心 40 公分直徑圓內 (ATTACKER_GOAL_AIM_RADIUS)；
-                    // 遠處助跑階段則放寬上限，保留曲線本身較大幅度的搖擺/假動作與側翼繞行效果
-                    const proximityT = THREE.MathUtils.clamp((weaveScale - 0.15) / (1 - 0.15), 0, 1);
-                    const maxAimRadius = THREE.MathUtils.lerp(ATTACKER_GOAL_AIM_RADIUS, 1.8, proximityT);
                     const aimLen = Math.sqrt(dx * dx + dy * dy);
                     if (aimLen > maxAimRadius) {
                         const clampScale = maxAimRadius / aimLen;
@@ -2776,42 +2852,91 @@
                 attacker.position.addScaledVector(normal, -overlap * 0.85);
                 defenderPos.addScaledVector(normal, overlap * 0.15);
 
-                // 攻擊機速度往反方向彈開，模擬被攔截撞飛
+                // 依重疊深度區分「擦撞」與「正面撞上」：人類選手擦到一點邊時通常只是微調路線
+                // 立刻繼續進攻，只有真的被正面卡住、撞飛時才會整個退開重新來過，
+                // 不會每次只要沾到防守機的護籠就一律強制整隊撤退
+                const overlapRatio = overlap / combinedRadius; // 0（剛好擦邊）~ 1（完全對心撞上）
+                const isSolidHit = overlapRatio > 0.4;
+
+                // 攻擊機速度往反方向彈開；擦撞力道較輕，正面撞上彈開力道較重
                 const bounceDir = normal.clone().negate();
-                attacker.velocity.addScaledVector(bounceDir, 2.0);
-                attacker.velocity.multiplyScalar(0.5);
+                attacker.velocity.addScaledVector(bounceDir, isSolidHit ? 2.0 : 0.8);
+                attacker.velocity.multiplyScalar(isSolidHit ? 0.5 : 0.85);
 
                 // 防守機也會受到些微反作用力
-                defenderVel.addScaledVector(normal, 0.4);
+                defenderVel.addScaledVector(normal, isSolidHit ? 0.4 : 0.15);
 
-                // 被攔截後不再原地立刻正面續攻：只要當下正在主動進攻階段（而非已經處於得分撤退、
-                // 繞回前方、或前一次攔截後的重新整隊等既有流程中），就隨機選擇撤退一段距離、
-                // 調整到隨機高度，整隊完畢後才重新展開攻勢；若正處於其他既有流程則不打斷，維持原流程
-                if (attacker.phase === 'advance' && attacker.targetRing) {
+                if (!isSolidHit) {
+                    // 只是擦邊：不打斷進攻階段，但立刻縮短反應計時，讓它盡快依彈開後的新位置
+                    // 重新判斷縫隙方向，而不是傻傻維持原本的瞄準點朝同一個地方再衝一次
+                    if (attacker.phase === 'advance') {
+                        attacker.reactionTimer = Math.min(attacker.reactionTimer, 0.08 + Math.random() * 0.12);
+                    }
+                } else if (attacker.phase === 'advance' && attacker.targetRing) {
+                    // 正面撞上：不再原地立刻正面續攻。撤退距離採偏態隨機（大部分是小幅度重新調整，
+                    // 少數情況會拉開較大距離、換個完全不同的攻擊角度），撤退方向也不是死板地正後方，
+                    // 而是在「後方」基準上疊加隨機側向角度，看起來更像人在被擋下後臨場側閃重整；
+                    //
+                    // 高度／左右位置不再只是「相對目前高度亂走」，而是立刻重新判讀一次縫隙方向
+                    // （computeMidlineGapAngle）：如果兩台防守機剛好都卡在上方，這裡會抓出「下方」
+                    // 才是真正空出來的一側，撤退時就直接把落點帶往那個方向靠。這樣重新起攻時，
+                    // 位置本身就已經在正確的一側，不會單純因為撤退距離短、或曲線招式剛好又帶偏往
+                    // 同一側，就導致每次都從同一個被擋住的方向重複進攻
                     const ring = attacker.targetRing;
-                    const retreatDist = 0.3 + Math.random() * 0.5; // 隨機撤退距離，約 0.3~0.8 公尺（僅拉開短距離重新調整，不飛遠）
-                    const randomAltitude = THREE.MathUtils.clamp(0.4 + Math.random() * 2.0, 0.25, 2.8); // 隨機重新調整高度
+                    const retreatDist = 0.15 + Math.pow(Math.random(), 1.6) * 1.15; // 偏態分布，約 0.15~1.3 公尺
+                    const maxSideAngle = 0.7; // 側向偏轉角上限（約 40 度）
+                    const sideAngle = (Math.random() * 2 - 1) * maxSideAngle;
+                    const backX = ring.forwardSign * Math.sin(sideAngle);
+                    const backZ = -ring.forwardSign * Math.cos(sideAngle);
+
                     const xLimitR = CAGE_WIDTH / 2 - droneRadius;
                     const zLimitR = CAGE_LENGTH / 2 - droneRadius;
 
+                    // 立刻重新掃一次縫隙，找出兩台防守機目前真正空出來的方向
+                    const freshGap = computeMidlineGapAngle(ring, attacker.position);
+                    let biasX = 0;
+                    let biasY = 0;
+                    if (freshGap) {
+                        // 撤退落點只是「重新站位」，不是最終瞄準點，所以取縫隙圓周上較大的一段
+                        // 距離（淨開口的 70%）當作落點偏移量，確保退開後明顯落在空隙那一側，
+                        // 而不是貼著中心一點點意思意思
+                        const stageR = RING_CLEAR_RADIUS * 0.7;
+                        biasX = Math.cos(freshGap.angle) * stageR;
+                        biasY = Math.sin(freshGap.angle) * stageR;
+                    }
+
                     const retreatX = THREE.MathUtils.clamp(
-                        attacker.position.x + (Math.random() - 0.5) * 0.6,
+                        attacker.position.x + backX * retreatDist + biasX,
                         -xLimitR, xLimitR
                     );
-                    // 沿著「遠離球門」的方向（回到自己這一側）退開一段距離，而非直接飛回中線
                     const retreatZ = THREE.MathUtils.clamp(
-                        attacker.position.z - ring.forwardSign * retreatDist,
+                        attacker.position.z + backZ * retreatDist,
                         -zLimitR, zLimitR
                     );
+
+                    // 高度以「球門中心 + 縫隙方向的垂直分量」為主要依據；沒有偵測到防守機時
+                    // （freshGap 為 null）才退回原本相對目前高度的隨機游走
+                    const altitudeJitter = 0.6 + retreatDist * 0.8; // 撤退拉得越遠，代表這次被擋得越徹底，高度變動幅度也隨之加大
+                    const randomAltitude = freshGap
+                        ? THREE.MathUtils.clamp(
+                            ring.pos.y + biasY + (Math.random() - 0.5) * 2 * (altitudeJitter * 0.4),
+                            0.25, 2.8
+                          )
+                        : THREE.MathUtils.clamp(
+                            attacker.position.y + (Math.random() - 0.5) * 2 * altitudeJitter,
+                            0.25, 2.8
+                          );
 
                     attacker.phase = 'regroup';
                     attacker.reactionTimer = 0;
                     attacker.regroupTarget.set(retreatX, randomAltitude, retreatZ);
                 }
 
-                createExplosion(attacker.position.clone(), 0x10b981); // 綠色攔截成功特效
-                playChimeSound(); // 清亮提示音，代表成功防守
-                showSystemNotification(isPlayer ? "成功攔截 AI 攻擊機！" : "AI 隊友成功攔截攻擊機！");
+                if (isSolidHit) {
+                    createExplosion(attacker.position.clone(), 0x10b981); // 綠色攔截成功特效
+                    playChimeSound(); // 清亮提示音，代表成功防守
+                    showSystemNotification(isPlayer ? "成功攔截 AI 攻擊機！" : "AI 隊友成功攔截攻擊機！");
+                }
             }
         }
 
