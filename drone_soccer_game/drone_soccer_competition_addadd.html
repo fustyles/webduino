@@ -967,6 +967,15 @@ function checkRingScoringForRig(rig) {
 }
 
 // ---------------- 碰撞：同隊互相避讓（不彈跳）／異隊攔截（彈開） ----------------
+// 修正重點：
+// 1. 分離法向量改成「只取水平（X/Z）分量」，避免跟高度 PD 控制器互搶垂直方向，
+//    這是造成「一撞就上下抖動不停」的主因：原本 3D 法向量帶有微小 Y 分量，
+//    每次把無人機往 Y 方向推開一點，油門高度控制器又用很強的增益把它拉回去，
+//    兩者持續拔河，永遠不會收斂。
+// 2. 同隊分離時，補上「消除彼此靠近速度」的修正，不然位置雖然被拉開，
+//    速度卻沒變，下一幀又會立刻貼回去，等於每一幀都在瞬移，畫面看起來就是持續抖動。
+// 3. 異隊反彈係數從 1.2（超彈性、每次碰撞都在幫系統加能量）降到 0.6（有能量損耗），
+//    確保彈跳幅度會隨時間衰減、最終靜止，而不是越彈越誇張。
 function checkAllCollisions() {
     for (let i = 0; i < RIGS.length; i++) {
         for (let j = i + 1; j < RIGS.length; j++) {
@@ -974,21 +983,34 @@ function checkAllCollisions() {
             if (!A.mesh || !B.mesh) continue;
             const sameTeam = A.team === B.team;
             const combinedRadius = DRONE_CAGE_RADIUS * (sameTeam ? 2.2 : 2.0);
-            const diff = B.position.clone().sub(A.position);
-            const dist = diff.length();
+
+            // 只用水平距離判斷/分離，避免侵犯垂直方向的高度控制權
+            const diffFull = B.position.clone().sub(A.position);
+            const diffHoriz = new THREE.Vector3(diffFull.x, 0, diffFull.z);
+            const dist = diffHoriz.length();
             if (dist < combinedRadius && dist > 0.001) {
-                const normal = diff.normalize();
+                const normal = diffHoriz.normalize(); // 純水平法向量，y 分量恆為 0
                 const overlap = combinedRadius - dist;
+
                 if (sameTeam) {
                     A.position.addScaledVector(normal, -overlap * 0.5);
                     B.position.addScaledVector(normal, overlap * 0.5);
+
+                    // 消除沿法向量彼此靠近的速度分量，避免分開後下一幀又立刻貼回去
+                    const relVel = B.velocity.clone().sub(A.velocity);
+                    const sepSpeed = relVel.dot(normal);
+                    if (sepSpeed < 0) {
+                        const correction = -sepSpeed * 0.5;
+                        A.velocity.addScaledVector(normal, -correction);
+                        B.velocity.addScaledVector(normal, correction);
+                    }
                 } else {
                     A.position.addScaledVector(normal, -overlap * 0.5);
                     B.position.addScaledVector(normal, overlap * 0.5);
                     const relVel = B.velocity.clone().sub(A.velocity);
                     const sepSpeed = relVel.dot(normal);
                     if (sepSpeed < 0) {
-                        const restitution = 1.2;
+                        const restitution = 0.6; // <1，確保每次碰撞都會損耗能量、逐漸靜止
                         const j2 = -sepSpeed * restitution;
                         A.velocity.addScaledVector(normal, -j2 * 0.5);
                         B.velocity.addScaledVector(normal, j2 * 0.5);
