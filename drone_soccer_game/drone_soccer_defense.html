@@ -435,6 +435,18 @@
         // 攻擊機偵測到防守機（玩家或 AI 隊友）進入此距離內時會優先閃避——實際閃避距離依難度而定，
         // 已改為 ATTACK_DIFFICULTY_LEVELS 中的 evadeDistance（簡單較短、困難較長），見下方難度設定
         const RING_TUBE_RADIUS = 0.022;   // 光環管粗半徑 (依比例縮小)
+        // 「減速→近垂直陡升/陡降→加速前衝」突襲動作的共用時間軸與空間參數（不隨難度變動，只有觸發機率與加速倍率依難度而定）：
+        // 靠近球門到一定距離內、且尚未進入最後衝刺時，攻擊機有機率先幾乎煞停原地，接著近乎垂直地陡升或陡降拉開一段高度，
+        // 甩開原本鎖定它水平位置的防守機視線角度，最後再朝縫隙方向瞬間加速衝刺穿越球門
+        const JUKE_TRIGGER_MIN_DIST = 0.35;  // 距離球門太近就不再觸發（來不及做完整套動作，直接沿用一般收斂瞄準）
+        const JUKE_TRIGGER_MAX_DIST = 1.3;   // 距離球門太遠也不觸發（「靠近圓環」才做，避免離題亂飄）
+        const JUKE_CHECK_INTERVAL_MIN = 0.45; // 每隔 0.45~0.75 秒才有一次機會判定是否觸發，避免過於頻繁
+        const JUKE_CHECK_INTERVAL_MAX = 0.75;
+        const JUKE_DECEL_TIME = 0.18;   // 減速煞停階段時長（秒）
+        const JUKE_RISE_TIME = 0.32;    // 近垂直陡升/陡降階段時長（秒）
+        const JUKE_BURST_TIME = 0.42;   // 加速前衝階段時長（秒）
+        const JUKE_RISE_DISTANCE = 0.85; // 陡升/陡降的目標垂直位移量（米），相對煞停時的高度
+
         const RING_CENTER_RADIUS = RING_CLEAR_RADIUS + RING_TUBE_RADIUS; // 圓環管中心線半徑 (TorusGeometry 用)
 
         const ringCourse = [
@@ -556,7 +568,9 @@
                 commitToGapMax: 0.30,
                 evadeDistance: 0.40,     // 閃避距離短，容易被貼身鎖死
                 patterns: ['diagonal_weave', 'low_skim'], // 只用最單純的兩種招式
-                tactics: { smartFeint: false, predictiveGap: false, smartEvade: false },
+                jukeChance: 0.12,        // 很少使出「減速→陡升/陡降→加速前衝」突襲動作
+                jukeBurstMultiplier: 1.15, // 加速前衝階段的速度倍率，衝刺感不強
+                tactics: { smartFeint: false, predictiveGap: false, smartEvade: false, smartJukeDirection: false },
             },
             medium: {
                 label: '中等',
@@ -574,7 +588,9 @@
                 commitToGapMax: 0.75,
                 evadeDistance: 0.55,
                 patterns: null, // null 代表沿用完整的 ATTACK_PATTERNS 曲線庫
-                tactics: { smartFeint: false, predictiveGap: false, smartEvade: false },
+                jukeChance: 0.30,        // 中等機率使出突襲動作
+                jukeBurstMultiplier: 1.35,
+                tactics: { smartFeint: false, predictiveGap: false, smartEvade: false, smartJukeDirection: false },
             },
             hard: {
                 label: '困難',
@@ -592,11 +608,14 @@
                 commitToGapMax: 0.90,
                 evadeDistance: 0.70,     // 更早察覺防守機逼近
                 patterns: null, // 開放完整曲線庫
-                // 困難模式額外啟用三種戰術邏輯：
+                jukeChance: 0.50,        // 頻繁使出突襲動作
+                jukeBurstMultiplier: 1.6, // 加速前衝階段速度大幅提升，衝刺感明顯
+                // 困難模式額外啟用四種戰術邏輯：
                 // smartFeint - feint_dodge 假動作改為「先佯攻縫隙較窄的一側，最後衝刺才切向真正縫隙」的誘敵招式，而非純隨機方向
                 // predictiveGap - 判讀縫隙時，先用防守機目前速度外推 0.4 秒後的預測站位，看穿「正在補位」的防守走向
                 // smartEvade - 被防守機逼近而閃避時，仍朝目前判讀到的縫隙角度切入，而非單純衝向球門正中央
-                tactics: { smartFeint: true, predictiveGap: true, smartEvade: true },
+                // smartJukeDirection - 突襲動作要陡升還是陡降，依目前判讀到的縫隙在球門開口上方或下方而定，而非純隨機
+                tactics: { smartFeint: true, predictiveGap: true, smartEvade: true, smartJukeDirection: true },
             },
         };
         let aiAttackDifficulty = 'medium'; // 目前套用的攻擊難度，可於開場畫面選擇，或遊戲中點擊按鈕切換
@@ -963,6 +982,13 @@
             regroupTarget: new THREE.Vector3(0, 1.5, 0), // 被攔截後「撤退一段距離＋隨機高度」的重新整隊目標點
             altitudeState: 'grounded', // 'grounded' | 'takingoff' | 'flying' | 'landing'：與玩家一起貼地待命，按 T/L 才會同步升降
             homePosition: new THREE.Vector3(0, 0.10, -2.25), // 貼地待命／降落回歸的位置，由 resetAttacker() 依球門位置更新
+            // 「減速→近垂直陡升/陡降→加速前衝」突襲動作的狀態機：
+            // jukePhase 'none'(未觸發) → 'decel'(煞停) → 'rise'(近垂直陡升/陡降) → 'burst'(加速前衝) → 回到 'none'
+            jukePhase: 'none',
+            jukeSubTimer: 0,        // 目前階段(decel/rise/burst)剩餘時間
+            jukeCheckTimer: Math.random() * 0.6, // 距離下一次判定是否觸發突襲動作還有多久
+            jukeDir: 1,             // 1 = 陡升，-1 = 陡降
+            jukeTargetY: 0,         // rise 階段要爬升／下降到的目標高度（decel 結束時計算一次）
             constants: ATTACK_DIFFICULTY_LEVELS[aiAttackDifficulty],
         };
 
@@ -1979,6 +2005,8 @@
             attacker.phase = 'advance';
             attacker.reactionTimer = 0;
             attacker.altitudeState = 'grounded';
+            attacker.jukePhase = 'none';         // 重新起飛時清除任何殘留的突襲動作狀態
+            attacker.jukeCheckTimer = Math.random() * 0.6;
             pickAttackPattern(attacker); // 每次重新起飛都重新抽選一種攻擊曲線
             attacker.aimTarget.copy(attacker.position);
 
@@ -2725,6 +2753,12 @@
 
             // altitudeState === 'flying'：以下為原本的完整進攻行為邏輯
 
+            // 若攻擊機已經離開「進攻階段」（得分撤退、被攔截重整隊、繞回前方等），
+            // 但突襲動作仍殘留在進行中，立即強制中止，避免帶著垂直陡升/陡降的殘留目標跑進其他階段的邏輯裡
+            if (attacker.phase !== 'advance' && attacker.jukePhase !== 'none') {
+                attacker.jukePhase = 'none';
+            }
+
             // 每一影格都更新一次縫隙判讀（內部自帶較慢的重新掃描節奏與轉向速率限制，見函式註解），
             // 讓瞄準角度可以連續、平滑地朝目標轉動，而不是每次判斷都瞬間跳到新角度
             updateAttackerGapEstimate(attacker, ring, delta);
@@ -2738,7 +2772,73 @@
                 const behindGoal = sideNow !== 0 && Math.sign(sideNow) === ring.forwardSign;
                 if (behindGoal) {
                     attacker.phase = 'loopback';
+                    attacker.jukePhase = 'none';
                     attacker.reactionTimer = 0;
+                }
+            }
+
+            // 「減速→近垂直陡升/陡降→加速前衝」突襲動作：獨立於一般反應計時之外、每影格都更新，
+            // 確保煞停/陡升陡降/加速前衝三個階段各自的短暫時長不會被較長的一般反應間隔打斷或錯過。
+            // 每隔 JUKE_CHECK_INTERVAL_MIN~MAX 秒才有一次機會判定是否觸發（機率依難度的 jukeChance 而定），
+            // 且僅在「靠近球門、尚未進入最後衝刺」的距離區間內才會觸發
+            let effectiveMaxSpeed = c.maxSpeed;
+            if (attacker.phase === 'advance') {
+                if (attacker.jukePhase === 'none') {
+                    attacker.jukeCheckTimer -= delta;
+                    if (attacker.jukeCheckTimer <= 0) {
+                        attacker.jukeCheckTimer = JUKE_CHECK_INTERVAL_MIN + Math.random() * (JUKE_CHECK_INTERVAL_MAX - JUKE_CHECK_INTERVAL_MIN);
+                        const distToGoalNow = Math.abs(attacker.position.z - ring.pos.z);
+                        if (readyToScore && distToGoalNow > JUKE_TRIGGER_MIN_DIST && distToGoalNow < JUKE_TRIGGER_MAX_DIST
+                            && Math.random() < c.jukeChance) {
+                            let jukeDir = Math.random() < 0.5 ? 1 : -1;
+                            // 困難模式（tactics.smartJukeDirection）：不是隨機決定要陡升還是陡降，
+                            // 而是依目前判讀到的縫隙落在球門開口的上方還是下方來選擇，讓陡升/陡降本身也具備讀縫隙的意義
+                            if (c.tactics.smartJukeDirection && attacker.gapHasBlockers) {
+                                jukeDir = Math.sin(attacker.gapAngle) >= 0 ? 1 : -1;
+                            }
+                            attacker.jukePhase = 'decel';
+                            attacker.jukeSubTimer = JUKE_DECEL_TIME;
+                            attacker.jukeDir = jukeDir;
+                        }
+                    }
+                } else {
+                    // 突襲動作進行中：依目前所在子階段推進，並覆寫本影格的瞄準點／速度上限
+                    attacker.jukeSubTimer -= delta;
+                    if (attacker.jukePhase === 'decel') {
+                        // 煞停階段：瞄準點就設在攻擊機目前所在位置，讓一般的轉向/阻尼邏輯自然把速度降下來，
+                        // 製造「幾乎垂直懸停煞車」的效果
+                        attacker.aimTarget.set(attacker.position.x, attacker.position.y, attacker.position.z);
+                        if (attacker.jukeSubTimer <= 0) {
+                            attacker.jukePhase = 'rise';
+                            attacker.jukeSubTimer = JUKE_RISE_TIME;
+                            attacker.jukeTargetY = THREE.MathUtils.clamp(
+                                attacker.position.y + attacker.jukeDir * JUKE_RISE_DISTANCE, 0.35, 2.7
+                            );
+                        }
+                    } else if (attacker.jukePhase === 'rise') {
+                        // 陡升/陡降階段：水平位置鎖定在目前所在處（x/z 每影格都取當下值，形同不做水平位移），
+                        // 只有垂直方向朝 jukeTargetY 前進，讓路徑呈現近乎垂直的爬升或俯衝
+                        attacker.aimTarget.set(attacker.position.x, attacker.jukeTargetY, attacker.position.z);
+                        if (attacker.jukeSubTimer <= 0) {
+                            attacker.jukePhase = 'burst';
+                            attacker.jukeSubTimer = JUKE_BURST_TIME;
+                            // 加速前衝目標：朝目前判讀到的縫隙方向瞄準球門開口，深度規則與一般進攻瞄準一致
+                            const burstR = Math.min(ATTACKER_GOAL_AIM_RADIUS * 1.4, 0.18);
+                            const burstX = attacker.gapHasBlockers ? ring.pos.x + Math.cos(attacker.gapAngle) * burstR : ring.pos.x;
+                            const burstY = attacker.gapHasBlockers ? ring.pos.y + Math.sin(attacker.gapAngle) * burstR : ring.pos.y;
+                            const burstZ = readyToScore
+                                ? ring.pos.z + ring.forwardSign * 0.5
+                                : ring.pos.z - ring.forwardSign * 0.35;
+                            attacker.aimTarget.set(burstX, burstY, burstZ);
+                        }
+                    } else if (attacker.jukePhase === 'burst') {
+                        // 加速前衝階段：套用難度對應的加速倍率，讓這段衝刺明顯比平常快
+                        effectiveMaxSpeed = c.maxSpeed * c.jukeBurstMultiplier;
+                        if (attacker.jukeSubTimer <= 0) {
+                            attacker.jukePhase = 'none';
+                            attacker.reactionTimer = 0; // 突襲結束後立刻重新規劃一般攻勢
+                        }
+                    }
                 }
             }
 
@@ -2749,9 +2849,10 @@
             if (attacker.reactionTimer <= 0) {
                 attacker.reactionTimer = c.reactionMin + Math.random() * (c.reactionMax - c.reactionMin);
 
-                if (attacker.phase === 'advance') {
+                if (attacker.phase === 'advance' && attacker.jukePhase === 'none') {
                     // 進攻階段：依本波抽到的攻擊曲線（見 ATTACK_PATTERNS / computeAttackCurveOffset）計算搖擺/假動作偏移量，
                     // 同時估算兩台防守機（玩家 + AI 隊友）在球門開口上封鎖的角度範圍，找出縫隙面積最大的方向作為瞄準中心；
+
                     // 越靠近球門，最終瞄準點越收斂到該縫隙中心，越遠則越以曲線本身的搖擺/假動作為主，保留迷惑效果
                     const distToGoal = Math.abs(attacker.position.z - ring.pos.z);
                     const weaveScale = THREE.MathUtils.clamp(distToGoal / 1.5, 0.15, 1);
@@ -2863,8 +2964,9 @@
             // 立即優先閃避——防守機貼身時，攻擊機會捨棄原本剛計算出的曲線/縫隙瞄準，越靠近防守機切入意圖越強烈；
             // 不受一般反應延遲限制，確保能及時反應，避免頻繁被同一台防守機正面攔截。
             // 簡單/中等難度：閃避方向固定朝向球門圓心（單純躲開，不主動找機會）。
-            // 困難難度（tactics.smartEvade）：閃避時仍朝目前判讀到的縫隙角度切入，等於邊閃邊找空檔，而非單純逃向中央
-            if (attacker.phase === 'advance') {
+            // 困難難度（tactics.smartEvade）：閃避時仍朝目前判讀到的縫隙角度切入，等於邊閃邊找空檔，而非單純逃向中央。
+            // 突襲動作（jukePhase !== 'none'）進行中則不觸發一般閃避，讓煞停/陡升陡降/加速前衝這套動作能完整做完
+            if (attacker.phase === 'advance' && attacker.jukePhase === 'none') {
                 const nearestDist = nearestDefenderDistance(attacker.position);
                 if (nearestDist < c.evadeDistance) {
                     const evadeT = THREE.MathUtils.clamp(1 - nearestDist / c.evadeDistance, 0, 1);
@@ -2883,7 +2985,9 @@
             const toTarget = attacker.aimTarget.clone().sub(attacker.position);
             const dist = toTarget.length();
             if (dist > 0.01) {
-                const desiredVel = toTarget.normalize().multiplyScalar(Math.min(c.maxSpeed, dist * 2.0));
+                // 一般狀況下速度上限為 c.maxSpeed；突襲動作的「加速前衝」階段改用 effectiveMaxSpeed
+                // （c.maxSpeed 乘上難度對應的 jukeBurstMultiplier），製造明顯的衝刺加速感
+                const desiredVel = toTarget.normalize().multiplyScalar(Math.min(effectiveMaxSpeed, dist * 2.0));
                 const steer = desiredVel.sub(attacker.velocity).multiplyScalar(c.accel * delta);
                 attacker.velocity.add(steer);
             }
