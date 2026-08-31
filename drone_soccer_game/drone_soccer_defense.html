@@ -113,6 +113,21 @@
                 </ul>
             </div>
 -->
+            <p class="text-xs text-slate-400 mb-3 tracking-wider uppercase tech-font">選擇 AI 攻擊機難度</p>
+            <div class="flex gap-2 mb-5">
+                <div id="btnAtkEasy" class="attack-difficulty-option flex-1 py-2.5 text-center cursor-pointer select-none rounded-xl glass-button border-slate-700/50" data-level="easy">
+                    <p class="text-sm font-bold text-emerald-400 uppercase tracking-widest">簡單</p>
+                    <p class="text-[9px] text-slate-500 mt-0.5 tech-font">反應慢、招式少</p>
+                </div>
+                <div id="btnAtkMedium" class="attack-difficulty-option flex-1 py-2.5 text-center cursor-pointer select-none rounded-xl glass-button" data-level="medium" style="border-color: rgba(250,204,21,0.6); background: rgba(250,204,21,0.12);">
+                    <p class="text-sm font-bold text-yellow-400 uppercase tracking-widest">中等</p>
+                    <p class="text-[9px] text-slate-500 mt-0.5 tech-font">標準進攻反應</p>
+                </div>
+                <div id="btnAtkHard" class="attack-difficulty-option flex-1 py-2.5 text-center cursor-pointer select-none rounded-xl glass-button border-slate-700/50" data-level="hard">
+                    <p class="text-sm font-bold text-rose-400 uppercase tracking-widest">困難</p>
+                    <p class="text-[9px] text-slate-500 mt-0.5 tech-font">假動作＋預判補位</p>
+                </div>
+            </div>
             <p class="text-xs text-slate-400 mb-3 tracking-wider uppercase tech-font">選擇你的隊伍</p>
             <div class="flex gap-4 mb-2">
                 <div id="btnTeamRed" class="flex-1 py-4 text-center cursor-pointer select-none rounded-xl glass-button border-rose-500/50 bg-rose-500/10 hover:bg-rose-500/25" style="border-color: rgba(239,68,68,0.5); background: rgba(239,68,68,0.12);">
@@ -181,6 +196,10 @@
                 </button>
                 <button id="btnReset" class="w-10 h-10 rounded-xl glassmorphism text-slate-300 hover:text-rose-400 flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
                     <i class="fa-solid fa-arrows-rotate text-sm"></i>
+                </button>
+                <button id="btnAtkDifficulty" class="px-3.5 h-10 rounded-xl glassmorphism text-yellow-300 hover:text-yellow-200 hover:border-yellow-400/50 flex items-center justify-center gap-2 transition-all cursor-pointer pointer-events-auto border border-yellow-500/20" title="點擊切換 AI 攻擊機難度：簡單／中等／困難">
+                    <i class="fa-solid fa-bolt text-sm"></i>
+                    <span id="atkDifficultyText" class="text-xs font-semibold tech-font">中等</span>
                 </button>
             </div>
         </header>
@@ -413,8 +432,8 @@
         // 根本來不及轉回來，反而一頭撞進框架——這正是「兩台防守機都卡下方，攻擊機卻一直重複撞上方框架」的
         // 真正成因。因此縫隙方向額外用這個較保守的上限收斂，早期還是有明顯的引導作用，但不會被拖去離譜的極端位置
         const ATTACKER_GAP_LEAD_RADIUS = 0.5;
-        // 攻擊機偵測到防守機（玩家或 AI 隊友）進入此距離內時，會優先閃避，且閃避方向固定朝向球門圓心
-        const ATTACKER_EVADE_DISTANCE = 0.55;
+        // 攻擊機偵測到防守機（玩家或 AI 隊友）進入此距離內時會優先閃避——實際閃避距離依難度而定，
+        // 已改為 ATTACK_DIFFICULTY_LEVELS 中的 evadeDistance（簡單較短、困難較長），見下方難度設定
         const RING_TUBE_RADIUS = 0.022;   // 光環管粗半徑 (依比例縮小)
         const RING_CENTER_RADIUS = RING_CLEAR_RADIUS + RING_TUBE_RADIUS; // 圓環管中心線半徑 (TorusGeometry 用)
 
@@ -519,19 +538,111 @@
         const aiDrones = [createAIDroneState(0.28)];
 
         // 電腦控制的 AI 攻擊機（敵隊，主動來襲試圖穿越玩家的球門得分）
-        const AI_ATTACKER_CONSTANTS = {
-            maxSpeed: 1.55,        // 攻擊機最高飛行速度 (m/s)，略低於守門機以利防守方攔截
-            accel: 3.2,            // 加速度
-            weaveAmplitude: 1.9,   // 左右閃避搖擺幅度（米），大幅加大讓曲線更誇張、路線更明顯地走斜角
-            weaveAmplitudeY: 1.15, // 上下高度起伏幅度（米），大幅加大讓忽高忽低更明顯
-            diagonalBias: 0.5,     // 左右與上下連動係數，讓移動偏向「斜著飛」而非單純水平或垂直
-            reactionMin: 0.22,
-            reactionMax: 0.5,
-            // 原本 0.2 幾乎等於整個瞄準容許半徑(舊值 0.20)本身，等於每次幾乎都會把瞄準點誤差
-            // 頂到邊界，也是撞框機率偏高的另一主因；縮小到 0.06，讓它只是合理的手感誤差，
-            // 不會系統性地把每一次瞄準都推到安全邊緣外
-            aimError: 0.06,
+        // 三種難度：簡單／中等／困難，除了參數強弱不同外，困難還會啟用三個戰術邏輯（誘敵假動作、預判防守補位、閃避時仍找縫隙）
+        const ATTACK_DIFFICULTY_LEVELS = {
+            easy: {
+                label: '簡單',
+                maxSpeed: 1.05,          // 移動較慢
+                accel: 2.1,              // 加速遲緩
+                weaveAmplitude: 1.9,
+                weaveAmplitudeY: 1.15,
+                diagonalBias: 0.5,
+                reactionMin: 0.40,       // 反應間隔長，容易慢半拍
+                reactionMax: 0.80,
+                aimError: 0.14,          // 瞄準誤差大，射門容易偏
+                gapReactionMin: 1.00,    // 判讀防守站位的間隔很長，看不太懂場面
+                gapReactionMax: 1.60,
+                commitToGapMin: 0.15,    // 幾乎不看縫隙，主要靠曲線亂衝
+                commitToGapMax: 0.30,
+                evadeDistance: 0.40,     // 閃避距離短，容易被貼身鎖死
+                patterns: ['diagonal_weave', 'low_skim'], // 只用最單純的兩種招式
+                tactics: { smartFeint: false, predictiveGap: false, smartEvade: false },
+            },
+            medium: {
+                label: '中等',
+                maxSpeed: 1.55,
+                accel: 3.2,
+                weaveAmplitude: 1.9,
+                weaveAmplitudeY: 1.15,
+                diagonalBias: 0.5,
+                reactionMin: 0.22,
+                reactionMax: 0.5,
+                aimError: 0.06,
+                gapReactionMin: 0.55,
+                gapReactionMax: 0.90,
+                commitToGapMin: 0.35,
+                commitToGapMax: 0.75,
+                evadeDistance: 0.55,
+                patterns: null, // null 代表沿用完整的 ATTACK_PATTERNS 曲線庫
+                tactics: { smartFeint: false, predictiveGap: false, smartEvade: false },
+            },
+            hard: {
+                label: '困難',
+                maxSpeed: 1.90,          // 移動更快
+                accel: 4.4,              // 加速更靈敏
+                weaveAmplitude: 1.9,
+                weaveAmplitudeY: 1.15,
+                diagonalBias: 0.5,
+                reactionMin: 0.12,       // 幾乎即時反應
+                reactionMax: 0.28,
+                aimError: 0.03,          // 瞄準更精準
+                gapReactionMin: 0.30,    // 更頻繁重新判讀防守站位
+                gapReactionMax: 0.50,
+                commitToGapMin: 0.50,    // 遠處就已大幅依縫隙方向助跑
+                commitToGapMax: 0.90,
+                evadeDistance: 0.70,     // 更早察覺防守機逼近
+                patterns: null, // 開放完整曲線庫
+                // 困難模式額外啟用三種戰術邏輯：
+                // smartFeint - feint_dodge 假動作改為「先佯攻縫隙較窄的一側，最後衝刺才切向真正縫隙」的誘敵招式，而非純隨機方向
+                // predictiveGap - 判讀縫隙時，先用防守機目前速度外推 0.4 秒後的預測站位，看穿「正在補位」的防守走向
+                // smartEvade - 被防守機逼近而閃避時，仍朝目前判讀到的縫隙角度切入，而非單純衝向球門正中央
+                tactics: { smartFeint: true, predictiveGap: true, smartEvade: true },
+            },
         };
+        let aiAttackDifficulty = 'medium'; // 目前套用的攻擊難度，可於開場畫面選擇，或遊戲中點擊按鈕切換
+
+        // 套用攻擊難度：切換 aiAttackDifficulty 並讓攻擊機立即改用新的一組參數／戰術開關
+        function applyAttackDifficulty(level) {
+            if (!ATTACK_DIFFICULTY_LEVELS[level]) return;
+            aiAttackDifficulty = level;
+            attacker.constants = ATTACK_DIFFICULTY_LEVELS[level];
+            attacker.reactionTimer = 0; // 立刻重新規劃攻勢，避免延用舊難度殘留的瞄準點
+            attacker.gapTimer = 0;      // 立刻重新判讀一次縫隙
+            updateAttackDifficultyHUD();
+            showSystemNotification(`AI 攻擊機難度已切換為：${ATTACK_DIFFICULTY_LEVELS[level].label}`);
+        }
+
+        // 依序在簡單／中等／困難之間循環切換（供遊戲中按鈕使用）
+        function cycleAttackDifficulty() {
+            const order = ['easy', 'medium', 'hard'];
+            const next = order[(order.indexOf(aiAttackDifficulty) + 1) % order.length];
+            applyAttackDifficulty(next);
+        }
+
+        // 更新畫面上顯示目前攻擊難度的文字
+        function updateAttackDifficultyHUD() {
+            const el = document.getElementById('atkDifficultyText');
+            if (el) el.innerText = ATTACK_DIFFICULTY_LEVELS[aiAttackDifficulty].label;
+        }
+
+        // 更新開場畫面上三個攻擊難度選項的高亮樣式，標示目前選定的難度
+        function highlightAttackDifficultyOption(level) {
+            const styles = {
+                easy:   { border: 'rgba(16,185,129,0.6)',  bg: 'rgba(16,185,129,0.12)' },
+                medium: { border: 'rgba(250,204,21,0.6)',  bg: 'rgba(250,204,21,0.12)' },
+                hard:   { border: 'rgba(239,68,68,0.6)',   bg: 'rgba(239,68,68,0.12)' },
+            };
+            document.querySelectorAll('.attack-difficulty-option').forEach(el => {
+                const lvl = el.dataset.level;
+                if (lvl === level) {
+                    el.style.borderColor = styles[lvl].border;
+                    el.style.background = styles[lvl].bg;
+                } else {
+                    el.style.borderColor = '';
+                    el.style.background = '';
+                }
+            });
+        }
 
         // 攻擊曲線庫：每一波新的進攻（重新起飛、回線整隊完畢、或繞回前方完畢後）都會從中隨機抽選一種，
         // 並隨機化方向、幅度、頻率等參數，讓每一波攻勢的路線都不一樣，攻擊機不會每次都用同一招
@@ -579,6 +690,14 @@
                 }
                 case 'feint_dodge': {
                     // weaveScale 較大代表還在遠處助跑（假動作階段），較小代表已進入最後衝刺（真正切入方向）
+                    // 困難模式（tactics.smartFeint）：不再是純隨機方向的假動作，而是先觀察目前判讀到的
+                    // 縫隙方向（attacker.gapAngle），刻意往「縫隙較窄、真正空檔的反方向」佯攻誘敵，
+                    // 等最後衝刺階段（weaveScale <= 0.4，下方 else 分支本就會反轉成 -dir）才真正切向縫隙那一側
+                    let dir = attacker.patternDir;
+                    if (c.tactics.smartFeint && attacker.gapHasBlockers) {
+                        const gapSideSign = Math.cos(attacker.gapAngle) >= 0 ? 1 : -1; // 縫隙在球門的左側或右側
+                        dir = -gapSideSign; // 佯攻方向刻意與真正縫隙相反，最後衝刺（-dir）才會切回縫隙那一側
+                    }
                     if (weaveScale > 0.4) {
                         dx = ampX * 1.4 * dir * weaveScale;
                         dy = Math.sin(t * 1.3 * freq + seed) * ampY * 0.4 * weaveScale;
@@ -615,8 +734,12 @@
 
         // 每一波新的進攻開始時呼叫：隨機抽選一種攻擊曲線，並隨機化方向、幅度、頻率，
         // 讓攻擊機的來襲路線每次都不一樣，不會每次都用同一招固定套路
+        // 簡單難度只會從 attacker.constants.patterns 這個較小的招式池中抽選；中等/困難的 patterns 為 null，沿用完整曲線庫
         function pickAttackPattern(attacker) {
-            attacker.attackPattern = ATTACK_PATTERNS[Math.floor(Math.random() * ATTACK_PATTERNS.length)];
+            const pool = (attacker.constants.patterns && attacker.constants.patterns.length)
+                ? attacker.constants.patterns
+                : ATTACK_PATTERNS;
+            attacker.attackPattern = pool[Math.floor(Math.random() * pool.length)];
             attacker.weaveSeed = Math.random() * 100;
             attacker.patternDir = Math.random() < 0.5 ? 1 : -1;        // 起始左右偏移方向隨機
             attacker.patternAmpScale = 0.85 + Math.random() * 0.85;    // 幅度隨機縮放 0.85~1.7 倍
@@ -624,11 +747,23 @@
             attacker.gapTimer = 0; // 新一波攻勢開始時，立即重新判讀一次防守縫隙
         }
 
-        // 收集目前場上所有防守機（玩家機 + AI 隊友守門機）的世界座標位置
-        function collectDefenderBlockers() {
+        // 收集目前場上所有防守機（玩家機 + AI 隊友守門機）的世界座標位置；
+        // predictHorizon > 0 時（困難模式的「預判補位」戰術），改回傳每台防守機依目前速度外推
+        // predictHorizon 秒後的預測位置，而非當下位置，讓攻擊機能看穿「正在補位」的防守走向
+        function collectDefenderBlockers(predictHorizon = 0) {
             const blockers = [];
-            if (drone && drone.mesh) blockers.push(drone.position);
-            aiDrones.forEach(ai => { if (ai.mesh) blockers.push(ai.position); });
+            if (drone && drone.mesh) {
+                blockers.push(predictHorizon > 0
+                    ? drone.position.clone().addScaledVector(drone.velocity, predictHorizon)
+                    : drone.position);
+            }
+            aiDrones.forEach(ai => {
+                if (ai.mesh) {
+                    blockers.push(predictHorizon > 0
+                        ? ai.position.clone().addScaledVector(ai.velocity, predictHorizon)
+                        : ai.position);
+                }
+            });
             return blockers;
         }
 
@@ -656,8 +791,8 @@
 
         // 掃描球門開口一圈，回傳尚未被封鎖、縫隙面積最大的方向角度與其縫隙寬裕程度。
         // 做為只有 0~1 台防守機在場、或幾何解退化時的備援方案（見 computeMidlineGapAngle）
-        function scanWidestGapAngle(ring) {
-            const blockers = collectDefenderBlockers();
+        function scanWidestGapAngle(ring, predictHorizon = 0) {
+            const blockers = collectDefenderBlockers(predictHorizon);
             if (blockers.length === 0) return null; // 沒有防守機在場，交由呼叫端處理（直接瞄準正中央）
 
             const numSamples = 36;
@@ -685,10 +820,12 @@
         //  滿足「跟兩台防守機等距」且「落在球門開口邊界上」，比原本以攻擊機方向為準的版本更貼合防守站位本身、不受攻擊機當下角度干擾）
         // 只有 0~1 台防守機在場、或中垂線根本不與圓相交（兩防守機相距過遠、中垂線整條都在圓外）時，
         // 才退回 scanWidestGapAngle() 的取樣掃描法。
-        function computeMidlineGapAngle(ring, attackerPos) {
-            const blockers = collectDefenderBlockers();
+        // predictHorizon > 0（困難模式）時，改用防守機外推 predictHorizon 秒後的預測位置來算縫隙，
+        // 而非當下位置，等於能提前看穿「防守機正在補位、等一下這裡就會被補上」
+        function computeMidlineGapAngle(ring, attackerPos, predictHorizon = 0) {
+            const blockers = collectDefenderBlockers(predictHorizon);
             if (blockers.length === 0) return null;       // 沒有防守機：交由呼叫端直接瞄準球門正中央
-            if (blockers.length === 1) return scanWidestGapAngle(ring); // 只有一台，湊不出連線，退回取樣法
+            if (blockers.length === 1) return scanWidestGapAngle(ring, predictHorizon); // 只有一台，湊不出連線，退回取樣法
 
             // 目前只會有兩台防守機（玩家 + 1 台 AI 隊友），直接取前兩台
             const b1x = blockers[0].x - ring.pos.x;
@@ -699,7 +836,7 @@
             const dx = b2x - b1x;
             const dy = b2y - b1y;
             const segLen = Math.sqrt(dx * dx + dy * dy);
-            if (segLen < 1e-6) return scanWidestGapAngle(ring); // 兩防守機幾乎疊在一起，連線方向不明，退回取樣法
+            if (segLen < 1e-6) return scanWidestGapAngle(ring, predictHorizon); // 兩防守機幾乎疊在一起，連線方向不明，退回取樣法
 
             // 中垂線 = 通過兩防守機連線中點 M、方向垂直於該連線的直線：P(t) = M + t·u
             const mx = (b1x + b2x) / 2;
@@ -711,7 +848,7 @@
             const R = RING_CLEAR_RADIUS;
             const mDotU = mx * ux + my * uy;
             const discriminant = mDotU * mDotU - (mx * mx + my * my - R * R);
-            if (discriminant < 0) return scanWidestGapAngle(ring); // 中垂線沒有與球門圓相交，退回取樣法
+            if (discriminant < 0) return scanWidestGapAngle(ring, predictHorizon); // 中垂線沒有與球門圓相交，退回取樣法
 
             const sqrtDisc = Math.sqrt(discriminant);
             const t1 = -mDotU + sqrtDisc;
@@ -735,11 +872,14 @@
         // 更新攻擊機對「縫隙方向」的判讀：每隔一段較長時間（模擬觀察、判斷防守站位所需的反應時間）
         // 才重新掃描一次最新的縫隙角度，且實際瞄準角度只會以有限的轉向速率慢慢轉過去，
         // 而非每次判斷都瞬間跳到新角度——避免防守機一移動，攻擊機瞄準點就跟著瞬間亂甩、看起來很智障
+        // 判讀間隔（gapReactionMin/Max）依難度而定；困難模式並會啟用 predictiveGap，改用防守機的預測站位來判讀
         function updateAttackerGapEstimate(attacker, ring, delta) {
+            const c = attacker.constants;
             attacker.gapTimer -= delta;
             if (attacker.gapTimer <= 0) {
-                attacker.gapTimer = 0.55 + Math.random() * 0.35; // 每 0.55~0.9 秒才重新判讀一次防守站位
-                const result = computeMidlineGapAngle(ring, attacker.position);
+                attacker.gapTimer = c.gapReactionMin + Math.random() * (c.gapReactionMax - c.gapReactionMin);
+                const predictHorizon = c.tactics.predictiveGap ? 0.4 : 0;
+                const result = computeMidlineGapAngle(ring, attacker.position, predictHorizon);
                 if (result) {
                     attacker.gapHasBlockers = true;
                     attacker.gapTargetAngle = result.angle;
@@ -823,7 +963,7 @@
             regroupTarget: new THREE.Vector3(0, 1.5, 0), // 被攔截後「撤退一段距離＋隨機高度」的重新整隊目標點
             altitudeState: 'grounded', // 'grounded' | 'takingoff' | 'flying' | 'landing'：與玩家一起貼地待命，按 T/L 才會同步升降
             homePosition: new THREE.Vector3(0, 0.10, -2.25), // 貼地待命／降落回歸的位置，由 resetAttacker() 依球門位置更新
-            constants: AI_ATTACKER_CONSTANTS,
+            constants: ATTACK_DIFFICULTY_LEVELS[aiAttackDifficulty],
         };
 
         // 5. 鍵盤輸入
@@ -2532,7 +2672,7 @@
         // 只有在「成功得分」之後才會依規則撤退回己方半場，跨越中線後才會重新展開下一波攻勢（重新抽選曲線）；
         // 若「意外」滑到球門後方與護籠之間的狹窄空間（未觸發正式得分流程），會立刻切換為
         // 「繞回前方」階段，先爬升到安全高度再繞回球門前方重新纏鬥（重新抽選曲線），避免卡在那個窄小區域猶疑不前；
-        // 進攻過程中若有防守機逼近到 ATTACKER_EVADE_DISTANCE 以內，會優先閃避，且閃避方向固定朝向球門圓心切入
+        // 進攻過程中若有防守機逼近到難度設定的 evadeDistance 以內，會優先閃避（詳見下方閃避機制與 tactics.smartEvade）
         function updateAttacker(delta) {
             if (!attacker.mesh || !attacker.targetRing) return;
 
@@ -2637,7 +2777,7 @@
                     // 而不是等貼近球門才臨時反應；因此即使距離還很遠（weaveScale = 1），
                     // 也保留一定比例的縫隙方向做為底線傾向（0.35），越靠近球門才逐漸提高到
                     // 完全收斂（0.75），曲線搖擺/假動作則疊加在這個傾向之上，不會完全蓋過它
-                    const commitToGap = THREE.MathUtils.lerp(0.35, 0.75, 1 - weaveScale);
+                    const commitToGap = THREE.MathUtils.lerp(c.commitToGapMin, c.commitToGapMax, 1 - weaveScale);
 
                     let dx = THREE.MathUtils.lerp(offset.dx, gap.x, commitToGap) + (Math.random() - 0.5) * 2 * c.aimError;
                     let dy = THREE.MathUtils.lerp(offset.dy, gap.y, commitToGap) + (Math.random() - 0.5) * 2 * c.aimError;
@@ -2720,15 +2860,23 @@
             }
 
             // 閃避機制：每一影格都檢查一次，若正在進攻階段且有防守機逼近到閃避距離內，
-            // 立即優先閃避，且閃避方向固定朝向球門圓心（而非隨機躲開）——防守機貼身時，
-            // 攻擊機會捨棄原本剛計算出的曲線/縫隙瞄準，直接朝球門正中央切入，越靠近防守機切入意圖越強烈；
-            // 不受一般反應延遲限制，確保能及時反應，避免頻繁被同一台防守機正面攔截
+            // 立即優先閃避——防守機貼身時，攻擊機會捨棄原本剛計算出的曲線/縫隙瞄準，越靠近防守機切入意圖越強烈；
+            // 不受一般反應延遲限制，確保能及時反應，避免頻繁被同一台防守機正面攔截。
+            // 簡單/中等難度：閃避方向固定朝向球門圓心（單純躲開，不主動找機會）。
+            // 困難難度（tactics.smartEvade）：閃避時仍朝目前判讀到的縫隙角度切入，等於邊閃邊找空檔，而非單純逃向中央
             if (attacker.phase === 'advance') {
                 const nearestDist = nearestDefenderDistance(attacker.position);
-                if (nearestDist < ATTACKER_EVADE_DISTANCE) {
-                    const evadeT = THREE.MathUtils.clamp(1 - nearestDist / ATTACKER_EVADE_DISTANCE, 0, 1);
-                    attacker.aimTarget.x = THREE.MathUtils.lerp(attacker.aimTarget.x, ring.pos.x, evadeT);
-                    attacker.aimTarget.y = THREE.MathUtils.lerp(attacker.aimTarget.y, ring.pos.y, evadeT);
+                if (nearestDist < c.evadeDistance) {
+                    const evadeT = THREE.MathUtils.clamp(1 - nearestDist / c.evadeDistance, 0, 1);
+                    let evadeTargetX = ring.pos.x;
+                    let evadeTargetY = ring.pos.y;
+                    if (c.tactics.smartEvade && attacker.gapHasBlockers) {
+                        const evadeR = Math.min(ATTACKER_GOAL_AIM_RADIUS * 2, 0.3);
+                        evadeTargetX = ring.pos.x + Math.cos(attacker.gapAngle) * evadeR;
+                        evadeTargetY = ring.pos.y + Math.sin(attacker.gapAngle) * evadeR;
+                    }
+                    attacker.aimTarget.x = THREE.MathUtils.lerp(attacker.aimTarget.x, evadeTargetX, evadeT);
+                    attacker.aimTarget.y = THREE.MathUtils.lerp(attacker.aimTarget.y, evadeTargetY, evadeT);
                 }
             }
 
@@ -3296,6 +3444,15 @@
             // 觸控/滑鼠點擊起始畫面其餘區域也可開始（預設紅隊，無實體鍵盤的行動裝置）
             document.getElementById('startScreen').addEventListener('click', () => startFlight('red'), { once: true });
 
+            // 開場畫面：選擇 AI 攻擊機難度（僅設定難度、不會觸發開始飛行）
+            document.querySelectorAll('.attack-difficulty-option').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    applyAttackDifficulty(el.dataset.level);
+                    highlightAttackDifficultyOption(el.dataset.level);
+                });
+            });
+
             document.getElementById('btnTakeoff').addEventListener('click', triggerTakeoff);
             document.getElementById('btnLand').addEventListener('click', triggerLanding);
 
@@ -3304,6 +3461,8 @@
             document.getElementById('btnCam').addEventListener('click', cycleCameraMode);
             document.getElementById('btnReset').addEventListener('click', resetGame);
             document.getElementById('btnRestart').addEventListener('click', resetGame);
+            // 遊戲中隨時可點擊此按鈕，在簡單／中等／困難之間循環切換 AI 攻擊機難度
+            document.getElementById('btnAtkDifficulty').addEventListener('click', cycleAttackDifficulty);
         }
 
         // 入口啟動
