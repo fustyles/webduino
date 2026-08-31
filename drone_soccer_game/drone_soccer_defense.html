@@ -449,6 +449,14 @@
 
         const RING_CENTER_RADIUS = RING_CLEAR_RADIUS + RING_TUBE_RADIUS; // 圓環管中心線半徑 (TorusGeometry 用)
 
+        // 撞框預防的觸發距離與安全邊界：攻擊機距離球門平面小於這個距離時，才需要每影格檢查是否有撞框風險。
+        // FRAME_AVOID_MARGIN 在真正的碰撞閾值之外再加一點緩衝，讓危險帶提早於實際碰撞範圍被偵測到；
+        // FRAME_AVOID_SAFE_RADIUS 是修正後瞄準點要收斂到的安全半徑——必須明顯小於危險帶內緣，
+        // 而不是卡在邊界上，否則飛控的轉向延遲／慣性很容易讓機身還是滑進實際碰撞範圍，等於修正了等於沒修正。
+        const FRAME_AVOID_TRIGGER_DIST = 1.0;
+        const FRAME_AVOID_MARGIN = 0.10;
+        const FRAME_AVOID_SAFE_RADIUS = 0.06;
+
         const ringCourse = [
             { pos: new THREE.Vector3(0, 1.5, -2.25), color: 0xef4444, team: 'red', size: RING_CENTER_RADIUS * 2, lastPassTime: 0, forwardSign: -1, prevSide: null }, // 紅色方框球門線正上方，高度置中；正向穿越方向為 -Z（由場地中央飛向紅方球門外）
             { pos: new THREE.Vector3(0, 1.5, 2.25), color: 0x3b82f6, team: 'blue', size: RING_CENTER_RADIUS * 2, lastPassTime: 0, forwardSign: 1, prevSide: null }   // 藍色方框球門線正上方，高度置中；正向穿越方向為 +Z（由場地中央飛向藍方球門外）
@@ -768,16 +776,29 @@
 
         // 收集目前場上所有防守機（玩家機 + AI 隊友守門機）的世界座標位置；
         // predictHorizon > 0 時（困難模式的「預判補位」戰術），改回傳每台防守機依目前速度外推
-        // predictHorizon 秒後的預測位置，而非當下位置，讓攻擊機能看穿「正在補位」的防守走向
+        // predictHorizon 秒後的預測位置，而非當下位置，讓攻擊機能看穿「正在補位」的防守走向。
+        //
+        // 只計入「離球門夠近、算是實際在防守」的防守機（距離球門中心 < GAP_BLOCKER_MAX_DIST）：
+        // 中垂線幾何演算法假設兩台防守機都貼在球門附近，若防守機遠離球門（離場、被打飛、玩家不防守等），
+        // 算出來的「兩防守機連線中垂線與球門圓的交點」會是幾乎與防守機實際站位無關的離譜方向，
+        // 且由於防守機沒在動、每次重新判讀都會算出幾乎同一個壞角度，導致攻擊機一路收斂瞄準過去、
+        // 卻剛好落在球門框邊而非真正的開口中央，一次次撞框、看起來像卡住了一樣不斷重複同一個錯誤動作。
+        // 忽略掉這種「名義上存在、但根本沒在防守」的防守機後，等於沒有防守機在場，
+        // 攻擊機會直接瞄準球門正中央（見 computeGoalGapOffset 沒有縫隙時回傳 {0,0} 的邏輯），行為正常許多。
+        const GAP_BLOCKER_MAX_DIST = 1.8;
         function collectDefenderBlockers(predictHorizon = 0) {
+            const ownGoalRing = attacker.targetRing; // 攻擊機瞄準的球門，同時也是防守機理應鎮守的球門
             const blockers = [];
             if (drone && drone.mesh) {
-                blockers.push(predictHorizon > 0
-                    ? drone.position.clone().addScaledVector(drone.velocity, predictHorizon)
-                    : drone.position);
+                if (!ownGoalRing || drone.position.distanceTo(ownGoalRing.pos) <= GAP_BLOCKER_MAX_DIST) {
+                    blockers.push(predictHorizon > 0
+                        ? drone.position.clone().addScaledVector(drone.velocity, predictHorizon)
+                        : drone.position);
+                }
             }
             aiDrones.forEach(ai => {
                 if (ai.mesh) {
+                    if (ownGoalRing && ai.position.distanceTo(ownGoalRing.pos) > GAP_BLOCKER_MAX_DIST) return;
                     blockers.push(predictHorizon > 0
                         ? ai.position.clone().addScaledVector(ai.velocity, predictHorizon)
                         : ai.position);
@@ -809,7 +830,9 @@
         }
 
         // 掃描球門開口一圈，回傳尚未被封鎖、縫隙面積最大的方向角度與其縫隙寬裕程度。
-        // 做為只有 0~1 台防守機在場、或幾何解退化時的備援方案（見 computeMidlineGapAngle）
+        // 做為只有 0~1 台防守機在場、或幾何解退化時的備援方案（見 computeMidlineGapAngle）。
+        // reliable 固定為 false：取樣掃描法只是「矮子裡挑高個」的保守備援，不代表真的判讀出一個
+        // 由兩台防守機夾出的明確縫隙，因此不適合拿來決定像「陡升或陡降」這種需要明確方向依據的戰術判斷
         function scanWidestGapAngle(ring, predictHorizon = 0) {
             const blockers = collectDefenderBlockers(predictHorizon);
             if (blockers.length === 0) return null; // 沒有防守機在場，交由呼叫端處理（直接瞄準正中央）
@@ -827,7 +850,7 @@
                 }
             }
 
-            return { angle: bestAngle, clearance: bestClearance };
+            return { angle: bestAngle, clearance: bestClearance, reliable: false };
         }
 
         // 幾何版縫隙判讀（修正版）：兩台防守機連線的「中垂線」上所有點都跟兩台防守機等距，
@@ -835,16 +858,33 @@
         // 但其中一點貼近防守機連線本身（中垂線在圓內較短的那一段），另一點則落在防守機
         // 連線的另一側、離兩台防守機都更遠（中垂線在圓內較長的那一段）——後者才是真正
         // 「兩台防守機之間、且離兩者都最遠」的開口方向，因此取中垂線較長那一段對應的交點。
-        // （不需要再額外用「攻擊機目前方向」湊出第三頂點去算三角形外心：交點本身已經同時
-        //  滿足「跟兩台防守機等距」且「落在球門開口邊界上」，比原本以攻擊機方向為準的版本更貼合防守站位本身、不受攻擊機當下角度干擾）
         // 只有 0~1 台防守機在場、或中垂線根本不與圓相交（兩防守機相距過遠、中垂線整條都在圓外）時，
         // 才退回 scanWidestGapAngle() 的取樣掃描法。
         // predictHorizon > 0（困難模式）時，改用防守機外推 predictHorizon 秒後的預測位置來算縫隙，
         // 而非當下位置，等於能提前看穿「防守機正在補位、等一下這裡就會被補上」
+        //
+        // 外心（中垂線與球門圓交點）幾何法只有在「兩台防守機都確實站在攻擊機與球門之間，且投影到
+        // 球門 XY 平面後都落在球門淨開口圓（RING_CLEAR_RADIUS）範圍內」時才有意義：這才代表兩台
+        // 防守機真的從攻擊機的進攻方向左右夾住球門開口、真正擋在射門路線上，外心點才對應一個真實
+        // 存在的縫隙。只要有任一台不滿足，等距點就不再對應任何實際存在的空檔，算出來的方向可能剛好
+        // 落在球門框邊而非安全開口——這正是攻擊機頻繁撞框、且撞的角度看起來很固定不變的成因。
+        // 任一判別失敗都退回較保守的取樣掃描法，並標記本次結果為不可靠（reliable: false）——這個
+        // 標記會一路傳到突襲動作的「陡升或陡降」判斷：只有 reliable: true 時，困難模式才會依縫隙
+        // 方向決定要陡升還是陡降，否則一律視為判讀不可靠，退回隨機決定方向，不採信外心位置。
         function computeMidlineGapAngle(ring, attackerPos, predictHorizon = 0) {
             const blockers = collectDefenderBlockers(predictHorizon);
             if (blockers.length === 0) return null;       // 沒有防守機：交由呼叫端直接瞄準球門正中央
             if (blockers.length === 1) return scanWidestGapAngle(ring, predictHorizon); // 只有一台，湊不出連線，退回取樣法
+
+            const zLo = Math.min(attackerPos.z, ring.pos.z);
+            const zHi = Math.max(attackerPos.z, ring.pos.z);
+            const zMargin = 0.4; // 容許防守機前壓迎擊時沿 Z 軸的些微超出
+            const bothBetween = blockers.every(b => b.z >= zLo - zMargin && b.z <= zHi + zMargin);
+            const bothInsideRingXY = blockers.every(b => {
+                const planarDist = Math.hypot(b.x - ring.pos.x, b.y - ring.pos.y);
+                return planarDist < RING_CLEAR_RADIUS;
+            });
+            if (!bothBetween || !bothInsideRingXY) return scanWidestGapAngle(ring, predictHorizon);
 
             // 目前只會有兩台防守機（玩家 + 1 台 AI 隊友），直接取前兩台
             const b1x = blockers[0].x - ring.pos.x;
@@ -877,7 +917,7 @@
             const angle = Math.atan2(my + t * uy, mx + t * ux);
             const clearance = angleClearanceAt(angle, ring, blockers); // 沿用同一套寬裕度量，確保跟下游縮放公式相容
 
-            return { angle, clearance };
+            return { angle, clearance, reliable: true };
         }
 
         // 兩個角度間的最短夾角差（考慮 -π~π 環繞），正負代表方向，絕對值不超過 π
@@ -903,8 +943,10 @@
                     attacker.gapHasBlockers = true;
                     attacker.gapTargetAngle = result.angle;
                     attacker.gapTargetClearance = result.clearance;
+                    attacker.gapReliable = !!result.reliable; // 只有外心幾何法成功、未退回取樣掃描法時才是 true
                 } else {
                     attacker.gapHasBlockers = false;
+                    attacker.gapReliable = false;
                 }
             }
 
@@ -928,6 +970,65 @@
                 if (ai.mesh) minDist = Math.min(minDist, attackerPos.distanceTo(ai.position));
             });
             return minDist;
+        }
+
+        // 撞框預防：只要攻擊機「目前實際位置」或「目前瞄準點」在球門 XY 平面上的投影半徑，有任一個落在
+        // 框架的碰撞危險帶內，就立即修正。同時檢查位置與瞄準點，是因為就算瞄準點本身安全，飛行中的側向
+        // 慣性仍可能把機身帶往框架；只看瞄準點會錯過這種「目標是對的、但人已經歪了」的情況。
+        // 優先只調整 Y（升降）：以目前位置的水平分量為準，解出能落在安全半徑內的 Y 值；
+        // 只有當水平分量本身已經超出安全半徑、單靠升降救不回來時，才連同水平方向一起收斂。
+        // 修正只動瞄準點與速度，不直接改動 attacker.position——直接搬動位置雖然收斂快，但完全跳過了
+        // 「速度／加速度」這層物理模擬，看起來就像瞬間移動，不自然。真正該做的是讓飛控「反應更快」，
+        // 而不是讓機身「瞬間過去」：這裡回傳 true 表示本影格正在修正中，呼叫端會據此暫時提高轉向加速度，
+        // 讓一般的速度積分（attacker.position.addScaledVector(attacker.velocity, delta)）本身就能快速
+        // 但連續地轉向安全落點，動作看起來仍然是正常飛行的一部分，只是反應特別靈敏。
+        function applyFrameAvoidanceCorrection(attacker, ring) {
+            const distZ = Math.abs(attacker.position.z - ring.pos.z);
+            if (distZ > FRAME_AVOID_TRIGGER_DIST) return false;
+
+            const tubeCollisionThreshold = RING_TUBE_RADIUS + DRONE_CAGE_RADIUS;
+            const dangerInner = RING_CENTER_RADIUS - tubeCollisionThreshold - FRAME_AVOID_MARGIN;
+            const dangerOuter = RING_CENTER_RADIUS + tubeCollisionThreshold + FRAME_AVOID_MARGIN;
+
+            const px = attacker.position.x - ring.pos.x;
+            const py = attacker.position.y - ring.pos.y;
+            const posPlanarDist = Math.hypot(px, py);
+            const tx = attacker.aimTarget.x - ring.pos.x;
+            const ty = attacker.aimTarget.y - ring.pos.y;
+            const targetPlanarDist = Math.hypot(tx, ty);
+
+            const posInDanger = posPlanarDist > dangerInner && posPlanarDist < dangerOuter;
+            const targetInDanger = targetPlanarDist > dangerInner && targetPlanarDist < dangerOuter;
+            if (!posInDanger && !targetInDanger) return false;
+
+            // 以目前位置為準，算出一個安全的 XY 落點：優先只調整 Y，水平分量本身已超出安全半徑才連 X 一起收斂
+            const safeR = FRAME_AVOID_SAFE_RADIUS;
+            let safeX, safeY;
+            if (Math.abs(px) < safeR) {
+                safeX = px;
+                const safeYAbs = Math.sqrt(Math.max(0, safeR * safeR - px * px));
+                safeY = py >= 0 ? safeYAbs : -safeYAbs;
+            } else {
+                const scale = posPlanarDist > 0.001 ? safeR / posPlanarDist : 1;
+                safeX = px * scale;
+                safeY = py * scale;
+            }
+
+            // 瞄準點直接設為安全落點，Z 維持原本的攻門深度不變
+            attacker.aimTarget.x = ring.pos.x + safeX;
+            attacker.aimTarget.y = ring.pos.y + safeY;
+
+            // 抑制現有速度中「正把機身往外帶」的徑向分量——這仍然是合理的物理動作（等於緊急煞車/轉向），
+            // 不是瞬移，跟修正瞄準點一起交給下面正常的加速度轉向去處理
+            if (posPlanarDist > 0.001) {
+                const radialDirX = px / posPlanarDist, radialDirY = py / posPlanarDist;
+                const radialSpeed = attacker.velocity.x * radialDirX + attacker.velocity.y * radialDirY;
+                if (radialSpeed > 0) {
+                    attacker.velocity.x -= radialDirX * radialSpeed * 0.85;
+                    attacker.velocity.y -= radialDirY * radialSpeed * 0.85;
+                }
+            }
+            return true;
         }
 
         // 依目前平滑後的縫隙角度與寬裕程度，回傳球門開口內、該方向上的瞄準座標；
@@ -975,6 +1076,7 @@
             patternFreqScale: 1,    // 本波曲線的頻率縮放
             gapTimer: 0,            // 距離下一次重新判讀防守縫隙還有多久
             gapHasBlockers: false,  // 目前是否有偵測到防守機
+            gapReliable: false,     // 目前的縫隙判讀是否由外心幾何法算出（而非退回取樣掃描法的粗略估計）
             gapAngle: 0,            // 平滑後、實際用來瞄準的縫隙角度
             gapTargetAngle: 0,      // 最近一次判讀出的縫隙角度（平滑的目標值）
             gapClearance: 0,        // 平滑後的縫隙寬裕程度
@@ -2777,12 +2879,33 @@
                 }
             }
 
+            // 判斷「兩台防守機是否都已經被拋在攻擊機後方」：不看縫隙判讀用的過濾清單（那份為了縫隙幾何
+            // 計算而濾掉了離球門太遠的防守機），這裡改用場上實際防守機（玩家機 + AI 隊友）的原始位置，
+            // 直接比較誰離球門更近——只要攻擊機比所有防守機都更接近球門，代表已經沒有防守機還擋在
+            // 攻擊機與球門之間，前方是空曠的，此時不需要再用曲線搖擺／假動作／突襲這類專門用來甩開
+            // 防守機的花俏路線，直接筆直衝向球門正中央即可
+            let bothDefendersBehind = false;
+            if (attacker.phase === 'advance') {
+                const defenders = [];
+                if (drone && drone.mesh) defenders.push(drone);
+                aiDrones.forEach(ai => { if (ai.mesh) defenders.push(ai); });
+                if (defenders.length >= 2) {
+                    const attackerDistToGoal = Math.abs(attacker.position.z - ring.pos.z);
+                    const behindMargin = 0.15; // 留一點緩衝，避免貼身距離時因些微誤差來回切換
+                    bothDefendersBehind = defenders.every(d => Math.abs(d.position.z - ring.pos.z) > attackerDistToGoal + behindMargin);
+                }
+            }
+            // 若正在進行突襲動作時防守機才被拋到後方，立即中止，避免卡在陡升/陡降或加速前衝的殘留狀態裡動不了
+            if (bothDefendersBehind && attacker.jukePhase !== 'none') {
+                attacker.jukePhase = 'none';
+            }
+
             // 「減速→近垂直陡升/陡降→加速前衝」突襲動作：獨立於一般反應計時之外、每影格都更新，
             // 確保煞停/陡升陡降/加速前衝三個階段各自的短暫時長不會被較長的一般反應間隔打斷或錯過。
             // 每隔 JUKE_CHECK_INTERVAL_MIN~MAX 秒才有一次機會判定是否觸發（機率依難度的 jukeChance 而定），
-            // 且僅在「靠近球門、尚未進入最後衝刺」的距離區間內才會觸發
+            // 且僅在「靠近球門、尚未進入最後衝刺」的距離區間內才會觸發；防守機都被拋在後方時不會觸發
             let effectiveMaxSpeed = c.maxSpeed;
-            if (attacker.phase === 'advance') {
+            if (attacker.phase === 'advance' && !bothDefendersBehind) {
                 if (attacker.jukePhase === 'none') {
                     attacker.jukeCheckTimer -= delta;
                     if (attacker.jukeCheckTimer <= 0) {
@@ -2791,9 +2914,10 @@
                         if (readyToScore && distToGoalNow > JUKE_TRIGGER_MIN_DIST && distToGoalNow < JUKE_TRIGGER_MAX_DIST
                             && Math.random() < c.jukeChance) {
                             let jukeDir = Math.random() < 0.5 ? 1 : -1;
-                            // 困難模式（tactics.smartJukeDirection）：不是隨機決定要陡升還是陡降，
-                            // 而是依目前判讀到的縫隙落在球門開口的上方還是下方來選擇，讓陡升/陡降本身也具備讀縫隙的意義
-                            if (c.tactics.smartJukeDirection && attacker.gapHasBlockers) {
+                            // 困難模式（tactics.smartJukeDirection）：只有在縫隙判讀「可靠」（真正由外心
+                            // 幾何法算出、兩台防守機確實在球門開口投影範圍內夾出縫隙，而非退回取樣掃描法
+                            // 的粗略估計）時，才依縫隙方向決定要陡升還是陡降；否則視為判讀不可靠，退回隨機方向
+                            if (c.tactics.smartJukeDirection && attacker.gapHasBlockers && attacker.gapReliable) {
                                 jukeDir = Math.sin(attacker.gapAngle) >= 0 ? 1 : -1;
                             }
                             attacker.jukePhase = 'decel';
@@ -2850,6 +2974,19 @@
                 attacker.reactionTimer = c.reactionMin + Math.random() * (c.reactionMax - c.reactionMin);
 
                 if (attacker.phase === 'advance' && attacker.jukePhase === 'none') {
+                    // 瞄準點的深度依是否具備攻門資格而定：
+                    // 具備資格時，瞄準球門後方一小段距離，確保有實際「穿越」的動作而非卡在框邊；
+                    // 不具備資格時（剛得分、尚未回中線），刻意只瞄準球門前方一小段距離，
+                    // 逼近、纏鬥但不主動衝過球門，降低意外滑到球門後方狹窄空間的機率
+                    const targetZ = readyToScore
+                        ? ring.pos.z + ring.forwardSign * 0.45
+                        : ring.pos.z - ring.forwardSign * 0.35;
+
+                    if (bothDefendersBehind) {
+                        // 兩台防守機都已經被拋在後方，前方已無阻擋者，直接筆直瞄準球門正中央，
+                        // 不再計算曲線搖擺／假動作／縫隙方向這些原本用來甩開防守機的花俏路線
+                        attacker.aimTarget.set(ring.pos.x, ring.pos.y, targetZ);
+                    } else {
                     // 進攻階段：依本波抽到的攻擊曲線（見 ATTACK_PATTERNS / computeAttackCurveOffset）計算搖擺/假動作偏移量，
                     // 同時估算兩台防守機（玩家 + AI 隊友）在球門開口上封鎖的角度範圍，找出縫隙面積最大的方向作為瞄準中心；
 
@@ -2890,14 +3027,8 @@
                         dy *= clampScale;
                     }
 
-                    // 瞄準點的深度依是否具備攻門資格而定：
-                    // 具備資格時，瞄準球門後方一小段距離，確保有實際「穿越」的動作而非卡在框邊；
-                    // 不具備資格時（剛得分、尚未回中線），刻意只瞄準球門前方一小段距離，
-                    // 逼近、纏鬥但不主動衝過球門，降低意外滑到球門後方狹窄空間的機率
-                    const targetZ = readyToScore
-                        ? ring.pos.z + ring.forwardSign * 0.45
-                        : ring.pos.z - ring.forwardSign * 0.35;
                     attacker.aimTarget.set(ring.pos.x + dx, ring.pos.y + dy, targetZ);
+                    }
                 } else if (attacker.phase === 'descend') {
                     // 回線整隊階段：先降到中間高度（與球門同高），避免一回線就從高空直接斜衝而下，
                     // 降到定高後才會以隨機方向重新展開攻勢
@@ -2982,13 +3113,28 @@
                 }
             }
 
+            // 撞框預防：每一影格都檢查一次（不受反應延遲限制），只要攻擊機已經很靠近球門平面，
+            // 就判斷「目前實際位置」或「目前瞄準點」落不落在框架的碰撞危險帶內——不是等真的撞上才反應，
+            // 而是提前發現有風險，立即做一次升降修正（優先只調整 Y，把瞄準點拉回安全半徑內；只有在單靠
+            // 升降救不回來時，才連同水平方向一起收斂）。修正只調整瞄準點與速度，不直接搬動位置——真正的
+            // 「快」是靠下面把轉向加速度暫時大幅提高做到的，讓一般的速度積分本身就能又快又連續地轉向安全
+            // 落點，而不是讓機身瞬間跳過去。突襲動作（jukePhase 非 none）進行中不介入，避免打斷陡升/陡降的節奏
+            let frameAvoidActive = false;
+            if (attacker.phase === 'advance' && attacker.jukePhase === 'none') {
+                frameAvoidActive = applyFrameAvoidanceCorrection(attacker, ring);
+            }
+
             const toTarget = attacker.aimTarget.clone().sub(attacker.position);
             const dist = toTarget.length();
             if (dist > 0.01) {
                 // 一般狀況下速度上限為 c.maxSpeed；突襲動作的「加速前衝」階段改用 effectiveMaxSpeed
                 // （c.maxSpeed 乘上難度對應的 jukeBurstMultiplier），製造明顯的衝刺加速感
                 const desiredVel = toTarget.normalize().multiplyScalar(Math.min(effectiveMaxSpeed, dist * 2.0));
-                const steer = desiredVel.sub(attacker.velocity).multiplyScalar(c.accel * delta);
+                // 撞框修正生效時，暫時把轉向加速度提高到平常的 3 倍，讓飛控能更快跟上安全落點；
+                // 這股「快」完全來自速度積分本身（跟正常飛行是同一套物理模型），視覺上是靈敏的
+                // 緊急閃避動作，不是瞬間移動
+                const steerAccel = frameAvoidActive ? c.accel * 3 : c.accel;
+                const steer = desiredVel.sub(attacker.velocity).multiplyScalar(steerAccel * delta);
                 attacker.velocity.add(steer);
             }
             attacker.velocity.multiplyScalar(0.92); // 阻尼，避免震盪

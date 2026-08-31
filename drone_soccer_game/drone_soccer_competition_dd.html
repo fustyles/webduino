@@ -62,6 +62,18 @@
 
                         </ul>
                     </div>
+                    <p class="text-[10px] text-slate-400 mb-1.5 tracking-wider uppercase tech-font text-center">AI 攻擊機難度</p>
+                    <div class="flex gap-1.5 mb-3">
+                        <div class="atk-difficulty-option flex-1 py-2 text-center cursor-pointer select-none rounded-lg glass-button border-slate-700/50" data-level="easy">
+                            <p class="text-xs font-bold text-emerald-400 uppercase tracking-widest">簡單</p>
+                        </div>
+                        <div class="atk-difficulty-option flex-1 py-2 text-center cursor-pointer select-none rounded-lg glass-button" data-level="medium" style="border-color: rgba(250,204,21,0.6); background: rgba(250,204,21,0.12);">
+                            <p class="text-xs font-bold text-yellow-400 uppercase tracking-widest">中等</p>
+                        </div>
+                        <div class="atk-difficulty-option flex-1 py-2 text-center cursor-pointer select-none rounded-lg glass-button border-slate-700/50" data-level="hard">
+                            <p class="text-xs font-bold text-rose-400 uppercase tracking-widest">困難</p>
+                        </div>
+                    </div>
                     <button id="a-btnStart" class="w-full py-3 rounded-xl glass-button border-emerald-500/50 bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 font-bold tracking-widest cursor-pointer">
                         開始比賽
                     </button>
@@ -111,6 +123,10 @@
                         </button>
                         <button id="a-btnReset" class="w-8 h-8 rounded-lg glassmorphism text-slate-300 hover:text-rose-400 flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
                             <i class="fa-solid fa-arrows-rotate text-xs"></i>
+                        </button>
+                        <button id="a-btnAtkDifficulty" class="px-2.5 h-8 rounded-lg glassmorphism text-yellow-300 hover:text-yellow-200 flex items-center justify-center gap-1 transition-all cursor-pointer pointer-events-auto border border-yellow-500/20" title="點擊切換 AI 攻擊機難度">
+                            <i class="fa-solid fa-bolt text-[10px]"></i>
+                            <span id="a-atkDifficultyText" class="text-[9px] font-semibold tech-font">中等</span>
                         </button>
                     </div>
                 </header>
@@ -201,6 +217,18 @@
 
                         </ul>
                     </div>
+                    <p class="text-[10px] text-slate-400 mb-1.5 tracking-wider uppercase tech-font text-center">AI 攻擊機難度</p>
+                    <div class="flex gap-1.5 mb-3">
+                        <div class="atk-difficulty-option flex-1 py-2 text-center cursor-pointer select-none rounded-lg glass-button border-slate-700/50" data-level="easy">
+                            <p class="text-xs font-bold text-emerald-400 uppercase tracking-widest">簡單</p>
+                        </div>
+                        <div class="atk-difficulty-option flex-1 py-2 text-center cursor-pointer select-none rounded-lg glass-button" data-level="medium" style="border-color: rgba(250,204,21,0.6); background: rgba(250,204,21,0.12);">
+                            <p class="text-xs font-bold text-yellow-400 uppercase tracking-widest">中等</p>
+                        </div>
+                        <div class="atk-difficulty-option flex-1 py-2 text-center cursor-pointer select-none rounded-lg glass-button border-slate-700/50" data-level="hard">
+                            <p class="text-xs font-bold text-rose-400 uppercase tracking-widest">困難</p>
+                        </div>
+                    </div>
                     <button id="d-btnStart" class="w-full py-3 rounded-xl glass-button border-emerald-500/50 bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 font-bold tracking-widest cursor-pointer">
                         開始比賽
                     </button>
@@ -250,6 +278,10 @@
                         </button>
                         <button id="d-btnReset" class="w-8 h-8 rounded-lg glassmorphism text-slate-300 hover:text-rose-400 flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
                             <i class="fa-solid fa-arrows-rotate text-xs"></i>
+                        </button>
+                        <button id="d-btnAtkDifficulty" class="px-2.5 h-8 rounded-lg glassmorphism text-yellow-300 hover:text-yellow-200 flex items-center justify-center gap-1 transition-all cursor-pointer pointer-events-auto border border-yellow-500/20" title="點擊切換 AI 攻擊機難度">
+                            <i class="fa-solid fa-bolt text-[10px]"></i>
+                            <span id="d-atkDifficultyText" class="text-[9px] font-semibold tech-font">中等</span>
                         </button>
                     </div>
                 </header>
@@ -518,7 +550,7 @@ function createRig(prefix, team) {
 const D1 = createRig('a-', DEFEND_TEAM);   // 防守機1（人類玩家1，WASD＋方向鍵）
 const D2 = createRig('d-', DEFEND_TEAM);   // 防守機2（人類玩家2，GVFB/UH/YJ）
 
-// ---------------- AI 攻擊機常數與攻擊曲線庫（演算法參考範例遊戲的 AI 攻擊機設計）----------------
+// ---------------- AI 攻擊機三難度常量與攻擊曲線庫，逐字移植自 drone_soccer_defense.html ----------------
 // 物理上「機身中心完全不會擦到框架」的理論零誤差極限是 RING_CLEAR_RADIUS(0.30) − DRONE_CAGE_RADIUS(0.10) = 0.20，
 // 若瞄準半徑直接設到這個零容錯極限，只要疊加一點點瞄準誤差或飛控追蹤延遲就會撞框，
 // 因此刻意內縮到 0.14，保留約 6 公分安全餘裕
@@ -529,22 +561,117 @@ const ATTACKER_GOAL_AIM_RADIUS = 0.14;
 // 根本來不及轉回來，反而一頭撞進框架——這正是「兩台防守機都卡下方，攻擊機卻一直重複撞上方框架」的
 // 真正成因。因此縫隙方向額外用這個較保守的上限收斂，早期還是有明顯的引導作用，但不會被拖去離譜的極端位置
 const ATTACKER_GAP_LEAD_RADIUS = 0.5;
-const ATTACKER_EVADE_DISTANCE = 0.55;
-const AI_ATTACKER_CONSTANTS = {
-    maxSpeed: 1.55,
-    accel: 3.2,
-    weaveAmplitude: 1.9,
-    weaveAmplitudeY: 1.15,
-    diagonalBias: 0.5,
-    reactionMin: 0.22,
-    reactionMax: 0.5,
-    // 原本 0.2 幾乎等於整個瞄準容許半徑本身，等於每次幾乎都會把瞄準點誤差頂到安全邊界外，
-    // 縮小到 0.06，讓它只是合理的手感誤差
-    aimError: 0.06,
-};
+
+// 撞框預防的觸發距離與安全邊界：攻擊機距離球門平面小於這個距離時，才需要每影格檢查是否有撞框風險。
+// FRAME_AVOID_MARGIN 在真正的碰撞閾值之外再加一點緩衝，讓危險帶提早於實際碰撞範圍被偵測到；
+// FRAME_AVOID_SAFE_RADIUS 是修正後瞄準點要收斂到的安全半徑——必須明顯小於危險帶內緣。
+const FRAME_AVOID_TRIGGER_DIST = 1.0;
+const FRAME_AVOID_MARGIN = 0.10;
+const FRAME_AVOID_SAFE_RADIUS = 0.06;
+
+// 「減速→近垂直陡升/陡降→加速前衝」突襲動作的共用時間軸與空間參數（不隨難度變動，只有觸發機率與加速倍率依難度而定）
+const JUKE_TRIGGER_MIN_DIST = 0.35;
+const JUKE_TRIGGER_MAX_DIST = 1.3;
+const JUKE_CHECK_INTERVAL_MIN = 0.45;
+const JUKE_CHECK_INTERVAL_MAX = 0.75;
+const JUKE_DECEL_TIME = 0.18;
+const JUKE_RISE_TIME = 0.32;
+const JUKE_BURST_TIME = 0.42;
+const JUKE_RISE_DISTANCE = 0.85;
+
 const ATTACK_PATTERNS = [
     'diagonal_weave', 's_curve', 'high_dive', 'low_skim', 'feint_dodge', 'side_swoop', 'spiral'
 ];
+
+// 三個難度：簡單／中等／困難。困難模式額外啟用四個戰術邏輯：
+// smartFeint（假動作改為誘敵，先佯攻縫隙較窄側再切向真正縫隙）、
+// predictiveGap（縫隙判讀改用防守機預測站位，看穿正在補位的走向）、
+// smartEvade（閃避時仍朝縫隙角度切入而非單純逃向中央）、
+// smartJukeDirection（突襲動作要陡升還是陡降，依縫隙在上或下決定，而非隨機——且只在縫隙判讀可靠時採信）
+const ATTACK_DIFFICULTY_LEVELS = {
+    easy: {
+        label: '簡單',
+        maxSpeed: 1.05, accel: 2.1, weaveAmplitude: 1.9, weaveAmplitudeY: 1.15, diagonalBias: 0.5,
+        reactionMin: 0.40, reactionMax: 0.80, aimError: 0.14,
+        gapReactionMin: 1.00, gapReactionMax: 1.60,
+        commitToGapMin: 0.15, commitToGapMax: 0.30,
+        evadeDistance: 0.40,
+        patterns: ['diagonal_weave', 'low_skim'],
+        jukeChance: 0.12, jukeBurstMultiplier: 1.15,
+        tactics: { smartFeint: false, predictiveGap: false, smartEvade: false, smartJukeDirection: false },
+    },
+    medium: {
+        label: '中等',
+        maxSpeed: 1.55, accel: 3.2, weaveAmplitude: 1.9, weaveAmplitudeY: 1.15, diagonalBias: 0.5,
+        reactionMin: 0.22, reactionMax: 0.5, aimError: 0.06,
+        gapReactionMin: 0.55, gapReactionMax: 0.90,
+        commitToGapMin: 0.35, commitToGapMax: 0.75,
+        evadeDistance: 0.55,
+        patterns: null, // null 代表沿用完整的 ATTACK_PATTERNS 曲線庫
+        jukeChance: 0.30, jukeBurstMultiplier: 1.35,
+        tactics: { smartFeint: false, predictiveGap: false, smartEvade: false, smartJukeDirection: false },
+    },
+    hard: {
+        label: '困難',
+        maxSpeed: 1.90, accel: 4.4, weaveAmplitude: 1.9, weaveAmplitudeY: 1.15, diagonalBias: 0.5,
+        reactionMin: 0.12, reactionMax: 0.28, aimError: 0.03,
+        gapReactionMin: 0.30, gapReactionMax: 0.50,
+        commitToGapMin: 0.50, commitToGapMax: 0.90,
+        evadeDistance: 0.70,
+        patterns: null,
+        jukeChance: 0.50, jukeBurstMultiplier: 1.6,
+        tactics: { smartFeint: true, predictiveGap: true, smartEvade: true, smartJukeDirection: true },
+    },
+};
+let aiAttackDifficulty = 'medium'; // 目前套用的攻擊難度，可於開場畫面選擇，或比賽中點擊按鈕隨時切換
+
+// 套用攻擊難度：切換 aiAttackDifficulty 並讓攻擊機立即改用新的一組參數／戰術開關
+function applyAttackDifficulty(level) {
+    if (!ATTACK_DIFFICULTY_LEVELS[level]) return;
+    aiAttackDifficulty = level;
+    attacker.constants = ATTACK_DIFFICULTY_LEVELS[level];
+    attacker.reactionTimer = 0;
+    attacker.gapTimer = 0;
+    attacker.jukePhase = 'none';
+    attacker.jukeCheckTimer = Math.random() * 0.6;
+    updateAttackDifficultyHUD();
+    notify(D1, `AI 攻擊機難度已切換為：${ATTACK_DIFFICULTY_LEVELS[level].label}`);
+    notify(D2, `AI 攻擊機難度已切換為：${ATTACK_DIFFICULTY_LEVELS[level].label}`);
+}
+
+// 依序在簡單／中等／困難之間循環切換（供頂部按鈕使用）
+function cycleAttackDifficulty() {
+    const order = ['easy', 'medium', 'hard'];
+    const next = order[(order.indexOf(aiAttackDifficulty) + 1) % order.length];
+    applyAttackDifficulty(next);
+}
+
+// 更新畫面上顯示目前攻擊難度的文字（兩個面板都要更新）
+function updateAttackDifficultyHUD() {
+    ['a-atkDifficultyText', 'd-atkDifficultyText'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerText = ATTACK_DIFFICULTY_LEVELS[aiAttackDifficulty].label;
+    });
+}
+
+// 更新開場畫面上難度選項的高亮樣式（兩個面板都要更新）
+function highlightAttackDifficultyOption(level) {
+    const styles = {
+        easy:   { border: 'rgba(16,185,129,0.6)',  bg: 'rgba(16,185,129,0.12)' },
+        medium: { border: 'rgba(250,204,21,0.6)',  bg: 'rgba(250,204,21,0.12)' },
+        hard:   { border: 'rgba(239,68,68,0.6)',   bg: 'rgba(239,68,68,0.12)' },
+    };
+    document.querySelectorAll('.atk-difficulty-option').forEach(el => {
+        const lvl = el.dataset.level;
+        if (lvl === level) {
+            el.style.borderColor = styles[lvl].border;
+            el.style.background = styles[lvl].bg;
+        } else {
+            el.style.borderColor = '';
+            el.style.background = '';
+        }
+    });
+}
 
 // AI 攻擊機狀態物件：外型沿用防守機的簡化模型建構函式，顏色於 setupMatch() 中依隊伍上色
 const attacker = {
@@ -564,6 +691,7 @@ const attacker = {
     patternFreqScale: 1,
     gapTimer: 0,
     gapHasBlockers: false,
+    gapReliable: false, // 目前的縫隙判讀是否由外心幾何法算出（而非退回取樣掃描法的粗略估計）
     gapAngle: 0,
     gapTargetAngle: 0,
     gapClearance: 0,
@@ -571,7 +699,14 @@ const attacker = {
     regroupTarget: new THREE.Vector3(0, 1.5, 0),
     altitudeState: 'grounded', // 'grounded' | 'takingoff' | 'flying' | 'landing'
     homePosition: new THREE.Vector3(0, 0.1, -2.25),
-    constants: AI_ATTACKER_CONSTANTS,
+    // 「減速→近垂直陡升/陡降→加速前衝」突襲動作狀態機：
+    // jukePhase 'none'(未觸發) → 'decel'(煞停) → 'rise'(近垂直陡升/陡降) → 'burst'(加速前衝) → 回到 'none'
+    jukePhase: 'none',
+    jukeSubTimer: 0,
+    jukeCheckTimer: Math.random() * 0.6,
+    jukeDir: 1,
+    jukeTargetY: 0,
+    constants: ATTACK_DIFFICULTY_LEVELS[aiAttackDifficulty],
 };
 
 const CAMERA_MODES = ['CHASE', 'COCKPIT', 'FREE'];
@@ -1118,6 +1253,8 @@ function resetAttacker() {
     attacker.phase = 'advance';
     attacker.reactionTimer = 0;
     attacker.altitudeState = 'grounded';
+    attacker.jukePhase = 'none';
+    attacker.jukeCheckTimer = Math.random() * 0.6;
     pickAttackPattern(attacker);
     attacker.aimTarget.copy(attacker.position);
     if (attacker.mesh) {
@@ -1284,11 +1421,19 @@ function computeAttackCurveOffset(atk, c, weaveScale) {
             break;
         }
         case 'feint_dodge': {
+            // 困難模式（tactics.smartFeint）：不再是純隨機方向的假動作，而是先觀察目前判讀到的
+            // 縫隙方向（atk.gapAngle），刻意往「縫隙較窄、真正空檔的反方向」佯攻誘敵，
+            // 等最後衝刺階段（weaveScale <= 0.4，下方 else 分支本就會反轉成 -dir）才真正切向縫隙那一側
+            let feintDir = dir;
+            if (c.tactics.smartFeint && atk.gapHasBlockers) {
+                const gapSideSign = Math.cos(atk.gapAngle) >= 0 ? 1 : -1;
+                feintDir = -gapSideSign;
+            }
             if (weaveScale > 0.4) {
-                dx = ampX * 1.4 * dir * weaveScale;
+                dx = ampX * 1.4 * feintDir * weaveScale;
                 dy = Math.sin(t * 1.3 * freq + seed) * ampY * 0.4 * weaveScale;
             } else {
-                dx = -ampX * 1.1 * dir * weaveScale;
+                dx = -ampX * 1.1 * feintDir * weaveScale;
                 dy = Math.sin(t * 2.0 * freq + seed) * ampY * 0.3 * weaveScale;
             }
             break;
@@ -1316,19 +1461,34 @@ function computeAttackCurveOffset(atk, c, weaveScale) {
     }
     return { dx, dy };
 }
+// 簡單難度只會從 atk.constants.patterns 這個較小的招式池中抽選；中等/困難的 patterns 為 null，沿用完整曲線庫
 function pickAttackPattern(atk) {
-    atk.attackPattern = ATTACK_PATTERNS[Math.floor(Math.random() * ATTACK_PATTERNS.length)];
+    const pool = (atk.constants.patterns && atk.constants.patterns.length) ? atk.constants.patterns : ATTACK_PATTERNS;
+    atk.attackPattern = pool[Math.floor(Math.random() * pool.length)];
     atk.weaveSeed = Math.random() * 100;
     atk.patternDir = Math.random() < 0.5 ? 1 : -1;
     atk.patternAmpScale = 0.85 + Math.random() * 0.85;
     atk.patternFreqScale = 0.75 + Math.random() * 0.5;
     atk.gapTimer = 0;
 }
-// 收集目前場上防守機（D1、D2）的世界座標位置
-function collectDefenderBlockers() {
+// 收集目前場上防守機（D1、D2）的世界座標位置；predictHorizon > 0 時（困難模式的「預判補位」戰術），
+// 改回傳每台防守機依目前速度外推 predictHorizon 秒後的預測位置，而非當下位置。
+// 只計入「離球門夠近、算是實際在防守」的防守機（距離球門中心 < GAP_BLOCKER_MAX_DIST）：
+// 中垂線幾何演算法假設兩台防守機都貼在球門附近，若防守機遠離球門，算出來的縫隙方向會是離譜的假縫隙，
+// 而且因為防守機沒在動、每次判讀都算出幾乎同一個壞角度，導致攻擊機一路收斂瞄準過去卻剛好落在球門
+// 框邊而非真正的開口中央，一次次撞框。忽略掉這種「名義上存在、但根本沒在防守」的防守機後，
+// 等於沒有防守機在場，攻擊機會直接瞄準球門正中央，行為正常許多。
+const GAP_BLOCKER_MAX_DIST = 1.8;
+function collectDefenderBlockers(predictHorizon = 0) {
+    const ownGoalRing = attacker.targetRing;
     const blockers = [];
-    if (D1.mesh) blockers.push(D1.position);
-    if (D2.mesh) blockers.push(D2.position);
+    [D1, D2].forEach(d => {
+        if (!d.mesh) return;
+        if (ownGoalRing && d.position.distanceTo(ownGoalRing.pos) > GAP_BLOCKER_MAX_DIST) return;
+        blockers.push(predictHorizon > 0
+            ? d.position.clone().addScaledVector(d.velocity, predictHorizon)
+            : d.position);
+    });
     return blockers;
 }
 // 估算「某個角度方向」上的縫隙寬裕程度：該方向與每台防守機封鎖角範圍的最小差距
@@ -1347,9 +1507,11 @@ function angleClearanceAt(angle, ring, blockers) {
     return minClearance;
 }
 // 掃描球門開口一圈，回傳尚未被封鎖、縫隙面積最大的方向角度。
-// 做為只有 0~1 台防守機在場、或幾何解退化時的備援方案（見 computeMidlineGapAngle）
-function scanWidestGapAngle(ring) {
-    const blockers = collectDefenderBlockers();
+// 做為只有 0~1 台防守機在場、或幾何解退化時的備援方案（見 computeMidlineGapAngle）。
+// reliable 固定為 false：取樣掃描法只是保守備援，不代表真的判讀出一個由兩台防守機夾出的明確縫隙，
+// 因此不適合拿來決定像「陡升或陡降」這種需要明確方向依據的戰術判斷
+function scanWidestGapAngle(ring, predictHorizon = 0) {
+    const blockers = collectDefenderBlockers(predictHorizon);
     if (blockers.length === 0) return null;
 
     const numSamples = 36;
@@ -1359,22 +1521,39 @@ function scanWidestGapAngle(ring) {
         const clearance = angleClearanceAt(angle, ring, blockers);
         if (clearance > bestClearance) { bestClearance = clearance; bestAngle = angle; }
     }
-    return { angle: bestAngle, clearance: bestClearance };
+    return { angle: bestAngle, clearance: bestClearance, reliable: false };
 }
 // 幾何版縫隙判讀：兩台防守機連線的「中垂線」上所有點都跟兩者等距，這條中垂線與球門淨開口圓
 // 最多交於兩點，取中垂線在圓內「較長」那一段對應的交點（離兩台防守機都最遠的那一側）當瞄準方向。
 // 只有 0~1 台防守機在場、或中垂線根本不與圓相交時，才退回 scanWidestGapAngle() 取樣法。
-function computeMidlineGapAngle(ring) {
-    const blockers = collectDefenderBlockers();
+// predictHorizon > 0（困難模式）時，改用防守機外推 predictHorizon 秒後的預測位置來算縫隙。
+//
+// 外心（中垂線與球門圓交點）幾何法只有在「兩台防守機都確實站在攻擊機與球門之間，且投影到球門
+// XY 平面後都落在球門淨開口圓（RING_CLEAR_RADIUS）範圍內」時才有意義：這才代表兩台防守機真的
+// 從攻擊機的進攻方向左右夾住球門開口、真正擋在射門路線上，外心點才對應一個真實存在的縫隙。
+// 只要有任一台不滿足，等距點就不再對應任何實際存在的空檔，算出來的方向可能剛好落在球門框邊而非
+// 安全開口——這正是攻擊機頻繁撞框、且撞的角度看起來很固定不變的成因。任一判別失敗都退回較保守的
+// 取樣掃描法，並標記本次結果為不可靠（reliable: false）——這個標記會一路傳到突襲動作的「陡升或
+// 陡降」判斷：只有 reliable: true 時，困難模式才會依縫隙方向決定要陡升還是陡降，否則一律視為
+// 判讀不可靠，退回隨機決定方向，不採信外心位置。
+function computeMidlineGapAngle(ring, attackerPos, predictHorizon = 0) {
+    const blockers = collectDefenderBlockers(predictHorizon);
     if (blockers.length === 0) return null;
-    if (blockers.length === 1) return scanWidestGapAngle(ring);
+    if (blockers.length === 1) return scanWidestGapAngle(ring, predictHorizon);
+
+    const zLo = Math.min(attackerPos.z, ring.pos.z);
+    const zHi = Math.max(attackerPos.z, ring.pos.z);
+    const zMargin = 0.4;
+    const bothBetween = blockers.every(b => b.z >= zLo - zMargin && b.z <= zHi + zMargin);
+    const bothInsideRingXY = blockers.every(b => Math.hypot(b.x - ring.pos.x, b.y - ring.pos.y) < RING_CLEAR_RADIUS);
+    if (!bothBetween || !bothInsideRingXY) return scanWidestGapAngle(ring, predictHorizon);
 
     const b1x = blockers[0].x - ring.pos.x, b1y = blockers[0].y - ring.pos.y;
     const b2x = blockers[1].x - ring.pos.x, b2y = blockers[1].y - ring.pos.y;
 
     const dx = b2x - b1x, dy = b2y - b1y;
     const segLen = Math.sqrt(dx * dx + dy * dy);
-    if (segLen < 1e-6) return scanWidestGapAngle(ring);
+    if (segLen < 1e-6) return scanWidestGapAngle(ring, predictHorizon);
 
     const mx = (b1x + b2x) / 2, my = (b1y + b2y) / 2;
     const ux = -dy / segLen, uy = dx / segLen;
@@ -1382,7 +1561,7 @@ function computeMidlineGapAngle(ring) {
     const R = RING_CLEAR_RADIUS;
     const mDotU = mx * ux + my * uy;
     const discriminant = mDotU * mDotU - (mx * mx + my * my - R * R);
-    if (discriminant < 0) return scanWidestGapAngle(ring);
+    if (discriminant < 0) return scanWidestGapAngle(ring, predictHorizon);
 
     const sqrtDisc = Math.sqrt(discriminant);
     const t1 = -mDotU + sqrtDisc, t2 = -mDotU - sqrtDisc;
@@ -1390,7 +1569,7 @@ function computeMidlineGapAngle(ring) {
 
     const angle = Math.atan2(my + t * uy, mx + t * ux);
     const clearance = angleClearanceAt(angle, ring, blockers);
-    return { angle, clearance };
+    return { angle, clearance, reliable: true };
 }
 function shortestAngleDiff(from, to) {
     let diff = (to - from) % (Math.PI * 2);
@@ -1398,17 +1577,22 @@ function shortestAngleDiff(from, to) {
     if (diff < -Math.PI) diff += Math.PI * 2;
     return diff;
 }
+// 判讀間隔（gapReactionMin/Max）依難度而定；困難模式並會啟用 predictiveGap，改用防守機的預測站位來判讀
 function updateAttackerGapEstimate(atk, ring, delta) {
+    const c = atk.constants;
     atk.gapTimer -= delta;
     if (atk.gapTimer <= 0) {
-        atk.gapTimer = 0.55 + Math.random() * 0.35;
-        const result = computeMidlineGapAngle(ring);
+        atk.gapTimer = c.gapReactionMin + Math.random() * (c.gapReactionMax - c.gapReactionMin);
+        const predictHorizon = c.tactics.predictiveGap ? 0.4 : 0;
+        const result = computeMidlineGapAngle(ring, atk.position, predictHorizon);
         if (result) {
             atk.gapHasBlockers = true;
             atk.gapTargetAngle = result.angle;
             atk.gapTargetClearance = result.clearance;
+            atk.gapReliable = !!result.reliable;
         } else {
             atk.gapHasBlockers = false;
+            atk.gapReliable = false;
         }
     }
     if (!atk.gapHasBlockers) return;
@@ -1423,6 +1607,53 @@ function nearestDefenderDistance(attackerPos) {
     if (D1.mesh) minDist = Math.min(minDist, attackerPos.distanceTo(D1.position));
     if (D2.mesh) minDist = Math.min(minDist, attackerPos.distanceTo(D2.position));
     return minDist;
+}
+// 撞框預防：只要攻擊機「目前實際位置」或「目前瞄準點」在球門 XY 平面上的投影半徑，有任一個落在
+// 框架的碰撞危險帶內，就立即修正。優先只調整 Y（升降）；只有水平分量本身已超出安全半徑、單靠升降
+// 救不回來時，才連同水平方向一起收斂。修正只動瞄準點與速度，不直接改動 attacker.position——直接
+// 搬動位置會跳過速度/加速度這層物理模擬，看起來像瞬間移動。真正的「快」交給呼叫端暫時提高轉向
+// 加速度來做，讓一般的速度積分本身就能快速但連續地轉向安全落點。回傳 true 表示本影格正在修正中。
+function applyFrameAvoidanceCorrection(atk, ring) {
+    const distZ = Math.abs(atk.position.z - ring.pos.z);
+    if (distZ > FRAME_AVOID_TRIGGER_DIST) return false;
+
+    const tubeCollisionThreshold = RING_TUBE_RADIUS + DRONE_CAGE_RADIUS;
+    const dangerInner = RING_CENTER_RADIUS - tubeCollisionThreshold - FRAME_AVOID_MARGIN;
+    const dangerOuter = RING_CENTER_RADIUS + tubeCollisionThreshold + FRAME_AVOID_MARGIN;
+
+    const px = atk.position.x - ring.pos.x, py = atk.position.y - ring.pos.y;
+    const posPlanarDist = Math.hypot(px, py);
+    const tx = atk.aimTarget.x - ring.pos.x, ty = atk.aimTarget.y - ring.pos.y;
+    const targetPlanarDist = Math.hypot(tx, ty);
+
+    const posInDanger = posPlanarDist > dangerInner && posPlanarDist < dangerOuter;
+    const targetInDanger = targetPlanarDist > dangerInner && targetPlanarDist < dangerOuter;
+    if (!posInDanger && !targetInDanger) return false;
+
+    const safeR = FRAME_AVOID_SAFE_RADIUS;
+    let safeX, safeY;
+    if (Math.abs(px) < safeR) {
+        safeX = px;
+        const safeYAbs = Math.sqrt(Math.max(0, safeR * safeR - px * px));
+        safeY = py >= 0 ? safeYAbs : -safeYAbs;
+    } else {
+        const scale = posPlanarDist > 0.001 ? safeR / posPlanarDist : 1;
+        safeX = px * scale;
+        safeY = py * scale;
+    }
+
+    atk.aimTarget.x = ring.pos.x + safeX;
+    atk.aimTarget.y = ring.pos.y + safeY;
+
+    if (posPlanarDist > 0.001) {
+        const radialDirX = px / posPlanarDist, radialDirY = py / posPlanarDist;
+        const radialSpeed = atk.velocity.x * radialDirX + atk.velocity.y * radialDirY;
+        if (radialSpeed > 0) {
+            atk.velocity.x -= radialDirX * radialSpeed * 0.85;
+            atk.velocity.y -= radialDirY * radialSpeed * 0.85;
+        }
+    }
+    return true;
 }
 // targetRadius 由呼叫端傳入（跟曲線搖擺共用同一把隨距離收斂的尺），而不是固定寫死的安全半徑，
 // 這樣遠處助跑時縫隙方向也能有跟曲線振幅相當的量級，真正發揮引導作用，不會被曲線淹沒
@@ -1615,6 +1846,7 @@ function updateAttacker(delta) {
         if (Math.abs(attacker.position.y - ring.pos.y) < 0.05) {
             attacker.position.y = ring.pos.y;
             attacker.altitudeState = 'flying';
+            attacker.reactionTimer = 0;
         }
         attacker.rotors.forEach((rotorGroup, idx) => {
             const dir = (idx === 0 || idx === 3) ? 1 : -1;
@@ -1642,19 +1874,98 @@ function updateAttacker(delta) {
     }
 
     // altitudeState === 'flying'：完整進攻行為邏輯
+
+    // 若攻擊機已經離開「進攻階段」但突襲動作仍殘留在進行中，立即強制中止
+    if (attacker.phase !== 'advance' && attacker.jukePhase !== 'none') {
+        attacker.jukePhase = 'none';
+    }
+
     updateAttackerGapEstimate(attacker, ring, delta);
 
     if (attacker.phase === 'advance') {
         const sideNow = attacker.position.z - ring.pos.z;
         const behindGoal = sideNow !== 0 && Math.sign(sideNow) === ring.forwardSign;
-        if (behindGoal) { attacker.phase = 'loopback'; attacker.reactionTimer = 0; }
+        if (behindGoal) { attacker.phase = 'loopback'; attacker.jukePhase = 'none'; attacker.reactionTimer = 0; }
+    }
+
+    // 判斷「兩台防守機是否都已經被拋在攻擊機後方」：直接比較 D1、D2 離球門的距離，只要攻擊機比
+    // 兩者都更接近球門，代表已經沒有防守機還擋在攻擊機與球門之間，直接筆直衝向球門正中央即可，
+    // 不需要曲線搖擺／假動作／突襲這類專門用來甩開防守機的花俏路線
+    let bothDefendersBehind = false;
+    if (attacker.phase === 'advance') {
+        const attackerDistToGoal = Math.abs(attacker.position.z - ring.pos.z);
+        const behindMargin = 0.15;
+        bothDefendersBehind = [D1, D2].every(d => Math.abs(d.position.z - ring.pos.z) > attackerDistToGoal + behindMargin);
+    }
+    if (bothDefendersBehind && attacker.jukePhase !== 'none') {
+        attacker.jukePhase = 'none';
+    }
+
+    // 「減速→近垂直陡升/陡降→加速前衝」突襲動作：獨立於一般反應計時之外、每影格都更新，
+    // 且僅在「靠近球門、尚未進入最後衝刺」的距離區間內才會觸發；防守機都被拋在後方時不會觸發
+    let effectiveMaxSpeed = c.maxSpeed;
+    if (attacker.phase === 'advance' && !bothDefendersBehind) {
+        if (attacker.jukePhase === 'none') {
+            attacker.jukeCheckTimer -= delta;
+            if (attacker.jukeCheckTimer <= 0) {
+                attacker.jukeCheckTimer = JUKE_CHECK_INTERVAL_MIN + Math.random() * (JUKE_CHECK_INTERVAL_MAX - JUKE_CHECK_INTERVAL_MIN);
+                const distToGoalNow = Math.abs(attacker.position.z - ring.pos.z);
+                if (readyToScore && distToGoalNow > JUKE_TRIGGER_MIN_DIST && distToGoalNow < JUKE_TRIGGER_MAX_DIST
+                    && Math.random() < c.jukeChance) {
+                    let jukeDir = Math.random() < 0.5 ? 1 : -1;
+                    if (c.tactics.smartJukeDirection && attacker.gapHasBlockers && attacker.gapReliable) {
+                        jukeDir = Math.sin(attacker.gapAngle) >= 0 ? 1 : -1;
+                    }
+                    attacker.jukePhase = 'decel';
+                    attacker.jukeSubTimer = JUKE_DECEL_TIME;
+                    attacker.jukeDir = jukeDir;
+                }
+            }
+        } else {
+            attacker.jukeSubTimer -= delta;
+            if (attacker.jukePhase === 'decel') {
+                attacker.aimTarget.set(attacker.position.x, attacker.position.y, attacker.position.z);
+                if (attacker.jukeSubTimer <= 0) {
+                    attacker.jukePhase = 'rise';
+                    attacker.jukeSubTimer = JUKE_RISE_TIME;
+                    attacker.jukeTargetY = THREE.MathUtils.clamp(
+                        attacker.position.y + attacker.jukeDir * JUKE_RISE_DISTANCE, 0.35, 2.7
+                    );
+                }
+            } else if (attacker.jukePhase === 'rise') {
+                attacker.aimTarget.set(attacker.position.x, attacker.jukeTargetY, attacker.position.z);
+                if (attacker.jukeSubTimer <= 0) {
+                    attacker.jukePhase = 'burst';
+                    attacker.jukeSubTimer = JUKE_BURST_TIME;
+                    const burstR = Math.min(ATTACKER_GOAL_AIM_RADIUS * 1.4, 0.18);
+                    const burstX = attacker.gapHasBlockers ? ring.pos.x + Math.cos(attacker.gapAngle) * burstR : ring.pos.x;
+                    const burstY = attacker.gapHasBlockers ? ring.pos.y + Math.sin(attacker.gapAngle) * burstR : ring.pos.y;
+                    const burstZ = readyToScore
+                        ? ring.pos.z + ring.forwardSign * 0.5
+                        : ring.pos.z - ring.forwardSign * 0.35;
+                    attacker.aimTarget.set(burstX, burstY, burstZ);
+                }
+            } else if (attacker.jukePhase === 'burst') {
+                effectiveMaxSpeed = c.maxSpeed * c.jukeBurstMultiplier;
+                if (attacker.jukeSubTimer <= 0) {
+                    attacker.jukePhase = 'none';
+                    attacker.reactionTimer = 0;
+                }
+            }
+        }
     }
 
     attacker.reactionTimer -= delta;
     if (attacker.reactionTimer <= 0) {
         attacker.reactionTimer = c.reactionMin + Math.random() * (c.reactionMax - c.reactionMin);
 
-        if (attacker.phase === 'advance') {
+        if (attacker.phase === 'advance' && attacker.jukePhase === 'none') {
+            const targetZ = readyToScore ? ring.pos.z + ring.forwardSign * 0.45 : ring.pos.z - ring.forwardSign * 0.35;
+
+            if (bothDefendersBehind) {
+                // 兩台防守機都已經被拋在後方，前方已無阻擋者，直接筆直瞄準球門正中央
+                attacker.aimTarget.set(ring.pos.x, ring.pos.y, targetZ);
+            } else {
             const distToGoal = Math.abs(attacker.position.z - ring.pos.z);
             const weaveScale = THREE.MathUtils.clamp(distToGoal / 1.5, 0.15, 1);
 
@@ -1672,14 +1983,14 @@ function updateAttacker(delta) {
             // 曲線的巨大振幅淹沒。統一量級後，遠處也能真正感受到縫隙方向的拉力
             const gap = computeGoalGapOffset(attacker, Math.min(maxAimRadius, ATTACKER_GAP_LEAD_RADIUS));
             // 人類選手在遠處助跑時就會先看好哪一側防守比較鬆、預先把身位帶過去，而不是等貼近球門才
-            // 臨時反應；因此即使距離還很遠（weaveScale=1）也保留 0.35 的底線傾向，越靠近球門越提高到 0.75
-            const commitToGap = THREE.MathUtils.lerp(0.35, 0.75, 1 - weaveScale);
+            // 臨時反應；因此即使距離還很遠（weaveScale=1）也保留底線傾向，越靠近球門越提高到完全收斂
+            const commitToGap = THREE.MathUtils.lerp(c.commitToGapMin, c.commitToGapMax, 1 - weaveScale);
             let dx = THREE.MathUtils.lerp(offset.dx, gap.x, commitToGap) + (Math.random() - 0.5) * 2 * c.aimError;
             let dy = THREE.MathUtils.lerp(offset.dy, gap.y, commitToGap) + (Math.random() - 0.5) * 2 * c.aimError;
             const aimLen = Math.sqrt(dx*dx + dy*dy);
             if (aimLen > maxAimRadius) { const s = maxAimRadius / aimLen; dx *= s; dy *= s; }
-            const targetZ = readyToScore ? ring.pos.z + ring.forwardSign * 0.45 : ring.pos.z - ring.forwardSign * 0.35;
             attacker.aimTarget.set(ring.pos.x + dx, ring.pos.y + dy, targetZ);
+            }
         } else if (attacker.phase === 'descend') {
             const midAltitude = ring.pos.y;
             if (Math.abs(attacker.position.y - midAltitude) > 0.15) {
@@ -1720,20 +2031,35 @@ function updateAttacker(delta) {
         }
     }
 
-    if (attacker.phase === 'advance') {
+    if (attacker.phase === 'advance' && attacker.jukePhase === 'none') {
         const nearestDist = nearestDefenderDistance(attacker.position);
-        if (nearestDist < ATTACKER_EVADE_DISTANCE) {
-            const evadeT = THREE.MathUtils.clamp(1 - nearestDist / ATTACKER_EVADE_DISTANCE, 0, 1);
-            attacker.aimTarget.x = THREE.MathUtils.lerp(attacker.aimTarget.x, ring.pos.x, evadeT);
-            attacker.aimTarget.y = THREE.MathUtils.lerp(attacker.aimTarget.y, ring.pos.y, evadeT);
+        if (nearestDist < c.evadeDistance) {
+            const evadeT = THREE.MathUtils.clamp(1 - nearestDist / c.evadeDistance, 0, 1);
+            let evadeTargetX = ring.pos.x;
+            let evadeTargetY = ring.pos.y;
+            if (c.tactics.smartEvade && attacker.gapHasBlockers) {
+                const evadeR = Math.min(ATTACKER_GOAL_AIM_RADIUS * 2, 0.3);
+                evadeTargetX = ring.pos.x + Math.cos(attacker.gapAngle) * evadeR;
+                evadeTargetY = ring.pos.y + Math.sin(attacker.gapAngle) * evadeR;
+            }
+            attacker.aimTarget.x = THREE.MathUtils.lerp(attacker.aimTarget.x, evadeTargetX, evadeT);
+            attacker.aimTarget.y = THREE.MathUtils.lerp(attacker.aimTarget.y, evadeTargetY, evadeT);
         }
+    }
+
+    // 撞框預防：每一影格都檢查一次（不受反應延遲限制），提前發現有撞框風險就修正瞄準點/速度，
+    // 真正的「快」交給下面把轉向加速度暫時提高做到，避免瞬移感。突襲動作進行中不介入
+    let frameAvoidActive = false;
+    if (attacker.phase === 'advance' && attacker.jukePhase === 'none') {
+        frameAvoidActive = applyFrameAvoidanceCorrection(attacker, ring);
     }
 
     const toTarget = attacker.aimTarget.clone().sub(attacker.position);
     const dist = toTarget.length();
     if (dist > 0.01) {
-        const desiredVel = toTarget.normalize().multiplyScalar(Math.min(c.maxSpeed, dist * 2.0));
-        const steer = desiredVel.sub(attacker.velocity).multiplyScalar(c.accel * delta);
+        const desiredVel = toTarget.normalize().multiplyScalar(Math.min(effectiveMaxSpeed, dist * 2.0));
+        const steerAccel = frameAvoidActive ? c.accel * 3 : c.accel;
+        const steer = desiredVel.sub(attacker.velocity).multiplyScalar(steerAccel * delta);
         attacker.velocity.add(steer);
     }
     attacker.velocity.multiplyScalar(0.92);
@@ -2216,6 +2542,15 @@ function resetGame() {
 
 // ---------------- UI 事件綁定 ----------------
 function bindUIEvents() {
+    // 開場畫面：選擇 AI 攻擊機難度（僅設定難度、不會觸發開始比賽）
+    document.querySelectorAll('.atk-difficulty-option').forEach(el => {
+        el.addEventListener('click', (e) => {
+            e.stopPropagation();
+            applyAttackDifficulty(el.dataset.level);
+            highlightAttackDifficultyOption(el.dataset.level);
+        });
+    });
+
     [D1, D2].forEach(rig => {
         const p = rig.prefix;
         const btnStart = document.getElementById(p + 'btnStart');
@@ -2233,6 +2568,9 @@ function bindUIEvents() {
         if (btnReset) btnReset.addEventListener('click', () => resetGame());
         const btnSound = document.getElementById(p + 'btnSound');
         if (btnSound) btnSound.addEventListener('click', () => toggleSound());
+        // 比賽中隨時可點擊此按鈕，在簡單／中等／困難之間循環切換 AI 攻擊機難度
+        const btnAtkDifficulty = document.getElementById(p + 'btnAtkDifficulty');
+        if (btnAtkDifficulty) btnAtkDifficulty.addEventListener('click', () => cycleAttackDifficulty());
     });
 }
 
