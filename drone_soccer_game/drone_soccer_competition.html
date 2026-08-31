@@ -111,6 +111,21 @@
                 </ul>
             </div>
 -->
+            <p class="text-xs text-slate-400 mb-3 tracking-wider uppercase tech-font">選擇防守難度</p>
+            <div class="flex gap-2 mb-5">
+                <div id="btnDiffEasy" class="difficulty-option flex-1 py-2.5 text-center cursor-pointer select-none rounded-xl glass-button border-slate-700/50" data-level="easy">
+                    <p class="text-sm font-bold text-emerald-400 uppercase tracking-widest">簡單</p>
+                    <p class="text-[9px] text-slate-500 mt-0.5 tech-font">反應慢、易失誤</p>
+                </div>
+                <div id="btnDiffMedium" class="difficulty-option flex-1 py-2.5 text-center cursor-pointer select-none rounded-xl glass-button" data-level="medium" style="border-color: rgba(250,204,21,0.6); background: rgba(250,204,21,0.12);">
+                    <p class="text-sm font-bold text-yellow-400 uppercase tracking-widest">中等</p>
+                    <p class="text-[9px] text-slate-500 mt-0.5 tech-font">標準攔截反應</p>
+                </div>
+                <div id="btnDiffHard" class="difficulty-option flex-1 py-2.5 text-center cursor-pointer select-none rounded-xl glass-button border-slate-700/50" data-level="hard">
+                    <p class="text-sm font-bold text-rose-400 uppercase tracking-widest">困難</p>
+                    <p class="text-[9px] text-slate-500 mt-0.5 tech-font">角度覆蓋＋補位戰術</p>
+                </div>
+            </div>
             <p class="text-xs text-slate-400 mb-3 tracking-wider uppercase tech-font">選擇你的隊伍</p>
             <div class="flex gap-4 mb-2">
                 <div id="btnTeamRed" class="flex-1 py-4 text-center cursor-pointer select-none rounded-xl glass-button border-rose-500/50 bg-rose-500/10 hover:bg-rose-500/25" style="border-color: rgba(239,68,68,0.5); background: rgba(239,68,68,0.12);">
@@ -179,6 +194,10 @@
                 </button>
                 <button id="btnReset" class="w-10 h-10 rounded-xl glassmorphism text-slate-300 hover:text-rose-400 flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
                     <i class="fa-solid fa-arrows-rotate text-sm"></i>
+                </button>
+                <button id="btnDifficulty" class="px-3.5 h-10 rounded-xl glassmorphism text-yellow-300 hover:text-yellow-200 hover:border-yellow-400/50 flex items-center justify-center gap-2 transition-all cursor-pointer pointer-events-auto border border-yellow-500/20" title="點擊切換防守難度：簡單／中等／困難">
+                    <i class="fa-solid fa-shield-halved text-sm"></i>
+                    <span id="difficultyText" class="text-xs font-semibold tech-font">中等</span>
                 </button>
             </div>
         </header>
@@ -466,15 +485,53 @@
         function getOpponentGoalRing() { return ringCourse.find(r => r.team === getOpponentTeam(playerTeam)); }
 
         // 電腦控制的守門無人機（兩台，聯手鎮守對手球門，碰撞會將玩家彈開）
-        const AI_GUARD_CONSTANTS = {
-            maxSpeed: 1.9,        // 守門機最高攔截移動速度 (m/s)
-            accel: 4.2,           // 加速度，決定攔截反應靈敏度
-            guardRadiusXY: 0.48,  // 守門機可左右上下移動的最大半徑
-            guardDepth: 0.26,     // 守門機可離開球門平面向前迎擊的最大深度
-            reactionMin: 0.22,    // 最短反應間隔（秒）
-            reactionMax: 0.55,    // 最長反應間隔（秒）
-            aimError: 0.16,       // 每次重新判斷時的瞄準誤差半徑（米）
+        // 三種難度：簡單／中等／困難，除了參數強弱不同外，困難還會啟用戰術邏輯（角度覆蓋、彈道預測、補位）
+        const DIFFICULTY_LEVELS = {
+            easy: {
+                label: '簡單',
+                maxSpeed: 1.3,        // 移動較慢
+                accel: 2.8,           // 加速遲緩
+                guardRadiusXY: 0.40,  // 守備範圍較小
+                guardDepth: 0.10,     // 幾乎不前壓，多半站門線
+                reactionMin: 0.50,    // 反應間隔長，容易慢半拍
+                reactionMax: 0.90,
+                aimError: 0.30,       // 瞄準誤差大，容易判斷失準
+                engageDistance: 1.6,  // 只有玩家很靠近才會考慮迎擊
+                engageChance: 0.15,   // 迎擊機率低
+                tactics: { angleCoverage: false, predictiveIntercept: false, coverRotation: false },
+            },
+            medium: {
+                label: '中等',
+                maxSpeed: 1.9,
+                accel: 4.2,
+                guardRadiusXY: 0.48,
+                guardDepth: 0.26,
+                reactionMin: 0.22,
+                reactionMax: 0.55,
+                aimError: 0.16,
+                engageDistance: 2.4,
+                engageChance: 0.78,
+                tactics: { angleCoverage: false, predictiveIntercept: false, coverRotation: false },
+            },
+            hard: {
+                label: '困難',
+                maxSpeed: 2.5,        // 移動更快
+                accel: 6.0,           // 反應更靈敏
+                guardRadiusXY: 0.55,  // 守備範圍更廣
+                guardDepth: 0.34,     // 更敢前壓迎擊
+                reactionMin: 0.08,    // 幾乎即時反應
+                reactionMax: 0.20,
+                aimError: 0.05,       // 瞄準幾乎精準
+                engageDistance: 3.0,  // 更早就開始迎擊
+                engageChance: 0.92,
+                // 困難模式額外啟用三種戰術邏輯：
+                // angleCoverage - 前壓時往球門中央收縮，縮小玩家可射門角度（而非死盯玩家 x 座標）
+                // predictiveIntercept - 依玩家速度計算「抵達球門平面的時間」直接算出真正的攔截點，而非固定 0.25 秒淺層預判
+                // coverRotation - 當隊友大幅前壓出擊時，己方自動往中路收縮補防，避免露出空檔
+                tactics: { angleCoverage: true, predictiveIntercept: true, coverRotation: true },
+            },
         };
+        let aiDifficulty = 'medium'; // 目前套用的防守難度，可於開場畫面選擇，或遊戲中點擊按鈕切換
 
         // 建立單一守門機的狀態物件；guardHomeOffsetX 讓兩台守門機分工鎮守球門左右兩側，避免疊在一起
         function createAIDroneState(guardHomeOffsetX) {
@@ -493,12 +550,37 @@
                 aimTarget: new THREE.Vector3(0, 0.10, 2.25), // AI 目前瞄準的攔截點（帶反應延遲與誤差，不會即時鎖定玩家）
                 reactionTimer: 0,       // 距離下次「重新判斷」還要多久（模擬人類反應延遲）
                 altitudeState: 'grounded', // 'grounded' | 'takingoff' | 'flying' | 'landing'：與玩家一起貼地待命，按 T/L 才會同步升降
-                constants: AI_GUARD_CONSTANTS,
+                constants: DIFFICULTY_LEVELS[aiDifficulty],
             };
         }
 
         // 兩台守門機：一台鎮守球門左側、一台鎮守球門右側，形成雙人聯防（玩家 1 機攻擊 vs 敵方 2 機守門）
         const aiDrones = [createAIDroneState(-0.22), createAIDroneState(0.22)];
+
+        // 套用防守難度：切換 aiDifficulty 並讓兩台守門機立即改用新的一組參數／戰術開關
+        function applyDifficulty(level) {
+            if (!DIFFICULTY_LEVELS[level]) return;
+            aiDifficulty = level;
+            aiDrones.forEach(aiState => {
+                aiState.constants = DIFFICULTY_LEVELS[level];
+                aiState.reactionTimer = 0; // 立刻重新判斷一次，避免延用舊難度殘留的瞄準點
+            });
+            updateDifficultyHUD();
+            showSystemNotification(`防守難度已切換為：${DIFFICULTY_LEVELS[level].label}`);
+        }
+
+        // 依序在簡單／中等／困難之間循環切換（供遊戲中按鈕使用）
+        function cycleDifficulty() {
+            const order = ['easy', 'medium', 'hard'];
+            const next = order[(order.indexOf(aiDifficulty) + 1) % order.length];
+            applyDifficulty(next);
+        }
+
+        // 更新畫面上顯示目前防守難度的文字
+        function updateDifficultyHUD() {
+            const el = document.getElementById('difficultyText');
+            if (el) el.innerText = DIFFICULTY_LEVELS[aiDifficulty].label;
+        }
 
         // 5. 鍵盤輸入
         const keys = { 
@@ -2066,9 +2148,21 @@
 
             const ring = aiState.guardRing;
             const c = aiState.constants;
-            const homeX = ring.pos.x + aiState.guardHomeOffsetX;
             const homeY = ring.pos.y;
             const homeZ = ring.pos.z;
+
+            // 【困難限定：補位 coverRotation】若隊友大幅前壓出擊，己方的守備中心往中路收縮，
+            // 收縮幅度隨隊友前壓程度線性增加，避免雙機同時離開球門造成防線空檔
+            let homeX = ring.pos.x + aiState.guardHomeOffsetX;
+            if (c.tactics.coverRotation) {
+                const partner = aiDrones.find(a => a !== aiState);
+                if (partner && partner.guardRing && partner.altitudeState === 'flying') {
+                    const partnerDepth = Math.abs(partner.position.z - partner.guardRing.pos.z);
+                    const partnerAdvanceRatio = THREE.MathUtils.clamp(partnerDepth / (c.guardDepth + 0.05), 0, 1);
+                    // 隊友前壓越深，自己的分工偏移量越往中心收縮（最多收縮到 50%）
+                    homeX = ring.pos.x + aiState.guardHomeOffsetX * (1 - partnerAdvanceRatio * 0.5);
+                }
+            }
 
             // 尚未起飛：與玩家一起貼地待命，僅播放怠速螺旋槳動畫，不會移動也不會攔截
             if (aiState.altitudeState === 'grounded') {
@@ -2128,19 +2222,38 @@
                     homeY - 0.35, homeY + 0.35
                 );
 
-                // 依玩家目前速度預判 0.25 秒後的走向，讓守門機看起來會「提前卡位」而非死盯玩家當下位置
-                const predict = drone.velocity.clone().multiplyScalar(0.25);
+                // 【困難限定：彈道預測 predictiveIntercept】不再只淺層預判 0.25 秒，
+                // 而是依玩家目前速度算出「抵達球門平面所需時間」，直接瞄準玩家真正會到達的攔截點；
+                // 其餘難度（簡單／中等）維持固定 0.25 秒的淺層預判
+                let predictHorizon = 0.25;
+                if (c.tactics.predictiveIntercept) {
+                    const distZ = homeZ - drone.position.z;
+                    if (Math.abs(drone.velocity.z) > 0.05) {
+                        const timeToPlane = distZ / drone.velocity.z;
+                        // 只採用「玩家正朝球門方向靠近、且落在合理時間範圍內」的預測值，避免反向或極端外插
+                        if (timeToPlane > 0 && timeToPlane < 1.5) predictHorizon = timeToPlane;
+                    }
+                }
+                const predict = drone.velocity.clone().multiplyScalar(predictHorizon);
 
-                // 玩家越靠近球門，守門機越有機率主動前壓迎擊
+                // 玩家越靠近球門，守門機越有機率主動前壓迎擊（迎擊距離／機率依難度不同）
                 const distToRing = Math.abs(drone.position.z - homeZ);
-                const willEngage = distToRing < 2.4 && Math.random() < 0.78;
+                const willEngage = distToRing < c.engageDistance && Math.random() < c.engageChance;
                 const engageDepth = willEngage
                     ? Math.min(c.guardDepth, distToRing * 0.35)
                     : 0;
                 const dz = -ring.forwardSign * engageDepth;
 
+                // 【困難限定：角度覆蓋 angleCoverage】前壓迎擊越深，瞄準點的 X 座標越往球門中央收攏，
+                // 用「站在中央、縮小可射門角度」取代死盯玩家 X 座標，模擬真實守門員的補位技巧
+                let targetX = px + predict.x * 0.4;
+                if (c.tactics.angleCoverage && c.guardDepth > 0) {
+                    const advanceRatio = THREE.MathUtils.clamp(engageDepth / c.guardDepth, 0, 1);
+                    targetX = THREE.MathUtils.lerp(targetX, ring.pos.x, advanceRatio * 0.6);
+                }
+
                 aiState.aimTarget.set(
-                    THREE.MathUtils.clamp(px + predict.x * 0.4, homeX - c.guardRadiusXY, homeX + c.guardRadiusXY),
+                    THREE.MathUtils.clamp(targetX, homeX - c.guardRadiusXY, homeX + c.guardRadiusXY),
                     THREE.MathUtils.clamp(py + predict.y * 0.2, homeY - 0.35, homeY + 0.35),
                     homeZ + dz
                 );
@@ -2460,6 +2573,25 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         }
 
+        // 更新開場畫面上三個難度選項的高亮樣式，標示目前選定的難度
+        function highlightDifficultyOption(level) {
+            const styles = {
+                easy:   { border: 'rgba(16,185,129,0.6)',  bg: 'rgba(16,185,129,0.12)' },
+                medium: { border: 'rgba(250,204,21,0.6)',  bg: 'rgba(250,204,21,0.12)' },
+                hard:   { border: 'rgba(239,68,68,0.6)',   bg: 'rgba(239,68,68,0.12)' },
+            };
+            document.querySelectorAll('.difficulty-option').forEach(el => {
+                const lvl = el.dataset.level;
+                if (lvl === level) {
+                    el.style.borderColor = styles[lvl].border;
+                    el.style.background = styles[lvl].bg;
+                } else {
+                    el.style.borderColor = '';
+                    el.style.background = '';
+                }
+            });
+        }
+
         // UI 事件綁定
         function bindUIEvents() {
             function startFlight(team) {
@@ -2497,6 +2629,15 @@
             // 觸控/滑鼠點擊起始畫面其餘區域也可開始（預設紅隊，無實體鍵盤的行動裝置）
             document.getElementById('startScreen').addEventListener('click', () => startFlight('red'), { once: true });
 
+            // 開場畫面：選擇防守難度（僅設定難度、不會觸發開始飛行）
+            document.querySelectorAll('.difficulty-option').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    applyDifficulty(el.dataset.level);
+                    highlightDifficultyOption(el.dataset.level);
+                });
+            });
+
             document.getElementById('btnTakeoff').addEventListener('click', triggerTakeoff);
             document.getElementById('btnLand').addEventListener('click', triggerLanding);
 
@@ -2505,6 +2646,8 @@
             document.getElementById('btnCam').addEventListener('click', cycleCameraMode);
             document.getElementById('btnReset').addEventListener('click', resetGame);
             document.getElementById('btnRestart').addEventListener('click', resetGame);
+            // 遊戲中隨時可點擊此按鈕，在簡單／中等／困難之間循環切換防守難度
+            document.getElementById('btnDifficulty').addEventListener('click', cycleDifficulty);
         }
 
         // 入口啟動
