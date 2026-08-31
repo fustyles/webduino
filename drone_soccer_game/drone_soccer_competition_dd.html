@@ -352,6 +352,7 @@ const ringCourse = [
 // 固定角色：D1 永遠是紅隊攻擊機（攻擊藍方球門），D2 永遠是藍隊防守機（鎮守藍方球門）
 const ATTACK_TEAM = 'red';
 const DEFEND_TEAM = 'blue';
+const CAGE_LENGTH = 6.0; // 需與 buildInflatableCage() 內的 cageL 保持一致，供場邊視角站位計算使用
 
 let score = 0;
 let particles = [];
@@ -1861,18 +1862,56 @@ function checkPlayerVsTeammateCollision() {
     }
 }
 // ---------------- 相機（每台無人機各自獨立視角）----------------
+function getOwnGoalRing(rig) { return ringCourse.find(r => r.team === rig.team); }
+
+// 依角色顯示正確的視角名稱：防守機的模式 0 為「場邊」，攻擊機的模式 0 維持「追蹤」
+function cameraModeLabel(rig) {
+    if (rig.cameraMode === 0 && rig.team === DEFEND_TEAM) return '場邊';
+    return CAMERA_MODES_ZH[rig.cameraMode];
+}
+
 function cycleCameraModeFor(rig) {
     rig.cameraMode = (rig.cameraMode + 1) % CAMERA_MODES.length;
     if (rig.cameraMode === 2) { rig.orbitControls.enabled = true; rig.orbitControls.target.copy(rig.position); }
     else { rig.orbitControls.enabled = false; }
     const camText = document.getElementById(rig.prefix + 'camText');
-    if (camText) camText.innerText = CAMERA_MODES_ZH[rig.cameraMode];
-    notify(rig, `鏡頭視角：${CAMERA_MODES_ZH[rig.cameraMode]}`);
+    if (camText) camText.innerText = cameraModeLabel(rig);
+    notify(rig, `鏡頭視角：${cameraModeLabel(rig)}`);
 }
 function updateCameraFor(rig) {
     if (!rig.mesh) return;
     const camera = rig.camera;
-    if (rig.cameraMode === 0) {
+    if (rig.cameraMode === 0 && rig.team === DEFEND_TEAM) {
+        // 場邊定點視角：模擬防守方操作員站在「己方球門這一端」短邊網外正中央觀看，
+        // 視角固定不隨無人機平移，只轉動視線追蹤機身，且預設至少微微上仰（不會低頭俯視）
+        rig.mesh.visible = true;
+
+        const eyeHeight = 1.15;
+        const sidelineMargin = 0.6;
+        const sideOffsetX = 0;
+
+        const ownGoal = getOwnGoalRing(rig);
+        const standSign = ownGoal ? Math.sign(ownGoal.pos.z) : -1;
+        const fixedCameraPosition = new THREE.Vector3(
+            sideOffsetX,
+            eyeHeight,
+            standSign * (CAGE_LENGTH / 2 + sidelineMargin)
+        );
+        camera.position.lerp(fixedCameraPosition, 0.15);
+
+        const lookAtPos = rig.position;
+        const horizontalDist = Math.max(
+            0.5,
+            Math.hypot(lookAtPos.x - camera.position.x, lookAtPos.z - camera.position.z)
+        );
+        const minUpwardAngle = THREE.MathUtils.degToRad(6);
+        const minLookY = camera.position.y + horizontalDist * Math.tan(minUpwardAngle);
+        const lookTargetY = Math.max(lookAtPos.y, minLookY);
+
+        const lookTarget = new THREE.Vector3(lookAtPos.x, lookTargetY, lookAtPos.z);
+        camera.lookAt(lookTarget);
+
+    } else if (rig.cameraMode === 0) {
         rig.mesh.visible = true;
         const backOffset = 1.6, upOffset = 0.55;
         const relOff = new THREE.Vector3(0, upOffset, -backOffset);
