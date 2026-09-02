@@ -88,6 +88,7 @@ async function gemini_chat_run(userPrompt) {
             gemini_chat_response(result);
         }
     }
+	return result;	
 }
 
 function gemini_chat_set(input_property, input_value) {
