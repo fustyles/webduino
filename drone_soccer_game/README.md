@@ -1,4 +1,4 @@
-AI造飛手：用AI打造無人機足球遊戲與PS2手把控制<br>
+研習資料： AI造飛手：用AI打造無人機足球遊戲與PS2手把控制<br>
 https://drive.google.com/drive/folders/1S5O66Penidrbg3nxL9SMpXGB2Ju5W-s_?usp=drive_link
 
 單人玩家版：攻擊機<br>
@@ -37,8 +37,8 @@ https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_racing_1.html
 單人玩家競速版 (立體迷宮)<br>
 https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_racing_2.html
 
-單人玩家競速版 (九宮格)
+單人玩家競速版 (九宮格)<br>
 https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_racing_3.html
 
-單人玩家競速版 (單軌隧道)
+單人玩家競速版 (單軌隧道)<br>
 https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_racing_4.html
