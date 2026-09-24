@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>無人機足球競技場 — 防守機</title>
+    <script>
+        // 觸控裝置偵測（手機、平板；iPadOS 預設以桌面版 UA 開啟，需靠 maxTouchPoints 判斷）
+        // 主要指標為手指（pointer: coarse）或無滑鼠懸停能力時視為觸控裝置；觸控筆電以滑鼠為主則維持鍵盤模式
+        (function () {
+            var mq = function (q) { return window.matchMedia && window.matchMedia(q).matches; };
+            var isIPadDesktopUA = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+            var isTouch = mq('(pointer: coarse)') || (mq('(hover: none)') && navigator.maxTouchPoints > 0) || isIPadDesktopUA ||
+                /Android|iPhone|iPad|iPod|Mobile|Tablet/i.test(navigator.userAgent);
+            if (isTouch) document.documentElement.classList.add('touch-device');
+        })();
+    </script>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -12,6 +23,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
     <style>
+        /* 觸控裝置（手機、平板，含 iPad 桌面版模式）：隱藏鍵盤說明、顯示觸控說明（由 <html>.touch-device 判斷，不單靠螢幕寬度） */
+        html.touch-device .kb-only { display: none !important; }
+        html:not(.touch-device) .touch-only { display: none !important; }
+        html.touch-device #touchControls { display: flex !important; }
+        /* 平板（觸控且寬度 ≥768px）：搖桿放大、分置左右兩側，並抬高到遙測面板上方避免重疊 */
+        @media (min-width: 768px) {
+            html.touch-device #touchControls {
+                max-width: none;
+                padding-left: 2.5rem;
+                padding-right: 2.5rem;
+                bottom: calc(env(safe-area-inset-bottom, 0px) + 170px) !important;
+            }
+            html.touch-device #touchControls .joystick-zone { width: 8rem; height: 8rem; }
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             overflow: hidden;
@@ -78,7 +104,16 @@
             <p class="text-xs md:text-sm text-slate-300 mb-5 leading-relaxed text-left">
                 你將操控隊上其中一台<span class="text-yellow-300 font-bold">防守無人機（機身有金色警示環標記）</span>，與 AI 隊友一同鎮守己方球門；<span class="text-rose-300 font-bold">AI 攻擊機</span>會主動來襲，試圖穿越你方球門得分，請設法將它攔截、彈開！
             </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-left text-xs md:text-sm text-slate-300">
+            <!-- 觸控裝置（手機／平板）專用操作說明 -->
+            <div class="touch-only mb-6 p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-left text-xs md:text-sm text-slate-300">
+                <p class="font-bold text-emerald-400 mb-2"><i class="fa-solid fa-gamepad mr-2"></i>觸控搖桿操控</p>
+                <ul class="space-y-1 text-slate-400 tech-font">
+                    <li><span class="text-emerald-400 font-bold">左搖桿</span>：上推上升／下拉下降，左右推偏航旋轉</li>
+                    <li><span class="text-cyan-400 font-bold">右搖桿</span>：前後左右移動</li>
+                    <li>上方按鈕可一鍵起飛／降落；你離地後 AI 隊友與攻擊機會自動一起起飛</li>
+                </ul>
+            </div>
+            <div class="kb-only grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-left text-xs md:text-sm text-slate-300">
                 <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800">
                     <p class="font-bold text-emerald-400 mb-2"><i class="fa-solid fa-keyboard mr-2"></i>鍵盤操控</p>
                     <ul class="space-y-1 text-slate-400 tech-font">
@@ -139,7 +174,7 @@
                     <p class="text-[10px] text-slate-500 mt-1 tech-font">防守藍方球門</p>
                 </div>
             </div>
-            <p class="text-[11px] text-slate-500 mt-2 tech-font">或按任意鍵以紅隊開始遊戲（按任意鍵 = 紅隊）</p>
+            <p class="kb-only text-[11px] text-slate-500 mt-2 tech-font">或按任意鍵以紅隊開始遊戲（按任意鍵 = 紅隊）</p>
         </div>
     </div>
 
@@ -181,11 +216,11 @@
             <div class="flex gap-2">
                 <button id="btnTakeoff" class="px-3.5 h-10 rounded-xl glassmorphism text-emerald-400 hover:text-emerald-300 hover:border-emerald-400/50 flex items-center justify-center gap-1.5 transition-all cursor-pointer pointer-events-auto border border-emerald-500/20">
                     <i class="fa-solid fa-plane-departure text-xs"></i>
-                    <span class="text-[10px] font-semibold tech-font">起飛 (T)</span>
+                    <span class="text-[10px] font-semibold tech-font">起飛<span class="kb-only"> (T)</span></span>
                 </button>
                 <button id="btnLand" class="px-3.5 h-10 rounded-xl glassmorphism text-rose-400 hover:text-rose-300 hover:border-rose-400/50 flex items-center justify-center gap-1.5 transition-all cursor-pointer pointer-events-auto border border-rose-500/20">
                     <i class="fa-solid fa-plane-arrival text-xs"></i>
-                    <span class="text-[10px] font-semibold tech-font">降落 (L)</span>
+                    <span class="text-[10px] font-semibold tech-font">降落<span class="kb-only"> (L)</span></span>
                 </button>
                 <button id="btnSound" class="w-10 h-10 rounded-xl glassmorphism text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
                     <i class="fa-solid fa-volume-high text-sm"></i>
@@ -276,7 +311,7 @@
             </div>
 
             <!-- 操作提示面板 (右下) -->
-            <div class="hidden lg:flex glassmorphism rounded-2xl p-4 text-slate-300 w-[300px] border border-slate-800/40 text-[11px] flex flex-col gap-1.5">
+            <div class="kb-only hidden lg:flex glassmorphism rounded-2xl p-4 text-slate-300 w-[300px] border border-slate-800/40 text-[11px] flex flex-col gap-1.5">
                 <span class="text-[10px] text-emerald-400 uppercase font-semibold tracking-wider">飛行操控指南</span>
                 <div class="flex justify-between">
                     <span>一鍵起飛 / 降落：</span>
@@ -3595,6 +3630,9 @@
             const delta = Math.min(clock.getDelta(), 0.1); 
 
             updateDronePhysics(delta);       // 玩家防守機物理
+            // 修正：手機/平板以左搖桿（或 W／Space）手動爬升不會經過 triggerTakeoff()，AI 會停在地面；
+            // 偵測到玩家已實際離地時，讓仍在地面的 AI 隊友與攻擊機同步起飛
+            if (drone.mesh && drone.position.y > 0.3 && drone.autoFlightState !== 'landing') liftTeammatesAndAttacker();
             updateAttacker(delta);           // AI 攻擊機移動邏輯
             updateAIDrone(delta);            // AI 隊友守門機（依攻擊機位置攔截）
             checkAttackerCenterLineCrossing();

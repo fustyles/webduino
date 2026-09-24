@@ -4,10 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>無人機足球雙人對戰 — 1台攻擊機 vs 1台防守機</title>
+    <script>
+        // 觸控裝置偵測（手機、平板；iPadOS 預設以桌面版 UA 開啟，需靠 maxTouchPoints 判斷）
+        // 主要指標為手指（pointer: coarse）或無滑鼠懸停能力時視為觸控裝置；觸控筆電以滑鼠為主則維持鍵盤模式
+        (function () {
+            var mq = function (q) { return window.matchMedia && window.matchMedia(q).matches; };
+            var isIPadDesktopUA = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+            var isTouch = mq('(pointer: coarse)') || (mq('(hover: none)') && navigator.maxTouchPoints > 0) || isIPadDesktopUA ||
+                /Android|iPhone|iPad|iPod|Mobile|Tablet/i.test(navigator.userAgent);
+            if (isTouch) document.documentElement.classList.add('touch-device');
+        })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
+        /* 觸控裝置（手機、平板，含 iPad 桌面版模式）：隱藏鍵盤說明、顯示觸控說明（由 <html>.touch-device 判斷，不單靠螢幕寬度） */
+        html.touch-device .kb-only { display: none !important; }
+        html:not(.touch-device) .touch-only { display: none !important; }
+        html.touch-device [id$="-touchControls"] { display: flex !important; }
+
         html, body { font-family:'Inter',sans-serif; overflow:hidden; user-select:none; background:#000; width:100vw; height:100vh; margin:0; }
         .tech-font { font-family:'Share Tech Mono',monospace; }
         .glassmorphism { background:rgba(15,23,42,0.65); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.08); }
@@ -48,7 +64,16 @@
                     <div class="text-left text-slate-300 text-xs md:text-sm mb-4">
                         你操控<span class='text-rose-300 font-bold'>紅隊攻擊機</span>，目標是穿越場地另一端的<span class='text-blue-300 font-bold'>藍方球門</span>得分。小心對面的防守機攔截！
                     </div>
-                    <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-left mb-4">
+                    <!-- 觸控裝置（手機／平板）專用操作說明 -->
+                    <div class="touch-only p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-left mb-4">
+                        <p class="font-bold text-emerald-400 mb-2 text-xs"><i class="fa-solid fa-gamepad mr-2"></i>觸控搖桿操控</p>
+                        <ul class="space-y-1 text-slate-400 tech-font text-[11px]">
+                            <li><span class="text-emerald-400 font-bold">左搖桿</span>：上推上升／下拉下降，左右推偏航旋轉</li>
+                            <li><span class="text-cyan-400 font-bold">右搖桿</span>：前後左右移動</li>
+                            <li>上方按鈕可全體起飛／降落；玩家離地後 AI 隊友守門機會自動一起起飛</li>
+                        </ul>
+                    </div>
+                    <div class="kb-only p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-left mb-4">
                         <p class="font-bold text-emerald-400 mb-2 text-xs"><i class="fa-solid fa-keyboard mr-2"></i>鍵盤操控</p>
                         <ul class="space-y-1 text-slate-400 tech-font text-[11px]">
                             
@@ -65,7 +90,7 @@
                     <button id="a-btnStart" class="w-full py-3 rounded-xl glass-button border-emerald-500/50 bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 font-bold tracking-widest cursor-pointer">
                         開始比賽
                     </button>
-                    <p class="text-[10px] text-slate-500 mt-2 tech-font">或按任意鍵開始（雙方同時開始）</p>
+                    <p class="kb-only text-[10px] text-slate-500 mt-2 tech-font">或按任意鍵開始（雙方同時開始）</p>
                 </div>
             </div>
 
@@ -188,7 +213,16 @@
                     <div class="text-left text-slate-300 text-xs md:text-sm mb-4">
                         你操控<span class='text-blue-300 font-bold'>藍隊防守機</span>，與一台<span class='text-yellow-300 font-bold'>AI隊友守門機</span>一起鎮守己方球門，合力攔截並彈開來襲的<span class='text-rose-300 font-bold'>紅隊攻擊機</span>，阻止對方得分！
                     </div>
-                    <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-left mb-4">
+                    <!-- 觸控裝置（手機／平板）專用操作說明 -->
+                    <div class="touch-only p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-left mb-4">
+                        <p class="font-bold text-emerald-400 mb-2 text-xs"><i class="fa-solid fa-gamepad mr-2"></i>觸控搖桿操控</p>
+                        <ul class="space-y-1 text-slate-400 tech-font text-[11px]">
+                            <li><span class="text-emerald-400 font-bold">左搖桿</span>：上推上升／下拉下降，左右推偏航旋轉</li>
+                            <li><span class="text-cyan-400 font-bold">右搖桿</span>：前後左右移動</li>
+                            <li>上方按鈕可全體起飛／降落；玩家離地後 AI 隊友守門機會自動一起起飛</li>
+                        </ul>
+                    </div>
+                    <div class="kb-only p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-left mb-4">
                         <p class="font-bold text-emerald-400 mb-2 text-xs"><i class="fa-solid fa-keyboard mr-2"></i>鍵盤操控</p>
                         <ul class="space-y-1 text-slate-400 tech-font text-[11px]">
                             
@@ -204,7 +238,7 @@
                     <button id="d-btnStart" class="w-full py-3 rounded-xl glass-button border-emerald-500/50 bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 font-bold tracking-widest cursor-pointer">
                         開始比賽
                     </button>
-                    <p class="text-[10px] text-slate-500 mt-2 tech-font">或按任意鍵開始（雙方同時開始）</p>
+                    <p class="kb-only text-[10px] text-slate-500 mt-2 tech-font">或按任意鍵開始（雙方同時開始）</p>
                 </div>
             </div>
 
@@ -1850,6 +1884,9 @@ function animate() {
 
     updateDronePhysics(P1, delta);
     updateDronePhysics(P2, delta);
+    // 修正：手機/平板以左搖桿（或鍵盤油門鍵）手動爬升不會經過全體起飛按鈕，AI 機會一直停在地面；
+    // 偵測到任一玩家已實際離地時，讓仍在地面的 AI 機同步起飛
+    if ((P1.position.y > 0.3 && P1.autoFlightState !== 'landing') || (P2.position.y > 0.3 && P2.autoFlightState !== 'landing')) triggerAIDefenderTakeoff();
     updateAIDefender(delta);
     checkCenterLineCrossing();
     checkRingFrameCollision(P1);
