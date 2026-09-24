@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>無人機足球高低環競速</title>
+    <script>
+        // 觸控裝置偵測（手機、平板；iPadOS 預設以桌面版 UA 開啟，需靠 maxTouchPoints 判斷）
+        // 主要指標為手指（pointer: coarse）或無滑鼠懸停能力時視為觸控裝置；觸控筆電以滑鼠為主則維持鍵盤模式
+        (function () {
+            var mq = function (q) { return window.matchMedia && window.matchMedia(q).matches; };
+            var isIPadDesktopUA = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+            var isTouch = mq('(pointer: coarse)') || (mq('(hover: none)') && navigator.maxTouchPoints > 0) || isIPadDesktopUA ||
+                /Android|iPhone|iPad|iPod|Mobile|Tablet/i.test(navigator.userAgent);
+            if (isTouch) document.documentElement.classList.add('touch-device');
+        })();
+    </script>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -12,6 +23,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
     <style>
+        /* 觸控裝置（手機、平板，含 iPad 桌面版模式）：隱藏鍵盤說明、顯示觸控說明（由 <html>.touch-device 判斷，不單靠螢幕寬度） */
+        html.touch-device .kb-only { display: none !important; }
+        html:not(.touch-device) .touch-only { display: none !important; }
+        html.touch-device #touchControls { display: flex !important; }
+        /* 平板（觸控且寬度 ≥768px）：搖桿放大、分置左右兩側，並抬高到遙測面板上方避免重疊 */
+        @media (min-width: 768px) {
+            html.touch-device #touchControls {
+                max-width: none;
+                padding-left: 2.5rem;
+                padding-right: 2.5rem;
+                bottom: calc(env(safe-area-inset-bottom, 0px) + 170px) !important;
+            }
+            html.touch-device #touchControls .joystick-zone { width: 8rem; height: 8rem; }
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             overflow: hidden;
@@ -76,7 +102,16 @@
                 鳳山科技中心 - 法蘭斯
             </h1>
             <div class="grid grid-cols-2 gap-2 sm:gap-4 mb-8 text-left text-[10px] sm:text-xs md:text-sm text-slate-300">
-                <div class="p-2 sm:p-3 bg-slate-900/80 rounded-lg border border-slate-800">
+                <!-- 觸控裝置（手機／平板）專用操作說明 -->
+                <div class="touch-only col-span-2 p-2 sm:p-3 bg-slate-900/80 rounded-lg border border-slate-800">
+                    <p class="font-bold text-emerald-400 mb-2 flex items-center gap-1.5"><i class="fa-solid fa-gamepad"></i>觸控搖桿操控</p>
+                    <ul class="space-y-1 text-slate-400 tech-font">
+                        <li><span class="text-emerald-400 font-bold">左搖桿</span>：上推上升／下拉下降，左右推旋轉</li>
+                        <li><span class="text-cyan-400 font-bold">右搖桿</span>：前後左右移動</li>
+                        <li>上方按鈕可一鍵起飛／降落；從地面起飛（按鈕或搖桿皆可）即開始計時</li>
+                    </ul>
+                </div>
+                <div class="kb-only p-2 sm:p-3 bg-slate-900/80 rounded-lg border border-slate-800">
                     <p class="font-bold text-emerald-400 mb-2 flex items-center gap-1.5"><i class="fa-solid fa-keyboard"></i>飛行控制</p>
                     <ul class="space-y-1 text-slate-400 tech-font">
                         <li><span class="text-emerald-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">W</span> 油門增加</li>
@@ -90,7 +125,7 @@
                         <li><span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">C</span> 切換鏡頭視角</li>
                     </ul>
                 </div>
-                <div class="p-2 sm:p-3 bg-slate-900/80 rounded-lg border border-slate-800 flex flex-col justify-between">
+                <div class="kb-only p-2 sm:p-3 bg-slate-900/80 rounded-lg border border-slate-800 flex flex-col justify-between">
                     <ul class="space-y-1 text-slate-400 tech-font">
                         <li><span class="text-emerald-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">T</span> 一鍵起飛</li>
                         <li><span class="text-rose-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">L</span> 一鍵降落</li>
@@ -149,11 +184,11 @@
             <div class="flex gap-2">
                 <button id="btnTakeoff" class="px-3.5 h-10 rounded-xl glassmorphism text-emerald-400 hover:text-emerald-300 hover:border-emerald-400/50 flex items-center justify-center gap-1.5 transition-all cursor-pointer pointer-events-auto border border-emerald-500/20">
                     <i class="fa-solid fa-plane-departure text-xs"></i>
-                    <span class="text-[10px] font-semibold tech-font">起飛 (T)</span>
+                    <span class="text-[10px] font-semibold tech-font">起飛<span class="kb-only"> (T)</span></span>
                 </button>
                 <button id="btnLand" class="px-3.5 h-10 rounded-xl glassmorphism text-rose-400 hover:text-rose-300 hover:border-rose-400/50 flex items-center justify-center gap-1.5 transition-all cursor-pointer pointer-events-auto border border-rose-500/20">
                     <i class="fa-solid fa-plane-arrival text-xs"></i>
-                    <span class="text-[10px] font-semibold tech-font">降落 (L)</span>
+                    <span class="text-[10px] font-semibold tech-font">降落<span class="kb-only"> (L)</span></span>
                 </button>
                 <button id="btnSound" class="w-10 h-10 rounded-xl glassmorphism text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
                     <i class="fa-solid fa-volume-high text-sm"></i>
@@ -234,7 +269,7 @@
             </div>
 
             <!-- 操作提示面板 (右下) -->
-            <div class="hidden lg:flex glassmorphism rounded-2xl p-4 text-slate-300 w-[300px] border border-slate-800/40 text-[11px] flex flex-col gap-1.5">
+            <div class="kb-only hidden lg:flex glassmorphism rounded-2xl p-4 text-slate-300 w-[300px] border border-slate-800/40 text-[11px] flex flex-col gap-1.5">
                 <span class="text-[10px] text-emerald-400 uppercase font-semibold tracking-wider">飛行操作指南</span>
                 <div class="flex justify-between">
                     <span>一鍵起飛 / 降落：</span>
@@ -1508,35 +1543,57 @@
             });
         }
 
+        // 每次從地面起飛都視為全新一次計時挑戰：計時、罰時、障礙進度、通過順序全部歸零重來
+        // （抽成獨立函式，讓一鍵起飛與搖桿／鍵盤手動起飛共用同一套開賽流程）
+        function startRaceRun() {
+            raceState = 'racing';
+            raceStartTime = performance.now();
+            raceElapsedMs = 0;
+            penaltySeconds = 0;
+            gatesPassed = 0;
+            nextExpectedGateIndex = 0;
+            landedIncompleteNotified = false;
+            currentGates.forEach(ob => {
+                ob.passed = false;
+                ob.prevLz = undefined;
+                ob.mesh.material.color.setHex(ob.color);
+                ob.mesh.material.emissive.setHex(ob.color);
+                resetGateBadge(ob);
+            });
+
+            const finishScreen = document.getElementById('finishScreen');
+            if (finishScreen && !finishScreen.classList.contains('hidden')) {
+                finishScreen.classList.add('hidden');
+                finishScreen.classList.remove('flex');
+            }
+        }
+
+        // 修正：手機/平板以左搖桿（或 W／Space）手動爬升不會經過 triggerTakeoff()，
+        // 原本計時與障礙判定因此不會啟動（raceState 停在 idle），無法進行比賽。
+        // 這裡偵測「從地面實際離地」的瞬間，若不是一鍵起飛觸發的，就同樣開始新一輪計時。
+        let wasOnGround = true;
+        function checkManualTakeoff() {
+            if (drone.position.y < 0.15) {
+                if (drone.autoFlightState !== 'takingoff') wasOnGround = true;
+            } else if (wasOnGround && drone.position.y > 0.2) {
+                wasOnGround = false;
+                if (currentLevelId !== null && drone.autoFlightState !== 'takingoff') {
+                    startRaceRun();
+                    showSystemNotification("計時開始！");
+                }
+            }
+        }
+
         // 一鍵起飛：自動控制 PD 至 1.5 米並懸停
         function triggerTakeoff() {
             if (drone.position.y < 0.15) {
                 drone.targetAltitude = 1.5;
                 drone.autoFlightState = 'takingoff';
+                wasOnGround = false; // 已由一鍵起飛開始計時，避免下方的「手動離地偵測」重複觸發
 
                 if (currentLevelId !== null) {
                     // 每次起飛都視為全新一次計時挑戰：計時、罰時、障礙進度、通過順序全部歸零重來
-                    raceState = 'racing';
-                    raceStartTime = performance.now();
-                    raceElapsedMs = 0;
-                    penaltySeconds = 0;
-                    gatesPassed = 0;
-                    nextExpectedGateIndex = 0;
-                    landedIncompleteNotified = false;
-                    currentGates.forEach(ob => {
-                        ob.passed = false;
-                        ob.prevLz = undefined;
-                        ob.mesh.material.color.setHex(ob.color);
-                        ob.mesh.material.emissive.setHex(ob.color);
-                        resetGateBadge(ob);
-                    });
-
-                    const finishScreen = document.getElementById('finishScreen');
-                    if (finishScreen && !finishScreen.classList.contains('hidden')) {
-                        finishScreen.classList.add('hidden');
-                        finishScreen.classList.remove('flex');
-                    }
-
+                    startRaceRun();
                     showSystemNotification("計時開始！自動駕駛：起飛中...");
                 } else {
                     showSystemNotification("自動駕駛：起飛中... 攀升至 1.5m 定高");
@@ -1957,6 +2014,7 @@
             const delta = Math.min(clock.getDelta(), 0.1); 
 
             updateDronePhysics(delta);
+            checkManualTakeoff();
             updateGateCollisions();
             updateGates();
             checkRaceFinish();
