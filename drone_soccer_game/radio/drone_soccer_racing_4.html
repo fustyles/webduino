@@ -1,0 +1,2903 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>無人機單軌隧道穿越競速</title>
+    <script>
+        // 觸控裝置偵測（手機、平板；iPadOS 預設以桌面版 UA 開啟，需靠 maxTouchPoints 判斷）
+        // 主要指標為手指（pointer: coarse）或無滑鼠懸停能力時視為觸控裝置；觸控筆電以滑鼠為主則維持鍵盤模式
+        (function () {
+            var mq = function (q) { return window.matchMedia && window.matchMedia(q).matches; };
+            var isIPadDesktopUA = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+            var isTouch = mq('(pointer: coarse)') || (mq('(hover: none)') && navigator.maxTouchPoints > 0) || isIPadDesktopUA ||
+                /Android|iPhone|iPad|iPod|Mobile|Tablet/i.test(navigator.userAgent);
+            if (isTouch) document.documentElement.classList.add('touch-device');
+        })();
+    </script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        /* 觸控裝置（手機、平板，含 iPad 桌面版模式）：隱藏鍵盤說明、顯示觸控說明（由 <html>.touch-device 判斷，不單靠螢幕寬度） */
+        html.touch-device .kb-only { display: none !important; }
+        html:not(.touch-device) .touch-only { display: none !important; }
+        html.touch-device #touchControls { display: flex !important; }
+        /* 平板（觸控且寬度 ≥768px）：搖桿放大、分置左右兩側，並抬高到遙測面板上方避免重疊 */
+        @media (min-width: 768px) {
+            html.touch-device #touchControls {
+                max-width: none;
+                padding-left: 2.5rem;
+                padding-right: 2.5rem;
+                bottom: calc(env(safe-area-inset-bottom, 0px) + 170px) !important;
+            }
+            html.touch-device #touchControls .joystick-zone { width: 8rem; height: 8rem; }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            user-select: none;
+            background-color: #020617;
+        }
+        .tech-font { font-family: 'Share Tech Mono', monospace; }
+        .glassmorphism {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-button {
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.35);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-button:hover {
+            background: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+            transform: translateY(-1px);
+        }
+        ::-webkit-scrollbar { display: none; }
+        .joystick-zone { touch-action: none; }
+        #touchControls {
+            bottom: clamp(28px, calc(env(safe-area-inset-bottom, 0px) + 6vh + 14px), 120px);
+        }
+        @media (max-height: 480px) {
+            #touchControls { bottom: clamp(10px, calc(env(safe-area-inset-bottom, 0px) + 2vh + 8px), 60px); }
+            #touchControls .joystick-zone { width: 4.5rem; height: 4.5rem; }
+        }
+        .level-btn {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 0.9rem;
+            padding: 0.85rem 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .level-btn:hover {
+            background: rgba(30, 41, 59, 0.95);
+            transform: translateY(-2px);
+        }
+            /* ===== 搖桿設定（雙搖桿監看器）面板 ===== */
+        #padSetup { z-index: 60; }
+        #padSetup [hidden] { display: none !important; } /* Tailwind 的 flex 會蓋過 hidden，這裡強制隱藏 */
+        .ps-card { background: rgba(15,23,42,.92); border: 1px solid rgba(34,211,238,.25); }
+        .ps-btn { font-size: .8rem; padding: .4rem .8rem; border-radius: .6rem; border: 1px solid rgba(148,163,184,.3);
+                  background: rgba(30,41,59,.7); color: #e2e8f0; cursor: pointer; transition: border-color .2s, color .2s; }
+        .ps-btn:hover { border-color: #22d3ee; color: #67e8f9; }
+        .ps-btn:focus-visible, .ps-sel:focus-visible { outline: 2px solid #22d3ee; outline-offset: 2px; }
+        .ps-btn.ps-primary { background: #10b981; border-color: #10b981; color: #022c22; font-weight: 700; }
+        .ps-btn.ps-primary:hover { background: #34d399; color: #022c22; }
+        .ps-btn.ps-has { border-color: #34d399; color: #6ee7b7; }
+        .ps-sel { font-family: 'Share Tech Mono', monospace; background: #0b1220; color: #e2e8f0;
+                  border: 1px solid #334155; border-radius: .35rem; padding: 2px 6px; min-width: 0; }
+        .ps-map { display: grid; grid-template-columns: auto 1fr auto; gap: 6px 8px; align-items: center; font-size: .75rem; color: #94a3b8; }
+        .ps-inv { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+        .ps-map input[type=checkbox], #psDz { accent-color: #22d3ee; }
+        .ps-canvas { width: 100%; max-width: 220px; aspect-ratio: 1; display: block; margin: 0 auto; border-radius: .5rem; }
+        .ps-ax { display: grid; grid-template-columns: 3em 1fr 4.5em; gap: 8px; align-items: center;
+                 font-family: 'Share Tech Mono', monospace; font-size: .75rem; color: #94a3b8; font-variant-numeric: tabular-nums; }
+        .ps-ax .ps-v { text-align: right; color: #e2e8f0; }
+        .ps-bar { position: relative; height: 8px; background: #1e293b; border-radius: 3px; overflow: hidden; }
+        .ps-bar::after { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #475569; }
+        .ps-fill { position: absolute; top: 0; bottom: 0; background: #22d3ee; }
+        .ps-pbtn { font-family: 'Share Tech Mono', monospace; font-size: .7rem; min-width: 2.2em; text-align: center;
+                   padding: 2px 5px; border: 1px solid #334155; border-radius: 4px; color: #64748b; }
+        .ps-pbtn.on { background: #facc15; border-color: #facc15; color: #1e293b; }
+        /* 飛行模式切換（定高／手動油門） */
+        .ps-seg { display: inline-flex; border: 1px solid #334155; border-radius: .6rem; overflow: hidden; }
+        .ps-seg button { font-size: .8rem; padding: .4rem .8rem; color: #94a3b8; background: transparent; cursor: pointer; }
+        .ps-seg button + button { border-left: 1px solid #334155; }
+        .ps-seg button[aria-pressed="true"] { background: rgba(34,211,238,.18); color: #67e8f9; font-weight: 700; }
+        .ps-seg button:focus-visible { outline: 2px solid #22d3ee; outline-offset: -2px; }
+        /* 校正範圍表 */
+        .ps-calrow { display: grid; gap: 8px; padding: 10px 0; border-top: 1px solid rgba(51,65,85,.6); }
+        .ps-calrow:first-child { border-top: 0; padding-top: 0; }
+        .ps-calhead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; font-size: .8rem; }
+        .ps-calhead b { color: #e2e8f0; }
+        .ps-calhead .ps-axl { color: #64748b; font-size: .72rem; }
+        .ps-calhead .ps-cur { margin-left: auto; font-family: 'Share Tech Mono', monospace; color: #facc15; font-variant-numeric: tabular-nums; }
+        .ps-calhead .ps-chip { font-size: .65rem; padding: 1px 6px; border-radius: 999px; border: 1px solid #475569; color: #94a3b8; }
+        .ps-calhead .ps-chip.ok { border-color: rgba(52,211,153,.6); color: #6ee7b7; }
+        .ps-calbar { position: relative; height: 14px; background: #1e293b; border-radius: 4px; }
+        .ps-calbar .rng { position: absolute; top: 0; bottom: 0; background: rgba(34,211,238,.18); border-left: 2px solid #38bdf8; border-right: 2px solid #f472b6; }
+        .ps-calbar .ctr { position: absolute; top: -2px; bottom: -2px; width: 2px; margin-left: -1px; background: #34d399; }
+        .ps-calbar .cur { position: absolute; top: 2px; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: #facc15; box-shadow: 0 0 0 2px #0b1220; }
+        .ps-calfields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+        .ps-calf { display: grid; gap: 4px; font-size: .7rem; color: #94a3b8; min-width: 0; }
+        .ps-calf .lbl-min { color: #7dd3fc; } .ps-calf .lbl-ctr { color: #6ee7b7; } .ps-calf .lbl-max { color: #f9a8d4; }
+        .ps-calf input { width: 100%; min-width: 0; font-family: 'Share Tech Mono', monospace; font-size: .8rem; background: #0b1220;
+                         color: #e2e8f0; border: 1px solid #334155; border-radius: .35rem; padding: 3px 6px; }
+        .ps-calf input.bad { border-color: #f43f5e; }
+        .ps-calf input:focus-visible { outline: 2px solid #22d3ee; outline-offset: 1px; }
+        .ps-calf button { font-size: .68rem; padding: 2px 6px; border-radius: .35rem; border: 1px solid #334155; color: #cbd5e1;
+                          background: rgba(30,41,59,.7); cursor: pointer; white-space: nowrap; }
+        .ps-calf button:hover { border-color: #22d3ee; color: #67e8f9; }
+        .ps-calerr { font-size: .7rem; color: #fda4af; }
+        .ps-calreset { font-size: .68rem; padding: 1px 8px; border-radius: .35rem; border: 1px solid #334155; color: #94a3b8; background: transparent; cursor: pointer; }
+        .ps-calreset:hover { border-color: #f43f5e; color: #fda4af; }
+    </style>
+</head>
+<body class="relative w-screen h-screen">
+
+    <!-- 開場與關卡選擇畫面 -->
+    <div id="startScreen" style="display:none" class="absolute inset-0 z-50 flex flex-col items-center justify-center bg-slate-950/95 transition-all duration-700">
+        <div class="max-w-2xl px-3 sm:px-6 py-6 sm:py-8 mx-3 sm:mx-4 text-center glassmorphism rounded-2xl border border-emerald-500/30 shadow-[0_0_50px_rgba(16,185,129,0.15)] max-h-[92vh] overflow-y-auto">
+            <h1 class="text-2xl md:text-4xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-emerald-400 to-cyan-500 mb-1">
+                無人機單軌隧道穿越競速
+            </h1>
+            <h2 class="text-1xl md:text-1xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-500 to-blue-500 mb-2">
+                鳳山科技中心 - 法蘭斯
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-400 mb-5">晶格邊長固定100cm・場地隨關卡由3m遞增至8m立方・單一固定路徑水管隧道・僅保留通道晶格・穿越計時模擬賽</p>
+
+            <div class="grid grid-cols-3 gap-2 sm:gap-3 mb-5">
+                <button id="levelBtn1" class="level-btn border-emerald-500/40 hover:border-emerald-400">
+                    <span class="block text-lg font-bold text-emerald-300">關卡 1</span>
+                    <span class="block text-[10px] text-slate-400 mt-1">3×3×3 網格</span>
+                    <span class="block text-[9px] text-slate-500">邊長100cm・單一路徑</span>
+                </button>
+                <button id="levelBtn2" class="level-btn border-cyan-500/40 hover:border-cyan-400">
+                    <span class="block text-lg font-bold text-cyan-300">關卡 2</span>
+                    <span class="block text-[10px] text-slate-400 mt-1">4×4×4 網格</span>
+                    <span class="block text-[9px] text-slate-500">邊長100cm・單一路徑</span>
+                </button>
+                <button id="levelBtn3" class="level-btn border-yellow-500/40 hover:border-yellow-400">
+                    <span class="block text-lg font-bold text-yellow-300">關卡 3</span>
+                    <span class="block text-[10px] text-slate-400 mt-1">5×5×5 網格</span>
+                    <span class="block text-[9px] text-slate-500">邊長100cm・單一路徑</span>
+                </button>
+                <button id="levelBtn4" class="level-btn border-orange-500/40 hover:border-orange-400">
+                    <span class="block text-lg font-bold text-orange-300">關卡 4</span>
+                    <span class="block text-[10px] text-slate-400 mt-1">6×6×6 網格</span>
+                    <span class="block text-[9px] text-slate-500">邊長100cm・單一路徑</span>
+                </button>
+                <button id="levelBtn5" class="level-btn border-rose-500/40 hover:border-rose-400">
+                    <span class="block text-lg font-bold text-rose-300">關卡 5</span>
+                    <span class="block text-[10px] text-slate-400 mt-1">7×7×7 網格</span>
+                    <span class="block text-[9px] text-slate-500">邊長100cm・單一路徑</span>
+                </button>
+                <button id="levelBtn6" class="level-btn border-fuchsia-500/40 hover:border-fuchsia-400">
+                    <span class="block text-lg font-bold text-fuchsia-300">關卡 6</span>
+                    <span class="block text-[10px] text-slate-400 mt-1">8×8×8 網格</span>
+                    <span class="block text-[9px] text-slate-500">邊長100cm・單一路徑</span>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 sm:gap-4 mb-4 text-left text-[10px] sm:text-xs md:text-sm text-slate-300">
+                <!-- 觸控裝置（手機／平板）專用操作說明 -->
+                <div class="touch-only p-2 sm:p-3 bg-slate-900/80 rounded-lg border border-slate-800">
+                    <p class="font-bold text-emerald-400 mb-2 flex items-center gap-1.5"><i class="fa-solid fa-gamepad"></i>觸控搖桿操控</p>
+                    <ul class="space-y-1 text-slate-400 tech-font">
+                        <li><span class="text-emerald-400 font-bold">左搖桿</span>：上推上升／下拉下降，左右推旋轉</li>
+                        <li><span class="text-cyan-400 font-bold">右搖桿</span>：前後左右移動</li>
+                        <li>上方按鈕可一鍵起飛／降落</li>
+                    </ul>
+                </div>
+                <div class="kb-only p-2 sm:p-3 bg-slate-900/80 rounded-lg border border-slate-800">
+                    <p class="font-bold text-emerald-400 mb-2 flex items-center gap-1.5"><i class="fa-solid fa-gamepad"></i>雙搖桿手把操控</p>
+                    <ul class="space-y-1 text-slate-400 tech-font">
+                        <li><span class="text-emerald-400 font-bold">左搖桿 上／下</span>：上升／下降，回中即定高</li>
+                        <li><span class="text-emerald-400 font-bold">左搖桿 左／右</span>：偏航旋轉</li>
+                        <li><span class="text-cyan-400 font-bold">右搖桿 上／下</span>：前進／後退</li>
+                        <li><span class="text-cyan-400 font-bold">右搖桿 左／右</span>：左右側滾</li>
+                        <li>推桿幅度越大，動作越快</li>
+                    </ul>
+                </div>
+                <div class="kb-only p-2 sm:p-3 bg-slate-900/80 rounded-lg border border-slate-800 flex flex-col justify-between">
+                    <ul class="space-y-1 text-slate-400 tech-font">
+                        <li>起飛、降落、鏡頭、重設、靜音：點畫面右上角按鈕</li>
+                        <li>「手把」按鈕：重新開啟搖桿設定與校正</li>
+                        <li>「模式」按鈕：切換定高／手動油門模式</li>
+                        <li>起飛後油門先推到中間，才會接手高度控制</li>
+                    </ul>
+                </div>
+                <div class="p-2 sm:p-3 bg-slate-900/80 rounded-lg border border-slate-800 flex flex-col justify-between">
+                    <p class="font-bold text-orange-400 mb-2 flex items-center gap-1.5"><i class="fa-solid fa-route"></i>任務規則</p>
+                    <ul class="space-y-1 text-slate-400 tech-font text-[10px] sm:text-[11px]">
+                        <li>從 <span class="text-emerald-400 font-bold">綠色起降圈</span> 起飛即開始計時</li>
+                        <li>場內只保留 <span class="text-cyan-400 font-bold">唯一一條固定通道</span> 所需的晶格，其餘全數移除</li>
+                        <li>需從 <span class="text-emerald-400 font-bold">入口 IN</span>（隧道前方右下角）穿入</li>
+                        <li>沿隧道逐格穿越，直到對角 <span class="text-cyan-400 font-bold">出口 OUT</span>（後方左上角）穿出</li>
+                        <li>完全 <span class="text-rose-400 font-bold">穿越出口</span> 即完成計時，無需返航降落</li>
+                        <li>半透明護網會造成碰撞彈開，請對準通道中心飛行</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="text-[11px] text-slate-500 tech-font">點選上方關卡按鈕開始飛行任務</p>
+        </div>
+    </div>
+
+    <!-- 結束畫面：完成任務結果 -->
+    <div id="endScreen" class="absolute inset-0 z-[60] hidden flex-col items-center justify-center bg-slate-950/92 transition-all duration-500">
+        <div class="max-w-md w-full mx-4 px-6 sm:px-10 py-8 text-center glassmorphism rounded-2xl border border-emerald-500/40 shadow-[0_0_60px_rgba(16,185,129,0.25)]">
+            <div class="text-5xl mb-2">🏁</div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 mb-1">
+                任務完成！
+            </h2>
+            <p id="endLevelVal" class="text-xs text-slate-400 mb-5 tech-font">關卡：-</p>
+
+            <div class="bg-slate-900/80 rounded-xl border border-emerald-500/20 py-4 mb-2">
+                <p class="text-[10px] text-slate-400 uppercase tracking-widest mb-1">完成時間</p>
+                <p id="endTimeVal" class="tech-font text-4xl sm:text-5xl font-extrabold text-emerald-300">00:00:00</p>
+            </div>
+            <p id="endBestVal" class="text-xs text-yellow-300 tech-font mb-6">最佳成績：--:--:--</p>
+
+            <div class="flex flex-col sm:flex-row gap-3">
+                <button id="btnPlayAgain" class="flex-1 h-11 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/50 text-emerald-300 font-bold flex items-center justify-center gap-2 transition-all">
+                    <i class="fa-solid fa-rotate-right"></i> 再玩一次
+                </button>
+                <button id="btnPlayAgainLevel" class="flex-1 h-11 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-600/50 text-slate-300 font-bold flex items-center justify-center gap-2 transition-all">
+                    <i class="fa-solid fa-layer-group"></i> 更換關卡
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 遊戲主場景與 HUD -->
+    <div id="gameUI" class="absolute inset-0 z-10 pointer-events-none flex flex-col justify-between p-4 md:p-6 select-none">
+
+        <!-- 頂部資訊條 -->
+        <header class="w-full flex justify-between items-start pointer-events-auto">
+            <!-- 左上角：任務資訊面板 -->
+            <div class="glassmorphism rounded-2xl p-3 text-white w-[190px] sm:w-[230px] border border-slate-800/40">
+                <div class="flex items-center justify-between mb-2 gap-2">
+                    <span class="text-[10px] text-emerald-400 uppercase font-semibold tracking-wider">任務資訊</span>
+                    <span id="missionStatusVal" class="text-[10px] bg-slate-500/10 text-slate-400 border border-slate-500/30 px-2 py-0.5 rounded-full tech-font whitespace-nowrap">待命中</span>
+                </div>
+                <div class="grid grid-cols-2 gap-y-1 text-[11px] text-slate-300">
+                    <span class="text-slate-500">關卡</span><span id="missionLevelVal" class="text-right tech-font">-</span>
+                    <span class="text-slate-500">計時</span><span id="missionTimerVal" class="text-right tech-font text-cyan-300 font-bold">00:00.00</span>
+                    <span class="text-slate-500">最佳</span><span id="missionBestVal" class="text-right tech-font text-yellow-300">--:--.--</span>
+                </div>
+                <div class="flex flex-col gap-1 mt-2 text-[10px] text-slate-300">
+                    <span id="missionEnterVal"><i class="fa-regular fa-circle text-slate-500"></i> 尚未穿入</span>
+                    <span id="missionExitVal"><i class="fa-regular fa-circle text-slate-500"></i> 尚未穿出</span>
+                </div>
+            </div>
+
+            <!-- 中間頂部：大字計時器 + 羅盤方位角 -->
+            <div class="flex flex-col items-center gap-2">
+                <div class="flex flex-col items-center glassmorphism text-white px-5 sm:px-7 py-2 rounded-xl border border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
+                    <span class="text-[9px] text-cyan-400 tracking-widest uppercase mb-0.5 flex items-center gap-1"><i class="fa-solid fa-stopwatch"></i> 計時</span>
+                    <span id="bigTimerVal" class="tech-font text-2xl sm:text-3xl font-bold text-cyan-300 tracking-wider">00:00:00</span>
+                </div>
+                <div class="hidden md:flex flex-col items-center glassmorphism text-white px-6 py-2 rounded-xl border border-slate-700/30">
+                    <span class="text-[9px] text-slate-400 tracking-widest uppercase mb-1">航向</span>
+                    <div class="flex items-center gap-1.5 tech-font text-lg font-bold">
+                        <span id="compassVal" class="text-emerald-300">000°</span>
+                        <span id="compassDir" class="text-xs text-slate-400">(N)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右上角：系統快捷控制 -->
+            <div class="flex flex-wrap justify-end gap-2 max-w-[220px] sm:max-w-none">
+                <button id="btnPad" title="開啟搖桿設定與校正" class="px-3.5 h-10 rounded-xl glassmorphism text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
+                    <span id="padHudDot" class="w-2 h-2 rounded-full bg-slate-500"></span>
+                    <i class="fa-solid fa-gamepad text-sm"></i>
+                    <span class="text-xs font-semibold tech-font">手把</span>
+                </button>
+                <button id="btnFlightMode" title="切換飛行模式：定高／手動油門" class="px-3.5 h-10 rounded-xl glassmorphism text-cyan-300 hover:text-cyan-200 flex items-center justify-center gap-2 transition-all cursor-pointer pointer-events-auto border border-cyan-500/20">
+                    <i class="fa-solid fa-sliders text-sm"></i>
+                    <span id="flightModeBtnText" class="text-xs font-semibold tech-font">定高</span>
+                </button>
+                <button id="btnTakeoff" class="px-3.5 h-10 rounded-xl glassmorphism text-emerald-400 hover:text-emerald-300 hover:border-emerald-400/50 flex items-center justify-center gap-1.5 transition-all cursor-pointer pointer-events-auto border border-emerald-500/20">
+                    <i class="fa-solid fa-plane-departure text-xs"></i>
+                    <span class="text-[10px] font-semibold tech-font">起飛</span>
+                </button>
+                <button id="btnLand" class="px-3.5 h-10 rounded-xl glassmorphism text-rose-400 hover:text-rose-300 hover:border-rose-400/50 flex items-center justify-center gap-1.5 transition-all cursor-pointer pointer-events-auto border border-rose-500/20">
+                    <i class="fa-solid fa-plane-arrival text-xs"></i>
+                    <span class="text-[10px] font-semibold tech-font">降落</span>
+                </button>
+                <button id="btnLevel" class="w-10 h-10 rounded-xl glassmorphism text-orange-300 hover:text-orange-200 flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-orange-500/20">
+                    <i class="fa-solid fa-layer-group text-sm"></i>
+                </button>
+                <button id="btnSound" class="w-10 h-10 rounded-xl glassmorphism text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
+                    <i class="fa-solid fa-volume-high text-sm"></i>
+                </button>
+                <button id="btnCam" class="px-3.5 h-10 rounded-xl glassmorphism text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
+                    <i class="fa-solid fa-camera text-sm"></i>
+                    <span id="camText" class="text-xs font-semibold tech-font">跟隨</span>
+                </button>
+                <button id="btnReset" class="w-10 h-10 rounded-xl glassmorphism text-slate-300 hover:text-rose-400 flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
+                    <i class="fa-solid fa-arrows-rotate text-sm"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 中間右側：簡易姿態儀 -->
+        <div class="absolute right-4 top-24 pointer-events-auto hidden sm:flex flex-col gap-3">
+            <div class="glassmorphism p-3 rounded-xl text-white w-48 shadow-md border border-slate-800/30">
+                <h3 class="text-[10px] text-emerald-300 uppercase font-semibold tracking-wider mb-2">姿態儀</h3>
+                <div class="relative w-full h-24 bg-slate-900/80 rounded-lg overflow-hidden border border-slate-800/50 flex items-center justify-center">
+                    <div id="horizonLine" class="absolute w-[200%] h-[200%] bg-gradient-to-b from-indigo-950/50 to-emerald-950/50 border-t-2 border-emerald-400 transition-all duration-100 ease-out" style="transform: rotate(0deg) translateY(0px);"></div>
+                    <div class="absolute w-6 h-0.5 bg-yellow-400"></div>
+                    <div class="absolute w-2 h-2 rounded-full bg-yellow-400"></div>
+                    <div class="absolute left-1/2 top-2 h-2 w-0.5 bg-white/40 -translate-x-1/2"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-2 mt-2 text-center text-[10px] text-slate-400 tech-font">
+                    <div>俯仰: <span id="pitchAngle" class="text-white">0°</span></div>
+                    <div>翻滾: <span id="rollAngle" class="text-white">0°</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部大資訊面板 -->
+        <footer class="w-full flex flex-col md:flex-row gap-4 items-end justify-between pointer-events-auto">
+            <!-- 飛行參數玻璃面板 (左下) -->
+            <div class="glassmorphism rounded-2xl p-4 text-white w-full md:w-auto md:min-w-[400px] shadow-2xl flex flex-col gap-3 border border-slate-800/40">
+                <div class="flex items-center justify-between border-b border-slate-800/60 pb-2">
+                    <span class="text-[11px] text-emerald-400 tracking-wider font-semibold uppercase flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping"></span> 遙測狀態
+                    </span>
+                    <span id="flightMode" class="text-[10px] bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 px-2 py-0.5 rounded-full tech-font">氣壓定高中</span>
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="flex flex-col">
+                        <span class="text-[10px] text-slate-400 uppercase">速度</span>
+                        <div class="flex items-baseline gap-1 mt-1">
+                            <span id="telemetrySpeed" class="text-2xl font-bold tech-font text-emerald-300">0.0</span>
+                            <span class="text-[10px] text-slate-500">m/s</span>
+                        </div>
+                        <div class="w-full bg-slate-900 h-1 rounded-full mt-1.5 overflow-hidden">
+                            <div id="speedBar" class="bg-emerald-400 h-full w-0 transition-all duration-200"></div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-[10px] text-slate-400 uppercase">高度</span>
+                        <div class="flex items-baseline gap-1 mt-1">
+                            <span id="telemetryAlt" class="text-2xl font-bold tech-font text-cyan-300">0.10</span>
+                            <span class="text-[10px] text-slate-500">m</span>
+                        </div>
+                        <div class="w-full bg-slate-900 h-1 rounded-full mt-1.5 overflow-hidden">
+                            <div id="altBar" class="bg-cyan-400 h-full w-[10%] transition-all duration-200"></div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-[10px] text-slate-400 uppercase">油門</span>
+                        <div class="flex items-baseline gap-1 mt-1">
+                            <span id="telemetryThrottle" class="text-2xl font-bold tech-font text-yellow-300">0%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 h-1 rounded-full mt-1.5 overflow-hidden">
+                            <div id="throttleBar" class="bg-yellow-400 h-full w-[0%] transition-all duration-200"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 操作提示面板 (右下) -->
+            <div class="kb-only hidden lg:flex glassmorphism rounded-2xl p-4 text-slate-300 w-[300px] border border-slate-800/40 text-[11px] flex flex-col gap-1.5">
+                <span class="text-[10px] text-emerald-400 uppercase font-semibold tracking-wider">手把操控指南</span>
+                <div class="flex justify-between"><span>升降（推越多越快）：</span><span class="tech-font text-emerald-400">左搖桿 上／下</span></div>
+                <div class="flex justify-between"><span>偏航旋轉：</span><span class="tech-font text-emerald-400">左搖桿 左／右</span></div>
+                <div class="flex justify-between"><span>前進／後退：</span><span class="tech-font text-cyan-400">右搖桿 上／下</span></div>
+                <div class="flex justify-between"><span>側滾左／右：</span><span class="tech-font text-cyan-400">右搖桿 左／右</span></div>
+                <div class="flex justify-between"><span>起飛／降落／鏡頭／重設：</span><span class="tech-font text-slate-300">右上角按鈕</span></div>
+                <div class="flex justify-between"><span>搖桿設定與校正：</span><span class="tech-font text-yellow-300">「手把」按鈕</span></div>
+                <div class="flex justify-between"><span>定高／手動油門模式：</span><span class="tech-font text-cyan-300">「模式」按鈕</span></div>
+                <div class="flex justify-between">
+                    <span>更換關卡：</span>
+                    <span class="tech-font text-orange-300 font-bold bg-slate-800 px-1 rounded"><i class="fa-solid fa-layer-group"></i></span>
+                </div>
+            </div>
+        </footer>
+
+        <!-- 觸控搖桿區域 -->
+        <div id="touchControls" class="absolute left-1/2 -translate-x-1/2 flex justify-between w-full max-w-[500px] px-4 pointer-events-none md:hidden">
+            <div class="joystick-zone pointer-events-auto relative w-24 h-24 rounded-full bg-slate-950/80 border border-emerald-500/30 flex items-center justify-center shadow-lg" id="joyLeft">
+                <div class="w-10 h-10 rounded-full bg-emerald-500/40 border border-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.4)] absolute" id="knobLeft"></div>
+                <span class="absolute text-[7px] text-emerald-400/50 uppercase font-semibold tracking-widest pointer-events-none">偏航 / 高度</span>
+            </div>
+            <div class="joystick-zone pointer-events-auto relative w-24 h-24 rounded-full bg-slate-950/80 border border-cyan-500/30 flex items-center justify-center shadow-lg" id="joyRight">
+                <div class="w-10 h-10 rounded-full bg-cyan-500/40 border border-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.4)] absolute" id="knobRight"></div>
+                <span class="absolute text-[7px] text-cyan-400/50 uppercase font-semibold tracking-widest pointer-events-none">移動</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 搖桿設定與校正（雙搖桿監看器）：開啟遊戲時先顯示，遊戲中可點「手把」按鈕重新開啟 -->
+    <div id="padSetup" class="absolute inset-0 flex items-start justify-center bg-slate-950/95 overflow-y-auto py-6">
+        <div class="ps-card w-full max-w-3xl mx-4 my-auto rounded-2xl p-4 md:p-6 text-slate-200 flex flex-col gap-4 shadow-[0_0_50px_rgba(34,211,238,0.12)]">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <h2 class="text-xl md:text-2xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">搖桿設定與校正</h2>
+                <div class="flex items-center gap-2 text-xs tech-font text-slate-400 min-w-0">
+                    <span id="psDot" class="w-2.5 h-2.5 rounded-full bg-slate-600 flex-none"></span>
+                    <span id="psStatus" class="truncate">尚未偵測到手把，請接上後撥動搖桿或按任一鍵</span>
+                </div>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed">先撥動兩支搖桿，確認畫面上的點跟著正確移動。方向不對時用下方的軸號、反向或對調按鈕調整；中心偏移時按「自動校正」，或在下方的校正範圍表直接設定最小值、中位、最大值。設定會自動記住。</p>
+
+            <div class="flex flex-wrap items-center gap-3 rounded-xl border border-slate-700/50 bg-slate-950/40 p-3">
+                <span class="text-xs text-slate-300 font-semibold">飛行模式</span>
+                <div class="ps-seg" role="group" aria-label="飛行模式">
+                    <button type="button" id="psModeHold" aria-pressed="true">定高模式</button>
+                    <button type="button" id="psModeManual" aria-pressed="false">手動油門模式</button>
+                </div>
+                <span id="psModeDesc" class="text-[11px] text-slate-400 flex-1 min-w-[14rem]">油門控制升降快慢，回到中間即定高懸停；移動速度只由右搖桿決定。</span>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2">
+                <label for="psDz" class="flex items-center gap-2 text-xs text-slate-400 mr-auto">中央死區
+                    <input type="range" id="psDz" min="0" max="0.2" step="0.01" value="0.03" class="w-28">
+                    <output id="psDzv" class="tech-font text-slate-200 w-8">3%</output>
+                </label>
+                <button type="button" id="psCal" class="ps-btn">自動校正</button>
+                <button type="button" id="psCalClear" class="ps-btn">清除校正</button>
+                <button type="button" id="psSwap" class="ps-btn">左右對調</button>
+                <button type="button" id="psFlipY" class="ps-btn">上下對調</button>
+            </div>
+            <div id="psCalBox" hidden class="rounded-lg border border-yellow-400/60 bg-yellow-400/10 px-3 py-2 text-xs text-yellow-100 flex flex-wrap items-center gap-2">
+                <span class="flex-1 min-w-[12rem]"><b class="text-yellow-300">自動校正中：</b>把兩支搖桿都繞著外框轉幾圈，碰到四個角落。接著放開搖桿回中，油門那支推到中間，再按「完成」。結果會填入下方的校正範圍表，可再微調。</span>
+                <button type="button" id="psCalDone" class="ps-btn ps-primary">完成</button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="rounded-xl border border-emerald-500/25 bg-slate-950/60 p-3 flex flex-col gap-2">
+                    <div class="flex justify-between items-baseline"><span class="font-bold text-emerald-400 text-sm">左搖桿</span><span class="text-[10px] text-slate-500">升降／偏航</span></div>
+                    <canvas class="ps-canvas" width="240" height="240"></canvas>
+                    <div class="grid grid-cols-2 gap-2 tech-font text-center text-sm"><div>X <span class="ps-vx text-white">+0.000</span></div><div>Y <span class="ps-vy text-white">+0.000</span></div></div>
+                    <div class="ps-map">
+                        <label for="psG0x">X 軸</label><select id="psG0x" class="ps-sel"></select><label class="ps-inv"><input type="checkbox" id="psG0xi">反向</label>
+                        <label for="psG0y">Y 軸</label><select id="psG0y" class="ps-sel"></select><label class="ps-inv"><input type="checkbox" id="psG0yi">反向</label>
+                    </div>
+                </div>
+                <div class="rounded-xl border border-cyan-500/25 bg-slate-950/60 p-3 flex flex-col gap-2">
+                    <div class="flex justify-between items-baseline"><span class="font-bold text-cyan-400 text-sm">右搖桿</span><span class="text-[10px] text-slate-500">前後／左右移動</span></div>
+                    <canvas class="ps-canvas" width="240" height="240"></canvas>
+                    <div class="grid grid-cols-2 gap-2 tech-font text-center text-sm"><div>X <span class="ps-vx text-white">+0.000</span></div><div>Y <span class="ps-vy text-white">+0.000</span></div></div>
+                    <div class="ps-map">
+                        <label for="psG1x">X 軸</label><select id="psG1x" class="ps-sel"></select><label class="ps-inv"><input type="checkbox" id="psG1xi">反向</label>
+                        <label for="psG1y">Y 軸</label><select id="psG1y" class="ps-sel"></select><label class="ps-inv"><input type="checkbox" id="psG1yi">反向</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rounded-xl border border-slate-700/50 bg-slate-950/40 p-3 flex flex-col gap-2">
+                <div class="flex flex-wrap items-baseline justify-between gap-2">
+                    <span class="text-xs text-slate-200 font-semibold">校正範圍（最小值／中位／最大值）</span>
+                    <span class="text-[11px] text-slate-500">填入原始值（-1 ～ +1），或把搖桿推到定位後按「取目前值」</span>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                    <button type="button" id="psCalSave" class="ps-btn"><i class="fa-solid fa-floppy-disk mr-1.5"></i>儲存校正檔</button>
+                    <button type="button" id="psCalLoad" class="ps-btn"><i class="fa-solid fa-folder-open mr-1.5"></i>載入校正檔</button>
+                    <input type="file" id="psCalFileInput" accept=".json,application/json" hidden>
+                    <span class="text-[11px] text-slate-500 flex-1 min-w-[12rem]">校正檔會一併記錄軸對應、反向與中央死區，換電腦或換瀏覽器時載入即可沿用。</span>
+                </div>
+                <p id="psCalFileMsg" class="text-[11px]" role="status" hidden></p>
+                <div id="psCalTable"></div>
+            </div>
+
+            <details class="rounded-xl border border-slate-700/50 bg-slate-950/40 p-3">
+                <summary class="cursor-pointer text-xs text-slate-300 font-semibold">全部通道（原始值）</summary>
+                <div id="psAxes" class="flex flex-col gap-1.5 mt-3"><div class="text-xs text-slate-500">接上手把後，這裡會列出每個軸的原始值。</div></div>
+                <div id="psBtns" class="flex flex-wrap gap-1.5 mt-3"></div>
+            </details>
+
+            <div class="flex flex-wrap justify-end gap-2 pt-1">
+                <button type="button" id="psClose" class="ps-btn ps-primary px-5">進入遊戲</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3D 渲染畫布容器 -->
+    <div id="canvas-container" class="absolute inset-0 w-full h-full z-0"></div>
+
+    <!-- 引入 Three.js 與 OrbitControls -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/utils/BufferGeometryUtils.js"></script>
+
+    <script>
+// ==================== 全域系統變數 ====================
+let scene, camera, renderer, clock, orbitControls;
+let cameraLookSmooth = null; // 攝影機注視點的平滑座標，用來過濾無人機位置的高頻微幅雜訊，避免畫面跟著抖動
+let soundEnabled = false;
+let audioCtx = null;
+let droneSynth = null;
+let particles = [];
+let cameraMode = 0;
+const CAMERA_MODES = ['跟隨', '座艙', '自由'];
+
+        // 5. 雙搖桿手把輸入（取代原本的鍵盤操控）
+        // 軸對應、反向、校正、死區與「雙搖桿監看器」共用同一組儲存鍵，在監看器裡調好的設定這裡也會沿用。
+        // 預設：左搖桿 左右=軸4、上下=軸2；右搖桿 軸0/1。RC 模擬器線往上推回報正值，所以 Y 軸預設反向。
+        const PAD_DEFAULT_MAP = [{ x: 4, y: 2, xi: false, yi: true }, { x: 0, y: 1, xi: false, yi: true }];
+        const PAD_MAP_KEY = 'stickmap4', PAD_CAL_KEY = 'stickcal1', PAD_DZ_KEY = 'stickdz1';
+        const padCfg = { map: PAD_DEFAULT_MAP.map(m => ({ ...m })), cal: {}, dz: 0.03 };
+        try {
+            const m = JSON.parse(localStorage.getItem(PAD_MAP_KEY));
+            if (Array.isArray(m) && m.length === 2) padCfg.map = m.map((v, i) => ({ ...PAD_DEFAULT_MAP[i], ...v }));
+        } catch (e) {}
+        try { padCfg.cal = JSON.parse(localStorage.getItem(PAD_CAL_KEY)) || {}; } catch (e) { padCfg.cal = {}; }
+        try { const d = parseFloat(localStorage.getItem(PAD_DZ_KEY)); if (!isNaN(d)) padCfg.dz = d; } catch (e) {}
+        function savePadMap() { try { localStorage.setItem(PAD_MAP_KEY, JSON.stringify(padCfg.map)); } catch (e) {} }
+        function savePadCal() { try { localStorage.setItem(PAD_CAL_KEY, JSON.stringify(padCfg.cal)); } catch (e) {} }
+        function savePadDz() { try { localStorage.setItem(PAD_DZ_KEY, String(padCfg.dz)); } catch (e) {} }
+
+        // 校正：把該軸的中心值對到 0、最小/最大值拉到 ±1，再扣掉中央死區
+        function padApplyCal(axis, v) {
+            const c = padCfg.cal[axis];
+            let out = v;
+            if (c) {
+                const lo = c.center - c.min, hi = c.max - c.center, d = v - c.center;
+                if (d < 0 && lo > 0.05) out = d / lo; else if (d >= 0 && hi > 0.05) out = d / hi; else out = d;
+            }
+            out = Math.max(-1, Math.min(1, out));
+            const m = Math.abs(out), dz = padCfg.dz;
+            return m < dz ? 0 : Math.sign(out) * (m - dz) / (1 - dz);
+        }
+        // 讀出兩支搖桿：x 右為正，y 上為正（數值 -1 ~ +1，已套用校正與死區）
+        function readSticks(p) {
+            return padCfg.map.map(m => {
+                let x = padApplyCal(m.x, p.axes[m.x] ?? 0), y = padApplyCal(m.y, p.axes[m.y] ?? 0);
+                if (m.xi) x = -x;
+                if (m.yi) y = -y;
+                return { x, y: -y };
+            });
+        }
+        // 輕微指數曲線：中心附近較細膩、推到底仍是全量，讓微調與高速都好控制
+        const PAD_EXPO = 0.3;
+        function padCurve(v) { return v * (1 - PAD_EXPO) + v * v * v * PAD_EXPO; }
+
+        let padIndex = null;
+        let padBlocked = false;
+        function getPad() {
+            if (padBlocked) return null;
+            try {
+                const list = navigator.getGamepads ? navigator.getGamepads() : [];
+                let p = padIndex !== null ? list[padIndex] : null;
+                if (!p) { p = null; for (const q of list) { if (q) { p = q; break; } } }
+                padIndex = p ? p.index : null;
+                return p;
+            } catch (e) { padBlocked = true; return null; }
+        }
+
+        // ---- 飛行模式：'hold' 定高模式／'manual' 手動油門模式 ----
+        const FLIGHT_MODE_KEY = 'droneFlightMode1';
+        let flightModeManual = false;
+        try { flightModeManual = localStorage.getItem(FLIGHT_MODE_KEY) === 'manual'; } catch (e) {}
+        // 手動油門：油門桿 -1（底）＝0 推力、0（中）＝懸停推力、+1（頂）＝最大推力
+        function manualThrottleFromStick(ly) {
+            const hover = (drone.constants.gravity * drone.constants.mass) / drone.constants.maxThrottleThrust;
+            return ly <= 0 ? hover * (1 + ly) : hover + (1 - hover) * ly;
+        }
+        const FLIGHT_MODE_DESC = {
+            hold: '油門控制升降快慢，回到中間即定高懸停；移動速度只由右搖桿決定。',
+            manual: '油門直接控制馬達推力（中間約等於懸停）。油門越大，同樣傾角下衝得越快，高度要自己用油門維持。',
+        };
+        function updateFlightModeUI() {
+            const t = document.getElementById('flightModeBtnText');
+            if (t) t.textContent = flightModeManual ? '手動' : '定高';
+            const h = document.getElementById('psModeHold'), m = document.getElementById('psModeManual');
+            if (h && m) { h.setAttribute('aria-pressed', String(!flightModeManual)); m.setAttribute('aria-pressed', String(flightModeManual)); }
+            const d = document.getElementById('psModeDesc');
+            if (d) d.textContent = FLIGHT_MODE_DESC[flightModeManual ? 'manual' : 'hold'];
+        }
+        function setFlightMode(manual, silent) {
+            if (manual === flightModeManual) { updateFlightModeUI(); return; }
+            flightModeManual = manual;
+            try { localStorage.setItem(FLIGHT_MODE_KEY, manual ? 'manual' : 'hold'); } catch (e) {}
+            // 切換瞬間先用定高鎖住目前高度，油門推到中間才接手，避免掉高或暴衝
+            drone.gpAltArmed = false;
+            drone.targetAltitude = THREE.MathUtils.clamp(drone.position.y, 0.10, 2.6);
+            updateFlightModeUI();
+            if (!silent) showSystemNotification(manual
+                ? '已切換為手動油門模式：油門推到中間後接手，油門越大衝得越快'
+                : '已切換為定高模式：油門推到中間後接手，回中即定高');
+        }
+
+        // 遊戲物理讀取的手把輸入（設定面板開啟時歸零，無人機維持懸停）
+        const gamepadInput = { connected: false, lx: 0, ly: 0, rx: 0, ry: 0 };
+        let padSetupOpen = true;
+        let padHudConnected = null;
+        function pollGamepad() {
+            const p = getPad();
+            gamepadInput.connected = !!p;
+            if (p && !padSetupOpen) {
+                const s = readSticks(p);
+                gamepadInput.lx = s[0].x; gamepadInput.ly = s[0].y;
+                gamepadInput.rx = s[1].x; gamepadInput.ry = s[1].y;
+            } else {
+                gamepadInput.lx = gamepadInput.ly = gamepadInput.rx = gamepadInput.ry = 0;
+            }
+            if (padHudConnected !== !!p) {
+                padHudConnected = !!p;
+                const dot = document.getElementById('padHudDot');
+                if (dot) dot.className = 'w-2 h-2 rounded-full ' + (p ? 'bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]' : 'bg-slate-500');
+                if (!padSetupOpen) showSystemNotification(p ? '手把已連線' : '手把已中斷，請重新接上');
+            }
+            if (padSetupOpen) padMonitorUpdate(p);
+        }
+
+        // ---- 搖桿設定面板（雙搖桿監看器） ----
+        const psEls = {};
+        let psAxisCount = -1, psRowRefs = [], psBtnRefs = [], psLastTxt = [], psLastBtn = [];
+        let psSweep = null, psLastAxes = [];
+        const psTrails = [[], []], psLastXY = [[NaN, NaN], [NaN, NaN]], psDirty = [true, true], psBg = [null, null];
+        const PS_COLORS = { bg: '#0b1220', grid: '#16233a', line: '#334155', accent: '#facc15', dot: ['#34d399', '#22d3ee'], hole: '#0b1220' };
+        let psFirstLaunch = true;
+
+        function psFillSelects(n) {
+            const count = Math.max(n, 8, ...padCfg.map.flatMap(m => [m.x + 1, m.y + 1]));
+            psEls.sel.forEach((s, i) => {
+                ['x', 'y'].forEach(k => {
+                    s[k].innerHTML = '';
+                    for (let a = 0; a < count; a++) {
+                        const o = document.createElement('option');
+                        o.value = a; o.textContent = '軸 ' + a + (n > 0 && a >= n ? '（無）' : '');
+                        s[k].appendChild(o);
+                    }
+                    s[k].value = padCfg.map[i][k];
+                });
+                s.xi.checked = padCfg.map[i].xi;
+                s.yi.checked = padCfg.map[i].yi;
+            });
+        }
+        function psBuildRows(n, b) {
+            psEls.axes.innerHTML = ''; psRowRefs = []; psLastTxt = [];
+            for (let a = 0; a < n; a++) {
+                const r = document.createElement('div');
+                r.className = 'ps-ax';
+                r.innerHTML = `<span>軸 ${a}</span><div class="ps-bar"><div class="ps-fill"></div></div><span class="ps-v">+0.000</span>`;
+                psEls.axes.appendChild(r);
+                psRowRefs.push({ fill: r.querySelector('.ps-fill'), v: r.querySelector('.ps-v') });
+            }
+            psEls.btns.innerHTML = ''; psBtnRefs = []; psLastBtn = [];
+            for (let i = 0; i < b; i++) {
+                const e = document.createElement('span');
+                e.className = 'ps-pbtn'; e.textContent = 'B' + i;
+                psEls.btns.appendChild(e); psBtnRefs.push(e);
+            }
+        }
+        function psBackground(i) {
+            if (psBg[i]) return psBg[i];
+            const W = psEls.canvas[i].width, m = 12, R = (W - 2 * m) / 2, cx = W / 2;
+            const off = document.createElement('canvas'); off.width = off.height = W;
+            const g = off.getContext('2d');
+            g.fillStyle = PS_COLORS.bg; g.fillRect(0, 0, W, W);
+            g.strokeStyle = PS_COLORS.grid; g.lineWidth = 1; g.beginPath();
+            for (let k = -4; k <= 4; k++) { const p = cx + k * R / 4; g.moveTo(p, m); g.lineTo(p, W - m); g.moveTo(m, p); g.lineTo(W - m, p); }
+            g.stroke();
+            g.strokeStyle = PS_COLORS.line; g.lineWidth = 1.5; g.strokeRect(m, m, 2 * R, 2 * R);
+            g.beginPath(); g.moveTo(cx, m); g.lineTo(cx, W - m); g.moveTo(m, cx); g.lineTo(W - m, cx); g.stroke();
+            return psBg[i] = off;
+        }
+        // x 右為正、y 上為正
+        function psDraw(i, x, y) {
+            const c = psEls.canvas[i], W = c.width, m = 12, R = (W - 2 * m) / 2, cx = W / 2, g = psEls.ctx[i];
+            const px = cx + x * R, py = cx - y * R, t = psTrails[i];
+            const moved = Math.abs(psLastXY[i][0] - x) > 0.002 || Math.abs(psLastXY[i][1] - y) > 0.002 || Number.isNaN(psLastXY[i][0]);
+            if (moved) { t.push([px, py]); if (t.length > 30) t.shift(); }
+            else if (t.length > 1) t.shift();
+            else if (!psDirty[i]) return;
+            psLastXY[i] = [x, y]; psDirty[i] = false;
+            g.drawImage(psBackground(i), 0, 0);
+            if (t.length > 1) {
+                g.strokeStyle = PS_COLORS.dot[i]; g.globalAlpha = 0.35; g.lineWidth = 2; g.beginPath();
+                t.forEach(([a, b], k) => k ? g.lineTo(a, b) : g.moveTo(a, b)); g.stroke(); g.globalAlpha = 1;
+            }
+            g.strokeStyle = PS_COLORS.accent; g.lineWidth = 1; g.setLineDash([4, 4]);
+            g.beginPath(); g.moveTo(cx, cx); g.lineTo(px, py); g.stroke(); g.setLineDash([]);
+            g.fillStyle = PS_COLORS.dot[i]; g.beginPath(); g.arc(px, py, 9, 0, Math.PI * 2); g.fill();
+            g.fillStyle = PS_COLORS.hole; g.beginPath(); g.arc(px, py, 3.5, 0, Math.PI * 2); g.fill();
+        }
+        const psFmt = v => (v >= 0 ? '+' : '') + v.toFixed(3);
+        function psSetText(el, txt) { if (el.textContent !== txt) el.textContent = txt; }
+        function psMarkCal() {
+            const has = Object.keys(padCfg.cal).length > 0;
+            psEls.calBtn.classList.toggle('ps-has', has);
+            psEls.calBtn.textContent = has ? '重新自動校正' : '自動校正';
+        }
+
+        // ---- 校正範圍表：四個控制軸各自的最小值／中位／最大值 ----
+        const PS_ROLES = [
+            { stick: 0, k: 'x', name: '左搖桿 X', fn: '偏航' },
+            { stick: 0, k: 'y', name: '左搖桿 Y', fn: '油門' },
+            { stick: 1, k: 'x', name: '右搖桿 X', fn: '側滾' },
+            { stick: 1, k: 'y', name: '右搖桿 Y', fn: '俯仰' },
+        ];
+        const psCalRows = [];
+        const pct = v => ((Math.max(-1, Math.min(1, v)) + 1) * 50) + '%';
+        function psBuildCalTable() {
+            const host = document.getElementById('psCalTable');
+            host.innerHTML = '';
+            PS_ROLES.forEach((role, r) => {
+                const row = document.createElement('div');
+                row.className = 'ps-calrow';
+                const field = (key, label, cls) => `
+                    <div class="ps-calf">
+                        <label for="psCal${r}${key}" class="${cls}">${label}</label>
+                        <input type="number" id="psCal${r}${key}" min="-1" max="1" step="0.01" inputmode="decimal">
+                        <button type="button" data-take="${key}">取目前值</button>
+                    </div>`;
+                row.innerHTML = `
+                    <div class="ps-calhead">
+                        <b>${role.name}</b><span class="ps-axl">${role.fn}・<span class="ps-axn"></span></span>
+                        <span class="ps-chip"></span>
+                        <span class="ps-cur">+0.000</span>
+                        <button type="button" class="ps-calreset">重設此軸</button>
+                    </div>
+                    <div class="ps-calbar"><i class="rng"></i><i class="ctr"></i><i class="cur"></i></div>
+                    <div class="ps-calfields">${field('min', '最小值', 'lbl-min')}${field('center', '中位', 'lbl-ctr')}${field('max', '最大值', 'lbl-max')}</div>
+                    <div class="ps-calerr" hidden></div>`;
+                host.appendChild(row);
+                const ref = {
+                    role, row,
+                    axn: row.querySelector('.ps-axn'), chip: row.querySelector('.ps-chip'), cur: row.querySelector('.ps-cur'),
+                    rng: row.querySelector('.rng'), ctr: row.querySelector('.ctr'), dot: row.querySelector('.cur'),
+                    err: row.querySelector('.ps-calerr'),
+                    inp: { min: row.querySelector(`#psCal${r}min`), center: row.querySelector(`#psCal${r}center`), max: row.querySelector(`#psCal${r}max`) },
+                    lastCur: null,
+                };
+                psCalRows.push(ref);
+                Object.values(ref.inp).forEach(inp => inp.addEventListener('change', () => psCommitCalRow(ref)));
+                row.querySelectorAll('[data-take]').forEach(btn => btn.addEventListener('click', () => {
+                    const axis = padCfg.map[role.stick][role.k];
+                    const v = psLastAxes[axis];
+                    if (typeof v !== 'number') { psShowCalErr(ref, '尚未讀到這個軸的數值，請先接上手把並撥動搖桿'); return; }
+                    ref.inp[btn.dataset.take].value = v.toFixed(3);
+                    psCommitCalRow(ref);
+                }));
+                row.querySelector('.ps-calreset').addEventListener('click', () => {
+                    const axis = padCfg.map[role.stick][role.k];
+                    delete padCfg.cal[axis];
+                    savePadCal(); psRefreshCalTable(); psMarkCal();
+                });
+            });
+        }
+        function psShowCalErr(ref, msg) {
+            ref.err.textContent = msg || '';
+            ref.err.hidden = !msg;
+        }
+        // 讀取三個欄位，檢查後寫入校正；不合理時標紅並保留原本的設定
+        function psCommitCalRow(ref) {
+            const axis = padCfg.map[ref.role.stick][ref.role.k];
+            const v = {};
+            let bad = null;
+            ['min', 'center', 'max'].forEach(k => {
+                const n = parseFloat(ref.inp[k].value);
+                ref.inp[k].classList.remove('bad');
+                if (!Number.isFinite(n) || n < -1.05 || n > 1.05) { bad = bad || '數值需介於 -1 到 +1'; ref.inp[k].classList.add('bad'); }
+                v[k] = n;
+            });
+            if (!bad && !(v.min < v.center - 0.05)) { bad = '最小值必須比中位小至少 0.05'; ref.inp.min.classList.add('bad'); ref.inp.center.classList.add('bad'); }
+            if (!bad && !(v.max > v.center + 0.05)) { bad = '最大值必須比中位大至少 0.05'; ref.inp.max.classList.add('bad'); ref.inp.center.classList.add('bad'); }
+            if (bad) { psShowCalErr(ref, bad + '，這一軸暫時沿用原本的設定'); return; }
+            psShowCalErr(ref, '');
+            padCfg.cal[axis] = { min: v.min, center: v.center, max: v.max };
+            savePadCal();
+            psRefreshCalTable();
+            psMarkCal();
+        }
+        // 依目前的軸對應與校正資料重畫整張表（軸對應、對調、校正變動時呼叫）
+        function psRefreshCalTable() {
+            psCalRows.forEach(ref => {
+                const axis = padCfg.map[ref.role.stick][ref.role.k];
+                const c = padCfg.cal[axis];
+                ref.axn.textContent = '軸 ' + axis;
+                ref.chip.textContent = c ? '已校正' : '未校正（預設 -1 / 0 / +1）';
+                ref.chip.classList.toggle('ok', !!c);
+                const cc = c || { min: -1, center: 0, max: 1 };
+                ['min', 'center', 'max'].forEach(k => {
+                    if (document.activeElement !== ref.inp[k]) ref.inp[k].value = cc[k].toFixed(3);
+                    ref.inp[k].classList.remove('bad');
+                });
+                ref.rng.style.left = pct(cc.min);
+                ref.rng.style.width = ((Math.min(1, cc.max) - Math.max(-1, cc.min)) * 50) + '%';
+                ref.ctr.style.left = pct(cc.center);
+                psShowCalErr(ref, '');
+                ref.lastCur = null;
+            });
+        }
+        function psUpdateCalLive(axes) {
+            psCalRows.forEach(ref => {
+                const axis = padCfg.map[ref.role.stick][ref.role.k];
+                const v = axes[axis];
+                const txt = typeof v === 'number' ? psFmt(v) : '—';
+                if (ref.lastCur === txt) return;
+                ref.lastCur = txt;
+                ref.cur.textContent = txt;
+                ref.dot.style.left = typeof v === 'number' ? pct(v) : '50%';
+            });
+        }
+
+        // ---- 校正檔：儲存／載入（JSON） ----
+        const CAL_FILE_FORMAT = 'drone-soccer-stick-calibration';
+        function psCalMsg(text, kind) {
+            const el = document.getElementById('psCalFileMsg');
+            el.textContent = text || '';
+            el.className = 'text-[11px] ' + (kind === 'err' ? 'text-rose-300' : kind === 'warn' ? 'text-yellow-300' : 'text-emerald-300');
+            el.hidden = !text;
+        }
+        function buildCalFileData() {
+            const p = getPad();
+            const calibration = {};
+            Object.keys(padCfg.cal).sort((a, b) => a - b).forEach(k => {
+                const c = padCfg.cal[k];
+                calibration[k] = { min: +c.min.toFixed(4), center: +c.center.toFixed(4), max: +c.max.toFixed(4) };
+            });
+            return {
+                format: CAL_FILE_FORMAT,
+                version: 1,
+                savedAt: new Date().toISOString(),
+                controller: p ? p.id : null,
+                deadzone: padCfg.dz,
+                mapping: padCfg.map.map((m, i) => ({
+                    stick: i === 0 ? '左搖桿' : '右搖桿',
+                    xAxis: m.x, xInvert: !!m.xi,
+                    yAxis: m.y, yInvert: !!m.yi,
+                })),
+                calibration,
+            };
+        }
+        function calFileName() {
+            const d = new Date(), pad = n => String(n).padStart(2, '0');
+            return `搖桿校正_${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}.json`;
+        }
+        async function saveCalFile() {
+            const json = JSON.stringify(buildCalFileData(), null, 2);
+            const name = calFileName();
+            // Chrome／Edge：跳出「另存新檔」視窗，可自選資料夾與檔名
+            if (window.showSaveFilePicker) {
+                try {
+                    const handle = await window.showSaveFilePicker({
+                        suggestedName: name,
+                        types: [{ description: '搖桿校正檔', accept: { 'application/json': ['.json'] } }],
+                    });
+                    const w = await handle.createWritable();
+                    await w.write(json);
+                    await w.close();
+                    psCalMsg(`已儲存校正檔：${handle.name}`);
+                    return;
+                } catch (e) {
+                    if (e && e.name === 'AbortError') return; // 使用者按了取消
+                    // 其他錯誤（例如權限被擋）改用下載方式
+                }
+            }
+            const url = URL.createObjectURL(new Blob([json], { type: 'application/json' }));
+            const a = document.createElement('a');
+            a.href = url; a.download = name;
+            document.body.appendChild(a); a.click(); a.remove();
+            setTimeout(() => URL.revokeObjectURL(url), 2000);
+            psCalMsg(`已下載校正檔：${name}（位於瀏覽器的下載資料夾）`);
+        }
+        const isNum = v => typeof v === 'number' && Number.isFinite(v);
+        function validCalEntry(c) {
+            return c && isNum(c.min) && isNum(c.center) && isNum(c.max)
+                && c.min >= -1.05 && c.max <= 1.05
+                && c.min < c.center - 0.05 && c.max > c.center + 0.05;
+        }
+        function applyCalFile(text, fileName) {
+            let d;
+            try { d = JSON.parse(text); } catch (e) { psCalMsg(`無法讀取「${fileName}」：不是有效的 JSON 檔案`, 'err'); return; }
+            if (!d || d.format !== CAL_FILE_FORMAT) {
+                psCalMsg(`「${fileName}」不是本遊戲的搖桿校正檔，請選擇用「儲存校正檔」存下的 .json 檔`, 'err');
+                return;
+            }
+            const skipped = [];
+            // 軸對應與反向
+            let newMap = null;
+            if (Array.isArray(d.mapping) && d.mapping.length === 2) {
+                const okAxis = v => Number.isInteger(v) && v >= 0 && v < 32;
+                if (d.mapping.every(m => m && okAxis(m.xAxis) && okAxis(m.yAxis))) {
+                    newMap = d.mapping.map(m => ({ x: m.xAxis, y: m.yAxis, xi: !!m.xInvert, yi: !!m.yInvert }));
+                } else skipped.push('軸對應');
+            } else if (d.mapping !== undefined) skipped.push('軸對應');
+            // 各軸校正範圍
+            const newCal = {};
+            if (d.calibration && typeof d.calibration === 'object') {
+                Object.entries(d.calibration).forEach(([k, c]) => {
+                    const axis = Number(k);
+                    if (Number.isInteger(axis) && axis >= 0 && axis < 32 && validCalEntry(c)) {
+                        newCal[axis] = { min: c.min, center: c.center, max: c.max };
+                    } else skipped.push('軸 ' + k + ' 的校正');
+                });
+            }
+            // 中央死區
+            let newDz = null;
+            if (isNum(d.deadzone) && d.deadzone >= 0 && d.deadzone <= 0.2) newDz = d.deadzone;
+            else if (d.deadzone !== undefined) skipped.push('中央死區');
+
+            if (newMap) { padCfg.map = newMap; savePadMap(); }
+            padCfg.cal = newCal; savePadCal();
+            if (newDz !== null) {
+                padCfg.dz = newDz; savePadDz();
+                const dzEl = document.getElementById('psDz'), dzOut = document.getElementById('psDzv');
+                if (dzEl) dzEl.value = newDz;
+                if (dzOut) dzOut.textContent = Math.round(newDz * 100) + '%';
+            }
+            psFillSelects(Math.max(psAxisCount, 0));
+            psRefreshCalTable();
+            psMarkCal();
+            psTrails[0].length = 0; psTrails[1].length = 0; psDirty[0] = psDirty[1] = true;
+
+            let msg = `已載入「${fileName}」：${Object.keys(newCal).length} 個軸的校正範圍` + (newMap ? '、軸對應與反向' : '') + (newDz !== null ? '、中央死區' : '');
+            let kind = 'ok';
+            if (skipped.length) { msg += `。略過格式不正確的項目：${skipped.join('、')}`; kind = 'warn'; }
+            const p = getPad();
+            if (d.controller && p && d.controller !== p.id) {
+                msg += `。注意：這個檔案是用「${d.controller}」存的，和目前的手把不同，請撥動搖桿確認方向`;
+                kind = 'warn';
+            }
+            psCalMsg(msg, kind);
+        }
+
+        function padMonitorUpdate(p) {
+            if (!p) {
+                if (psAxisCount !== 0) {
+                    psAxisCount = 0;
+                    psEls.dot.className = 'w-2.5 h-2.5 rounded-full bg-slate-600 flex-none';
+                    psSetText(psEls.status, padBlocked
+                        ? '這個環境禁止讀取手把，請下載 HTML 檔用 Chrome 或 Edge 直接開啟'
+                        : '尚未偵測到手把，請接上後撥動搖桿或按任一鍵');
+                }
+                psDraw(0, 0, 0); psDraw(1, 0, 0);
+                return;
+            }
+            if (p.axes.length !== psAxisCount) {
+                psAxisCount = p.axes.length;
+                psBuildRows(p.axes.length, p.buttons.length);
+                psFillSelects(p.axes.length);
+                psEls.dot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-400 flex-none shadow-[0_0_6px_rgba(52,211,153,0.8)]';
+            }
+            psSetText(psEls.status, `${p.id}（${p.axes.length} 軸、${p.buttons.length} 鍵）`);
+            const axes = p.axes;
+            psLastAxes = Array.from(axes);
+            if (psSweep) axes.forEach((v, a) => {
+                const s = psSweep[a] || (psSweep[a] = { min: v, max: v });
+                if (v < s.min) s.min = v;
+                if (v > s.max) s.max = v;
+            });
+            for (let a = 0; a < axes.length && a < psRowRefs.length; a++) {
+                const v = axes[a], txt = psFmt(v);
+                if (psLastTxt[a] === txt) continue;
+                psLastTxt[a] = txt;
+                const r = psRowRefs[a];
+                r.fill.style.left = (v < 0 ? 50 + v * 50 : 50) + '%';
+                r.fill.style.width = Math.abs(v) * 50 + '%';
+                r.v.textContent = txt;
+            }
+            for (let k = 0; k < psBtnRefs.length; k++) {
+                const on = !!(p.buttons[k] && p.buttons[k].pressed);
+                if (psLastBtn[k] !== on) { psLastBtn[k] = on; psBtnRefs[k].classList.toggle('on', on); }
+            }
+            psUpdateCalLive(axes);
+            readSticks(p).forEach((s, i) => {
+                psSetText(psEls.vx[i], psFmt(s.x));
+                psSetText(psEls.vy[i], psFmt(s.y));
+                psDraw(i, s.x, s.y);
+            });
+        }
+
+        function openPadSetup() {
+            padSetupOpen = true;
+            psDirty[0] = psDirty[1] = true;
+            psEls.close.textContent = psFirstLaunch ? '進入遊戲' : '返回遊戲';
+            psEls.root.style.display = '';
+        }
+        function closePadSetup() {
+            if (psSweep) { psSweep = null; psEls.calBox.hidden = true; } // 校正做到一半就離開：不套用
+            padSetupOpen = false;
+            psEls.root.style.display = 'none';
+            if (psFirstLaunch) {
+                psFirstLaunch = false;
+                const startScreen = document.getElementById('startScreen');
+                if (startScreen) startScreen.style.display = '';
+            } else {
+                showSystemNotification('搖桿設定已套用');
+            }
+        }
+
+        function setupPadSetup() {
+            psEls.root = document.getElementById('padSetup');
+            psEls.dot = document.getElementById('psDot');
+            psEls.status = document.getElementById('psStatus');
+            psEls.axes = document.getElementById('psAxes');
+            psEls.btns = document.getElementById('psBtns');
+            psEls.calBtn = document.getElementById('psCal');
+            psEls.calBox = document.getElementById('psCalBox');
+            psEls.close = document.getElementById('psClose');
+            psEls.canvas = Array.from(psEls.root.querySelectorAll('.ps-canvas'));
+            psEls.ctx = psEls.canvas.map(c => c.getContext('2d'));
+            psEls.vx = Array.from(psEls.root.querySelectorAll('.ps-vx'));
+            psEls.vy = Array.from(psEls.root.querySelectorAll('.ps-vy'));
+            psEls.sel = [0, 1].map(i => ({
+                x: document.getElementById(`psG${i}x`), y: document.getElementById(`psG${i}y`),
+                xi: document.getElementById(`psG${i}xi`), yi: document.getElementById(`psG${i}yi`),
+            }));
+            psEls.sel.forEach((s, i) => {
+                s.x.addEventListener('change', () => { padCfg.map[i].x = +s.x.value; savePadMap(); psRefreshCalTable(); });
+                s.y.addEventListener('change', () => { padCfg.map[i].y = +s.y.value; savePadMap(); psRefreshCalTable(); });
+                s.xi.addEventListener('change', () => { padCfg.map[i].xi = s.xi.checked; savePadMap(); });
+                s.yi.addEventListener('change', () => { padCfg.map[i].yi = s.yi.checked; savePadMap(); });
+            });
+            const clearTrails = () => { psTrails[0].length = 0; psTrails[1].length = 0; psDirty[0] = psDirty[1] = true; };
+            document.getElementById('psSwap').addEventListener('click', () => {
+                padCfg.map = [padCfg.map[1], padCfg.map[0]];
+                psFillSelects(Math.max(psAxisCount, 0)); clearTrails(); savePadMap(); psRefreshCalTable();
+            });
+            document.getElementById('psFlipY').addEventListener('click', () => {
+                padCfg.map.forEach(m => { m.yi = !m.yi; });
+                psFillSelects(Math.max(psAxisCount, 0)); clearTrails(); savePadMap();
+            });
+            const dzEl = document.getElementById('psDz'), dzOut = document.getElementById('psDzv');
+            dzEl.value = padCfg.dz;
+            const showDz = () => { dzOut.textContent = Math.round(padCfg.dz * 100) + '%'; };
+            showDz();
+            dzEl.addEventListener('input', () => { padCfg.dz = +dzEl.value; showDz(); savePadDz(); });
+            psEls.calBtn.addEventListener('click', () => { psSweep = {}; psEls.calBox.hidden = false; });
+            document.getElementById('psCalDone').addEventListener('click', () => {
+                if (psSweep) {
+                    const next = {};
+                    psLastAxes.forEach((v, a) => {
+                        const s = psSweep[a];
+                        if (!s || s.max - s.min < 0.2) return; // 這個軸沒被動到，不校正
+                        next[a] = { min: s.min, max: s.max, center: v };
+                    });
+                    padCfg.cal = next; savePadCal();
+                }
+                psSweep = null; psEls.calBox.hidden = true; psMarkCal(); psRefreshCalTable();
+            });
+            document.getElementById('psCalClear').addEventListener('click', () => {
+                padCfg.cal = {}; psSweep = null; psEls.calBox.hidden = true;
+                try { localStorage.removeItem(PAD_CAL_KEY); } catch (e) {}
+                psMarkCal(); psRefreshCalTable();
+            });
+            psEls.close.addEventListener('click', closePadSetup);
+            document.getElementById('btnPad').addEventListener('click', openPadSetup);
+            psFillSelects(0);
+            psMarkCal();
+            psBuildCalTable();
+            psRefreshCalTable();
+            document.getElementById('psCalSave').addEventListener('click', saveCalFile);
+            const calFileInput = document.getElementById('psCalFileInput');
+            document.getElementById('psCalLoad').addEventListener('click', () => calFileInput.click());
+            calFileInput.addEventListener('change', async () => {
+                const f = calFileInput.files && calFileInput.files[0];
+                calFileInput.value = ''; // 同一個檔案可以再選一次
+                if (!f) return;
+                if (f.size > 200000) { psCalMsg(`「${f.name}」太大了，不像是校正檔`, 'err'); return; }
+                try { applyCalFile(await f.text(), f.name); }
+                catch (e) { psCalMsg(`讀取「${f.name}」時發生錯誤，請再試一次`, 'err'); }
+            });
+            document.getElementById('psModeHold').addEventListener('click', () => setFlightMode(false, padSetupOpen));
+            document.getElementById('psModeManual').addEventListener('click', () => setFlightMode(true, padSetupOpen));
+            document.getElementById('btnFlightMode').addEventListener('click', () => setFlightMode(!flightModeManual));
+            updateFlightModeUI();
+        }
+
+        // 手把升降的最高目標高度（沿用原本鍵盤 W 鍵的上限）
+        function padMaxAlt() { return MAX_TARGET_ALTITUDE; }
+
+
+// ==================== 立體迷宮場地參數 ====================
+// 晶格邊長固定 1 公尺；場地外框尺寸 = n × 1m，隨關卡（3×3×3 ~ 8×8×8）動態變化
+const PAD_RADIUS = 0.45;
+const DRONE_CAGE_RADIUS = 0.10;
+
+// 依外框邊長計算場地安全飛行邊界（維持與原版相同的邊界留白比例）
+function computeArenaBounds(cageSize) {
+    const half = cageSize / 2;
+    return {
+        xMin: -half - 0.8,
+        xMax: half + 0.8,
+        zMin: -half - 1.9, // 前方多留空間給起降場
+        zMax: half + 0.8,
+        yMax: cageSize + 0.3
+    };
+}
+
+let CAGE_SIZE = 3.0;
+let ARENA = computeArenaBounds(CAGE_SIZE);
+// 定高上限：略高於迷宮頂部護網 (y = CAGE_SIZE)，讓無人機全力爬升時能真正頂到最頂端的護網，
+// 而不是在還沒碰到頂部之前就被人為的定高上限擋住，較符合真實飛行手感
+let MAX_TARGET_ALTITUDE = ARENA.yMax - DRONE_CAGE_RADIUS - 0.05;
+
+const MAZE_LEVELS = {
+    lv1: { n: 3, unit: 1.00, label: '關卡1・3×3×3（邊長100cm）' },
+    lv2: { n: 4, unit: 1.00, label: '關卡2・4×4×4（邊長100cm）' },
+    lv3: { n: 5, unit: 1.00, label: '關卡3・5×5×5（邊長100cm）' },
+    lv4: { n: 6, unit: 1.00, label: '關卡4・6×6×6（邊長100cm）' },
+    lv5: { n: 7, unit: 1.00, label: '關卡5・7×7×7（邊長100cm）' },
+    lv6: { n: 8, unit: 1.00, label: '關卡6・8×8×8（邊長100cm）' }
+};
+
+let maze = null;
+let mazeGroup = null;
+let padGroup = null;
+let arenaFloorGroup = null;
+let arenaLightsGroup = null;
+let launchPad = { x: 0, z: -(CAGE_SIZE / 2) - 1.2 };
+
+const mission = {
+    level: 'lv1',
+    entered: false,
+    exited: false,
+    completed: false,
+    timerRunning: false,
+    startTime: 0,
+    elapsed: 0,
+    bestTimes: { lv1: null, lv2: null, lv3: null, lv4: null, lv5: null, lv6: null }
+};
+
+// 依目前關卡的外框尺寸重新計算場地邊界，並重建會隨場地大小改變的燈光與地板
+function applyLevelDimensions(levelKey) {
+    const cfg = MAZE_LEVELS[levelKey];
+    CAGE_SIZE = cfg.n * cfg.unit;
+    ARENA = computeArenaBounds(CAGE_SIZE);
+    MAX_TARGET_ALTITUDE = ARENA.yMax - DRONE_CAGE_RADIUS - 0.05;
+    rebuildCornerLights();
+    buildArenaFloor();
+}
+
+// ==================== 無人機物理狀態 ====================
+const drone = {
+    mesh: null,
+    rotors: [],
+    lights: [],
+    position: new THREE.Vector3(0, 0.1, 0),
+    velocity: new THREE.Vector3(0, 0, 0),
+    rotation: new THREE.Euler(0, 0, 0, 'YXZ'),
+
+    targetAltitude: 0.1,
+    touchAltitudeInput: 0,
+    touchActive: false,
+    touchActiveLeft: false,
+    autoFlightState: 'none',
+    targetTakeoffHeight: 1.5,
+
+    input: { pitch: 0, roll: 0, yaw: 0, throttle: 0.0 },
+
+    constants: {
+        mass: 0.4,
+        maxThrottleThrust: 18.0,
+        gravity: 9.8,
+        linearDrag: 1.8,
+        pitchRollSpeed: 1.6,
+        yawSpeed: 1.6,
+        yawRampSpeed: 6.0,
+        maxTilt: 0.40,
+        recoveryRate: 10.0
+    },
+
+    currentPitch: 0,
+    currentRoll: 0,
+    currentYawRate: 0
+};
+
+// ==================== 音效系統 ====================
+function initAudio() {
+    if (audioCtx) return;
+    try {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        osc.type = 'sawtooth';
+        osc.frequency.value = 90;
+        const gain = audioCtx.createGain();
+        gain.gain.value = 0.0;
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        droneSynth = { osc, gain };
+    } catch (e) {
+        console.warn('無法啟動 Web Audio API：', e);
+    }
+}
+
+function updateDroneSound() {
+    if (!droneSynth) return;
+    const currentSpeed = drone.velocity.length();
+    droneSynth.osc.frequency.value = 70 + drone.input.throttle * 260 + currentSpeed * 3;
+    const armed = drone.input.throttle > 0.02;
+    droneSynth.gain.gain.value = soundEnabled ? (armed ? (0.015 + drone.input.throttle * 0.05) : 0) : 0;
+}
+
+function playChimeSound() {
+    if (!soundEnabled || !audioCtx) return;
+    try {
+        const osc = audioCtx.createOscillator();
+        const osc2 = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine'; osc2.type = 'sine';
+        osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(1174.66, audioCtx.currentTime + 0.12);
+        osc2.frequency.setValueAtTime(880.00, audioCtx.currentTime);
+        osc2.frequency.exponentialRampToValueAtTime(1760.00, audioCtx.currentTime + 0.12);
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+        osc.connect(gain); osc2.connect(gain); gain.connect(audioCtx.destination);
+        osc.start(); osc2.start();
+        osc.stop(audioCtx.currentTime + 0.4);
+        osc2.stop(audioCtx.currentTime + 0.4);
+    } catch (e) {}
+}
+
+// ==================== 場景初始化 ====================
+function initScene() {
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x010409);
+    scene.fog = new THREE.FogExp2(0x010409, 0.022);
+
+    clock = new THREE.Clock();
+    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.05, 100);
+
+    const container = document.getElementById('canvas-container');
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.1;
+    container.appendChild(renderer.domElement);
+
+    orbitControls = new THREE.OrbitControls(camera, renderer.domElement);
+    orbitControls.enableDamping = true;
+    orbitControls.dampingFactor = 0.05;
+    orbitControls.maxPolarAngle = Math.PI / 2 - 0.02;
+    orbitControls.enabled = false;
+
+    window.addEventListener('resize', onWindowResize, false);
+}
+
+// 環境光僅需建立一次，不隨場地尺寸變化
+function setupAmbientLights() {
+    const ambientLight = new THREE.AmbientLight(0x0b1a15, 1.4);
+    scene.add(ambientLight);
+
+    const hemiLight = new THREE.HemisphereLight(0x10b981, 0x010409, 0.55);
+    scene.add(hemiLight);
+}
+
+// 四角探照燈會隨場地外框尺寸（CAGE_SIZE / ARENA）而變化，關卡切換時需要重建
+function rebuildCornerLights() {
+    if (arenaLightsGroup) disposeGroupDeep(arenaLightsGroup);
+    arenaLightsGroup = new THREE.Group();
+
+    const topY = CAGE_SIZE + 0.6;
+    const spotRange = Math.max(14, CAGE_SIZE * 3);
+    const corners = [
+        { x: ARENA.xMin + 0.3, z: ARENA.zMin + 0.3, color: 0xef4444 },
+        { x: ARENA.xMax - 0.3, z: ARENA.zMin + 0.3, color: 0xef4444 },
+        { x: ARENA.xMin + 0.3, z: ARENA.zMax - 0.3, color: 0x3b82f6 },
+        { x: ARENA.xMax - 0.3, z: ARENA.zMax - 0.3, color: 0x3b82f6 }
+    ];
+
+    corners.forEach(corner => {
+        const poleGeo = new THREE.CylinderGeometry(0.04, 0.08, topY, 8);
+        const poleMat = new THREE.MeshStandardMaterial({ color: 0x111827, metalness: 0.9, roughness: 0.1 });
+        const pole = new THREE.Mesh(poleGeo, poleMat);
+        pole.position.set(corner.x, topY / 2, corner.z);
+        pole.castShadow = true;
+        arenaLightsGroup.add(pole);
+
+        const headGeo = new THREE.SphereGeometry(0.15, 12, 12);
+        const headMat = new THREE.MeshBasicMaterial({ color: corner.color });
+        const head = new THREE.Mesh(headGeo, headMat);
+        head.position.set(corner.x, topY, corner.z);
+        arenaLightsGroup.add(head);
+
+        const spotLight = new THREE.SpotLight(corner.color, 3.2, spotRange, Math.PI / 4, 0.5, 1.2);
+        spotLight.position.set(corner.x, topY, corner.z);
+        spotLight.target.position.set(corner.x * 0.3, 0, corner.z * 0.3);
+        spotLight.castShadow = true;
+        spotLight.shadow.mapSize.width = 512;
+        spotLight.shadow.mapSize.height = 512;
+        arenaLightsGroup.add(spotLight);
+        arenaLightsGroup.add(spotLight.target);
+    });
+
+    scene.add(arenaLightsGroup);
+}
+
+// 場地地板會隨外框尺寸變化，關卡切換時需要重建
+        // 綠色人工草皮（與足球場相同的顏色與草皮條紋，競速場地不畫場線）
+        // dim：場館燈光較亮的關卡（上方有白色主燈）用較暗的係數，讓畫面上看起來仍是同樣的深綠色
+        function createTurfMaterial(w, d, dim = 1) {
+            const pxPerM = 128;
+            const canvas = document.createElement('canvas');
+            canvas.width = Math.max(64, Math.round(w * pxPerM));
+            canvas.height = Math.max(64, Math.round(d * pxPerM));
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#156a25';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // 每 0.5 公尺一條深淺相間的草皮條紋
+            const stripe = pxPerM * 0.5;
+            ctx.fillStyle = '#115c1f';
+            for (let y = 0; y < canvas.height; y += stripe * 2) ctx.fillRect(0, y, canvas.width, stripe);
+            // 細微草紋雜點
+            const dots = Math.round(canvas.width * canvas.height / 115);
+            for (let i = 0; i < dots; i++) {
+                ctx.fillStyle = Math.random() < 0.5 ? 'rgba(255,255,255,0.05)' : 'rgba(0,40,0,0.07)';
+                ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 1, 2);
+            }
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.anisotropy = 8;
+            return new THREE.MeshStandardMaterial({
+                map: texture,
+                roughness: 0.85,
+                metalness: 0.0,
+                // 草皮部分自發光：場館燈光偏暗時仍維持綠色，同時保留燈光與陰影的明暗變化
+                emissive: 0xffffff,
+                emissiveMap: texture,
+                emissiveIntensity: 0.10 * dim,
+                color: new THREE.Color(dim, dim, dim),
+                side: THREE.DoubleSide
+            });
+        }
+
+        const TURF_DIM = 0.38;
+
+function buildArenaFloor() {
+    if (arenaFloorGroup) disposeGroupDeep(arenaFloorGroup);
+    arenaFloorGroup = new THREE.Group();
+
+    const w = ARENA.xMax - ARENA.xMin;
+    const d = ARENA.zMax - ARENA.zMin;
+    const cx = (ARENA.xMax + ARENA.xMin) / 2;
+    const cz = (ARENA.zMax + ARENA.zMin) / 2;
+
+    const fieldGeo = new THREE.PlaneGeometry(w, d);
+    const fieldMat = createTurfMaterial(w, d, TURF_DIM); // 綠色草皮
+    const field = new THREE.Mesh(fieldGeo, fieldMat);
+    field.rotation.x = -Math.PI / 2;
+    field.position.set(cx, 0, cz);
+    field.receiveShadow = true;
+    arenaFloorGroup.add(field);
+
+    const outerGeo = new THREE.PlaneGeometry(60, 60);
+    const outerMat = new THREE.MeshStandardMaterial({ color: 0x010204, roughness: 0.95, metalness: 0.5 });
+    const outer = new THREE.Mesh(outerGeo, outerMat);
+    outer.rotation.x = -Math.PI / 2;
+    outer.position.y = -0.02;
+    outer.receiveShadow = true;
+    arenaFloorGroup.add(outer);
+
+    scene.add(arenaFloorGroup);
+}
+
+// ==================== 立體迷宮：資料結構 ====================
+function make3D(d1, d2, d3, val) {
+    const arr = [];
+    for (let a = 0; a < d1; a++) {
+        const arr2 = [];
+        for (let b = 0; b < d2; b++) arr2.push(new Array(d3).fill(val));
+        arr.push(arr2);
+    }
+    return arr;
+}
+
+const PATH_DIRS = [
+    [1, 0, 0], [-1, 0, 0],
+    [0, 1, 0], [0, -1, 0],
+    [0, 0, 1], [0, 0, -1]
+];
+const PATH_SEARCH_STEP_CAP = 20000; // 單次搜尋步數上限，避免極端回溯情況卡住主執行緒
+const PATH_GEN_ATTEMPTS = 25;       // 最多嘗試幾次隨機生成，挑一條夠迂迴的路徑
+const PATH_MIN_TURN_RATIO = 0.75;   // 路徑「轉彎步數 / 總步數」至少要達到的比例，確保迂迴程度
+
+// 單次隨機路徑搜尋（帶回溯的深度優先搜尋 + 步數上限保護）：
+// 每一步優先偏向能縮短與出口曼哈頓距離的方向，但持續同一方向前進會被隨路徑加重的懲罰值壓低優先度，
+// 逼迫路徑頻繁轉彎；同時加入隨機擾動，讓每次生成的蜿蜒通道都不一樣。
+// 若單次搜尋步數超過上限（極端回溯情形），放棄本次嘗試，交由外層重新嘗試一條全新的隨機路徑。
+function attemptSinglePath(n, startCell, endCell) {
+    const visited = make3D(n, n, n, false);
+    const path = [startCell];
+    visited[startCell.ix][startCell.iy][startCell.iz] = true;
+    let steps = 0, capped = false;
+
+    function dist(c) {
+        return Math.abs(c.ix - endCell.ix) + Math.abs(c.iy - endCell.iy) + Math.abs(c.iz - endCell.iz);
+    }
+    function lastDir() {
+        if (path.length < 2) return null;
+        const a = path[path.length - 2], b = path[path.length - 1];
+        return [b.ix - a.ix, b.iy - a.iy, b.iz - a.iz];
+    }
+    function straightRun() {
+        const d = lastDir();
+        if (!d) return 0;
+        let run = 1;
+        for (let i = path.length - 1; i >= 2; i--) {
+            const a = path[i - 2], b = path[i - 1];
+            const dd = [b.ix - a.ix, b.iy - a.iy, b.iz - a.iz];
+            if (dd[0] === d[0] && dd[1] === d[1] && dd[2] === d[2]) run++; else break;
+        }
+        return run;
+    }
+
+    function dfs(cell) {
+        steps++;
+        if (steps > PATH_SEARCH_STEP_CAP) { capped = true; return false; }
+        if (cell.ix === endCell.ix && cell.iy === endCell.iy && cell.iz === endCell.iz) return true;
+
+        const d = lastDir();
+        const run = d ? straightRun() : 0;
+        const options = [];
+        PATH_DIRS.forEach(dir => {
+            const nx = cell.ix + dir[0], ny = cell.iy + dir[1], nz = cell.iz + dir[2];
+            if (nx < 0 || nx >= n || ny < 0 || ny >= n || nz < 0 || nz >= n) return;
+            if (visited[nx][ny][nz]) return;
+            options.push({ ix: nx, iy: ny, iz: nz, dir });
+        });
+        if (!options.length) return false;
+
+        // 迂迴度加強：延續同一方向前進會受到隨連續步數加重的懲罰，逼迫頻繁轉彎；
+        // 加大隨機擾動幅度，讓每次生成的蜿蜒路線都不同
+        options.forEach(o => {
+            const straight = d && o.dir[0] === d[0] && o.dir[1] === d[1] && o.dir[2] === d[2];
+            const turnPenalty = straight ? (2.2 + run * 1.6) : 0;
+            o._score = dist(o) + turnPenalty + Math.random() * 3.6;
+        });
+        options.sort((a, b) => a._score - b._score);
+
+        for (const next of options) {
+            if (capped) return false;
+            visited[next.ix][next.iy][next.iz] = true;
+            path.push(next);
+            if (dfs(next)) return true;
+            path.pop();
+            visited[next.ix][next.iy][next.iz] = false;
+        }
+        return false;
+    }
+
+    const ok = dfs(startCell);
+    return { path, ok: ok && !capped };
+}
+
+function countPathTurns(path) {
+    let turns = 0;
+    for (let i = 2; i < path.length; i++) {
+        const a = path[i - 2], b = path[i - 1], c = path[i];
+        const d1 = [b.ix - a.ix, b.iy - a.iy, b.iz - a.iz];
+        const d2 = [c.ix - b.ix, c.iy - b.iy, c.iz - b.iz];
+        if (d1[0] !== d2[0] || d1[1] !== d2[1] || d1[2] !== d2[2]) turns++;
+    }
+    return turns;
+}
+
+// 產生單一固定通路：重複嘗試幾次隨機搜尋，挑一條「轉彎比例」夠高（夠迂迴）的路徑；
+// 若運氣一直不好（機率極低），退回一條保證可行的簡單分軸路徑，確保遊戲一定能順利開始。
+function generateSinglePath(n, startCell, endCell) {
+    let best = null, bestRatio = -1;
+    for (let attempt = 0; attempt < PATH_GEN_ATTEMPTS; attempt++) {
+        const r = attemptSinglePath(n, startCell, endCell);
+        if (!r.ok) continue;
+        const ratio = r.path.length > 2 ? countPathTurns(r.path) / (r.path.length - 2) : 1;
+        if (ratio > bestRatio) { best = r.path; bestRatio = ratio; }
+        if (ratio >= PATH_MIN_TURN_RATIO) return r.path;
+    }
+    if (best) return best;
+
+    // 保底：極端情況下的簡單分軸直通路徑（保證合法，但迂迴度較低）
+    const path = [{ ix: startCell.ix, iy: startCell.iy, iz: startCell.iz }];
+    let cur = { ix: startCell.ix, iy: startCell.iy, iz: startCell.iz };
+    while (cur.ix !== endCell.ix) { cur = { ix: cur.ix + Math.sign(endCell.ix - cur.ix), iy: cur.iy, iz: cur.iz }; path.push({ ...cur }); }
+    while (cur.iy !== endCell.iy) { cur = { ix: cur.ix, iy: cur.iy + Math.sign(endCell.iy - cur.iy), iz: cur.iz }; path.push({ ...cur }); }
+    while (cur.iz !== endCell.iz) { cur = { ix: cur.ix, iy: cur.iy, iz: cur.iz + Math.sign(endCell.iz - cur.iz) }; path.push({ ...cur }); }
+    return path;
+}
+
+// 依單一路徑產生晶格阻擋資料：預設所有面「開放不擋」（代表該處晶格已被移除，沒有牆面），
+// 只有路徑通道本身、不通往上一節點/下一節點的側面才會標記為擋（掛網），
+// 藉此讓無人機只能沿著唯一固定通道前進，無法從側面穿出。
+function buildMazeDataCore(n) {
+    const xBlocked = make3D(n + 1, n, n, false);
+    const yBlocked = make3D(n + 1, n, n, false);
+    const zBlocked = make3D(n + 1, n, n, false);
+
+    const entrance3D = { ix: n - 1, iy: 0, iz: 0 };      // 前面 (z=-half) 右下角
+    const exit3D = { ix: 0, iy: n - 1, iz: n - 1 };       // 對面 (z=+half) 左上角
+
+    const path = generateSinglePath(n, entrance3D, exit3D);
+
+    function dirKey(d) { return d[0] + ',' + d[1] + ',' + d[2]; }
+    function betweenKey(a, b) { return dirKey([b.ix - a.ix, b.iy - a.iy, b.iz - a.iz]); }
+    function blockFace(c, d) {
+        if (d[0] === 1) xBlocked[c.ix + 1][c.iy][c.iz] = true;
+        else if (d[0] === -1) xBlocked[c.ix][c.iy][c.iz] = true;
+        else if (d[1] === 1) yBlocked[c.iy + 1][c.ix][c.iz] = true;
+        else if (d[1] === -1) yBlocked[c.iy][c.ix][c.iz] = true;
+        else if (d[2] === 1) zBlocked[c.iz + 1][c.ix][c.iy] = true;
+        else if (d[2] === -1) zBlocked[c.iz][c.ix][c.iy] = true;
+    }
+
+    path.forEach((cell, i) => {
+        const open = new Set();
+        if (i > 0) open.add(betweenKey(cell, path[i - 1]));
+        if (i < path.length - 1) open.add(betweenKey(cell, path[i + 1]));
+        if (i === 0) open.add('0,0,-1');            // 入口方向：面向場外開口
+        if (i === path.length - 1) open.add('0,0,1'); // 出口方向：面向場外開口
+        PATH_DIRS.forEach(d => {
+            if (open.has(dirKey(d))) return;
+            blockFace(cell, d);
+        });
+    });
+
+    return {
+        n, xBlocked, yBlocked, zBlocked,
+        entrance3D, exit3D, path,
+        entranceCell: { ix: entrance3D.ix, iy: entrance3D.iy },
+        exitCell: { ix: exit3D.ix, iy: exit3D.iy }
+    };
+}
+
+function buildMazeData(levelKey) {
+    const cfg = MAZE_LEVELS[levelKey];
+    const n = cfg.n, unit = cfg.unit;
+    const core = buildMazeDataCore(n);
+
+    return {
+        n, unit,
+        xBlocked: core.xBlocked, yBlocked: core.yBlocked, zBlocked: core.zBlocked,
+        entranceCell: core.entranceCell, exitCell: core.exitCell,
+        path: core.path
+    };
+}
+
+// ==================== 立體迷宮：3D 幾何建構 ====================
+function createLabelSprite(text, color, sizeScale) {
+    const scale = sizeScale || 1.0;
+    const canvas = document.createElement('canvas');
+    canvas.width = 256; canvas.height = 128;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, 256, 128);
+    ctx.font = 'bold 56px "Inter", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.shadowColor = 'rgba(0,0,0,0.9)';
+    ctx.shadowBlur = 10;
+    ctx.fillStyle = color;
+    ctx.fillText(text, 128, 64);
+    const tex = new THREE.CanvasTexture(canvas);
+    const mat = new THREE.SpriteMaterial({ map: tex, transparent: true, opacity: 1.0, depthWrite: false, depthTest: false });
+    const sprite = new THREE.Sprite(mat);
+    sprite.scale.set(1.0 * scale, 0.5 * scale, 1);
+    sprite.renderOrder = 999;
+    return sprite;
+}
+
+function disposeGroupDeep(group) {
+    if (!group) return;
+    group.traverse(obj => {
+        if (obj.geometry) obj.geometry.dispose();
+        if (obj.material) {
+            const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+            mats.forEach(m => { if (m.map) m.map.dispose(); m.dispose(); });
+        }
+    });
+    if (group.parent) group.parent.remove(group);
+}
+
+function buildMazeGeometry(mazeData) {
+    const group = new THREE.Group();
+    const half = CAGE_SIZE / 2;
+    const n = mazeData.n, unit = mazeData.unit;
+    const pipeRadius = 0.016; // 視覺骨架調細（實際碰撞僅由護網面判定，管子本身不影響飛行判定）
+
+    const pipeMat = new THREE.MeshStandardMaterial({ color: 0xe5e7eb, roughness: 0.35, metalness: 0.15 });
+    const pipeGeos = [];
+
+    // 只保留單一固定通路所需的晶格骨架：逐一為路徑上的每個晶格畫出其立方體 12 條邊，
+    // 並用邊的座標鍵去除相鄰晶格共用面重複繪製的邊，其餘未在路徑上的晶格骨架完全不繪製。
+    const pipeEdgeKeys = new Set();
+    function addCellEdges(cell) {
+        const { ix, iy, iz } = cell;
+        // 沿 X 方向的 4 條邊
+        [iy, iy + 1].forEach(iyIdx => {
+            [iz, iz + 1].forEach(izIdx => {
+                const key = `x:${ix}:${iyIdx}:${izIdx}`;
+                if (pipeEdgeKeys.has(key)) return;
+                pipeEdgeKeys.add(key);
+                const geo = new THREE.CylinderGeometry(pipeRadius, pipeRadius, unit, 8);
+                geo.rotateZ(Math.PI / 2);
+                geo.translate(-half + (ix + 0.5) * unit, iyIdx * unit, -half + izIdx * unit);
+                pipeGeos.push(geo);
+            });
+        });
+        // 沿 Y 方向的 4 條邊
+        [ix, ix + 1].forEach(ixIdx => {
+            [iz, iz + 1].forEach(izIdx => {
+                const key = `y:${ixIdx}:${iy}:${izIdx}`;
+                if (pipeEdgeKeys.has(key)) return;
+                pipeEdgeKeys.add(key);
+                const geo = new THREE.CylinderGeometry(pipeRadius, pipeRadius, unit, 8);
+                geo.translate(-half + ixIdx * unit, (iy + 0.5) * unit, -half + izIdx * unit);
+                pipeGeos.push(geo);
+            });
+        });
+        // 沿 Z 方向的 4 條邊
+        [ix, ix + 1].forEach(ixIdx => {
+            [iy, iy + 1].forEach(iyIdx => {
+                const key = `z:${ixIdx}:${iyIdx}:${iz}`;
+                if (pipeEdgeKeys.has(key)) return;
+                pipeEdgeKeys.add(key);
+                const geo = new THREE.CylinderGeometry(pipeRadius, pipeRadius, unit, 8);
+                geo.rotateX(Math.PI / 2);
+                geo.translate(-half + ixIdx * unit, iyIdx * unit, -half + (iz + 0.5) * unit);
+                pipeGeos.push(geo);
+            });
+        });
+    }
+    mazeData.path.forEach(addCellEdges);
+
+    let pipeMesh;
+    if (THREE.BufferGeometryUtils && pipeGeos.length) {
+        const mergedPipes = THREE.BufferGeometryUtils.mergeBufferGeometries(pipeGeos, false);
+        pipeMesh = new THREE.Mesh(mergedPipes, pipeMat);
+        pipeMesh.castShadow = true;
+        pipeMesh.receiveShadow = true;
+        group.add(pipeMesh);
+    }
+    pipeGeos.forEach(g => g.dispose());
+
+    // 玻璃面材質：偏米白／透明的低粗糙度 + clearcoat 透明漆層，讓場上燈光在面板上
+    // 產生隨視角移動而變化的高光反射，呈現「半透明玻璃」的質感（不使用閃爍動畫）
+    const netMat = new THREE.MeshPhysicalMaterial({
+        color: 0xf3ede0,
+        transparent: true,
+        opacity: 0.32,
+        metalness: 0.0,
+        roughness: 0.08,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.06,
+        reflectivity: 0.9,
+        side: THREE.DoubleSide,
+        depthWrite: false
+    });
+    const netGeos = [];
+
+    // 「X」禁止通過標記：依所在面的朝向分成三種顏色（沿用常見 3D 座標軸配色：
+    // X 軸方向面＝紅、Y 軸方向面＝綠、Z 軸方向面＝藍），
+    // 讓多層護網前後重疊、半透明穿插時，還能靠顏色判斷這個 X 記號到底貼在哪個朝向的面上
+    const xMarkMatX = new THREE.MeshBasicMaterial({
+        color: 0xef4444, transparent: true, opacity: 0.92, side: THREE.DoubleSide, depthWrite: false
+    });
+    const xMarkMatY = new THREE.MeshBasicMaterial({
+        color: 0x22c55e, transparent: true, opacity: 0.92, side: THREE.DoubleSide, depthWrite: false
+    });
+    const xMarkMatZ = new THREE.MeshBasicMaterial({
+        color: 0x3b82f6, transparent: true, opacity: 0.92, side: THREE.DoubleSide, depthWrite: false
+    });
+    const xMarkGeosX = [];
+    const xMarkGeosY = [];
+    const xMarkGeosZ = [];
+    function addXMark(barLength, barWidth, barThickness, localOffset) {
+        const bar1 = new THREE.BoxGeometry(barLength, barWidth, barThickness);
+        bar1.rotateZ(Math.PI / 4);
+        bar1.translate(0, 0, localOffset);
+        const bar2 = new THREE.BoxGeometry(barLength, barWidth, barThickness);
+        bar2.rotateZ(-Math.PI / 4);
+        bar2.translate(0, 0, localOffset);
+        return [bar1, bar2];
+    }
+
+    const XMARK_LEN = unit * 0.124;
+    const XMARK_WIDTH = unit * 0.01;
+    const XMARK_THICK = 0.003;
+    const XMARK_OFFSET = 0.006; // 讓 X 記號略微凸出護網表面，避免 z-fighting
+
+    for (let ix = 0; ix <= n; ix++) {
+        for (let iy = 0; iy < n; iy++) {
+            for (let iz = 0; iz < n; iz++) {
+                if (!mazeData.xBlocked[ix][iy][iz]) continue;
+                const cx = -half + ix * unit, cy = iy * unit + unit / 2, cz = -half + iz * unit + unit / 2;
+
+                const geo = new THREE.PlaneGeometry(unit, unit);
+                geo.rotateY(Math.PI / 2);
+                geo.translate(cx, cy, cz);
+                netGeos.push(geo);
+
+                addXMark(XMARK_LEN, XMARK_WIDTH, XMARK_THICK, XMARK_OFFSET).forEach(bar => {
+                    bar.rotateY(Math.PI / 2);
+                    bar.translate(cx, cy, cz);
+                    xMarkGeosX.push(bar);
+                });
+            }
+        }
+    }
+    for (let iy = 0; iy <= n; iy++) {
+        for (let ix = 0; ix < n; ix++) {
+            for (let iz = 0; iz < n; iz++) {
+                if (!mazeData.yBlocked[iy][ix][iz]) continue;
+                if (iy === 0) continue; // 最底層與場地地板共平面，跳過視覺渲染以避免 z-fighting 閃爍（碰撞判定不受影響）
+                const cx = -half + ix * unit + unit / 2, cy = iy * unit, cz = -half + iz * unit + unit / 2;
+
+                const geo = new THREE.PlaneGeometry(unit, unit);
+                geo.rotateX(Math.PI / 2);
+                geo.translate(cx, cy, cz);
+                netGeos.push(geo);
+
+                addXMark(XMARK_LEN, XMARK_WIDTH, XMARK_THICK, XMARK_OFFSET).forEach(bar => {
+                    bar.rotateX(Math.PI / 2);
+                    bar.translate(cx, cy, cz);
+                    xMarkGeosY.push(bar);
+                });
+            }
+        }
+    }
+    for (let iz = 0; iz <= n; iz++) {
+        for (let ix = 0; ix < n; ix++) {
+            for (let iy = 0; iy < n; iy++) {
+                if (!mazeData.zBlocked[iz][ix][iy]) continue;
+                const cx = -half + ix * unit + unit / 2, cy = iy * unit + unit / 2, cz = -half + iz * unit;
+
+                const geo = new THREE.PlaneGeometry(unit, unit);
+                geo.translate(cx, cy, cz);
+                netGeos.push(geo);
+
+                addXMark(XMARK_LEN, XMARK_WIDTH, XMARK_THICK, XMARK_OFFSET).forEach(bar => {
+                    bar.translate(cx, cy, cz);
+                    xMarkGeosZ.push(bar);
+                });
+            }
+        }
+    }
+
+    if (THREE.BufferGeometryUtils && netGeos.length) {
+        const mergedNets = THREE.BufferGeometryUtils.mergeBufferGeometries(netGeos, false);
+        const netMesh = new THREE.Mesh(mergedNets, netMat);
+        group.add(netMesh);
+    }
+    netGeos.forEach(g => g.dispose());
+
+    [[xMarkGeosX, xMarkMatX], [xMarkGeosY, xMarkMatY], [xMarkGeosZ, xMarkMatZ]].forEach(([geos, mat]) => {
+        if (THREE.BufferGeometryUtils && geos.length) {
+            const merged = THREE.BufferGeometryUtils.mergeBufferGeometries(geos, false);
+            const mesh = new THREE.Mesh(merged, mat);
+            group.add(mesh);
+        }
+        geos.forEach(g => g.dispose());
+    });
+
+    // 入口 / 出口標示
+    const en = mazeData.entranceCell, ex = mazeData.exitCell;
+    const enWorldX = -half + (en.ix + 0.5) * unit, enWorldY = (en.iy + 0.5) * unit;
+    const exWorldX = -half + (ex.ix + 0.5) * unit, exWorldY = (ex.iy + 0.5) * unit;
+
+    const enLabel = createLabelSprite('入口 IN', '#34d399', 0.5);
+    enLabel.position.set(enWorldX, enWorldY, -half);
+    group.add(enLabel);
+
+    const exLabel = createLabelSprite('出口 OUT', '#60a5fa', 0.5);
+    exLabel.position.set(exWorldX, exWorldY, half);
+    group.add(exLabel);
+
+    const enLight = new THREE.PointLight(0x10b981, 2.0, 2.2, 2);
+    enLight.position.set(enWorldX, enWorldY, -half - 0.2);
+    group.add(enLight);
+
+    const exLight = new THREE.PointLight(0x3b82f6, 2.0, 2.2, 2);
+    exLight.position.set(exWorldX, exWorldY, half + 0.2);
+    group.add(exLight);
+
+    const topLight = new THREE.PointLight(0xffffff, 1.6, CAGE_SIZE * 2.4, 1.6);
+    topLight.position.set(0, CAGE_SIZE + 0.6, 0);
+    group.add(topLight);
+
+    return { group, launchX: enWorldX };
+}
+
+function buildLaunchPad() {
+    if (padGroup) disposeGroupDeep(padGroup);
+    padGroup = new THREE.Group();
+
+    const ringGeo = new THREE.RingGeometry(PAD_RADIUS - 0.04, PAD_RADIUS, 48);
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0x10b981, transparent: true, opacity: 0.85, side: THREE.DoubleSide });
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    ring.rotation.x = -Math.PI / 2;
+    ring.position.set(launchPad.x, 0.015, launchPad.z);
+    padGroup.add(ring);
+
+    const discMat = new THREE.MeshBasicMaterial({ color: 0x10b981, transparent: true, opacity: 0.12, side: THREE.DoubleSide });
+    const disc = new THREE.Mesh(new THREE.CircleGeometry(PAD_RADIUS - 0.05, 48), discMat);
+    disc.rotation.x = -Math.PI / 2;
+    disc.position.set(launchPad.x, 0.012, launchPad.z);
+    padGroup.add(disc);
+
+    scene.add(padGroup);
+}
+
+function buildMaze(levelKey) {
+    applyLevelDimensions(levelKey);
+    if (mazeGroup) disposeGroupDeep(mazeGroup);
+    maze = buildMazeData(levelKey);
+    const built = buildMazeGeometry(maze);
+    mazeGroup = built.group;
+    scene.add(mazeGroup);
+
+    launchPad.x = built.launchX;
+    launchPad.z = -(CAGE_SIZE / 2) - 1.2;
+    buildLaunchPad();
+}
+
+// ==================== 無人機機體建構（沿用原版設計） ====================
+function createDroneCage(radius, colorHex) {
+    const group = new THREE.Group();
+    const material = new THREE.MeshStandardMaterial({
+        color: colorHex, emissive: colorHex, emissiveIntensity: 0.08,
+        metalness: 0.15, roughness: 0.4, transparent: true, opacity: 0.92
+    });
+
+    const CAGE_DETAIL = 3;
+    const icoGeo = new THREE.IcosahedronGeometry(radius, CAGE_DETAIL);
+    const edgesGeo = new THREE.EdgesGeometry(icoGeo, 1);
+    const posAttr = edgesGeo.attributes.position;
+    const rodRadius = radius * 0.010;
+
+    const rodGeometries = [];
+    const p1 = new THREE.Vector3();
+    const p2 = new THREE.Vector3();
+    const mid = new THREE.Vector3();
+    const dir = new THREE.Vector3();
+    const quat = new THREE.Quaternion();
+    const up = new THREE.Vector3(0, 1, 0);
+    const matrix = new THREE.Matrix4();
+
+    for (let i = 0; i < posAttr.count; i += 2) {
+        p1.fromBufferAttribute(posAttr, i);
+        p2.fromBufferAttribute(posAttr, i + 1);
+        dir.subVectors(p2, p1);
+        const len = dir.length();
+        if (len < 1e-6) continue;
+        mid.addVectors(p1, p2).multiplyScalar(0.5);
+        quat.setFromUnitVectors(up, dir.clone().normalize());
+        matrix.compose(mid, quat, new THREE.Vector3(1, 1, 1));
+
+        const rodGeo = new THREE.CylinderGeometry(rodRadius, rodRadius, len, 5, 1);
+        rodGeo.applyMatrix4(matrix);
+        rodGeometries.push(rodGeo);
+    }
+
+    let cageMesh;
+    if (THREE.BufferGeometryUtils && rodGeometries.length) {
+        const mergedGeo = THREE.BufferGeometryUtils.mergeBufferGeometries(rodGeometries, false);
+        cageMesh = new THREE.Mesh(mergedGeo, material);
+        cageMesh.castShadow = true;
+        group.add(cageMesh);
+        rodGeometries.forEach(g => g.dispose());
+    } else {
+        rodGeometries.forEach(g => {
+            const mesh = new THREE.Mesh(g, material);
+            mesh.castShadow = true;
+            group.add(mesh);
+        });
+    }
+
+    icoGeo.dispose();
+    edgesGeo.dispose();
+
+    return { group, material };
+}
+
+function createTailBeacon() {
+    const group = new THREE.Group();
+    const finLength = 0.07;
+    const finGeo = new THREE.BoxGeometry(0.014, 0.014, finLength);
+    const finMat = new THREE.MeshStandardMaterial({ color: 0x111827, metalness: 0.6, roughness: 0.45 });
+    const fin = new THREE.Mesh(finGeo, finMat);
+    fin.position.set(0, 0.02, -finLength / 2);
+    fin.castShadow = true;
+    group.add(fin);
+
+    const beaconPos = new THREE.Vector3(0, 0.02, -finLength);
+    const baseColor = new THREE.Color(0xff1a1a);
+    const beaconGeo = new THREE.SphereGeometry(0.022 / 3, 12, 12);
+    const beaconMat = new THREE.MeshBasicMaterial({ color: baseColor.clone() });
+    beaconMat.userData.baseColor = baseColor;
+    const beacon = new THREE.Mesh(beaconGeo, beaconMat);
+    beacon.position.copy(beaconPos);
+    group.add(beacon);
+
+    const haloLayers = [
+        { scale: 2.4, opacity: 0.4 },
+        { scale: 4.0, opacity: 0.2 },
+        { scale: 6.0, opacity: 0.09 }
+    ];
+    const haloMats = [];
+    haloLayers.forEach(layer => {
+        const haloGeo = new THREE.SphereGeometry((0.022 / 3) * layer.scale, 10, 10);
+        const haloMat = new THREE.MeshBasicMaterial({
+            color: baseColor.clone(), transparent: true, opacity: layer.opacity,
+            blending: THREE.AdditiveBlending, depthWrite: false
+        });
+        const halo = new THREE.Mesh(haloGeo, haloMat);
+        halo.position.copy(beaconPos);
+        group.add(halo);
+        haloMats.push(haloMat);
+    });
+    beaconMat.userData.haloMats = haloMats;
+
+    const beaconLight = new THREE.PointLight(0xff1a1a, 2.2, 1.1, 2);
+    beaconLight.position.copy(beaconPos);
+    group.add(beaconLight);
+
+    return { group, beaconMat, beaconLight };
+}
+
+function updateTailBeacon(beaconMat, beaconLight) {
+    if (!beaconMat) return;
+    beaconMat.color.copy(beaconMat.userData.baseColor);
+    if (beaconLight) beaconLight.intensity = 1.2;
+}
+
+function buildDrone() {
+    const droneGroup = new THREE.Group();
+    const innerGroup = new THREE.Group();
+    const INNER_SCALE = 0.23;
+
+    const bodyGeo = new THREE.BoxGeometry(0.24, 0.08, 0.24);
+    const bodyMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.9, roughness: 0.1 });
+    const body = new THREE.Mesh(bodyGeo, bodyMat);
+    body.castShadow = true;
+    innerGroup.add(body);
+
+    const canopyGeo = new THREE.SphereGeometry(0.09, 16, 16);
+    canopyGeo.scale(1, 0.5, 1.2);
+    const canopyMat = new THREE.MeshStandardMaterial({ color: 0x10b981, emissive: 0x047857, roughness: 0.05, metalness: 0.9 });
+    const canopy = new THREE.Mesh(canopyGeo, canopyMat);
+    canopy.position.y = 0.06;
+    canopy.position.z = 0.015;
+    canopy.castShadow = true;
+    innerGroup.add(canopy);
+
+    const lensGeo = new THREE.SphereGeometry(0.035, 12, 12);
+    const lensMat = new THREE.MeshBasicMaterial({ color: 0x10b981 });
+    const lens = new THREE.Mesh(lensGeo, lensMat);
+    lens.position.set(0, 0, 0.135);
+    innerGroup.add(lens);
+
+    const armAngle = Math.PI / 4;
+    const armDist = 0.28;
+    const armPositions = [
+        { x: Math.sin(armAngle) * armDist, z: Math.cos(armAngle) * armDist, color: 0x10b981 },
+        { x: -Math.sin(armAngle) * armDist, z: Math.cos(armAngle) * armDist, color: 0x10b981 },
+        { x: Math.sin(armAngle) * armDist, z: -Math.cos(armAngle) * armDist, color: 0xef4444 },
+        { x: -Math.sin(armAngle) * armDist, z: -Math.cos(armAngle) * armDist, color: 0xef4444 }
+    ];
+
+    armPositions.forEach((pos, idx) => {
+        const armGeo = new THREE.CylinderGeometry(0.018, 0.018, armDist, 8);
+        const armMat = new THREE.MeshStandardMaterial({ color: 0x334155, metalness: 0.95, roughness: 0.1 });
+        const arm = new THREE.Mesh(armGeo, armMat);
+        arm.rotation.z = Math.PI / 2;
+        arm.rotation.y = (idx === 0 || idx === 3) ? -armAngle : armAngle;
+        arm.position.set(pos.x / 2, 0, pos.z / 2);
+        arm.castShadow = true;
+        innerGroup.add(arm);
+
+        const motorGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.08, 8);
+        const motorMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.2 });
+        const motor = new THREE.Mesh(motorGeo, motorMat);
+        motor.position.set(pos.x, 0.02, pos.z);
+        motor.castShadow = true;
+        innerGroup.add(motor);
+
+        const rotorGroup = new THREE.Group();
+        rotorGroup.position.set(pos.x, 0.05, pos.z);
+
+        const shaftGeo = new THREE.CylinderGeometry(0.006, 0.006, 0.03, 8);
+        const shaftMat = new THREE.MeshStandardMaterial({ color: 0x000000 });
+        const shaft = new THREE.Mesh(shaftGeo, shaftMat);
+        rotorGroup.add(shaft);
+
+        const bladeGeo = new THREE.BoxGeometry(0.018, 0.003, 0.22);
+        const bladeMat = new THREE.MeshStandardMaterial({ color: 0xf1f5f9, transparent: true, opacity: 0.85 });
+        const blade = new THREE.Mesh(bladeGeo, bladeMat);
+        blade.castShadow = true;
+        rotorGroup.add(blade);
+
+        innerGroup.add(rotorGroup);
+        drone.rotors.push(rotorGroup);
+
+        const ledGeo = new THREE.SphereGeometry(0.02, 8, 8);
+        const ledMat = new THREE.MeshBasicMaterial({ color: pos.color });
+        const led = new THREE.Mesh(ledGeo, ledMat);
+        led.position.set(pos.x, -0.02, pos.z);
+        innerGroup.add(led);
+        drone.lights.push({ mesh: led, originalColor: pos.color });
+    });
+
+    innerGroup.scale.setScalar(INNER_SCALE);
+    droneGroup.add(innerGroup);
+
+    const { group: cageGroup } = createDroneCage(DRONE_CAGE_RADIUS, 0x10b981);
+    droneGroup.add(cageGroup);
+
+    const { group: tailGroup, beaconMat: tailBeaconMat, beaconLight: tailBeaconLight } = createTailBeacon();
+    tailGroup.position.set(0, 0, -0.045);
+    droneGroup.add(tailGroup);
+    drone.tailBeaconMat = tailBeaconMat;
+    drone.tailBeaconLight = tailBeaconLight;
+    updateTailBeacon(drone.tailBeaconMat, drone.tailBeaconLight);
+
+    const glowY = -DRONE_CAGE_RADIUS * 0.9;
+    const bottomLight = new THREE.SpotLight(0x00ffcc, 5.0, 4, Math.PI / 6, 0.4, 0.9);
+    bottomLight.position.set(0, glowY, 0);
+    bottomLight.castShadow = true;
+    const lightTarget = new THREE.Object3D();
+    lightTarget.position.set(0, -3, 0);
+    bottomLight.add(lightTarget);
+    bottomLight.target = lightTarget;
+    droneGroup.add(bottomLight);
+
+    const bottomGlowGeo = new THREE.SphereGeometry(0.015, 8, 8);
+    const bottomGlowMat = new THREE.MeshBasicMaterial({ color: 0x00ffcc });
+    const bottomGlow = new THREE.Mesh(bottomGlowGeo, bottomGlowMat);
+    bottomGlow.position.set(0, glowY, 0);
+    droneGroup.add(bottomGlow);
+
+    droneGroup.position.copy(drone.position);
+    scene.add(droneGroup);
+    drone.mesh = droneGroup;
+}
+
+// ==================== 特效粒子 ====================
+function createExplosion(position, colorHex) {
+    const particleCount = 30;
+    const geo = new THREE.SphereGeometry(0.03, 6, 6);
+    for (let i = 0; i < particleCount; i++) {
+        const mat = new THREE.MeshBasicMaterial({ color: colorHex, transparent: true, opacity: 1.0 });
+        const mesh = new THREE.Mesh(geo, mat);
+        mesh.position.copy(position);
+        const velocity = new THREE.Vector3((Math.random() - 0.5) * 6, (Math.random() - 0.5) * 6, (Math.random() - 0.5) * 6);
+        scene.add(mesh);
+        particles.push({ mesh, velocity, life: 1.0, decay: 0.02 + Math.random() * 0.03 });
+    }
+}
+
+function spawnTrailParticle(pos) {
+    const geo = new THREE.BoxGeometry(0.015, 0.015, 0.015);
+    const mat = new THREE.MeshBasicMaterial({ color: 0x10b981, transparent: true, opacity: 0.8 });
+    const mesh = new THREE.Mesh(geo, mat);
+    mesh.position.copy(pos).add(new THREE.Vector3((Math.random() - 0.5) * 0.1, -0.02, (Math.random() - 0.5) * 0.1));
+    scene.add(mesh);
+    particles.push({ mesh, velocity: new THREE.Vector3(0, -0.8 - Math.random() * 0.8, 0), life: 0.5, decay: 0.05 });
+}
+
+function updateParticles(delta) {
+    for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.mesh.position.addScaledVector(p.velocity, delta);
+        p.life -= p.decay;
+        p.mesh.material.opacity = p.life;
+        p.mesh.scale.setScalar(p.life);
+        if (p.life <= 0) {
+            scene.remove(p.mesh);
+            p.mesh.geometry.dispose();
+            p.mesh.material.dispose();
+            particles.splice(i, 1);
+        }
+    }
+}
+
+// ==================== 輸入控制 ====================
+function toggleSound() {
+    const btn = document.getElementById('btnSound');
+    const icon = btn.querySelector('i');
+    soundEnabled = !soundEnabled;
+    if (soundEnabled) {
+        initAudio();
+        if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+        icon.className = 'fa-solid fa-volume-high text-sm';
+        btn.classList.add('text-emerald-400');
+        showSystemNotification('馬達物理聲音：開啟');
+    } else {
+        icon.className = 'fa-solid fa-volume-xmark text-sm';
+        btn.classList.remove('text-emerald-400');
+        showSystemNotification('馬達物理聲音：靜音');
+    }
+}
+
+
+
+function triggerTakeoff() {
+    if (drone.position.y < 0.15) {
+        drone.targetAltitude = 1.5;
+        drone.autoFlightState = 'takingoff';
+        drone.gpAltArmed = false; // 起飛完成後，油門要先推到中間才接手
+        showSystemNotification('自動駕駛：起飛中... 攀升至 1.5m 定高');
+    } else {
+        showSystemNotification('無法起飛：已在空中懸停');
+    }
+}
+
+function triggerLanding() {
+    if (drone.position.y > 0.15) {
+        drone.targetAltitude = 0.1;
+        drone.autoFlightState = 'landing';
+        drone.gpAltArmed = false;
+        showSystemNotification('自動駕駛：降落中... 緩緩下降中');
+    } else {
+        showSystemNotification('無法降落：已在地面');
+    }
+}
+
+function setupTouchControls() {
+    const joyLeft = document.getElementById('joyLeft');
+    const knobLeft = document.getElementById('knobLeft');
+    const joyRight = document.getElementById('joyRight');
+    const knobRight = document.getElementById('knobRight');
+
+    function handleJoystick(e, zone, knob, callback) {
+        e.preventDefault();
+        const touch = e.targetTouches ? e.targetTouches[0] : e.touches[0];
+        if (!touch) return;
+        const rect = zone.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const dx = touch.clientX - centerX;
+        const dy = touch.clientY - centerY;
+        const dist = Math.min(rect.width / 2, Math.sqrt(dx * dx + dy * dy));
+        const angle = Math.atan2(dy, dx);
+        const percentX = (Math.cos(angle) * dist) / (rect.width / 2);
+        const percentY = (Math.sin(angle) * dist) / (rect.height / 2);
+        knob.style.transform = `translate(${percentX * 30}px, ${percentY * 30}px)`;
+        callback(percentX, percentY);
+    }
+
+    function resetJoystick(knob, callback) {
+        knob.style.transform = `translate(0px, 0px)`;
+        callback(0, 0);
+    }
+
+    joyLeft.addEventListener('touchstart', (e) => { drone.touchActiveLeft = true; handleJoystick(e, joyLeft, knobLeft, updateLeftJoy); }, { passive: false });
+    joyLeft.addEventListener('touchmove', (e) => { drone.touchActiveLeft = true; handleJoystick(e, joyLeft, knobLeft, updateLeftJoy); }, { passive: false });
+    joyLeft.addEventListener('touchend', () => resetJoystick(knobLeft, () => {
+        drone.touchActiveLeft = false;
+        drone.input.yaw = 0;
+        drone.touchAltitudeInput = 0;
+    }));
+
+    joyRight.addEventListener('touchstart', (e) => { drone.touchActive = true; handleJoystick(e, joyRight, knobRight, updateRightJoy); }, { passive: false });
+    joyRight.addEventListener('touchmove', (e) => { drone.touchActive = true; handleJoystick(e, joyRight, knobRight, updateRightJoy); }, { passive: false });
+    joyRight.addEventListener('touchend', () => resetJoystick(knobRight, () => {
+        drone.touchActive = false;
+        drone.input.pitch = 0;
+        drone.input.roll = 0;
+    }));
+
+    function updateLeftJoy(x, y) {
+        const raw = -y;
+        drone.touchAltitudeInput = Math.sign(raw) * Math.pow(Math.abs(raw), 2);
+        drone.input.yaw = x;
+    }
+
+    function updateRightJoy(x, y) {
+        if (drone.autoFlightState !== 'none' && (Math.abs(x) > 0.1 || Math.abs(y) > 0.1)) {
+            drone.autoFlightState = 'none';
+            showSystemNotification('手動接管姿態控制');
+        }
+        drone.input.pitch = -y;
+        drone.input.roll = x;
+    }
+}
+
+// ==================== 立體迷宮碰撞與任務判定 ====================
+function resolveMazeWallCollisions(prevPos) {
+    if (!maze) return;
+    const half = CAGE_SIZE / 2;
+    const n = maze.n, unit = maze.unit;
+    const r = DRONE_CAGE_RADIUS;
+
+    if (drone.position.x < -half - 0.3 || drone.position.x > half + 0.3 ||
+        drone.position.z < -half - 0.3 || drone.position.z > half + 0.3 ||
+        drone.position.y < -0.3 || drone.position.y > CAGE_SIZE + 0.3) return;
+
+    function cellIndexXZ(v) {
+        let idx = Math.floor((v + half) / unit);
+        if (idx < 0) idx = 0;
+        if (idx > n - 1) idx = n - 1;
+        return idx;
+    }
+    function cellIndexY(v) {
+        let idx = Math.floor(v / unit);
+        if (idx < 0) idx = 0;
+        if (idx > n - 1) idx = n - 1;
+        return idx;
+    }
+
+    // 用「移動前後平均座標」查詢晶格索引，較能反映整段移動路徑實際掃過的晶格
+    const midX = (prevPos.x + drone.position.x) / 2;
+    const midY = (prevPos.y + drone.position.y) / 2;
+    const midZ = (prevPos.z + drone.position.z) / 2;
+
+    // X 方向平面：同時檢查「本幀是否直接跨越平面」(防止高速移動直接穿透護網)
+    // 以及「是否仍停留在平面緩衝帶內」(維持貼牆時的碰撞判定)
+    // 隧道護網一律採「軟停止」：只吸收朝牆面方向的速度分量、完全不反彈。
+    // 在狹窄的 1 公尺通道與轉彎處，若採用彈開（restitution）回饋，兩個面同時碰撞時
+    // 會互相拉扯彈跳，玩家操控時會感覺無人機自己亂飄、劇烈上下或左右跳動而不受控；
+    // 軟停止則是碰到哪一面就卡住那個方向，其餘方向仍可正常操控，手感更可預期。
+    for (let ix = 0; ix <= n; ix++) {
+        const planeX = -half + ix * unit;
+        const prevDist = prevPos.x - planeX;
+        const newDist = drone.position.x - planeX;
+        const crossed = (prevDist >= 0 && newDist < 0) || (prevDist <= 0 && newDist > 0);
+        const nearBand = Math.abs(newDist) < r;
+        if (!crossed && !nearBand) continue;
+        const iy = cellIndexY(midY);
+        const iz = cellIndexXZ(midZ);
+        if (!maze.xBlocked[ix][iy][iz]) continue;
+        const sign = prevDist >= 0 ? 1 : (prevDist < 0 ? -1 : (newDist >= 0 ? 1 : -1));
+        const movingIntoWall = drone.velocity.x === 0 || Math.sign(drone.velocity.x) === -sign;
+        // 只有「真的穿透平面」或「正朝牆面移動（含靜止）」時才夾回邊界並吸收速度；
+        // 若無人機已經在緩衝帶內但速度是朝遠離牆面的方向，就不要每幀強制拉回同一個位置，
+        // 否則會卡住幾幀、放開後速度已經蓄積，一放開就是一次明顯的跳動
+        if (crossed || movingIntoWall) {
+            drone.position.x = planeX + sign * r;
+            drone.velocity.x = 0;
+        }
+    }
+
+    // Y 方向平面
+    // iy === 0（絕對地板）交給外層通用的地板邊界處理即可，這裡略過：
+    // 地面層晶格必然沒有「往下」的路徑連接，兩套系統各自處理同一個邊界容易互相干擾
+    for (let iy = 1; iy <= n; iy++) {
+        const planeY = iy * unit;
+        const prevDist = prevPos.y - planeY;
+        const newDist = drone.position.y - planeY;
+        const crossed = (prevDist >= 0 && newDist < 0) || (prevDist <= 0 && newDist > 0);
+        const nearBand = Math.abs(newDist) < r;
+        if (!crossed && !nearBand) continue;
+        const ix2 = cellIndexXZ(midX);
+        const iz2 = cellIndexXZ(midZ);
+        if (!maze.yBlocked[iy][ix2][iz2]) continue;
+        const sign = prevDist >= 0 ? 1 : (prevDist < 0 ? -1 : (newDist >= 0 ? 1 : -1));
+        const movingIntoWall = drone.velocity.y === 0 || Math.sign(drone.velocity.y) === -sign;
+        if (crossed || movingIntoWall) {
+            drone.position.y = planeY + sign * r;
+            drone.velocity.y = 0;
+            // 同步定高目標：若定高系統想去的高度已經被天花板/地板護網擋住，
+            // 讓目標高度貼齊目前碰撞後的高度，避免定高控制持續朝牆面加力，
+            // 造成無人機看似靜止卻上下抖動的問題
+            // sign > 0：護網在下方（地板型阻擋，卡住下降）→ 目標高度不可低於目前位置
+            // sign < 0：護網在上方（天花板型阻擋，卡住上升）→ 目標高度不可高於目前位置
+            if (sign > 0 && drone.targetAltitude < drone.position.y) {
+                drone.targetAltitude = drone.position.y;
+            } else if (sign < 0 && drone.targetAltitude > drone.position.y) {
+                drone.targetAltitude = drone.position.y;
+            }
+        }
+    }
+
+    // Z 方向平面
+    for (let iz = 0; iz <= n; iz++) {
+        const planeZ = -half + iz * unit;
+        const prevDist = prevPos.z - planeZ;
+        const newDist = drone.position.z - planeZ;
+        const crossed = (prevDist >= 0 && newDist < 0) || (prevDist <= 0 && newDist > 0);
+        const nearBand = Math.abs(newDist) < r;
+        if (!crossed && !nearBand) continue;
+        const ix3 = cellIndexXZ(midX);
+        const iy3 = cellIndexY(midY);
+        if (!maze.zBlocked[iz][ix3][iy3]) continue;
+        const sign = prevDist >= 0 ? 1 : (prevDist < 0 ? -1 : (newDist >= 0 ? 1 : -1));
+        const movingIntoWall = drone.velocity.z === 0 || Math.sign(drone.velocity.z) === -sign;
+        if (crossed || movingIntoWall) {
+            drone.position.z = planeZ + sign * r;
+            drone.velocity.z = 0;
+        }
+    }
+}
+
+function checkMazeGatePass(prevPos) {
+    if (!maze) return;
+    const half = CAGE_SIZE / 2;
+    const unit = maze.unit;
+    const en = maze.entranceCell;
+    const ex = maze.exitCell;
+
+    const enX0 = -half + en.ix * unit, enX1 = enX0 + unit;
+    const enY0 = en.iy * unit, enY1 = enY0 + unit;
+    if (prevPos.z < -half && drone.position.z >= -half) {
+        if (drone.position.x > enX0 && drone.position.x < enX1 && drone.position.y > enY0 && drone.position.y < enY1) {
+            if (!mission.entered) {
+                mission.entered = true;
+                showSystemNotification('✅ 已從入口穿入隧道！');
+                updateMissionHUD();
+            }
+        }
+    }
+
+    const exX0 = -half + ex.ix * unit, exX1 = exX0 + unit;
+    const exY0 = ex.iy * unit, exY1 = exY0 + unit;
+    if (prevPos.z <= half && drone.position.z > half) {
+        if (drone.position.x > exX0 && drone.position.x < exX1 && drone.position.y > exY0 && drone.position.y < exY1) {
+            if (mission.entered && !mission.exited) {
+                mission.exited = true;
+                if (mission.timerRunning && !mission.completed) {
+                    mission.completed = true;
+                    mission.timerRunning = false;
+                    mission.elapsed = (performance.now() - mission.startTime) / 1000;
+                    const best = mission.bestTimes[mission.level];
+                    const isNewBest = (best === null || mission.elapsed < best);
+                    if (isNewBest) mission.bestTimes[mission.level] = mission.elapsed;
+                    showSystemNotification(`🏁 已完全穿越出口，任務完成！用時 ${mission.elapsed.toFixed(2)} 秒`);
+                    showEndScreen();
+                }
+                updateMissionHUD();
+            } else if (!mission.entered) {
+                showSystemNotification('⚠️ 尚未由入口進入，此次穿出不列入計時');
+            }
+        }
+    }
+}
+
+// ==================== 核心 PD 飛控物理計算 ====================
+function updateDronePhysics(delta) {
+    if (!drone.mesh) return;
+    const prevPosFrameStart = drone.position.clone();
+    const groundLimit = 0.10;
+
+            // 雙搖桿手把：推桿幅度（類比值）決定動作大小
+            //  左搖桿上下 -> 目標高度變化速率（推到底每秒 GP_CLIMB_RATE 公尺，回中即定高懸停）
+            //  左搖桿左右 -> 偏航角速度；右搖桿上下/左右 -> 俯仰/側滾傾角，傾角越大水平速度越快
+            const gp = gamepadInput;
+            const GP_CLIMB_RATE = 1.2;
+            if (gp.connected) {
+                // 油門接手：RC 遙控器的油門桿不會自動回中，若它停在底部或頂端，
+                // 自動起飛/降落/重設之後會立刻把無人機拉下去或衝上去。
+                // 因此這些動作之後油門先「不生效」，必須把油門推過中間一次才接手高度控制。
+                if (!drone.gpAltArmed && drone.autoFlightState === 'none' && Math.abs(gp.ly) < 0.12) {
+                    drone.gpAltArmed = true;
+                    showSystemNotification(flightModeManual
+                        ? "油門已接手推力控制（中間 ≈ 懸停推力）"
+                        : "油門已接手高度控制（中間 = 定高懸停）");
+                }
+                if (drone.gpAltArmed && drone.autoFlightState === 'none' && !flightModeManual) {
+                    const lift = padCurve(gp.ly);
+                    if (lift !== 0) {
+                        drone.targetAltitude = THREE.MathUtils.clamp(drone.targetAltitude + lift * GP_CLIMB_RATE * delta, 0.10, padMaxAlt());
+                    }
+                } else if (!drone.gpAltArmed && drone.autoFlightState === 'none' && Math.abs(gp.ly) > 0.3) {
+                    const now = performance.now();
+                    if (!drone.gpArmHintAt || now - drone.gpArmHintAt > 3000) {
+                        drone.gpArmHintAt = now;
+                        showSystemNotification("請先把油門（左搖桿上下）推到中間，再控制升降");
+                    }
+                }
+                // 自動起降中，撥動右搖桿或偏航即恢復手動（油門桿位置不會中斷自動起降）
+                if (drone.autoFlightState !== 'none' && (Math.abs(gp.rx) > 0.15 || Math.abs(gp.ry) > 0.15 || Math.abs(gp.lx) > 0.15)) {
+                    drone.autoFlightState = 'none';
+                    showSystemNotification("已恢復手動姿態控制");
+                }
+            }
+
+
+    if (Math.abs(drone.touchAltitudeInput) > 0.03) {
+        drone.targetAltitude = THREE.MathUtils.clamp(
+            drone.targetAltitude + drone.touchAltitudeInput * delta * 3.5, 0.10, MAX_TARGET_ALTITUDE
+        );
+        if (drone.autoFlightState !== 'none') drone.autoFlightState = 'none';
+    }
+
+    const altHoldRate = 0.7;
+
+
+
+    if (drone.autoFlightState === 'takingoff') {
+        const altError = drone.targetAltitude - drone.position.y;
+        if (Math.abs(altError) < 0.1 && Math.abs(drone.velocity.y) < 0.1) {
+            drone.autoFlightState = 'none';
+            showSystemNotification('定高起飛完成');
+        }
+    } else if (drone.autoFlightState === 'landing') {
+        if (drone.position.y <= 0.11) {
+            drone.autoFlightState = 'none';
+            showSystemNotification('自動降落成功，馬達關機');
+        }
+    }
+
+    if (!drone.touchActive) drone.input.pitch = padCurve(gamepadInput.ry); // 手把類比值：推越多越大
+
+    if (!drone.touchActive) drone.input.roll = padCurve(gamepadInput.rx); // 手把類比值：推越多越大
+
+    if (!drone.touchActiveLeft) drone.input.yaw = padCurve(gamepadInput.lx); // 手把類比值：推越多越大
+
+    // ---- 物理積分採固定子步（fixed sub-step）----
+    // 關卡越大（6~8m 立方），場景幾何與光源越多，畫面幀率可能較低、單幀 delta 變大且不穩定。
+    // 若直接用整個不穩定的 delta 做一次積分，位移量與碰撞判定的誤差會被放大，
+    // 在較大關卡就會表現成「大量晶格震動、甚至自行偏移位置」。
+    // 這裡固定每個子步為 1/120 秒，依實際經過時間切成多個子步分別積分＋碰撞判定，
+    // 讓模擬品質不再受畫面幀率影響，關卡越大也不會變得更不穩定。
+    const FIXED_SUBSTEP = 1 / 120;
+    let remaining = delta;
+    let guard = 0;
+
+    while (remaining > 1e-6 && guard < 24) {
+        const step = remaining > FIXED_SUBSTEP ? FIXED_SUBSTEP : remaining;
+        remaining -= step;
+        guard++;
+        const subPrevPos = drone.position.clone();
+
+        const targetPitchAngle = drone.input.pitch * drone.constants.maxTilt;
+        const targetRollAngle = drone.input.roll * drone.constants.maxTilt;
+
+        drone.currentPitch = THREE.MathUtils.lerp(drone.currentPitch, targetPitchAngle, step * drone.constants.pitchRollSpeed * 12);
+        drone.currentRoll = THREE.MathUtils.lerp(drone.currentRoll, targetRollAngle, step * drone.constants.pitchRollSpeed * 12);
+
+        const targetYawRate = drone.input.yaw * drone.constants.yawSpeed;
+        drone.currentYawRate = THREE.MathUtils.lerp(drone.currentYawRate, targetYawRate, step * drone.constants.yawRampSpeed);
+        drone.rotation.y -= drone.currentYawRate * step;
+
+        const altError = drone.targetAltitude - drone.position.y;
+        const climbRate = drone.velocity.y;
+        const kpAlt = 15.0;
+        const kdAlt = 8.0;
+
+        const hoverThrust = drone.constants.gravity * drone.constants.mass;
+        let targetVerticalForce = hoverThrust + (altError * kpAlt) - (climbRate * kdAlt);
+
+        if (drone.autoFlightState === 'takingoff' && targetVerticalForce < hoverThrust * 0.9) {
+            targetVerticalForce = hoverThrust * 1.15;
+        }
+
+        let idealThrottle = targetVerticalForce / drone.constants.maxThrottleThrust;
+        drone.input.throttle = THREE.MathUtils.clamp(idealThrottle, 0.0, 1.0);
+
+        if (drone.targetAltitude <= 0.15 && drone.position.y <= 0.11) {
+            // 已在地面附近且目標高度也貼近地面：直接鎖定於地面靜止，
+            // 而不是每幀先斷油門讓重力拉一下、再被地板邊界彈回去，
+            // 避免無人機在停靠時看似靜止卻持續微幅上下抖動
+            drone.input.throttle = 0.0;
+            drone.position.y = 0.10;
+            drone.velocity.y = 0;
+        }
+
+        // 手動油門模式：油門桿直接決定推力（自動起降期間與油門尚未接手時，仍由定高飛控代管）
+        // 推力沿機身傾斜方向分配，油門越大、傾角相同時水平加速越強，所以移動速度會隨油門改變
+        if (flightModeManual && gp.connected && drone.gpAltArmed && drone.autoFlightState === 'none' && !drone.touchActiveLeft) {
+            drone.input.throttle = THREE.MathUtils.clamp(manualThrottleFromStick(gp.ly), 0, 1);
+            // 同步目標高度，切回定高模式或按自動起降時可以從目前高度平順接手
+            drone.targetAltitude = THREE.MathUtils.clamp(drone.position.y, 0.10, padMaxAlt());
+        }
+
+        const thrustAmount = drone.input.throttle * drone.constants.maxThrottleThrust;
+        const localUp = new THREE.Vector3(0, 1, 0);
+        localUp.applyEuler(new THREE.Euler(drone.currentPitch, 0, drone.currentRoll, 'YXZ'));
+        localUp.applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y);
+
+        const forceThrust = localUp.multiplyScalar(thrustAmount);
+        const forceGravity = new THREE.Vector3(0, -drone.constants.gravity * drone.constants.mass, 0);
+        const forceDrag = drone.velocity.clone().multiplyScalar(-drone.constants.linearDrag);
+
+        const totalForce = new THREE.Vector3().add(forceThrust).add(forceGravity).add(forceDrag);
+        const acceleration = totalForce.divideScalar(drone.constants.mass);
+
+        drone.velocity.addScaledVector(acceleration, step);
+        drone.position.addScaledVector(drone.velocity, step);
+
+        // ---- 場地地板 / 天花板安全邊界 ----
+        if (drone.position.y < groundLimit) {
+            drone.position.y = groundLimit;
+            drone.velocity.y = 0;
+            drone.velocity.multiplyScalar(0.5);
+        }
+
+        const ceilingLimit = ARENA.yMax - DRONE_CAGE_RADIUS;
+        if (drone.position.y > ceilingLimit) {
+            drone.position.y = ceilingLimit;
+            drone.velocity.y = -0.1;
+        }
+
+        // ---- 外圍安全飛行邊界（起降場 + 迷宮週邊） ----
+        const droneBodyRadius = DRONE_CAGE_RADIUS;
+        const wallRestitution = 0.4;
+        if (drone.position.x < ARENA.xMin + droneBodyRadius) {
+            drone.position.x = ARENA.xMin + droneBodyRadius;
+            if (drone.velocity.x < 0) drone.velocity.x *= -wallRestitution;
+        } else if (drone.position.x > ARENA.xMax - droneBodyRadius) {
+            drone.position.x = ARENA.xMax - droneBodyRadius;
+            if (drone.velocity.x > 0) drone.velocity.x *= -wallRestitution;
+        }
+        if (drone.position.z < ARENA.zMin + droneBodyRadius) {
+            drone.position.z = ARENA.zMin + droneBodyRadius;
+            if (drone.velocity.z < 0) drone.velocity.z *= -wallRestitution;
+        } else if (drone.position.z > ARENA.zMax - droneBodyRadius) {
+            drone.position.z = ARENA.zMax - droneBodyRadius;
+            if (drone.velocity.z > 0) drone.velocity.z *= -wallRestitution;
+        }
+
+        // ---- 立體迷宮晶格護網碰撞（用本子步的起訖位置判定）----
+        resolveMazeWallCollisions(subPrevPos);
+    }
+
+    // 無人機視覺模型（含攝影機跟隨的基準座標）要在所有子步的邊界／護網碰撞修正「之後」再同步，
+    // 否則模型會顯示修正前（尚未卡牆）的座標，下一幀又被拉回修正後座標，
+    // 在無人機貼著天花板/地板或護網靜止時，會表現成每幀都在原地上下抖動
+    drone.mesh.position.copy(drone.position);
+    drone.mesh.rotation.set(drone.currentPitch, drone.rotation.y, drone.currentRoll, 'YXZ');
+
+    // ---- 入口 / 出口穿越偵測（用整個畫面幀的起訖位置）----
+    checkMazeGatePass(prevPosFrameStart);
+
+    // ---- 任務計時：離地即開始計時 ----
+    const wasOnGround = prevPosFrameStart.y <= groundLimit + 0.02;
+    const isOnGround = drone.position.y <= groundLimit + 0.02;
+    if (wasOnGround && !isOnGround && !mission.timerRunning) {
+        mission.timerRunning = true;
+        mission.completed = false;
+        mission.startTime = performance.now();
+        mission.entered = false;
+        mission.exited = false;
+        showSystemNotification('⏱️ 計時開始！');
+    }
+
+    const idleSpin = 8;
+    const maxSpin = 90;
+    const spinSpeed = drone.input.throttle > 0.02 ? idleSpin + drone.input.throttle * maxSpin : 0;
+    drone.rotors.forEach((rotorGroup, idx) => {
+        const dir = (idx === 0 || idx === 3) ? 1 : -1;
+        rotorGroup.rotation.y += dir * spinSpeed * delta;
+    });
+}
+
+// ==================== 攝影機 ====================
+function cycleCameraMode() {
+    cameraMode = (cameraMode + 1) % CAMERA_MODES.length;
+    if (cameraMode === 2) {
+        orbitControls.enabled = true;
+        orbitControls.target.copy(drone.position);
+    } else {
+        orbitControls.enabled = false;
+    }
+    document.getElementById('camText').innerText = CAMERA_MODES[cameraMode];
+    showSystemNotification(`視角切換：${CAMERA_MODES[cameraMode]}`);
+}
+
+function updateCamera(delta) {
+    if (!drone.mesh) return;
+
+    // 用平滑後的座標取代每幀直接讀取的原始 drone.position，
+    // 過濾掉單幀等級的高頻微幅雜訊（例如貼牆碰撞修正的殘留量），避免畫面看起來在抖動；
+    // 平滑係數夠大，正常飛行操控的手感不會受影響
+    if (!cameraLookSmooth) cameraLookSmooth = drone.position.clone();
+    else cameraLookSmooth.lerp(drone.position, 0.35);
+
+    if (cameraMode === 0) {
+        drone.mesh.visible = true;
+        const backOffset = 1.9;
+        const upOffset = 0.7;
+        const relativeCameraOffset = new THREE.Vector3(0, upOffset, -backOffset);
+        relativeCameraOffset.applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y);
+        const targetCameraPosition = drone.position.clone().add(relativeCameraOffset);
+        camera.position.lerp(targetCameraPosition, 0.12);
+        const lookTarget = cameraLookSmooth.clone().add(new THREE.Vector3(0, 0.1, 0));
+        camera.lookAt(lookTarget);
+    } else if (cameraMode === 1) {
+        drone.mesh.visible = false;
+        const relativeCameraOffset = new THREE.Vector3(0, 0.04, 0.1);
+        relativeCameraOffset.applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y);
+        const targetCameraPosition = cameraLookSmooth.clone().add(relativeCameraOffset);
+        camera.position.copy(targetCameraPosition);
+        const forwardDir = new THREE.Vector3(0, 0, 1);
+        forwardDir.applyEuler(new THREE.Euler(drone.currentPitch, drone.rotation.y, 0, 'YXZ'));
+        const lookTarget = camera.position.clone().add(forwardDir);
+        camera.lookAt(lookTarget);
+    } else if (cameraMode === 2) {
+        drone.mesh.visible = true;
+        orbitControls.target.lerp(drone.position, 0.1);
+        orbitControls.update();
+    }
+}
+
+// ==================== HUD ====================
+function formatTime(sec) {
+    const m = Math.floor(sec / 60);
+    const s = (sec % 60).toFixed(2).padStart(5, '0');
+    return `${String(m).padStart(2, '0')}:${s}`;
+}
+
+function formatBigTime(sec) {
+    const mm = Math.floor(sec / 60);
+    const ss = Math.floor(sec % 60);
+    const cs = Math.floor((sec * 100) % 100);
+    return `${String(mm).padStart(2, '0')}:${String(ss).padStart(2, '0')}:${String(cs).padStart(2, '0')}`;
+}
+
+function updateMissionHUD() {
+    const levelEl = document.getElementById('missionLevelVal');
+    if (levelEl) levelEl.innerText = MAZE_LEVELS[mission.level] ? MAZE_LEVELS[mission.level].label.split('・')[0] : '-';
+
+    const enterEl = document.getElementById('missionEnterVal');
+    if (enterEl) enterEl.innerHTML = mission.entered
+        ? '<i class="fa-solid fa-circle-check text-emerald-400"></i> 已穿入入口'
+        : '<i class="fa-regular fa-circle text-slate-500"></i> 尚未穿入';
+
+    const exitEl = document.getElementById('missionExitVal');
+    if (exitEl) exitEl.innerHTML = mission.exited
+        ? '<i class="fa-solid fa-circle-check text-emerald-400"></i> 已穿出出口'
+        : '<i class="fa-regular fa-circle text-slate-500"></i> 尚未穿出';
+
+    let elapsedDisplay = mission.elapsed;
+    if (mission.timerRunning) elapsedDisplay = (performance.now() - mission.startTime) / 1000;
+    const timerEl = document.getElementById('missionTimerVal');
+    if (timerEl) timerEl.innerText = formatTime(elapsedDisplay);
+
+    const bigTimerEl = document.getElementById('bigTimerVal');
+    if (bigTimerEl) bigTimerEl.innerText = formatBigTime(elapsedDisplay);
+
+    const statusEl = document.getElementById('missionStatusVal');
+    if (statusEl) {
+        if (mission.completed) {
+            statusEl.innerText = '任務完成 🏁';
+            statusEl.className = 'text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full tech-font';
+        } else if (mission.timerRunning) {
+            statusEl.innerText = mission.entered ? '隧道飛行中...' : '前往入口中...';
+            statusEl.className = 'text-[10px] bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 px-2 py-0.5 rounded-full tech-font animate-pulse';
+        } else {
+            statusEl.innerText = '待命中';
+            statusEl.className = 'text-[10px] bg-slate-500/10 text-slate-400 border border-slate-500/30 px-2 py-0.5 rounded-full tech-font';
+        }
+    }
+
+    const bestEl = document.getElementById('missionBestVal');
+    if (bestEl) {
+        const best = mission.bestTimes[mission.level];
+        bestEl.innerText = best ? formatTime(best) : '--:--.--';
+    }
+}
+
+function updateHUD() {
+    const speedMagnitude = drone.velocity.length();
+    document.getElementById('telemetrySpeed').innerText = speedMagnitude.toFixed(1);
+    const speedBarPercent = Math.min((speedMagnitude / 10) * 100, 100);
+    document.getElementById('speedBar').style.width = `${speedBarPercent}%`;
+
+    const currentAlt = drone.position.y;
+    document.getElementById('telemetryAlt').innerText = currentAlt.toFixed(2);
+    const altBarPercent = Math.min((currentAlt / 3.0) * 100, 100);
+    document.getElementById('altBar').style.width = `${altBarPercent}%`;
+
+    const throttlePercent = Math.round(drone.input.throttle * 100);
+    document.getElementById('telemetryThrottle').innerText = `${throttlePercent}%`;
+    document.getElementById('throttleBar').style.width = `${throttlePercent}%`;
+
+    const fModeText = document.getElementById('flightMode');
+    if (drone.autoFlightState === 'takingoff') {
+        fModeText.innerText = '自動起飛中';
+        fModeText.className = 'text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full tech-font animate-pulse';
+    } else if (drone.autoFlightState === 'landing') {
+        fModeText.innerText = '自動降落中';
+        fModeText.className = 'text-[10px] bg-rose-500/20 text-rose-300 border border-rose-500/40 px-2 py-0.5 rounded-full tech-font animate-pulse';
+    } else {
+        fModeText.innerText = '氣壓定高中';
+        fModeText.className = 'text-[10px] bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full tech-font';
+    }
+
+    let degrees = Math.round((drone.rotation.y * (180 / Math.PI)) % 360);
+    if (degrees < 0) degrees += 360;
+    document.getElementById('compassVal').innerText = `${String(degrees).padStart(3, '0')}°`;
+
+    let dirStr = 'N';
+    if (degrees >= 337.5 || degrees < 22.5) dirStr = 'N';
+    else if (degrees >= 22.5 && degrees < 67.5) dirStr = 'NE';
+    else if (degrees >= 67.5 && degrees < 112.5) dirStr = 'E';
+    else if (degrees >= 112.5 && degrees < 157.5) dirStr = 'SE';
+    else if (degrees >= 157.5 && degrees < 202.5) dirStr = 'S';
+    else if (degrees >= 202.5 && degrees < 247.5) dirStr = 'SW';
+    else if (degrees >= 247.5 && degrees < 292.5) dirStr = 'W';
+    else if (degrees >= 292.5 && degrees < 337.5) dirStr = 'NW';
+    document.getElementById('compassDir').innerText = `(${dirStr})`;
+
+    const pitchDeg = Math.round(drone.currentPitch * (180 / Math.PI));
+    const rollDeg = Math.round(drone.currentRoll * (180 / Math.PI));
+    document.getElementById('pitchAngle').innerText = `${pitchDeg}°`;
+    document.getElementById('rollAngle').innerText = `${rollDeg}°`;
+
+    const horizon = document.getElementById('horizonLine');
+    horizon.style.transform = `rotate(${-rollDeg}deg) translateY(${pitchDeg * 1.5}px)`;
+
+    updateMissionHUD();
+}
+
+function showSystemNotification(text) {
+    const oldNotify = document.getElementById('sysNotification');
+    if (oldNotify) oldNotify.remove();
+
+    const container = document.body;
+    const notification = document.createElement('div');
+    notification.id = 'sysNotification';
+    notification.className = 'absolute top-20 left-1/2 -translate-x-1/2 glassmorphism text-emerald-300 font-bold px-4 py-2 rounded-lg text-xs tracking-wider border border-emerald-500/30 shadow-md z-30 transition-all duration-300 transform -translate-y-2 opacity-0 pointer-events-none uppercase tech-font';
+    notification.innerText = text;
+    container.appendChild(notification);
+
+    requestAnimationFrame(() => {
+        notification.classList.remove('-translate-y-2', 'opacity-0');
+    });
+
+    setTimeout(() => {
+        notification.classList.add('-translate-y-2', 'opacity-0');
+        setTimeout(() => notification.remove(), 300);
+    }, 1600);
+}
+
+// ==================== 主迴圈 ====================
+function animate() {
+    requestAnimationFrame(animate);
+    pollGamepad();
+    const delta = Math.min(clock.getDelta(), 0.1);
+    updateDronePhysics(delta);
+    updateParticles(delta);
+    updateCamera(delta);
+    updateDroneSound();
+    updateHUD();
+    renderer.render(scene, camera);
+}
+
+function placeDroneAtPad() {
+    drone.position.set(launchPad.x, 0.10, launchPad.z);
+    drone.velocity.set(0, 0, 0);
+    drone.rotation.set(0, 0, 0);
+    drone.currentPitch = 0;
+    drone.currentRoll = 0;
+    drone.currentYawRate = 0;
+    drone.input.throttle = 0.0;
+    drone.targetAltitude = 0.10;
+    drone.autoFlightState = 'none';
+    if (drone.mesh) {
+        drone.mesh.position.copy(drone.position);
+        drone.mesh.rotation.set(0, 0, 0);
+    }
+    // 重新定位後立刻同步攝影機的平滑注視點，避免鏡頭從舊位置緩慢滑過來
+    if (cameraLookSmooth) cameraLookSmooth.copy(drone.position);
+    else cameraLookSmooth = drone.position.clone();
+}
+
+function resetGame() {
+    drone.gpAltArmed = false;
+    hideEndScreen();
+    placeDroneAtPad();
+    mission.entered = false;
+    mission.exited = false;
+    mission.completed = false;
+    mission.timerRunning = false;
+    mission.elapsed = 0;
+    updateHUD();
+    showSystemNotification('已重置：回到起降點，任務計時歸零');
+}
+
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+// ==================== 結束畫面 ====================
+function showEndScreen() {
+    const s = document.getElementById('endScreen');
+    if (!s) return;
+    document.getElementById('endLevelVal').innerText = `關卡：${MAZE_LEVELS[mission.level] ? MAZE_LEVELS[mission.level].label : '-'}`;
+    document.getElementById('endTimeVal').innerText = formatBigTime(mission.elapsed);
+    const best = mission.bestTimes[mission.level];
+    document.getElementById('endBestVal').innerText = `最佳成績：${best ? formatBigTime(best) : '--:--:--'}`;
+    s.classList.remove('hidden');
+    s.classList.add('flex');
+    s.style.pointerEvents = 'auto';
+}
+
+function hideEndScreen() {
+    const s = document.getElementById('endScreen');
+    if (!s) return;
+    s.classList.add('hidden');
+    s.classList.remove('flex');
+    s.style.pointerEvents = 'none';
+}
+
+function playAgainSameLevel() {
+    hideEndScreen();
+    buildMaze(mission.level);
+    mission.entered = false;
+    mission.exited = false;
+    mission.completed = false;
+    mission.timerRunning = false;
+    mission.elapsed = 0;
+    placeDroneAtPad();
+    updateMissionHUD();
+    showSystemNotification(`重新挑戰：${MAZE_LEVELS[mission.level].label} — 準備起飛！`);
+}
+
+function playAgainChooseLevel() {
+    hideEndScreen();
+    showStartScreen();
+}
+
+// ==================== 開始畫面 / 關卡選擇 ====================
+function showStartScreen() {
+    const s = document.getElementById('startScreen');
+    s.style.display = 'flex';
+    s.style.pointerEvents = 'auto';
+    s.classList.remove('opacity-0', 'scale-95');
+    s.dataset.launched = 'false';
+}
+
+function hideStartScreen() {
+    const s = document.getElementById('startScreen');
+    s.classList.add('opacity-0', 'scale-95');
+    s.dataset.launched = 'true';
+    setTimeout(() => {
+        s.style.display = 'none';
+        s.style.pointerEvents = 'none';
+    }, 700);
+}
+
+function selectLevel(key) {
+    hideEndScreen();
+    mission.level = key;
+    buildMaze(key);
+    mission.entered = false;
+    mission.exited = false;
+    mission.completed = false;
+    mission.timerRunning = false;
+    mission.elapsed = 0;
+    placeDroneAtPad();
+
+    initAudio();
+    soundEnabled = true;
+
+    hideStartScreen();
+    showSystemNotification(`關卡設定：${MAZE_LEVELS[key].label} — 準備起飛！`);
+    updateMissionHUD();
+}
+
+function bindUIEvents() {
+    document.getElementById('levelBtn1').addEventListener('click', () => selectLevel('lv1'));
+    document.getElementById('levelBtn2').addEventListener('click', () => selectLevel('lv2'));
+    document.getElementById('levelBtn3').addEventListener('click', () => selectLevel('lv3'));
+    document.getElementById('levelBtn4').addEventListener('click', () => selectLevel('lv4'));
+    document.getElementById('levelBtn5').addEventListener('click', () => selectLevel('lv5'));
+    document.getElementById('levelBtn6').addEventListener('click', () => selectLevel('lv6'));
+
+    document.getElementById('btnTakeoff').addEventListener('click', triggerTakeoff);
+    document.getElementById('btnLand').addEventListener('click', triggerLanding);
+    document.getElementById('btnSound').addEventListener('click', toggleSound);
+    document.getElementById('btnCam').addEventListener('click', cycleCameraMode);
+    document.getElementById('btnReset').addEventListener('click', resetGame);
+    document.getElementById('btnLevel').addEventListener('click', () => showStartScreen());
+
+    document.getElementById('btnPlayAgain').addEventListener('click', playAgainSameLevel);
+    document.getElementById('btnPlayAgainLevel').addEventListener('click', playAgainChooseLevel);
+}
+
+window.onload = function () {
+    initScene();
+    setupAmbientLights();
+    rebuildCornerLights();
+    buildArenaFloor();
+    buildDrone();
+    setupPadSetup();
+    setupTouchControls();
+    bindUIEvents();
+    animate();
+};
+
+    </script>
+</body>
+</html>
