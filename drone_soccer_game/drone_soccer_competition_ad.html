@@ -83,6 +83,7 @@
 <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">↑</span>／<span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">↓</span>：前進／後退</li>
 <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">←</span>／<span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">→</span>：側滾左／右</li>
 <li><span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">C</span>：切換鏡頭　<span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">T/L</span>：全體起飛/降落　<span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">R/M</span>：重設/靜音</li>
+<li><span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">[</span>／<span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">]</span>：定中視野縮小／放大（30°～74°）</li>
 <li class="text-slate-500">雙方一開始都停在地面，按 T 一起起飛、按 L 一起降落</li>
 
                         </ul>
@@ -1731,7 +1732,23 @@ const PILOT_NET_CLEARANCE = 0.06;   // 鏡頭最近可視距離 0.05 公尺，�
 // 操控手離球網的距離（rig.pilotBack）：防守機操控手站在網後 1 公尺，才看得到己方球門全景；攻擊機操控手貼網站
 function pilotBackOf(rig) { return Math.max(rig.pilotBack || 0, PILOT_NET_CLEARANCE); }
 const PILOT_EYE_HEIGHT = 1.53;
-const PILOT_FOV = 74;               // 人眼視野較寬：加大視角，讓兩端球門同時入鏡
+// 定中視角的鏡頭視野（度）：螢幕在眼中只佔約 30 度，視野開太寬會把遠方球門縮得很小、顯得很遠。
+// 預設 45 度（距離感與可見範圍的折衷）；按 [ / ] 縮小／放大視野（30～74 度），會記住上次的設定
+const PILOT_FOV_DEFAULT = 45, PILOT_FOV_MIN = 30, PILOT_FOV_MAX = 74, PILOT_FOV_STEP = 5;
+let PILOT_FOV = PILOT_FOV_DEFAULT;
+try { const v = parseFloat(localStorage.getItem('pilotFov1')); if (v >= PILOT_FOV_MIN && v <= PILOT_FOV_MAX) PILOT_FOV = v; } catch (e) {}
+window.addEventListener('keydown', (e) => {
+    const tag = e.target && e.target.tagName;
+    if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA') return;
+    const step = ['['].includes(e.key) ? -PILOT_FOV_STEP : [']'].includes(e.key) ? PILOT_FOV_STEP : 0;
+    if (!step) return;
+    e.preventDefault();
+    PILOT_FOV = Math.max(PILOT_FOV_MIN, Math.min(PILOT_FOV_MAX, PILOT_FOV + step));
+    try { localStorage.setItem('pilotFov1', String(PILOT_FOV)); } catch (e2) {}
+    const MSG = `定中視野：${PILOT_FOV}°（[ / ] 調整）`;
+    [P1, P2].forEach(r => notify(r, MSG));
+});
+const PILOT_FOV_DEFENDER = 74;      // 防守機操控手站在網後 1 公尺，需要較寬的視野才看得到眼前的自家球門
 const DEFAULT_FOV = 60;
 // 定左／定右視角：操控手貼著己方短邊球網、偏向左手邊或右手邊（場地寬度 30%）站立，
 // 人不移動、只轉頭追著無人機看，且視線至少微微上仰 6 度
@@ -1768,7 +1785,7 @@ function updateCameraFor(rig) {
     if (!rig.mesh || !rig.camera) return;
     const camera = rig.camera;
     const view = camView(rig);
-    const fov = view === 'center' ? PILOT_FOV : DEFAULT_FOV;
+    const fov = view === 'center' ? (rig.pilotBack > 0 ? PILOT_FOV_DEFENDER : PILOT_FOV) : DEFAULT_FOV;
     if (camera.fov !== fov) { camera.fov = fov; camera.updateProjectionMatrix(); }
     rig.hideNetSide = 0;
     updateCamTextFor(rig);

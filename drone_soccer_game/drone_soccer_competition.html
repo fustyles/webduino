@@ -126,6 +126,7 @@
                         <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">←</span>：向左側滾</li>
                         <li><span class="text-white bg-slate-800 px-1.5 py-0.5 rounded">→</span>：向右側滾</li>
                         <li><span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">C</span>：切換鏡頭視角（追蹤 / 定中 / 定左 / 定右 / 座艙 / 自由）</li>
+                        <li><span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">[</span> / <span class="text-cyan-400 bg-slate-800 px-1.5 py-0.5 rounded font-bold">]</span>：定中視野縮小／放大（30°～74°）</li>
                     </ul>
                 </div>
                 <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-800 flex flex-col justify-between">
@@ -641,7 +642,22 @@
         const PILOT_DIST_FROM_NET = 0.0;     // 操控手離球網的距離（攻擊機：貼著球網站）
         const PILOT_NET_CLEARANCE = 0.06;   // 鏡頭最近可視距離 0.05 公尺，留 6 公分避免球網被鏡頭切掉閃爍
         const PILOT_EYE_HEIGHT = 1.53;      // 165 公分身高的眼睛高度
-        const PILOT_FOV = 74;               // 人眼視野較寬：加大視角，讓兩端球門同時入鏡
+        // 定中視角的鏡頭視野（度）：螢幕在眼中只佔約 30 度，視野開太寬會把遠方球門縮得很小、顯得很遠。
+        // 預設 45 度（距離感與可見範圍的折衷）；按 [ / ] 縮小／放大視野（30～74 度），會記住上次的設定
+        const PILOT_FOV_DEFAULT = 45, PILOT_FOV_MIN = 30, PILOT_FOV_MAX = 74, PILOT_FOV_STEP = 5;
+        let PILOT_FOV = PILOT_FOV_DEFAULT;
+        try { const v = parseFloat(localStorage.getItem('pilotFov1')); if (v >= PILOT_FOV_MIN && v <= PILOT_FOV_MAX) PILOT_FOV = v; } catch (e) {}
+        window.addEventListener('keydown', (e) => {
+            const tag = e.target && e.target.tagName;
+            if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA') return;
+            const step = ['['].includes(e.key) ? -PILOT_FOV_STEP : [']'].includes(e.key) ? PILOT_FOV_STEP : 0;
+            if (!step) return;
+            e.preventDefault();
+            PILOT_FOV = Math.max(PILOT_FOV_MIN, Math.min(PILOT_FOV_MAX, PILOT_FOV + step));
+            try { localStorage.setItem('pilotFov1', String(PILOT_FOV)); } catch (e2) {}
+            const MSG = `定中視野：${PILOT_FOV}°（[ / ] 調整）`;
+            showSystemNotification(MSG);
+        });
         const DEFAULT_FOV = 60;
         // 定左／定右視角：同樣站在己方短邊球網前，偏向左手邊或右手邊（場地寬度 30%），
         // 身高 165 公分的視線高度；人不移動、只轉頭追著無人機看，且視線至少微微上仰 6 度
