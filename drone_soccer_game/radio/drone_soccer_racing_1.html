@@ -182,6 +182,7 @@
                 <div class="kb-only p-2 sm:p-3 bg-slate-900/80 rounded-lg border border-slate-800 flex flex-col justify-between">
                     <ul class="space-y-1 text-slate-400 tech-font">
                         <li>起飛、降落、鏡頭、重設、靜音：點畫面右上角按鈕</li>
+                        <li>鍵盤 [ / ]：定中視野縮小／放大（30°～74°）</li>
                         <li>「手把」按鈕：重新開啟搖桿設定與校正</li>
                         <li>「模式」按鈕：切換定高／手動油門模式</li>
                         <li>起飛後油門先推到中間，才會接手高度控制</li>
@@ -338,6 +339,7 @@
                 <div class="flex justify-between"><span>前進／後退：</span><span class="tech-font text-cyan-400">右搖桿 上／下</span></div>
                 <div class="flex justify-between"><span>側滾左／右：</span><span class="tech-font text-cyan-400">右搖桿 左／右</span></div>
                 <div class="flex justify-between"><span>起飛／降落／鏡頭／重設：</span><span class="tech-font text-slate-300">右上角按鈕</span></div>
+                <div class="flex justify-between"><span>定中視野縮小／放大：</span><span class="tech-font text-cyan-300">鍵盤 [ / ]</span></div>
                 <div class="flex justify-between"><span>搖桿設定與校正：</span><span class="tech-font text-yellow-300">「手把」按鈕</span></div>
                 <div class="flex justify-between"><span>定高／手動油門模式：</span><span class="tech-font text-cyan-300">「模式」按鈕</span></div>
             </div>
@@ -1171,7 +1173,22 @@
         const PILOT_DIST_FROM_NET = 0;      // 貼著球網站（0 公分）
         const PILOT_NET_CLEARANCE = 0.06;   // 鏡頭最近可視距離 0.05 公尺，留 6 公分避免球網被鏡頭切掉閃爍
         const PILOT_EYE_HEIGHT = 1.53;      // 165 公分身高的眼睛高度
-        const PILOT_FOV = 74;               // 人眼視野較寬：加大視角，讓兩端球門同時入鏡
+        // 定中視角的鏡頭視野（度）：螢幕在眼中只佔約 30 度，視野開太寬會把遠方球門縮得很小、顯得很遠。
+        // 預設 45 度（距離感與可見範圍的折衷）；按 [ / ] 縮小／放大視野（30～74 度），會記住上次的設定
+        const PILOT_FOV_DEFAULT = 45, PILOT_FOV_MIN = 30, PILOT_FOV_MAX = 74, PILOT_FOV_STEP = 5;
+        let PILOT_FOV = PILOT_FOV_DEFAULT;
+        try { const v = parseFloat(localStorage.getItem('pilotFov1')); if (v >= PILOT_FOV_MIN && v <= PILOT_FOV_MAX) PILOT_FOV = v; } catch (e) {}
+        window.addEventListener('keydown', (e) => {
+            const tag = e.target && e.target.tagName;
+            if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA') return;
+            const step = ['['].includes(e.key) ? -PILOT_FOV_STEP : [']'].includes(e.key) ? PILOT_FOV_STEP : 0;
+            if (!step) return;
+            e.preventDefault();
+            PILOT_FOV = Math.max(PILOT_FOV_MIN, Math.min(PILOT_FOV_MAX, PILOT_FOV + step));
+            try { localStorage.setItem('pilotFov1', String(PILOT_FOV)); } catch (e2) {}
+            const MSG = `定中視野：${PILOT_FOV}°（[ / ] 調整）`;
+            showSystemNotification(MSG);
+        });
         const DEFAULT_FOV = 60;
         // 定左／定右視角（定左即原「場邊視角」）：操控手站在己方短邊球網外、偏向左手邊或右手邊（場地寬度 30%），
         // 身高 165 公分的視線高度；人不移動、只轉頭追著無人機看，且視線至少微微上仰 6 度（不會低頭俯視）
