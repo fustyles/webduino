@@ -373,14 +373,16 @@ let audioCtx = null;
 // 場地/光環常數（與原始檔案相同）
 const DRONE_CAGE_RADIUS = 0.10;
 const RING_CLEAR_RADIUS = 0.30;
-const RING_TUBE_RADIUS = 0.022;
+const RING_TUBE_RADIUS = 0.05;     // 球門圓環管粗半徑（加粗為直徑 10 公分，淨開口仍維持 60 公分）
 const RING_CENTER_RADIUS = RING_CLEAR_RADIUS + RING_TUBE_RADIUS;
 const TEAM_COLORS = { red: 0xef4444, blue: 0x3b82f6 };
 const TAIL_BEACON_COLORS = { red: 0x2f6bff, blue: 0xff1a1a };
 
+// 球門圓環中心高度：依實際比賽場地，球門高掛在 2.2 公尺
+const GOAL_HEIGHT = 2.2;
 const ringCourse = [
-    { pos: new THREE.Vector3(0, 1.5, -2.25), color: 0xef4444, team: 'red', size: RING_CENTER_RADIUS * 2, lastPassTime: 0, forwardSign: -1, prevSide: null },
-    { pos: new THREE.Vector3(0, 1.5, 2.25), color: 0x3b82f6, team: 'blue', size: RING_CENTER_RADIUS * 2, lastPassTime: 0, forwardSign: 1, prevSide: null }
+    { pos: new THREE.Vector3(0, GOAL_HEIGHT, -2.25), color: 0xef4444, team: 'red', size: RING_CENTER_RADIUS * 2, lastPassTime: 0, forwardSign: -1, prevSide: null },
+    { pos: new THREE.Vector3(0, GOAL_HEIGHT, 2.25), color: 0x3b82f6, team: 'blue', size: RING_CENTER_RADIUS * 2, lastPassTime: 0, forwardSign: 1, prevSide: null }
 ];
 
 // 固定角色：P1 永遠是紅隊攻擊機（攻擊藍方球門），P2 永遠是藍隊防守機（鎮守藍方球門）
@@ -535,7 +537,7 @@ function createRig(prefix, team) {
         rotation: new THREE.Euler(0, 0, 0, 'YXZ'),
         targetAltitude: 0.1,
         touchAltitudeInput: 0, touchActive: false, touchActiveLeft: false,
-        autoFlightState: 'none', targetTakeoffHeight: 1.5,
+        autoFlightState: 'none', targetTakeoffHeight: GOAL_HEIGHT,
         input: { pitch: 0, roll: 0, yaw: 0, throttle: 0.0 },
         constants: {
             mass: 0.4, maxThrottleThrust: 18.0, gravity: 9.8, linearDrag: 1.8,
@@ -657,53 +659,67 @@ function setupLights() {
 
 function createSoccerField() {
     const canvas = document.createElement('canvas');
-    canvas.width = 384; canvas.height = 768;
+    canvas.width = 384;
+    canvas.height = 768; // 3:6 比例 (384x768 完美對應)
     const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#022c22'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#064e3b';
-    const stripCount = 12; const stripHeight = canvas.height / stripCount;
-    for (let i = 0; i < stripCount; i += 2) ctx.fillRect(0, i * stripHeight, canvas.width, stripHeight);
-    ctx.strokeStyle = '#047857'; ctx.lineWidth = 1;
-    const gridSize = 16;
-    for (let x = 0; x < canvas.width; x += gridSize) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke(); }
-    for (let y = 0; y < canvas.height; y += gridSize) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke(); }
-    const margin = 20; const w = canvas.width - margin * 2; const centerY = canvas.height / 2;
-    ctx.strokeStyle = '#ef4444'; ctx.shadowColor = '#f87171'; ctx.shadowBlur = 8; ctx.lineWidth = 4;
-    ctx.strokeRect(margin, margin, w, centerY - margin);
-    ctx.strokeStyle = '#3b82f6'; ctx.shadowColor = '#60a5fa'; ctx.shadowBlur = 8;
-    ctx.strokeRect(margin, centerY, w, canvas.height - margin - centerY);
-    ctx.strokeStyle = '#ffffff'; ctx.shadowColor = '#ffffff'; ctx.shadowBlur = 4; ctx.lineWidth = 3;
-    ctx.beginPath(); ctx.arc(canvas.width / 2, centerY, 60, 0, Math.PI * 2); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(margin, centerY); ctx.lineTo(canvas.width - margin, centerY); ctx.stroke();
-    ctx.strokeStyle = '#ef4444'; ctx.shadowColor = '#f87171';
-    const boxW = w * 0.6; const boxH = 150; const boxX = canvas.width / 2 - boxW / 2;
-    ctx.strokeRect(boxX, margin, boxW, boxH);
-    ctx.strokeStyle = '#3b82f6'; ctx.shadowColor = '#60a5fa';
-    ctx.strokeRect(boxX, canvas.height - margin - boxH, boxW, boxH);
-    ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 8;
-    ctx.beginPath(); ctx.moveTo(canvas.width / 2 - 50, margin + 40); ctx.lineTo(canvas.width / 2 + 50, margin + 40); ctx.stroke();
-    ctx.strokeStyle = '#3b82f6';
-    ctx.beginPath(); ctx.moveTo(canvas.width / 2 - 50, canvas.height - margin - 40); ctx.lineTo(canvas.width / 2 + 50, canvas.height - margin - 40); ctx.stroke();
-    ctx.fillStyle = 'rgba(255,255,255,0.4)'; ctx.shadowBlur = 0;
-    ctx.font = 'bold 13px "Share Tech Mono", monospace'; ctx.textAlign = 'center';
-    ctx.fillText('起始區', canvas.width / 2, margin + boxH - 25);
-    ctx.fillStyle = '#f87171'; ctx.fillText('球門(攻擊方向)', canvas.width / 2, margin + 25);
-    ctx.fillStyle = 'rgba(255,255,255,0.4)'; ctx.fillText('防守區', canvas.width / 2, canvas.height - margin - boxH + 35);
-    ctx.fillStyle = '#60a5fa'; ctx.fillText('球門', canvas.width / 2, canvas.height - margin - 25);
+
+    // 1. 綠色人工草皮底色（比實景略深，讓亮色的無人機護籠在地面上清楚可辨）
+    ctx.fillStyle = '#156a25';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // 2. 細微草紋雜點，避免大面積純色看起來像塑膠
+    for (let i = 0; i < 2600; i++) {
+        ctx.fillStyle = Math.random() < 0.5 ? 'rgba(255,255,255,0.05)' : 'rgba(0,40,0,0.07)';
+        ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 1, 2);
+    }
+
+    // 3. 場上只畫中間的白色大圓環，以及貫穿球場、分隔兩區的中線（不畫外框、禁區、球門線與文字）
+    const centerY = canvas.height / 2;
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 6;
+    ctx.beginPath();
+    ctx.arc(canvas.width / 2, centerY, 80, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(0, centerY);
+    ctx.lineTo(canvas.width, centerY);
+    ctx.stroke();
 
     const texture = new THREE.CanvasTexture(canvas);
+    
+    // 建立 3m × 6m 的平面
     const fieldGeo = new THREE.PlaneGeometry(3, 6);
-    const fieldMat = new THREE.MeshStandardMaterial({ map: texture, roughness: 0.5, metalness: 0.1, side: THREE.DoubleSide });
+    texture.anisotropy = 8;
+    const fieldMat = new THREE.MeshStandardMaterial({
+        map: texture,
+        roughness: 0.85,
+        metalness: 0.0,
+        // 草皮部分自發光：場館燈光偏暗時仍維持亮綠色，同時保留燈光與陰影的明暗變化
+        emissive: 0xffffff,
+        emissiveMap: texture,
+        emissiveIntensity: 0.10,
+        side: THREE.DoubleSide
+    });
+
     const field = new THREE.Mesh(fieldGeo, fieldMat);
-    field.rotation.x = -Math.PI / 2; field.receiveShadow = true;
+    field.rotation.x = -Math.PI / 2;
+    field.receiveShadow = true;
     scene.add(field);
 
+    // 外圍深邃大底板
     const outerGeo = new THREE.PlaneGeometry(60, 60);
-    const outerMat = new THREE.MeshStandardMaterial({ color: 0x010204, roughness: 0.95, metalness: 0.5 });
+    const outerMat = new THREE.MeshStandardMaterial({
+        color: 0x010204,
+        roughness: 0.95,
+        metalness: 0.5
+    });
     const outer = new THREE.Mesh(outerGeo, outerMat);
-    outer.rotation.x = -Math.PI / 2; outer.position.y = -0.02; outer.receiveShadow = true;
+    outer.rotation.x = -Math.PI / 2;
+    outer.position.y = -0.02;
+    outer.receiveShadow = true;
     scene.add(outer);
 }
+
 
 function createNetTexture() {
     const canvas = document.createElement('canvas');
@@ -738,6 +754,7 @@ function buildInflatableCage() {
     frontNet.material.map.repeat.set(8, 6);
     cageGroup.add(frontNet);
     const backNet = frontNet.clone(); backNet.position.z = cageL / 2; cageGroup.add(backNet);
+    endNets.neg = frontNet; endNets.pos = backNet; // 記下兩端球網，貼網站立的視角隱藏眼前那一面
 
     const roofNetGeo = new THREE.PlaneGeometry(cageW, cageL);
     const roofNet = new THREE.Mesh(roofNetGeo, netMat);
@@ -1064,27 +1081,208 @@ function buildDefenderDrone(rig) {
     rig.mesh = group;
 }
 
+// ---- 球門外觀：光亮乳白色立體圓環 ----
+const GOAL_RING_WHITE = 0xf6f1e7;      // 乳白色
+const GOAL_RING_GLOW = 0xfff6e6;       // 微弱自發光，讓暗場中仍看得出乳白色
+const GOAL_RING_GLOW_INTENSITY = 0.16;
+const GOAL_FLASH_COLOR = 0x10b981;     // 進球時閃爍的綠色
+
+// 顯示／隱藏整座球門（圓環、上方顯示器、吊索）：攻擊機操控手貼網站立時，自家球門就在眼前上方，會擋住視線
+function setGoalVisible(ring, visible) {
+    if (ring.mesh) ring.mesh.visible = visible;
+    if (ring.display) ring.display.group.visible = visible;
+    if (ring.cables) ring.cables.forEach(c => { c.visible = visible; });
+}
+
+function setRingFlash(ring, on, flashColor = GOAL_FLASH_COLOR) {
+    const m = ring.mesh.material;
+    if (on) {
+        m.color.setHex(flashColor);
+        m.emissive.setHex(flashColor);
+        m.emissiveIntensity = 1.4;
+    } else {
+        m.color.setHex(GOAL_RING_WHITE);
+        m.emissive.setHex(GOAL_RING_GLOW);
+        m.emissiveIntensity = GOAL_RING_GLOW_INTENSITY;
+    }
+}
+
+// ---- 球門上方的得分顯示器 ----
+// 小型顯示器：螢幕 26×12 公分，含外框 29×15 公分，高度遠小於門環直徑（外徑 80 公分）
+const GOAL_DISPLAY_W = 0.26, GOAL_DISPLAY_H = 0.12, GOAL_DISPLAY_D = 0.05, GOAL_DISPLAY_BEZEL = 0.015;
+const GOAL_DISPLAY_EMBED = 0.03; // 顯示器底部嵌入圓環管內的深度
+const goalDisplayFlashUntil = { red: 0, blue: 0 };
+
+function drawGoalDisplay(ring) {
+    const gd = ring.display;
+    if (!gd) return;
+    const info = goalDisplayInfo(ring);
+    const goals = info.goals;
+    const flashing = performance.now() < goalDisplayFlashUntil[ring.team];
+    const key = [ring.team, goals, info.tag, info.status[1], flashing].join('|');
+    if (gd.key === key) return;
+    gd.key = key;
+
+    const c = gd.canvas, g = gd.ctx, W = c.width, H = c.height;
+    const teamHex = ring.team === 'red' ? '#ef4444' : '#3b82f6';
+    const teamName = ring.team === 'red' ? '紅方球門' : '藍方球門';
+
+    g.clearRect(0, 0, W, H);
+    // 螢幕底色與掃描線
+    g.fillStyle = '#05080f';
+    g.fillRect(0, 0, W, H);
+    g.fillStyle = 'rgba(255,255,255,0.025)';
+    for (let y = 0; y < H; y += 4) g.fillRect(0, y, W, 1);
+
+    // 隊伍色標題列
+    g.fillStyle = teamHex;
+    g.fillRect(0, 0, W, 54);
+    g.fillStyle = '#ffffff';
+    g.font = 'bold 34px "Noto Sans TC","Microsoft JhengHei",sans-serif';
+    g.textAlign = 'left'; g.textBaseline = 'middle';
+    g.fillText(teamName, 22, 28);
+    g.textAlign = 'right';
+    g.font = 'bold 26px "Share Tech Mono",monospace';
+    g.fillText(info.tag, W - 22, 29);
+
+    if (flashing) {
+        g.fillStyle = '#10b981';
+        g.shadowColor = '#34d399'; g.shadowBlur = 24;
+        g.font = 'bold 120px "Share Tech Mono",monospace';
+        g.textAlign = 'center'; g.textBaseline = 'middle';
+        g.fillText('GOAL!', W / 2, 150);
+        g.shadowBlur = 0;
+    } else {
+        // 大字得分
+        g.textAlign = 'center'; g.textBaseline = 'middle';
+        g.fillStyle = '#facc15';
+        g.shadowColor = '#facc15'; g.shadowBlur = 18;
+        g.font = 'bold 140px "Share Tech Mono",monospace';
+        g.fillText(String(goals).padStart(2, '0'), W / 2, 152);
+        g.shadowBlur = 0;
+    }
+
+    // 底部狀態列
+    g.fillStyle = 'rgba(148,163,184,0.15)';
+    g.fillRect(0, H - 40, W, 40);
+    g.font = 'bold 22px "Noto Sans TC","Microsoft JhengHei",sans-serif';
+    g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillStyle = info.status[0];
+    g.fillText(info.status[1], W / 2, H - 20);
+    gd.texture.needsUpdate = true;
+}
+function updateGoalDisplays() { ringCourse.forEach(drawGoalDisplay); }
+
+function buildGoalDisplay(ringData) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 512; canvas.height = 240;
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.anisotropy = 4;
+
+    const group = new THREE.Group();
+    // 顯示器外殼（乳白色，與圓環一致）
+    const shellMat = new THREE.MeshPhysicalMaterial({ color: GOAL_RING_WHITE, roughness: 0.32, clearcoat: 1, clearcoatRoughness: 0.12,
+                                                      emissive: GOAL_RING_GLOW, emissiveIntensity: GOAL_RING_GLOW_INTENSITY });
+    const shell = new THREE.Mesh(new THREE.BoxGeometry(GOAL_DISPLAY_W + GOAL_DISPLAY_BEZEL * 2, GOAL_DISPLAY_H + GOAL_DISPLAY_BEZEL * 2, GOAL_DISPLAY_D), shellMat);
+    shell.castShadow = true; shell.receiveShadow = true;
+    group.add(shell);
+    // 前後兩面螢幕（自發光，不受場地燈光影響），背面旋轉 180° 避免文字左右顛倒
+    const screenMat = new THREE.MeshBasicMaterial({ map: texture, toneMapped: false });
+    const screenGeo = new THREE.PlaneGeometry(GOAL_DISPLAY_W, GOAL_DISPLAY_H);
+    const front = new THREE.Mesh(screenGeo, screenMat);
+    front.position.z = GOAL_DISPLAY_D / 2 + 0.001;
+    group.add(front);
+    const back = new THREE.Mesh(screenGeo, screenMat);
+    back.position.z = -GOAL_DISPLAY_D / 2 - 0.001;
+    back.rotation.y = Math.PI;
+    group.add(back);
+
+    // 直接嵌在圓環頂端：外殼底部埋入圓環管內，看起來像圓環本身的一部分
+    const ringTop = ringData.pos.y + RING_CENTER_RADIUS + RING_TUBE_RADIUS;
+    const shellHalfH = (GOAL_DISPLAY_H + GOAL_DISPLAY_BEZEL * 2) / 2;
+    group.position.set(ringData.pos.x, ringTop - GOAL_DISPLAY_EMBED + shellHalfH, ringData.pos.z);
+    // 正面朝向場地中央（紅門在 -Z，正面朝 +Z；藍門在 +Z，正面朝 -Z）
+    group.rotation.y = ringData.pos.z > 0 ? Math.PI : 0;
+    scene.add(group);
+
+    ringData.display = { canvas, ctx: canvas.getContext('2d'), texture, group, key: null,
+                         center: group.position.clone(),
+                         half: new THREE.Vector3((GOAL_DISPLAY_W + GOAL_DISPLAY_BEZEL * 2) / 2, shellHalfH, GOAL_DISPLAY_D / 2) };
+    drawGoalDisplay(ringData);
+}
+
 function setupTargetRings() {
     ringCourse.forEach((ringData) => {
-        const ringGeo = new THREE.TorusGeometry(ringData.size / 2, RING_TUBE_RADIUS, 12, 36);
-        const ringMat = new THREE.MeshStandardMaterial({ color: ringData.color, emissive: ringData.color, emissiveIntensity: 2.5, roughness: 0.1 });
+        // 立體乳白色圓環：加粗管徑＋高細分，搭配清漆材質呈現光亮飽滿的立體感
+        const ringGeo = new THREE.TorusGeometry(ringData.size / 2, RING_TUBE_RADIUS, 40, 120);
+        const ringMat = new THREE.MeshPhysicalMaterial({
+            color: GOAL_RING_WHITE,
+            roughness: 0.28,
+            metalness: 0.0,
+            clearcoat: 1.0,
+            clearcoatRoughness: 0.08,
+            emissive: GOAL_RING_GLOW,
+            emissiveIntensity: GOAL_RING_GLOW_INTENSITY,
+        });
         const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+        ringMesh.castShadow = true;    // 圓環在地面投下陰影
+        ringMesh.receiveShadow = true; // 圓環自身也接受陰影（顯示器、上方燈光造成的明暗）
         ringMesh.position.copy(ringData.pos);
+        // 圓孔朝向 Z 軸 (因為無人機是在 Z 軸上朝兩端球門穿飛)，TorusGeometry 預設即面朝 Z 軸
         scene.add(ringMesh);
         ringData.mesh = ringMesh;
 
+        // 球門專屬頂燈：從正上方偏前打下暖白光，讓圓環產生明暗立體感並在地面投出圓環陰影
+        const key = new THREE.SpotLight(0xfff4e0, 2.2, 6, Math.PI / 5, 0.65, 1.4);
+        const towardCenter = ringData.pos.z > 0 ? -1 : 1;
+        key.position.set(ringData.pos.x + 0.35, 2.95, ringData.pos.z + towardCenter * 0.9);
+        key.target.position.set(ringData.pos.x, 0, ringData.pos.z);
+        key.castShadow = true;
+        key.shadow.mapSize.width = 1024;
+        key.shadow.mapSize.height = 1024;
+        key.shadow.camera.near = 0.3;
+        key.shadow.camera.far = 6;
+        key.shadow.bias = -0.0008;
+        key.shadow.radius = 4;
+        scene.add(key);
+        scene.add(key.target);
+        ringData.keyLight = key;
+
+        // 科技感懸索 - 直連頂部頂棚骨架 (天花板 Y = 3.0)，接在圓環外緣左右兩側
         const ceilingY = 3.0;
         const cableLen = ceilingY - ringData.pos.y;
-        const lineGeo = new THREE.CylinderGeometry(0.005, 0.005, cableLen, 6);
-        const lineMat = new THREE.MeshBasicMaterial({ color: 0x1e293b });
+        const lineGeo = new THREE.CylinderGeometry(0.006, 0.006, cableLen, 6);
+        const lineMat = new THREE.MeshStandardMaterial({ color: 0x334155, metalness: 0.6, roughness: 0.4 });
         const cableCenterY = ringData.pos.y + cableLen / 2;
+        const cableX = ringData.size / 2 + RING_TUBE_RADIUS * 0.6;
+
         const leftLine = new THREE.Mesh(lineGeo, lineMat);
-        leftLine.position.set(ringData.pos.x - ringData.size / 2, cableCenterY, ringData.pos.z);
+        leftLine.position.set(ringData.pos.x - cableX, cableCenterY, ringData.pos.z);
         scene.add(leftLine);
+
         const rightLine = new THREE.Mesh(lineGeo, lineMat);
-        rightLine.position.set(ringData.pos.x + ringData.size / 2, cableCenterY, ringData.pos.z);
+        rightLine.position.set(ringData.pos.x + cableX, cableCenterY, ringData.pos.z);
         scene.add(rightLine);
+        ringData.cables = [leftLine, rightLine];
+
+        buildGoalDisplay(ringData);
     });
+}
+// 進球：圓環閃爍＋顯示器打出 GOAL!
+function flashGoalRing(ring, color) {
+    setRingFlash(ring, true, color);
+    goalDisplayFlashUntil[ring.team] = performance.now() + 1500;
+    setTimeout(() => setRingFlash(ring, false), 800);
+}
+
+// 顯示器內容：這一場只有攻擊方會得分（穿越防守方球門），防守方球門顯示攻擊方進球數
+function goalDisplayInfo(ring) {
+    const target = ring.team === DEFEND_TEAM;
+    return {
+        goals: target ? score : 0,
+        tag: target ? '防守方球門' : '攻擊方球門',
+        status: !target ? ['#94a3b8', '攻擊方球門・不計分'] : readyToScore ? ['#34d399', '● 攻擊機可以得分'] : ['#fbbf24', '● 攻擊機須回中線才能再得分'],
+    };
 }
 
 // 固定雙方隊伍配置與初始站位（攻擊機永遠紅隊在中場，防守機永遠藍隊鎮守藍方球門）
@@ -1268,6 +1466,26 @@ function checkRingFrameCollision(rig) {
     const droneRadius = DRONE_CAGE_RADIUS;
     const tubeCollisionThreshold = r + droneRadius;
     ringCourse.forEach((ring) => {
+        // 0. 球門上方顯示器的實體碰撞：以球體對方塊判定，撞到就彈開
+        if (ring.display) {
+            const c = ring.display.center, h = ring.display.half;
+            const cx = THREE.MathUtils.clamp(rig.position.x, c.x - h.x, c.x + h.x);
+            const cy = THREE.MathUtils.clamp(rig.position.y, c.y - h.y, c.y + h.y);
+            const cz = THREE.MathUtils.clamp(rig.position.z, c.z - h.z, c.z + h.z);
+            const dx = rig.position.x - cx, dy = rig.position.y - cy, dz = rig.position.z - cz;
+            const d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+            if (d < DRONE_CAGE_RADIUS && d > 1e-4) {
+                const nx = dx / d, ny = dy / d, nz = dz / d;
+                const push = DRONE_CAGE_RADIUS - d;
+                rig.position.x += nx * push; rig.position.y += ny * push; rig.position.z += nz * push;
+                const dot = rig.velocity.x * nx + rig.velocity.y * ny + rig.velocity.z * nz;
+                if (dot < 0) {
+                    rig.velocity.x -= 1.6 * dot * nx; rig.velocity.y -= 1.6 * dot * ny; rig.velocity.z -= 1.6 * dot * nz;
+                    createExplosion(rig.position.clone(), 0xfacc15);
+                    notify(rig, "撞到球門顯示器！安全彈開");
+                }
+            }
+        }
         const px = rig.position.x - ring.pos.x, py = rig.position.y - ring.pos.y, pz = rig.position.z - ring.pos.z;
         const d_xy = Math.sqrt(px*px + py*py);
         if (d_xy > 0.01) {
@@ -1320,10 +1538,7 @@ function checkRingScoring() {
                         createExplosion(ring.pos, 0x10b981);
                         notify(P1, `進球！穿越藍方球門，總分：${score}（需回到中線才能再次得分）`);
                         notify(P2, `失球！攻擊機得分，總分：${score}（對方需回中線才能再次進攻）`);
-                        const origColor = ring.color;
-                        ring.mesh.material.color.setHex(0x10b981);
-                        ring.mesh.material.emissive.setHex(0x10b981);
-                        setTimeout(() => { ring.mesh.material.color.setHex(origColor); ring.mesh.material.emissive.setHex(origColor); }, 800);
+                        flashGoalRing(ring, 0x10b981);
                     } else {
                         playDeniedGoalSound();
                         createExplosion(ring.pos, 0x94a3b8);
@@ -1504,76 +1719,109 @@ function checkPlayerVsTeammateCollision() {
 // ---------------- 相機（每台無人機各自獨立視角）----------------
 function getOwnGoalRing(rig) { return ringCourse.find(r => r.team === rig.team); }
 
-// 依角色顯示正確的視角名稱：防守機的模式 0 為「場邊」，攻擊機的模式 0 維持「追蹤」
-function cameraModeLabel(rig) {
-    if (rig.cameraMode === 0 && rig.team === DEFEND_TEAM) return '場邊';
-    return CAMERA_MODES_ZH[rig.cameraMode];
+// ---------------- 相機（每位玩家各自獨立視角）----------------
+// 視角清單依角色而定（rig.camViews），相機按鈕依序切換：
+//   追蹤 chase／定中 center／定左 left／定右 right／座艙 cockpit／自由 free
+const CAM_VIEW_NAMES = { chase: '追蹤', center: '定中', left: '定左', right: '定右', cockpit: '座艙', free: '自由' };
+const DEFAULT_CAM_VIEWS = ['chase', 'cockpit', 'free'];
+// 定中視角：操控手貼著己方這一端的短邊球網、站在場地正中央，眼睛正對對方球門；
+// 身高約 165 公分（眼睛高度 1.53 公尺），人原地不動、視線固定
+const PILOT_NET_Z = 3.0;            // 短邊球網位置（場地長 6 公尺）
+const PILOT_NET_CLEARANCE = 0.06;   // 鏡頭最近可視距離 0.05 公尺，留 6 公分避免球網被鏡頭切掉閃爍
+// 操控手離球網的距離（rig.pilotBack）：防守機操控手站在網後 1 公尺，才看得到己方球門全景；攻擊機操控手貼網站
+function pilotBackOf(rig) { return Math.max(rig.pilotBack || 0, PILOT_NET_CLEARANCE); }
+const PILOT_EYE_HEIGHT = 1.53;
+const PILOT_FOV = 74;               // 人眼視野較寬：加大視角，讓兩端球門同時入鏡
+const DEFAULT_FOV = 60;
+// 定左／定右視角：操控手貼著己方短邊球網、偏向左手邊或右手邊（場地寬度 30%）站立，
+// 人不移動、只轉頭追著無人機看，且視線至少微微上仰 6 度
+const SIDE_EYE_HEIGHT = 1.65;
+const SIDE_OFFSET_X = 3.0 * 0.3;    // 偏離中線 0.9 公尺
+const SIDE_MIN_UP_DEG = 6;
+// 兩端球網：操控手貼網站立時，眼前球網的網線會被放大成粗白條，所以在這些視角下隱藏該面
+const endNets = { neg: null, pos: null };
+function setEndNetsVisible(hideSide) {
+    if (endNets.neg) endNets.neg.visible = hideSide !== -1;
+    if (endNets.pos) endNets.pos.visible = hideSide !== 1;
 }
-
+function camView(rig) { const v = rig.camViews || DEFAULT_CAM_VIEWS; return v[(rig.camIdx || 0) % v.length]; }
+function cameraViewLabel(rig) { return CAM_VIEW_NAMES[camView(rig)]; }
+// 操控手所站的那一端（己方球門那一端）：-1 = -Z 端，1 = +Z 端
+function ownEndSign(rig) {
+    const own = ringCourse.find(r => r.team === rig.team);
+    return own && own.pos.z > 0 ? 1 : -1;
+}
+function updateCamTextFor(rig) {
+    const el = document.getElementById(((rig, n) => rig.prefix + n)(rig, 'camText'));
+    const t = cameraViewLabel(rig);
+    if (el && el.textContent !== t) el.textContent = t;
+}
 function cycleCameraModeFor(rig) {
-    rig.cameraMode = (rig.cameraMode + 1) % CAMERA_MODES.length;
-    if (rig.cameraMode === 2) { rig.orbitControls.enabled = true; rig.orbitControls.target.copy(rig.position); }
+    const views = rig.camViews || DEFAULT_CAM_VIEWS;
+    rig.camIdx = ((rig.camIdx || 0) + 1) % views.length;
+    if (camView(rig) === 'free') { rig.orbitControls.enabled = true; rig.orbitControls.target.copy(rig.position); }
     else { rig.orbitControls.enabled = false; }
-    const camText = document.getElementById(rig.prefix + 'camText');
-    if (camText) camText.innerText = cameraModeLabel(rig);
-    notify(rig, `鏡頭視角：${cameraModeLabel(rig)}`);
+    updateCamTextFor(rig);
+    notify(rig, `鏡頭視角：${cameraViewLabel(rig)}`);
 }
 function updateCameraFor(rig) {
-    if (!rig.mesh) return;
+    if (!rig.mesh || !rig.camera) return;
     const camera = rig.camera;
-    if (rig.cameraMode === 0 && rig.team === DEFEND_TEAM) {
-        // 場邊定點視角：模擬防守方操作員站在「己方球門這一端」短邊網外正中央觀看，
-        // 視角固定不隨無人機平移，只轉動視線追蹤機身，且預設至少微微上仰（不會低頭俯視）
-        rig.mesh.visible = true;
+    const view = camView(rig);
+    const fov = view === 'center' ? PILOT_FOV : DEFAULT_FOV;
+    if (camera.fov !== fov) { camera.fov = fov; camera.updateProjectionMatrix(); }
+    rig.hideNetSide = 0;
+    updateCamTextFor(rig);
 
-        const eyeHeight = 1.15;
-        const sidelineMargin = 0.6;
-        const sideOffsetX = 0;
-
-        const ownGoal = getOwnGoalRing(rig);
-        const standSign = ownGoal ? Math.sign(ownGoal.pos.z) : -1;
-        const fixedCameraPosition = new THREE.Vector3(
-            sideOffsetX,
-            eyeHeight,
-            standSign * (CAGE_LENGTH / 2 + sidelineMargin)
-        );
-        camera.position.lerp(fixedCameraPosition, 0.15);
-
-        const lookAtPos = rig.position;
-        const horizontalDist = Math.max(
-            0.5,
-            Math.hypot(lookAtPos.x - camera.position.x, lookAtPos.z - camera.position.z)
-        );
-        const minUpwardAngle = THREE.MathUtils.degToRad(6);
-        const minLookY = camera.position.y + horizontalDist * Math.tan(minUpwardAngle);
-        const lookTargetY = Math.max(lookAtPos.y, minLookY);
-
-        const lookTarget = new THREE.Vector3(lookAtPos.x, lookTargetY, lookAtPos.z);
-        camera.lookAt(lookTarget);
-
-    } else if (rig.cameraMode === 0) {
-        rig.mesh.visible = true;
+    if (view === 'chase') {
         const backOffset = 1.6, upOffset = 0.55;
         const relOff = new THREE.Vector3(0, upOffset, -backOffset);
         relOff.applyAxisAngle(new THREE.Vector3(0, 1, 0), rig.rotation.y);
         const targetPos = rig.position.clone().add(relOff);
         camera.position.lerp(targetPos, 0.12);
-        const lookTarget = rig.position.clone().add(new THREE.Vector3(0, 0.1, 0));
-        camera.lookAt(lookTarget);
-    } else if (rig.cameraMode === 1) {
-        rig.mesh.visible = false;
+        camera.lookAt(rig.position.clone().add(new THREE.Vector3(0, 0.1, 0)));
+    } else if (view === 'cockpit') {
         const relOff = new THREE.Vector3(0, 0.04, 0.1);
         relOff.applyAxisAngle(new THREE.Vector3(0, 1, 0), rig.rotation.y);
-        const targetPos = rig.position.clone().add(relOff);
-        camera.position.copy(targetPos);
+        camera.position.copy(rig.position.clone().add(relOff));
         const forwardDir = new THREE.Vector3(0, 0, 1);
         forwardDir.applyEuler(new THREE.Euler(rig.currentPitch, rig.rotation.y, 0, 'YXZ'));
         camera.lookAt(camera.position.clone().add(forwardDir));
-    } else if (rig.cameraMode === 2) {
-        rig.mesh.visible = true;
+    } else if (view === 'free') {
         rig.orbitControls.target.lerp(rig.position, 0.1);
         rig.orbitControls.update();
+    } else if (view === 'center') {
+        // 定中：貼著己方短邊球網、站在正中央，固定直視對方球門
+        const endSign = ownEndSign(rig);
+        const target = ringCourse.find(r => r.team !== rig.team);
+        camera.position.set(0, PILOT_EYE_HEIGHT, endSign * (PILOT_NET_Z + pilotBackOf(rig)));
+        if (target) camera.lookAt(target.pos); else camera.lookAt(0, PILOT_EYE_HEIGHT, -endSign * 3);
+        rig.hideNetSide = pilotBackOf(rig) < 0.3 ? endSign : 0; // 貼網站立才隱藏眼前球網，站遠了照常顯示
+    } else if (view === 'left' || view === 'right') {
+        // 定左／定右：貼著己方短邊球網、偏向左手邊或右手邊站立，人不動、轉頭追蹤無人機
+        const endSign = ownEndSign(rig);
+        const lateral = view === 'left' ? -1 : 1; // 面向球場時：-1 = 左手邊，1 = 右手邊
+        const sidePos = new THREE.Vector3(lateral * endSign * SIDE_OFFSET_X, SIDE_EYE_HEIGHT, endSign * (PILOT_NET_Z + pilotBackOf(rig)));
+        camera.position.lerp(sidePos, 0.15);
+        const horizontalDist = Math.max(0.5, Math.hypot(rig.position.x - camera.position.x, rig.position.z - camera.position.z));
+        const minLookY = camera.position.y + horizontalDist * Math.tan(THREE.MathUtils.degToRad(SIDE_MIN_UP_DEG));
+        camera.lookAt(rig.position.x, Math.max(rig.position.y, minLookY), rig.position.z);
+        rig.hideNetSide = pilotBackOf(rig) < 0.3 ? endSign : 0; // 貼網站立才隱藏眼前球網，站遠了照常顯示
     }
+}
+// 每個視窗渲染前：只有「自己的座艙視角」才隱藏自己的機身；貼網站立的視角隱藏眼前那面球網
+// （所有視窗共用同一個場景，所以要在各自渲染前才設定，避免互相影響）
+function prepareRenderFor(rig) {
+    [P1, P2].forEach(r => { if (r.mesh) r.mesh.visible = !(r === rig && camView(r) === 'cockpit'); });
+    setEndNetsVisible(rig.hideNetSide || 0);
+    // 攻擊機操控手貼著己方球網站（定中／定左／定右）：自家球門就在眼前上方，整座隱藏避免遮蔽視線
+    const v = camView(rig);
+    const hideOwn = !(rig.pilotBack > 0) && (v === 'center' || v === 'left' || v === 'right');
+    ringCourse.forEach(r => {
+        setGoalVisible(r, !(hideOwn && r.team === rig.team));
+        // 鏡頭貼近球門顯示器（例如追蹤視角從己方球門後方跟拍）時暫時不畫它，避免整個畫面被顯示器擋住
+        if (r.display && r.display.group.visible) r.display.group.visible = rig.camera.position.distanceTo(r.display.center) > 0.9;
+    });
 }
 
 // ---------------- HUD ----------------
@@ -1656,9 +1904,9 @@ function updateHUDFor(rig) {
 // ---------------- 起飛／降落／靜音 ----------------
 function triggerTakeoff(rig) {
     if (rig.position.y < 0.15) {
-        rig.targetAltitude = 1.5;
+        rig.targetAltitude = GOAL_HEIGHT;
         rig.autoFlightState = 'takingoff';
-        notify(rig, "自動駕駛：起飛中…爬升至 1.5 公尺球門高度");
+        notify(rig, `自動駕駛：起飛中…爬升至 ${GOAL_HEIGHT} 公尺球門高度`);
     } else {
         notify(rig, "無法起飛：目前已在空中");
     }
@@ -1706,6 +1954,11 @@ function toggleSound() {
         notify(P1, "馬達音效：靜音"); notify(P2, "馬達音效：靜音");
     }
 }
+
+// 各玩家的視角清單：攻擊機 追蹤→定中→座艙→自由；單防守機 定中→定左→定右→座艙→自由；雙防守機一左一右
+P1.camViews = ['chase', 'center', 'cockpit', 'free']; P1.camIdx = 0;
+P2.camViews = ['center', 'left', 'right', 'cockpit', 'free']; P2.camIdx = 0;
+[P1, P2].forEach(r => { r.pilotBack = (r.camViews || []).includes('chase') ? 0 : 1.0; }); // 防守機操控手站在網後 1 公尺
 
 // ---------------- 鍵盤輸入：同一組事件監聽，同時分派給 P1(原鍵位) 與 P2(TGFHIKJL) ----------------
 const P1_KEY_SET = ['w','s','a','d','arrowup','arrowdown','arrowleft','arrowright',' ','control'];
@@ -1840,8 +2093,7 @@ function resetGame() {
     ringCourse.forEach(ring => {
         ring.lastPassTime = 0;
         ring.prevSide = null;
-        ring.mesh.material.color.setHex(ring.color);
-        ring.mesh.material.emissive.setHex(ring.color);
+        setRingFlash(ring, false);
     });
     readyToScore = true;
     centerLinePrevSide = null;
@@ -1896,6 +2148,7 @@ function animate() {
     checkAttackerVsDefenderCollisions();
     checkPlayerVsTeammateCollision();
     updateParticles(delta);
+    updateGoalDisplays();
     updateCameraFor(P1);
     updateCameraFor(P2);
     updateDroneSoundFor(P1);
@@ -1906,8 +2159,8 @@ function animate() {
     updateTailBeacon(P2.tailBeaconMat, P2.tailBeaconLight);
     updateTailBeacon(aiDefender.tailBeaconMat, aiDefender.tailBeaconLight);
 
-    P1.renderer.render(scene, P1.camera);
-    P2.renderer.render(scene, P2.camera);
+    prepareRenderFor(P1); P1.renderer.render(scene, P1.camera);
+    prepareRenderFor(P2); P2.renderer.render(scene, P2.camera);
 }
 
 // ---------------- 入口啟動 ----------------

@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    
+
     <style>
         /* 觸控裝置（手機、平板，含 iPad 桌面版模式）：隱藏鍵盤說明、顯示觸控說明（由 <html>.touch-device 判斷，不單靠螢幕寬度） */
         html.touch-device .kb-only { display: none !important; }
@@ -147,7 +147,7 @@
 
     <!-- 遊戲主場景與 HUD -->
     <div id="gameUI" class="absolute inset-0 z-10 pointer-events-none flex flex-col justify-between p-4 md:p-6 select-none">
-        
+
         <!-- 頂部資訊條 -->
         <header class="w-full flex justify-between items-start pointer-events-auto">
             <!-- 左上角保留空間 (原計分面板已移除，留待後續改裝使用) -->
@@ -334,7 +334,7 @@
             position: new THREE.Vector3(0, 0.1, 0), // 初始停留於球場正中央地板 (高度 0.1 米)
             velocity: new THREE.Vector3(0, 0, 0),
             rotation: new THREE.Euler(0, 0, 0, 'YXZ'), // 歐拉旋轉順序
-            
+
             // 氣壓定高與自動駕駛
             targetAltitude: 0.1, // 初始定高目標
             touchAltitudeInput: 0, // 觸控定高增量 (已套用平方曲線，幅度越大動力輸出越強)
@@ -374,17 +374,17 @@
         // 地板寬度方向為 X 軸 (X: -1.5 至 +1.5)
         // 依真實規格調整：無人機球型護籠外徑 20 公分 (半徑 0.10m)
         const DRONE_CAGE_RADIUS = 0.10;   // 無人機足球護籠半徑，整體球徑 = 20 公分
-        let particles = []; 
+        let particles = [];
 
         // 5. 鍵盤輸入
-        const keys = { 
-            w: false, s: false, a: false, d: false, 
+        const keys = {
+            w: false, s: false, a: false, d: false,
             arrowup: false, arrowdown: false, arrowleft: false, arrowright: false,
-            ' ': false, control: false, t: false, l: false 
+            ' ': false, control: false, t: false, l: false
         };
 
         // 6. 攝影機模式 (0: Chase, 1: Cockpit, 2: Free)
-        let cameraMode = 0; 
+        let cameraMode = 0;
         const CAMERA_MODES = ['跟隨', '座艙', '自由'];
 
         // Web Audio API 引擎嗡鳴音效（採用參考檔案的簡潔單振盪器設計）
@@ -432,10 +432,10 @@
 
                 osc.type = 'sine';
                 osc2.type = 'sine';
-                
+
                 osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
                 osc.frequency.exponentialRampToValueAtTime(1174.66, audioCtx.currentTime + 0.12); // D6
-                
+
                 osc2.frequency.setValueAtTime(880.00, audioCtx.currentTime); // A5
                 osc2.frequency.exponentialRampToValueAtTime(1760.00, audioCtx.currentTime + 0.12); // A6
 
@@ -457,12 +457,12 @@
         function initScene() {
             scene = new THREE.Scene();
             scene.background = new THREE.Color(0x010409);
-            scene.fog = new THREE.FogExp2(0x010409, 0.035); 
+            scene.fog = new THREE.FogExp2(0x010409, 0.035);
 
             clock = new THREE.Clock();
 
             camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.05, 100);
-            
+
             renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -523,16 +523,44 @@
         }
 
         // 使用 Canvas 繪製專屬於 6公尺 × 3公尺（長 Z-axis, 寬 X-axis）草綠色對稱發光場地貼圖
+        // 綠色人工草皮（與足球場相同的深綠色；不畫深淺條紋與場線，避免畫面雜亂）
+        // 競速場地沒有球門頂燈，草皮主要靠自發光呈現顏色，數值經實測校準，讓畫面上的綠色和足球場（USB 手把版）一致：
+        //   base 草皮底色、diffuse 受場館燈光影響的程度、glow 自發光強度
+        //   迷宮／隧道關卡上方有白色主燈與青綠穹頂光，會把草皮洗成淡薄荷色，所以改用低受光＋較飽和的底色
+        function createTurfMaterial(w, d, base = '#156a25', diffuse = 1, glow = 0.8) {
+            const pxPerM = 128;
+            const canvas = document.createElement('canvas');
+            canvas.width = Math.max(64, Math.round(w * pxPerM));
+            canvas.height = Math.max(64, Math.round(d * pxPerM));
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = base;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // 細微草紋雜點
+            const dots = Math.round(canvas.width * canvas.height / 115);
+            for (let i = 0; i < dots; i++) {
+                ctx.fillStyle = Math.random() < 0.5 ? 'rgba(255,255,255,0.05)' : 'rgba(0,40,0,0.07)';
+                ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 1, 2);
+            }
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.anisotropy = 8;
+            return new THREE.MeshStandardMaterial({
+                map: texture,
+                roughness: 0.85,
+                metalness: 0.0,
+                // 草皮部分自發光：場館燈光偏暗時仍維持綠色，同時保留燈光與陰影的明暗變化
+                emissive: 0xffffff,
+                emissiveMap: texture,
+                emissiveIntensity: glow,
+                color: new THREE.Color(diffuse, diffuse, diffuse),
+                side: THREE.DoubleSide
+            });
+        }
+
         function createSoccerField() {
             // 場地地板 (已移除場地圖示與文字標示，保留純色地面待改裝為競速賽道使用)
             // 建立 3m × 6m 的主場地平面
             const fieldGeo = new THREE.PlaneGeometry(3, 6);
-            const fieldMat = new THREE.MeshStandardMaterial({
-                color: 0x022c22,
-                roughness: 0.6,
-                metalness: 0.1,
-                side: THREE.DoubleSide
-            });
+            const fieldMat = createTurfMaterial(3, 6); // 綠色草皮
 
             const field = new THREE.Mesh(fieldGeo, fieldMat);
             field.rotation.x = -Math.PI / 2;
@@ -559,12 +587,12 @@
             canvas.width = 128;
             canvas.height = 128;
             const ctx = canvas.getContext('2d');
-            
+
             // 網底透明
             ctx.clearRect(0, 0, 128, 128);
 
             // 格網線條 - 使用照片中的明亮綠色 (Emerald-Green)
-            ctx.strokeStyle = '#10b981'; 
+            ctx.strokeStyle = '#10b981';
             ctx.lineWidth = 4;
             ctx.strokeRect(0, 0, 128, 128);
 
@@ -650,7 +678,7 @@
 
             // 4 根垂直立柱 (4 Corners)
             const vertGeo = new THREE.CylinderGeometry(pillarRad, pillarRad, cageH, 16);
-            
+
             // 紅方 (Z = -3) 的左前/右前立柱
             const p1 = new THREE.Mesh(vertGeo, tubeMatRed);
             p1.position.set(-cageW / 2, cageH / 2, -cageL / 2);
@@ -910,7 +938,7 @@
                 // 旋翼組件
                 const rotorGroup = new THREE.Group();
                 rotorGroup.position.set(pos.x, 0.05, pos.z);
-                
+
                 const shaftGeo = new THREE.CylinderGeometry(0.006, 0.006, 0.03, 8);
                 const shaftMat = new THREE.MeshStandardMaterial({ color: 0x000000 });
                 const shaft = new THREE.Mesh(shaftGeo, shaftMat);
@@ -975,7 +1003,7 @@
         function createExplosion(position, colorHex) {
             const particleCount = 30;
             const geo = new THREE.SphereGeometry(0.03, 6, 6);
-            
+
             for (let i = 0; i < particleCount; i++) {
                 const mat = new THREE.MeshBasicMaterial({
                     color: colorHex,
@@ -984,13 +1012,13 @@
                 });
                 const mesh = new THREE.Mesh(geo, mat);
                 mesh.position.copy(position);
-                
+
                 const velocity = new THREE.Vector3(
                     (Math.random() - 0.5) * 6,
                     (Math.random() - 0.5) * 6,
                     (Math.random() - 0.5) * 6
                 );
-                
+
                 scene.add(mesh);
                 particles.push({
                     mesh: mesh,
@@ -1011,7 +1039,7 @@
             });
             const mesh = new THREE.Mesh(geo, mat);
             mesh.position.copy(pos).add(new THREE.Vector3((Math.random()-0.5)*0.1, -0.02, (Math.random()-0.5)*0.1));
-            
+
             scene.add(mesh);
             particles.push({
                 mesh: mesh,
@@ -1071,7 +1099,7 @@
                     // 導致之後所有按鍵（包含同時按下的 W）看起來像「沒有反應」。
                     if (key === ' ' || key === 'control' || key.startsWith('arrow')) e.preventDefault();
                 }
-                
+
                 // 按下 W/S 或 Space／Ctrl 僅顯示一次提示，實際連續升降改在 updateDronePhysics() 內以 delta time 平滑處理
                 // W/S：對應左搖桿油門邏輯（向上=增加動力上升，向下=減少動力下降）
                 if (key === 'w' && !e.repeat) {
@@ -1094,7 +1122,7 @@
                     drone.autoFlightState = 'none';
                     showSystemNotification("按住 Ctrl 持續下降，放開停止");
                 }
-                
+
                 if (key === 'c') cycleCameraMode();
                 if (key === 't') triggerTakeoff();
                 if (key === 'l') triggerLanding();
@@ -1157,7 +1185,7 @@
                 const dy = touch.clientY - centerY;
                 const dist = Math.min(rect.width / 2, Math.sqrt(dx * dx + dy * dy));
                 const angle = Math.atan2(dy, dx);
-                
+
                 const percentX = (Math.cos(angle) * dist) / (rect.width / 2);
                 const percentY = (Math.sin(angle) * dist) / (rect.height / 2);
 
@@ -1210,7 +1238,7 @@
             if (!drone.mesh) return;
 
             // 鍵盤或方向鍵偵測 -> 退出自動駕駛
-            if (keys.w || keys.s || keys.a || keys.d || 
+            if (keys.w || keys.s || keys.a || keys.d ||
                 keys.arrowup || keys.arrowdown || keys.arrowleft || keys.arrowright ||
                 keys[' '] || keys.control) { // 增加按鍵檢測範圍
                 if (drone.autoFlightState !== 'none') {
@@ -1297,8 +1325,8 @@
             const altError = drone.targetAltitude - drone.position.y;
             const climbRate = drone.velocity.y;
 
-            const kpAlt = 15.0; 
-            const kdAlt = 8.0; 
+            const kpAlt = 15.0;
+            const kdAlt = 8.0;
 
             // --- 修正起飛靜止問題 ---
             // 增加一個微小的 baseThrust 補償，確保在起飛初期即有足夠動力克服初始慣性
@@ -1307,7 +1335,7 @@
 
             // 如果正在起飛且目前推力過低，給予一個最小起飛閾值 (0.45 比例)
             if (drone.autoFlightState === 'takingoff' && targetVerticalForce < hoverThrust * 0.9) {
-                targetVerticalForce = hoverThrust * 1.15; 
+                targetVerticalForce = hoverThrust * 1.15;
             }
 
             let idealThrottle = targetVerticalForce / drone.constants.maxThrottleThrust;
@@ -1323,7 +1351,7 @@
             const localUp = new THREE.Vector3(0, 1, 0);
             localUp.applyEuler(new THREE.Euler(drone.currentPitch, 0, drone.currentRoll, 'YXZ'));
             localUp.applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y);
-            
+
             const forceThrust = localUp.multiplyScalar(thrustAmount);
             const forceGravity = new THREE.Vector3(0, -drone.constants.gravity * drone.constants.mass, 0);
             const forceDrag = drone.velocity.clone().multiplyScalar(-drone.constants.linearDrag);
@@ -1392,7 +1420,7 @@
         // 循環視角切換
         function cycleCameraMode() {
             cameraMode = (cameraMode + 1) % CAMERA_MODES.length;
-            
+
             if (cameraMode === 2) {
                 orbitControls.enabled = true;
                 orbitControls.target.copy(drone.position);
@@ -1416,7 +1444,7 @@
 
                 const relativeCameraOffset = new THREE.Vector3(0, upOffset, -backOffset);
                 relativeCameraOffset.applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y);
-                
+
                 const targetCameraPosition = drone.position.clone().add(relativeCameraOffset);
                 camera.position.lerp(targetCameraPosition, 0.12);
 
@@ -1428,13 +1456,13 @@
                 drone.mesh.visible = false;
                 const relativeCameraOffset = new THREE.Vector3(0, 0.04, 0.1);
                 relativeCameraOffset.applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y);
-                
+
                 const targetCameraPosition = drone.position.clone().add(relativeCameraOffset);
                 camera.position.copy(targetCameraPosition);
 
                 const forwardDir = new THREE.Vector3(0, 0, 1);
                 forwardDir.applyEuler(new THREE.Euler(drone.currentPitch, drone.rotation.y, 0, 'YXZ'));
-                
+
                 const lookTarget = camera.position.clone().add(forwardDir);
                 camera.lookAt(lookTarget);
 
@@ -1477,7 +1505,7 @@
             let degrees = Math.round((drone.rotation.y * (180 / Math.PI)) % 360);
             if (degrees < 0) degrees += 360;
             document.getElementById('compassVal').innerText = `${String(degrees).padStart(3, '0')}°`;
-            
+
             let dirStr = 'N';
             if (degrees >= 337.5 || degrees < 22.5) dirStr = 'N';
             else if (degrees >= 22.5 && degrees < 67.5) dirStr = 'NE';
@@ -1524,7 +1552,7 @@
         function animate() {
             requestAnimationFrame(animate);
 
-            const delta = Math.min(clock.getDelta(), 0.1); 
+            const delta = Math.min(clock.getDelta(), 0.1);
 
             updateDronePhysics(delta);
             updateParticles(delta);
@@ -1543,7 +1571,7 @@
             drone.currentPitch = 0;
             drone.currentRoll = 0;
             drone.currentYawRate = 0;
-            drone.input.throttle = 0.0; 
+            drone.input.throttle = 0.0;
             drone.targetAltitude = 0.10;
             drone.autoFlightState = 'none';
 
