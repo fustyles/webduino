@@ -945,6 +945,13 @@ const GOAL_RING_GLOW = 0xfff6e6;       // 微弱自發光，讓暗場中仍看�
 const GOAL_RING_GLOW_INTENSITY = 0.16;
 const GOAL_FLASH_COLOR = 0x10b981;     // 進球時閃爍的綠色
 
+// 顯示／隱藏整座球門（圓環、上方顯示器、吊索）：攻擊機操控手貼網站立時，自家球門就在眼前上方，會擋住視線
+function setGoalVisible(ring, visible) {
+    if (ring.mesh) ring.mesh.visible = visible;
+    if (ring.display) ring.display.group.visible = visible;
+    if (ring.cables) ring.cables.forEach(c => { c.visible = visible; });
+}
+
 function setRingFlash(ring, on, flashColor = GOAL_FLASH_COLOR) {
     const m = ring.mesh.material;
     if (on) {
@@ -1062,6 +1069,18 @@ function buildGoalDisplay(ringData) {
     drawGoalDisplay(ringData);
 }
 
+// AI 攻擊機繞過球門時使用的安全高度：
+// 球門掛高 2.2 公尺後，圓環頂端加上得分顯示器已接近網籠頂，若照原本「爬到球門上方 40 公分再繞回」，
+// 目標高度（約 3.0 公尺）會超過 AI 的飛行上限（2.8 公尺），攻擊機就會一直卡在上方不動。
+// 因此上方空間足夠時維持從上方繞，不夠時改從圓環下方繞過（圓環底部再往下 40 公分）。
+function goalBypassAltitude(ring) {
+    const ringTop = ring.pos.y + RING_CENTER_RADIUS + RING_TUBE_RADIUS;
+    const topOfGoal = ring.display ? Math.max(ringTop, ring.display.center.y + ring.display.half.y) : ringTop;
+    const over = Math.max(ringTop + 0.4, topOfGoal + DRONE_CAGE_RADIUS + 0.12);
+    if (over <= 2.6) return over;
+    return Math.max(0.45, ring.pos.y - RING_CENTER_RADIUS - RING_TUBE_RADIUS - 0.4);
+}
+
 function setupTargetRings() {
     RING_LIST.forEach((ringData) => {
         // 立體乳白色圓環：加粗管徑＋高細分，搭配清漆材質呈現光亮飽滿的立體感
@@ -1114,6 +1133,7 @@ function setupTargetRings() {
         const rightLine = new THREE.Mesh(lineGeo, lineMat);
         rightLine.position.set(ringData.pos.x + cableX, cableCenterY, ringData.pos.z);
         scene.add(rightLine);
+        ringData.cables = [leftLine, rightLine];
 
         buildGoalDisplay(ringData);
     });
@@ -2029,11 +2049,11 @@ function updateAIAttacker(rig, delta) {
                 pickAttackPattern(rig);
             }
         } else if (rig.phase === 'loopback') {
-            const clearAltitude = ring.pos.y + RING_CENTER_RADIUS + RING_TUBE_RADIUS + 0.4;
-            if (rig.position.y < clearAltitude - 0.1) {
+            const clearAltitude = goalBypassAltitude(ring); // 上方空間不夠時改從球門下方繞
+            if (Math.abs(rig.position.y - clearAltitude) > 0.1) {
                 rig.aiAimTarget.set(rig.position.x, clearAltitude, rig.position.z);
             } else {
-                const stillBehind = Math.sign(rig.position.z - ring.pos.z) === ring.forwardSign;
+                const stillBehind = (ring.pos.z - rig.position.z) * ring.forwardSign < 0.6; // 尚未回到球門前方 60 公分以上
                 if (stillBehind) {
                     const frontZ = ring.pos.z - ring.forwardSign * 0.9;
                     rig.aiAimTarget.set((Math.random() - 0.5) * 1.0, clearAltitude, frontZ);
@@ -2052,8 +2072,8 @@ function updateAIAttacker(rig, delta) {
             }
         } else {
             // retreat
-            const clearAltitude = ring.pos.y + RING_CENTER_RADIUS + RING_TUBE_RADIUS + 0.4;
-            if (rig.position.y < clearAltitude - 0.1) {
+            const clearAltitude = goalBypassAltitude(ring); // 上方空間不夠時改從球門下方繞
+            if (Math.abs(rig.position.y - clearAltitude) > 0.1) {
                 rig.aiAimTarget.set(rig.position.x, clearAltitude, rig.position.z);
             } else {
                 rig.aiAimTarget.set((Math.random() - 0.5) * 1.0, clearAltitude, -ring.pos.z);
@@ -2590,6 +2610,8 @@ const DEFAULT_CAM_VIEWS = ['chase', 'cockpit', 'free'];
 // 身高約 165 公分（眼睛高度 1.53 公尺），人原地不動、視線固定
 const PILOT_NET_Z = 3.0;            // 短邊球網位置（場地長 6 公尺）
 const PILOT_NET_CLEARANCE = 0.06;   // 鏡頭最近可視距離 0.05 公尺，留 6 公分避免球網被鏡頭切掉閃爍
+// 操控手離球網的距離（rig.pilotBack）：防守機操控手站在網後 1 公尺，才看得到己方球門全景；攻擊機操控手貼網站
+function pilotBackOf(rig) { return Math.max(rig.pilotBack || 0, PILOT_NET_CLEARANCE); }
 const PILOT_EYE_HEIGHT = 1.53;
 const PILOT_FOV = 74;               // 人眼視野較寬：加大視角，讓兩端球門同時入鏡
 const DEFAULT_FOV = 60;
@@ -2654,19 +2676,19 @@ function updateCameraFor(rig) {
         // 定中：貼著己方短邊球網、站在正中央，固定直視對方球門
         const endSign = ownEndSign(rig);
         const target = RING_LIST.find(r => r.team !== rig.team);
-        camera.position.set(0, PILOT_EYE_HEIGHT, endSign * (PILOT_NET_Z + PILOT_NET_CLEARANCE));
+        camera.position.set(0, PILOT_EYE_HEIGHT, endSign * (PILOT_NET_Z + pilotBackOf(rig)));
         if (target) camera.lookAt(target.pos); else camera.lookAt(0, PILOT_EYE_HEIGHT, -endSign * 3);
-        rig.hideNetSide = endSign;
+        rig.hideNetSide = pilotBackOf(rig) < 0.3 ? endSign : 0; // 貼網站立才隱藏眼前球網，站遠了照常顯示
     } else if (view === 'left' || view === 'right') {
         // 定左／定右：貼著己方短邊球網、偏向左手邊或右手邊站立，人不動、轉頭追蹤無人機
         const endSign = ownEndSign(rig);
         const lateral = view === 'left' ? -1 : 1; // 面向球場時：-1 = 左手邊，1 = 右手邊
-        const sidePos = new THREE.Vector3(lateral * endSign * SIDE_OFFSET_X, SIDE_EYE_HEIGHT, endSign * (PILOT_NET_Z + PILOT_NET_CLEARANCE));
+        const sidePos = new THREE.Vector3(lateral * endSign * SIDE_OFFSET_X, SIDE_EYE_HEIGHT, endSign * (PILOT_NET_Z + pilotBackOf(rig)));
         camera.position.lerp(sidePos, 0.15);
         const horizontalDist = Math.max(0.5, Math.hypot(rig.position.x - camera.position.x, rig.position.z - camera.position.z));
         const minLookY = camera.position.y + horizontalDist * Math.tan(THREE.MathUtils.degToRad(SIDE_MIN_UP_DEG));
         camera.lookAt(rig.position.x, Math.max(rig.position.y, minLookY), rig.position.z);
-        rig.hideNetSide = endSign;
+        rig.hideNetSide = pilotBackOf(rig) < 0.3 ? endSign : 0; // 貼網站立才隱藏眼前球網，站遠了照常顯示
     }
 }
 // 每個視窗渲染前：只有「自己的座艙視角」才隱藏自己的機身；貼網站立的視角隱藏眼前那面球網
@@ -2674,8 +2696,14 @@ function updateCameraFor(rig) {
 function prepareRenderFor(rig) {
     HUMAN_RIGS.forEach(r => { if (r.mesh) r.mesh.visible = !(r === rig && camView(r) === 'cockpit'); });
     setEndNetsVisible(rig.hideNetSide || 0);
-    // 鏡頭貼近球門顯示器（例如追蹤視角從己方球門後方跟拍）時暫時不畫它，避免整個畫面被顯示器擋住
-    RING_LIST.forEach(r => { if (r.display) r.display.group.visible = rig.camera.position.distanceTo(r.display.center) > 0.9; });
+    // 攻擊機操控手貼著己方球網站（定中／定左／定右）：自家球門就在眼前上方，整座隱藏避免遮蔽視線
+    const v = camView(rig);
+    const hideOwn = !(rig.pilotBack > 0) && (v === 'center' || v === 'left' || v === 'right');
+    RING_LIST.forEach(r => {
+        setGoalVisible(r, !(hideOwn && r.team === rig.team));
+        // 鏡頭貼近球門顯示器（例如追蹤視角從己方球門後方跟拍）時暫時不畫它，避免整個畫面被顯示器擋住
+        if (r.display && r.display.group.visible) r.display.group.visible = rig.camera.position.distanceTo(r.display.center) > 0.9;
+    });
 }
 
 // ---------------- 音效 ----------------
@@ -2887,8 +2915,10 @@ function resetGame() {
 // ============================================================
 const PAD_DEFAULT_MAP = [{ x: 4, y: 2, xi: false, yi: true }, { x: 0, y: 1, xi: false, yi: true }];
 const PAD_IDLE = { connected: false, lx: 0, ly: 0, rx: 0, ry: 0 };
+// 使用「手把橋接程式」時，軸的編號可能和瀏覽器直接讀取時不同，所以另存一組設定（尾碼 _br）
+let padViaBridge = false;
 function padKeysFor(n) {
-    const s = n === 0 ? '' : '_p' + (n + 1);
+    const s = (n === 0 ? '' : '_p' + (n + 1)) + (padViaBridge ? '_br' : '');
     return { map: 'stickmap4' + s, cal: 'stickcal1' + s, dz: 'stickdz1' + s };
 }
 function loadPadCfg(n) {
@@ -2940,17 +2970,60 @@ const PAD_EXPO = 0.3;
 function padCurve(v) { return v * (1 - PAD_EXPO) + v * v * v * PAD_EXPO; }
 
 let padBlocked = false;
+
+// ---- 手把橋接程式（選用）----
+// Chrome／Edge 同時最多只回報 4 支手把。超過 4 位玩家時，在同一台電腦執行「手把橋接程式」
+// （gamepad_bridge.py），由它讀取全部手把、經本機 WebSocket 傳給網頁；連上後網頁改用橋接的資料，沒有支數限制。
+const BRIDGE_URL = 'ws://127.0.0.1:8765';
+const bridge = { ws: null, pads: [], lastMsg: 0, retryAt: 0 };
+function bridgeConnect() {
+    if (bridge.ws || typeof WebSocket === 'undefined' || performance.now() < bridge.retryAt) return;
+    let ws;
+    try { ws = new WebSocket(BRIDGE_URL); } catch (e) { bridge.retryAt = performance.now() + 5000; return; }
+    bridge.ws = ws;
+    ws.onmessage = ev => {
+        try {
+            const d = JSON.parse(ev.data);
+            if (!d || !Array.isArray(d.pads)) return;
+            bridge.pads = d.pads.map(p => ({
+                index: 100 + (p.id | 0), id: String(p.name || '手把'), bridged: true,
+                axes: Array.isArray(p.axes) ? p.axes.map(Number) : [],
+                buttons: Array.isArray(p.buttons) ? p.buttons.map(b => ({ pressed: !!b })) : [],
+                connected: true,
+            }));
+            bridge.lastMsg = performance.now();
+        } catch (e) {}
+    };
+    ws.onerror = () => {};
+    ws.onclose = () => { bridge.ws = null; bridge.pads = []; bridge.retryAt = performance.now() + 3000; };
+}
+function bridgeLive() { return !!bridge.ws && bridge.ws.readyState === 1 && performance.now() - bridge.lastMsg < 1500; }
+// 切換「瀏覽器直讀」與「橋接程式」時，各玩家改用對應的那一組設定，手把重新自動分配
+function padSetBridgeMode(on) {
+    if (on === padViaBridge) return;
+    padViaBridge = on;
+    padSlots.forEach((s, i) => { s.cfg = loadPadCfg(i); s.padIndex = null; });
+    padCfg = padSlots[padEditSlot].cfg;
+    if (psEls.root) psSelectSlot(padEditSlot);
+    padSlots.forEach(s => notify(s.rig, on ? '已連上手把橋接程式' : '手把橋接程式已中斷，改由瀏覽器直接讀取'));
+}
 function padList() {
+    bridgeConnect();
+    const live = bridgeLive();
+    if (live !== padViaBridge) padSetBridgeMode(live);
+    if (live) return bridge.pads;
     if (padBlocked) return [];
     try { return navigator.getGamepads ? Array.from(navigator.getGamepads()) : []; }
     catch (e) { padBlocked = true; return []; }
 }
+function padByIndex(list, idx) { return list.find(p => p && p.index === idx) || null; }
+function padTag(p) { return p.bridged ? 'B' + (p.index - 100) : String(p.index); }
 // 依各玩家的指定決定誰用哪一支手把：有指定的玩家先拿，其餘「自動」玩家依接上順序分配剩下的手把
 function resolvePads(list) {
     const taken = new Set();
-    padSlots.forEach(s => { if (s.padIndex !== null && list[s.padIndex]) taken.add(s.padIndex); });
+    padSlots.forEach(s => { if (s.padIndex !== null && padByIndex(list, s.padIndex)) taken.add(s.padIndex); });
     const free = list.filter(p => p && !taken.has(p.index));
-    return padSlots.map(s => s.padIndex !== null ? (list[s.padIndex] || null) : (free.shift() || null));
+    return padSlots.map(s => s.padIndex !== null ? padByIndex(list, s.padIndex) : (free.shift() || null));
 }
 function getPad() { return resolvePads(padList())[padEditSlot] || null; }
 function padSlotLabel(s) { return s.name; }
@@ -3041,7 +3114,7 @@ function padClaimCheck(list) {
             padSlots.forEach(s => { if (s !== slot && s.padIndex === p.index) s.padIndex = null; });
             slot.padIndex = p.index;
             padClaim = null;
-            psCalMsg(`已把手把 #${p.index} 指派給 ${padSlotLabel(slot)}`);
+            psCalMsg(`已把手把 #${padTag(p)} 指派給 ${padSlotLabel(slot)}`);
             if (padEditSlot !== slot.idx) psSelectSlot(slot.idx); else psRenderPlayers();
             return;
         }
@@ -3409,7 +3482,7 @@ function padMonitorUpdate(p) {
 
 // ---- 玩家列表（每位玩家：指定手把、認領、選為校正對象） ----
 const psPlayerRows = [];
-function psPadName(p) { return p ? `#${p.index} ${p.id.length > 34 ? p.id.slice(0, 33) + '…' : p.id}` : ''; }
+function psPadName(p) { return p ? `#${padTag(p)} ${p.id.length > 34 ? p.id.slice(0, 33) + '…' : p.id}` : ''; }
 function psRenderPlayers() {
     const host = document.getElementById('psPlayers');
     if (!host) return;
@@ -3444,11 +3517,6 @@ function psRenderPlayers() {
             });
             psPlayerRows.push(ref);
         });
-        const lim = document.getElementById('psPadLimit');
-        if (lim && padSlots.length > PAD_BROWSER_LIMIT) {
-            lim.hidden = false;
-            lim.textContent = `注意：Chrome／Edge 同時最多只讀得到 ${PAD_BROWSER_LIMIT} 支手把，第 ${PAD_BROWSER_LIMIT + 1} 位以後的玩家可改用觸控搖桿，或由其他電腦另開一場。`;
-        }
     }
     psPlayerRows.forEach((ref, i) => {
         const on = i === padEditSlot;
@@ -3465,6 +3533,17 @@ function psRenderPlayers() {
 function psUpdatePlayers(list, pads) {
     if (!psPlayerRows.length) return;
     const conn = list.filter(Boolean);
+    const lim = document.getElementById('psPadLimit');
+    if (lim) {
+        let msg = '', cls = 'text-[11px] text-yellow-300';
+        if (padViaBridge) {
+            msg = `● 已連上手把橋接程式：讀到 ${conn.length} 支手把（不受瀏覽器 4 支的限制）。軸編號可能和直接讀取時不同，請撥動搖桿確認，有需要就在下方重新選軸。`;
+            cls = 'text-[11px] text-emerald-300';
+        } else if (padSlots.length > PAD_BROWSER_LIMIT) {
+            msg = `Chrome／Edge 最多只能直接讀 ${PAD_BROWSER_LIMIT} 支手把。要 ${padSlots.length} 人都用手把，請在這台電腦執行「啟動手把橋接.bat」（手把橋接程式），網頁會自動連上，不用重新整理。`;
+        }
+        if (lim.textContent !== msg) { lim.textContent = msg; lim.className = cls; lim.hidden = !msg; }
+    }
     const optKey = conn.map(p => p.index + p.id).join('|');
     psPlayerRows.forEach((ref, i) => {
         const s = padSlots[i];
@@ -3475,7 +3554,7 @@ function psUpdatePlayers(list, pads) {
             const add = (v, t) => { const o = document.createElement('option'); o.value = v; o.textContent = t; ref.sel.appendChild(o); };
             add('auto', '自動（依接上順序）');
             conn.forEach(p => add(String(p.index), '手把 ' + psPadName(p)));
-            if (s.padIndex !== null && !list[s.padIndex]) add(String(s.padIndex), `手把 #${s.padIndex}（未接上）`);
+            if (s.padIndex !== null && !padByIndex(list, s.padIndex)) add(String(s.padIndex), '指定的手把（未接上）');
             ref.sel.value = s.padIndex === null ? 'auto' : String(s.padIndex);
         }
         const p = pads[i];
@@ -3603,11 +3682,12 @@ function setupPadSetup() {
 }
 
 
-// 各玩家的視角清單：攻擊機 追蹤→定中→座艙→自由；防守機依站位 定中／定左／定右→座艙→自由
+// 各玩家的視角清單：攻擊機 追蹤→定中→座艙→自由；單防守機 定中→定左→定右→座艙→自由；雙防守機一左一右
 HUMAN_RIGS.forEach(r => {
     r.camViews = r.role === 'attacker' ? ['chase', 'center', 'cockpit', 'free'] : /def2$/.test(r.id) ? ['right', 'cockpit', 'free'] : ['left', 'cockpit', 'free'];
     r.camIdx = 0;
 });
+HUMAN_RIGS.forEach(r => { r.pilotBack = (r.camViews || []).includes('chase') ? 0 : 1.0; }); // 防守機操控手站在網後 1 公尺
 
 
 // ---------------- 觸控搖桿（各面板獨立操作各自無人機，主要供行動裝置備用） ----------------

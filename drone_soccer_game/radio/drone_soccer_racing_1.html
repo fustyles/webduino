@@ -1329,17 +1329,20 @@
 
         // 使用 Canvas 繪製專屬於 6公尺 × 3公尺（長 Z-axis, 寬 X-axis）草綠色對稱發光場地貼圖
         // 綠色人工草皮（與足球場相同的顏色與草皮條紋，競速場地不畫場線）
-        function createTurfMaterial(w, d) {
+        // 競速場地沒有球門頂燈，草皮主要靠自發光呈現顏色，數值經實測校準，讓畫面上的綠色和足球場一致：
+        //   base 草皮底色、diffuse 受場館燈光影響的程度、glow 自發光強度
+        //   迷宮／隧道關卡上方有白色主燈與青綠穹頂光，會把草皮洗成淡薄荷色，所以改用低受光＋較飽和的底色
+        function createTurfMaterial(w, d, base = '#156a25', diffuse = 1, glow = 0.8) {
             const pxPerM = 128;
             const canvas = document.createElement('canvas');
             canvas.width = Math.max(64, Math.round(w * pxPerM));
             canvas.height = Math.max(64, Math.round(d * pxPerM));
             const ctx = canvas.getContext('2d');
-            ctx.fillStyle = '#156a25';
+            ctx.fillStyle = base;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             // 每 0.5 公尺一條深淺相間的草皮條紋
             const stripe = pxPerM * 0.5;
-            ctx.fillStyle = '#115c1f';
+            ctx.fillStyle = 'rgba(0,0,0,0.13)'; // 比底色略深的條紋
             for (let y = 0; y < canvas.height; y += stripe * 2) ctx.fillRect(0, y, canvas.width, stripe);
             // 細微草紋雜點
             const dots = Math.round(canvas.width * canvas.height / 115);
@@ -1356,7 +1359,8 @@
                 // 草皮部分自發光：場館燈光偏暗時仍維持綠色，同時保留燈光與陰影的明暗變化
                 emissive: 0xffffff,
                 emissiveMap: texture,
-                emissiveIntensity: 0.10,
+                emissiveIntensity: glow,
+                color: new THREE.Color(diffuse, diffuse, diffuse),
                 side: THREE.DoubleSide
             });
         }

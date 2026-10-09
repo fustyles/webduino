@@ -1726,6 +1726,13 @@
         const GOAL_RING_GLOW_INTENSITY = 0.16;
         const GOAL_FLASH_COLOR = 0x10b981;     // 進球時閃爍的綠色
 
+        // 顯示／隱藏整座球門（圓環、上方顯示器、吊索）：攻擊機操控手貼網站立時，自家球門就在眼前上方，會擋住視線
+        function setGoalVisible(ring, visible) {
+            if (ring.mesh) ring.mesh.visible = visible;
+            if (ring.display) ring.display.group.visible = visible;
+            if (ring.cables) ring.cables.forEach(c => { c.visible = visible; });
+        }
+
         function setRingFlash(ring, on) {
             const m = ring.mesh.material;
             if (on) {
@@ -1890,6 +1897,7 @@
                 const rightLine = new THREE.Mesh(lineGeo, lineMat);
                 rightLine.position.set(ringData.pos.x + cableX, cableCenterY, ringData.pos.z);
                 scene.add(rightLine);
+                ringData.cables = [leftLine, rightLine];
 
                 buildGoalDisplay(ringData);
             });
@@ -2415,12 +2423,15 @@
 
         // 操控手所站的那一端：練習模式固定站在紅方（-Z）這一端
         function pilotOwnEndSign() { return -1; }
+        // 操控手眼前的球門：紅方球門（-Z 端）
+        function pilotOwnGoal() { return ringCourse.find(r => r.team === 'red'); }
 
         // 攝影機動態平滑追蹤
         function updateCamera(delta) {
             if (!drone.mesh) return;
             setCameraFov(cameraMode === 3 ? PILOT_FOV : DEFAULT_FOV);
             if (cameraMode < 3) setEndNetsVisible(0); // 定中、定左、定右都是貼網站立，其餘視角顯示兩端球網
+            ringCourse.forEach(r => setGoalVisible(r, true));
 
             if (cameraMode === 0) {
                 // 第三人稱跟隨 (Chase View) - 配合 6m 緊湊場景拉近距離
@@ -2460,6 +2471,7 @@
             } else if (cameraMode === 3) {
                 // 定中視角：貼著紅方短邊球網、站在正中央，固定直視藍方球門
                 drone.mesh.visible = true;
+                setGoalVisible(pilotOwnGoal(), false); // 隱藏眼前的紅方球門，避免遮蔽視線
                 const target = ringCourse.find(r => r.team === 'blue');
                 const dir = target && target.pos.z < 0 ? -1 : 1;
                 camera.position.set(0, PILOT_EYE_HEIGHT, -dir * (PILOT_NET_Z + Math.max(PILOT_DIST_FROM_NET, PILOT_NET_CLEARANCE)));
@@ -2467,6 +2479,8 @@
                 camera.lookAt(pilotLook);
                 setEndNetsVisible(-dir); // 隱藏操控手所站那一端的球網
             } else if (cameraMode === 4 || cameraMode === 5) {
+                const ownGoalAhead = pilotOwnGoal();
+                if (ownGoalAhead) setGoalVisible(ownGoalAhead, false); // 隱藏眼前的自家球門，避免遮蔽視線
                 // 定左／定右視角：貼著己方短邊球網、偏向左手邊（定左）或右手邊（定右）站立，人不動、轉頭追蹤無人機
                 drone.mesh.visible = true;
                 const endSign = pilotOwnEndSign(); // 操控手所站那一端：-1 = -Z 端，1 = +Z 端
