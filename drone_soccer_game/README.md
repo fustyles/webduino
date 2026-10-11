@@ -1,4 +1,4 @@
-研習資料： AI造飛手：用AI打造無人機足球遊戲與PS2手把控制<br>
+研習資料： AI造飛手：用AI打造無人機足球遊戲<br>
 https://drive.google.com/drive/folders/1S5O66Penidrbg3nxL9SMpXGB2Ju5W-s_?usp=drive_link
 <br><br>
 【 鍵盤控制 】
