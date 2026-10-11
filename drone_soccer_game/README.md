@@ -4,9 +4,6 @@ https://drive.google.com/drive/folders/1S5O66Penidrbg3nxL9SMpXGB2Ju5W-s_?usp=dri
 單人玩家版：攻擊機<br>
 https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_competition.html
 
-單人玩家版：攻擊機 (場外視角)<br>
-https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_competition_realview.html
-
 單人玩家版：防守機 (場外視角)<br>
 https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_defense.html
 
@@ -27,9 +24,6 @@ https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_competition_a
 
 單人玩家練習版<br>
 https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_practise.html
-
-單人玩家練習版 (場外視角)<br>
-https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_practise_realview.html
 
 單人玩家競速版 (高低環)<br>
 https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_racing_1.html
