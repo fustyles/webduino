@@ -200,12 +200,18 @@
                 </div>
             </div>
 
-            <!-- 中間頂部：羅盤方位角 -->
-            <div class="hidden md:flex flex-col items-center glassmorphism text-white px-6 py-2 rounded-xl border border-slate-700/30">
-                <span class="text-[9px] text-slate-400 tracking-widest uppercase mb-1">航向</span>
-                <div class="flex items-center gap-1.5 tech-font text-lg font-bold">
-                    <span id="compassVal" class="text-emerald-300">000°</span>
-                    <span id="compassDir" class="text-xs text-slate-400">(N)</span>
+            <!-- 中間頂部：比賽計時（最上方）＋羅盤方位角 -->
+            <div class="flex flex-col items-center gap-2 pointer-events-none">
+                <div id="gameClockPanel" class="glassmorphism rounded-xl px-4 py-1.5 flex flex-col items-center shadow-lg border border-cyan-500/20 pointer-events-none">
+                    <span class="text-[9px] text-cyan-300 uppercase tracking-widest font-semibold">比賽計時</span>
+                    <span id="gameClockText" class="text-base md:text-xl font-extrabold tech-font text-cyan-300 tracking-wider">00:00:00</span>
+                </div>
+                <div class="hidden md:flex flex-col items-center glassmorphism text-white px-6 py-2 rounded-xl border border-slate-700/30">
+                    <span class="text-[9px] text-slate-400 tracking-widest uppercase mb-1">航向</span>
+                    <div class="flex items-center gap-1.5 tech-font text-lg font-bold">
+                        <span id="compassVal" class="text-emerald-300">000°</span>
+                        <span id="compassDir" class="text-xs text-slate-400">(N)</span>
+                    </div>
                 </div>
             </div>
 
@@ -236,11 +242,6 @@
             </div>
         </header>
 
-        <!-- 右下角：電子時鐘（比賽計時） -->
-        <div id="gameClockPanel" class="absolute bottom-4 right-4 z-20 glassmorphism rounded-xl px-4 py-2 flex flex-col items-center shadow-lg border border-cyan-500/20 pointer-events-none">
-            <span class="text-[9px] text-cyan-300 uppercase tracking-widest font-semibold">比賽計時</span>
-            <span id="gameClockText" class="text-xl font-extrabold tech-font text-cyan-300 tracking-wider">00:00:00</span>
-        </div>
 
         <!-- 中間右側：簡易姿態儀 -->
         <div class="absolute right-4 top-24 pointer-events-auto hidden sm:flex flex-col gap-3">
@@ -3750,7 +3751,7 @@
             const container = document.body;
             const notification = document.createElement('div');
             notification.id = 'sysNotification';
-            notification.className = 'absolute top-20 left-1/2 -translate-x-1/2 glassmorphism text-emerald-300 font-bold px-4 py-2 rounded-lg text-xs tracking-wider border border-emerald-500/30 shadow-md z-30 transition-all duration-300 transform -translate-y-2 opacity-0 pointer-events-none uppercase tech-font';
+            notification.className = 'absolute top-44 left-1/2 -translate-x-1/2 glassmorphism text-emerald-300 font-bold px-4 py-2 rounded-lg text-xs tracking-wider border border-emerald-500/30 shadow-md z-30 transition-all duration-300 transform -translate-y-2 opacity-0 pointer-events-none uppercase tech-font';
             notification.innerText = text;
             container.appendChild(notification);
 
