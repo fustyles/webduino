@@ -250,6 +250,10 @@
                     <i class="fa-solid fa-plane-arrival text-xs"></i>
                     <span class="text-[10px] font-semibold tech-font">降落</span>
                 </button>
+                <button id="btnMenu" class="px-3.5 h-10 rounded-xl glassmorphism text-orange-300 hover:text-orange-200 hover:border-orange-400/50 flex items-center justify-center gap-1.5 transition-all cursor-pointer pointer-events-auto border border-orange-500/20" title="隨時回到主選單更換關卡">
+                    <i class="fa-solid fa-layer-group text-xs"></i>
+                    <span class="text-[10px] font-semibold tech-font">主選單<span class="kb-only"> (Esc)</span></span>
+                </button>
                 <button id="btnSound" class="w-10 h-10 rounded-xl glassmorphism text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
                     <i class="fa-solid fa-volume-high text-sm"></i>
                 </button>
@@ -2848,6 +2852,27 @@
                 document.getElementById('raceLevelName').innerText = '尚未選擇關卡';
                 updateHUD();
                 showStartScreen();
+            });
+
+            // 隨時回到主選單更換關卡（不必等通關或失敗）：無人機回到起降圈、關閉馬達，再走「回主選單」流程
+            // 鍵盤 Esc：隨時回到主選單
+            function returnToMenu() {
+                if (raceState === 'menu' && !document.getElementById('startScreen').classList.contains('hidden')) return;
+                drone.position.copy(HOME_POS);
+                drone.velocity.set(0, 0, 0);
+                drone.rotation.set(0, 0, 0);
+                drone.currentPitch = 0;
+                drone.currentRoll = 0;
+                drone.currentYawRate = 0;
+                drone.input.throttle = 0.0;
+                drone.targetAltitude = 0.10;
+                drone.autoFlightState = 'none';
+                if ('gpAltArmed' in drone) drone.gpAltArmed = false;
+                document.getElementById('btnBackMenu').click();
+            }
+            document.getElementById('btnMenu').addEventListener('click', returnToMenu);
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') { e.preventDefault(); returnToMenu(); }
             });
 
             document.getElementById('btnTakeoff').addEventListener('click', triggerTakeoff);

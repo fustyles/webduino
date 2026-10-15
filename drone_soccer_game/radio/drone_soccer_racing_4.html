@@ -311,8 +311,9 @@
                     <i class="fa-solid fa-plane-arrival text-xs"></i>
                     <span class="text-[10px] font-semibold tech-font">降落</span>
                 </button>
-                <button id="btnLevel" class="w-10 h-10 rounded-xl glassmorphism text-orange-300 hover:text-orange-200 flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-orange-500/20">
-                    <i class="fa-solid fa-layer-group text-sm"></i>
+                <button id="btnLevel" class="px-3.5 h-10 rounded-xl glassmorphism text-orange-300 hover:text-orange-200 flex items-center justify-center gap-1.5 transition-all cursor-pointer pointer-events-auto border border-orange-500/20" title="隨時回到主選單更換關卡">
+                    <i class="fa-solid fa-layer-group text-xs"></i>
+                    <span class="text-[10px] font-semibold tech-font">主選單<span class="kb-only"> (Esc)</span></span>
                 </button>
                 <button id="btnSound" class="w-10 h-10 rounded-xl glassmorphism text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
                     <i class="fa-solid fa-volume-high text-sm"></i>
@@ -2864,6 +2865,26 @@ function selectLevel(key) {
     updateMissionHUD();
 }
 
+// 隨時回到主選單更換關卡（不必等通關或失敗）：停止本關計時、無人機回到起降點，再顯示關卡選擇畫面
+// 鍵盤 Esc：隨時回到主選單
+function returnToMenu() {
+    const s = document.getElementById('startScreen');
+    if (s && s.style.display !== 'none' && s.dataset.launched !== 'true') return;
+    hideEndScreen();
+    placeDroneAtPad();
+    if ('gpAltArmed' in drone) drone.gpAltArmed = false;
+    mission.entered = false;
+    mission.exited = false;
+    mission.completed = false;
+    mission.timerRunning = false;
+    mission.elapsed = 0;
+    updateHUD();
+    showStartScreen();
+}
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { e.preventDefault(); returnToMenu(); }
+});
+
 function bindUIEvents() {
     document.getElementById('levelBtn1').addEventListener('click', () => selectLevel('lv1'));
     document.getElementById('levelBtn2').addEventListener('click', () => selectLevel('lv2'));
@@ -2877,7 +2898,7 @@ function bindUIEvents() {
     document.getElementById('btnSound').addEventListener('click', toggleSound);
     document.getElementById('btnCam').addEventListener('click', cycleCameraMode);
     document.getElementById('btnReset').addEventListener('click', resetGame);
-    document.getElementById('btnLevel').addEventListener('click', () => showStartScreen());
+    document.getElementById('btnLevel').addEventListener('click', returnToMenu);
 
     document.getElementById('btnPlayAgain').addEventListener('click', playAgainSameLevel);
     document.getElementById('btnPlayAgainLevel').addEventListener('click', playAgainChooseLevel);
