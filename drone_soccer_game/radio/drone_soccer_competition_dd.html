@@ -1728,7 +1728,11 @@ function updateDronePhysics(rig, delta) {
     const GP_CLIMB_RATE = 1.2;
     if (gp.connected) {
         // 油門接手：RC 遙控器的油門桿不會自動回中，自動起降或重設之後必須先把油門推過中間一次才接手
-        if (!rig.gpAltArmed && rig.autoFlightState === 'none' && Math.abs(gp.ly) < 0.12) {
+        // 油門接手：在中間附近、這一幀越過中間（快速推桿可能跳過中間那一格），或仍停在地面且油門在中間以下
+        const gpCrossed = rig.gpPrevLy !== undefined && (rig.gpPrevLy < 0) !== (gp.ly < 0);
+        const gpOnGround = rig.position.y <= 0.12 && rig.targetAltitude <= 0.15;
+        rig.gpPrevLy = gp.ly;
+        if (!rig.gpAltArmed && rig.autoFlightState === 'none' && (Math.abs(gp.ly) < 0.12 || gpCrossed || (gpOnGround && gp.ly < 0.12))) {
             rig.gpAltArmed = true;
             notify(rig, flightModeManual ? "油門已接手推力控制（中間 ≈ 懸停推力）" : "油門已接手高度控制（中間 = 定高懸停）");
         }

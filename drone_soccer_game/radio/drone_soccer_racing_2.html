@@ -2288,7 +2288,11 @@ function updateDronePhysics(delta) {
                 // 油門接手：RC 遙控器的油門桿不會自動回中，若它停在底部或頂端，
                 // 自動起飛/降落/重設之後會立刻把無人機拉下去或衝上去。
                 // 因此這些動作之後油門先「不生效」，必須把油門推過中間一次才接手高度控制。
-                if (!drone.gpAltArmed && drone.autoFlightState === 'none' && Math.abs(gp.ly) < 0.12) {
+                // 油門接手：在中間附近、這一幀越過中間（快速推桿可能跳過中間那一格），或仍停在地面且油門在中間以下
+                const gpCrossed = drone.gpPrevLy !== undefined && (drone.gpPrevLy < 0) !== (gp.ly < 0);
+                const gpOnGround = drone.position.y <= 0.12 && drone.targetAltitude <= 0.15;
+                drone.gpPrevLy = gp.ly;
+                if (!drone.gpAltArmed && drone.autoFlightState === 'none' && (Math.abs(gp.ly) < 0.12 || gpCrossed || (gpOnGround && gp.ly < 0.12))) {
                     drone.gpAltArmed = true;
                     showSystemNotification(flightModeManual
                         ? "油門已接手推力控制（中間 ≈ 懸停推力）"
@@ -2384,7 +2388,7 @@ function updateDronePhysics(delta) {
         let idealThrottle = targetVerticalForce / drone.constants.maxThrottleThrust;
         drone.input.throttle = THREE.MathUtils.clamp(idealThrottle, 0.0, 1.0);
 
-        if (drone.targetAltitude <= 0.15 && drone.position.y <= 0.11) {
+        if (drone.targetAltitude <= 0.15 && drone.position.y <= 0.11 && !(flightModeManual && gp.connected && drone.gpAltArmed && gp.ly > 0.05)) {
             // 已在地面附近且目標高度也貼近地面：直接鎖定於地面靜止，
             // 而不是每幀先斷油門讓重力拉一下、再被地板邊界彈回去，
             // 避免無人機在停靠時看似靜止卻持續微幅上下抖動
