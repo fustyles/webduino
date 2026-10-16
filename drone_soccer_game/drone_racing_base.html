@@ -1433,6 +1433,8 @@
         }
 
         // 攝影機動態平滑追蹤
+        const CHASE_CAM_MAX_Y = 2.55;   // 追蹤視角鏡頭最高高度（公尺），低於頂部充氣橫管（底緣約 2.775 公尺），避免視線被橫管遮住
+
         function updateCamera(delta) {
             if (!drone.mesh) return;
 
@@ -1446,9 +1448,13 @@
                 relativeCameraOffset.applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y);
 
                 const targetCameraPosition = drone.position.clone().add(relativeCameraOffset);
+                // 鏡頭高度上限：保持在頂部充氣橫管下方；鏡頭被壓低時，注視點也跟著往下移（壓低量的 6 成），保持俯視角度
+                const chaseDrop = Math.max(0, targetCameraPosition.y - CHASE_CAM_MAX_Y);
+                targetCameraPosition.y -= chaseDrop;
+                const chaseLookDrop = chaseDrop * 0.6;
                 camera.position.lerp(targetCameraPosition, 0.12);
 
-                const lookTarget = drone.position.clone().add(new THREE.Vector3(0, 0.1, 0));
+                const lookTarget = drone.position.clone().add(new THREE.Vector3(0, 0.1 - chaseLookDrop, 0));
                 camera.lookAt(lookTarget);
 
             } else if (cameraMode === 1) {

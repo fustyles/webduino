@@ -2461,22 +2461,36 @@ const DEFAULT_CAM_VIEWS = ['chase', 'cockpit', 'free'];
 const PILOT_NET_Z = 3.0;            // 短邊球網位置（場地長 6 公尺）
 const PILOT_NET_CLEARANCE = 0.06;   // 鏡頭最近可視距離 0.05 公尺，留 6 公分避免球網被鏡頭切掉閃爍
 // 操控手離球網的距離（rig.pilotBack）：防守機操控手站在網後 1 公尺，才看得到己方球門全景；攻擊機操控手貼網站
-function pilotBackOf(rig) { return Math.max(rig.pilotBack || 0, PILOT_NET_CLEARANCE); }
+function pilotBackOf(rig) { return Math.max(rig.pilotBack > 0 ? rig.pilotBack : pilotBack, PILOT_NET_CLEARANCE); }
 const PILOT_EYE_HEIGHT = 1.53;
 // 定中視角的鏡頭視野（度）：螢幕在眼中只佔約 30 度，視野開太寬會把遠方球門縮得很小、顯得很遠。
 // 預設 45 度（距離感與可見範圍的折衷）；按 [ / ] 縮小／放大視野（30～74 度），會記住上次的設定
 const PILOT_FOV_DEFAULT = 45, PILOT_FOV_MIN = 30, PILOT_FOV_MAX = 74, PILOT_FOV_STEP = 5;
 let PILOT_FOV = PILOT_FOV_DEFAULT;
 try { const v = parseFloat(localStorage.getItem('pilotFov1')); if (v >= PILOT_FOV_MIN && v <= PILOT_FOV_MAX) PILOT_FOV = v; } catch (e) {}
+// 視野放大到最寬（74°）後再按 ]，操控手往網後退，每次 0.5 公尺、最多 2 公尺（定中／定左／定右共用同一個站位）；
+// 按縮小鍵時先往前走回網邊，回到網邊後才開始縮小視野。後退距離同樣會記住
+const PILOT_BACK_STEP = 0.5, PILOT_BACK_MAX = 2.0;
+let pilotBack = 0;
+try { const v = parseFloat(localStorage.getItem('pilotBack1')); if (v > 0 && v <= PILOT_BACK_MAX) pilotBack = v; } catch (e) {}
 window.addEventListener('keydown', (e) => {
     const tag = e.target && e.target.tagName;
     if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA') return;
-    const step = ['['].includes(e.key) ? -PILOT_FOV_STEP : [']'].includes(e.key) ? PILOT_FOV_STEP : 0;
-    if (!step) return;
+    const dir = ['['].includes(e.key) ? -1 : [']'].includes(e.key) ? 1 : 0;
+    if (!dir) return;
     e.preventDefault();
-    PILOT_FOV = Math.max(PILOT_FOV_MIN, Math.min(PILOT_FOV_MAX, PILOT_FOV + step));
-    try { localStorage.setItem('pilotFov1', String(PILOT_FOV)); } catch (e2) {}
-    const MSG = `定中視野：${PILOT_FOV}°（[ / ] 調整）`;
+    let MSG;
+    if (dir > 0 && PILOT_FOV >= PILOT_FOV_MAX) {
+        pilotBack = Math.min(PILOT_BACK_MAX, pilotBack + PILOT_BACK_STEP);
+        MSG = pilotBack >= PILOT_BACK_MAX ? `操控手已退到最遠：網後 ${pilotBack} 公尺` : `操控手後退：網後 ${pilotBack} 公尺`;
+    } else if (dir < 0 && pilotBack > 0) {
+        pilotBack = Math.max(0, pilotBack - PILOT_BACK_STEP);
+        MSG = pilotBack > 0 ? `操控手往前：網後 ${pilotBack} 公尺` : `操控手回到網邊（再按縮小視野）`;
+    } else {
+        PILOT_FOV = Math.max(PILOT_FOV_MIN, Math.min(PILOT_FOV_MAX, PILOT_FOV + dir * PILOT_FOV_STEP));
+        MSG = PILOT_FOV >= PILOT_FOV_MAX ? `定中視野：${PILOT_FOV}°（最寬；再按 ] 人往網後退）` : `定中視野：${PILOT_FOV}°`;
+    }
+    try { localStorage.setItem('pilotFov1', String(PILOT_FOV)); localStorage.setItem('pilotBack1', String(pilotBack)); } catch (e2) {}
     [D1, D2].forEach(r => notify(r, MSG));
 });
 const PILOT_FOV_DEFENDER = 74;      // 防守機操控手站在網後 1 公尺，需要較寬的視野才看得到眼前的自家球門
@@ -2512,6 +2526,44 @@ function cycleCameraModeFor(rig) {
     updateCamTextFor(rig);
     notify(rig, `鏡頭視角：${cameraViewLabel(rig)}`);
 }
+const CHASE_CAM_MAX_Y = 2.55;   // 追蹤視角鏡頭最高高度（公尺），低於頂部充氣橫管（底緣約 2.775 公尺），避免視線被橫管遮住
+// 操控手視角的「視線跟隨」：平常維持該視角原本的視線（定中直視對方球門、定左／定右轉頭看無人機），
+// 一旦無人機會跑出畫面（例如降到眼前下方），就只轉頭／低頭「剛好夠」的角度，讓無人機留在畫面內側 70% 範圍；
+// 無人機回到視野內後，視線再平順地回到原本的方向。
+const VIEW_KEEP_MARGIN = 0.7;        // 無人機至少留在半個視野的 70% 以內（含機身大小的餘裕）
+const VIEW_MAX_PITCH = 1.40;         // 低頭／抬頭上限約 80 度，避免視線垂直時畫面翻轉
+function yawPitchFrom(eye, p) {
+    const dx = p.x - eye.x, dy = p.y - eye.y, dz = p.z - eye.z;
+    return { yaw: Math.atan2(dx, dz), pitch: Math.atan2(dy, Math.hypot(dx, dz)) };
+}
+function wrapAngle(a) { return Math.atan2(Math.sin(a), Math.cos(a)); }
+// cam：要轉的鏡頭；dronePos：要留在畫面內的無人機；defaultLook：原本的注視點；st：記錄目前視線的物件（各視窗各自一份）
+function lookKeepingDrone(cam, dronePos, defaultLook, st, delta) {
+    const eye = cam.position;
+    const def = yawPitchFrom(eye, defaultLook);
+    const dr = yawPitchFrom(eye, dronePos);
+    const halfFovV = THREE.MathUtils.degToRad(cam.fov / 2);
+    const halfV = halfFovV * VIEW_KEEP_MARGIN;
+    const halfH = Math.atan(Math.tan(halfFovV) * cam.aspect) * VIEW_KEEP_MARGIN;
+    // 視線與無人機方向的夾角超出畫面範圍時，才把視線往無人機拉到剛好在範圍邊緣
+    const yawOff = THREE.MathUtils.clamp(wrapAngle(def.yaw - dr.yaw), -halfH, halfH);
+    const want = {
+        yaw: dr.yaw + yawOff,
+        pitch: THREE.MathUtils.clamp(THREE.MathUtils.clamp(def.pitch, dr.pitch - halfV, dr.pitch + halfV), -VIEW_MAX_PITCH, VIEW_MAX_PITCH),
+    };
+    const now = performance.now();
+    if (!st.viewAim || now - (st.viewAimAt || 0) > 250) {
+        st.viewAim = want; // 剛切換進操控手視角：直接對準，不從舊方向慢慢轉過來
+    } else {
+        const k = 1 - Math.exp(-10 * Math.min(delta || 0.016, 0.1)); // 平順轉頭，約 0.1 秒跟上
+        st.viewAim.yaw = wrapAngle(st.viewAim.yaw + wrapAngle(want.yaw - st.viewAim.yaw) * k);
+        st.viewAim.pitch += (want.pitch - st.viewAim.pitch) * k;
+    }
+    st.viewAimAt = now;
+    const a = st.viewAim, cp = Math.cos(a.pitch);
+    cam.lookAt(eye.x + Math.sin(a.yaw) * cp, eye.y + Math.sin(a.pitch), eye.z + Math.cos(a.yaw) * cp);
+}
+
 function updateCameraFor(rig) {
     if (!rig.mesh || !rig.camera) return;
     const camera = rig.camera;
@@ -2526,8 +2578,12 @@ function updateCameraFor(rig) {
         const relOff = new THREE.Vector3(0, upOffset, -backOffset);
         relOff.applyAxisAngle(new THREE.Vector3(0, 1, 0), rig.rotation.y);
         const targetPos = rig.position.clone().add(relOff);
+        // 鏡頭高度上限：保持在頂部充氣橫管下方；鏡頭被壓低時，注視點也跟著往下移（壓低量的 6 成），保持俯視角度
+        const chaseDrop = Math.max(0, targetPos.y - CHASE_CAM_MAX_Y);
+        targetPos.y -= chaseDrop;
+        const chaseLookDrop = chaseDrop * 0.6;
         camera.position.lerp(targetPos, 0.12);
-        camera.lookAt(rig.position.clone().add(new THREE.Vector3(0, 0.1, 0)));
+        camera.lookAt(rig.position.clone().add(new THREE.Vector3(0, 0.1 - chaseLookDrop, 0)));
     } else if (view === 'cockpit') {
         const relOff = new THREE.Vector3(0, 0.04, 0.1);
         relOff.applyAxisAngle(new THREE.Vector3(0, 1, 0), rig.rotation.y);
@@ -2543,7 +2599,8 @@ function updateCameraFor(rig) {
         const endSign = ownEndSign(rig);
         const target = ringCourse.find(r => r.team !== rig.team);
         camera.position.set(0, PILOT_EYE_HEIGHT, endSign * (PILOT_NET_Z + pilotBackOf(rig)));
-        if (target) camera.lookAt(target.pos); else camera.lookAt(0, PILOT_EYE_HEIGHT, -endSign * 3);
+        // 平常直視對方球門；無人機跑出畫面時才低頭／轉頭跟著看
+        lookKeepingDrone(camera, rig.position, target ? target.pos : new THREE.Vector3(0, PILOT_EYE_HEIGHT, -endSign * 3), rig, 1 / 60);
         rig.hideNetSide = pilotBackOf(rig) < 0.3 ? endSign : 0; // 貼網站立才隱藏眼前球網，站遠了照常顯示
     } else if (view === 'left' || view === 'right') {
         // 定左／定右：貼著己方短邊球網、偏向左手邊或右手邊站立，人不動、轉頭追蹤無人機
@@ -2553,7 +2610,8 @@ function updateCameraFor(rig) {
         camera.position.lerp(sidePos, 0.15);
         const horizontalDist = Math.max(0.5, Math.hypot(rig.position.x - camera.position.x, rig.position.z - camera.position.z));
         const minLookY = camera.position.y + horizontalDist * Math.tan(THREE.MathUtils.degToRad(SIDE_MIN_UP_DEG));
-        camera.lookAt(rig.position.x, Math.max(rig.position.y, minLookY), rig.position.z);
+        // 平常視線至少微微上仰；無人機降到眼前下方時，允許低頭到剛好看得到無人機
+        lookKeepingDrone(camera, rig.position, new THREE.Vector3(rig.position.x, Math.max(rig.position.y, minLookY), rig.position.z), rig, 1 / 60);
         rig.hideNetSide = pilotBackOf(rig) < 0.3 ? endSign : 0; // 貼網站立才隱藏眼前球網，站遠了照常顯示
     }
 }
@@ -2564,7 +2622,7 @@ function prepareRenderFor(rig) {
     setEndNetsVisible(rig.hideNetSide || 0);
     // 攻擊機操控手貼著己方球網站（定中／定左／定右）：自家球門就在眼前上方，整座隱藏避免遮蔽視線
     const v = camView(rig);
-    const hideOwn = !(rig.pilotBack > 0) && (v === 'center' || v === 'left' || v === 'right');
+    const hideOwn = !(rig.pilotBack > 0) && pilotBack < 0.3 && (v === 'center' || v === 'left' || v === 'right');
     ringCourse.forEach(r => {
         setGoalVisible(r, !(hideOwn && r.team === rig.team));
         // 鏡頭貼近球門顯示器（例如追蹤視角從己方球門後方跟拍）時暫時不畫它，避免整個畫面被顯示器擋住
