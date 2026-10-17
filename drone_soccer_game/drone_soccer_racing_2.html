@@ -435,10 +435,10 @@ const drone = {
     input: { pitch: 0, roll: 0, yaw: 0, throttle: 0.0 },
 
     constants: {
-        mass: 0.4,
-        maxThrottleThrust: 18.0,
+        mass: 0.30,
+        maxThrottleThrust: 13.5,
         gravity: 9.8,
-        linearDrag: 1.8,
+        linearDrag: 1.35,
         pitchRollSpeed: 1.6,
         yawSpeed: 1.6,
         yawRampSpeed: 6.0,
@@ -1325,13 +1325,13 @@ function buildDrone() {
 
 // ==================== 特效粒子 ====================
 function createExplosion(position, colorHex) {
-    const particleCount = 30;
-    const geo = new THREE.SphereGeometry(0.03, 6, 6);
+    const particleCount = 16; // 顆粒縮小、數量減少以免干擾注意力（原 30 顆、半徑 3cm）
+    const geo = new THREE.SphereGeometry(0.008, 6, 6);
     for (let i = 0; i < particleCount; i++) {
         const mat = new THREE.MeshBasicMaterial({ color: colorHex, transparent: true, opacity: 1.0 });
         const mesh = new THREE.Mesh(geo, mat);
         mesh.position.copy(position);
-        const velocity = new THREE.Vector3((Math.random() - 0.5) * 6, (Math.random() - 0.5) * 6, (Math.random() - 0.5) * 6);
+        const velocity = new THREE.Vector3((Math.random() - 0.5) * 3.5, (Math.random() - 0.5) * 3.5, (Math.random() - 0.5) * 3.5);
         scene.add(mesh);
         particles.push({ mesh, velocity, life: 1.0, decay: 0.02 + Math.random() * 0.03 });
     }
@@ -1736,8 +1736,8 @@ function updateDronePhysics(delta) {
 
         const altError = drone.targetAltitude - drone.position.y;
         const climbRate = drone.velocity.y;
-        const kpAlt = 15.0;
-        const kdAlt = 8.0;
+        const kpAlt = 11.25; // 隨質量同比例縮放（原 15.0 @ 0.4kg）
+        const kdAlt = 6.0;   // 隨質量同比例縮放（原 8.0 @ 0.4kg）
 
         const hoverThrust = drone.constants.gravity * drone.constants.mass;
         let targetVerticalForce = hoverThrust + (altError * kpAlt) - (climbRate * kdAlt);

@@ -578,13 +578,17 @@ let audioCtx = null;
 
 // 場地/光環常數（與原始檔案相同）
 const DRONE_CAGE_RADIUS = 0.10;
-const RING_CLEAR_RADIUS = 0.30;
-const RING_TUBE_RADIUS = 0.05;     // 球門圓環管粗半徑（加粗為直徑 10 公分，淨開口仍維持 60 公分）
+const RING_CLEAR_RADIUS = 0.20;    // 球門環淨開口半徑，內徑 = 40 公分（競賽規則）
+const RING_TUBE_RADIUS = 0.075;    // 球門圓環管粗半徑（管寬 15 公分，使外徑 = 2×(0.20+0.15) = 70 公分）
 const RING_CENTER_RADIUS = RING_CLEAR_RADIUS + RING_TUBE_RADIUS;
 const TEAM_COLORS = { red: 0xef4444, blue: 0x3b82f6 };
-const TAIL_BEACON_COLORS = { red: 0x2f6bff, blue: 0xff1a1a };
+const TAIL_BEACON_COLORS = { red: 0xff1a1a, blue: 0x1e90ff };   // 紅隊＝紅色尾燈、藍隊＝超亮藍色尾燈（與護籠同色系）
+// 藍光在暗場中視覺亮度偏低，藍隊尾燈的光暈與點光源額外加強，確保「超亮」
+const TAIL_BEACON_BOOST = { red: 1.0, blue: 2.2 };
 
-// 球門圓環中心高度：依實際比賽場地，球門高掛在 2.2 公尺
+// 球門高度：規則為「距地面 2 公尺，量至圓環內緣底部」；內徑 40 公分 → 圓環中心高 2.0+0.2 = 2.2 公尺
+// 起飛區（規則：底線中央、寬度不超過 1 公尺）：寬 1 m、深 0.8 m（深度規則未規定，自訂）；前鋒機放在區內距底線 0.4 m 處
+const TAKEOFF_ZONE_W = 1.0, TAKEOFF_ZONE_D = 0.8, TAKEOFF_START_Z = 2.6;
 const GOAL_HEIGHT = 2.2;
 const ringCourse = [
     { pos: new THREE.Vector3(0, GOAL_HEIGHT, -2.25), color: 0xef4444, team: 'red', size: RING_CENTER_RADIUS * 2, lastPassTime: 0, forwardSign: -1, prevSide: null },
@@ -599,7 +603,6 @@ const CAGE_LENGTH = 6.0; // 需與 buildInflatableCage() 內的 cageL 保持一�
 let score = 0;
 let particles = [];
 let readyToScore = true;
-let centerLinePrevSide = null;
 
 let matchSeconds = 0;
 let matchTimerId = null;
@@ -746,7 +749,7 @@ function createRig(prefix, team) {
         autoFlightState: 'none', targetTakeoffHeight: GOAL_HEIGHT,
         input: { pitch: 0, roll: 0, yaw: 0, throttle: 0.0 },
         constants: {
-            mass: 0.4, maxThrottleThrust: 18.0, gravity: 9.8, linearDrag: 1.8,
+            mass: 0.30, maxThrottleThrust: 13.5, gravity: 9.8, linearDrag: 1.35,
             pitchRollSpeed: 1.6, yawSpeed: 1.6, yawRampSpeed: 6.0, maxTilt: 0.40, recoveryRate: 10.0
         },
         currentPitch: 0, currentRoll: 0, currentYawRate: 0,
@@ -764,7 +767,7 @@ const D2 = createRig('d-', DEFEND_TEAM);   // 防守機2（人類玩家2，GVFB/
 // 物理上「機身中心完全不會擦到框架」的理論零誤差極限是 RING_CLEAR_RADIUS(0.30) − DRONE_CAGE_RADIUS(0.10) = 0.20，
 // 若瞄準半徑直接設到這個零容錯極限，只要疊加一點點瞄準誤差或飛控追蹤延遲就會撞框，
 // 因此刻意內縮到 0.14，保留約 6 公分安全餘裕
-const ATTACKER_GOAL_AIM_RADIUS = 0.14;
+const ATTACKER_GOAL_AIM_RADIUS = 0.05; // 球門環縮小為內徑 40cm（20cm 護籠不碰框的偏心上限僅 0.10m），瞄準半徑同步收小
 // 縫隙方向雖然該跟曲線搖擺同量級才能真正發揮引導作用，但曲線是左右搖擺的震盪訊號、會自然回中，
 // 縫隙方向卻是「防守機不動就一直指同一邊」的持續偏壓；如果讓它跟曲線一樣可以吃到滿滿 1.8 公尺，
 // 防守機只要一直卡在同一側，攻擊機就會被持續拉去一個很誇張的偏移量，等真的接近球門要收斂回小範圍時
@@ -776,8 +779,8 @@ const ATTACKER_GAP_LEAD_RADIUS = 0.5;
 // FRAME_AVOID_MARGIN 在真正的碰撞閾值之外再加一點緩衝，讓危險帶提早於實際碰撞範圍被偵測到；
 // FRAME_AVOID_SAFE_RADIUS 是修正後瞄準點要收斂到的安全半徑——必須明顯小於危險帶內緣。
 const FRAME_AVOID_TRIGGER_DIST = 1.0;
-const FRAME_AVOID_MARGIN = 0.10;
-const FRAME_AVOID_SAFE_RADIUS = 0.06;
+const FRAME_AVOID_MARGIN = 0.04;       // 新球門環下危險帶內緣 = 0.275 − 0.175 − 0.04 = 0.06m
+const FRAME_AVOID_SAFE_RADIUS = 0.04;  // 必須小於危險帶內緣 0.06m
 
 // 「減速→近垂直陡升/陡降→加速前衝」突襲動作的共用時間軸與空間參數（不隨難度變動，只有觸發機率與加速倍率依難度而定）
 const JUKE_TRIGGER_MIN_DIST = 0.35;
@@ -1030,6 +1033,21 @@ function createSoccerField() {
     ctx.lineTo(canvas.width, centerY);
     ctx.stroke();
 
+    // 4. 起飛區：兩端底線中央各一個（寬 1 公尺）。貼圖上緣對應 -Z（紅方端）、下緣對應 +Z（藍方端）
+    const pxPerM = canvas.width / 3;
+    const zoneW = TAKEOFF_ZONE_W * pxPerM, zoneD = TAKEOFF_ZONE_D * pxPerM;
+    const zoneX = (canvas.width - zoneW) / 2;
+    [
+        { fill: 'rgba(239,68,68,0.25)', line: '#ef4444', y: 0 },
+        { fill: 'rgba(59,130,246,0.25)', line: '#3b82f6', y: canvas.height - zoneD }
+    ].forEach(z => {
+        ctx.fillStyle = z.fill;
+        ctx.fillRect(zoneX, z.y, zoneW, zoneD);
+        ctx.strokeStyle = z.line;
+        ctx.lineWidth = 4;
+        ctx.strokeRect(zoneX + 2, z.y + 2, zoneW - 4, zoneD - 4);
+    });
+
     const texture = new THREE.CanvasTexture(canvas);
     
     // 建立 3m × 6m 的平面
@@ -1205,6 +1223,7 @@ function createTailBeacon() {
         const halo = new THREE.Mesh(haloGeo, haloMat);
         halo.position.copy(beaconPos);
         group.add(halo);
+        haloMat.userData.baseOpacity = layer.opacity;
         haloMats.push(haloMat);
     });
     beaconMat.userData.haloMats = haloMats;
@@ -1213,26 +1232,33 @@ function createTailBeacon() {
     group.add(beaconLight);
     return { group, beaconMat, beaconLight };
 }
-function setTailBeaconColor(beaconMat, beaconLight, colorHex) {
+// 依隊伍切換尾燈顏色：紅隊紅燈、藍隊超亮藍燈；boost 用來加強光暈與點光源亮度
+function setTailBeaconColor(beaconMat, beaconLight, colorHex, boost = 1) {
     if (!beaconMat) return;
     const newColor = new THREE.Color(colorHex);
     beaconMat.userData.baseColor = newColor;
     beaconMat.color.copy(newColor);
-    if (beaconMat.userData.haloMats) beaconMat.userData.haloMats.forEach(h => h.color.copy(newColor));
-    if (beaconLight) beaconLight.color.copy(newColor);
+    if (beaconMat.userData.haloMats) beaconMat.userData.haloMats.forEach(h => {
+        h.color.copy(newColor);
+        h.opacity = Math.min(1, (h.userData.baseOpacity || h.opacity) * boost);
+    });
+    if (beaconLight) { beaconLight.color.copy(newColor); beaconLight.userData.boost = boost; }
 }
 function updateTailBeacon(beaconMat, beaconLight) {
     if (!beaconMat) return;
     beaconMat.color.copy(beaconMat.userData.baseColor);
-    if (beaconLight) beaconLight.intensity = 1.2;
+    if (beaconLight) beaconLight.intensity = 1.2 * (beaconLight.userData.boost || 1);
 }
 function applyTeamColor(droneObj, colorHex) {
     droneObj.teamColor = colorHex;
     if (droneObj.canopyRef) { droneObj.canopyRef.material.color.setHex(colorHex); droneObj.canopyRef.material.emissive.setHex(colorHex); }
     if (droneObj.glowRef) droneObj.glowRef.material.color.setHex(colorHex);
     if (droneObj.cageMatRef) { droneObj.cageMatRef.color.setHex(colorHex); droneObj.cageMatRef.emissive.setHex(colorHex); }
-    const tailColorHex = (colorHex === TEAM_COLORS.red) ? TAIL_BEACON_COLORS.red : TAIL_BEACON_COLORS.blue;
-    setTailBeaconColor(droneObj.tailBeaconMat, droneObj.tailBeaconLight, tailColorHex);
+    // 尾燈：紅隊紅色、藍隊超亮藍色（只有前鋒機配置尾燈）
+    const isRedTeam = (colorHex === TEAM_COLORS.red);
+    setTailBeaconColor(droneObj.tailBeaconMat, droneObj.tailBeaconLight,
+        isRedTeam ? TAIL_BEACON_COLORS.red : TAIL_BEACON_COLORS.blue,
+        isRedTeam ? TAIL_BEACON_BOOST.red : TAIL_BEACON_BOOST.blue);
 }
 // ---------------- 建造 D1 攻擊機（高細節玩家機體）----------------
 function buildPlayerDrone(rig) {
@@ -1312,11 +1338,7 @@ function buildPlayerDrone(rig) {
     droneGroup.add(cageGroup);
     rig.cageMatRef = cageMat;
 
-    const { group: tailGroup, beaconMat: tailBeaconMat, beaconLight: tailBeaconLight } = createTailBeacon();
-    tailGroup.position.set(0, 0, -0.045);
-    droneGroup.add(tailGroup);
-    rig.tailBeaconMat = tailBeaconMat;
-    rig.tailBeaconLight = tailBeaconLight;
+    // 規則：只有前鋒需要特殊識別標誌，防守機（D1）不配置尾燈
 
     const glowY = -DRONE_CAGE_RADIUS * 0.9;
     const bottomLight = new THREE.SpotLight(0x00ffcc, 5.0, 4, Math.PI / 6, 0.4, 0.9);
@@ -1400,11 +1422,14 @@ function buildDefenderDrone(rig) {
     group.add(cageGroup);
     rig.cageMatRef = cageMat;
 
-    const { group: tailGroup, beaconMat: tailBeaconMat, beaconLight: tailBeaconLight } = createTailBeacon();
-    tailGroup.position.set(0, 0, -0.045);
-    group.add(tailGroup);
-    rig.tailBeaconMat = tailBeaconMat;
-    rig.tailBeaconLight = tailBeaconLight;
+    // 規則：只有前鋒需要特殊識別標誌——此函式同時建造 D2 與 AI 攻擊機，只有攻擊機配置尾燈
+    if (rig === attacker) {
+        const { group: tailGroup, beaconMat: tailBeaconMat, beaconLight: tailBeaconLight } = createTailBeacon();
+        tailGroup.position.set(0, 0, -0.045);
+        group.add(tailGroup);
+        rig.tailBeaconMat = tailBeaconMat;
+        rig.tailBeaconLight = tailBeaconLight;
+    }
 
     const warnGeo = new THREE.TorusGeometry(DRONE_CAGE_RADIUS * 1.15, 0.006, 8, 24);
     const warnMat = new THREE.MeshBasicMaterial({ color: 0xfacc15, transparent: true, opacity: 0.55 });
@@ -1453,7 +1478,7 @@ function setRingFlash(ring, on, flashColor = GOAL_FLASH_COLOR) {
 }
 
 // ---- 球門上方的得分顯示器 ----
-// 小型顯示器：螢幕 26×12 公分，含外框 29×15 公分，高度遠小於門環直徑（外徑 80 公分）
+// 小型顯示器：螢幕 26×12 公分，含外框 29×15 公分，高度遠小於門環直徑（外徑 70 公分）
 const GOAL_DISPLAY_W = 0.26, GOAL_DISPLAY_H = 0.12, GOAL_DISPLAY_D = 0.05, GOAL_DISPLAY_BEZEL = 0.015;
 const GOAL_DISPLAY_EMBED = 0.03; // 顯示器底部嵌入圓環管內的深度
 const goalDisplayFlashUntil = { red: 0, blue: 0 };
@@ -1638,7 +1663,7 @@ function goalDisplayInfo(ring) {
     return {
         goals: target ? score : 0,
         tag: target ? '防守方球門' : '攻擊方球門',
-        status: !target ? ['#94a3b8', '攻擊方球門・不計分'] : readyToScore ? ['#34d399', '● 攻擊機可以得分'] : ['#fbbf24', '● 攻擊機須回中線才能再得分'],
+        status: !target ? ['#94a3b8', '攻擊方球門・不計分'] : readyToScore ? ['#34d399', '● 攻擊機可以得分'] : ['#fbbf24', '● 退回己方半場後才能再得分'],
     };
 }
 
@@ -1668,11 +1693,11 @@ function setupMatch() {
     resetAttacker();
 }
 
-// 重新將 AI 攻擊機放回對側半場貼地待命，準備下一波攻勢；實際移動需等待全隊升空
+// 重新將 AI 攻擊機放回己方起飛區（底線中央）貼地待命，準備下一波攻勢；實際移動需等待全隊升空
 function resetAttacker() {
     const ring = attacker.targetRing;
     if (!ring) return;
-    const homeZ = -ring.pos.z; // 場地對側，讓攻擊機有完整助跑距離
+    const homeZ = -Math.sign(ring.pos.z) * TAKEOFF_START_Z; // 己方起飛區（目標球門對側底線），保有完整助跑距離
     attacker.homePosition.set((Math.random() - 0.5) * 0.6, 0.1, homeZ);
     attacker.position.copy(attacker.homePosition);
     attacker.velocity.set(0, 0, 0);
@@ -1690,8 +1715,8 @@ function resetAttacker() {
 }
 // ---------------- 粒子效果 ----------------
 function createExplosion(position, colorHex) {
-    const particleCount = 30;
-    const geo = new THREE.SphereGeometry(0.01, 6, 6); // 顆粒直徑縮小為原本的 1/3，避免遮蔽畫面
+    const particleCount = 16; // 數量 30 → 16，減少干擾
+    const geo = new THREE.SphereGeometry(0.008, 6, 6); // 顆粒半徑 0.8cm，避免遮蔽畫面
     for (let i = 0; i < particleCount; i++) {
         const mat = new THREE.MeshBasicMaterial({ color: colorHex, transparent: true, opacity: 1.0 });
         const mesh = new THREE.Mesh(geo, mat);
@@ -1789,7 +1814,7 @@ function updateDronePhysics(rig, delta) {
 
     const altError2 = rig.targetAltitude - rig.position.y;
     const climbRate = rig.velocity.y;
-    const kpAlt = 15.0, kdAlt = 8.0;
+    const kpAlt = 11.25, kdAlt = 6.0; // 隨質量同比例縮放（原 15.0 / 8.0 @ 0.4kg）
     const hoverThrust = rig.constants.gravity * rig.constants.mass;
     let targetVerticalForce = hoverThrust + (altError2 * kpAlt) - (climbRate * kdAlt);
     if (rig.autoFlightState === 'takingoff' && targetVerticalForce < hoverThrust * 0.9) targetVerticalForce = hoverThrust * 1.15;
@@ -2114,22 +2139,18 @@ function computeGoalGapOffset(atk, targetRadius) {
     return { x: Math.cos(atk.gapAngle) * targetR, y: Math.sin(atk.gapAngle) * targetR };
 }
 
-// ---------------- 中線判定（AI 攻擊機得分後須回中線才能再次進攻）----------------
+// ---------------- 退回己方半場判定（AI 攻擊機得分後須「整機」退回己方半場才能再次進攻）----------------
+// 護籠完全越過中線（球心距中線 ≥ 護籠半徑）才恢復得分資格；己方半場 = 目標球門的對側
 function checkAttackerCenterLineCrossing() {
-    if (!attacker.mesh) return;
-    const rawSide = attacker.position.z;
-    const currentSide = rawSide !== 0 ? Math.sign(rawSide) : (centerLinePrevSide || 1);
-    if (centerLinePrevSide === null) { centerLinePrevSide = currentSide; return; }
-    if (centerLinePrevSide !== currentSide) {
-        if (!readyToScore) {
-            readyToScore = true;
-            playCenterLineSound();
-            notify(D1, "AI 攻擊機已回中線 - 準備再次進攻");
-            notify(D2, "AI 攻擊機已回中線 - 準備再次進攻");
-        }
+    if (!attacker.mesh || !attacker.targetRing || readyToScore) return;
+    const ownSign = -Math.sign(attacker.targetRing.pos.z);
+    if (attacker.position.z * ownSign >= DRONE_CAGE_RADIUS) {
+        readyToScore = true;
+        playCenterLineSound();
+        notify(D1, "AI 攻擊機已退回己方半場 - 準備再次進攻");
+        notify(D2, "AI 攻擊機已退回己方半場 - 準備再次進攻");
         if (attacker.phase === 'retreat') attacker.phase = 'descend';
     }
-    centerLinePrevSide = currentSide;
 }
 
 // 光環框架碰撞反彈（防守機用，純物理彈開，不計分）
@@ -2262,15 +2283,20 @@ function checkAttackerRingCollisions() {
         }
     }
 
-    const distToCenter = attacker.position.distanceTo(ring.pos);
-    const innerOpeningRadius = R - r - 0.05;
-    const rawSide = attacker.position.z - ring.pos.z;
+    // 完整穿越判定：(a) 球心由前側穿過環平面且偏離軸線 ≤ 淨開口半徑 − 護籠半徑 → 待確認
+    //               (b) 球心越過環平面後方 ≥ 護籠半徑（整顆球完全通過）→ 才判定得分；(c) 期間反向退回 → 取消
+    const passRadius = RING_CLEAR_RADIUS - DRONE_CAGE_RADIUS + 0.01;
+    const rawSide = pz;
     const currentSide = rawSide !== 0 ? Math.sign(rawSide) : (ring.attackerPrevSide || ring.forwardSign * -1);
     if (ring.attackerPrevSide == null) ring.attackerPrevSide = currentSide;
     const crossedPlane = ring.attackerPrevSide !== currentSide;
     const isForwardPass = crossedPlane && currentSide === ring.forwardSign;
+    const isReversePass = crossedPlane && currentSide !== ring.forwardSign;
 
-    if (distToCenter < innerOpeningRadius && isForwardPass) {
+    if (isForwardPass && d_xy < passRadius) ring.attackerPending = true;
+    if (isReversePass) ring.attackerPending = false;
+    if (ring.attackerPending && pz * ring.forwardSign >= DRONE_CAGE_RADIUS) {
+        ring.attackerPending = false;
         const currentTime = clock.getElapsedTime();
         if (!ring.lastPassTime || (currentTime - ring.lastPassTime > 1.5)) {
             ring.lastPassTime = currentTime;
@@ -2279,8 +2305,8 @@ function checkAttackerRingCollisions() {
                 readyToScore = false;
                 playDeniedGoalSound();
                 createExplosion(ring.pos, 0xef4444);
-                notify(D1, `失球！AI 攻擊機穿越藍方球門，總失球：${score}（對方需回中線才能再次進攻）`);
-                notify(D2, `失球！AI 攻擊機穿越藍方球門，總失球：${score}（對方需回中線才能再次進攻）`);
+                notify(D1, `失球！AI 攻擊機完整穿越藍方球門，總失球：${score}（對方需退回己方半場才能再次進攻）`);
+                notify(D2, `失球！AI 攻擊機完整穿越藍方球門，總失球：${score}（對方需退回己方半場才能再次進攻）`);
                 flashGoalRing(ring, 0xef4444);
                 attacker.phase = 'retreat';
             } else {
@@ -2404,7 +2430,7 @@ function updateAttacker(delta) {
                 if (attacker.jukeSubTimer <= 0) {
                     attacker.jukePhase = 'burst';
                     attacker.jukeSubTimer = JUKE_BURST_TIME;
-                    const burstR = Math.min(ATTACKER_GOAL_AIM_RADIUS * 1.4, 0.18);
+                    const burstR = Math.min(ATTACKER_GOAL_AIM_RADIUS * 1.4, 0.08);
                     const burstX = attacker.gapHasBlockers ? ring.pos.x + Math.cos(attacker.gapAngle) * burstR : ring.pos.x;
                     const burstY = attacker.gapHasBlockers ? ring.pos.y + Math.sin(attacker.gapAngle) * burstR : ring.pos.y;
                     const burstZ = readyToScore
@@ -2505,7 +2531,7 @@ function updateAttacker(delta) {
             let evadeTargetX = ring.pos.x;
             let evadeTargetY = ring.pos.y;
             if (c.tactics.smartEvade && attacker.gapHasBlockers) {
-                const evadeR = Math.min(ATTACKER_GOAL_AIM_RADIUS * 2, 0.3);
+                const evadeR = Math.min(ATTACKER_GOAL_AIM_RADIUS * 1.6, 0.08); // 不可超出新球門環的不碰框半徑 0.10m
                 evadeTargetX = ring.pos.x + Math.cos(attacker.gapAngle) * evadeR;
                 evadeTargetY = ring.pos.y + Math.sin(attacker.gapAngle) * evadeR;
             }
@@ -2852,7 +2878,7 @@ function updateHUDFor(rig) {
         } else {
             statusDot.className = "w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_6px_rgba(251,191,36,0.8)] animate-pulse";
             statusText.className = "text-[9px] font-semibold tech-font text-amber-300";
-            statusText.innerText = "攻擊機須回中線";
+            statusText.innerText = "攻擊機須退回半場";
         }
     }
 
@@ -3832,10 +3858,10 @@ function resetGame() {
         ring.lastPassTime = 0;
         ring.prevSide = null;
         ring.attackerPrevSide = null;
+        ring.attackerPending = false;
         setRingFlash(ring, false);
     });
     readyToScore = true;
-    centerLinePrevSide = null;
 
     startMatchClock();
     setupMatch();
@@ -3906,8 +3932,6 @@ function animate() {
     updateDroneSoundFor(D2);
     updateHUDFor(D1);
     updateHUDFor(D2);
-    updateTailBeacon(D1.tailBeaconMat, D1.tailBeaconLight);
-    updateTailBeacon(D2.tailBeaconMat, D2.tailBeaconLight);
     updateTailBeacon(attacker.tailBeaconMat, attacker.tailBeaconLight);
 
     prepareRenderFor(D1); D1.renderer.render(scene, D1.camera);
