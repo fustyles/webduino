@@ -130,6 +130,18 @@
             <h1 class="text-3xl md:text-5xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-500 to-blue-500 mb-2">
                 無人機足球競技場
             </h1>
+            <!-- 練習角色選擇：攻擊機／防守機（兩者只差操控手視角） -->
+            <div class="mb-4">
+                <div class="flex justify-center gap-3">
+                    <button type="button" data-role="attack" class="role-btn px-4 py-2 rounded-xl border text-sm font-bold transition-all cursor-pointer">
+                        <i class="fa-solid fa-crosshairs mr-1.5"></i>攻擊機練習
+                    </button>
+                    <button type="button" data-role="defense" class="role-btn px-4 py-2 rounded-xl border text-sm font-bold transition-all cursor-pointer">
+                        <i class="fa-solid fa-shield-halved mr-1.5"></i>防守機練習
+                    </button>
+                </div>
+                <p id="roleDesc" class="mt-2 text-[11px] text-slate-400"></p>
+            </div>
             <div class="mb-6 p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-left text-xs md:text-sm text-slate-300">
                 <p class="font-bold text-emerald-400 mb-2"><i class="fa-solid fa-gamepad mr-2"></i>雙搖桿手把操控（推桿幅度越大，動作越快）</p>
                 <ul class="space-y-1 text-slate-400 tech-font">
@@ -199,6 +211,10 @@
                 </button>
                 <button id="btnSound" class="w-10 h-10 rounded-xl glassmorphism text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
                     <i class="fa-solid fa-volume-high text-sm"></i>
+                </button>
+                <button id="btnRole" title="切換攻擊機練習／防守機練習" class="px-3.5 h-10 rounded-xl glassmorphism text-amber-300 hover:text-amber-200 flex items-center justify-center gap-2 transition-all cursor-pointer pointer-events-auto border border-amber-500/20">
+                    <i id="roleIcon" class="fa-solid fa-crosshairs text-sm"></i>
+                    <span id="roleText" class="text-xs font-semibold tech-font">攻擊機</span>
                 </button>
                 <button id="btnCam" class="px-3.5 h-10 rounded-xl glassmorphism text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
                     <i class="fa-solid fa-camera text-sm"></i>
@@ -1081,6 +1097,52 @@
         const PILOT_BACK_STEP = 0.5, PILOT_BACK_MAX = 2.0;
         let pilotBack = 0;
         try { const v = parseFloat(localStorage.getItem('pilotBack1')); if (v > 0 && v <= PILOT_BACK_MAX) pilotBack = v; } catch (e) {}
+        // ---- 練習角色：攻擊機／防守機（兩者只差操控手視角，記在瀏覽器中） ----
+        //  攻擊機：操控手貼著己方球網站立，定中視野 45°（[ ] 可調），可切換追蹤視角
+        //  防守機：操控手站在己方球網後方 1 公尺，定中視野固定 74°，鏡頭順序 定中 → 定左 → 定右 → 座艙 → 自由，
+        //          離網較遠，眼前球網與自家球門照常顯示，方便看清楚要守的球門全景
+        const PRACTICE_ROLE_KEY = 'practiceRole1';
+        const DEFENDER_DIST_FROM_NET = 1.0;
+        const DEFENDER_FOV = 74;
+        const DEFENDER_CYCLE_ORDER = [3, 4, 5, 1, 2];
+        let practiceRole = 'attack';
+        try { if (localStorage.getItem(PRACTICE_ROLE_KEY) === 'defense') practiceRole = 'defense'; } catch (e) {}
+        function isDefenderRole() { return practiceRole === 'defense'; }
+        // 操控手離網的額外距離：防守機固定 1 公尺，再加上 ] 往後退的距離
+        function pilotStandExtra() { return (isDefenderRole() ? DEFENDER_DIST_FROM_NET : 0) + pilotBack; }
+        function roleCycleOrder() { return isDefenderRole() ? DEFENDER_CYCLE_ORDER : CAMERA_CYCLE_ORDER; }
+        const ROLE_DESC = {
+            attack: '攻擊機練習：操控手貼著球網站立，定中視野 45°（[ ] 可調，放大到底再按 ] 往網後退）',
+            defense: '防守機練習：操控手站在球網後方 1 公尺，定中視野固定 74°，看得到自家球門全景（] / [ 可再往後退／往前）',
+        };
+        function updateRoleUI() {
+            // 選中狀態用行內樣式上色（不依賴額外的 Tailwind 類別）
+            document.querySelectorAll('.role-btn').forEach(b => {
+                const on = b.dataset.role === practiceRole;
+                const c = b.dataset.role === 'defense' ? '56,189,248' : '251,113,133';
+                b.style.background = on ? `rgba(${c},0.22)` : 'rgba(15,23,42,0.6)';
+                b.style.borderColor = on ? `rgb(${c})` : 'rgba(71,85,105,0.8)';
+                b.style.color = on ? '#f8fafc' : '#94a3b8';
+                b.style.boxShadow = on ? `0 0 12px rgba(${c},0.45)` : 'none';
+            });
+            const desc = document.getElementById('roleDesc');
+            if (desc) desc.textContent = ROLE_DESC[practiceRole];
+            const t = document.getElementById('roleText');
+            if (t) t.textContent = isDefenderRole() ? '防守機' : '攻擊機';
+            const ic = document.getElementById('roleIcon');
+            if (ic) ic.className = 'fa-solid ' + (isDefenderRole() ? 'fa-shield-halved' : 'fa-crosshairs') + ' text-sm';
+        }
+        function setPracticeRole(role, notify) {
+            practiceRole = role === 'defense' ? 'defense' : 'attack';
+            try { localStorage.setItem(PRACTICE_ROLE_KEY, practiceRole); } catch (e) {}
+            // 防守機沒有追蹤視角：目前在追蹤時改到定中
+            if (!roleCycleOrder().includes(cameraMode)) cameraMode = roleCycleOrder()[0];
+            if (typeof orbitControls !== 'undefined' && orbitControls) orbitControls.enabled = cameraMode === 2;
+            const ct = document.getElementById('camText');
+            if (ct) ct.innerText = CAMERA_MODES_ZH[cameraMode];
+            updateRoleUI();
+            if (notify) showSystemNotification(isDefenderRole() ? '切換為防守機練習：站在網後 1 公尺，視野 74°' : '切換為攻擊機練習：貼網站立，視野可用 [ ] 調整');
+        }
         window.addEventListener('keydown', (e) => {
             const tag = e.target && e.target.tagName;
             if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA') return;
@@ -1088,12 +1150,14 @@
             if (!dir) return;
             e.preventDefault();
             let MSG;
-            if (dir > 0 && PILOT_FOV >= PILOT_FOV_MAX) {
+            if (isDefenderRole() && dir < 0 && pilotBack <= 0) {
+                MSG = `防守機練習：視野固定 ${DEFENDER_FOV}°，已站在網後 ${DEFENDER_DIST_FROM_NET} 公尺`;
+            } else if (dir > 0 && (isDefenderRole() || PILOT_FOV >= PILOT_FOV_MAX)) {
                 pilotBack = Math.min(PILOT_BACK_MAX, pilotBack + PILOT_BACK_STEP);
-                MSG = pilotBack >= PILOT_BACK_MAX ? `操控手已退到最遠：網後 ${pilotBack} 公尺` : `操控手後退：網後 ${pilotBack} 公尺`;
+                MSG = pilotBack >= PILOT_BACK_MAX ? `操控手已退到最遠：網後 ${pilotStandExtra()} 公尺` : `操控手後退：網後 ${pilotStandExtra()} 公尺`;
             } else if (dir < 0 && pilotBack > 0) {
                 pilotBack = Math.max(0, pilotBack - PILOT_BACK_STEP);
-                MSG = pilotBack > 0 ? `操控手往前：網後 ${pilotBack} 公尺` : `操控手回到網邊（再按縮小視野）`;
+                MSG = pilotBack > 0 ? `操控手往前：網後 ${pilotStandExtra()} 公尺` : (isDefenderRole() ? `操控手回到網後 ${DEFENDER_DIST_FROM_NET} 公尺` : `操控手回到網邊（再按縮小視野）`);
             } else {
                 PILOT_FOV = Math.max(PILOT_FOV_MIN, Math.min(PILOT_FOV_MAX, PILOT_FOV + dir * PILOT_FOV_STEP));
                 MSG = PILOT_FOV >= PILOT_FOV_MAX ? `定中視野：${PILOT_FOV}°（最寬；再按 ] 人往網後退）` : `定中視野：${PILOT_FOV}°`;
@@ -2438,7 +2502,7 @@
         // 循環視角切換
         function cycleCameraMode() {
             // 切換順序：追蹤 → 定中 → 定左 → 定右 → 座艙 → 自由
-            const order = CAMERA_CYCLE_ORDER;
+            const order = roleCycleOrder(); // 防守機沒有追蹤視角
             cameraMode = order[(order.indexOf(cameraMode) + 1) % order.length];
 
             if (cameraMode === 2) {
@@ -2499,7 +2563,7 @@
 
         function updateCamera(delta) {
             if (!drone.mesh) return;
-            setCameraFov(cameraMode === 3 ? PILOT_FOV : DEFAULT_FOV);
+            setCameraFov(cameraMode === 3 ? (isDefenderRole() ? DEFENDER_FOV : PILOT_FOV) : DEFAULT_FOV);
             if (cameraMode < 3) setEndNetsVisible(0); // 定中、定左、定右都是貼網站立，其餘視角顯示兩端球網
             ringCourse.forEach(r => setGoalVisible(r, true));
 
@@ -2545,16 +2609,16 @@
             } else if (cameraMode === 3) {
                 // 定中視角：貼著紅方短邊球網、站在正中央，固定直視藍方球門
                 drone.mesh.visible = true;
-                setGoalVisible(pilotOwnGoal(), false); // 隱藏眼前的紅方球門，避免遮蔽視線
+                if (pilotStandExtra() < 0.3) setGoalVisible(pilotOwnGoal(), false); // 隱藏眼前的紅方球門，避免遮蔽視線
                 const target = ringCourse.find(r => r.team === 'blue');
                 const dir = target && target.pos.z < 0 ? -1 : 1;
-                camera.position.set(0, PILOT_EYE_HEIGHT, -dir * (PILOT_NET_Z + Math.max(PILOT_DIST_FROM_NET + pilotBack, PILOT_NET_CLEARANCE)));
+                camera.position.set(0, PILOT_EYE_HEIGHT, -dir * (PILOT_NET_Z + Math.max(PILOT_DIST_FROM_NET + pilotStandExtra(), PILOT_NET_CLEARANCE)));
                 if (target) pilotLook.copy(target.pos); else pilotLook.set(0, PILOT_EYE_HEIGHT, dir * 3);
                 lookKeepingDrone(camera, drone.position, pilotLook, viewAimState, delta); // 平常看原本的方向；無人機跑出畫面時才低頭／轉頭跟著看
-                setEndNetsVisible(pilotBack < 0.3 ? -dir : 0); // 隱藏操控手所站那一端的球網
+                setEndNetsVisible(pilotStandExtra() < 0.3 ? -dir : 0); // 隱藏操控手所站那一端的球網
             } else if (cameraMode === 4 || cameraMode === 5) {
                 const ownGoalAhead = pilotOwnGoal();
-                if (ownGoalAhead && pilotBack < 0.3) setGoalVisible(ownGoalAhead, false); // 隱藏眼前的自家球門，避免遮蔽視線
+                if (ownGoalAhead && pilotStandExtra() < 0.3) setGoalVisible(ownGoalAhead, false); // 隱藏眼前的自家球門，避免遮蔽視線
                 // 定左／定右視角：貼著己方短邊球網、偏向左手邊（定左）或右手邊（定右）站立，人不動、轉頭追蹤無人機
                 drone.mesh.visible = true;
                 const endSign = pilotOwnEndSign(); // 操控手所站那一端：-1 = -Z 端，1 = +Z 端
@@ -2562,14 +2626,14 @@
                 const sidePos = new THREE.Vector3(
                     lateral * endSign * SIDE_OFFSET_X,
                     SIDE_EYE_HEIGHT,
-                    endSign * (PILOT_NET_Z + Math.max(SIDE_DIST_FROM_NET + pilotBack, PILOT_NET_CLEARANCE))
+                    endSign * (PILOT_NET_Z + Math.max(SIDE_DIST_FROM_NET + pilotStandExtra(), PILOT_NET_CLEARANCE))
                 );
                 camera.position.lerp(sidePos, 0.15);
                 const horizontalDist = Math.max(0.5, Math.hypot(drone.position.x - camera.position.x, drone.position.z - camera.position.z));
                 const minLookY = camera.position.y + horizontalDist * Math.tan(THREE.MathUtils.degToRad(SIDE_MIN_UP_DEG));
                 // 平常視線至少微微上仰；無人機降到眼前下方時，允許低頭到剛好看得到無人機
                 lookKeepingDrone(camera, drone.position, new THREE.Vector3(drone.position.x, Math.max(drone.position.y, minLookY), drone.position.z), viewAimState, delta);
-                setEndNetsVisible(pilotBack < 0.3 ? endSign : 0); // 貼網站立：隱藏眼前的球網
+                setEndNetsVisible(pilotStandExtra() < 0.3 ? endSign : 0); // 貼網站立：隱藏眼前的球網
             }
         }
 
@@ -2730,6 +2794,12 @@
 
             document.getElementById('btnSound').addEventListener('click', toggleSound);
 
+            document.querySelectorAll('.role-btn').forEach(b => b.addEventListener('click', (e) => {
+                e.stopPropagation(); // 只切換角色，不要順便開始飛行
+                setPracticeRole(b.dataset.role, false);
+            }));
+            document.getElementById('btnRole').addEventListener('click', () => setPracticeRole(isDefenderRole() ? 'attack' : 'defense', true));
+            setPracticeRole(practiceRole, false);
             document.getElementById('btnCam').addEventListener('click', cycleCameraMode);
             document.getElementById('btnReset').addEventListener('click', resetGame);
             document.getElementById('btnRestart').addEventListener('click', resetGame);
