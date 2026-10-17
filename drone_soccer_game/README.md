@@ -25,8 +25,14 @@ https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_competition_a
 三人玩家版 - 紅隊AI v.s. 藍隊玩家<br>
 https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_competition_add_ai.html
 
+三人玩家版 - 紅隊AI v.s. 藍隊玩家 (三局兩勝)<br>
+https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_competition_add_ai_realgame.html
+
 六人玩家版 - 紅隊 v.s. 藍隊<br>
 https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_competition_addadd.html
+
+六人玩家版 - 紅隊 v.s. 藍隊 (三局兩勝)<br>
+https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_competition_addadd_realgame.html
 
 單人玩家競速版 (高低環)<br>
 https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_racing_1.html
@@ -65,8 +71,14 @@ https://fustyles.github.io/webduino/drone_soccer_game/radio/drone_soccer_competi
 三人玩家版 - 紅隊AI v.s. 藍隊玩家<br>
 https://fustyles.github.io/webduino/drone_soccer_game/radio/drone_soccer_competition_add_ai.html
 
+三人玩家版 - 紅隊AI v.s. 藍隊玩家 (三局兩勝)<br>
+https://fustyles.github.io/webduino/drone_soccer_game/radio/drone_soccer_competition_add_ai_realgame.html
+
 六人玩家版 - 紅隊 v.s. 藍隊<br>
 https://fustyles.github.io/webduino/drone_soccer_game/radio/drone_soccer_competition_addadd.html
+
+六人玩家版 - 紅隊 v.s. 藍隊 (三局兩勝)<br>
+https://fustyles.github.io/webduino/drone_soccer_game/radio/drone_soccer_competition_addadd_realgame.html
 
 單人玩家競速版 (高低環)<br>
 https://fustyles.github.io/webduino/drone_soccer_game/radio/drone_soccer_racing_1.html
