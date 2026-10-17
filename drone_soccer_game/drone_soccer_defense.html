@@ -308,7 +308,7 @@
             </div>
 
             <!-- 操作提示面板 (右下) -->
-            <div class="kb-only hidden lg:flex glassmorphism rounded-2xl p-4 text-slate-300 w-[300px] border border-slate-800/40 text-[11px] flex flex-col gap-1.5">
+            <div id="controlGuidePanel" class="kb-only hidden lg:flex glassmorphism rounded-2xl p-4 text-slate-300 w-[300px] border border-slate-800/40 text-[11px] flex flex-col gap-1.5">
                 <span class="text-[10px] text-emerald-400 uppercase font-semibold tracking-wider">飛行操控指南</span>
                 <div class="flex justify-between">
                     <span>一鍵起飛 / 降落：</span>
@@ -3955,5 +3955,28 @@
         };
 
     </script>
+<script>
+// 比賽計時面板（右下角）避開「操控指南」面板：指南有顯示時（大螢幕、鍵盤裝置），計時面板移到指南正上方、右緣對齊；
+// 指南隱藏時（小螢幕或觸控裝置）回到原本的右下角
+(function () {
+    const clock = document.getElementById('gameClockPanel');
+    const guide = document.getElementById('controlGuidePanel');
+    if (!clock || !guide) return;
+    function placeClock() {
+        const r = guide.getBoundingClientRect();
+        if (guide.offsetParent !== null && r.width > 0 && r.height > 0) {
+            clock.style.bottom = Math.round(window.innerHeight - r.top + 8) + 'px';
+            clock.style.right = Math.round(window.innerWidth - r.right) + 'px';
+        } else {
+            clock.style.bottom = '';
+            clock.style.right = '';
+        }
+    }
+    window.addEventListener('resize', placeClock);
+    if (window.ResizeObserver) new ResizeObserver(placeClock).observe(guide);
+    setInterval(placeClock, 1000); // 開場畫面關閉、介面顯示後也會重新定位
+    placeClock();
+})();
+</script>
 </body>
 </html>
