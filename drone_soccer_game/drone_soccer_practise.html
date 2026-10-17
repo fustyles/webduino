@@ -393,10 +393,10 @@
 
             // 微型機身物理常量 (在小空間內具有更高的阻尼、更高的定高敏捷度)
             constants: {
-                mass: 0.30,              // 含電池總重 300 g（規則上限）
-                maxThrottleThrust: 13.5, // 總拉力（隨質量 0.4→0.3 同比例縮放，推重比維持不變）
+                mass: 0.4,               // 極輕量化
+                maxThrottleThrust: 18.0, // 適合微型機的總拉力
                 gravity: 9.8,
-                linearDrag: 1.35,         // 大幅增加空氣阻力，防止在小場地瞬間飛出邊界
+                linearDrag: 1.8,         // 大幅增加空氣阻力，防止在小場地瞬間飛出邊界
                 pitchRollSpeed: 1.6,     // 更敏捷的俯仰/側滾反應
                 yawSpeed: 1.6,           // 偏航旋轉速度 (調低，避免單次按壓旋轉角度過大)
                 yawRampSpeed: 6.0,       // 偏航加速平滑係數 (數值越小，起步越柔和、單次按壓角度越小)
@@ -414,13 +414,13 @@
         // 地板長度方向為 Z 軸 (Z: -3 至 +3)
         // 地板寬度方向為 X 軸 (X: -1.5 至 +1.5)
         // 紅色球門線在 Z = -2.25，藍色球門線在 Z = 2.25。高度置中於場地高度正中央 (cageH / 2 = 1.5 米)。
-        // 依競賽規則調整：無人機球型護籠外徑 20 公分 (半徑 0.10m)；球門環內徑 40 公分 (半徑 0.20m)、外徑 70 公分 (管寬 15 公分)
+        // 依真實規格調整：無人機球型護籠外徑 20 公分 (半徑 0.10m)；球門光環「淨開口」內直徑 60 公分 (半徑 0.30m)
         const DRONE_CAGE_RADIUS = 0.10;   // 無人機足球護籠半徑，整體球徑 = 20 公分
-        const RING_CLEAR_RADIUS = 0.20;   // 球門環淨開口半徑，內徑 = 40 公分（競賽規則）
-        const RING_TUBE_RADIUS = 0.075;   // 球門圓環管粗半徑（管寬 15 公分，使外徑 = 2×(0.20+0.15) = 70 公分）
+        const RING_CLEAR_RADIUS = 0.30;   // 光環實際淨開口半徑 (扣除管粗後可通過的孔徑)，內直徑 = 60 公分
+        const RING_TUBE_RADIUS = 0.05;    // 球門圓環管粗半徑（加粗為直徑 10 公分，淨開口仍維持 60 公分）
         const RING_CENTER_RADIUS = RING_CLEAR_RADIUS + RING_TUBE_RADIUS; // 圓環管中心線半徑 (TorusGeometry 用)
 
-        // 球門高度：規則為「距地面 2 公尺，量至圓環內緣底部」；內徑 40 公分 → 圓環中心高 2.0+0.2 = 2.2 公尺。圓環頂端約 2.55 公尺，上方再嵌入小型得分顯示器
+        // 球門高度：參考實際充氣場地，球門圓環高掛在 2.2 公尺；圓環頂端 2.6 公尺，上方再嵌入小型得分顯示器
         const GOAL_HEIGHT = 2.2;
         const ringCourse = [
             { pos: new THREE.Vector3(0, GOAL_HEIGHT, -2.25), color: 0xef4444, team: 'red', passes: 0, size: RING_CENTER_RADIUS * 2, lastPassTime: 0, forwardSign: -1, prevSide: null }, // 紅色方框球門線正上方，高度置中；正向穿越方向為 -Z（由場地中央飛向紅方球門外）
@@ -1190,7 +1190,7 @@
         }
 
         // ---- 球門上方的得分顯示器 ----
-        // 小型顯示器：螢幕 26×12 公分，含外框 29×15 公分，高度遠小於門環直徑（外徑 70 公分）
+        // 小型顯示器：螢幕 26×12 公分，含外框 29×15 公分，高度遠小於門環直徑（外徑 80 公分）
         const GOAL_DISPLAY_W = 0.26, GOAL_DISPLAY_H = 0.12, GOAL_DISPLAY_D = 0.05, GOAL_DISPLAY_BEZEL = 0.015;
         const GOAL_DISPLAY_EMBED = 0.03; // 顯示器底部嵌入圓環管內的深度
         const goalDisplayFlashUntil = { red: 0, blue: 0 };
@@ -1349,8 +1349,8 @@
 
         // 產生爆破粒子效果
         function createExplosion(position, colorHex) {
-            const particleCount = 16; // 顆粒縮小、數量減少以免干擾注意力（原 30 顆、半徑 3cm）
-            const geo = new THREE.SphereGeometry(0.008, 6, 6);
+            const particleCount = 30;
+            const geo = new THREE.SphereGeometry(0.03, 6, 6);
 
             for (let i = 0; i < particleCount; i++) {
                 const mat = new THREE.MeshBasicMaterial({
@@ -1362,9 +1362,9 @@
                 mesh.position.copy(position);
 
                 const velocity = new THREE.Vector3(
-                    (Math.random() - 0.5) * 3.5,
-                    (Math.random() - 0.5) * 3.5,
-                    (Math.random() - 0.5) * 3.5
+                    (Math.random() - 0.5) * 6,
+                    (Math.random() - 0.5) * 6,
+                    (Math.random() - 0.5) * 6
                 );
 
                 scene.add(mesh);
@@ -1669,12 +1669,12 @@
             );
             drone.rotation.y -= drone.currentYawRate * delta;
 
-            // PD高度維持演算法 (適配 0.3kg 機型)
+            // PD高度維持演算法 (精細適配 0.4kg 機型)
             const altError = drone.targetAltitude - drone.position.y;
             const climbRate = drone.velocity.y;
 
-            const kpAlt = 11.25; // 隨質量同比例縮放（原 15.0 @ 0.4kg）
-            const kdAlt = 6.0;   // 隨質量同比例縮放（原 8.0 @ 0.4kg）
+            const kpAlt = 15.0;
+            const kdAlt = 8.0;
 
             // --- 修正起飛靜止問題 ---
             // 增加一個微小的 baseThrust 補償，確保在起飛初期即有足夠動力克服初始慣性
@@ -1769,10 +1769,10 @@
         function checkRingCollisions() {
             if (!drone.mesh) return;
 
-            const R = RING_CENTER_RADIUS; // 光環管中心線半徑 (淨開口內徑 40cm，另加管粗)
+            const R = RING_CENTER_RADIUS; // 光環管中心線半徑 (淨開口內直徑 60cm，另加管粗)
             const r = RING_TUBE_RADIUS; // 圓環管粗半徑
             const droneRadius = DRONE_CAGE_RADIUS; // 無人機球型護籠有效碰撞半徑 (直徑20cm)
-            const tubeCollisionThreshold = r + droneRadius; // 0.175m
+            const tubeCollisionThreshold = r + droneRadius; // ~0.235m
 
             ringCourse.forEach((ring) => {
                 // 0. 球門上方顯示器的實體碰撞：以球體對方塊判定，撞到就彈開
@@ -1844,12 +1844,12 @@
                     }
                 }
 
-                // 2. 偵測「完整穿越」球門環（僅「正向」且整顆球完全穿過才計數）
-                //    (a) 球心由前側穿過環平面，且偏離環軸線 ≤ 淨開口半徑 − 護籠半徑（整顆 20cm 球能通過 40cm 內徑）→ 進入待確認
-                //    (b) 球心越過環平面後方 ≥ 一個護籠半徑（整顆球完全通過）→ 才計數
-                //    (c) 待確認期間若退回前側（反向穿越）→ 取消
-                const passRadius = RING_CLEAR_RADIUS - DRONE_CAGE_RADIUS + 0.01; // +0.01 為判定容許誤差
-                const rawSide = pz;
+                // 2. 偵測穿越光環中心（僅「正向」穿越才計分，反向穿越不計分）
+                const distToCenter = drone.position.distanceTo(ring.pos);
+                const innerOpeningRadius = R - r - 0.05; // 留下安全裕度 (依新光環尺寸約 ~0.23m)
+
+                // 以光環平面（Z 軸法線）判斷無人機目前在哪一側
+                const rawSide = drone.position.z - ring.pos.z;
                 const currentSide = rawSide !== 0 ? Math.sign(rawSide) : (ring.prevSide || ring.forwardSign * -1);
 
                 if (ring.prevSide === null) {
@@ -1860,18 +1860,8 @@
                 const crossedPlane = ring.prevSide !== currentSide; // 這一影格是否跨越了光環所在平面
                 const isForwardPass = crossedPlane && currentSide === ring.forwardSign;
                 const isReversePass = crossedPlane && currentSide !== ring.forwardSign;
-                const insideOpening = d_xy < passRadius;
 
-                if (isForwardPass && insideOpening) ring.pendingForward = true;
-                if (isReversePass) {
-                    ring.pendingForward = false;
-                    // 反向穿越：不計分，僅提示玩家
-                    if (insideOpening) showSystemNotification("反向穿越 - 不計分");
-                }
-
-                const clearedBack = pz * ring.forwardSign >= DRONE_CAGE_RADIUS; // 整顆球已完全越過環平面
-                if (ring.pendingForward && clearedBack) {
-                    ring.pendingForward = false;
+                if (distToCenter < innerOpeningRadius && isForwardPass) {
                     const currentTime = clock.getElapsedTime();
                     if (!ring.lastPassTime || (currentTime - ring.lastPassTime > 1.5)) {
                         ring.lastPassTime = currentTime;
@@ -1881,13 +1871,16 @@
                         playChimeSound();
                         createExplosion(ring.pos, 0x10b981); // 穿越綠色粒子效果
                         updateHUD();
-                        showSystemNotification(`完整穿越！累計次數：${score}`);
+                        showSystemNotification(`成功穿越！累計次數：${score}`);
 
                         // 讓球門圓環短暫閃爍，上方顯示器同步打出 GOAL!
                         setRingFlash(ring, true, 0x10b981);
                         goalDisplayFlashUntil[ring.team] = performance.now() + 1500;
                         setTimeout(() => setRingFlash(ring, false), 800);
                     }
+                } else if (distToCenter < innerOpeningRadius && isReversePass) {
+                    // 反向穿越：不計分，僅提示玩家
+                    showSystemNotification("反向穿越 - 不計分");
                 }
 
                 ring.prevSide = currentSide;
@@ -2131,7 +2124,6 @@
             ringCourse.forEach(ring => {
                 ring.lastPassTime = 0;
                 ring.prevSide = null; // 重置方向追蹤，避免沿用重設前的側邊狀態
-                ring.pendingForward = false;
                 ring.passes = 0;
                 setRingFlash(ring, false);
             });

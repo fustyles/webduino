@@ -353,10 +353,10 @@
 
             // 微型機身物理常量 (在小空間內具有更高的阻尼、更高的定高敏捷度)
             constants: {
-                mass: 0.30,              // 含電池總重 300 g（規則上限）
-                maxThrottleThrust: 13.5, // 總拉力（隨質量 0.4→0.3 同比例縮放，推重比維持不變）
+                mass: 0.4,               // 極輕量化
+                maxThrottleThrust: 18.0, // 適合微型機的總拉力
                 gravity: 9.8,
-                linearDrag: 1.35,         // 大幅增加空氣阻力，防止在小場地瞬間飛出邊界
+                linearDrag: 1.8,         // 大幅增加空氣阻力，防止在小場地瞬間飛出邊界
                 pitchRollSpeed: 1.6,     // 更敏捷的俯仰/側滾反應
                 yawSpeed: 1.6,           // 偏航旋轉速度 (調低，避免單次按壓旋轉角度過大)
                 yawRampSpeed: 6.0,       // 偏航加速平滑係數 (數值越小，起步越柔和、單次按壓角度越小)
@@ -1001,8 +1001,8 @@
 
         // 產生爆破粒子效果
         function createExplosion(position, colorHex) {
-            const particleCount = 16; // 顆粒縮小、數量減少以免干擾注意力（原 30 顆、半徑 3cm）
-            const geo = new THREE.SphereGeometry(0.008, 6, 6);
+            const particleCount = 30;
+            const geo = new THREE.SphereGeometry(0.03, 6, 6);
 
             for (let i = 0; i < particleCount; i++) {
                 const mat = new THREE.MeshBasicMaterial({
@@ -1014,9 +1014,9 @@
                 mesh.position.copy(position);
 
                 const velocity = new THREE.Vector3(
-                    (Math.random() - 0.5) * 3.5,
-                    (Math.random() - 0.5) * 3.5,
-                    (Math.random() - 0.5) * 3.5
+                    (Math.random() - 0.5) * 6,
+                    (Math.random() - 0.5) * 6,
+                    (Math.random() - 0.5) * 6
                 );
 
                 scene.add(mesh);
@@ -1321,12 +1321,12 @@
             );
             drone.rotation.y -= drone.currentYawRate * delta;
 
-            // PD高度維持演算法 (適配 0.3kg 機型)
+            // PD高度維持演算法 (精細適配 0.4kg 機型)
             const altError = drone.targetAltitude - drone.position.y;
             const climbRate = drone.velocity.y;
 
-            const kpAlt = 11.25; // 隨質量同比例縮放（原 15.0 @ 0.4kg）
-            const kdAlt = 6.0;   // 隨質量同比例縮放（原 8.0 @ 0.4kg）
+            const kpAlt = 15.0;
+            const kdAlt = 8.0;
 
             // --- 修正起飛靜止問題 ---
             // 增加一個微小的 baseThrust 補償，確保在起飛初期即有足夠動力克服初始慣性

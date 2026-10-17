@@ -188,7 +188,7 @@
                     <span class="text-xs text-slate-400">球</span>
                 </div>
                 <div class="text-[9px] text-slate-400 mt-1">
-                    AI 攻擊機須完整穿越你方球門才會得分，得分後需先整機退回己方半場才能再次進攻。
+                    AI 攻擊機須穿越你方球門才會得分，得分後需先退回中線才能再次進攻。
                 </div>
                 <div class="flex items-center gap-1.5 mt-2 pt-2 border-t border-slate-700/40">
                     <span id="scoreStatusDot" class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]"></span>
@@ -428,10 +428,10 @@
 
             // 微型機身物理常量 (在小空間內具有更高的阻尼、更高的定高敏捷度)
             constants: {
-                mass: 0.30,              // 含電池總重 300 g（規則上限）
-                maxThrottleThrust: 13.5, // 總拉力（隨質量 0.4→0.3 同比例縮放，推重比維持不變）
+                mass: 0.4,               // 極輕量化
+                maxThrottleThrust: 18.0, // 適合微型機的總拉力
                 gravity: 9.8,
-                linearDrag: 1.35,         // 大幅增加空氣阻力，防止在小場地瞬間飛出邊界
+                linearDrag: 1.8,         // 大幅增加空氣阻力，防止在小場地瞬間飛出邊界
                 pitchRollSpeed: 1.6,     // 更敏捷的俯仰/側滾反應
                 yawSpeed: 1.6,           // 偏航旋轉速度 (調低，避免單次按壓旋轉角度過大)
                 yawRampSpeed: 6.0,       // 偏航加速平滑係數 (數值越小，起步越柔和、單次按壓角度越小)
@@ -449,15 +449,15 @@
         // 地板長度方向為 Z 軸 (Z: -3 至 +3)
         // 地板寬度方向為 X 軸 (X: -1.5 至 +1.5)
         // 紅色球門線在 Z = -2.25，藍色球門線在 Z = 2.25。高度置中於場地高度正中央 (cageH / 2 = 1.5 米)。
-        // 依競賽規則調整：無人機球型護籠外徑 20 公分 (半徑 0.10m)；球門環內徑 40 公分 (半徑 0.20m)、外徑 70 公分 (管寬 15 公分)
+        // 依真實規格調整：無人機球型護籠外徑 20 公分 (半徑 0.10m)；球門光環「淨開口」內直徑 60 公分 (半徑 0.30m)
         const DRONE_CAGE_RADIUS = 0.10;   // 無人機足球護籠半徑，整體球徑 = 20 公分
-        const RING_CLEAR_RADIUS = 0.20;   // 球門環淨開口半徑，內徑 = 40 公分（競賽規則）
+        const RING_CLEAR_RADIUS = 0.30;   // 光環實際淨開口半徑 (扣除管粗後可通過的孔徑)，內直徑 = 60 公分
         // AI 攻擊機最終瞄準球門時，容許的目標範圍：
-        // 物理上「機身中心完全不會擦到框架」的理論零誤差極限是 RING_CLEAR_RADIUS(0.20) − DRONE_CAGE_RADIUS(0.10) = 0.10，
+        // 物理上「機身中心完全不會擦到框架」的理論零誤差極限是 RING_CLEAR_RADIUS(0.30) − DRONE_CAGE_RADIUS(0.10) = 0.20，
         // 但攻擊機瞄準時還會疊加隨機誤差(aimError)、曲線搖擺殘留量、轉向/加速度的追蹤延遲等現實飛控誤差，
         // 若瞄準半徑直接設到這個零容錯極限，只要有一點點追蹤誤差就會撞框——這正是攻擊機撞框機率偏高的主因。
-        // 因此刻意內縮到 0.05（球門環縮小為內徑 40cm 後同步收小），保留約 5 公分的安全餘裕。
-        const ATTACKER_GOAL_AIM_RADIUS = 0.05;
+        // 因此刻意內縮到 0.14，保留約 6 公分（DRONE_CAGE_RADIUS 的一半以上）的安全餘裕。
+        const ATTACKER_GOAL_AIM_RADIUS = 0.14;
         // 縫隙方向雖然該跟曲線搖擺同量級才能真正發揮引導作用，但曲線是左右搖擺的震盪訊號、會自然回中，
         // 縫隙方向卻是「防守機不動就一直指同一邊」的持續偏壓；如果讓它跟曲線一樣可以吃到滿滿 1.8 公尺，
         // 防守機只要一直卡在同一側，攻擊機就會被持續拉去一個很誇張的偏移量，等真的接近球門要收斂回小範圍時
@@ -466,7 +466,7 @@
         const ATTACKER_GAP_LEAD_RADIUS = 0.5;
         // 攻擊機偵測到防守機（玩家或 AI 隊友）進入此距離內時會優先閃避——實際閃避距離依難度而定，
         // 已改為 ATTACK_DIFFICULTY_LEVELS 中的 evadeDistance（簡單較短、困難較長），見下方難度設定
-        const RING_TUBE_RADIUS = 0.075;   // 球門圓環管粗半徑（管寬 15 公分，使外徑 = 2×(0.20+0.15) = 70 公分）
+        const RING_TUBE_RADIUS = 0.05;    // 球門圓環管粗半徑（加粗為直徑 10 公分，淨開口仍維持 60 公分）
         // 「減速→近垂直陡升/陡降→加速前衝」突襲動作的共用時間軸與空間參數（不隨難度變動，只有觸發機率與加速倍率依難度而定）：
         // 靠近球門到一定距離內、且尚未進入最後衝刺時，攻擊機有機率先幾乎煞停原地，接著近乎垂直地陡升或陡降拉開一段高度，
         // 甩開原本鎖定它水平位置的防守機視線角度，最後再朝縫隙方向瞬間加速衝刺穿越球門
@@ -486,12 +486,10 @@
         // FRAME_AVOID_SAFE_RADIUS 是修正後瞄準點要收斂到的安全半徑——必須明顯小於危險帶內緣，
         // 而不是卡在邊界上，否則飛控的轉向延遲／慣性很容易讓機身還是滑進實際碰撞範圍，等於修正了等於沒修正。
         const FRAME_AVOID_TRIGGER_DIST = 1.0;
-        const FRAME_AVOID_MARGIN = 0.04;       // 新球門環下危險帶內緣 = 0.275 − 0.175 − 0.04 = 0.06m
-        const FRAME_AVOID_SAFE_RADIUS = 0.04;  // 必須小於危險帶內緣 0.06m
+        const FRAME_AVOID_MARGIN = 0.10;
+        const FRAME_AVOID_SAFE_RADIUS = 0.06;
 
-        // 球門高度：規則為「距地面 2 公尺，量至圓環內緣底部」；內徑 40 公分 → 圓環中心高 2.0+0.2 = 2.2 公尺。圓環頂端約 2.55 公尺，上方再嵌入小型得分顯示器
-        // 起飛區（規則：底線中央、寬度不超過 1 公尺）：寬 1 m、深 0.8 m（深度規則未規定，自訂）；AI 前鋒機放在區內距底線 0.4 m 處
-        const TAKEOFF_ZONE_W = 1.0, TAKEOFF_ZONE_D = 0.8, TAKEOFF_START_Z = 2.6;
+        // 球門高度：參考實際充氣場地，球門圓環高掛在 2.2 公尺；圓環頂端 2.6 公尺，上方再嵌入小型得分顯示器
         const GOAL_HEIGHT = 2.2;
         const ringCourse = [
             { pos: new THREE.Vector3(0, GOAL_HEIGHT, -2.25), color: 0xef4444, team: 'red', size: RING_CENTER_RADIUS * 2, lastPassTime: 0, forwardSign: -1, prevSide: null }, // 紅色方框球門線正上方，高度置中；正向穿越方向為 -Z（由場地中央飛向紅方球門外）
@@ -504,10 +502,11 @@
         // 玩家按 T 起飛的當下，三台機一起升空、AI 攻擊機才開始來襲
         let matchLive = false;
 
-        // 5.5 「AI 攻擊機得分後須先整機退回己方半場才能再次計分」狀態追蹤（追蹤對象為 attacker，而非玩家）
-        // readyToScore = true 表示 AI 攻擊機目前允許穿越玩家球門計分；完整穿越得分後會被設為 false，
-        // 直到攻擊機整機退回己方半場（球心距中線 ≥ 護籠半徑）才會再度被設回 true。
+        // 5.5 「AI 攻擊機得分後須先回中線才能再次計分」狀態追蹤（追蹤對象為 attacker，而非玩家）
+        // readyToScore = true 表示 AI 攻擊機目前允許穿越玩家球門計分；穿越得分後會被設為 false，
+        // 直到攻擊機的 Z 座標重新跨越場地中線 (Z = 0) 才會再度被設回 true。
         let readyToScore = true;
+        let centerLinePrevSide = null; // 追蹤 AI 攻擊機目前位於中線 (Z = 0) 的哪一側，用於偵測跨越
 
         // 8. 比賽電子時鐘（右下角顯示，遊戲啟動時開始計時，最高計到 23:59:59 後停止，重來時歸零重新計時）
         let matchSeconds = 0;
@@ -553,10 +552,6 @@
         // 7. 對戰隊伍系統：玩家隊伍 / 對手隊伍 / 電腦守門機
         let playerTeam = 'red';           // 'red' 或 'blue'，可於開場畫面選擇
         const TEAM_COLORS = { red: 0xef4444, blue: 0x3b82f6 };
-        // 前鋒識別尾燈顏色：紅隊＝紅色尾燈、藍隊＝超亮藍色尾燈（與護籠同色系）
-        const TAIL_BEACON_COLORS = { red: 0xff1a1a, blue: 0x1e90ff };
-        // 藍光在暗場中視覺亮度偏低，藍隊尾燈的光暈與點光源額外加強，確保「超亮」
-        const TAIL_BEACON_BOOST = { red: 1.0, blue: 2.2 };
         function getOpponentTeam(team) { return team === 'red' ? 'blue' : 'red'; }
         function getOwnGoalRing() { return ringCourse.find(r => r.team === playerTeam); }
         function getOpponentGoalRing() { return ringCourse.find(r => r.team === getOpponentTeam(playerTeam)); }
@@ -1388,21 +1383,6 @@
             ctx.lineTo(canvas.width, centerY);
             ctx.stroke();
 
-            // 4. 起飛區：兩端底線中央各一個（寬 1 公尺）。貼圖上緣對應 -Z（紅方端）、下緣對應 +Z（藍方端）
-            const pxPerM = canvas.width / 3;
-            const zoneW = TAKEOFF_ZONE_W * pxPerM, zoneD = TAKEOFF_ZONE_D * pxPerM;
-            const zoneX = (canvas.width - zoneW) / 2;
-            [
-                { fill: 'rgba(239,68,68,0.25)', line: '#ef4444', y: 0 },
-                { fill: 'rgba(59,130,246,0.25)', line: '#3b82f6', y: canvas.height - zoneD }
-            ].forEach(z => {
-                ctx.fillStyle = z.fill;
-                ctx.fillRect(zoneX, z.y, zoneW, zoneD);
-                ctx.strokeStyle = z.line;
-                ctx.lineWidth = 4;
-                ctx.strokeRect(zoneX + 2, z.y + 2, zoneW - 4, zoneD - 4);
-            });
-
             const texture = new THREE.CanvasTexture(canvas);
             
             // 建立 3m × 6m 的平面
@@ -1673,7 +1653,7 @@
             return { group, material };
         }
 
-        // 建造前鋒識別尾燈（僅前鋒機使用；固定安裝於機身本體正後方，而非護籠上，讓操作者一眼判別機尾/機頭朝向）
+        // 建造機尾閃爍警示燈（固定安裝於機身本體正後方，而非護籠上，鮮紅色快閃，讓操作者一眼判別機尾/機頭朝向）
         function createTailBeacon() {
             const group = new THREE.Group();
 
@@ -1717,7 +1697,6 @@
                 const halo = new THREE.Mesh(haloGeo, haloMat);
                 halo.position.copy(beaconPos);
                 group.add(halo);
-                haloMat.userData.baseOpacity = layer.opacity;
                 haloMats.push(haloMat);
             });
             beaconMat.userData.haloMats = haloMats;
@@ -1730,29 +1709,11 @@
             return { group, beaconMat, beaconLight };
         }
 
-        // 依隊伍切換尾燈顏色（同步更新燈珠本體、光暈疊層與點光源）：紅隊紅燈、藍隊超亮藍燈；boost 用來加強光暈與點光源亮度
-        function setTailBeaconColor(beaconMat, beaconLight, colorHex, boost = 1) {
-            if (!beaconMat) return;
-            const newColor = new THREE.Color(colorHex);
-            beaconMat.userData.baseColor = newColor;
-            beaconMat.color.copy(newColor);
-            if (beaconMat.userData.haloMats) {
-                beaconMat.userData.haloMats.forEach(haloMat => {
-                    haloMat.color.copy(newColor);
-                    haloMat.opacity = Math.min(1, (haloMat.userData.baseOpacity || haloMat.opacity) * boost);
-                });
-            }
-            if (beaconLight) {
-                beaconLight.color.copy(newColor);
-                beaconLight.userData.boost = boost;
-            }
-        }
-
         // 機尾燈固定常亮（不閃爍，避免操作者分心），僅在建立時設定一次即可
         function updateTailBeacon(beaconMat, beaconLight) {
             if (!beaconMat) return;
             beaconMat.color.copy(beaconMat.userData.baseColor);
-            if (beaconLight) beaconLight.intensity = 1.2 * (beaconLight.userData.boost || 1);
+            if (beaconLight) beaconLight.intensity = 2.2;
         }
 
         // 建造精密縮小版高科技無人機 (體積減小，動作在小球場更精緻靈活；整體以20公分球型護籠包覆)
@@ -1849,7 +1810,12 @@
             droneGroup.add(cageGroup);
             drone.cageMatRef = cageMat;
 
-            // 6. 規則：只有前鋒需要特殊識別標誌，玩家防守機不配置尾燈
+            // 6. 機尾閃爍燈 (固定在機身本體正後方，而非護籠上；機頭固定朝 +Z，方便操作者一眼判別機頭朝向)
+            const { group: tailGroup, beaconMat: tailBeaconMat, beaconLight: tailBeaconLight } = createTailBeacon();
+            tailGroup.position.set(0, 0, -0.045); // 緊貼中控主機機身背面 (body 深度 0.24 * INNER_SCALE 0.23 之外緣再留一點間距)
+            droneGroup.add(tailGroup);
+            drone.tailBeaconMat = tailBeaconMat;
+            drone.tailBeaconLight = tailBeaconLight;
 
             // 底部雷射測距定高光束 (置於球體底部)
             const glowY = -DRONE_CAGE_RADIUS * 0.9;
@@ -1914,11 +1880,6 @@
                 droneObj.cageMatRef.color.setHex(colorHex);
                 droneObj.cageMatRef.emissive.setHex(colorHex);
             }
-            // 依隊伍顏色切換尾燈（只有前鋒機配置）：紅隊紅色尾燈、藍隊超亮藍色尾燈
-            const isRedTeam = (colorHex === TEAM_COLORS.red);
-            setTailBeaconColor(droneObj.tailBeaconMat, droneObj.tailBeaconLight,
-                isRedTeam ? TAIL_BEACON_COLORS.red : TAIL_BEACON_COLORS.blue,
-                isRedTeam ? TAIL_BEACON_BOOST.red : TAIL_BEACON_BOOST.blue);
         }
 
         // 建造電腦控制的守門無人機（外型較樸素以利辨識，鎮守對手球門）；傳入對應的 aiState 讓每台守門機各自持有自己的網格參照
@@ -1984,14 +1945,12 @@
             group.add(cageGroup);
             aiState.cageMatRef = cageMat;
 
-            // 前鋒識別尾燈：規則上只有前鋒需要特殊識別標誌，因此只有 AI 攻擊機配置，AI 隊友守門機不配置
-            if (aiState === attacker) {
-                const { group: tailGroup, beaconMat: tailBeaconMat, beaconLight: tailBeaconLight } = createTailBeacon();
-                tailGroup.position.set(0, 0, -0.045); // 緊貼中控主機機身背面
-                group.add(tailGroup);
-                aiState.tailBeaconMat = tailBeaconMat;
-                aiState.tailBeaconLight = tailBeaconLight;
-            }
+            // 機尾閃爍燈 (固定在機身本體正後方，而非護籠上，與玩家機一致，方便辨識機頭朝向)
+            const { group: tailGroup, beaconMat: tailBeaconMat, beaconLight: tailBeaconLight } = createTailBeacon();
+            tailGroup.position.set(0, 0, -0.045); // 緊貼中控主機機身背面
+            group.add(tailGroup);
+            aiState.tailBeaconMat = tailBeaconMat;
+            aiState.tailBeaconLight = tailBeaconLight;
 
             // 守門機專屬警示燈環（辨識用，緊貼護籠外側，持續脈動）
             const warnGeo = new THREE.TorusGeometry(DRONE_CAGE_RADIUS * 1.15, 0.006, 8, 24);
@@ -2048,7 +2007,7 @@
         }
 
         // ---- 球門上方的得分顯示器 ----
-        // 小型顯示器：螢幕 26×12 公分，含外框 29×15 公分，高度遠小於門環直徑（外徑 70 公分）
+        // 小型顯示器：螢幕 26×12 公分，含外框 29×15 公分，高度遠小於門環直徑（外徑 80 公分）
         const GOAL_DISPLAY_W = 0.26, GOAL_DISPLAY_H = 0.12, GOAL_DISPLAY_D = 0.05, GOAL_DISPLAY_BEZEL = 0.015;
         const GOAL_DISPLAY_EMBED = 0.03; // 顯示器底部嵌入圓環管內的深度
         const goalDisplayFlashUntil = { red: 0, blue: 0 };
@@ -2115,7 +2074,7 @@
                 g.fillText('● 攻擊機可以進攻', W / 2, H - 20);
             } else {
                 g.fillStyle = '#34d399';
-                g.fillText('● 攻擊機須先退回己方半場', W / 2, H - 20);
+                g.fillText('● 攻擊機須先回中線', W / 2, H - 20);
             }
             gd.texture.needsUpdate = true;
         }
@@ -2286,12 +2245,12 @@
             updateTeamHUD();
         }
 
-        // 重新將 AI 攻擊機放回它己方的起飛區（底線中央）貼地待命，準備下一波攻勢；實際移動需等待全隊升空
+        // 重新將 AI 攻擊機放回對側半場（相當於對方球門位置附近）貼地待命，準備下一波攻勢；實際移動需等待全隊升空
         function resetAttacker() {
             const ring = attacker.targetRing;
             if (!ring) return;
 
-            const homeZ = -Math.sign(ring.pos.z) * TAKEOFF_START_Z; // 攻擊機己方起飛區（目標球門對側底線），保有完整助跑距離
+            const homeZ = -ring.pos.z; // 場地對側（即對方球門所在區域），讓攻擊機有完整助跑距離
             attacker.homePosition.set((Math.random() - 0.5) * 0.6, 0.10, homeZ);
             attacker.position.copy(attacker.homePosition);
             attacker.velocity.set(0, 0, 0);
@@ -2322,8 +2281,8 @@
 
         // 產生爆破粒子效果
         function createExplosion(position, colorHex) {
-            const particleCount = 16; // 顆粒縮小、數量減少以免干擾注意力（原 30 顆、半徑 3cm）
-            const geo = new THREE.SphereGeometry(0.008, 6, 6);
+            const particleCount = 30;
+            const geo = new THREE.SphereGeometry(0.03, 6, 6);
 
             for (let i = 0; i < particleCount; i++) {
                 const mat = new THREE.MeshBasicMaterial({
@@ -2335,9 +2294,9 @@
                 mesh.position.copy(position);
 
                 const velocity = new THREE.Vector3(
-                    (Math.random() - 0.5) * 3.5,
-                    (Math.random() - 0.5) * 3.5,
-                    (Math.random() - 0.5) * 3.5
+                    (Math.random() - 0.5) * 6,
+                    (Math.random() - 0.5) * 6,
+                    (Math.random() - 0.5) * 6
                 );
 
                 scene.add(mesh);
@@ -2661,12 +2620,12 @@
             );
             drone.rotation.y -= drone.currentYawRate * delta;
 
-            // PD高度維持演算法 (適配 0.3kg 機型)
+            // PD高度維持演算法 (精細適配 0.4kg 機型)
             const altError = drone.targetAltitude - drone.position.y;
             const climbRate = drone.velocity.y;
 
-            const kpAlt = 11.25; // 隨質量同比例縮放（原 15.0 @ 0.4kg）
-            const kdAlt = 6.0;   // 隨質量同比例縮放（原 8.0 @ 0.4kg）
+            const kpAlt = 15.0;
+            const kdAlt = 8.0;
 
             // --- 修正起飛靜止問題 ---
             // 增加一個微小的 baseThrust 補償，確保在起飛初期即有足夠動力克服初始慣性
@@ -2757,18 +2716,32 @@
             });
         } // <-- ADDED THIS CLOSING BRACE
 
-        // 得分後回場規則：AI 攻擊機須「整機」退回己方半場（護籠完全越過中線，球心距中線 ≥ 護籠半徑）才恢復得分資格。
-        // 攻擊機的己方半場 = 目標球門（玩家球門）的對側
+        // 偵測 AI 攻擊機是否跨越場地中線 (Z = 0)。只要跨越一次，就重新允許攻擊機再次進攻計分。
         function checkAttackerCenterLineCrossing() {
-            if (!attacker.mesh || !attacker.targetRing || readyToScore) return;
-            const ownSign = -Math.sign(attacker.targetRing.pos.z);
-            if (attacker.position.z * ownSign >= DRONE_CAGE_RADIUS) {
-                readyToScore = true;
-                playCenterLineSound();
-                showSystemNotification("AI 攻擊機已完整退回己方半場 - 準備再次進攻");
+            if (!attacker.mesh) return;
+
+            const rawSide = attacker.position.z;
+            const currentSide = rawSide !== 0 ? Math.sign(rawSide) : (centerLinePrevSide || 1);
+
+            if (centerLinePrevSide === null) {
+                // 初始化：剛進場時先記錄所在側，避免一開場就被誤判成已跨越中線
+                centerLinePrevSide = currentSide;
+                return;
+            }
+
+            if (centerLinePrevSide !== currentSide) {
+                // 跨越中線：僅在「回線狀態轉為綠燈（攻擊機重新取得攻門資格）」的當下播放提示音效與訊息，
+                // 若已經是綠燈狀態，之後即使再次跨越中線也不再重複發出聲響或提示。
+                if (!readyToScore) {
+                    readyToScore = true;
+                    playCenterLineSound();
+                    showSystemNotification("AI 攻擊機已回到中線 - 準備再次進攻");
+                }
                 // 攻擊機退回己方半場後，先進入「降到中間高度」的整隊階段，降完高度才會以隨機方向重新展開攻勢
                 if (attacker.phase === 'retreat') attacker.phase = 'descend';
             }
+
+            centerLinePrevSide = currentSide;
         }
 
         // 玩家防守機與光環外框的碰撞（純物理反彈，防守機不會因穿越任何球門而計分）
@@ -2938,12 +2911,11 @@
                 }
             }
 
-            // 2. 偵測「完整穿越」球門環（規則：前鋒須由前向後、整顆球完全穿過才得分）
-            //    (a) 球心由前側穿過環平面，且偏離環軸線 ≤ 淨開口半徑 − 護籠半徑 → 進入待確認
-            //    (b) 球心越過環平面後方 ≥ 一個護籠半徑（整顆球完全通過）→ 才判定得分
-            //    (c) 待確認期間若退回前側（反向穿越）→ 取消
-            const passRadius = RING_CLEAR_RADIUS - DRONE_CAGE_RADIUS + 0.01; // +0.01 為判定容許誤差
-            const rawSide = pz;
+            // 2. 偵測穿越球門中心（僅「正向」穿越才計分，反向穿越不計分）
+            const distToCenter = attacker.position.distanceTo(ring.pos);
+            const innerOpeningRadius = R - r - 0.05;
+
+            const rawSide = attacker.position.z - ring.pos.z;
             const currentSide = rawSide !== 0 ? Math.sign(rawSide) : (ring.attackerPrevSide || ring.forwardSign * -1);
 
             if (ring.attackerPrevSide == null) {
@@ -2952,12 +2924,8 @@
 
             const crossedPlane = ring.attackerPrevSide !== currentSide;
             const isForwardPass = crossedPlane && currentSide === ring.forwardSign;
-            const isReversePass = crossedPlane && currentSide !== ring.forwardSign;
 
-            if (isForwardPass && d_xy < passRadius) ring.attackerPending = true;
-            if (isReversePass) ring.attackerPending = false;
-            if (ring.attackerPending && pz * ring.forwardSign >= DRONE_CAGE_RADIUS) {
-                ring.attackerPending = false;
+            if (distToCenter < innerOpeningRadius && isForwardPass) {
                 const currentTime = clock.getElapsedTime();
                 if (!ring.lastPassTime || (currentTime - ring.lastPassTime > 1.5)) {
                     ring.lastPassTime = currentTime;
@@ -2965,21 +2933,21 @@
                     if (readyToScore) {
                         // AI 攻擊機成功穿越玩家球門：失分
                         score++;
-                        readyToScore = false; // 得分後鎖定，攻擊機須先整機退回己方半場才能再次得分
+                        readyToScore = false; // 得分後鎖定，攻擊機須先飛回中線才能再次得分
 
                         playDeniedGoalSound(); // 低沉警示音，提醒玩家被攻破
                         createExplosion(ring.pos, 0xef4444); // 紅色警示粒子效果
                         updateHUD();
-                        showSystemNotification(`失球！AI 攻擊機完整穿越你方球門，總失球：${score}（攻擊機需退回己方半場才能再次進攻）`);
+                        showSystemNotification(`失球！AI 攻擊機穿越你方球門，總失球：${score}（攻擊機需回到中線才能再次進攻）`);
 
                         // 讓球門圓環短暫閃爍，上方顯示器同步打出 GOAL!
                         setRingFlash(ring, true, 0xef4444);
                         goalDisplayFlashUntil[ring.team] = performance.now() + 1500;
                         setTimeout(() => setRingFlash(ring, false), 800);
 
-                        attacker.phase = 'retreat'; // 得分後依規則須先整機退回己方半場，才能重新取得攻門資格
+                        attacker.phase = 'retreat'; // 得分後依規則須先撤退回中線，才能重新取得攻門資格
                     } else {
-                        // 尚未退回己方半場、無法再次得分：這是一次「意外穿越」，不會被判定為得分，
+                        // 尚未回到中線、無法再次得分：這是一次「意外穿越」，不會被判定為得分，
                         // 但攻擊機此刻已經到了球門後方（與護籠之間的狹窄空間），
                         // 若放任它留在原地會導致卡住猶疑，因此立即切換為「繞回前方」階段，
                         // 讓它先爬升到安全高度、繞回球門前方，再繼續纏鬥進攻
@@ -3146,7 +3114,7 @@
                             attacker.jukePhase = 'burst';
                             attacker.jukeSubTimer = JUKE_BURST_TIME;
                             // 加速前衝目標：朝目前判讀到的縫隙方向瞄準球門開口，深度規則與一般進攻瞄準一致
-                            const burstR = Math.min(ATTACKER_GOAL_AIM_RADIUS * 1.4, 0.08);
+                            const burstR = Math.min(ATTACKER_GOAL_AIM_RADIUS * 1.4, 0.18);
                             const burstX = attacker.gapHasBlockers ? ring.pos.x + Math.cos(attacker.gapAngle) * burstR : ring.pos.x;
                             const burstY = attacker.gapHasBlockers ? ring.pos.y + Math.sin(attacker.gapAngle) * burstR : ring.pos.y;
                             const burstZ = readyToScore
@@ -3303,7 +3271,7 @@
                     let evadeTargetX = ring.pos.x;
                     let evadeTargetY = ring.pos.y;
                     if (c.tactics.smartEvade && attacker.gapHasBlockers) {
-                        const evadeR = Math.min(ATTACKER_GOAL_AIM_RADIUS * 1.6, 0.08); // 不可超出新球門環的不碰框半徑 0.10m
+                        const evadeR = Math.min(ATTACKER_GOAL_AIM_RADIUS * 2, 0.3);
                         evadeTargetX = ring.pos.x + Math.cos(attacker.gapAngle) * evadeR;
                         evadeTargetY = ring.pos.y + Math.sin(attacker.gapAngle) * evadeR;
                     }
@@ -3864,7 +3832,9 @@
             updateHUD();
             updatePlayerMarker(delta);       // 玩家專屬金色標記動畫
 
-            // 前鋒識別尾燈：只有 AI 攻擊機配置
+            // 機尾閃爍燈：玩家機、AI 隊友守門機與 AI 攻擊機同步更新
+            updateTailBeacon(drone.tailBeaconMat, drone.tailBeaconLight);
+            aiDrones.forEach(ai => updateTailBeacon(ai.tailBeaconMat, ai.tailBeaconLight));
             updateTailBeacon(attacker.tailBeaconMat, attacker.tailBeaconLight);
 
             renderer.render(scene, camera);
@@ -3886,11 +3856,11 @@
                 ring.lastPassTime = 0;
                 ring.prevSide = null;
                 ring.attackerPrevSide = null; // 重置攻擊機方向追蹤，避免沿用重設前的側邊狀態
-                ring.attackerPending = false;
                 setRingFlash(ring, false);
             });
 
-            readyToScore = true;      // 重置「攻擊機須退回己方半場才能再計分」狀態
+            readyToScore = true;      // 重置「攻擊機需回中線才能再計分」狀態
+            centerLinePrevSide = null; // 重置中線側邊追蹤
 
             startMatchClock(); // 遊戲重來時，時鐘歸零重新計時
 
