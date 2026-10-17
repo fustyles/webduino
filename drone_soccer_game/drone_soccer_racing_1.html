@@ -399,10 +399,10 @@
 
             // 微型機身物理常量 (在小空間內具有更高的阻尼、更高的定高敏捷度)
             constants: {
-                mass: 0.4,               // 極輕量化
-                maxThrottleThrust: 18.0, // 適合微型機的總拉力
+                mass: 0.30,              // 含電池總重 300 g（規則上限）
+                maxThrottleThrust: 13.5, // 總拉力（隨質量 0.4→0.3 同比例縮放，推重比維持不變）
                 gravity: 9.8,
-                linearDrag: 1.8,         // 大幅增加空氣阻力，防止在小場地瞬間飛出邊界
+                linearDrag: 1.35,         // 大幅增加空氣阻力，防止在小場地瞬間飛出邊界
                 pitchRollSpeed: 1.6,     // 更敏捷的俯仰/側滾反應
                 yawSpeed: 1.6,           // 偏航旋轉速度 (調低，避免單次按壓旋轉角度過大)
                 yawRampSpeed: 6.0,       // 偏航加速平滑係數 (數值越小，起步越柔和、單次按壓角度越小)
@@ -1160,8 +1160,8 @@
 
         // 產生爆破粒子效果
         function createExplosion(position, colorHex) {
-            const particleCount = 30;
-            const geo = new THREE.SphereGeometry(0.03, 6, 6);
+            const particleCount = 16; // 顆粒縮小、數量減少以免干擾注意力（原 30 顆、半徑 3cm）
+            const geo = new THREE.SphereGeometry(0.008, 6, 6);
 
             for (let i = 0; i < particleCount; i++) {
                 const mat = new THREE.MeshBasicMaterial({
@@ -1173,9 +1173,9 @@
                 mesh.position.copy(position);
 
                 const velocity = new THREE.Vector3(
-                    (Math.random() - 0.5) * 6,
-                    (Math.random() - 0.5) * 6,
-                    (Math.random() - 0.5) * 6
+                    (Math.random() - 0.5) * 3.5,
+                    (Math.random() - 0.5) * 3.5,
+                    (Math.random() - 0.5) * 3.5
                 );
 
                 scene.add(mesh);
@@ -1243,20 +1243,41 @@
         // 一律畫成「正常、不鏡像」；鏡像與否交由徽章平面自身的 3D 朝向決定
         // （平面法線固定朝向各自的入口方向，從入口方向看是正常字，從相反方向看因為
         // 是同一塊平面的背面，會自然呈現鏡像效果——不是預先燒錄的固定鏡像圖）
-        function drawNumberBadge(ctx, number, passed, unpassedColor) {
-            ctx.clearRect(0, 0, 64, 64);
-            ctx.fillStyle = passed ? '#10b981' : (unpassedColor || '#ef4444');
-            ctx.beginPath();
-            ctx.arc(32, 32, 27, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.lineWidth = 3;
-            ctx.strokeStyle = '#ffffff';
-            ctx.stroke();
-            ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 28px sans-serif';
+        // 3D 標籤自動變淡：鏡頭靠近（例如座艙視角正要穿越）或無人機靠近（正在穿越）時逐漸變淡，
+        // 讓穿越中的無人機清楚可見，不會像隱沒在標籤裡；離開後恢復
+        const LABEL_OPACITY = 0.85;                          // 標籤整體透明度：半透明，後方的無人機與障礙仍隱約可見
+        const LABEL_FADE_CAM_NEAR = 0.25, LABEL_FADE_CAM_FAR = 0.9;     // 鏡頭距離標籤 0.9 公尺內開始變淡
+        const LABEL_FADE_DRONE_NEAR = 0.12, LABEL_FADE_DRONE_FAR = 0.6; // 無人機距離標籤 0.6 公尺內開始變淡
+        const _labelWorldPos = new THREE.Vector3();
+        function attachLabelFade(obj, mat) {
+            obj.onBeforeRender = (r, s, cam) => {
+                _labelWorldPos.setFromMatrixPosition(obj.matrixWorld);
+                const fc = (cam.position.distanceTo(_labelWorldPos) - LABEL_FADE_CAM_NEAR) / (LABEL_FADE_CAM_FAR - LABEL_FADE_CAM_NEAR);
+                const fd = (drone.position.distanceTo(_labelWorldPos) - LABEL_FADE_DRONE_NEAR) / (LABEL_FADE_DRONE_FAR - LABEL_FADE_DRONE_NEAR);
+                mat.opacity = LABEL_OPACITY * THREE.MathUtils.clamp(Math.min(fc, fd), 0.12, 1);
+            };
+        }
+        // 畫「只有數字、沒有底色」的序號：數字用狀態色，外圈白色描邊＋深色外框，在任何背景前都清楚
+        function drawOutlinedNumber(ctx, S, txt, color) {
+            const C = S / 2, y = C + S * 0.04;
+            ctx.clearRect(0, 0, S, S);
+            ctx.font = `bold ${Math.round(S * 0.78)}px sans-serif`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.fillText(String(number), 32, 34);
+            ctx.lineJoin = 'round';
+            ctx.lineWidth = S * 0.1;
+            ctx.strokeStyle = 'rgba(2, 6, 23, 0.75)';
+            ctx.strokeText(txt, C, y);
+            ctx.lineWidth = S * 0.055;
+            ctx.strokeStyle = '#ffffff';
+            ctx.strokeText(txt, C, y);
+            ctx.fillStyle = color;
+            ctx.fillText(txt, C, y);
+        }
+
+        function drawNumberBadge(ctx, number, passed, unpassedColor) {
+            // 只畫數字、不畫圓形底色（無人機穿越時不會被色塊蓋住）；256×256 高解析度，放大後邊緣仍清楚
+            drawOutlinedNumber(ctx, 256, String(number), passed ? '#10b981' : (unpassedColor || '#ef4444'));
         }
 
         // ==================== 序號牌擺放規則 ====================
@@ -1274,16 +1295,17 @@
         // 鏡像的變正的)，這是同一塊平面正反兩面的自然結果，不是額外邏輯判斷出來的
         function createNumberPlane(number, size, unpassedColor) {
             const canvas = document.createElement('canvas');
-            canvas.width = 64;
-            canvas.height = 64;
+            canvas.width = 256;
+            canvas.height = 256;
             const ctx = canvas.getContext('2d');
             drawNumberBadge(ctx, number, false, unpassedColor);
 
             const texture = new THREE.CanvasTexture(canvas);
             const geo = new THREE.PlaneGeometry(size, size);
-            const mat = new THREE.MeshBasicMaterial({ map: texture, depthTest: false, transparent: true, side: THREE.DoubleSide });
+            // 半透明、開啟深度測試（無人機飛到數字前方時正常擋住數字）、不套色調映射（顏色維持鮮明）
+            const mat = new THREE.MeshBasicMaterial({ map: texture, transparent: true, opacity: LABEL_OPACITY, depthTest: true, depthWrite: false, side: THREE.DoubleSide, toneMapped: false });
             const plane = new THREE.Mesh(geo, mat);
-            plane.renderOrder = 999;
+            attachLabelFade(plane, mat); // 鏡頭或無人機靠近時自動變淡
             plane.userData.canvas = canvas;
             plane.userData.ctx = ctx;
             plane.userData.number = number;
@@ -1322,9 +1344,9 @@
             scene.add(mesh);
             ob.mesh = mesh;
 
-            // 序號牌：小尺寸(僅比光環的圓管寬度稍大)，統一貼在光環中心點、呈半透明(見 computeBadgePosition)
-            const ringBandWidth = tubeR * 2; // 光環圓管視覺寬度
-            const badgeSize = ringBandWidth * 2.2; // 比光環寬度稍大一點
+            // 序號牌：只顯示數字，貼在光環中心點、半透明；尺寸隨光環大小（光環半徑的 1.6 倍，限制在 0.24～0.40 公尺，
+            // 約為原本 0.106 公尺的 2.3～3.8 倍），遠處也看得清楚
+            const badgeSize = THREE.MathUtils.clamp(ob.r * 1.6, 0.24, 0.40);
             // 依該光環的穿越方向決定未通過時的底色：forward.z ≥ 0 視為由前向後(紅底)，
             // forward.z < 0 視為由後向前(橙底)，與九宮格版本的紅/橙配色規則一致
             const unpassedColor = ob.frame.forward.z >= 0 ? '#ef4444' : '#f97316';
@@ -1864,12 +1886,12 @@
             );
             drone.rotation.y -= drone.currentYawRate * delta;
 
-            // PD高度維持演算法 (精細適配 0.4kg 機型)
+            // PD高度維持演算法 (適配 0.3kg 機型)
             const altError = drone.targetAltitude - drone.position.y;
             const climbRate = drone.velocity.y;
 
-            const kpAlt = 15.0;
-            const kdAlt = 8.0;
+            const kpAlt = 11.25; // 隨質量同比例縮放（原 15.0 @ 0.4kg）
+            const kdAlt = 6.0;   // 隨質量同比例縮放（原 8.0 @ 0.4kg）
 
             // --- 修正起飛靜止問題 ---
             // 增加一個微小的 baseThrust 補償，確保在起飛初期即有足夠動力克服初始慣性
