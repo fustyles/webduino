@@ -3,6 +3,10 @@ https://drive.google.com/drive/folders/1S5O66Penidrbg3nxL9SMpXGB2Ju5W-s_?usp=dri
 <br><br>
 【 鍵盤控制 】
 <br><br>
+
+單人玩家練習版<br>
+https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_practise.html
+
 單人玩家版：攻擊機<br>
 https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_competition.html
 
@@ -24,9 +28,6 @@ https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_competition_a
 六人玩家版 - 紅隊 v.s. 藍隊<br>
 https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_competition_addadd.html
 
-單人玩家練習版<br>
-https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_practise.html
-
 單人玩家競速版 (高低環)<br>
 https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_racing_1.html
 
@@ -42,6 +43,10 @@ https://fustyles.github.io/webduino/drone_soccer_game/drone_soccer_racing_4.html
 <br><br>
 【 Radio Controller (USB) 】
 <br><br>
+
+單人玩家練習版<br>
+https://fustyles.github.io/webduino/drone_soccer_game/radio/drone_soccer_practise.html
+
 單人玩家版：攻擊機<br>
 https://fustyles.github.io/webduino/drone_soccer_game/radio/drone_soccer_competition.html
 
@@ -62,9 +67,6 @@ https://fustyles.github.io/webduino/drone_soccer_game/radio/drone_soccer_competi
 
 六人玩家版 - 紅隊 v.s. 藍隊<br>
 https://fustyles.github.io/webduino/drone_soccer_game/radio/drone_soccer_competition_addadd.html
-
-單人玩家練習版<br>
-https://fustyles.github.io/webduino/drone_soccer_game/radio/drone_soccer_practise.html
 
 單人玩家競速版 (高低環)<br>
 https://fustyles.github.io/webduino/drone_soccer_game/radio/drone_soccer_racing_1.html
