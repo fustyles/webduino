@@ -1,0 +1,310 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>雙搖桿監看器</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+/* Layout: transmitter face — two gimbal panels side by side, channel strip below */
+:root{
+  --bg:#eef1f4; --panel:#ffffff; --line:#cfd6de; --fg:#1b2633; --muted:#5d6b7a;
+  --accent:#d9731a; --stick:#1f5fa8; --grid:#e3e8ee; --ok:#2e8a4f;
+  --f-display:"Barlow Condensed","Noto Sans TC",system-ui,sans-serif;
+  --f-body:"Noto Sans TC",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141a21; --panel:#1c242d; --line:#2f3a46; --fg:#e4e9ef; --muted:#93a1b0;
+  --accent:#f0913c; --stick:#6aa7ec; --grid:#25303b; --ok:#5cc282; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141a21; --panel:#1c242d; --line:#2f3a46; --fg:#e4e9ef; --muted:#93a1b0;
+  --accent:#f0913c; --stick:#6aa7ec; --grid:#25303b; --ok:#5cc282; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.5}
+.wrap{max-width:960px;margin:0 auto;padding-inline:16px;padding-block:24px 40px;display:grid;gap:20px}
+header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px}
+h1{font-family:var(--f-display);font-weight:700;font-size:2rem;letter-spacing:.02em;margin:0;text-wrap:balance}
+.status{font-family:var(--f-mono);font-size:.85rem;display:flex;align-items:center;gap:8px;color:var(--muted);min-width:0}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--line);flex:none}
+.status.on .dot{background:var(--ok);box-shadow:0 0 0 3px color-mix(in srgb,var(--ok) 25%,transparent)}
+.status.on{color:var(--fg)}
+.sticks{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.gimbal{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:12px}
+.ghead{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.gname{font-family:var(--f-display);font-weight:600;font-size:1.25rem;letter-spacing:.06em;text-transform:uppercase}
+.gsub{font-size:.8rem;color:var(--muted)}
+canvas{width:100%;max-width:100%;aspect-ratio:1;display:block;border-radius:6px}
+.readout{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.rv{border-top:1px solid var(--line);padding-top:6px}
+.rv span{display:block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.rv b{font-family:var(--f-mono);font-size:1.35rem;font-weight:600;font-variant-numeric:tabular-nums}
+.map{display:grid;grid-template-columns:auto 1fr auto;gap:6px 8px;align-items:center;font-size:.85rem}
+.map label{color:var(--muted)}
+select{font:inherit;font-family:var(--f-mono);background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:4px;padding:3px 6px;min-width:0}
+.inv{display:flex;align-items:center;gap:4px;font-size:.8rem;color:var(--muted);white-space:nowrap}
+input[type=checkbox]{accent-color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.chan{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:12px}
+h2{font-family:var(--f-display);font-weight:600;font-size:1.15rem;letter-spacing:.06em;text-transform:uppercase;margin:0}
+.axes{display:grid;gap:6px}
+.ax{display:grid;grid-template-columns:3.5em 1fr 5.5em;gap:10px;align-items:center;font-family:var(--f-mono);font-size:.85rem;font-variant-numeric:tabular-nums}
+.bar{position:relative;height:10px;background:var(--grid);border-radius:3px;overflow:hidden}
+.bar::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line)}
+.fill{position:absolute;top:0;bottom:0;background:var(--stick)}
+.ax .v{text-align:right}
+.btns{display:flex;flex-wrap:wrap;gap:6px}
+.btn{font-family:var(--f-mono);font-size:.75rem;min-width:2.4em;text-align:center;padding:3px 6px;border:1px solid var(--line);border-radius:4px;color:var(--muted)}
+.btn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.tools{display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:8px;margin-bottom:-8px}
+.tools button,.calbox button{font:inherit;font-size:.85rem;background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:5px 12px;cursor:pointer}
+.tools button:hover,.calbox button:hover{border-color:var(--accent);color:var(--accent)}
+.dz{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--muted);margin-right:auto}
+.dz input{accent-color:var(--accent);width:110px}
+.dz output{font-family:var(--f-mono);font-variant-numeric:tabular-nums;min-width:2.5em;color:var(--fg)}
+.calbox{background:color-mix(in srgb,var(--accent) 12%,var(--panel));border:1px solid var(--accent);border-radius:8px;padding:10px 14px;font-size:.9rem;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.calbox button{background:var(--accent);border-color:var(--accent);color:#fff}
+.calbox button:hover{color:#fff;filter:brightness(1.08)}
+#calBtn.has{border-color:var(--ok);color:var(--ok)}
+.note{font-size:.85rem;color:var(--muted);max-width:65ch;margin:0}
+.empty{font-size:.9rem;color:var(--muted)}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>雙搖桿監看器</h1>
+    <div class="status" id="status"><span class="dot"></span><span id="statusText">尚未偵測到控制器，請接上後按任一鍵或撥動搖桿</span></div>
+  </header>
+
+  <div class="tools">
+    <label class="dz" for="dz">中央死區 <input type="range" id="dz" min="0" max="0.2" step="0.01" value="0.03"> <output id="dzv">3%</output></label>
+    <button type="button" id="calBtn">校正</button>
+    <button type="button" id="calClear">清除校正</button>
+    <button type="button" id="swap">左右對調</button>
+    <button type="button" id="flipY">上下對調</button>
+  </div>
+  <div class="calbox" id="calBox" hidden>
+    <b>校正中：</b>把兩支搖桿都繞著外框轉幾圈，碰到四個角落。接著放開搖桿回中，油門推到中間位置，再按「完成」。
+    <button type="button" id="calDone">完成</button>
+  </div>
+
+  <div class="sticks">
+    <div class="gimbal" id="g0">
+      <div class="ghead"><span class="gname">左搖桿</span><span class="gsub">Left gimbal</span></div>
+      <canvas width="320" height="320"></canvas>
+      <div class="readout"><div class="rv"><span>X</span><b class="vx">+0.000</b></div><div class="rv"><span>Y</span><b class="vy">+0.000</b></div></div>
+      <div class="map">
+        <label for="g0x">X 軸</label><select id="g0x"></select><label class="inv"><input type="checkbox" id="g0xi">反向</label>
+        <label for="g0y">Y 軸</label><select id="g0y"></select><label class="inv"><input type="checkbox" id="g0yi">反向</label>
+      </div>
+    </div>
+    <div class="gimbal" id="g1">
+      <div class="ghead"><span class="gname">右搖桿</span><span class="gsub">Right gimbal</span></div>
+      <canvas width="320" height="320"></canvas>
+      <div class="readout"><div class="rv"><span>X</span><b class="vx">+0.000</b></div><div class="rv"><span>Y</span><b class="vy">+0.000</b></div></div>
+      <div class="map">
+        <label for="g1x">X 軸</label><select id="g1x"></select><label class="inv"><input type="checkbox" id="g1xi">反向</label>
+        <label for="g1y">Y 軸</label><select id="g1y"></select><label class="inv"><input type="checkbox" id="g1yi">反向</label>
+      </div>
+    </div>
+  </div>
+
+  <section class="chan">
+    <h2>全部通道（原始值）</h2>
+    <div class="axes" id="axes"><div class="empty">接上控制器後，這裡會列出每個軸的原始值（-1.000 到 +1.000）。</div></div>
+    <div class="btns" id="btns"></div>
+  </section>
+
+  <p class="note">遙控器接模擬器線時，各通道對應的軸號因廠牌而異。先撥動搖桿，看「全部通道」哪一條在動，再用上方下拉選單指定給左右搖桿。預設左搖桿左右用軸 4、上下用軸 2（油門不回中，放開時停在底部是正常的），右搖桿用軸 0/1。左右搖桿顛倒時按「左右對調」，上下方向顛倒時按「上下對調」。</p>
+</div>
+
+<script>
+(function(){
+  // 對應設定是唯一的資料來源；下拉選單只負責顯示。左搖桿：左右=軸4、上下=軸2；右搖桿：軸0/1
+  // RC 模擬器線往上推回報正值，跟一般手把（往上為負）相反，所以 Y 軸預設反向
+  const DEFAULT_MAP=[{x:4,y:2,xi:false,yi:true},{x:0,y:1,xi:false,yi:true}];
+  const KEY='stickmap4';
+  const sel=[0,1].map(i=>({x:document.getElementById(`g${i}x`),y:document.getElementById(`g${i}y`),xi:document.getElementById(`g${i}xi`),yi:document.getElementById(`g${i}yi`)}));
+  let map=DEFAULT_MAP.map(m=>({...m}));
+  try{const s=JSON.parse(localStorage.getItem(KEY));if(Array.isArray(s)&&s.length===2)map=s.map((m,i)=>({...DEFAULT_MAP[i],...m}))}catch(e){}
+  let axisCount=0, padIndex=null;
+  const axesEl=document.getElementById('axes'), btnsEl=document.getElementById('btns');
+  const statusEl=document.getElementById('status'), statusText=document.getElementById('statusText');
+
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(map))}catch(e){}}
+  function fillSelects(n){
+    const count=Math.max(n,8,...map.flatMap(m=>[m.x+1,m.y+1]));
+    sel.forEach((s,i)=>{
+      ['x','y'].forEach(k=>{
+        s[k].innerHTML='';
+        for(let a=0;a<count;a++){const o=document.createElement('option');o.value=a;o.textContent='軸 '+a+(n&&a>=n?'（無）':'');s[k].appendChild(o)}
+        s[k].value=map[i][k];
+      });
+      s.xi.checked=map[i].xi;s.yi.checked=map[i].yi;
+    });
+  }
+  sel.forEach((s,i)=>{
+    s.x.addEventListener('change',()=>{map[i].x=+s.x.value;save()});
+    s.y.addEventListener('change',()=>{map[i].y=+s.y.value;save()});
+    s.xi.addEventListener('change',()=>{map[i].xi=s.xi.checked;save()});
+    s.yi.addEventListener('change',()=>{map[i].yi=s.yi.checked;save()});
+  });
+  document.getElementById('swap').addEventListener('click',()=>{
+    map=[map[1],map[0]];fillSelects(axisCount);
+    trails[0].length=0;trails[1].length=0;save();
+  });
+  // 上下對調：兩支搖桿的上下方向一起反過來
+  document.getElementById('flipY').addEventListener('click',()=>{
+    map.forEach(m=>{m.yi=!m.yi});fillSelects(axisCount);
+    trails[0].length=0;trails[1].length=0;save();
+  });
+  fillSelects(0);
+
+  // 校正：記錄每個軸的最小、最大與中心值，之後把中心對到 0、兩端拉到 ±1
+  const CAL_KEY='stickcal1', DZ_KEY='stickdz1';
+  let cal={}, sweep=null, lastAxes=[];
+  try{cal=JSON.parse(localStorage.getItem(CAL_KEY))||{}}catch(e){cal={}}
+  const calBtn=document.getElementById('calBtn'), calBox=document.getElementById('calBox');
+  const dzEl=document.getElementById('dz'), dzOut=document.getElementById('dzv');
+  try{const d=parseFloat(localStorage.getItem(DZ_KEY));if(!isNaN(d))dzEl.value=d}catch(e){}
+  const showDz=()=>{dzOut.textContent=Math.round(dzEl.value*100)+'%'};showDz();
+  dzEl.addEventListener('input',()=>{showDz();try{localStorage.setItem(DZ_KEY,dzEl.value)}catch(e){}});
+  const markCal=()=>{const has=Object.keys(cal).length>0;calBtn.classList.toggle('has',has);calBtn.textContent=has?'重新校正':'校正'};markCal();
+  calBtn.addEventListener('click',()=>{sweep={};calBox.hidden=false});
+  document.getElementById('calDone').addEventListener('click',()=>{
+    if(sweep){
+      const next={};
+      lastAxes.forEach((v,a)=>{
+        const s=sweep[a];if(!s)return;
+        if(s.max-s.min<0.2)return; // 這個軸沒被動到，不校正
+        next[a]={min:s.min,max:s.max,center:v};
+      });
+      cal=next;try{localStorage.setItem(CAL_KEY,JSON.stringify(cal))}catch(e){}
+    }
+    sweep=null;calBox.hidden=true;markCal();
+  });
+  document.getElementById('calClear').addEventListener('click',()=>{
+    cal={};sweep=null;calBox.hidden=true;try{localStorage.removeItem(CAL_KEY)}catch(e){}markCal();
+  });
+  function applyCal(a,v){
+    const c=cal[a];let out=v;
+    if(c){
+      const lo=c.center-c.min, hi=c.max-c.center, d=v-c.center;
+      if(d<0&&lo>0.05)out=d/lo; else if(d>=0&&hi>0.05)out=d/hi; else out=d;
+    }
+    out=Math.max(-1,Math.min(1,out));
+    const dz=+dzEl.value, m=Math.abs(out);
+    return m<dz?0:Math.sign(out)*(m-dz)/(1-dz);
+  }
+
+  // 每個軸的 DOM 參照先存好，迴圈裡不再查詢 DOM
+  let rowRefs=[], btnRefs=[];
+  const lastAxisTxt=[], lastBtn=[];
+  function buildRows(n,b){
+    axesEl.innerHTML='';rowRefs=[];lastAxisTxt.length=0;
+    for(let a=0;a<n;a++){
+      const r=document.createElement('div');r.className='ax';
+      r.innerHTML=`<span>軸 ${a}</span><div class="bar"><div class="fill"></div></div><span class="v">+0.000</span>`;
+      axesEl.appendChild(r);
+      rowRefs.push({fill:r.querySelector('.fill'),v:r.querySelector('.v')});
+    }
+    btnsEl.innerHTML='';btnRefs=[];lastBtn.length=0;
+    for(let i=0;i<b;i++){const e=document.createElement('span');e.className='btn';e.textContent='B'+i;btnsEl.appendChild(e);btnRefs.push(e)}
+  }
+
+  // 主題顏色只在載入或切換主題時讀一次
+  let pal={};
+  const bgCache=[null,null];
+  function readPalette(){
+    const cs=getComputedStyle(document.documentElement);
+    ['--bg','--grid','--line','--stick','--accent','--panel'].forEach(k=>pal[k]=cs.getPropertyValue(k).trim());
+    bgCache[0]=bgCache[1]=null;dirty[0]=dirty[1]=true;
+  }
+  const dirty=[true,true];
+  try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',readPalette)}catch(e){}
+  new MutationObserver(readPalette).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+
+  const gEls=[0,1].map(i=>{const g=document.getElementById('g'+i);return{c:g.querySelector('canvas'),vx:g.querySelector('.vx'),vy:g.querySelector('.vy')}});
+  const ctx=gEls.map(e=>e.c.getContext('2d'));
+  const trails=[[],[]], lastXY=[[NaN,NaN],[NaN,NaN]];
+
+  function background(i){
+    if(bgCache[i])return bgCache[i];
+    const W=gEls[i].c.width,m=16,R=(W-2*m)/2,cx=W/2;
+    const off=document.createElement('canvas');off.width=off.height=W;const g=off.getContext('2d');
+    g.fillStyle=pal['--bg'];g.fillRect(0,0,W,W);
+    g.strokeStyle=pal['--grid'];g.lineWidth=1;g.beginPath();
+    for(let k=-4;k<=4;k++){const p=cx+k*R/4;g.moveTo(p,m);g.lineTo(p,W-m);g.moveTo(m,p);g.lineTo(W-m,p)}
+    g.stroke();
+    g.strokeStyle=pal['--line'];g.lineWidth=1.5;g.strokeRect(m,m,2*R,2*R);
+    g.beginPath();g.moveTo(cx,m);g.lineTo(cx,W-m);g.moveTo(m,cx);g.lineTo(W-m,cx);g.stroke();
+    return bgCache[i]=off;
+  }
+  function draw(i,x,y){
+    const W=gEls[i].c.width,m=16,R=(W-2*m)/2,cx=W/2,g=ctx[i];
+    const px=cx+x*R, py=cx+y*R;
+    const t=trails[i];
+    const moved=Math.abs(lastXY[i][0]-x)>0.002||Math.abs(lastXY[i][1]-y)>0.002||!(lastXY[i][0]===lastXY[i][0]);
+    if(moved){t.push([px,py]);if(t.length>40)t.shift()}
+    else if(t.length>1){t.shift()} // 停住時讓軌跡慢慢收起
+    else if(!dirty[i])return;       // 沒動也沒軌跡：不用重畫
+    lastXY[i]=[x,y];dirty[i]=false;
+    g.drawImage(background(i),0,0);
+    if(t.length>1){
+      g.strokeStyle=pal['--stick'];g.globalAlpha=.35;g.lineWidth=2;g.beginPath();
+      t.forEach(([a,b],k)=>k?g.lineTo(a,b):g.moveTo(a,b));g.stroke();g.globalAlpha=1;
+    }
+    g.strokeStyle=pal['--accent'];g.lineWidth=1;g.setLineDash([4,4]);
+    g.beginPath();g.moveTo(cx,cx);g.lineTo(px,py);g.stroke();g.setLineDash([]);
+    g.fillStyle=pal['--stick'];g.beginPath();g.arc(px,py,11,0,Math.PI*2);g.fill();
+    g.fillStyle=pal['--panel'];g.beginPath();g.arc(px,py,4,0,Math.PI*2);g.fill();
+  }
+  const fmt=v=>(v>=0?'+':'')+v.toFixed(3);
+  function setText(el,txt){if(el.textContent!==txt)el.textContent=txt}
+
+  // 每秒讀 30 次就夠了，不必跟著螢幕更新率跑
+  const INTERVAL=33;let lastPoll=0, blocked=false;
+  function loop(now){
+    requestAnimationFrame(loop);
+    if(blocked||now-lastPoll<INTERVAL)return;
+    lastPoll=now;
+    let pads=[];
+    try{pads=navigator.getGamepads?[...navigator.getGamepads()].filter(Boolean):[]}catch(e){
+      blocked=true;setText(statusText,'這個環境禁止讀取控制器，請下載 HTML 檔用 Chrome 或 Edge 直接開啟');return;
+    }
+    const p=pads.find(q=>q.index===padIndex)||pads[0];
+    if(p){
+      if(p.index!==padIndex||p.axes.length!==axisCount){
+        padIndex=p.index;axisCount=p.axes.length;buildRows(p.axes.length,p.buttons.length);fillSelects(p.axes.length);
+        statusEl.classList.add('on');
+      }
+      setText(statusText,`${p.id}（${p.axes.length} 軸、${p.buttons.length} 鍵）`);
+      const axes=p.axes;
+      lastAxes=Array.from(axes);
+      if(sweep)axes.forEach((v,a)=>{const s=sweep[a]||(sweep[a]={min:v,max:v});if(v<s.min)s.min=v;if(v>s.max)s.max=v});
+      for(let a=0;a<axes.length&&a<rowRefs.length;a++){
+        const v=axes[a],txt=fmt(v);
+        if(lastAxisTxt[a]===txt)continue;
+        lastAxisTxt[a]=txt;
+        const r=rowRefs[a];
+        r.fill.style.left=(v<0?50+v*50:50)+'%';r.fill.style.width=Math.abs(v)*50+'%';
+        r.v.textContent=txt;
+      }
+      for(let k=0;k<btnRefs.length;k++){
+        const on=!!p.buttons[k]?.pressed;
+        if(lastBtn[k]!==on){lastBtn[k]=on;btnRefs[k].classList.toggle('on',on)}
+      }
+      map.forEach((m,i)=>{
+        let x=applyCal(m.x,axes[m.x]??0), y=applyCal(m.y,axes[m.y]??0);
+        if(m.xi)x=-x; if(m.yi)y=-y;
+        setText(gEls[i].vx,fmt(x));setText(gEls[i].vy,fmt(-y));
+        draw(i,x,y);
+      });
+    }else{
+      if(padIndex!==null){padIndex=null;axisCount=0;statusEl.classList.remove('on');
+        setText(statusText,'控制器已中斷，請重新接上後按任一鍵');}
+      draw(0,0,0);draw(1,0,0);
+    }
+  }
+  readPalette();
+  requestAnimationFrame(loop);
+})();
+</script>
+
+</body></html>
