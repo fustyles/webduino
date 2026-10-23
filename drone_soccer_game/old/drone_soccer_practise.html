@@ -98,11 +98,11 @@
             <h1 class="text-3xl md:text-5xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-500 to-blue-500 mb-2">
                 無人機足球競技場
             </h1>
-            <!-- 練習角色選擇：攻擊機／防守機（兩者只差操控手視角） -->
+            <!-- 練習角色選擇：前鋒機／防守機（兩者只差操控手視角） -->
             <div class="mb-4">
                 <div class="flex justify-center gap-3">
                     <button type="button" data-role="attack" class="role-btn px-4 py-2 rounded-xl border text-sm font-bold transition-all cursor-pointer">
-                        <i class="fa-solid fa-crosshairs mr-1.5"></i>攻擊機練習
+                        <i class="fa-solid fa-crosshairs mr-1.5"></i>前鋒機練習
                     </button>
                     <button type="button" data-role="defense" class="role-btn px-4 py-2 rounded-xl border text-sm font-bold transition-all cursor-pointer">
                         <i class="fa-solid fa-shield-halved mr-1.5"></i>防守機練習
@@ -193,9 +193,9 @@
                 <button id="btnSound" class="w-10 h-10 rounded-xl glassmorphism text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
                     <i class="fa-solid fa-volume-high text-sm"></i>
                 </button>
-                <button id="btnRole" title="切換攻擊機練習／防守機練習" class="px-3.5 h-10 rounded-xl glassmorphism text-amber-300 hover:text-amber-200 flex items-center justify-center gap-2 transition-all cursor-pointer pointer-events-auto border border-amber-500/20">
+                <button id="btnRole" title="切換前鋒機練習／防守機練習" class="px-3.5 h-10 rounded-xl glassmorphism text-amber-300 hover:text-amber-200 flex items-center justify-center gap-2 transition-all cursor-pointer pointer-events-auto border border-amber-500/20">
                     <i id="roleIcon" class="fa-solid fa-crosshairs text-sm"></i>
-                    <span id="roleText" class="text-xs font-semibold tech-font">攻擊機</span>
+                    <span id="roleText" class="text-xs font-semibold tech-font">前鋒機</span>
                 </button>
                 <button id="btnCam" class="px-3.5 h-10 rounded-xl glassmorphism text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
                     <i class="fa-solid fa-camera text-sm"></i>
@@ -445,7 +445,7 @@
         // 定中視角：模擬真實比賽中操控手的位置——站在己方這一端的短邊球網前（貼網 0 公分）、場地正中央，
         // 眼睛正對對方球門；身高約 165 公分，眼睛高度約 1.53 公尺；人原地不動、視線固定
         const PILOT_NET_Z = 3.0;            // 短邊球網位置（場地長 6 公尺）
-        const PILOT_DIST_FROM_NET = 0.0;     // 操控手離球網的距離（攻擊機：貼著球網站）
+        const PILOT_DIST_FROM_NET = 0.0;     // 操控手離球網的距離（前鋒機：貼著球網站）
         const PILOT_NET_CLEARANCE = 0.06;   // 鏡頭最近可視距離 0.05 公尺，留 6 公分避免球網被鏡頭切掉閃爍
         const PILOT_EYE_HEIGHT = 1.53;      // 165 公分身高的眼睛高度
         // 定中視角的鏡頭視野（度）：螢幕在眼中只佔約 30 度，視野開太寬會把遠方球門縮得很小、顯得很遠。
@@ -458,8 +458,8 @@
         const PILOT_BACK_STEP = 0.5, PILOT_BACK_MAX = 2.0;
         let pilotBack = 0;
         try { const v = parseFloat(localStorage.getItem('pilotBack1')); if (v > 0 && v <= PILOT_BACK_MAX) pilotBack = v; } catch (e) {}
-        // ---- 練習角色：攻擊機／防守機（兩者只差操控手視角，記在瀏覽器中） ----
-        //  攻擊機：操控手貼著己方球網站立，定中視野 45°（[ ] 可調），可切換追蹤視角
+        // ---- 練習角色：前鋒機／防守機（兩者只差操控手視角，記在瀏覽器中） ----
+        //  前鋒機：操控手貼著己方球網站立，定中視野 45°（[ ] 可調），可切換追蹤視角
         //  防守機：操控手站在己方球網後方 1 公尺，定中視野固定 74°，鏡頭順序 定中 → 定左 → 定右 → 座艙 → 自由，
         //          離網較遠，眼前球網與自家球門照常顯示，方便看清楚要守的球門全景
         const PRACTICE_ROLE_KEY = 'practiceRole1';
@@ -473,7 +473,7 @@
         function pilotStandExtra() { return (isDefenderRole() ? DEFENDER_DIST_FROM_NET : 0) + pilotBack; }
         function roleCycleOrder() { return isDefenderRole() ? DEFENDER_CYCLE_ORDER : CAMERA_CYCLE_ORDER; }
         const ROLE_DESC = {
-            attack: '攻擊機練習：操控手貼著球網站立，定中視野 45°（[ ] 可調，放大到底再按 ] 往網後退）',
+            attack: '前鋒機練習：操控手貼著球網站立，定中視野 45°（[ ] 可調，放大到底再按 ] 往網後退）',
             defense: '防守機練習：操控手站在球網後方 1 公尺，定中視野固定 74°，看得到自家球門全景（] / [ 可再往後退／往前）',
         };
         function updateRoleUI() {
@@ -489,7 +489,7 @@
             const desc = document.getElementById('roleDesc');
             if (desc) desc.textContent = ROLE_DESC[practiceRole];
             const t = document.getElementById('roleText');
-            if (t) t.textContent = isDefenderRole() ? '防守機' : '攻擊機';
+            if (t) t.textContent = isDefenderRole() ? '防守機' : '前鋒機';
             const ic = document.getElementById('roleIcon');
             if (ic) ic.className = 'fa-solid ' + (isDefenderRole() ? 'fa-shield-halved' : 'fa-crosshairs') + ' text-sm';
         }
@@ -502,7 +502,7 @@
             const ct = document.getElementById('camText');
             if (ct) ct.innerText = CAMERA_MODES_ZH[cameraMode];
             updateRoleUI();
-            if (notify) showSystemNotification(isDefenderRole() ? '切換為防守機練習：站在網後 1 公尺，視野 74°' : '切換為攻擊機練習：貼網站立，視野可用 [ ] 調整');
+            if (notify) showSystemNotification(isDefenderRole() ? '切換為防守機練習：站在網後 1 公尺，視野 74°' : '切換為前鋒機練習：貼網站立，視野可用 [ ] 調整');
         }
         window.addEventListener('keydown', (e) => {
             const tag = e.target && e.target.tagName;
@@ -1169,7 +1169,7 @@
         const GOAL_RING_GLOW_INTENSITY = 0.16;
         const GOAL_FLASH_COLOR = 0x10b981;     // 進球時閃爍的綠色
 
-        // 顯示／隱藏整座球門（圓環、上方顯示器、吊索）：攻擊機操控手貼網站立時，自家球門就在眼前上方，會擋住視線
+        // 顯示／隱藏整座球門（圓環、上方顯示器、吊索）：前鋒機操控手貼網站立時，自家球門就在眼前上方，會擋住視線
         function setGoalVisible(ring, visible) {
             if (ring.mesh) ring.mesh.visible = visible;
             if (ring.display) ring.display.group.visible = visible;
@@ -1955,7 +1955,7 @@
             setEndNetsVisible(0);
             const standDist = Math.max(PILOT_DIST_FROM_NET + pilotStandExtra(), PILOT_NET_CLEARANCE);
             ringCourse.forEach(r => setGoalVisible(r, true));
-            // 攻擊機操控手貼網站立（定中／定左／定右）：自家球門就在眼前上方，整座隱藏避免遮蔽視線
+            // 前鋒機操控手貼網站立（定中／定左／定右）：自家球門就在眼前上方，整座隱藏避免遮蔽視線
             if (cameraMode >= 3 && standDist < 0.3) {
                 const ownGoalAhead = camOwnGoal();
                 if (ownGoalAhead && pilotStandExtra() < 0.3) setGoalVisible(ownGoalAhead, false);

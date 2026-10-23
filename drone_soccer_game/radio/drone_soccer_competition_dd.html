@@ -227,7 +227,7 @@
                     <span class="inline-block mb-2 px-3 py-1 rounded-full text-[11px] font-bold tracking-widest tech-font bg-blue-500/20 text-blue-300 border border-blue-500/40">PLAYER 1 · 防守</span>
                     <h1 class="text-xl md:text-2xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-3">P1 防守機（藍隊）</h1>
                     <div class="text-left text-slate-300 text-xs md:text-sm mb-4">
-                        你操控<span class='text-blue-300 font-bold'>藍隊防守機</span>，與隊友（P2）一起鎮守己方球門，合力攔截並彈開來襲的<span class='text-rose-300 font-bold'>AI 紅隊攻擊機</span>，阻止對方得分！
+                        你操控<span class='text-blue-300 font-bold'>藍隊防守機</span>，與隊友（P2）一起鎮守己方球門，合力攔截並彈開來襲的<span class='text-rose-300 font-bold'>AI 紅隊前鋒機</span>，阻止對方得分！
                     </div>
                     <!-- 觸控裝置（手機／平板）專用操作說明 -->
                     <div class="touch-only p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-left mb-4">
@@ -235,7 +235,7 @@
                         <ul class="space-y-1 text-slate-400 tech-font text-[11px]">
                             <li><span class="text-emerald-400 font-bold">左搖桿</span>：上推上升／下拉下降，左右推偏航旋轉</li>
                             <li><span class="text-cyan-400 font-bold">右搖桿</span>：前後左右移動</li>
-                            <li>上方按鈕可全體起飛／降落；玩家離地後 AI 攻擊機會自動一起起飛</li>
+                            <li>上方按鈕可全體起飛／降落；玩家離地後 AI 前鋒機會自動一起起飛</li>
                         </ul>
                     </div>
                     <div class="kb-only p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-left mb-4">
@@ -248,7 +248,7 @@
                             <li class="text-slate-500">起飛後先把油門推到中間，手把才接手高度控制</li>
                         </ul>
                     </div>
-                    <p class="text-[10px] text-slate-400 mb-1.5 tracking-wider uppercase tech-font text-center">AI 攻擊機難度</p>
+                    <p class="text-[10px] text-slate-400 mb-1.5 tracking-wider uppercase tech-font text-center">AI 前鋒機難度</p>
                     <div class="flex gap-1.5 mb-3">
                         <div class="atk-difficulty-option flex-1 py-2 text-center cursor-pointer select-none rounded-lg glass-button border-slate-700/50" data-level="easy">
                             <p class="text-xs font-bold text-emerald-400 uppercase tracking-widest">簡單</p>
@@ -278,10 +278,10 @@
                             <span id="a-scoreText" class="text-xl font-extrabold tech-font text-yellow-300">0</span>
                             <span class="text-[10px] text-slate-400">球</span>
                         </div>
-                        <div class="text-[8px] text-slate-400 mt-1">被 AI 攻擊機穿越藍方球門即失分</div>
+                        <div class="text-[8px] text-slate-400 mt-1">被 AI 前鋒機穿越藍方球門即失分</div>
                         <div class="flex items-center gap-1.5 mt-1.5 pt-1.5 border-t border-slate-700/40">
                             <span id="a-scoreStatusDot" class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]"></span>
-                            <span id="a-scoreStatusText" class="text-[9px] font-semibold tech-font text-emerald-300">攻擊機可進攻</span>
+                            <span id="a-scoreStatusText" class="text-[9px] font-semibold tech-font text-emerald-300">前鋒機可進攻</span>
                         </div>
                     </div>
 
@@ -312,7 +312,7 @@
                         <button id="a-btnReset" class="w-8 h-8 rounded-lg glassmorphism text-slate-300 hover:text-rose-400 flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
                             <i class="fa-solid fa-arrows-rotate text-xs"></i>
                         </button>
-                        <button id="a-btnAtkDifficulty" class="px-2.5 h-8 rounded-lg glassmorphism text-yellow-300 hover:text-yellow-200 flex items-center justify-center gap-1 transition-all cursor-pointer pointer-events-auto border border-yellow-500/20" title="點擊切換 AI 攻擊機難度">
+                        <button id="a-btnAtkDifficulty" class="px-2.5 h-8 rounded-lg glassmorphism text-yellow-300 hover:text-yellow-200 flex items-center justify-center gap-1 transition-all cursor-pointer pointer-events-auto border border-yellow-500/20" title="點擊切換 AI 前鋒機難度">
                             <i class="fa-solid fa-bolt text-[10px]"></i>
                             <span id="a-atkDifficultyText" class="text-[9px] font-semibold tech-font">中等</span>
                         </button>
@@ -396,7 +396,7 @@
                     <span class="inline-block mb-2 px-3 py-1 rounded-full text-[11px] font-bold tracking-widest tech-font bg-blue-500/20 text-blue-300 border border-blue-500/40">PLAYER 2 · 防守</span>
                     <h1 class="text-xl md:text-2xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-3">P2 防守機（藍隊）</h1>
                     <div class="text-left text-slate-300 text-xs md:text-sm mb-4">
-                        你操控<span class='text-blue-300 font-bold'>藍隊防守機</span>，與隊友（P1）一起鎮守己方球門，合力攔截並彈開來襲的<span class='text-rose-300 font-bold'>AI 紅隊攻擊機</span>，阻止對方得分！
+                        你操控<span class='text-blue-300 font-bold'>藍隊防守機</span>，與隊友（P1）一起鎮守己方球門，合力攔截並彈開來襲的<span class='text-rose-300 font-bold'>AI 紅隊前鋒機</span>，阻止對方得分！
                     </div>
                     <!-- 觸控裝置（手機／平板）專用操作說明 -->
                     <div class="touch-only p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-left mb-4">
@@ -404,7 +404,7 @@
                         <ul class="space-y-1 text-slate-400 tech-font text-[11px]">
                             <li><span class="text-emerald-400 font-bold">左搖桿</span>：上推上升／下拉下降，左右推偏航旋轉</li>
                             <li><span class="text-cyan-400 font-bold">右搖桿</span>：前後左右移動</li>
-                            <li>上方按鈕可全體起飛／降落；玩家離地後 AI 攻擊機會自動一起起飛</li>
+                            <li>上方按鈕可全體起飛／降落；玩家離地後 AI 前鋒機會自動一起起飛</li>
                         </ul>
                     </div>
                     <div class="kb-only p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-left mb-4">
@@ -417,7 +417,7 @@
                             <li class="text-slate-500">起飛後先把油門推到中間，手把才接手高度控制</li>
                         </ul>
                     </div>
-                    <p class="text-[10px] text-slate-400 mb-1.5 tracking-wider uppercase tech-font text-center">AI 攻擊機難度</p>
+                    <p class="text-[10px] text-slate-400 mb-1.5 tracking-wider uppercase tech-font text-center">AI 前鋒機難度</p>
                     <div class="flex gap-1.5 mb-3">
                         <div class="atk-difficulty-option flex-1 py-2 text-center cursor-pointer select-none rounded-lg glass-button border-slate-700/50" data-level="easy">
                             <p class="text-xs font-bold text-emerald-400 uppercase tracking-widest">簡單</p>
@@ -447,10 +447,10 @@
                             <span id="d-scoreText" class="text-xl font-extrabold tech-font text-yellow-300">0</span>
                             <span class="text-[10px] text-slate-400">球</span>
                         </div>
-                        <div class="text-[8px] text-slate-400 mt-1">被 AI 攻擊機穿越藍方球門即失分</div>
+                        <div class="text-[8px] text-slate-400 mt-1">被 AI 前鋒機穿越藍方球門即失分</div>
                         <div class="flex items-center gap-1.5 mt-1.5 pt-1.5 border-t border-slate-700/40">
                             <span id="d-scoreStatusDot" class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]"></span>
-                            <span id="d-scoreStatusText" class="text-[9px] font-semibold tech-font text-emerald-300">攻擊機可進攻</span>
+                            <span id="d-scoreStatusText" class="text-[9px] font-semibold tech-font text-emerald-300">前鋒機可進攻</span>
                         </div>
                     </div>
 
@@ -481,7 +481,7 @@
                         <button id="d-btnReset" class="w-8 h-8 rounded-lg glassmorphism text-slate-300 hover:text-rose-400 flex items-center justify-center transition-all cursor-pointer pointer-events-auto border border-slate-700/30">
                             <i class="fa-solid fa-arrows-rotate text-xs"></i>
                         </button>
-                        <button id="d-btnAtkDifficulty" class="px-2.5 h-8 rounded-lg glassmorphism text-yellow-300 hover:text-yellow-200 flex items-center justify-center gap-1 transition-all cursor-pointer pointer-events-auto border border-yellow-500/20" title="點擊切換 AI 攻擊機難度">
+                        <button id="d-btnAtkDifficulty" class="px-2.5 h-8 rounded-lg glassmorphism text-yellow-300 hover:text-yellow-200 flex items-center justify-center gap-1 transition-all cursor-pointer pointer-events-auto border border-yellow-500/20" title="點擊切換 AI 前鋒機難度">
                             <i class="fa-solid fa-bolt text-[10px]"></i>
                             <span id="d-atkDifficultyText" class="text-[9px] font-semibold tech-font">中等</span>
                         </button>
@@ -595,7 +595,7 @@ const ringCourse = [
     { pos: new THREE.Vector3(0, GOAL_HEIGHT, 2.25), color: 0x3b82f6, team: 'blue', size: RING_CENTER_RADIUS * 2, lastPassTime: 0, forwardSign: 1, prevSide: null }
 ];
 
-// 固定角色：D1 永遠是紅隊攻擊機（攻擊藍方球門），D2 永遠是藍隊防守機（鎮守藍方球門）
+// 固定角色：D1 永遠是紅隊前鋒機（攻擊藍方球門），D2 永遠是藍隊防守機（鎮守藍方球門）
 const ATTACK_TEAM = 'red';
 const DEFEND_TEAM = 'blue';
 const CAGE_LENGTH = 6.0; // 需與 buildInflatableCage() 內的 cageL 保持一致，供場邊視角站位計算使用
@@ -763,19 +763,19 @@ function createRig(prefix, team) {
 const D1 = createRig('a-', DEFEND_TEAM);   // 防守機1（人類玩家1，WASD＋方向鍵）
 const D2 = createRig('d-', DEFEND_TEAM);   // 防守機2（人類玩家2，GVFB/UH/YJ）
 
-// ---------------- AI 攻擊機三難度常量與攻擊曲線庫，逐字移植自 drone_soccer_defense.html ----------------
+// ---------------- AI 前鋒機三難度常量與攻擊曲線庫，逐字移植自 drone_soccer_defense.html ----------------
 // 物理上「機身中心完全不會擦到框架」的理論零誤差極限是 RING_CLEAR_RADIUS(0.30) − DRONE_CAGE_RADIUS(0.10) = 0.20，
 // 若瞄準半徑直接設到這個零容錯極限，只要疊加一點點瞄準誤差或飛控追蹤延遲就會撞框，
 // 因此刻意內縮到 0.14，保留約 6 公分安全餘裕
 const ATTACKER_GOAL_AIM_RADIUS = 0.05; // 球門環縮小為內徑 40cm（20cm 護籠不碰框的偏心上限僅 0.10m），瞄準半徑同步收小
 // 縫隙方向雖然該跟曲線搖擺同量級才能真正發揮引導作用，但曲線是左右搖擺的震盪訊號、會自然回中，
 // 縫隙方向卻是「防守機不動就一直指同一邊」的持續偏壓；如果讓它跟曲線一樣可以吃到滿滿 1.8 公尺，
-// 防守機只要一直卡在同一側，攻擊機就會被持續拉去一個很誇張的偏移量，等真的接近球門要收斂回小範圍時
-// 根本來不及轉回來，反而一頭撞進框架——這正是「兩台防守機都卡下方，攻擊機卻一直重複撞上方框架」的
+// 防守機只要一直卡在同一側，前鋒機就會被持續拉去一個很誇張的偏移量，等真的接近球門要收斂回小範圍時
+// 根本來不及轉回來，反而一頭撞進框架——這正是「兩台防守機都卡下方，前鋒機卻一直重複撞上方框架」的
 // 真正成因。因此縫隙方向額外用這個較保守的上限收斂，早期還是有明顯的引導作用，但不會被拖去離譜的極端位置
 const ATTACKER_GAP_LEAD_RADIUS = 0.5;
 
-// 撞框預防的觸發距離與安全邊界：攻擊機距離球門平面小於這個距離時，才需要每影格檢查是否有撞框風險。
+// 撞框預防的觸發距離與安全邊界：前鋒機距離球門平面小於這個距離時，才需要每影格檢查是否有撞框風險。
 // FRAME_AVOID_MARGIN 在真正的碰撞閾值之外再加一點緩衝，讓危險帶提早於實際碰撞範圍被偵測到；
 // FRAME_AVOID_SAFE_RADIUS 是修正後瞄準點要收斂到的安全半徑——必須明顯小於危險帶內緣。
 const FRAME_AVOID_TRIGGER_DIST = 1.0;
@@ -838,7 +838,7 @@ const ATTACK_DIFFICULTY_LEVELS = {
 };
 let aiAttackDifficulty = 'medium'; // 目前套用的攻擊難度，可於開場畫面選擇，或比賽中點擊按鈕隨時切換
 
-// 套用攻擊難度：切換 aiAttackDifficulty 並讓攻擊機立即改用新的一組參數／戰術開關
+// 套用攻擊難度：切換 aiAttackDifficulty 並讓前鋒機立即改用新的一組參數／戰術開關
 function applyAttackDifficulty(level) {
     if (!ATTACK_DIFFICULTY_LEVELS[level]) return;
     aiAttackDifficulty = level;
@@ -848,8 +848,8 @@ function applyAttackDifficulty(level) {
     attacker.jukePhase = 'none';
     attacker.jukeCheckTimer = Math.random() * 0.6;
     updateAttackDifficultyHUD();
-    notify(D1, `AI 攻擊機難度已切換為：${ATTACK_DIFFICULTY_LEVELS[level].label}`);
-    notify(D2, `AI 攻擊機難度已切換為：${ATTACK_DIFFICULTY_LEVELS[level].label}`);
+    notify(D1, `AI 前鋒機難度已切換為：${ATTACK_DIFFICULTY_LEVELS[level].label}`);
+    notify(D2, `AI 前鋒機難度已切換為：${ATTACK_DIFFICULTY_LEVELS[level].label}`);
 }
 
 // 依序在簡單／中等／困難之間循環切換（供頂部按鈕使用）
@@ -886,7 +886,7 @@ function highlightAttackDifficultyOption(level) {
     });
 }
 
-// AI 攻擊機狀態物件：外型沿用防守機的簡化模型建構函式，顏色於 setupMatch() 中依隊伍上色
+// AI 前鋒機狀態物件：外型沿用防守機的簡化模型建構函式，顏色於 setupMatch() 中依隊伍上色
 const attacker = {
     mesh: null, canopyRef: null, cageMatRef: null, warnRingRef: null, glowRef: null,
     tailBeaconMat: null, tailBeaconLight: null, rotors: [],
@@ -1260,7 +1260,7 @@ function applyTeamColor(droneObj, colorHex) {
         isRedTeam ? TAIL_BEACON_COLORS.red : TAIL_BEACON_COLORS.blue,
         isRedTeam ? TAIL_BEACON_BOOST.red : TAIL_BEACON_BOOST.blue);
 }
-// ---------------- 建造 D1 攻擊機（高細節玩家機體）----------------
+// ---------------- 建造 D1 前鋒機（高細節玩家機體）----------------
 function buildPlayerDrone(rig) {
     const droneGroup = new THREE.Group();
     const innerGroup = new THREE.Group();
@@ -1422,7 +1422,7 @@ function buildDefenderDrone(rig) {
     group.add(cageGroup);
     rig.cageMatRef = cageMat;
 
-    // 規則：只有前鋒需要特殊識別標誌——此函式同時建造 D2 與 AI 攻擊機，只有攻擊機配置尾燈
+    // 規則：只有前鋒需要特殊識別標誌——此函式同時建造 D2 與 AI 前鋒機，只有前鋒機配置尾燈
     if (rig === attacker) {
         const { group: tailGroup, beaconMat: tailBeaconMat, beaconLight: tailBeaconLight } = createTailBeacon();
         tailGroup.position.set(0, 0, -0.045);
@@ -1457,7 +1457,7 @@ const GOAL_RING_GLOW = 0xfff6e6;       // 微弱自發光，讓暗場中仍看�
 const GOAL_RING_GLOW_INTENSITY = 0.16;
 const GOAL_FLASH_COLOR = 0x10b981;     // 進球時閃爍的綠色
 
-// 顯示／隱藏整座球門（圓環、上方顯示器、吊索）：攻擊機操控手貼網站立時，自家球門就在眼前上方，會擋住視線
+// 顯示／隱藏整座球門（圓環、上方顯示器、吊索）：前鋒機操控手貼網站立時，自家球門就在眼前上方，會擋住視線
 function setGoalVisible(ring, visible) {
     if (ring.mesh) ring.mesh.visible = visible;
     if (ring.display) ring.display.group.visible = visible;
@@ -1581,9 +1581,9 @@ function buildGoalDisplay(ringData) {
     drawGoalDisplay(ringData);
 }
 
-// AI 攻擊機繞過球門時使用的安全高度：
+// AI 前鋒機繞過球門時使用的安全高度：
 // 球門掛高 2.2 公尺後，圓環頂端加上得分顯示器已接近網籠頂，若照原本「爬到球門上方 40 公分再繞回」，
-// 目標高度（約 3.0 公尺）會超過 AI 的飛行上限（2.8 公尺），攻擊機就會一直卡在上方不動。
+// 目標高度（約 3.0 公尺）會超過 AI 的飛行上限（2.8 公尺），前鋒機就會一直卡在上方不動。
 // 因此上方空間足夠時維持從上方繞，不夠時改從圓環下方繞過（圓環底部再往下 40 公分）。
 function goalBypassAltitude(ring) {
     const ringTop = ring.pos.y + RING_CENTER_RADIUS + RING_TUBE_RADIUS;
@@ -1663,11 +1663,11 @@ function goalDisplayInfo(ring) {
     return {
         goals: target ? score : 0,
         tag: target ? '防守方球門' : '攻擊方球門',
-        status: !target ? ['#94a3b8', '攻擊方球門・不計分'] : readyToScore ? ['#34d399', '● 攻擊機可以得分'] : ['#fbbf24', '● 退回己方半場後才能再得分'],
+        status: !target ? ['#94a3b8', '攻擊方球門・不計分'] : readyToScore ? ['#34d399', '● 前鋒機可以得分'] : ['#fbbf24', '● 退回己方半場後才能再得分'],
     };
 }
 
-// 固定雙方隊伍配置與初始站位（攻擊機永遠紅隊在中場，防守機永遠藍隊鎮守藍方球門）
+// 固定雙方隊伍配置與初始站位（前鋒機永遠紅隊在中場，防守機永遠藍隊鎮守藍方球門）
 function setupMatch() {
     const blueRing = ringCourse.find(r => r.team === DEFEND_TEAM);
     const redRing = ringCourse.find(r => r.team === ATTACK_TEAM);
@@ -1676,7 +1676,7 @@ function setupMatch() {
     applyTeamColor(D1, TEAM_COLORS[DEFEND_TEAM]);
     D1.position.set(blueRing.pos.x - 0.28, 0.1, blueRing.pos.z - blueRing.forwardSign * 1.05);
     D1.targetAltitude = 0.1;
-    D1.rotation.y = Math.PI; // 面向 -Z（面對攻擊機來向）
+    D1.rotation.y = Math.PI; // 面向 -Z（面對前鋒機來向）
 
     applyTeamColor(D2, TEAM_COLORS[DEFEND_TEAM]);
     D2.position.set(blueRing.pos.x + 0.28, 0.1, blueRing.pos.z - blueRing.forwardSign * 1.05);
@@ -1686,14 +1686,14 @@ function setupMatch() {
     if (D1.mesh) { D1.mesh.position.copy(D1.position); D1.mesh.rotation.set(0, D1.rotation.y, 0); }
     if (D2.mesh) { D2.mesh.position.copy(D2.position); D2.mesh.rotation.set(0, D2.rotation.y, 0); }
 
-    // AI 攻擊機：紅隊，目標鎖定藍方球門，一開始貼地待命於場地對側
+    // AI 前鋒機：紅隊，目標鎖定藍方球門，一開始貼地待命於場地對側
     applyTeamColor(attacker, TEAM_COLORS[ATTACK_TEAM]);
     attacker.team = ATTACK_TEAM;
     attacker.targetRing = blueRing;
     resetAttacker();
 }
 
-// 重新將 AI 攻擊機放回己方起飛區（底線中央）貼地待命，準備下一波攻勢；實際移動需等待全隊升空
+// 重新將 AI 前鋒機放回己方起飛區（底線中央）貼地待命，準備下一波攻勢；實際移動需等待全隊升空
 function resetAttacker() {
     const ring = attacker.targetRing;
     if (!ring) return;
@@ -1742,7 +1742,7 @@ function updateParticles(delta) {
     }
 }
 
-// ---------------- 無人機物理（通用，攻擊機/防守機共用同一套飛控邏輯）----------------
+// ---------------- 無人機物理（通用，前鋒機/防守機共用同一套飛控邏輯）----------------
 function updateDronePhysics(rig, delta) {
     if (!rig.mesh || !matchStarted) return;
 
@@ -1950,9 +1950,9 @@ function pickAttackPattern(atk) {
 // 改回傳每台防守機依目前速度外推 predictHorizon 秒後的預測位置，而非當下位置。
 // 只計入「離球門夠近、算是實際在防守」的防守機（距離球門中心 < GAP_BLOCKER_MAX_DIST）：
 // 中垂線幾何演算法假設兩台防守機都貼在球門附近，若防守機遠離球門，算出來的縫隙方向會是離譜的假縫隙，
-// 而且因為防守機沒在動、每次判讀都算出幾乎同一個壞角度，導致攻擊機一路收斂瞄準過去卻剛好落在球門
+// 而且因為防守機沒在動、每次判讀都算出幾乎同一個壞角度，導致前鋒機一路收斂瞄準過去卻剛好落在球門
 // 框邊而非真正的開口中央，一次次撞框。忽略掉這種「名義上存在、但根本沒在防守」的防守機後，
-// 等於沒有防守機在場，攻擊機會直接瞄準球門正中央，行為正常許多。
+// 等於沒有防守機在場，前鋒機會直接瞄準球門正中央，行為正常許多。
 const GAP_BLOCKER_MAX_DIST = 1.8;
 function collectDefenderBlockers(predictHorizon = 0) {
     const ownGoalRing = attacker.targetRing;
@@ -2003,11 +2003,11 @@ function scanWidestGapAngle(ring, predictHorizon = 0) {
 // 只有 0~1 台防守機在場、或中垂線根本不與圓相交時，才退回 scanWidestGapAngle() 取樣法。
 // predictHorizon > 0（困難模式）時，改用防守機外推 predictHorizon 秒後的預測位置來算縫隙。
 //
-// 外心（中垂線與球門圓交點）幾何法只有在「兩台防守機都確實站在攻擊機與球門之間，且投影到球門
+// 外心（中垂線與球門圓交點）幾何法只有在「兩台防守機都確實站在前鋒機與球門之間，且投影到球門
 // XY 平面後都落在球門淨開口圓（RING_CLEAR_RADIUS）範圍內」時才有意義：這才代表兩台防守機真的
-// 從攻擊機的進攻方向左右夾住球門開口、真正擋在射門路線上，外心點才對應一個真實存在的縫隙。
+// 從前鋒機的進攻方向左右夾住球門開口、真正擋在射門路線上，外心點才對應一個真實存在的縫隙。
 // 只要有任一台不滿足，等距點就不再對應任何實際存在的空檔，算出來的方向可能剛好落在球門框邊而非
-// 安全開口——這正是攻擊機頻繁撞框、且撞的角度看起來很固定不變的成因。任一判別失敗都退回較保守的
+// 安全開口——這正是前鋒機頻繁撞框、且撞的角度看起來很固定不變的成因。任一判別失敗都退回較保守的
 // 取樣掃描法，並標記本次結果為不可靠（reliable: false）——這個標記會一路傳到突襲動作的「陡升或
 // 陡降」判斷：只有 reliable: true 時，困難模式才會依縫隙方向決定要陡升還是陡降，否則一律視為
 // 判讀不可靠，退回隨機決定方向，不採信外心位置。
@@ -2083,7 +2083,7 @@ function nearestDefenderDistance(attackerPos) {
     if (D2.mesh) minDist = Math.min(minDist, attackerPos.distanceTo(D2.position));
     return minDist;
 }
-// 撞框預防：只要攻擊機「目前實際位置」或「目前瞄準點」在球門 XY 平面上的投影半徑，有任一個落在
+// 撞框預防：只要前鋒機「目前實際位置」或「目前瞄準點」在球門 XY 平面上的投影半徑，有任一個落在
 // 框架的碰撞危險帶內，就立即修正。優先只調整 Y（升降）；只有水平分量本身已超出安全半徑、單靠升降
 // 救不回來時，才連同水平方向一起收斂。修正只動瞄準點與速度，不直接改動 attacker.position——直接
 // 搬動位置會跳過速度/加速度這層物理模擬，看起來像瞬間移動。真正的「快」交給呼叫端暫時提高轉向
@@ -2139,7 +2139,7 @@ function computeGoalGapOffset(atk, targetRadius) {
     return { x: Math.cos(atk.gapAngle) * targetR, y: Math.sin(atk.gapAngle) * targetR };
 }
 
-// ---------------- 退回己方半場判定（AI 攻擊機得分後須「整機」退回己方半場才能再次進攻）----------------
+// ---------------- 退回己方半場判定（AI 前鋒機得分後須「整機」退回己方半場才能再次進攻）----------------
 // 護籠完全越過中線（球心距中線 ≥ 護籠半徑）才恢復得分資格；己方半場 = 目標球門的對側
 function checkAttackerCenterLineCrossing() {
     if (!attacker.mesh || !attacker.targetRing || readyToScore) return;
@@ -2147,8 +2147,8 @@ function checkAttackerCenterLineCrossing() {
     if (attacker.position.z * ownSign >= DRONE_CAGE_RADIUS) {
         readyToScore = true;
         playCenterLineSound();
-        notify(D1, "AI 攻擊機已退回己方半場 - 準備再次進攻");
-        notify(D2, "AI 攻擊機已退回己方半場 - 準備再次進攻");
+        notify(D1, "AI 前鋒機已退回己方半場 - 準備再次進攻");
+        notify(D2, "AI 前鋒機已退回己方半場 - 準備再次進攻");
         if (attacker.phase === 'retreat') attacker.phase = 'descend';
     }
 }
@@ -2204,7 +2204,7 @@ function checkRingFrameCollision(rig) {
     });
 }
 
-// AI 攻擊機與光環框架的碰撞（反彈），以及穿越藍方球門中心的計分判定
+// AI 前鋒機與光環框架的碰撞（反彈），以及穿越藍方球門中心的計分判定
 function checkAttackerRingCollisions() {
     if (!attacker.mesh || !attacker.targetRing || attacker.altitudeState !== 'flying') return;
     const ring = attacker.targetRing;
@@ -2233,7 +2233,7 @@ function checkAttackerRingCollisions() {
 
             // 撞框代表這一波瞄準角度算錯了，跟被防守機攔截一樣需要重新評估，而不是彈開後立刻
             // 沿用同一套（可能還是算錯的）瞄準點往同一個地方再撞一次——這正是「兩台防守機都卡
-            // 在下方，攻擊機卻一直重複撞上方框架」的根本原因：原本撞框完全不會觸發任何重整
+            // 在下方，前鋒機卻一直重複撞上方框架」的根本原因：原本撞框完全不會觸發任何重整
             if (attacker.phase === 'advance' && attacker.targetRing) {
                 const missAngle = Math.atan2(py, px); // 撞擊點相對球門中心的方位角
                 const verticalness = Math.abs(Math.sin(missAngle)); // 1=正上/正下方失手，0=側邊失手
@@ -2305,12 +2305,12 @@ function checkAttackerRingCollisions() {
                 readyToScore = false;
                 playDeniedGoalSound();
                 createExplosion(ring.pos, 0xef4444);
-                notify(D1, `失球！AI 攻擊機完整穿越藍方球門，總失球：${score}（對方需退回己方半場才能再次進攻）`);
-                notify(D2, `失球！AI 攻擊機完整穿越藍方球門，總失球：${score}（對方需退回己方半場才能再次進攻）`);
+                notify(D1, `失球！AI 前鋒機完整穿越藍方球門，總失球：${score}（對方需退回己方半場才能再次進攻）`);
+                notify(D2, `失球！AI 前鋒機完整穿越藍方球門，總失球：${score}（對方需退回己方半場才能再次進攻）`);
                 flashGoalRing(ring, 0xef4444);
                 attacker.phase = 'retreat';
             } else {
-                notify(D1, "攻擊機意外穿越，正繞回前方重新進攻");
+                notify(D1, "前鋒機意外穿越，正繞回前方重新進攻");
                 attacker.phase = 'loopback';
             }
         }
@@ -2318,7 +2318,7 @@ function checkAttackerRingCollisions() {
     ring.attackerPrevSide = currentSide;
 }
 
-// ---------------- AI 攻擊機主邏輯：起降狀態機 + 完整進攻行為（演算法參照範例遊戲）----------------
+// ---------------- AI 前鋒機主邏輯：起降狀態機 + 完整進攻行為（演算法參照範例遊戲）----------------
 function updateAttacker(delta) {
     if (!attacker.mesh || !attacker.targetRing) return;
 
@@ -2368,7 +2368,7 @@ function updateAttacker(delta) {
 
     // altitudeState === 'flying'：完整進攻行為邏輯
 
-    // 若攻擊機已經離開「進攻階段」但突襲動作仍殘留在進行中，立即強制中止
+    // 若前鋒機已經離開「進攻階段」但突襲動作仍殘留在進行中，立即強制中止
     if (attacker.phase !== 'advance' && attacker.jukePhase !== 'none') {
         attacker.jukePhase = 'none';
     }
@@ -2381,8 +2381,8 @@ function updateAttacker(delta) {
         if (behindGoal) { attacker.phase = 'loopback'; attacker.jukePhase = 'none'; attacker.reactionTimer = 0; }
     }
 
-    // 判斷「兩台防守機是否都已經被拋在攻擊機後方」：直接比較 D1、D2 離球門的距離，只要攻擊機比
-    // 兩者都更接近球門，代表已經沒有防守機還擋在攻擊機與球門之間，直接筆直衝向球門正中央即可，
+    // 判斷「兩台防守機是否都已經被拋在前鋒機後方」：直接比較 D1、D2 離球門的距離，只要前鋒機比
+    // 兩者都更接近球門，代表已經沒有防守機還擋在前鋒機與球門之間，直接筆直衝向球門正中央即可，
     // 不需要曲線搖擺／假動作／突襲這類專門用來甩開防守機的花俏路線
     let bothDefendersBehind = false;
     if (attacker.phase === 'advance') {
@@ -2578,7 +2578,7 @@ function updateAttacker(delta) {
     });
 }
 
-// ---------------- 攻擊機 vs 防守機（D1/D2 皆適用）實體碰撞：攔截成功，攻擊機被彈開並強迫重新整隊 ----------------
+// ---------------- 前鋒機 vs 防守機（D1/D2 皆適用）實體碰撞：攔截成功，前鋒機被彈開並強迫重新整隊 ----------------
 function checkAttackerVsDefenderCollision(defenderRig) {
     if (!attacker.mesh || !defenderRig.mesh || attacker.altitudeState !== 'flying') return;
     const droneRadius = DRONE_CAGE_RADIUS;
@@ -2588,7 +2588,7 @@ function checkAttackerVsDefenderCollision(defenderRig) {
     const diffHoriz = new THREE.Vector3(diffFull.x, 0, diffFull.z);
     const dist = diffHoriz.length();
     if (dist < combinedRadius && dist > 0.001) {
-        const normal = diffHoriz.normalize(); // 由攻擊機指向防守機（純水平）
+        const normal = diffHoriz.normalize(); // 由前鋒機指向防守機（純水平）
 
         const overlap = combinedRadius - dist;
         attacker.position.addScaledVector(normal, -overlap * 0.85);
@@ -2647,8 +2647,8 @@ function checkAttackerVsDefenderCollision(defenderRig) {
         if (isSolidHit) {
             createExplosion(attacker.position.clone(), 0x10b981);
             playChimeSound();
-            notify(D1, "成功攔截 AI 攻擊機！");
-            notify(D2, "成功攔截 AI 攻擊機！");
+            notify(D1, "成功攔截 AI 前鋒機！");
+            notify(D2, "成功攔截 AI 前鋒機！");
         }
     }
 }
@@ -2692,7 +2692,7 @@ const DEFAULT_CAM_VIEWS = ['chase', 'cockpit', 'free'];
 // 身高約 165 公分（眼睛高度 1.53 公尺），人原地不動、視線固定
 const PILOT_NET_Z = 3.0;            // 短邊球網位置（場地長 6 公尺）
 const PILOT_NET_CLEARANCE = 0.06;   // 鏡頭最近可視距離 0.05 公尺，留 6 公分避免球網被鏡頭切掉閃爍
-// 操控手離球網的距離（rig.pilotBack）：防守機操控手站在網後 1 公尺，才看得到己方球門全景；攻擊機操控手貼網站
+// 操控手離球網的距離（rig.pilotBack）：防守機操控手站在網後 1 公尺，才看得到己方球門全景；前鋒機操控手貼網站
 function pilotBackOf(rig) { return Math.max(rig.pilotBack > 0 ? rig.pilotBack : pilotBack, PILOT_NET_CLEARANCE); }
 const PILOT_EYE_HEIGHT = 1.53;
 // 定中視角的鏡頭視野（度）：螢幕在眼中只佔約 30 度，視野開太寬會把遠方球門縮得很小、顯得很遠。
@@ -2852,7 +2852,7 @@ function updateCameraFor(rig) {
 function prepareRenderFor(rig) {
     [D1, D2].forEach(r => { if (r.mesh) r.mesh.visible = !(r === rig && camView(r) === 'cockpit'); });
     setEndNetsVisible(rig.hideNetSide || 0);
-    // 攻擊機操控手貼著己方球網站（定中／定左／定右）：自家球門就在眼前上方，整座隱藏避免遮蔽視線
+    // 前鋒機操控手貼著己方球網站（定中／定左／定右）：自家球門就在眼前上方，整座隱藏避免遮蔽視線
     const v = camView(rig);
     const hideOwn = !(rig.pilotBack > 0) && pilotBack < 0.3 && (v === 'center' || v === 'left' || v === 'right');
     ringCourse.forEach(r => {
@@ -2874,11 +2874,11 @@ function updateHUDFor(rig) {
         if (readyToScore) {
             statusDot.className = "w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]";
             statusText.className = "text-[9px] font-semibold tech-font text-emerald-300";
-            statusText.innerText = "攻擊機可進攻";
+            statusText.innerText = "前鋒機可進攻";
         } else {
             statusDot.className = "w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_6px_rgba(251,191,36,0.8)] animate-pulse";
             statusText.className = "text-[9px] font-semibold tech-font text-amber-300";
-            statusText.innerText = "攻擊機須退回半場";
+            statusText.innerText = "前鋒機須退回半場";
         }
     }
 
@@ -2967,7 +2967,7 @@ function triggerAttackerTakeoff() {
 function triggerAttackerLanding() {
     if (attacker.altitudeState === 'flying' || attacker.altitudeState === 'takingoff') attacker.altitudeState = 'landing';
 }
-// 全體起飛／降落：讓兩台防守機與 AI 攻擊機一起升空／一起降落
+// 全體起飛／降落：讓兩台防守機與 AI 前鋒機一起升空／一起降落
 function triggerGlobalTakeoff() {
     triggerTakeoff(D1);
     triggerTakeoff(D2);
@@ -3771,7 +3771,7 @@ function setupPadSetup() {
 }
 
 
-// 各玩家的視角清單：攻擊機 追蹤→定中→座艙→自由；單防守機 定中→定左→定右→座艙→自由；雙防守機一左一右
+// 各玩家的視角清單：前鋒機 追蹤→定中→座艙→自由；單防守機 定中→定左→定右→座艙→自由；雙防守機一左一右
 D1.camViews = ['left', 'cockpit', 'free']; D1.camIdx = 0;
 D2.camViews = ['right', 'cockpit', 'free']; D2.camIdx = 0;
 [D1, D2].forEach(r => { r.pilotBack = (r.camViews || []).includes('chase') ? 0 : 1.0; }); // 防守機操控手站在網後 1 公尺
@@ -3839,7 +3839,7 @@ function startMatch() {
     soundEnabled = true;
     hideStartScreens();
     notify(D1, "比賽開始 - 目標：穿越藍方球門得分");
-    notify(D2, "比賽開始 - 鎮守藍方球門，攔截攻擊機");
+    notify(D2, "比賽開始 - 鎮守藍方球門，攔截前鋒機");
 }
 
 // ---------------- 重設整場比賽 ----------------
@@ -3874,7 +3874,7 @@ function resetGame() {
 
 // ---------------- UI 事件綁定 ----------------
 function bindUIEvents() {
-    // 開場畫面：選擇 AI 攻擊機難度（僅設定難度、不會觸發開始比賽）
+    // 開場畫面：選擇 AI 前鋒機難度（僅設定難度、不會觸發開始比賽）
     document.querySelectorAll('.atk-difficulty-option').forEach(el => {
         el.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -3900,7 +3900,7 @@ function bindUIEvents() {
         if (btnReset) btnReset.addEventListener('click', () => resetGame());
         const btnSound = document.getElementById(p + 'btnSound');
         if (btnSound) btnSound.addEventListener('click', () => toggleSound());
-        // 比賽中隨時可點擊此按鈕，在簡單／中等／困難之間循環切換 AI 攻擊機難度
+        // 比賽中隨時可點擊此按鈕，在簡單／中等／困難之間循環切換 AI 前鋒機難度
         const btnAtkDifficulty = document.getElementById(p + 'btnAtkDifficulty');
         if (btnAtkDifficulty) btnAtkDifficulty.addEventListener('click', () => cycleAttackDifficulty());
     });

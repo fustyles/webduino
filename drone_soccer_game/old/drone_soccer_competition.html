@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>無人機足球競技場 — 攻擊機</title>
+    <title>無人機足球競技場 — 前鋒機</title>
     <script>
         // 觸控裝置偵測（手機、平板；iPadOS 預設以桌面版 UA 開啟，需靠 maxTouchPoints 判斷）
         // 主要指標為手指（pointer: coarse）或無滑鼠懸停能力時視為觸控裝置；觸控筆電以滑鼠為主則維持鍵盤模式
@@ -466,7 +466,7 @@
         let score = 0;
         let particles = [];
 
-        // 5.5 「攻擊機得分後須先回中線才能再次計分」狀態追蹤
+        // 5.5 「前鋒機得分後須先回中線才能再次計分」狀態追蹤
         // readyToScore = true 表示目前允許穿越對手球門計分；穿越得分後會被設為 false，
         // 直到無人機的 Z 座標重新跨越場地中線 (Z = 0) 才會再度被設回 true。
         let readyToScore = true;
@@ -636,7 +636,7 @@
         // 定中視角：模擬真實比賽中操控手的位置——站在己方這一端的短邊球網前（貼網 0 公分）、場地正中央，
         // 眼睛正對對方球門；身高約 165 公分，眼睛高度約 1.53 公尺；人原地不動、視線固定
         const PILOT_NET_Z = 3.0;            // 短邊球網位置（場地長 6 公尺）
-        const PILOT_DIST_FROM_NET = 0.0;     // 操控手離球網的距離（攻擊機：貼著球網站）
+        const PILOT_DIST_FROM_NET = 0.0;     // 操控手離球網的距離（前鋒機：貼著球網站）
         const PILOT_NET_CLEARANCE = 0.06;   // 鏡頭最近可視距離 0.05 公尺，留 6 公分避免球網被鏡頭切掉閃爍
         const PILOT_EYE_HEIGHT = 1.53;      // 165 公分身高的眼睛高度
         // 定中視角的鏡頭視野（度）：螢幕在眼中只佔約 30 度，視野開太寬會把遠方球門縮得很小、顯得很遠。
@@ -1505,7 +1505,7 @@
         const GOAL_RING_GLOW_INTENSITY = 0.16;
         const GOAL_FLASH_COLOR = 0x10b981;     // 進球時閃爍的綠色
 
-        // 顯示／隱藏整座球門（圓環、上方顯示器、吊索）：攻擊機操控手貼網站立時，自家球門就在眼前上方，會擋住視線
+        // 顯示／隱藏整座球門（圓環、上方顯示器、吊索）：前鋒機操控手貼網站立時，自家球門就在眼前上方，會擋住視線
         function setGoalVisible(ring, visible) {
             if (ring.mesh) ring.mesh.visible = visible;
             if (ring.display) ring.display.group.visible = visible;
@@ -2627,7 +2627,7 @@
             setEndNetsVisible(0);
             const standDist = Math.max(PILOT_DIST_FROM_NET + pilotBack, PILOT_NET_CLEARANCE);
             ringCourse.forEach(r => setGoalVisible(r, true));
-            // 攻擊機操控手貼網站立（定中／定左／定右）：自家球門就在眼前上方，整座隱藏避免遮蔽視線
+            // 前鋒機操控手貼網站立（定中／定左／定右）：自家球門就在眼前上方，整座隱藏避免遮蔽視線
             if (cameraMode >= 3 && standDist < 0.3) {
                 const ownGoalAhead = camOwnGoal();
                 if (ownGoalAhead && pilotBack < 0.3) setGoalVisible(ownGoalAhead, false);

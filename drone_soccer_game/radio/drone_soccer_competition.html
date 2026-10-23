@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>無人機足球競技場 — 攻擊機</title>
+    <title>無人機足球競技場 — 前鋒機</title>
     <script>
         // 觸控裝置偵測（手機、平板；iPadOS 預設以桌面版 UA 開啟，需靠 maxTouchPoints 判斷）
         // 主要指標為手指（pointer: coarse）或無滑鼠懸停能力時視為觸控裝置；觸控筆電以滑鼠為主則維持鍵盤模式
@@ -577,7 +577,7 @@
         let score = 0;
         let particles = [];
 
-        // 5.5 「攻擊機得分後須先回中線才能再次計分」狀態追蹤
+        // 5.5 「前鋒機得分後須先回中線才能再次計分」狀態追蹤
         // readyToScore = true 表示目前允許穿越對手球門計分；穿越得分後會被設為 false，
         // 直到無人機的 Z 座標重新跨越場地中線 (Z = 0) 才會再度被設回 true。
         let readyToScore = true;
@@ -2207,7 +2207,7 @@
         const GOAL_RING_GLOW_INTENSITY = 0.16;
         const GOAL_FLASH_COLOR = 0x10b981;     // 進球時閃爍的綠色
 
-        // 顯示／隱藏整座球門（圓環、上方顯示器、吊索）：攻擊機操控手貼網站立時，自家球門就在眼前上方，會擋住視線
+        // 顯示／隱藏整座球門（圓環、上方顯示器、吊索）：前鋒機操控手貼網站立時，自家球門就在眼前上方，會擋住視線
         function setGoalVisible(ring, visible) {
             if (ring.mesh) ring.mesh.visible = visible;
             if (ring.display) ring.display.group.visible = visible;
@@ -3245,7 +3245,7 @@
         }
 
         // 攝影機動態平滑追蹤
-        // 操控手眼前的自家球門（攻擊機操控手站在己方球門這一端）
+        // 操控手眼前的自家球門（前鋒機操控手站在己方球門這一端）
         function pilotOwnGoal() { return getOwnGoalRing(); }
 
         const CHASE_CAM_MAX_Y = 2.55;   // 追蹤視角鏡頭最高高度（公尺），低於頂部充氣橫管（底緣約 2.775 公尺），避免視線被橫管遮住

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>無人機足球雙人對戰 — 1台攻擊機 vs 1台防守機</title>
+    <title>無人機足球雙人對戰 — 1台前鋒機 vs 1台防守機</title>
     <script>
         // 觸控裝置偵測（手機、平板；iPadOS 預設以桌面版 UA 開啟，需靠 maxTouchPoints 判斷）
         // 主要指標為手指（pointer: coarse）或無滑鼠懸停能力時視為觸控裝置；觸控筆電以滑鼠為主則維持鍵盤模式
@@ -225,9 +225,9 @@
             <div id="a-startScreen" class="absolute inset-0 z-50 flex flex-col items-center justify-center bg-slate-950/95 transition-all duration-700 p-4">
                 <div class="max-w-md w-full px-5 py-6 text-center glassmorphism rounded-2xl border border-emerald-500/30 shadow-[0_0_50px_rgba(16,185,129,0.15)]">
                     <span class="inline-block mb-2 px-3 py-1 rounded-full text-[11px] font-bold tracking-widest tech-font bg-rose-500/20 text-rose-300 border border-rose-500/40">PLAYER 1 · 攻擊</span>
-                    <h1 class="text-xl md:text-2xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-orange-400 mb-3">P1 攻擊機（紅隊）</h1>
+                    <h1 class="text-xl md:text-2xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-orange-400 mb-3">P1 前鋒機（紅隊）</h1>
                     <div class="text-left text-slate-300 text-xs md:text-sm mb-4">
-                        你操控<span class='text-rose-300 font-bold'>紅隊攻擊機</span>，目標是穿越場地另一端的<span class='text-blue-300 font-bold'>藍方球門</span>得分。小心對面的防守機攔截！
+                        你操控<span class='text-rose-300 font-bold'>紅隊前鋒機</span>，目標是穿越場地另一端的<span class='text-blue-300 font-bold'>藍方球門</span>得分。小心對面的防守機攔截！
                     </div>
                     <!-- 觸控裝置（手機／平板）專用操作說明 -->
                     <div class="touch-only p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-left mb-4">
@@ -239,7 +239,7 @@
                         </ul>
                     </div>
                     <div class="kb-only p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-left mb-4">
-                        <p class="font-bold text-emerald-400 mb-2 text-xs"><i class="fa-solid fa-gamepad mr-2"></i>USB 雙搖桿手把操控（玩家1・攻擊機（紅））</p>
+                        <p class="font-bold text-emerald-400 mb-2 text-xs"><i class="fa-solid fa-gamepad mr-2"></i>USB 雙搖桿手把操控（玩家1・前鋒機（紅））</p>
                         <ul class="space-y-1 text-slate-400 tech-font text-[11px]">
                             <li><span class="text-emerald-400 font-bold">左搖桿上下</span>：油門（定高模式＝升降快慢，回中即定高）</li>
                             <li><span class="text-emerald-400 font-bold">左搖桿左右</span>：偏航旋轉</li>
@@ -381,7 +381,7 @@
                     <span class="inline-block mb-2 px-3 py-1 rounded-full text-[11px] font-bold tracking-widest tech-font bg-blue-500/20 text-blue-300 border border-blue-500/40">PLAYER 2 · 防守</span>
                     <h1 class="text-xl md:text-2xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-3">P2 防守機（藍隊）</h1>
                     <div class="text-left text-slate-300 text-xs md:text-sm mb-4">
-                        你操控<span class='text-blue-300 font-bold'>藍隊防守機</span>，與一台<span class='text-yellow-300 font-bold'>AI隊友守門機</span>一起鎮守己方球門，合力攔截並彈開來襲的<span class='text-rose-300 font-bold'>紅隊攻擊機</span>，阻止對方得分！
+                        你操控<span class='text-blue-300 font-bold'>藍隊防守機</span>，與一台<span class='text-yellow-300 font-bold'>AI隊友守門機</span>一起鎮守己方球門，合力攔截並彈開來襲的<span class='text-rose-300 font-bold'>紅隊前鋒機</span>，阻止對方得分！
                     </div>
                     <!-- 觸控裝置（手機／平板）專用操作說明 -->
                     <div class="touch-only p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-left mb-4">
@@ -421,7 +421,7 @@
                             <span id="d-scoreText" class="text-xl font-extrabold tech-font text-yellow-300">0</span>
                             <span class="text-[10px] text-slate-400">球</span>
                         </div>
-                        <div class="text-[8px] text-slate-400 mt-1">被攻擊機穿越藍方球門即失分</div>
+                        <div class="text-[8px] text-slate-400 mt-1">被前鋒機穿越藍方球門即失分</div>
                         <div class="flex items-center gap-1.5 mt-1.5 pt-1.5 border-t border-slate-700/40">
                             <span id="d-scoreStatusDot" class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]"></span>
                             <span id="d-scoreStatusText" class="text-[9px] font-semibold tech-font text-emerald-300">可以得分</span>
@@ -565,7 +565,7 @@ const ringCourse = [
     { pos: new THREE.Vector3(0, GOAL_HEIGHT, 2.25), color: 0x3b82f6, team: 'blue', size: RING_CENTER_RADIUS * 2, lastPassTime: 0, forwardSign: 1, prevSide: null }
 ];
 
-// 固定角色：P1 永遠是紅隊攻擊機（攻擊藍方球門），P2 永遠是藍隊防守機（鎮守藍方球門）
+// 固定角色：P1 永遠是紅隊前鋒機（攻擊藍方球門），P2 永遠是藍隊防守機（鎮守藍方球門）
 const ATTACK_TEAM = 'red';
 const DEFEND_TEAM = 'blue';
 const CAGE_LENGTH = 6.0; // 需與 buildInflatableCage() 內的 cageL 保持一致，供場邊視角站位計算使用
@@ -730,7 +730,7 @@ function createRig(prefix, team) {
     };
 }
 
-const P1 = createRig('a-', ATTACK_TEAM);   // 攻擊機（人類玩家1）
+const P1 = createRig('a-', ATTACK_TEAM);   // 前鋒機（人類玩家1）
 const P2 = createRig('d-', DEFEND_TEAM);   // 防守機（人類玩家2，與 AI 隊友分工鎮守球門）
 
 // ---------------- AI 隊友守門機（第二台防守機，電腦控制，協助 P2 一起鎮守球門）----------------
@@ -1099,7 +1099,7 @@ function applyTeamColor(droneObj, colorHex) {
         isRedTeam ? TAIL_BEACON_COLORS.red : TAIL_BEACON_COLORS.blue,
         isRedTeam ? TAIL_BEACON_BOOST.red : TAIL_BEACON_BOOST.blue);
 }
-// ---------------- 建造 P1 攻擊機（高細節玩家機體）----------------
+// ---------------- 建造 P1 前鋒機（高細節玩家機體）----------------
 function buildPlayerDrone(rig) {
     const droneGroup = new THREE.Group();
     const innerGroup = new THREE.Group();
@@ -1293,7 +1293,7 @@ const GOAL_RING_GLOW = 0xfff6e6;       // 微弱自發光，讓暗場中仍看�
 const GOAL_RING_GLOW_INTENSITY = 0.16;
 const GOAL_FLASH_COLOR = 0x10b981;     // 進球時閃爍的綠色
 
-// 顯示／隱藏整座球門（圓環、上方顯示器、吊索）：攻擊機操控手貼網站立時，自家球門就在眼前上方，會擋住視線
+// 顯示／隱藏整座球門（圓環、上方顯示器、吊索）：前鋒機操控手貼網站立時，自家球門就在眼前上方，會擋住視線
 function setGoalVisible(ring, visible) {
     if (ring.mesh) ring.mesh.visible = visible;
     if (ring.display) ring.display.group.visible = visible;
@@ -1487,11 +1487,11 @@ function goalDisplayInfo(ring) {
     return {
         goals: target ? score : 0,
         tag: target ? '防守方球門' : '攻擊方球門',
-        status: !target ? ['#94a3b8', '攻擊方球門・不計分'] : readyToScore ? ['#34d399', '● 攻擊機可以得分'] : ['#fbbf24', '● 退回己方半場後才能再得分'],
+        status: !target ? ['#94a3b8', '攻擊方球門・不計分'] : readyToScore ? ['#34d399', '● 前鋒機可以得分'] : ['#fbbf24', '● 退回己方半場後才能再得分'],
     };
 }
 
-// 固定雙方隊伍配置與初始站位（攻擊機永遠紅隊、從紅方起飛區出發，防守機永遠藍隊鎮守藍方球門）
+// 固定雙方隊伍配置與初始站位（前鋒機永遠紅隊、從紅方起飛區出發，防守機永遠藍隊鎮守藍方球門）
 function setupMatch() {
     applyTeamColor(P1, TEAM_COLORS[ATTACK_TEAM]);
     P1.position.set(0, 0.1, -TAKEOFF_START_Z); // 前鋒機放在己方（紅方）起飛區
@@ -1500,10 +1500,10 @@ function setupMatch() {
 
     applyTeamColor(P2, TEAM_COLORS[DEFEND_TEAM]);
     const blueRing = ringCourse.find(r => r.team === DEFEND_TEAM);
-    // 防守機一開始也停在地面，位置與攻擊機對稱（離己方球門同樣距離），避免一開場就貼在光環上
+    // 防守機一開始也停在地面，位置與前鋒機對稱（離己方球門同樣距離），避免一開場就貼在光環上
     P2.position.set(blueRing.pos.x - 0.28, 0.1, blueRing.pos.z - blueRing.forwardSign * 1.05);
     P2.targetAltitude = 0.1;
-    P2.rotation.y = Math.PI; // 面向 -Z（面對攻擊機來向）
+    P2.rotation.y = Math.PI; // 面向 -Z（面對前鋒機來向）
 
     if (P1.mesh) { P1.mesh.position.copy(P1.position); P1.mesh.rotation.set(0, P1.rotation.y, 0); }
     if (P2.mesh) { P2.mesh.position.copy(P2.position); P2.mesh.rotation.set(0, P2.rotation.y, 0); }
@@ -1551,7 +1551,7 @@ function updateParticles(delta) {
     }
 }
 
-// ---------------- 無人機物理（通用，攻擊機/防守機共用同一套飛控邏輯）----------------
+// ---------------- 無人機物理（通用，前鋒機/防守機共用同一套飛控邏輯）----------------
 function updateDronePhysics(rig, delta) {
     if (!rig.mesh || !matchStarted) return;
 
@@ -1676,7 +1676,7 @@ function updateDronePhysics(rig, delta) {
     });
 }
 
-// ---------------- 退回己方半場判定與得分（僅攻擊機需要）----------------
+// ---------------- 退回己方半場判定與得分（僅前鋒機需要）----------------
 // 得分後回場規則：須「整機」退回己方半場（護籠完全越過中線，球心距中線 ≥ 護籠半徑）才恢復得分資格。紅隊己方半場為 Z<0
 function checkReturnToOwnHalf() {
     const rig = P1;
@@ -1685,7 +1685,7 @@ function checkReturnToOwnHalf() {
     if (rig.position.z * ownSign >= DRONE_CAGE_RADIUS) {
         readyToScore = true; playCenterLineSound();
         notify(rig, "已完整退回己方半場 - 可再次得分");
-        notify(P2, "攻擊機已退回己方半場 - 可再次進攻");
+        notify(P2, "前鋒機已退回己方半場 - 可再次進攻");
     }
 }
 
@@ -1740,7 +1740,7 @@ function checkRingFrameCollision(rig) {
     });
 }
 
-// 攻擊機穿越光環計分判定（僅 P1 觸發，穿越藍方球門才計分）
+// 前鋒機穿越光環計分判定（僅 P1 觸發，穿越藍方球門才計分）
 function checkRingScoring() {
     const rig = P1;
     if (!rig.mesh) return;
@@ -1778,7 +1778,7 @@ function checkRingScoring() {
                         playChimeSound();
                         createExplosion(ring.pos, 0x10b981);
                         notify(P1, `進球！完整穿越藍方球門，總分：${score}（需退回己方半場才能再次得分）`);
-                        notify(P2, `失球！攻擊機得分，總分：${score}（對方需退回己方半場才能再次進攻）`);
+                        notify(P2, `失球！前鋒機得分，總分：${score}（對方需退回己方半場才能再次進攻）`);
                         flashGoalRing(ring, 0x10b981);
                     } else {
                         playDeniedGoalSound();
@@ -1794,7 +1794,7 @@ function checkRingScoring() {
     });
 }
 
-// ---------------- AI 隊友守門機：依攻擊機(P1)位置攔截，帶反應延遲與瞄準誤差 ----------------
+// ---------------- AI 隊友守門機：依前鋒機(P1)位置攔截，帶反應延遲與瞄準誤差 ----------------
 function updateAIDefender(delta) {
     const aiState = aiDefender;
     if (!aiState.mesh || !aiState.guardRing || !P1.mesh) return;
@@ -1899,7 +1899,7 @@ function updateAIDefender(delta) {
     });
 }
 
-// ---------------- 攻擊機 vs 防守機（玩家或 AI 隊友皆適用）實體碰撞：攔截成功，攻擊機被彈開 ----------------
+// ---------------- 前鋒機 vs 防守機（玩家或 AI 隊友皆適用）實體碰撞：攔截成功，前鋒機被彈開 ----------------
 function checkAttackerVsDefenderCollision(defenderRig, isPlayer) {
     if (!P1.mesh || !defenderRig.mesh) return;
     const droneRadius = DRONE_CAGE_RADIUS;
@@ -1909,7 +1909,7 @@ function checkAttackerVsDefenderCollision(defenderRig, isPlayer) {
     const diffHoriz = new THREE.Vector3(diffFull.x, 0, diffFull.z);
     const dist = diffHoriz.length();
     if (dist < combinedRadius && dist > 0.001) {
-        const normal = diffHoriz.normalize(); // 由攻擊機指向防守機（純水平）
+        const normal = diffHoriz.normalize(); // 由前鋒機指向防守機（純水平）
 
         const overlap = combinedRadius - dist;
         P1.position.addScaledVector(normal, -overlap * 0.85);
@@ -1923,7 +1923,7 @@ function checkAttackerVsDefenderCollision(defenderRig, isPlayer) {
         createExplosion(P1.position.clone(), 0x10b981);
         playChimeSound();
         notify(P1, isPlayer ? "被防守機攔截！被彈開" : "被 AI 隊友攔截！被彈開");
-        notify(P2, isPlayer ? "成功攔截攻擊機！" : "AI 隊友成功攔截攻擊機！");
+        notify(P2, isPlayer ? "成功攔截前鋒機！" : "AI 隊友成功攔截前鋒機！");
     }
 }
 function checkAttackerVsDefenderCollisions() {
@@ -1967,7 +1967,7 @@ const DEFAULT_CAM_VIEWS = ['chase', 'cockpit', 'free'];
 // 身高約 165 公分（眼睛高度 1.53 公尺），人原地不動、視線固定
 const PILOT_NET_Z = 3.0;            // 短邊球網位置（場地長 6 公尺）
 const PILOT_NET_CLEARANCE = 0.06;   // 鏡頭最近可視距離 0.05 公尺，留 6 公分避免球網被鏡頭切掉閃爍
-// 操控手離球網的距離（rig.pilotBack）：防守機操控手站在網後 1 公尺，才看得到己方球門全景；攻擊機操控手貼網站
+// 操控手離球網的距離（rig.pilotBack）：防守機操控手站在網後 1 公尺，才看得到己方球門全景；前鋒機操控手貼網站
 function pilotBackOf(rig) { return Math.max(rig.pilotBack > 0 ? rig.pilotBack : pilotBack, PILOT_NET_CLEARANCE); }
 const PILOT_EYE_HEIGHT = 1.53;
 // 定中視角的鏡頭視野（度）：螢幕在眼中只佔約 30 度，視野開太寬會把遠方球門縮得很小、顯得很遠。
@@ -2127,7 +2127,7 @@ function updateCameraFor(rig) {
 function prepareRenderFor(rig) {
     [P1, P2].forEach(r => { if (r.mesh) r.mesh.visible = !(r === rig && camView(r) === 'cockpit'); });
     setEndNetsVisible(rig.hideNetSide || 0);
-    // 攻擊機操控手貼著己方球網站（定中／定左／定右）：自家球門就在眼前上方，整座隱藏避免遮蔽視線
+    // 前鋒機操控手貼著己方球網站（定中／定左／定右）：自家球門就在眼前上方，整座隱藏避免遮蔽視線
     const v = camView(rig);
     const hideOwn = !(rig.pilotBack > 0) && pilotBack < 0.3 && (v === 'center' || v === 'left' || v === 'right');
     ringCourse.forEach(r => {
@@ -2149,11 +2149,11 @@ function updateHUDFor(rig) {
         if (readyToScore) {
             statusDot.className = "w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]";
             statusText.className = "text-[9px] font-semibold tech-font text-emerald-300";
-            statusText.innerText = (rig === P1) ? "可以得分" : "攻擊機可進攻";
+            statusText.innerText = (rig === P1) ? "可以得分" : "前鋒機可進攻";
         } else {
             statusDot.className = "w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_6px_rgba(251,191,36,0.8)] animate-pulse";
             statusText.className = "text-[9px] font-semibold tech-font text-amber-300";
-            statusText.innerText = (rig === P1) ? "請退回己方半場" : "攻擊機須退回半場";
+            statusText.innerText = (rig === P1) ? "請退回己方半場" : "前鋒機須退回半場";
         }
     }
 
@@ -2242,7 +2242,7 @@ function triggerAIDefenderTakeoff() {
 function triggerAIDefenderLanding() {
     if (aiDefender.altitudeState === 'flying' || aiDefender.altitudeState === 'takingoff') aiDefender.altitudeState = 'landing';
 }
-// 全體起飛／降落：讓攻擊機、玩家防守機、AI 隊友守門機一起升空／一起降落
+// 全體起飛／降落：讓前鋒機、玩家防守機、AI 隊友守門機一起升空／一起降落
 function triggerGlobalTakeoff() {
     triggerTakeoff(P1);
     triggerTakeoff(P2);
@@ -2298,7 +2298,7 @@ function loadPadCfg(n) {
 }
 
 // 玩家欄位：每位人類玩家一格，padIndex = null 代表「自動」（依接上順序分配）
-const padSlots = ([{ rig: P1, name: '玩家1・攻擊機（紅）', team: 'red' }, { rig: P2, name: '玩家2・防守機（藍）', team: 'blue' }]).map((p, i) => ({ ...p, idx: i, padIndex: null, cfg: loadPadCfg(i), hud: null }));
+const padSlots = ([{ rig: P1, name: '玩家1・前鋒機（紅）', team: 'red' }, { rig: P2, name: '玩家2・防守機（藍）', team: 'blue' }]).map((p, i) => ({ ...p, idx: i, padIndex: null, cfg: loadPadCfg(i), hud: null }));
 padSlots.forEach(s => { s.rig.gp = { ...PAD_IDLE }; s.rig.gpAltArmed = false; s.rig.padSlot = s; });
 const PAD_BROWSER_LIMIT = 4; // Chrome／Edge 同時最多只回報 4 支手把
 let padEditSlot = 0;             // 設定面板目前正在調整的玩家
@@ -3046,7 +3046,7 @@ function setupPadSetup() {
 }
 
 
-// 各玩家的視角清單：攻擊機 追蹤→定中→座艙→自由；單防守機 定中→定左→定右→座艙→自由；雙防守機一左一右
+// 各玩家的視角清單：前鋒機 追蹤→定中→座艙→自由；單防守機 定中→定左→定右→座艙→自由；雙防守機一左一右
 P1.camViews = ['chase', 'center', 'cockpit', 'free']; P1.camIdx = 0;
 P2.camViews = ['center', 'left', 'right', 'cockpit', 'free']; P2.camIdx = 0;
 [P1, P2].forEach(r => { r.pilotBack = (r.camViews || []).includes('chase') ? 0 : 1.0; }); // 防守機操控手站在網後 1 公尺
@@ -3114,7 +3114,7 @@ function startMatch() {
     soundEnabled = true;
     hideStartScreens();
     notify(P1, "比賽開始 - 目標：穿越藍方球門得分");
-    notify(P2, "比賽開始 - 鎮守藍方球門，攔截攻擊機");
+    notify(P2, "比賽開始 - 鎮守藍方球門，攔截前鋒機");
 }
 
 // ---------------- 重設整場比賽 ----------------
