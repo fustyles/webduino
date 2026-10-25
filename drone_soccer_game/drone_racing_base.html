@@ -871,8 +871,38 @@
         function updateTailBeacon(beaconMat, beaconLight) {
             if (!beaconMat) return;
             beaconMat.color.copy(beaconMat.userData.baseColor);
-            if (beaconLight) beaconLight.intensity = 1.2;
+            if (beaconLight) beaconLight.intensity = 1.2 * (beaconLight.userData.boost || 1);
         }
+
+        // ---- 球機護籠／尾燈配色（參照三人對戰範本）----
+        // 預設（前鋒機）：藍色護籠＋高光藍色尾燈；防守機：紅色護籠＋高光紅色尾燈
+        // 藍光在暗場中視覺亮度偏低，藍色尾燈的光暈與點光源額外加強 2.2 倍，確保「超亮」
+        const ROLE_CAGE_COLORS = { attack: 0x3b82f6, defense: 0xef4444 };
+        const ROLE_TAIL_COLORS = { attack: 0x1e90ff, defense: 0xff1a1a };
+        const ROLE_TAIL_BOOST = { attack: 2.2, defense: 1.0 };
+        function setTailBeaconColor(beaconMat, beaconLight, colorHex, boost = 1) {
+            if (!beaconMat) return;
+            const newColor = new THREE.Color(colorHex);
+            beaconMat.userData.baseColor = newColor;
+            beaconMat.color.copy(newColor);
+            if (beaconMat.userData.haloMats) beaconMat.userData.haloMats.forEach(h => {
+                if (h.userData.baseOpacity === undefined) h.userData.baseOpacity = h.opacity;
+                h.color.copy(newColor);
+                h.opacity = Math.min(1, h.userData.baseOpacity * boost);
+            });
+            if (beaconLight) { beaconLight.color.copy(newColor); beaconLight.userData.boost = boost; }
+        }
+        // 套用角色配色：role = 'attack'（藍）或 'defense'（紅）
+        function applyRoleCageColor(droneObj, role) {
+            const r = role === 'defense' ? 'defense' : 'attack';
+            if (droneObj.cageMatRef) {
+                droneObj.cageMatRef.color.setHex(ROLE_CAGE_COLORS[r]);
+                droneObj.cageMatRef.emissive.setHex(ROLE_CAGE_COLORS[r]);
+            }
+            setTailBeaconColor(droneObj.tailBeaconMat, droneObj.tailBeaconLight, ROLE_TAIL_COLORS[r], ROLE_TAIL_BOOST[r]);
+            updateTailBeacon(droneObj.tailBeaconMat, droneObj.tailBeaconLight);
+        }
+
 
         // 建造精密縮小版高科技無人機 (體積減小，動作在小球場更精緻靈活；整體以20公分球型護籠包覆)
         function buildDrone() {
@@ -963,8 +993,9 @@
             droneGroup.add(innerGroup);
 
             // 5. 足球狀測地線球型護籠 (外徑20公分，符合真實無人機足球規格)
-            const { group: cageGroup } = createDroneCage(DRONE_CAGE_RADIUS, 0x10b981);
+            const { group: cageGroup, material: cageMat } = createDroneCage(DRONE_CAGE_RADIUS, 0x3b82f6);
             droneGroup.add(cageGroup);
+            drone.cageMatRef = cageMat;
 
             // 5b. 機尾閃爍警示燈（緊貼中控主機機身背面，方便辨識機頭/機尾朝向）
             const { group: tailGroup, beaconMat: tailBeaconMat, beaconLight: tailBeaconLight } = createTailBeacon();
@@ -972,7 +1003,7 @@
             droneGroup.add(tailGroup);
             drone.tailBeaconMat = tailBeaconMat;
             drone.tailBeaconLight = tailBeaconLight;
-            updateTailBeacon(drone.tailBeaconMat, drone.tailBeaconLight);
+            applyRoleCageColor(drone, 'attack'); // 預設藍色護籠＋高光藍色尾燈
 
             // 底部雷射測距定高光束 (置於球體底部)
             const glowY = -DRONE_CAGE_RADIUS * 0.9;
