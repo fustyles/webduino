@@ -157,7 +157,7 @@
                 無人機足球競技場
             </h1>
             <p class="text-xs md:text-sm text-slate-300 mb-5 leading-relaxed text-left">
-                你將操控隊上其中一台<span class="text-yellow-300 font-bold">防守無人機（機身有金色警示環標記）</span>，與 AI 隊友一同鎮守己方球門；<span class="text-rose-300 font-bold">AI 前鋒機</span>會主動來襲，試圖穿越你方球門得分，請設法將它攔截、彈開！
+                你將操控隊上其中一台<span class="text-yellow-300 font-bold">防守無人機（紅色護籠＋紅色尾燈）</span>，與 AI 隊友一同鎮守己方球門；<span class="text-rose-300 font-bold">AI 前鋒機</span>會主動來襲，試圖穿越你方球門得分，請設法將它攔截、彈開！
             </p>
             <!-- 觸控裝置（手機／平板）專用操作說明 -->
             <div class="touch-only mb-6 p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-left text-xs md:text-sm text-slate-300">
@@ -663,10 +663,12 @@
         // 7. 對戰隊伍系統：玩家隊伍 / 對手隊伍 / 電腦守門機
         let playerTeam = 'red';           // 'red' 或 'blue'，可於開場畫面選擇
         const TEAM_COLORS = { red: 0xef4444, blue: 0x3b82f6 };
-        // 前鋒識別尾燈顏色：紅隊＝紅色尾燈、藍隊＝超亮藍色尾燈（與護籠同色系）
-        const TAIL_BEACON_COLORS = { red: 0xff1a1a, blue: 0x1e90ff };
-        // 藍光在暗場中視覺亮度偏低，藍隊尾燈的光暈與點光源額外加強，確保「超亮」
-        const TAIL_BEACON_BOOST = { red: 1.0, blue: 2.2 };
+        // 球機護籠／尾燈配色（參照三人對戰範本，依角色而非隊伍決定）：
+        // 前鋒機（預設）＝藍色護籠＋高光藍色尾燈；防守機（玩家與 AI 隊友）＝紅色護籠＋高光紅色尾燈
+        // 藍光在暗場中視覺亮度偏低，藍色尾燈的光暈與點光源額外加強 2.2 倍，確保「超亮」
+        const ROLE_CAGE_COLORS = { attack: 0x3b82f6, defense: 0xef4444 };
+        const ROLE_TAIL_COLORS = { attack: 0x1e90ff, defense: 0xff1a1a };
+        const ROLE_TAIL_BOOST = { attack: 2.2, defense: 1.0 };
         function getOpponentTeam(team) { return team === 'red' ? 'blue' : 'red'; }
         function getOwnGoalRing() { return ringCourse.find(r => r.team === playerTeam); }
         function getOpponentGoalRing() { return ringCourse.find(r => r.team === getOpponentTeam(playerTeam)); }
@@ -2529,7 +2531,12 @@
             droneGroup.add(cageGroup);
             drone.cageMatRef = cageMat;
 
-            // 6. 規則：只有前鋒需要特殊識別標誌，玩家防守機不配置尾燈
+            // 6. 機尾尾燈（防守機為高光紅色，顏色於 applyTeamColor() 依角色設定）
+            const { group: tailGroup, beaconMat: tailBeaconMat, beaconLight: tailBeaconLight } = createTailBeacon();
+            tailGroup.position.set(0, 0, -0.045); // 緊貼中控主機機身背面
+            droneGroup.add(tailGroup);
+            drone.tailBeaconMat = tailBeaconMat;
+            drone.tailBeaconLight = tailBeaconLight;
 
             // 底部雷射測距定高光束 (置於球體底部)
             const glowY = -DRONE_CAGE_RADIUS * 0.9;
@@ -2549,35 +2556,10 @@
             droneGroup.add(bottomGlow);
             drone.glowRef = bottomGlow;
 
-            // 7. 玩家專屬特殊標記：金色脈動警示環 + 頭頂指示光柱，方便在場上一眼辨識「這是玩家操控的防守機」
-            const markerRingGeo = new THREE.TorusGeometry(DRONE_CAGE_RADIUS * 1.4, 0.008, 8, 28);
-            const markerRingMat = new THREE.MeshBasicMaterial({ color: 0xfacc15, transparent: true, opacity: 0.85 });
-            const markerRing = new THREE.Mesh(markerRingGeo, markerRingMat);
-            markerRing.rotation.x = Math.PI / 2;
-            droneGroup.add(markerRing);
-            drone.markerRingRef = markerRing;
-
-            const markerBeamGeo = new THREE.ConeGeometry(0.02, 0.12, 8);
-            const markerBeamMat = new THREE.MeshBasicMaterial({ color: 0xfacc15, transparent: true, opacity: 0.9 });
-            const markerBeam = new THREE.Mesh(markerBeamGeo, markerBeamMat);
-            markerBeam.position.set(0, DRONE_CAGE_RADIUS + 0.09, 0);
-            droneGroup.add(markerBeam);
-            drone.markerBeamRef = markerBeam;
 
             droneGroup.position.copy(drone.position);
             scene.add(droneGroup);
             drone.mesh = droneGroup;
-        }
-
-        // 玩家標記動畫：金色警示環持續旋轉脈動，頭頂光柱上下漂浮，強化「這是你操控的機體」的視覺辨識度
-        function updatePlayerMarker(delta) {
-            if (drone.markerRingRef) {
-                drone.markerRingRef.rotation.z += delta * 1.5;
-                drone.markerRingRef.material.opacity = 0.55 + Math.sin(clock.getElapsedTime() * 5) * 0.3;
-            }
-            if (drone.markerBeamRef) {
-                drone.markerBeamRef.position.y = DRONE_CAGE_RADIUS + 0.09 + Math.sin(clock.getElapsedTime() * 3) * 0.02;
-            }
         }
 
         // 依隊伍顏色重新為無人機艙蓋 / 護籠 / 底部光球上色（玩家與守門機共用）
@@ -2590,15 +2572,13 @@
             if (droneObj.glowRef) {
                 droneObj.glowRef.material.color.setHex(colorHex);
             }
+            // 護籠與尾燈依角色上色：AI 前鋒機＝藍色護籠＋高光藍尾燈；防守機（玩家、AI 隊友）＝紅色護籠＋高光紅尾燈
+            const role = (droneObj === attacker) ? 'attack' : 'defense';
             if (droneObj.cageMatRef) {
-                droneObj.cageMatRef.color.setHex(colorHex);
-                droneObj.cageMatRef.emissive.setHex(colorHex);
+                droneObj.cageMatRef.color.setHex(ROLE_CAGE_COLORS[role]);
+                droneObj.cageMatRef.emissive.setHex(ROLE_CAGE_COLORS[role]);
             }
-            // 依隊伍顏色切換尾燈（只有前鋒機配置）：紅隊紅色尾燈、藍隊超亮藍色尾燈
-            const isRedTeam = (colorHex === TEAM_COLORS.red);
-            setTailBeaconColor(droneObj.tailBeaconMat, droneObj.tailBeaconLight,
-                isRedTeam ? TAIL_BEACON_COLORS.red : TAIL_BEACON_COLORS.blue,
-                isRedTeam ? TAIL_BEACON_BOOST.red : TAIL_BEACON_BOOST.blue);
+            setTailBeaconColor(droneObj.tailBeaconMat, droneObj.tailBeaconLight, ROLE_TAIL_COLORS[role], ROLE_TAIL_BOOST[role]);
         }
 
         // 建造電腦控制的守門無人機（外型較樸素以利辨識，鎮守對手球門）；傳入對應的 aiState 讓每台守門機各自持有自己的網格參照
@@ -2664,22 +2644,14 @@
             group.add(cageGroup);
             aiState.cageMatRef = cageMat;
 
-            // 前鋒識別尾燈：規則上只有前鋒需要特殊識別標誌，因此只有 AI 前鋒機配置，AI 隊友守門機不配置
-            if (aiState === attacker) {
+            // 機尾尾燈：AI 前鋒機為高光藍色、AI 隊友守門機為高光紅色（顏色於 applyTeamColor() 依角色設定）
+            {
                 const { group: tailGroup, beaconMat: tailBeaconMat, beaconLight: tailBeaconLight } = createTailBeacon();
                 tailGroup.position.set(0, 0, -0.045); // 緊貼中控主機機身背面
                 group.add(tailGroup);
                 aiState.tailBeaconMat = tailBeaconMat;
                 aiState.tailBeaconLight = tailBeaconLight;
             }
-
-            // 守門機專屬警示燈環（辨識用，緊貼護籠外側，持續脈動）
-            const warnGeo = new THREE.TorusGeometry(DRONE_CAGE_RADIUS * 1.15, 0.006, 8, 24);
-            const warnMat = new THREE.MeshBasicMaterial({ color: 0xfacc15, transparent: true, opacity: 0.55 });
-            const warnRing = new THREE.Mesh(warnGeo, warnMat);
-            warnRing.rotation.x = Math.PI / 2;
-            group.add(warnRing);
-            aiState.warnRingRef = warnRing;
 
             const glowY = -DRONE_CAGE_RADIUS * 0.9;
             const bottomGlowGeo = new THREE.SphereGeometry(0.015, 8, 8);
@@ -3987,12 +3959,6 @@
                 attacker.mesh.rotation.y = Math.atan2(attacker.velocity.x, attacker.velocity.z);
             }
 
-            // 警示燈環持續脈動
-            if (attacker.warnRingRef) {
-                const pulse = 0.4 + Math.sin(clock.getElapsedTime() * 6) * 0.25;
-                attacker.warnRingRef.material.opacity = pulse;
-            }
-
             // 螺旋槳待機旋轉動畫
             attacker.rotors.forEach((rotorGroup, idx) => {
                 const dir = (idx === 0 || idx === 3) ? 1 : -1;
@@ -4103,12 +4069,6 @@
             const lookDir = attacker.position.clone().sub(aiState.position);
             if (lookDir.length() > 0.05) {
                 aiState.mesh.rotation.y = Math.atan2(lookDir.x, lookDir.z);
-            }
-
-            // 警示燈環持續脈動，並依守門機自身隊伍顏色顯示
-            if (aiState.warnRingRef) {
-                const pulse = 0.4 + Math.sin(clock.getElapsedTime() * 6) * 0.25;
-                aiState.warnRingRef.material.opacity = pulse;
             }
 
             // 螺旋槳待機旋轉動畫
@@ -4481,10 +4441,11 @@
             updateCamera(delta);
             updateDroneSound();
             updateHUD();
-            updatePlayerMarker(delta);       // 玩家專屬金色標記動畫
 
-            // 前鋒識別尾燈：只有 AI 前鋒機配置
+            // 機尾尾燈：AI 前鋒機（藍）、玩家防守機與 AI 隊友（紅）
             updateTailBeacon(attacker.tailBeaconMat, attacker.tailBeaconLight);
+            updateTailBeacon(drone.tailBeaconMat, drone.tailBeaconLight);
+            aiDrones.forEach(ai => updateTailBeacon(ai.tailBeaconMat, ai.tailBeaconLight));
 
             renderer.render(scene, camera);
         }
