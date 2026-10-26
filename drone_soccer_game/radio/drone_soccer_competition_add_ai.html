@@ -387,7 +387,7 @@ function createRig(def) {
         ai: !!def.ai, guardHomeOffsetX: def.guardHomeOffsetX || 0,
         mesh: null, rotors: [], lights: [],
         canopyRef: null, cageMatRef: null, tailBeaconMat: null, tailBeaconLight: null,
-        glowRef: null, warnRingRef: null,
+        glowRef: null,
         position: new THREE.Vector3(0, 0.1, 0),
         velocity: new THREE.Vector3(0, 0, 0),
         rotation: new THREE.Euler(0, 0, 0, 'YXZ'),
@@ -768,7 +768,7 @@ function applyTeamColor(droneObj, colorHex) {
     if (droneObj.canopyRef) { droneObj.canopyRef.material.color.setHex(colorHex); droneObj.canopyRef.material.emissive.setHex(colorHex); }
     if (droneObj.glowRef) droneObj.glowRef.material.color.setHex(colorHex);
     if (droneObj.cageMatRef) { droneObj.cageMatRef.color.setHex(colorHex); droneObj.cageMatRef.emissive.setHex(colorHex); }
-    // 尾燈：紅隊紅色、藍隊超亮藍色（只有前鋒機配置尾燈）
+    // 尾燈：紅隊紅色、藍隊超亮藍色（每台無人機都有）
     const isRedTeam = (colorHex === TEAM_COLORS.red);
     setTailBeaconColor(droneObj.tailBeaconMat, droneObj.tailBeaconLight,
         isRedTeam ? TAIL_BEACON_COLORS.red : TAIL_BEACON_COLORS.blue,
@@ -941,14 +941,14 @@ function buildDefenderDrone(rig) {
     group.add(cageGroup);
     rig.cageMatRef = cageMat;
 
-    // 規則：只有前鋒需要特殊識別標誌，防守機不配置尾燈（以護籠旁的黃色警示環區分）
-
-    const warnGeo = new THREE.TorusGeometry(DRONE_CAGE_RADIUS * 1.15, 0.006, 8, 24);
-    const warnMat = new THREE.MeshBasicMaterial({ color: 0xfacc15, transparent: true, opacity: 0.55 });
-    const warnRing = new THREE.Mesh(warnGeo, warnMat);
-    warnRing.rotation.x = Math.PI / 2;
-    group.add(warnRing);
-    rig.warnRingRef = warnRing;
+    // 規則：每台無人機都有尾燈（依隊伍顏色：紅隊紅燈、藍隊藍燈）；不另加標記，比賽中由操控手自行辨認自己的無人機
+    {
+        const { group: tailGroup, beaconMat: tailBeaconMat, beaconLight: tailBeaconLight } = createTailBeacon();
+        tailGroup.position.set(0, 0, -0.045); // 緊貼中控主機機身背面
+        group.add(tailGroup);
+        rig.tailBeaconMat = tailBeaconMat;
+        rig.tailBeaconLight = tailBeaconLight;
+    }
 
     const glowY = -DRONE_CAGE_RADIUS * 0.9;
     const bottomGlowGeo = new THREE.SphereGeometry(0.015, 8, 8);
@@ -2161,10 +2161,6 @@ function updateAIAttacker(rig, delta) {
         rig.mesh.rotation.y = Math.atan2(rig.velocity.x, rig.velocity.z);
         rig.rotation.y = rig.mesh.rotation.y;
     }
-    if (rig.warnRingRef) {
-        const pulse = 0.4 + Math.sin(clock.getElapsedTime() * 6) * 0.25;
-        rig.warnRingRef.material.opacity = pulse;
-    }
     rig.rotors.forEach((rotorGroup, idx) => {
         const dir = (idx === 0 || idx === 3) ? 1 : -1;
         rotorGroup.rotation.y += dir * 50 * delta;
@@ -2425,10 +2421,6 @@ function updateSingleAIDrone(rig, delta) {
     if (lookDir.length() > 0.05) {
         rig.mesh.rotation.y = Math.atan2(lookDir.x, lookDir.z);
         rig.rotation.y = rig.mesh.rotation.y;
-    }
-    if (rig.warnRingRef) {
-        const pulse = 0.4 + Math.sin(clock.getElapsedTime() * 6) * 0.25;
-        rig.warnRingRef.material.opacity = pulse;
     }
     rig.rotors.forEach((rotorGroup, idx) => {
         const dir = (idx === 0 || idx === 3) ? 1 : -1;
@@ -3946,7 +3938,7 @@ function animate() {
     HUMAN_RIGS.forEach(updateCameraFor);
     RIGS.forEach(updateDroneSoundFor);
     RIGS.forEach(updateHUDFor);
-    RIGS.forEach(rig => { if (rig.role === 'attacker') updateTailBeacon(rig.tailBeaconMat, rig.tailBeaconLight); }); // 只有前鋒配置尾燈
+    RIGS.forEach(rig => updateTailBeacon(rig.tailBeaconMat, rig.tailBeaconLight)); // 每台無人機都有尾燈
 
     HUMAN_RIGS.forEach(rig => { prepareRenderFor(rig); rig.renderer.render(scene, rig.camera); });
 }

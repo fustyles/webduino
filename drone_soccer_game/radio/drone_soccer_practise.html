@@ -499,7 +499,7 @@
         // 球門高度：參考實際充氣場地，球門圓環高掛在網籠上方（頂樑底部約 2.78 公尺）。
         // 規則為「距地面 2 公尺，量至圓環內緣底部」；內徑 40 公分 → 圓環中心 2.0+0.2 = 2.2 公尺 → 圓環頂端約 2.55 公尺，上方再嵌入小型得分顯示器，仍低於頂樑。
         const GOAL_HEIGHT = 2.2;
-        const ringCourse = [
+        const goalRings = [
             { pos: new THREE.Vector3(0, GOAL_HEIGHT, -2.25), color: 0xef4444, team: 'red', passes: 0, size: RING_CENTER_RADIUS * 2, lastPassTime: 0, forwardSign: -1, prevSide: null }, // 紅色方框球門線正上方，高度置中；正向穿越方向為 -Z（由場地中央飛向紅方球門外）
             { pos: new THREE.Vector3(0, GOAL_HEIGHT, 2.25), color: 0x3b82f6, team: 'blue', passes: 0, size: RING_CENTER_RADIUS * 2, lastPassTime: 0, forwardSign: 1, prevSide: null }   // 藍色方框球門線正上方，高度置中；正向穿越方向為 +Z（由場地中央飛向藍方球門外）
         ];
@@ -1928,7 +1928,7 @@
             g.fillText(`總計穿越 ${score} 次`, W / 2, H - 20);
             gd.texture.needsUpdate = true;
         }
-        function updateGoalDisplays() { ringCourse.forEach(drawGoalDisplay); }
+        function updateGoalDisplays() { goalRings.forEach(drawGoalDisplay); }
 
         function buildGoalDisplay(ringData) {
             const canvas = document.createElement('canvas');
@@ -1969,7 +1969,7 @@
         }
 
         function setupTargetRings() {
-            ringCourse.forEach((ringData) => {
+            goalRings.forEach((ringData) => {
                 // 立體乳白色圓環：加粗管徑＋高細分，搭配清漆材質呈現光亮飽滿的立體感
                 const ringGeo = new THREE.TorusGeometry(ringData.size / 2, RING_TUBE_RADIUS, 40, 120);
                 const ringMat = new THREE.MeshPhysicalMaterial({
@@ -2418,7 +2418,7 @@
             const droneRadius = DRONE_CAGE_RADIUS; // 無人機球型護籠有效碰撞半徑 (直徑20cm)
             const tubeCollisionThreshold = r + droneRadius; // 0.175m
 
-            ringCourse.forEach((ring) => {
+            goalRings.forEach((ring) => {
                 // 0. 球門上方顯示器的實體碰撞：以球體對方塊判定，撞到就彈開
                 if (ring.display) {
                     const c = ring.display.center, h = ring.display.half;
@@ -2558,7 +2558,7 @@
         // 操控手所站的那一端：練習模式固定站在紅方（-Z）這一端
         function pilotOwnEndSign() { return -1; }
         // 操控手眼前的球門：紅方球門（-Z 端）
-        function pilotOwnGoal() { return ringCourse.find(r => r.team === 'red'); }
+        function pilotOwnGoal() { return goalRings.find(r => r.team === 'red'); }
 
         // 攝影機動態平滑追蹤
         const CHASE_CAM_MAX_Y = 2.55;   // 追蹤視角鏡頭最高高度（公尺），低於頂部充氣橫管（底緣約 2.775 公尺），避免視線被橫管遮住
@@ -2604,7 +2604,7 @@
             if (!drone.mesh) return;
             setCameraFov(cameraMode === 3 ? (isDefenderRole() ? DEFENDER_FOV : PILOT_FOV) : DEFAULT_FOV);
             if (cameraMode < 3) setEndNetsVisible(0); // 定中、定左、定右都是貼網站立，其餘視角顯示兩端球網
-            ringCourse.forEach(r => setGoalVisible(r, true));
+            goalRings.forEach(r => setGoalVisible(r, true));
 
             if (cameraMode === 0) {
                 // 第三人稱跟隨 (Chase View) - 配合 6m 緊湊場景拉近距離
@@ -2649,7 +2649,7 @@
                 // 定中視角：貼著紅方短邊球網、站在正中央，固定直視藍方球門
                 drone.mesh.visible = true;
                 if (pilotStandExtra() < 0.3) setGoalVisible(pilotOwnGoal(), false); // 隱藏眼前的紅方球門，避免遮蔽視線
-                const target = ringCourse.find(r => r.team === 'blue');
+                const target = goalRings.find(r => r.team === 'blue');
                 const dir = target && target.pos.z < 0 ? -1 : 1;
                 camera.position.set(0, PILOT_EYE_HEIGHT, -dir * (PILOT_NET_Z + Math.max(PILOT_DIST_FROM_NET + pilotStandExtra(), PILOT_NET_CLEARANCE)));
                 if (target) pilotLook.copy(target.pos); else pilotLook.set(0, PILOT_EYE_HEIGHT, dir * 3);
@@ -2788,7 +2788,7 @@
             drone.gpAltArmed = false;
 
             score = 0;
-            ringCourse.forEach(ring => {
+            goalRings.forEach(ring => {
                 ring.lastPassTime = 0;
                 ring.prevSide = null; // 重置方向追蹤，避免沿用重設前的側邊狀態
                 ring.pendingForward = false;

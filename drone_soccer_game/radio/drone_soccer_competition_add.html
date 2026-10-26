@@ -714,7 +714,7 @@ const TAIL_BEACON_BOOST = { red: 1.0, blue: 2.2 };
 // 起飛區（規則：底線中央、寬度不超過 1 公尺）：寬 1 m、深 0.8 m（深度規則未規定，自訂）；前鋒機放在區內距底線 0.4 m 處
 const TAKEOFF_ZONE_W = 1.0, TAKEOFF_ZONE_D = 0.8, TAKEOFF_START_Z = 2.6;
 const GOAL_HEIGHT = 2.2;
-const ringCourse = [
+const goalRings = [
     { pos: new THREE.Vector3(0, GOAL_HEIGHT, -2.25), color: 0xef4444, team: 'red', size: RING_CENTER_RADIUS * 2, lastPassTime: 0, forwardSign: -1, prevSide: null },
     { pos: new THREE.Vector3(0, GOAL_HEIGHT, 2.25), color: 0x3b82f6, team: 'blue', size: RING_CENTER_RADIUS * 2, lastPassTime: 0, forwardSign: 1, prevSide: null }
 ];
@@ -866,7 +866,7 @@ function createRig(prefix, team) {
         prefix, team,
         mesh: null, rotors: [], lights: [],
         canopyRef: null, cageMatRef: null, tailBeaconMat: null, tailBeaconLight: null,
-        glowRef: null, warnRingRef: null,
+        glowRef: null,
         position: new THREE.Vector3(0, 0.1, 0),
         velocity: new THREE.Vector3(0, 0, 0),
         rotation: new THREE.Euler(0, 0, 0, 'YXZ'),
@@ -1222,7 +1222,7 @@ function applyTeamColor(droneObj, colorHex) {
     if (droneObj.canopyRef) { droneObj.canopyRef.material.color.setHex(colorHex); droneObj.canopyRef.material.emissive.setHex(colorHex); }
     if (droneObj.glowRef) droneObj.glowRef.material.color.setHex(colorHex);
     if (droneObj.cageMatRef) { droneObj.cageMatRef.color.setHex(colorHex); droneObj.cageMatRef.emissive.setHex(colorHex); }
-    // 尾燈：紅隊紅色、藍隊超亮藍色（只有前鋒機配置尾燈）
+    // 尾燈：紅隊紅色、藍隊超亮藍色（每台無人機都有）
     const isRedTeam = (colorHex === TEAM_COLORS.red);
     setTailBeaconColor(droneObj.tailBeaconMat, droneObj.tailBeaconLight,
         isRedTeam ? TAIL_BEACON_COLORS.red : TAIL_BEACON_COLORS.blue,
@@ -1334,7 +1334,7 @@ function buildPlayerDrone(rig) {
     rig.mesh = droneGroup;
 }
 
-// ---------------- 建造 DEF1 防守機（沿用原本守門機外型，加上警示環方便辨識）----------------
+// ---------------- 建造 DEF1 防守機（沿用原本守門機外型，加上依隊伍顏色的尾燈）----------------
 function buildDefenderDrone(rig) {
     const group = new THREE.Group();
     const innerGroup = new THREE.Group();
@@ -1394,14 +1394,14 @@ function buildDefenderDrone(rig) {
     group.add(cageGroup);
     rig.cageMatRef = cageMat;
 
-    // 規則：只有前鋒需要特殊識別標誌，防守機不配置尾燈（以護籠旁的黃色警示環區分）
-
-    const warnGeo = new THREE.TorusGeometry(DRONE_CAGE_RADIUS * 1.15, 0.006, 8, 24);
-    const warnMat = new THREE.MeshBasicMaterial({ color: 0xfacc15, transparent: true, opacity: 0.55 });
-    const warnRing = new THREE.Mesh(warnGeo, warnMat);
-    warnRing.rotation.x = Math.PI / 2;
-    group.add(warnRing);
-    rig.warnRingRef = warnRing;
+    // 規則：每台無人機都有尾燈（依隊伍顏色：紅隊紅燈、藍隊藍燈）；不另加標記，比賽中由操控手自行辨認自己的無人機
+    {
+        const { group: tailGroup, beaconMat: tailBeaconMat, beaconLight: tailBeaconLight } = createTailBeacon();
+        tailGroup.position.set(0, 0, -0.045); // 緊貼中控主機機身背面
+        group.add(tailGroup);
+        rig.tailBeaconMat = tailBeaconMat;
+        rig.tailBeaconLight = tailBeaconLight;
+    }
 
     const glowY = -DRONE_CAGE_RADIUS * 0.9;
     const bottomGlowGeo = new THREE.SphereGeometry(0.015, 8, 8);
@@ -1506,7 +1506,7 @@ function drawGoalDisplay(ring) {
     g.fillText(info.status[1], W / 2, H - 20);
     gd.texture.needsUpdate = true;
 }
-function updateGoalDisplays() { ringCourse.forEach(drawGoalDisplay); }
+function updateGoalDisplays() { goalRings.forEach(drawGoalDisplay); }
 
 function buildGoalDisplay(ringData) {
     const canvas = document.createElement('canvas');
@@ -1547,7 +1547,7 @@ function buildGoalDisplay(ringData) {
 }
 
 function setupTargetRings() {
-    ringCourse.forEach((ringData) => {
+    goalRings.forEach((ringData) => {
         // 立體乳白色圓環：加粗管徑＋高細分，搭配清漆材質呈現光亮飽滿的立體感
         const ringGeo = new THREE.TorusGeometry(ringData.size / 2, RING_TUBE_RADIUS, 40, 120);
         const ringMat = new THREE.MeshPhysicalMaterial({
@@ -1628,7 +1628,7 @@ function setupMatch() {
     ATK.rotation.y = 0; // 面向 +Z（藍方球門）
 
     applyTeamColor(DEF1, TEAM_COLORS[DEFEND_TEAM]);
-    const blueRing = ringCourse.find(r => r.team === DEFEND_TEAM);
+    const blueRing = goalRings.find(r => r.team === DEFEND_TEAM);
     // 防守機一開始也停在地面，位置與前鋒機對稱（離己方球門同樣距離），避免一開場就貼在光環上
     DEF1.position.set(blueRing.pos.x - 0.28, 0.1, blueRing.pos.z - blueRing.forwardSign * 1.05);
     DEF1.targetAltitude = 0.1;
@@ -1818,7 +1818,7 @@ function checkRingFrameCollision(rig) {
     const R = RING_CENTER_RADIUS, r = RING_TUBE_RADIUS;
     const droneRadius = DRONE_CAGE_RADIUS;
     const tubeCollisionThreshold = r + droneRadius;
-    ringCourse.forEach((ring) => {
+    goalRings.forEach((ring) => {
         // 0. 球門上方顯示器的實體碰撞：以球體對方塊判定，撞到就彈開
         if (ring.display) {
             const c = ring.display.center, h = ring.display.half;
@@ -1868,7 +1868,7 @@ function checkRingScoring() {
     const rig = ATK;
     if (!rig.mesh) return;
     const R = RING_CENTER_RADIUS, r = RING_TUBE_RADIUS;
-    ringCourse.forEach((ring) => {
+    goalRings.forEach((ring) => {
         // 完整穿越判定：(a) 球心由前側穿過環平面且偏離軸線 ≤ 淨開口半徑 − 護籠半徑 → 待確認
         //               (b) 球心越過環平面後方 ≥ 護籠半徑（整顆球完全通過）→ 才判定得分；(c) 期間反向退回 → 取消
         const passRadius = RING_CLEAR_RADIUS - DRONE_CAGE_RADIUS + 0.01;
@@ -1975,7 +1975,7 @@ function checkPlayerVsTeammateCollision() {
     }
 }
 // ---------------- 相機（每台無人機各自獨立視角）----------------
-function getOwnGoalRing(rig) { return ringCourse.find(r => r.team === rig.team); }
+function getOwnGoalRing(rig) { return goalRings.find(r => r.team === rig.team); }
 
 // ---------------- 相機（每位玩家各自獨立視角）----------------
 // 視角清單依角色而定（rig.camViews），相機按鈕依序切換：
@@ -2036,7 +2036,7 @@ function camView(rig) { const v = rig.camViews || DEFAULT_CAM_VIEWS; return v[(r
 function cameraViewLabel(rig) { return CAM_VIEW_NAMES[camView(rig)]; }
 // 操控手所站的那一端（己方球門那一端）：-1 = -Z 端，1 = +Z 端
 function ownEndSign(rig) {
-    const own = ringCourse.find(r => r.team === rig.team);
+    const own = goalRings.find(r => r.team === rig.team);
     return own && own.pos.z > 0 ? 1 : -1;
 }
 function updateCamTextFor(rig) {
@@ -2123,7 +2123,7 @@ function updateCameraFor(rig) {
     } else if (view === 'center') {
         // 定中：貼著己方短邊球網、站在正中央，固定直視對方球門
         const endSign = ownEndSign(rig);
-        const target = ringCourse.find(r => r.team !== rig.team);
+        const target = goalRings.find(r => r.team !== rig.team);
         camera.position.set(0, PILOT_EYE_HEIGHT, endSign * (PILOT_NET_Z + pilotBackOf(rig)));
         // 平常直視對方球門；無人機跑出畫面時才低頭／轉頭跟著看
         lookKeepingDrone(camera, rig.position, target ? target.pos : new THREE.Vector3(0, PILOT_EYE_HEIGHT, -endSign * 3), rig, 1 / 60);
@@ -2149,7 +2149,7 @@ function prepareRenderFor(rig) {
     // 前鋒機操控手貼著己方球網站（定中／定左／定右）：自家球門就在眼前上方，整座隱藏避免遮蔽視線
     const v = camView(rig);
     const hideOwn = !(rig.pilotBack > 0) && pilotBack < 0.3 && (v === 'center' || v === 'left' || v === 'right');
-    ringCourse.forEach(r => {
+    goalRings.forEach(r => {
         setGoalVisible(r, !(hideOwn && r.team === rig.team));
         // 鏡頭貼近球門顯示器（例如追蹤視角從己方球門後方跟拍）時暫時不畫它，避免整個畫面被顯示器擋住
         if (r.display && r.display.group.visible) r.display.group.visible = rig.camera.position.distanceTo(r.display.center) > 0.9;
@@ -3145,7 +3145,7 @@ function resetGame() {
     });
 
     score = 0;
-    ringCourse.forEach(ring => {
+    goalRings.forEach(ring => {
         ring.lastPassTime = 0;
         ring.prevSide = null;
         ring.pendingForward = false;
@@ -3213,6 +3213,8 @@ function animate() {
     updateHUDFor(DEF1);
     updateHUDFor(DEF2);
     updateTailBeacon(ATK.tailBeaconMat, ATK.tailBeaconLight);
+    updateTailBeacon(DEF1.tailBeaconMat, DEF1.tailBeaconLight);
+    updateTailBeacon(DEF2.tailBeaconMat, DEF2.tailBeaconLight);
 
     prepareRenderFor(ATK); ATK.renderer.render(scene, ATK.camera);
     prepareRenderFor(DEF1); DEF1.renderer.render(scene, DEF1.camera);
