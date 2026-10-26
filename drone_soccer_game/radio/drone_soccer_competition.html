@@ -1864,7 +1864,7 @@
             return { group, material };
         }
 
-        // 建造前鋒識別尾燈（僅前鋒機使用；固定安裝於機身本體正後方，而非護籠上，鮮紅色快閃，讓操作者一眼判別機尾/機頭朝向）
+        // 建造機尾尾燈（每台無人機都有；固定安裝於機身本體正後方，而非護籠上，鮮紅色快閃，讓操作者一眼判別機尾/機頭朝向）
         function createTailBeacon() {
             const group = new THREE.Group();
 
@@ -2154,7 +2154,14 @@
             group.add(cageGroup);
             aiState.cageMatRef = cageMat;
 
-            // 規則：只有前鋒機有識別尾燈；防守機不另加標記，比賽中由操控手自行辨認自己的無人機
+            // 規則：每台無人機都有尾燈（依隊伍顏色：紅隊紅燈、藍隊藍燈）；前鋒機不另加標記，比賽中由操控手自行辨認自己的無人機
+            {
+                const { group: tailGroup, beaconMat: tailBeaconMat, beaconLight: tailBeaconLight } = createTailBeacon();
+                tailGroup.position.set(0, 0, -0.045); // 緊貼中控主機機身背面
+                group.add(tailGroup);
+                aiState.tailBeaconMat = tailBeaconMat;
+                aiState.tailBeaconLight = tailBeaconLight;
+            }
 
             const glowY = -DRONE_CAGE_RADIUS * 0.9;
             const bottomGlowGeo = new THREE.SphereGeometry(0.015, 8, 8);
@@ -3446,8 +3453,9 @@
             updateDroneSound();
             updateHUD();
 
-            // 前鋒識別尾燈：只有前鋒（玩家機）配置
+            // 尾燈：玩家前鋒機與兩台 AI 守門機都有（依隊伍顏色常亮）
             updateTailBeacon(drone.tailBeaconMat, drone.tailBeaconLight);
+            aiDrones.forEach(ai => updateTailBeacon(ai.tailBeaconMat, ai.tailBeaconLight));
 
             renderer.render(scene, camera);
         }

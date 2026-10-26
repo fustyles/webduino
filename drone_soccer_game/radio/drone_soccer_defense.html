@@ -157,7 +157,7 @@
                 無人機足球競技場
             </h1>
             <p class="text-xs md:text-sm text-slate-300 mb-5 leading-relaxed text-left">
-                你將操控隊上其中一台<span class="text-yellow-300 font-bold">防守無人機（紅色護籠＋紅色尾燈）</span>，與 AI 隊友一同鎮守己方球門；<span class="text-rose-300 font-bold">AI 前鋒機</span>會主動來襲，試圖穿越你方球門得分，請設法將它攔截、彈開！
+                你將操控隊上其中一台<span class="text-yellow-300 font-bold">防守無人機（護籠與尾燈為隊伍顏色）</span>，與 AI 隊友一同鎮守己方球門；<span class="text-rose-300 font-bold">AI 前鋒機</span>會主動來襲，試圖穿越你方球門得分，請設法將它攔截、彈開！
             </p>
             <!-- 觸控裝置（手機／平板）專用操作說明 -->
             <div class="touch-only mb-6 p-3 bg-slate-900/80 rounded-lg border border-slate-800 text-left text-xs md:text-sm text-slate-300">
@@ -635,12 +635,10 @@
         // 7. 對戰隊伍系統：玩家隊伍 / 對手隊伍 / 電腦守門機
         let playerTeam = 'red';           // 'red' 或 'blue'，可於開場畫面選擇
         const TEAM_COLORS = { red: 0xef4444, blue: 0x3b82f6 };
-        // 球機護籠／尾燈配色（參照三人對戰範本，依角色而非隊伍決定）：
-        // 前鋒機（預設）＝藍色護籠＋高光藍色尾燈；防守機（玩家與 AI 隊友）＝紅色護籠＋高光紅色尾燈
-        // 藍光在暗場中視覺亮度偏低，藍色尾燈的光暈與點光源額外加強 2.2 倍，確保「超亮」
-        const ROLE_CAGE_COLORS = { attack: 0x3b82f6, defense: 0xef4444 };
-        const ROLE_TAIL_COLORS = { attack: 0x1e90ff, defense: 0xff1a1a };
-        const ROLE_TAIL_BOOST = { attack: 2.2, defense: 1.0 };
+        // 護籠／尾燈依隊伍顏色：紅隊紅色、藍隊藍色（玩家、AI 隊友與 AI 前鋒機都有尾燈）
+        // 藍光在暗場中視覺亮度偏低，藍隊尾燈的光暈與點光源額外加強 2.2 倍，確保「超亮」
+        const TAIL_BEACON_COLORS = { red: 0xff1a1a, blue: 0x1e90ff };
+        const TAIL_BEACON_BOOST = { red: 1.0, blue: 2.2 };
         function getOpponentTeam(team) { return team === 'red' ? 'blue' : 'red'; }
         function getOwnGoalRing() { return ringCourse.find(r => r.team === playerTeam); }
         function getOpponentGoalRing() { return ringCourse.find(r => r.team === getOpponentTeam(playerTeam)); }
@@ -2325,7 +2323,7 @@
             return { group, material };
         }
 
-        // 建造前鋒識別尾燈（僅前鋒機使用；固定安裝於機身本體正後方，而非護籠上，讓操作者一眼判別機尾/機頭朝向）
+        // 建造機尾尾燈（每台無人機都有；固定安裝於機身本體正後方，而非護籠上，讓操作者一眼判別機尾/機頭朝向）
         function createTailBeacon() {
             const group = new THREE.Group();
 
@@ -2501,7 +2499,7 @@
             droneGroup.add(cageGroup);
             drone.cageMatRef = cageMat;
 
-            // 6. 機尾尾燈（防守機為高光紅色，顏色於 applyTeamColor() 依角色設定）
+            // 6. 機尾尾燈（顏色於 applyTeamColor() 依隊伍設定）
             const { group: tailGroup, beaconMat: tailBeaconMat, beaconLight: tailBeaconLight } = createTailBeacon();
             tailGroup.position.set(0, 0, -0.045); // 緊貼中控主機機身背面
             droneGroup.add(tailGroup);
@@ -2542,13 +2540,15 @@
             if (droneObj.glowRef) {
                 droneObj.glowRef.material.color.setHex(colorHex);
             }
-            // 護籠與尾燈依角色上色：AI 前鋒機＝藍色護籠＋高光藍尾燈；防守機（玩家、AI 隊友）＝紅色護籠＋高光紅尾燈
-            const role = (droneObj === attacker) ? 'attack' : 'defense';
+            // 護籠與尾燈依隊伍上色：紅隊紅色、藍隊藍色
             if (droneObj.cageMatRef) {
-                droneObj.cageMatRef.color.setHex(ROLE_CAGE_COLORS[role]);
-                droneObj.cageMatRef.emissive.setHex(ROLE_CAGE_COLORS[role]);
+                droneObj.cageMatRef.color.setHex(colorHex);
+                droneObj.cageMatRef.emissive.setHex(colorHex);
             }
-            setTailBeaconColor(droneObj.tailBeaconMat, droneObj.tailBeaconLight, ROLE_TAIL_COLORS[role], ROLE_TAIL_BOOST[role]);
+            const isRedTeam = (colorHex === TEAM_COLORS.red);
+            setTailBeaconColor(droneObj.tailBeaconMat, droneObj.tailBeaconLight,
+                isRedTeam ? TAIL_BEACON_COLORS.red : TAIL_BEACON_COLORS.blue,
+                isRedTeam ? TAIL_BEACON_BOOST.red : TAIL_BEACON_BOOST.blue);
         }
 
         // 建造電腦控制的守門無人機（外型較樸素以利辨識，鎮守對手球門）；傳入對應的 aiState 讓每台守門機各自持有自己的網格參照
@@ -2614,7 +2614,7 @@
             group.add(cageGroup);
             aiState.cageMatRef = cageMat;
 
-            // 機尾尾燈：AI 前鋒機為高光藍色、AI 隊友守門機為高光紅色（顏色於 applyTeamColor() 依角色設定）
+            // 機尾尾燈（顏色於 applyTeamColor() 依隊伍設定）
             {
                 const { group: tailGroup, beaconMat: tailBeaconMat, beaconLight: tailBeaconLight } = createTailBeacon();
                 tailGroup.position.set(0, 0, -0.045); // 緊貼中控主機機身背面
