@@ -179,17 +179,6 @@
                     <li>起飛、降落、鏡頭、重設、靜音請點畫面右上角按鈕；點「手把」可重新開啟搖桿設定</li>
                 </ul>
             </div>
-<!--
-            <div class="p-3 mb-5 bg-slate-900/80 rounded-lg border border-slate-800 text-left text-xs md:text-sm text-slate-300">
-                <p class="font-bold text-yellow-300 mb-2"><i class="fa-solid fa-trophy mr-2"></i>Match Rules</p>
-                <ul class="space-y-1 text-slate-400 tech-font text-[11px] md:text-xs">
-                    <li>Goal ring <span class="text-white">same color as your drone = your own goal</span> (no score, defend it)</li>
-                    <li>Goal ring <span class="text-white">different color from your drone = opponent's goal</span> (score by crossing it)</li>
-                    <li>Your drone's nose faces the opponent's goal by default</li>
-                    <li>The opponent's goal is <span class="text-white">defended by 2 AI goalkeeper drones</span> (1 vs 2); colliding with them will knock you back</li>
-                </ul>
-            </div>
--->
             <p class="text-xs text-slate-400 mb-3 tracking-wider uppercase tech-font">選擇 AI 前鋒機難度</p>
             <div class="flex gap-2 mb-5">
                 <div id="btnAtkEasy" class="attack-difficulty-option flex-1 py-2.5 text-center cursor-pointer select-none rounded-xl glass-button border-slate-700/50" data-level="easy">
@@ -389,23 +378,6 @@
 
     </div>
 
-    <!-- 提示框 / 遊戲完賽慶祝面板 -->
-    <div id="victoryScreen" class="absolute inset-0 z-40 hidden flex-col items-center justify-center bg-slate-950/85 backdrop-blur-md transition-all duration-500">
-        <div class="max-w-md px-6 py-8 mx-4 text-center glassmorphism rounded-2xl border border-yellow-500/40 shadow-[0_0_50px_rgba(234,179,8,0.2)]">
-            <div class="flex justify-center mb-4 text-yellow-400 text-5xl animate-bounce">
-                <i class="fa-solid fa-trophy"></i>
-            </div>
-            <h2 class="text-2xl font-extrabold text-yellow-300 tracking-wider mb-2">任務完成！</h2>
-            <p class="text-slate-300 text-xs md:text-sm mb-6 leading-relaxed">
-                你已成功操控迷你無人機，穿越競技場內紅藍球門線正上方的霓虹光環！
-            </p>
-            <div class="flex gap-4">
-                <button id="btnRestart" class="w-full py-3 text-xs md:text-sm font-bold text-slate-950 bg-yellow-400 rounded-lg shadow-lg hover:bg-yellow-300 transition-all duration-300 uppercase">
-                    再玩一次
-                </button>
-            </div>
-        </div>
-    </div>
 
     <!-- 搖桿設定與校正（雙搖桿監看器）：開啟遊戲時先顯示，遊戲中可點「手把」按鈕重新開啟 -->
     <div id="padSetup" class="absolute inset-0 flex items-start justify-center bg-slate-950/95 overflow-y-auto py-6">
@@ -557,7 +529,7 @@
         // 配合 6m x 3m 尺寸：
         // 地板長度方向為 Z 軸 (Z: -3 至 +3)
         // 地板寬度方向為 X 軸 (X: -1.5 至 +1.5)
-        // 紅色球門線在 Z = -2.25，藍色球門線在 Z = 2.25。高度置中於場地高度正中央 (cageH / 2 = 1.5 米)。
+        // 紅色球門線在 Z = -2.25，藍色球門線在 Z = 2.25。圓環中心高 2.2 公尺（內緣底部離地 2 公尺）。
         // 依競賽規則調整：無人機球型護籠外徑 20 公分 (半徑 0.10m)；球門環內徑 40 公分 (半徑 0.20m)、外徑 70 公分 (管寬 15 公分)
         const DRONE_CAGE_RADIUS = 0.10;   // 無人機足球護籠半徑，整體球徑 = 20 公分
         const RING_CLEAR_RADIUS = 0.20;   // 球門環淨開口半徑，內徑 = 40 公分（競賽規則）
@@ -690,7 +662,6 @@
                 mesh: null,
                 canopyRef: null,
                 cageMatRef: null,
-                warnRingRef: null,
                 glowRef: null,
                 rotors: [],
                 position: new THREE.Vector3(0, 0.10, 2.25),
@@ -1208,7 +1179,6 @@
             mesh: null,
             canopyRef: null,
             cageMatRef: null,
-            warnRingRef: null,
             glowRef: null,
             tailBeaconMat: null,
             tailBeaconLight: null,
@@ -1882,7 +1852,7 @@
             droneSynth.gain.gain.value = soundEnabled ? (armed ? (0.015 + drone.input.throttle * 0.05) : 0) : 0;
         }
 
-        // 成功穿過霓虹圓環時的電子 chime 音效
+        // 成功進球時的電子 chime 音效
         function playChimeSound() {
             if (!soundEnabled || !audioCtx) return;
             try {
@@ -3361,7 +3331,7 @@
                 const dir = (idx === 0 || idx === 3) ? 1 : -1;
                 rotorGroup.rotation.y += dir * spinSpeed * delta;
             });
-        } // <-- ADDED THIS CLOSING BRACE
+        }
 
         // 得分後回場規則：AI 前鋒機須「整機」退回己方半場（護籠完全越過中線，球心距中線 ≥ 護籠半徑）才恢復得分資格。
         // 前鋒機的己方半場 = 目標球門（玩家球門）的對側
@@ -3381,7 +3351,7 @@
         function checkPlayerRingCollisions() {
             if (!drone.mesh) return;
 
-            const R = RING_CENTER_RADIUS; // 光環管中心線半徑 (淨開口內直徑 60cm，另加管粗)
+            const R = RING_CENTER_RADIUS; // 光環管中心線半徑 (淨開口內直徑 40cm，另加管粗)
             const r = RING_TUBE_RADIUS; // 圓環管粗半徑
             const droneRadius = DRONE_CAGE_RADIUS; // 無人機球型護籠有效碰撞半徑 (直徑20cm)
             const tubeCollisionThreshold = r + droneRadius;
@@ -4479,9 +4449,6 @@
 
             updateHUD();
 
-            document.getElementById('victoryScreen').classList.add('hidden');
-            document.getElementById('victoryScreen').classList.remove('flex');
-
             showSystemNotification("競技場已重設 - 各機回到防守／進攻起始位置");
         }
 
@@ -4541,7 +4508,6 @@
 
             document.getElementById('btnCam').addEventListener('click', cycleCameraMode);
             document.getElementById('btnReset').addEventListener('click', resetGame);
-            document.getElementById('btnRestart').addEventListener('click', resetGame);
             // 遊戲中隨時可點擊此按鈕，在簡單／中等／困難之間循環切換 AI 前鋒機難度
             document.getElementById('btnAtkDifficulty').addEventListener('click', cycleAttackDifficulty);
         }
