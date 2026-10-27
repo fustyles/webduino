@@ -562,6 +562,339 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/utils/BufferGeometryUtils.js"></script>
+<script>
+// ============================================================
+// 效能模組（PERF）：降低 3D 渲染負擔、避免控制延遲
+// 1. 陰影：場上會投陰影的燈分三類處理——
+//    · 球門頂燈：每格更新（無人機飛過會投影），陰影貼圖 1024 → 512
+//    · 角落投光燈：陰影只來自充氣柱、燈柱、球門這些固定物件，開場時先藏起無人機「烤」一次，之後沿用（每格成本 0）
+//    · 無人機底部測距光：只照亮地面，不再即時計算陰影
+// 2. 像素比上限 2 → 1.5；連續掉格時自動降畫質（像素比 1.5 → 1.25 → 1 → 關角落陰影 → 0.75），順了再調回
+// 3. 分割畫面（多人版）：多個玩家視窗共用「一個」渲染器，用 setViewport／setScissor 分割，陰影每格只算一次
+// 4. 合併外觀相同、不會相對移動的物件（充氣柱、燈柱、機臂、電機、LED），減少 draw call
+// 5. 粒子改用 InstancedMesh 物件池：不論場上多少顆，都只要 1 次 draw call
+// 6. HUD 文字／class 內容沒變就不寫入 DOM，避免每格觸發樣式重算
+// 網址參數：?debug 顯示效能面板；?dynres=0 關閉動態畫質；?shadows=lite 一開始就關閉角落陰影
+// ============================================================
+window.PERF = (function () {
+    'use strict';
+    const Q = new URLSearchParams(location.search);
+    const DEBUG = Q.has('debug');
+    const DYNAMIC = Q.get('dynres') !== '0';
+    const LITE_FORCED = Q.get('shadows') === 'lite';
+    const PR_CAP = Math.min(window.devicePixelRatio || 1, 1.5);
+    const STEPS = [PR_CAP, 1.25, 1].filter((v, i, a) => v <= PR_CAP && a.indexOf(v) === i).map(pr => ({ pr, lite: LITE_FORCED }));
+    STEPS.push({ pr: 1, lite: true }, { pr: 0.75, lite: true });
+    for (let i = STEPS.length - 1; i > 0; i--) if (STEPS[i].pr === STEPS[i - 1].pr && STEPS[i].lite === STEPS[i - 1].lite) STEPS.splice(i, 1);
+    const LOW_FPS = 45, HIGH_FPS = 58;   // 連續 2 秒低於 45 降一級；連續 3 秒高於 58 升一級
+
+    let renderer = null, step = 0;
+    let scenePrepared = false, baked = false;
+    const staticLights = [], dynamicLights = [];
+    const shadowPassCamera = new THREE.PerspectiveCamera(1, 1, 0.001, 0.002); // 視錐裡什麼都沒有，只用來觸發陰影計算
+    shadowPassCamera.position.set(0, -1000, 0);
+    shadowPassCamera.lookAt(0, -2000, 0);
+    shadowPassCamera.layers.enableAll();
+
+    // ---------- 6. HUD：內容沒變就不寫入 DOM ----------
+    // 原本 HUD 每格都重設 innerText／className，就算內容一樣，瀏覽器（和監看 class 變化的 Tailwind）也會重算樣式。
+    (function patchDomWrites() {
+        try {
+            const it = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'innerText');
+            if (it && it.set) Object.defineProperty(HTMLElement.prototype, 'innerText', {
+                configurable: true, enumerable: it.enumerable, get: it.get,
+                set(v) {
+                    const s = String(v), c = this.firstChild;
+                    if (c && c === this.lastChild && c.nodeType === 3 && c.nodeValue === s) return;
+                    it.set.call(this, s);
+                }
+            });
+            const cn = Object.getOwnPropertyDescriptor(Element.prototype, 'className');
+            if (cn && cn.set) Object.defineProperty(Element.prototype, 'className', {
+                configurable: true, enumerable: cn.enumerable, get: cn.get,
+                set(v) { if (cn.get.call(this) === v) return; cn.set.call(this, v); }
+            });
+        } catch (e) { /* 舊瀏覽器不支援就維持原狀 */ }
+    })();
+
+    function createRenderer() {
+        const r = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
+        attach(r);
+        return r;
+    }
+    function attach(r) {
+        renderer = r;
+        r.setPixelRatio(STEPS[step].pr);
+        r.shadowMap.autoUpdate = false;   // 陰影改由 PERF 每格手動觸發一次
+        r.info.autoReset = false;         // 一格內所有視窗的 draw call 加總後再歸零
+    }
+    function initialPixelRatio() { return STEPS[step].pr; }
+
+    // ---------- 4. 合併標記過的物件 ----------
+    function matSig(m) {
+        const c = x => (x && x.getHexString ? x.getHexString() : '');
+        return [m.type, c(m.color), c(m.emissive), m.emissiveIntensity, m.metalness, m.roughness, m.opacity, m.transparent, m.side, m.map ? m.map.uuid : ''].join('|');
+    }
+    function mergeTagged(scene) {
+        if (!THREE.BufferGeometryUtils) return 0;
+        const buckets = new Map();
+        scene.traverse(o => {
+            if (!o.isMesh || o.isInstancedMesh || !o.userData.perfMerge || !o.parent) return;
+            const key = [o.parent.uuid, o.userData.perfMerge, matSig(o.material), o.castShadow, o.receiveShadow, o.visible, o.renderOrder].join('#');
+            if (!buckets.has(key)) buckets.set(key, []);
+            buckets.get(key).push(o);
+        });
+        let saved = 0;
+        buckets.forEach(list => {
+            if (list.length < 2) return;
+            const geos = list.map(m => { m.updateMatrix(); return m.geometry.clone().applyMatrix4(m.matrix); });
+            const merged = THREE.BufferGeometryUtils.mergeBufferGeometries(geos, false);
+            geos.forEach(g => g.dispose());
+            if (!merged) return;
+            const parent = list[0].parent;
+            const mesh = new THREE.Mesh(merged, list[0].material);
+            mesh.castShadow = list[0].castShadow; mesh.receiveShadow = list[0].receiveShadow;
+            list.forEach(m => parent.remove(m));
+            parent.add(mesh);
+            saved += list.length - 1;
+        });
+        return saved;
+    }
+
+    // ---------- 1. 陰影分類 ----------
+    function classifyLights(scene) {
+        scene.traverse(o => {
+            if (!o.isSpotLight || !o.castShadow) return;
+            if (o.parent !== scene) { o.castShadow = false; return; }           // 掛在無人機上的測距光
+            if (o.shadow.mapSize.x >= 1024) {                                   // 球門頂燈
+                o.shadow.mapSize.set(512, 512);
+                dynamicLights.push(o);
+            } else {                                                            // 角落投光燈
+                o.shadow.autoUpdate = false;
+                o.shadow.needsUpdate = false;
+                if (LITE_FORCED) o.castShadow = false;
+                staticLights.push(o);
+            }
+        });
+    }
+    function prepareScene(scene) {
+        if (scenePrepared) return;
+        scenePrepared = true;
+        mergeTagged(scene);
+        classifyLights(scene);
+    }
+    // 開場烤角落陰影：藏起所有無人機（含 createDroneCage 標記的機體）與粒子，只留固定物件
+    function bakeStaticShadows(scene, restoreFn) {
+        const snapshot = [];
+        scene.traverse(o => snapshot.push([o, o.visible]));
+        try { if (restoreFn) restoreFn(); } catch (e) { }
+        scene.children.forEach(top => {
+            let isDrone = top.isInstancedMesh;
+            if (!isDrone) top.traverse(o => { if (o.userData.perfDrone) isDrone = true; });
+            if (isDrone) top.visible = false;
+        });
+        staticLights.forEach(l => { l.shadow.needsUpdate = true; });
+        renderer.shadowMap.needsUpdate = true;
+        renderer.setScissorTest(true);
+        renderer.setViewport(0, 0, 1, 1); renderer.setScissor(0, 0, 1, 1);
+        renderer.render(scene, shadowPassCamera);
+        renderer.setScissorTest(false);
+        snapshot.forEach(([o, v]) => { o.visible = v; });
+        baked = true;
+    }
+
+    // ---------- 單一畫面：取代 renderer.render(scene, camera) ----------
+    function renderSingle(scene, camera, restoreFn) {
+        frameStats();
+        renderer.info.reset();
+        prepareScene(scene);
+        if (!baked) {
+            bakeStaticShadows(scene, restoreFn);
+            const s = renderer.getSize(new THREE.Vector2());
+            renderer.setViewport(0, 0, s.x, s.y); renderer.setScissor(0, 0, s.x, s.y);
+        }
+        renderer.shadowMap.needsUpdate = true;   // 只有球門頂燈會在這裡重算
+        renderer.render(scene, camera);
+    }
+
+    // ---------- 3. 分割畫面：多個視窗共用一個渲染器 ----------
+    const split = (function () {
+        const views = [];
+        let canvasStyled = false;
+        function ensureRenderer() {
+            if (renderer) return renderer;
+            const r = createRenderer();
+            r.shadowMap.enabled = true;
+            r.shadowMap.type = THREE.PCFSoftShadowMap;
+            r.toneMapping = THREE.ACESFilmicToneMapping;
+            r.toneMappingExposure = 1.1;
+            r.setClearColor(0x000000, 1);
+            const c = r.domElement;
+            c.id = 'perfSharedCanvas';
+            // 畫布固定蓋滿整個視窗、放在 <body> 最前面（z-index 0），所以所有面板與 HUD 都畫在它上面，
+            // 層次和原本「每個面板底層一張畫布」相同；畫布不接收滑鼠事件，事件落到各面板的畫布容器
+            document.body.insertBefore(c, document.body.firstChild);
+            if (!canvasStyled) {
+                canvasStyled = true;
+                const st = document.createElement('style');
+                st.textContent = '#perfSharedCanvas{position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:0;pointer-events:none;display:block}' +
+                    '.arena-panel,.panel-root,#arenaGrid,#dualArena{background:transparent!important}' +
+                    '.panel-root{box-shadow:none!important}';   // 原本面板內側的隊伍色框線被畫布蓋住看不到，維持原樣   // 面板與外框改透明，才看得到底下的共用畫布（縫隙由畫布清成黑色）
+                document.head.appendChild(st);
+            }
+            window.addEventListener('resize', resize);
+            if (window.ResizeObserver) split._ro = new ResizeObserver(resize);
+            return r;
+        }
+        function addView(rig, container) {
+            const r = ensureRenderer();
+            views.push({ rig, container });
+            rig.view = { x: 0, y: 0, w: 0, h: 0 };
+            if (split._ro && container) split._ro.observe(container);
+            resize();
+            return r;
+        }
+        function resize() {
+            if (!renderer || !views.length) return;   // 單一畫面版沒有分割視窗，不處理
+            const W = window.innerWidth, H = window.innerHeight;
+            renderer.setSize(W, H, false);
+            views.forEach(({ rig, container }) => {
+                if (!container) return;
+                const b = container.getBoundingClientRect();
+                if (!b.width || !b.height) { rig.view.w = rig.view.h = 0; return; }
+                rig.view = { x: b.left, y: H - b.bottom, w: b.width, h: b.height };
+                if (rig.camera) { rig.camera.aspect = b.width / b.height; rig.camera.updateProjectionMatrix(); }
+            });
+        }
+        // 每格：①恢復各視窗暫時隱藏的物件 → ②陰影算一次 → ③清整張畫布 → ④依序畫每個視窗
+        function renderViews(scene, rigs, prepareFn, restoreFn) {
+            frameStats();
+            renderer.info.reset();
+            prepareScene(scene);
+            if (!baked) bakeStaticShadows(scene, restoreFn);
+            try { if (restoreFn) restoreFn(); } catch (e) { }
+            renderer.shadowMap.needsUpdate = true;
+            renderer.setScissorTest(true);
+            renderer.setViewport(0, 0, 1, 1); renderer.setScissor(0, 0, 1, 1);
+            renderer.render(scene, shadowPassCamera);
+            renderer.setScissorTest(false);
+            renderer.setClearColor(0x000000, 1);   // 背景渲染會改掉清除色，設回黑色再清整張畫布
+            renderer.clear();
+            renderer.setScissorTest(true);
+            rigs.forEach(rig => {
+                const v = rig.view;
+                if (!v || v.w < 2 || v.h < 2 || !rig.camera) return;
+                if (prepareFn) prepareFn(rig);
+                renderer.setViewport(v.x, v.y, v.w, v.h);
+                renderer.setScissor(v.x, v.y, v.w, v.h);
+                renderer.render(scene, rig.camera);
+            });
+            renderer.setScissorTest(false);
+        }
+        return { addView, resize, renderViews };
+    })();
+
+    // ---------- 5. 粒子：InstancedMesh 物件池 ----------
+    const PMAX = 192;
+    let pMesh = null;
+    const _m = new THREE.Matrix4(), _q = new THREE.Quaternion(), _s = new THREE.Vector3(), _c = new THREE.Color();
+    function spawnParticles(scene, list, position, colorHex, count, spread) {
+        if (!pMesh) {
+            const geo = new THREE.SphereGeometry(0.008, 6, 6);   // 顆粒半徑 0.8cm，避免遮蔽畫面
+            // 淡出：顏色乘上剩餘壽命並用加成混合，亮度慢慢歸零（效果等同原本的透明度淡出）
+            const mat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false });
+            pMesh = new THREE.InstancedMesh(geo, mat, PMAX);
+            pMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+            for (let i = 0; i < PMAX; i++) pMesh.setColorAt(i, _c.setRGB(0, 0, 0));
+            pMesh.count = 0;
+            pMesh.frustumCulled = false;
+            scene.add(pMesh);
+        }
+        for (let i = 0; i < count; i++) {
+            if (list.length >= PMAX) list.shift();   // 池子滿了，最舊的粒子先消失
+            list.push({
+                position: position.clone(),
+                velocity: new THREE.Vector3((Math.random() - 0.5) * spread, (Math.random() - 0.5) * spread, (Math.random() - 0.5) * spread),
+                color: new THREE.Color(colorHex), life: 1.0, decay: 0.02 + Math.random() * 0.03
+            });
+        }
+    }
+    function updateParticles(list, delta) {
+        if (!pMesh) return;
+        const frames = delta * 60;   // 壽命改用時間計算：原本每格固定扣一次，掉格時粒子會停留得比較久
+        for (let i = list.length - 1; i >= 0; i--) {
+            const p = list[i];
+            p.position.addScaledVector(p.velocity, delta);
+            p.life -= p.decay * frames;
+            if (p.life <= 0) list.splice(i, 1);
+        }
+        for (let i = 0; i < list.length; i++) {
+            const p = list[i];
+            _m.compose(p.position, _q, _s.setScalar(p.life));
+            pMesh.setMatrixAt(i, _m);
+            pMesh.setColorAt(i, _c.copy(p.color).multiplyScalar(p.life));
+        }
+        pMesh.count = list.length;
+        pMesh.instanceMatrix.needsUpdate = true;
+        if (pMesh.instanceColor) pMesh.instanceColor.needsUpdate = true;
+    }
+
+    // ---------- 2. 動態畫質與效能面板 ----------
+    const st = { last: 0, winStart: 0, frames: 0, fps: 0, ms: 0, low: 0, high: 0 };
+    let panel = null;
+    function frameStats() {
+        const now = performance.now();
+        if (!st.last) { st.last = st.winStart = now; return; }
+        const dt = now - st.last;
+        st.last = now;
+        // 分頁在背景時瀏覽器會暫停更新；回來後的第一格間隔特別長，不列入統計
+        if (document.hidden || dt > 3000) { st.winStart = now; st.frames = 0; return; }
+        st.frames++;
+        if (now - st.winStart < 1000) return;
+        st.fps = st.frames * 1000 / (now - st.winStart);
+        st.ms = (now - st.winStart) / st.frames;
+        st.winStart = now; st.frames = 0;
+        if (DYNAMIC) {
+            st.low = st.fps < LOW_FPS ? st.low + 1 : 0;
+            st.high = st.fps > HIGH_FPS ? st.high + 1 : 0;
+            if (st.low >= 2 && step < STEPS.length - 1) { setStep(step + 1); st.low = 0; }
+            else if (st.high >= 3 && step > 0) { setStep(step - 1); st.high = 0; }
+        }
+        if (DEBUG) {
+            if (!panel) {
+                panel = document.createElement('div');
+                panel.style.cssText = 'position:fixed;left:6px;bottom:6px;z-index:9999;font:11px/1.4 monospace;color:#a7f3d0;background:rgba(2,6,23,.85);' +
+                    'border:1px solid rgba(16,185,129,.4);border-radius:6px;padding:4px 8px;pointer-events:none;white-space:pre';
+                document.body.appendChild(panel);
+            }
+            const info = renderer.info.render;
+            panel.textContent = `FPS ${st.fps.toFixed(0)}　每格 ${st.ms.toFixed(1)} ms\n` +
+                `draw call ${info.calls}　三角形 ${(info.triangles / 1000).toFixed(0)}k\n` +
+                `像素比 ${renderer.getPixelRatio()}　角落陰影 ${STEPS[step].lite ? '關' : '開（開場算一次）'}\n` +
+                `畫質段位 ${step + 1}/${STEPS.length}${DYNAMIC ? '（動態）' : '（固定）'}`;
+        }
+    }
+    function setStep(n) {
+        const prev = STEPS[step], next = STEPS[n];
+        step = n;
+        if (next.pr !== prev.pr) { renderer.setPixelRatio(next.pr); split.resize(); }
+        if (next.lite !== prev.lite) {
+            // 開關角落陰影（材質會重新編譯一次，可能頓一下，所以只在連續掉格時才切換）
+            staticLights.forEach(l => { l.castShadow = !next.lite; });
+            if (!next.lite) baked = false;   // 重新開啟時再烤一次
+        }
+    }
+    function stats() {
+        return renderer ? { calls: renderer.info.render.calls, triangles: renderer.info.render.triangles, pixelRatio: renderer.getPixelRatio(),
+            qualityStep: step + 1, steps: STEPS.length, lite: STEPS[step].lite, staticShadowLights: staticLights.length,
+            dynamicShadowLights: dynamicLights.length, programs: renderer.info.programs ? renderer.info.programs.length : null, fps: +st.fps.toFixed(1) } : null;
+    }
+    window.__perf = stats;
+
+    return { createRenderer, attach, initialPixelRatio, renderSingle, split, spawnParticles, updateParticles, stats };
+})();
+
+</script>
 
     <script>
 (function(){
@@ -937,16 +1270,10 @@ function initScene() {
     [D1, D2].forEach(rig => {
         const container = getContainer(rig);
         rig.camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.05, 100);
-        rig.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
-        rig.renderer.setSize(container.clientWidth, container.clientHeight);
-        rig.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        rig.renderer.shadowMap.enabled = true;
-        rig.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-        rig.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        rig.renderer.toneMappingExposure = 1.1;
-        container.appendChild(rig.renderer.domElement);
+        // 效能：所有視窗共用同一個渲染器（setScissor 分割畫面），不再每位玩家各開一個
+        rig.renderer = PERF.split.addView(rig, container);
 
-        rig.orbitControls = new THREE.OrbitControls(rig.camera, rig.renderer.domElement);
+        rig.orbitControls = new THREE.OrbitControls(rig.camera, container) /* 畫布不接收事件，自由視角改綁在面板容器 */;
         rig.orbitControls.enableDamping = true;
         rig.orbitControls.dampingFactor = 0.05;
         rig.orbitControls.maxPolarAngle = Math.PI / 2 - 0.02;
@@ -956,14 +1283,7 @@ function initScene() {
     window.addEventListener('resize', onWindowResize, false);
 }
 
-function onWindowResize() {
-    [D1, D2].forEach(rig => {
-        const container = getContainer(rig);
-        rig.camera.aspect = container.clientWidth / container.clientHeight;
-        rig.camera.updateProjectionMatrix();
-        rig.renderer.setSize(container.clientWidth, container.clientHeight);
-    });
-}
+function onWindowResize() { PERF.split.resize(); }
 
 function setupLights() {
     const ambientLight = new THREE.AmbientLight(0x071510, 1.2);
@@ -980,12 +1300,12 @@ function setupLights() {
         const pole = new THREE.Mesh(poleGeo, poleMat);
         pole.position.set(corner.x, 1.75, corner.z);
         pole.castShadow = true;
-        scene.add(pole);
+        scene.add(pole); pole.userData.perfMerge = 'pole';
         const headGeo = new THREE.SphereGeometry(0.15, 12, 12);
         const headMat = new THREE.MeshBasicMaterial({ color: corner.color });
         const head = new THREE.Mesh(headGeo, headMat);
         head.position.set(corner.x, 3.5, corner.z);
-        scene.add(head);
+        scene.add(head); head.userData.perfMerge = 'head';
         const spotLight = new THREE.SpotLight(corner.color, 3.5, 12, Math.PI / 4, 0.5, 1.2);
         spotLight.position.set(corner.x, 3.5, corner.z);
         spotLight.target.position.set(corner.x * 0.4, 0, corner.z * 0.4);
@@ -1153,12 +1473,14 @@ function buildInflatableCage() {
     const topLongR = bottomLongR.clone(); topLongR.position.y = cageH - pillarRad / 2; cageGroup.add(topLongR);
     const topShortF = bottomShortF.clone(); topShortF.position.y = cageH - pillarRad / 2; cageGroup.add(topShortF);
     const topShortB = bottomShortB.clone(); topShortB.position.y = cageH - pillarRad / 2; cageGroup.add(topShortB);
+    // 效能：12 根充氣管依顏色合併（紅、藍、白各 1 個物件）
+    [p1, p2, p3, p4, bottomLongL, bottomLongR, bottomShortF, bottomShortB, topLongL, topLongR, topShortF, topShortB].forEach(o => { if (o) o.userData.perfMerge = 'tube'; });
 
     scene.add(cageGroup);
 }
 
 function createDroneCage(radius, colorHex) {
-    const group = new THREE.Group();
+    const group = new THREE.Group(); group.userData.perfDrone = true; // 效能：標記為無人機（烤固定陰影時暫時隱藏）
     const material = new THREE.MeshStandardMaterial({
         color: colorHex, emissive: colorHex, emissiveIntensity: 0.08,
         metalness: 0.15, roughness: 0.4, transparent: true, opacity: 0.92
@@ -1301,13 +1623,13 @@ function buildPlayerDrone(rig) {
         arm.rotation.y = (idx === 0 || idx === 3) ? -armAngle : armAngle;
         arm.position.set(pos.x / 2, 0, pos.z / 2);
         arm.castShadow = true;
-        innerGroup.add(arm);
+        innerGroup.add(arm); arm.userData.perfMerge = 'arm';
 
         const motorGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.08, 8);
         const motorMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.2 });
         const motor = new THREE.Mesh(motorGeo, motorMat);
         motor.position.set(pos.x, 0.02, pos.z); motor.castShadow = true;
-        innerGroup.add(motor);
+        innerGroup.add(motor); motor.userData.perfMerge = 'motor';
 
         const rotorGroup = new THREE.Group();
         rotorGroup.position.set(pos.x, 0.05, pos.z);
@@ -1327,7 +1649,7 @@ function buildPlayerDrone(rig) {
         const ledMat = new THREE.MeshBasicMaterial({ color: pos.color });
         const led = new THREE.Mesh(ledGeo, ledMat);
         led.position.set(pos.x, -0.02, pos.z);
-        innerGroup.add(led);
+        innerGroup.add(led); led.userData.perfMerge = 'led';
         rig.lights.push({ mesh: led, originalColor: pos.color });
     });
 
@@ -1404,13 +1726,13 @@ function buildDefenderDrone(rig) {
         arm.rotation.y = (idx === 0 || idx === 3) ? -armAngle : armAngle;
         arm.position.set(pos.x / 2, 0, pos.z / 2);
         arm.castShadow = true;
-        innerGroup.add(arm);
+        innerGroup.add(arm); arm.userData.perfMerge = 'arm';
 
         const motorGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.08, 8);
         const motorMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.2 });
         const motor = new THREE.Mesh(motorGeo, motorMat);
         motor.position.set(pos.x, 0.02, pos.z);
-        innerGroup.add(motor);
+        innerGroup.add(motor); motor.userData.perfMerge = 'motor';
 
         const rotorGroup = new THREE.Group();
         rotorGroup.position.set(pos.x, 0.05, pos.z);
@@ -1716,32 +2038,10 @@ function resetAttacker() {
 }
 // ---------------- 粒子效果 ----------------
 function createExplosion(position, colorHex) {
-    const particleCount = 16; // 數量 30 → 16，減少干擾
-    const geo = new THREE.SphereGeometry(0.008, 6, 6); // 顆粒半徑 0.8cm，避免遮蔽畫面
-    for (let i = 0; i < particleCount; i++) {
-        const mat = new THREE.MeshBasicMaterial({ color: colorHex, transparent: true, opacity: 1.0 });
-        const mesh = new THREE.Mesh(geo, mat);
-        mesh.position.copy(position);
-        const velocity = new THREE.Vector3((Math.random()-0.5)*2,(Math.random()-0.5)*2,(Math.random()-0.5)*2); // 擴散範圍同步縮小為原本的 1/3
-        scene.add(mesh);
-        particles.push({ mesh, velocity, life: 1.0, decay: 0.02 + Math.random()*0.03 });
-    }
+    // 效能：改用 InstancedMesh 物件池（見 PERF.spawnParticles），外觀與數量相同
+    PERF.spawnParticles(scene, particles, position, colorHex, 16, 2);
 }
-function updateParticles(delta) {
-    for (let i = particles.length - 1; i >= 0; i--) {
-        const p = particles[i];
-        p.mesh.position.addScaledVector(p.velocity, delta);
-        p.life -= p.decay;
-        p.mesh.material.opacity = p.life;
-        p.mesh.scale.setScalar(p.life);
-        if (p.life <= 0) {
-            scene.remove(p.mesh);
-            p.mesh.geometry.dispose();
-            p.mesh.material.dispose();
-            particles.splice(i, 1);
-        }
-    }
-}
+function updateParticles(delta) { PERF.updateParticles(particles, delta); }
 
 // ---------------- 無人機物理（通用，前鋒機/防守機共用同一套飛控邏輯）----------------
 function updateDronePhysics(rig, delta) {
@@ -2858,6 +3158,12 @@ function prepareRenderFor(rig) {
         if (r.display && r.display.group.visible) r.display.group.visible = rig.camera.position.distanceTo(r.display.center) > 0.9;
     });
 }
+// 效能：把各視窗暫時隱藏的物件全部恢復顯示（每格算陰影前呼叫，讓陰影不受任何一個視窗的隱藏影響）
+function restoreViewVisibility() {
+    [D1, D2].forEach(r => { if (r.mesh) r.mesh.visible = true; });
+    setEndNetsVisible(0);
+    goalRings.forEach(r => setGoalVisible(r, true));
+}
 
 // ---------------- HUD ----------------
 function updateHUDFor(rig) {
@@ -3933,8 +4239,7 @@ function animate() {
     updateTailBeacon(D1.tailBeaconMat, D1.tailBeaconLight);
     updateTailBeacon(D2.tailBeaconMat, D2.tailBeaconLight);
 
-    prepareRenderFor(D1); D1.renderer.render(scene, D1.camera);
-    prepareRenderFor(D2); D2.renderer.render(scene, D2.camera);
+    PERF.split.renderViews(scene, [D1, D2], prepareRenderFor, restoreViewVisibility); // 效能：單一渲染器分割畫面
 }
 
 // ---------------- 入口啟動 ----------------
