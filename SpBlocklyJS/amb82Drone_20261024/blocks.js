@@ -64,7 +64,7 @@ Blockly.Blocks['Amb82Drone_move'] = {
         [Blockly.Msg.AMB82DRONE_TURNRIGHT_SHOW,"turnright"]		
   	]), "command");
     this.appendValueInput("speed")
-        .appendField(Blockly.Msg.AMB82DRONE_INCREMENT_SHOW)
+        .appendField(Blockly.Msg.AMB82DRONE_SPEED_SHOW)
 		.setCheck("Number");    
     this.setInputsInline(true);
     this.setPreviousStatement(true);
@@ -118,7 +118,7 @@ Blockly.Blocks['Amb82Drone_move_distance'] = {
         [Blockly.Msg.AMB82DRONE_TURNRIGHT_SHOW,"turnright"]	
   	]), "command");
     this.appendValueInput("speed")
-        .appendField(Blockly.Msg.AMB82DRONE_INCREMENT_SHOW)
+        .appendField(Blockly.Msg.AMB82DRONE_SPEED_SHOW)
 		.setCheck("Number");     
     this.appendDummyInput()	
         .appendField(Blockly.Msg.AMB82DRONE_DISTANCE_RATIO_SHOW);  
