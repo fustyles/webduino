@@ -220,6 +220,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			script += "<script src='"+jsPath+"yolov8n_20260715/yolov8n_video.js'></script>";			
 			script += "<script src='"+jsPath+"yolov8n_20260715/yolov8n.js'></script>";
 		}
+		if (xml.indexOf("Amb82Drone_")!=-1) {			
+			script += "<script src='"+jsPath+"amb82Drone_20261024/amb82Drone.js'></script>";
+		}
         
 		return script;
 	}		
@@ -274,6 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		catTesseract,
 		catInstascan,
 		"<sep></sep>",
+		catAmb82Drone,        
 		catRobotFly
 	];
 	
