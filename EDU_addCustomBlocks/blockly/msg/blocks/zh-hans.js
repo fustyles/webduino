@@ -44,3 +44,4 @@ Blockly.Msg.ADDCUSTOMBLOCKS_HOLISTIC_SHOW = "[取得连结] 全身侦测(Mediapi
 Blockly.Msg.ADDCUSTOMBLOCKS_FACES_SHOW = "[取得连结] 脸部侦测(Mediapipe)";
 Blockly.Msg.ADDCUSTOMBLOCKS_POSES_SHOW = "[取得连结] 姿态侦测(Mediapipe)";
 Blockly.Msg.ADDCUSTOMBLOCKS_HANDS_SHOW = "[取得连结] 手势侦测(Mediapipe)";
+Blockly.Msg.ADDCUSTOMBLOCKS_AMB82DRONE_SHOW = "[link] Amb82 Drone";
