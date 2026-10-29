@@ -51,7 +51,8 @@ Blockly.Blocks['addMyBlocks'] = {
         [Blockly.Msg.ADDCUSTOMBLOCKS_SPEECHRECOGNITION_SHOW,"SpeechRecognition_20220729"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_TEXTTOSPEECH_SHOW,"TextToSpeech_20220729"],
         [Blockly.Msg.ADDCUSTOMBLOCKS_AUDIORECORD_SHOW,"audioRecord_20250405"],
-        [Blockly.Msg.ADDCUSTOMBLOCKS_VIDEORECORD_SHOW,"videoRecord_20250610"]
+        [Blockly.Msg.ADDCUSTOMBLOCKS_VIDEORECORD_SHOW,"videoRecord_20250610"],
+        [Blockly.Msg.ADDCUSTOMBLOCKS_AMB82DRONE_SHOW,"amb82Drone_20261024"]
       ]), "func");
   this.setTooltip('');
   this.setColour(20);
@@ -196,7 +197,9 @@ Blockly.Blocks['addMyBlocks'] = {
 				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/videoRecord_20250610/blockly.json');
 				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/poses_20251209/blockly.json');
 				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/faces_20251217/blockly.json');
-				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/yolov8n_20260715/blockly.json');				
+				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/yolov8n_20260715/blockly.json');
+
+				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/amb82Drone_20261024/blockly.json');
             }
 	    else if (this.getFieldValue('func')=='addAllNewAI') {
 
@@ -254,6 +257,8 @@ Blockly.Blocks['addMyBlocks'] = {
 				  Code.customTab.$__add__('https://fustyles.github.io/webduino/poses_20251209/blockly.json');
 				  Code.customTab.$__add__('https://fustyles.github.io/webduino/faces_20251217/blockly.json');
 				  Code.customTab.$__add__('https://fustyles.github.io/webduino/yolov8n_20260715/blockly.json');
+
+				  Code.customTab.$__add__('https://fustyles.github.io/webduino/amb82Drone_20261024/blockly.json');			
 	    }
 	    else if (this.getFieldValue('func')=='removeAllNewAI') {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20201012/blockly.json');
@@ -297,6 +302,8 @@ Blockly.Blocks['addMyBlocks'] = {
 				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/poses_20251209/blockly.json');	
 				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/faces_20251217/blockly.json');
 				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/yolov8n_20260715/blockly.json');
+
+				  Code.customTab.$__remove__('https://fustyles.github.io/webduino/amb82Drone_20261024/blockly.json');			
 	    }
 	    else if (this.getFieldValue('func')=='instascan.js_20201012') {
                   Code.customTab.$__remove__('https://fustyles.github.io/webduino/instascan.js_20200824/blockly.json');
@@ -426,7 +433,11 @@ Blockly.Blocks['addMyBlocks'] = {
 			  }	
 	    else if (this.getFieldValue('func')=='yolov8n_20260715') {
 				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/yolov8n_20260715/blockly.json", "TEXT");
-			  }				  
+			  }		
+	    else if (this.getFieldValue('func')=='amb82Drone_20261024') {
+				  this.getInputTargetBlock("url").setFieldValue("https://fustyles.github.io/webduino/amb82Drone_20261024/blockly.json", "TEXT");
+			  }	
+
 	    this.getField('func').setValue("");
 	}
       }
