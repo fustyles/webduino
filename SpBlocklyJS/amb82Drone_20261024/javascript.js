@@ -54,7 +54,7 @@ Blockly.JavaScript['Amb82Drone_move'] = function(block) {
   else if (type=="tcp")
       code = "fetch(([drone_requestUrl, encodeURIComponent("+command+"), '?', mathRandomInt(1, 1000000)].join(''))).then(function(response) {return response.text();}).then(function(data) {fetchData_ = data;}).catch((error) => {console.log(`Error: ${error}`);});\n";
   else if (type=="mqtt")
-      code = "mqtt_client.publish('drone_publishtopic', "+command+");\n"; 
+      code = "mqtt_client.publish(drone_publishtopic, "+command+");\n"; 
   return code;
 };
 
@@ -72,9 +72,9 @@ Blockly.JavaScript['Amb82Drone_landing'] = function(block) {
              "delay("+seconds+");\n"+
              "fetch(([drone_requestUrl, encodeURIComponent('LED000000000000FFFA#'), '?', mathRandomInt(1, 1000000)].join(''))).then(function(response) {return response.text();}).then(function(data) {fetchData_ = data;}).catch((error) => {console.log(`Error: ${error}`);});\n";
   } else if (type=="mqtt") {
-      code = "mqtt_client.publish('drone_publishtopic', 'SRT1500140015001500#');\n"+
+      code = "mqtt_client.publish(drone_publishtopic, 'SRT1500140015001500#');\n"+
              "delay("+seconds+");\n"+
-             "mqtt_client.publish('drone_publishtopic', 'LED000000000000FFFA#');\n";
+             "mqtt_client.publish(drone_publishtopic, 'LED000000000000FFFA#');\n";
   }
   return code;
 };
@@ -116,9 +116,9 @@ Blockly.JavaScript['Amb82Drone_move_distance'] = function(block) {
              "delay("+(distance/ratio)+");\n"+
              "fetch(([drone_requestUrl, encodeURIComponent('SRT1500150015001500#'), '?', mathRandomInt(1, 1000000)].join(''))).then(function(response) {return response.text();}).then(function(data) {fetchData_ = data;}).catch((error) => {console.log(`Error: ${error}`);});\n";
   } else if (type=="mqtt") {
-      code = "mqtt_client.publish('drone_publishtopic', "+command+");\n"+
+      code = "mqtt_client.publish(drone_publishtopic, "+command+");\n"+
              "delay("+(distance/ratio)+");\n"+
-             "mqtt_client.publish('drone_publishtopic', 'SRT1500150015001500#');\n"; 
+             "mqtt_client.publish(drone_publishtopic, 'SRT1500150015001500#');\n"; 
   }
   return code;
 };
