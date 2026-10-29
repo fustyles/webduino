@@ -50,11 +50,11 @@ Blockly.JavaScript['Amb82Drone_move'] = function(block) {
   
   var code = "";
   if (type=="bluetooth")
-      code = "webbluetooth_sendText("+command+");\n";
+      code = "webbluetooth_sendText('"+command+"');\n";
   else if (type=="tcp")
-      code = "fetch(([drone_requestUrl, encodeURIComponent("+command+"), '?', mathRandomInt(1, 1000000)].join(''))).then(function(response) {return response.text();}).then(function(data) {fetchData_ = data;}).catch((error) => {console.log(`Error: ${error}`);});\n";
+      code = "fetch(([drone_requestUrl, encodeURIComponent('"+command+"'), '?', mathRandomInt(1, 1000000)].join(''))).then(function(response) {return response.text();}).then(function(data) {fetchData_ = data;}).catch((error) => {console.log(`Error: ${error}`);});\n";
   else if (type=="mqtt")
-      code = "mqtt_client.publish(drone_publishtopic, "+command+");\n"; 
+      code = "mqtt_client.publish(drone_publishtopic, '"+command+"');\n"; 
   return code;
 };
 
@@ -108,15 +108,15 @@ Blockly.JavaScript['Amb82Drone_move_distance'] = function(block) {
   
   var code = "";
   if (type=="bluetooth") {
-      code = "webbluetooth_sendText("+command+");\n"+
+      code = "webbluetooth_sendText('"+command+"');\n"+
              "delay("+(distance/ratio)+");\n"+
              "webbluetooth_sendText('SRT1500150015001500#');\n";
   } else if (type=="tcp") {
-      code = "fetch(([drone_requestUrl, encodeURIComponent("+command+"), '?', mathRandomInt(1, 1000000)].join(''))).then(function(response) {return response.text();}).then(function(data) {fetchData_ = data;}).catch((error) => {console.log(`Error: ${error}`);});\n"+
+      code = "fetch(([drone_requestUrl, encodeURIComponent('"+command+"'), '?', mathRandomInt(1, 1000000)].join(''))).then(function(response) {return response.text();}).then(function(data) {fetchData_ = data;}).catch((error) => {console.log(`Error: ${error}`);});\n"+
              "delay("+(distance/ratio)+");\n"+
              "fetch(([drone_requestUrl, encodeURIComponent('SRT1500150015001500#'), '?', mathRandomInt(1, 1000000)].join(''))).then(function(response) {return response.text();}).then(function(data) {fetchData_ = data;}).catch((error) => {console.log(`Error: ${error}`);});\n";
   } else if (type=="mqtt") {
-      code = "mqtt_client.publish(drone_publishtopic, "+command+");\n"+
+      code = "mqtt_client.publish(drone_publishtopic, '"+command+"');\n"+
              "delay("+(distance/ratio)+");\n"+
              "mqtt_client.publish(drone_publishtopic, 'SRT1500150015001500#');\n"; 
   }
