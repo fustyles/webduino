@@ -1,0 +1,14 @@
+{
+  "types": ["Amb82Drone_object","Amb82Drone_basic","Amb82Drone_move","Amb82Drone_landing","Amb82Drone_move_distance"],
+  "category": "catPlus",
+  "scripts": [
+    "blockly/blocks.js",
+    "blockly/javascript.js"
+  ],
+  "dependencies": [
+    "amb82Drone.js"    
+  ],
+  "msg": "blockly/msg",
+  "blocksMsg": "blockly/msg/blocks",
+  "toolbox": "blockly/toolbox.xml"
+}
