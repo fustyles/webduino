@@ -1,8 +1,7 @@
 Blockly.Blocks['Amb82Drone_object'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.AMB82DRONE_SHOW)	
-        .appendField("TCP");
+        .appendField(Blockly.Msg.AMB82DRONE_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
         [Blockly.Msg.AMB82DRONE_TCP_SHOW,"tcp"],
@@ -21,8 +20,7 @@ Blockly.Blocks['Amb82Drone_object'] = {
 Blockly.Blocks['Amb82Drone_basic'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.AMB82DRONE_SHOW)	
-        .appendField(Blockly.Msg.AMB82DRONE_COMMAND_SHOW);
+        .appendField(Blockly.Msg.AMB82DRONE_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
         [Blockly.Msg.AMB82DRONE_TCP_SHOW,"tcp"],        
@@ -47,8 +45,7 @@ Blockly.Blocks['Amb82Drone_basic'] = {
 Blockly.Blocks['Amb82Drone_move'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.AMB82DRONE_SHOW)	
-        .appendField(Blockly.Msg.AMB82DRONE_COMMAND_SHOW);
+        .appendField(Blockly.Msg.AMB82DRONE_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
         [Blockly.Msg.AMB82DRONE_TCP_SHOW,"tcp"],        
@@ -79,14 +76,15 @@ Blockly.Blocks['Amb82Drone_move'] = {
 Blockly.Blocks['Amb82Drone_landing'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.AMB82DRONE_SHOW)	
-        .appendField(Blockly.Msg.AMB82DRONE_LANDING_SHOW);
+        .appendField(Blockly.Msg.AMB82DRONE_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
         [Blockly.Msg.AMB82DRONE_TCP_SHOW,"tcp"],        
 		[Blockly.Msg.AMB82DRONE_BLUETOOTH_SHOW,"bluetooth"],
         [Blockly.Msg.AMB82DRONE_MQTT_SHOW,"mqtt"]
-  	]), "type");       
+  	]), "type");
+    this.appendDummyInput()	
+        .appendField(Blockly.Msg.AMB82DRONE_LANDING_SHOW);    
     this.appendValueInput("seconds")	
         .appendField(Blockly.Msg.AMB82DRONE_SECONDS_SHOW)
 		.setCheck("Number");    		
@@ -101,8 +99,7 @@ Blockly.Blocks['Amb82Drone_landing'] = {
 Blockly.Blocks['Amb82Drone_move_distance'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.AMB82DRONE_SHOW)	
-        .appendField(Blockly.Msg.AMB82DRONE_DISTANCE_SHOW);
+        .appendField(Blockly.Msg.AMB82DRONE_SHOW);
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([
         [Blockly.Msg.AMB82DRONE_TCP_SHOW,"tcp"],        
