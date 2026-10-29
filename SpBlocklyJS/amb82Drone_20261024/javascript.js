@@ -3,7 +3,7 @@ Blockly.JavaScript['Amb82Drone_object'] = function(block) {
   var path = Blockly.JavaScript.valueToCode(block, 'path', Blockly.JavaScript.ORDER_ATOMIC);
   if (type=="tcp")
       Blockly.JavaScript.definitions_['Amb82Drone_url'] = "var drone_requestUrl = "+path+";\n";
-  else (type=="mqtt")
+  else if (type=="mqtt")
       Blockly.JavaScript.definitions_['Amb82Drone_publishtopic'] = "var drone_publishtopic = "+path+";\n";
 
   code = "";
