@@ -44,3 +44,4 @@ Blockly.Msg.ADDCUSTOMBLOCKS_HOLISTIC_SHOW = "[link] Holistic Recognition(Mediapi
 Blockly.Msg.ADDCUSTOMBLOCKS_FACES_SHOW = "[link] Face Detection(Mediapipe)";
 Blockly.Msg.ADDCUSTOMBLOCKS_POSES_SHOW = "[link] Pose Estimation(Mediapipe)";
 Blockly.Msg.ADDCUSTOMBLOCKS_HANDS_SHOW = "[link] Hand Tracking(Mediapipe)";
+Blockly.Msg.ADDCUSTOMBLOCKS_AMB82DRONE_SHOW = "[link] Amb82 Drone";
