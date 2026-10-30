@@ -617,7 +617,7 @@ Blockly.Msg["SYSTEM_DATETIME_DAYS"] = "天數";
 Blockly.Msg["SYSTEM_DATETIME_HOURS"] = "時數";
 Blockly.Msg["SYSTEM_DATETIME_MINUTES"] = "分數";
 Blockly.Msg["SYSTEM_DATETIME_SECONDS"] = "秒數";
-Blockly.Msg["SYSTEM_DATETIME_MILLISECONDS"] = "毫秒數";
+Blockly.Msg["SYSTEM_DATETIME_MILLISECONDS"] = "總毫秒數";
 
 Blockly.Msg.INCLUDE = "匯入遠端檔案";
 Blockly.Msg.INCLUDE_TYPE = "類型";

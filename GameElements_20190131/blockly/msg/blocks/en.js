@@ -608,7 +608,7 @@ Blockly.Msg["SYSTEM_DATETIME_WEEK"] = "WEEK";
 Blockly.Msg["SYSTEM_DATETIME_HOUR"] = "HOUR";
 Blockly.Msg["SYSTEM_DATETIME_MINUTE"] = "MINUTE";
 Blockly.Msg["SYSTEM_DATETIME_SECOND"] = "SECOND";
-Blockly.Msg["SYSTEM_DATETIME_MILLISECONDS"] = "MILLISECOND";
+Blockly.Msg["SYSTEM_DATETIME_MILLISECOND"] = "MILLISECOND";
 Blockly.Msg["SYSTEM_DATETIME_ADD"] = "add";
 Blockly.Msg["SYSTEM_DATETIME_YEARS"] = "years";
 Blockly.Msg["SYSTEM_DATETIME_MONTHS"] = "months"; 	  
@@ -616,7 +616,7 @@ Blockly.Msg["SYSTEM_DATETIME_DAYS"] = "days";
 Blockly.Msg["SYSTEM_DATETIME_HOURS"] = "hours";
 Blockly.Msg["SYSTEM_DATETIME_MINUTES"] = "minutes";
 Blockly.Msg["SYSTEM_DATETIME_SECONDS"] = "seconds";
-Blockly.Msg["SYSTEM_DATETIME_MILLISECONDS"] = "milliseconds";
+Blockly.Msg["SYSTEM_DATETIME_MILLISECONDS"] = "Total Milliseconds";
 
 Blockly.Msg.INCLUDE = "Import remote file";
 Blockly.Msg.INCLUDE_TYPE = "Type";
