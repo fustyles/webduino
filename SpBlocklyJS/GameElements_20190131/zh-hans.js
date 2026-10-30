@@ -627,6 +627,15 @@ Blockly.Msg["SYSTEM_DATETIME_WEEK"] = "星期";
 Blockly.Msg["SYSTEM_DATETIME_HOUR"] = "时";
 Blockly.Msg["SYSTEM_DATETIME_MINUTE"] = "分";
 Blockly.Msg["SYSTEM_DATETIME_SECOND"] = "秒";
+Blockly.Msg["SYSTEM_DATETIME_MILLISECOND"] = "毫秒";
+Blockly.Msg["SYSTEM_DATETIME_ADD"] = "增量";
+Blockly.Msg["SYSTEM_DATETIME_YEARS"] = "年数";
+Blockly.Msg["SYSTEM_DATETIME_MONTHS"] = "月数";	  
+Blockly.Msg["SYSTEM_DATETIME_DAYS"] = "天数";
+Blockly.Msg["SYSTEM_DATETIME_HOURS"] = "时数";
+Blockly.Msg["SYSTEM_DATETIME_MINUTES"] = "分数";
+Blockly.Msg["SYSTEM_DATETIME_SECONDS"] = "秒数";
+Blockly.Msg["SYSTEM_DATETIME_MILLISECONDS"] = "毫秒数";
 
 Blockly.Msg.POINT_IN_ELEMENT = "点位于元素区域范围";
 

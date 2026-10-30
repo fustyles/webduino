@@ -4885,6 +4885,8 @@ function HextoRgb(color) {
 		  return now.getMinutes();
 	  else if (type=="second")
 		  return now.getSeconds();
+	  else if (type=="millisecond")
+		  return now.getMilliseconds();	  
   }
   
   function setDatetime(years, months, days, hours, minutes, seconds) {

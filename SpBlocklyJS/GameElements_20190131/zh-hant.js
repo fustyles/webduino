@@ -626,8 +626,6 @@ Blockly.Msg["INCLUDE_CSS"] = ".css";
 Blockly.Msg["INCLUDE_POSITION"] = "位置";
 Blockly.Msg["INCLUDE_HEADER"] = "標題區塊";
 
-
-
 Blockly.Msg["INCLUDE_HERE"] = "目前位置";
 Blockly.Msg["INCLUDE_URL"] = "網址";
 Blockly.Msg["SYSTEM_DATETIME"] = "系統時間";
@@ -641,6 +639,16 @@ Blockly.Msg["SYSTEM_DATETIME_WEEK"] = "星期";
 Blockly.Msg["SYSTEM_DATETIME_HOUR"] = "時";
 Blockly.Msg["SYSTEM_DATETIME_MINUTE"] = "分";
 Blockly.Msg["SYSTEM_DATETIME_SECOND"] = "秒";
+Blockly.Msg["SYSTEM_DATETIME_MILLISECOND"] = "毫秒";
+Blockly.Msg["SYSTEM_DATETIME_ADD"] = "增量"; 
+Blockly.Msg["SYSTEM_DATETIME_YEARS"] = "年數";
+Blockly.Msg["SYSTEM_DATETIME_MONTHS"] = "月數";	  
+Blockly.Msg["SYSTEM_DATETIME_DAYS"] = "天數";
+Blockly.Msg["SYSTEM_DATETIME_HOURS"] = "時數";
+Blockly.Msg["SYSTEM_DATETIME_MINUTES"] = "分數";
+Blockly.Msg["SYSTEM_DATETIME_SECONDS"] = "秒數";
+Blockly.Msg["SYSTEM_DATETIME_MILLISECONDS"] = "毫秒數";
+
 Blockly.Msg["POINT_IN_ELEMENT"] = "點位於元素區域範圍";
 Blockly.Msg["WINDOW_CONFIRM"] = "確認視窗 訊息";
 Blockly.Msg["WINDOW_CONFIRM_YES"] = "如果選擇[是]執行"; 
