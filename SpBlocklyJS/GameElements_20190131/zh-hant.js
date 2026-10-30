@@ -647,7 +647,7 @@ Blockly.Msg["SYSTEM_DATETIME_DAYS"] = "天數";
 Blockly.Msg["SYSTEM_DATETIME_HOURS"] = "時數";
 Blockly.Msg["SYSTEM_DATETIME_MINUTES"] = "分數";
 Blockly.Msg["SYSTEM_DATETIME_SECONDS"] = "秒數";
-Blockly.Msg["SYSTEM_DATETIME_MILLISECONDS"] = "毫秒數";
+Blockly.Msg["SYSTEM_DATETIME_MILLISECONDS"] = "總毫秒數";
 
 Blockly.Msg["POINT_IN_ELEMENT"] = "點位於元素區域範圍";
 Blockly.Msg["WINDOW_CONFIRM"] = "確認視窗 訊息";

@@ -639,7 +639,7 @@ Blockly.Msg["SYSTEM_DATETIME_WEEK"] = "Week";
 Blockly.Msg["SYSTEM_DATETIME_HOUR"] = "Hour";
 Blockly.Msg["SYSTEM_DATETIME_MINUTE"] = "Minute";
 Blockly.Msg["SYSTEM_DATETIME_SECOND"] = "Second";
-Blockly.Msg["SYSTEM_DATETIME_MILLISECONDS"] = "MILLISECOND";
+Blockly.Msg["SYSTEM_DATETIME_MILLISECOND"] = "MILLISECOND";
 Blockly.Msg["SYSTEM_DATETIME_ADD"] = "add";
 Blockly.Msg["SYSTEM_DATETIME_YEARS"] = "years";
 Blockly.Msg["SYSTEM_DATETIME_MONTHS"] = "months"; 	  
@@ -647,7 +647,7 @@ Blockly.Msg["SYSTEM_DATETIME_DAYS"] = "days";
 Blockly.Msg["SYSTEM_DATETIME_HOURS"] = "hours";
 Blockly.Msg["SYSTEM_DATETIME_MINUTES"] = "minutes";
 Blockly.Msg["SYSTEM_DATETIME_SECONDS"] = "seconds";
-Blockly.Msg["SYSTEM_DATETIME_MILLISECONDS"] = "milliseconds";
+Blockly.Msg["SYSTEM_DATETIME_MILLISECONDS"] = "Total Milliseconds";
 
 Blockly.Msg["POINT_IN_ELEMENT"] = "Point Within Element Area";
 Blockly.Msg["WINDOW_CONFIRM"] = "Confirmation Window Message";

@@ -7314,7 +7314,8 @@ Blockly.Blocks['system_datetime_get'] = {
 		[Blockly.Msg["SYSTEM_DATETIME_HOUR"],"hour"],
 		[Blockly.Msg["SYSTEM_DATETIME_MINUTE"],"minute"],
 		[Blockly.Msg["SYSTEM_DATETIME_SECOND"],"second"],
-		[Blockly.Msg["SYSTEM_DATETIME_MILLISECONDS"],"millisecond"]		
+		[Blockly.Msg["SYSTEM_DATETIME_MILLISECOND"],"millisecond"],
+		[Blockly.Msg["SYSTEM_DATETIME_MILLISECONDS"],"milliseconds"]		
 	  ]), "type");	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
