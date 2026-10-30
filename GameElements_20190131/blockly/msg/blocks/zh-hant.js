@@ -609,6 +609,7 @@ Blockly.Msg["SYSTEM_DATETIME_WEEK"] = "星期";
 Blockly.Msg["SYSTEM_DATETIME_HOUR"] = "時";
 Blockly.Msg["SYSTEM_DATETIME_MINUTE"] = "分";
 Blockly.Msg["SYSTEM_DATETIME_SECOND"] = "秒";
+Blockly.Msg["SYSTEM_DATETIME_MILLISECOND"] = "毫秒";
 Blockly.Msg["SYSTEM_DATETIME_ADD"] = "增量"; 
 Blockly.Msg["SYSTEM_DATETIME_YEARS"] = "年數";
 Blockly.Msg["SYSTEM_DATETIME_MONTHS"] = "月數";	  
@@ -616,6 +617,7 @@ Blockly.Msg["SYSTEM_DATETIME_DAYS"] = "天數";
 Blockly.Msg["SYSTEM_DATETIME_HOURS"] = "時數";
 Blockly.Msg["SYSTEM_DATETIME_MINUTES"] = "分數";
 Blockly.Msg["SYSTEM_DATETIME_SECONDS"] = "秒數";
+Blockly.Msg["SYSTEM_DATETIME_MILLISECONDS"] = "毫秒數";
 
 Blockly.Msg.INCLUDE = "匯入遠端檔案";
 Blockly.Msg.INCLUDE_TYPE = "類型";

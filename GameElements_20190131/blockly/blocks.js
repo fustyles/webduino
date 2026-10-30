@@ -7312,7 +7312,8 @@ Blockly.Blocks['system_datetime_get'] = {
 		[Blockly.Msg["SYSTEM_DATETIME_WEEK"],"week"],
 		[Blockly.Msg["SYSTEM_DATETIME_HOUR"],"hour"],
 		[Blockly.Msg["SYSTEM_DATETIME_MINUTE"],"minute"],
-		[Blockly.Msg["SYSTEM_DATETIME_SECOND"],"second"]		
+		[Blockly.Msg["SYSTEM_DATETIME_SECOND"],"second"],
+		[Blockly.Msg["SYSTEM_DATETIME_MILLISECONDS"],"millisecond"]	
 	  ]), "type");	  
   this.setInputsInline(true);
   this.setOutput(true, null); 
@@ -7355,7 +7356,7 @@ Blockly.Blocks['system_datetime_set'] = {
   this.appendValueInput("seconds")
       .setCheck("Number")
       .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField(Blockly.Msg["SYSTEM_DATETIME_SECONDS"]);	  	  
+      .appendField(Blockly.Msg["SYSTEM_DATETIME_SECONDS"]);	  	  	  
   this.setInputsInline(true);
   this.setPreviousStatement(true);
   this.setNextStatement(true);
