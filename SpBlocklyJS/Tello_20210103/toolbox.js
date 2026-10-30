@@ -1,0 +1,208 @@
+var catTello = '<xml>'+
+  '<category name="%{BKY_CATTELLO}" id="catTello" colour="180">'+
+  '  <block type="tello_initial">'+
+  '    <value name="ip_">'+
+  '      <block type="text">'+
+  '        <field name="TEXT">192.168.10.1</field>'+
+  '      </block>'+
+  '    </value>'+
+  '  </block>'+
+  '  <block type="tello_wifi">'+
+  '    <value name="ip_">'+
+  '      <block type="text">'+
+  '        <field name="TEXT">192.168.10.1</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="ssid_">'+
+  '      <block type="text">'+
+  '        <field name="TEXT"></field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="pass_">'+
+  '      <block type="text">'+
+  '        <field name="TEXT"></field>'+
+  '      </block>'+
+  '    </value>'+
+  '  </block>'+
+  '  <block type="tello_iframe1">'+
+  '    <value name="ip_">'+
+  '      <block type="text">'+
+  '        <field name="TEXT">192.168.10.1</field>'+
+  '      </block>'+
+  '    </value>'+
+  '  </block>'+
+  '  <block type="tello_iframe2">'+
+  '    <value name="ip_">'+
+  '      <block type="text">'+
+  '        <field name="TEXT">192.168.10.1</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="val_">'+
+  '      <block type="text">'+
+  '        <field name="TEXT"></field>'+
+  '      </block>'+
+  '    </value>'+
+  '  </block>'+
+  '  <block type="tello_iframe3">'+
+  '    <value name="ip_">'+
+  '      <block type="text">'+
+  '        <field name="TEXT">192.168.10.1</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="x_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">0</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="y_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">0</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="z_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">0</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="speed_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">10</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="mid_">'+
+  '      <block type="text">'+
+  '        <field name="TEXT"></field>'+
+  '      </block>'+
+  '    </value>'+
+  '  </block>'+
+  '  <block type="tello_iframe4">'+
+  '    <value name="ip_">'+
+  '      <block type="text">'+
+  '        <field name="TEXT">192.168.10.1</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="x1_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">0</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="y1_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">0</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="z1_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">0</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="x2_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">0</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="y2_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">0</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="z2_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">0</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="speed_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">10</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="mid_">'+
+  '      <block type="text">'+
+  '        <field name="TEXT"></field>'+
+  '      </block>'+
+  '    </value>'+
+  '  </block>'+
+  '  <block type="tello_iframe5">'+
+  '    <value name="ip_">'+
+  '      <block type="text">'+
+  '        <field name="TEXT">192.168.10.1</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="x_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">0</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="y_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">0</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="z_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">0</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="speed_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">10</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="yaw_">'+
+  '      <block type="text">'+
+  '        <field name="TEXT"></field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="mid1_">'+
+  '      <block type="text">'+
+  '        <field name="TEXT"></field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="mid2_">'+
+  '      <block type="text">'+
+  '        <field name="TEXT"></field>'+
+  '      </block>'+
+  '    </value>'+
+  '  </block>'+
+  '  <block type="tello_iframe6">'+
+  '    <value name="ip_">'+
+  '      <block type="text">'+
+  '        <field name="TEXT">192.168.10.1</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="a_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">0</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="b_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">0</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="c_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">0</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <value name="d_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">0</field>'+
+  '      </block>'+
+  '    </value>'+
+  '  </block>'+
+  '  <block type="tello_request">'+
+  '    <value name="ip_">'+
+  '      <block type="text">'+
+  '        <field name="TEXT">192.168.10.1</field>'+
+  '      </block>'+
+  '    </value>'+
+  '    <field id="D~s:.T0JlLY@#L%wFeda" name="tello_request">tello_response</field>'+
+  '    <value name="delaytime_">'+
+  '      <block type="math_number">'+
+  '        <field name="NUM">2</field>'+
+  '      </block>'+
+  '    </value>'+
+  '  </block>'+
+  '</category>'+
+'</xml>';

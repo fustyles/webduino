@@ -223,7 +223,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (xml.indexOf("Amb82Drone_")!=-1) {			
 			script += "<script src='"+jsPath+"amb82Drone_20261024/amb82Drone.js'></script>";
 		}
-        
+		if (xml.indexOf("tello_")!=-1) {			
+			script += "<script src='"+jsPath+"Tello_20210103/tello.js'></script>";
+		}
+		
 		return script;
 	}		
 	
@@ -278,7 +281,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		catInstascan,
 		"<sep></sep>",
 		catAmb82Drone,        
-		catRobotFly
+		catRobotFly,        
+		catTello
 	];
 	
 	//My Search
