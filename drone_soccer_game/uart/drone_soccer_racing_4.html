@@ -196,7 +196,7 @@
                     </ul>
                 </div>
                 <div class="kb-only p-2 sm:p-3 bg-slate-900/80 rounded-lg border border-slate-800">
-                    <p class="font-bold text-emerald-400 mb-2 flex items-center gap-1.5"><i class="fa-solid fa-gamepad"></i>PS2 手把操控（經 ESP32 序列埠）</p>
+                    <p class="font-bold text-emerald-400 mb-2 flex items-center gap-1.5"><i class="fa-solid fa-gamepad"></i>PS2 手把操控（經控制板序列埠）</p>
                     <ul class="space-y-1 text-slate-400 tech-font">
                         <li><span class="text-emerald-400 font-bold">左搖桿 上／下</span>：上升／下降，回中即定高</li>
                         <li><span class="text-emerald-400 font-bold">左搖桿 左／右</span>：偏航旋轉</li>
@@ -208,7 +208,7 @@
                 <div class="kb-only p-2 sm:p-3 bg-slate-900/80 rounded-lg border border-slate-800 flex flex-col justify-between">
                     <ul class="space-y-1 text-slate-400 tech-font">
                         <li>起飛、降落、鏡頭、重設、靜音：點畫面右上角按鈕</li>
-                        <li>「手把」按鈕：重新開啟搖桿設定與校正、連接 ESP32</li>
+                        <li>「手把」按鈕：重新開啟搖桿設定與校正、連接控制板</li>
                         <li>「模式」按鈕：切換定高／手動油門模式</li>
                         <li>起飛後油門先推到中間，才會接手高度控制</li>
                     </ul>
@@ -396,7 +396,7 @@
                 <div class="flex justify-between"><span>前進／後退：</span><span class="tech-font text-cyan-400">右搖桿 上／下</span></div>
                 <div class="flex justify-between"><span>側滾左／右：</span><span class="tech-font text-cyan-400">右搖桿 左／右</span></div>
                 <div class="flex justify-between"><span>起飛／降落／鏡頭／重設：</span><span class="tech-font text-slate-300">右上角按鈕</span></div>
-                <div class="flex justify-between"><span>搖桿設定與校正：</span><span class="tech-font text-yellow-300">「手把」按鈕（連接 ESP32）</span></div>
+                <div class="flex justify-between"><span>搖桿設定與校正：</span><span class="tech-font text-yellow-300">「手把」按鈕（連接控制板）</span></div>
                 <div class="flex justify-between"><span>定高／手動油門模式：</span><span class="tech-font text-cyan-300">「模式」按鈕</span></div>
                 <div class="flex justify-between">
                     <span>更換關卡：</span>
@@ -426,13 +426,13 @@
                 <h2 class="text-xl md:text-2xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">搖桿設定與校正</h2>
                 <div class="flex items-center gap-2 text-xs tech-font text-slate-400 min-w-0">
                     <span id="psDot" class="w-2.5 h-2.5 rounded-full bg-slate-600 flex-none"></span>
-                    <span id="psStatus" class="truncate">尚未連接 ESP32，請按下方「連接 ESP32」選擇序列埠</span>
+                    <span id="psStatus" class="truncate">尚未連接控制板，請按下方「連接控制板」選擇序列埠</span>
                 </div>
             </div>
-            <p class="text-xs text-slate-400 leading-relaxed">先按「連接 ESP32」選擇 ESP32 的序列埠（PS2 手把需開啟 ANALOG 類比模式，紅燈亮），再撥動兩支搖桿，確認畫面上的點跟著正確移動。方向不對時用下方的軸號、反向或對調按鈕調整；中心偏移時按「自動校正」，或在下方的校正範圍表直接設定最小值、中位、最大值。設定會自動記住。</p>
+            <p class="text-xs text-slate-400 leading-relaxed">先按「連接控制板」選擇控制板的序列埠（PS2 手把需開啟 ANALOG 類比模式，紅燈亮），再撥動兩支搖桿，確認畫面上的點跟著正確移動。方向不對時用下方的軸號、反向或對調按鈕調整；中心偏移時按「自動校正」，或在下方的校正範圍表直接設定最小值、中位、最大值。設定會自動記住。</p>
 
             <div class="flex flex-wrap items-center gap-2 rounded-xl border border-cyan-500/30 bg-slate-950/40 p-3">
-                <span class="text-xs text-slate-300 font-semibold"><i class="fa-solid fa-microchip mr-1.5 text-cyan-400"></i>ESP32 序列埠</span>
+                <span class="text-xs text-slate-300 font-semibold"><i class="fa-solid fa-microchip mr-1.5 text-cyan-400"></i>控制板序列埠</span>
                 <label for="psBaud" class="flex items-center gap-1.5 text-xs text-slate-400">鮑率
                     <select id="psBaud" class="ps-sel">
                         <option value="9600">9600</option>
@@ -443,7 +443,7 @@
                         <option value="921600">921600</option>
                     </select>
                 </label>
-                <button type="button" id="psSerialConnect" class="ps-btn ps-primary"><i class="fa-solid fa-plug mr-1.5"></i>連接 ESP32</button>
+                <button type="button" id="psSerialConnect" class="ps-btn ps-primary"><i class="fa-solid fa-plug mr-1.5"></i>連接控制板</button>
                 <button type="button" id="psSerialDisconnect" class="ps-btn" hidden><i class="fa-solid fa-plug-circle-xmark mr-1.5"></i>中斷連線</button>
                 <span id="psSerialInfo" class="text-[11px] tech-font text-slate-400 flex-1 min-w-[14rem]">資料格式：左X,左Y,右X,右Y（每行一筆，X 0～127～255、Y 0～128～255）</span>
             </div>
@@ -510,7 +510,7 @@
 
             <details class="rounded-xl border border-slate-700/50 bg-slate-950/40 p-3">
                 <summary class="cursor-pointer text-xs text-slate-300 font-semibold">全部通道（原始值）</summary>
-                <div id="psAxes" class="flex flex-col gap-1.5 mt-3"><div class="text-xs text-slate-500">連接 ESP32 後，這裡會列出 4 個軸換算後的數值（-1 ～ +1）。</div></div>
+                <div id="psAxes" class="flex flex-col gap-1.5 mt-3"><div class="text-xs text-slate-500">連接控制板後，這裡會列出 4 個軸換算後的數值（-1 ～ +1）。</div></div>
                 <div id="psBtns" class="flex flex-wrap gap-1.5 mt-3"></div>
             </details>
 
@@ -898,8 +898,8 @@ let particles = [];
 let cameraMode = 0;
 const CAMERA_MODES = ['跟隨', '座艙', '自由'];
 
-        // 5. PS2 手把輸入（ESP32 讀取 PS2 搖桿，經 UART → USB 序列埠，由網頁 Web Serial 接收）
-        // ESP32 每行送出「左X,左Y,右X,右Y」，換算成 -1 ～ +1 後放在軸 0～3：
+        // 5. PS2 手把輸入（控制板讀取 PS2 搖桿，經 UART → USB 序列埠，由網頁 Web Serial 接收）
+        // 控制板每行送出「左X,左Y,右X,右Y」，換算成 -1 ～ +1 後放在軸 0～3：
         //   軸 0 = 左X、軸 1 = 左Y、軸 2 = 右X、軸 3 = 右Y（Y 往上推為負，與一般手把相同）
         // 軸對應、反向、校正、死區仍可在設定面板調整；儲存鍵改為序列埠專用，不會沿用舊的 Gamepad API 設定。
         const PAD_DEFAULT_MAP = [{ x: 0, y: 1, xi: false, yi: false }, { x: 2, y: 3, xi: false, yi: false }];
@@ -940,11 +940,11 @@ const CAMERA_MODES = ['跟隨', '座艙', '自由'];
         const PAD_EXPO = 0.3;
         function padCurve(v) { return v * (1 - PAD_EXPO) + v * v * v * PAD_EXPO; }
 
-        // ---- ESP32 + PS2：Web Serial 接收 ----
+        // ---- 控制板 + PS2：Web Serial 接收 ----
         const SERIAL_BAUD_KEY = 'ps2SerialBaud1';
         const SERIAL_TIMEOUT_MS = 500;   // 超過 0.5 秒沒收到資料，視為訊號中斷，搖桿歸零（無人機定高懸停）
         const SERIAL_LINE_RE = /^\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*$/;
-        const USB_CHIPS = { 0x10c4: 'CP210x', 0x1a86: 'CH340', 0x0403: 'FTDI', 0x303a: 'ESP32 USB' };
+        const USB_CHIPS = { 0x10c4: 'CP210x', 0x1a86: 'CH340', 0x0403: 'FTDI', 0x303a: 'Espressif USB' };
         const serialPad = {
             supported: typeof navigator !== 'undefined' && 'serial' in navigator,
             port: null, reader: null, loop: null, connecting: false, closing: false,
@@ -954,7 +954,7 @@ const CAMERA_MODES = ['跟隨', '座艙', '自由'];
         };
         try { const b = parseInt(localStorage.getItem(SERIAL_BAUD_KEY), 10); if (b > 0) serialPad.baud = b; } catch (e) {}
         // 虛擬手把：讓設定面板、校正與飛控沿用原本 Gamepad 物件的讀法（axes／buttons／id）
-        const serialVirtualPad = { id: 'ESP32 PS2 手把', index: 0, axes: [0, 0, 0, 0], buttons: [] };
+        const serialVirtualPad = { id: '序列埠 PS2 手把', index: 0, axes: [0, 0, 0, 0], buttons: [] };
 
         // X：0(左)～127(中)～255(右)；Y：0(上)～128(中)～255(下)。中位兩側分開換算，左右／上下推到底都剛好是 ±1
         function ps2X(v) { return v >= 127 ? (v - 127) / 128 : (v - 127) / 127; }
@@ -962,7 +962,7 @@ const CAMERA_MODES = ['跟隨', '座艙', '自由'];
 
         function serialParseLine(line) {
             const m = SERIAL_LINE_RE.exec(line);
-            if (!m) { if (line.trim()) serialPad.badLines++; return; } // ESP32 開機訊息等雜訊直接略過
+            if (!m) { if (line.trim()) serialPad.badLines++; return; } // 控制板開機訊息等雜訊直接略過
             const v = [+m[1], +m[2], +m[3], +m[4]];
             if (v.some(n => n > 255)) { serialPad.badLines++; return; }
             serialPad.raw = v;
@@ -1030,7 +1030,7 @@ const CAMERA_MODES = ['跟隨', '座艙', '自由'];
                     ? '這個序列埠已被開啟，請先關閉 Arduino 序列埠監控視窗或其他分頁'
                     : '無法開啟序列埠：' + (e && e.message ? e.message : e);
                 updateSerialUI();
-                if (!quiet) showSystemNotification('ESP32 連線失敗');
+                if (!quiet) showSystemNotification('控制板連線失敗');
                 return false;
             }
             serialPad.port = port; serialPad.closing = false; serialPad.connecting = false;
@@ -1041,7 +1041,7 @@ const CAMERA_MODES = ['跟隨', '座艙', '自由'];
                 // 不是使用者按中斷，而是裝置被拔掉或讀取失敗
                 try { await port.close(); } catch (e) {}
                 serialPad.port = null;
-                if (!serialPad.error) serialPad.error = 'ESP32 已中斷連線（USB 被拔除？）';
+                if (!serialPad.error) serialPad.error = '控制板已中斷連線（USB 被拔除？）';
                 updateSerialUI();
             });
             updateSerialUI();
@@ -1071,7 +1071,7 @@ const CAMERA_MODES = ['跟隨', '座艙', '自由'];
                 updateSerialUI();
                 return;
             }
-            if (await serialOpen(port)) showSystemNotification('ESP32 序列埠已開啟，等待 PS2 搖桿資料…');
+            if (await serialOpen(port)) showSystemNotification('控制板序列埠已開啟，等待 PS2 搖桿資料…');
         }
 
         // 開啟網頁時：若先前已授權過序列埠，直接自動連線（不需再按按鈕）；USB 重新插上時也自動接回
@@ -1080,7 +1080,7 @@ const CAMERA_MODES = ['跟隨', '座艙', '自由'];
             navigator.serial.getPorts().then(ports => { if (ports.length && !serialPad.port) serialOpen(ports[0], true); }).catch(() => {});
             navigator.serial.addEventListener('connect', e => { if (!serialPad.port) serialOpen(e.target, true); });
             navigator.serial.addEventListener('disconnect', e => {
-                if (serialPad.port === e.target) { serialPad.error = 'ESP32 已中斷連線（USB 被拔除？）'; }
+                if (serialPad.port === e.target) { serialPad.error = '控制板已中斷連線（USB 被拔除？）'; }
             });
         }
 
@@ -1101,8 +1101,8 @@ const CAMERA_MODES = ['跟隨', '座艙', '自由'];
                 ? '序列埠需要 https 或 localhost，請改用 https 或直接開啟 HTML 檔'
                 : '這個瀏覽器不支援 Web Serial，請用桌面版 Chrome 或 Edge 開啟';
             if (serialPad.connecting) return '正在開啟序列埠…';
-            if (!serialPad.port) return serialPad.error || '尚未連接 ESP32，請按「連接 ESP32」選擇序列埠';
-            if (!serialPad.lastAt) return `${serialPad.label} 已開啟（${serialPad.baud}），等待資料…若一直沒有，請確認鮑率與 ESP32 程式`;
+            if (!serialPad.port) return serialPad.error || '尚未連接控制板，請按「連接控制板」選擇序列埠';
+            if (!serialPad.lastAt) return `${serialPad.label} 已開啟（${serialPad.baud}），等待資料…若一直沒有，請確認鮑率與控制板程式`;
             if (performance.now() - serialPad.lastAt > SERIAL_TIMEOUT_MS) return `${serialPad.label}：超過 0.5 秒沒有收到資料，搖桿暫時歸零`;
             return `${serialPad.label}（${serialPad.baud}）・接收中`;
         }
@@ -1172,7 +1172,7 @@ const CAMERA_MODES = ['跟隨', '座艙', '自由'];
                 const dot = document.getElementById('padHudDot');
                 if (dot) dot.className = 'w-2 h-2 rounded-full ' + (p ? 'bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]' : 'bg-slate-500');
                 if (!p) drone.gpAltArmed = false; // 訊號中斷後重新接上：油門要先回中才接手，避免搖桿停在頂端時暴衝
-                if (!padSetupOpen) showSystemNotification(p ? 'PS2 手把訊號已接收' : 'PS2 手把訊號中斷（無人機定高懸停），請檢查 ESP32 連線');
+                if (!padSetupOpen) showSystemNotification(p ? 'PS2 手把訊號已接收' : 'PS2 手把訊號中斷（無人機定高懸停），請檢查控制板連線');
             }
             if (padSetupOpen) padMonitorUpdate(p);
         }
@@ -1574,7 +1574,7 @@ const CAMERA_MODES = ['跟隨', '座艙', '自由'];
                 try { localStorage.setItem(SERIAL_BAUD_KEY, String(serialPad.baud)); } catch (e) {}
             });
             document.getElementById('psSerialConnect').addEventListener('click', serialRequestAndOpen);
-            document.getElementById('psSerialDisconnect').addEventListener('click', () => { serialClose(); showSystemNotification('已中斷 ESP32 連線'); });
+            document.getElementById('psSerialDisconnect').addEventListener('click', () => { serialClose(); showSystemNotification('已中斷控制板連線'); });
             updateSerialUI();
             serialAutoConnect();
             psEls.axes = document.getElementById('psAxes');
