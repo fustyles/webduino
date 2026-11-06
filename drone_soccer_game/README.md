@@ -121,7 +121,7 @@ https://fustyles.github.io/webduino/drone_soccer_game/uart/drone_soccer_racing_3
 https://fustyles.github.io/webduino/drone_soccer_game/uart/drone_soccer_racing_4.html
 
 <br><br>
-【 Web Bluetooth 】
+【 Web Bluetooth (主機須先新增藍芽裝置) 】
 <br><br>
 
 單人玩家版 - 練習<br>
