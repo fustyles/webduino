@@ -1,7 +1,7 @@
 研習資料： AI造飛手：用AI打造無人機足球遊戲<br>
 https://drive.google.com/drive/folders/1S5O66Penidrbg3nxL9SMpXGB2Ju5W-s_?usp=drive_link
 <br><br>
-【 鍵盤控制 】
+【 鍵盤控制 (手機、平板支援Virtual Joystick控制) 】
 <br><br>
 
 單人玩家版 - 練習<br>
