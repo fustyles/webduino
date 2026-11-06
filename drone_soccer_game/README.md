@@ -112,10 +112,50 @@ https://fustyles.github.io/webduino/drone_soccer_game/uart/drone_soccer_competit
 https://fustyles.github.io/webduino/drone_soccer_game/uart/drone_soccer_racing_1.html
 
 單人玩家競速版 (立體迷宮)<br>
-https://fustyles.github.io/webduino/drone_soccer_game/v/drone_soccer_racing_2.html
+https://fustyles.github.io/webduino/drone_soccer_game/uart/drone_soccer_racing_2.html
 
 單人玩家競速版 (九宮格)<br>
 https://fustyles.github.io/webduino/drone_soccer_game/uart/drone_soccer_racing_3.html
 
 單人玩家競速版 (單軌隧道)<br>
 https://fustyles.github.io/webduino/drone_soccer_game/uart/drone_soccer_racing_4.html
+
+<br><br>
+【 Web Bluetooth 】
+<br><br>
+
+單人玩家版 - 練習<br>
+https://fustyles.github.io/webduino/drone_soccer_game/bluetooth/drone_soccer_practise.html
+
+單人玩家版 - 前鋒機<br>
+https://fustyles.github.io/webduino/drone_soccer_game/bluetooth/drone_soccer_competition.html
+
+單人玩家版 - 防守機<br>
+https://fustyles.github.io/webduino/drone_soccer_game/bluetooth/drone_soccer_defense.html
+
+雙人玩家版 - 前鋒機x1 v.s. 防守機x1+AI防守機x1<br>
+https://fustyles.github.io/webduino/drone_soccer_game/bluetooth/drone_soccer_competition_ad.html
+
+雙人玩家版 - AI前鋒機x1 v.s. 防守機x2<br>
+https://fustyles.github.io/webduino/drone_soccer_game/bluetooth/drone_soccer_competition_dd.html
+
+三人玩家版 - 前鋒機x1 v.s. 防守機x2<br>
+https://fustyles.github.io/webduino/drone_soccer_game/bluetooth/drone_soccer_competition_add.html
+
+三人玩家版 - 紅隊AI v.s. 藍隊玩家<br>
+https://fustyles.github.io/webduino/drone_soccer_game/bluetooth/drone_soccer_competition_add_ai.html
+
+六人玩家版 - 紅隊 v.s. 藍隊<br>
+https://fustyles.github.io/webduino/drone_soccer_game/bluetooth/drone_soccer_competition_addadd.html
+
+單人玩家競速版 (高低環)<br>
+https://fustyles.github.io/webduino/drone_soccer_game/bluetooth/drone_soccer_racing_1.html
+
+單人玩家競速版 (立體迷宮)<br>
+https://fustyles.github.io/webduino/drone_soccer_game/bluetooth/drone_soccer_racing_2.html
+
+單人玩家競速版 (九宮格)<br>
+https://fustyles.github.io/webduino/drone_soccer_game/bluetooth/drone_soccer_racing_3.html
+
+單人玩家競速版 (單軌隧道)<br>
+https://fustyles.github.io/webduino/drone_soccer_game/bluetooth/drone_soccer_racing_4.html
