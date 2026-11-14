@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			var jsPath = '';
 		
 		var script = "<script src='"+jsPath+"GameElements_20190131/marked.min.js'></script>";
-		script += "<script src='"+jsPath+"GameElements_20190131/gameelements.js'></script>";		
+		script += "<script src='"+jsPath+"GameElements_20190131/gameelements.js'></script>";	
+		script += "<script src='"+jsPath+"GameElements_20190131/aes.js'></script>";        
 		script += "<link rel='stylesheet' href='"+jsPath+"css/icon_custom.css' />";
 		
 		var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace(), true);
@@ -186,9 +187,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (xml.indexOf("knnclassifier_")!=-1) {
 			script += "<script src='"+jsPath+"knn-classifier_20201012/knn-classifier_video.js'></script>";			
 			script += "<script src='"+jsPath+"knn-classifier_20201012/knn-classifier.js'></script>";
-		}
-		if (xml.indexOf("aes_")!=-1) {
-			script += "<script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js'></script>";
 		}
 		if (xml.indexOf("gemini_chat_")!=-1) {
 			script += "<script src='"+jsPath+"gemini_20240209/gemini.js'></script>";
