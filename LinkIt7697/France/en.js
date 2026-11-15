@@ -3346,8 +3346,14 @@ Blockly.Msg["ESP32_PIXELBIT_TFTSHOWCAMERA_MIRROR"] = "Mirror";
 
 Blockly.Msg["TFT"] = "TFT LCD";
 Blockly.Msg["TFT_INITIAL"] = "Initial";
-Blockly.Msg["TFT_COLOR"] = "RGB565";
+Blockly.Msg["TFT_MONITER"] = "Monitor";
+Blockly.Msg["TFT_MONITER_ST7735"] = "ST7735"; 
+Blockly.Msg["TFT_MONITER_ST7735_BLACK"] = "ST7735 (Black Label)"; 
+Blockly.Msg["TFT_MONITER_ST7735_RED"] = "ST7735 (Red Label)"; 
+Blockly.Msg["TFT_COLOR"] = "RGB565"; 
+Blockly.Msg["TFT_COLOR_BGR"] = "BGR565";
 Blockly.Msg["TFT_COLOR_RANDOM"] = "RGB565 random color";
+Blockly.Msg["TFT_COLOR_RANDOM_BGR"] = "BGR565 Random Color";
 Blockly.Msg["TFT_FILLSCREEN"] = "Fill screen";
 Blockly.Msg["TFT_SETFREEFONT"] = "Set free font";
 Blockly.Msg["TFT_SETFONTMODE"] = "Set font mode";

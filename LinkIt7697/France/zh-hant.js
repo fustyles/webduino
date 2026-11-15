@@ -3353,8 +3353,14 @@ Blockly.Msg["ESP32_PIXELBIT_TFTSHOWCAMERA_MIRROR"] = "水平翻轉";
 
 Blockly.Msg["TFT"] = "TFT全彩螢幕";
 Blockly.Msg["TFT_INITIAL"] = "初始化";
+Blockly.Msg["TFT_MONITER"] = "顯示器";
+Blockly.Msg["TFT_MONITER_ST7735"] = "ST7735";
+Blockly.Msg["TFT_MONITER_ST7735_BLACK"] = "ST7735(黑標)";
+Blockly.Msg["TFT_MONITER_ST7735_RED"] = "ST7735(紅標)";
 Blockly.Msg["TFT_COLOR"] = "RGB565";
+Blockly.Msg["TFT_COLOR_BGR"] = "BGR565";
 Blockly.Msg["TFT_COLOR_RANDOM"] = "RGB565 隨機顏色";
+Blockly.Msg["TFT_COLOR_RANDOM_BGR"] = "BGR565 隨機顏色";
 Blockly.Msg["TFT_FILLSCREEN"] = "填滿顏色";
 Blockly.Msg["TFT_SETFREEFONT"] = "設定內建字型";
 Blockly.Msg["TFT_SETFONTMODE"] = "設定字型模式";

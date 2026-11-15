@@ -10313,26 +10313,48 @@ Blockly.Arduino['tft_sd_drawbmp'] = function(block) {
 	var height = Blockly.Arduino.valueToCode(block, 'height', Blockly.Arduino.ORDER_ATOMIC)||0;	
 	var x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC)||0;
 	var y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC)||0;
+    var moniter = block.getFieldValue('moniter');
 	
 	if (selectBoardType()=="AMB82-MINI"||selectBoardType()=="HUB-8735_ultra"||selectBoardType()=="HUB-8735") {
 	
 		Blockly.Arduino.definitions_['AmebaPro2_sd_file'] = 'unsigned char* file_data;\nuint32_t file_size;\n';
-		Blockly.Arduino.definitions_['convertColour24bitTo16bit565'] = ''+	
-			'void convertColour24bitTo16bit565(unsigned char* bmp_data, uint16_t* rgb565_data, int width, int height) {\n'+
-			'    for (int i = 0; i < width * height * 3; i += 3) {\n'+
-			'        unsigned char b = bmp_data[i];\n'+
-			'        unsigned char g = bmp_data[i + 1];\n'+
-			'        unsigned char r = bmp_data[i + 2];\n'+
-			'        uint16_t rgb565 = ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);\n'+
-			'        rgb565_data[i / 3] = rgb565;\n'+
-			'    }\n'+
-			'}\n';
-		
+        
+        if (moniter=="st7735") {
+            Blockly.Arduino.definitions_['convertColour24bitTo16bit565'] = ''+	         
+                'void convertColour24bitTo16bit565(unsigned char* bmp_data, uint16_t* rgb565_data, int width, int height) {\n'+
+                '  for (int row = 0; row < height; row++) {\n'+
+                    '      unsigned char *src = bmp_data + (height - 1 - row) * width * 3;\n'+
+                    '      for (int col = 0; col < width; col++) {\n'+
+                    '          unsigned char b = src[0], g = src[1], r = src[2];\n'+
+                    '          rgb565_data[row * width + col] = ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);\n'+
+                    '          src += 3;\n'+
+                    '      }\n'+
+                    '  }\n'+
+                '}\n';
+        } else {
+            Blockly.Arduino.definitions_['convertColour24bitTo16bit565'] = ''+
+                'void convertColour24bitTo16bit565(unsigned char* bmp_data, uint16_t* rgb565_data, int width, int height) {\n'+
+                '    for (int i = 0; i < width * height * 3; i += 3) {\n'+
+                '        unsigned char b = bmp_data[i];\n'+
+                '        unsigned char g = bmp_data[i + 1];\n'+
+                '        unsigned char r = bmp_data[i + 2];\n'+
+                '        uint16_t rgb565 = ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);\n'+
+                '        rgb565_data[i / 3] = rgb565;\n'+
+                '    }\n'+
+                '}\n';
+
+        }
+
 		var code = ''+
 			'File file = fs.open(file_path+"/"+String('+filename+')+".bmp");\n'+
 			'if (file.readFile(file_data, file_size)) {\n'+
-			'    uint16_t* rgb565_data = new uint16_t['+width+' * '+height+'];\n'+
-			'    convertColour24bitTo16bit565(file_data, rgb565_data, '+width+', '+height+');\n'+
+			'    uint16_t* rgb565_data = new uint16_t['+width+' * '+height+'];\n';
+        if (moniter=="st7735")
+            code += 'uint32_t offset = file_data[10] | (file_data[11] << 8) | (file_data[12] << 16) | (file_data[13] << 24);\n';
+        else
+            code += 'uint32_t offset = 0;\n';
+        code += ''+
+			'    convertColour24bitTo16bit565(file_data + offset, rgb565_data, '+width+', '+height+');\n'+
 			'    tft.drawBitmap('+x+', '+y+', '+width+', '+height+', (const short unsigned int*)rgb565_data);\n'+
 			'    delete[] rgb565_data;\n'+         
 			'    free(file_data);\n'+
@@ -10586,19 +10608,6 @@ Blockly.Arduino['tft_setTextFont'] = function(block) {
   return code;
 };
 
-Blockly.Arduino['tft_randomcolor'] = function(block) {
-	Blockly.Arduino.definitions_['tft_randomcolor']='\n'+
-											'uint16_t color565_random() {\n'+												
-											'  int R = random(0, 255);\n'+
-											'  int G = random(0, 255);\n'+
-											'  int B = random(0, 255);\n'+	
-											'  return tft.color565(R, G, B);\n'+
-											'}\n'; 
-											
-	var code = 'color565_random()';
-	return [code, Blockly.Arduino.ORDER_NONE];
-};
-
 Blockly.Arduino['tft_readPixel'] = function(block) {
   var value_x = Blockly.Arduino.valueToCode(block, 'x', Blockly.Arduino.ORDER_ATOMIC);
   var value_y = Blockly.Arduino.valueToCode(block, 'y', Blockly.Arduino.ORDER_ATOMIC);
@@ -10777,8 +10786,11 @@ Blockly.Arduino['tft_drawRoundRect'] = function(block) {
 
 Blockly.Arduino['tft_setRotation'] = function(block) {
   var mode = block.getFieldValue('mode');
-
-  var code = 'tft.setRotation('+mode+');\n';
+  var moniter = block.getFieldValue('moniter');
+  if (moniter=="st7735")
+    var code = 'setRotationST7735('+mode+');\n';
+  else
+    var code = 'tft.setRotation('+mode+');\n';
   return code;
 };
 
@@ -10861,8 +10873,28 @@ Blockly.Arduino['tft_fillScreen'] = function(block) {
 
 Blockly.Arduino['tft_color'] = function(block) {
 	var color = block.getFieldValue('colour');
+    var type = block.getFieldValue('type');
     color = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
-	var code = 'tft.color565('+parseInt(color[1], 16)+", "+parseInt(color[2], 16)+", "+parseInt(color[3], 16)+')';
+    if (type=="bgr")
+        var code = 'tft.color565('+parseInt(color[3], 16)+", "+parseInt(color[2], 16)+", "+parseInt(color[1], 16)+')';
+    else 
+        var code = 'tft.color565('+parseInt(color[1], 16)+", "+parseInt(color[2], 16)+", "+parseInt(color[3], 16)+')';
+	return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['tft_randomcolor'] = function(block) {
+    var type = block.getFieldValue('type');    
+	Blockly.Arduino.definitions_['tft_randomcolor']='\n'+
+											'uint16_t color565_random(String type) {\n'+												
+											'  int R = random(0, 255);\n'+
+											'  int G = random(0, 255);\n'+
+											'  int B = random(0, 255);\n'+	
+											'  if (type=="bgr")\n'+	
+											'    return tft.color565(B, G, R);\n'+
+											'  else\n'+	
+											'    return tft.color565(R, G, B);\n'+
+											'}\n'; 									
+	var code = 'color565_random("'+type+'")';
 	return [code, Blockly.Arduino.ORDER_NONE];
 };
 
@@ -10897,6 +10929,7 @@ Blockly.Arduino['tft_clear'] = function(block) {
 
 Blockly.Arduino['tft_initial'] = function(block) {
 	var board = block.getFieldValue('board');
+    var moniter = block.getFieldValue('moniter');
 	
 	if (board=="Pixel:Bit")
 		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_PIXELBIT.h>\n#include <U8g2_for_TFT_eSPI.h>\n#include <TJpg_Decoder.h>\n';
@@ -10913,14 +10946,21 @@ Blockly.Arduino['tft_initial'] = function(block) {
 		Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\n#include "AmebaFatFSFile.h"\n';
 		Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS_file'] = 'File file;\nString file_path = "";\nchar *file_list;\n';
 													
-		if (selectBoardType()=="AMB82-MINI")											
+		if (selectBoardType()=="AMB82-MINI") {
 			Blockly.Arduino.definitions_.tftinitial +=  '#define TFT_RESET 5\n'+
-														'#define TFT_DC    4\n'+
-														'#define TFT_CS    SPI_SS\n';
-		else
+														'#define TFT_DC    4\n';            
+            if (moniter=="")        
+                Blockly.Arduino.definitions_.tftinitial +=  '#define TFT_CS    SPI_SS\n';
+            else                      
+                Blockly.Arduino.definitions_.tftinitial +=  '#define TFT_CS    6\n';
+		} else {
 			Blockly.Arduino.definitions_.tftinitial +=  '#define TFT_RESET 7\n'+
-														'#define TFT_DC    11\n'+
-														'#define TFT_CS    SPI_SS\n';
+														'#define TFT_DC    11\n';
+            if (moniter=="")        
+                Blockly.Arduino.definitions_.tftinitial +=  '#define TFT_CS    SPI_SS\n';
+            else                      
+                Blockly.Arduino.definitions_.tftinitial +=  '#define TFT_CS    12\n';
+        }
 													
 		Blockly.Arduino.definitions_.tftinitial +=  'AmebaILI9341 tft = AmebaILI9341(TFT_CS, TFT_DC, TFT_RESET);\n'+
 													'#define ILI9341_SPI_FREQUENCY 20000000\n'+
@@ -10945,11 +10985,40 @@ Blockly.Arduino['tft_initial'] = function(block) {
 													'    return 1;\n'+
 													'  }\n'+
 													'}\n';
+                                                    
+ 
+        if (moniter=="st7735b") {       
+            Blockly.Arduino.definitions_.tftinitial +=  '#define COLOR_ORDER 0x00  // 0x00 or 0x08\n';
+        } else if (moniter=="st7735r") {                  
+            Blockly.Arduino.definitions_.tftinitial +=  '#define COLOR_ORDER 0x08  // 0x00 or 0x08\n';
+        }
+        if (moniter=="st7735b"||moniter=="st7735r") {
+            Blockly.Arduino.definitions_.tftinitial +=  'void setRotationST7735(uint8_t r)\n'+
+                                                        '{\n'+
+                                                        '  tft.setRotation(r);\n'+
+                                                        '  const uint8_t madctl[4] = {\n'+
+                                                        '    0xC0,\n'+
+                                                        '    0xA0,\n'+
+                                                        '    0x00,\n'+
+                                                        '    0x60\n'+
+                                                        '  };\n'+
+                                                        '  tft.writecommand(0x36);\n'+
+                                                        '  tft.writedata(madctl[r & 3] | COLOR_ORDER);\n'+
+                                                        '}\n';                                              
+        }
 
-		Blockly.Arduino.setups_.tftsetup = ''+
-										   'SPI.setDefaultFrequency(ILI9341_SPI_FREQUENCY);\n'+
-										   '  tft.begin();\n'+
-										   '  tft.fillScreen(ILI9341_BLACK);\n'+
+                                                    
+
+		Blockly.Arduino.setups_.tftsetup = 'SPI.setDefaultFrequency(ILI9341_SPI_FREQUENCY);\n';
+        if (moniter=="st7735b"||moniter=="st7735r") {
+            Blockly.Arduino.setups_.tftsetup += '  pinMode(TFT_CS, OUTPUT);\n'+
+                                                '  digitalWrite(TFT_CS, LOW);\n';
+        }
+		Blockly.Arduino.setups_.tftsetup += '  tft.begin();\n';
+        if (moniter=="st7735b"||moniter=="st7735r") {
+            Blockly.Arduino.setups_.tftsetup += '  tft.setResolution(128, 160);\n';
+        }        
+		Blockly.Arduino.setups_.tftsetup += '  tft.fillScreen(ILI9341_BLACK);\n'+
 										   '  tft.clr();\n'+
 										   '  tft.setCursor(0, 0);\n'+
 										   '  tft.setFontSize(5);\n'+
@@ -10958,6 +11027,9 @@ Blockly.Arduino['tft_initial'] = function(block) {
 										   '  u8g2.setForegroundColor(ILI9341_WHITE);\n'+
 										   '  TJpgDec.setJpgScale(1);\n'+
 										   '  TJpgDec.setCallback(tft_output);\n';
+        if (moniter=="st7735b"||moniter=="st7735r") {
+            Blockly.Arduino.setups_.tftsetup += '  setRotationST7735(0);\n';
+        }                               
 
 	} else {
 		Blockly.Arduino.definitions_.tftinitial +=  'TFT_eSPI tft = TFT_eSPI();\n'+
@@ -11015,60 +11087,11 @@ Blockly.Arduino['esp32_pixelbit_tftshowcamera'] = function(block) {
 	else if (board=="EasyCam")
 		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI_EC.h>\n#include <U8g2_for_TFT_eSPI.h>\n#include <TJpg_Decoder.h>\n';
 	else if (board=="AmebaPro2")
-		Blockly.Arduino.definitions_.tftinitial = '#include "SPI.h"\n#include <TJpg_Decoder_amb82_france.h>\n#include <U8g2_for_TFT_eSPI_amb82.h>\n#include "AmebaILI9341.h"\n';		
+		Blockly.Arduino.definitions_.tftinitial = Blockly.Arduino.definitions_.tftinitial;		
 	else
 		Blockly.Arduino.definitions_.tftinitial = '#include <TFT_eSPI.h>\n#include <U8g2_for_TFT_eSPI.h>\n#include <TJpg_Decoder.h>\n';
 	
 	if (board=="AmebaPro2") {
-
-		Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS'] = '#include "AmebaFatFS.h"\nAmebaFatFS fs;\n#include "AmebaFatFSFile.h"\n';
-		Blockly.Arduino.definitions_['amb82_mini_AmebaFatFS_file'] = 'File file;\nString file_path = "";\nchar *file_list;\n';
-													
-		if (selectBoardType()=="AMB82-MINI")											
-			Blockly.Arduino.definitions_.tftinitial +=  '#define TFT_RESET 5\n'+
-														'#define TFT_DC    4\n'+
-														'#define TFT_CS    SPI_SS\n';
-		else
-			Blockly.Arduino.definitions_.tftinitial +=  '#define TFT_RESET 7\n'+
-														'#define TFT_DC    11\n'+
-														'#define TFT_CS    SPI_SS\n';
-													
-		Blockly.Arduino.definitions_.tftinitial +=  'AmebaILI9341 tft = AmebaILI9341(TFT_CS, TFT_DC, TFT_RESET);\n'+
-													'#define ILI9341_SPI_FREQUENCY 20000000\n'+
-													'U8g2_for_TFT_eSPI u8g2;\n\n'+
-													'void drawXBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, uint16_t color)\n'+
-													'{\n'+
-													'  int32_t i, j, byteWidth = (w + 7) / 8;\n'+
-													'  for (j = 0; j < h; j++) {\n'+
-													'    for (i = 0; i < w; i++ ) {\n'+
-													'      if (pgm_read_byte(bitmap + j * byteWidth + i / 8) & (1 << (i & 7))) {\n'+
-													'        tft.drawPixel(x + i, y + j, color);\n'+
-													'      }\n'+
-													'    }\n'+
-													'  }\n'+
-													'}\n\n'+
-													'bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t* bitmap)\n'+
-													'{\n'+
-													'  if (y>=tft.getHeight())\n'+
-													'    return 0;\n'+
-													'  else {\n'+
-													'    tft.drawBitmap(x, y, w, h, bitmap);\n'+
-													'    return 1;\n'+
-													'  }\n'+
-													'}\n';
-
-		Blockly.Arduino.setups_.tftsetup = ''+
-										   'SPI.setDefaultFrequency(ILI9341_SPI_FREQUENCY);\n'+
-										   '  tft.begin();\n'+
-										   '  tft.fillScreen(ILI9341_BLACK);\n'+
-										   '  tft.clr();\n'+
-										   '  tft.setCursor(0, 0);\n'+
-										   '  tft.setFontSize(5);\n'+
-										   '  tft.setForeground(ILI9341_WHITE);\n'+
-										   '  u8g2.begin(tft);\n'+
-										   '  u8g2.setForegroundColor(ILI9341_WHITE);\n'+
-										   '  TJpgDec.setJpgScale(1);\n'+
-										   '  TJpgDec.setCallback(tft_output);\n';
 
 		var code = 'Camera.getImage(amb82_CHANNEL, &img_addr, &img_len);\nTJpgDec.drawJpg(0, 0, (const uint8_t*)img_addr, img_len);\n';										   
 

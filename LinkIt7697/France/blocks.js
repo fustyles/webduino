@@ -11832,7 +11832,14 @@ Blockly.Blocks['tft_sd_drawbmp'] = {
         .appendField("x");
     this.appendValueInput("y")
         .setCheck("Number")
-        .appendField("y");				
+        .appendField("y");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["TFT_MONITER"])
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["TFT_GENERAL"],""],
+			[Blockly.Msg["TFT_MONITER_ST7735"],"st7735"]
+		]), "moniter");         
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
@@ -12776,16 +12783,6 @@ Blockly.Blocks['tft_setTextFont'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(Blockly.Msg["HUE_15"]);
-  }
-};
-
-Blockly.Blocks['tft_randomcolor'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["TFT_COLOR_RANDOM"]);		
-	this.setInputsInline(true);
-	this.setOutput(true, null); 
     this.setColour(Blockly.Msg["HUE_15"]);
   }
 };
@@ -13819,7 +13816,7 @@ Blockly.Blocks['tft_setRotation'] = {
         .appendField(Blockly.Msg["TFT"]);	  
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg["TFT_SETROTATION"]);	
+        .appendField(Blockly.Msg["TFT_SETROTATION"]);       
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldDropdown([
@@ -13828,6 +13825,13 @@ Blockly.Blocks['tft_setRotation'] = {
 		[Blockly.Msg["TFT_ROTATE_180"],"2"],
 		[Blockly.Msg["TFT_ROTATE_270"],"3"]				
 	]), "mode");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["TFT_MONITER"])
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["TFT_GENERAL"],""],
+			[Blockly.Msg["TFT_MONITER_ST7735"],"st7735"]
+		]), "moniter");     
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -14034,17 +14038,6 @@ Blockly.Blocks['tft_fillScreen'] = {
   }
 };
 
-Blockly.Blocks['tft_color'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(Blockly.Msg["TFT_COLOR"])	
-		.appendField(new Blockly.FieldColour("#0000ff"), "colour");		
-	this.setInputsInline(true);
-	this.setOutput(true, null); 
-    this.setColour(Blockly.Msg["HUE_15"]);
-  }
-};
-
 Blockly.Blocks['tft_clear'] = {
   init: function() {
     this.appendDummyInput()
@@ -14073,9 +14066,47 @@ Blockly.Blocks['tft_initial'] = {
 			["EasyCam","EasyCam"], 
 			["AmebaPro2","AmebaPro2"]		
 		]), "board");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg["TFT_MONITER"])
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["TFT_GENERAL"],""],
+			[Blockly.Msg["TFT_MONITER_ST7735_BLACK"],"st7735b"],
+			[Blockly.Msg["TFT_MONITER_ST7735_RED"],"st7735r"]
+		]), "moniter");        
     this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['tft_color'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["TFT_COLOR"],"rgb"],
+			[Blockly.Msg["TFT_COLOR_BGR"],"bgr"]		
+		]), "type")
+		.appendField(new Blockly.FieldColour("#0000ff"), "colour");		
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
+    this.setColour(Blockly.Msg["HUE_15"]);
+  }
+};
+
+Blockly.Blocks['tft_randomcolor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(new Blockly.FieldDropdown([
+			[Blockly.Msg["TFT_COLOR_RANDOM"],"rgb"],
+			[Blockly.Msg["TFT_COLOR_RANDOM_BGR"],"bgr"]		
+		]), "type")
+		.appendField(new Blockly.FieldColour("#0000ff"), "colour");
+	this.setInputsInline(true);
+	this.setOutput(true, null); 
     this.setColour(Blockly.Msg["HUE_15"]);
   }
 };
