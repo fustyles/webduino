@@ -68,6 +68,11 @@ textarea{width:100%;min-height:220px;font:13px/1.5 var(--mono);padding:12px;bord
   border-radius:4px;background:#FAFBF9;color:var(--ink);resize:vertical}
 .usage{margin-top:12px;font-size:14px}
 .usage code{font-family:var(--mono);background:#E9EEE8;padding:2px 6px;border-radius:3px;font-size:13px;word-break:break-all}
+.tft{margin-top:18px;padding-top:16px;border-top:1.5px solid var(--line)}
+.tft h3{margin:0;font-size:15px;font-weight:700}
+.tft .hint code{font-family:var(--mono);background:#E9EEE8;padding:1px 5px;border-radius:3px}
+.tft pre{margin:10px 0 0;padding:12px;font:13px/1.5 var(--mono);background:#FAFBF9;border:1.5px solid var(--line);
+  border-radius:4px;overflow:auto;white-space:pre}
 .msg{margin:10px 0 0;font-size:14px;color:#9A3412}
 .msg:empty{display:none}
 .toast{font-size:13px;color:var(--pcb);font-weight:700}
@@ -476,6 +481,14 @@ footer a{color:var(--muted)}
     </div>
     <textarea id="xbm" readonly aria-label="產生的 XBM 陣列程式碼" placeholder="產生的陣列會顯示在這裡"></textarea>
     <p class="usage" id="usage"></p>
+    <div class="tft" id="tftBox" hidden>
+      <div class="outhead">
+        <h3>TFT 彩色螢幕（u8g2 for TFT_eSPI）</h3>
+        <div class="row"><span class="toast" id="copiedTft" aria-live="polite"></span><button type="button" class="ghost" id="copyTft">複製函式與呼叫</button></div>
+      </div>
+      <p class="hint">TFT 是彩色螢幕，用下面的 <code>drawXBitmap()</code> 逐點畫出圖案，最後一個參數可以指定顏色。把函式貼在 <code>setup()</code> 之前，程式裡要先有名為 <code>tft</code> 的顯示器物件。</p>
+      <pre id="tftCode"></pre>
+    </div>
   </section>
 </main>
 
@@ -532,27 +545,48 @@ function showResult(name, width, height, bytes, drawW){
   $("statW").textContent = width;
   $("statH").textContent = height;
   $("statB").textContent = bytes.length;
-  $("usage").innerHTML = "u8g2 使用方式：<code>u8g2.drawXBMP(x, y, " + drawW + ", " + height + ", " + name + ");</code>";
+  $("usage").innerHTML = "u8g2 單色螢幕：<code>u8g2.drawXBMP(x, y, " + drawW + ", " + height + ", " + name + ");</code>";
+  $("tftCode").textContent = TFT_FUNC + "\n// 呼叫範例：在 (x, y) 用白色畫出圖案\ndrawXBitmap(x, y, " + name + ", " + drawW + ", " + height + ", tft.color565(255, 255, 255));";
+  $("tftBox").hidden = false;
   $("msg").textContent = "";
 }
+
+// TFT 彩色螢幕用：逐點讀取 XBM 位元，用 tft.drawPixel 畫出指定顏色
+const TFT_FUNC = `void drawXBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, uint16_t color)
+{
+  int32_t i, j, byteWidth = (w + 7) / 8;
+  for (j = 0; j < h; j++) {
+    for (i = 0; i < w; i++ ) {
+      if (pgm_read_byte(bitmap + j * byteWidth + i / 8) & (1 << (i & 7))) {
+        tft.drawPixel(x + i, y + j, color);
+      }
+    }
+  }
+}
+`;
 
 function showError(text){
   $("msg").textContent = text;
   $("xbm").value = "";
   $("usage").textContent = "";
+  $("tftBox").hidden = true;
   ["statW","statH","statB"].forEach(id => $(id).textContent = "–");
   $("preview").innerHTML = '<p class="empty">還沒有結果</p>';
 }
 
+async function copyText(text, toastId){
+  if (!text){ $(toastId).textContent = "沒有可複製的內容"; return; }
+  try { await navigator.clipboard.writeText(text); }
+  catch(e){
+    const t = document.createElement("textarea"); t.value = text; document.body.appendChild(t);
+    t.select(); document.execCommand("copy"); t.remove();
+  }
+  $(toastId).textContent = "已複製";
+  setTimeout(() => $(toastId).textContent = "", 1800);
+}
 function setupCopy(){
-  $("copy").addEventListener("click", async () => {
-    const t = $("xbm");
-    if (!t.value){ $("copied").textContent = "沒有可複製的內容"; return; }
-    try { await navigator.clipboard.writeText(t.value); }
-    catch(e){ t.select(); document.execCommand("copy"); }
-    $("copied").textContent = "已複製";
-    setTimeout(() => $("copied").textContent = "", 1800);
-  });
+  $("copy").addEventListener("click", () => copyText($("xbm").value, "copied"));
+  $("copyTft").addEventListener("click", () => copyText($("tftCode").textContent, "copiedTft"));
 }
 
 // 讓虛線框支援拖放檔案
