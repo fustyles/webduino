@@ -5197,7 +5197,8 @@ Blockly.Arduino['amb82_mini_video_initial'] = function(block) {
 	if (resolution!=""){
 		Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#include "VideoStream.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\nVideoSetting config('+resolution+', CAM_FPS, VIDEO_JPEG, 1);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
-		Blockly.Arduino.setups_['amb82_mini_video_initial'] ='config.setRotation('+rotation+');\n  '+   
+		Blockly.Arduino.setups_['amb82_mini_video_initial'] = 'config.setJpegQuality(9);\n  '+
+                                            'config.setRotation('+rotation+');\n  '+   
 											'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
 											'Camera.videoInit();\n  '+
 											'Camera.channelBegin(amb82_CHANNEL);\n  '+
@@ -5207,7 +5208,8 @@ Blockly.Arduino['amb82_mini_video_initial'] = function(block) {
 	} else {
 		Blockly.Arduino.definitions_['amb82_mini_video_initial'] ='#include "VideoStream.h"\n#include "VideoStreamOverlay.h"\n#define amb82_CHANNEL 0\nVideoSetting config(amb82_CHANNEL);\nuint32_t img_addr = 0;\nuint32_t img_len = 0;\n';
 
-		Blockly.Arduino.setups_['amb82_mini_video_initial'] = 'config.setRotation('+rotation+');\n  '+
+		Blockly.Arduino.setups_['amb82_mini_video_initial'] = 'config.setJpegQuality(9);\n  '+
+                                            'config.setRotation('+rotation+');\n  '+  
 											'Camera.configVideoChannel(amb82_CHANNEL, config);\n  '+
 											'Camera.videoInit();\n  '+
 											'OSD.configVideo(amb82_CHANNEL, config);\n  '+
