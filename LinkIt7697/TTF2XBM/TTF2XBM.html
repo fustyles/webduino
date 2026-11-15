@@ -1,164 +1,293 @@
-<!-- 
+<!--
 Author : ChungYi Fu (Kaohsiung, Taiwan)   2021/11/20 23:00
 https://www.facebook.com/francefu
 
 Try it!
 https://fustyles.github.io/webduino/LinkIt7697/TTF2XBM/TTF2XBM.html
 -->
-
 <!DOCTYPE html>
+<html lang="zh-Hant-TW">
 <head>
-  <title>TTF to XBM</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="opentype.js"> </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>字型檔轉 XBM｜u8g2 點陣圖產生器</title>
+<script src="opentype.js"></script>
+<style>
+:root{
+  --paper:#EEF1EC; --panel:#FFFFFF; --ink:#1E2B2A; --muted:#5B6A66;
+  --line:#CBD3CD; --pcb:#1F6B4F; --pcb-dark:#16523C; --amber:#C98A1B;
+  --lcd:#2E3A2F; --lcd-off:#3A4A3B; --lcd-on:#E6EFC4;
+  --font:"Noto Sans TC","Microsoft JhengHei","PingFang TC","Heiti TC",system-ui,sans-serif;
+  --mono:ui-monospace,"Cascadia Mono",Consolas,"Courier New",monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 var(--font)}
+.wrap{max-width:960px;margin:0 auto;padding:28px 20px 48px}
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;
+  border-bottom:3px solid var(--ink);padding-bottom:16px}
+.brand h1{margin:0;font-size:30px;line-height:1.2;font-weight:800;letter-spacing:.02em}
+.brand p{margin:6px 0 0;color:var(--muted);font-size:15px}
+nav.tools{display:flex;gap:4px;flex-wrap:wrap}
+nav.tools a{display:block;padding:7px 14px;border:1.5px solid var(--ink);color:var(--ink);text-decoration:none;
+  font-size:14px;font-weight:600;border-radius:999px;background:transparent}
+nav.tools a:hover{background:#fff}
+nav.tools a[aria-current="page"]{background:var(--ink);color:#fff}
+main.grid{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:24px;margin-top:24px}
+@media (max-width:760px){main.grid{grid-template-columns:1fr}}
+section.box{background:var(--panel);border:1.5px solid var(--line);border-radius:6px;padding:18px 18px 20px}
+section.box h2{margin:0 0 12px;font-size:17px;font-weight:700}
+.field{margin-bottom:14px}
+.field>label,.field>.lbl{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
+.hint{color:var(--muted);font-size:13px;margin:6px 0 0}
+input[type=text],select{width:100%;font:inherit;font-size:15px;padding:8px 10px;border:1.5px solid var(--line);
+  border-radius:4px;background:#fff;color:var(--ink)}
+input[type=range]{width:100%;accent-color:var(--pcb)}
+.row{display:flex;gap:10px;align-items:center}
+.drop{display:block;border:2px dashed var(--line);border-radius:6px;padding:18px 12px;text-align:center;
+  cursor:pointer;background:#F7F9F6;color:var(--muted);font-size:14px}
+.drop:hover,.drop.over{border-color:var(--pcb);color:var(--pcb)}
+.drop strong{display:block;color:var(--ink);font-size:15px;margin-bottom:2px}
+.drop input{position:absolute;width:1px;height:1px;opacity:0}
+.check{display:flex;gap:8px;align-items:center;font-size:14px;font-weight:600}
+button{font:inherit;font-weight:700;font-size:15px;border:0;border-radius:4px;padding:9px 16px;cursor:pointer;
+  background:var(--pcb);color:#fff}
+button:hover{background:var(--pcb-dark)}
+button.ghost{background:transparent;color:var(--pcb);border:1.5px solid var(--pcb);padding:7px 14px}
+button.ghost:hover{background:#E4EFE9}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.lcd{background:var(--lcd);border-radius:8px;padding:18px;min-height:180px;display:flex;align-items:center;
+  justify-content:center;overflow:auto;box-shadow:inset 0 0 0 4px #253026}
+.lcd canvas{image-rendering:pixelated;image-rendering:crisp-edges;display:block}
+.lcd .empty{color:#A9B79A;font-size:14px;text-align:center}
+.stat{display:flex;flex-wrap:wrap;gap:6px 18px;margin:12px 0 0;font-size:14px;color:var(--muted)}
+.stat b{color:var(--ink);font-variant-numeric:tabular-nums}
+.out{grid-column:1/-1}
+.outhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+.outhead h2{margin:0}
+textarea{width:100%;min-height:220px;font:13px/1.5 var(--mono);padding:12px;border:1.5px solid var(--line);
+  border-radius:4px;background:#FAFBF9;color:var(--ink);resize:vertical}
+.usage{margin-top:12px;font-size:14px}
+.usage code{font-family:var(--mono);background:#E9EEE8;padding:2px 6px;border-radius:3px;font-size:13px;word-break:break-all}
+.msg{margin:10px 0 0;font-size:14px;color:#9A3412}
+.msg:empty{display:none}
+.toast{font-size:13px;color:var(--pcb);font-weight:700}
+footer{margin-top:28px;color:var(--muted);font-size:13px}
+footer a{color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
 </head>
 <body>
+<div class="wrap">
+<header class="top">
+  <div class="brand">
+    <h1>字型檔轉 XBM</h1>
+    <p>用你自己的 TTF 字型檔把文字轉成點陣圖，產生可直接貼進 Arduino 程式、給 u8g2 <code>drawXBMP()</code> 使用的陣列。</p>
+  </div>
+  <nav class="tools" aria-label="切換工具">
+<a href="https://fustyles.github.io/webduino/LinkIt7697/IMG2XBM/IMG2XBM.html">圖片轉 XBM</a>
+<a href="https://fustyles.github.io/webduino/LinkIt7697/TTF2XBM/TTF2XBM.html" aria-current="page">字型檔轉 XBM</a>
+<a href="https://fustyles.github.io/webduino/LinkIt7697/FONT2XBM/FONT2XBM.html">系統字型轉 XBM</a>
+  </nav>
+</header>
 
-Size :
-<select id="fontSize" onchange="clearData();">
-  <option value="8">8px</option>
-  <option value="9">9px</option>		  
-  <option value="10">10px</option>
-  <option value="11">11px</option>		  
-  <option value="12" selected>12px</option>
-  <option value="14">14px</option>		  
-  <option value="16">16px</option>		  
-  <option value="18">18px</option>		  
-  <option value="20">20px</option>
-  <option value="24">24px</option>		  
-  <option value="32">32px</option>
-  <option value="42">42px</option>
-  <option value="48">48px</option>		  
-  <option value="56">56px</option>
-  <option value="64">64px</option> 
-  <option value="72">72px</option>
-</select>
-Text :<input type="text" id="str" value="Hello, World" size="40" onchange="clearData();"><br><br>
-Local TTF file : <span id="reset"><input type="file" id="openfile" accept=".ttf"></span><br><br>
-XBM Code:<span id="size"></span><br>
-<textarea id="xbm" cols="80" rows="20"></textarea><br><br>
-<canvas id="drawText" style="display:none"></canvas>
-<canvas id="drawResult"></canvas>
-	<script>
-	var str = document.getElementById("str");
-	var fontSize = document.getElementById("fontSize");
-	var size = document.getElementById("size");
-	var xbm = document.getElementById("xbm");
-	var reset = document.getElementById("reset");
-	var canvas = document.getElementById("drawText");
-	var canvas1 = document.getElementById("drawResult");
-	
-	initial();
-	function initial() {
-		var file=document.getElementById('openfile');
-		file.onchange = function (event) {
-			var target = event.target || window.event.srcElement;
-			var files = target.files;
-			if (FileReader && files && files.length) {
-				var reader = new FileReader();
-				reader.onload = function (e) {    
-					try {
-						font = opentype.parse(e.target.result);
-						window.font = font;
-						var options = {
-							kerning: true,
-							hinting: false,
-							features: {
-								liga: true,
-								rlig: true
-							}
-						};
-						
-						const context = canvas.getContext('2d');
-						canvas.width = 960;
-						canvas.height = 480;
-						
-						var dropdown_size = Number(fontSize.value);
-						var value_str = str.value;
+<main class="grid">
+  <section class="box" aria-labelledby="h-set">
+    <h2 id="h-set">設定</h2>
+    <div class="field">
+      <label for="str">文字</label>
+      <input type="text" id="str" value="你好，世界">
+    </div>
+    <div class="field">
+      <label for="fontSize">字體大小</label>
+      <select id="fontSize">
+<option value="8">8 px</option>
+<option value="9">9 px</option>
+<option value="10">10 px</option>
+<option value="11">11 px</option>
+<option value="12">12 px</option>
+<option value="14">14 px</option>
+<option value="16" selected>16 px</option>
+<option value="18">18 px</option>
+<option value="20">20 px</option>
+<option value="24">24 px</option>
+<option value="32">32 px</option>
+<option value="42">42 px</option>
+<option value="48">48 px</option>
+<option value="56">56 px</option>
+<option value="64">64 px</option>
+<option value="72">72 px</option>
+      </select>
+    </div>
+    <div class="field">
+      <span class="lbl">字型檔</span>
+      <label class="drop" id="dropTtf">
+        <input type="file" id="openfile" accept=".ttf,.otf">
+        <strong>選擇字型檔</strong>或把 TTF／OTF 檔拖曳到這裡
+      </label>
+      <p class="hint" id="fname">選好字型後，修改文字或大小會自動重新產生。</p>
+    </div>
+    <p class="msg" id="msg" role="alert"></p>
+  </section>
 
-						context.clearRect(0, 0, canvas.width, canvas.height);
-						context.fillStyle="#000000";
-						context.textBaseline = "top";
-						var textWidth = font.getAdvanceWidth(value_str, dropdown_size, options);
-						var width = (textWidth%8>0)?Math.round(textWidth-textWidth%8+8):Math.round(textWidth);
-						font.draw(context, value_str, 0, 240, dropdown_size, options);
+  <section class="box" aria-labelledby="h-pre">
+    <h2 id="h-pre">顯示效果預覽</h2>
+    <div class="lcd" id="preview"><p class="empty">還沒有結果</p></div>
+    <p class="stat">寬 <b id="statW">–</b> 點　高 <b id="statH">–</b> 點　資料 <b id="statB">–</b> bytes</p>
+  </section>
 
-						var pixels = context.getImageData(0, 0, width, canvas.height);
-						var fontTop = null, fontBottom = null;
-						var y;
-						for (var i = 0; i < pixels.data.length; i += 4) {
-							if (pixels.data[i+3] !== 0) {
-								y = ((i / 4) / width);			
-								if (fontTop === null) {
-									fontTop = y;
-								}
-								if (fontBottom === null) {
-									fontBottom = y;
-								} else if (fontBottom < y) {
-									fontBottom = y;
-								}
-							}
-						}
+  <section class="box out" aria-labelledby="h-out">
+    <div class="outhead">
+      <h2 id="h-out">XBM 陣列</h2>
+      <div class="row"><span class="toast" id="copied" aria-live="polite"></span><button type="button" class="ghost" id="copy">複製程式碼</button></div>
+    </div>
+    <textarea id="xbm" readonly aria-label="產生的 XBM 陣列程式碼" placeholder="產生的陣列會顯示在這裡"></textarea>
+    <p class="usage" id="usage"></p>
+  </section>
+</main>
 
-						var height = fontBottom-fontTop+1;	
-						height = (height>Math.floor(height))?(Math.floor(height)+1):Math.floor(height);
-						
-						size.innerText = "( "+width + " X " + height + " )";
-						
-						const context1 = canvas1.getContext('2d');
-						canvas1.width = width;
-						canvas1.height = height;
-						context1.clearRect(0, 0, width, height);
-						context1.drawImage(canvas, 0, fontTop, width, height, 0, 0, width, height);						
+<footer>作者：ChungYi Fu（高雄）・<a href="https://www.facebook.com/francefu">Facebook</a></footer>
+</div>
+<script>
+const $ = id => document.getElementById(id);
 
-						const imageData = context.getImageData(0, fontTop, width, height);
-						const data = imageData.data;
+// 把 lit(x,y) 的結果依 XBM 規則打包：每列以 8 點為一組，最左邊的點放在最低位元
+function packXBM(width, height, lit){
+  const bytes = [];
+  for (let y = 0; y < height; y++){
+    for (let bx = 0; bx < width; bx += 8){
+      let v = 0;
+      for (let b = 0; b < 8; b++){
+        const x = bx + b;
+        if (x < width && lit(x, y)) v |= (1 << b);
+      }
+      bytes.push(v);
+    }
+  }
+  return bytes;
+}
 
-						let xbmString = "";
-						let pixel = 0;
-						let value = 0;
-						
-						for(let h = 0; h < height; h++) {
-							for(let w = 0; w < width / 8; w++) {
-								value = 0;
-								for(let p = 0; p < 8; p++) {
-									const isBlack = !(data[pixel * 4+3]);
-									if(!isBlack)
-										value += Math.pow(2, p);
-									pixel++;
-									const isNewRow = pixel/width === 1;
-									if(isNewRow) break;
-								}
-								xbmString += ("0x"+("0"+(Number(value).toString(16))).slice(-2).toUpperCase()+",");
-							}
-						}
-						
-						xbm.value = "static const unsigned char PROGMEM logo_"+width+"X"+height+"[] = {\n\n" + xbmString.substr(0,xbmString.length-1) + "\n\n};";								
-						file.parentNode.removeChild(file);
-						reset.innerHTML = '<input type="file" id="openfile" accept=".ttf">';
-						initial();
-					} catch (err) {
-						alert(err.toString());
-						file.parentNode.removeChild(file);
-						reset.innerHTML = '<input type="file" id="openfile" accept=".ttf">';
-						initial();
-					}
-				}
-				reader.onerror = function(err) {
-					alert(err.toString());
-					file.parentNode.removeChild(file);
-					reset.innerHTML = '<input type="file" id="openfile" accept=".ttf">';
-					initial();
-				};
-				reader.readAsArrayBuffer(target.files[0]);
-			}
-		}
-	}
-	
-	function clearData() {
-		size.innerHTML = "";
-		xbm.value = "";
-	}
-	</script>
+function toHexList(bytes){
+  return bytes.map(v => "0x" + v.toString(16).toUpperCase().padStart(2, "0")).join(",");
+}
+
+// 在仿液晶面板上畫出點陣結果
+function renderPreview(width, height, lit){
+  const box = $("preview");
+  box.innerHTML = "";
+  const c = document.createElement("canvas");
+  c.width = width; c.height = height;
+  const ctx = c.getContext("2d");
+  const img = ctx.createImageData(width, height);
+  const on = [230,239,196], off = [58,74,59];
+  for (let y = 0; y < height; y++) for (let x = 0; x < width; x++){
+    const i = (y * width + x) * 4, col = lit(x, y) ? on : off;
+    img.data[i] = col[0]; img.data[i+1] = col[1]; img.data[i+2] = col[2]; img.data[i+3] = 255;
+  }
+  ctx.putImageData(img, 0, 0);
+  const avail = Math.max(120, box.clientWidth - 36);
+  const scale = Math.max(1, Math.min(8, Math.floor(avail / width)));
+  c.style.width = (width * scale) + "px";
+  c.style.height = (height * scale) + "px";
+  c.setAttribute("role", "img");
+  c.setAttribute("aria-label", "點陣預覽 " + width + " × " + height);
+  box.appendChild(c);
+}
+
+function showResult(name, width, height, bytes, drawW){
+  $("xbm").value = "static const unsigned char PROGMEM " + name + "[] = {\n\n" + toHexList(bytes) + "\n\n};";
+  $("statW").textContent = width;
+  $("statH").textContent = height;
+  $("statB").textContent = bytes.length;
+  $("usage").innerHTML = "u8g2 使用方式：<code>u8g2.drawXBMP(x, y, " + drawW + ", " + height + ", " + name + ");</code>";
+  $("msg").textContent = "";
+}
+
+function showError(text){
+  $("msg").textContent = text;
+  $("xbm").value = "";
+  $("usage").textContent = "";
+  ["statW","statH","statB"].forEach(id => $(id).textContent = "–");
+  $("preview").innerHTML = '<p class="empty">還沒有結果</p>';
+}
+
+function setupCopy(){
+  $("copy").addEventListener("click", async () => {
+    const t = $("xbm");
+    if (!t.value){ $("copied").textContent = "沒有可複製的內容"; return; }
+    try { await navigator.clipboard.writeText(t.value); }
+    catch(e){ t.select(); document.execCommand("copy"); }
+    $("copied").textContent = "已複製";
+    setTimeout(() => $("copied").textContent = "", 1800);
+  });
+}
+
+// 讓虛線框支援拖放檔案
+function setupDrop(labelId, inputId, onFile){
+  const lab = $(labelId), inp = $(inputId);
+  inp.addEventListener("change", () => { if (inp.files.length) onFile(inp.files[0]); inp.value = ""; });
+  ["dragenter","dragover"].forEach(ev => lab.addEventListener(ev, e => { e.preventDefault(); lab.classList.add("over"); }));
+  ["dragleave","drop"].forEach(ev => lab.addEventListener(ev, e => { e.preventDefault(); lab.classList.remove("over"); }));
+  lab.addEventListener("drop", e => { if (e.dataTransfer.files.length) onFile(e.dataTransfer.files[0]); });
+}
+
+
+// 從畫好的字找出上下邊界，裁切後轉成 XBM
+function textToXBM(drawFn, textWidth){
+  if (!$("str").value.trim()){ showError("請先輸入要轉換的文字。"); return; }
+  const width = Math.max(8, Math.ceil(textWidth / 8) * 8);
+  const c = document.createElement("canvas");
+  c.width = width; c.height = 480;
+  const ctx = c.getContext("2d");
+  ctx.clearRect(0, 0, width, c.height);
+  ctx.fillStyle = "#000000";
+  ctx.textBaseline = "top";
+  drawFn(ctx);
+  const all = ctx.getImageData(0, 0, width, c.height).data;
+  let top = -1, bottom = -1;
+  for (let y = 0; y < c.height; y++){
+    for (let x = 0; x < width; x++){
+      if (all[(y * width + x) * 4 + 3] !== 0){ if (top < 0) top = y; bottom = y; break; }
+    }
+  }
+  if (top < 0){ showError("這段文字畫不出任何筆畫。請確認字型裡有這些字，或換一段文字。"); return; }
+  const height = bottom - top + 1;
+  const d = ctx.getImageData(0, top, width, height).data;
+  const lit = (x, y) => d[(y * width + x) * 4 + 3] !== 0;
+  const bytes = packXBM(width, height, lit);
+  renderPreview(width, height, lit);
+  showResult("logo_" + width + "X" + height, width, height, bytes, width);
+}
+
+let font = null;
+setupCopy();
+setupDrop("dropTtf", "openfile", file => {
+  const r = new FileReader();
+  r.onload = e => {
+    try {
+      font = opentype.parse(e.target.result);
+      $("fname").textContent = "已載入：" + file.name;
+      convert();
+    } catch (err) {
+      font = null;
+      showError("無法讀取這個字型檔（" + err.message + "）。請選擇 TTF 或 OTF 檔。");
+    }
+  };
+  r.onerror = () => showError("讀取檔案失敗，請再選一次。");
+  r.readAsArrayBuffer(file);
+});
+$("str").addEventListener("input", convert);
+$("fontSize").addEventListener("change", convert);
+
+function convert(){
+  if (!font){ return; }
+  const size = Number($("fontSize").value), text = $("str").value;
+  const opt = { kerning: true, hinting: false, features: { liga: true, rlig: true } };
+  const w = font.getAdvanceWidth(text, size, opt);
+  // 從 y = 240 的位置往下畫，上方留空間給超出基線的筆畫
+  textToXBM(ctx => font.draw(ctx, text, 0, 240, size, opt), w);
+}
+
+</script>
+</body>
 </html>
